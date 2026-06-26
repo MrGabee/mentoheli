@@ -18,9 +18,9 @@ from datetime import datetime, timezone
 #  Ezeket GitHub Secrets-ben kell beállítani!
 #  (repo → Settings → Secrets → Actions)
 # ─────────────────────────────────────────────
-EMAIL_KULDO   = os.environ["EMAIL_KULDO"]    # pl. te@gmail.com
-EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]  # Gmail App Password
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"] # ahová az értesítés megy
+EMAIL_KULDO   = os.environ["szerkesztoseg@baleset-info.hu"]    # pl. te@gmail.com
+EMAIL_JELSZO  = os.environ["cjbylxkmdrkmzwyh"]  # Gmail App Password
+EMAIL_CIMZETT = os.environ["balesetinfo@gmail.com"] # ahová az értesítés megy
 
 # ─────────────────────────────────────────────
 #  📡  API FORRÁSOK (sorban próbálja)
