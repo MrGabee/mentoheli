@@ -38,9 +38,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin main
-          git add allapot.json
+          [ -f allapot.json ] && git add allapot.json || echo "allapot.json nem létezik, kihagyva"
           git diff --staged --quiet || git commit -m "állapot [skip ci]"
-          git push origin main
+          git diff HEAD~1 --quiet 2>/dev/null || git push origin main || true
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
