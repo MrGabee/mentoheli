@@ -15,14 +15,8 @@ jobs:
     steps:
       - name: 📥 Kód letöltése
         uses: actions/checkout@v4
-
-      - name: 📂 Állapot fájl ellenőrzése
-        run: |
-          if [ -f "allapot.json" ]; then
-            echo "✅ Állapot fájl megvan: $(wc -c < allapot.json) byte"
-          else
-            echo "📭 Nincs állapot fájl, első futás."
-          fi
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: 🐍 Python beállítása
         uses: actions/setup-python@v5
@@ -39,13 +33,14 @@ jobs:
           EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
         run: python monitor.py
 
-      - name: 💾 Állapot fájl commitolása
+      - name: 💾 Állapot commitolása
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
           git add allapot.json
-          git diff --staged --quiet || git commit -m "állapot frissítés [skip ci]"
-          git push
+          git diff --staged --quiet || git commit -m "állapot [skip ci]"
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
@@ -56,7 +51,7 @@ jobs:
       - name: 🔄 Következő futás indítása
         if: always()
         run: |
-          curl -X POST \
+          curl -s -X POST \
             -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/${{ github.repository }}/dispatches \
