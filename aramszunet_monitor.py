@@ -1,9 +1,8 @@
 """
 ⚡ E.ON Áramszünet Monitor – Csepel (XXI. kerület)
-Figyeli:
-  1. Tervezett áramszünetek (poweroutage.json)
-  2. Élő/váratlan üzemzavarok (unexpectedoutage.json)
-Futtatás: GitHub Actions (percenként, self-loop)
+Adatforrás: E.ON JSON API
+  - poweroutage.json    → tervezett áramszünetek
+  - unexpectedoutage.json → élő üzemzavarok
 """
 
 import os
@@ -15,9 +14,6 @@ from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-# ─────────────────────────────────────────────
-#  ⚙️  KONFIGURÁCIÓ
-# ─────────────────────────────────────────────
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
@@ -25,13 +21,11 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
 
-# Csepel bounding box
+# Csepel bounding box (WGS84)
 CSEPEL_LAT_MIN = 47.38
 CSEPEL_LAT_MAX = 47.47
 CSEPEL_LON_MIN = 19.00
 CSEPEL_LON_MAX = 19.12
-
-CSEPEL_KULCSSZAVAK = ["csepel", "xxi", "21. ker", "budapest xxi", "bp. xxi", "csepeli"]
 
 ALLAPOT_FAJL = "aramszunet_allapot.json"
 
@@ -43,7 +37,7 @@ HEADERS = {
 
 
 # ════════════════════════════════════════════
-#  💾  ÁLLAPOT KEZELÉS
+#  💾  ÁLLAPOT
 # ════════════════════════════════════════════
 def betolt_allapot():
     if os.path.exists(ALLAPOT_FAJL):
@@ -63,7 +57,7 @@ def hash_id(szoveg):
 
 
 # ════════════════════════════════════════════
-#  📍  CSEPEL SZŰRŐ
+#  📍  CSEPEL SZŰRŐ – koordináta alapú
 # ════════════════════════════════════════════
 def koordinata_csepel_e(lat, lon):
     try:
@@ -72,32 +66,39 @@ def koordinata_csepel_e(lat, lon):
     except Exception:
         return False
 
-def szoveg_csepel_e(szoveg):
-    s = szoveg.lower()
-    return any(k in s for k in CSEPEL_KULCSSZAVAK)
-
 def csepel_e(eset):
-    # Koordináta alapú szűrés - egyetlen pont
-    coords = eset.get("coordinates") or eset.get("coordinate") or {}
+    # Egyetlen koordináta pont
+    coords = eset.get("coordinates") or {}
     if isinstance(coords, dict):
         lat = coords.get("lat") or coords.get("latitude")
         lon = coords.get("lng") or coords.get("lon") or coords.get("longitude")
         if lat and lon and koordinata_csepel_e(lat, lon):
             return True
 
-    # Koordináta lista
-    coord_list = eset.get("affectedCoordinates") or []
-    if isinstance(coord_list, list):
-        for c in coord_list:
-            if isinstance(c, dict):
-                lat = c.get("lat") or c.get("latitude")
-                lon = c.get("lng") or c.get("lon") or c.get("longitude")
-                if lat and lon and koordinata_csepel_e(lat, lon):
-                    return True
+    # Transformer középpont (üzemzavarnál)
+    tc = eset.get("transformerAreaCenterCoordinates") or {}
+    if isinstance(tc, dict):
+        lat = tc.get("lat") or tc.get("latitude")
+        lon = tc.get("lng") or tc.get("lon") or tc.get("longitude")
+        if lat and lon and koordinata_csepel_e(lat, lon):
+            return True
 
-    # Szöveges szűrés
-    eset_str = json.dumps(eset, ensure_ascii=False).lower()
-    if szoveg_csepel_e(eset_str):
+    # addressRanges lista (tervezett esetén)
+    for ar in eset.get("addressRanges", []):
+        if isinstance(ar, dict):
+            c = ar.get("coordinates") or {}
+            lat = c.get("lat") or c.get("latitude")
+            lon = c.get("lng") or c.get("lon") or c.get("longitude")
+            if lat and lon and koordinata_csepel_e(lat, lon):
+                return True
+            # Szöveges city/district ellenőrzés
+            city = str(ar.get("city", "") or ar.get("district", "") or "").lower()
+            if "csepel" in city or "xxi" in city:
+                return True
+
+    # city mező (üzemzavarnál)
+    city = str(eset.get("city", "") or "").lower()
+    if "csepel" in city or "xxi" in city:
         return True
 
     return False
@@ -107,7 +108,6 @@ def csepel_e(eset):
 #  🕐  IDŐPONT FORMÁZÁS
 # ════════════════════════════════════════════
 def ido_format(mezo):
-    """Bármilyen formátumú időpontot olvasható stringgé alakít."""
     if not mezo:
         return "—"
     if isinstance(mezo, dict):
@@ -115,149 +115,118 @@ def ido_format(mezo):
         ido   = mezo.get("time") or mezo.get("ido") or ""
         if datum and ido:
             return f"{datum} {ido}"
-        elif datum:
-            return datum
-        elif ido:
-            return ido
-        # Ha más kulcsok vannak
-        return str(mezo)
+        return datum or ido or str(mezo)
     if isinstance(mezo, (int, float)):
-        # Unix timestamp
         try:
-            return datetime.fromtimestamp(mezo).strftime("%Y.%m.%d %H:%M")
+            return datetime.fromtimestamp(mezo / 1000 if mezo > 1e10 else mezo).strftime("%Y.%m.%d %H:%M")
         except Exception:
             return str(mezo)
-    return str(mezo).replace("T", " ").replace("Z", "")
+    return str(mezo).replace("T", " ").replace("Z", "")[:19]
 
 
 # ════════════════════════════════════════════
-#  📡  API LEKÉRDEZÉS
+#  📡  LEKÉRDEZÉS
 # ════════════════════════════════════════════
 def lekerdez_json(url, tipus):
     try:
-        print(f"📡 Lekérdezés ({tipus}): {url}")
+        print(f"📡 {tipus}: {url}")
         r = requests.get(url, headers=HEADERS, timeout=20)
         if r.status_code != 200:
             print(f"  ⚠️ HTTP {r.status_code}")
             return []
 
         data = r.json()
+        esetek = data.get("outages", []) if isinstance(data, dict) else data
+        print(f"  📊 Összes: {len(esetek)}")
 
-        # Nyers JSON kiírása debughoz
-        print(f"  🔍 JSON kulcsok: {list(data.keys()) if isinstance(data, dict) else 'lista'}")
-
-        esetek = []
-        if isinstance(data, list):
-            esetek = data
-        elif isinstance(data, dict):
-            for kulcs in ["outages", "data", "items", "results", "events", "powerOutages", "plannedOutages"]:
-                if kulcs in data:
-                    esetek = data[kulcs]
-                    print(f"  📂 Kulcs: '{kulcs}', elemek: {len(esetek)}")
-                    break
-
-        if not esetek:
-            print(f"  ⚠️ Nem találtam listát! Elérhető kulcsok: {list(data.keys()) if isinstance(data, dict) else 'N/A'}")
-            # Ha az első elem struktúráját látni akarjuk
-            if isinstance(data, dict) and data:
-                elso_ertek = list(data.values())[0]
-                if isinstance(elso_ertek, list) and elso_ertek:
-                    print(f"  🔍 Első elem kulcsai: {list(elso_ertek[0].keys()) if isinstance(elso_ertek[0], dict) else 'N/A'}")
-            return []
-
-        print(f"  📊 Összes eset: {len(esetek)}")
-
-        # Első elem struktúrájának kiírása
-        if esetek and isinstance(esetek[0], dict):
-            print(f"  🔍 Első elem kulcsai: {list(esetek[0].keys())}")
-
-        csepel_esetek = []
-        for e in esetek:
-            if csepel_e(e):
-                csepel_esetek.append({"tipus": tipus, "adat": e, "url": url})
-
-        print(f"  🎯 Csepeles eset: {len(csepel_esetek)}")
-        return csepel_esetek
+        csepel = [{"tipus": tipus, "adat": e, "url": url} for e in esetek if csepel_e(e)]
+        print(f"  🎯 Csepel: {len(csepel)}")
+        return csepel
 
     except Exception as ex:
-        print(f"  ❌ Hiba: {ex}")
-        import traceback
-        traceback.print_exc()
+        print(f"  ❌ {ex}")
         return []
 
 
 # ════════════════════════════════════════════
-#  📧  ADAT KINYERÉS ÉS E-MAIL
+#  📋  ADATOK KINYERÉSE
 # ════════════════════════════════════════════
 def kinyert_adatok(eset):
-    """Az áramszünet adatait kinyeri a JSON-ból, minden lehetséges mezőnevet próbálva."""
-    a = eset["adat"]
+    a    = eset["adat"]
+    tipus = eset["tipus"]
 
-    # Kezdési időpont - minden lehetséges mezőnév
-    kezdes_raw = (a.get("startTime") or a.get("start") or a.get("startDate") or
-                  a.get("plannedStart") or a.get("plannedStartDate") or
-                  a.get("from") or a.get("begin") or a.get("kezdes") or
-                  a.get("kezdesIdopont") or None)
+    # ── Időpontok ──────────────────────────
+    if tipus == "TERVEZETT":
+        # intervals: [{"from": {...}, "to": {...}}, ...]
+        intervals = a.get("intervals", [])
+        if intervals and isinstance(intervals, list):
+            elso = intervals[0] if isinstance(intervals[0], dict) else {}
+            kezdes_raw = elso.get("from") or elso.get("start")
+            veg_raw    = elso.get("to")   or elso.get("end")
+        else:
+            kezdes_raw = a.get("from") or a.get("startTime") or a.get("start")
+            veg_raw    = a.get("to")   or a.get("endTime")   or a.get("end")
+    else:
+        # üzemzavar: "from" mező
+        kezdes_raw = a.get("from") or a.get("startTime") or a.get("start")
+        veg_raw    = a.get("to")   or a.get("endTime")   or a.get("end")
 
-    # Befejezési időpont
-    veg_raw = (a.get("endTime") or a.get("end") or a.get("endDate") or
-               a.get("plannedEnd") or a.get("plannedEndDate") or
-               a.get("to") or a.get("finish") or a.get("veg") or
-               a.get("vegIdopont") or None)
+    # ── Koordináták ────────────────────────
+    coords = a.get("coordinates") or a.get("transformerAreaCenterCoordinates") or {}
+    lat = coords.get("lat") if isinstance(coords, dict) else None
+    lon = coords.get("lng") or coords.get("lon") if isinstance(coords, dict) else None
 
-    # Koordináták
-    coords = a.get("coordinates") or a.get("coordinate") or {}
-    lat = lon = None
-    if isinstance(coords, dict):
-        lat = coords.get("lat") or coords.get("latitude")
-        lon = coords.get("lng") or coords.get("lon") or coords.get("longitude")
+    # ── Érintett utcák ─────────────────────
+    utcak_lista = []
+    for ar in a.get("addressRanges", []):
+        if isinstance(ar, dict):
+            city   = ar.get("city", "")
+            street = ar.get("street", "") or ar.get("streetName", "")
+            from_n = ar.get("fromNumber", "") or ar.get("houseNumberFrom", "")
+            to_n   = ar.get("toNumber", "")   or ar.get("houseNumberTo", "")
+            if street:
+                sor = f"{city} {street}".strip()
+                if from_n and to_n:
+                    sor += f" {from_n}-{to_n}"
+                elif from_n:
+                    sor += f" {from_n}"
+                utcak_lista.append(sor)
+    utcak = ", ".join(utcak_lista[:6]) if utcak_lista else (a.get("city") or "—")
 
-    # Érintett utcák/cím
-    utcak = (a.get("affectedStreets") or a.get("streets") or
-             a.get("address") or a.get("location") or
-             a.get("cim") or a.get("utca") or "")
-    if isinstance(utcak, list):
-        utcak = ", ".join(str(u) for u in utcak[:8])
+    # ── Fogyasztók ─────────────────────────
+    consumers = a.get("consumers", {})
+    if isinstance(consumers, dict):
+        fogyaszto = consumers.get("total") or consumers.get("count") or "—"
+    else:
+        fogyaszto = str(consumers) if consumers else "—"
 
-    # Érintett fogyasztók száma
-    fogyaszto = (a.get("affectedCustomers") or a.get("customers") or
-                 a.get("numberOfAffected") or a.get("affected") or "—")
-
-    # Leírás/ok
-    leiras = (a.get("description") or a.get("reason") or
-              a.get("cause") or a.get("info") or a.get("leiras") or "")
-
-    # Azonosító
-    azonosito = a.get("id") or a.get("outageId") or a.get("internalId") or "—"
-
+    azonosito = a.get("id") or a.get("internalId") or "—"
     gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=14" if lat and lon else None
 
     return {
         "azonosito": str(azonosito),
-        "kezdes": ido_format(kezdes_raw),
-        "veg": ido_format(veg_raw),
-        "lat": lat,
-        "lon": lon,
-        "utcak": str(utcak),
+        "kezdes":    ido_format(kezdes_raw),
+        "veg":       ido_format(veg_raw),
+        "utcak":     utcak,
         "fogyaszto": str(fogyaszto),
-        "leiras": str(leiras)[:300],
-        "gmaps": gmaps,
-        "tipus": eset["tipus"],
+        "gmaps":     gmaps,
+        "tipus":     tipus,
     }
 
-def email_kuldes(uj_esetek):
-    if not uj_esetek:
-        return
 
-    ido = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
-    db  = len(uj_esetek)
+# ════════════════════════════════════════════
+#  📧  E-MAIL
+# ════════════════════════════════════════════
+def email_kuldes(uj_esetek):
+    ido   = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+    db    = len(uj_esetek)
     targy = f"⚡ Csepel áramszünet – {db} új esemény | {ido}"
 
     sorok_html = ""
     sorok_txt  = ""
 
     for i, e in enumerate(uj_esetek, 1):
-        f    = kinyert_adatok(e)
+        f     = kinyert_adatok(e)
         szin  = "#c0392b" if f["tipus"] == "UZEMZAVAR" else "#e67e22"
         badge = "🔴 ÉLŐ ÜZEMZAVAR" if f["tipus"] == "UZEMZAVAR" else "📋 TERVEZETT ÁRAMSZÜNET"
 
@@ -265,35 +234,26 @@ def email_kuldes(uj_esetek):
         <tr style="border-bottom:2px solid #eee">
           <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
           <td style="padding:14px">
-            <div style="margin-bottom:10px">
-              <span style="background:{szin};color:#fff;padding:5px 12px;
-                           border-radius:4px;font-size:13px;font-weight:bold">
-                {badge}
-              </span>
-            </div>
-            <table style="font-size:13px;width:100%;border-collapse:collapse">
-              <tr><td style="color:#888;padding:3px 8px 3px 0;width:150px">🔢 Azonosító:</td>
-                  <td style="padding:3px 0">{f['azonosito']}</td></tr>
-              <tr><td style="color:#888;padding:3px 8px 3px 0">⏰ Kezdés:</td>
-                  <td style="padding:3px 0"><strong>{f['kezdes']}</strong></td></tr>
-              <tr><td style="color:#888;padding:3px 8px 3px 0">⏰ Vége:</td>
-                  <td style="padding:3px 0"><strong>{f['veg']}</strong></td></tr>
-              {"<tr><td style='color:#888;padding:3px 8px 3px 0'>🏘️ Helyszín:</td><td style='padding:3px 0'>" + f['utcak'] + "</td></tr>" if f['utcak'] and f['utcak'] != 'None' else ""}
-              {"<tr><td style='color:#888;padding:3px 8px 3px 0'>👥 Érintett:</td><td style='padding:3px 0'>" + f['fogyaszto'] + " fogyasztó</td></tr>" if f['fogyaszto'] not in ("—", "None", "") else ""}
-              {"<tr><td style='color:#888;padding:3px 8px 3px 0'>📝 Leírás:</td><td style='padding:3px 0'>" + f['leiras'] + "</td></tr>" if f['leiras'] and f['leiras'] != 'None' else ""}
+            <span style="background:{szin};color:#fff;padding:5px 12px;
+                         border-radius:4px;font-size:13px;font-weight:bold">{badge}</span>
+            <table style="font-size:13px;width:100%;margin-top:10px">
+              <tr><td style="color:#888;width:140px">🔢 Azonosító:</td><td>{f['azonosito']}</td></tr>
+              <tr><td style="color:#888">⏰ Kezdés:</td><td><strong>{f['kezdes']}</strong></td></tr>
+              <tr><td style="color:#888">⏰ Vége:</td><td><strong>{f['veg']}</strong></td></tr>
+              <tr><td style="color:#888">🏘️ Helyszín:</td><td>{f['utcak']}</td></tr>
+              <tr><td style="color:#888">👥 Érintett:</td><td>{f['fogyaszto']} fogyasztó</td></tr>
             </table>
             {"<div style='margin-top:10px'><a href='" + f['gmaps'] + "' style='background:#4285f4;color:#fff;padding:7px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold'>📍 Google Maps</a></div>" if f['gmaps'] else ""}
           </td>
         </tr>"""
 
         sorok_txt += (
-            f"\n{'─'*45}\n"
-            f"{i}. {badge}\n"
+            f"\n{'─'*45}\n{i}. {badge}\n"
             f"Azonosító: {f['azonosito']}\n"
             f"Kezdés:    {f['kezdes']}\n"
             f"Vége:      {f['veg']}\n"
             f"Helyszín:  {f['utcak']}\n"
-            f"Érintett:  {f['fogyaszto']}\n"
+            f"Érintett:  {f['fogyaszto']} fogyasztó\n"
             + (f"Maps: {f['gmaps']}\n" if f['gmaps'] else "")
         )
 
@@ -309,8 +269,7 @@ def email_kuldes(uj_esetek):
   .body{{padding:20px 28px}}
   .btn{{display:inline-block;padding:9px 16px;margin:4px;border-radius:6px;
         text-decoration:none;font-weight:bold;color:#fff;font-size:12px}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
-         color:#95a5a6;text-align:center}}
+  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
@@ -322,23 +281,12 @@ def email_kuldes(uj_esetek):
     <div style="text-align:center;margin-top:16px">
       <a href="https://www.eon.hu/hu/lakossagi/aram/aramszunet-informaciok.html"
          class="btn" style="background:#c0392b">⚡ E.ON térkép</a>
-      <a href="https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
-         class="btn" style="background:#e67e22">📋 Tervezett JSON</a>
-      <a href="https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
-         class="btn" style="background:#2980b9">🔴 Élő JSON</a>
     </div>
   </div>
-  <div class="foot">
-    Automatikus értesítő – GitHub Actions | E.ON adatai alapján
-  </div>
+  <div class="foot">Automatikus értesítő – GitHub Actions | E.ON adatai alapján</div>
 </div></body></html>"""
 
-    szoveges = (
-        f"⚡ Csepel Áramszünet Értesítő\n"
-        f"Időpont: {ido} | Új események: {db}\n"
-        f"{sorok_txt}\n"
-        f"E.ON térkép: https://www.eon.hu/hu/lakossagi/aram/aramszunet-informaciok.html\n"
-    )
+    szoveges = f"⚡ Csepel Áramszünet\nIdőpont: {ido}\n{sorok_txt}"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
@@ -347,14 +295,10 @@ def email_kuldes(uj_esetek):
     msg.attach(MIMEText(szoveges, "plain", "utf-8"))
     msg.attach(MIMEText(html,     "html",  "utf-8"))
 
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
-            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
-        print(f"📧 E-mail elküldve: {targy}")
-    except Exception as ex:
-        print(f"❌ E-mail hiba: {ex}")
-        raise
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+        smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    print(f"📧 E-mail elküldve: {targy}")
 
 
 # ════════════════════════════════════════════
@@ -365,39 +309,29 @@ def main():
     print(f"⚡ Csepel Áramszünet Monitor – {datetime.now().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*55}")
 
-    regi_allapot = betolt_allapot()
-    uj_esetek    = []
+    regi   = betolt_allapot()
+    uj     = []
 
-    # Tervezett áramszünetek
-    tervezett = lekerdez_json(API_TERVEZETT, "TERVEZETT")
-    for e in tervezett:
+    for e in lekerdez_json(API_TERVEZETT, "TERVEZETT"):
         rid = hash_id(json.dumps(e["adat"], sort_keys=True))
-        if rid not in regi_allapot.get("tervezett", {}):
-            uj_esetek.append(e)
-            regi_allapot.setdefault("tervezett", {})[rid] = {
-                "talalt": datetime.now().isoformat()
-            }
+        if rid not in regi.get("tervezett", {}):
+            uj.append(e)
+            regi.setdefault("tervezett", {})[rid] = datetime.now().isoformat()
 
-    # Élő üzemzavarok
-    uzemzavar = lekerdez_json(API_UZEMZAVAR, "UZEMZAVAR")
-    for e in uzemzavar:
+    for e in lekerdez_json(API_UZEMZAVAR, "UZEMZAVAR"):
         rid = hash_id(json.dumps(e["adat"], sort_keys=True))
-        if rid not in regi_allapot.get("uzemzavar", {}):
-            uj_esetek.append(e)
-            regi_allapot.setdefault("uzemzavar", {})[rid] = {
-                "talalt": datetime.now().isoformat()
-            }
+        if rid not in regi.get("uzemzavar", {}):
+            uj.append(e)
+            regi.setdefault("uzemzavar", {})[rid] = datetime.now().isoformat()
 
-    print(f"\n⚡ Új események: {len(uj_esetek)}")
-
-    if uj_esetek:
-        email_kuldes(uj_esetek)
+    print(f"\n⚡ Új események: {len(uj)}")
+    if uj:
+        email_kuldes(uj)
     else:
-        print("✅ Nincs új Csepelt érintő áramszünet.")
+        print("✅ Nincs új esemény.")
 
-    ment_allapot(regi_allapot)
-    print("💾 Állapot elmentve.")
-    print("✅ Kész.\n")
+    ment_allapot(regi)
+    print("💾 Állapot mentve. ✅ Kész.\n")
 
 
 if __name__ == "__main__":
