@@ -37,10 +37,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
           git pull --rebase origin main
-          [ -f allapot.json ] && git add allapot.json || echo "allapot.json nem létezik, kihagyva"
+          git stash pop || true
+          [ -f allapot.json ] && git add allapot.json || echo "fájl nem létezik"
           git diff --staged --quiet || git commit -m "állapot [skip ci]"
-          git diff HEAD~1 --quiet 2>/dev/null || git push origin main || true
+          git push origin main || true
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
