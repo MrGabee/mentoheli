@@ -14,7 +14,7 @@ from email.mime.text import MIMEText
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
+EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
@@ -94,7 +94,8 @@ def pont_polygon_ban(lat, lon, polygon):
     return belul
 
 def csepel_e(eset):
-    """Megvizsgálja hogy az áramszünet érinti-e Csepelt."""
+    """Megvizsgálja hogy az áramszünet érinti-e Csepelt.
+    CSAK koordináta alapú szűrés – city mező nem megbízható!"""
 
     # 1. Egyetlen koordináta pont
     coords = eset.get("coordinates") or {}
@@ -123,15 +124,6 @@ def csepel_e(eset):
             if lat and lon:
                 if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                     return True
-            # Szöveges ellenőrzés is
-            city = str(ar.get("city", "") or "").lower()
-            if "csepel" in city or "xxi" in city:
-                return True
-
-    # 4. city mező (üzemzavarnál)
-    city = str(eset.get("city", "") or "").lower()
-    if "csepel" in city or "xxi" in city:
-        return True
 
     return False
 
