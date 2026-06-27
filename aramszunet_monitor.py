@@ -1,8 +1,6 @@
 """
 ⚡ E.ON Áramszünet Monitor – Csepel (XXI. kerület)
-Adatforrás: E.ON JSON API
-  - poweroutage.json    → tervezett áramszünetek
-  - unexpectedoutage.json → élő üzemzavarok
+Pontos polygon szűrővel – kizárva XI. és XXII. kerület
 """
 
 import os
@@ -16,16 +14,36 @@ from email.mime.text import MIMEText
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
+EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
 
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
 
-# Csepel bounding box (WGS84)
-CSEPEL_LAT_MIN = 47.38
-CSEPEL_LAT_MAX = 47.47
-CSEPEL_LON_MIN = 19.00
-CSEPEL_LON_MAX = 19.12
+# ─────────────────────────────────────────────
+#  📍  CSEPEL (XXI. KERÜLET) PONTOS POLYGON
+#  Koordináták: (lat, lon) sorrendben
+#  Lefedi a teljes Csepel-szigetet,
+#  kizárja a XI. és XXII. kerületet
+# ─────────────────────────────────────────────
+CSEPEL_POLYGON = [
+    (47.470, 19.030),  # Észak-nyugat – Kvassay híd
+    (47.470, 19.045),  # Észak – Gubacsi híd közelében
+    (47.467, 19.062),  # Észak-kelet
+    (47.460, 19.075),  # Kelet-észak
+    (47.448, 19.082),  # Kelet
+    (47.435, 19.085),  # Kelet-közép
+    (47.420, 19.082),  # Kelet-dél
+    (47.405, 19.078),  # Dél-kelet
+    (47.390, 19.070),  # Dél
+    (47.382, 19.055),  # Dél-közép
+    (47.382, 19.038),  # Dél-nyugat
+    (47.385, 19.025),  # Nyugat-dél
+    (47.395, 19.018),  # Nyugat
+    (47.410, 19.015),  # Nyugat-közép
+    (47.425, 19.016),  # Nyugat-észak
+    (47.440, 19.018),  # Észak-nyugat belső
+    (47.458, 19.022),  # Észak-nyugat külső
+]
 
 ALLAPOT_FAJL = "aramszunet_allapot.json"
 
@@ -57,46 +75,60 @@ def hash_id(szoveg):
 
 
 # ════════════════════════════════════════════
-#  📍  CSEPEL SZŰRŐ – koordináta alapú
+#  📍  POLYGON SZŰRŐ (Ray casting algoritmus)
 # ════════════════════════════════════════════
-def koordinata_csepel_e(lat, lon):
-    try:
-        return (CSEPEL_LAT_MIN <= float(lat) <= CSEPEL_LAT_MAX and
-                CSEPEL_LON_MIN <= float(lon) <= CSEPEL_LON_MAX)
-    except Exception:
-        return False
+def pont_polygon_ban(lat, lon, polygon):
+    """
+    Ray casting algoritmus – meghatározza hogy egy koordináta
+    a megadott polygon belsejében van-e.
+    """
+    n = len(polygon)
+    belul = False
+    j = n - 1
+    for i in range(n):
+        xi, yi = polygon[i][1], polygon[i][0]  # lon, lat
+        xj, yj = polygon[j][1], polygon[j][0]
+        if ((yi > lon) != (yj > lon)) and (lat < (xj - xi) * (lon - yi) / (yj - yi) + xi):
+            belul = not belul
+        j = i
+    return belul
 
 def csepel_e(eset):
-    # Egyetlen koordináta pont
+    """Megvizsgálja hogy az áramszünet érinti-e Csepelt."""
+
+    # 1. Egyetlen koordináta pont
     coords = eset.get("coordinates") or {}
     if isinstance(coords, dict):
         lat = coords.get("lat") or coords.get("latitude")
         lon = coords.get("lng") or coords.get("lon") or coords.get("longitude")
-        if lat and lon and koordinata_csepel_e(lat, lon):
-            return True
+        if lat and lon:
+            if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
+                return True
 
-    # Transformer középpont (üzemzavarnál)
+    # 2. Transformer középpont (üzemzavarnál)
     tc = eset.get("transformerAreaCenterCoordinates") or {}
     if isinstance(tc, dict):
         lat = tc.get("lat") or tc.get("latitude")
         lon = tc.get("lng") or tc.get("lon") or tc.get("longitude")
-        if lat and lon and koordinata_csepel_e(lat, lon):
-            return True
+        if lat and lon:
+            if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
+                return True
 
-    # addressRanges lista (tervezett esetén)
+    # 3. addressRanges koordinátái (tervezett esetén)
     for ar in eset.get("addressRanges", []):
         if isinstance(ar, dict):
             c = ar.get("coordinates") or {}
             lat = c.get("lat") or c.get("latitude")
             lon = c.get("lng") or c.get("lon") or c.get("longitude")
-            if lat and lon and koordinata_csepel_e(lat, lon):
-                return True
-            # Szöveges city/district ellenőrzés
-            city = str(ar.get("city", "") or ar.get("district", "") or "").lower()
+            if lat and lon:
+                if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
+                    return True
+            # Szöveges ellenőrzés is
+            city = str(ar.get("city", "") or "").lower()
             if "csepel" in city or "xxi" in city:
                 return True
 
-    # city mező (üzemzavarnál)
+    # 4. city mező (üzemzavarnál)
     city = str(eset.get("city", "") or "").lower()
     if "csepel" in city or "xxi" in city:
         return True
@@ -111,8 +143,8 @@ def ido_format(mezo):
     if not mezo:
         return "—"
     if isinstance(mezo, dict):
-        datum = mezo.get("date") or mezo.get("datum") or ""
-        ido   = mezo.get("time") or mezo.get("ido") or ""
+        datum = mezo.get("date") or ""
+        ido   = mezo.get("time") or ""
         if datum and ido:
             return f"{datum} {ido}"
         return datum or ido or str(mezo)
@@ -140,7 +172,7 @@ def lekerdez_json(url, tipus):
         print(f"  📊 Összes: {len(esetek)}")
 
         csepel = [{"tipus": tipus, "adat": e, "url": url} for e in esetek if csepel_e(e)]
-        print(f"  🎯 Csepel: {len(csepel)}")
+        print(f"  🎯 Csepel (polygon): {len(csepel)}")
         return csepel
 
     except Exception as ex:
@@ -152,31 +184,22 @@ def lekerdez_json(url, tipus):
 #  📋  ADATOK KINYERÉSE
 # ════════════════════════════════════════════
 def kinyert_adatok(eset):
-    a    = eset["adat"]
+    a     = eset["adat"]
     tipus = eset["tipus"]
 
-    # ── Időpontok ──────────────────────────
     if tipus == "TERVEZETT":
-        # intervals: [{"from": {...}, "to": {...}}, ...]
-        intervals = a.get("intervals", [])
-        if intervals and isinstance(intervals, list):
-            elso = intervals[0] if isinstance(intervals[0], dict) else {}
-            kezdes_raw = elso.get("from") or elso.get("start")
-            veg_raw    = elso.get("to")   or elso.get("end")
-        else:
-            kezdes_raw = a.get("from") or a.get("startTime") or a.get("start")
-            veg_raw    = a.get("to")   or a.get("endTime")   or a.get("end")
+        intervals  = a.get("intervals", [])
+        elso       = intervals[0] if intervals and isinstance(intervals[0], dict) else {}
+        kezdes_raw = elso.get("from") or elso.get("start")
+        veg_raw    = elso.get("to")   or elso.get("end")
     else:
-        # üzemzavar: "from" mező
-        kezdes_raw = a.get("from") or a.get("startTime") or a.get("start")
-        veg_raw    = a.get("to")   or a.get("endTime")   or a.get("end")
+        kezdes_raw = a.get("from") or a.get("startTime")
+        veg_raw    = a.get("to")   or a.get("endTime")
 
-    # ── Koordináták ────────────────────────
     coords = a.get("coordinates") or a.get("transformerAreaCenterCoordinates") or {}
     lat = coords.get("lat") if isinstance(coords, dict) else None
     lon = coords.get("lng") or coords.get("lon") if isinstance(coords, dict) else None
 
-    # ── Érintett utcák ─────────────────────
     utcak_lista = []
     for ar in a.get("addressRanges", []):
         if isinstance(ar, dict):
@@ -193,12 +216,8 @@ def kinyert_adatok(eset):
                 utcak_lista.append(sor)
     utcak = ", ".join(utcak_lista[:6]) if utcak_lista else (a.get("city") or "—")
 
-    # ── Fogyasztók ─────────────────────────
     consumers = a.get("consumers", {})
-    if isinstance(consumers, dict):
-        fogyaszto = consumers.get("total") or consumers.get("count") or "—"
-    else:
-        fogyaszto = str(consumers) if consumers else "—"
+    fogyaszto = consumers.get("total") if isinstance(consumers, dict) else str(consumers) if consumers else "—"
 
     azonosito = a.get("id") or a.get("internalId") or "—"
     gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=14" if lat and lon else None
@@ -253,7 +272,7 @@ def email_kuldes(uj_esetek):
             f"Kezdés:    {f['kezdes']}\n"
             f"Vége:      {f['veg']}\n"
             f"Helyszín:  {f['utcak']}\n"
-            f"Érintett:  {f['fogyaszto']} fogyasztó\n"
+            f"Érintett:  {f['fogyaszto']}\n"
             + (f"Maps: {f['gmaps']}\n" if f['gmaps'] else "")
         )
 
@@ -269,12 +288,13 @@ def email_kuldes(uj_esetek):
   .body{{padding:20px 28px}}
   .btn{{display:inline-block;padding:9px 16px;margin:4px;border-radius:6px;
         text-decoration:none;font-weight:bold;color:#fff;font-size:12px}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
+  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
+         color:#95a5a6;text-align:center}}
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
     <h1>⚡ Csepel – Áramszünet értesítő</h1>
-    <small>{ido} | {db} új esemény (XXI. kerület)</small>
+    <small>{ido} | {db} új esemény (XXI. kerület – polygon szűrő)</small>
   </div>
   <div class="body">
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
@@ -309,8 +329,8 @@ def main():
     print(f"⚡ Csepel Áramszünet Monitor – {datetime.now().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*55}")
 
-    regi   = betolt_allapot()
-    uj     = []
+    regi = betolt_allapot()
+    uj   = []
 
     for e in lekerdez_json(API_TERVEZETT, "TERVEZETT"):
         rid = hash_id(json.dumps(e["adat"], sort_keys=True))
