@@ -257,6 +257,9 @@ def email_kuldes(uj_esetek):
         f"https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
     )
 
+    import urllib.parse
+    fb_share_url = f"https://www.facebook.com/dialog/share?app_id=10064353121037736&display=popup&quote={urllib.parse.quote(fb_szoveg)}&href=https://www.vizmuvek.hu"
+
     html = f"""<!DOCTYPE html>
 <html lang="hu"><head><meta charset="UTF-8">
 <style>
@@ -267,13 +270,15 @@ def email_kuldes(uj_esetek):
   .hdr h1{{margin:0;font-size:20px}}
   .hdr small{{opacity:.85;font-size:13px}}
   .body{{padding:20px 28px}}
-  .fb-box{{background:#f0f2f5;border:2px dashed #1877f2;border-radius:8px;
-           padding:16px;margin:20px 0}}
+  .bevezeto{{background:#e8f4fd;border-left:4px solid #2980b9;
+             padding:12px 16px;margin-bottom:16px;
+             font-size:14px;color:#2c3e50;line-height:1.6}}
+  .fb-box{{background:#f0f2f5;border:2px dashed #1877f2;
+           border-radius:8px;padding:16px;margin:20px 0}}
   .fb-box h3{{margin:0 0 10px;color:#1877f2;font-size:14px}}
   .fb-box pre{{margin:0;font-family:Arial,sans-serif;font-size:13px;
               white-space:pre-wrap;word-break:break-word;
-              color:#1c1e21;line-height:1.6;
-              user-select:all;-webkit-user-select:all;cursor:text}}
+              color:#1c1e21;line-height:1.6}}
   .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
          color:#95a5a6;text-align:center}}
 </style>
@@ -283,11 +288,18 @@ def email_kuldes(uj_esetek):
     <small>{ido} | {db} új esemény (XXI. kerület)</small>
   </div>
   <div class="body">
+
+    <div class="bevezeto">
+      ℹ️ A Fővárosi Vízművek az alábbi csepeli helyszíneken végez jelenleg hálózati munkálatokat.
+      A munkák ideje alatt az érintett területeken <strong>vízhiány, nyomáscsökkenés
+      vagy forgalomkorlátozás</strong> tapasztalható.
+    </div>
+
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
 
     <div class="fb-box">
-      <h3>📘 FACEBOOK POSZT SZÖVEGE – kattints bele és másold ki (Ctrl+A, Ctrl+C)</h3>
-      <pre>{fb_szoveg}</pre>
+      <h3>📘 Facebook poszt szövege – jelöld ki és másold (Ctrl+A majd Ctrl+C):</h3>
+      <pre id="fb">{fb_szoveg}</pre>
     </div>
 
     <div style="text-align:center;margin-top:16px">
@@ -296,10 +308,10 @@ def email_kuldes(uj_esetek):
                 text-decoration:none;font-weight:bold;font-size:12px">
         💧 Vízművek munkatérkép
       </a>
-      <a href="https://www.facebook.com/MrGabee"
+      <a href="https://www.facebook.com/104411308403346"
          style="background:#1877f2;color:#fff;padding:9px 16px;border-radius:6px;
                 text-decoration:none;font-weight:bold;font-size:12px;margin-left:8px">
-        📘 Mr.Gabee Facebook oldal
+        📘 Facebook oldal megnyitása
       </a>
     </div>
   </div>
