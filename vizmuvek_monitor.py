@@ -107,7 +107,9 @@ def lekerdez():
                 continue
 
             cim = munka = kezdes = veg = ""
-            for sor in title.split("\n"):
+            # BR tagek eltávolítása
+            title_clean = title.replace("<br />", "\n").replace("<br>", "\n")
+            for sor in title_clean.split("\n"):
                 sor = sor.strip()
                 if sor.startswith("Postacím:"):
                     cim = sor.replace("Postacím:", "").strip()
@@ -234,6 +236,27 @@ def email_kuldes(uj_esetek):
             f"Maps:   {e['gmaps']}\n"
         )
 
+    # Facebook poszt szöveg összeállítása
+    fb_sorok = []
+    for e in uj_esetek:
+        emoji, label, _ = TIPUS_MAP.get(e["tipus"], ("💧", e["tipus"], ""))
+        sor = (
+            f"{emoji} {label}\n"
+            f"📍 {e['cim']}\n"
+            f"🔧 {e['munka'] or '—'}\n"
+            f"⏰ {e['kezdes'] or '—'} → {e['veg'] or '—'}\n"
+            f"🗺️ {e['gmaps']}"
+        )
+        fb_sorok.append(sor)
+
+    fb_szoveg = (
+        f"💧 Fővárosi Vízművek – Csepeli értesítő\n"
+        f"🕐 {ido} | {db} új esemény\n\n"
+        + "\n\n─────────────────\n\n".join(fb_sorok)
+        + "\n\n🔗 Vízművek munkatérkép:\n"
+        f"https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
+    )
+
     html = f"""<!DOCTYPE html>
 <html lang="hu"><head><meta charset="UTF-8">
 <style>
@@ -244,6 +267,13 @@ def email_kuldes(uj_esetek):
   .hdr h1{{margin:0;font-size:20px}}
   .hdr small{{opacity:.85;font-size:13px}}
   .body{{padding:20px 28px}}
+  .fb-box{{background:#f0f2f5;border:2px dashed #1877f2;border-radius:8px;
+           padding:16px;margin:20px 0}}
+  .fb-box h3{{margin:0 0 10px;color:#1877f2;font-size:14px}}
+  .fb-box pre{{margin:0;font-family:Arial,sans-serif;font-size:13px;
+              white-space:pre-wrap;word-break:break-word;
+              color:#1c1e21;line-height:1.6;
+              user-select:all;-webkit-user-select:all;cursor:text}}
   .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
          color:#95a5a6;text-align:center}}
 </style>
@@ -254,11 +284,22 @@ def email_kuldes(uj_esetek):
   </div>
   <div class="body">
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
+
+    <div class="fb-box">
+      <h3>📘 FACEBOOK POSZT SZÖVEGE – kattints bele és másold ki (Ctrl+A, Ctrl+C)</h3>
+      <pre>{fb_szoveg}</pre>
+    </div>
+
     <div style="text-align:center;margin-top:16px">
       <a href="https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
          style="background:#2980b9;color:#fff;padding:9px 16px;border-radius:6px;
                 text-decoration:none;font-weight:bold;font-size:12px">
         💧 Vízművek munkatérkép
+      </a>
+      <a href="https://www.facebook.com/MrGabee"
+         style="background:#1877f2;color:#fff;padding:9px 16px;border-radius:6px;
+                text-decoration:none;font-weight:bold;font-size:12px;margin-left:8px">
+        📘 Mr.Gabee Facebook oldal
       </a>
     </div>
   </div>
