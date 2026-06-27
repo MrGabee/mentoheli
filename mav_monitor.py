@@ -1,7 +1,7 @@
 """
 🚂 MÁV/Volán Rendkívüli Esemény Monitor
 Adatforrás: MÁVINFORM (mavcsoport.hu/mavinform)
-Szűrés: CSAK baleset, gázolás, rendkívüli időjárás
+Szűrés: CSAK baleset/gázolás, ÉS csak friss (max 3 óra) cikkek
 Futtatás: GitHub Actions (percenként, self-loop)
 """
 
@@ -10,7 +10,7 @@ import json
 import hashlib
 import smtplib
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
@@ -28,15 +28,14 @@ HEADERS = {
     "Accept-Language": "hu-HU,hu;q=0.9",
 }
 
-# ─────────────────────────────────────────────
-#  🔍  SZŰRŐ KULCSSZAVAK
-#  Csak ezeket akarjuk – URL vagy cím alapján
-# ─────────────────────────────────────────────
-IGEN_KULCSSZAVAK = [
-    # Baleset és gázolás – CSAK ezek kellenek
+# Csak baleset/gázolás kulcsszavak az URL-ben vagy címben
+BALESET_KULCSSZAVAK = [
     "baleset", "gazolas", "gázolás", "gazolt", "gázolt",
     "utkozés", "ütközés", "utkozest", "karambol",
 ]
+
+# Max ennyi óra régi cikket fogadunk el
+MAX_ORA = 3
 
 
 # ════════════════════════════════════════════
@@ -60,17 +59,77 @@ def hash_id(szoveg):
 
 
 # ════════════════════════════════════════════
-#  🔍  SZŰRŐ
+#  🔍  SZŰRŐK
 # ════════════════════════════════════════════
-def erdekes_e(url, cim):
-    """Csak baleset/gázolás/rendkívüli időjárás esetén igaz."""
+def baleset_e(url, cim):
     szoveg = (url + " " + cim).lower()
-    return any(k in szoveg for k in IGEN_KULCSSZAVAK)
+    return any(k in szoveg for k in BALESET_KULCSSZAVAK)
+
+def friss_e(datum_str):
+    """
+    Ellenőrzi hogy a cikk friss-e (max MAX_ORA órás).
+    Formátum: '2026.06.27. 14:33' vagy '2026.06.27. 14:33:00'
+    """
+    if not datum_str:
+        return True  # Ha nincs dátum, elfogadjuk
+    try:
+        datum_str = datum_str.strip()
+        # Különböző formátumok kezelése
+        for fmt in ["%Y.%m.%d. %H:%M", "%Y.%m.%d. %H:%M:%S", "%Y.%m.%d %H:%M"]:
+            try:
+                datum = datetime.strptime(datum_str, fmt)
+                return datetime.now() - datum <= timedelta(hours=MAX_ORA)
+            except ValueError:
+                continue
+        return True  # Ha nem sikerül parse-olni, elfogadjuk
+    except Exception:
+        return True
 
 
 # ════════════════════════════════════════════
 #  📡  LEKÉRDEZÉS
 # ════════════════════════════════════════════
+def lekerdez_cikk_datuma(url):
+    """Egy MÁVINFORM cikk utolsó módosítási dátumát és tartalmát tölti le."""
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        if r.status_code != 200:
+            return None, ""
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        # Dátum keresése – "Utolsó módosítás: 2026.06.27. 14:33"
+        datum = None
+        teljes_szoveg = soup.get_text(separator=" ", strip=True)
+
+        # Keresés a szövegben
+        import re
+        pattern = r'(\d{4}\.\d{2}\.\d{2}\.?\s+\d{2}:\d{2}(?::\d{2})?)'
+        matches = re.findall(pattern, teljes_szoveg)
+        if matches:
+            # Az első (legfrissebb) dátumot vesszük
+            datum = matches[0].strip()
+            print(f"    📅 Dátum: {datum}")
+
+        # Tartalom keresése
+        tartalom_div = (
+            soup.find("div", class_="field-type-text-with-summary") or
+            soup.find("div", class_="field-name-body") or
+            soup.find("article")
+        )
+        if tartalom_div:
+            reszlet = tartalom_div.get_text(separator=" ", strip=True)[:1500]
+        else:
+            # Fallback: keresünk érdemi bekezdéseket
+            paragrafusok = soup.find_all("p")
+            reszlet = " ".join(p.get_text(strip=True) for p in paragrafusok
+                              if len(p.get_text(strip=True)) > 50)[:1500]
+
+        return datum, reszlet
+
+    except Exception as ex:
+        print(f"    ⚠️ Cikk hiba: {ex}")
+        return None, ""
+
 def lekerdez_lista():
     """MÁVINFORM lista – összes /mavinform/ link összegyűjtése."""
     esemenyek = []
@@ -105,30 +164,10 @@ def lekerdez_lista():
                     })
 
         except Exception as ex:
-            print(f"  ❌ Hiba: {ex}")
+            print(f"  ❌ Lista hiba: {ex}")
 
     print(f"  📊 Összes MÁVINFORM link: {len(esemenyek)}")
     return esemenyek
-
-def lekerdez_reszlet(url):
-    """Cikk részletének letöltése."""
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        if r.status_code != 200:
-            return ""
-        soup = BeautifulSoup(r.text, "html.parser")
-        tartalom = (
-            soup.find("div", class_="field-type-text-with-summary") or
-            soup.find("div", class_="field-name-body") or
-            soup.find("article") or
-            soup.find("main")
-        )
-        if tartalom:
-            return tartalom.get_text(separator=" ", strip=True)[:2000]
-        body = soup.find("body")
-        return body.get_text(separator=" ", strip=True)[:2000] if body else ""
-    except Exception:
-        return ""
 
 
 # ════════════════════════════════════════════
@@ -137,7 +176,7 @@ def lekerdez_reszlet(url):
 def email_kuldes(uj_esetek):
     ido   = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"🚂 MÁV/Volán rendkívüli esemény – {db} új | {ido}"
+    targy = f"🚂 MÁV/Volán baleset – {db} új esemény | {ido}"
 
     sorok_html = ""
     sorok_txt  = ""
@@ -146,6 +185,7 @@ def email_kuldes(uj_esetek):
         cim     = e.get("cim", "—")
         reszlet = e.get("reszlet", "")[:800]
         url     = e.get("url", "")
+        datum   = e.get("datum", "—")
 
         sorok_html += f"""
         <tr style="border-bottom:2px solid #eee">
@@ -153,10 +193,13 @@ def email_kuldes(uj_esetek):
           <td style="padding:14px">
             <span style="background:#8B0000;color:#fff;padding:5px 12px;
                          border-radius:4px;font-size:13px;font-weight:bold">
-              🚂 RENDKÍVÜLI ESEMÉNY
+              🚂 BALESET / GÁZOLÁS
             </span>
             <div style="font-size:15px;font-weight:bold;margin:10px 0;color:#2c3e50">
               {cim}
+            </div>
+            <div style="font-size:12px;color:#888;margin-bottom:8px">
+              ⏰ Utolsó módosítás: {datum}
             </div>
             {"<div style='font-size:13px;color:#555;margin-bottom:10px;line-height:1.6'>" + reszlet + "</div>" if reszlet else ""}
             <a href="{url}" style="background:#2980b9;color:#fff;padding:7px 14px;
@@ -170,6 +213,7 @@ def email_kuldes(uj_esetek):
         sorok_txt += (
             f"\n{'─'*45}\n"
             f"{i}. 🚂 {cim}\n"
+            f"Dátum: {datum}\n"
             f"Link: {url}\n"
             + (f"{reszlet[:300]}\n" if reszlet else "")
         )
@@ -189,8 +233,8 @@ def email_kuldes(uj_esetek):
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
-    <h1>🚂 MÁV/Volán – Rendkívüli esemény</h1>
-    <small>{ido} | {db} új esemény | Baleset / Gázolás / Rendkívüli időjárás</small>
+    <h1>🚂 MÁV/Volán – Baleset értesítő</h1>
+    <small>{ido} | {db} új esemény</small>
   </div>
   <div class="body">
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
@@ -205,7 +249,7 @@ def email_kuldes(uj_esetek):
   <div class="foot">Automatikus értesítő – GitHub Actions | MÁVINFORM adatai alapján</div>
 </div></body></html>"""
 
-    szoveges = f"🚂 MÁV/Volán Rendkívüli Esemény\nIdőpont: {ido}\n{sorok_txt}"
+    szoveges = f"🚂 MÁV/Volán Baleset\nIdőpont: {ido}\n{sorok_txt}"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
@@ -240,24 +284,34 @@ def main():
         if rid in regi:
             continue
 
-        # URL/cím alapú szűrés – csak baleset/gázolás/rendkívüli időjárás
-        if erdekes_e(e["url"], e["cim"]):
-            print(f"  🚨 Találat: {e['cim'][:70]}")
-            reszlet = lekerdez_reszlet(e["url"])
-            e["reszlet"] = reszlet
-            uj.append(e)
+        # 1. URL/cím alapú szűrés – csak baleset/gázolás
+        if not baleset_e(e["url"], e["cim"]):
+            # Nem baleset – mentjük és kihagyjuk
+            regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+            continue
 
-        # Minden esetben mentjük az ID-t hogy ne kérdezzük le újra
-        regi[rid] = {
-            "cim": e["cim"][:100],
-            "talalt": datetime.now().isoformat()
-        }
+        print(f"  🔍 Baleset cikk: {e['cim'][:70]}")
 
-    print(f"\n🚂 Új rendkívüli esemény: {len(uj)}")
+        # 2. Dátum + tartalom lekérése
+        datum, reszlet = lekerdez_cikk_datuma(e["url"])
+
+        # 3. Frissesség ellenőrzése – csak max 3 órás cikk kell
+        if not friss_e(datum):
+            print(f"    ⏩ Régi cikk ({datum}), kihagyva.")
+            regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+            continue
+
+        print(f"    ✅ Friss baleset esemény!")
+        e["datum"]   = datum or "—"
+        e["reszlet"] = reszlet
+        uj.append(e)
+        regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+
+    print(f"\n🚂 Új baleseti esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
     else:
-        print("✅ Nincs új rendkívüli esemény.")
+        print("✅ Nincs új baleseti esemény.")
 
     ment_allapot(regi)
     print("💾 Állapot mentve. ✅ Kész.\n")
