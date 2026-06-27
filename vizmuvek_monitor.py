@@ -1,9 +1,8 @@
 """
 💧 Fővárosi Vízművek Monitor – Csepel (XXI. kerület)
-Adatforrás: vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk
-Szűrés: Csepel polygon (ray casting)
-Típusok: Vízhiány, Várható vízhiány, Forgalomkorlátozás
-Futtatás: GitHub Actions (percenként, self-loop)
+Adatforrás: vizmuvek.hu munkatérkép
+Szűrés: XXI. kerület prefix
+Értesítés: E-mail (EMAIL_CIMZETT_ARAM) + Facebook poszt (Mr.Gabee oldal)
 """
 
 import os
@@ -19,6 +18,8 @@ from bs4 import BeautifulSoup
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
+FB_PAGE_TOKEN = os.environ["FB_PAGE_TOKEN"]
+FB_PAGE_ID    = os.environ["FB_PAGE_ID"]
 
 VIZMUVEK_URL = "https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
 ALLAPOT_FAJL = "vizmuvek_allapot.json"
@@ -29,14 +30,10 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml",
 }
 
-# ─────────────────────────────────────────────
-#  📍  CSEPEL SZŰRŐ – XXI. kerület prefix
-# ─────────────────────────────────────────────
-
 TIPUS_MAP = {
-    "geo_0": ("🔴", "VÍZHIÁNY",              "#c0392b"),
-    "geo_1": ("🟠", "VÁRHATÓ VÍZHIÁNY",      "#e67e22"),
-    "geo_2": ("🔵", "FORGALOMKORLÁTOZÁS",    "#2980b9"),
+    "geo_0": ("🔴", "VÍZHIÁNY",           "#c0392b"),
+    "geo_1": ("🟠", "VÁRHATÓ VÍZHIÁNY",   "#e67e22"),
+    "geo_2": ("🔵", "FORGALOMKORLÁTOZÁS", "#2980b9"),
 }
 
 
@@ -60,8 +57,10 @@ def hash_id(szoveg):
     return hashlib.md5(szoveg.encode("utf-8")).hexdigest()[:12]
 
 
+# ════════════════════════════════════════════
+#  📍  CSEPEL SZŰRŐ
+# ════════════════════════════════════════════
 def csepel_e(cim):
-    """Csepeli-e a cím? – XXI. kerület prefix alapján."""
     return cim.strip().startswith("XXI.")
 
 
@@ -79,13 +78,11 @@ def lekerdez():
         soup = BeautifulSoup(r.text, "html.parser")
         esemenyek = []
 
-        # Összes geo div feldolgozása
         geo_divek = soup.find_all("div", class_=lambda c: c and "geo" in c.split())
         print(f"  📊 Összes geo elem: {len(geo_divek)}")
 
         for div in geo_divek:
             classes = div.get("class", [])
-            # Típus meghatározása (geo_0, geo_1, geo_2)
             tipus = None
             for c in classes:
                 if c in TIPUS_MAP:
@@ -98,7 +95,6 @@ def lekerdez():
             if not title:
                 continue
 
-            # Koordináták kinyerése
             lat_abbr = div.find("abbr", class_="latitude")
             lon_abbr = div.find("abbr", class_="longitude")
             if not lat_abbr or not lon_abbr:
@@ -110,16 +106,7 @@ def lekerdez():
             except (ValueError, TypeError):
                 continue
 
-            # Csepel szűrés – XXI. kerület prefix
-            if not csepel_e(cim):
-                continue
-
-            # Adatok kinyerése a title-ből
-            cim = ""
-            munka = ""
-            kezdes = ""
-            veg = ""
-
+            cim = munka = kezdes = veg = ""
             for sor in title.split("\n"):
                 sor = sor.strip()
                 if sor.startswith("Postacím:"):
@@ -131,31 +118,68 @@ def lekerdez():
                 elif sor.startswith("Munka tervezett vége:"):
                     veg = sor.replace("Munka tervezett vége:", "").strip()
 
-            if not cim:
+            if not cim or not csepel_e(cim):
                 continue
 
             gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=15"
-
             esemenyek.append({
-                "tipus":  tipus,
-                "cim":    cim,
-                "munka":  munka,
-                "kezdes": kezdes,
-                "veg":    veg,
-                "lat":    lat,
-                "lon":    lon,
-                "gmaps":  gmaps,
+                "tipus": tipus, "cim": cim, "munka": munka,
+                "kezdes": kezdes, "veg": veg,
+                "lat": lat, "lon": lon, "gmaps": gmaps,
             })
-            print(f"  🎯 Csepel: [{tipus}] {cim}")
+            print(f"  🎯 {cim}")
 
-        print(f"  📊 Csepeli találat összesen: {len(esemenyek)}")
+        print(f"  📊 Csepeli találat: {len(esemenyek)}")
         return esemenyek
 
     except Exception as ex:
-        print(f"  ❌ Hiba: {ex}")
+        print(f"  ❌ {ex}")
         import traceback
         traceback.print_exc()
         return []
+
+
+# ════════════════════════════════════════════
+#  📘  FACEBOOK POSZT
+# ════════════════════════════════════════════
+def facebook_poszt(esetek):
+    """Egy összesített Facebook posztot küld az összes új eseményről."""
+    ido = datetime.now().strftime("%Y.%m.%d %H:%M")
+    db  = len(esetek)
+
+    sorok = []
+    for e in esetek:
+        emoji, label, _ = TIPUS_MAP.get(e["tipus"], ("💧", e["tipus"], ""))
+        sor = (
+            f"{emoji} {label}\n"
+            f"📍 {e['cim']}\n"
+            f"🔧 {e['munka'] or '—'}\n"
+            f"⏰ {e['kezdes'] or '—'} → {e['veg'] or '—'}\n"
+            f"🗺️ {e['gmaps']}"
+        )
+        sorok.append(sor)
+
+    szoveg = (
+        f"💧 Fővárosi Vízművek – Csepeli értesítő\n"
+        f"🕐 {ido} | {db} új esemény\n\n"
+        + "\n\n─────────────────\n\n".join(sorok)
+        + "\n\n🔗 Vízművek munkatérkép:\n"
+        f"https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
+    )
+
+    try:
+        url = f"https://graph.facebook.com/v19.0/{FB_PAGE_ID}/feed"
+        r = requests.post(url, data={
+            "message": szoveg,
+            "access_token": FB_PAGE_TOKEN
+        }, timeout=15)
+        if r.status_code == 200:
+            post_id = r.json().get("id", "?")
+            print(f"📘 Facebook poszt elküldve! ID: {post_id}")
+        else:
+            print(f"⚠️ Facebook hiba: {r.status_code} – {r.text}")
+    except Exception as ex:
+        print(f"❌ Facebook poszt hiba: {ex}")
 
 
 # ════════════════════════════════════════════
@@ -202,8 +226,7 @@ def email_kuldes(uj_esetek):
         </tr>"""
 
         sorok_txt += (
-            f"\n{'─'*45}\n"
-            f"{i}. {emoji} {label}\n"
+            f"\n{'─'*45}\n{i}. {emoji} {label}\n"
             f"Cím:    {e['cim']}\n"
             f"Munka:  {e['munka']}\n"
             f"Kezdés: {e['kezdes']}\n"
@@ -268,20 +291,16 @@ def main():
     regi = betolt_allapot()
     uj   = []
 
-    esemenyek = lekerdez()
-
-    for e in esemenyek:
+    for e in lekerdez():
         rid = hash_id(e["tipus"] + e["cim"] + e["kezdes"])
         if rid not in regi:
             uj.append(e)
-            regi[rid] = {
-                "cim":   e["cim"][:100],
-                "talalt": datetime.now().isoformat()
-            }
+            regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
 
-    print(f"\n💧 Új csepeli Vízművek esemény: {len(uj)}")
+    print(f"\n💧 Új esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
+        facebook_poszt(uj)
     else:
         print("✅ Nincs új esemény.")
 
