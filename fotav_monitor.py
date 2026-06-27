@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
+EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
 
 FOTAV_URL    = "https://gmp.fotav.hu/KMZ/munkatabl.html"
 ALLAPOT_FAJL = "fotav_allapot.json"
