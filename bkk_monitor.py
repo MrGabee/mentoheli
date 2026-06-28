@@ -22,11 +22,18 @@ BKK_URL      = "https://m.bkkinfo.hu/"
 BKK_BASE_URL = "https://m.bkkinfo.hu"
 ALLAPOT_FAJL = "bkk_allapot.json"
 
-# Baleset kulcsszavak
+# Szűrő kulcsszavak – a szó benne van a cím/leírásban
 BALESET_KULCSSZAVAK = [
-    "baleset", "ütközés", "gázolás", "karambol",
-    "sérülés", "elütés", "balesetet", "baleseti",
-    "accident", "collision"
+    # Baleset
+    "baleset", "gázolás", "gazolas", "ütközés", "utkozés", "karambol",
+    # Tűzoltó
+    "tűzoltó", "tuzolto",
+    # Mentő
+    "mentő", "mento",
+    # Hatósági zárás
+    "hatósági", "hatosagi",
+    # Terelés
+    "terelve", "terelt", "terelés",
 ]
 
 HEADERS = {
@@ -184,7 +191,7 @@ def lekerdez_bkk():
 def email_kuldes(uj_esetek):
     ido   = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"🚨 BKK baleset terelés – {db} új esemény | {ido}"
+    targy = f"🚨 BKK forgalmi esemény – {db} új | {ido}"
 
     sorok_html = ""
     sorok_txt  = ""
@@ -195,13 +202,31 @@ def email_kuldes(uj_esetek):
         reszlet  = e.get("reszlet", "")[:500]
         url      = e.get("url", "")
 
+        # Badge meghatározása a cím alapján
+        cim_lower = cim.lower()
+        if any(k in cim_lower for k in ["tűzoltó", "tűzeset", "tuzolto"]):
+            badge = "🔥 TŰZOLTÓ – TERELÉS"
+            szin  = "#e74c3c"
+        elif any(k in cim_lower for k in ["mentő", "mentés", "mento"]):
+            badge = "🚑 MENTŐ – TERELÉS"
+            szin  = "#e67e22"
+        elif any(k in cim_lower for k in ["hatósági", "hatóság", "rendőr", "hatosagi"]):
+            badge = "👮 HATÓSÁGI ZÁRÁS"
+            szin  = "#8e44ad"
+        elif any(k in cim_lower for k in ["forgalmi", "lezárás", "útlezárás"]):
+            badge = "🚧 FORGALMI AKADÁLY"
+            szin  = "#f39c12"
+        else:
+            badge = "🚨 FORGALMI ESEMÉNY – TERELÉS"
+            szin  = "#c0392b"
+
         sorok_html += f"""
         <tr style="border-bottom:2px solid #eee">
           <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
           <td style="padding:14px">
-            <span style="background:#c0392b;color:#fff;padding:5px 12px;
+            <span style="background:{szin};color:#fff;padding:5px 12px;
                          border-radius:4px;font-size:13px;font-weight:bold">
-              🚨 BALESET – TERELÉS
+              {badge}
             </span>
             <div style="font-size:14px;font-weight:bold;margin:10px 0;color:#2c3e50">
               {cim}
@@ -218,7 +243,7 @@ def email_kuldes(uj_esetek):
 
         sorok_txt += (
             f"\n{'─'*45}\n"
-            f"{i}. 🚨 BALESET – TERELÉS\n"
+            f"{i}. {badge}\n"
             f"{cim}\n"
             f"Érvényes: {ervenyes}\n"
             f"Link: {url}\n"
