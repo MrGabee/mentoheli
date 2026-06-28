@@ -64,8 +64,35 @@ def ment_allapot(allapot):
 # ════════════════════════════════════════════
 def mento_e(a):
     callsign = (a.get("flight") or "").strip().upper()
-    # Csak MEDIC hívójelű gépek – ezek kizárólag magyar mentőhelikopterek
-    return callsign.startswith("MEDIC")
+    reg      = (a.get("r") or "").strip().upper()
+
+    # Magyar mentőhelikopter callsign-ok (7 bázis):
+    # MEDIC1  – Budaörs
+    # MEDIC2  – Balatonfüred
+    # MEDIC3  – Marcali
+    # MEDIC4  – Szekszárd
+    # MEDIC5  – (tartalék)
+    # MEDIC6  – Miskolc
+    # MEDIC7  – Debrecen
+    # MEDIKOPTER5 – Szentes
+    MENTO_CALLSIGN = {
+        "MEDIC1", "MEDIC2", "MEDIC3", "MEDIC4",
+        "MEDIC5", "MEDIC6", "MEDIC7",
+        "MEDIKOPTER5",
+    }
+
+    # Ismert lajstromjelek
+    MENTO_LAJSTROM = {
+        "HA-HBG", "HA-HBH", "HA-HBK",
+        "HA-HBL", "HA-HBM", "HA-HBN", "HA-HBO"
+    }
+
+    return (
+        callsign in MENTO_CALLSIGN or
+        callsign.startswith("MEDIC") or
+        callsign.startswith("MEDIKOPTER") or
+        reg in MENTO_LAJSTROM
+    )
 
 
 # ════════════════════════════════════════════
