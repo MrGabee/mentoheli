@@ -86,9 +86,10 @@ def pont_polygon_ban(lat, lon, polygon):
     belul = False
     j = n - 1
     for i in range(n):
-        xi, yi = polygon[i][1], polygon[i][0]  # lon, lat
-        xj, yj = polygon[j][1], polygon[j][0]
-        if ((yi > lon) != (yj > lon)) and (lat < (xj - xi) * (lon - yi) / (yj - yi) + xi):
+        lat_i, lon_i = polygon[i]
+        lat_j, lon_j = polygon[j]
+        if ((lon_i > lon) != (lon_j > lon)) and \
+           (lat < (lat_j - lat_i) * (lon - lon_i) / (lon_j - lon_i) + lat_i):
             belul = not belul
         j = i
     return belul
@@ -162,13 +163,6 @@ def lekerdez_json(url, tipus):
         data = r.json()
         esetek = data.get("outages", []) if isinstance(data, dict) else data
         print(f"  📊 Összes: {len(esetek)}")
-
-        # Debug – első 3 elem koordinátáinak kiírása
-        for e in esetek[:3]:
-            coords = e.get("coordinates") or {}
-            tc     = e.get("transformerAreaCenterCoordinates") or {}
-            print(f"  🔍 coordinates: {coords}")
-            print(f"  🔍 transformer: {tc}")
 
         csepel = [{"tipus": tipus, "adat": e, "url": url} for e in esetek if csepel_e(e)]
         print(f"  🎯 Csepel (polygon): {len(csepel)}")
