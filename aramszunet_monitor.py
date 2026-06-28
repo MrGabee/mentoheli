@@ -1,6 +1,6 @@
 """
 ⚡ E.ON Áramszünet Monitor – Csepel (XXI. kerület)
-Pontos polygon szűrővel – kizárva XI. és XXII. kerület
+Szűrés: city mező (Budapest XXI.) + polygon
 """
 
 import os
@@ -19,30 +19,24 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
 
-# ─────────────────────────────────────────────
-#  📍  CSEPEL (XXI. KERÜLET) PONTOS POLYGON
-#  Koordináták: (lat, lon) sorrendben
-#  Lefedi a teljes Csepel-szigetet,
-#  kizárja a XI. és XXII. kerületet
-# ─────────────────────────────────────────────
 CSEPEL_POLYGON = [
-    (47.470, 19.030),  # Észak-nyugat – Kvassay híd
-    (47.470, 19.045),  # Észak – Gubacsi híd közelében
-    (47.467, 19.062),  # Észak-kelet
-    (47.460, 19.075),  # Kelet-észak
-    (47.448, 19.082),  # Kelet
-    (47.435, 19.085),  # Kelet-közép
-    (47.420, 19.082),  # Kelet-dél
-    (47.405, 19.078),  # Dél-kelet
-    (47.390, 19.070),  # Dél
-    (47.382, 19.055),  # Dél-közép
-    (47.382, 19.038),  # Dél-nyugat
-    (47.385, 19.025),  # Nyugat-dél
-    (47.395, 19.018),  # Nyugat
-    (47.410, 19.015),  # Nyugat-közép
-    (47.425, 19.016),  # Nyugat-észak
-    (47.440, 19.018),  # Észak-nyugat belső
-    (47.458, 19.022),  # Észak-nyugat külső
+    (47.470, 19.030),
+    (47.470, 19.045),
+    (47.467, 19.062),
+    (47.460, 19.075),
+    (47.448, 19.082),
+    (47.435, 19.085),
+    (47.420, 19.082),
+    (47.405, 19.078),
+    (47.390, 19.070),
+    (47.382, 19.055),
+    (47.382, 19.038),
+    (47.385, 19.025),
+    (47.395, 19.018),
+    (47.410, 19.015),
+    (47.425, 19.016),
+    (47.440, 19.018),
+    (47.458, 19.022),
 ]
 
 ALLAPOT_FAJL = "aramszunet_allapot.json"
@@ -75,13 +69,9 @@ def hash_id(szoveg):
 
 
 # ════════════════════════════════════════════
-#  📍  POLYGON SZŰRŐ (Ray casting algoritmus)
+#  📍  SZŰRŐ – city mező VAGY polygon
 # ════════════════════════════════════════════
 def pont_polygon_ban(lat, lon, polygon):
-    """
-    Ray casting algoritmus – meghatározza hogy egy koordináta
-    a megadott polygon belsejében van-e.
-    """
     n = len(polygon)
     belul = False
     j = n - 1
@@ -95,34 +85,47 @@ def pont_polygon_ban(lat, lon, polygon):
     return belul
 
 def csepel_e(eset):
-    """Megvizsgálja hogy az áramszünet érinti-e Csepelt.
-    CSAK koordináta alapú szűrés – city mező nem megbízható!"""
+    """Csepeli-e az esemény?
+    1. Ha bármely addressRange city mezője 'Budapest XXI.' → igen
+    2. Ha a koordináta a Csepel polygonon belül van → igen
+    """
+    # 1. City mező ellenőrzés az addressRanges-ben
+    for ar in eset.get("addressRanges", []):
+        if isinstance(ar, dict):
+            city = str(ar.get("city", "") or "").strip()
+            if "XXI" in city or "Csepel" in city.lower():
+                return True
 
-    # 1. Egyetlen koordináta pont
+    # 2. City mező az üzemzavar szintjén
+    city = str(eset.get("city", "") or "").strip()
+    if "XXI" in city or "Csepel" in city.lower():
+        return True
+
+    # 3. Koordináta alapú ellenőrzés (polygon)
     coords = eset.get("coordinates") or {}
     if isinstance(coords, dict):
-        lat = coords.get("lat") or coords.get("latitude")
-        lon = coords.get("lng") or coords.get("lon") or coords.get("longitude")
-        if lat and lon:
+        lat = coords.get("lat")
+        lon = coords.get("lng") or coords.get("lon")
+        if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
             if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                 return True
 
-    # 2. Transformer középpont (üzemzavarnál)
+    # 4. Transformer koordináta
     tc = eset.get("transformerAreaCenterCoordinates") or {}
     if isinstance(tc, dict):
-        lat = tc.get("lat") or tc.get("latitude")
-        lon = tc.get("lng") or tc.get("lon") or tc.get("longitude")
-        if lat and lon:
+        lat = tc.get("lat")
+        lon = tc.get("lng") or tc.get("lon")
+        if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
             if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                 return True
 
-    # 3. addressRanges koordinátái (tervezett esetén)
+    # 5. addressRanges koordinátái
     for ar in eset.get("addressRanges", []):
         if isinstance(ar, dict):
             c = ar.get("coordinates") or {}
-            lat = c.get("lat") or c.get("latitude")
-            lon = c.get("lng") or c.get("lon") or c.get("longitude")
-            if lat and lon:
+            lat = c.get("lat")
+            lon = c.get("lng") or c.get("lon")
+            if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
                 if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                     return True
 
@@ -165,7 +168,7 @@ def lekerdez_json(url, tipus):
         print(f"  📊 Összes: {len(esetek)}")
 
         csepel = [{"tipus": tipus, "adat": e, "url": url} for e in esetek if csepel_e(e)]
-        print(f"  🎯 Csepel (polygon): {len(csepel)}")
+        print(f"  🎯 Csepel: {len(csepel)}")
         return csepel
 
     except Exception as ex:
@@ -192,6 +195,8 @@ def kinyert_adatok(eset):
     coords = a.get("coordinates") or a.get("transformerAreaCenterCoordinates") or {}
     lat = coords.get("lat") if isinstance(coords, dict) else None
     lon = coords.get("lng") or coords.get("lon") if isinstance(coords, dict) else None
+    if lat == 0.0: lat = None
+    if lon == 0.0: lon = None
 
     utcak_lista = []
     for ar in a.get("addressRanges", []):
@@ -207,7 +212,10 @@ def kinyert_adatok(eset):
                 elif from_n:
                     sor += f" {from_n}"
                 utcak_lista.append(sor)
-    utcak = ", ".join(utcak_lista[:6]) if utcak_lista else (a.get("city") or "—")
+
+    # Duplikátumok eltávolítása
+    utcak_lista = list(dict.fromkeys(utcak_lista))
+    utcak = ", ".join(utcak_lista[:4]) if utcak_lista else (a.get("city") or "—")
 
     consumers = a.get("consumers", {})
     fogyaszto = consumers.get("total") if isinstance(consumers, dict) else str(consumers) if consumers else "—"
@@ -227,6 +235,46 @@ def kinyert_adatok(eset):
 
 
 # ════════════════════════════════════════════
+#  📘  FACEBOOK POSZT SZÖVEG
+# ════════════════════════════════════════════
+def facebook_szoveg(esetek, ido):
+    db = len(esetek)
+    sorok = [
+        f"⚡ Csepel – Áramszünet értesítő",
+        f"🕒 {ido} | {db} esemény",
+        "",
+    ]
+
+    tervezett = [e for e in esetek if e["tipus"] == "TERVEZETT"]
+    uzemzavar = [e for e in esetek if e["tipus"] == "UZEMZAVAR"]
+
+    if tervezett:
+        sorok.append("🔌 TERVEZETT ÁRAMSZÜNETEK")
+        sorok.append("─────────────────────")
+        for f in tervezett:
+            utcak = f['utcak'] or '—'
+            sorok.append(f"📅 {f['kezdes'][:10] if f['kezdes'] != '—' else '—'}")
+            sorok.append(f"🕐 {f['kezdes'][11:] if len(f['kezdes']) > 10 else f['kezdes']} → {f['veg'][11:] if len(f['veg']) > 10 else f['veg']}")
+            sorok.append(f"📍 {utcak}")
+            sorok.append(f"👥 Érintett: {f['fogyaszto']} fogyasztó")
+            sorok.append("")
+
+    if uzemzavar:
+        sorok.append("🔴 ÉLŐ ÜZEMZAVAR")
+        sorok.append("─────────────────────")
+        for f in uzemzavar:
+            sorok.append(f"📍 {f['utcak'] or '—'}")
+            sorok.append(f"🕐 Kezdete: {f['kezdes']}")
+            sorok.append(f"👥 Érintett: {f['fogyaszto']} fogyasztó")
+            sorok.append("")
+
+    sorok.append("ℹ️ Forrás: E.ON nyilvános tájékoztatás")
+    sorok.append("🤖 Automatikus értesítő")
+
+    return "\n".join(sorok)
+
+
+# ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
 def email_kuldes(uj_esetek):
@@ -234,11 +282,11 @@ def email_kuldes(uj_esetek):
     db    = len(uj_esetek)
     targy = f"⚡ Csepel áramszünet – {db} új esemény | {ido}"
 
-    sorok_html = ""
-    sorok_txt  = ""
+    adatok = [kinyert_adatok(e) for e in uj_esetek]
+    fb_szoveg = facebook_szoveg(adatok, ido)
 
-    for i, e in enumerate(uj_esetek, 1):
-        f     = kinyert_adatok(e)
+    sorok_html = ""
+    for i, f in enumerate(adatok, 1):
         szin  = "#c0392b" if f["tipus"] == "UZEMZAVAR" else "#e67e22"
         badge = "🔴 ÉLŐ ÜZEMZAVAR" if f["tipus"] == "UZEMZAVAR" else "📋 TERVEZETT ÁRAMSZÜNET"
 
@@ -259,16 +307,6 @@ def email_kuldes(uj_esetek):
           </td>
         </tr>"""
 
-        sorok_txt += (
-            f"\n{'─'*45}\n{i}. {badge}\n"
-            f"Azonosító: {f['azonosito']}\n"
-            f"Kezdés:    {f['kezdes']}\n"
-            f"Vége:      {f['veg']}\n"
-            f"Helyszín:  {f['utcak']}\n"
-            f"Érintett:  {f['fogyaszto']}\n"
-            + (f"Maps: {f['gmaps']}\n" if f['gmaps'] else "")
-        )
-
     html = f"""<!DOCTYPE html>
 <html lang="hu"><head><meta charset="UTF-8">
 <style>
@@ -279,34 +317,49 @@ def email_kuldes(uj_esetek):
   .hdr h1{{margin:0;font-size:20px}}
   .hdr small{{opacity:.85;font-size:13px}}
   .body{{padding:20px 28px}}
-  .btn{{display:inline-block;padding:9px 16px;margin:4px;border-radius:6px;
-        text-decoration:none;font-weight:bold;color:#fff;font-size:12px}}
+  .fb-box{{background:#f0f2f5;border:2px dashed #1877f2;border-radius:8px;
+           padding:16px;margin:20px 0}}
+  .fb-box h3{{margin:0 0 10px;color:#1877f2;font-size:14px}}
+  .fb-box pre{{margin:0;font-family:Arial,sans-serif;font-size:13px;
+              white-space:pre-wrap;word-break:break-word;
+              color:#1c1e21;line-height:1.6}}
   .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
          color:#95a5a6;text-align:center}}
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
     <h1>⚡ Csepel – Áramszünet értesítő</h1>
-    <small>{ido} | {db} új esemény (XXI. kerület – polygon szűrő)</small>
+    <small>{ido} | {db} új esemény (XXI. kerület)</small>
   </div>
   <div class="body">
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
+
+    <div class="fb-box">
+      <h3>📘 Facebook poszt – kattints bele, Ctrl+A, Ctrl+C:</h3>
+      <pre>{fb_szoveg}</pre>
+    </div>
+
     <div style="text-align:center;margin-top:16px">
       <a href="https://www.eon.hu/hu/lakossagi/aram/aramszunet-informaciok.html"
-         class="btn" style="background:#c0392b">⚡ E.ON térkép</a>
+         style="background:#c0392b;color:#fff;padding:9px 16px;border-radius:6px;
+                text-decoration:none;font-weight:bold;font-size:12px">
+        ⚡ E.ON térkép
+      </a>
+      <a href="https://www.facebook.com/104411308403346"
+         style="background:#1877f2;color:#fff;padding:9px 16px;border-radius:6px;
+                text-decoration:none;font-weight:bold;font-size:12px;margin-left:8px">
+        📘 Facebook oldal
+      </a>
     </div>
   </div>
   <div class="foot">Automatikus értesítő – GitHub Actions | E.ON adatai alapján</div>
 </div></body></html>"""
 
-    szoveges = f"⚡ Csepel Áramszünet\nIdőpont: {ido}\n{sorok_txt}"
-
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
     msg["From"]    = f"⚡ Áramszünet Monitor <{EMAIL_KULDO}>"
     msg["To"]      = EMAIL_CIMZETT
-    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
-    msg.attach(MIMEText(html,     "html",  "utf-8"))
+    msg.attach(MIMEText(html, "html", "utf-8"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
         smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
