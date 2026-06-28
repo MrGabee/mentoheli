@@ -14,7 +14,7 @@ from email.mime.text import MIMEText
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
+EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
@@ -162,6 +162,13 @@ def lekerdez_json(url, tipus):
         data = r.json()
         esetek = data.get("outages", []) if isinstance(data, dict) else data
         print(f"  📊 Összes: {len(esetek)}")
+
+        # Debug – első 3 elem koordinátáinak kiírása
+        for e in esetek[:3]:
+            coords = e.get("coordinates") or {}
+            tc     = e.get("transformerAreaCenterCoordinates") or {}
+            print(f"  🔍 coordinates: {coords}")
+            print(f"  🔍 transformer: {tc}")
 
         csepel = [{"tipus": tipus, "adat": e, "url": url} for e in esetek if csepel_e(e)]
         print(f"  🎯 Csepel (polygon): {len(csepel)}")
