@@ -43,6 +43,9 @@ API_URLAK_ICAO = [
     "https://api.adsb.lol/v2/icao/{icao}",            # adsb.lol
 ]
 
+# OpenSky külön – más formátum, külön dolgozzuk fel
+OPENSKY_URL = "https://opensky-network.org/api/states/all?icao24={icao}"
+
 # Ország + callsign alapú lekérdezés
 API_URLAK = [
     # Ország lista
@@ -185,6 +188,41 @@ def lekerdez():
                     cs = url.split("callsign/")[-1]
                     print(f"✅ Callsign {cs}: megtalálva")
         except Exception as e:
+            pass
+
+    # 3. OpenSky Network – más formátum, külön feldolgozás
+    # Válasz formátum: {"states": [[icao24, callsign, country, ..., lat, lon, ...]]}
+    # Oszlopok: 0=icao24, 1=callsign, 2=origin_country, 5=lon, 6=lat, 7=baro_alt,
+    #           8=on_ground, 9=velocity, 10=heading, 11=vert_rate
+    for icao, reg in MENTO_ICAO_MAP.items():
+        if icao in gepek:
+            continue  # már megvan más forrásból
+        try:
+            url = OPENSKY_URL.format(icao=icao)
+            r = requests.get(url, timeout=10, headers=HEADERS)
+            if r.status_code == 200:
+                data = r.json()
+                states = data.get("states") or []
+                for s in states:
+                    if not s or len(s) < 9:
+                        continue
+                    # OpenSky → standard formátumra alakítás
+                    g = {
+                        "hex":        (s[0] or "").lower(),
+                        "flight":     (s[1] or "").strip(),
+                        "r":          reg,
+                        "lat":        s[6],
+                        "lon":        s[5],
+                        "alt_baro":   int(s[7] / 0.3048) if s[7] else "ground",
+                        "on_ground":  s[8],
+                        "gs":         int(s[9] * 1.944) if s[9] else 0,  # m/s → kt
+                        "track":      s[10],
+                    }
+                    key = g["hex"]
+                    if key and key not in gepek:
+                        gepek[key] = g
+                        print(f"✅ OpenSky {icao} ({reg}): megtalálva")
+        except Exception:
             pass
 
     eredmeny = list(gepek.values())
