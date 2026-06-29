@@ -24,10 +24,57 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 # ─────────────────────────────────────────────
 #  📡  API FORRÁSOK
 # ─────────────────────────────────────────────
+# Ismert ICAO24 kódok – minden gépet közvetlenül lekérdezünk
+MENTO_ICAO_MAP = {
+    "47129c": "HA-HBG",  # Marcali (MEDIC3)
+    "47129d": "HA-HBH",  # Miskolc (MEDIC6)
+    "4712a0": "HA-HBK",  # ?
+    "4712a1": "HA-HBL",  # Nyíregyháza
+    "4712a2": "HA-HBM",  # Budaörs (tartalék)
+    "4712a3": "HA-HBN",  # Budaörs
+    "4712a4": "HA-HBO",  # Debrecen (MEDIC7)
+}
+
+# Ha ismerjük az összes ICAO-t, direkt lekérdezés
+API_URLAK_ICAO = [
+    "https://api.airplanes.live/v2/icao/{icao}",      # airplanes.live
+    "https://opendata.adsb.fi/api/v2/icao/{icao}",    # adsb.fi
+    "https://api.adsb.one/v2/icao/{icao}",            # adsb.one
+    "https://api.adsb.lol/v2/icao/{icao}",            # adsb.lol
+]
+
+# Ország + callsign alapú lekérdezés
 API_URLAK = [
+    # Ország lista
     "https://opendata.adsb.fi/api/v2/country/HU",
     "https://api.adsb.one/v2/country/HU",
     "https://api.airplanes.live/v2/country/HU",
+    "https://api.adsb.lol/v2/country/HU",
+    # Callsign alapú direkt lekérdezés
+    "https://api.airplanes.live/v2/callsign/MEDIC1",
+    "https://api.airplanes.live/v2/callsign/MEDIC2",
+    "https://api.airplanes.live/v2/callsign/MEDIC3",
+    "https://api.airplanes.live/v2/callsign/MEDIC4",
+    "https://api.airplanes.live/v2/callsign/MEDIC5",
+    "https://api.airplanes.live/v2/callsign/MEDIC6",
+    "https://api.airplanes.live/v2/callsign/MEDIC7",
+    "https://api.airplanes.live/v2/callsign/MEDIKOPTER5",
+    "https://api.adsb.lol/v2/callsign/MEDIC1",
+    "https://api.adsb.lol/v2/callsign/MEDIC2",
+    "https://api.adsb.lol/v2/callsign/MEDIC3",
+    "https://api.adsb.lol/v2/callsign/MEDIC4",
+    "https://api.adsb.lol/v2/callsign/MEDIC5",
+    "https://api.adsb.lol/v2/callsign/MEDIC6",
+    "https://api.adsb.lol/v2/callsign/MEDIC7",
+    "https://api.adsb.lol/v2/callsign/MEDIKOPTER5",
+    # Lajstromjel alapú lekérdezés
+    "https://api.airplanes.live/v2/reg/HA-HBG",
+    "https://api.airplanes.live/v2/reg/HA-HBH",
+    "https://api.airplanes.live/v2/reg/HA-HBK",
+    "https://api.airplanes.live/v2/reg/HA-HBL",
+    "https://api.airplanes.live/v2/reg/HA-HBM",
+    "https://api.airplanes.live/v2/reg/HA-HBN",
+    "https://api.airplanes.live/v2/reg/HA-HBO",
 ]
 
 # ─────────────────────────────────────────────
@@ -99,21 +146,50 @@ def mento_e(a):
 #  📡  API LEKÉRDEZÉS
 # ════════════════════════════════════════════
 def lekerdez():
+    gepek = {}  # icao → gép adat (duplikátum szűrés)
+
+    # 1. ICAO alapú direkt lekérdezés – minden ismert gép
+    for icao, reg in MENTO_ICAO_MAP.items():
+        for url_tmpl in API_URLAK_ICAO:
+            if "{icao}" not in url_tmpl:
+                continue
+            url = url_tmpl.format(icao=icao)
+            try:
+                r = requests.get(url, timeout=10, headers=HEADERS)
+                if r.status_code == 200:
+                    data = r.json()
+                    ac = data.get("ac", [])
+                    if ac:
+                        for g in ac:
+                            key = g.get("hex", icao).lower()
+                            gepek[key] = g
+                        print(f"✅ ICAO {icao} ({reg}): megtalálva")
+                        break
+            except Exception as e:
+                pass
+
+    # 2. Ország + callsign alapú lekérdezés
     for url in API_URLAK:
         try:
-            print(f"🌐 Lekérdezés: {url}")
             r = requests.get(url, timeout=15, headers=HEADERS)
             if r.status_code == 200:
                 data = r.json()
-                gepek = data.get("ac", [])
-                print(f"✅ OK | Összes HU gép: {len(gepek)}")
-                return gepek
-            else:
-                print(f"⚠️ HTTP {r.status_code}")
+                ac_lista = data.get("ac", [])
+                for g in ac_lista:
+                    key = g.get("hex", "").lower()
+                    if key and key not in gepek:
+                        gepek[key] = g
+                if "country" in url:
+                    print(f"✅ Ország lista: {len(ac_lista)} gép")
+                elif "callsign" in url and ac_lista:
+                    cs = url.split("callsign/")[-1]
+                    print(f"✅ Callsign {cs}: megtalálva")
         except Exception as e:
-            print(f"❌ Hiba ({url}): {e}")
-    print("❌ Minden forrás sikertelen.")
-    return None
+            pass
+
+    eredmeny = list(gepek.values())
+    print(f"📊 Összesített egyedi gépek: {len(eredmeny)}")
+    return eredmeny if eredmeny else None
 
 
 # ════════════════════════════════════════════
@@ -174,8 +250,14 @@ def feldolgoz(a):
         "timestamp":    time.time(),
     }
 
-# Ismert lajstromjelek ICAO24 alapján (tájékoztató)
+# Ismert lajstromjelek ICAO24 alapján
 ISMERT_LAJSTROM = {
+    "47129c": "HA-HBG",  # Marcali
+    "47129d": "HA-HBH",  # Miskolc
+    "4712a0": "HA-HBK",
+    "4712a1": "HA-HBL",  # Nyíregyháza
+    "4712a2": "HA-HBM",  # Budaörs tartalék
+    "4712a3": "HA-HBN",  # Budaörs
     "4712a4": "HA-HBO",  # Debrecen
 }
 
