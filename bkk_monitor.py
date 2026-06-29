@@ -36,6 +36,15 @@ BALESET_KULCSSZAVAK = [
     "terelve", "terelt", "terelés",
 ]
 
+# Kizáró szavak – ha ezek szerepelnek a szövegben, NEM küldi el
+KIZARO_KULCSSZAVAK = [
+    "utas rosszul", "utasrosszul", "utas rosszullét", "utasrosszullét",
+    "rosszullét", "rosszul lett", "rosszullette",
+    "szabálytalan parkolás", "szabálytalan parkol", "szabálytalanul parkol",
+    "parkolási", "parkolás miatt",
+    "akadályozó jármű", "akadályozó autó",
+]
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
     "Accept-Language": "hu-HU,hu;q=0.9",
@@ -63,11 +72,16 @@ def hash_id(szoveg):
 
 
 # ════════════════════════════════════════════
-#  🔍  BALESET SZŰRŐ
+#  🔍  SZŰRŐK
 # ════════════════════════════════════════════
 def baleset_e(szoveg):
     s = szoveg.lower()
     return any(k in s for k in BALESET_KULCSSZAVAK)
+
+def kizaras_e(szoveg):
+    """Ha kizáró szó szerepel a szövegben, NEM küldi el."""
+    s = szoveg.lower()
+    return any(k in s for k in KIZARO_KULCSSZAVAK)
 
 
 # ════════════════════════════════════════════
@@ -311,6 +325,12 @@ def main():
     for e in esemenyek:
         rid = hash_id(e["id"] + e["cim"])
         if rid not in regi:
+            # Kizáró szavak ellenőrzése
+            szoveg = e.get("cim", "") + " " + e.get("reszlet", "")
+            if kizaras_e(szoveg):
+                print(f"  ⏭️ Kizárva: {e['cim'][:60]}")
+                regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+                continue
             uj.append(e)
             regi[rid] = {
                 "cim": e["cim"][:100],
