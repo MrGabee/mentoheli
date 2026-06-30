@@ -9,10 +9,19 @@ import json
 import hashlib
 import smtplib
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
+
+# ─────────────────────────────────────────────
+#  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
+# ─────────────────────────────────────────────
+MAGYAR_TZ = timezone(timedelta(hours=2))
+
+def magyar_ido():
+    return datetime.now(MAGYAR_TZ)
+
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
@@ -203,7 +212,7 @@ def lekerdez_bkk():
 #  📧  E-MAIL
 # ════════════════════════════════════════════
 def email_kuldes(uj_esetek):
-    ido   = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
     targy = f"🚨 BKK forgalmi esemény – {db} új | {ido}"
 
@@ -314,7 +323,7 @@ def email_kuldes(uj_esetek):
 # ════════════════════════════════════════════
 def main():
     print(f"\n{'='*55}")
-    print(f"🚌 BKK Baleset Monitor – {datetime.now().strftime('%Y.%m.%d %H:%M:%S')}")
+    print(f"🚌 BKK Baleset Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*55}")
 
     regi = betolt_allapot()
@@ -329,12 +338,12 @@ def main():
             szoveg = e.get("cim", "") + " " + e.get("reszlet", "")
             if kizaras_e(szoveg):
                 print(f"  ⏭️ Kizárva: {e['cim'][:60]}")
-                regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+                regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
                 continue
             uj.append(e)
             regi[rid] = {
                 "cim": e["cim"][:100],
-                "talalt": datetime.now().isoformat()
+                "talalt": magyar_ido().isoformat()
             }
 
     print(f"\n🚨 Új balesetes esemény: {len(uj)}")
