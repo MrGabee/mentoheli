@@ -1,19 +1,36 @@
 {
-  "4712a1": {
-    "icao24": "4712a1",
-    "callsign": "MEDIC1",
-    "reg": "HA-HBL",
+  "4712a4": {
+    "icao24": "4712a4",
+    "callsign": "",
+    "reg": "HA-HBO",
     "tipus": "EC35",
     "lat": null,
     "lon": null,
-    "baro_alt_m": 358,
+    "baro_alt_m": null,
     "geo_alt_m": null,
     "on_ground": false,
-    "velocity_kmh": 252,
-    "heading": 128.32,
+    "velocity_kmh": null,
+    "heading": null,
     "vert_rate_ms": null,
-    "squawk": "7004",
+    "squawk": null,
     "category": "",
-    "timestamp": 1782833365.8983898
+    "timestamp": 1782834423.9613745
+  },
+  "484218": {
+    "icao24": "484218",
+    "callsign": "MEDIC1",
+    "reg": "",
+    "tipus": "",
+    "lat": 52.324483,
+    "lon": 4.779308,
+    "baro_alt_m": 0,
+    "geo_alt_m": null,
+    "on_ground": true,
+    "velocity_kmh": 81,
+    "heading": 81.56,
+    "vert_rate_ms": null,
+    "squawk": null,
+    "category": "C1",
+    "timestamp": 1782834423.9613907
   }
 }
