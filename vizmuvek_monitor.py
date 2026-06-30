@@ -132,7 +132,7 @@ def lekerdez():
             if not cim or not csepel_e(cim):
                 continue
 
-            gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=15"
+            gmaps = f"https://www.google.com/maps/search/?api=1&query={lat},{lon}"
             esemenyek.append({
                 "tipus": tipus, "cim": cim, "munka": munka,
                 "kezdes": kezdes, "veg": veg,
