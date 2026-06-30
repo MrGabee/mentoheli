@@ -34,13 +34,15 @@ jobs:
         run: python monitor.py
 
       - name: 💾 Állapot commitolása
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git stash
           git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
           git stash pop || true
-          [ -f allapot.json ] && git add allapot.json || echo "fájl nem létezik"
+          [ -f allapot.json ] && git add allapot.json || echo "allapot.json nem létezik"
+          [ -f esemeny_naplo.json ] && git add esemeny_naplo.json || echo "esemeny_naplo.json nem létezik"
           git diff --staged --quiet || git commit -m "állapot [skip ci]"
           git push origin main || true
         env:
