@@ -10,10 +10,19 @@ import json
 import hashlib
 import smtplib
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
+
+# ─────────────────────────────────────────────
+#  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
+# ─────────────────────────────────────────────
+MAGYAR_TZ = timezone(timedelta(hours=2))
+
+def magyar_ido():
+    return datetime.now(MAGYAR_TZ)
+
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
@@ -78,7 +87,8 @@ def friss_e(datum_str):
         for fmt in ["%Y.%m.%d. %H:%M", "%Y.%m.%d. %H:%M:%S", "%Y.%m.%d %H:%M"]:
             try:
                 datum = datetime.strptime(datum_str, fmt)
-                return datetime.now() - datum <= timedelta(hours=MAX_ORA)
+                datum = datum.replace(tzinfo=MAGYAR_TZ)  # naiv → timezone-aware
+                return magyar_ido() - datum <= timedelta(hours=MAX_ORA)
             except ValueError:
                 continue
         return True  # Ha nem sikerül parse-olni, elfogadjuk
@@ -174,7 +184,7 @@ def lekerdez_lista():
 #  📧  E-MAIL
 # ════════════════════════════════════════════
 def email_kuldes(uj_esetek):
-    ido   = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
     targy = f"🚂 MÁV/Volán baleset – {db} új esemény | {ido}"
 
@@ -269,7 +279,7 @@ def email_kuldes(uj_esetek):
 # ════════════════════════════════════════════
 def main():
     print(f"\n{'='*55}")
-    print(f"🚂 MÁV Monitor – {datetime.now().strftime('%Y.%m.%d %H:%M:%S')}")
+    print(f"🚂 MÁV Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*55}")
 
     regi = betolt_allapot()
@@ -287,7 +297,7 @@ def main():
         # 1. URL/cím alapú szűrés – csak baleset/gázolás
         if not baleset_e(e["url"], e["cim"]):
             # Nem baleset – mentjük és kihagyjuk
-            regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+            regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
             continue
 
         print(f"  🔍 Baleset cikk: {e['cim'][:70]}")
@@ -298,14 +308,14 @@ def main():
         # 3. Frissesség ellenőrzése – csak max 3 órás cikk kell
         if not friss_e(datum):
             print(f"    ⏩ Régi cikk ({datum}), kihagyva.")
-            regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+            regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
             continue
 
         print(f"    ✅ Friss baleset esemény!")
         e["datum"]   = datum or "—"
         e["reszlet"] = reszlet
         uj.append(e)
-        regi[rid] = {"cim": e["cim"][:100], "talalt": datetime.now().isoformat()}
+        regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
 
     print(f"\n🚂 Új baleseti esemény: {len(uj)}")
     if uj:
