@@ -33,16 +33,55 @@ jobs:
           EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
         run: python mav_monitor.py
 
-      - name: 💾 Állapot commitolása
+      - name: 💾 Állapot commitolása (retry, ütközésbiztos)
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git stash
-          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
-          git stash pop || true
-          [ -f mav_allapot.json ] && git add mav_allapot.json || echo "fájl nem létezik"
-          git diff --staged --quiet || git commit -m "mav állapot [skip ci]"
-          git push origin main || true
+
+          if [ ! -f mav_allapot.json ]; then
+            echo "mav_allapot.json nem létezik, nincs mit commitolni."
+            exit 0
+          fi
+
+          # Mentsük el a saját, frissen generált állapotfájlt biztonságos helyre,
+          # hogy semmilyen git művelet ne tudja véletlenül felülírni/eldobni
+          cp mav_allapot.json /tmp/mav_allapot_sajat.json
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+
+            # Mindig friss állapotból induljunk: eldobjuk a helyi (esetleg
+            # elavult) verziót, és a remote legfrissebb állapotára állunk
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Most ráírjuk a SAJÁT, frissen mentett állapotfájlunkat
+            cp /tmp/mav_allapot_sajat.json mav_allapot.json
+            git add mav_allapot.json
+
+            if git diff --staged --quiet; then
+              echo "Nincs tényleges változás a remote-hoz képest, kész."
+              SIKERULT=1
+              break
+            fi
+
+            git commit -m "mav állapot [skip ci]"
+
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött (másik workflow közben pusholt), újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ FIGYELEM: 6 próbálkozás után sem sikerült a push. Az állapot elveszhet ennél a futásnál, de a monitor a következő futásnál újra próbálkozik."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
