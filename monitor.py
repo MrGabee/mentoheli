@@ -3,6 +3,7 @@
 Adatforrás: adsb.fi (ingyenes, kulcs nélkül)
 Szűrés: MEDIC callsign (kizárólag magyar mentőhelikopterek)
 Futtatás: GitHub Actions (percenként, self-loop)
+DIAGNOSZTIKAI VERZIÓ – részletes hibakiírással ha 0 gépet találunk
 """
 
 import os
@@ -14,55 +15,40 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta, timezone
 
-# ─────────────────────────────────────────────
-#  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
-# ─────────────────────────────────────────────
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
 
 
-# ─────────────────────────────────────────────
-#  ⚙️  KONFIGURÁCIÓ (GitHub Secrets-ből jön)
-# ─────────────────────────────────────────────
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 
-# ─────────────────────────────────────────────
-#  📡  API FORRÁSOK
-# ─────────────────────────────────────────────
-# Ismert ICAO24 kódok – minden gépet közvetlenül lekérdezünk
 MENTO_ICAO_MAP = {
-    "47129c": "HA-HBG",  # Marcali (MEDIC3)
-    "47129d": "HA-HBH",  # Miskolc (MEDIC6)
-    "4712a0": "HA-HBK",  # ?
-    "4712a1": "HA-HBL",  # Nyíregyháza
-    "4712a2": "HA-HBM",  # Budaörs (tartalék)
-    "4712a3": "HA-HBN",  # Budaörs
-    "4712a4": "HA-HBO",  # Debrecen (MEDIC7)
+    "47129c": "HA-HBG",
+    "47129d": "HA-HBH",
+    "4712a0": "HA-HBK",
+    "4712a1": "HA-HBL",
+    "4712a2": "HA-HBM",
+    "4712a3": "HA-HBN",
+    "4712a4": "HA-HBO",
 }
 
-# Ha ismerjük az összes ICAO-t, direkt lekérdezés
 API_URLAK_ICAO = [
-    "https://api.airplanes.live/v2/icao/{icao}",      # airplanes.live
-    "https://opendata.adsb.fi/api/v2/icao/{icao}",    # adsb.fi
-    "https://api.adsb.one/v2/icao/{icao}",            # adsb.one
-    "https://api.adsb.lol/v2/icao/{icao}",            # adsb.lol
+    "https://api.airplanes.live/v2/icao/{icao}",
+    "https://opendata.adsb.fi/api/v2/icao/{icao}",
+    "https://api.adsb.one/v2/icao/{icao}",
+    "https://api.adsb.lol/v2/icao/{icao}",
 ]
 
-# OpenSky külön – más formátum, külön dolgozzuk fel
 OPENSKY_URL = "https://opensky-network.org/api/states/all?icao24={icao}"
 
-# Ország + callsign alapú lekérdezés
 API_URLAK = [
-    # Ország lista
     "https://opendata.adsb.fi/api/v2/country/HU",
     "https://api.adsb.one/v2/country/HU",
     "https://api.airplanes.live/v2/country/HU",
     "https://api.adsb.lol/v2/country/HU",
-    # Callsign alapú direkt lekérdezés
     "https://api.airplanes.live/v2/callsign/MEDIC1",
     "https://api.airplanes.live/v2/callsign/MEDIC2",
     "https://api.airplanes.live/v2/callsign/MEDIC3",
@@ -79,7 +65,6 @@ API_URLAK = [
     "https://api.adsb.lol/v2/callsign/MEDIC6",
     "https://api.adsb.lol/v2/callsign/MEDIC7",
     "https://api.adsb.lol/v2/callsign/MEDIKOPTER5",
-    # Lajstromjel alapú lekérdezés
     "https://api.airplanes.live/v2/reg/HA-HBG",
     "https://api.airplanes.live/v2/reg/HA-HBH",
     "https://api.airplanes.live/v2/reg/HA-HBK",
@@ -89,21 +74,14 @@ API_URLAK = [
     "https://api.airplanes.live/v2/reg/HA-HBO",
 ]
 
-# ─────────────────────────────────────────────
-#  🚁  SZŰRÉS – csak MEDIC callsign
-#  (kizárólag magyar mentőhelikopterek)
-# ─────────────────────────────────────────────
 ALLAPOT_FAJL  = "allapot.json"
-FOLD_KUSZOB_M = 50  # méter – ennél alacsonyabb = földön
+FOLD_KUSZOB_M = 50
 
 HEADERS = {
     "User-Agent": "MentoHelikopterMonitor/2.0 (github-actions)"
 }
 
 
-# ════════════════════════════════════════════
-#  💾  ÁLLAPOT KEZELÉS
-# ════════════════════════════════════════════
 def betolt_allapot():
     if os.path.exists(ALLAPOT_FAJL):
         try:
@@ -118,29 +96,15 @@ def ment_allapot(allapot):
         json.dump(allapot, f, ensure_ascii=False, indent=2)
 
 
-# ════════════════════════════════════════════
-#  🔍  SZŰRŐ – mentőhelikopter-e?
-# ════════════════════════════════════════════
 def mento_e(a):
     callsign = (a.get("flight") or "").strip().upper()
     reg      = (a.get("r") or "").strip().upper()
 
-    # Magyar mentőhelikopter callsign-ok (7 bázis):
-    # MEDIC1  – Budaörs
-    # MEDIC2  – Balatonfüred
-    # MEDIC3  – Marcali
-    # MEDIC4  – Szekszárd
-    # MEDIC5  – (tartalék)
-    # MEDIC6  – Miskolc
-    # MEDIC7  – Debrecen
-    # MEDIKOPTER5 – Szentes
     MENTO_CALLSIGN = {
         "MEDIC1", "MEDIC2", "MEDIC3", "MEDIC4",
         "MEDIC5", "MEDIC6", "MEDIC7",
         "MEDIKOPTER5",
     }
-
-    # Ismert lajstromjelek
     MENTO_LAJSTROM = {
         "HA-HBG", "HA-HBH", "HA-HBK",
         "HA-HBL", "HA-HBM", "HA-HBN", "HA-HBO"
@@ -154,13 +118,10 @@ def mento_e(a):
     )
 
 
-# ════════════════════════════════════════════
-#  📡  API LEKÉRDEZÉS
-# ════════════════════════════════════════════
 def lekerdez():
-    gepek = {}  # icao → gép adat (duplikátum szűrés)
+    gepek = {}
+    diag_sorok = []
 
-    # 1. ICAO alapú direkt lekérdezés – minden ismert gép
     for icao, reg in MENTO_ICAO_MAP.items():
         for url_tmpl in API_URLAK_ICAO:
             if "{icao}" not in url_tmpl:
@@ -175,12 +136,13 @@ def lekerdez():
                         for g in ac:
                             key = g.get("hex", icao).lower()
                             gepek[key] = g
-                        print(f"✅ ICAO {icao} ({reg}): megtalálva")
+                        print(f"OK ICAO {icao} ({reg}): megtalalva")
                         break
+                else:
+                    diag_sorok.append(f"  ICAO {url} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
             except Exception as e:
-                pass
+                diag_sorok.append(f"  ICAO {url} -> KIVETEL: {type(e).__name__}: {e}")
 
-    # 2. Ország + callsign alapú lekérdezés
     for url in API_URLAK:
         try:
             r = requests.get(url, timeout=15, headers=HEADERS)
@@ -192,20 +154,18 @@ def lekerdez():
                     if key and key not in gepek:
                         gepek[key] = g
                 if "country" in url:
-                    print(f"✅ Ország lista: {len(ac_lista)} gép")
+                    print(f"OK Orszag lista: {len(ac_lista)} gep")
                 elif "callsign" in url and ac_lista:
                     cs = url.split("callsign/")[-1]
-                    print(f"✅ Callsign {cs}: megtalálva")
+                    print(f"OK Callsign {cs}: megtalalva")
+            else:
+                diag_sorok.append(f"  {url} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
         except Exception as e:
-            pass
+            diag_sorok.append(f"  {url} -> KIVETEL: {type(e).__name__}: {e}")
 
-    # 3. OpenSky Network – más formátum, külön feldolgozás
-    # Válasz formátum: {"states": [[icao24, callsign, country, ..., lat, lon, ...]]}
-    # Oszlopok: 0=icao24, 1=callsign, 2=origin_country, 5=lon, 6=lat, 7=baro_alt,
-    #           8=on_ground, 9=velocity, 10=heading, 11=vert_rate
     for icao, reg in MENTO_ICAO_MAP.items():
         if icao in gepek:
-            continue  # már megvan más forrásból
+            continue
         try:
             url = OPENSKY_URL.format(icao=icao)
             r = requests.get(url, timeout=10, headers=HEADERS)
@@ -215,16 +175,10 @@ def lekerdez():
                 for s in states:
                     if not s or len(s) < 9:
                         continue
-
                     lat_val = s[6]
                     lon_val = s[5]
-
-                    # Ha nincs koordináta, ne fogadjuk el ezt a rekordot –
-                    # hadd találja meg egy másik forrás a teljes adatot
                     if lat_val is None or lon_val is None:
                         continue
-
-                    # OpenSky → standard formátumra alakítás
                     g = {
                         "hex":        (s[0] or "").lower(),
                         "flight":     (s[1] or "").strip(),
@@ -233,24 +187,31 @@ def lekerdez():
                         "lon":        lon_val,
                         "alt_baro":   int(s[7] / 0.3048) if s[7] else "ground",
                         "on_ground":  s[8],
-                        "gs":         int(s[9] * 1.944) if s[9] else 0,  # m/s → kt
+                        "gs":         int(s[9] * 1.944) if s[9] else 0,
                         "track":      s[10],
                     }
                     key = g["hex"]
                     if key and key not in gepek:
                         gepek[key] = g
-                        print(f"✅ OpenSky {icao} ({reg}): megtalálva")
-        except Exception:
-            pass
+                        print(f"OK OpenSky {icao} ({reg}): megtalalva")
+            else:
+                diag_sorok.append(f"  OpenSky {icao} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
+        except Exception as e:
+            diag_sorok.append(f"  OpenSky {icao} -> KIVETEL: {type(e).__name__}: {e}")
 
     eredmeny = list(gepek.values())
-    print(f"📊 Összesített egyedi gépek: {len(eredmeny)}")
+    print(f"Osszesitett egyedi gepek: {len(eredmeny)}")
+
+    if len(eredmeny) == 0:
+        print(f"\nDIAGNOSZTIKA - {len(diag_sorok)} forras valaszolt hibasan/uresen:")
+        for sor in diag_sorok[:15]:
+            print(sor)
+        if len(diag_sorok) > 15:
+            print(f"  ... es meg {len(diag_sorok) - 15} tovabbi hasonlo hiba.")
+
     return eredmeny if eredmeny else None
 
 
-# ════════════════════════════════════════════
-#  📊  ADATOK FELDOLGOZÁSA
-# ════════════════════════════════════════════
 def feldolgoz(a):
     icao24   = (a.get("hex", "") or "").lower().strip()
     callsign = (a.get("flight", "") or "").strip()
@@ -259,7 +220,6 @@ def feldolgoz(a):
     lat      = a.get("lat")
     lon      = a.get("lon")
 
-    # Magasság ft → m
     alt_baro_raw = a.get("alt_baro")
     if alt_baro_raw == "ground" or alt_baro_raw == 0:
         baro_alt_m = 0
@@ -277,7 +237,6 @@ def feldolgoz(a):
     if alt_m is not None and alt_m <= FOLD_KUSZOB_M:
         on_ground = True
 
-    # Sebesség kt → km/h
     gs = a.get("gs")
     velocity_kmh = round(gs * 1.852) if gs is not None else None
 
@@ -306,21 +265,17 @@ def feldolgoz(a):
         "timestamp":    time.time(),
     }
 
-# Ismert lajstromjelek ICAO24 alapján
 ISMERT_LAJSTROM = {
-    "47129c": "HA-HBG",  # Marcali
-    "47129d": "HA-HBH",  # Miskolc
+    "47129c": "HA-HBG",
+    "47129d": "HA-HBH",
     "4712a0": "HA-HBK",
-    "4712a1": "HA-HBL",  # Nyíregyháza
-    "4712a2": "HA-HBM",  # Budaörs tartalék
-    "4712a3": "HA-HBN",  # Budaörs
-    "4712a4": "HA-HBO",  # Debrecen
+    "4712a1": "HA-HBL",
+    "4712a2": "HA-HBM",
+    "4712a3": "HA-HBN",
+    "4712a4": "HA-HBO",
 }
 
 
-# ════════════════════════════════════════════
-#  🔁  ÁLLAPOT ÖSSZEHASONLÍTÁS
-# ════════════════════════════════════════════
 def osszehasonlit(regi, uj):
     esemenyek = []
 
@@ -336,7 +291,6 @@ def osszehasonlit(regi, uj):
             elif not regi_gep["on_ground"] and uj_gep["on_ground"]:
                 esemenyek.append({"tipus": "LESZALLAS",  "gep": uj_gep})
 
-    # Eltűnt gépek
     for icao, regi_gep in regi.items():
         if icao not in uj and not regi_gep["on_ground"]:
             elapsed = time.time() - regi_gep.get("timestamp", 0)
@@ -346,9 +300,6 @@ def osszehasonlit(regi, uj):
     return esemenyek
 
 
-# ════════════════════════════════════════════
-#  📧  E-MAIL KÜLDÉS
-# ════════════════════════════════════════════
 def email_kuldes(esemeny):
     tipus   = esemeny["tipus"]
     gep     = esemeny["gep"]
@@ -376,7 +327,6 @@ def email_kuldes(esemeny):
     hdg_str = f"{round(hdg)}°" if hdg is not None else "ismeretlen"
     vr_str  = (f"+{vr}" if vr and vr > 0 else str(vr)) + " m/s" if vr is not None else "ismeretlen"
 
-    # Követési linkek
     fr24_live     = f"https://www.flightradar24.com/{cs.strip()}"
     fr24_acdata   = f"https://www.flightradar24.com/data/aircraft/{reg.replace('-','').lower()}"
     adsbexch      = f"https://globe.adsbexchange.com/?icao={icao24}"
@@ -530,9 +480,6 @@ def email_kuldes(esemeny):
     print(f"📧 E-mail elküldve: {targy}")
 
 
-# ════════════════════════════════════════════
-#  🚀  FŐPROGRAM
-# ════════════════════════════════════════════
 def main():
     print(f"\n{'='*50}")
     print(f"🚁 Mentőhelikopter Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
@@ -543,7 +490,6 @@ def main():
         print("❌ API nem elérhető.")
         return
 
-    # Szűrés – csak MEDIC callsign
     uj_allapot = {}
     for a in gepek_raw:
         if mento_e(a):
