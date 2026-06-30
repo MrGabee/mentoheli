@@ -379,6 +379,8 @@ def email_kuldes(esemeny):
     gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=13" if lat and lon else None
     osm   = f"https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map=13/{lat}/{lon}" if lat and lon else None
 
+    gmaps_link_html = f' &nbsp;<a href="{gmaps}" style="color:#4285f4;text-decoration:none;font-weight:bold">📍 Maps</a>' if gmaps else ''
+
     html = f"""<!DOCTYPE html>
 <html lang="hu">
 <head><meta charset="UTF-8">
@@ -442,8 +444,8 @@ def email_kuldes(esemeny):
       <tr><td>⏰ Időpont</td><td>{ido}</td></tr>
       <tr><td>🚁 Esemény</td>
           <td><strong style="color:{szin}">{tipus_hu}</strong></td></tr>
-      <tr><td>🌍 Szélesség</td><td>{lat_str}{f' &nbsp;<a href="{gmaps}" style="color:#4285f4;text-decoration:none;font-weight:bold">📍 Maps</a>' if gmaps else ''}</td></tr>
-      <tr><td>🌍 Hosszúság</td><td>{lon_str}{f' &nbsp;<a href="{gmaps}" style="color:#4285f4;text-decoration:none;font-weight:bold">📍 Maps</a>' if gmaps else ''}</td></tr>
+      <tr><td>🌍 Szélesség</td><td>{lat_str}{gmaps_link_html}</td></tr>
+      <tr><td>🌍 Hosszúság</td><td>{lon_str}{gmaps_link_html}</td></tr>
       <tr><td>⬆️ Magasság</td><td>{alt_str}</td></tr>
       <tr><td>💨 Sebesség</td><td>{vel_str}</td></tr>
       <tr><td>🧭 Irányszög</td><td>{hdg_str}</td></tr>
