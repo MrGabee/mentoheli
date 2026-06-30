@@ -9,6 +9,7 @@ import json
 import hashlib
 import smtplib
 import requests
+import re
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
@@ -37,6 +38,14 @@ MAX_CIKK       = 30  # csak az utolsó 30 cikket nézzük
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; BalesetinfoMonitor/1.0)"
 }
+
+def tisztit_html(szoveg):
+    """HTML tagek eltávolítása a szövegből."""
+    szoveg = re.sub(r'<[^>]+>', ' ', szoveg)
+    szoveg = szoveg.replace('&nbsp;', ' ').replace('&amp;', '&')
+    szoveg = szoveg.replace('&lt;', '<').replace('&gt;', '>').replace('&quot;', '"')
+    szoveg = re.sub(r'\s+', ' ', szoveg).strip()
+    return szoveg
 
 
 # ════════════════════════════════════════════
@@ -79,7 +88,7 @@ def lekerdez_rss():
         for item in channel.findall("item")[:MAX_CIKK]:
             cim     = (item.findtext("title") or "").strip()
             link    = (item.findtext("link") or "").strip()
-            leiras  = (item.findtext("description") or "").strip()
+            leiras  = tisztit_html((item.findtext("description") or "").strip())
             datum   = (item.findtext("pubDate") or "").strip()
 
             if not cim or not link:
@@ -139,7 +148,7 @@ def email_kuldes(uj_cikkek):
     sorok_html = ""
     for i, c in enumerate(uj_cikkek, 1):
         datum_str = datum_magyar(c["datum"])
-        leiras    = c["leiras"][:600] if c["leiras"] else ""
+        leiras    = c["leiras"][:3000] if c["leiras"] else ""
         link      = c["link"]
         cim       = c["cim"]
 
