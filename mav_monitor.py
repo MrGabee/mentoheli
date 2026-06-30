@@ -37,11 +37,22 @@ HEADERS = {
     "Accept-Language": "hu-HU,hu;q=0.9",
 }
 
-# Csak baleset/gázolás kulcsszavak az URL-ben vagy címben
+# Baleset/gázolás kulcsszavak az URL-ben vagy címben
 BALESET_KULCSSZAVAK = [
     "baleset", "gazolas", "gázolás", "gazolt", "gázolt",
     "utkozés", "ütközés", "utkozest", "karambol",
 ]
+
+# Volánbusz-specifikus forgalmi/menetrendi kulcsszavak
+VOLAN_KULCSSZAVAK = [
+    "autóbusz menetrendi változás", "helyközi autóbusz",
+    "járat törölve", "járatkimaradás", "pótlóbusz",
+    "autóbuszjárat", "buszjárat", "menetrendi változás",
+    "forgalmi változás", "útlezárás", "terelés",
+]
+
+# Minden figyelt kulcsszó együtt
+OSSZES_KULCSSZO = BALESET_KULCSSZAVAK + VOLAN_KULCSSZAVAK
 
 # Max ennyi óra régi cikket fogadunk el
 MAX_ORA = 3
@@ -70,9 +81,20 @@ def hash_id(szoveg):
 # ════════════════════════════════════════════
 #  🔍  SZŰRŐK
 # ════════════════════════════════════════════
-def baleset_e(url, cim):
+def esemeny_tipus(url, cim):
+    """
+    Visszaadja az esemény típusát: 'BALESET', 'VOLAN', vagy None ha nem releváns.
+    """
     szoveg = (url + " " + cim).lower()
-    return any(k in szoveg for k in BALESET_KULCSSZAVAK)
+    if any(k in szoveg for k in BALESET_KULCSSZAVAK):
+        return "BALESET"
+    if any(k in szoveg for k in VOLAN_KULCSSZAVAK):
+        return "VOLAN"
+    return None
+
+def baleset_e(url, cim):
+    """Visszafelé kompatibilis – True ha bármelyik kulcsszó stimmel."""
+    return esemeny_tipus(url, cim) is not None
 
 def friss_e(datum_str):
     """
@@ -186,7 +208,7 @@ def lekerdez_lista():
 def email_kuldes(uj_esetek):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"🚂 MÁV/Volán baleset – {db} új esemény | {ido}"
+    targy = f"🚂 MÁV/Volán esemény – {db} új | {ido}"
 
     sorok_html = ""
     sorok_txt  = ""
@@ -196,14 +218,22 @@ def email_kuldes(uj_esetek):
         reszlet = e.get("reszlet", "")[:800]
         url     = e.get("url", "")
         datum   = e.get("datum", "—")
+        tipus   = e.get("tipus", "BALESET")
+
+        if tipus == "VOLAN":
+            badge = "🚌 VOLÁNBUSZ – FORGALMI/MENETREND"
+            szin  = "#e67e22"
+        else:
+            badge = "🚂 BALESET / GÁZOLÁS"
+            szin  = "#8B0000"
 
         sorok_html += f"""
         <tr style="border-bottom:2px solid #eee">
           <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
           <td style="padding:14px">
-            <span style="background:#8B0000;color:#fff;padding:5px 12px;
+            <span style="background:{szin};color:#fff;padding:5px 12px;
                          border-radius:4px;font-size:13px;font-weight:bold">
-              🚂 BALESET / GÁZOLÁS
+              {badge}
             </span>
             <div style="font-size:15px;font-weight:bold;margin:10px 0;color:#2c3e50">
               {cim}
@@ -294,13 +324,15 @@ def main():
         if rid in regi:
             continue
 
-        # 1. URL/cím alapú szűrés – csak baleset/gázolás
-        if not baleset_e(e["url"], e["cim"]):
-            # Nem baleset – mentjük és kihagyjuk
+        # 1. URL/cím alapú szűrés – baleset VAGY Volánbusz esemény
+        tipus = esemeny_tipus(e["url"], e["cim"])
+        if tipus is None:
+            # Nem releváns – mentjük és kihagyjuk
             regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
             continue
 
-        print(f"  🔍 Baleset cikk: {e['cim'][:70]}")
+        e["tipus"] = tipus
+        print(f"  🔍 {tipus} cikk: {e['cim'][:70]}")
 
         # 2. Dátum + tartalom lekérése
         datum, reszlet = lekerdez_cikk_datuma(e["url"])
@@ -311,13 +343,13 @@ def main():
             regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
             continue
 
-        print(f"    ✅ Friss baleset esemény!")
+        print(f"    ✅ Friss {tipus} esemény!")
         e["datum"]   = datum or "—"
         e["reszlet"] = reszlet
         uj.append(e)
         regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
 
-    print(f"\n🚂 Új baleseti esemény: {len(uj)}")
+    print(f"\n🚂 Új esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
     else:
