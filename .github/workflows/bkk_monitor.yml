@@ -39,7 +39,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git stash
-          git pull --rebase origin main
+          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
           git stash pop || true
           [ -f bkk_allapot.json ] && git add bkk_allapot.json || echo "fájl nem létezik"
           git diff --staged --quiet || git commit -m "bkk állapot [skip ci]"
