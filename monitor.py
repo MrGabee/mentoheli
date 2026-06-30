@@ -12,7 +12,16 @@ import smtplib
 import requests
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+
+# ─────────────────────────────────────────────
+#  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
+# ─────────────────────────────────────────────
+MAGYAR_TZ = timezone(timedelta(hours=2))
+
+def magyar_ido():
+    return datetime.now(MAGYAR_TZ)
+
 
 # ─────────────────────────────────────────────
 #  ⚙️  KONFIGURÁCIÓ (GitHub Secrets-ből jön)
@@ -346,7 +355,7 @@ def email_kuldes(esemeny):
     squawk  = gep["squawk"] or "—"
     cat     = gep["category"] or "—"
 
-    ido      = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+    ido      = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     emoji    = "🚁⬆️" if tipus == "FELSZALLAS" else "🚁⬇️"
     tipus_hu = "FELSZÁLLÁS" if tipus == "FELSZALLAS" else "LESZÁLLÁS"
     szin     = "#e74c3c" if tipus == "FELSZALLAS" else "#2980b9"
@@ -515,7 +524,7 @@ def email_kuldes(esemeny):
 # ════════════════════════════════════════════
 def main():
     print(f"\n{'='*50}")
-    print(f"🚁 Mentőhelikopter Monitor – {datetime.now().strftime('%Y.%m.%d %H:%M:%S')}")
+    print(f"🚁 Mentőhelikopter Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*50}")
 
     gepek_raw = lekerdez()
