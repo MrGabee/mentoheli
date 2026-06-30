@@ -1,0 +1,100 @@
+name: 🚔 Rendőrség Baleseti Hírek Monitor
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [rendorseg_trigger]
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests
+
+      - name: 🚔 Rendőrség monitor futtatása
+        env:
+          EMAIL_KULDO:             ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:            ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT_RENDORSEG: ${{ secrets.EMAIL_CIMZETT_RENDORSEG }}
+        run: python rendorseg_monitor.py
+
+      - name: 💾 Állapot commitolása
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ ! -f rendorseg_allapot.json ]; then
+            echo "rendorseg_allapot.json nem létezik, nincs mit commitolni."
+            exit 0
+          fi
+
+          cp rendorseg_allapot.json /tmp/rendorseg_allapot_sajat.json
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/rendorseg_allapot_sajat.json rendorseg_allapot.json
+            git add rendorseg_allapot.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "rendorseg állapot [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🗑️ Régi futások törlése
+        if: always()
+        run: |
+          gh run list --workflow=rendorseg_monitor.yml --limit 50 \
+            --json databaseId,status \
+            --jq '.[] | select(.status=="completed") | .databaseId' | \
+            tail -n +6 | \
+            xargs -I {} gh run delete {} --yes 2>/dev/null || true
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: ⏱️ Várakozás 60 másodpercet
+        if: always()
+        run: sleep 60
+
+      - name: 🔄 Következő futás indítása
+        if: always()
+        run: |
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type":"rendorseg_trigger"}'
