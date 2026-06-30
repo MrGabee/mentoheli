@@ -8,10 +8,19 @@ import json
 import hashlib
 import smtplib
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from shapely.geometry import Point, Polygon
+
+# ─────────────────────────────────────────────
+#  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
+# ─────────────────────────────────────────────
+MAGYAR_TZ = timezone(timedelta(hours=2))
+
+def magyar_ido():
+    return datetime.now(MAGYAR_TZ)
+
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
@@ -277,7 +286,7 @@ def facebook_szoveg(esetek, ido):
 #  📧  E-MAIL
 # ════════════════════════════════════════════
 def email_kuldes(uj_esetek):
-    ido   = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
     targy = f"⚡ Csepel áramszünet – {db} új esemény | {ido}"
 
@@ -371,7 +380,7 @@ def email_kuldes(uj_esetek):
 # ════════════════════════════════════════════
 def main():
     print(f"\n{'='*55}")
-    print(f"⚡ Csepel Áramszünet Monitor – {datetime.now().strftime('%Y.%m.%d %H:%M:%S')}")
+    print(f"⚡ Csepel Áramszünet Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*55}")
 
     regi = betolt_allapot()
@@ -381,13 +390,13 @@ def main():
         rid = hash_id(json.dumps(e["adat"], sort_keys=True))
         if rid not in regi.get("tervezett", {}):
             uj.append(e)
-            regi.setdefault("tervezett", {})[rid] = datetime.now().isoformat()
+            regi.setdefault("tervezett", {})[rid] = magyar_ido().isoformat()
 
     for e in lekerdez_json(API_UZEMZAVAR, "UZEMZAVAR"):
         rid = hash_id(json.dumps(e["adat"], sort_keys=True))
         if rid not in regi.get("uzemzavar", {}):
             uj.append(e)
-            regi.setdefault("uzemzavar", {})[rid] = datetime.now().isoformat()
+            regi.setdefault("uzemzavar", {})[rid] = magyar_ido().isoformat()
 
     print(f"\n⚡ Új események: {len(uj)}")
     if uj:
