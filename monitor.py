@@ -215,13 +215,22 @@ def lekerdez():
                 for s in states:
                     if not s or len(s) < 9:
                         continue
+
+                    lat_val = s[6]
+                    lon_val = s[5]
+
+                    # Ha nincs koordináta, ne fogadjuk el ezt a rekordot –
+                    # hadd találja meg egy másik forrás a teljes adatot
+                    if lat_val is None or lon_val is None:
+                        continue
+
                     # OpenSky → standard formátumra alakítás
                     g = {
                         "hex":        (s[0] or "").lower(),
                         "flight":     (s[1] or "").strip(),
                         "r":          reg,
-                        "lat":        s[6],
-                        "lon":        s[5],
+                        "lat":        lat_val,
+                        "lon":        lon_val,
                         "alt_baro":   int(s[7] / 0.3048) if s[7] else "ground",
                         "on_ground":  s[8],
                         "gs":         int(s[9] * 1.944) if s[9] else 0,  # m/s → kt
