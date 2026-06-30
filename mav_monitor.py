@@ -43,6 +43,13 @@ BALESET_KULCSSZAVAK = [
     "utkozés", "ütközés", "utkozest", "karambol",
 ]
 
+# Kizáró kifejezések – ha ezek szerepelnek, NEM számít balesetnek
+BALESET_KIZARO = [
+    "baleset-megelőzés", "balesetmegelőzés", "balesetmentes",
+    "baleset-megelőzési", "baleset nélkül", "balesetmentesen",
+    "kerékpáros biztonság", "közlekedésbiztonsági",
+]
+
 # Volánbusz-specifikus forgalmi/menetrendi kulcsszavak
 VOLAN_KULCSSZAVAK = [
     "autóbusz menetrendi változás", "helyközi autóbusz",
@@ -84,9 +91,17 @@ def hash_id(szoveg):
 def esemeny_tipus(url, cim):
     """
     Visszaadja az esemény típusát: 'BALESET', 'VOLAN', vagy None ha nem releváns.
+    Kizáró kifejezések esetén (pl. 'baleset-megelőzés') nem számít balesetnek.
     """
     szoveg = (url + " " + cim).lower()
-    if any(k in szoveg for k in BALESET_KULCSSZAVAK):
+
+    # Kizáró ellenőrzés – ha bármelyik benne van, NEM baleset
+    if any(k in szoveg for k in BALESET_KIZARO):
+        van_baleset_szo = False
+    else:
+        van_baleset_szo = any(k in szoveg for k in BALESET_KULCSSZAVAK)
+
+    if van_baleset_szo:
         return "BALESET"
     if any(k in szoveg for k in VOLAN_KULCSSZAVAK):
         return "VOLAN"
@@ -142,7 +157,12 @@ def lekerdez_cikk_datuma(url):
             datum = matches[0].strip()
             print(f"    📅 Dátum: {datum}")
 
-        # Tartalom keresése
+        # Tartalom keresése – pontosabb szelektorok, süti/cookie elemek kizárása
+        for zavaro in soup.find_all(["script", "style", "nav", "footer", "header"]):
+            zavaro.decompose()
+        for zavaro in soup.find_all(class_=re.compile(r"cookie|suti|gdpr|consent", re.I)):
+            zavaro.decompose()
+
         tartalom_div = (
             soup.find("div", class_="field-type-text-with-summary") or
             soup.find("div", class_="field-name-body") or
@@ -151,10 +171,17 @@ def lekerdez_cikk_datuma(url):
         if tartalom_div:
             reszlet = tartalom_div.get_text(separator=" ", strip=True)[:1500]
         else:
-            # Fallback: keresünk érdemi bekezdéseket
+            # Fallback: érdemi bekezdések, süti/marketing szöveg kizárása
             paragrafusok = soup.find_all("p")
-            reszlet = " ".join(p.get_text(strip=True) for p in paragrafusok
-                              if len(p.get_text(strip=True)) > 50)[:1500]
+            KIZARANDO_SZAVAK = ["süti", "cookie", "gdpr", "google analytics",
+                                 "facebook pixel", "hírlevelünk", "fel- és leiratkozás",
+                                 "marketing sütiket", "webanalitikai"]
+            jo_bekezdesek = []
+            for p in paragrafusok:
+                szoveg = p.get_text(strip=True)
+                if len(szoveg) > 50 and not any(k in szoveg.lower() for k in KIZARANDO_SZAVAK):
+                    jo_bekezdesek.append(szoveg)
+            reszlet = " ".join(jo_bekezdesek)[:1500]
 
         return datum, reszlet
 
