@@ -96,6 +96,22 @@ def ment_allapot(allapot):
         json.dump(allapot, f, ensure_ascii=False, indent=2)
 
 
+ESEMENY_NAPLO_FAJL = "esemeny_naplo.json"
+
+def betolt_esemeny_naplo():
+    if os.path.exists(ESEMENY_NAPLO_FAJL):
+        try:
+            with open(ESEMENY_NAPLO_FAJL) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+def ment_esemeny_naplo(naplo):
+    with open(ESEMENY_NAPLO_FAJL, "w", encoding="utf-8") as f:
+        json.dump(naplo, f, ensure_ascii=False, indent=2)
+
+
 def mento_e(a):
     callsign = (a.get("flight") or "").strip().upper()
     reg      = (a.get("r") or "").strip().upper()
@@ -135,9 +151,20 @@ def lekerdez():
                     if ac:
                         for g in ac:
                             key = g.get("hex", icao).lower()
-                            gepek[key] = g
+                            uj_van_koord  = g.get("lat") is not None and g.get("lon") is not None
+                            regi_van_koord = key in gepek and gepek[key].get("lat") is not None and gepek[key].get("lon") is not None
+                            # Ne írjuk felül egy koordinátás adatot egy koordináta nélkülivel
+                            if not regi_van_koord or uj_van_koord:
+                                gepek[key] = g
                         print(f"OK ICAO {icao} ({reg}): megtalalva")
-                        break
+                        # Csak akkor állunk meg, ha VAN koordináta a rekordban –
+                        # ha nincs, próbáljuk a következő forrást is, hátha az ad
+                        van_koordinata = any(
+                            g.get("lat") is not None and g.get("lon") is not None
+                            for g in ac
+                        )
+                        if van_koordinata:
+                            break
                 else:
                     diag_sorok.append(f"  ICAO {url} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
             except Exception as e:
@@ -151,7 +178,11 @@ def lekerdez():
                 ac_lista = data.get("ac", [])
                 for g in ac_lista:
                     key = g.get("hex", "").lower()
-                    if key and key not in gepek:
+                    if not key:
+                        continue
+                    uj_van_koord  = g.get("lat") is not None and g.get("lon") is not None
+                    regi_van_koord = key in gepek and gepek[key].get("lat") is not None and gepek[key].get("lon") is not None
+                    if key not in gepek or (not regi_van_koord and uj_van_koord):
                         gepek[key] = g
                 if "country" in url:
                     print(f"OK Orszag lista: {len(ac_lista)} gep")
@@ -164,8 +195,9 @@ def lekerdez():
             diag_sorok.append(f"  {url} -> KIVETEL: {type(e).__name__}: {e}")
 
     for icao, reg in MENTO_ICAO_MAP.items():
-        if icao in gepek:
-            continue
+        regi_van_koord = icao in gepek and gepek[icao].get("lat") is not None and gepek[icao].get("lon") is not None
+        if regi_van_koord:
+            continue  # már van koordinátás adatunk erre a gépre, nem kell tovább keresni
         try:
             url = OPENSKY_URL.format(icao=icao)
             r = requests.get(url, timeout=10, headers=HEADERS)
@@ -191,7 +223,7 @@ def lekerdez():
                         "track":      s[10],
                     }
                     key = g["hex"]
-                    if key and key not in gepek:
+                    if key:
                         gepek[key] = g
                         print(f"OK OpenSky {icao} ({reg}): megtalalva")
             else:
@@ -276,25 +308,45 @@ ISMERT_LAJSTROM = {
 }
 
 
-def osszehasonlit(regi, uj):
+EMAIL_COOLDOWN_MP = 180  # 3 perc – ennyi időn belül nem küldünk duplikált eseményt ugyanarra a gépre
+
+
+def osszehasonlit(regi, uj, esemeny_naplo):
+    """
+    esemeny_naplo: {"icao24:TIPUS": utolso_kuldes_unix_idobelyeg}
+    Ez akadályozza meg, hogy két közel egyidejű (race condition miatti)
+    workflow-futás duplán küldjön e-mailt ugyanarról az eseményről.
+    """
     esemenyek = []
+    most = time.time()
+
+    def cooldown_ok(icao, tipus):
+        kulcs = f"{icao}:{tipus}"
+        utolso = esemeny_naplo.get(kulcs, 0)
+        if most - utolso < EMAIL_COOLDOWN_MP:
+            print(f"  ⏭️  Kihagyva (cooldown): {tipus} – {icao} ({round(most - utolso)}s telt el az előzőtől)")
+            return False
+        esemeny_naplo[kulcs] = most
+        return True
 
     for icao, uj_gep in uj.items():
         regi_gep = regi.get(icao)
 
         if regi_gep is None:
-            if not uj_gep["on_ground"]:
+            if not uj_gep["on_ground"] and cooldown_ok(icao, "FELSZALLAS"):
                 esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
         else:
             if regi_gep["on_ground"] and not uj_gep["on_ground"]:
-                esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
+                if cooldown_ok(icao, "FELSZALLAS"):
+                    esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
             elif not regi_gep["on_ground"] and uj_gep["on_ground"]:
-                esemenyek.append({"tipus": "LESZALLAS",  "gep": uj_gep})
+                if cooldown_ok(icao, "LESZALLAS"):
+                    esemenyek.append({"tipus": "LESZALLAS",  "gep": uj_gep})
 
     for icao, regi_gep in regi.items():
         if icao not in uj and not regi_gep["on_ground"]:
-            elapsed = time.time() - regi_gep.get("timestamp", 0)
-            if elapsed > 120:
+            elapsed = most - regi_gep.get("timestamp", 0)
+            if elapsed > 120 and cooldown_ok(icao, "LESZALLAS"):
                 esemenyek.append({"tipus": "LESZALLAS", "gep": regi_gep})
 
     return esemenyek
@@ -335,8 +387,8 @@ def email_kuldes(esemeny):
     planespotters = f"https://www.planespotters.net/hex/{icao24.upper()}"
     opensky       = f"https://opensky-network.org/aircraft-profile?icao24={icao24}"
     adsbfi        = f"https://adsb.fi/#icao={icao24.upper()}"
-    gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=13" if lat and lon else None
-    osm   = f"https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map=13/{lat}/{lon}" if lat and lon else None
+    gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=13" if lat is not None and lon is not None else None
+    osm   = f"https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map=13/{lat}/{lon}" if lat is not None and lon is not None else None
 
     gmaps_link_html = f' &nbsp;<a href="{gmaps}" style="color:#4285f4;text-decoration:none;font-weight:bold">📍 Maps</a>' if gmaps else ''
 
@@ -425,6 +477,7 @@ def email_kuldes(esemeny):
       <a href="{fr24_acdata}" class="btn fr24ac">📋 FR24 adatlap</a>
       <a href="{planespotters}"class="btn ps"   >📷 Planespotters</a>
       <a href="{opensky}"     class="btn osky"  >🌐 OpenSky</a>
+      {f'<a href="{gmaps}" class="btn gmaps">📍 Google Maps</a>' if gmaps else ''}
     </div>
 
     {"" if not gmaps else f'''
@@ -480,6 +533,34 @@ def email_kuldes(esemeny):
     print(f"📧 E-mail elküldve: {targy}")
 
 
+def hiba_email_kuldes(hiba_szoveg):
+    """Ha a script hibára fut, e-mailben elküldi a hiba leírását."""
+    try:
+        ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
+        targy = f"⚠️ Mentőhelikopter Monitor HIBA | {ido}"
+
+        szoveg = (
+            f"A Mentőhelikopter Monitor script hibára futott.\n"
+            f"{'─'*40}\n"
+            f"Időpont: {ido}\n\n"
+            f"Hiba részletei:\n{hiba_szoveg}\n"
+        )
+
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = targy
+        msg["From"]    = f"⚠️ Mentőhelikopter Monitor <{EMAIL_KULDO}>"
+        msg["To"]      = EMAIL_CIMZETT
+        msg.attach(MIMEText(szoveg, "plain", "utf-8"))
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+        print(f"📧 Hibaértesítő e-mail elküldve.")
+    except Exception as ex:
+        # Ha még a hibaértesítés is elhasal, legalább a naplóba kiírjuk
+        print(f"❌ A hibaértesítő e-mail küldése is sikertelen: {ex}")
+
+
 def main():
     print(f"\n{'='*50}")
     print(f"🚁 Mentőhelikopter Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
@@ -500,8 +581,9 @@ def main():
     for g in uj_allapot.values():
         print(f"  → {g['callsign']} | {g['icao24'].upper()} | {g['reg']} | {'FÖLDÖN' if g['on_ground'] else 'LEVEGŐBEN'}")
 
-    regi_allapot = betolt_allapot()
-    esemenyek    = osszehasonlit(regi_allapot, uj_allapot)
+    regi_allapot  = betolt_allapot()
+    esemeny_naplo = betolt_esemeny_naplo()
+    esemenyek     = osszehasonlit(regi_allapot, uj_allapot, esemeny_naplo)
 
     print(f"⚡ Változások: {len(esemenyek)}")
     for e in esemenyek:
@@ -509,8 +591,16 @@ def main():
         email_kuldes(e)
 
     ment_allapot(uj_allapot)
+    ment_esemeny_naplo(esemeny_naplo)
     print("💾 Állapot mentve. ✅ Kész.\n")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as ex:
+        import traceback
+        hiba_reszletek = traceback.format_exc()
+        print(f"❌ VÁRATLAN HIBA:\n{hiba_reszletek}")
+        hiba_email_kuldes(hiba_reszletek)
+        raise  # a GitHub Actions futás is piros legyen, hogy a naplóban is látszódjon
