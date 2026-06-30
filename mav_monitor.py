@@ -51,11 +51,23 @@ BALESET_KIZARO = [
 ]
 
 # Volánbusz-specifikus forgalmi/menetrendi kulcsszavak
+# (csak akut, most zajló eseményekre – pótlóbusz fut baleset/forgalmi ok miatt)
 VOLAN_KULCSSZAVAK = [
     "autóbusz menetrendi változás", "helyközi autóbusz",
     "járat törölve", "járatkimaradás", "pótlóbusz",
     "autóbuszjárat", "buszjárat", "menetrendi változás",
     "forgalmi változás", "útlezárás", "terelés",
+]
+
+# Jövőbeli eseményekre utaló kizáró szavak – VOLAN kategóriánál alkalmazzuk
+# (ha a CÍM tartalmaz ilyet, valószínűleg nem most zajló esemény)
+JOVO_KIZARO = [
+    "hétfőtől", "kedtől", "szerdától", "csütörtöktől", "péntektől",
+    "szombattól", "vasárnaptól", "holnaptól", "jövő héttől",
+    "várhatóan", "tervezett", "előre jelzett",
+    "hajnalban", "reggeltől", "este", "éjszakától",
+    " hétfőn", " kedden", " szerdán", " csütörtökön", " pénteken",
+    " szombaton", " vasárnap", "holnap ",
 ]
 
 # Minden figyelt kulcsszó együtt
@@ -90,12 +102,13 @@ def hash_id(szoveg):
 # ════════════════════════════════════════════
 def esemeny_tipus(url, cim):
     """
-    Visszaadja az esemény típusát: 'BALESET', 'VOLAN', vagy None ha nem releváns.
-    Kizáró kifejezések esetén (pl. 'baleset-megelőzés') nem számít balesetnek.
+    Visszaadja az esemény típusát: 'BALESET', 'VOLAN', vagy None.
+    - BALESET: gázolás, ütközés, karambol – azonnal küldi
+    - VOLAN: pótlóbusz, terelés, útlezárás – csak ha NEM jövőbeli tervezett esemény
     """
     szoveg = (url + " " + cim).lower()
 
-    # Kizáró ellenőrzés – ha bármelyik benne van, NEM baleset
+    # Baleset kizáró ellenőrzés
     if any(k in szoveg for k in BALESET_KIZARO):
         van_baleset_szo = False
     else:
@@ -103,12 +116,16 @@ def esemeny_tipus(url, cim):
 
     if van_baleset_szo:
         return "BALESET"
+
+    # Volánbusz: csak ha nem jövőbeli tervezett esemény
     if any(k in szoveg for k in VOLAN_KULCSSZAVAK):
+        if any(k in szoveg for k in JOVO_KIZARO):
+            return None  # jövőbeli → kihagyjuk
         return "VOLAN"
+
     return None
 
 def baleset_e(url, cim):
-    """Visszafelé kompatibilis – True ha bármelyik kulcsszó stimmel."""
     return esemeny_tipus(url, cim) is not None
 
 def friss_e(datum_str):
@@ -148,14 +165,26 @@ def lekerdez_cikk_datuma(url):
         datum = None
         teljes_szoveg = soup.get_text(separator=" ", strip=True)
 
-        # Keresés a szövegben
         import re
         pattern = r'(\d{4}\.\d{2}\.\d{2}\.?\s+\d{2}:\d{2}(?::\d{2})?)'
-        matches = re.findall(pattern, teljes_szoveg)
-        if matches:
-            # Az első (legfrissebb) dátumot vesszük
-            datum = matches[0].strip()
-            print(f"    📅 Dátum: {datum}")
+
+        # 1. Próbáljuk megkeresni kifejezetten az "Utolsó módosítás" vagy
+        #    "Közzétéve" címke UTÁNI dátumot – ez a tényleges megjelenési idő,
+        #    nem egy a cikk szövegében említett (esetleg jövőbeli) esemény-időpont
+        cimke_pattern = r'(?:Utolsó módosítás|Közzétéve|Frissítve|Megjelenés)[:\s]*' + pattern
+        cimke_match = re.search(cimke_pattern, teljes_szoveg, re.IGNORECASE)
+        if cimke_match:
+            datum = cimke_match.group(1).strip()
+            print(f"    📅 Dátum (címke alapján): {datum}")
+        else:
+            # 2. Fallback: ha nincs explicit címke, vegyük az ÖSSZES találat közül
+            #    a LEGUTOLSÓT a szövegben – a megjelenési dátum jellemzően
+            #    a cikk elején/végén (metaadatban) van, nem a középső,
+            #    leírt tervezett esemény-időpontok között
+            matches = re.findall(pattern, teljes_szoveg)
+            if matches:
+                datum = matches[-1].strip()
+                print(f"    📅 Dátum (utolsó találat, fallback): {datum}")
 
         # Tartalom keresése – pontosabb szelektorok, süti/cookie elemek kizárása
         for zavaro in soup.find_all(["script", "style", "nav", "footer", "header"]):
