@@ -30,7 +30,7 @@ jobs:
         env:
           EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
-          EMAIL_CIMZETT_ARAM: ${{ secrets.EMAIL_CIMZETT_ARAM }}
+          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
         run: python fotav_monitor.py
 
       - name: 💾 Állapot commitolása
@@ -38,7 +38,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git stash
-          git pull --rebase origin main
+          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
           git stash pop || true
           [ -f fotav_allapot.json ] && git add fotav_allapot.json || echo "fájl nem létezik"
           git diff --staged --quiet || git commit -m "fotav állapot [skip ci]"
