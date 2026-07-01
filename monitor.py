@@ -244,13 +244,24 @@ def email_kuldes(esemeny):
         except Exception:
             return d
 
+    def ido_plusz2(ido_str):
+        """HH:MM formátumú időt +2 órával növel (UTC → magyar idő)"""
+        try:
+            h, m = map(int, ido_str.strip().split(":"))
+            h = (h + 2) % 24
+            return f"{h:02d}:{m:02d}"
+        except Exception:
+            return ido_str
+
     datum_hu = datum_magyar(datum)
+    atd_hu   = ido_plusz2(atd)
+    landed_hu = ido_plusz2(landed) if landed else None
 
     # Info sor
     if tipus == "FELSZALLAS":
-        info = f"Felszállás: {datum_hu} {atd}"
+        info = f"Felszállás: {datum_hu} {atd_hu}"
     else:
-        info = f"Felszállás: {datum_hu} {atd} → Leszállás: {landed}"
+        info = f"Felszállás: {datum_hu} {atd_hu} → Leszállás: {landed_hu}"
 
     # Gombok
     gombok = ""
