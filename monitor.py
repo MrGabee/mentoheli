@@ -230,24 +230,37 @@ def email_kuldes(esemeny):
     szin     = "#c0392b" if tipus == "FELSZALLAS" else "#2980b9"
 
     reg_upper = reg.upper()
-    fr24_url  = f"https://www.flightradar24.com/data/aircraft/{reg}"
-    play_url  = f"https://www.flightradar24.com/data/aircraft/{reg}#{flight_id}" if flight_id else None
+    fr24_url   = f"https://www.flightradar24.com/data/aircraft/{reg}"
+    fr24_map   = f"https://www.flightradar24.com/{callsign}"
+    play_url   = f"https://www.flightradar24.com/data/aircraft/{reg}#{flight_id}" if flight_id else None
+
+    # Dátum magyar formátumra alakítása ("01 Jul 2026" → "2026.07.01")
+    def datum_magyar(d):
+        honapok = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06",
+                   "Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
+        try:
+            resz = d.strip().split()  # ["01", "Jul", "2026"]
+            return f"{resz[2]}.{honapok.get(resz[1], resz[1])}.{resz[0].zfill(2)}"
+        except Exception:
+            return d
+
+    datum_hu = datum_magyar(datum)
 
     # Info sor
     if tipus == "FELSZALLAS":
-        info = f"Felszállás: {datum} {atd}"
+        info = f"Felszállás: {datum_hu} {atd}"
     else:
-        info = f"Felszállás: {datum} {atd} → Leszállás: {landed}"
+        info = f"Felszállás: {datum_hu} {atd} → Leszállás: {landed}"
 
     # Gombok
     gombok = ""
     if elo and tipus == "FELSZALLAS":
         gombok += f"""
-      <a href="{fr24_url}"
+      <a href="{fr24_map}"
          style="display:block;background:#ff6600;color:#fff;padding:15px;
                 border-radius:10px;text-decoration:none;font-size:16px;
                 font-weight:bold;margin-bottom:12px">
-        🔴 Élő követés – Flightradar24
+        🔴 Élő követés – Flightradar24 térkép
       </a>"""
 
     if play_url:
