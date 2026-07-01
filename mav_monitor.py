@@ -56,7 +56,7 @@ VOLAN_KULCSSZAVAK = [
     "autóbusz menetrendi változás", "helyközi autóbusz",
     "járat törölve", "járatkimaradás", "pótlóbusz",
     "autóbuszjárat", "buszjárat", "menetrendi változás",
-    "forgalmi változás", "útlezárás", "terelés", "meghibásodott",
+    "forgalmi változás", "útlezárás", "meghibásodott",
 ]
 
 # Jövőbeli eseményekre utaló kizáró szavak – VOLAN kategóriánál alkalmazzuk
