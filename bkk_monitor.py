@@ -123,12 +123,12 @@ def kizaras_e(szoveg):
 def figyelt_vonal_e(cim, reszlet=""):
     """
     Csak pontosan a FIGYELT_VONALAK listában szereplő vonalszámra küld értesítést.
-    '10' NEM egyezik '105'-tel, '210'-zel, '10-es'-sel sem.
+    '10' NEM egyezik '105'-tel vagy '210'-zel.
+    Szóköz, vessző, pont, kötőjel, zárójel határolhatja csak.
     """
     import re
     teljes_szoveg = " " + (cim + " " + reszlet).upper() + " "
     for vonal in FIGYELT_VONALAK:
-        # Csak szóköz, vessző, pont, kötőjel, zárójel határolhatja
         pattern = r'(?<=[\s,.(/-])' + re.escape(vonal.upper()) + r'(?=[\s,.(/-])'
         if re.search(pattern, teljes_szoveg):
             return True
