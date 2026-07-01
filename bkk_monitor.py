@@ -79,7 +79,7 @@ KIZARO_KULCSSZAVAK = [
     "szabálytalan parkolás", "szabálytalan parkol", "szabálytalanul parkol",
     "parkolási", "parkolás miatt",
     "akadályozó jármű", "akadályozó autó",
-    "közműjavítás", "közmű", "karbantartás",
+    "közműjavítás", "közmű", "karbantartás", "felújítás",
 ]
 
 HEADERS = {
