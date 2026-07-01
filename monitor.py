@@ -28,6 +28,7 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 MENTO_ICAO_MAP = {
     "47129c": "HA-HBG",
     "47129d": "HA-HBH",
+    "47129e": "HA-HBI",  # 8. gép (MEDIC6)
     "4712a0": "HA-HBK",
     "4712a1": "HA-HBL",
     "4712a2": "HA-HBM",
@@ -67,6 +68,7 @@ API_URLAK = [
     "https://api.adsb.lol/v2/callsign/MEDIKOPTER5",
     "https://api.airplanes.live/v2/reg/HA-HBG",
     "https://api.airplanes.live/v2/reg/HA-HBH",
+    "https://api.airplanes.live/v2/reg/HA-HBI",
     "https://api.airplanes.live/v2/reg/HA-HBK",
     "https://api.airplanes.live/v2/reg/HA-HBL",
     "https://api.airplanes.live/v2/reg/HA-HBM",
@@ -122,7 +124,7 @@ def mento_e(a):
         "MEDIKOPTER5",
     }
     MENTO_LAJSTROM = {
-        "HA-HBG", "HA-HBH", "HA-HBK",
+        "HA-HBG", "HA-HBH", "HA-HBI", "HA-HBK",
         "HA-HBL", "HA-HBM", "HA-HBN", "HA-HBO"
     }
 
@@ -300,6 +302,7 @@ def feldolgoz(a):
 ISMERT_LAJSTROM = {
     "47129c": "HA-HBG",
     "47129d": "HA-HBH",
+    "47129e": "HA-HBI",  # 8. gép
     "4712a0": "HA-HBK",
     "4712a1": "HA-HBL",
     "4712a2": "HA-HBM",
