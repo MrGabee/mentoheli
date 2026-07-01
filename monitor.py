@@ -305,70 +305,61 @@ def email_kuldes(esemeny):
     gep     = esemeny["gep"]
     icao24  = gep["icao24"]
     cs      = gep["callsign"] or gep["reg"] or icao24.upper()
-    reg     = gep["reg"] or ""
+    reg     = gep["reg"] or "—"
     lat     = gep["lat"]
     lon     = gep["lon"]
-    alt_m   = gep["geo_alt_m"] or gep["baro_alt_m"]
-    vel     = gep["velocity_kmh"]
 
     ido      = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     emoji    = "🚁⬆️" if tipus == "FELSZALLAS" else "🚁⬇️"
     tipus_hu = "FELSZÁLLÁS" if tipus == "FELSZALLAS" else "LESZÁLLÁS"
     szin     = "#c0392b" if tipus == "FELSZALLAS" else "#2980b9"
 
-    # Weboldal URL paraméterekkel
-    import urllib.parse
-    params = {
-        "tipus": tipus,
-        "cs":    cs,
-        "reg":   reg,
-        "icao":  icao24.upper(),
-        "ido":   ido,
-    }
-    if lat is not None: params["lat"] = f"{lat:.6f}"
-    if lon is not None: params["lon"] = f"{lon:.6f}"
-    if alt_m is not None: params["alt"] = str(alt_m)
-    if vel is not None: params["vel"] = str(vel)
+    fr24_url  = f"https://www.flightradar24.com/{cs}"
+    gmaps_url = f"https://www.google.com/maps/search/?api=1&query={lat},{lon}" if lat is not None and lon is not None else None
 
-    weboldal_url = f"https://mrgabee.github.io/mentoheli/?{urllib.parse.urlencode(params)}"
+    gmaps_btn = f"""
+      <a href="{gmaps_url}"
+         style="display:block;background:#4285f4;color:#fff;padding:15px;
+                border-radius:10px;text-decoration:none;font-size:16px;
+                font-weight:bold;margin-bottom:12px">
+        📍 Google Maps – pozíció megnyitása
+      </a>""" if gmaps_url else ""
 
     targy = f"{emoji} Mentőhelikopter {tipus_hu} – {cs} | {ido}"
 
     html = f"""<!DOCTYPE html>
 <html lang="hu"><head><meta charset="UTF-8"></head>
 <body style="font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:20px">
-  <div style="max-width:500px;margin:0 auto;background:#fff;border-radius:12px;
-              overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)">
+  <div style="max-width:480px;margin:0 auto">
 
-    <div style="background:{szin};color:#fff;padding:24px;text-align:center">
-      <div style="font-size:48px;margin-bottom:8px">{emoji}</div>
-      <div style="font-size:24px;font-weight:bold">Mentőhelikopter {tipus_hu}</div>
-      <div style="font-size:14px;opacity:.85;margin-top:6px">{ido}</div>
+    <div style="background:{szin};border-radius:12px 12px 0 0;padding:24px;text-align:center;color:#fff">
+      <div style="font-size:44px;margin-bottom:8px">{emoji}</div>
+      <div style="font-size:22px;font-weight:bold">Mentőhelikopter {tipus_hu}</div>
+      <div style="font-size:13px;opacity:.75;margin-top:6px">{ido}</div>
     </div>
 
-    <div style="padding:24px;text-align:center">
-      <div style="font-size:32px;font-weight:bold;color:#2c3e50;margin-bottom:4px">{cs}</div>
-      <div style="font-size:16px;color:#888;margin-bottom:24px">{reg} &nbsp;|&nbsp; {icao24.upper()}</div>
+    <div style="background:#fff;padding:24px;text-align:center;
+                border-left:1px solid #ddd;border-right:1px solid #ddd">
+      <div style="font-size:36px;font-weight:bold;color:#2c3e50;letter-spacing:1px">{cs}</div>
+      <div style="font-size:16px;color:#888;margin-top:4px;margin-bottom:24px">
+        {reg} &nbsp;|&nbsp; {icao24.upper()}
+      </div>
 
-      <a href="{weboldal_url}"
-         style="display:block;background:{szin};color:#fff;padding:16px;
-                border-radius:10px;text-decoration:none;font-size:18px;
-                font-weight:bold;margin-bottom:12px">
-        🚁 Megnyitás – térkép &amp; követés
-      </a>
+      {gmaps_btn}
 
-      <a href="https://www.flightradar24.com/{cs}"
-         style="display:block;background:#ff6600;color:#fff;padding:14px;
-                border-radius:10px;text-decoration:none;font-size:15px;
+      <a href="{fr24_url}"
+         style="display:block;background:#ff6600;color:#fff;padding:15px;
+                border-radius:10px;text-decoration:none;font-size:16px;
                 font-weight:bold">
         ✈️ Flightradar24 – élő követés
       </a>
     </div>
 
-    <div style="background:#ecf0f1;padding:12px;text-align:center;
-                font-size:11px;color:#95a5a6">
+    <div style="background:#ecf0f1;border-radius:0 0 12px 12px;padding:12px;
+                text-align:center;font-size:11px;color:#95a5a6">
       Automatikus értesítő – Baleset-info.hu
     </div>
+
   </div>
 </body></html>"""
 
