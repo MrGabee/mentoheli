@@ -28,7 +28,6 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 MENTO_ICAO_MAP = {
     "47129c": "HA-HBG",
     "47129d": "HA-HBH",
-    "47129e": "HA-HBI",  # 8. gép (MEDIC6)
     "4712a0": "HA-HBK",
     "4712a1": "HA-HBL",
     "4712a2": "HA-HBM",
@@ -68,7 +67,6 @@ API_URLAK = [
     "https://api.adsb.lol/v2/callsign/MEDIKOPTER5",
     "https://api.airplanes.live/v2/reg/HA-HBG",
     "https://api.airplanes.live/v2/reg/HA-HBH",
-    "https://api.airplanes.live/v2/reg/HA-HBI",
     "https://api.airplanes.live/v2/reg/HA-HBK",
     "https://api.airplanes.live/v2/reg/HA-HBL",
     "https://api.airplanes.live/v2/reg/HA-HBM",
@@ -98,22 +96,6 @@ def ment_allapot(allapot):
         json.dump(allapot, f, ensure_ascii=False, indent=2)
 
 
-ESEMENY_NAPLO_FAJL = "esemeny_naplo.json"
-
-def betolt_esemeny_naplo():
-    if os.path.exists(ESEMENY_NAPLO_FAJL):
-        try:
-            with open(ESEMENY_NAPLO_FAJL) as f:
-                return json.load(f)
-        except Exception:
-            pass
-    return {}
-
-def ment_esemeny_naplo(naplo):
-    with open(ESEMENY_NAPLO_FAJL, "w", encoding="utf-8") as f:
-        json.dump(naplo, f, ensure_ascii=False, indent=2)
-
-
 def mento_e(a):
     callsign = (a.get("flight") or "").strip().upper()
     reg      = (a.get("r") or "").strip().upper()
@@ -124,7 +106,7 @@ def mento_e(a):
         "MEDIKOPTER5",
     }
     MENTO_LAJSTROM = {
-        "HA-HBG", "HA-HBH", "HA-HBI", "HA-HBK",
+        "HA-HBG", "HA-HBH", "HA-HBK",
         "HA-HBL", "HA-HBM", "HA-HBN", "HA-HBO"
     }
 
@@ -153,20 +135,9 @@ def lekerdez():
                     if ac:
                         for g in ac:
                             key = g.get("hex", icao).lower()
-                            uj_van_koord  = g.get("lat") is not None and g.get("lon") is not None
-                            regi_van_koord = key in gepek and gepek[key].get("lat") is not None and gepek[key].get("lon") is not None
-                            # Ne írjuk felül egy koordinátás adatot egy koordináta nélkülivel
-                            if not regi_van_koord or uj_van_koord:
-                                gepek[key] = g
+                            gepek[key] = g
                         print(f"OK ICAO {icao} ({reg}): megtalalva")
-                        # Csak akkor állunk meg, ha VAN koordináta a rekordban –
-                        # ha nincs, próbáljuk a következő forrást is, hátha az ad
-                        van_koordinata = any(
-                            g.get("lat") is not None and g.get("lon") is not None
-                            for g in ac
-                        )
-                        if van_koordinata:
-                            break
+                        break
                 else:
                     diag_sorok.append(f"  ICAO {url} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
             except Exception as e:
@@ -180,11 +151,7 @@ def lekerdez():
                 ac_lista = data.get("ac", [])
                 for g in ac_lista:
                     key = g.get("hex", "").lower()
-                    if not key:
-                        continue
-                    uj_van_koord  = g.get("lat") is not None and g.get("lon") is not None
-                    regi_van_koord = key in gepek and gepek[key].get("lat") is not None and gepek[key].get("lon") is not None
-                    if key not in gepek or (not regi_van_koord and uj_van_koord):
+                    if key and key not in gepek:
                         gepek[key] = g
                 if "country" in url:
                     print(f"OK Orszag lista: {len(ac_lista)} gep")
@@ -197,9 +164,8 @@ def lekerdez():
             diag_sorok.append(f"  {url} -> KIVETEL: {type(e).__name__}: {e}")
 
     for icao, reg in MENTO_ICAO_MAP.items():
-        regi_van_koord = icao in gepek and gepek[icao].get("lat") is not None and gepek[icao].get("lon") is not None
-        if regi_van_koord:
-            continue  # már van koordinátás adatunk erre a gépre, nem kell tovább keresni
+        if icao in gepek:
+            continue
         try:
             url = OPENSKY_URL.format(icao=icao)
             r = requests.get(url, timeout=10, headers=HEADERS)
@@ -225,7 +191,7 @@ def lekerdez():
                         "track":      s[10],
                     }
                     key = g["hex"]
-                    if key:
+                    if key and key not in gepek:
                         gepek[key] = g
                         print(f"OK OpenSky {icao} ({reg}): megtalalva")
             else:
@@ -302,7 +268,6 @@ def feldolgoz(a):
 ISMERT_LAJSTROM = {
     "47129c": "HA-HBG",
     "47129d": "HA-HBH",
-    "47129e": "HA-HBI",  # 8. gép
     "4712a0": "HA-HBK",
     "4712a1": "HA-HBL",
     "4712a2": "HA-HBM",
@@ -311,45 +276,25 @@ ISMERT_LAJSTROM = {
 }
 
 
-EMAIL_COOLDOWN_MP = 180  # 3 perc – ennyi időn belül nem küldünk duplikált eseményt ugyanarra a gépre
-
-
-def osszehasonlit(regi, uj, esemeny_naplo):
-    """
-    esemeny_naplo: {"icao24:TIPUS": utolso_kuldes_unix_idobelyeg}
-    Ez akadályozza meg, hogy két közel egyidejű (race condition miatti)
-    workflow-futás duplán küldjön e-mailt ugyanarról az eseményről.
-    """
+def osszehasonlit(regi, uj):
     esemenyek = []
-    most = time.time()
-
-    def cooldown_ok(icao, tipus):
-        kulcs = f"{icao}:{tipus}"
-        utolso = esemeny_naplo.get(kulcs, 0)
-        if most - utolso < EMAIL_COOLDOWN_MP:
-            print(f"  ⏭️  Kihagyva (cooldown): {tipus} – {icao} ({round(most - utolso)}s telt el az előzőtől)")
-            return False
-        esemeny_naplo[kulcs] = most
-        return True
 
     for icao, uj_gep in uj.items():
         regi_gep = regi.get(icao)
 
         if regi_gep is None:
-            if not uj_gep["on_ground"] and cooldown_ok(icao, "FELSZALLAS"):
+            if not uj_gep["on_ground"]:
                 esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
         else:
             if regi_gep["on_ground"] and not uj_gep["on_ground"]:
-                if cooldown_ok(icao, "FELSZALLAS"):
-                    esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
+                esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
             elif not regi_gep["on_ground"] and uj_gep["on_ground"]:
-                if cooldown_ok(icao, "LESZALLAS"):
-                    esemenyek.append({"tipus": "LESZALLAS",  "gep": uj_gep})
+                esemenyek.append({"tipus": "LESZALLAS",  "gep": uj_gep})
 
     for icao, regi_gep in regi.items():
         if icao not in uj and not regi_gep["on_ground"]:
-            elapsed = most - regi_gep.get("timestamp", 0)
-            if elapsed > 120 and cooldown_ok(icao, "LESZALLAS"):
+            elapsed = time.time() - regi_gep.get("timestamp", 0)
+            if elapsed > 120:
                 esemenyek.append({"tipus": "LESZALLAS", "gep": regi_gep})
 
     return esemenyek
@@ -360,208 +305,83 @@ def email_kuldes(esemeny):
     gep     = esemeny["gep"]
     icao24  = gep["icao24"]
     cs      = gep["callsign"] or gep["reg"] or icao24.upper()
-    reg     = gep["reg"] or "—"
+    reg     = gep["reg"] or ""
     lat     = gep["lat"]
     lon     = gep["lon"]
     alt_m   = gep["geo_alt_m"] or gep["baro_alt_m"]
     vel     = gep["velocity_kmh"]
-    hdg     = gep["heading"]
-    vr      = gep["vert_rate_ms"]
-    squawk  = gep["squawk"] or "—"
-    cat     = gep["category"] or "—"
 
     ido      = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     emoji    = "🚁⬆️" if tipus == "FELSZALLAS" else "🚁⬇️"
     tipus_hu = "FELSZÁLLÁS" if tipus == "FELSZALLAS" else "LESZÁLLÁS"
-    szin     = "#e74c3c" if tipus == "FELSZALLAS" else "#2980b9"
+    szin     = "#c0392b" if tipus == "FELSZALLAS" else "#2980b9"
 
-    lat_str = f"{lat:.6f}" if lat is not None else "ismeretlen"
-    lon_str = f"{lon:.6f}" if lon is not None else "ismeretlen"
-    alt_str = f"{alt_m} m ({round(alt_m * 3.28084)} ft)" if alt_m is not None else "ismeretlen"
-    vel_str = f"{vel} km/h" if vel is not None else "ismeretlen"
-    hdg_str = f"{round(hdg)}°" if hdg is not None else "ismeretlen"
-    vr_str  = (f"+{vr}" if vr and vr > 0 else str(vr)) + " m/s" if vr is not None else "ismeretlen"
+    # Weboldal URL paraméterekkel
+    import urllib.parse
+    params = {
+        "tipus": tipus,
+        "cs":    cs,
+        "reg":   reg,
+        "icao":  icao24.upper(),
+        "ido":   ido,
+    }
+    if lat is not None: params["lat"] = f"{lat:.6f}"
+    if lon is not None: params["lon"] = f"{lon:.6f}"
+    if alt_m is not None: params["alt"] = str(alt_m)
+    if vel is not None: params["vel"] = str(vel)
 
-    fr24_live     = f"https://www.flightradar24.com/{cs.strip()}"
-    fr24_acdata   = f"https://www.flightradar24.com/data/aircraft/{reg.replace('-','').lower()}"
-    adsbexch      = f"https://globe.adsbexchange.com/?icao={icao24}"
-    flightaware   = f"https://www.flightaware.com/live/modes/{icao24.upper()}/ident/0/zoom/9"
-    airnav        = f"https://www.airnavradar.com/data/aircraft/{icao24.upper()}"
-    planespotters = f"https://www.planespotters.net/hex/{icao24.upper()}"
-    opensky       = f"https://opensky-network.org/aircraft-profile?icao24={icao24}"
-    adsbfi        = f"https://adsb.fi/#icao={icao24.upper()}"
-    gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=13" if lat is not None and lon is not None else None
-    osm   = f"https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map=13/{lat}/{lon}" if lat is not None and lon is not None else None
-
-    gmaps_link_html = f' &nbsp;<a href="{gmaps}" style="color:#4285f4;text-decoration:none;font-weight:bold">📍 Maps</a>' if gmaps else ''
-
-    html = f"""<!DOCTYPE html>
-<html lang="hu">
-<head><meta charset="UTF-8">
-<style>
-  body {{ font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:0; }}
-  .wrap {{ max-width:620px; margin:20px auto; background:#fff;
-           border-radius:10px; overflow:hidden;
-           box-shadow:0 4px 12px rgba(0,0,0,.15); }}
-  .hdr {{ background:{szin}; color:#fff; padding:22px 28px; }}
-  .hdr h1 {{ margin:0; font-size:21px; }}
-  .hdr small {{ opacity:.85; font-size:13px; }}
-  .body {{ padding:22px 28px; }}
-  .badges {{ text-align:center; margin-bottom:14px; }}
-  .badge {{ display:inline-block; background:#ecf0f1; border-radius:6px;
-            padding:10px 16px; margin:6px; }}
-  .badge .big {{ font-size:24px; font-weight:bold; color:#2c3e50; }}
-  .badge .lbl {{ font-size:11px; color:#7f8c8d; text-transform:uppercase; }}
-  table {{ width:100%; border-collapse:collapse; margin:14px 0; }}
-  td {{ padding:7px 10px; border-bottom:1px solid #ecf0f1; font-size:13px; }}
-  td:first-child {{ color:#7f8c8d; width:42%; font-weight:bold; }}
-  .live-box {{ background:#fff8f0; border:2px solid #ff6600;
-               border-radius:8px; padding:14px; margin:14px 0; text-align:center; }}
-  .live-box h3 {{ margin:0 0 4px; color:#cc4400; font-size:14px; }}
-  .live-box .note {{ font-size:11px; color:#888; margin-bottom:10px; }}
-  .map-box {{ background:#f9f9f9; border-radius:8px;
-              padding:14px; margin:14px 0; text-align:center; }}
-  .btn {{ display:inline-block; padding:8px 14px; margin:4px;
-          border-radius:6px; text-decoration:none; font-size:12px;
-          font-weight:bold; color:#fff; }}
-  .gmaps  {{ background:#4285f4; }} .osm    {{ background:#7cb342; }}
-  .fr24   {{ background:#ff6600; }} .fr24ac {{ background:#cc4400; }}
-  .adsbex {{ background:#1a1a2e; }} .fa     {{ background:#003087; }}
-  .airnav {{ background:#0077cc; }} .ps     {{ background:#5b5ea6; }}
-  .osky   {{ background:#2c7a4b; }} .adsbfi {{ background:#e67e22; }}
-  .foot {{ background:#ecf0f1; padding:12px 28px; font-size:11px;
-           color:#95a5a6; text-align:center; }}
-</style>
-</head>
-<body><div class="wrap">
-  <div class="hdr">
-    <h1>{emoji} Magyar Mentőhelikopter {tipus_hu}</h1>
-    <small>{ido} | Magyar Légimentő Nonprofit Kft.</small>
-  </div>
-  <div class="body">
-    <div class="badges">
-      <div class="badge">
-        <div class="lbl">Hívójel</div>
-        <div class="big">{cs}</div>
-      </div>
-      <div class="badge">
-        <div class="lbl">Lajstromjel</div>
-        <div class="big">{reg}</div>
-      </div>
-      <div class="badge">
-        <div class="lbl">ICAO24</div>
-        <div class="big">{icao24.upper()}</div>
-      </div>
-    </div>
-
-    <table>
-      <tr><td>⏰ Időpont</td><td>{ido}</td></tr>
-      <tr><td>🚁 Esemény</td>
-          <td><strong style="color:{szin}">{tipus_hu}</strong></td></tr>
-      <tr><td>🌍 Szélesség</td><td>{lat_str}{gmaps_link_html}</td></tr>
-      <tr><td>🌍 Hosszúság</td><td>{lon_str}{gmaps_link_html}</td></tr>
-      <tr><td>⬆️ Magasság</td><td>{alt_str}</td></tr>
-      <tr><td>💨 Sebesség</td><td>{vel_str}</td></tr>
-      <tr><td>🧭 Irányszög</td><td>{hdg_str}</td></tr>
-      <tr><td>↕️ Függőleges sebesség</td><td>{vr_str}</td></tr>
-      <tr><td>📻 Squawk</td><td>{squawk}</td></tr>
-      <tr><td>✈️ Típus</td><td>{gep["tipus"] or "—"}</td></tr>
-    </table>
-
-    <div class="live-box">
-      <h3>🔴 ÉLŐ KÖVETÉS</h3>
-      <div class="note">Kattints a nyomon követéshez</div>
-      <a href="{fr24_live}"    class="btn fr24"  >✈️ Flightradar24</a>
-      <a href="{adsbexch}"    class="btn adsbex">📡 ADS-B Exchange</a>
-      <a href="{adsbfi}"      class="btn adsbfi">🟠 adsb.fi</a>
-      <a href="{flightaware}" class="btn fa"    >🔵 FlightAware</a>
-      <a href="{airnav}"      class="btn airnav">🟦 AirNav RadarBox</a>
-      <br style="margin:4px 0">
-      <a href="{fr24_acdata}" class="btn fr24ac">📋 FR24 adatlap</a>
-      <a href="{planespotters}"class="btn ps"   >📷 Planespotters</a>
-      <a href="{opensky}"     class="btn osky"  >🌐 OpenSky</a>
-      {f'<a href="{gmaps}" class="btn gmaps">📍 Google Maps</a>' if gmaps else ''}
-    </div>
-
-    {"" if not gmaps else f'''
-    <div class="map-box">
-      <h3>🗺️ Pozíció a térképen</h3>
-      <div style="font-family:monospace;font-size:14px;font-weight:bold;
-                  background:#ecf0f1;padding:7px 12px;border-radius:6px;
-                  display:inline-block;margin:6px 0">
-        {lat_str}° É, {lon_str}° K
-      </div><br>
-      <a href="{gmaps}" class="btn gmaps">📍 Google Maps</a>
-      <a href="{osm}"   class="btn osm"  >🗺️ OpenStreetMap</a>
-    </div>
-    '''}
-
-  </div>
-  <div class="foot">
-    Automatikus értesítés – GitHub Actions | adsb.fi adatai alapján
-  </div>
-</div></body></html>"""
-
-    szoveges = (
-        f"Mentőhelikopter {tipus_hu}\n"
-        f"{'─'*40}\n"
-        f"Időpont:    {ido}\n"
-        f"Hívójel:    {cs}\n"
-        f"Lajstrom:   {reg}\n"
-        f"ICAO24:     {icao24.upper()}\n"
-        f"Szélesség:  {lat_str}\n"
-        f"Hosszúság:  {lon_str}\n"
-        f"Magasság:   {alt_str}\n"
-        f"Sebesség:   {vel_str}\n"
-        f"Irányszög:  {hdg_str}\n"
-        f"Squawk:     {squawk}\n\n"
-        f"Flightradar24: {fr24_live}\n"
-        f"ADS-B Exchange: {adsbexch}\n"
-        f"adsb.fi: {adsbfi}\n"
-        + (f"Google Maps: {gmaps}\n" if gmaps else "")
-    )
+    weboldal_url = f"https://mrgabee.github.io/mentoheli/?{urllib.parse.urlencode(params)}"
 
     targy = f"{emoji} Mentőhelikopter {tipus_hu} – {cs} | {ido}"
+
+    html = f"""<!DOCTYPE html>
+<html lang="hu"><head><meta charset="UTF-8"></head>
+<body style="font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:20px">
+  <div style="max-width:500px;margin:0 auto;background:#fff;border-radius:12px;
+              overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)">
+
+    <div style="background:{szin};color:#fff;padding:24px;text-align:center">
+      <div style="font-size:48px;margin-bottom:8px">{emoji}</div>
+      <div style="font-size:24px;font-weight:bold">Mentőhelikopter {tipus_hu}</div>
+      <div style="font-size:14px;opacity:.85;margin-top:6px">{ido}</div>
+    </div>
+
+    <div style="padding:24px;text-align:center">
+      <div style="font-size:32px;font-weight:bold;color:#2c3e50;margin-bottom:4px">{cs}</div>
+      <div style="font-size:16px;color:#888;margin-bottom:24px">{reg} &nbsp;|&nbsp; {icao24.upper()}</div>
+
+      <a href="{weboldal_url}"
+         style="display:block;background:{szin};color:#fff;padding:16px;
+                border-radius:10px;text-decoration:none;font-size:18px;
+                font-weight:bold;margin-bottom:12px">
+        🚁 Megnyitás – térkép &amp; követés
+      </a>
+
+      <a href="https://www.flightradar24.com/{cs}"
+         style="display:block;background:#ff6600;color:#fff;padding:14px;
+                border-radius:10px;text-decoration:none;font-size:15px;
+                font-weight:bold">
+        ✈️ Flightradar24 – élő követés
+      </a>
+    </div>
+
+    <div style="background:#ecf0f1;padding:12px;text-align:center;
+                font-size:11px;color:#95a5a6">
+      Automatikus értesítő – Baleset-info.hu
+    </div>
+  </div>
+</body></html>"""
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
     msg["From"]    = f"🚁 Mentőhelikopter Monitor <{EMAIL_KULDO}>"
     msg["To"]      = EMAIL_CIMZETT
-    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
-    msg.attach(MIMEText(html,     "html",  "utf-8"))
+    msg.attach(MIMEText(html, "html", "utf-8"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
         smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
         smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
     print(f"📧 E-mail elküldve: {targy}")
-
-
-def hiba_email_kuldes(hiba_szoveg):
-    """Ha a script hibára fut, e-mailben elküldi a hiba leírását."""
-    try:
-        ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
-        targy = f"⚠️ Mentőhelikopter Monitor HIBA | {ido}"
-
-        szoveg = (
-            f"A Mentőhelikopter Monitor script hibára futott.\n"
-            f"{'─'*40}\n"
-            f"Időpont: {ido}\n\n"
-            f"Hiba részletei:\n{hiba_szoveg}\n"
-        )
-
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = targy
-        msg["From"]    = f"⚠️ Mentőhelikopter Monitor <{EMAIL_KULDO}>"
-        msg["To"]      = EMAIL_CIMZETT
-        msg.attach(MIMEText(szoveg, "plain", "utf-8"))
-
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
-            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
-        print(f"📧 Hibaértesítő e-mail elküldve.")
-    except Exception as ex:
-        # Ha még a hibaértesítés is elhasal, legalább a naplóba kiírjuk
-        print(f"❌ A hibaértesítő e-mail küldése is sikertelen: {ex}")
 
 
 def main():
@@ -584,9 +404,8 @@ def main():
     for g in uj_allapot.values():
         print(f"  → {g['callsign']} | {g['icao24'].upper()} | {g['reg']} | {'FÖLDÖN' if g['on_ground'] else 'LEVEGŐBEN'}")
 
-    regi_allapot  = betolt_allapot()
-    esemeny_naplo = betolt_esemeny_naplo()
-    esemenyek     = osszehasonlit(regi_allapot, uj_allapot, esemeny_naplo)
+    regi_allapot = betolt_allapot()
+    esemenyek    = osszehasonlit(regi_allapot, uj_allapot)
 
     print(f"⚡ Változások: {len(esemenyek)}")
     for e in esemenyek:
@@ -594,16 +413,8 @@ def main():
         email_kuldes(e)
 
     ment_allapot(uj_allapot)
-    ment_esemeny_naplo(esemeny_naplo)
     print("💾 Állapot mentve. ✅ Kész.\n")
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception as ex:
-        import traceback
-        hiba_reszletek = traceback.format_exc()
-        print(f"❌ VÁRATLAN HIBA:\n{hiba_reszletek}")
-        hiba_email_kuldes(hiba_reszletek)
-        raise  # a GitHub Actions futás is piros legyen, hogy a naplóban is látszódjon
+    main()
