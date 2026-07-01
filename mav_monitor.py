@@ -56,7 +56,7 @@ VOLAN_KULCSSZAVAK = [
     "autóbusz menetrendi változás", "helyközi autóbusz",
     "járat törölve", "járatkimaradás", "pótlóbusz",
     "autóbuszjárat", "buszjárat", "menetrendi változás",
-    "forgalmi változás", "útlezárás", "terelés",
+    "forgalmi változás", "útlezárás", "terelés", "meghibásodott",
 ]
 
 # Jövőbeli eseményekre utaló kizáró szavak – VOLAN kategóriánál alkalmazzuk
@@ -71,7 +71,7 @@ JOVO_KIZARO = [
     "rendezvény", "rendezvény miatt", "esemény miatt",
     "lezárják", "lezárásra kerül",
     "ideiglenes forgalmi változás", "ideiglenes menetrendi",
-    "-ától", "-étől", "-jától",
+    "-ától", "-étől", "-jától",  "-meghibásodott",
 ]
 
 # Minden figyelt kulcsszó együtt
