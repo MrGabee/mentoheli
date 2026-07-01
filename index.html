@@ -213,12 +213,12 @@
     document.getElementById("lat").textContent = parseFloat(lat).toFixed(6);
     document.getElementById("lon").textContent = parseFloat(lon).toFixed(6);
 
-    // adsb.fi élő térkép iframe
+    // ADS-B Exchange élő térkép - a gépre fókuszál
     const mapDiv = document.getElementById("map-container");
     mapDiv.innerHTML = `
       <div class="map-frame">
         <iframe
-          src="https://adsb.fi/embed/?icao=${icao}&zoom=10"
+          src="https://globe.adsbexchange.com/?icao=${icao}&hideSideBar&hideButtons&zoom=10"
           allowfullscreen loading="lazy">
         </iframe>
       </div>`;
@@ -235,7 +235,7 @@
     mapDiv.innerHTML = `
       <div class="map-frame">
         <iframe
-          src="https://adsb.fi/embed/?icao=${icao}&zoom=8"
+          src="https://globe.adsbexchange.com/?icao=${icao}&hideSideBar&hideButtons&zoom=8"
           allowfullscreen loading="lazy">
         </iframe>
       </div>`;
