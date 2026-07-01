@@ -79,7 +79,7 @@ KIZARO_KULCSSZAVAK = [
     "szabálytalan parkolás", "szabálytalan parkol", "szabálytalanul parkol",
     "parkolási", "parkolás miatt",
     "akadályozó jármű", "akadályozó autó",
-    "közműjavítás", "közmű", "karbantartás", "felújítás", "építkezés",
+    "közműjavítás", "közmű",
 ]
 
 HEADERS = {
@@ -375,7 +375,7 @@ def main():
     esemenyek = lekerdez_bkk()
 
     for e in esemenyek:
-        rid = hash_id(e["id"] + e["cim"])
+        rid = hash_id(e["id"])
         if rid not in regi:
             # Kizáró szavak ellenőrzése
             szoveg = e.get("cim", "") + " " + e.get("reszlet", "")
