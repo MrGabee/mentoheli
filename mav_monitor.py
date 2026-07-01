@@ -65,11 +65,13 @@ JOVO_KIZARO = [
     "hétfőtől", "kedtől", "szerdától", "csütörtöktől", "péntektől",
     "szombattól", "vasárnaptól", "holnaptól", "jövő héttől",
     "várhatóan", "tervezett", "előre jelzett",
-    "hajnalban", "reggeltől", "este", "éjszakától",
+    "hajnalban", "reggeltől", "éjszakától",
     " hétfőn", " kedden", " szerdán", " csütörtökön", " pénteken",
     " szombaton", " vasárnap", "holnap ",
     "rendezvény", "rendezvény miatt", "esemény miatt",
     "lezárják", "lezárásra kerül",
+    "ideiglenes forgalmi változás", "ideiglenes menetrendi",
+    "-ától", "-étől", "-jától",
 ]
 
 # Minden figyelt kulcsszó együtt
@@ -102,13 +104,15 @@ def hash_id(szoveg):
 # ════════════════════════════════════════════
 #  🔍  SZŰRŐK
 # ════════════════════════════════════════════
-def esemeny_tipus(url, cim):
+def esemeny_tipus(url, cim, reszlet=""):
     """
     Visszaadja az esemény típusát: 'BALESET', 'VOLAN', vagy None.
     - BALESET: gázolás, ütközés, karambol – azonnal küldi
     - VOLAN: pótlóbusz, terelés, útlezárás – csak ha NEM jövőbeli tervezett esemény
+    A kizáró szavakat a CÍM ÉS a RÉSZLETES SZÖVEG alapján is vizsgálja.
     """
-    szoveg = (url + " " + cim).lower()
+    szoveg       = (url + " " + cim).lower()
+    teljes_szoveg = (url + " " + cim + " " + reszlet).lower()
 
     # Baleset kizáró ellenőrzés
     if any(k in szoveg for k in BALESET_KIZARO):
@@ -120,15 +124,16 @@ def esemeny_tipus(url, cim):
         return "BALESET"
 
     # Volánbusz: csak ha nem jövőbeli tervezett esemény
+    # – a kizáró szavakat a TELJES szövegben (cím + részlet) keressük
     if any(k in szoveg for k in VOLAN_KULCSSZAVAK):
-        if any(k in szoveg for k in JOVO_KIZARO):
-            return None  # jövőbeli → kihagyjuk
+        if any(k in teljes_szoveg for k in JOVO_KIZARO):
+            return None  # jövőbeli vagy rendezvény → kihagyjuk
         return "VOLAN"
 
     return None
 
-def baleset_e(url, cim):
-    return esemeny_tipus(url, cim) is not None
+def baleset_e(url, cim, reszlet=""):
+    return esemeny_tipus(url, cim, reszlet) is not None
 
 def friss_e(datum_str):
     """
@@ -410,7 +415,7 @@ def main():
             continue
 
         # 1. URL/cím alapú szűrés – baleset VAGY Volánbusz esemény
-        tipus = esemeny_tipus(e["url"], e["cim"])
+        tipus = esemeny_tipus(e["url"], e["cim"], e.get("reszlet", ""))
         if tipus is None:
             # Nem releváns – mentjük és kihagyjuk
             regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
