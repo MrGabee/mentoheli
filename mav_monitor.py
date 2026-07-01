@@ -47,7 +47,7 @@ BALESET_KULCSSZAVAK = [
 BALESET_KIZARO = [
     "baleset-megelőzés", "balesetmegelőzés", "balesetmentes",
     "baleset-megelőzési", "baleset nélkül", "balesetmentesen",
-    "kerékpáros biztonság", "közlekedésbiztonsági",
+    "kerékpáros biztonság", "közlekedésbiztonsági", "meghibásodott",
 ]
 
 # Volánbusz-specifikus forgalmi/menetrendi kulcsszavak
