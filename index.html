@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚁 Mentőhelikopter – Baleset-info.hu</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #1a1a2e; color: #fff; min-height: 100vh; }
+
+    .header { padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
+    .header h1 { font-size: 20px; }
+    .header small { font-size: 13px; opacity: 0.7; }
+
+    .felszallas { background: #c0392b; }
+    .leszallas  { background: #2980b9; }
+
+    .badge-tipus {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 0 20px 16px;
+    }
+
+    .info-box {
+      background: #16213e;
+      border-radius: 12px;
+      margin: 0 16px 16px;
+      padding: 16px;
+    }
+    .info-box h2 {
+      font-size: 14px;
+      color: #aaa;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .info-item { }
+    .info-item .label { font-size: 11px; color: #888; text-transform: uppercase; }
+    .info-item .value { font-size: 18px; font-weight: bold; color: #fff; margin-top: 2px; }
+    .info-item .value.small { font-size: 14px; }
+
+    .btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 0 16px 16px;
+    }
+    .btn {
+      display: block;
+      padding: 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      font-size: 15px;
+      color: #fff;
+    }
+    .btn-fr24   { background: #ff6600; }
+    .btn-gmaps  { background: #4285f4; }
+    .btn-adsbfi { background: #e67e22; }
+    .btn-osm    { background: #7cb342; }
+
+    .map-frame {
+      margin: 0 16px 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 300px;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 11px;
+      color: #555;
+    }
+
+    .no-coord {
+      background: #2c2c2c;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      color: #888;
+      font-size: 13px;
+      margin: 0 16px 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div class="header felszallas" id="header">
+    <div>
+      <h1 id="title">🚁 Mentőhelikopter</h1>
+      <small id="subtitle">Betöltés...</small>
+    </div>
+  </div>
+
+  <span class="badge-tipus" id="badge">...</span>
+
+  <div class="info-box">
+    <h2>Azonosítás</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">Hívójel</div>
+        <div class="value" id="cs">—</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Lajstromjel</div>
+        <div class="value" id="reg">—</div>
+      </div>
+      <div class="info-item">
+        <div class="label">ICAO24</div>
+        <div class="value small" id="icao">—</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Időpont</div>
+        <div class="value small" id="ido">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box" id="pos-box">
+    <h2>Pozíció</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">Szélesség</div>
+        <div class="value small" id="lat">—</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Hosszúság</div>
+        <div class="value small" id="lon">—</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Magasság</div>
+        <div class="value small" id="alt">—</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Sebesség</div>
+        <div class="value small" id="vel">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="map-container"></div>
+
+  <div class="btn-grid" id="btn-grid">
+    <a href="#" class="btn btn-fr24" id="btn-fr24">✈️ Flightradar24</a>
+    <a href="#" class="btn btn-gmaps" id="btn-gmaps">📍 Google Maps</a>
+    <a href="#" class="btn btn-adsbfi" id="btn-adsbfi">🟠 adsb.fi</a>
+    <a href="#" class="btn btn-osm" id="btn-osm">🗺️ OpenStreetMap</a>
+  </div>
+
+  <div class="footer">
+    Automatikus értesítő – Baleset-info.hu | adsb.fi adatai alapján
+  </div>
+</div>
+
+<script>
+  function getParam(name) {
+    const url = new URLSearchParams(window.location.search);
+    return url.get(name) || "";
+  }
+
+  const tipus  = getParam("tipus");   // FELSZALLAS vagy LESZALLAS
+  const cs     = getParam("cs");
+  const reg    = getParam("reg");
+  const icao   = getParam("icao");
+  const lat    = getParam("lat");
+  const lon    = getParam("lon");
+  const alt    = getParam("alt");
+  const vel    = getParam("vel");
+  const ido    = getParam("ido");
+
+  // Fejléc szín
+  const header = document.getElementById("header");
+  const badge  = document.getElementById("badge");
+  if (tipus === "FELSZALLAS") {
+    header.classList.add("felszallas");
+    badge.className  = "badge-tipus felszallas";
+    badge.textContent = "🚁⬆️ FELSZÁLLÁS";
+    document.getElementById("title").textContent = "🚁 Mentőhelikopter FELSZÁLLÁS";
+  } else {
+    header.classList.add("leszallas");
+    badge.className  = "badge-tipus leszallas";
+    badge.textContent = "🚁⬇️ LESZÁLLÁS";
+    document.getElementById("title").textContent = "🚁 Mentőhelikopter LESZÁLLÁS";
+  }
+
+  document.getElementById("subtitle").textContent = ido + " | Magyar Légimentő";
+  document.getElementById("cs").textContent   = cs   || "—";
+  document.getElementById("reg").textContent  = reg  || "—";
+  document.getElementById("icao").textContent = icao || "—";
+  document.getElementById("ido").textContent  = ido  || "—";
+  document.getElementById("alt").textContent  = alt  ? alt + " m" : "—";
+  document.getElementById("vel").textContent  = vel  ? vel + " km/h" : "—";
+
+  // Pozíció
+  if (lat && lon) {
+    document.getElementById("lat").textContent = parseFloat(lat).toFixed(6);
+    document.getElementById("lon").textContent = parseFloat(lon).toFixed(6);
+
+    // Google Maps iframe
+    const mapDiv = document.getElementById("map-container");
+    mapDiv.innerHTML = `
+      <div class="map-frame">
+        <iframe
+          src="https://maps.google.com/maps?q=${lat},${lon}&z=13&output=embed"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>`;
+
+    document.getElementById("btn-gmaps").href =
+      `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+    document.getElementById("btn-osm").href =
+      `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=13/${lat}/${lon}`;
+  } else {
+    document.getElementById("lat").textContent = "—";
+    document.getElementById("lon").textContent = "—";
+    document.getElementById("map-container").innerHTML =
+      '<div class="no-coord">📡 Koordináta nem érhető el – nyisd meg a Flightradar24-et az élő követéshez</div>';
+    document.getElementById("btn-gmaps").style.display = "none";
+    document.getElementById("btn-osm").style.display   = "none";
+  }
+
+  // Flightradar24 és adsb.fi linkek
+  document.getElementById("btn-fr24").href =
+    `https://www.flightradar24.com/${cs}`;
+  document.getElementById("btn-adsbfi").href =
+    `https://adsb.fi/#icao=${icao}`;
+
+  // Oldal cím
+  document.title = `🚁 ${cs} ${tipus === "FELSZALLAS" ? "felszáll" : "leszáll"} – Baleset-info.hu`;
+</script>
+</body>
+</html>
