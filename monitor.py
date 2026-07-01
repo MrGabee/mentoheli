@@ -1,19 +1,20 @@
 """
 🚁 Magyar Mentőhelikopter Monitor
-Adatforrás: adsb.fi (ingyenes, kulcs nélkül)
-Szűrés: MEDIC callsign (kizárólag magyar mentőhelikopterek)
+Adatforrás: Flightradar24 HTML scraping (ha-hbm, ha-hbg, stb.)
+Detektálás: ATD (felszállás) és Landed (leszállás) változás alapján
 Futtatás: GitHub Actions (percenként, self-loop)
-DIAGNOSZTIKAI VERZIÓ – részletes hibakiírással ha 0 gépet találunk
 """
 
 import os
 import json
-import time
+import hashlib
 import smtplib
 import requests
+import re
+from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from datetime import datetime, timedelta, timezone
+from bs4 import BeautifulSoup
 
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
@@ -25,314 +26,256 @@ EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 
-MENTO_ICAO_MAP = {
-    "47129c": "HA-HBG",
-    "47129d": "HA-HBH",
-    "4712a0": "HA-HBK",
-    "4712a1": "HA-HBL",
-    "4712a2": "HA-HBM",
-    "4712a3": "HA-HBN",
-    "4712a4": "HA-HBO",
+# Ismert mentőhelikopterek – lajstromjel → hívójel
+MENTO_GEPEK = {
+    "ha-hbg": "MEDIC3",
+    "ha-hbh": "MEDIC6",
+    "ha-hbi": "MEDIC6",
+    "ha-hbk": "MEDIC",
+    "ha-hbl": "MEDIC1",
+    "ha-hbm": "MEDIC2",
+    "ha-hbn": "MEDIC",
+    "ha-hbo": "MEDIC7",
 }
 
-API_URLAK_ICAO = [
-    "https://api.airplanes.live/v2/icao/{icao}",
-    "https://opendata.adsb.fi/api/v2/icao/{icao}",
-    "https://api.adsb.one/v2/icao/{icao}",
-    "https://api.adsb.lol/v2/icao/{icao}",
-]
-
-OPENSKY_URL = "https://opensky-network.org/api/states/all?icao24={icao}"
-
-API_URLAK = [
-    "https://opendata.adsb.fi/api/v2/country/HU",
-    "https://api.adsb.one/v2/country/HU",
-    "https://api.airplanes.live/v2/country/HU",
-    "https://api.adsb.lol/v2/country/HU",
-    "https://api.airplanes.live/v2/callsign/MEDIC1",
-    "https://api.airplanes.live/v2/callsign/MEDIC2",
-    "https://api.airplanes.live/v2/callsign/MEDIC3",
-    "https://api.airplanes.live/v2/callsign/MEDIC4",
-    "https://api.airplanes.live/v2/callsign/MEDIC5",
-    "https://api.airplanes.live/v2/callsign/MEDIC6",
-    "https://api.airplanes.live/v2/callsign/MEDIC7",
-    "https://api.airplanes.live/v2/callsign/MEDIKOPTER5",
-    "https://api.adsb.lol/v2/callsign/MEDIC1",
-    "https://api.adsb.lol/v2/callsign/MEDIC2",
-    "https://api.adsb.lol/v2/callsign/MEDIC3",
-    "https://api.adsb.lol/v2/callsign/MEDIC4",
-    "https://api.adsb.lol/v2/callsign/MEDIC5",
-    "https://api.adsb.lol/v2/callsign/MEDIC6",
-    "https://api.adsb.lol/v2/callsign/MEDIC7",
-    "https://api.adsb.lol/v2/callsign/MEDIKOPTER5",
-    "https://api.airplanes.live/v2/reg/HA-HBG",
-    "https://api.airplanes.live/v2/reg/HA-HBH",
-    "https://api.airplanes.live/v2/reg/HA-HBK",
-    "https://api.airplanes.live/v2/reg/HA-HBL",
-    "https://api.airplanes.live/v2/reg/HA-HBM",
-    "https://api.airplanes.live/v2/reg/HA-HBN",
-    "https://api.airplanes.live/v2/reg/HA-HBO",
-]
-
-ALLAPOT_FAJL  = "allapot.json"
-FOLD_KUSZOB_M = 50
+ALLAPOT_FAJL     = "allapot.json"
+ESEMENY_NAPLO    = "esemeny_naplo.json"
+EMAIL_COOLDOWN   = 180  # 3 perc
 
 HEADERS = {
-    "User-Agent": "MentoHelikopterMonitor/2.0 (github-actions)"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept-Language": "en-US,en;q=0.9",
 }
 
 
-def betolt_allapot():
-    if os.path.exists(ALLAPOT_FAJL):
+# ════════════════════════════════════════════
+#  💾  ÁLLAPOT
+# ════════════════════════════════════════════
+def betolt(fajl, alapert={}):
+    if os.path.exists(fajl):
         try:
-            with open(ALLAPOT_FAJL) as f:
+            with open(fajl) as f:
                 return json.load(f)
         except Exception:
             pass
-    return {}
+    return dict(alapert)
 
-def ment_allapot(allapot):
-    with open(ALLAPOT_FAJL, "w", encoding="utf-8") as f:
-        json.dump(allapot, f, ensure_ascii=False, indent=2)
+def ment(fajl, adat):
+    with open(fajl, "w", encoding="utf-8") as f:
+        json.dump(adat, f, ensure_ascii=False, indent=2)
 
 
-def mento_e(a):
-    callsign = (a.get("flight") or "").strip().upper()
-    reg      = (a.get("r") or "").strip().upper()
-
-    MENTO_CALLSIGN = {
-        "MEDIC1", "MEDIC2", "MEDIC3", "MEDIC4",
-        "MEDIC5", "MEDIC6", "MEDIC7",
-        "MEDIKOPTER5",
+# ════════════════════════════════════════════
+#  📡  FLIGHTRADAR24 SCRAPING
+# ════════════════════════════════════════════
+def lekerdez_fr24(reg):
+    """
+    Lekéri a Flightradar24 adatlapját és visszaadja az utolsó repülés adatait:
+    {
+      "atd":     "13:08",       # tényleges felszállás (helyi idő)
+      "landed":  "13:51",       # leszállás (None ha még repül)
+      "elo":     True/False,    # jelenleg a levegőben van-e
+      "datum":   "01 Jul 2026",
+      "callsign":"MEDIC2",
+      "flight_id": "...",       # playback ID ha van
     }
-    MENTO_LAJSTROM = {
-        "HA-HBG", "HA-HBH", "HA-HBK",
-        "HA-HBL", "HA-HBM", "HA-HBN", "HA-HBO"
-    }
+    """
+    url = f"https://www.flightradar24.com/data/aircraft/{reg}"
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠️ FR24 HTTP {r.status_code} – {reg}")
+            return None
 
-    return (
-        callsign in MENTO_CALLSIGN or
-        callsign.startswith("MEDIC") or
-        callsign.startswith("MEDIKOPTER") or
-        reg in MENTO_LAJSTROM
-    )
+        soup = BeautifulSoup(r.text, "html.parser")
+        tabla = soup.find("table", id="tbl-datatable")
+        if not tabla:
+            print(f"  ⚠️ Táblázat nem található – {reg}")
+            return None
 
+        sorok = tabla.find("tbody").find_all("tr", class_="data-row")
+        if not sorok:
+            print(f"  ⚠️ Nincs sor a táblázatban – {reg}")
+            return None
 
-def lekerdez():
-    gepek = {}
-    diag_sorok = []
+        # Első (legutóbbi) sor
+        sor = sorok[0]
+        cellak = sor.find_all("td", class_=lambda c: c and "hidden-xs" in c)
 
-    for icao, reg in MENTO_ICAO_MAP.items():
-        for url_tmpl in API_URLAK_ICAO:
-            if "{icao}" not in url_tmpl:
-                continue
-            url = url_tmpl.format(icao=icao)
-            try:
-                r = requests.get(url, timeout=10, headers=HEADERS)
-                if r.status_code == 200:
-                    data = r.json()
-                    ac = data.get("ac", [])
-                    if ac:
-                        for g in ac:
-                            key = g.get("hex", icao).lower()
-                            gepek[key] = g
-                        print(f"OK ICAO {icao} ({reg}): megtalalva")
-                        break
-                else:
-                    diag_sorok.append(f"  ICAO {url} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
-            except Exception as e:
-                diag_sorok.append(f"  ICAO {url} -> KIVETEL: {type(e).__name__}: {e}")
+        datum    = ""
+        callsign = ""
+        atd      = ""
+        landed   = None
+        elo      = False
+        flight_id = ""
 
-    for url in API_URLAK:
-        try:
-            r = requests.get(url, timeout=15, headers=HEADERS)
-            if r.status_code == 200:
-                data = r.json()
-                ac_lista = data.get("ac", [])
-                for g in ac_lista:
-                    key = g.get("hex", "").lower()
-                    if key and key not in gepek:
-                        gepek[key] = g
-                if "country" in url:
-                    print(f"OK Orszag lista: {len(ac_lista)} gep")
-                elif "callsign" in url and ac_lista:
-                    cs = url.split("callsign/")[-1]
-                    print(f"OK Callsign {cs}: megtalalva")
+        # Dátum
+        datum_td = sor.find("td", attrs={"data-time-format": "DD MMM YYYY"})
+        if datum_td:
+            datum = datum_td.get_text(strip=True)
+
+        # ATD
+        atd_tds = sor.find_all("td", attrs={"data-timestamp": True})
+        if len(atd_tds) >= 2:
+            atd = atd_tds[1].get_text(strip=True)
+
+        # Callsign
+        for td in cellak:
+            txt = td.get_text(strip=True)
+            if "MEDIC" in txt or "MEDIKOPTER" in txt:
+                callsign = txt.strip("()")
+                break
+
+        # Status (Landed / Scheduled / Unknown)
+        status_td = sor.find("td", attrs={"data-prefix": True})
+        if status_td:
+            status_txt = status_td.get_text(strip=True)
+            if "Landed" in status_txt:
+                # "Landed 13:51" → kinyerjük az időt
+                m = re.search(r"Landed\s+(\d{1,2}:\d{2})", status_txt)
+                landed = m.group(1) if m else status_txt
+                elo    = False
+            elif "Scheduled" in status_txt or "Unknown" in status_txt:
+                elo = True  # még nem landolt
             else:
-                diag_sorok.append(f"  {url} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
-        except Exception as e:
-            diag_sorok.append(f"  {url} -> KIVETEL: {type(e).__name__}: {e}")
+                elo = True
 
-    for icao, reg in MENTO_ICAO_MAP.items():
-        if icao in gepek:
-            continue
-        try:
-            url = OPENSKY_URL.format(icao=icao)
-            r = requests.get(url, timeout=10, headers=HEADERS)
-            if r.status_code == 200:
-                data = r.json()
-                states = data.get("states") or []
-                for s in states:
-                    if not s or len(s) < 9:
-                        continue
-                    lat_val = s[6]
-                    lon_val = s[5]
-                    if lat_val is None or lon_val is None:
-                        continue
-                    g = {
-                        "hex":        (s[0] or "").lower(),
-                        "flight":     (s[1] or "").strip(),
-                        "r":          reg,
-                        "lat":        lat_val,
-                        "lon":        lon_val,
-                        "alt_baro":   int(s[7] / 0.3048) if s[7] else "ground",
-                        "on_ground":  s[8],
-                        "gs":         int(s[9] * 1.944) if s[9] else 0,
-                        "track":      s[10],
-                    }
-                    key = g["hex"]
-                    if key and key not in gepek:
-                        gepek[key] = g
-                        print(f"OK OpenSky {icao} ({reg}): megtalalva")
-            else:
-                diag_sorok.append(f"  OpenSky {icao} -> HTTP {r.status_code} | body: {r.text[:150]!r}")
-        except Exception as e:
-            diag_sorok.append(f"  OpenSky {icao} -> KIVETEL: {type(e).__name__}: {e}")
+        # Playback link
+        play_btn = sor.find("a", class_="btn-playback")
+        if play_btn:
+            href = play_btn.get("href", "")
+            m = re.search(r"#([0-9a-f]+)$", href)
+            if m:
+                flight_id = m.group(1)
 
-    eredmeny = list(gepek.values())
-    print(f"Osszesitett egyedi gepek: {len(eredmeny)}")
+        print(f"  ✅ FR24 {reg}: datum={datum} atd={atd} landed={landed} elo={elo} cs={callsign}")
+        return {
+            "atd":       atd,
+            "landed":    landed,
+            "elo":       elo,
+            "datum":     datum,
+            "callsign":  callsign or MENTO_GEPEK.get(reg, ""),
+            "flight_id": flight_id,
+        }
 
-    if len(eredmeny) == 0:
-        print(f"\nDIAGNOSZTIKA - {len(diag_sorok)} forras valaszolt hibasan/uresen:")
-        for sor in diag_sorok[:15]:
-            print(sor)
-        if len(diag_sorok) > 15:
-            print(f"  ... es meg {len(diag_sorok) - 15} tovabbi hasonlo hiba.")
-
-    return eredmeny if eredmeny else None
+    except Exception as ex:
+        print(f"  ❌ FR24 hiba ({reg}): {ex}")
+        return None
 
 
-def feldolgoz(a):
-    icao24   = (a.get("hex", "") or "").lower().strip()
-    callsign = (a.get("flight", "") or "").strip()
-    reg      = (a.get("r", "") or ISMERT_LAJSTROM.get(icao24, "")).strip()
-    tipus    = (a.get("t", "") or "").strip()
-    lat      = a.get("lat")
-    lon      = a.get("lon")
-
-    alt_baro_raw = a.get("alt_baro")
-    if alt_baro_raw == "ground" or alt_baro_raw == 0:
-        baro_alt_m = 0
-    elif alt_baro_raw is not None:
-        baro_alt_m = round(alt_baro_raw * 0.3048)
-    else:
-        baro_alt_m = None
-
-    geo_alt_raw = a.get("alt_geom")
-    geo_alt_m = round(geo_alt_raw * 0.3048) if geo_alt_raw is not None else None
-
-    on_ground = a.get("on_ground", False) or alt_baro_raw == "ground"
-
-    alt_m = geo_alt_m if geo_alt_m is not None else baro_alt_m
-    if alt_m is not None and alt_m <= FOLD_KUSZOB_M:
-        on_ground = True
-
-    gs = a.get("gs")
-    velocity_kmh = round(gs * 1.852) if gs is not None else None
-
-    heading  = a.get("track")
-    baro_rate = a.get("baro_rate")
-    vert_rate_ms = round(baro_rate * 0.00508, 1) if baro_rate is not None else None
-
-    squawk   = a.get("squawk")
-    category = a.get("category", "")
-
-    return {
-        "icao24":       icao24,
-        "callsign":     callsign,
-        "reg":          reg,
-        "tipus":        tipus,
-        "lat":          lat,
-        "lon":          lon,
-        "baro_alt_m":   baro_alt_m,
-        "geo_alt_m":    geo_alt_m,
-        "on_ground":    on_ground,
-        "velocity_kmh": velocity_kmh,
-        "heading":      heading,
-        "vert_rate_ms": vert_rate_ms,
-        "squawk":       squawk,
-        "category":     category,
-        "timestamp":    time.time(),
-    }
-
-ISMERT_LAJSTROM = {
-    "47129c": "HA-HBG",
-    "47129d": "HA-HBH",
-    "4712a0": "HA-HBK",
-    "4712a1": "HA-HBL",
-    "4712a2": "HA-HBM",
-    "4712a3": "HA-HBN",
-    "4712a4": "HA-HBO",
-}
-
-
-def osszehasonlit(regi, uj):
+# ════════════════════════════════════════════
+#  🔁  ÁLLAPOT ÖSSZEHASONLÍTÁS
+# ════════════════════════════════════════════
+def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
     esemenyek = []
+    most = datetime.now().timestamp()
 
-    for icao, uj_gep in uj.items():
-        regi_gep = regi.get(icao)
+    for reg, uj in uj_adatok.items():
+        if uj is None:
+            continue
 
-        if regi_gep is None:
-            if not uj_gep["on_ground"]:
-                esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
-        else:
-            if regi_gep["on_ground"] and not uj_gep["on_ground"]:
-                esemenyek.append({"tipus": "FELSZALLAS", "gep": uj_gep})
-            elif not regi_gep["on_ground"] and uj_gep["on_ground"]:
-                esemenyek.append({"tipus": "LESZALLAS",  "gep": uj_gep})
+        regi = regi_allapot.get(reg, {})
+        regi_atd    = regi.get("atd", "")
+        regi_landed = regi.get("landed")
+        regi_datum  = regi.get("datum", "")
 
-    for icao, regi_gep in regi.items():
-        if icao not in uj and not regi_gep["on_ground"]:
-            elapsed = time.time() - regi_gep.get("timestamp", 0)
-            if elapsed > 120:
-                esemenyek.append({"tipus": "LESZALLAS", "gep": regi_gep})
+        uj_atd    = uj["atd"]
+        uj_landed = uj["landed"]
+        uj_datum  = uj["datum"]
+
+        # Cooldown ellenőrzés
+        def cooldown_ok(tipus):
+            kulcs = f"{reg}:{tipus}"
+            utolso = esemeny_naplo.get(kulcs, 0)
+            if most - utolso < EMAIL_COOLDOWN:
+                print(f"  ⏭️ Cooldown: {tipus} – {reg}")
+                return False
+            esemeny_naplo[kulcs] = most
+            return True
+
+        # FELSZÁLLÁS: új ATD jelent meg vagy megváltozott
+        if uj_atd and (uj_atd != regi_atd or uj_datum != regi_datum):
+            if regi_atd or regi_datum:  # ne az első betöltésnél
+                if cooldown_ok("FELSZALLAS"):
+                    print(f"  🚁⬆️ FELSZÁLLÁS: {reg} | {uj_datum} {uj_atd}")
+                    esemenyek.append({"tipus": "FELSZALLAS", "reg": reg, "adat": uj})
+
+        # LESZÁLLÁS: landed mező megjelent ahol még nem volt
+        elif uj_landed and not regi_landed and regi_atd:
+            if cooldown_ok("LESZALLAS"):
+                print(f"  🚁⬇️ LESZÁLLÁS: {reg} | {uj_datum} Landed {uj_landed}")
+                esemenyek.append({"tipus": "LESZALLAS", "reg": reg, "adat": uj})
 
     return esemenyek
 
 
+# ════════════════════════════════════════════
+#  📧  E-MAIL KÜLDÉS
+# ════════════════════════════════════════════
 def email_kuldes(esemeny):
-    tipus   = esemeny["tipus"]
-    gep     = esemeny["gep"]
-    icao24  = gep["icao24"]
-    cs      = gep["callsign"] or gep["reg"] or icao24.upper()
-    reg     = gep["reg"] or "—"
-    lat     = gep["lat"]
-    lon     = gep["lon"]
+    tipus    = esemeny["tipus"]
+    reg      = esemeny["reg"]
+    adat     = esemeny["adat"]
+    callsign = adat["callsign"] or MENTO_GEPEK.get(reg, reg.upper())
+    datum    = adat["datum"]
+    atd      = adat["atd"]
+    landed   = adat["landed"]
+    elo      = adat["elo"]
+    flight_id = adat["flight_id"]
 
     ido      = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     emoji    = "🚁⬆️" if tipus == "FELSZALLAS" else "🚁⬇️"
     tipus_hu = "FELSZÁLLÁS" if tipus == "FELSZALLAS" else "LESZÁLLÁS"
     szin     = "#c0392b" if tipus == "FELSZALLAS" else "#2980b9"
 
-    fr24_url  = f"https://www.flightradar24.com/{cs}"
-    gmaps_url = f"https://www.google.com/maps/search/?api=1&query={lat},{lon}" if lat is not None and lon is not None else None
+    reg_upper = reg.upper()
+    fr24_url  = f"https://www.flightradar24.com/data/aircraft/{reg}"
+    play_url  = f"https://www.flightradar24.com/data/aircraft/{reg}#{flight_id}" if flight_id else None
 
-    gmaps_btn = f"""
-      <a href="{gmaps_url}"
-         style="display:block;background:#4285f4;color:#fff;padding:15px;
+    # Info sor
+    if tipus == "FELSZALLAS":
+        info = f"Felszállás: {datum} {atd}"
+    else:
+        info = f"Felszállás: {datum} {atd} → Leszállás: {landed}"
+
+    # Gombok
+    gombok = ""
+    if elo and tipus == "FELSZALLAS":
+        gombok += f"""
+      <a href="{fr24_url}"
+         style="display:block;background:#ff6600;color:#fff;padding:15px;
                 border-radius:10px;text-decoration:none;font-size:16px;
                 font-weight:bold;margin-bottom:12px">
-        📍 Google Maps – pozíció megnyitása
-      </a>""" if gmaps_url else ""
+        🔴 Élő követés – Flightradar24
+      </a>"""
 
-    targy = f"{emoji} Mentőhelikopter {tipus_hu} – {cs} | {ido}"
+    if play_url:
+        gombok += f"""
+      <a href="{play_url}"
+         style="display:block;background:#cc4400;color:#fff;padding:14px;
+                border-radius:10px;text-decoration:none;font-size:15px;
+                font-weight:bold;margin-bottom:12px">
+        ▶️ Visszajátszás – Flightradar24
+      </a>"""
+
+    gombok += f"""
+      <a href="{fr24_url}"
+         style="display:block;background:#888;color:#fff;padding:13px;
+                border-radius:10px;text-decoration:none;font-size:14px;
+                font-weight:bold">
+        📋 Flightradar24 adatlap – {reg_upper}
+      </a>"""
+
+    targy = f"{emoji} Mentőhelikopter {tipus_hu} – {callsign} | {ido}"
 
     html = f"""<!DOCTYPE html>
 <html lang="hu"><head><meta charset="UTF-8"></head>
 <body style="font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:20px">
   <div style="max-width:480px;margin:0 auto">
 
-    <div style="background:{szin};border-radius:12px 12px 0 0;padding:24px;text-align:center;color:#fff">
+    <div style="background:{szin};border-radius:12px 12px 0 0;padding:24px;
+                text-align:center;color:#fff">
       <div style="font-size:44px;margin-bottom:8px">{emoji}</div>
       <div style="font-size:22px;font-weight:bold">Mentőhelikopter {tipus_hu}</div>
       <div style="font-size:13px;opacity:.75;margin-top:6px">{ido}</div>
@@ -340,26 +283,22 @@ def email_kuldes(esemeny):
 
     <div style="background:#fff;padding:24px;text-align:center;
                 border-left:1px solid #ddd;border-right:1px solid #ddd">
-      <div style="font-size:36px;font-weight:bold;color:#2c3e50;letter-spacing:1px">{cs}</div>
-      <div style="font-size:16px;color:#888;margin-top:4px;margin-bottom:24px">
-        {reg} &nbsp;|&nbsp; {icao24.upper()}
+      <div style="font-size:36px;font-weight:bold;color:#2c3e50;
+                  letter-spacing:1px">{callsign}</div>
+      <div style="font-size:16px;color:#888;margin-top:4px;margin-bottom:8px">
+        {reg_upper}
       </div>
-
-      {gmaps_btn}
-
-      <a href="{fr24_url}"
-         style="display:block;background:#ff6600;color:#fff;padding:15px;
-                border-radius:10px;text-decoration:none;font-size:16px;
-                font-weight:bold">
-        ✈️ Flightradar24 – élő követés
-      </a>
+      <div style="font-size:14px;color:#555;margin-bottom:24px;
+                  background:#f8f8f8;padding:10px;border-radius:8px">
+        {info}
+      </div>
+      {gombok}
     </div>
 
     <div style="background:#ecf0f1;border-radius:0 0 12px 12px;padding:12px;
                 text-align:center;font-size:11px;color:#95a5a6">
       Automatikus értesítő – Baleset-info.hu
     </div>
-
   </div>
 </body></html>"""
 
@@ -375,37 +314,64 @@ def email_kuldes(esemeny):
     print(f"📧 E-mail elküldve: {targy}")
 
 
+# ════════════════════════════════════════════
+#  ⚠️  HIBAJELENTŐ E-MAIL
+# ════════════════════════════════════════════
+def hiba_email(hiba_szoveg):
+    try:
+        ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
+        targy = f"⚠️ Mentőhelikopter Monitor HIBA | {ido}"
+        szoveg = f"A Mentőhelikopter Monitor script hibára futott.\n\nIdőpont: {ido}\n\n{hiba_szoveg}"
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = targy
+        msg["From"]    = f"⚠️ Monitor <{EMAIL_KULDO}>"
+        msg["To"]      = EMAIL_CIMZETT
+        msg.attach(MIMEText(szoveg, "plain", "utf-8"))
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    except Exception as ex:
+        print(f"❌ Hibaértesítő küldése sikertelen: {ex}")
+
+
+# ════════════════════════════════════════════
+#  🚀  FŐPROGRAM
+# ════════════════════════════════════════════
 def main():
     print(f"\n{'='*50}")
     print(f"🚁 Mentőhelikopter Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*50}")
 
-    gepek_raw = lekerdez()
-    if gepek_raw is None:
-        print("❌ API nem elérhető.")
-        return
+    regi_allapot  = betolt(ALLAPOT_FAJL)
+    esemeny_naplo = betolt(ESEMENY_NAPLO)
+    uj_adatok     = {}
 
-    uj_allapot = {}
-    for a in gepek_raw:
-        if mento_e(a):
-            gep = feldolgoz(a)
-            uj_allapot[gep["icao24"]] = gep
+    for reg in MENTO_GEPEK:
+        print(f"\n🔍 Lekérdezés: {reg}")
+        uj_adatok[reg] = lekerdez_fr24(reg)
 
-    print(f"🚁 MEDIC hívójelű gépek: {len(uj_allapot)}")
-    for g in uj_allapot.values():
-        print(f"  → {g['callsign']} | {g['icao24'].upper()} | {g['reg']} | {'FÖLDÖN' if g['on_ground'] else 'LEVEGŐBEN'}")
+    esemenyek = osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo)
 
-    regi_allapot = betolt_allapot()
-    esemenyek    = osszehasonlit(regi_allapot, uj_allapot)
-
-    print(f"⚡ Változások: {len(esemenyek)}")
+    print(f"\n⚡ Változások: {len(esemenyek)}")
     for e in esemenyek:
-        print(f"  → {e['tipus']}: {e['gep']['callsign'] or e['gep']['icao24']}")
         email_kuldes(e)
 
-    ment_allapot(uj_allapot)
+    # Állapot frissítése
+    for reg, adat in uj_adatok.items():
+        if adat is not None:
+            regi_allapot[reg] = adat
+
+    ment(ALLAPOT_FAJL, regi_allapot)
+    ment(ESEMENY_NAPLO, esemeny_naplo)
     print("💾 Állapot mentve. ✅ Kész.\n")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as ex:
+        import traceback
+        hiba_reszletek = traceback.format_exc()
+        print(f"❌ VÁRATLAN HIBA:\n{hiba_reszletek}")
+        hiba_email(hiba_reszletek)
+        raise
