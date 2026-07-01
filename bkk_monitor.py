@@ -122,17 +122,17 @@ def kizaras_e(szoveg):
 
 def figyelt_vonal_e(cim, reszlet=""):
     """
-    Ellenőrzi hogy az esemény cím VAGY részletes szöveg tartalmaz-e figyelt vonalszámot.
-    Kezeli az összefűzött vonalszámokat is (pl. '2B5151A autóbuszos pótlás').
+    Csak pontosan a FIGYELT_VONALAK listában szereplő vonalszámra küld értesítést.
+    '10' NEM egyezik '105'-tel, '210'-zel, '10-es'-sel sem.
     """
     import re
-    teljes_szoveg = (cim + " " + reszlet).upper()
-
-    # Kivonjuk az összes vonalszám-szerű szót (pl. 2B, 51A, M3, H7, 161E)
-    vonalak = re.findall(r'\b([A-Z]?\d+[A-Z]*)\b', teljes_szoveg)
-
-    figyelt_upper = [v.upper() for v in FIGYELT_VONALAK]
-    return any(v in figyelt_upper for v in vonalak)
+    teljes_szoveg = " " + (cim + " " + reszlet).upper() + " "
+    for vonal in FIGYELT_VONALAK:
+        # Csak szóköz, vessző, pont, kötőjel, zárójel határolhatja
+        pattern = r'(?<=[\s,.(/-])' + re.escape(vonal.upper()) + r'(?=[\s,.(/-])'
+        if re.search(pattern, teljes_szoveg):
+            return True
+    return False
 
 
 # ════════════════════════════════════════════
