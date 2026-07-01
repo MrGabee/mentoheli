@@ -1,20 +1,20 @@
 {
   "4712a2": {
     "icao24": "4712a2",
-    "callsign": "",
+    "callsign": "MEDIC2",
     "reg": "HA-HBM",
     "tipus": "EC35",
     "lat": null,
     "lon": null,
-    "baro_alt_m": 328,
+    "baro_alt_m": 617,
     "geo_alt_m": null,
     "on_ground": false,
-    "velocity_kmh": null,
-    "heading": null,
+    "velocity_kmh": 189,
+    "heading": 351.39,
     "vert_rate_ms": null,
-    "squawk": null,
+    "squawk": "7004",
     "category": "",
-    "timestamp": 1782901670.5647922
+    "timestamp": 1782901777.1519349
   },
   "4712a3": {
     "icao24": "4712a3",
@@ -23,7 +23,7 @@
     "tipus": "EC35",
     "lat": null,
     "lon": null,
-    "baro_alt_m": 770,
+    "baro_alt_m": 792,
     "geo_alt_m": null,
     "on_ground": false,
     "velocity_kmh": null,
@@ -31,23 +31,6 @@
     "vert_rate_ms": null,
     "squawk": "7004",
     "category": "",
-    "timestamp": 1782901670.5648017
-  },
-  "484218": {
-    "icao24": "484218",
-    "callsign": "MEDIC1",
-    "reg": "",
-    "tipus": "",
-    "lat": 52.336338,
-    "lon": 4.777927,
-    "baro_alt_m": 0,
-    "geo_alt_m": null,
-    "on_ground": true,
-    "velocity_kmh": 13,
-    "heading": 95.62,
-    "vert_rate_ms": null,
-    "squawk": null,
-    "category": "C1",
-    "timestamp": 1782901670.5648086
+    "timestamp": 1782901777.1519446
   }
 }
