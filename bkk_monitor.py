@@ -120,13 +120,19 @@ def kizaras_e(szoveg):
     s = szoveg.lower()
     return any(k in s for k in KIZARO_KULCSSZAVAK)
 
-def figyelt_vonal_e(cim):
+def figyelt_vonal_e(cim, reszlet=""):
     """
-    Ellenőrzi hogy az esemény címe figyelt vonalszámmal kezdődik-e
-    (pl. '51A autóbuszos pótlás...', '161E terelve közlekedik...').
+    Ellenőrzi hogy az esemény cím VAGY részletes szöveg tartalmaz-e figyelt vonalszámot.
+    Kezeli az összefűzött vonalszámokat is (pl. '2B5151A autóbuszos pótlás').
     """
-    elso_szo = cim.strip().split(" ")[0].upper()
-    return elso_szo in [v.upper() for v in FIGYELT_VONALAK]
+    import re
+    teljes_szoveg = (cim + " " + reszlet).upper()
+
+    # Kivonjuk az összes vonalszám-szerű szót (pl. 2B, 51A, M3, H7, 161E)
+    vonalak = re.findall(r'\b([A-Z]?\d+[A-Z]*)\b', teljes_szoveg)
+
+    figyelt_upper = [v.upper() for v in FIGYELT_VONALAK]
+    return any(v in figyelt_upper for v in vonalak)
 
 
 # ════════════════════════════════════════════
@@ -389,7 +395,7 @@ def main():
 
         # Plusz: dél-pesti kerületeket érintő vonalak külön címre is
         if EMAIL_CIMZETT_KERULET:
-            kerulet_esetek = [e for e in uj if figyelt_vonal_e(e.get("cim", ""))]
+            kerulet_esetek = [e for e in uj if figyelt_vonal_e(e.get("cim", ""), e.get("reszlet", ""))]
             if kerulet_esetek:
                 print(f"🚨 Ebből figyelt vonal: {len(kerulet_esetek)} → külön e-mail")
                 email_kuldes(kerulet_esetek, cimzett=EMAIL_CIMZETT_KERULET)
