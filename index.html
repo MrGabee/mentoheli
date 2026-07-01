@@ -213,12 +213,12 @@
     document.getElementById("lat").textContent = parseFloat(lat).toFixed(6);
     document.getElementById("lon").textContent = parseFloat(lon).toFixed(6);
 
-    // Google Maps iframe
+    // adsb.fi élő térkép iframe
     const mapDiv = document.getElementById("map-container");
     mapDiv.innerHTML = `
       <div class="map-frame">
         <iframe
-          src="https://maps.google.com/maps?q=${lat},${lon}&z=13&output=embed"
+          src="https://adsb.fi/embed/?icao=${icao}&zoom=10"
           allowfullscreen loading="lazy">
         </iframe>
       </div>`;
@@ -230,8 +230,15 @@
   } else {
     document.getElementById("lat").textContent = "—";
     document.getElementById("lon").textContent = "—";
-    document.getElementById("map-container").innerHTML =
-      '<div class="no-coord">📡 Koordináta nem érhető el – nyisd meg a Flightradar24-et az élő követéshez</div>';
+    // Koordináta nélkül is mutatjuk az adsb.fi térképet ICAO alapján
+    const mapDiv = document.getElementById("map-container");
+    mapDiv.innerHTML = `
+      <div class="map-frame">
+        <iframe
+          src="https://adsb.fi/embed/?icao=${icao}&zoom=8"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>`;
     document.getElementById("btn-gmaps").style.display = "none";
     document.getElementById("btn-osm").style.display   = "none";
   }
