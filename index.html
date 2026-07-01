@@ -3,254 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚁 Mentőhelikopter – Baleset-info.hu</title>
+  <title>Mentőhelikopter – Baleset-info.hu</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Arial, sans-serif; background: #1a1a2e; color: #fff; min-height: 100vh; }
-
-    .header { padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
-    .header h1 { font-size: 20px; }
-    .header small { font-size: 13px; opacity: 0.7; }
-
-    .felszallas { background: #c0392b; }
-    .leszallas  { background: #2980b9; }
-
-    .badge-tipus {
-      display: inline-block;
-      padding: 6px 18px;
-      border-radius: 20px;
-      font-size: 15px;
-      font-weight: bold;
-      margin: 0 20px 16px;
-    }
-
-    .info-box {
-      background: #16213e;
-      border-radius: 12px;
-      margin: 0 16px 16px;
-      padding: 16px;
-    }
-    .info-box h2 {
-      font-size: 14px;
-      color: #aaa;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .info-item { }
-    .info-item .label { font-size: 11px; color: #888; text-transform: uppercase; }
-    .info-item .value { font-size: 18px; font-weight: bold; color: #fff; margin-top: 2px; }
-    .info-item .value.small { font-size: 14px; }
-
-    .btn-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 0 16px 16px;
-    }
-    .btn {
-      display: block;
-      padding: 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      text-align: center;
-      font-weight: bold;
-      font-size: 15px;
-      color: #fff;
-    }
+    .header-felszallas { background: #c0392b; }
+    .header-leszallas  { background: #2980b9; }
+    .header { padding: 20px; text-align: center; }
+    .header .emoji { font-size: 42px; margin-bottom: 6px; }
+    .header h1 { font-size: 22px; font-weight: bold; margin-bottom: 4px; }
+    .header small { font-size: 13px; opacity: .75; }
+    .body { padding: 14px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .card { background: #16213e; border-radius: 10px; padding: 12px; }
+    .card .lbl { font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 4px; }
+    .card .val { font-size: 20px; font-weight: bold; }
+    .card .val.sm { font-size: 15px; }
+    #map { width: 100%; height: 260px; border-radius: 10px; margin-bottom: 14px; }
+    .no-coord { background: #16213e; border-radius: 10px; padding: 20px; text-align: center; color: #666; font-size: 13px; margin-bottom: 14px; }
+    .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .btn { display: block; padding: 13px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; font-size: 14px; color: #fff; }
     .btn-fr24   { background: #ff6600; }
     .btn-gmaps  { background: #4285f4; }
-    .btn-adsbfi { background: #e67e22; }
-    .btn-osm    { background: #7cb342; }
-
-    .map-frame {
-      margin: 0 16px 16px;
-      border-radius: 12px;
-      overflow: hidden;
-      height: 300px;
-    }
-    .map-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 16px;
-      font-size: 11px;
-      color: #555;
-    }
-
-    .no-coord {
-      background: #2c2c2c;
-      border-radius: 8px;
-      padding: 12px;
-      text-align: center;
-      color: #888;
-      font-size: 13px;
-      margin: 0 16px 16px;
-    }
+    .status { background: #16213e; border-radius: 10px; padding: 12px; text-align: center; font-size: 12px; color: #666; margin-bottom: 14px; }
+    .status span { color: #4caf50; }
+    footer { text-align: center; padding: 14px; font-size: 11px; color: #444; }
   </style>
 </head>
 <body>
 
-<div id="app">
-  <div class="header felszallas" id="header">
-    <div>
-      <h1 id="title">🚁 Mentőhelikopter</h1>
-      <small id="subtitle">Betöltés...</small>
+<div class="header" id="header">
+  <div class="emoji" id="emoji">🚁</div>
+  <h1 id="title">Mentőhelikopter</h1>
+  <small id="subtitle">Betöltés...</small>
+</div>
+
+<div class="body">
+  <div class="grid2">
+    <div class="card">
+      <div class="lbl">Hívójel</div>
+      <div class="val" id="cs">—</div>
     </div>
-  </div>
-
-  <span class="badge-tipus" id="badge">...</span>
-
-  <div class="info-box">
-    <h2>Azonosítás</h2>
-    <div class="info-grid">
-      <div class="info-item">
-        <div class="label">Hívójel</div>
-        <div class="value" id="cs">—</div>
-      </div>
-      <div class="info-item">
-        <div class="label">Lajstromjel</div>
-        <div class="value" id="reg">—</div>
-      </div>
-      <div class="info-item">
-        <div class="label">ICAO24</div>
-        <div class="value small" id="icao">—</div>
-      </div>
-      <div class="info-item">
-        <div class="label">Időpont</div>
-        <div class="value small" id="ido">—</div>
-      </div>
+    <div class="card">
+      <div class="lbl">Lajstromjel</div>
+      <div class="val" id="reg">—</div>
     </div>
-  </div>
-
-  <div class="info-box" id="pos-box">
-    <h2>Pozíció</h2>
-    <div class="info-grid">
-      <div class="info-item">
-        <div class="label">Szélesség</div>
-        <div class="value small" id="lat">—</div>
-      </div>
-      <div class="info-item">
-        <div class="label">Hosszúság</div>
-        <div class="value small" id="lon">—</div>
-      </div>
-      <div class="info-item">
-        <div class="label">Magasság</div>
-        <div class="value small" id="alt">—</div>
-      </div>
-      <div class="info-item">
-        <div class="label">Sebesség</div>
-        <div class="value small" id="vel">—</div>
-      </div>
+    <div class="card">
+      <div class="lbl">Magasság</div>
+      <div class="val sm" id="alt">—</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Sebesség</div>
+      <div class="val sm" id="vel">—</div>
     </div>
   </div>
 
   <div id="map-container"></div>
 
-  <div class="btn-grid" id="btn-grid">
-    <a href="#" class="btn btn-fr24" id="btn-fr24">✈️ Flightradar24</a>
-    <a href="#" class="btn btn-gmaps" id="btn-gmaps">📍 Google Maps</a>
-    <a href="#" class="btn btn-adsbfi" id="btn-adsbfi">🟠 adsb.fi</a>
-    <a href="#" class="btn btn-osm" id="btn-osm">🗺️ OpenStreetMap</a>
+  <div class="btns">
+    <a class="btn btn-fr24" id="btn-fr24" href="#" target="_blank">✈️ Flightradar24</a>
+    <a class="btn btn-gmaps" id="btn-gmaps" href="#" target="_blank">📍 Google Maps</a>
   </div>
 
-  <div class="footer">
-    Automatikus értesítő – Baleset-info.hu | adsb.fi adatai alapján
-  </div>
+  <div class="status" id="status">Pozíció betöltése...</div>
 </div>
 
+<footer>Automatikus értesítő – Baleset-info.hu | adsb.fi adatai alapján</footer>
+
 <script>
-  function getParam(name) {
-    const url = new URLSearchParams(window.location.search);
-    return url.get(name) || "";
+  function p(name) {
+    return new URLSearchParams(window.location.search).get(name) || "";
   }
 
-  const tipus  = getParam("tipus");   // FELSZALLAS vagy LESZALLAS
-  const cs     = getParam("cs");
-  const reg    = getParam("reg");
-  const icao   = getParam("icao");
-  const lat    = getParam("lat");
-  const lon    = getParam("lon");
-  const alt    = getParam("alt");
-  const vel    = getParam("vel");
-  const ido    = getParam("ido");
+  const tipus = p("tipus");
+  const cs    = p("cs");
+  const reg   = p("reg");
+  const icao  = p("icao").toLowerCase();
+  const lat0  = parseFloat(p("lat")) || null;
+  const lon0  = parseFloat(p("lon")) || null;
+  const alt0  = p("alt");
+  const vel0  = p("vel");
+  const ido   = p("ido").replace(/\+/g, " ");
 
-  // Fejléc szín
-  const header = document.getElementById("header");
-  const badge  = document.getElementById("badge");
-  if (tipus === "FELSZALLAS") {
-    header.classList.add("felszallas");
-    badge.className  = "badge-tipus felszallas";
-    badge.textContent = "🚁⬆️ FELSZÁLLÁS";
-    document.getElementById("title").textContent = "🚁 Mentőhelikopter FELSZÁLLÁS";
-  } else {
-    header.classList.add("leszallas");
-    badge.className  = "badge-tipus leszallas";
-    badge.textContent = "🚁⬇️ LESZÁLLÁS";
-    document.getElementById("title").textContent = "🚁 Mentőhelikopter LESZÁLLÁS";
-  }
-
+  // fejléc
+  const isFel = tipus === "FELSZALLAS";
+  document.getElementById("header").className = "header " + (isFel ? "header-felszallas" : "header-leszallas");
+  document.getElementById("emoji").textContent  = isFel ? "🚁⬆️" : "🚁⬇️";
+  document.getElementById("title").textContent  = "Mentőhelikopter " + (isFel ? "FELSZÁLLÁS" : "LESZÁLLÁS");
   document.getElementById("subtitle").textContent = ido + " | Magyar Légimentő";
-  document.getElementById("cs").textContent   = cs   || "—";
-  document.getElementById("reg").textContent  = reg  || "—";
-  document.getElementById("icao").textContent = icao || "—";
-  document.getElementById("ido").textContent  = ido  || "—";
-  document.getElementById("alt").textContent  = alt  ? alt + " m" : "—";
-  document.getElementById("vel").textContent  = vel  ? vel + " km/h" : "—";
+  document.title = cs + " " + (isFel ? "felszáll" : "leszáll") + " – Baleset-info.hu";
 
-  // Pozíció
-  if (lat && lon) {
-    document.getElementById("lat").textContent = parseFloat(lat).toFixed(6);
-    document.getElementById("lon").textContent = parseFloat(lon).toFixed(6);
+  document.getElementById("cs").textContent  = cs  || "—";
+  document.getElementById("reg").textContent = reg || "—";
+  document.getElementById("alt").textContent = alt0 ? alt0 + " m" : "—";
+  document.getElementById("vel").textContent = vel0 ? vel0 + " km/h" : "—";
 
-    // ADS-B Exchange élő térkép - a gépre fókuszál
-    const mapDiv = document.getElementById("map-container");
-    mapDiv.innerHTML = `
-      <div class="map-frame">
-        <iframe
-          src="https://globe.adsbexchange.com/?icao=${icao}&hideSideBar&hideButtons&zoom=10"
-          allowfullscreen loading="lazy">
-        </iframe>
-      </div>`;
+  document.getElementById("btn-fr24").href = "https://www.flightradar24.com/" + cs;
+
+  // térkép és élő frissítés
+  let map = null;
+  let marker = null;
+  let initLat = lat0;
+  let initLon = lon0;
+
+  function initMap(lat, lon) {
+    const container = document.getElementById("map-container");
+    container.innerHTML = '<div id="map"></div>';
+    map = L.map("map").setView([lat, lon], 11);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap"
+    }).addTo(map);
+
+    const icon = L.divIcon({
+      html: '<div style="font-size:28px;transform:translate(-14px,-14px)">🚁</div>',
+      className: ""
+    });
+    marker = L.marker([lat, lon], { icon: icon }).addTo(map);
+    marker.bindPopup("<b>" + cs + "</b><br>" + reg).openPopup();
 
     document.getElementById("btn-gmaps").href =
-      `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
-    document.getElementById("btn-osm").href =
-      `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=13/${lat}/${lon}`;
-  } else {
-    document.getElementById("lat").textContent = "—";
-    document.getElementById("lon").textContent = "—";
-    // Koordináta nélkül is mutatjuk az adsb.fi térképet ICAO alapján
-    const mapDiv = document.getElementById("map-container");
-    mapDiv.innerHTML = `
-      <div class="map-frame">
-        <iframe
-          src="https://globe.adsbexchange.com/?icao=${icao}&hideSideBar&hideButtons&zoom=8"
-          allowfullscreen loading="lazy">
-        </iframe>
-      </div>`;
-    document.getElementById("btn-gmaps").style.display = "none";
-    document.getElementById("btn-osm").style.display   = "none";
+      "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lon;
   }
 
-  // Flightradar24 és adsb.fi linkek
-  document.getElementById("btn-fr24").href =
-    `https://www.flightradar24.com/${cs}`;
-  document.getElementById("btn-adsbfi").href =
-    `https://adsb.fi/#icao=${icao}`;
+  function frissitTerkep(lat, lon) {
+    if (!map) {
+      initMap(lat, lon);
+    } else {
+      marker.setLatLng([lat, lon]);
+      map.panTo([lat, lon]);
+      document.getElementById("btn-gmaps").href =
+        "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lon;
+    }
+  }
 
-  // Oldal cím
-  document.title = `🚁 ${cs} ${tipus === "FELSZALLAS" ? "felszáll" : "leszáll"} – Baleset-info.hu`;
+  function lekerdezEloPozicio() {
+    if (!icao) return;
+    const urls = [
+      "https://api.airplanes.live/v2/icao/" + icao,
+      "https://opendata.adsb.fi/api/v2/icao/" + icao,
+      "https://api.adsb.lol/v2/icao/" + icao,
+    ];
+    let tried = 0;
+    function tryNext() {
+      if (tried >= urls.length) {
+        document.getElementById("status").innerHTML =
+          "Élő pozíció nem elérhető – a gép lehet, hogy már földön van";
+        return;
+      }
+      fetch(urls[tried++])
+        .then(r => r.json())
+        .then(data => {
+          const ac = (data.ac || [])[0];
+          if (ac && ac.lat != null && ac.lon != null) {
+            const lat = ac.lat;
+            const lon = ac.lon;
+            const alt = ac.alt_baro && ac.alt_baro !== "ground"
+              ? Math.round(ac.alt_baro * 0.3048) + " m" : "földön";
+            const vel = ac.gs ? Math.round(ac.gs * 1.852) + " km/h" : "—";
+            frissitTerkep(lat, lon);
+            document.getElementById("alt").textContent = alt;
+            document.getElementById("vel").textContent = vel;
+            const now = new Date().toLocaleTimeString("hu-HU");
+            document.getElementById("status").innerHTML =
+              'Élő pozíció – utoljára frissítve: <span>' + now + '</span>';
+          } else {
+            tryNext();
+          }
+        })
+        .catch(() => tryNext());
+    }
+    tryNext();
+  }
+
+  // induláskor: ha van kezdő koordináta, azonnal mutatjuk
+  if (initLat && initLon) {
+    initMap(initLat, initLon);
+    document.getElementById("btn-gmaps").href =
+      "https://www.google.com/maps/search/?api=1&query=" + initLat + "," + initLon;
+  } else {
+    document.getElementById("map-container").innerHTML =
+      '<div class="no-coord">📡 Koordináta betöltése az API-ból...</div>';
+    document.getElementById("btn-gmaps").style.display = "none";
+  }
+
+  // élő pozíció lekérése és 30 másodpercenkénti frissítés
+  lekerdezEloPozicio();
+  setInterval(lekerdezEloPozicio, 30000);
 </script>
 </body>
 </html>
