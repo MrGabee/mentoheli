@@ -67,7 +67,7 @@ BALESET_KULCSSZAVAK = [
     # Mentő
     "mentő", "mento",
     # Hatósági zárás
-    "hatósági", "hatosagi",
+    "hatósági", "hatosagi", "karbantartás", "felújítás", "építkezés",
     # Terelés
     "terelve", "terelt", "terelés",
 ]
