@@ -67,7 +67,7 @@ BALESET_KULCSSZAVAK = [
     # Mentő
     "mentő", "mento",
     # Hatósági zárás
-    "hatósági", "hatosagi", "karbantartás", "felújítás", "építkezés",
+    "hatósági", "hatosagi",
     # Terelés
     "terelve", "terelt", "terelés",
 ]
@@ -79,7 +79,7 @@ KIZARO_KULCSSZAVAK = [
     "szabálytalan parkolás", "szabálytalan parkol", "szabálytalanul parkol",
     "parkolási", "parkolás miatt",
     "akadályozó jármű", "akadályozó autó",
-    "közműjavítás", "közmű",
+    "közműjavítás", "közmű", "karbantartás", "felújítás", "építkezés",
 ]
 
 HEADERS = {
