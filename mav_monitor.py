@@ -68,6 +68,8 @@ JOVO_KIZARO = [
     "hajnalban", "reggeltől", "este", "éjszakától",
     " hétfőn", " kedden", " szerdán", " csütörtökön", " pénteken",
     " szombaton", " vasárnap", "holnap ",
+    "rendezvény", "rendezvény miatt", "esemény miatt",
+    "lezárják", "lezárásra kerül",
 ]
 
 # Minden figyelt kulcsszó együtt
