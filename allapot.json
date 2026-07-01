@@ -6,14 +6,31 @@
     "tipus": "EC35",
     "lat": null,
     "lon": null,
-    "baro_alt_m": 320,
+    "baro_alt_m": 130,
     "geo_alt_m": null,
     "on_ground": false,
-    "velocity_kmh": 207,
-    "heading": 169.28,
+    "velocity_kmh": null,
+    "heading": null,
     "vert_rate_ms": null,
-    "squawk": "7004",
+    "squawk": null,
     "category": "",
-    "timestamp": 1782905548.13355
+    "timestamp": 1782905640.0562763
+  },
+  "484218": {
+    "icao24": "484218",
+    "callsign": "MEDIC1",
+    "reg": "",
+    "tipus": "",
+    "lat": 52.316288,
+    "lon": 4.743938,
+    "baro_alt_m": 0,
+    "geo_alt_m": null,
+    "on_ground": true,
+    "velocity_kmh": 56,
+    "heading": 182.81,
+    "vert_rate_ms": null,
+    "squawk": null,
+    "category": "C1",
+    "timestamp": 1782905640.0562897
   }
 }
