@@ -5,6 +5,10 @@ on:
   repository_dispatch:
     types: [mentoheli_trigger]
 
+concurrency:
+  group: mentoheli-monitor
+  cancel-in-progress: false
+
 jobs:
   figyel:
     runs-on: ubuntu-latest
@@ -38,13 +42,38 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git stash
-          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
-          git stash pop || true
-          [ -f allapot.json ] && git add allapot.json || echo "allapot.json nem létezik"
-          [ -f esemeny_naplo.json ] && git add esemeny_naplo.json || echo "esemeny_naplo.json nem létezik"
-          git diff --staged --quiet || git commit -m "állapot [skip ci]"
-          git push origin main || true
+
+          cp allapot.json /tmp/allapot_sajat.json 2>/dev/null || true
+          cp esemeny_naplo.json /tmp/esemeny_naplo_sajat.json 2>/dev/null || true
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/allapot_sajat.json allapot.json 2>/dev/null || true
+            cp /tmp/esemeny_naplo_sajat.json esemeny_naplo.json 2>/dev/null || true
+            [ -f allapot.json ] && git add allapot.json || true
+            [ -f esemeny_naplo.json ] && git add esemeny_naplo.json || true
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "állapot [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
