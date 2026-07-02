@@ -25,7 +25,7 @@ def magyar_ido():
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
+EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_BKK"]
 EMAIL_CIMZETT_KERULET = os.environ.get("EMAIL_CIMZETT_KERULET", "")
 
 # Figyelt vonalak – dél-pesti kerületek (IX., X., XIX., XVIII., XX., XXI., XXIII.)
