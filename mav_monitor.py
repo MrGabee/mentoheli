@@ -42,7 +42,7 @@ BALESET_KULCSSZAVAK = [
 BALESET_KIZARO = [
     "baleset-megelőzés", "balesetmegelőzés", "balesetmentes",
     "baleset-megelőzési", "baleset nélkül", "balesetmentesen",
-    "kerékpáros biztonság", "közlekedésbiztonsági", "meghibásodott",
+    "kerékpáros biztonság", "közlekedésbiztonsági", "meghibásodott", "műszaki ok",
 ]
 
 # meghibásodott NINCS itt – csak baleset/forgalmi ok miatti pótlóbusz kell
