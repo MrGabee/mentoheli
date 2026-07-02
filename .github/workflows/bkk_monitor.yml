@@ -31,7 +31,6 @@ jobs:
           EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
-          EMAIL_CIMZETT_KERULET: ${{ secrets.EMAIL_CIMZETT_KERULET }}
         run: python bkk_monitor.py
 
       - name: 💾 Állapot commitolása
