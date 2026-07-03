@@ -25,7 +25,7 @@ def magyar_ido():
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_BKK"]
+EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 EMAIL_CIMZETT_KERULET = os.environ.get("EMAIL_CIMZETT_KERULET", "")
 
 # Figyelt vonalak – dél-pesti kerületek (IX., X., XIX., XVIII., XX., XXI., XXIII.)
@@ -79,7 +79,7 @@ KIZARO_KULCSSZAVAK = [
     "szabálytalan parkolás", "szabálytalan parkol", "szabálytalanul parkol",
     "parkolási", "parkolás miatt",
     "akadályozó jármű", "akadályozó autó",
-    "közműjavítás", "közmű", "karbantartás", "felújítás", "építkezés", "karbantartás",
+    "közműjavítás", "közmű",
 ]
 
 HEADERS = {
@@ -376,18 +376,27 @@ def main():
 
     for e in esemenyek:
         rid = hash_id(e["id"])
+        uj_cim = e.get("cim", "")[:100]
+
         if rid not in regi:
-            # Kizáró szavak ellenőrzése
+            # Teljesen új esemény
             szoveg = e.get("cim", "") + " " + e.get("reszlet", "")
             if kizaras_e(szoveg):
                 print(f"  ⏭️ Kizárva: {e['cim'][:60]}")
-                regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
+                regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat()}
                 continue
             uj.append(e)
-            regi[rid] = {
-                "cim": e["cim"][:100],
-                "talalt": magyar_ido().isoformat()
-            }
+            regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat()}
+        else:
+            # Ismert esemény – de megváltozott a cím? (pl. vége időpont jelent meg)
+            regi_cim = regi[rid].get("cim", "")
+            if uj_cim != regi_cim:
+                szoveg = e.get("cim", "") + " " + e.get("reszlet", "")
+                if not kizaras_e(szoveg):
+                    print(f"  🔄 Cím változott: {regi_cim[:50]} → {uj_cim[:50]}")
+                    uj.append(e)
+                regi[rid]["cim"] = uj_cim
+                regi[rid]["frissitve"] = magyar_ido().isoformat()
 
     print(f"\n🚨 Új balesetes esemény: {len(uj)}")
     if uj:
