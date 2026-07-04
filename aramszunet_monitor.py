@@ -156,10 +156,24 @@ def ido_format(mezo):
         return datum or ido or str(mezo)
     if isinstance(mezo, (int, float)):
         try:
-            return datetime.fromtimestamp(mezo / 1000 if mezo > 1e10 else mezo).strftime("%Y.%m.%d %H:%M")
+            dt = datetime.fromtimestamp(mezo / 1000 if mezo > 1e10 else mezo, tz=timezone.utc)
+            dt = dt.astimezone(MAGYAR_TZ)
+            return dt.strftime("%Y.%m.%d %H:%M")
         except Exception:
             return str(mezo)
-    return str(mezo).replace("T", " ").replace("Z", "")[:19]
+    # String formátum – pl. "2026-07-04 15:41:21" vagy "2026-07-04T15:41:21Z"
+    s = str(mezo).replace("T", " ").replace("Z", "").strip()[:19]
+    try:
+        dt = datetime.strptime(s, "%Y-%m-%d %H:%M:%S")
+        dt = dt.replace(tzinfo=timezone.utc).astimezone(MAGYAR_TZ)
+        return dt.strftime("%Y.%m.%d %H:%M")
+    except Exception:
+        try:
+            dt = datetime.strptime(s, "%Y-%m-%d %H:%M")
+            dt = dt.replace(tzinfo=timezone.utc).astimezone(MAGYAR_TZ)
+            return dt.strftime("%Y.%m.%d %H:%M")
+        except Exception:
+            return s
 
 
 # ════════════════════════════════════════════
@@ -419,14 +433,16 @@ def main():
     osszes_aktiv = []  # minden jelenleg is aktív csepeli esemény
 
     for e in lekerdez_json(API_TERVEZETT, "TERVEZETT"):
-        rid = hash_id(json.dumps(e["adat"], sort_keys=True))
+        azonosito = str(e["adat"].get("id") or e["adat"].get("internalId") or json.dumps(e["adat"], sort_keys=True))
+        rid = hash_id(azonosito)
         osszes_aktiv.append(e)
         if rid not in regi.get("tervezett", {}):
             uj.append(e)
             regi.setdefault("tervezett", {})[rid] = magyar_ido().isoformat()
 
     for e in lekerdez_json(API_UZEMZAVAR, "UZEMZAVAR"):
-        rid = hash_id(json.dumps(e["adat"], sort_keys=True))
+        azonosito = str(e["adat"].get("id") or e["adat"].get("internalId") or json.dumps(e["adat"], sort_keys=True))
+        rid = hash_id(azonosito)
         osszes_aktiv.append(e)
         if rid not in regi.get("uzemzavar", {}):
             uj.append(e)
