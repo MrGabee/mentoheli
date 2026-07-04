@@ -5,6 +5,10 @@ on:
   repository_dispatch:
     types: [aramszunet_trigger]
 
+concurrency:
+  group: aramszunet-monitor
+  cancel-in-progress: false
+
 jobs:
   figyel:
     runs-on: ubuntu-latest
@@ -28,21 +32,50 @@ jobs:
 
       - name: ⚡ Áramszünet monitor futtatása
         env:
-          EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
-          EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_ARAM: ${{ secrets.EMAIL_CIMZETT_ARAM }}
         run: python aramszunet_monitor.py
 
       - name: 💾 Állapot commitolása
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git stash
-          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
-          git stash pop || true
-          [ -f aramszunet_allapot.json ] && git add aramszunet_allapot.json || echo "fájl nem létezik"
-          git diff --staged --quiet || git commit -m "állapot [skip ci]"
-          git push origin main || true
+
+          if [ ! -f aramszunet_allapot.json ]; then
+            echo "aramszunet_allapot.json nem létezik, nincs mit commitolni."
+            exit 0
+          fi
+
+          cp aramszunet_allapot.json /tmp/aramszunet_allapot_sajat.json
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/aramszunet_allapot_sajat.json aramszunet_allapot.json
+            git add aramszunet_allapot.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "aramszunet állapot [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
