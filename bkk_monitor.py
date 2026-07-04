@@ -376,10 +376,9 @@ def main():
 
     for e in esemenyek:
         rid = hash_id(e["id"])
-        uj_cim = e.get("cim", "")[:100]
+        uj_cim = e.get("cim", "")
 
         if rid not in regi:
-            # Teljesen új esemény
             szoveg = e.get("cim", "") + " " + e.get("reszlet", "")
             if kizaras_e(szoveg):
                 print(f"  ⏭️ Kizárva: {e['cim'][:60]}")
