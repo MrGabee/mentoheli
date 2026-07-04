@@ -13,9 +13,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from shapely.geometry import Point, Polygon
 
-# ─────────────────────────────────────────────
-#  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
-# ─────────────────────────────────────────────
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
 def magyar_ido():
@@ -29,8 +26,6 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
 
-# XXI. kerület (Csepel) pontos határpontjai – OSM alapján
-# Shapely Polygon – (lon, lat) sorrendben!
 CSEPEL_POLYGON = Polygon([
     (19.0178, 47.4025), (19.0188, 47.4090), (19.0200, 47.4150),
     (19.0215, 47.4215), (19.0235, 47.4275), (19.0265, 47.4325),
@@ -55,6 +50,10 @@ HEADERS = {
     "Referer": "https://www.eon.hu/",
 }
 
+NOMINATIM_HEADERS = {
+    "User-Agent": "BalesetinfoAramszunetMonitor/1.0 (baleset-info.hu)"
+}
+
 
 # ════════════════════════════════════════════
 #  💾  ÁLLAPOT
@@ -77,30 +76,44 @@ def hash_id(szoveg):
 
 
 # ════════════════════════════════════════════
-#  📍  SZŰRŐ – city mező VAGY polygon
+#  🗺️  NOMINATIM REVERSE GEOCODING
+# ════════════════════════════════════════════
+def reverse_geocode(lat, lon):
+    """Koordinátából utca nevet kér le Nominatim-tól (ingyenes, OSM alapú)."""
+    try:
+        url = f"https://nominatim.openstreetmap.org/reverse?lat={lat}&lon={lon}&format=json&zoom=17"
+        r = requests.get(url, headers=NOMINATIM_HEADERS, timeout=10)
+        if r.status_code == 200:
+            data = r.json()
+            addr = data.get("address", {})
+            road     = addr.get("road") or addr.get("pedestrian") or addr.get("path") or ""
+            suburb   = addr.get("suburb") or addr.get("neighbourhood") or ""
+            if road:
+                return road
+            elif suburb:
+                return f"({suburb} körzetben)"
+    except Exception as ex:
+        print(f"  ⚠️ Nominatim hiba: {ex}")
+    return None
+
+
+# ════════════════════════════════════════════
+#  📍  SZŰRŐ
 # ════════════════════════════════════════════
 def pont_polygon_ban(lat, lon, polygon):
-    """Shapely alapú pont-in-polygon ellenőrzés."""
     return Point(lon, lat).within(polygon)
 
 def csepel_e(eset):
-    """Csepeli-e az esemény?
-    1. Ha bármely addressRange city mezője 'Budapest XXI.' → igen
-    2. Ha a koordináta a Csepel polygonon belül van → igen
-    """
-    # 1. City mező ellenőrzés az addressRanges-ben
     for ar in eset.get("addressRanges", []):
         if isinstance(ar, dict):
             city = str(ar.get("city", "") or "").strip()
-            if "XXI" in city or "Csepel" in city.lower():
+            if "XXI" in city or "csepel" in city.lower():
                 return True
 
-    # 2. City mező az üzemzavar szintjén
     city = str(eset.get("city", "") or "").strip()
-    if "XXI" in city or "Csepel" in city.lower():
+    if "XXI" in city or "csepel" in city.lower():
         return True
 
-    # 3. Koordináta alapú ellenőrzés (polygon)
     coords = eset.get("coordinates") or {}
     if isinstance(coords, dict):
         lat = coords.get("lat")
@@ -109,7 +122,6 @@ def csepel_e(eset):
             if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                 return True
 
-    # 4. Transformer koordináta
     tc = eset.get("transformerAreaCenterCoordinates") or {}
     if isinstance(tc, dict):
         lat = tc.get("lat")
@@ -118,7 +130,6 @@ def csepel_e(eset):
             if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                 return True
 
-    # 5. addressRanges koordinátái
     for ar in eset.get("addressRanges", []):
         if isinstance(ar, dict):
             c = ar.get("coordinates") or {}
@@ -161,15 +172,12 @@ def lekerdez_json(url, tipus):
         if r.status_code != 200:
             print(f"  ⚠️ HTTP {r.status_code}")
             return []
-
         data = r.json()
         esetek = data.get("outages", []) if isinstance(data, dict) else data
         print(f"  📊 Összes: {len(esetek)}")
-
         csepel = [{"tipus": tipus, "adat": e, "url": url} for e in esetek if csepel_e(e)]
         print(f"  🎯 Csepel: {len(csepel)}")
         return csepel
-
     except Exception as ex:
         print(f"  ❌ {ex}")
         return []
@@ -191,12 +199,23 @@ def kinyert_adatok(eset):
         kezdes_raw = a.get("from") or a.get("startTime")
         veg_raw    = a.get("to")   or a.get("endTime")
 
+    # Koordináta
     coords = a.get("coordinates") or a.get("transformerAreaCenterCoordinates") or {}
     lat = coords.get("lat") if isinstance(coords, dict) else None
     lon = coords.get("lng") or coords.get("lon") if isinstance(coords, dict) else None
     if lat == 0.0: lat = None
     if lon == 0.0: lon = None
 
+    # Ha nincs koordináta a fő mezőben, transformer koordinátát próbáljuk
+    if not lat or not lon:
+        tc = a.get("transformerAreaCenterCoordinates") or {}
+        if isinstance(tc, dict):
+            lat = tc.get("lat") or lat
+            lon = tc.get("lng") or tc.get("lon") or lon
+            if lat == 0.0: lat = None
+            if lon == 0.0: lon = None
+
+    # Utca lista az addressRanges-ből
     utcak_lista = []
     for ar in a.get("addressRanges", []):
         if isinstance(ar, dict):
@@ -212,49 +231,58 @@ def kinyert_adatok(eset):
                     sor += f" {from_n}"
                 utcak_lista.append(sor)
 
-    # Duplikátumok eltávolítása
     utcak_lista = list(dict.fromkeys(utcak_lista))
     utcak = ", ".join(utcak_lista[:4]) if utcak_lista else (a.get("city") or "—")
+
+    # Ha nincs utca (üzemzavar esetén tipikus), Nominatim-tól kérjük le
+    nominatim_utca = None
+    if (not utcak_lista) and lat and lon:
+        nominatim_utca = reverse_geocode(lat, lon)
+        if nominatim_utca:
+            utcak = f"Budapest XXI. {nominatim_utca} (közelében)"
+            print(f"  🗺️ Nominatim: {utcak}")
 
     consumers = a.get("consumers", {})
     fogyaszto = consumers.get("total") if isinstance(consumers, dict) else str(consumers) if consumers else "—"
 
     azonosito = a.get("id") or a.get("internalId") or "—"
-    gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=14" if lat and lon else None
+    gmaps = f"https://www.google.com/maps?q={lat},{lon}&z=15" if lat and lon else None
 
     return {
-        "azonosito": str(azonosito),
-        "kezdes":    ido_format(kezdes_raw),
-        "veg":       ido_format(veg_raw),
-        "utcak":     utcak,
-        "fogyaszto": str(fogyaszto),
-        "gmaps":     gmaps,
-        "tipus":     tipus,
+        "azonosito":      str(azonosito),
+        "kezdes":         ido_format(kezdes_raw),
+        "veg":            ido_format(veg_raw),
+        "utcak":          utcak,
+        "nominatim_utca": nominatim_utca,
+        "fogyaszto":      str(fogyaszto),
+        "gmaps":          gmaps,
+        "tipus":          tipus,
+        "lat":            lat,
+        "lon":            lon,
     }
 
 
 # ════════════════════════════════════════════
 #  📘  FACEBOOK POSZT SZÖVEG
 # ════════════════════════════════════════════
-def facebook_szoveg(esetek, ido):
-    db = len(esetek)
+def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
+    db_uj = len(uj_adatok)
     sorok = [
         f"⚡ Csepel – Áramszünet értesítő",
-        f"🕒 {ido} | {db} esemény",
+        f"🕒 {ido} | {db_uj} új esemény",
         "",
     ]
 
-    tervezett = [e for e in esetek if e["tipus"] == "TERVEZETT"]
-    uzemzavar = [e for e in esetek if e["tipus"] == "UZEMZAVAR"]
+    tervezett = [e for e in uj_adatok if e["tipus"] == "TERVEZETT"]
+    uzemzavar = [e for e in uj_adatok if e["tipus"] == "UZEMZAVAR"]
 
     if tervezett:
         sorok.append("🔌 TERVEZETT ÁRAMSZÜNETEK")
         sorok.append("─────────────────────")
         for f in tervezett:
-            utcak = f['utcak'] or '—'
             sorok.append(f"📅 {f['kezdes'][:10] if f['kezdes'] != '—' else '—'}")
             sorok.append(f"🕐 {f['kezdes'][11:] if len(f['kezdes']) > 10 else f['kezdes']} → {f['veg'][11:] if len(f['veg']) > 10 else f['veg']}")
-            sorok.append(f"📍 {utcak}")
+            sorok.append(f"📍 {f['utcak']}")
             sorok.append(f"👥 Érintett: {f['fogyaszto']} fogyasztó")
             sorok.append("")
 
@@ -262,13 +290,24 @@ def facebook_szoveg(esetek, ido):
         sorok.append("🔴 ÉLŐ ÜZEMZAVAR")
         sorok.append("─────────────────────")
         for f in uzemzavar:
-            sorok.append(f"📍 {f['utcak'] or '—'}")
+            sorok.append(f"📍 {f['utcak']}")
             sorok.append(f"🕐 Kezdete: {f['kezdes']}")
             sorok.append(f"👥 Érintett: {f['fogyaszto']} fogyasztó")
             sorok.append("")
 
+    # Összesítő – az összes jelenleg aktív üzemzavar tömören
+    aktiv_uzemzavar = [e for e in osszes_aktiv_adatok if e["tipus"] == "UZEMZAVAR"]
+    if aktiv_uzemzavar:
+        sorok.append("━━━━━━━━━━━━━━━━━━━━━")
+        sorok.append(f"📋 ÖSSZES AKTÍV ÜZEMZAVAR ({len(aktiv_uzemzavar)} db)")
+        sorok.append("─────────────────────")
+        for f in aktiv_uzemzavar:
+            utca = f["utcak"] or "Budapest XXI."
+            sorok.append(f"• {utca} | {f['kezdes']} | {f['fogyaszto']} fogyasztó")
+        sorok.append("")
+
     sorok.append("ℹ️ Forrás: E.ON nyilvános tájékoztatás")
-    sorok.append("🤖 Automatikus értesítő")
+    sorok.append("🤖 Automatikus értesítő – Baleset-info.hu")
 
     return "\n".join(sorok)
 
@@ -276,16 +315,17 @@ def facebook_szoveg(esetek, ido):
 # ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
-def email_kuldes(uj_esetek):
+def email_kuldes(uj_esetek, osszes_aktiv_esetek):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
     targy = f"⚡ Csepel áramszünet – {db} új esemény | {ido}"
 
-    adatok = [kinyert_adatok(e) for e in uj_esetek]
-    fb_szoveg = facebook_szoveg(adatok, ido)
+    uj_adatok      = [kinyert_adatok(e) for e in uj_esetek]
+    aktiv_adatok   = [kinyert_adatok(e) for e in osszes_aktiv_esetek]
+    fb_szoveg_txt  = facebook_szoveg(uj_adatok, aktiv_adatok, ido)
 
     sorok_html = ""
-    for i, f in enumerate(adatok, 1):
+    for i, f in enumerate(uj_adatok, 1):
         szin  = "#c0392b" if f["tipus"] == "UZEMZAVAR" else "#e67e22"
         badge = "🔴 ÉLŐ ÜZEMZAVAR" if f["tipus"] == "UZEMZAVAR" else "📋 TERVEZETT ÁRAMSZÜNET"
 
@@ -335,7 +375,7 @@ def email_kuldes(uj_esetek):
 
     <div class="fb-box">
       <h3>📘 Facebook poszt – kattints bele, Ctrl+A, Ctrl+C:</h3>
-      <pre>{fb_szoveg}</pre>
+      <pre>{fb_szoveg_txt}</pre>
     </div>
 
     <div style="text-align:center;margin-top:16px">
@@ -376,22 +416,25 @@ def main():
 
     regi = betolt_allapot()
     uj   = []
+    osszes_aktiv = []  # minden jelenleg is aktív csepeli esemény
 
     for e in lekerdez_json(API_TERVEZETT, "TERVEZETT"):
         rid = hash_id(json.dumps(e["adat"], sort_keys=True))
+        osszes_aktiv.append(e)
         if rid not in regi.get("tervezett", {}):
             uj.append(e)
             regi.setdefault("tervezett", {})[rid] = magyar_ido().isoformat()
 
     for e in lekerdez_json(API_UZEMZAVAR, "UZEMZAVAR"):
         rid = hash_id(json.dumps(e["adat"], sort_keys=True))
+        osszes_aktiv.append(e)
         if rid not in regi.get("uzemzavar", {}):
             uj.append(e)
             regi.setdefault("uzemzavar", {})[rid] = magyar_ido().isoformat()
 
-    print(f"\n⚡ Új események: {len(uj)}")
+    print(f"\n⚡ Új események: {len(uj)} | Összes aktív: {len(osszes_aktiv)}")
     if uj:
-        email_kuldes(uj)
+        email_kuldes(uj, osszes_aktiv)
     else:
         print("✅ Nincs új esemény.")
 
