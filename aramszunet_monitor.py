@@ -80,17 +80,8 @@ def hash_id(szoveg):
 #  📍  SZŰRŐ – city mező VAGY polygon
 # ════════════════════════════════════════════
 def pont_polygon_ban(lat, lon, polygon):
-    n = len(polygon)
-    belul = False
-    j = n - 1
-    for i in range(n):
-        lat_i, lon_i = polygon[i]
-        lat_j, lon_j = polygon[j]
-        if ((lon_i > lon) != (lon_j > lon)) and \
-           (lat < (lat_j - lat_i) * (lon - lon_i) / (lon_j - lon_i) + lat_i):
-            belul = not belul
-        j = i
-    return belul
+    """Shapely alapú pont-in-polygon ellenőrzés."""
+    return Point(lon, lat).within(polygon)
 
 def csepel_e(eset):
     """Csepeli-e az esemény?
