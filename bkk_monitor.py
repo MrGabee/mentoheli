@@ -107,6 +107,11 @@ def ment_allapot(allapot):
 def hash_id(szoveg):
     return hashlib.md5(szoveg.encode("utf-8")).hexdigest()[:12]
 
+def normalizal(szoveg):
+    """Whitespace-ek és felesleges karakterek eltávolítása az összehasonlításhoz."""
+    import re
+    return re.sub(r'\s+', ' ', szoveg).strip().lower()
+
 
 # ════════════════════════════════════════════
 #  🔍  SZŰRŐK
@@ -440,7 +445,7 @@ def main():
             # 2. PONT: Ismert esemény cím változás figyelése
             # ─────────────────────────────────────────
             regi_cim = regi[rid].get("cim", "")
-            if uj_cim != regi_cim:
+            if normalizal(uj_cim) != normalizal(regi_cim):
                 szoveg = uj_cim + " " + e.get("reszlet", "")
                 if not kizaras_e(szoveg):
                     print(f"  🔄 Cím változott: {regi_cim[:50]} → {uj_cim[:50]}")
@@ -459,7 +464,7 @@ def main():
             e = osszes_esemeny[rid]
             uj_cim = e.get("cim", "")
             regi_cim = adatok.get("cim", "")
-            if uj_cim != regi_cim and regi_cim:
+            if normalizal(uj_cim) != normalizal(regi_cim) and regi_cim:
                 reszlet = lekerdez_esemeny_reszlet(e["url"])
                 if reszlet:
                     e.update(reszlet)
