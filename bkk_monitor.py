@@ -57,6 +57,8 @@ FIGYELT_VONALAK = [
 BKK_URL      = "https://m.bkkinfo.hu/"
 BKK_BASE_URL = "https://m.bkkinfo.hu"
 ALLAPOT_FAJL = "bkk_allapot.json"
+BKK_NAPLO_FAJL = "bkk_naplo.json"
+BKK_COOLDOWN_MP = 300  # 5 perc – ennyi időn belül nem küldünk ugyanarról az eseményről újra
 
 # Szűrő kulcsszavak – a szó benne van a cím/leírásban
 BALESET_KULCSSZAVAK = [
@@ -103,6 +105,30 @@ def betolt_allapot():
 def ment_allapot(allapot):
     with open(ALLAPOT_FAJL, "w", encoding="utf-8") as f:
         json.dump(allapot, f, ensure_ascii=False, indent=2)
+
+def betolt_naplo():
+    if os.path.exists(BKK_NAPLO_FAJL):
+        try:
+            with open(BKK_NAPLO_FAJL) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+def ment_naplo(naplo):
+    with open(BKK_NAPLO_FAJL, "w", encoding="utf-8") as f:
+        json.dump(naplo, f, ensure_ascii=False, indent=2)
+
+def cooldown_ok(rid, cim_hash, naplo):
+    """True ha szabad küldeni, False ha cooldown alatt van."""
+    kulcs = f"{rid}:{cim_hash}"
+    utolso = naplo.get(kulcs, 0)
+    most = time.time()
+    if most - utolso < BKK_COOLDOWN_MP:
+        print(f"  ⏭️ Cooldown ({round(most - utolso)}s): {kulcs[:30]}")
+        return False
+    naplo[kulcs] = most
+    return True
 
 def hash_id(szoveg):
     return hashlib.md5(szoveg.encode("utf-8")).hexdigest()[:12]
@@ -401,6 +427,7 @@ def main():
     print(f"{'='*55}")
 
     regi = betolt_allapot()
+    naplo = betolt_naplo()
     uj   = []
 
     # Aktuális esemény ID-k a listából
@@ -437,7 +464,9 @@ def main():
                 print(f"  ⏭️ Kizárva: {uj_cim[:60]}")
                 regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat(), "url": e.get("url", ""), "aktiv": True}
                 continue
-            uj.append(e)
+            cim_hash = hash_id(uj_cim)
+            if cooldown_ok(rid, cim_hash, naplo):
+                uj.append(e)
             regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat(), "url": e.get("url", ""), "aktiv": True}
 
         else:
@@ -448,9 +477,11 @@ def main():
             if normalizal(uj_cim) != normalizal(regi_cim):
                 szoveg = uj_cim + " " + e.get("reszlet", "")
                 if not kizaras_e(szoveg):
-                    print(f"  🔄 Cím változott: {regi_cim[:50]} → {uj_cim[:50]}")
-                    e["cim_valtozas"] = True
-                    uj.append(e)
+                    cim_hash = hash_id(uj_cim)
+                    if cooldown_ok(rid, cim_hash, naplo):
+                        print(f"  🔄 Cím változott: {regi_cim[:50]} → {uj_cim[:50]}")
+                        e["cim_valtozas"] = True
+                        uj.append(e)
                 regi[rid]["cim"] = uj_cim
                 regi[rid]["frissitve"] = magyar_ido().isoformat()
             regi[rid]["aktiv"] = True
@@ -475,26 +506,6 @@ def main():
                 regi[rid]["cim"] = uj_cim
                 regi[rid]["frissitve"] = magyar_ido().isoformat()
 
-    # ─────────────────────────────────────────
-    # 3. PONT: Eltűnt esemény → VÉGE e-mail
-    # ─────────────────────────────────────────
-    for rid, adatok in regi.items():
-        if not adatok.get("aktiv", False) and adatok.get("volt_aktiv", False):
-            # Az esemény eltűnt a listából
-            print(f"  🏁 Esemény véget ért: {adatok.get('cim', '')[:60]}")
-            vege_esemeny = {
-                "cim":    adatok.get("cim", "Ismeretlen esemény") + " – LEZÁRVA",
-                "reszlet": "Ez az esemény véget ért és eltűnt a BKK INFO oldaláról.",
-                "url":    adatok.get("url", BKK_URL),
-                "badge":  "✅ ESEMÉNY LEZÁRVA",
-                "lezarva": True,
-            }
-            uj.append(vege_esemeny)
-        # Frissítjük az aktív státuszt a következő futáshoz
-        if rid in aktiv_idek:
-            regi[rid]["volt_aktiv"] = True
-        regi[rid]["aktiv"] = False  # reset minden futásnál
-
     print(f"\n🚨 Új/változott esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
@@ -509,6 +520,7 @@ def main():
         print("✅ Nincs új baleseti terelés.")
 
     ment_allapot(regi)
+    ment_naplo(naplo)
     print("💾 Állapot mentve. ✅ Kész.\n")
 
 
