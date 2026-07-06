@@ -5,6 +5,10 @@ on:
   repository_dispatch:
     types: [bkk_trigger]
 
+concurrency:
+  group: bkk-monitor
+  cancel-in-progress: false
+
 jobs:
   figyel:
     runs-on: ubuntu-latest
@@ -28,9 +32,9 @@ jobs:
 
       - name: 🚨 BKK Monitor futtatása
         env:
-          EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
-          EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
-          EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
+          EMAIL_KULDO:           ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:          ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT_BKK:     ${{ secrets.EMAIL_CIMZETT_BKK }}
           EMAIL_CIMZETT_KERULET: ${{ secrets.EMAIL_CIMZETT_KERULET }}
         run: python bkk_monitor.py
 
@@ -46,6 +50,7 @@ jobs:
           fi
 
           cp bkk_allapot.json /tmp/bkk_allapot_sajat.json
+          cp bkk_naplo.json /tmp/bkk_naplo_sajat.json 2>/dev/null || true
 
           SIKERULT=0
           for i in 1 2 3 4 5 6; do
@@ -53,7 +58,9 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             cp /tmp/bkk_allapot_sajat.json bkk_allapot.json
+            cp /tmp/bkk_naplo_sajat.json bkk_naplo.json 2>/dev/null || true
             git add bkk_allapot.json
+            [ -f bkk_naplo.json ] && git add bkk_naplo.json || true
             if git diff --staged --quiet; then
               echo "Nincs változás, kész."
               SIKERULT=1
