@@ -5,6 +5,7 @@ Futtatás: GitHub Actions (percenként, self-loop)
 """
 
 import os
+import time
 import json
 import hashlib
 import smtplib
