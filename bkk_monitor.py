@@ -116,19 +116,17 @@ def betolt_naplo():
             pass
     return {}
 
-def ment_naplo(naplo):
     with open(BKK_NAPLO_FAJL, "w", encoding="utf-8") as f:
         json.dump(naplo, f, ensure_ascii=False, indent=2)
 
-def cooldown_ok(rid, cim_hash, naplo):
-    """True ha szabad küldeni, False ha cooldown alatt van."""
-    kulcs = f"{rid}:{cim_hash}"
-    utolso = naplo.get(kulcs, 0)
-    most = time.time()
-    if most - utolso < BKK_COOLDOWN_MP:
-        print(f"  ⏭️ Cooldown ({round(most - utolso)}s): {kulcs[:30]}")
+def cooldown_ok(rid, cim_hash, regi):
+    """True ha szabad küldeni — az utolsó küldés hash-e alapján."""
+    kulcs = f"_kuldve_{rid}"
+    utolso_hash = regi.get(kulcs, "")
+    if utolso_hash == cim_hash:
+        print(f"  ⏭️ Már elküldve (ugyanaz): {rid}")
         return False
-    naplo[kulcs] = most
+    regi[kulcs] = cim_hash
     return True
 
 def hash_id(szoveg):
@@ -428,7 +426,6 @@ def main():
     print(f"{'='*55}")
 
     regi = betolt_allapot()
-    naplo = betolt_naplo()
     uj   = []
 
     # Aktuális esemény ID-k a listából
@@ -466,7 +463,7 @@ def main():
                 regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat(), "url": e.get("url", ""), "aktiv": True}
                 continue
             cim_hash = hash_id(uj_cim)
-            if cooldown_ok(rid, cim_hash, naplo):
+            if cooldown_ok(rid, cim_hash, regi):
                 uj.append(e)
             regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat(), "url": e.get("url", ""), "aktiv": True}
 
@@ -479,7 +476,7 @@ def main():
                 szoveg = uj_cim + " " + e.get("reszlet", "")
                 if not kizaras_e(szoveg):
                     cim_hash = hash_id(uj_cim)
-                    if cooldown_ok(rid, cim_hash, naplo):
+                    if cooldown_ok(rid, cim_hash, regi):
                         print(f"  🔄 Cím változott: {regi_cim[:50]} → {uj_cim[:50]}")
                         e["cim_valtozas"] = True
                         uj.append(e)
@@ -521,7 +518,6 @@ def main():
         print("✅ Nincs új baleseti terelés.")
 
     ment_allapot(regi)
-    ment_naplo(naplo)
     print("💾 Állapot mentve. ✅ Kész.\n")
 
 
