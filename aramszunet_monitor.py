@@ -11,7 +11,6 @@ import requests
 from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from shapely.geometry import Point, Polygon
 
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
@@ -25,22 +24,6 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
 
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
-
-CSEPEL_POLYGON = Polygon([
-    (19.0178, 47.4025), (19.0188, 47.4090), (19.0200, 47.4150),
-    (19.0215, 47.4215), (19.0235, 47.4275), (19.0265, 47.4325),
-    (19.0290, 47.4365), (19.0310, 47.4388), (19.0375, 47.4418),
-    (19.0450, 47.4432), (19.0530, 47.4440), (19.0610, 47.4440),
-    (19.0690, 47.4435), (19.0760, 47.4418), (19.0825, 47.4385),
-    (19.0875, 47.4345), (19.0910, 47.4295), (19.0935, 47.4240),
-    (19.0948, 47.4180), (19.0950, 47.4115), (19.0940, 47.4040),
-    (19.0925, 47.3975), (19.0900, 47.3915), (19.0860, 47.3860),
-    (19.0810, 47.3810), (19.0740, 47.3765), (19.0660, 47.3735),
-    (19.0570, 47.3715), (19.0480, 47.3710), (19.0390, 47.3718),
-    (19.0315, 47.3735), (19.0255, 47.3760), (19.0215, 47.3795),
-    (19.0190, 47.3840), (19.0175, 47.3895), (19.0172, 47.3960),
-    (19.0178, 47.4025),
-])
 
 ALLAPOT_FAJL = "aramszunet_allapot.json"
 
@@ -100,26 +83,28 @@ def reverse_geocode(lat, lon):
 # ════════════════════════════════════════════
 #  📍  SZŰRŐ
 # ════════════════════════════════════════════
-def pont_polygon_ban(lat, lon, polygon):
-    return Point(lon, lat).within(polygon)
 
 def csepel_e(eset):
+    def xxi_e(city):
+        c = str(city or "").strip()
+        import re
+        return bool(re.search(r'\bXXI\b', c)) or "csepel" in c.lower()
+
     for ar in eset.get("addressRanges", []):
         if isinstance(ar, dict):
-            city = str(ar.get("city", "") or "").strip()
-            if "XXI" in city or "csepel" in city.lower():
+            if xxi_e(ar.get("city", "")):
                 return True
 
-    city = str(eset.get("city", "") or "").strip()
-    if "XXI" in city or "csepel" in city.lower():
+    if xxi_e(eset.get("city", "")):
         return True
+
+    return False
 
     coords = eset.get("coordinates") or {}
     if isinstance(coords, dict):
         lat = coords.get("lat")
         lon = coords.get("lng") or coords.get("lon")
         if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
-            if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                 return True
 
     tc = eset.get("transformerAreaCenterCoordinates") or {}
@@ -127,7 +112,6 @@ def csepel_e(eset):
         lat = tc.get("lat")
         lon = tc.get("lng") or tc.get("lon")
         if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
-            if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                 return True
 
     for ar in eset.get("addressRanges", []):
@@ -136,7 +120,6 @@ def csepel_e(eset):
             lat = c.get("lat")
             lon = c.get("lng") or c.get("lon")
             if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
-                if pont_polygon_ban(float(lat), float(lon), CSEPEL_POLYGON):
                     return True
 
     return False
