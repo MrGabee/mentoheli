@@ -28,7 +28,7 @@ jobs:
           python-version: '3.12'
 
       - name: 📦 Függőségek telepítése
-        run: pip install requests shapely
+        run: pip install requests
 
       - name: ⚡ Áramszünet monitor futtatása
         env:
