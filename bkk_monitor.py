@@ -31,9 +31,27 @@ EMAIL_CIMZETT_KERULET = os.environ.get("EMAIL_CIMZETT_KERULET", "")
 # Figyelt vonalak – dél-pesti kerületek (IX., X., XIX., XVIII., XX., XXI., XXIII.)
 # Ha az esemény címe ezzel a vonalszámmal kezdődik, külön e-mail is megy
 FIGYELT_VONALAK = [
+    # IX. kerület (Ferencváros)
+    "1", "2", "2B", "3", "4", "6", "23", "24", "47", "48", "49", "51", "51A", "52",
+    "M3", "M4", "15", "54", "55", "84E", "89E", "94E", "99", "119", "123", "123A",
+    "166", "179", "181", "194", "194B", "212", "212A", "212B", "223E", "224", "224E",
+    "254E", "255E", "281", "901", "909", "909A", "914", "914A", "918",
+    # X. kerület (Kőbánya)
+    "28", "28A", "37", "37A", "37B", "42", "50", "62", "62A", "M2", "9", "10", "32",
+    "44", "45", "66", "66B", "66E", "67", "68", "85", "85E", "95", "97E", "98", "117",
+    "130", "142E", "151", "161", "161A", "161E", "162", "168E", "169E", "176E",
+    # XIX. kerület (Kispest)
+    "36", "93", "93A", "132E", "136", "148", "182", "182A", "184", "193E", "198",
+    "200E", "202E", "217", "217E", "268", "282E", "284E", "294E", "923", "946", "948",
+    "950", "950A", "968", "984", "985", "994", "994B", "999",
+    # XVIII. kerület (Pestszentlőrinc-Pestszentimre)
+    "183", "236", "236A", "266", "983",
+    # XX. kerület (Pesterzsébet)
+    "35", "934", "966",
     # XXI. kerület (Csepel)
-    "35", "36", "38", "38A", "71", "138", "148", "151", "152", "159",
-    "238", "278", "938", "948", "979", "979A", "H7",
+    "38", "38A", "71", "138", "152", "159", "238", "278", "938", "979", "979A", "H7",
+    # XXIII. kerület (Soroksár)
+    "135", "H6",
 ]
 
 BKK_URL      = "https://m.bkkinfo.hu/"
@@ -235,42 +253,6 @@ def lekerdez_bkk():
 # ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
-HIRLEVEL_WEBAPP_URL = "https://script.google.com/macros/s/AKfycby_Zkp57KKvIDfBEHJ-6yTyLIfAlLbjRcmLV9NF6Ae6oF5sMJ9mzJsRPJEl2arAlWWVog/exec"
-
-def hirlevel_kuldes(esetek):
-    """Csepeli BKK eseményeket elküldi a Google Apps Script hírlevél rendszernek."""
-    import json as _json
-    ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
-
-    sorok = []
-    for e in esetek:
-        cim     = e.get("cim", "—")
-        reszlet = e.get("reszlet", "")[:500]
-        url     = e.get("url", "")
-        badge   = e.get("badge", "🚨 FORGALMI ESEMÉNY")
-        sorok.append(f"{badge}\n{cim}\n{reszlet}\n🔗 {url}")
-
-    szoveg = f"🚌 Csepeli BKK forgalmi esemény – {ido}\n\n" + "\n\n---\n\n".join(sorok)
-
-    adat = {
-        "tipus":  "bkk_csepel",
-        "targy":  f"🚌 Csepel BKK – {len(esetek)} új forgalmi esemény | {ido}",
-        "uzenet": szoveg,
-        "ido":    ido,
-    }
-
-    try:
-        r = requests.post(
-            HIRLEVEL_WEBAPP_URL,
-            json=adat,
-            timeout=15,
-            headers={"Content-Type": "application/json"},
-        )
-        print(f"📧 Hírlevél elküldve (HTTP {r.status_code})")
-    except Exception as ex:
-        print(f"❌ Hírlevél küldési hiba: {ex}")
-
-
 def email_kuldes(uj_esetek, cimzett=None):
     cimzett = cimzett or EMAIL_CIMZETT
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
@@ -382,6 +364,32 @@ def email_kuldes(uj_esetek, cimzett=None):
 # ════════════════════════════════════════════
 #  🚀  FŐPROGRAM
 # ════════════════════════════════════════════
+def lekerdez_esemeny_frissites(url):
+    """Lekéri az esemény aktuális állapotát közvetlenül az URL-ről."""
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        if r.status_code != 200:
+            return None, None
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        # Cím
+        cim_elem = soup.find("h1") or soup.find("h2")
+        cim = cim_elem.get_text(strip=True) if cim_elem else ""
+
+        # Módosítás ideje / érvényességi idő
+        modositva = ""
+        for tag in soup.find_all(["p", "div", "span"]):
+            szoveg = tag.get_text(strip=True)
+            if "módosítva" in szoveg.lower() or "érvényes" in szoveg.lower() or "visszavon" in szoveg.lower():
+                modositva = szoveg[:200]
+                break
+
+        return cim, modositva
+    except Exception as ex:
+        print(f"  ⚠️ Frissítés lekérési hiba: {ex}")
+        return None, None
+
+
 def main():
     print(f"\n{'='*55}")
     print(f"🚌 BKK Baleset Monitor – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
@@ -390,32 +398,108 @@ def main():
     regi = betolt_allapot()
     uj   = []
 
+    # Aktuális esemény ID-k a listából
     esemenyek = lekerdez_bkk()
+    aktiv_idek = {hash_id(e["id"]) for e in esemenyek}
 
+    # Az összes esemény lekérése (nem csak balesetes) az ismert események frissítéséhez
+    try:
+        r_all = requests.get(BKK_URL, headers=HEADERS, timeout=20)
+        soup_all = BeautifulSoup(r_all.text, "html.parser")
+        osszes_esemeny = {}
+        for link in soup_all.find_all("a", href=True):
+            href = link.get("href", "")
+            if "/zavarok/" not in href:
+                continue
+            esemeny_id = href.split("/zavarok/")[-1].strip("/")
+            cim = link.get_text(strip=True)
+            full_url = href if href.startswith("http") else BKK_BASE_URL + href
+            if esemeny_id:
+                osszes_esemeny[hash_id(esemeny_id)] = {"id": esemeny_id, "cim": cim, "url": full_url}
+    except Exception:
+        osszes_esemeny = {hash_id(e["id"]): e for e in esemenyek}
+
+    # ─────────────────────────────────────────
+    # 1. PONT: Új esemény észlelése
+    # ─────────────────────────────────────────
     for e in esemenyek:
         rid = hash_id(e["id"])
+        uj_cim = e.get("cim", "")
+
         if rid not in regi:
-            # Kizáró szavak ellenőrzése
-            szoveg = e.get("cim", "") + " " + e.get("reszlet", "")
+            szoveg = uj_cim + " " + e.get("reszlet", "")
             if kizaras_e(szoveg):
-                print(f"  ⏭️ Kizárva: {e['cim'][:60]}")
-                regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
+                print(f"  ⏭️ Kizárva: {uj_cim[:60]}")
+                regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat(), "url": e.get("url", ""), "aktiv": True}
                 continue
             uj.append(e)
-            regi[rid] = {
-                "cim": e["cim"][:100],
-                "talalt": magyar_ido().isoformat()
-            }
+            regi[rid] = {"cim": uj_cim, "talalt": magyar_ido().isoformat(), "url": e.get("url", ""), "aktiv": True}
 
-    print(f"\n🚨 Új balesetes esemény: {len(uj)}")
+        else:
+            # ─────────────────────────────────────────
+            # 2. PONT: Ismert esemény cím változás figyelése
+            # ─────────────────────────────────────────
+            regi_cim = regi[rid].get("cim", "")
+            if uj_cim != regi_cim:
+                szoveg = uj_cim + " " + e.get("reszlet", "")
+                if not kizaras_e(szoveg):
+                    print(f"  🔄 Cím változott: {regi_cim[:50]} → {uj_cim[:50]}")
+                    e["cim_valtozas"] = True
+                    uj.append(e)
+                regi[rid]["cim"] = uj_cim
+                regi[rid]["frissitve"] = magyar_ido().isoformat()
+            regi[rid]["aktiv"] = True
+
+    # Ismert eseményeket is ellenőrzük az összes eseményből (cím változás)
+    for rid, adatok in list(regi.items()):
+        if rid in aktiv_idek:
+            continue  # már feldolgoztuk fent
+        if rid in osszes_esemeny:
+            # Ismert esemény, de nem balesetes — cím változást mégis figyeljük
+            e = osszes_esemeny[rid]
+            uj_cim = e.get("cim", "")
+            regi_cim = adatok.get("cim", "")
+            if uj_cim != regi_cim and regi_cim:
+                reszlet = lekerdez_esemeny_reszlet(e["url"])
+                if reszlet:
+                    e.update(reszlet)
+                if not kizaras_e(uj_cim + " " + e.get("reszlet", "")):
+                    print(f"  🔄 Ismert esemény frissült: {regi_cim[:50]} → {uj_cim[:50]}")
+                    e["cim_valtozas"] = True
+                    uj.append(e)
+                regi[rid]["cim"] = uj_cim
+                regi[rid]["frissitve"] = magyar_ido().isoformat()
+
+    # ─────────────────────────────────────────
+    # 3. PONT: Eltűnt esemény → VÉGE e-mail
+    # ─────────────────────────────────────────
+    for rid, adatok in regi.items():
+        if not adatok.get("aktiv", False) and adatok.get("volt_aktiv", False):
+            # Az esemény eltűnt a listából
+            print(f"  🏁 Esemény véget ért: {adatok.get('cim', '')[:60]}")
+            vege_esemeny = {
+                "cim":    adatok.get("cim", "Ismeretlen esemény") + " – LEZÁRVA",
+                "reszlet": "Ez az esemény véget ért és eltűnt a BKK INFO oldaláról.",
+                "url":    adatok.get("url", BKK_URL),
+                "badge":  "✅ ESEMÉNY LEZÁRVA",
+                "lezarva": True,
+            }
+            uj.append(vege_esemeny)
+        # Frissítjük az aktív státuszt a következő futáshoz
+        if rid in aktiv_idek:
+            regi[rid]["volt_aktiv"] = True
+        regi[rid]["aktiv"] = False  # reset minden futásnál
+
+    print(f"\n🚨 Új/változott esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
 
-        # Csepeli vonalakat érintő események → hírlevél a feliratkozóknak
-        csepeli_esetek = [e for e in uj if figyelt_vonal_e(e.get("cim", ""), e.get("reszlet", ""))]
-        if csepeli_esetek:
-            print(f"🚨 Csepeli vonalat érint: {len(csepeli_esetek)} → hírlevél küldése")
-            hirlevel_kuldes(csepeli_esetek)
+        # Kerületes e-mail
+        if EMAIL_CIMZETT_KERULET:
+            kerulet_esetek = [e for e in uj if figyelt_vonal_e(e.get("cim", ""), e.get("reszlet", ""))]
+            if kerulet_esetek:
+                print(f"🚨 Figyelt vonal: {len(kerulet_esetek)} → kerületes e-mail")
+                email_kuldes(kerulet_esetek, cimzett=EMAIL_CIMZETT_KERULET)
     else:
         print("✅ Nincs új baleseti terelés.")
 
