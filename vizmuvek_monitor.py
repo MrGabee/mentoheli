@@ -1,7 +1,8 @@
 """
-💧 Fővárosi Vízművek Monitor – Csepel (XXI. kerület)
+💧 Fővárosi Vízművek Monitor – Csepel (XXI.) + Pesterzsébet (XX.)
+   + Kispest (XIX.) + Szigetszentmiklós
 Adatforrás: vizmuvek.hu munkatérkép
-Szűrés: XXI. kerület prefix
+Szűrés: kerület-prefix vagy településnév
 Értesítés: E-mail (EMAIL_CIMZETT_ARAM) + Facebook poszt (Mr.Gabee oldal)
 """
 
@@ -67,10 +68,27 @@ def hash_id(szoveg):
 
 
 # ════════════════════════════════════════════
-#  📍  CSEPEL SZŰRŐ
+#  📍  TERÜLET SZŰRŐ – Csepel (XXI.) + Pesterzsébet (XX.)
+#      + Kispest (XIX.) + Szigetszentmiklós
 # ════════════════════════════════════════════
+def terulet_cimke(cim):
+    """Visszaadja a megjelenítendő terület-címkét, ha a cím a figyelt
+    kerületek/települések egyikével kezdődik, vagy None-t, ha nem."""
+    c = (cim or "").strip()
+    if c.startswith("XXI."):
+        return "XXI. kerület (Csepel)"
+    if c.startswith("XX."):
+        return "XX. kerület (Pesterzsébet)"
+    if c.startswith("XIX."):
+        return "XIX. kerület (Kispest)"
+    if "szigetszentmiklós" in c.lower():
+        return "Szigetszentmiklós"
+    return None
+
+
 def csepel_e(cim):
-    return cim.strip().startswith("XXI.")
+    """Megtartva kompatibilitásból: True, ha bármelyik figyelt területtel egyezik."""
+    return terulet_cimke(cim) is not None
 
 
 # ════════════════════════════════════════════
@@ -132,15 +150,18 @@ def lekerdez():
             if not cim or not csepel_e(cim):
                 continue
 
+            terulet = terulet_cimke(cim)
+
             gmaps = f"https://www.google.com/maps/search/?api=1&query={lat},{lon}"
             esemenyek.append({
                 "tipus": tipus, "cim": cim, "munka": munka,
                 "kezdes": kezdes, "veg": veg,
                 "lat": lat, "lon": lon, "gmaps": gmaps,
+                "terulet": terulet,
             })
-            print(f"  🎯 {cim}")
+            print(f"  🎯 [{terulet}] {cim}")
 
-        print(f"  📊 Csepeli találat: {len(esemenyek)}")
+        print(f"  📊 Figyelt területi találat: {len(esemenyek)}")
         return esemenyek
 
     except Exception as ex:
@@ -151,32 +172,53 @@ def lekerdez():
 
 
 # ════════════════════════════════════════════
-#  📘  FACEBOOK POSZT
+#  📘  FACEBOOK POSZT SZÖVEG (megosztott - e-mail és Graph API is ezt használja)
 # ════════════════════════════════════════════
-def facebook_poszt(esetek):
-    """Egy összesített Facebook posztot küld az összes új eseményről."""
+def facebook_szoveg(esetek):
     ido = magyar_ido().strftime("%Y.%m.%d %H:%M")
     db  = len(esetek)
 
-    sorok = []
-    for e in esetek:
-        emoji, label, _ = TIPUS_MAP.get(e["tipus"], ("💧", e["tipus"], ""))
-        sor = (
-            f"{emoji} {label}\n"
-            f"📍 {e['cim']}\n"
-            f"🔧 {e['munka'] or '—'}\n"
-            f"⏰ {e['kezdes'] or '—'} → {e['veg'] or '—'}\n"
-            f"🗺️ {e['gmaps']}"
-        )
-        sorok.append(sor)
+    erintett_teruletek = sorted(set(e["terulet"] for e in esetek))
 
-    szoveg = (
-        f"💧 Fővárosi Vízművek – Csepeli értesítő\n"
-        f"🕐 {ido} | {db} új esemény\n\n"
-        + "\n\n─────────────────\n\n".join(sorok)
-        + "\n\n🔗 Vízművek munkatérkép:\n"
-        f"https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
-    )
+    sorok = [
+        "💧 FŐVÁROSI VÍZMŰVEK ÉRTESÍTŐ 💧",
+        f"🕐 {ido}   •   {db} új esemény",
+        "═" * 32,
+        "",
+        "👋 Mivel nemcsak Csepelről, hanem a környező kerületekből és "
+        "városokból (Pesterzsébet, Kispest, Szigetszentmiklós) is sokan "
+        "olvastok minket, mostantól ezekről a területekről is beszámolunk, "
+        "hogy senki ne maradjon le a fontos hírekről! 💙",
+        "",
+    ]
+
+    for terulet in erintett_teruletek:
+        teruleti_esetek = [e for e in esetek if e["terulet"] == terulet]
+        sorok.append(f"▸▸▸  {terulet.upper()}  ◂◂◂")
+        sorok.append("─" * 32)
+        for e in teruleti_esetek:
+            emoji, label, _ = TIPUS_MAP.get(e["tipus"], ("💧", e["tipus"], ""))
+            sorok.append(f"{emoji} {label}")
+            sorok.append(f"   📍 {e['cim']}")
+            sorok.append(f"   🔧 {e['munka'] or '—'}")
+            sorok.append(f"   ⏰ {e['kezdes'] or '—'} → {e['veg'] or '—'}")
+            sorok.append(f"   🗺️ {e['gmaps']}")
+            sorok.append("")
+
+    sorok.append("─" * 32)
+    sorok.append("🔗 Vízművek munkatérkép:")
+    sorok.append("https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk")
+    sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Kispest, Szigetszentmiklós")
+
+    return "\n".join(sorok)
+
+
+# ════════════════════════════════════════════
+#  📘  FACEBOOK POSZT KÜLDÉSE (Graph API)
+# ════════════════════════════════════════════
+def facebook_poszt(esetek):
+    """Egy összesített Facebook posztot küld az összes új eseményről."""
+    szoveg = facebook_szoveg(esetek)
 
     try:
         url = f"https://graph.facebook.com/v19.0/{FB_PAGE_ID}/feed"
@@ -199,7 +241,7 @@ def facebook_poszt(esetek):
 def email_kuldes(uj_esetek):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"💧 Vízművek Csepel – {db} új esemény | {ido}"
+    targy = f"💧 Vízművek (Csepel/Pesterzsébet/Kispest/Sziget.) – {db} új esemény | {ido}"
 
     sorok_html = ""
     sorok_txt  = ""
@@ -219,7 +261,9 @@ def email_kuldes(uj_esetek):
               {e['cim']}
             </div>
             <table style="font-size:13px;width:100%;margin-top:6px">
-              <tr><td style="color:#888;width:160px">🔧 Munka típusa:</td>
+              <tr><td style="color:#888;width:160px">📌 Terület:</td>
+                  <td><strong>{e['terulet']}</strong></td></tr>
+              <tr><td style="color:#888">🔧 Munka típusa:</td>
                   <td>{e['munka'] or '—'}</td></tr>
               <tr><td style="color:#888">⏰ Kezdés:</td>
                   <td><strong>{e['kezdes'] or '—'}</strong></td></tr>
@@ -245,26 +289,8 @@ def email_kuldes(uj_esetek):
             f"Maps:   {e['gmaps']}\n"
         )
 
-    # Facebook poszt szöveg összeállítása
-    fb_sorok = []
-    for e in uj_esetek:
-        emoji, label, _ = TIPUS_MAP.get(e["tipus"], ("💧", e["tipus"], ""))
-        sor = (
-            f"{emoji} {label}\n"
-            f"📍 {e['cim']}\n"
-            f"🔧 {e['munka'] or '—'}\n"
-            f"⏰ {e['kezdes'] or '—'} → {e['veg'] or '—'}\n"
-            f"🗺️ {e['gmaps']}"
-        )
-        fb_sorok.append(sor)
-
-    fb_szoveg = (
-        f"💧 Fővárosi Vízművek – Csepeli értesítő\n"
-        f"🕐 {ido} | {db} új esemény\n\n"
-        + "\n\n─────────────────\n\n".join(fb_sorok)
-        + "\n\n🔗 Vízművek munkatérkép:\n"
-        f"https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
-    )
+    # Facebook poszt szövege - a megosztott függvényből, nem duplikálva
+    fb_szoveg = facebook_szoveg(uj_esetek)
 
     import urllib.parse
     fb_share_url = f"https://www.facebook.com/dialog/share?app_id=10064353121037736&display=popup&quote={urllib.parse.quote(fb_szoveg)}&href=https://www.vizmuvek.hu"
@@ -293,13 +319,14 @@ def email_kuldes(uj_esetek):
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
-    <h1>💧 Fővárosi Vízművek – Csepeli értesítő</h1>
-    <small>{ido} | {db} új esemény (XXI. kerület)</small>
+    <h1>💧 Fővárosi Vízművek – Csepel / Pesterzsébet / Kispest / Szigetszentmiklós</h1>
+    <small>{ido} | {db} új esemény</small>
   </div>
   <div class="body">
 
     <div class="bevezeto">
-      ℹ️ A Fővárosi Vízművek az alábbi csepeli helyszíneken végez jelenleg hálózati munkálatokat.
+      ℹ️ A Fővárosi Vízművek az alábbi helyszíneken (Csepel, Pesterzsébet, Kispest,
+      Szigetszentmiklós) végez jelenleg hálózati munkálatokat.
       A munkák ideje alatt az érintett területeken <strong>vízhiány, nyomáscsökkenés
       vagy forgalomkorlátozás</strong> tapasztalható.
     </div>
@@ -327,7 +354,7 @@ def email_kuldes(uj_esetek):
   <div class="foot">Automatikus értesítő – GitHub Actions | Fővárosi Vízművek adatai alapján</div>
 </div></body></html>"""
 
-    szoveges = f"💧 Fővárosi Vízművek Csepel\nIdőpont: {ido}\n{sorok_txt}"
+    szoveges = f"💧 Fővárosi Vízművek – Csepel/Pesterzsébet/Kispest/Szigetszentmiklós\nIdőpont: {ido}\n{sorok_txt}"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
