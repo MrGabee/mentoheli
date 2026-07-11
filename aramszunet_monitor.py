@@ -1,6 +1,7 @@
 """
-⚡ E.ON Áramszünet Monitor – Csepel (XXI. kerület)
-Szűrés: city mező (Budapest XXI.) + polygon
+⚡ E.ON Áramszünet Monitor – Csepel (XXI.) + Pesterzsébet (XX.) + Kispest (XIX.)
+   + Szigetszentmiklós
+Szűrés: city mező (kerület-azonosító vagy településnév) + polygon
 """
 
 import os
@@ -81,48 +82,52 @@ def reverse_geocode(lat, lon):
 
 
 # ════════════════════════════════════════════
-#  📍  SZŰRŐ
+#  📍  SZŰRŐ – Csepel (XXI.) + Pesterzsébet (XX.) + Kispest (XIX.)
+#      + Szigetszentmiklós (önálló település, nincs kerület-száma)
 # ════════════════════════════════════════════
 
+TERULETEK = [
+    # (regex-minta a "city" mezőre vagy None, ha nincs kerület-szám; kulcsszó; megjelenítendő címke)
+    # Szigetszentmiklós előrébb van, mert "Csepel-sziget" földrajzi kifejezés
+    # tartalmazhatja a "csepel" szót, és azt nem szeretnénk tévesen XXI.-nek venni.
+    (None,        "szigetszentmiklós", "Szigetszentmiklós"),
+    (r'\bXXI\b',  "csepel",           "XXI. kerület (Csepel)"),
+    (r'\bXX\b',   "pesterzsébet",     "XX. kerület (Pesterzsébet)"),
+    (r'\bXIX\b',  "kispest",          "XIX. kerület (Kispest)"),
+]
+
+
+def kerulet_cimke(city):
+    """Visszaadja a megjelenítendő terület-címkét, ha a city mező egyezik
+    valamelyik figyelt kerülettel/településsel, egyébként None-t."""
+    c = str(city or "").strip()
+    c_lower = c.lower()
+    import re
+    for minta, kulcsszo, cimke in TERULETEK:
+        if (minta and re.search(minta, c)) or kulcsszo in c_lower:
+            return cimke
+    return None
+
+
+def erintett_kerulet(eset):
+    """Megkeresi az esethez tartozó kerület-címkét (addressRanges-ből vagy
+    a fő city mezőből), vagy None-t ad, ha egyik figyelt kerülettel sem egyezik."""
+    for ar in eset.get("addressRanges", []):
+        if isinstance(ar, dict):
+            cimke = kerulet_cimke(ar.get("city", ""))
+            if cimke:
+                return cimke
+
+    cimke = kerulet_cimke(eset.get("city", ""))
+    if cimke:
+        return cimke
+
+    return None
+
+
 def csepel_e(eset):
-    def xxi_e(city):
-        c = str(city or "").strip()
-        import re
-        return bool(re.search(r'\bXXI\b', c)) or "csepel" in c.lower()
-
-    for ar in eset.get("addressRanges", []):
-        if isinstance(ar, dict):
-            if xxi_e(ar.get("city", "")):
-                return True
-
-    if xxi_e(eset.get("city", "")):
-        return True
-
-    return False
-
-    coords = eset.get("coordinates") or {}
-    if isinstance(coords, dict):
-        lat = coords.get("lat")
-        lon = coords.get("lng") or coords.get("lon")
-        if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
-                return True
-
-    tc = eset.get("transformerAreaCenterCoordinates") or {}
-    if isinstance(tc, dict):
-        lat = tc.get("lat")
-        lon = tc.get("lng") or tc.get("lon")
-        if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
-                return True
-
-    for ar in eset.get("addressRanges", []):
-        if isinstance(ar, dict):
-            c = ar.get("coordinates") or {}
-            lat = c.get("lat")
-            lon = c.get("lng") or c.get("lon")
-            if lat and lon and float(lat) != 0.0 and float(lon) != 0.0:
-                    return True
-
-    return False
+    """Megtartva kompatibilitásból: True, ha bármelyik figyelt kerülettel egyezik."""
+    return erintett_kerulet(eset) is not None
 
 
 # ════════════════════════════════════════════
@@ -186,6 +191,7 @@ def lekerdez_json(url, tipus):
 def kinyert_adatok(eset):
     a     = eset["adat"]
     tipus = eset["tipus"]
+    kerulet = erintett_kerulet(eset) or "ismeretlen kerület"
 
     if tipus == "TERVEZETT":
         intervals  = a.get("intervals", [])
@@ -236,7 +242,7 @@ def kinyert_adatok(eset):
     if (not utcak_lista) and lat and lon:
         nominatim_utca = reverse_geocode(lat, lon)
         if nominatim_utca:
-            utcak = f"Budapest XXI. {nominatim_utca} (közelében)"
+            utcak = f"Budapest {kerulet} - {nominatim_utca} (közelében)"
             print(f"  🗺️ Nominatim: {utcak}")
 
     consumers = a.get("consumers", {})
@@ -256,6 +262,7 @@ def kinyert_adatok(eset):
         "tipus":          tipus,
         "lat":            lat,
         "lon":            lon,
+        "kerulet":        kerulet,
     }
 
 
@@ -264,47 +271,65 @@ def kinyert_adatok(eset):
 # ════════════════════════════════════════════
 def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     db_uj = len(uj_adatok)
+
+    erintett_keruletek = sorted(set(f["kerulet"] for f in uj_adatok))
+    tobb_kerulet = len(erintett_keruletek) > 1
+
     sorok = [
-        f"⚡ Csepel – Áramszünet értesítő",
-        f"🕒 {ido} | {db_uj} új esemény",
+        "⚡ ÁRAMSZÜNET ÉRTESÍTŐ ⚡",
+        f"🕒 {ido}   •   {db_uj} új esemény",
+        "═" * 32,
         "",
     ]
 
-    tervezett = [e for e in uj_adatok if e["tipus"] == "TERVEZETT"]
-    uzemzavar = [e for e in uj_adatok if e["tipus"] == "UZEMZAVAR"]
+    # A kért bevezető mondat - jelezve, hogy nem csak Csepelről olvasnak minket
+    sorok.append(
+        "👋 Mivel nemcsak Csepelről, hanem a környező kerületekből és "
+        "városokból (Pesterzsébet, Kispest, Szigetszentmiklós) is sokan "
+        "olvastok minket, mostantól ezekről a területekről is beszámolunk, "
+        "hogy senki ne maradjon le a fontos hírekről! 💙"
+    )
+    sorok.append("")
 
-    if tervezett:
-        sorok.append("🔌 TERVEZETT ÁRAMSZÜNETEK")
-        sorok.append("─────────────────────")
-        for f in tervezett:
-            sorok.append(f"📅 {f['kezdes'][:10] if f['kezdes'] != '—' else '—'}")
-            sorok.append(f"🕐 {f['kezdes'][11:] if len(f['kezdes']) > 10 else f['kezdes']} → {f['veg'][11:] if len(f['veg']) > 10 else f['veg']}")
-            sorok.append(f"📍 {f['utcak']}")
-            sorok.append(f"👥 Érintett: {f['fogyaszto']} fogyasztó")
+    def esemeny_blokk(f, tervezett):
+        sor = []
+        fejlec = "🔌 TERVEZETT" if tervezett else "🔴 ÉLŐ ÜZEMZAVAR"
+        sor.append(f"{fejlec}  |  📌 {f['kerulet']}")
+        if tervezett:
+            sor.append(f"   📅 {f['kezdes'][:10] if f['kezdes'] != '—' else '—'}")
+            kezdes_ido = f['kezdes'][11:] if len(f['kezdes']) > 10 else f['kezdes']
+            veg_ido    = f['veg'][11:]    if len(f['veg'])    > 10 else f['veg']
+            sor.append(f"   🕐 {kezdes_ido} → {veg_ido}")
+        else:
+            sor.append(f"   🕐 Kezdete: {f['kezdes']}")
+        sor.append(f"   📍 {f['utcak']}")
+        sor.append(f"   👥 Érintett: {f['fogyaszto']} fogyasztó")
+        return "\n".join(sor)
+
+    # Csoportosítás kerület szerint, hogy átlátható legyen, hol mi történik
+    for kerulet in erintett_keruletek:
+        keruleti_uj = [f for f in uj_adatok if f["kerulet"] == kerulet]
+        sorok.append(f"▸▸▸  {kerulet.upper()}  ◂◂◂")
+        sorok.append("─" * 32)
+        for f in keruleti_uj:
+            sorok.append(esemeny_blokk(f, f["tipus"] == "TERVEZETT"))
             sorok.append("")
 
-    if uzemzavar:
-        sorok.append("🔴 ÉLŐ ÜZEMZAVAR")
-        sorok.append("─────────────────────")
-        for f in uzemzavar:
-            sorok.append(f"📍 {f['utcak']}")
-            sorok.append(f"🕐 Kezdete: {f['kezdes']}")
-            sorok.append(f"👥 Érintett: {f['fogyaszto']} fogyasztó")
-            sorok.append("")
-
-    # Összesítő – az összes jelenleg aktív üzemzavar tömören
+    # Összesítő - az összes jelenleg aktív üzemzavar tömören, kerület szerint
     aktiv_uzemzavar = [e for e in osszes_aktiv_adatok if e["tipus"] == "UZEMZAVAR"]
     if aktiv_uzemzavar:
-        sorok.append("━━━━━━━━━━━━━━━━━━━━━")
-        sorok.append(f"📋 ÖSSZES AKTÍV ÜZEMZAVAR ({len(aktiv_uzemzavar)} db)")
-        sorok.append("─────────────────────")
+        sorok.append("═" * 32)
+        sorok.append(f"📋 ÖSSZES AKTÍV ÜZEMZAVAR  ({len(aktiv_uzemzavar)} db)")
+        sorok.append("─" * 32)
         for f in aktiv_uzemzavar:
-            utca = f["utcak"] or "Budapest XXI."
-            sorok.append(f"• {utca} | {f['kezdes']} | {f['fogyaszto']} fogyasztó")
+            utca = f["utcak"] or f["kerulet"]
+            sorok.append(f"• [{f['kerulet']}] {utca}  |  {f['kezdes']}  |  {f['fogyaszto']} fogyasztó")
         sorok.append("")
 
+    sorok.append("─" * 32)
     sorok.append("ℹ️ Forrás: E.ON nyilvános tájékoztatás")
     sorok.append("🤖 Automatikus értesítő – Baleset-info.hu")
+    sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Kispest, Szigetszentmiklós")
 
     return "\n".join(sorok)
 
@@ -315,7 +340,7 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
 def email_kuldes(uj_esetek, osszes_aktiv_esetek):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"⚡ Csepel áramszünet – {db} új esemény | {ido}"
+    targy = f"⚡ Áramszünet (Csepel/Pesterzsébet/Kispest/Sziget.) – {db} új esemény | {ido}"
 
     uj_adatok      = [kinyert_adatok(e) for e in uj_esetek]
     aktiv_adatok   = [kinyert_adatok(e) for e in osszes_aktiv_esetek]
@@ -333,7 +358,8 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
             <span style="background:{szin};color:#fff;padding:5px 12px;
                          border-radius:4px;font-size:13px;font-weight:bold">{badge}</span>
             <table style="font-size:13px;width:100%;margin-top:10px">
-              <tr><td style="color:#888;width:140px">🔢 Azonosító:</td><td>{f['azonosito']}</td></tr>
+              <tr><td style="color:#888;width:140px">📌 Kerület:</td><td><strong>{f['kerulet']}</strong></td></tr>
+              <tr><td style="color:#888">🔢 Azonosító:</td><td>{f['azonosito']}</td></tr>
               <tr><td style="color:#888">⏰ Kezdés:</td><td><strong>{f['kezdes']}</strong></td></tr>
               <tr><td style="color:#888">⏰ Vége:</td><td><strong>{f['veg']}</strong></td></tr>
               <tr><td style="color:#888">🏘️ Helyszín:</td><td>{f['utcak']}</td></tr>
@@ -364,8 +390,8 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
-    <h1>⚡ Csepel – Áramszünet értesítő</h1>
-    <small>{ido} | {db} új esemény (XXI. kerület)</small>
+    <h1>⚡ Áramszünet értesítő – Csepel / Pesterzsébet / Kispest / Szigetszentmiklós</h1>
+    <small>{ido} | {db} új esemény</small>
   </div>
   <div class="body">
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
