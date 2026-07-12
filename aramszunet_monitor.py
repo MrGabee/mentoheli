@@ -222,7 +222,13 @@ def kinyert_adatok(eset):
             if lat == 0.0: lat = None
             if lon == 0.0: lon = None
 
-    # Utca lista az addressRanges-ből
+    # Utca lista az addressRanges-ből - MINDEN sor külön marad, úgy ahogy
+    # az E.ON kiadta, nincs összevonás, nincs limit (akár 30 sor is lehet).
+    def tiszta_hazszam(nyers):
+        if not nyers:
+            return ""
+        return str(nyers).split("HRSZ")[0].strip()
+
     utcak_lista = []
     for ar in a.get("addressRanges", []):
         if isinstance(ar, dict):
@@ -231,11 +237,6 @@ def kinyert_adatok(eset):
             # A valódi E.ON mezőnevek: startNum / endNum (élőben ellenőrizve).
             # A startNum gyakran "13  HRSZ:214146" formában jön - a HRSZ
             # (helyrajzi szám) részt levágjuk, csak a tiszta házszám kell.
-            def tiszta_hazszam(nyers):
-                if not nyers:
-                    return ""
-                return str(nyers).split("HRSZ")[0].strip()
-
             from_n = tiszta_hazszam(ar.get("startNum", "") or ar.get("fromNumber", "") or ar.get("houseNumberFrom", ""))
             to_n   = tiszta_hazszam(ar.get("endNum", "")   or ar.get("toNumber", "")   or ar.get("houseNumberTo", ""))
             if street:
@@ -246,8 +247,8 @@ def kinyert_adatok(eset):
                     sor += f" {from_n}"
                 utcak_lista.append(sor)
 
-    utcak_lista = list(dict.fromkeys(utcak_lista))
-    utcak = ", ".join(utcak_lista[:4]) if utcak_lista else (a.get("city") or "—")
+    # "utcak" - minden cím saját sorában (nem összevonva, nem levágva)
+    utcak = "\n".join(utcak_lista) if utcak_lista else (a.get("city") or "—")
 
     # Ha nincs utca (üzemzavar esetén tipikus), Nominatim-tól kérjük le
     nominatim_utca = None
@@ -268,6 +269,7 @@ def kinyert_adatok(eset):
         "kezdes":         ido_format(kezdes_raw),
         "veg":            ido_format(veg_raw),
         "utcak":          utcak,
+        "utcak_lista":    utcak_lista,
         "nominatim_utca": nominatim_utca,
         "fogyaszto":      str(fogyaszto),
         "gmaps":          gmaps,
@@ -314,7 +316,12 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
             sor.append(f"   🕐 {kezdes_ido} → {veg_ido}")
         else:
             sor.append(f"   🕐 Kezdete: {f['kezdes']}")
-        sor.append(f"   📍 {f['utcak']}")
+        # Minden cím saját sorában, ahogy az E.ON kiadta - nincs összevonás
+        if f["utcak_lista"]:
+            for cim in f["utcak_lista"]:
+                sor.append(f"   📍 {cim}")
+        else:
+            sor.append(f"   📍 {f['utcak']}")
         sor.append(f"   👥 Érintett: {f['fogyaszto']} fogyasztó")
         return "\n".join(sor)
 
@@ -367,6 +374,8 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
         szin  = "#c0392b" if f["tipus"] == "UZEMZAVAR" else "#e67e22"
         badge = "🔴 ÉLŐ ÜZEMZAVAR" if f["tipus"] == "UZEMZAVAR" else "📋 TERVEZETT ÁRAMSZÜNET"
 
+        cimek_html = "".join(f"<div>• {c}</div>" for c in f["utcak_lista"]) if f["utcak_lista"] else f["utcak"]
+
         sorok_html += f"""
         <tr style="border-bottom:2px solid #eee">
           <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
@@ -378,7 +387,7 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
               <tr><td style="color:#888">🔢 Azonosító:</td><td>{f['azonosito']}</td></tr>
               <tr><td style="color:#888">⏰ Kezdés:</td><td><strong>{f['kezdes']}</strong></td></tr>
               <tr><td style="color:#888">⏰ Vége:</td><td><strong>{f['veg']}</strong></td></tr>
-              <tr><td style="color:#888">🏘️ Helyszín:</td><td>{f['utcak']}</td></tr>
+              <tr><td style="color:#888;vertical-align:top">🏘️ Helyszín:</td><td>{cimek_html}</td></tr>
               <tr><td style="color:#888">👥 Érintett:</td><td>{f['fogyaszto']} fogyasztó</td></tr>
             </table>
             {"<div style='margin-top:10px'><a href='" + f['gmaps'] + "' style='background:#4285f4;color:#fff;padding:7px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold'>📍 Google Maps</a></div>" if f['gmaps'] else ""}
