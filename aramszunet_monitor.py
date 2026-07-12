@@ -28,6 +28,10 @@ API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-dat
 
 ALLAPOT_FAJL = "aramszunet_allapot.json"
 
+# Ide írd be a saját rajzolt képed URL-jét, ha van - a Facebook-posztba
+# automatikusan bekerül a másolható szöveg alá. Ha nincs kép, hagyd üresen.
+KEP_URL = "https://mrgabee.hu/aramszunet.png"
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
     "Accept": "application/json",
@@ -191,7 +195,7 @@ def lekerdez_json(url, tipus):
 def kinyert_adatok(eset):
     a     = eset["adat"]
     tipus = eset["tipus"]
-    kerulet = erintett_kerulet(eset) or "ismeretlen kerület"
+    kerulet = erintett_kerulet(a) or "ismeretlen kerület"
 
     if tipus == "TERVEZETT":
         intervals  = a.get("intervals", [])
@@ -224,11 +228,19 @@ def kinyert_adatok(eset):
         if isinstance(ar, dict):
             city   = ar.get("city", "")
             street = ar.get("street", "") or ar.get("streetName", "")
-            from_n = ar.get("fromNumber", "") or ar.get("houseNumberFrom", "")
-            to_n   = ar.get("toNumber", "")   or ar.get("houseNumberTo", "")
+            # A valódi E.ON mezőnevek: startNum / endNum (élőben ellenőrizve).
+            # A startNum gyakran "13  HRSZ:214146" formában jön - a HRSZ
+            # (helyrajzi szám) részt levágjuk, csak a tiszta házszám kell.
+            def tiszta_hazszam(nyers):
+                if not nyers:
+                    return ""
+                return str(nyers).split("HRSZ")[0].strip()
+
+            from_n = tiszta_hazszam(ar.get("startNum", "") or ar.get("fromNumber", "") or ar.get("houseNumberFrom", ""))
+            to_n   = tiszta_hazszam(ar.get("endNum", "")   or ar.get("toNumber", "")   or ar.get("houseNumberTo", ""))
             if street:
                 sor = f"{city} {street}".strip()
-                if from_n and to_n:
+                if from_n and to_n and from_n != to_n:
                     sor += f" {from_n}-{to_n}"
                 elif from_n:
                     sor += f" {from_n}"
@@ -331,6 +343,10 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     sorok.append("🤖 Automatikus értesítő – Baleset-info.hu")
     sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Kispest, Szigetszentmiklós")
 
+    if KEP_URL:
+        sorok.append("")
+        sorok.append(KEP_URL)
+
     return "\n".join(sorok)
 
 
@@ -379,12 +395,19 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
   .hdr h1{{margin:0;font-size:20px}}
   .hdr small{{opacity:.85;font-size:13px}}
   .body{{padding:20px 28px}}
-  .fb-box{{background:#f0f2f5;border:2px dashed #1877f2;border-radius:8px;
-           padding:16px;margin:20px 0}}
-  .fb-box h3{{margin:0 0 10px;color:#1877f2;font-size:14px}}
+  .fb-box{{background:linear-gradient(135deg,#f0f2f5,#e8edf3);
+           border:1px solid #d0d7de;border-radius:12px;
+           padding:18px 20px;margin:22px 0;
+           box-shadow:0 1px 3px rgba(0,0,0,.06)}}
+  .fb-box h3{{margin:0 0 12px;color:#1877f2;font-size:14px;
+              display:flex;align-items:center;gap:6px}}
   .fb-box pre{{margin:0;font-family:Arial,sans-serif;font-size:13px;
               white-space:pre-wrap;word-break:break-word;
-              color:#1c1e21;line-height:1.6}}
+              color:#1c1e21;line-height:1.6;background:#fff;
+              border-radius:8px;padding:14px;border:1px solid #e4e6eb}}
+  .fb-kep-elonezet{{margin-top:12px;text-align:center}}
+  .fb-kep-elonezet img{{max-width:100%;max-height:220px;border-radius:8px;
+                        box-shadow:0 2px 6px rgba(0,0,0,.15)}}
   .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
          color:#95a5a6;text-align:center}}
 </style>
@@ -397,8 +420,9 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
 
     <div class="fb-box">
-      <h3>📘 Facebook poszt – kattints bele, Ctrl+A, Ctrl+C:</h3>
+      <h3>📘 Facebook poszt szövege — jelöld ki és másold (Ctrl+A majd Ctrl+C)</h3>
       <pre>{fb_szoveg_txt}</pre>
+      {f'<div class="fb-kep-elonezet"><img src="{KEP_URL}" alt="Facebook poszt kép"></div>' if KEP_URL else ''}
     </div>
 
     <div style="text-align:center;margin-top:16px">
