@@ -28,11 +28,14 @@ def magyar_ido():
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
-FB_PAGE_TOKEN = os.environ["FB_PAGE_TOKEN"]
-FB_PAGE_ID    = os.environ["FB_PAGE_ID"]
+FB_PAGE_ID    = os.environ.get("FB_PAGE_ID", "104411308403346")  # csak a lábjegyzet-linkhez kell, posztoláshoz már nem
 
 VIZMUVEK_URL = "https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
 ALLAPOT_FAJL = "vizmuvek_allapot.json"
+
+# Ide írd be a saját rajzolt képed URL-jét, ha van - a Facebook-posztba
+# automatikusan bekerül a másolható szöveg alá. Ha nincs kép, hagyd üresen.
+KEP_URL = "https://mrgabee.hu/vizmuvek.png"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
@@ -210,29 +213,15 @@ def facebook_szoveg(esetek):
     sorok.append("https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk")
     sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Kispest, Szigetszentmiklós")
 
+    if KEP_URL:
+        sorok.append("")
+        sorok.append(KEP_URL)
+
     return "\n".join(sorok)
 
 
-# ════════════════════════════════════════════
-#  📘  FACEBOOK POSZT KÜLDÉSE (Graph API)
-# ════════════════════════════════════════════
-def facebook_poszt(esetek):
-    """Egy összesített Facebook posztot küld az összes új eseményről."""
-    szoveg = facebook_szoveg(esetek)
-
-    try:
-        url = f"https://graph.facebook.com/v19.0/{FB_PAGE_ID}/feed"
-        r = requests.post(url, data={
-            "message": szoveg,
-            "access_token": FB_PAGE_TOKEN
-        }, timeout=15)
-        if r.status_code == 200:
-            post_id = r.json().get("id", "?")
-            print(f"📘 Facebook poszt elküldve! ID: {post_id}")
-        else:
-            print(f"⚠️ Facebook hiba: {r.status_code} – {r.text}")
-    except Exception as ex:
-        print(f"❌ Facebook poszt hiba: {ex}")
+# (Az automata Facebook Graph API posztolás eltávolítva - mostantól csak
+#  az e-mail alján lévő másolható szöveg készül el, azt kell kézzel posztolni.)
 
 
 # ════════════════════════════════════════════
@@ -308,12 +297,19 @@ def email_kuldes(uj_esetek):
   .bevezeto{{background:#e8f4fd;border-left:4px solid #2980b9;
              padding:12px 16px;margin-bottom:16px;
              font-size:14px;color:#2c3e50;line-height:1.6}}
-  .fb-box{{background:#f0f2f5;border:2px dashed #1877f2;
-           border-radius:8px;padding:16px;margin:20px 0}}
-  .fb-box h3{{margin:0 0 10px;color:#1877f2;font-size:14px}}
+  .fb-box{{background:linear-gradient(135deg,#f0f2f5,#e8edf3);
+           border:1px solid #d0d7de;border-radius:12px;
+           padding:18px 20px;margin:22px 0;
+           box-shadow:0 1px 3px rgba(0,0,0,.06)}}
+  .fb-box h3{{margin:0 0 12px;color:#1877f2;font-size:14px;
+              display:flex;align-items:center;gap:6px}}
   .fb-box pre{{margin:0;font-family:Arial,sans-serif;font-size:13px;
               white-space:pre-wrap;word-break:break-word;
-              color:#1c1e21;line-height:1.6}}
+              color:#1c1e21;line-height:1.6;background:#fff;
+              border-radius:8px;padding:14px;border:1px solid #e4e6eb}}
+  .fb-kep-elonezet{{margin-top:12px;text-align:center}}
+  .fb-kep-elonezet img{{max-width:100%;max-height:220px;border-radius:8px;
+                        box-shadow:0 2px 6px rgba(0,0,0,.15)}}
   .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
          color:#95a5a6;text-align:center}}
 </style>
@@ -334,8 +330,9 @@ def email_kuldes(uj_esetek):
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
 
     <div class="fb-box">
-      <h3>📘 Facebook poszt szövege – jelöld ki és másold (Ctrl+A majd Ctrl+C):</h3>
+      <h3>📘 Facebook poszt szövege — jelöld ki és másold (Ctrl+A majd Ctrl+C)</h3>
       <pre id="fb">{fb_szoveg}</pre>
+      {f'<div class="fb-kep-elonezet"><img src="{KEP_URL}" alt="Facebook poszt kép"></div>' if KEP_URL else ''}
     </div>
 
     <div style="text-align:center;margin-top:16px">
@@ -389,7 +386,6 @@ def main():
     print(f"\n💧 Új esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
-        facebook_poszt(uj)
     else:
         print("✅ Nincs új esemény.")
 
