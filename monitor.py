@@ -30,11 +30,11 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 MENTO_GEPEK = {
     "ha-hbg": "MEDIC3",
     "ha-hbh": "MEDIC6",
-    "ha-hbi": "MEDIC6",
-    "ha-hbk": "MEDIC",
+    "ha-hbi": "MEDIC9",
+    "ha-hbk": "MEDIC4",
     "ha-hbl": "MEDIC1",
     "ha-hbm": "MEDIC2",
-    "ha-hbn": "MEDIC",
+    "ha-hbn": "MEDIC6",
     "ha-hbo": "MEDIC7",
 }
 
