@@ -1,14 +1,20 @@
-name: 🚨 Waze Baleset Monitor
+name: 🚗 Waze Baleset Monitor - Budapest
 
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [waze_trigger]
+    types: [waze_budapest_trigger]
+
+concurrency:
+  group: waze-budapest-monitor
+  cancel-in-progress: false
 
 jobs:
   figyel:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.61.0-jammy
+    timeout-minutes: 5
     permissions:
       contents: write
 
@@ -18,49 +24,62 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: 🐍 Python beállítása
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
       - name: 📦 Függőségek telepítése
-        run: pip install requests
+        run: pip install playwright==1.61.0
 
-      - name: 🚨 Waze monitor futtatása
+      - name: 🚗 Waze Budapest monitor futtatása
         env:
-          EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
-          EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
-          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
-          WAZE_COOKIE:   ${{ secrets.WAZE_COOKIE }}
-        run: python waze_monitor.py
+          EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE }}
+          TESZT_MOD: "1"
+        run: python waze_budapest_monitor.py
+
+      - name: 📸 Screenshot feltöltése
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waze-teszt-screenshot
+          path: waze_teszt_screenshot.png
+          if-no-files-found: ignore
 
       - name: 💾 Állapot commitolása
+        if: always()
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git stash
-          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
-          git stash pop || true
-          [ -f waze_allapot.json ] && git add waze_allapot.json || echo "fájl nem létezik"
-          git diff --staged --quiet || git commit -m "waze állapot [skip ci]"
-          git push origin main || true
+          if [ ! -f waze_budapest_allapot.json ]; then
+            echo "Nincs állapotfájl, nincs mit commitolni."
+            exit 0
+          fi
+          cp waze_budapest_allapot.json /tmp/waze_budapest_allapot_sajat.json
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/waze_budapest_allapot_sajat.json waze_budapest_allapot.json
+            git add waze_budapest_allapot.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "waze budapest allapot [skip ci]"
+            if git push origin HEAD:main; then
+              SIKERULT=1
+              break
+            else
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
-      - name: 🗑️ Régi futások törlése
+      - name: ⏱️ Várakozás
         if: always()
-        run: |
-          gh run list --workflow=waze_monitor.yml --limit 50 \
-            --json databaseId,status \
-            --jq '.[] | select(.status=="completed") | .databaseId' | \
-            tail -n +6 | \
-            xargs -I {} gh run delete {} --yes 2>/dev/null || true
-        env:
-          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
-
-      - name: ⏱️ Várakozás 60 másodpercet
-        if: always()
-        run: sleep 60
+        run: sleep 30
 
       - name: 🔄 Következő futás indítása
         if: always()
@@ -69,4 +88,4 @@ jobs:
             -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/${{ github.repository }}/dispatches \
-            -d '{"event_type":"waze_trigger"}'
+            -d '{"event_type":"waze_budapest_trigger"}'
