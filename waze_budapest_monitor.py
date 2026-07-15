@@ -111,10 +111,9 @@ def csempe_feldolgozasa(page, csempe):
         print(f"  ⚠️ Térkép-konténer nem jelent meg időben: {e}")
     page.wait_for_timeout(4000)
 
-    if TESZT_MOD:
-        print(f"  🔍 Releváns hálózati hívások ennél a csempénél: {len(halozati_naplo)}")
-        for sor in halozati_naplo:
-            print(f"     {sor}")
+    print(f"  🔍 Releváns hálózati hívások ennél a csempénél: {len(halozati_naplo)}")
+    for sor in halozati_naplo:
+        print(f"     {sor}")
 
     adat = page.evaluate("""
         () => {
@@ -171,7 +170,7 @@ def osszes_csempe_lekerdezese():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=True,
+            headless=False,
             args=[
                 "--disable-blink-features=AutomationControlled",
                 "--disable-dev-shm-usage",
