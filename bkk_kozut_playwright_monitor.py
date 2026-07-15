@@ -46,13 +46,8 @@ def oldal_szoveg_lekerese():
         # Várunk, hogy a JS tényleg lefusson és a lista betöltődjön
         page.wait_for_timeout(3000)
 
-        # Megpróbáljuk kifejezetten a "Közúti közlekedés" fület aktívvá tenni,
-        # hátha a hash-alapú útvonal önmagában nem elég
-        try:
-            page.get_by_text("Közúti közlekedés", exact=True).click(timeout=5000)
-            page.wait_for_timeout(2000)
-        except Exception as e:
-            print(f"  (Közúti fül kattintás kihagyva: {e})")
+        # A hash-alapú URL (#!t=kozut&e=3) önmagában is a helyes fület és
+        # szűrést tölti be - nincs szükség külön kattintásra.
 
         teljes_szoveg = page.inner_text("body")
 
