@@ -1,0 +1,88 @@
+name: 🚧 BKK Közúti Baleset Monitor
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [bkk_kozut_trigger]
+
+concurrency:
+  group: bkk-kozut-monitor
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    # Előre kész Playwright + Chromium image - nem kell telepíteni, gyorsabb indulás
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.45.0-jammy
+    timeout-minutes: 4
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 📦 Függőségek telepítése
+        run: pip install playwright
+
+      - name: 🚧 BKK közúti monitor futtatása
+        env:
+          EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT_BKK:  ${{ secrets.EMAIL_CIMZETT_BKK }}
+          TESZT_MOD: "0"
+        run: python bkk_kozut_playwright_monitor.py
+
+      - name: 💾 Állapot commitolása
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ ! -f bkk_kozut_allapot.json ]; then
+            echo "bkk_kozut_allapot.json nem létezik, nincs mit commitolni."
+            exit 0
+          fi
+          cp bkk_kozut_allapot.json /tmp/bkk_kozut_allapot_sajat.json
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/bkk_kozut_allapot_sajat.json bkk_kozut_allapot.json
+            git add bkk_kozut_allapot.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "bkk közút állapot [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: ⏱️ Várakozás
+        if: always()
+        run: sleep 60
+
+      - name: 🔄 Következő futás indítása
+        if: always()
+        run: |
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type":"bkk_kozut_trigger"}'
