@@ -33,7 +33,7 @@ jobs:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_BKK:  ${{ secrets.EMAIL_CIMZETT_BKK }}
-          TESZT_MOD: "0"
+          TESZT_MOD: "1"
         run: python bkk_kozut_playwright_monitor.py
 
       - name: 💾 Állapot commitolása
