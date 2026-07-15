@@ -42,10 +42,17 @@ def oldal_szoveg_lekerese():
         page = context.new_page()
 
         print(f"🌐 Betöltés: {BKK_KOZUT_URL}")
-        page.goto(BKK_KOZUT_URL, wait_until="networkidle", timeout=30000)
+        try:
+            page.goto(BKK_KOZUT_URL, wait_until="load", timeout=30000)
+        except Exception as e:
+            print(f"  ⚠️ Első betöltési kísérlet sikertelen ({e}), újrapróbálkozás...")
+            page.goto(BKK_KOZUT_URL, wait_until="load", timeout=30000)
 
         # Várunk, hogy a JS tényleg lefusson és a lista betöltődjön
-        page.wait_for_timeout(3000)
+        # (a "networkidle" nem megbízható itt, mert az oldal folyamatos
+        # háttér-kéréseket küldhet, pl. térkép-csempéket - emiatt inkább
+        # fix várakozással biztosítjuk, hogy a JS lefusson)
+        page.wait_for_timeout(5000)
 
         # A hash-alapú URL (#!t=kozut&e=3) önmagában is a helyes fület és
         # szűrést tölti be - nincs szükség külön kattintásra.
