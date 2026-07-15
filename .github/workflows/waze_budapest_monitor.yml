@@ -25,15 +25,17 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: 📦 Függőségek telepítése
-        run: pip install playwright==1.61.0
+        run: |
+          pip install playwright==1.61.0
+          apt-get update && apt-get install -y xvfb
 
-      - name: 🚗 Waze Budapest monitor futtatása
+      - name: 🚗 Waze Budapest monitor futtatása (virtuális kijelzővel)
         env:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE }}
           TESZT_MOD: "1"
-        run: python waze_budapest_monitor.py
+        run: xvfb-run -a python waze_budapest_monitor.py
 
       - name: 📸 Screenshot feltöltése
         if: always()
