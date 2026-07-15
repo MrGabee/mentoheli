@@ -70,24 +70,50 @@ def teszt_futtatas():
 
 def esemenyek_kinyerese(szoveg):
     """
-    ELŐZETES, MÉG FINOMÍTANDÓ parser - a teszt-futtatás kimenete alapján
-    kell pontosítani. Egyelőre sor-alapú heurisztikával dolgozik: azokat
-    a sorblokkokat keresi, amik "Baleset" szót tartalmaznak, és utánuk
-    néhány sort dátum/idő infóként vesz.
+    A felfedezett, konzisztens minta alapján: a lista minden bejegyzése
+    PONTOSAN 2 sorból áll - cím, majd "kezdés - befejezés" dátum-tartomány.
+    A listát a "Közúti közlekedési változások" fejléc és a "Keresés" mező
+    (a szűrőpanel eleje) között találjuk.
     """
-    sorok = [s.strip() for s in szoveg.split("\n") if s.strip()]
-    esemenyek = []
+    # A lista-szakasz kivágása
+    kezdo_jelzo = "Közúti közlekedési változások"
+    zaro_jelzo = "Keresés"
 
-    for i, sor in enumerate(sorok):
-        if "baleset" in sor.lower() and len(sor) > 10:
-            # A cím maga a sor; a következő 1-3 sor gyakran idő/hely infó
-            kontextus = sorok[i:i + 4]
-            azonosito = hashlib.md5("|".join(kontextus).encode("utf-8")).hexdigest()[:12]
-            esemenyek.append({
-                "id": azonosito,
-                "cim": sor,
-                "kontextus": kontextus,
-            })
+    kezdo_idx = szoveg.find(kezdo_jelzo)
+    if kezdo_idx == -1:
+        return []
+    kezdo_idx += len(kezdo_jelzo)
+
+    zaro_idx = szoveg.find(zaro_jelzo, kezdo_idx)
+    lista_resz = szoveg[kezdo_idx:zaro_idx if zaro_idx > -1 else None]
+
+    if "Nincs találat a keresési feltételekre" in lista_resz:
+        return []
+
+    sorok = [s.strip() for s in lista_resz.split("\n") if s.strip()]
+
+    # "Szűrők törlése" néha az elején van, azt kihagyjuk
+    sorok = [s for s in sorok if s != "Szűrők törlése"]
+
+    esemenyek = []
+    i = 0
+    while i < len(sorok) - 1:
+        cim = sorok[i]
+        datum_sor = sorok[i + 1]
+
+        if " - " in datum_sor:
+            kezdes, befejezes = datum_sor.split(" - ", 1)
+        else:
+            kezdes, befejezes = datum_sor, ""
+
+        azonosito = hashlib.md5(f"{cim}|{kezdes}".encode("utf-8")).hexdigest()[:12]
+        esemenyek.append({
+            "id": azonosito,
+            "cim": cim,
+            "kezdes": kezdes.strip(),
+            "befejezes": befejezes.strip(),
+        })
+        i += 2
 
     return esemenyek
 
@@ -118,8 +144,9 @@ def email_kuldes(uj_esemenyek):
     sorok = [f"BKK közúti baleset-figyelő - {ido}", ""]
     for e in uj_esemenyek:
         sorok.append(f"• {e['cim']}")
-        for k in e["kontextus"][1:]:
-            sorok.append(f"   {k}")
+        sorok.append(f"   Kezdete: {e['kezdes']}")
+        if e["befejezes"]:
+            sorok.append(f"   Vége: {e['befejezes']}")
         sorok.append("")
 
     szoveg = "\n".join(sorok)
@@ -153,7 +180,12 @@ def main():
     for e in esemenyek:
         if e["id"] not in allapot:
             uj_esemenyek.append(e)
-            allapot[e["id"]] = {"cim": e["cim"], "eloszor_latva": datetime.now().isoformat()}
+            allapot[e["id"]] = {
+                "cim": e["cim"],
+                "kezdes": e["kezdes"],
+                "befejezes": e["befejezes"],
+                "eloszor_latva": datetime.now().isoformat(),
+            }
 
     if uj_esemenyek:
         print(f"🆕 Új esemény: {len(uj_esemenyek)}")
