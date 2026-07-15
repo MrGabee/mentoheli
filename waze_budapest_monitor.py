@@ -86,13 +86,35 @@ def csempe_feldolgozasa(page, csempe):
     url = f"https://embed.waze.com/iframe?zoom={ZOOM}&lat={csempe['lat']}&lon={csempe['lon']}&pin=1&desc=1"
     print(f"🌐 Csempe betöltése: lat={csempe['lat']:.4f}, lon={csempe['lon']:.4f}")
 
+    halozati_naplo = []
+
+    def valasz_figyelo(response):
+        try:
+            url_also = response.url.lower()
+            if any(k in url_also for k in ["alert", "incident", "georss", "rtserver", "traffic", "jam"]):
+                halozati_naplo.append(f"{response.status} | {response.url[:130]}")
+        except Exception:
+            pass
+
+    page.on("response", valasz_figyelo)
+
     try:
         page.goto(url, wait_until="load", timeout=30000)
     except Exception as e:
         print(f"  ⚠️ Betöltési hiba, újrapróbálkozás: {e}")
         page.goto(url, wait_until="load", timeout=30000)
 
-    page.wait_for_timeout(3000)
+    page.wait_for_timeout(2000)
+    try:
+        page.wait_for_selector(".wm-map__leaflet", timeout=15000)
+    except Exception as e:
+        print(f"  ⚠️ Térkép-konténer nem jelent meg időben: {e}")
+    page.wait_for_timeout(4000)
+
+    if TESZT_MOD:
+        print(f"  🔍 Releváns hálózati hívások ennél a csempénél: {len(halozati_naplo)}")
+        for sor in halozati_naplo:
+            print(f"     {sor}")
 
     adat = page.evaluate("""
         () => {
@@ -148,17 +170,36 @@ def osszes_csempe_lekerdezese():
     tipus_eloszlas = {}
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(
+            headless=True,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--disable-dev-shm-usage",
+                "--no-sandbox",
+            ],
+        )
         context = browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                        "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
             viewport={"width": 1200, "height": 700},
+            locale="hu-HU",
         )
+        # Elrejtjük a "navigator.webdriver" jelzőt és néhány más headless-árulkodó jelet,
+        # mert a Waze valószínűleg emiatt ad vissza üres/degradált térképet automatizált böngészőnek.
+        context.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+            window.chrome = { runtime: {} };
+            Object.defineProperty(navigator, 'languages', { get: () => ['hu-HU', 'hu', 'en-US', 'en'] });
+            Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+        """)
         page = context.new_page()
 
-        for csempe in csempek:
+        for idx, csempe in enumerate(csempek):
             try:
                 esemenyek = csempe_feldolgozasa(page, csempe)
+                if TESZT_MOD and idx == 0:
+                    page.screenshot(path="waze_teszt_screenshot.png")
+                    print("📸 Diagnosztikai screenshot elmentve: waze_teszt_screenshot.png")
                 for e in esemenyek:
                     tipus_eloszlas[e["tipus"]] = tipus_eloszlas.get(e["tipus"], 0) + 1
                     kulcs = hashlib.md5(f"{e['tipus']}|{round(e['lat'],4)}|{round(e['lon'],4)}".encode()).hexdigest()[:12]
