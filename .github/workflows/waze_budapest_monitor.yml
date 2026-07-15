@@ -32,8 +32,16 @@ jobs:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE }}
-          TESZT_MOD: "0"
+          TESZT_MOD: "1"
         run: python waze_budapest_monitor.py
+
+      - name: 📸 Screenshot feltöltése
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waze-teszt-screenshot
+          path: waze_teszt_screenshot.png
+          if-no-files-found: ignore
 
       - name: 💾 Állapot commitolása
         if: always()
