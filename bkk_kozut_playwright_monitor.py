@@ -146,7 +146,7 @@ def email_kuldes(uj_esemenyek):
         return
 
     ido = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    targy = f"🚧 BKK közúti baleset - {len(uj_esemenyek)} új esemény | {ido}"
+    targy = f"🚧 BKK KÖZÚTi (bal)eset - {len(uj_esemenyek)} új esemény | {ido}"
 
     sorok = [f"BKK közúti baleset-figyelő - {ido}", ""]
     for e in uj_esemenyek:
