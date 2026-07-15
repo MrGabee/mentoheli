@@ -18,7 +18,8 @@ from email.mime.text import MIMEText
 from datetime import datetime
 from playwright.sync_api import sync_playwright
 
-BKK_KOZUT_URL = "https://bkk.hu/bkk-info/#!t=kozut&e=3&d=today"
+TESZT_KATEGORIA = os.environ.get("TESZT_KATEGORIA", "3")  # 3=Baleset, 8=Lezárás, 9=Sávlezárás
+BKK_KOZUT_URL = f"https://bkk.hu/bkk-info/#!t=kozut&e={TESZT_KATEGORIA}&d=today"
 ALLAPOT_FAJL = "bkk_kozut_allapot.json"
 
 EMAIL_KULDO   = os.environ.get("EMAIL_KULDO", "")
@@ -60,9 +61,9 @@ def teszt_futtatas():
     ebből pontosítjuk a feldolgozó logikát."""
     szoveg = oldal_szoveg_lekerese()
     print("═" * 60)
-    print("NYERS OLDAL SZÖVEG (első 5000 karakter):")
+    print(f"NYERS OLDAL SZÖVEG (kategória: {TESZT_KATEGORIA}, első 8000 karakter):")
     print("═" * 60)
-    print(szoveg[:5000])
+    print(szoveg[:8000])
     print("═" * 60)
     print(f"Teljes hossz: {len(szoveg)} karakter")
 
