@@ -1,219 +1,194 @@
 """
-🚗 WAZE BALESET-FIGYELŐ – BUDAPEST (hivatalos embed.waze.com iframe)
+🚧 WAZE KÖZVETLEN FIGYELŐ (nem hivatalos GeoRSS végpont)
+Forrás: https://www.waze.com/live-map/api/georss
 
-Forrás: https://embed.waze.com/iframe - ez a Google/Waze hivatalosan
-dokumentált, kulcs nélküli beágyazási terméke (developers.google.com/waze/iframe),
-NEM egy nem hivatalos, belső API.
+FONTOS - OLVASD EL, MIELŐTT ÉLESBE ÁLLÍTOD:
+Ez UGYANAZ a végpont, amit a nyilvános Waze Live Map (www.waze.com/live-map)
+a böngészőben meghív, bejelentkezés nélkül. Nyilvánosan elérhető adat, de
+NEM hivatalos, dokumentálatlan API:
+  - a Waze ÁSZF technikailag tiltja az automatizált, engedély nélküli lekérdezést,
+  - a végpont bármikor változhat vagy blokkolásra kerülhet bejelentés nélkül,
+  - agresszív lekérdezési gyakoriság IP-blokkot eredményezhet.
+Ezért: tartsd alacsonyan a lekérdezési gyakoriságot (max néhány percenként),
+és számíts rá, hogy előbb-utóbb módosítani kell majd rajta.
 
-Módszer:
- 1. Playwright-tal betöltjük az iframe-et Budapest egyes "csempéire" (zoom=12,
-    mert kisebb zoomnál a jelölők klaszterekbe (csoportokba) vonódnak össze).
- 2. A jelölők (.wm-alert-icon) CSS-osztályneve elárulja a típust
-    (pl. wm-alert-icon--accident).
- 3. A jelölő pixel-pozíciójából (translate3d) szabványos Web Mercator
-    matekkal kiszámoljuk a valós GPS-koordinátát - NEM képfelismerés,
-    hanem nyilvános, dokumentált vetítési képlet.
-
-TESZT MÓD: mivel még nem láttunk élő "accident" típusú jelölőt, a script
-minden talált típust logol is, hogy pontosítani tudjuk a szűrést.
+--- MI VAN BENNE ---
+1) Egyszerű requests-alapú lekérdezés (nincs szükség Playwright/Chrome-ra,
+   mert ez sima JSON API, nincs mögötte Cloudflare-védelem).
+2) Budapestre beállított bounding box.
+3) Ugyanaz a robusztussági csomag, mint a többi monitornál:
+   - retry + exponenciális várakozás hálózati hiba esetén,
+   - budapesti időzóna (tzdata nélkül is működő fallback-kal),
+   - hiba-jelző e-mail, ha a futás elhasal,
+   - heartbeat fájl az utolsó futás állapotával.
 """
 
 import os
 import json
+import time
+import calendar
 import hashlib
 import smtplib
-import math
+import traceback
+import logging
+import requests
 from email.mime.text import MIMEText
-from datetime import datetime
-from playwright.sync_api import sync_playwright
+from datetime import datetime, timedelta, timezone
+try:
+    from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+except ImportError:
+    ZoneInfo = None
+    ZoneInfoNotFoundError = Exception
 
-# Budapest határoló téglalapja
-TERULET_HATAR = {"lonMin": 18.92, "lonMax": 19.33, "latMin": 47.35, "latMax": 47.61}
-CSEMPE_OSZLOPOK = 2
-CSEMPE_SOROK = 2
-ZOOM = 12
+# --- Budapest bounding box (bal, alsó, jobb, felső - lon/lat) ---
+# Kicsit bővebbre véve, hogy az agglomerációt is lefedje.
+BBOX = {
+    "left": 18.90,
+    "bottom": 47.35,
+    "right": 19.35,
+    "top": 47.60,
+}
 
-ALLAPOT_FAJL = "waze_budapest_allapot.json"
+WAZE_URL = "https://www.waze.com/live-map/api/georss"
+WAZE_PARAMS = {
+    "top": BBOX["top"],
+    "bottom": BBOX["bottom"],
+    "left": BBOX["left"],
+    "right": BBOX["right"],
+    "env": "row",  # "rest of world" - Európa (Izraelhez "il", Észak-Amerikához "na")
+    "types": "alerts,traffic",
+}
+
+ALLAPOT_FAJL = "waze_direkt_allapot.json"
+HEARTBEAT_FAJL = "waze_direkt_utolso_futas.txt"
+LOG_FAJL = "waze_direkt_monitor.log"
 
 EMAIL_KULDO   = os.environ.get("EMAIL_KULDO", "")
 EMAIL_JELSZO  = os.environ.get("EMAIL_JELSZO", "")
 EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_WAZE", "")
 
+# Ha csak bizonyos alert-típusokra vagy kíváncsi (pl. csak baleset+rendőr),
+# ide írd be a Waze belső típusneveit. Üresen hagyva mindent továbbenged.
+# Gyakori típusok: ACCIDENT, POLICE, HAZARD, JAM, ROAD_CLOSED
+SZURT_TIPUSOK = [t.strip() for t in os.environ.get("SZURT_TIPUSOK", "").split(",") if t.strip()]
+
 TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
 
-# Csak ezekre a típusokra figyelünk - "accident" karakterláncot tartalmazó
-# osztályneveket keresünk, hogy rugalmasak legyünk, ha több accident-alfaj van
-# (pl. wm-alert-icon--accident-major, --accident-minor).
-FIGYELT_TIPUS_KULCSSZO = "accident"
+MAX_PROBALKOZAS = int(os.environ.get("MAX_PROBALKOZAS", "3"))
+UJRAPROBALKOZAS_ALAP_VARAKOZAS_MP = 10
+
+logging.basicConfig(
+    filename=LOG_FAJL,
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
 
 
-def generalCsempek():
-    h = TERULET_HATAR
-    lon_lepes = (h["lonMax"] - h["lonMin"]) / CSEMPE_OSZLOPOK
-    lat_lepes = (h["latMax"] - h["latMin"]) / CSEMPE_SOROK
-
-    csempek = []
-    for col in range(CSEMPE_OSZLOPOK):
-        for row in range(CSEMPE_SOROK):
-            lon_min = h["lonMin"] + col * lon_lepes
-            lon_max = lon_min + lon_lepes
-            lat_min = h["latMin"] + row * lat_lepes
-            lat_max = lat_min + lat_lepes
-            kozep_lon = (lon_min + lon_max) / 2
-            kozep_lat = (lat_min + lat_max) / 2
-            csempek.append({"lat": kozep_lat, "lon": kozep_lon})
-    return csempek
+# ------------------------------------------------------------------
+# Időzóna - ugyanaz a tzdata-független megoldás, mint a BKK monitornál
+# ------------------------------------------------------------------
+def _het_utolso_vasarnapja_utc(ev, honap):
+    utolso_nap = calendar.monthrange(ev, honap)[1]
+    d = datetime(ev, honap, utolso_nap, tzinfo=timezone.utc)
+    while d.weekday() != 6:
+        d -= timedelta(days=1)
+    return d.replace(hour=1, minute=0, second=0, microsecond=0)
 
 
-def px_from_latlon(lat, lon, zoom):
-    world = 256 * (2 ** zoom)
-    x = (lon + 180) / 360 * world
-    lat_rad = math.radians(lat)
-    merc_n = math.log(math.tan(math.pi / 4 + lat_rad / 2))
-    y = (0.5 - merc_n / (2 * math.pi)) * world
-    return x, y
+def _eu_nyari_ido_van(utc_datetime):
+    ev = utc_datetime.year
+    marc_atallas = _het_utolso_vasarnapja_utc(ev, 3)
+    okt_atallas = _het_utolso_vasarnapja_utc(ev, 10)
+    return marc_atallas <= utc_datetime < okt_atallas
 
 
-def latlon_from_px(px, py, zoom):
-    world = 256 * (2 ** zoom)
-    lon = px / world * 360 - 180
-    n = math.pi - 2 * math.pi * py / world
-    lat = math.degrees(math.atan(0.5 * (math.exp(n) - math.exp(-n))))
-    return lat, lon
+def _budapesti_zona_biztonsagos():
+    if ZoneInfo is None:
+        return None
+    try:
+        return ZoneInfo("Europe/Budapest")
+    except ZoneInfoNotFoundError:
+        logging.warning("ZoneInfo('Europe/Budapest') nem található - manuális fallback aktiválva.")
+        return None
 
 
-def csempe_feldolgozasa(page, csempe):
-    url = f"https://embed.waze.com/iframe?zoom={ZOOM}&lat={csempe['lat']}&lon={csempe['lon']}&pin=1&desc=1"
-    print(f"🌐 Csempe betöltése: lat={csempe['lat']:.4f}, lon={csempe['lon']:.4f}")
+_BUDAPESTI_ZONA = _budapesti_zona_biztonsagos()
 
-    halozati_naplo = []
 
-    def valasz_figyelo(response):
+def most():
+    utc_most = datetime.now(timezone.utc)
+    if _BUDAPESTI_ZONA is not None:
+        return utc_most.astimezone(_BUDAPESTI_ZONA)
+    eltolas = timedelta(hours=2) if _eu_nyari_ido_van(utc_most) else timedelta(hours=1)
+    nev = "CEST" if eltolas == timedelta(hours=2) else "CET"
+    return utc_most.astimezone(timezone(eltolas, name=nev))
+
+
+# ------------------------------------------------------------------
+# Waze lekérdezés
+# ------------------------------------------------------------------
+def waze_adat_lekerese():
+    """Lekéri a nyers JSON-t a Waze nem hivatalos GeoRSS végpontjáról,
+    retry-jal, ha átmeneti hálózati/HTTP hiba lép fel."""
+    fejlecek = {
+        # Böngészőszerű User-Agent - a végpont böngészőből induló kérésre számít.
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+        "Referer": "https://www.waze.com/live-map/",
+        "Accept": "application/json",
+    }
+
+    utolso_hiba = None
+    for probalkozas in range(1, MAX_PROBALKOZAS + 1):
         try:
-            url_also = response.url.lower()
-            if any(k in url_also for k in ["alert", "incident", "georss", "rtserver", "traffic", "jam"]):
-                halozati_naplo.append(f"{response.status} | {response.url[:130]}")
-        except Exception:
-            pass
+            valasz = requests.get(WAZE_URL, params=WAZE_PARAMS, headers=fejlecek, timeout=15)
+            valasz.raise_for_status()
+            return valasz.json()
+        except Exception as e:
+            utolso_hiba = e
+            logging.warning(f"Waze lekérdezés sikertelen ({probalkozas}/{MAX_PROBALKOZAS}): {e}")
+            print(f"  ⚠️ Sikertelen próbálkozás ({probalkozas}/{MAX_PROBALKOZAS}): {e}")
+            if probalkozas < MAX_PROBALKOZAS:
+                varakozas = UJRAPROBALKOZAS_ALAP_VARAKOZAS_MP * (2 ** (probalkozas - 1))
+                print(f"  ⏳ Várakozás {varakozas} másodpercet...")
+                time.sleep(varakozas)
 
-    page.on("response", valasz_figyelo)
+    raise RuntimeError(f"A Waze végpont {MAX_PROBALKOZAS} próbálkozás után is elérhetetlen: {utolso_hiba}")
 
-    try:
-        page.goto(url, wait_until="load", timeout=30000)
-    except Exception as e:
-        print(f"  ⚠️ Betöltési hiba, újrapróbálkozás: {e}")
-        page.goto(url, wait_until="load", timeout=30000)
 
-    page.wait_for_timeout(2000)
-    try:
-        page.wait_for_selector(".wm-map__leaflet", timeout=15000)
-    except Exception as e:
-        print(f"  ⚠️ Térkép-konténer nem jelent meg időben: {e}")
-    page.wait_for_timeout(4000)
-
-    print(f"  🔍 Releváns hálózati hívások ennél a csempénél: {len(halozati_naplo)}")
-    for sor in halozati_naplo:
-        print(f"     {sor}")
-
-    adat = page.evaluate("""
-        () => {
-            const mapDiv = document.querySelector('.wm-map__leaflet');
-            if (!mapDiv) return null;
-            const rect = mapDiv.getBoundingClientRect();
-            const markerek = document.querySelectorAll('.leaflet-marker-icon.wm-alert-icon');
-
-            const eredmeny = [];
-            markerek.forEach(m => {
-                const stilus = m.getAttribute('style') || '';
-                const match = stilus.match(/translate3d\\(([\\d.-]+)px,\\s*([\\d.-]+)px/);
-                if (!match) return;
-
-                const tipus = Array.from(m.classList).find(c =>
-                    c.startsWith('wm-alert-icon--') &&
-                    c.indexOf('zoom') === -1 &&
-                    c.indexOf('badge') === -1 &&
-                    c !== 'wm-alert-icon--hazard'
-                );
-
-                eredmeny.push({
-                    tipus: tipus || 'ismeretlen',
-                    offsetX: parseFloat(match[1]),
-                    offsetY: parseFloat(match[2])
-                });
-            });
-
-            return { containerSzelesseg: rect.width, containerMagassag: rect.height, markerek: eredmeny };
-        }
-    """)
-
-    if not adat:
-        return []
-
-    kozep_px_x, kozep_px_y = px_from_latlon(csempe["lat"], csempe["lon"], ZOOM)
-    top_left_x = kozep_px_x - adat["containerSzelesseg"] / 2
-    top_left_y = kozep_px_y - adat["containerMagassag"] / 2
-
+def esemenyek_kinyerese(nyers_json):
+    """A Waze 'alerts' tömbjéből épít egyszerű, magyar mezőnevű eseménylistát.
+    A nyers JSON szerkezete nem hivatalos, dokumentálatlan - ha a Waze
+    megváltoztatja, ezt a függvényt kell majd hozzáigazítani."""
+    alertek = nyers_json.get("alerts", [])
     esemenyek = []
-    for m in adat["markerek"]:
-        abs_x = top_left_x + m["offsetX"]
-        abs_y = top_left_y + m["offsetY"]
-        lat, lon = latlon_from_px(abs_x, abs_y, ZOOM)
-        esemenyek.append({"tipus": m["tipus"], "lat": round(lat, 5), "lon": round(lon, 5)})
+
+    for a in alertek:
+        tipus = a.get("type", "ISMERETLEN")
+        altipus = a.get("subtype", "")
+
+        if SZURT_TIPUSOK and tipus not in SZURT_TIPUSOK:
+            continue
+
+        alert_id = a.get("uuid") or a.get("id")
+        if alert_id is None:
+            # Ha nincs egyedi azonosító, generálunk egyet a tartalomból.
+            alert_id = hashlib.md5(json.dumps(a, sort_keys=True).encode("utf-8")).hexdigest()[:12]
+
+        esemenyek.append({
+            "id": str(alert_id),
+            "tipus": tipus,
+            "altipus": altipus,
+            "utca": a.get("street", ""),
+            "varos": a.get("city", ""),
+            "leiras": a.get("reportDescription", ""),
+            "szelesseg": a.get("location", {}).get("y"),
+            "hosszusag": a.get("location", {}).get("x"),
+            "megbizhatosag": a.get("reliability"),
+            "megerositesek": a.get("nThumbsUp", 0),
+        })
 
     return esemenyek
-
-
-def osszes_csempe_lekerdezese():
-    csempek = generalCsempek()
-    minden_esemeny = {}
-    tipus_eloszlas = {}
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
-            headless=False,
-            args=[
-                "--disable-blink-features=AutomationControlled",
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-            ],
-        )
-        context = browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                       "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-            viewport={"width": 1200, "height": 700},
-            locale="hu-HU",
-        )
-        # Elrejtjük a "navigator.webdriver" jelzőt és néhány más headless-árulkodó jelet,
-        # mert a Waze valószínűleg emiatt ad vissza üres/degradált térképet automatizált böngészőnek.
-        context.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-            window.chrome = { runtime: {} };
-            Object.defineProperty(navigator, 'languages', { get: () => ['hu-HU', 'hu', 'en-US', 'en'] });
-            Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-        """)
-        page = context.new_page()
-
-        for idx, csempe in enumerate(csempek):
-            try:
-                esemenyek = csempe_feldolgozasa(page, csempe)
-                if TESZT_MOD and idx == 0:
-                    page.screenshot(path="waze_teszt_screenshot.png")
-                    print("📸 Diagnosztikai screenshot elmentve: waze_teszt_screenshot.png")
-                for e in esemenyek:
-                    tipus_eloszlas[e["tipus"]] = tipus_eloszlas.get(e["tipus"], 0) + 1
-                    kulcs = hashlib.md5(f"{e['tipus']}|{round(e['lat'],4)}|{round(e['lon'],4)}".encode()).hexdigest()[:12]
-                    minden_esemeny[kulcs] = e
-            except Exception as ex:
-                print(f"  ❌ Hiba a csempénél: {ex}")
-
-        browser.close()
-
-    print(f"📊 Típus-eloszlás (összes csempe, összes kategória): {tipus_eloszlas}")
-    return minden_esemeny
-
-
-def balesetek_szurese(minden_esemeny):
-    return {k: v for k, v in minden_esemeny.items() if FIGYELT_TIPUS_KULCSSZO in v["tipus"].lower()}
 
 
 def allapot_betoltes():
@@ -231,79 +206,114 @@ def allapot_mentes(allapot):
         json.dump(allapot, f, ensure_ascii=False, indent=2)
 
 
-def email_kuldes(uj_esemenyek, eltunt_kulcsok, regi_allapot):
+def heartbeat_iras(statusz, reszletek=""):
+    try:
+        with open(HEARTBEAT_FAJL, "w", encoding="utf-8") as f:
+            f.write(f"utolso_futas: {most().strftime('%Y-%m-%d %H:%M:%S %Z')}\n")
+            f.write(f"statusz: {statusz}\n")
+            if reszletek:
+                f.write(f"reszletek: {reszletek}\n")
+    except Exception as e:
+        logging.error(f"Heartbeat fájl írása sikertelen: {e}")
+
+
+def email_kuldes(targy, szoveg):
     if not (EMAIL_KULDO and EMAIL_JELSZO and EMAIL_CIMZETT):
         print("⚠️ Hiányzó e-mail környezeti változók - kihagyva.")
+        logging.warning("E-mail küldés kihagyva: hiányzó környezeti változók.")
         return
-
-    ido = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    targy = f"🚗 Waze baleset (Budapest) - {len(uj_esemenyek)} új, {len(eltunt_kulcsok)} megszűnt | {ido}"
-
-    sorok = [f"Waze baleset-figyelő (Budapest) - {ido}", ""]
-
-    if uj_esemenyek:
-        sorok.append(f"ÚJ BALESETEK ({len(uj_esemenyek)}):")
-        for kulcs, e in uj_esemenyek.items():
-            gmaps = f"https://www.google.com/maps?q={e['lat']},{e['lon']}"
-            sorok.append(f"• {e['tipus']} - {e['lat']}, {e['lon']}")
-            sorok.append(f"   {gmaps}")
-        sorok.append("")
-
-    if eltunt_kulcsok:
-        sorok.append(f"MEGSZŰNT BALESETEK ({len(eltunt_kulcsok)}):")
-        for kulcs in eltunt_kulcsok:
-            regi = regi_allapot.get(kulcs, {})
-            sorok.append(f"• {regi.get('tipus', '?')} - {regi.get('lat', '?')}, {regi.get('lon', '?')}")
-        sorok.append("")
-
-    szoveg = "\n".join(sorok)
-
     try:
         msg = MIMEText(szoveg, "plain", "utf-8")
         msg["Subject"] = targy
         msg["From"] = EMAIL_KULDO
         msg["To"] = EMAIL_CIMZETT
-
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(EMAIL_KULDO, EMAIL_JELSZO)
             server.sendmail(EMAIL_KULDO, [EMAIL_CIMZETT], msg.as_string())
-        print(f"📧 E-mail elküldve.")
+        print(f"📧 E-mail elküldve: {targy}")
     except Exception as ex:
+        logging.error(f"E-mail küldési hiba: {ex}")
         print(f"❌ E-mail hiba: {ex}")
 
 
+def esemeny_email_kuldes(uj_esemenyek):
+    ido = most().strftime("%Y-%m-%d %H:%M:%S")
+    targy = f"🚧 Waze - {len(uj_esemenyek)} új esemény | {ido}"
+
+    sorok = [f"Waze közvetlen figyelő - {ido} (budapesti idő)", ""]
+    for e in uj_esemenyek:
+        cim_resz = f"{e['utca']}, {e['varos']}".strip(", ")
+        sorok.append(f"• [{e['tipus']}{'/' + e['altipus'] if e['altipus'] else ''}] {cim_resz or 'ismeretlen hely'}")
+        if e["leiras"]:
+            sorok.append(f"   Leírás: {e['leiras']}")
+        if e["szelesseg"] and e["hosszusag"]:
+            sorok.append(f"   Térkép: https://www.waze.com/live-map/directions?ll={e['szelesseg']}%2C{e['hosszusag']}")
+        sorok.append(f"   Megerősítések: {e['megerositesek']}")
+        sorok.append("")
+
+    email_kuldes(targy, "\n".join(sorok))
+    print(f"📧 E-mail elküldve: {len(uj_esemenyek)} új esemény")
+
+
+def hiba_email_kuldes(hiba):
+    ido = most().strftime("%Y-%m-%d %H:%M:%S")
+    targy = f"❌ Waze közvetlen monitor HIBA - {ido}"
+    szoveg = (
+        f"A Waze közvetlen figyelő szkript hibával leállt: {ido} (budapesti idő)\n\n"
+        f"Hiba:\n{hiba}\n\n"
+        f"Részletes traceback a(z) {LOG_FAJL} fájlban.\n\n"
+        "Mivel ez egy nem hivatalos, dokumentálatlan Waze végpont, gyakori hibaok "
+        "lehet az is, hogy a Waze megváltoztatta a végpontot vagy blokkolta az IP-t "
+        "- ha a hiba tartósan visszatér, ezt érdemes elsőként megnézni."
+    )
+    email_kuldes(targy, szoveg)
+
+
 def main():
-    minden_esemeny = osszes_csempe_lekerdezese()
+    nyers = waze_adat_lekerese()
 
     if TESZT_MOD:
-        print(f"🧪 TESZT MÓD - nem küld e-mailt, csak logol.")
-        print(f"Összes jelölő (minden típus): {len(minden_esemeny)}")
-        balesetek = balesetek_szurese(minden_esemeny)
-        print(f"Ebből 'accident' típusú: {len(balesetek)}")
-        for k, v in balesetek.items():
-            print(f"  {v}")
+        print("═" * 60)
+        print("NYERS JSON (TESZT_MOD=1) - ebből ellenőrizzük a mezőneveket:")
+        print("═" * 60)
+        print(json.dumps(nyers, ensure_ascii=False, indent=2)[:6000])
+        print("═" * 60)
+        print(
+            "Ha a fenti szerkezet eltér attól, amit az esemenyek_kinyerese() "
+            "függvény vár (type, subtype, street, city, reportDescription, "
+            "location.x/y, reliability, nThumbsUp), azt a függvényt kell "
+            "hozzáigazítani a valós mezőnevekhez."
+        )
         return
 
-    balesetek = balesetek_szurese(minden_esemeny)
-    print(f"🚗 Talált baleset-jelölők: {len(balesetek)}")
+    esemenyek = esemenyek_kinyerese(nyers)
+    print(f"📊 Talált esemény (szűrés után): {len(esemenyek)}")
 
-    regi_allapot = allapot_betoltes()
-    aktualis_kulcsok = set(balesetek.keys())
-    regi_kulcsok = set(regi_allapot.keys())
+    allapot = allapot_betoltes()
+    uj_esemenyek = []
 
-    uj_kulcsok = aktualis_kulcsok - regi_kulcsok
-    eltunt_kulcsok = regi_kulcsok - aktualis_kulcsok
+    for e in esemenyek:
+        if e["id"] not in allapot:
+            uj_esemenyek.append(e)
+            allapot[e["id"]] = {**e, "eloszor_latva": most().isoformat()}
 
-    uj_esemenyek = {k: balesetek[k] for k in uj_kulcsok}
-
-    if uj_esemenyek or eltunt_kulcsok:
-        email_kuldes(uj_esemenyek, eltunt_kulcsok, regi_allapot)
+    if uj_esemenyek:
+        print(f"🆕 Új esemény: {len(uj_esemenyek)}")
+        esemeny_email_kuldes(uj_esemenyek)
     else:
-        print("✅ Nincs változás.")
+        print("✅ Nincs új esemény.")
 
-    uj_allapot = {k: balesetek[k] for k in aktualis_kulcsok}
-    allapot_mentes(uj_allapot)
+    allapot_mentes(allapot)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+        heartbeat_iras("OK")
+    except Exception as e:
+        hiba_uzenet = f"{type(e).__name__}: {e}"
+        logging.error(f"Végzetes hiba a futás során: {hiba_uzenet}\n{traceback.format_exc()}")
+        print(f"❌ VÉGZETES HIBA: {hiba_uzenet}")
+        heartbeat_iras("HIBA", hiba_uzenet)
+        hiba_email_kuldes(hiba_uzenet)
+        raise
