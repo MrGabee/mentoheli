@@ -1,23 +1,28 @@
 """
-🚧 WAZE KÖZVETLEN FIGYELŐ (nem hivatalos GeoRSS végpont)
+🚧 WAZE KÖZVETLEN FIGYELŐ - PLAYWRIGHT VÁLTOZAT (nem hivatalos GeoRSS végpont)
 Forrás: https://www.waze.com/live-map/api/georss
 
+ELŐZMÉNY: a sima requests-es hívás 403 Forbidden hibát adott, MÉG OTTHONI
+IP-ről is - tehát nem IP-alapú blokkolás, hanem hiányzó böngésző-munkamenet/
+-ujjlenyomat okozza. Ezért ez a verzió egy valódi (headless) Chrome-ot indít
+Playwrighttal, megnyitja a Waze Live Map oldalt (így megkapja a szükséges
+sütiket/munkamenetet), és MAGÁN AZ OLDALON BELÜL, a böngésző saját
+JavaScript fetch()-ével hívja meg a georss végpontot - így a kérés
+gyakorlatilag megkülönböztethetetlen egy valódi felhasználó kérésétől.
+
 FONTOS - OLVASD EL, MIELŐTT ÉLESBE ÁLLÍTOD:
-Ez UGYANAZ a végpont, amit a nyilvános Waze Live Map (www.waze.com/live-map)
-a böngészőben meghív, bejelentkezés nélkül. Nyilvánosan elérhető adat, de
-NEM hivatalos, dokumentálatlan API:
+Ez továbbra is egy nem hivatalos, dokumentálatlan végpont:
   - a Waze ÁSZF technikailag tiltja az automatizált, engedély nélküli lekérdezést,
-  - a végpont bármikor változhat vagy blokkolásra kerülhet bejelentés nélkül,
-  - agresszív lekérdezési gyakoriság IP-blokkot eredményezhet.
-Ezért: tartsd alacsonyan a lekérdezési gyakoriságot (max néhány percenként),
-és számíts rá, hogy előbb-utóbb módosítani kell majd rajta.
+  - a végpont/védelem bármikor változhat, és ez a megoldás is elromolhat,
+  - agresszív lekérdezési gyakoriság blokkot eredményezhet.
+Tartsd alacsonyan a lekérdezési gyakoriságot, és számíts rá, hogy előbb-utóbb
+újra hozzá kell majd nyúlni.
 
 --- MI VAN BENNE ---
-1) Egyszerű requests-alapú lekérdezés (nincs szükség Playwright/Chrome-ra,
-   mert ez sima JSON API, nincs mögötte Cloudflare-védelem).
-2) Budapestre beállított bounding box.
-3) Ugyanaz a robusztussági csomag, mint a többi monitornál:
-   - retry + exponenciális várakozás hálózati hiba esetén,
+1) Playwright (headless Chromium) - megnyitja a live-map oldalt, onnan
+   fetch()-eli a georss adatot, budapesti bounding box-szal.
+2) Ugyanaz a robusztussági csomag, mint a többi monitornál:
+   - retry + exponenciális várakozás hiba esetén,
    - budapesti időzóna (tzdata nélkül is működő fallback-kal),
    - hiba-jelző e-mail, ha a futás elhasal,
    - heartbeat fájl az utolsó futás állapotával.
@@ -31,9 +36,9 @@ import hashlib
 import smtplib
 import traceback
 import logging
-import requests
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta, timezone
+from playwright.sync_api import sync_playwright
 try:
     from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 except ImportError:
@@ -49,15 +54,8 @@ BBOX = {
     "top": 47.60,
 }
 
-WAZE_URL = "https://www.waze.com/live-map/api/georss"
-WAZE_PARAMS = {
-    "top": BBOX["top"],
-    "bottom": BBOX["bottom"],
-    "left": BBOX["left"],
-    "right": BBOX["right"],
-    "env": "row",  # "rest of world" - Európa (Izraelhez "il", Észak-Amerikához "na")
-    "types": "alerts,traffic",
-}
+WAZE_LIVE_MAP_URL = "https://www.waze.com/live-map/"
+WAZE_GEORSS_URL = "https://www.waze.com/live-map/api/georss"
 
 ALLAPOT_FAJL = "waze_direkt_allapot.json"
 HEARTBEAT_FAJL = "waze_direkt_utolso_futas.txt"
@@ -127,23 +125,56 @@ def most():
 # ------------------------------------------------------------------
 # Waze lekérdezés
 # ------------------------------------------------------------------
+# ------------------------------------------------------------------
+# Waze lekérdezés - Playwrighttal, a böngészőn belülről
+# ------------------------------------------------------------------
 def waze_adat_lekerese():
-    """Lekéri a nyers JSON-t a Waze nem hivatalos GeoRSS végpontjáról,
-    retry-jal, ha átmeneti hálózati/HTTP hiba lép fel."""
-    fejlecek = {
-        # Böngészőszerű User-Agent - a végpont böngészőből induló kérésre számít.
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                      "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-        "Referer": "https://www.waze.com/live-map/",
-        "Accept": "application/json",
-    }
-
+    """Elindít egy valódi (headless) Chrome-ot, megnyitja a Waze Live Map
+    oldalt (hogy megkapja a szükséges sütiket/munkamenetet), majd MAGÁN
+    AZ OLDALON BELÜL, a böngésző saját fetch()-ével kéri le a georss
+    adatot - ez a szükséges lépés ahhoz, hogy a kérés ne 403-mal térjen
+    vissza (sima szerver-szerver kérésként igen, böngészőn belülről nem)."""
     utolso_hiba = None
+
     for probalkozas in range(1, MAX_PROBALKOZAS + 1):
         try:
-            valasz = requests.get(WAZE_URL, params=WAZE_PARAMS, headers=fejlecek, timeout=15)
-            valasz.raise_for_status()
-            return valasz.json()
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                context = browser.new_context(
+                    user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                               "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+                    viewport={"width": 1400, "height": 1000},
+                )
+                page = context.new_page()
+
+                print(f"🌐 Live Map betöltése ({probalkozas}/{MAX_PROBALKOZAS})...")
+                page.goto(WAZE_LIVE_MAP_URL, wait_until="load", timeout=30000)
+                page.wait_for_timeout(4000)  # süti/munkamenet-felállás ideje
+
+                georss_url = (
+                    f"{WAZE_GEORSS_URL}?top={BBOX['top']}&bottom={BBOX['bottom']}"
+                    f"&left={BBOX['left']}&right={BBOX['right']}&env=row&types=alerts,traffic"
+                )
+
+                eredmeny = page.evaluate(
+                    """async (url) => {
+                        const resp = await fetch(url, { headers: { 'Accept': 'application/json' } });
+                        const szoveg = await resp.text();
+                        return { statusz: resp.status, szoveg: szoveg };
+                    }""",
+                    georss_url,
+                )
+
+                browser.close()
+
+                if eredmeny["statusz"] != 200:
+                    raise RuntimeError(
+                        f"A böngészőn belüli fetch is hibát adott: HTTP {eredmeny['statusz']} - "
+                        f"{eredmeny['szoveg'][:300]}"
+                    )
+
+                return json.loads(eredmeny["szoveg"])
+
         except Exception as e:
             utolso_hiba = e
             logging.warning(f"Waze lekérdezés sikertelen ({probalkozas}/{MAX_PROBALKOZAS}): {e}")
