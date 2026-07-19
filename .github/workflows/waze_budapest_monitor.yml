@@ -9,6 +9,8 @@ concurrency:
 jobs:
   figyel:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.61.0-jammy
     timeout-minutes: 5
     permissions:
       contents: write
@@ -18,14 +20,9 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: 🐍 Python beállítása
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
       - name: 📦 Függőségek telepítése
         run: |
-          pip install requests
+          pip install playwright==1.61.0
 
       - name: 🚗 Waze Budapest monitor futtatása
         env:
