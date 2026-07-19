@@ -1,49 +1,39 @@
 name: 🚗 Waze Baleset Monitor - Budapest
-
 on:
   workflow_dispatch:
   repository_dispatch:
     types: [waze_budapest_trigger]
-
 concurrency:
   group: waze-budapest-monitor
   cancel-in-progress: false
-
 jobs:
   figyel:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright/python:v1.61.0-jammy
     timeout-minutes: 5
     permissions:
       contents: write
-
     steps:
       - name: 📥 Kód letöltése
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: 📦 Függőségek telepítése
         run: |
-          pip install playwright==1.61.0
-          apt-get update && apt-get install -y xvfb
+          pip install requests
 
-      - name: 🚗 Waze Budapest monitor futtatása (virtuális kijelzővel)
+      - name: 🚗 Waze Budapest monitor futtatása
         env:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE }}
           TESZT_MOD: "1"
-        run: xvfb-run -a python waze_budapest_monitor.py
-
-      - name: 📸 Screenshot feltöltése
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: waze-teszt-screenshot
-          path: waze_teszt_screenshot.png
-          if-no-files-found: ignore
+        run: python waze_budapest_monitor.py
 
       - name: 💾 Állapot commitolása
         if: always()
