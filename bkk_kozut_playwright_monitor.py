@@ -23,13 +23,18 @@ kiolvasott szöveget - abból pontosítjuk a végleges feldolgozó logikát.
 import os
 import json
 import time
+import calendar
 import hashlib
 import smtplib
 import traceback
 import logging
 from email.mime.text import MIMEText
-from datetime import datetime
-from zoneinfo import ZoneInfo
+from datetime import datetime, timedelta, timezone
+try:
+    from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+except ImportError:  # nagyon régi Python, gyakorlatilag nem várható
+    ZoneInfo = None
+    ZoneInfoNotFoundError = Exception
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
 TESZT_KATEGORIA = os.environ.get("TESZT_KATEGORIA", "3")  # 3=Baleset, 8=Lezárás, 9=Sávlezárás
@@ -44,9 +49,6 @@ EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_BKK", "")
 
 TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
 
-# --- Időzóna: mindig ezzel dolgozunk, sose a szerver nyers rendszeridejével ---
-BUDAPESTI_ZONA = ZoneInfo("Europe/Budapest")
-
 # --- Hány próbálkozás és mennyi várakozás az oldalbetöltésre ---
 MAX_PROBALKOZAS = int(os.environ.get("MAX_PROBALKOZAS", "3"))
 UJRAPROBALKOZAS_ALAP_VARAKOZAS_MP = 10  # másodperc, minden próbálkozásnál duplázódik
@@ -58,9 +60,57 @@ logging.basicConfig(
 )
 
 
+def _het_utolso_vasarnapja_utc(ev, honap):
+    """Egy adott hónap utolsó vasárnapja, 01:00 UTC-kor - az EU óraátállítás
+    hivatalos időpontja (ez a szabály minden EU-tagállamra, így Magyarországra
+    is érvényes)."""
+    utolso_nap = calendar.monthrange(ev, honap)[1]
+    d = datetime(ev, honap, utolso_nap, tzinfo=timezone.utc)
+    while d.weekday() != 6:  # hétfő=0 ... vasárnap=6
+        d -= timedelta(days=1)
+    return d.replace(hour=1, minute=0, second=0, microsecond=0)
+
+
+def _eu_nyari_ido_van(utc_datetime):
+    """True, ha az adott UTC időpontban EU nyári időszámítás (CEST, UTC+2)
+    van érvényben, False ha téli (CET, UTC+1)."""
+    ev = utc_datetime.year
+    marc_atallas = _het_utolso_vasarnapja_utc(ev, 3)
+    okt_atallas = _het_utolso_vasarnapja_utc(ev, 10)
+    return marc_atallas <= utc_datetime < okt_atallas
+
+
+def _budapesti_zona_biztonsagos():
+    """ZoneInfo-t próbál használni; ha a rendszeren/csomagban nincs
+    tz-adatbázis (pl. csupasz GitHub Actions runner, hiányzó 'tzdata'
+    csomag), akkor None-t ad vissza, és a most() manuálisan számol tovább."""
+    if ZoneInfo is None:
+        return None
+    try:
+        return ZoneInfo("Europe/Budapest")
+    except ZoneInfoNotFoundError:
+        logging.warning(
+            "ZoneInfo('Europe/Budapest') nem található (hiányzó tzdata) - "
+            "manuális EU nyári/téli időszámítás fallback aktiválva."
+        )
+        return None
+
+
+_BUDAPESTI_ZONA = _budapesti_zona_biztonsagos()
+
+
 def most():
-    """Aktuális idő, mindig budapesti időzónában."""
-    return datetime.now(BUDAPESTI_ZONA)
+    """Aktuális idő, mindig budapesti (nyári/téli) idő szerint - akkor is,
+    ha a rendszeren nincs telepítve tz-adatbázis."""
+    utc_most = datetime.now(timezone.utc)
+
+    if _BUDAPESTI_ZONA is not None:
+        return utc_most.astimezone(_BUDAPESTI_ZONA)
+
+    # Fallback: kézi EU DST-szabály, külső tzdata nélkül is helyes.
+    eltolas = timedelta(hours=2) if _eu_nyari_ido_van(utc_most) else timedelta(hours=1)
+    nev = "CEST" if eltolas == timedelta(hours=2) else "CET"
+    return utc_most.astimezone(timezone(eltolas, name=nev))
 
 
 def oldal_szoveg_lekerese():
