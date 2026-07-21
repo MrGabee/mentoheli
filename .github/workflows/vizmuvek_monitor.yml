@@ -4,6 +4,15 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [vizmuvek_trigger]
+  schedule:
+    # Biztonsági háló: ha az önindító lánc bármi okból megszakadna
+    # (pl. lejárt token, GitHub API hiba), ez legkésőbb 10 percen
+    # belül újraindítja a monitorozást.
+    - cron: '*/10 * * * *'
+
+concurrency:
+  group: vizmuvek-monitor
+  cancel-in-progress: false
 
 jobs:
   figyel:
@@ -66,8 +75,23 @@ jobs:
       - name: 🔄 Következő futás indítása
         if: always()
         run: |
-          curl -s -X POST \
-            -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository }}/dispatches \
-            -d '{"event_type":"vizmuvek_trigger"}'
+          SIKERULT=0
+          for i in 1 2 3; do
+            HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/dispatches \
+              -d '{"event_type":"vizmuvek_trigger"}')
+            if [ "$HTTP_KOD" = "204" ]; then
+              echo "✅ Dispatch sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "⚠️ Dispatch sikertelen (HTTP $HTTP_KOD), próbálkozás $i/3..."
+              cat /tmp/dispatch_resp.txt
+              sleep 5
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "❌ FIGYELEM: nem sikerült elindítani a következő futást! A schedule biztonsági háló legfeljebb 15 percen belül úgyis újraindítja a monitort."
+          fi
