@@ -38,7 +38,7 @@ MENTO_GEPEK = {
     "ha-hbo": "MEDIC7",
 }
 
-ALLAPOT_FAJL     = "allapot.json"
+ALLAPOT_FAJL    = "allapot.json"
 ESEMENY_NAPLO    = "esemeny_naplo.json"
 EMAIL_COOLDOWN   = 180  # 3 perc
 
@@ -55,7 +55,7 @@ HEADERS = {
 def betolt(fajl, alapert={}):
     if os.path.exists(fajl):
         try:
-            with open(fajl) as f:
+            with open(fajl, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception:
             pass
@@ -73,12 +73,12 @@ def lekerdez_fr24(reg):
     """
     Lekéri a Flightradar24 adatlapját és visszaadja az utolsó repülés adatait:
     {
-      "atd":     "13:08",       # tényleges felszállás (helyi idő)
-      "landed":  "13:51",       # leszállás (None ha még repül)
-      "elo":     True/False,    # jelenleg a levegőben van-e
-      "datum":   "01 Jul 2026",
-      "callsign":"MEDIC2",
-      "flight_id": "...",       # playback ID ha van
+      "atd":       "13:08",        # tényleges felszállás (helyi idő)
+      "landed":    "13:51",        # leszállás (None ha még repül)
+      "elo":       True/False,    # jelenleg a levegőben van-e
+      "datum":     "01 Jul 2026",
+      "callsign":  "MEDIC2",
+      "flight_id": "...",        # playback ID ha van
     }
     """
     url = f"https://www.flightradar24.com/data/aircraft/{reg}"
@@ -103,11 +103,11 @@ def lekerdez_fr24(reg):
         sor = sorok[0]
         cellak = sor.find_all("td", class_=lambda c: c and "hidden-xs" in c)
 
-        datum    = ""
-        callsign = ""
-        atd      = ""
-        landed   = None
-        elo      = False
+        datum     = ""
+        callsign  = ""
+        atd       = ""
+        landed    = None
+        elo       = False
         flight_id = ""
 
         # Dátum
@@ -127,7 +127,7 @@ def lekerdez_fr24(reg):
                 callsign = txt.strip("()")
                 break
 
-        # Status (Landed / Scheduled / Unknown)
+        # Status (Landed / Scheduled / Unknown / Estimated / Live)
         status_td = sor.find("td", attrs={"data-prefix": True})
         if status_td:
             status_txt = status_td.get_text(strip=True)
@@ -136,9 +136,8 @@ def lekerdez_fr24(reg):
                 m = re.search(r"Landed\s+(\d{1,2}:\d{2})", status_txt)
                 landed = m.group(1) if m else status_txt
                 elo    = False
-            elif "Scheduled" in status_txt or "Unknown" in status_txt:
-                elo = True  # még nem landolt
             else:
+                # Bármilyen más status (Estimated, Live, Scheduled, stb.) repülést jelez
                 elo = True
 
         # Playback link
@@ -165,7 +164,7 @@ def lekerdez_fr24(reg):
 
 
 # ════════════════════════════════════════════
-#  🔁  ÁLLAPOT ÖSSZEHASONLÍTÁS
+#  🔁  ÁLLAPOT ÖSSZEHASONLÍTÁS (JAVÍTOTT LOGIKA)
 # ════════════════════════════════════════════
 def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
     esemenyek = []
@@ -176,15 +175,19 @@ def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
             continue
 
         regi = regi_allapot.get(reg, {})
+        
+        # Korábbi értékek
+        regi_elo    = regi.get("elo", False)
         regi_atd    = regi.get("atd", "")
         regi_landed = regi.get("landed")
         regi_datum  = regi.get("datum", "")
 
+        # Új értékek
+        uj_elo    = uj["elo"]
         uj_atd    = uj["atd"]
         uj_landed = uj["landed"]
         uj_datum  = uj["datum"]
 
-        # Cooldown ellenőrzés
         def cooldown_ok(tipus):
             kulcs = f"{reg}:{tipus}"
             utolso = esemeny_naplo.get(kulcs, 0)
@@ -194,15 +197,29 @@ def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
             esemeny_naplo[kulcs] = most
             return True
 
-        # FELSZÁLLÁS: új ATD jelent meg vagy megváltozott
-        if uj_atd and (uj_atd != regi_atd or uj_datum != regi_datum):
-            if regi_atd or regi_datum:  # ne az első betöltésnél
-                if cooldown_ok("FELSZALLAS"):
-                    print(f"  🚁⬆️ FELSZÁLLÁS: {reg} | {uj_datum} {uj_atd}")
-                    esemenyek.append({"tipus": "FELSZALLAS", "reg": reg, "adat": uj})
+        # Ha legelső futás, csak elmentjük az állapotot, e-mailt nem küldünk
+        if not regi:
+            continue
 
-        # LESZÁLLÁS: landed mező megjelent ahol még nem volt
-        elif uj_landed and not regi_landed and regi_atd:
+        # 🚁⬆️ FELSZÁLLÁS DETEKTÁLÁSA
+        # Akkor számít felszállásnak, ha:
+        # 1. A gép eddig nem volt levegőben, de most élővé vált (elo == True)
+        # 2. Megjelent egy új dátum VAGY egy új ATD időpont
+        felszallas_feltetel = (
+            (uj_elo and not regi_elo) or
+            (uj_datum != regi_datum and uj_datum != "") or
+            (uj_atd and uj_atd != regi_atd)
+        )
+
+        if felszallas_feltetel:
+            if cooldown_ok("FELSZALLAS"):
+                print(f"  🚁⬆️ FELSZÁLLÁS: {reg} | {uj_datum} {uj_atd or 'Élő repülés'}")
+                esemenyek.append({"tipus": "FELSZALLAS", "reg": reg, "adat": uj})
+
+        # 🚁⬇️ LESZÁLLÁS DETEKTÁLÁSA
+        # Akkor számít leszállásnak, ha:
+        # Most megjelent a landed mező, miközben korábban még nem volt kitöltve (de nem felszállás esemény történt)
+        elif uj_landed and not regi_landed:
             if cooldown_ok("LESZALLAS"):
                 print(f"  🚁⬇️ LESZÁLLÁS: {reg} | {uj_datum} Landed {uj_landed}")
                 esemenyek.append({"tipus": "LESZALLAS", "reg": reg, "adat": uj})
@@ -214,14 +231,14 @@ def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
 #  📧  E-MAIL KÜLDÉS
 # ════════════════════════════════════════════
 def email_kuldes(esemeny):
-    tipus    = esemeny["tipus"]
-    reg      = esemeny["reg"]
-    adat     = esemeny["adat"]
-    callsign = adat["callsign"] or MENTO_GEPEK.get(reg, reg.upper())
-    datum    = adat["datum"]
-    atd      = adat["atd"]
-    landed   = adat["landed"]
-    elo      = adat["elo"]
+    tipus     = esemeny["tipus"]
+    reg       = esemeny["reg"]
+    adat      = esemeny["adat"]
+    callsign  = adat["callsign"] or MENTO_GEPEK.get(reg, reg.upper())
+    datum     = adat["datum"]
+    atd       = adat["atd"]
+    landed    = adat["landed"]
+    elo       = adat["elo"]
     flight_id = adat["flight_id"]
 
     ido      = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
@@ -239,13 +256,15 @@ def email_kuldes(esemeny):
         honapok = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06",
                    "Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
         try:
-            resz = d.strip().split()  # ["01", "Jul", "2026"]
+            resz = d.strip().split()
             return f"{resz[2]}.{honapok.get(resz[1], resz[1])}.{resz[0].zfill(2)}"
         except Exception:
             return d
 
     def ido_plusz2(ido_str):
         """HH:MM formátumú időt +2 órával növel (UTC → magyar idő)"""
+        if not ido_str:
+            return "Folyamatban..."
         try:
             h, m = map(int, ido_str.strip().split(":"))
             h = (h + 2) % 24
@@ -253,7 +272,7 @@ def email_kuldes(esemeny):
         except Exception:
             return ido_str
 
-    datum_hu = datum_magyar(datum)
+    datum_hu = datum_magyar(datum) if datum else "Ma"
     atd_hu   = ido_plusz2(atd)
     landed_hu = ido_plusz2(landed) if landed else None
 
