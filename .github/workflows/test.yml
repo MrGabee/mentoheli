@@ -1,0 +1,31 @@
+name: Waze Test
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          playwright install chromium
+      
+      - name: Test Waze
+        run: |
+          python3 - << 'EOF'
+          from playwright.sync_api import sync_playwright
+          
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              page = browser.new_page()
+              page.goto("https://www.waze.com/live-map/api/georss?top=47.78&bottom=47.22&left=18.68&right=19.41&env=row&types=alerts")
+              print("Status URL:", page.url)
+              print("Content:", page.content()[:500])
+              browser.close()
+          EOF
