@@ -165,6 +165,7 @@ def oldal_feldolgozasa(csak_ezen_azonositokhoz_kell_terkep):
                 print(f"🌐 Betöltés ({probalkozas}/{MAX_PROBALKOZAS}): {BKK_KOZUT_URL}")
                 page.goto(BKK_KOZUT_URL, wait_until="load", timeout=30000)
                 page.wait_for_timeout(5000)
+                cookie_sav_elfogadasa(page)
 
                 teljes_szoveg = page.inner_text("body")
 
@@ -212,13 +213,27 @@ def terkep_adat_egy_esemenyhez(page, cim):
     # kattintásban keletkezőt kapjuk el, ne egy korábbi eseményét.
     page.evaluate("window.__bkk_koordinatak = []")
 
-    sor = page.get_by_text(cim, exact=False).first
-    sor.click(timeout=5000)
+    sor_lokator = page.get_by_text(cim, exact=False)
+    talalt_db = sor_lokator.count()
+    print(f"    🔎 '{cim}' szövegre illeszkedő elem(ek) száma az oldalon: {talalt_db}")
+    if talalt_db == 0:
+        print("    ⚠️ Nem található a sor szövege az oldalon - kihagyva (kép/koordináta nélkül).")
+        return None, None
+
+    try:
+        sor_lokator.first.click(timeout=5000)
+        print("    ✅ Sikeres kattintás a sorra.")
+    except Exception as kattintas_hiba:
+        print(f"    ⚠️ Kattintás sikertelen (pl. lefedő elem/cookie-sáv állhat az útban): {kattintas_hiba}")
+        logging.warning(f"Kattintás sikertelen ehhez: {cim} - {kattintas_hiba}")
+        return None, None
+
     page.wait_for_timeout(1800)  # a térkép pan/zoom animációjának ideje
 
     koordinata = None
     try:
         elcsipett = page.evaluate("window.__bkk_koordinatak")
+        print(f"    🔎 GPS-elcsípő tömb tartalma a kattintás után: {elcsipett}")
         if elcsipett:
             utolso = elcsipett[-1]
             # A MapLibre LngLat vagy {lng,lat} objektum, vagy [lng,lat]
@@ -227,16 +242,42 @@ def terkep_adat_egy_esemenyhez(page, cim):
                 koordinata = (utolso["lat"], utolso["lng"])
             elif isinstance(utolso, list) and len(utolso) == 2:
                 koordinata = (utolso[1], utolso[0])
+            else:
+                print(f"    ⚠️ Az elcsípett koordináta ismeretlen formátumú: {utolso!r}")
+        else:
+            print("    ⚠️ Nem csípett el egyetlen setLngLat()-hívást sem a kattintás alatt.")
     except Exception as koord_hiba:
+        print(f"    ⚠️ GPS-koordináta kiolvasása sikertelen: {koord_hiba}")
         logging.warning(f"GPS-koordináta kiolvasása sikertelen: {koord_hiba}")
 
     terkep = page.locator(TERKEP_SZELEKTOR).first
-    png_bajtok = terkep.screenshot() if terkep.count() > 0 else None
+    terkep_darab = terkep.count()
+    print(f"    🔎 Térkép elem található-e a szelektorral ({TERKEP_SZELEKTOR}): {terkep_darab} db")
+    png_bajtok = terkep.screenshot() if terkep_darab > 0 else None
+    print(f"    🔎 Screenshot elkészült: {'igen, ' + str(len(png_bajtok)) + ' bájt' if png_bajtok else 'NEM'}")
 
     return png_bajtok, koordinata
 
 
-def teszt_futtatas():
+def cookie_sav_elfogadasa(page):
+    """Automatizált, nem bejelentkezett böngészőnél gyakran megjelenik egy
+    cookie-elfogadó sáv, ami LEFEDHETI az esemény-sorokat, és emiatt a
+    rájuk kattintás "csendben" sikertelen lehet (a kattintás technikailag
+    a cookie-sávot találja el, nem a mögötte lévő sort). Ez a függvény
+    megpróbálja a leggyakoribb "Elfogadom" jellegű gombokat megnyomni -
+    ha nem talál ilyet, egyszerűen nem csinál semmit (nem hiba)."""
+    jelolt_szovegek = ["Elfogadom", "Rendben", "Elfogad", "Accept", "OK", "Értem"]
+    for szoveg in jelolt_szovegek:
+        try:
+            gomb = page.get_by_role("button", name=szoveg, exact=False)
+            if gomb.count() > 0 and gomb.first.is_visible():
+                gomb.first.click(timeout=2000)
+                print(f"    🍪 Cookie-sáv elfogadva ('{szoveg}' gombbal).")
+                page.wait_for_timeout(500)
+                return
+        except Exception:
+            continue
+    print("    🍪 Nem található/nem kellett cookie-elfogadó gomb.")
     """Csak kiírja a nyers szöveget a logba, e-mail küldés nélkül -
     ebből pontosítjuk a feldolgozó logikát. Térkép-screenshotot NEM
     készít, hogy a teszt gyors maradjon."""
