@@ -70,6 +70,7 @@ TERKEP_SZELEKTOR = ".maplibregl-map"
 # próbálni kibányászni a koordinátákat.
 GPS_ELCSIPO_SCRIPT = """
 window.__bkk_koordinatak = [];
+window.__bkk_terkep_peldany = null;
 let _maplibregl_belso;
 Object.defineProperty(window, 'maplibregl', {
   configurable: true,
@@ -84,6 +85,22 @@ Object.defineProperty(window, 'maplibregl', {
           return eredeti.call(this, lngLat);
         };
         ertek.Marker.prototype.__bkk_patched = true;
+      }
+      // A Map konstruktort is "becsomagoljuk", hogy elkapjuk a ténylegesen
+      // létrehozott térkép-példányt - ezzel utólag tudunk majd rákényszeríteni
+      // egy konkrét zoomot/középpontot, függetlenül attól, hogy az oldal
+      // saját "fit all marker" logikája mit csinálna.
+      if (ertek && ertek.Map && !ertek.__bkk_map_patched) {
+        const EredetiMap = ertek.Map;
+        function BkkMap(...args) {
+          const peldany = new EredetiMap(...args);
+          window.__bkk_terkep_peldany = peldany;
+          return peldany;
+        }
+        BkkMap.prototype = EredetiMap.prototype;
+        Object.setPrototypeOf(BkkMap, EredetiMap);
+        ertek.Map = BkkMap;
+        ertek.__bkk_map_patched = true;
       }
     } catch (e) {}
   }
@@ -249,6 +266,29 @@ def terkep_adat_egy_esemenyhez(page, cim):
     except Exception as koord_hiba:
         print(f"    ⚠️ GPS-koordináta kiolvasása sikertelen: {koord_hiba}")
         logging.warning(f"GPS-koordináta kiolvasása sikertelen: {koord_hiba}")
+
+    if koordinata is not None:
+        lat, lng = koordinata
+        try:
+            sikerult_zoom = page.evaluate(
+                """([lng, lat]) => {
+                    const terkep = window.__bkk_terkep_peldany;
+                    if (!terkep) return false;
+                    terkep.jumpTo({ center: [lng, lat], zoom: 16 });
+                    return true;
+                }""",
+                [lng, lat],
+            )
+            if sikerult_zoom:
+                print(f"    🎯 Térkép ráugratva a konkrét helyszínre ({lat:.5f}, {lng:.5f}), zoom=16.")
+                page.wait_for_timeout(1200)  # a csempék (tiles) betöltési ideje
+            else:
+                print("    ⚠️ Nem sikerült elcsípni a térkép-példányt - marad az oldal saját (esetleg 'mindent mutass') nézete.")
+        except Exception as zoom_hiba:
+            print(f"    ⚠️ Kényszerített zoom sikertelen: {zoom_hiba}")
+            logging.warning(f"Kényszerített zoom sikertelen: {zoom_hiba}")
+    else:
+        print("    ⚠️ Nincs GPS-koordináta, nem tudunk kényszerített zoomot csinálni - marad az oldal saját nézete.")
 
     terkep = page.locator(TERKEP_SZELEKTOR).first
     terkep_darab = terkep.count()
