@@ -1,0 +1,74 @@
+name: 🚨 Waze Baleset Monitor
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [waze_trigger]
+  schedule:
+    - cron: '*/15 * * * *'
+
+concurrency:
+  group: waze-monitor
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests
+
+      - name: 🚨 Monitor futtatása
+        env:
+          EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
+          WAZE_TOKEN:    ${{ secrets.WAZE_TOKEN }}
+        run: python waze_monitor.py
+
+      - name: 💾 Állapot mentése
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
+          git pull --rebase -X ours origin main || true
+          git stash pop || true
+          [ -f waze_allapot.json ] && git add waze_allapot.json || true
+          git diff --staged --quiet || git commit -m "waze állapot [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🔁 Önindítás 1 perc múlva
+        run: |
+          sleep 55
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type":"waze_trigger"}'
+
+      - name: 🗑️ Régi futások törlése
+        if: always()
+        run: |
+          gh run list --workflow=waze_monitor.yml --limit 50 \
+            --json databaseId,status \
+            --jq '.[] | select(.status == "completed") | .databaseId' | \
+          tail -n +6 | \
+          xargs -I {} gh run delete {} || true
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
