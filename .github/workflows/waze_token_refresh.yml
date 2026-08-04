@@ -1,0 +1,82 @@
+name: 🔑 Waze Token Frissítő
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  token_refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🌐 Playwright telepítése
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: 🔑 Token kinyerése
+        run: |
+          python3 - << 'EOF'
+          import json, re
+          from playwright.sync_api import sync_playwright
+
+          token = None
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              context = browser.new_context(
+                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
+              )
+              page = context.new_page()
+
+              captured = []
+
+              def handle_request(request):
+                  if "georss" in request.url:
+                      headers = request.headers
+                      t = headers.get("x-recaptcha-token", "")
+                      if t:
+                          captured.append(t)
+
+              page.on("request", handle_request)
+
+              print("Waze live map betöltése...")
+              page.goto("https://www.waze.com/hu/live-map", wait_until="networkidle", timeout=30000)
+              page.wait_for_timeout(5000)
+
+              if captured:
+                  token = captured[-1]
+                  print("Token megvan: " + token[:30] + "...")
+              else:
+                  print("Token nem található!")
+
+              browser.close()
+
+          if token:
+              with open("waze_token.txt", "w") as f:
+                  f.write(token)
+              print("Token elmentve.")
+          else:
+              print("HIBA: Token nem sikerült kinyerni!")
+              exit(1)
+          EOF
+
+      - name: 💾 Token commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add waze_token.txt
+          git diff --staged --quiet || git commit -m "waze token frissítés [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
