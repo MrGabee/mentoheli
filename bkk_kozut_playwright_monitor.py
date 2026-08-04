@@ -157,13 +157,19 @@ def most():
 # ------------------------------------------------------------------
 # Oldal betöltése + esemény-lista szöveg + (új eseményekhez) térkép-screenshot
 # ------------------------------------------------------------------
-def oldal_feldolgozasa(csak_ezen_azonositokhoz_kell_terkep):
-    """Elindít egy valódi Chrome-ot, betölti a baleset-szűrt BKK közúti
-    oldalt, kiolvassa a lista szövegét, és a MÉG NEM LÁTOTT eseményekhez
-    (amiknek az azonosítója benne van a csak_ezen_azonositokhoz_kell_terkep
-    halmazban) rákattint, és térkép-screenshotot készít róluk.
+def egy_futtatas(allapot):
+    """Elindít EGYETLEN valódi Chrome-munkamenetet, betölti a baleset-szűrt
+    BKK közúti oldalt, kiolvassa a lista szövegét, és MÉG UGYANEBBEN A
+    MUNKAMENETBEN, csak a MÉG NEM LÁTOTT (allapot-ban nem szereplő)
+    eseményekhez rákattint és térkép-adatot készít róluk.
 
-    Visszaadja: (nyers_lista_szoveg, {esemeny_id: terkep_png_bytes})
+    FONTOS: szándékosan EGYETLEN sync_playwright()-hívás történik a teljes
+    futás alatt - ha ezt kétszer hívnánk meg egymás után ugyanabban a
+    processzben, a Playwright sync API-ja "It looks like you are using
+    Playwright Sync API inside the asyncio loop" hibával elszáll (ezt
+    tapasztaltuk is éles környezetben).
+
+    Visszaadja: (esemenyek_listaja, {esemeny_id: {"png":..., "koordinata":...}})
     """
     utolso_hiba = None
 
@@ -185,25 +191,22 @@ def oldal_feldolgozasa(csak_ezen_azonositokhoz_kell_terkep):
                 cookie_sav_elfogadasa(page)
 
                 teljes_szoveg = page.inner_text("body")
-
-                # Az esemény-sorok szövegének kinyerése ideiglenesen (hogy
-                # tudjuk, mely címekre kell rákattintani a térképhez) -
-                # a végleges feldolgozást az esemenyek_kinyerese() végzi.
                 esemenyek = esemenyek_kinyerese(teljes_szoveg)
 
                 terkepek = {}
                 for e in esemenyek:
-                    if e["id"] not in csak_ezen_azonositokhoz_kell_terkep:
-                        continue
+                    if e["id"] in allapot:
+                        continue  # már ismert esemény - nem kell hozzá újra térkép
                     try:
                         png_bajtok, koordinata = terkep_adat_egy_esemenyhez(page, e["cim"])
                         if png_bajtok:
                             terkepek[e["id"]] = {"png": png_bajtok, "koordinata": koordinata}
                     except Exception as terkep_hiba:
+                        print(f"    ⚠️ Térkép-adat sikertelen ehhez: {e['cim']} - {terkep_hiba}")
                         logging.warning(f"Térkép-adat sikertelen ehhez: {e['cim']} - {terkep_hiba}")
 
                 browser.close()
-                return teljes_szoveg, terkepek
+                return esemenyek, terkepek
 
         except Exception as ex:
             utolso_hiba = ex
@@ -214,6 +217,36 @@ def oldal_feldolgozasa(csak_ezen_azonositokhoz_kell_terkep):
                 print(f"  ⏳ Várakozás {varakozas} másodpercet újrapróbálkozás előtt...")
                 time.sleep(varakozas)
 
+    raise RuntimeError(f"Az oldal betöltése {MAX_PROBALKOZAS} próbálkozás után is sikertelen volt: {utolso_hiba}")
+
+
+def oldal_szoveg_lekerese_teszthez():
+    """Egyszerű, kattintás/térkép nélküli oldalbetöltés - kizárólag a
+    TESZT_MOD-hoz, hogy gyors maradjon és ne is hozzon létre semmilyen
+    állapot-függőséget."""
+    utolso_hiba = None
+    for probalkozas in range(1, MAX_PROBALKOZAS + 1):
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                context = browser.new_context(
+                    user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                               "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+                    viewport={"width": 1400, "height": 1000},
+                )
+                page = context.new_page()
+                print(f"🌐 Betöltés ({probalkozas}/{MAX_PROBALKOZAS}): {BKK_KOZUT_URL}")
+                page.goto(BKK_KOZUT_URL, wait_until="load", timeout=30000)
+                page.wait_for_timeout(5000)
+                szoveg = page.inner_text("body")
+                browser.close()
+                return szoveg
+        except Exception as ex:
+            utolso_hiba = ex
+            print(f"  ⚠️ Sikertelen próbálkozás ({probalkozas}/{MAX_PROBALKOZAS}): {ex}")
+            if probalkozas < MAX_PROBALKOZAS:
+                varakozas = UJRAPROBALKOZAS_ALAP_VARAKOZAS_MP * (2 ** (probalkozas - 1))
+                time.sleep(varakozas)
     raise RuntimeError(f"Az oldal betöltése {MAX_PROBALKOZAS} próbálkozás után is sikertelen volt: {utolso_hiba}")
 
 
@@ -318,10 +351,13 @@ def cookie_sav_elfogadasa(page):
         except Exception:
             continue
     print("    🍪 Nem található/nem kellett cookie-elfogadó gomb.")
+
+
+def teszt_futtatas():
     """Csak kiírja a nyers szöveget a logba, e-mail küldés nélkül -
     ebből pontosítjuk a feldolgozó logikát. Térkép-screenshotot NEM
     készít, hogy a teszt gyors maradjon."""
-    szoveg, _ = oldal_feldolgozasa(csak_ezen_azonositokhoz_kell_terkep=set())
+    szoveg = oldal_szoveg_lekerese_teszthez()
     print("═" * 60)
     print(f"NYERS OLDAL SZÖVEG (kategória: {TESZT_KATEGORIA}, első 8000 karakter):")
     print("═" * 60)
@@ -522,22 +558,9 @@ def main():
 
     allapot = allapot_betoltes()
 
-    # Első körben csak a szöveget nézzük meg (térkép-screenshot nélkül),
-    # hogy tudjuk, mely eseményEK ÚJAK - csak azokhoz kell térkép, a már
-    # ismertekhez nem érdemes újra kattintgatni/screenshotolni.
-    elozetes_szoveg, _ = oldal_feldolgozasa(csak_ezen_azonositokhoz_kell_terkep=set())
-    elozetes_esemenyek = esemenyek_kinyerese(elozetes_szoveg)
-    uj_azonositok = {e["id"] for e in elozetes_esemenyek if e["id"] not in allapot}
-
-    if not uj_azonositok:
-        print("✅ Nincs új esemény.")
-        return
-
-    # Második körben (ugyanazzal a logikával, de most már tudjuk, mely
-    # ID-khez kell térkép) újra betöltjük az oldalt, és a térképeket is
-    # elkészítjük az új eseményekhez.
-    szoveg, terkepek = oldal_feldolgozasa(csak_ezen_azonositokhoz_kell_terkep=uj_azonositok)
-    esemenyek = esemenyek_kinyerese(szoveg)
+    # EGYETLEN böngésző-munkamenetben: oldal betöltése, összes esemény
+    # kiolvasása, és rögtön csak az újakhoz térkép-adat készítése.
+    esemenyek, terkepek = egy_futtatas(allapot)
     print(f"📊 Talált baleset-bejegyzések: {len(esemenyek)}")
 
     uj_esemenyek = []
