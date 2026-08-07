@@ -69,14 +69,18 @@ jobs:
               exit(1)
           EOF
 
-      - name: 💾 Adatok commitolása
+      - name: 💾 Adatok commitolása és .nojekyll létrehozása
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git reset --hard origin/main
-          git add waze_session.json
-          git diff --staged --quiet || git commit -m "waze session frissítés [skip ci]"
+          
+          # Üres .nojekyll fájl létrehozása, hogy a GitHub Pages ne szűrje a JSON-t
+          touch .nojekyll
+          
+          git add waze_session.json .nojekyll
+          git diff --staged --quiet || git commit -m "waze session és nojekyll frissítés [skip ci]"
           git push origin HEAD:main
 
       - name: ⏱️ Várakozás 60 másodpercet
