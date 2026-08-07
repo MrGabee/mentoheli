@@ -1,55 +1,87 @@
-- name: 🔑 Token és sütik folyamatos kinyerése
+name: 🔑 Waze Token Frissítő
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/1 * * * *'
+
+jobs:
+  token_refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🌐 Playwright telepítése
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: 🔑 Token és sütik kinyerése
         run: |
           python3 - << 'EOF'
           import json
-          import time
           from playwright.sync_api import sync_playwright
 
-          print("Waze token frissítő háttérfolyamat elindítva...")
+          token = None
+          cookies = []
 
-          while True:
-              token = None
-              cookies = []
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              context = browser.new_context(
+                  user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
+              )
+              page = context.new_page()
+
+              captured = []
+
+              def handle_request(request):
+                  if "georss" in request.url:
+                      t = request.headers.get("x-recaptcha-token", "")
+                      if t:
+                          captured.append(t)
+
+              page.on("request", handle_request)
+
+              print("Waze live map betöltése...")
               try:
-                  with sync_playwright() as p:
-                      browser = p.chromium.launch(headless=True)
-                      context = browser.new_context(
-                          user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
-                      )
-                      page = context.new_page()
-
-                      captured = []
-
-                      def handle_request(request):
-                          if "georss" in request.url:
-                              t = request.headers.get("x-recaptcha-token", "")
-                              if t:
-                                  captured.append(t)
-
-                      page.on("request", handle_request)
-
-                      page.goto("https://www.waze.com/hu/live-map", wait_until="networkidle", timeout=25000)
-                      page.wait_for_timeout(4000)
-
-                      if captured:
-                          token = captured[-1]
-                      
-                      cookies = context.cookies()
-                      browser.close()
-
-                  if token and cookies:
-                      data = {
-                          "token": token,
-                          "cookies": {c['name']: c['value'] for c in cookies}
-                      }
-                      with open("waze_session.json", "w") as f:
-                          json.dump(data, f, indent=2)
-                      print("Token és sütik frissítve.")
-                  else:
-                      print("Nem sikerült kinyerni a tokent ebben a körben.")
+                  page.goto("https://www.www.waze.com/hu/live-map", wait_until="networkidle", timeout=25000)
+                  page.wait_for_timeout(4000)
               except Exception as e:
-                  print(f"Hiba történt: {e}")
+                  print(f"Betöltési hiba (nem kritikus): {e}")
 
-              print("Várakozás 60 másodpercet a következő frissítésig...")
-              time.sleep(60)
+              if captured:
+                  token = captured[-1]
+              
+              cookies = context.cookies()
+              browser.close()
+
+          if token and cookies:
+              data = {
+                  "token": token,
+                  "cookies": {c['name']: c['value'] for c in cookies}
+              }
+              with open("waze_session.json", "w") as f:
+                  json.dump(data, f, indent=2)
+              print("Token és sütik sikeresen elmentve.")
+          else:
+              print("HIBA: Nem sikerült kinyerni a tokent vagy a sütiket!")
+              exit(1)
           EOF
+
+      - name: 💾 Adatok commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add waze_session.json
+          git diff --staged --quiet || git commit -m "waze session frissítés [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
