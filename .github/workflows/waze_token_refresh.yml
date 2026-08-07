@@ -1,14 +1,20 @@
-name: 🔑 Waze Token Frissítő
+name: 🔑 Waze Token Frissítő (Önindító)
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [waze_token_trigger]
   schedule:
-    - cron: '*/1 * * * *'
+    - cron: '*/10 * * * *'
+
+concurrency:
+  group: waze-token-refresh
+  cancel-in-progress: false
 
 jobs:
   token_refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 4
     permissions:
       contents: write
 
@@ -38,7 +44,6 @@ jobs:
                   user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
               )
               page = context.new_page()
-
               captured = []
 
               def handle_request(request):
@@ -48,30 +53,19 @@ jobs:
                           captured.append(t)
 
               page.on("request", handle_request)
-
-              print("Waze live map betöltése...")
               try:
                   page.goto("https://www.waze.com/hu/live-map", wait_until="networkidle", timeout=25000)
                   page.wait_for_timeout(4000)
-              except Exception as e:
-                  print(f"Betöltési hiba (nem kritikus): {e}")
-
-              if captured:
-                  token = captured[-1]
+              except: pass
               
+              if captured: token = captured[-1]
               cookies = context.cookies()
               browser.close()
 
           if token and cookies:
-              data = {
-                  "token": token,
-                  "cookies": {c['name']: c['value'] for c in cookies}
-              }
               with open("waze_session.json", "w") as f:
-                  json.dump(data, f, indent=2)
-              print("Token és sütik sikeresen elmentve.")
+                  json.dump({"token": token, "cookies": {c['name']: c['value'] for c in cookies}}, f, indent=2)
           else:
-              print("HIBA: Nem sikerült kinyerni a tokent vagy a sütiket!")
               exit(1)
           EOF
 
@@ -79,9 +73,20 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main || true
+          git fetch origin main
+          git reset --hard origin/main
           git add waze_session.json
           git diff --staged --quiet || git commit -m "waze session frissítés [skip ci]"
-          git push origin main || true
+          git push origin HEAD:main
+
+      - name: ⏱️ Várakozás 60 másodpercet
+        run: sleep 60
+
+      - name: 🔄 Következő futás indítása
+        run: |
+          curl -s -X POST -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/dispatches \
+            -d '{"event_type":"waze_token_trigger"}'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
