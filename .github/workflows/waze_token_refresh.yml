@@ -3,12 +3,12 @@ name: 🔑 Waze Token Frissítő
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/1 * * * *'
 
 jobs:
   token_refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
     permissions:
       contents: write
 
@@ -23,13 +23,14 @@ jobs:
           pip install playwright
           playwright install chromium --with-deps
 
-      - name: 🔑 Token kinyerése
+      - name: 🔑 Token és sütik kinyerése
         run: |
           python3 - << 'EOF'
-          import json, re
+          import json
           from playwright.sync_api import sync_playwright
 
           token = None
+          cookies = []
 
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
@@ -42,41 +43,45 @@ jobs:
 
               def handle_request(request):
                   if "georss" in request.url:
-                      headers = request.headers
-                      t = headers.get("x-recaptcha-token", "")
+                      t = request.headers.get("x-recaptcha-token", "")
                       if t:
                           captured.append(t)
 
               page.on("request", handle_request)
 
               print("Waze live map betöltése...")
-              page.goto("https://www.waze.com/hu/live-map", wait_until="networkidle", timeout=30000)
-              page.wait_for_timeout(5000)
+              try:
+                  page.goto("https://www.waze.com/hu/live-map", wait_until="networkidle", timeout=25000)
+                  page.wait_for_timeout(4000)
+              except Exception as e:
+                  print(f"Betöltési hiba (nem kritikus): {e}")
 
               if captured:
                   token = captured[-1]
-                  print("Token megvan: " + token[:30] + "...")
-              else:
-                  print("Token nem található!")
-
+              
+              cookies = context.cookies()
               browser.close()
 
-          if token:
-              with open("waze_token.txt", "w") as f:
-                  f.write(token)
-              print("Token elmentve.")
+          if token and cookies:
+              data = {
+                  "token": token,
+                  "cookies": {c['name']: c['value'] for c in cookies}
+              }
+              with open("waze_session.json", "w") as f:
+                  json.dump(data, f, indent=2)
+              print("Token és sütik sikeresen elmentve.")
           else:
-              print("HIBA: Token nem sikerült kinyerni!")
+              print("HIBA: Nem sikerült kinyerni a tokent vagy a sütiket!")
               exit(1)
           EOF
 
-      - name: 💾 Token commitolása
+      - name: 💾 Adatok commitolása
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin main || true
-          git add waze_token.txt
-          git diff --staged --quiet || git commit -m "waze token frissítés [skip ci]"
+          git add waze_session.json
+          git diff --staged --quiet || git commit -m "waze session frissítés [skip ci]"
           git push origin main || true
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
