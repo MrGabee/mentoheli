@@ -52,7 +52,7 @@ TERKEP_MENTES_MAPPA = "bkk_kozut_terkepek"
 
 EMAIL_KULDO   = os.environ.get("EMAIL_KULDO", "")
 EMAIL_JELSZO  = os.environ.get("EMAIL_JELSZO", "")
-EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_BKK", "")
+EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT", "")
 
 TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
 
