@@ -25,28 +25,60 @@ if not API_KEY:
 
 def fetch_hungarian_webcams():
     url = "https://api.windy.com/webcams/api/v3/webcams"
-    params = {
-        # A "country" paraméter a V3 API dokumentált paraméterei között
-        # NEM szerepel - a korábbi teszt is megerősítette, hogy csendben
-        # figyelmen kívül marad (nincs hiba, csak nem szűr vele).
-        # A "nearby" paraméter dokumentált és működik: lat,lon,sugár(km).
-        # Budapest körül 250 km-es sugár lefedi egész Magyarországot,
-        # de belóg belőle egy kis szomszédos terület is - ezért lent
-        # kliens oldalon még egyszer leszűrünk országkód szerint.
-        "nearby": "47.1625,19.5033,250",
-        "limit": 50,
-        "include": "images,location",
-    }
     headers = {"x-windy-api-key": API_KEY}
 
-    response = requests.get(url, params=params, headers=headers, timeout=15)
-    response.raise_for_status()
-    data = response.json()
+    # Magyarország egyetlen 250 km-es körből nem fedhető le teljesen
+    # (az ország átlója kb. 600 km) - ezért 6 régióra bontjuk, hasonlóan
+    # a Waze monitornál már bevált 6-csempés felosztáshoz. A körök kicsit
+    # átfednek egymással, hogy ne maradjon ki terület a szélek mentén.
+    regions = [
+        {"name": "Északnyugat (Győr)", "lat": 47.68, "lon": 17.63, "radius": 140},
+        {"name": "Északkelet (Miskolc)", "lat": 48.10, "lon": 20.78, "radius": 140},
+        {"name": "Közép (Budapest)", "lat": 47.35, "lon": 18.90, "radius": 140},
+        {"name": "Keleti (Debrecen)", "lat": 47.53, "lon": 21.62, "radius": 140},
+        {"name": "Délnyugat (Pécs)", "lat": 46.07, "lon": 18.23, "radius": 140},
+        {"name": "Délkelet (Szeged)", "lat": 46.25, "lon": 20.15, "radius": 140},
+    ]
 
-    all_webcams = data.get("webcams", [])
+    page_size = 50
+    max_pages_per_region = 4  # 4 x 50 = 200 kamera / régió - bőven elég
 
-    # Biztonsági háló: csak a ténylegesen magyarországi kamerákat tartjuk meg,
-    # a nearby kör szélén becsúszó szomszédos országbelieket kiszűrjük.
+    seen_ids = set()
+    all_webcams = []
+
+    for region in regions:
+        print(f"🔍 Régió: {region['name']}...")
+        offset = 0
+
+        for page in range(max_pages_per_region):
+            params = {
+                "nearby": f"{region['lat']},{region['lon']},{region['radius']}",
+                "limit": page_size,
+                "offset": offset,
+                "include": "images,location",
+            }
+            response = requests.get(url, params=params, headers=headers, timeout=15)
+            response.raise_for_status()
+            page_data = response.json().get("webcams", [])
+
+            if not page_data:
+                break
+
+            new_in_page = 0
+            for cam in page_data:
+                cam_id = cam.get("webcamId")
+                if cam_id not in seen_ids:
+                    seen_ids.add(cam_id)
+                    all_webcams.append(cam)
+                    new_in_page += 1
+
+            print(f"   -> {page + 1}. oldal: {len(page_data)} kamera ({new_in_page} új).")
+
+            if len(page_data) < page_size:
+                break
+
+            offset += page_size
+
     hungarian_only = [
         cam for cam in all_webcams
         if (cam.get("location", {}) or {}).get("country_code") == "HU"
