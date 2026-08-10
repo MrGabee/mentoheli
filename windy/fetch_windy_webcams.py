@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 import requests
 
 API_KEY = os.environ.get("WINDY_API_KEY")
-OUTPUT_FILE = "data/webcams_hu.json"
+OUTPUT_FILE = "windy/data/webcams_hu.json"
 
 if not API_KEY:
     print("❌ HIBA: a WINDY_API_KEY környezeti változó nincs beállítva.")
