@@ -351,6 +351,72 @@
     margin: 0 auto;
   }
 
+  .featured-section {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .featured-header {
+    margin-bottom: 24px;
+  }
+
+  .featured-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 32px);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .featured-title span {
+    color: var(--turquoise);
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+
+  .featured-grid:empty::after {
+    content: 'Még nincs kézzel hozzáadott kamera - másold be a Windy oldaláról a beágyazó kódot, hogy itt megjelenjen.';
+    display: block;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+  }
+
+  .featured-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .featured-item iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+  }
+
+  .featured-item-body {
+    padding: 14px 16px;
+  }
+
+  .featured-item-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text);
+  }
+
   footer {
     max-width: 1100px;
     margin: 0 auto;
@@ -392,6 +458,18 @@
       <p>A mentett kameraadatok betöltése.</p>
     </div>
   </div>
+
+  <section class="featured-section">
+    <div class="featured-header">
+      <div class="eyebrow">Kézzel hozzáadott, visszajátszható kamerák</div>
+      <h2 class="featured-title">Kiemelt<span>·</span>Kamerák</h2>
+      <p class="subtitle">Olyan kamerák, amik az automatikus API-lekérdezésből kimaradnak (a tulajdonos vagy a Windy korlátozása miatt), de a Windy hivatalos beágyazó kódjával megjeleníthetők - timelapse visszajátszással együtt.</p>
+    </div>
+
+    <div class="featured-grid">
+      <!-- IDE KERÜLNEK A WINDY EMBED KÓDOK -->
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -450,38 +528,36 @@
   }
 
   function populateFilter(webcams) {
-    // A szűrő listát a ténylegesen meglévő városok/régiók alapján töltjük
-    // fel, ábécésorrendben, duplikátumok nélkül.
-    const locations = new Set();
-    webcams.forEach(cam => {
-      const label = [cam.city, cam.region].filter(Boolean).join(', ');
-      if (label) locations.add(label);
-    });
+    // A szűrő lista most a teljes kamera-címet is tartalmazza (nem csak a
+    // várost/régiót), hogy egy adott városon belül a konkrét kamerát is
+    // ki lehessen választani - pl. "Velence: Ofalu: M7 Velence -> Budapest"
+    // nem csak "Velence, Transdanubia".
+    const options = webcams
+      .map(cam => ({
+        value: String(cam.id),
+        label: cam.title || [cam.city, cam.region].filter(Boolean).join(', ') || `Kamera #${cam.id}`
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label, 'hu'));
 
-    const sorted = Array.from(locations).sort((a, b) => a.localeCompare(b, 'hu'));
     const currentValue = filterSelect.value;
 
-    filterSelect.innerHTML = '<option value="">Összes helyszín</option>' +
-      sorted.map(loc => `<option value="${escapeHtml(loc)}">${escapeHtml(loc)}</option>`).join('');
+    filterSelect.innerHTML = '<option value="">Összes kamera</option>' +
+      options.map(opt => `<option value="${escapeHtml(opt.value)}">${escapeHtml(opt.label)}</option>`).join('');
 
-    // Ha a korábban kiválasztott helyszín még mindig létezik, megtartjuk
-    if (sorted.includes(currentValue)) {
+    if (options.some(opt => opt.value === currentValue)) {
       filterSelect.value = currentValue;
     }
   }
 
   function applyFilter() {
-    const selected = filterSelect.value;
-    if (!selected) return allWebcams;
-    return allWebcams.filter(cam => {
-      const label = [cam.city, cam.region].filter(Boolean).join(', ');
-      return label === selected;
-    });
+    const selectedId = filterSelect.value;
+    if (!selectedId) return allWebcams;
+    return allWebcams.filter(cam => String(cam.id) === selectedId);
   }
 
   function renderCameras(webcams, updatedAt) {
     if (!webcams.length) {
-      renderEmpty('Ehhez a helyszínhez jelenleg nincs megjeleníthető kamera.');
+      renderEmpty('Ehhez a kamerához jelenleg nincs megjeleníthető adat.');
       return;
     }
 
