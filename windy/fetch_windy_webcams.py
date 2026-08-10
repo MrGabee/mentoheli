@@ -106,21 +106,37 @@ def main():
     # Csak a ténylegesen szükséges mezőket mentjük, hogy a fájl kicsi maradjon
     simplified = []
     for cam in webcams:
-        player = cam.get("player", {}) or {}
-        simplified.append({
-            "id": cam.get("webcamId"),
-            "title": cam.get("title"),
-            "city": cam.get("location", {}).get("city"),
-            "region": cam.get("location", {}).get("region"),
-            "latitude": cam.get("location", {}).get("latitude"),
-            "longitude": cam.get("location", {}).get("longitude"),
-            "image_preview": cam.get("images", {}).get("current", {}).get("preview"),
-            "image_thumbnail": cam.get("images", {}).get("current", {}).get("thumbnail"),
-            # A hivatalos Windy visszajátszó (timelapse) beágyazó URL-je,
-            # csúszkával - ezt tudja a weboldal iframe-be tenni.
-            "player_embed": (player.get("day") or {}).get("embed")
-                             or (player.get("live") or {}).get("embed"),
-        })
+        try:
+            player = cam.get("player", {}) or {}
+            # FONTOS: a hivatalos Windy API v3 séma szerint player.day/month/
+            # year/lifetime KÖZVETLENÜL string (maga az embed URL), NEM egy
+            # beágyazott {embed: "..."} objektum - csak player.live van így
+            # becsomagolva (available + embed). Ha ezt összekevernénk, egy
+            # string-en meghívott .get("embed") AttributeError-t dobna és
+            # leállítaná a teljes futást.
+            player_day = player.get("day")
+            player_embed = player_day if isinstance(player_day, str) else None
+            if not player_embed:
+                live = player.get("live")
+                if isinstance(live, dict):
+                    player_embed = live.get("embed")
+
+            simplified.append({
+                "id": cam.get("webcamId"),
+                "title": cam.get("title"),
+                "city": cam.get("location", {}).get("city"),
+                "region": cam.get("location", {}).get("region"),
+                "latitude": cam.get("location", {}).get("latitude"),
+                "longitude": cam.get("location", {}).get("longitude"),
+                "image_preview": cam.get("images", {}).get("current", {}).get("preview"),
+                "image_thumbnail": cam.get("images", {}).get("current", {}).get("thumbnail"),
+                # A hivatalos Windy visszajátszó (timelapse) beágyazó URL-je,
+                # csúszkával - ezt tudja a weboldal iframe-be tenni.
+                "player_embed": player_embed,
+            })
+        except Exception as e:
+            cam_id = cam.get("webcamId", "ismeretlen")
+            print(f"   ⚠️  Kamera #{cam_id} feldolgozása sikertelen, kihagyva: {e}")
 
     output = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
