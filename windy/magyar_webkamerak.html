@@ -128,6 +128,24 @@
   button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
   button:disabled { opacity: 0.5; cursor: not-allowed; }
 
+  .filter-select {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 12px 14px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    min-width: 220px;
+    transition: border-color 0.15s ease;
+  }
+
+  .filter-select:focus {
+    border-color: var(--amber);
+  }
+
   .status {
     max-width: 1100px;
     margin: 0 auto;
@@ -171,6 +189,7 @@
     aspect-ratio: 16 / 9;
     background: #141617;
     overflow: hidden;
+    cursor: zoom-in;
   }
 
   .cam-image-wrap img {
@@ -178,6 +197,73 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.2s ease;
+  }
+
+  .cam-card:hover .cam-image-wrap img {
+    transform: scale(1.03);
+  }
+
+  .cam-maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  .cam-maps-link:hover {
+    text-decoration: underline;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 12, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 40px;
+    cursor: zoom-out;
+  }
+
+  .lightbox.open {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .live-dot {
@@ -283,6 +369,9 @@
 
 <div class="controls">
   <button id="loadBtn">Frissítés</button>
+  <select id="filterSelect" class="filter-select">
+    <option value="">Összes helyszín</option>
+  </select>
 </div>
 
 <div class="status" id="status"></div>
@@ -300,15 +389,27 @@
   Adatforrás: Windy Webcams API (api.windy.com), GitHub Actions által 30 percenként frissítve · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
 </footer>
 
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close">Bezárás (Esc)</div>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
 <script>
   const loadBtn = document.getElementById('loadBtn');
+  const filterSelect = document.getElementById('filterSelect');
   const statusEl = document.getElementById('status');
   const content = document.getElementById('content');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
 
   // A weboldallal azonos repóban, a data/ mappában tárolt, GitHub Actions
   // által rendszeresen frissített statikus JSON fájl - nincs API-kulcs,
   // nincs közvetlen böngészős hívás a Windy felé, tehát nincs CORS-hiba.
   const DATA_URL = 'data/webcams_hu.json';
+
+  let allWebcams = [];
 
   function setStatus(message, type) {
     statusEl.textContent = message;
@@ -339,22 +440,56 @@
     return div.innerHTML;
   }
 
+  function populateFilter(webcams) {
+    // A szűrő listát a ténylegesen meglévő városok/régiók alapján töltjük
+    // fel, ábécésorrendben, duplikátumok nélkül.
+    const locations = new Set();
+    webcams.forEach(cam => {
+      const label = [cam.city, cam.region].filter(Boolean).join(', ');
+      if (label) locations.add(label);
+    });
+
+    const sorted = Array.from(locations).sort((a, b) => a.localeCompare(b, 'hu'));
+    const currentValue = filterSelect.value;
+
+    filterSelect.innerHTML = '<option value="">Összes helyszín</option>' +
+      sorted.map(loc => `<option value="${escapeHtml(loc)}">${escapeHtml(loc)}</option>`).join('');
+
+    // Ha a korábban kiválasztott helyszín még mindig létezik, megtartjuk
+    if (sorted.includes(currentValue)) {
+      filterSelect.value = currentValue;
+    }
+  }
+
+  function applyFilter() {
+    const selected = filterSelect.value;
+    if (!selected) return allWebcams;
+    return allWebcams.filter(cam => {
+      const label = [cam.city, cam.region].filter(Boolean).join(', ');
+      return label === selected;
+    });
+  }
+
   function renderCameras(webcams, updatedAt) {
     if (!webcams.length) {
-      renderEmpty('A legutóbbi lekérdezés szerint jelenleg nincs Magyarországra regisztrált webkamera a Windy katalógusában.');
+      renderEmpty('Ehhez a helyszínhez jelenleg nincs megjeleníthető kamera.');
       return;
     }
 
-    const cards = webcams.map(cam => {
+    const cards = webcams.map((cam, idx) => {
       const title = escapeHtml(cam.title || 'Névtelen kamera');
       const locationLine = [cam.city, cam.region].filter(Boolean).join(', ');
-      const lat = typeof cam.latitude === 'number' ? cam.latitude.toFixed(4) : '?';
-      const lon = typeof cam.longitude === 'number' ? cam.longitude.toFixed(4) : '?';
+      const hasCoords = typeof cam.latitude === 'number' && typeof cam.longitude === 'number';
+      const lat = hasCoords ? cam.latitude.toFixed(4) : '?';
+      const lon = hasCoords ? cam.longitude.toFixed(4) : '?';
       const imgUrl = cam.image_preview || cam.image_thumbnail || '';
+      const mapsUrl = hasCoords
+        ? `https://www.google.com/maps/search/?api=1&query=${cam.latitude},${cam.longitude}`
+        : '';
 
       return `
         <div class="cam-card">
-          <div class="cam-image-wrap">
+          <div class="cam-image-wrap" ${imgUrl ? `data-idx="${idx}"` : ''}>
             ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
             <div class="live-dot">élő</div>
           </div>
@@ -362,12 +497,23 @@
             <div class="cam-title">${title}</div>
             <div class="cam-location">${escapeHtml(locationLine)}</div>
             <div class="cam-coords">${lat}, ${lon}</div>
+            ${mapsUrl ? `<a href="${mapsUrl}" target="_blank" rel="noopener" class="cam-maps-link">📍 Pontos helyszín Google Mapsen →</a>` : ''}
           </div>
         </div>
       `;
     }).join('');
 
     content.innerHTML = `<div class="grid">${cards}</div>`;
+
+    // Kattintható nagyítás: minden képre külön eseménykezelő
+    content.querySelectorAll('.cam-image-wrap[data-idx]').forEach(wrap => {
+      wrap.addEventListener('click', () => {
+        const idx = Number(wrap.dataset.idx);
+        const cam = webcams[idx];
+        const bigUrl = cam.image_preview || cam.image_thumbnail || '';
+        openLightbox(bigUrl, cam.title || 'Névtelen kamera');
+      });
+    });
 
     if (updatedAt) {
       const dt = new Date(updatedAt);
@@ -376,6 +522,23 @@
       setStatus(`${webcams.length} kamera betöltve.`, 'ok');
     }
   }
+
+  function openLightbox(imgUrl, caption) {
+    if (!imgUrl) return;
+    lightboxImg.src = imgUrl;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('open');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  lightbox.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 
   async function loadCameras() {
     loadBtn.disabled = true;
@@ -394,7 +557,10 @@
       }
 
       const data = await response.json();
-      renderCameras(data.webcams || [], data.updated_at);
+      allWebcams = data.webcams || [];
+
+      populateFilter(allWebcams);
+      renderCameras(applyFilter(), data.updated_at);
 
     } catch (err) {
       setStatus(`Hiba történt: ${err.message}`, 'error');
@@ -404,6 +570,7 @@
     }
   }
 
+  filterSelect.addEventListener('change', () => renderCameras(applyFilter()));
   loadBtn.addEventListener('click', loadCameras);
   loadCameras();
 </script>
