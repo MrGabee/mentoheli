@@ -658,11 +658,30 @@
     return allWebcams.filter(cam => String(cam.id) === selectedId);
   }
 
-  function renderCameras(webcams, updatedAt) {
-    if (!webcams.length) {
+  function renderCameras(webcamsIn, updatedAt) {
+    if (!webcamsIn.length) {
       renderEmpty('Ehhez a kamerához jelenleg nincs megjeleníthető adat.');
       return;
     }
+
+    // A rács is ABC sorrendben jelenjen meg, ugyanúgy mint a legördülő -
+    // ne módosítsuk az eredeti tömböt, csak egy rendezett másolatot
+    // használjunk a megjelenítéshez.
+    const webcams = [...webcamsIn].sort((a, b) => {
+      const labelA = a.title || [a.city, a.region].filter(Boolean).join(', ') || '';
+      const labelB = b.title || [b.city, b.region].filter(Boolean).join(', ') || '';
+      return labelA.localeCompare(labelB, 'hu', { sensitivity: 'base' });
+    });
+
+    // Minden frissítéskor egyedi cache-busting jelzőt teszünk a kép URL-ek
+    // végére - enélkül a böngésző ugyanazt az URL-t gyorsítótárazza, és a
+    // "Frissítés" gomb nem hoz be új képet, csak ha kézzel (pl. jobb
+    // klikk -> kép megnyitása új lapon) kényszeríted az újratöltést.
+    const cacheBust = Date.now();
+    const withCacheBust = (url) => {
+      if (!url) return url;
+      return `${url}${url.includes('?') ? '&' : '?'}cb=${cacheBust}`;
+    };
 
     const cards = webcams.map((cam, idx) => {
       const title = escapeHtml(cam.title || 'Névtelen kamera');
@@ -670,7 +689,7 @@
       const hasCoords = typeof cam.latitude === 'number' && typeof cam.longitude === 'number';
       const lat = hasCoords ? cam.latitude.toFixed(4) : '?';
       const lon = hasCoords ? cam.longitude.toFixed(4) : '?';
-      const imgUrl = cam.image_preview || cam.image_thumbnail || '';
+      const imgUrl = withCacheBust(cam.image_preview || cam.image_thumbnail || '');
       const mapsUrl = hasCoords
         ? `https://www.google.com/maps/search/?api=1&query=${cam.latitude},${cam.longitude}`
         : '';
@@ -699,7 +718,7 @@
       wrap.addEventListener('click', () => {
         const idx = Number(wrap.dataset.idx);
         const cam = webcams[idx];
-        const bigUrl = cam.image_preview || cam.image_thumbnail || '';
+        const bigUrl = withCacheBust(cam.image_preview || cam.image_thumbnail || '');
         openLightbox(bigUrl, cam.title || 'Névtelen kamera');
       });
     });
@@ -790,7 +809,7 @@
   // valódi biztonság - a jelszó és a teljes tartalom is benne van az oldal
   // forráskódjában. Csak a véletlen látogatókat/keresőmotorokat tartja
   // távol, egy technikailag hozzáértő látogató meg tudja kerülni.
-  const GATE_PASSWORD = 'baleset2026';
+  const GATE_PASSWORD = 'valtoztasdmeg';
 
   // Ennyi ideig marad érvényben egy sikeres belépés, mielőtt újra
   // kérné a jelszót - itt állítható (percben). Alapértelmezés: 10 perc.
