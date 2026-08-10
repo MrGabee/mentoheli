@@ -1,0 +1,84 @@
+name: 📷 Windy Webkamerák Frissítése (HU)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 30 percenként frissíti a magyar webkamerák listáját.
+    # A Windy free tier képlinkjei 10 perc után lejárnak, de a lista
+    # (helyszín, koordináták) ritkábban változik - 30 perc elég gyakori
+    # ahhoz, hogy a weboldal mindig viszonylag friss előnézeteket adjon,
+    # anélkül hogy feleslegesen sokszor hívnánk az API-t.
+    - cron: '*/30 * * * *'
+
+concurrency:
+  group: windy-webcams-hu
+  cancel-in-progress: false
+
+jobs:
+  frissit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests
+
+      - name: 📷 Webkamerák lekérdezése
+        env:
+          WINDY_API_KEY: ${{ secrets.WINDY_API_KEY }}
+        run: python windy/fetch_windy_webcams.py
+
+      - name: 💾 Adat commitolása
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ ! -f windy/data/webcams_hu.json ]; then
+            echo "Nincs adatfájl, nincs mit commitolni."
+            exit 0
+          fi
+
+          cp windy/data/webcams_hu.json /tmp/webcams_hu_sajat.json
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p windy/data
+            cp /tmp/webcams_hu_sajat.json windy/data/webcams_hu.json
+            git add windy/data/webcams_hu.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "windy webkamerák frissítve [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
