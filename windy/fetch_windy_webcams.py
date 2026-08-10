@@ -55,7 +55,7 @@ def fetch_hungarian_webcams():
                 "nearby": f"{region['lat']},{region['lon']},{region['radius']}",
                 "limit": page_size,
                 "offset": offset,
-                "include": "images,location",
+                "include": "images,location,player",
             }
             response = requests.get(url, params=params, headers=headers, timeout=15)
             response.raise_for_status()
@@ -106,6 +106,7 @@ def main():
     # Csak a ténylegesen szükséges mezőket mentjük, hogy a fájl kicsi maradjon
     simplified = []
     for cam in webcams:
+        player = cam.get("player", {}) or {}
         simplified.append({
             "id": cam.get("webcamId"),
             "title": cam.get("title"),
@@ -115,6 +116,10 @@ def main():
             "longitude": cam.get("location", {}).get("longitude"),
             "image_preview": cam.get("images", {}).get("current", {}).get("preview"),
             "image_thumbnail": cam.get("images", {}).get("current", {}).get("thumbnail"),
+            # A hivatalos Windy visszajátszó (timelapse) beágyazó URL-je,
+            # csúszkával - ezt tudja a weboldal iframe-be tenni.
+            "player_embed": (player.get("day") or {}).get("embed")
+                             or (player.get("live") or {}).get("embed"),
         })
 
     output = {

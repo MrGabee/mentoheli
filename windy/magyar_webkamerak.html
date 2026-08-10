@@ -220,6 +220,36 @@
     text-decoration: underline;
   }
 
+  .cam-playback-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--turquoise);
+    background: none;
+    border: 1px solid var(--turquoise);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .cam-playback-btn:hover {
+    background: rgba(45, 212, 191, 0.12);
+  }
+
+  .cam-player-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+    background: #141617;
+  }
+
   .cam-exact-location {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -574,7 +604,7 @@
 
       return `
         <div class="cam-card">
-          <div class="cam-image-wrap" ${imgUrl ? `data-idx="${idx}"` : ''}>
+          <div class="cam-image-wrap" ${imgUrl ? `data-idx="${idx}"` : ''} data-media-slot="${idx}">
             ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
             <div class="live-dot">élő</div>
           </div>
@@ -583,6 +613,7 @@
             <div class="cam-location">${escapeHtml(locationLine)}</div>
             <div class="cam-coords">${lat}, ${lon}</div>
             ${mapsUrl ? `<div class="cam-exact-location">📍 ${escapeHtml(locationLine || 'Ismeretlen helyszín')}</div><a href="${mapsUrl}" target="_blank" rel="noopener" class="cam-maps-link">Pontos helyszín Google Mapsen →</a>` : ''}
+            ${cam.player_embed ? `<button class="cam-playback-btn" data-player-idx="${idx}">▶ Visszajátszás</button>` : ''}
           </div>
         </div>
       `;
@@ -597,6 +628,23 @@
         const cam = webcams[idx];
         const bigUrl = cam.image_preview || cam.image_thumbnail || '';
         openLightbox(bigUrl, cam.title || 'Névtelen kamera');
+      });
+    });
+
+    // Visszajátszás gomb: a statikus kép helyére a hivatalos, csúszkás
+    // Windy timelapse-lejátszót tölti be iframe-ben.
+    content.querySelectorAll('.cam-playback-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = Number(btn.dataset.playerIdx);
+        const cam = webcams[idx];
+        const slot = content.querySelector(`.cam-image-wrap[data-media-slot="${idx}"]`);
+        if (!slot || !cam.player_embed) return;
+
+        slot.innerHTML = `<iframe class="cam-player-frame" src="${cam.player_embed}" allowfullscreen loading="lazy"></iframe>`;
+        slot.removeAttribute('data-idx');
+        slot.style.cursor = 'default';
+        btn.remove();
       });
     });
 
