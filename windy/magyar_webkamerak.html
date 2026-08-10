@@ -640,7 +640,7 @@
         value: String(cam.id),
         label: cam.title || [cam.city, cam.region].filter(Boolean).join(', ') || `Kamera #${cam.id}`
       }))
-      .sort((a, b) => a.label.localeCompare(b.label, 'hu'));
+      .sort((a, b) => a.label.localeCompare(b.label, 'hu', { sensitivity: 'base' }));
 
     const currentValue = filterSelect.value;
 
