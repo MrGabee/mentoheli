@@ -790,7 +790,12 @@
   // valódi biztonság - a jelszó és a teljes tartalom is benne van az oldal
   // forráskódjában. Csak a véletlen látogatókat/keresőmotorokat tartja
   // távol, egy technikailag hozzáértő látogató meg tudja kerülni.
-  const GATE_PASSWORD = 'baleset2026';
+  const GATE_PASSWORD = 'valtoztasdmeg';
+
+  // Ennyi ideig marad érvényben egy sikeres belépés, mielőtt újra
+  // kérné a jelszót - itt állítható (percben). Alapértelmezés: 10 perc.
+  const GATE_REMEMBER_MINUTES = 10;
+  const GATE_STORAGE_KEY = 'windyGateUnlockedAt';
 
   const gate = document.getElementById('passwordGate');
   const gateInput = document.getElementById('gatePassword');
@@ -798,11 +803,40 @@
   const gateError = document.getElementById('gateError');
   const protectedContent = document.getElementById('protectedContent');
 
+  function unlockGate() {
+    gate.style.display = 'none';
+    protectedContent.style.display = 'block';
+    loadCameras();
+  }
+
+  function hasValidRememberedUnlock() {
+    try {
+      const stored = localStorage.getItem(GATE_STORAGE_KEY);
+      if (!stored) return false;
+      const unlockedAt = Number(stored);
+      if (Number.isNaN(unlockedAt)) return false;
+      const elapsedMinutes = (Date.now() - unlockedAt) / (1000 * 60);
+      return elapsedMinutes < GATE_REMEMBER_MINUTES;
+    } catch (err) {
+      // Ha a localStorage bármiért nem elérhető (pl. letiltva a
+      // böngészőben), egyszerűen mindig kérje a jelszót - nem hiba.
+      return false;
+    }
+  }
+
+  function rememberUnlock() {
+    try {
+      localStorage.setItem(GATE_STORAGE_KEY, String(Date.now()));
+    } catch (err) {
+      // Ha nem sikerül elmenteni, nem baj - csak legközelebb újra
+      // kérni fogja a jelszót, ami nem törvényszerű hiba.
+    }
+  }
+
   function tryUnlock() {
     if (gateInput.value === GATE_PASSWORD) {
-      gate.style.display = 'none';
-      protectedContent.style.display = 'block';
-      loadCameras();
+      rememberUnlock();
+      unlockGate();
     } else {
       gateError.textContent = 'Helytelen jelszó.';
       gateInput.value = '';
@@ -814,7 +848,13 @@
   gateInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') tryUnlock();
   });
-  gateInput.focus();
+
+  // Ha van még érvényes, korábbi belépés, ugorjuk át a jelszókaput
+  if (hasValidRememberedUnlock()) {
+    unlockGate();
+  } else {
+    gateInput.focus();
+  }
 </script>
 
 </body>
