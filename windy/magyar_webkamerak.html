@@ -460,10 +460,83 @@
   @media (prefers-reduced-motion: reduce) {
     .live-dot::before { animation: none; }
   }
+
+  /* ---- Jelszókapu ---- */
+  #passwordGate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+  }
+
+  .gate-box {
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .gate-box h2 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .gate-box p {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .gate-input {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 12px 14px;
+    border-radius: 4px;
+    outline: none;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .gate-input:focus {
+    border-color: var(--amber);
+  }
+
+  .gate-error {
+    color: var(--red);
+    font-size: 12px;
+    margin-top: 10px;
+    min-height: 16px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  #protectedContent {
+    display: none;
+  }
 </style>
 </head>
 <body>
 
+<div id="passwordGate">
+  <div class="gate-box">
+    <h2>Belépés</h2>
+    <p>Ehhez az oldalhoz jelszó szükséges.</p>
+    <input type="password" id="gatePassword" class="gate-input" placeholder="Jelszó" autocomplete="off">
+    <button id="gateSubmit" style="width: 100%;">Belépés</button>
+    <div class="gate-error" id="gateError"></div>
+  </div>
+</div>
+
+<div id="protectedContent">
 <div class="hazard-stripe"></div>
 
 <header>
@@ -705,7 +778,43 @@
 
   filterSelect.addEventListener('change', () => renderCameras(applyFilter()));
   loadBtn.addEventListener('click', loadCameras);
-  loadCameras();
+  // A loadCameras() itt NEM fut le automatikusan - csak sikeres jelszó
+  // megadása után, lásd a jelszókapu logikáját lentebb.
+</script>
+
+</div><!-- /#protectedContent -->
+
+<script>
+  // ---- Jelszókapu ----
+  // FONTOS: ez kliensoldali védelem statikus GitHub Pages-en, tehát NEM
+  // valódi biztonság - a jelszó és a teljes tartalom is benne van az oldal
+  // forráskódjában. Csak a véletlen látogatókat/keresőmotorokat tartja
+  // távol, egy technikailag hozzáértő látogató meg tudja kerülni.
+  const GATE_PASSWORD = 'baleset2026';
+
+  const gate = document.getElementById('passwordGate');
+  const gateInput = document.getElementById('gatePassword');
+  const gateSubmit = document.getElementById('gateSubmit');
+  const gateError = document.getElementById('gateError');
+  const protectedContent = document.getElementById('protectedContent');
+
+  function tryUnlock() {
+    if (gateInput.value === GATE_PASSWORD) {
+      gate.style.display = 'none';
+      protectedContent.style.display = 'block';
+      loadCameras();
+    } else {
+      gateError.textContent = 'Helytelen jelszó.';
+      gateInput.value = '';
+      gateInput.focus();
+    }
+  }
+
+  gateSubmit.addEventListener('click', tryUnlock);
+  gateInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') tryUnlock();
+  });
+  gateInput.focus();
 </script>
 
 </body>
