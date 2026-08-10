@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magyar Webkamerák · Windy API</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1b1d1f;
+    --bg-card: #232629;
+    --bg-card-hover: #2a2e31;
+    --amber: #f2a340;
+    --red: #c8102e;
+    --text: #eef0f2;
+    --text-muted: #9aa0a6;
+    --border: #34383c;
+    --green: #4caf6f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  .hazard-stripe {
+    height: 6px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--amber),
+      var(--amber) 14px,
+      #1b1d1f 14px,
+      #1b1d1f 28px
+    );
+  }
+
+  header {
+    padding: 48px 32px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  h1 span {
+    color: var(--red);
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-top: 10px;
+    max-width: 560px;
+  }
+
+  .controls {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px 32px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .key-input {
+    flex: 1;
+    min-width: 240px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 12px 14px;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .key-input:focus {
+    border-color: var(--amber);
+  }
+
+  .key-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  button {
+    background: var(--amber);
+    color: #1b1d1f;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 13px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+
+  button:hover { background: #ffb75c; }
+  button:active { transform: scale(0.98); }
+  button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .status {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    min-height: 20px;
+  }
+
+  .status.error { color: var(--red); }
+  .status.ok { color: var(--green); }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px 64px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .cam-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .cam-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--amber);
+  }
+
+  .cam-image-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #141617;
+    overflow: hidden;
+  }
+
+  .cam-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .live-dot {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(20, 22, 23, 0.75);
+    padding: 4px 9px 4px 7px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .live-dot::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .cam-body {
+    padding: 14px 16px 16px;
+  }
+
+  .cam-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .cam-location {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .cam-coords {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+
+  .empty-state, .loading-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-muted);
+  }
+
+  .empty-state h2, .loading-state h2 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .empty-state p, .loading-state p {
+    font-size: 14px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot::before { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hazard-stripe"></div>
+
+<header>
+  <div class="eyebrow">Windy Webcams API · country = HU · GitHub Actions szinkron</div>
+  <h1>Magyar<span>·</span>Webkamerák</h1>
+  <p class="subtitle">Élő webkamera-előnézetek Magyarországról. Az adatokat egy GitHub Actions workflow frissíti 30 percenként a szerver oldalon, így nincs szükség API-kulcsra vagy böngészős lekérdezésre ezen az oldalon.</p>
+</header>
+
+<div class="controls">
+  <button id="loadBtn">Frissítés</button>
+</div>
+
+<div class="status" id="status"></div>
+
+<main>
+  <div id="content">
+    <div class="empty-state">
+      <h2>Betöltés…</h2>
+      <p>A mentett kameraadatok betöltése.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Adatforrás: Windy Webcams API (api.windy.com), GitHub Actions által 30 percenként frissítve · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
+</footer>
+
+<script>
+  const loadBtn = document.getElementById('loadBtn');
+  const statusEl = document.getElementById('status');
+  const content = document.getElementById('content');
+
+  // A weboldallal azonos repóban, a data/ mappában tárolt, GitHub Actions
+  // által rendszeresen frissített statikus JSON fájl - nincs API-kulcs,
+  // nincs közvetlen böngészős hívás a Windy felé, tehát nincs CORS-hiba.
+  const DATA_URL = 'data/webcams_hu.json';
+
+  function setStatus(message, type) {
+    statusEl.textContent = message;
+    statusEl.className = 'status' + (type ? ' ' + type : '');
+  }
+
+  function renderLoading() {
+    content.innerHTML = `
+      <div class="loading-state">
+        <h2>Betöltés…</h2>
+        <p>A mentett kameraadatok betöltése.</p>
+      </div>
+    `;
+  }
+
+  function renderEmpty(message) {
+    content.innerHTML = `
+      <div class="empty-state">
+        <h2>Nincs megjeleníthető adat</h2>
+        <p>${escapeHtml(message || 'A data/webcams_hu.json fájl még nem érhető el, vagy üres.')}</p>
+      </div>
+    `;
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  function renderCameras(webcams, updatedAt) {
+    if (!webcams.length) {
+      renderEmpty('A legutóbbi lekérdezés szerint jelenleg nincs Magyarországra regisztrált webkamera a Windy katalógusában.');
+      return;
+    }
+
+    const cards = webcams.map(cam => {
+      const title = escapeHtml(cam.title || 'Névtelen kamera');
+      const locationLine = [cam.city, cam.region].filter(Boolean).join(', ');
+      const lat = typeof cam.latitude === 'number' ? cam.latitude.toFixed(4) : '?';
+      const lon = typeof cam.longitude === 'number' ? cam.longitude.toFixed(4) : '?';
+      const imgUrl = cam.image_preview || cam.image_thumbnail || '';
+
+      return `
+        <div class="cam-card">
+          <div class="cam-image-wrap">
+            ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
+            <div class="live-dot">élő</div>
+          </div>
+          <div class="cam-body">
+            <div class="cam-title">${title}</div>
+            <div class="cam-location">${escapeHtml(locationLine)}</div>
+            <div class="cam-coords">${lat}, ${lon}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    content.innerHTML = `<div class="grid">${cards}</div>`;
+
+    if (updatedAt) {
+      const dt = new Date(updatedAt);
+      setStatus(`${webcams.length} kamera · utoljára frissítve: ${dt.toLocaleString('hu-HU')}`, 'ok');
+    } else {
+      setStatus(`${webcams.length} kamera betöltve.`, 'ok');
+    }
+  }
+
+  async function loadCameras() {
+    loadBtn.disabled = true;
+    setStatus('Betöltés…', '');
+    renderLoading();
+
+    try {
+      // cache: 'no-store', hogy mindig a legfrissebb commitolt JSON-t kapjuk,
+      // ne egy régebbi, böngésző által cache-elt verziót
+      const response = await fetch(DATA_URL, { cache: 'no-store' });
+
+      if (!response.ok) {
+        setStatus(`Nem sikerült betölteni az adatfájlt (HTTP ${response.status}).`, 'error');
+        renderEmpty('Ellenőrizd, hogy a GitHub Actions workflow lefutott-e már legalább egyszer, és hogy a data/webcams_hu.json a repóban van-e.');
+        return;
+      }
+
+      const data = await response.json();
+      renderCameras(data.webcams || [], data.updated_at);
+
+    } catch (err) {
+      setStatus(`Hiba történt: ${err.message}`, 'error');
+      renderEmpty('Ha ezt az oldalt közvetlenül fájlként (file://) nyitottad meg, próbáld GitHub Pages-en keresztül elérni - helyi fájlként egyes böngészők blokkolhatják a JSON betöltését.');
+    } finally {
+      loadBtn.disabled = false;
+    }
+  }
+
+  loadBtn.addEventListener('click', loadCameras);
+  loadCameras();
+</script>
+
+</body>
+</html>
