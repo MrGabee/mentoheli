@@ -49,7 +49,7 @@ def fetch_hungarian_webcams():
     # a nearby kör szélén becsúszó szomszédos országbelieket kiszűrjük.
     hungarian_only = [
         cam for cam in all_webcams
-        if (cam.get("location", {}) or {}).get("country") == "HU"
+        if (cam.get("location", {}) or {}).get("country_code") == "HU"
     ]
 
     print(f"   -> {len(all_webcams)} kamera a 250 km-es körben, ebből {len(hungarian_only)} magyarországi.")
