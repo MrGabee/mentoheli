@@ -1,0 +1,108 @@
+name: 🚧 BKK KÖZÚT Kamerák Monitor
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [bkk_kozut_kamera_trigger]
+  schedule:
+    - cron: '*/10 * * * *'
+
+concurrency:
+  group: bkk-kozut-kamera-monitor
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python környezet beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Függőségek telepítése
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pillow
+
+      - name: 📸 BKK közúti kamerák letöltése
+        run: python bkk_kozut_kamera_monitor.py
+
+      - name: 💾 Állapot commitolása
+        if: always()
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if [ ! -d images ]; then
+            echo "images mappa nem létezik, nincs mit commitolni."
+            exit 0
+          fi
+          
+          cp -r images /tmp/images_sajat
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p images
+            cp -r /tmp/images_sajat/* images/
+            git add images/
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "bkk közút kameraképek frissítése [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: ⏱️ Várakozás
+        if: always()
+        run: sleep 300
+
+      - name: 🔄 Következő futás indítása
+        if: always()
+        run: |
+          SIKERULT=0
+          for i in 1 2 3; do
+            HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/dispatches \
+              -d '{"event_type":"bkk_kozut_kamera_trigger"}')
+            if [ "$HTTP_KOD" = "204" ]; then
+              echo "✅ Dispatch sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "⚠️ Dispatch sikertelen (HTTP $HTTP_KOD), próbálkozás $i/3..."
+              cat /tmp/dispatch_resp.txt
+              sleep 5
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "❌ FIGYELEM: nem sikerült elindítani a következő futást!"
+          fi
