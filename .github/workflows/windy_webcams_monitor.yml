@@ -42,7 +42,9 @@ jobs:
 
       - name: 💾 Adat commitolása
         if: always()
+        continue-on-error: true
         run: |
+          set +e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -89,7 +91,9 @@ jobs:
 
       - name: 🔄 Következő futás indítása
         if: always()
+        continue-on-error: true
         run: |
+          set +e
           SIKERULT=0
           for i in 1 2 3; do
             HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
