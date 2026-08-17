@@ -27,14 +27,14 @@ jobs:
           # Ezeket a workflow-kat figyeli az őrző (megjelenített név szerint).
           # Ha valamelyik túl régen futott, azt automatikusan újraindítja.
           FIGYELT_WORKFLOWOK=(
-            "Csepel Áramszünet Monitor"
-            "BKK KÖZÚT-i (bal)eset Monitor"
-            "FŐTÁV Monitor"
-            "MÁV/Volán Monitor"
-            "Mentőhelikopter Monitor"
-            "Rendőrség Baleseti Hírek Monitor"
-            "Vízművek Monitor"
-            "Windy Webkamerák Frissítése (HU)"
+            "⚡ Csepel Áramszünet Monitor"
+            "🚧 BKK KÖZÚT-i (bal)eset Monitor"
+            "🔥 FŐTÁV Monitor"
+            "🚂 MÁV/Volán Monitor"
+            "🚁 Mentőhelikopter Monitor"
+            "🚔 Rendőrség Baleseti Hírek Monitor"
+            "💧 Vízművek Monitor"
+            "📷 Windy Webkamerák Frissítése (HU)"
           )
 
           # Ha egy workflow utolsó futása ennél régebbi (percben), leállítottnak
