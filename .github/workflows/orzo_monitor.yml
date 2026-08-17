@@ -1,0 +1,130 @@
+name: 🛡️ Őrző - Monitorok Ellenőrzése
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [orzo_trigger]
+  schedule:
+    # Biztonsági háló, ha maga az őrző-lánc szakadna meg
+    - cron: '*/15 * * * *'
+
+concurrency:
+  group: orzo-monitor
+  cancel-in-progress: false
+
+jobs:
+  ellenoriz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 🔍 Workflow-k ellenőrzése és leállt lánc újraindítása
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          set +e
+
+          # Ezeket a workflow-kat figyeli az őrző (megjelenített név szerint).
+          # Ha valamelyik túl régen futott, azt automatikusan újraindítja.
+          FIGYELT_WORKFLOWOK=(
+            "Csepel Áramszünet Monitor"
+            "BKK KÖZÚT-i (bal)eset Monitor"
+            "FŐTÁV Monitor"
+            "MÁV/Volán Monitor"
+            "Mentőhelikopter Monitor"
+            "Rendőrség Baleseti Hírek Monitor"
+            "Vízművek Monitor"
+            "Windy Webkamerák Frissítése (HU)"
+          )
+
+          # Ha egy workflow utolsó futása ennél régebbi (percben), leállítottnak
+          # tekintjük és újraindítjuk.
+          LEALLTNAK_SZAMIT_PERC=6
+
+          REPO="${{ github.repository }}"
+          MOST=$(date -u +%s)
+
+          echo "🔍 Ellenőrzés indul: $REPO"
+          echo ""
+
+          # Az összes workflow lekérdezése egyszer, hogy megjelenített névből
+          # meg tudjuk találni az ID-t
+          OSSZES_WORKFLOW=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/$REPO/actions/workflows?per_page=100")
+
+          for NEV in "${FIGYELT_WORKFLOWOK[@]}"; do
+            echo "── $NEV ──"
+
+            WF_ID=$(echo "$OSSZES_WORKFLOW" | jq -r --arg nev "$NEV" '.workflows[]? | select(.name == $nev) | .id' | head -n1)
+
+            if [ -z "$WF_ID" ]; then
+              echo "   ⚠️  Nem található ilyen nevű workflow, kihagyva."
+              echo ""
+              continue
+            fi
+
+            UTOLSO_FUTAS=$(curl -s -H "Authorization: token $GH_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/$REPO/actions/workflows/$WF_ID/runs?per_page=1")
+
+            LETREHOZVA=$(echo "$UTOLSO_FUTAS" | jq -r '.workflow_runs[0].created_at // empty')
+
+            if [ -z "$LETREHOZVA" ]; then
+              echo "   ⚠️  Nincs korábbi futás - kihagyva."
+              echo ""
+              continue
+            fi
+
+            FUTAS_IDOPONT=$(date -u -d "$LETREHOZVA" +%s 2>/dev/null)
+            KULONBSEG_PERC=$(( (MOST - FUTAS_IDOPONT) / 60 ))
+
+            echo "   Utolsó futás: $LETREHOZVA ($KULONBSEG_PERC perce)"
+
+            if [ "$KULONBSEG_PERC" -ge "$LEALLTNAK_SZAMIT_PERC" ]; then
+              echo "   ❌ Leállt (>= $LEALLTNAK_SZAMIT_PERC perc) - újraindítás..."
+              INDITAS_HTTP=$(curl -s -o /tmp/orzo_resp.txt -w "%{http_code}" -X POST \
+                -H "Authorization: token $GH_TOKEN" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "https://api.github.com/repos/$REPO/actions/workflows/$WF_ID/dispatches" \
+                -d '{"ref":"main"}')
+              if [ "$INDITAS_HTTP" = "204" ]; then
+                echo "   ✅ Sikeresen újraindítva."
+              else
+                echo "   ⚠️  Az újraindítás sikertelen (HTTP $INDITAS_HTTP):"
+                cat /tmp/orzo_resp.txt
+              fi
+            else
+              echo "   ✅ Rendben fut, nincs teendő."
+            fi
+            echo ""
+          done
+
+      - name: ⏱️ Várakozás
+        if: always()
+        run: sleep 100
+
+      - name: 🔄 Az őrző-lánc folytatása
+        if: always()
+        run: |
+          set +e
+          SIKERULT=0
+          for i in 1 2 3; do
+            HTTP_KOD=$(curl -s -o /tmp/orzo_dispatch.txt -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/dispatches" \
+              -d '{"event_type":"orzo_trigger"}')
+            if [ "$HTTP_KOD" = "204" ]; then
+              echo "✅ Őrző-lánc folytatva."
+              SIKERULT=1
+              break
+            else
+              echo "⚠️ Sikertelen (HTTP $HTTP_KOD), próbálkozás $i/3..."
+              cat /tmp/orzo_dispatch.txt
+              sleep 5
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "❌ Nem sikerült folytatni a láncot - a schedule biztonsági háló legfeljebb 15 percen belül úgyis újraindítja."
+          fi
