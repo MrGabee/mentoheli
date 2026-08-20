@@ -1,0 +1,117 @@
+name: 🚔 Police.hu Figyelő (XX./XXI. kerület)
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [police_figyelo_trigger]
+  schedule:
+    - cron: '*/15 * * * *'
+
+concurrency:
+  group: police-figyelo
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests beautifulsoup4
+
+      - name: 🔍 Figyelés futtatása
+        env:
+          SMTP_HOST: smtp.gmail.com
+          SMTP_PORT: 465
+          EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: python korozes/police_figyelo.py
+
+      - name: 💾 Adat commitolása (önjavító)
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          DATA_FILE="korozes/data/police_figyelo.json"
+          if [ ! -f "$DATA_FILE" ]; then
+            echo "Nincs adatfájl, nincs mit commitolni."
+            exit 0
+          fi
+          TMP_COPY="/tmp/police_figyelo_backup_$$.json"
+          cp "$DATA_FILE" "$TMP_COPY"
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p "$(dirname "$DATA_FILE")"
+            cp "$TMP_COPY" "$DATA_FILE"
+            git add "$DATA_FILE"
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "police figyelő adat frissítve [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
+
+      - name: ⏱️ Várakozás (15 perc)
+        if: always()
+        run: sleep 870
+
+      - name: 🔄 Következő futás indítása (önjavító)
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          SIKERULT=0
+          for i in 1 2 3; do
+            HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/dispatches" \
+              -d '{"event_type":"police_figyelo_trigger"}')
+            if [ "$HTTP_KOD" = "204" ]; then
+              echo "✅ Dispatch sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "⚠️ Dispatch sikertelen (HTTP $HTTP_KOD), próbálkozás $i/3..."
+              cat /tmp/dispatch_resp.txt
+              sleep 5
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "❌ Nem sikerült - a schedule biztonsági háló legfeljebb 15 percen belül újraindítja."
+          fi
