@@ -3,7 +3,7 @@
    + Kispest (XIX.) + Szigetszentmiklós
 Adatforrás: vizmuvek.hu munkatérkép
 Szűrés: kerület-prefix vagy településnév
-Értesítés: E-mail (EMAIL_CIMZETT_ARAM) + Facebook poszt (Mr.Gabee oldal)
+Értesítés: E-mail (EMAIL_CIMZETT_ARAM) + Facebook poszt (Mr.Gabee oldal, AUTOMATA, szövegesen)
 """
 
 import os
@@ -25,10 +25,11 @@ def magyar_ido():
     return datetime.now(MAGYAR_TZ)
 
 
-EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
-EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
-FB_PAGE_ID    = os.environ.get("FB_PAGE_ID", "104411308403346")  # csak a lábjegyzet-linkhez kell, posztoláshoz már nem
+EMAIL_KULDO      = os.environ["EMAIL_KULDO"]
+EMAIL_JELSZO     = os.environ["EMAIL_JELSZO"]
+EMAIL_CIMZETT    = os.environ["EMAIL_CIMZETT_ARAM"]
+FB_PAGE_ID       = os.environ.get("FB_PAGE_ID", "104411308403346")
+FB_PAGE_TOKEN    = os.environ.get("FB_PAGE_TOKEN", "")
 
 VIZMUVEK_URL = "https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
 ALLAPOT_FAJL = "vizmuvek_allapot.json"
@@ -175,7 +176,7 @@ def lekerdez():
 
 
 # ════════════════════════════════════════════
-#  📘  FACEBOOK POSZT SZÖVEG (megosztott - e-mail és Graph API is ezt használja)
+#  📘  FACEBOOK POSZT SZÖVEG (megosztott - e-mail és a Graph API is ezt használja)
 # ════════════════════════════════════════════
 def facebook_szoveg(esetek):
     ido = magyar_ido().strftime("%Y.%m.%d %H:%M")
@@ -213,15 +214,34 @@ def facebook_szoveg(esetek):
     sorok.append("https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk")
     sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Kispest, Szigetszentmiklós")
 
-    if KEP_URL:
-        sorok.append("")
-        sorok.append(KEP_URL)
-
     return "\n".join(sorok)
 
 
-# (Az automata Facebook Graph API posztolás eltávolítva - mostantól csak
-#  az e-mail alján lévő másolható szöveg készül el, azt kell kézzel posztolni.)
+# ════════════════════════════════════════════
+#  📘  FACEBOOK AUTOMATA POSZTOLÁS (Graph API, szövegesen)
+# ════════════════════════════════════════════
+def facebook_poszt_kuldese(szoveg):
+    """Szöveges posztot küld a Facebook Oldalra a Graph API-n keresztül.
+    Nincs kép csatolva - tisztán szöveges bejegyzés (feed poszt)."""
+    if not FB_PAGE_ID or not FB_PAGE_TOKEN:
+        print("  ⚠️  Nincs beállítva FB_PAGE_ID / FB_PAGE_TOKEN - Facebook-posztolás kihagyva.")
+        return False
+
+    try:
+        url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/feed"
+        payload = {"message": szoveg, "access_token": FB_PAGE_TOKEN}
+        resp = requests.post(url, data=payload, timeout=20)
+
+        if resp.status_code == 200:
+            poszt_id = resp.json().get("id", "")
+            print(f"  ✅ Facebook poszt elküldve. ID: {poszt_id}")
+            return True
+        else:
+            print(f"  ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
+            return False
+    except Exception as e:
+        print(f"  ⚠️  Facebook poszt hiba: {e}")
+        return False
 
 
 # ════════════════════════════════════════════
@@ -278,11 +298,7 @@ def email_kuldes(uj_esetek):
             f"Maps:   {e['gmaps']}\n"
         )
 
-    # Facebook poszt szövege - a megosztott függvényből, nem duplikálva
     fb_szoveg = facebook_szoveg(uj_esetek)
-
-    import urllib.parse
-    fb_share_url = f"https://www.facebook.com/dialog/share?app_id=10064353121037736&display=popup&quote={urllib.parse.quote(fb_szoveg)}&href=https://www.vizmuvek.hu"
 
     html = f"""<!DOCTYPE html>
 <html lang="hu"><head><meta charset="UTF-8">
@@ -307,9 +323,7 @@ def email_kuldes(uj_esetek):
               white-space:pre-wrap;word-break:break-word;
               color:#1c1e21;line-height:1.6;background:#fff;
               border-radius:8px;padding:14px;border:1px solid #e4e6eb}}
-  .fb-kep-elonezet{{margin-top:12px;text-align:center}}
-  .fb-kep-elonezet img{{max-width:100%;max-height:220px;border-radius:8px;
-                        box-shadow:0 2px 6px rgba(0,0,0,.15)}}
+  .fb-allapot{{margin-top:10px;font-size:12px;color:#42b72a;font-weight:bold}}
   .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
          color:#95a5a6;text-align:center}}
 </style>
@@ -330,9 +344,9 @@ def email_kuldes(uj_esetek):
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
 
     <div class="fb-box">
-      <h3>📘 Facebook poszt szövege — jelöld ki és másold (Ctrl+A majd Ctrl+C)</h3>
+      <h3>📘 Facebook poszt szövege (tájékoztatásul - ez már automatikusan kiment az Oldalra)</h3>
       <pre id="fb">{fb_szoveg}</pre>
-      {f'<div class="fb-kep-elonezet"><img src="{KEP_URL}" alt="Facebook poszt kép"></div>' if KEP_URL else ''}
+      <div class="fb-allapot">✅ Automatikusan posztolva a Facebook Oldalra</div>
     </div>
 
     <div style="text-align:center;margin-top:16px">
@@ -386,6 +400,10 @@ def main():
     print(f"\n💧 Új esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
+
+        print("\n📘 Facebook poszt küldése...")
+        fb_szoveg = facebook_szoveg(uj)
+        facebook_poszt_kuldese(fb_szoveg)
     else:
         print("✅ Nincs új esemény.")
 
