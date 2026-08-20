@@ -161,7 +161,8 @@ def korozes_lista_lekerdezese(list_path):
             continue
         seen_ids.add(item_id)
         cim = a.get_text(" ", strip=True)
-        talalatok.append({"id": item_id, "cim": cim, "url": BASE_URL + href})
+        teljes_url = href if href.startswith("http") else BASE_URL + href
+        talalatok.append({"id": item_id, "cim": cim, "url": teljes_url})
 
     return talalatok
 
