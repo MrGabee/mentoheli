@@ -14,7 +14,7 @@ concurrency:
 jobs:
   figyel:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 17
     permissions:
       contents: write
 
