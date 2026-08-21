@@ -22,6 +22,8 @@ def magyar_ido():
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
+FB_PAGE_ID    = os.environ.get("FB_PAGE_ID", "104411308403346")
+FB_PAGE_TOKEN = os.environ.get("FB_PAGE_TOKEN", "")
 
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
@@ -358,6 +360,33 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
 
 
 # ════════════════════════════════════════════
+#  📘  FACEBOOK AUTOMATA POSZTOLÁS (Graph API, szövegesen)
+# ════════════════════════════════════════════
+def facebook_poszt_kuldese(szoveg):
+    """Szöveges posztot küld a Facebook Oldalra a Graph API-n keresztül.
+    Nincs kép csatolva - tisztán szöveges bejegyzés (feed poszt)."""
+    if not FB_PAGE_ID or not FB_PAGE_TOKEN:
+        print("  ⚠️  Nincs beállítva FB_PAGE_ID / FB_PAGE_TOKEN - Facebook-posztolás kihagyva.")
+        return False
+
+    try:
+        url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/feed"
+        payload = {"message": szoveg, "access_token": FB_PAGE_TOKEN}
+        resp = requests.post(url, data=payload, timeout=20)
+
+        if resp.status_code == 200:
+            poszt_id = resp.json().get("id", "")
+            print(f"  ✅ Facebook poszt elküldve. ID: {poszt_id}")
+            return True
+        else:
+            print(f"  ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
+            return False
+    except Exception as e:
+        print(f"  ⚠️  Facebook poszt hiba: {e}")
+        return False
+
+
+# ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
 def email_kuldes(uj_esetek, osszes_aktiv_esetek):
@@ -460,6 +489,7 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
         smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
         smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
     print(f"📧 E-mail elküldve: {targy}")
+    return fb_szoveg_txt
 
 
 # ════════════════════════════════════════════
@@ -492,7 +522,10 @@ def main():
 
     print(f"\n⚡ Új események: {len(uj)} | Összes aktív: {len(osszes_aktiv)}")
     if uj:
-        email_kuldes(uj, osszes_aktiv)
+        fb_szoveg_txt = email_kuldes(uj, osszes_aktiv)
+
+        print("\n📘 Facebook poszt küldése...")
+        facebook_poszt_kuldese(fb_szoveg_txt)
     else:
         print("✅ Nincs új esemény.")
 
