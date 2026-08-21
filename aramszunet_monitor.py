@@ -25,6 +25,12 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
 FB_PAGE_ID    = os.environ.get("FB_PAGE_ID", "104411308403346")
 FB_PAGE_TOKEN = os.environ.get("FB_PAGE_TOKEN", "")
 
+# ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
+# True  = automatikusan posztol a Facebook Oldalra is (jelenleg nem publikus,
+#         amíg nincs elvégezve a Meta Business Verification)
+# False = csak emailt küld, a Facebook-szöveg ott lesz kimásolható
+FACEBOOK_POSZTOLAS_AKTIV = False
+
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
 
@@ -524,8 +530,9 @@ def main():
     if uj:
         fb_szoveg_txt = email_kuldes(uj, osszes_aktiv)
 
-        print("\n📘 Facebook poszt küldése...")
-        facebook_poszt_kuldese(fb_szoveg_txt)
+        if FACEBOOK_POSZTOLAS_AKTIV:
+            print("\n📘 Facebook poszt küldése...")
+            facebook_poszt_kuldese(fb_szoveg_txt)
     else:
         print("✅ Nincs új esemény.")
 
