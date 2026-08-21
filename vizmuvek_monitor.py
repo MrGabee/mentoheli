@@ -31,6 +31,12 @@ EMAIL_CIMZETT    = os.environ["EMAIL_CIMZETT_ARAM"]
 FB_PAGE_ID       = os.environ.get("FB_PAGE_ID", "104411308403346")
 FB_PAGE_TOKEN    = os.environ.get("FB_PAGE_TOKEN", "")
 
+# ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
+# True  = automatikusan posztol a Facebook Oldalra is (jelenleg nem publikus,
+#         amíg nincs elvégezve a Meta Business Verification)
+# False = csak emailt küld, a Facebook-szöveg ott lesz kimásolható
+FACEBOOK_POSZTOLAS_AKTIV = False
+
 VIZMUVEK_URL = "https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
 ALLAPOT_FAJL = "vizmuvek_allapot.json"
 
@@ -401,9 +407,10 @@ def main():
     if uj:
         email_kuldes(uj)
 
-        print("\n📘 Facebook poszt küldése...")
-        fb_szoveg = facebook_szoveg(uj)
-        facebook_poszt_kuldese(fb_szoveg)
+        if FACEBOOK_POSZTOLAS_AKTIV:
+            print("\n📘 Facebook poszt küldése...")
+            fb_szoveg = facebook_szoveg(uj)
+            facebook_poszt_kuldese(fb_szoveg)
     else:
         print("✅ Nincs új esemény.")
 
