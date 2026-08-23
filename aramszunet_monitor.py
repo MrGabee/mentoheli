@@ -176,6 +176,35 @@ def ido_format(mezo):
             return s
 
 
+def parse_datetime_raw(mezo):
+    """Ugyanazt a bemenetet dolgozza fel, mint az ido_format(), de VALÓDI
+    datetime objektumot ad vissza (magyar időzónában), nem szöveget - ez
+    kell az 'X nappal a kezdés előtt' összehasonlításhoz. Ha nem
+    értelmezhető, None-t ad."""
+    if not mezo:
+        return None
+    if isinstance(mezo, dict):
+        datum = mezo.get("date") or ""
+        ido   = mezo.get("time") or ""
+        mezo  = f"{datum} {ido}".strip() if (datum or ido) else None
+        if not mezo:
+            return None
+    if isinstance(mezo, (int, float)):
+        try:
+            dt = datetime.fromtimestamp(mezo / 1000 if mezo > 1e10 else mezo, tz=timezone.utc)
+            return dt.astimezone(MAGYAR_TZ)
+        except Exception:
+            return None
+    s = str(mezo).replace("T", " ").replace("Z", "").strip()[:19]
+    for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M"):
+        try:
+            dt = datetime.strptime(s, fmt)
+            return dt.replace(tzinfo=timezone.utc).astimezone(MAGYAR_TZ)
+        except Exception:
+            continue
+    return None
+
+
 # ════════════════════════════════════════════
 #  📡  LEKÉRDEZÉS
 # ════════════════════════════════════════════
@@ -275,6 +304,7 @@ def kinyert_adatok(eset):
     return {
         "azonosito":      str(azonosito),
         "kezdes":         ido_format(kezdes_raw),
+        "kezdes_dt":      parse_datetime_raw(kezdes_raw),
         "veg":            ido_format(veg_raw),
         "utcak":          utcak,
         "utcak_lista":    utcak_lista,
@@ -499,6 +529,122 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
 
 
 # ════════════════════════════════════════════
+#  ⏰  EMLÉKEZTETŐ (2 nappal a tervezett esemény előtt)
+# ════════════════════════════════════════════
+EMLEKEZTETO_NAPOK_ELOTTE = 2  # ennyi nappal a kezdés előtt küldünk emlékeztetőt
+
+
+def emlekezteto_kuldes(emlekezteto_adatok):
+    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
+    db    = len(emlekezteto_adatok)
+    targy = f"⏰ Emlékeztető - közelgő áramszünet ({EMLEKEZTETO_NAPOK_ELOTTE} napon belül) – {db} esemény | {ido}"
+
+    sorok_html = ""
+    sorok_txt  = ""
+    for i, f in enumerate(emlekezteto_adatok, 1):
+        szin = "#e67e22"
+        cimek_html = "".join(f"<div>• {c}</div>" for c in f["utcak_lista"]) if f["utcak_lista"] else f["utcak"]
+
+        sorok_html += f"""
+        <tr style="border-bottom:2px solid #eee">
+          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
+          <td style="padding:14px">
+            <span style="background:{szin};color:#fff;padding:5px 12px;
+                         border-radius:4px;font-size:13px;font-weight:bold">⏰ KÖZELGŐ ÁRAMSZÜNET</span>
+            <table style="font-size:13px;width:100%;margin-top:10px">
+              <tr><td style="color:#888;width:110px">📌 Terület:</td><td><strong>{f['kerulet']}</strong></td></tr>
+              <tr><td style="color:#888">📍 Érintett utcák:</td><td>{cimek_html}</td></tr>
+              <tr><td style="color:#888">⏰ Kezdés:</td><td><strong>{f['kezdes']}</strong></td></tr>
+              <tr><td style="color:#888">⏰ Várható vége:</td><td>{f['veg']}</td></tr>
+              <tr><td style="color:#888">👥 Érintett fogyasztók:</td><td>{f['fogyaszto']}</td></tr>
+            </table>
+            {f'<div style="margin-top:8px"><a href="{f["gmaps"]}" style="background:#4285f4;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold">📍 Google Maps</a></div>' if f['gmaps'] else ''}
+          </td>
+        </tr>"""
+
+        sorok_txt += (
+            f"\n{'─'*45}\n{i}. ⏰ KÖZELGŐ ÁRAMSZÜNET\n"
+            f"Terület: {f['kerulet']}\nUtcák: {f['utcak']}\n"
+            f"Kezdés: {f['kezdes']}\nVége: {f['veg']}\nFogyasztók: {f['fogyaszto']}\n"
+        )
+
+    html = f"""<!DOCTYPE html>
+<html lang="hu"><head><meta charset="UTF-8">
+<style>
+  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
+  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
+         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
+  .hdr{{background:#e67e22;color:#fff;padding:22px 28px}}
+  .hdr h1{{margin:0;font-size:20px}}
+  .hdr small{{opacity:.85;font-size:13px}}
+  .body{{padding:20px 28px}}
+  .bevezeto{{background:#fef3e8;border-left:4px solid #e67e22;
+             padding:12px 16px;margin-bottom:16px;
+             font-size:14px;color:#2c3e50;line-height:1.6}}
+  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
+</style>
+</head><body><div class="wrap">
+  <div class="hdr">
+    <h1>⏰ Emlékeztető - közelgő áramszünet</h1>
+    <small>{ido} | {db} esemény esedékes {EMLEKEZTETO_NAPOK_ELOTTE} napon belül</small>
+  </div>
+  <div class="body">
+    <div class="bevezeto">
+      ℹ️ Ez egy emlékeztető, mert az alábbi, korábban már bejelentett tervezett
+      áramszünet(ek) kevesebb, mint {EMLEKEZTETO_NAPOK_ELOTTE} napon belül esedékesek.
+    </div>
+    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
+  </div>
+  <div class="foot">Automatikus emlékeztető – GitHub Actions | E.ON adatok alapján</div>
+</div></body></html>"""
+
+    szoveges = f"⏰ Emlékeztető - közelgő áramszünet\nIdőpont: {ido}\n{sorok_txt}"
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = targy
+    msg["From"]    = f"⏰ Áramszünet Emlékeztető <{EMAIL_KULDO}>"
+    msg["To"]      = EMAIL_CIMZETT
+    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
+    msg.attach(MIMEText(html,     "html",  "utf-8"))
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+        smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    print(f"⏰ Emlékeztető email elküldve: {targy}")
+
+
+AKTIV_JSON_FAJL = "aramszunet_aktiv.json"
+
+
+def ment_aktiv_json(osszes_aktiv_adatok):
+    """Kiírja a jelenleg aktív (tervezett + üzemzavar) eseményeket egy
+    külön JSON-fájlba, amit a weboldal (aramszunet.html) tölt be és
+    jelenít meg élőben."""
+    export = []
+    for f in osszes_aktiv_adatok:
+        export.append({
+            "azonosito": f["azonosito"],
+            "tipus": f["tipus"],
+            "kerulet": f["kerulet"],
+            "utcak_lista": f["utcak_lista"],
+            "utcak": f["utcak"],
+            "kezdes": f["kezdes"],
+            "veg": f["veg"],
+            "fogyaszto": f["fogyaszto"],
+            "lat": f["lat"],
+            "lon": f["lon"],
+            "gmaps": f["gmaps"],
+        })
+
+    with open(AKTIV_JSON_FAJL, "w", encoding="utf-8") as fjson:
+        json.dump({
+            "frissitve": magyar_ido().isoformat(),
+            "esemenyek": export,
+        }, fjson, ensure_ascii=False, indent=2)
+    print(f"🌐 Weboldal-adat mentve: {AKTIV_JSON_FAJL} ({len(export)} esemény)")
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐPROGRAM
 # ════════════════════════════════════════════
 def main():
@@ -535,6 +681,41 @@ def main():
             facebook_poszt_kuldese(fb_szoveg_txt)
     else:
         print("✅ Nincs új esemény.")
+
+    # ---- Emlékeztetők: 2 nappal a tervezett kezdés előtt ----
+    most = magyar_ido()
+    emlekezteto_kuldendo = []
+    regi.setdefault("emlekezteto", {})
+
+    for e in osszes_aktiv:
+        if e["tipus"] != "TERVEZETT":
+            continue  # az üzemzavarok azonnaliak, azoknál nincs "közelgő" emlékeztető
+
+        azonosito = str(e["adat"].get("id") or e["adat"].get("internalId") or json.dumps(e["adat"], sort_keys=True))
+        rid = hash_id(azonosito)
+
+        if rid in regi["emlekezteto"]:
+            continue  # már küldtünk rá emlékeztetőt
+
+        adatok = kinyert_adatok(e)
+        kezdes_dt = adatok["kezdes_dt"]
+        if not kezdes_dt:
+            continue  # nem sikerült értelmezni a dátumot, kihagyjuk
+
+        hatralevo = kezdes_dt - most
+        if timedelta(0) < hatralevo <= timedelta(days=EMLEKEZTETO_NAPOK_ELOTTE):
+            emlekezteto_kuldendo.append(adatok)
+            regi["emlekezteto"][rid] = most.isoformat()
+
+    if emlekezteto_kuldendo:
+        print(f"\n⏰ Emlékeztető küldése {len(emlekezteto_kuldendo)} közelgő eseményről...")
+        emlekezteto_kuldes(emlekezteto_kuldendo)
+    else:
+        print("⏰ Nincs 2 napon belül esedékes, még nem jelzett tervezett esemény.")
+
+    # ---- Weboldal-adat mentése (minden futáskor, új esemény nélkül is) ----
+    aktiv_adatok_export = [kinyert_adatok(e) for e in osszes_aktiv]
+    ment_aktiv_json(aktiv_adatok_export)
 
     ment_allapot(regi)
     print("💾 Állapot mentve. ✅ Kész.\n")
