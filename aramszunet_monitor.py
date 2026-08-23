@@ -531,26 +531,28 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
 # ════════════════════════════════════════════
 #  ⏰  EMLÉKEZTETŐ (2 nappal a tervezett esemény előtt)
 # ════════════════════════════════════════════
-EMLEKEZTETO_NAPOK_ELOTTE = 2  # ennyi nappal a kezdés előtt küldünk emlékeztetőt
+EMLEKEZTETO_NAPOK_ELOTTE = [7, 2, 1]  # több érték is megadható - mindegyikhez külön emlékeztető megy, ahogy közeledik az esemény
 
 
 def emlekezteto_kuldes(emlekezteto_adatok):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(emlekezteto_adatok)
-    targy = f"⏰ Emlékeztető - közelgő áramszünet ({EMLEKEZTETO_NAPOK_ELOTTE} napon belül) – {db} esemény | {ido}"
+    targy = f"⏰ Emlékeztető - közelgő áramszünet – {db} esemény | {ido}"
 
     sorok_html = ""
     sorok_txt  = ""
     for i, f in enumerate(emlekezteto_adatok, 1):
         szin = "#e67e22"
         cimek_html = "".join(f"<div>• {c}</div>" for c in f["utcak_lista"]) if f["utcak_lista"] else f["utcak"]
+        nap = f.get("emlekezteto_nap")
+        nap_cimke = f"{nap} napon belül esedékes" if nap else "közelgő"
 
         sorok_html += f"""
         <tr style="border-bottom:2px solid #eee">
           <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
           <td style="padding:14px">
             <span style="background:{szin};color:#fff;padding:5px 12px;
-                         border-radius:4px;font-size:13px;font-weight:bold">⏰ KÖZELGŐ ÁRAMSZÜNET</span>
+                         border-radius:4px;font-size:13px;font-weight:bold">⏰ {nap_cimke.upper()}</span>
             <table style="font-size:13px;width:100%;margin-top:10px">
               <tr><td style="color:#888;width:110px">📌 Terület:</td><td><strong>{f['kerulet']}</strong></td></tr>
               <tr><td style="color:#888">📍 Érintett utcák:</td><td>{cimek_html}</td></tr>
@@ -563,7 +565,7 @@ def emlekezteto_kuldes(emlekezteto_adatok):
         </tr>"""
 
         sorok_txt += (
-            f"\n{'─'*45}\n{i}. ⏰ KÖZELGŐ ÁRAMSZÜNET\n"
+            f"\n{'─'*45}\n{i}. ⏰ {nap_cimke.upper()}\n"
             f"Terület: {f['kerulet']}\nUtcák: {f['utcak']}\n"
             f"Kezdés: {f['kezdes']}\nVége: {f['veg']}\nFogyasztók: {f['fogyaszto']}\n"
         )
@@ -586,12 +588,12 @@ def emlekezteto_kuldes(emlekezteto_adatok):
 </head><body><div class="wrap">
   <div class="hdr">
     <h1>⏰ Emlékeztető - közelgő áramszünet</h1>
-    <small>{ido} | {db} esemény esedékes {EMLEKEZTETO_NAPOK_ELOTTE} napon belül</small>
+    <small>{ido} | {db} esemény</small>
   </div>
   <div class="body">
     <div class="bevezeto">
-      ℹ️ Ez egy emlékeztető, mert az alábbi, korábban már bejelentett tervezett
-      áramszünet(ek) kevesebb, mint {EMLEKEZTETO_NAPOK_ELOTTE} napon belül esedékesek.
+      ℹ️ Ez egy emlékeztető korábban már bejelentett, tervezett áramszünet(ek)ről,
+      amik hamarosan esedékesek (lásd az egyes tételeknél, mennyi nap van hátra).
     </div>
     <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
   </div>
@@ -682,10 +684,14 @@ def main():
     else:
         print("✅ Nincs új esemény.")
 
-    # ---- Emlékeztetők: 2 nappal a tervezett kezdés előtt ----
+    # ---- Emlékeztetők: EMLEKEZTETO_NAPOK_ELOTTE-ben megadott napokkal a
+    #      tervezett kezdés előtt (soronként egyedileg nyomon követve, hogy
+    #      egy esemény minden küszöbnél kaphasson emlékeztetőt, de egy
+    #      körben csak egyet, a legsürgetőbbet) ----
     most = magyar_ido()
     emlekezteto_kuldendo = []
     regi.setdefault("emlekezteto", {})
+    kuszobok = sorted(set(EMLEKEZTETO_NAPOK_ELOTTE), reverse=True)  # pl. [7, 2, 1]
 
     for e in osszes_aktiv:
         if e["tipus"] != "TERVEZETT":
@@ -694,24 +700,37 @@ def main():
         azonosito = str(e["adat"].get("id") or e["adat"].get("internalId") or json.dumps(e["adat"], sort_keys=True))
         rid = hash_id(azonosito)
 
-        if rid in regi["emlekezteto"]:
-            continue  # már küldtünk rá emlékeztetőt
-
         adatok = kinyert_adatok(e)
         kezdes_dt = adatok["kezdes_dt"]
         if not kezdes_dt:
             continue  # nem sikerült értelmezni a dátumot, kihagyjuk
 
         hatralevo = kezdes_dt - most
-        if timedelta(0) < hatralevo <= timedelta(days=EMLEKEZTETO_NAPOK_ELOTTE):
-            emlekezteto_kuldendo.append(adatok)
-            regi["emlekezteto"][rid] = most.isoformat()
+        if hatralevo <= timedelta(0):
+            continue  # már elkezdődött/elmúlt, nincs értelme emlékeztetőnek
+
+        for nap in kuszobok:
+            kulcs = f"{rid}::{nap}"
+            if kulcs in regi["emlekezteto"]:
+                continue  # ezt a küszöböt ennél az eseménynél már elküldtük
+
+            if hatralevo <= timedelta(days=nap):
+                adatok["emlekezteto_nap"] = nap
+                emlekezteto_kuldendo.append(adatok)
+                regi["emlekezteto"][kulcs] = most.isoformat()
+
+                # A nagyobb (korábbi) küszöböket is elküldöttnek jelöljük,
+                # nehogy utólag, "elkésve" külön emlékeztetőt kapjon rájuk.
+                for korabbi_nap in kuszobok:
+                    if korabbi_nap > nap:
+                        regi["emlekezteto"][f"{rid}::{korabbi_nap}"] = most.isoformat()
+                break  # eseményenként csak egy emlékeztető megy ki egy körben
 
     if emlekezteto_kuldendo:
         print(f"\n⏰ Emlékeztető küldése {len(emlekezteto_kuldendo)} közelgő eseményről...")
         emlekezteto_kuldes(emlekezteto_kuldendo)
     else:
-        print("⏰ Nincs 2 napon belül esedékes, még nem jelzett tervezett esemény.")
+        print("⏰ Nincs a beállított küszöbök egyikén belül sem esedékes, még nem jelzett tervezett esemény.")
 
     # ---- Weboldal-adat mentése (minden futáskor, új esemény nélkül is) ----
     aktiv_adatok_export = [kinyert_adatok(e) for e in osszes_aktiv]
