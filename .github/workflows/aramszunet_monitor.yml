@@ -1,5 +1,4 @@
 name: ⚡ Csepel Áramszünet Monitor
-
 on:
   workflow_dispatch:
   repository_dispatch:
@@ -9,42 +8,37 @@ on:
     # (pl. lejárt token, GitHub API hiba), ez legkésőbb 10 percen
     # belül újraindítja a monitorozást.
     - cron: '*/10 * * * *'
-
 concurrency:
   group: aramszunet-monitor
   cancel-in-progress: false
-
 jobs:
   figyel:
     runs-on: ubuntu-latest
     timeout-minutes: 4
     permissions:
       contents: write
-
     steps:
       - name: 📥 Kód letöltése
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
-
       - name: 🐍 Python beállítása
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: 📦 Függőségek telepítése
         run: pip install requests
-
       - name: ⚡ Áramszünet monitor futtatása
         env:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_ARAM: ${{ secrets.EMAIL_CIMZETT_ARAM }}
         run: python aramszunet_monitor.py
-
       - name: 💾 Állapot commitolása
         if: always()
+        continue-on-error: true
         run: |
+          set +e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -52,8 +46,16 @@ jobs:
             echo "aramszunet_allapot.json nem létezik, nincs mit commitolni."
             exit 0
           fi
-
           cp aramszunet_allapot.json /tmp/aramszunet_allapot_sajat.json
+
+          # Az aramszunet_aktiv.json (weboldal-adat) csak akkor létezik, ha a
+          # script sikeresen lefutott eddig a lépésig - ha valamiért mégsem,
+          # ezt kihagyjuk, de az állapot-fájlt attól még mentjük.
+          VAN_AKTIV_JSON=0
+          if [ -f aramszunet_aktiv.json ]; then
+            cp aramszunet_aktiv.json /tmp/aramszunet_aktiv_sajat.json
+            VAN_AKTIV_JSON=1
+          fi
 
           SIKERULT=0
           for i in 1 2 3 4 5 6; do
@@ -61,7 +63,12 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             cp /tmp/aramszunet_allapot_sajat.json aramszunet_allapot.json
-            git add aramszunet_allapot.json
+            if [ "$VAN_AKTIV_JSON" = "1" ]; then
+              cp /tmp/aramszunet_aktiv_sajat.json aramszunet_aktiv.json
+              git add aramszunet_allapot.json aramszunet_aktiv.json
+            else
+              git add aramszunet_allapot.json
+            fi
             if git diff --staged --quiet; then
               echo "Nincs változás, kész."
               SIKERULT=1
@@ -77,20 +84,19 @@ jobs:
               sleep $((RANDOM % 6 + 2))
             fi
           done
-
           if [ "$SIKERULT" != "1" ]; then
             echo "⚠️ 6 próbálkozás után sem sikerült a push."
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-
       - name: ⏱️ Várakozás 60 másodpercet
         if: always()
         run: sleep 60
-
       - name: 🔄 Következő futás indítása
         if: always()
+        continue-on-error: true
         run: |
+          set +e
           SIKERULT=0
           for i in 1 2 3; do
             HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
