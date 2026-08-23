@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Áramszünet Figyelő - Csepel / Pesterzsébet / Kispest / Szigetszentmiklós</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1b1d1f; --bg-card: #232629; --amber: #f2a340; --turquoise: #2dd4bf;
+    --red: #e24444; --text: #eef0f2; --text-muted: #9aa0a6; --border: #34383c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.5; }
+
+  .hazard-stripe { height: 6px; background: repeating-linear-gradient(-45deg, var(--amber), var(--amber) 14px, #1b1d1f 14px, #1b1d1f 28px); }
+
+  header { max-width: 1000px; margin: 0 auto; padding: 40px 24px 20px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+  h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 38px); text-transform: uppercase; }
+  h1 span { color: var(--turquoise); }
+  header p.lead { color: var(--text-muted); font-size: 14px; margin-top: 10px; max-width: 600px; }
+  .frissitve { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 0 24px 64px; }
+
+  .szuro-sor { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .szuro-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 100px;
+    border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer;
+  }
+  .szuro-btn.aktiv { border-color: var(--amber); color: var(--amber); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+
+  .esemeny-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; border-left: 4px solid var(--amber); }
+  .esemeny-card.uzemzavar { border-left-color: var(--red); }
+  .badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 100px; background: rgba(242,163,64,0.15); color: var(--amber); display: inline-block; }
+  .esemeny-card.uzemzavar .badge { background: rgba(226,68,68,0.15); color: var(--red); }
+  .esemeny-kerulet { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 600; margin: 10px 0 6px; }
+  .esemeny-utcak { font-size: 13px; color: var(--text-muted); white-space: pre-line; margin-bottom: 10px; }
+  .esemeny-idok { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text); }
+  .esemeny-idok div { margin-bottom: 3px; }
+  .esemeny-idok .label { color: var(--text-muted); }
+  .maps-link { display: inline-block; margin-top: 10px; font-size: 12px; color: var(--turquoise); text-decoration: none; }
+  .maps-link:hover { text-decoration: underline; }
+
+  .ures-allapot { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+  .ures-allapot .nagy-emoji { font-size: 40px; margin-bottom: 12px; }
+
+  footer { text-align: center; padding: 10px 24px 40px; color: var(--text-muted); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="hazard-stripe"></div>
+
+<header>
+  <div class="eyebrow">Élő adat · E.ON</div>
+  <h1>Áramszünet <span>·</span> Figyelő</h1>
+  <p class="lead">Csepel (XXI.), Pesterzsébet (XX.), Kispest (XIX.) és Szigetszentmiklós jelenleg aktív és tervezett áramkimaradásai.</p>
+  <div class="frissitve" id="frissitve">Betöltés...</div>
+</header>
+
+<main>
+  <div class="szuro-sor">
+    <button class="szuro-btn aktiv" data-szuro="mind">Mind</button>
+    <button class="szuro-btn" data-szuro="TERVEZETT">📋 Tervezett</button>
+    <button class="szuro-btn" data-szuro="UZEMZAVAR">🔴 Üzemzavar</button>
+  </div>
+
+  <div id="tartalom">
+    <div class="ures-allapot"><div class="nagy-emoji">⏳</div>Adatok betöltése...</div>
+  </div>
+</main>
+
+<footer>Adatforrás: E.ON hivatalos üzemzavar-térkép · Automatikusan frissül</footer>
+
+<script>
+  const ADAT_URL = 'aramszunet_aktiv.json';
+  let osszesEsemeny = [];
+  let aktivSzuro = 'mind';
+
+  async function betoltes() {
+    try {
+      const res = await fetch(ADAT_URL + '?t=' + Date.now());
+      const data = await res.json();
+      osszesEsemeny = data.esemenyek || [];
+
+      const frissitve = new Date(data.frissitve);
+      document.getElementById('frissitve').textContent =
+        'Frissítve: ' + frissitve.toLocaleString('hu-HU');
+
+      renderEsemenyek();
+    } catch (err) {
+      document.getElementById('tartalom').innerHTML =
+        '<div class="ures-allapot"><div class="nagy-emoji">⚠️</div>Nem sikerült betölteni az adatokat.</div>';
+    }
+  }
+
+  function renderEsemenyek() {
+    const szurt = aktivSzuro === 'mind'
+      ? osszesEsemeny
+      : osszesEsemeny.filter(e => e.tipus === aktivSzuro);
+
+    const tartalom = document.getElementById('tartalom');
+
+    if (szurt.length === 0) {
+      tartalom.innerHTML = '<div class="ures-allapot"><div class="nagy-emoji">✅</div>Jelenleg nincs aktív esemény ebben a kategóriában.</div>';
+      return;
+    }
+
+    tartalom.innerHTML = '<div class="grid">' + szurt.map(e => {
+      const isUzemzavar = e.tipus === 'UZEMZAVAR';
+      const badge = isUzemzavar ? '🔴 ÉLŐ ÜZEMZAVAR' : '📋 TERVEZETT';
+      const utcak = (e.utcak_lista && e.utcak_lista.length > 0)
+        ? e.utcak_lista.join('\n')
+        : e.utcak;
+
+      return `
+        <div class="esemeny-card ${isUzemzavar ? 'uzemzavar' : ''}">
+          <span class="badge">${badge}</span>
+          <div class="esemeny-kerulet">${escapeHtml(e.kerulet)}</div>
+          <div class="esemeny-utcak">${escapeHtml(utcak)}</div>
+          <div class="esemeny-idok">
+            <div><span class="label">Kezdés:</span> ${escapeHtml(e.kezdes)}</div>
+            <div><span class="label">Várható vége:</span> ${escapeHtml(e.veg)}</div>
+            <div><span class="label">Érintett fogyasztók:</span> ${escapeHtml(e.fogyaszto)}</div>
+          </div>
+          ${e.gmaps ? `<a href="${e.gmaps}" target="_blank" class="maps-link">📍 Megnyitás Google Maps-en</a>` : ''}
+        </div>`;
+    }).join('') + '</div>';
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  document.querySelectorAll('.szuro-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.szuro-btn').forEach(b => b.classList.remove('aktiv'));
+      btn.classList.add('aktiv');
+      aktivSzuro = btn.dataset.szuro;
+      renderEsemenyek();
+    });
+  });
+
+  betoltes();
+  setInterval(betoltes, 60000); // percenként automatikus frissítés
+</script>
+
+</body>
+</html>
