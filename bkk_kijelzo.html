@@ -390,12 +390,12 @@
           </div>`;
       }).join('');
 
-      // Ha VAN megerősített vonalszám: színes jelvény + "148. vonal"
-      // Ha NINCS (csak a belső ID-ra esett vissza): "Belső azonosító: BKK_9010"
-      // - így soha nem tűnik úgy, mintha megerősített vonalszám lenne.
+      // Ha VAN megerősített vonalszám: színes jelvény (vagy szín nélküli, ha
+      // nincs színadat) + "vonal". Ha NINCS: "Belső azonosító: X".
       const szinesJelvenyMinta = buszok.find(j => j.hatterszin);
-      const jelvenyHtml = (vanVonalszam && szinesJelvenyMinta)
-        ? `<span style="background:#${escapeHtml(szinesJelvenyMinta.hatterszin || '555')};color:#${escapeHtml(szinesJelvenyMinta.hatterszin_masodlagos || 'fff')};
+      const jelvenyHtml = vanVonalszam
+        ? `<span style="background:${szinesJelvenyMinta ? '#' + escapeHtml(szinesJelvenyMinta.hatterszin) : 'var(--border)'};
+                        color:${szinesJelvenyMinta ? '#' + escapeHtml(szinesJelvenyMinta.hatterszin_masodlagos || 'fff') : 'var(--text)'};
                         padding:2px 8px;border-radius:5px;font-weight:700;font-size:14px;margin-right:8px;display:inline-block">${escapeHtml(kulcs)}</span>`
         : '';
       const cimSzoveg = vanVonalszam
