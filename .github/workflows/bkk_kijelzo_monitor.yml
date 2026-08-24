@@ -37,6 +37,7 @@ jobs:
           EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
+          BKK_API_KULCS: ${{ secrets.BKK_API_KULCS }}
         run: python bkk_kijelzo/bkk_kijelzo_figyelo.py
 
       - name: 💾 Állapot commitolása (önjavító)
