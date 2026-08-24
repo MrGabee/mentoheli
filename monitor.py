@@ -1,8 +1,17 @@
 """
 🚁 Magyar Mentőhelikopter Monitor
-Adatforrás: Flightradar24 HTML scraping (ha-hbm, ha-hbg, stb.)
+Adatforrás: Flightradar24 HTML scraping
 Detektálás: ATD (felszállás) és Landed (leszállás) változás alapján
 Futtatás: GitHub Actions (percenként, self-loop)
+
+KÉTFÉLE, EGYMÁSTÓL FÜGGETLEN FIGYELÉS:
+  1. LAJSTROMJEL szerint (pl. ha-hbg) - a Flightradar24 "aircraft" oldaláról
+  2. HÍVÓJEL szerint (pl. medic3) - a Flightradar24 "flights" (hívójel-előzmény)
+     oldaláról
+
+Ez azért fontos, mert ha egy géppark-váltás miatt megváltozna, melyik
+lajstromjelű gép repül épp "MEDIC3" hívójellel (vagy fordítva, egy gép
+hívójele változna), a MÁSIK módszer akkor is elkapja az eseményt.
 """
 
 import os
@@ -26,17 +35,23 @@ EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
 
-# Ismert mentőhelikopterek – lajstromjel → hívójel
+# Ismert mentőhelikopterek – lajstromjel → hívójel (megjelenítéshez és a
+# hívójel-alapú lekérdezés listájának összeállításához használjuk)
 MENTO_GEPEK = {
+    "ha-hbm": "MEDIC1",
+    "ha-hbi": "MEDIC2",
     "ha-hbg": "MEDIC3",
-    "ha-hbh": "MEDIC6",
-    "ha-hbi": "MEDIC9",
     "ha-hbk": "MEDIC4",
+    "ha-hbj": "MEDIC5",
+    "ha-hbh": "MEDIC6",
     "ha-hbl": "MEDIC1",
-    "ha-hbm": "MEDIC2",
-    "ha-hbn": "MEDIC6",
     "ha-hbo": "MEDIC7",
+    "ha-hbn": "MEDIC8",
 }
+
+# Az egyedi hívójelek listája (duplikátumok nélkül), amiket a lajstromjeltől
+# FÜGGETLENÜL, KÜLÖN is lekérdezünk a Flightradar24 hívójel-előzményéből.
+FIGYELT_HIVOJELEK = sorted(set(MENTO_GEPEK.values()))
 
 ALLAPOT_FAJL    = "allapot.json"
 ESEMENY_NAPLO    = "esemeny_naplo.json"
@@ -67,144 +82,183 @@ def ment(fajl, adat):
 
 
 # ════════════════════════════════════════════
-#  📡  FLIGHTRADAR24 SCRAPING
+#  📡  FLIGHTRADAR24 SCRAPING - KÖZÖS, ÚJRAFELHASZNÁLHATÓ FELDOLGOZÓ
 # ════════════════════════════════════════════
-def lekerdez_fr24(reg):
-    """
-    Lekéri a Flightradar24 adatlapját és visszaadja az utolsó repülés adatait:
-    {
-      "atd":       "13:08",        # tényleges felszállás (helyi idő)
-      "landed":    "13:51",        # leszállás (None ha még repül)
-      "elo":       True/False,    # jelenleg a levegőben van-e
-      "datum":     "01 Jul 2026",
-      "callsign":  "MEDIC2",
-      "flight_id": "...",        # playback ID ha van
+def _tabla_feldolgozasa(html_szoveg, cimke):
+    """A közös táblázat-feldolgozó logika - mind a lajstromjel-alapú, mind
+    a hívójel-alapú FR24-oldal ugyanezt a táblaszerkezetet használja."""
+    soup = BeautifulSoup(html_szoveg, "html.parser")
+    tabla = soup.find("table", id="tbl-datatable")
+    if not tabla:
+        print(f"  ⚠️ Táblázat nem található – {cimke}")
+        return None
+
+    tbody = tabla.find("tbody")
+    if not tbody:
+        print(f"  ⚠️ Nincs tbody – {cimke}")
+        return None
+
+    sorok = tbody.find_all("tr", class_="data-row")
+    if not sorok:
+        print(f"  ⚠️ Nincs sor a táblázatban – {cimke}")
+        return None
+
+    # Első (legutóbbi) sor
+    sor = sorok[0]
+    cellak = sor.find_all("td", class_=lambda c: c and "hidden-xs" in c)
+
+    datum     = ""
+    callsign  = ""
+    atd       = ""
+    landed    = None
+    elo       = False
+    flight_id = ""
+
+    datum_td = sor.find("td", attrs={"data-time-format": "DD MMM YYYY"})
+    if datum_td:
+        datum = datum_td.get_text(strip=True)
+
+    atd_tds = sor.find_all("td", attrs={"data-timestamp": True})
+    if len(atd_tds) >= 2:
+        atd = atd_tds[1].get_text(strip=True)
+
+    for td in cellak:
+        txt = td.get_text(strip=True)
+        if "MEDIC" in txt or "MEDIKOPTER" in txt:
+            callsign = txt.strip("()")
+            break
+
+    status_td = sor.find("td", attrs={"data-prefix": True})
+    if status_td:
+        status_txt = status_td.get_text(strip=True)
+        if "Landed" in status_txt:
+            m = re.search(r"Landed\s+(\d{1,2}:\d{2})", status_txt)
+            landed = m.group(1) if m else status_txt
+            elo    = False
+        else:
+            elo = True
+
+    play_btn = sor.find("a", class_="btn-playback")
+    if play_btn:
+        href = play_btn.get("href", "")
+        m = re.search(r"#([0-9a-f]+)$", href)
+        if m:
+            flight_id = m.group(1)
+
+    return {
+        "atd":       atd,
+        "landed":    landed,
+        "elo":       elo,
+        "datum":     datum,
+        "callsign":  callsign,
+        "flight_id": flight_id,
     }
-    """
+
+
+def lekerdez_fr24_lajstromjel(reg):
+    """Lekéri a Flightradar24 LAJSTROMJEL-alapú adatlapját (aircraft/{reg})."""
     url = f"https://www.flightradar24.com/data/aircraft/{reg}"
     try:
         r = requests.get(url, headers=HEADERS, timeout=20)
         if r.status_code != 200:
-            print(f"  ⚠️ FR24 HTTP {r.status_code} – {reg}")
+            print(f"  ⚠️ FR24 HTTP {r.status_code} – lajstrom {reg}")
             return None
 
+        eredmeny = _tabla_feldolgozasa(r.text, f"lajstrom {reg}")
+        if eredmeny is None:
+            return None
+        if not eredmeny["callsign"]:
+            eredmeny["callsign"] = MENTO_GEPEK.get(reg, reg.upper())
+
+        print(f"  ✅ FR24 [lajstrom {reg}]: datum={eredmeny['datum']} atd={eredmeny['atd']} "
+              f"landed={eredmeny['landed']} elo={eredmeny['elo']} cs={eredmeny['callsign']}")
+        return eredmeny
+    except Exception as ex:
+        print(f"  ❌ FR24 hiba (lajstrom {reg}): {ex}")
+        return None
+
+
+def lekerdez_fr24_hivojel(hivojel):
+    """Lekéri a Flightradar24 HÍVÓJEL-alapú előzmény-oldalát
+    (data/flights/{hívójel}) - ez FÜGGETLEN attól, éppen melyik lajstromjelű
+    gép repül ezzel a hívójellel."""
+    url = f"https://www.flightradar24.com/data/flights/{hivojel.lower()}"
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠️ FR24 HTTP {r.status_code} – hívójel {hivojel}")
+            return None
+
+        eredmeny = _tabla_feldolgozasa(r.text, f"hívójel {hivojel}")
+        if eredmeny is None:
+            return None
+        if not eredmeny["callsign"]:
+            eredmeny["callsign"] = hivojel.upper()
+
+        # A hívójel-oldal táblázata jellemzően tartalmazza a lajstromjelet
+        # is egy külön oszlopban - megpróbáljuk kinyerni, hogy a levélben
+        # meg tudjuk mutatni, ÉPPEN melyik géppel repül ez a hívójel.
         soup = BeautifulSoup(r.text, "html.parser")
         tabla = soup.find("table", id="tbl-datatable")
-        if not tabla:
-            print(f"  ⚠️ Táblázat nem található – {reg}")
-            return None
+        aktualis_reg = ""
+        if tabla:
+            tbody = tabla.find("tbody")
+            if tbody:
+                sorok = tbody.find_all("tr", class_="data-row")
+                if sorok:
+                    reg_link = sorok[0].find("a", href=re.compile(r"/data/aircraft/"))
+                    if reg_link:
+                        aktualis_reg = reg_link.get_text(strip=True)
+        eredmeny["aktualis_reg"] = aktualis_reg
 
-        sorok = tabla.find("tbody").find_all("tr", class_="data-row")
-        if not sorok:
-            print(f"  ⚠️ Nincs sor a táblázatban – {reg}")
-            return None
-
-        # Első (legutóbbi) sor
-        sor = sorok[0]
-        cellak = sor.find_all("td", class_=lambda c: c and "hidden-xs" in c)
-
-        datum     = ""
-        callsign  = ""
-        atd       = ""
-        landed    = None
-        elo       = False
-        flight_id = ""
-
-        # Dátum
-        datum_td = sor.find("td", attrs={"data-time-format": "DD MMM YYYY"})
-        if datum_td:
-            datum = datum_td.get_text(strip=True)
-
-        # ATD
-        atd_tds = sor.find_all("td", attrs={"data-timestamp": True})
-        if len(atd_tds) >= 2:
-            atd = atd_tds[1].get_text(strip=True)
-
-        # Callsign
-        for td in cellak:
-            txt = td.get_text(strip=True)
-            if "MEDIC" in txt or "MEDIKOPTER" in txt:
-                callsign = txt.strip("()")
-                break
-
-        # Status (Landed / Scheduled / Unknown / Estimated / Live)
-        status_td = sor.find("td", attrs={"data-prefix": True})
-        if status_td:
-            status_txt = status_td.get_text(strip=True)
-            if "Landed" in status_txt:
-                # "Landed 13:51" → kinyerjük az időt
-                m = re.search(r"Landed\s+(\d{1,2}:\d{2})", status_txt)
-                landed = m.group(1) if m else status_txt
-                elo    = False
-            else:
-                # Bármilyen más status (Estimated, Live, Scheduled, stb.) repülést jelez
-                elo = True
-
-        # Playback link
-        play_btn = sor.find("a", class_="btn-playback")
-        if play_btn:
-            href = play_btn.get("href", "")
-            m = re.search(r"#([0-9a-f]+)$", href)
-            if m:
-                flight_id = m.group(1)
-
-        print(f"  ✅ FR24 {reg}: datum={datum} atd={atd} landed={landed} elo={elo} cs={callsign}")
-        return {
-            "atd":       atd,
-            "landed":    landed,
-            "elo":       elo,
-            "datum":     datum,
-            "callsign":  callsign or MENTO_GEPEK.get(reg, ""),
-            "flight_id": flight_id,
-        }
-
+        print(f"  ✅ FR24 [hívójel {hivojel}]: datum={eredmeny['datum']} atd={eredmeny['atd']} "
+              f"landed={eredmeny['landed']} elo={eredmeny['elo']} jelenlegi_gep={aktualis_reg}")
+        return eredmeny
     except Exception as ex:
-        print(f"  ❌ FR24 hiba ({reg}): {ex}")
+        print(f"  ❌ FR24 hiba (hívójel {hivojel}): {ex}")
         return None
 
 
 # ════════════════════════════════════════════
-#  🔁  ÁLLAPOT ÖSSZEHASONLÍTÁS (JAVÍTOTT LOGIKA)
+#  🔁  ÁLLAPOT ÖSSZEHASONLÍTÁS
 # ════════════════════════════════════════════
 def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
+    """A kulcsok formátuma: 'reg:ha-hbg' vagy 'cs:medic3' - így a két
+    figyelési mód egymástól teljesen függetlenül, saját magában is
+    felismeri a felszállás/leszállás eseményeket."""
     esemenyek = []
     most = datetime.now().timestamp()
 
-    for reg, uj in uj_adatok.items():
+    for kulcs, uj in uj_adatok.items():
         if uj is None:
             continue
 
-        regi = regi_allapot.get(reg, {})
-        
-        # Korábbi értékek
+        regi = regi_allapot.get(kulcs, {})
+
         regi_elo    = regi.get("elo", False)
         regi_atd    = regi.get("atd", "")
         regi_landed = regi.get("landed")
         regi_datum  = regi.get("datum", "")
 
-        # Új értékek
         uj_elo    = uj["elo"]
         uj_atd    = uj["atd"]
         uj_landed = uj["landed"]
         uj_datum  = uj["datum"]
 
         def cooldown_ok(tipus):
-            kulcs = f"{reg}:{tipus}"
-            utolso = esemeny_naplo.get(kulcs, 0)
+            cd_kulcs = f"{kulcs}:{tipus}"
+            utolso = esemeny_naplo.get(cd_kulcs, 0)
             if most - utolso < EMAIL_COOLDOWN:
-                print(f"  ⏭️ Cooldown: {tipus} – {reg}")
+                print(f"  ⏭️ Cooldown: {tipus} – {kulcs}")
                 return False
-            esemeny_naplo[kulcs] = most
+            esemeny_naplo[cd_kulcs] = most
             return True
 
-        # Ha legelső futás, csak elmentjük az állapotot, e-mailt nem küldünk
+        # Ha legelső futás ennél a kulcsnál, csak elmentjük az állapotot
         if not regi:
             continue
 
         # 🚁⬆️ FELSZÁLLÁS DETEKTÁLÁSA
-        # Akkor számít felszállásnak, ha:
-        # 1. A gép eddig nem volt levegőben, de most élővé vált (elo == True)
-        # 2. Megjelent egy új dátum VAGY egy új ATD időpont
         felszallas_feltetel = (
             (uj_elo and not regi_elo) or
             (uj_datum != regi_datum and uj_datum != "") or
@@ -213,16 +267,14 @@ def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
 
         if felszallas_feltetel:
             if cooldown_ok("FELSZALLAS"):
-                print(f"  🚁⬆️ FELSZÁLLÁS: {reg} | {uj_datum} {uj_atd or 'Élő repülés'}")
-                esemenyek.append({"tipus": "FELSZALLAS", "reg": reg, "adat": uj})
+                print(f"  🚁⬆️ FELSZÁLLÁS: {kulcs} | {uj_datum} {uj_atd or 'Élő repülés'}")
+                esemenyek.append({"tipus": "FELSZALLAS", "kulcs": kulcs, "adat": uj})
 
         # 🚁⬇️ LESZÁLLÁS DETEKTÁLÁSA
-        # Akkor számít leszállásnak, ha:
-        # Most megjelent a landed mező, miközben korábban még nem volt kitöltve (de nem felszállás esemény történt)
         elif uj_landed and not regi_landed:
             if cooldown_ok("LESZALLAS"):
-                print(f"  🚁⬇️ LESZÁLLÁS: {reg} | {uj_datum} Landed {uj_landed}")
-                esemenyek.append({"tipus": "LESZALLAS", "reg": reg, "adat": uj})
+                print(f"  🚁⬇️ LESZÁLLÁS: {kulcs} | {uj_datum} Landed {uj_landed}")
+                esemenyek.append({"tipus": "LESZALLAS", "kulcs": kulcs, "adat": uj})
 
     return esemenyek
 
@@ -232,26 +284,35 @@ def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
 # ════════════════════════════════════════════
 def email_kuldes(esemeny):
     tipus     = esemeny["tipus"]
-    reg       = esemeny["reg"]
+    kulcs     = esemeny["kulcs"]
     adat      = esemeny["adat"]
-    callsign  = adat["callsign"] or MENTO_GEPEK.get(reg, reg.upper())
+
+    figyeles_tipusa = "Lajstromjel" if kulcs.startswith("reg:") else "Hívójel"
+    azonosito = kulcs.split(":", 1)[1]
+
+    callsign  = adat["callsign"] or MENTO_GEPEK.get(azonosito, azonosito.upper())
     datum     = adat["datum"]
     atd       = adat["atd"]
     landed    = adat["landed"]
     elo       = adat["elo"]
     flight_id = adat["flight_id"]
+    aktualis_reg = adat.get("aktualis_reg", "")
 
     ido      = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     emoji    = "🚁⬆️" if tipus == "FELSZALLAS" else "🚁⬇️"
     tipus_hu = "FELSZÁLLÁS" if tipus == "FELSZALLAS" else "LESZÁLLÁS"
     szin     = "#c0392b" if tipus == "FELSZALLAS" else "#2980b9"
 
-    reg_upper = reg.upper()
-    fr24_url   = f"https://www.flightradar24.com/data/aircraft/{reg}"
-    fr24_map   = f"https://www.flightradar24.com/{callsign}"
-    play_url   = f"https://www.flightradar24.com/data/aircraft/{reg}#{flight_id}" if flight_id else None
+    if kulcs.startswith("reg:"):
+        reg_upper = azonosito.upper()
+        fr24_url  = f"https://www.flightradar24.com/data/aircraft/{azonosito}"
+    else:
+        reg_upper = aktualis_reg.upper() if aktualis_reg else "?"
+        fr24_url  = f"https://www.flightradar24.com/data/flights/{azonosito.lower()}"
 
-    # Dátum magyar formátumra alakítása ("01 Jul 2026" → "2026.07.01")
+    fr24_map   = f"https://www.flightradar24.com/{callsign}"
+    play_url   = f"{fr24_url}#{flight_id}" if flight_id else None
+
     def datum_magyar(d):
         honapok = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06",
                    "Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
@@ -262,7 +323,6 @@ def email_kuldes(esemeny):
             return d
 
     def ido_plusz2(ido_str):
-        """HH:MM formátumú időt +2 órával növel (UTC → magyar idő)"""
         if not ido_str:
             return "Folyamatban..."
         try:
@@ -276,13 +336,11 @@ def email_kuldes(esemeny):
     atd_hu   = ido_plusz2(atd)
     landed_hu = ido_plusz2(landed) if landed else None
 
-    # Info sor
     if tipus == "FELSZALLAS":
         info = f"Felszállás: {datum_hu} {atd_hu}"
     else:
         info = f"Felszállás: {datum_hu} {atd_hu} → Leszállás: {landed_hu}"
 
-    # Gombok
     gombok = ""
     if elo and tipus == "FELSZALLAS":
         gombok += f"""
@@ -307,7 +365,7 @@ def email_kuldes(esemeny):
          style="display:block;background:#888;color:#fff;padding:13px;
                 border-radius:10px;text-decoration:none;font-size:14px;
                 font-weight:bold">
-        📋 Flightradar24 adatlap – {reg_upper}
+        📋 Flightradar24 adatlap
       </a>"""
 
     targy = f"{emoji} Mentőhelikopter {tipus_hu} – {callsign} | {ido}"
@@ -322,6 +380,9 @@ def email_kuldes(esemeny):
       <div style="font-size:44px;margin-bottom:8px">{emoji}</div>
       <div style="font-size:22px;font-weight:bold">Mentőhelikopter {tipus_hu}</div>
       <div style="font-size:13px;opacity:.75;margin-top:6px">{ido}</div>
+      <div style="font-size:11px;opacity:.65;margin-top:4px">
+        Észlelés módja: {figyeles_tipusa}-alapú figyelés
+      </div>
     </div>
 
     <div style="background:#fff;padding:24px;text-align:center;
@@ -389,9 +450,17 @@ def main():
     esemeny_naplo = betolt(ESEMENY_NAPLO)
     uj_adatok     = {}
 
+    # ---- 1. LAJSTROMJEL szerinti lekérdezés (mint eddig) ----
+    print("\n📋 Lajstromjel-alapú lekérdezések...")
     for reg in MENTO_GEPEK:
-        print(f"\n🔍 Lekérdezés: {reg}")
-        uj_adatok[reg] = lekerdez_fr24(reg)
+        print(f"\n🔍 Lekérdezés (lajstrom): {reg}")
+        uj_adatok[f"reg:{reg}"] = lekerdez_fr24_lajstromjel(reg)
+
+    # ---- 2. HÍVÓJEL szerinti lekérdezés (ÚJ, független) ----
+    print("\n📻 Hívójel-alapú lekérdezések...")
+    for hivojel in FIGYELT_HIVOJELEK:
+        print(f"\n🔍 Lekérdezés (hívójel): {hivojel}")
+        uj_adatok[f"cs:{hivojel.lower()}"] = lekerdez_fr24_hivojel(hivojel)
 
     esemenyek = osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo)
 
@@ -400,9 +469,9 @@ def main():
         email_kuldes(e)
 
     # Állapot frissítése
-    for reg, adat in uj_adatok.items():
+    for kulcs, adat in uj_adatok.items():
         if adat is not None:
-            regi_allapot[reg] = adat
+            regi_allapot[kulcs] = adat
 
     ment(ALLAPOT_FAJL, regi_allapot)
     ment(ESEMENY_NAPLO, esemeny_naplo)
