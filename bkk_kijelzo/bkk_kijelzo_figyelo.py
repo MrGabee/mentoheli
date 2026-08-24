@@ -222,14 +222,37 @@ def vonalszamok_betoltese_mav_csv_bol():
     return szotar
 
 
+GTFS_VONALSZAM_CACHE_FAJL = "bkk_vonalszamok_cache.json"
+GTFS_CACHE_ERVENYESSEG_ORA = 24  # ennyi óránként töltsük csak újra a GTFS-t
+
+
 def vonalszamok_betoltese_gtfs_bol():
-    """Letölti a BKK hivatalos, statikus GTFS-csomagját, és route_id ->
-    route_short_name (pl. 'BKK_9690' -> '969') szótárat épít belőle.
-    Ezt a teljes futás elején EGYSZER hívjuk, nem járművenként/vonalanként -
-    így nincs szükség bizonytalan mezőnév-találgatásra API-hívásokkal."""
+    """A BKK hivatalos, statikus GTFS-csomagjából épít route_id ->
+    route_short_name szótárat (pl. 'BKK_9690' -> '969'). GYORSÍTÓTÁRAZVA:
+    csak akkor tölti le újra a (nagyméretű) GTFS-fájlt, ha a helyi cache
+    nem létezik, vagy régebbi, mint GTFS_CACHE_ERVENYESSEG_ORA - így a
+    2 percenkénti futások NEM töltik le feleslegesen minden alkalommal,
+    ami korábban a 8 perces időkorlát túllépését okozta."""
+
+    # 1. Van-e még érvényes helyi cache?
+    if os.path.exists(GTFS_VONALSZAM_CACHE_FAJL):
+        try:
+            with open(GTFS_VONALSZAM_CACHE_FAJL, encoding="utf-8") as f:
+                cache = json.load(f)
+            frissitve = datetime.fromisoformat(cache["frissitve"])
+            if datetime.now(timezone.utc) - frissitve < timedelta(hours=GTFS_CACHE_ERVENYESSEG_ORA):
+                print(f"  ✅ GTFS-szótár a gyorsítótárból ({len(cache['szotar'])} vonal, "
+                      f"frissítve: {frissitve.strftime('%Y.%m.%d %H:%M')}).")
+                return cache["szotar"]
+            else:
+                print("  ℹ️  A GTFS-gyorsítótár elavult, újra letöltöm...")
+        except Exception as e:
+            print(f"  ⚠️  Hibás gyorsítótár, újra letöltöm: {e}")
+
+    # 2. Nincs érvényes cache -> friss letöltés
     print("📥 GTFS statikus adat letöltése (vonalszámokhoz)...")
     try:
-        resp = requests.get(GTFS_STATIKUS_URL, headers=HEADERS, timeout=60)
+        resp = requests.get(GTFS_STATIKUS_URL, headers=HEADERS, timeout=90)
         resp.raise_for_status()
 
         szotar = {}
@@ -243,7 +266,18 @@ def vonalszamok_betoltese_gtfs_bol():
                     if route_id and rovid_nev:
                         szotar[route_id] = rovid_nev
 
-        print(f"  ✅ {len(szotar)} vonal betöltve a GTFS-ből.")
+        print(f"  ✅ {len(szotar)} vonal betöltve a GTFS-ből (frissen letöltve).")
+
+        # Cache mentése a következő futásoknak
+        try:
+            with open(GTFS_VONALSZAM_CACHE_FAJL, "w", encoding="utf-8") as f:
+                json.dump({
+                    "frissitve": datetime.now(timezone.utc).isoformat(),
+                    "szotar": szotar,
+                }, f, ensure_ascii=False)
+        except Exception as e:
+            print(f"  ⚠️  Nem sikerült elmenteni a gyorsítótárat: {e}")
+
         return szotar
     except Exception as e:
         print(f"  ⚠️  Nem sikerült betölteni a GTFS-adatot: {type(e).__name__}: {e}")
