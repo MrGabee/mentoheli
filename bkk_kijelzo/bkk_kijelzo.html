@@ -110,6 +110,7 @@
     <button class="szuro-btn aktiv" data-szuro="mind">Mind</button>
     <button class="szuro-btn" data-szuro="rendellenes">🚨 Rendellenes</button>
     <button class="szuro-btn" data-szuro="normal">Normál</button>
+    <button class="szuro-btn" data-szuro="ismeretlen">❔ Nincs kijelző-adat</button>
   </div>
   <div class="szuro-sor" id="tipusSzurok"></div>
   <input type="text" class="kereso" id="kereso" placeholder="Keresés járatszámra, rendszámra vagy kijelző-szövegre...">
@@ -125,9 +126,9 @@
 
 <script>
   // ⬇️⬇️⬇️ ITT ÍRD ÁT A SAJÁT JELSZAVADRA ⬇️⬇️⬇️
-  const KAPU_JELSZO = "baleset2026";
+  const KAPU_JELSZO = "valtoztasdmeg";
   const KAPU_EMLEKEZET_KULCS = "bkk_kijelzo_belepve";
-  const KAPU_EMLEKEZET_NAPOK = 1;
+  const KAPU_EMLEKEZET_NAPOK = 7;
 
   function kapuEllenorzes() {
     try {
@@ -243,20 +244,25 @@
       const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
       const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
       const isRendellenes = j.kategoria === 'rendellenes';
+      const isIsmeretlen = j.kategoria === 'ismeretlen';
+
+      let badge = 'normál';
+      if (isRendellenes) badge = '🚨 ' + escapeHtml(j.egyezo_kulcsszo);
+      else if (isIsmeretlen) badge = '❔ nincs adat';
 
       return `
         <div class="jarmu-item ${isRendellenes ? 'rendellenes' : ''}" data-idx="${idx}">
           <div class="jarmu-fejlec">
-            <span class="jarmu-jarat">${escapeHtml(j.route_id || '—')} <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.eszkoz_tipus || '')}</span></span>
-            <span class="jarmu-badge">${isRendellenes ? '🚨 ' + escapeHtml(j.egyezo_kulcsszo) : 'normál'}</span>
+            <span class="jarmu-jarat">${escapeHtml(j.route_id || '—')}${j.eszkoz_tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.eszkoz_tipus)}</span>` : ''}</span>
+            <span class="jarmu-badge">${badge}</span>
           </div>
-          <div class="jarmu-kijelzo">${escapeHtml(j.kijelzo_szoveg || '—')}</div>
+          <div class="jarmu-kijelzo">${isIsmeretlen ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.' : escapeHtml(j.kijelzo_szoveg || '—')}</div>
           <div class="jarmu-linkek">
             <div style="width:100%;font-size:12px;color:var(--text-muted);margin-bottom:6px">
-              🔢 Rendszám: ${escapeHtml(j.rendszam || '—')}<br>
-              🚐 Modell: ${escapeHtml(j.modell || '—')}<br>
+              ${j.rendszam ? `🔢 Rendszám: ${escapeHtml(j.rendszam)}<br>` : ''}
+              ${j.modell ? `🚐 Modell: ${escapeHtml(j.modell)}<br>` : ''}
               🆔 Jármű: ${escapeHtml(j.vehicle_label || j.vehicle_id)}<br>
-              📡 Állapot: ${escapeHtml(j.statusz || '—')}${j.akadalymentes === true ? ' · ♿ akadálymentes' : ''}
+              ${j.statusz ? `📡 Állapot: ${escapeHtml(j.statusz)}${j.akadalymentes === true ? ' · ♿ akadálymentes' : ''}` : ''}
             </div>
             ${gmaps ? `<a href="${gmaps}" target="_blank">📍 Google Maps</a>` : ''}
             <a href="${futarLink}" target="_blank">🚋 FUTÁR</a>
