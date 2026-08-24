@@ -52,6 +52,40 @@
   .jarmu-linkek a { font-size: 12px; color: var(--turquoise); text-decoration: none; }
   .jarmu-linkek a:hover { text-decoration: underline; }
 
+  .nezet-valto {
+    display: flex; gap: 0; margin-bottom: 16px; border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden; width: fit-content;
+  }
+  .nezet-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 9px 16px;
+    border: none; background: var(--bg-card); color: var(--text-muted); cursor: pointer;
+  }
+  .nezet-btn.aktiv { background: var(--amber); color: #1b1d1f; font-weight: 700; }
+
+  .viszonylat-item {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 8px; overflow: hidden;
+  }
+  .viszonylat-fejlec {
+    padding: 14px 16px; cursor: pointer; display: flex; justify-content: space-between;
+    align-items: center; gap: 10px;
+  }
+  .viszonylat-cim { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 16px; }
+  .viszonylat-info { display: flex; align-items: center; gap: 8px; }
+  .viszonylat-darab { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); }
+  .viszonylat-nyil { color: var(--text-muted); transition: transform 0.15s; font-size: 12px; }
+  .viszonylat-item.nyitva .viszonylat-nyil { transform: rotate(90deg); }
+  .viszonylat-buszok { display: none; border-top: 1px solid var(--border); }
+  .viszonylat-item.nyitva .viszonylat-buszok { display: block; }
+  .viszonylat-busz-sor {
+    padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 13px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  .viszonylat-busz-sor:last-child { border-bottom: none; }
+  .viszonylat-busz-bal { color: var(--text-muted); }
+  .viszonylat-busz-bal strong { color: var(--text); }
+  .viszonylat-busz-link { font-size: 12px; color: var(--turquoise); text-decoration: none; white-space: nowrap; }
+
   .ures-allapot { text-align: center; padding: 60px 20px; color: var(--text-muted); }
   footer { text-align: center; padding: 10px 24px 40px; color: var(--text-muted); font-size: 12px; }
 
@@ -106,6 +140,11 @@
 </header>
 
 <main>
+  <div class="nezet-valto">
+    <button class="nezet-btn aktiv" data-nezet="busz">🚌 Busz nézet</button>
+    <button class="nezet-btn" data-nezet="viszonylat">🔢 Viszonylat nézet</button>
+  </div>
+
   <div class="szuro-sor">
     <button class="szuro-btn aktiv" data-szuro="mind">Mind</button>
     <button class="szuro-btn" data-szuro="rendellenes">🚨 Rendellenes</button>
@@ -126,9 +165,9 @@
 
 <script>
   // ⬇️⬇️⬇️ ITT ÍRD ÁT A SAJÁT JELSZAVADRA ⬇️⬇️⬇️
-  const KAPU_JELSZO = "baleset2026";
+  const KAPU_JELSZO = "valtoztasdmeg";
   const KAPU_EMLEKEZET_KULCS = "bkk_kijelzo_belepve";
-  const KAPU_EMLEKEZET_NAPOK = 1;
+  const KAPU_EMLEKEZET_NAPOK = 7;
 
   function kapuEllenorzes() {
     try {
@@ -181,6 +220,8 @@
   let aktivSzuro = 'mind';
   let aktivTipusSzuro = 'mind';
   let keresoSzoveg = '';
+  let aktivNezet = 'busz';
+  const nyitottViszonylatok = new Set();
 
   async function betoltes() {
     try {
@@ -240,6 +281,14 @@
       return;
     }
 
+    if (aktivNezet === 'viszonylat') {
+      renderViszonylatNezet(szurt, tartalom);
+    } else {
+      renderBuszNezet(szurt, tartalom);
+    }
+  }
+
+  function renderBuszNezet(szurt, tartalom) {
     tartalom.innerHTML = szurt.map((j, idx) => {
       const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
       const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
@@ -275,11 +324,86 @@
     });
   }
 
+  function renderViszonylatNezet(szurt, tartalom) {
+    // Csoportosítás route_id szerint
+    const csoportok = new Map();
+    szurt.forEach(j => {
+      const kulcs = j.route_id || '(ismeretlen viszonylat)';
+      if (!csoportok.has(kulcs)) csoportok.set(kulcs, []);
+      csoportok.get(kulcs).push(j);
+    });
+
+    // Rendezés: amelyik csoportban van rendellenes busz, az elöl legyen
+    const rendezettKulcsok = [...csoportok.keys()].sort((a, b) => {
+      const aVan = csoportok.get(a).some(j => j.kategoria === 'rendellenes');
+      const bVan = csoportok.get(b).some(j => j.kategoria === 'rendellenes');
+      if (aVan !== bVan) return aVan ? -1 : 1;
+      return a.localeCompare(b, 'hu');
+    });
+
+    tartalom.innerHTML = rendezettKulcsok.map(kulcs => {
+      const buszok = csoportok.get(kulcs);
+      const vanRendellenes = buszok.some(j => j.kategoria === 'rendellenes');
+      const nyitva = nyitottViszonylatok.has(kulcs);
+      const tipus = buszok.find(j => j.eszkoz_tipus)?.eszkoz_tipus || '';
+
+      const buszSorok = buszok.map(j => {
+        const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
+        const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
+        const isRendellenes = j.kategoria === 'rendellenes';
+        const isIsmeretlen = j.kategoria === 'ismeretlen';
+        let cimke = isRendellenes ? `🚨 ${escapeHtml(j.egyezo_kulcsszo)}` : (isIsmeretlen ? '❔ nincs adat' : escapeHtml(j.kijelzo_szoveg || '—'));
+
+        return `
+          <div class="viszonylat-busz-sor">
+            <div class="viszonylat-busz-bal">
+              <strong>${escapeHtml(j.rendszam || j.vehicle_label || j.vehicle_id)}</strong> — ${cimke}
+            </div>
+            <span>
+              ${gmaps ? `<a class="viszonylat-busz-link" href="${gmaps}" target="_blank">📍</a> ` : ''}
+              <a class="viszonylat-busz-link" href="${futarLink}" target="_blank">🚋</a>
+            </span>
+          </div>`;
+      }).join('');
+
+      return `
+        <div class="viszonylat-item ${nyitva ? 'nyitva' : ''}" data-kulcs="${escapeHtml(kulcs)}">
+          <div class="viszonylat-fejlec">
+            <span class="viszonylat-cim">${escapeHtml(kulcs)}${tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(tipus)}</span>` : ''}${vanRendellenes ? ' 🚨' : ''}</span>
+            <span class="viszonylat-info">
+              <span class="viszonylat-darab">${buszok.length} busz</span>
+              <span class="viszonylat-nyil">▶</span>
+            </span>
+          </div>
+          <div class="viszonylat-buszok">${buszSorok}</div>
+        </div>`;
+    }).join('');
+
+    document.querySelectorAll('.viszonylat-fejlec').forEach(el => {
+      el.addEventListener('click', () => {
+        const szulo = el.closest('.viszonylat-item');
+        const kulcs = szulo.dataset.kulcs;
+        szulo.classList.toggle('nyitva');
+        if (szulo.classList.contains('nyitva')) nyitottViszonylatok.add(kulcs);
+        else nyitottViszonylatok.delete(kulcs);
+      });
+    });
+  }
+
   function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str ?? '';
     return div.innerHTML;
   }
+
+  document.querySelectorAll('.nezet-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.nezet-btn').forEach(b => b.classList.remove('aktiv'));
+      btn.classList.add('aktiv');
+      aktivNezet = btn.dataset.nezet;
+      renderJarmuvek();
+    });
+  });
 
   document.querySelectorAll('.szuro-btn').forEach(btn => {
     btn.addEventListener('click', () => {
