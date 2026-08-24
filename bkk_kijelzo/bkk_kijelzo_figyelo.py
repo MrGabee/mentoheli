@@ -153,10 +153,22 @@ def trip_reszletek_lekerdezese(trip_id):
             f"&includeReferences=true&tripId={trip_id}&date={datum}"
         )
         resp = requests.get(url, headers=HEADERS, timeout=15)
-        resp.raise_for_status()
+
+        # Részletes diagnosztika - ha nem 200 vagy üres a válasz, ez
+        # segít eldönteni, hogy hálózati blokkolásról van-e szó.
+        if resp.status_code != 200:
+            print(f"      ⚠️  trip-details HTTP {resp.status_code} ({trip_id}): {resp.text[:150]!r}")
+            return None
+        if not resp.text.strip():
+            print(f"      ⚠️  trip-details ÜRES VÁLASZ ({trip_id}) - valószínűleg hálózati blokkolás (mint go.bkk.hu-nál korábban)")
+            return None
+
         return resp.json()
-    except Exception as e:
-        print(f"      ⚠️  trip-details hiba ({trip_id}): {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"      ⚠️  trip-details HÁLÓZATI hiba ({trip_id}): {e}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"      ⚠️  trip-details JSON-hiba ({trip_id}): {e} | nyers válasz eleje: {resp.text[:150]!r}")
         return None
 
 
