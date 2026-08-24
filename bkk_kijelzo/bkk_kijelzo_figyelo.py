@@ -29,6 +29,7 @@ import zipfile
 import smtplib
 import requests
 from datetime import datetime, timedelta, timezone
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -524,14 +525,32 @@ def main():
     osszes_jarmu_export = []
     ismeretlen_mezo_naplo_szamlalo = 0
 
-    for jarmu in jarmuvek:
+    # ---- 1. lépés: a trip-details lekérdezések PÁRHUZAMOSAN, nem
+    #      egyesével, várakozással - ez volt a fő lassulási pont. ----
+    jarmuvek_trip_iddal = [j for j in jarmuvek if j["trip_id"]]
+    print(f"  ⚡ {len(jarmuvek_trip_iddal)} jármű részleteinek párhuzamos lekérdezése...")
+
+    trip_adatok_terkep = {}
+    with ThreadPoolExecutor(max_workers=15) as vegrehajto:
+        jovok = {
+            vegrehajto.submit(trip_reszletek_lekerdezese, j["trip_id"]): j["trip_id"]
+            for j in jarmuvek_trip_iddal
+        }
+        for jovo in as_completed(jovok):
+            trip_id = jovok[jovo]
+            try:
+                trip_adatok_terkep[trip_id] = jovo.result()
+            except Exception as e:
+                print(f"      ⚠️  [{trip_id}] Váratlan hiba párhuzamos lekérdezés közben: {e}")
+                trip_adatok_terkep[trip_id] = None
+
+    print("  ✅ Párhuzamos lekérdezés kész, feldolgozás indul...")
+
+    # ---- 2. lépés: a már lekérdezett adatok feldolgozása (ez gyors,
+    #      nincs benne hálózati várakozás). ----
+    for jarmu in jarmuvek_trip_iddal:
         trip_id = jarmu["trip_id"]
-        if not trip_id:
-            continue
-
-        trip_adat = trip_reszletek_lekerdezese(trip_id)
-        time.sleep(0.03)  # minimális, csak hogy ne egyszerre záporozzon a kérés
-
+        trip_adat = trip_adatok_terkep.get(trip_id)
         route_id_str = jarmu["route_id"] or ""
         if route_id_str.isdigit():
             # Tisztán numerikus -> ez egy belső BKK-azonosító, fordítás kell
