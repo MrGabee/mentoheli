@@ -42,6 +42,7 @@ EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_BKK"]
 FUTAR_ALAP_URL = "http://futar.bkk.hu/bkk-utvonaltervezo-api/ws/otp/api/where"
 FUTAR_KULCS = "apaiary-test"  # publikusan ismert, széles körben használt teszt-kulcs
 GTFS_RT_VEHICLE_POSITIONS_URL = "https://go.bkk.hu/api/query/v1/ws/gtfs-rt/full/VehiclePositions.pb"
+BKK_API_KULCS = os.environ.get("BKK_API_KULCS", "")  # opendata.bkk.hu-n regisztrálva szerezhető
 
 ALLAPOT_FAJL = "bkk_kijelzo_allapot.json"
 
@@ -100,7 +101,16 @@ def aktiv_jarmuvek_lekerdezese():
         return []
 
     try:
-        resp = requests.get(GTFS_RT_VEHICLE_POSITIONS_URL, headers=HEADERS, timeout=20)
+        if not BKK_API_KULCS:
+            print("  ⚠️  Nincs beállítva BKK_API_KULCS - regisztrálj: https://opendata.bkk.hu/data-sources")
+            return []
+
+        resp = requests.get(
+            GTFS_RT_VEHICLE_POSITIONS_URL,
+            params={"key": BKK_API_KULCS},
+            headers=HEADERS,
+            timeout=20,
+        )
         resp.raise_for_status()
 
         feed = gtfs_realtime_pb2.FeedMessage()
@@ -263,6 +273,24 @@ def email_kuldes(talalatok):
 
 
 # ════════════════════════════════════════════
+#  🌐  WEBOLDAL-ADAT EXPORT
+# ════════════════════════════════════════════
+AKTIV_JSON_FAJL = "bkk_kijelzo_aktiv.json"
+
+
+def ment_aktiv_json(osszes_jarmu_adat):
+    """Kiírja az ÖSSZES, jelenleg feldolgozott jármű adatát (normál ÉS
+    rendellenes egyaránt) egy külön JSON-fájlba, amit a weboldal
+    (bkk_kijelzo.html) tölt be és jelenít meg élőben."""
+    with open(AKTIV_JSON_FAJL, "w", encoding="utf-8") as fjson:
+        json.dump({
+            "frissitve": magyar_ido().isoformat(),
+            "jarmuvek": osszes_jarmu_adat,
+        }, fjson, ensure_ascii=False, indent=2)
+    print(f"🌐 Weboldal-adat mentve: {AKTIV_JSON_FAJL} ({len(osszes_jarmu_adat)} jármű)")
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐPROGRAM
 # ════════════════════════════════════════════
 def main():
@@ -279,6 +307,7 @@ def main():
         return
 
     talalatok = []
+    osszes_jarmu_export = []
     ismeretlen_mezo_naplo_szamlalo = 0
 
     for jarmu in jarmuvek:
@@ -304,8 +333,21 @@ def main():
             continue
 
         egyezo_kulcsszo = rendellenes_e(kijelzo_szoveg)
+
+        # A weboldal-exportba MINDEN jármű bekerül, kategóriával együtt
+        osszes_jarmu_export.append({
+            "vehicle_id": jarmu["vehicle_id"],
+            "vehicle_label": jarmu["vehicle_label"],
+            "route_id": jarmu["route_id"],
+            "lat": jarmu["lat"],
+            "lon": jarmu["lon"],
+            "kijelzo_szoveg": kijelzo_szoveg,
+            "kategoria": "rendellenes" if egyezo_kulcsszo else "normal",
+            "egyezo_kulcsszo": egyezo_kulcsszo or None,
+        })
+
         if not egyezo_kulcsszo:
-            continue  # normál végállomás-szöveg, nem érdekes
+            continue  # normál végállomás-szöveg, e-mailhez nem érdekes
 
         # Azonosító: jármű + kijelző-szöveg kombinációja, hogy ugyanarra a
         # rendellenességre ne küldjünk emailt minden egyes futásnál újra.
@@ -327,6 +369,9 @@ def main():
             "kijelzo_szoveg": kijelzo_szoveg,
             "egyezo_kulcsszo": egyezo_kulcsszo,
         })
+
+    # Weboldal-adat mentése minden futáskor - új rendellenesség nélkül is
+    ment_aktiv_json(osszes_jarmu_export)
 
     print(f"\n🚨 Rendellenes találatok: {len(talalatok)}")
     if elso_futas:
