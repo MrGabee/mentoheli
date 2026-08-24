@@ -193,7 +193,8 @@ HEV_HIVATALOS_SZINEK = {
 # Ha egy vonalnak VAN megerősített vonalszáma, de az API nem adott hozzá
 # színt (jellemzően a Volán-vonalaknál), ezt a jól felismerhető,
 # BKK/HÉV egyik hivatalos színétől sem ütköző színt használjuk helyette.
-NINCS_SZIN_TARTALEK = {"hatterszin": "6B4423", "hatterszin_masodlagos": "FFFFFF"}  # barna
+NINCS_SZIN_TARTALEK = {"hatterszin": "C2185B", "hatterszin_masodlagos": "FFFFFF"}  # magenta - senki más nem használja
+_VONAT_DIAG_SZAMLALO = {"ertek": 0}
 
 
 def vonalszamok_betoltese_mav_csv_bol():
@@ -497,11 +498,21 @@ def main():
         trip_adat = trip_reszletek_lekerdezese(trip_id)
         time.sleep(0.03)  # minimális, csak hogy ne egyszerre záporozzon a kérés
 
-        vonal_szam = (
-            vonalszam_szotar.get(jarmu["route_id"])
-            or vonalszam_szotar.get(f"BKK_{jarmu['route_id']}")
-            or vonalszam_szotar.get(jarmu["route_id"].replace("BKK_", "", 1))
-        )
+        route_id_str = jarmu["route_id"] or ""
+        if route_id_str.isdigit():
+            # Tisztán numerikus -> ez egy belső BKK-azonosító, fordítás kell
+            vonal_szam = (
+                vonalszam_szotar.get(route_id_str)
+                or vonalszam_szotar.get(f"BKK_{route_id_str}")
+            )
+        else:
+            # Már eleve emberi-olvasható forma (pl. "S20", "IR", "EC1", "H6")
+            # - nincs mit fordítani rajta, ez már maga a vonalszám.
+            vonal_szam = route_id_str or None
+
+        if jarmu.get("route_id") and not route_id_str.isdigit() and _VONAT_DIAG_SZAMLALO["ertek"] < 5:
+            print(f"  🔍 [VONAT-DIAGNOSZTIKA] route_id='{jarmu['route_id']}' -> vonal_szam='{vonal_szam}'")
+            _VONAT_DIAG_SZAMLALO["ertek"] += 1
 
         adatok = jarmu_adatok_kinyerese(trip_adat)
 
@@ -533,6 +544,7 @@ def main():
             # nincs mit kulcsszó szerint megvizsgálni.
             osszes_jarmu_export.append({
                 "vehicle_id": jarmu["vehicle_id"],
+                "trip_id": trip_id,
                 "vehicle_label": jarmu["vehicle_label"],
                 "route_id": jarmu["route_id"],
                 "vonal_szam": vonal_szam,
@@ -566,6 +578,7 @@ def main():
         # A weboldal-exportba MINDEN jármű bekerül, kategóriával együtt
         osszes_jarmu_export.append({
             "vehicle_id": jarmu["vehicle_id"],
+            "trip_id": trip_id,
             "vehicle_label": jarmu["vehicle_label"],
             "route_id": jarmu["route_id"],
             "vonal_szam": vonal_szam,
@@ -592,6 +605,7 @@ def main():
 
         talalatok.append({
             "vehicle_id": jarmu["vehicle_id"],
+            "trip_id": trip_id,
             "vehicle_label": jarmu["vehicle_label"],
             "route_id": jarmu["route_id"],
             "vonal_szam": vonal_szam,
