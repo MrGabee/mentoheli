@@ -146,6 +146,58 @@ def aktiv_jarmuvek_lekerdezese():
 # ════════════════════════════════════════════
 #  🚏  ÚTVONAL-RÉSZLETEK LEKÉRDEZÉSE (FUTÁR trip-details - kijelző-szöveg)
 # ════════════════════════════════════════════
+_VONAL_GYORSITOTAR = {}  # route_id -> vonalszám (ne kérdezzük le ugyanazt többször egy futáson belül)
+_VONAL_DIAGNOSZTIKA_SZAMLALO = {"ertek": 0}
+_VONAL_DIAGNOSZTIKA_MAX = 3
+
+
+def vonalszam_lekerdezese(route_id):
+    if not route_id:
+        return None
+    if route_id in _VONAL_GYORSITOTAR:
+        return _VONAL_GYORSITOTAR[route_id]
+
+    diagnosztika_kell = _VONAL_DIAGNOSZTIKA_SZAMLALO["ertek"] < _VONAL_DIAGNOSZTIKA_MAX
+    cache_torles = str(int(time.time() * 1000))
+    url = (
+        f"{FUTAR_ALAP_URL}/route-details.json"
+        f"?routeId={route_id}"
+        f"&key={FUTAR_KULCS}&version={FUTAR_VERZIO}&appVersion={FUTAR_APP_VERZIO}"
+        f"&locale=hu&_={cache_torles}"
+    )
+
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=15)
+    except Exception as e:
+        if diagnosztika_kell:
+            print(f"      ⚠️  [route {route_id}] KAPCSOLÓDÁSI hiba: {type(e).__name__}: {e}")
+        _VONAL_GYORSITOTAR[route_id] = None
+        return None
+
+    if diagnosztika_kell:
+        print(f"      ℹ️  [route {route_id}] HTTP {resp.status_code} | hossz: {len(resp.content)} byte | "
+              f"eleje: {resp.content[:300]!r}")
+        _VONAL_DIAGNOSZTIKA_SZAMLALO["ertek"] += 1
+
+    vonalszam = None
+    if resp.status_code == 200 and resp.content.strip():
+        try:
+            adat = resp.json()
+            entry = adat.get("data", {}).get("entry", {})
+            # Több lehetséges mezőnevet is megpróbálunk - az élő tesztelés
+            # dönti majd el, melyik a helyes (lásd a fenti diagnosztikai sort).
+            for kulcs in ("shortName", "routeShortName", "shortTitle", "designation"):
+                if entry.get(kulcs):
+                    vonalszam = entry[kulcs]
+                    break
+        except Exception as e:
+            if diagnosztika_kell:
+                print(f"      ⚠️  [route {route_id}] JSON-értelmezési hiba: {type(e).__name__}: {e}")
+
+    _VONAL_GYORSITOTAR[route_id] = vonalszam
+    return vonalszam
+
+
 _DIAGNOSZTIKA_SZAMLALO = {"ertek": 0}
 _DIAGNOSZTIKA_MAX = 5
 
@@ -269,7 +321,7 @@ def email_kuldes(talalatok):
             <span style="background:#c0392b;color:#fff;padding:5px 12px;border-radius:4px;
                          font-size:13px;font-weight:bold">🚨 {t['egyezo_kulcsszo'].upper()}</span>
             <table style="font-size:13px;width:100%;margin-top:10px">
-              <tr><td style="color:#888;width:140px">🚌 Járat:</td><td><strong>{t['route_id'] or '—'}</strong></td></tr>
+              <tr><td style="color:#888;width:140px">🚌 Vonal:</td><td><strong>{t['vonal_szam'] or '—'}</strong> <span style="color:#aaa">({t['route_id'] or '—'})</span></td></tr>
               <tr><td style="color:#888">💬 Kijelző szövege:</td><td><strong>{t['kijelzo_szoveg']}</strong></td></tr>
               <tr><td style="color:#888">🔢 Rendszám:</td><td>{t['rendszam'] or '—'}</td></tr>
               <tr><td style="color:#888">🚐 Jármű típusa:</td><td>{t['eszkoz_tipus'] or '—'} · {t['modell'] or '—'}</td></tr>
@@ -286,7 +338,7 @@ def email_kuldes(talalatok):
 
         sorok_txt += (
             f"\n{'─'*45}\n{i}. 🚨 {t['egyezo_kulcsszo']}\n"
-            f"Járat: {t['route_id']}\nKijelző: {t['kijelzo_szoveg']}\n"
+            f"Vonal: {t['vonal_szam']} ({t['route_id']})\nKijelző: {t['kijelzo_szoveg']}\n"
             f"Rendszám: {t['rendszam']}\nTípus: {t['eszkoz_tipus']} · {t['modell']}\n"
             f"Jármű: {t['vehicle_label'] or t['vehicle_id']}\nÁllapot: {t['statusz']}\n"
             f"Maps: {gmaps or '—'}\nFUTÁR: {futar_link}\n"
@@ -376,6 +428,8 @@ def main():
         trip_adat = trip_reszletek_lekerdezese(trip_id)
         time.sleep(0.15)  # udvarias várakozás a FUTÁR API felé
 
+        vonal_szam = vonalszam_lekerdezese(jarmu["route_id"])
+
         adatok = jarmu_adatok_kinyerese(trip_adat)
 
         # Az ELSŐ néhány esetben, ha nem találtunk adatot, kiírjuk a
@@ -396,6 +450,7 @@ def main():
                 "vehicle_id": jarmu["vehicle_id"],
                 "vehicle_label": jarmu["vehicle_label"],
                 "route_id": jarmu["route_id"],
+                "vonal_szam": vonal_szam,
                 "lat": jarmu["lat"],
                 "lon": jarmu["lon"],
                 "kategoria": "ismeretlen",
@@ -425,6 +480,7 @@ def main():
             "vehicle_id": jarmu["vehicle_id"],
             "vehicle_label": jarmu["vehicle_label"],
             "route_id": jarmu["route_id"],
+            "vonal_szam": vonal_szam,
             "lat": jarmu["lat"],
             "lon": jarmu["lon"],
             "kategoria": "rendellenes" if egyezo_kulcsszo else "normal",
@@ -450,6 +506,7 @@ def main():
             "vehicle_id": jarmu["vehicle_id"],
             "vehicle_label": jarmu["vehicle_label"],
             "route_id": jarmu["route_id"],
+            "vonal_szam": vonal_szam,
             "lat": jarmu["lat"],
             "lon": jarmu["lon"],
             "egyezo_kulcsszo": egyezo_kulcsszo,
