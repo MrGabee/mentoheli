@@ -39,8 +39,14 @@ EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_BKK"]
 
-FUTAR_ALAP_URL = "http://futar.bkk.hu/bkk-utvonaltervezo-api/ws/otp/api/where"
-FUTAR_KULCS = "apaiary-test"  # publikusan ismert, széles körben használt teszt-kulcs
+FUTAR_ALAP_URL = "https://futar.bkk.hu/api/query/v1/ws/otp/api/where"
+# A webalkalmazás saját, a frontend-kódjába ágyazott (tehát bárki számára
+# látható, publikus) kulcsa - élő böngésző-forgalomból derült ki 2026.08.24-én.
+# Ha a BKK frissíti az alkalmazást, ez az appVersion és/vagy a kulcs is
+# megváltozhat - ha újra elakad, ellenőrizd böngészőben (F12 → Hálózat).
+FUTAR_KULCS = "web-54feeb28-a942-48ae-89a5-9955879ebb2c"
+FUTAR_VERZIO = "4"
+FUTAR_APP_VERZIO = "3.18.0-251972-2069795-86d980c0"
 GTFS_RT_VEHICLE_POSITIONS_URL = "https://go.bkk.hu/api/query/v1/ws/gtfs-rt/full/VehiclePositions.pb"
 BKK_API_KULCS = os.environ.get("BKK_API_KULCS", "")  # opendata.bkk.hu-n regisztrálva szerezhető
 
@@ -140,57 +146,82 @@ def aktiv_jarmuvek_lekerdezese():
 # ════════════════════════════════════════════
 #  🚏  ÚTVONAL-RÉSZLETEK LEKÉRDEZÉSE (FUTÁR trip-details - kijelző-szöveg)
 # ════════════════════════════════════════════
+_DIAGNOSZTIKA_SZAMLALO = {"ertek": 0}
+_DIAGNOSZTIKA_MAX = 5
+
+
 def trip_reszletek_lekerdezese(trip_id):
     """Lekéri a FUTÁR-tól az adott trip (járat-menet) részleteit, benne a
     célállomás-kijelző szövegével (headsign)."""
     if not trip_id:
         return None
+
+    datum = magyar_ido().strftime("%Y%m%d")
+    # A FUTÁR API "BKK_" előtaggal várja a trip_id-t (élő böngésző-forgalom
+    # alapján derült ki: tripId=BKK_D1617810, nem simán D1617810).
+    trip_id_elotaggal = trip_id if trip_id.startswith("BKK_") else f"BKK_{trip_id}"
+    cache_torles = str(int(time.time() * 1000))
+    url = (
+        f"{FUTAR_ALAP_URL}/trip-details.json"
+        f"?tripId={trip_id_elotaggal}&date={datum}"
+        f"&key={FUTAR_KULCS}&version={FUTAR_VERZIO}&appVersion={FUTAR_APP_VERZIO}"
+        f"&locale=hu&_={cache_torles}"
+    )
+
+    diagnosztika_kell = _DIAGNOSZTIKA_SZAMLALO["ertek"] < _DIAGNOSZTIKA_MAX
+
+    # Szándékosan EGYETLEN, tág except-ág - így nem számít, milyen
+    # kivétel-hierarchiát használ a requests könyvtár verziója, a
+    # diagnosztika mindenképp egyértelműen kiíródik.
     try:
-        datum = magyar_ido().strftime("%Y%m%d")
-        url = (
-            f"{FUTAR_ALAP_URL}/trip-details.json"
-            f"?key={FUTAR_KULCS}&version=3&appVersion=apiary-1.0"
-            f"&includeReferences=true&tripId={trip_id}&date={datum}"
-        )
         resp = requests.get(url, headers=HEADERS, timeout=15)
+    except Exception as e:
+        print(f"      ⚠️  [{trip_id}] KAPCSOLÓDÁSI hiba (a kérés el sem jutott célba): {type(e).__name__}: {e}")
+        return None
 
-        # Részletes diagnosztika - ha nem 200 vagy üres a válasz, ez
-        # segít eldönteni, hogy hálózati blokkolásról van-e szó.
-        if resp.status_code != 200:
-            print(f"      ⚠️  trip-details HTTP {resp.status_code} ({trip_id}): {resp.text[:150]!r}")
-            return None
-        if not resp.text.strip():
-            print(f"      ⚠️  trip-details ÜRES VÁLASZ ({trip_id}) - valószínűleg hálózati blokkolás (mint go.bkk.hu-nál korábban)")
-            return None
+    if diagnosztika_kell:
+        print(f"      ℹ️  [{trip_id}] HTTP {resp.status_code} | hossz: {len(resp.content)} byte | "
+              f"content-type: {resp.headers.get('Content-Type', '?')} | "
+              f"eleje: {resp.content[:120]!r}")
+        _DIAGNOSZTIKA_SZAMLALO["ertek"] += 1
 
+    if resp.status_code != 200:
+        return None
+    if not resp.content.strip():
+        return None
+
+    try:
         return resp.json()
-    except requests.exceptions.RequestException as e:
-        print(f"      ⚠️  trip-details HÁLÓZATI hiba ({trip_id}): {e}")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"      ⚠️  trip-details JSON-hiba ({trip_id}): {e} | nyers válasz eleje: {resp.text[:150]!r}")
+    except Exception as e:
+        if diagnosztika_kell:
+            print(f"      ⚠️  [{trip_id}] JSON-értelmezési hiba: {type(e).__name__}: {e}")
         return None
 
 
-def kijelzo_szoveg_kinyerese(trip_adat):
-    """A FUTÁR válaszból megpróbálja kinyerni a kijelző-szöveget - mivel
-    ELŐSZÖR fut ez a kód éles adaton, több lehetséges mezőnevet is
-    megpróbálunk, és NAPLÓBA ÍRJUK a teljes struktúrát az első pár
-    esetben, hogy utólag pontosítani lehessen."""
+def jarmu_adatok_kinyerese(trip_adat):
+    """A FUTÁR válaszból kinyeri az ÖSSZES elérhető jármű-adatot - élő
+    böngésző-forgalom alapján azonosított, valódi mezőnevek (2026.08.24)."""
     if not trip_adat or "data" not in trip_adat:
         return None
 
-    entry = trip_adat.get("data", {}).get("entry", {})
+    vehicle = trip_adat.get("data", {}).get("entry", {}).get("vehicle", {})
+    if not vehicle:
+        return None
 
-    # Lehetséges mezőnevek, amikben a kijelző-szöveg lehet - a GTFS-szabvány
-    # szerint ez jellemzően "tripHeadsign" vagy "headsign".
-    for kulcs in ("tripHeadsign", "headsign", "displayName", "routeShortName"):
-        if entry.get(kulcs):
-            return entry[kulcs]
-
-    # Ha semmilyen ismert mezőben nincs, a teljes entry-t visszaadjuk, hogy
-    # a naplóban látszódjon, és pontosítani lehessen a fenti listát.
-    return None
+    return {
+        "kijelzo_szoveg": vehicle.get("label"),
+        "rendszam": vehicle.get("licensePlate"),
+        "modell": vehicle.get("model"),
+        "eszkoz_tipus": vehicle.get("vehicleRouteType"),  # BUS / TRAM / TROLLEYBUS / RAIL stb.
+        "statusz": vehicle.get("status"),
+        "elteres": vehicle.get("deviated"),
+        "torlodas": vehicle.get("congestionLevel"),
+        "akadalymentes": vehicle.get("wheelchairAccessible"),
+        "kovetkezo_megallo_id": vehicle.get("stopId"),
+        "megallo_sorszam": vehicle.get("stopSequence"),
+        "iranyszog": vehicle.get("bearing"),
+        "utolso_frissites": vehicle.get("lastUpdateTime"),
+    }
 
 
 # ════════════════════════════════════════════
@@ -209,6 +240,16 @@ def rendellenes_e(kijelzo_szoveg):
 # ════════════════════════════════════════════
 #  📧  EMAIL KÜLDÉS
 # ════════════════════════════════════════════
+def formaz_unix_ido(unix_masodperc):
+    if not unix_masodperc:
+        return "—"
+    try:
+        dt = datetime.fromtimestamp(int(unix_masodperc), tz=timezone.utc).astimezone(MAGYAR_TZ)
+        return dt.strftime("%Y.%m.%d %H:%M:%S")
+    except Exception:
+        return "—"
+
+
 def email_kuldes(talalatok):
     ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db = len(talalatok)
@@ -229,8 +270,12 @@ def email_kuldes(talalatok):
                          font-size:13px;font-weight:bold">🚨 {t['egyezo_kulcsszo'].upper()}</span>
             <table style="font-size:13px;width:100%;margin-top:10px">
               <tr><td style="color:#888;width:140px">🚌 Járat:</td><td><strong>{t['route_id'] or '—'}</strong></td></tr>
-              <tr><td style="color:#888">🔢 Jármű/rendszám:</td><td>{t['vehicle_label'] or t['vehicle_id']}</td></tr>
               <tr><td style="color:#888">💬 Kijelző szövege:</td><td><strong>{t['kijelzo_szoveg']}</strong></td></tr>
+              <tr><td style="color:#888">🔢 Rendszám:</td><td>{t['rendszam'] or '—'}</td></tr>
+              <tr><td style="color:#888">🚐 Jármű típusa:</td><td>{t['eszkoz_tipus'] or '—'} · {t['modell'] or '—'}</td></tr>
+              <tr><td style="color:#888">🆔 Jármű-azonosító:</td><td>{t['vehicle_label'] or t['vehicle_id']}</td></tr>
+              <tr><td style="color:#888">📡 Állapot:</td><td>{t['statusz'] or '—'}</td></tr>
+              <tr><td style="color:#888">🕐 Utolsó frissítés:</td><td>{formaz_unix_ido(t.get('utolso_frissites'))}</td></tr>
             </table>
             <div style="margin-top:8px">
               {f'<a href="{gmaps}" style="background:#4285f4;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold;margin-right:6px">📍 Google Maps</a>' if gmaps else ''}
@@ -241,8 +286,9 @@ def email_kuldes(talalatok):
 
         sorok_txt += (
             f"\n{'─'*45}\n{i}. 🚨 {t['egyezo_kulcsszo']}\n"
-            f"Járat: {t['route_id']}\nJármű: {t['vehicle_label'] or t['vehicle_id']}\n"
-            f"Kijelző: {t['kijelzo_szoveg']}\n"
+            f"Járat: {t['route_id']}\nKijelző: {t['kijelzo_szoveg']}\n"
+            f"Rendszám: {t['rendszam']}\nTípus: {t['eszkoz_tipus']} · {t['modell']}\n"
+            f"Jármű: {t['vehicle_label'] or t['vehicle_id']}\nÁllapot: {t['statusz']}\n"
             f"Maps: {gmaps or '—'}\nFUTÁR: {futar_link}\n"
         )
 
@@ -330,20 +376,21 @@ def main():
         trip_adat = trip_reszletek_lekerdezese(trip_id)
         time.sleep(0.15)  # udvarias várakozás a FUTÁR API felé
 
-        kijelzo_szoveg = kijelzo_szoveg_kinyerese(trip_adat)
+        adatok = jarmu_adatok_kinyerese(trip_adat)
 
-        # Az ELSŐ néhány esetben, ha nem találtunk ismert mezőt, kiírjuk a
+        # Az ELSŐ néhány esetben, ha nem találtunk adatot, kiírjuk a
         # teljes választ a naplóba, hogy utólag pontosítani lehessen a
-        # kijelzo_szoveg_kinyerese() függvényt.
-        if kijelzo_szoveg is None and trip_adat and ismeretlen_mezo_naplo_szamlalo < 3:
+        # jarmu_adatok_kinyerese() függvényt.
+        if adatok is None and trip_adat and ismeretlen_mezo_naplo_szamlalo < 3:
             print(f"  🔍 ISMERETLEN MEZŐSZERKEZET (trip {trip_id}):")
             print(f"     {json.dumps(trip_adat, ensure_ascii=False)[:1000]}")
             ismeretlen_mezo_naplo_szamlalo += 1
             continue
 
-        if not kijelzo_szoveg:
+        if not adatok or not adatok["kijelzo_szoveg"]:
             continue
 
+        kijelzo_szoveg = adatok["kijelzo_szoveg"]
         egyezo_kulcsszo = rendellenes_e(kijelzo_szoveg)
 
         # A weboldal-exportba MINDEN jármű bekerül, kategóriával együtt
@@ -353,9 +400,9 @@ def main():
             "route_id": jarmu["route_id"],
             "lat": jarmu["lat"],
             "lon": jarmu["lon"],
-            "kijelzo_szoveg": kijelzo_szoveg,
             "kategoria": "rendellenes" if egyezo_kulcsszo else "normal",
             "egyezo_kulcsszo": egyezo_kulcsszo or None,
+            **adatok,
         })
 
         if not egyezo_kulcsszo:
@@ -378,8 +425,8 @@ def main():
             "route_id": jarmu["route_id"],
             "lat": jarmu["lat"],
             "lon": jarmu["lon"],
-            "kijelzo_szoveg": kijelzo_szoveg,
             "egyezo_kulcsszo": egyezo_kulcsszo,
+            **adatok,
         })
 
     # Weboldal-adat mentése minden futáskor - új rendellenesség nélkül is
