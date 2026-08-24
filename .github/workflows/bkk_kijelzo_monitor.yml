@@ -1,0 +1,110 @@
+name: 🚌 BKK Kijelző Figyelő
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [bkk_kijelzo_trigger]
+  schedule:
+    - cron: '*/10 * * * *'
+
+concurrency:
+  group: bkk-kijelzo-figyelo
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests gtfs-realtime-bindings
+
+      - name: 🚌 Kijelző-figyelés futtatása
+        env:
+          EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
+        run: python bkk_kijelzo/bkk_kijelzo_figyelo.py
+
+      - name: 💾 Állapot commitolása (önjavító)
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ ! -f bkk_kijelzo_allapot.json ]; then
+            echo "Nincs állapotfájl, nincs mit commitolni."
+            exit 0
+          fi
+          cp bkk_kijelzo_allapot.json /tmp/bkk_kijelzo_allapot_sajat.json
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/bkk_kijelzo_allapot_sajat.json bkk_kijelzo_allapot.json
+            git add bkk_kijelzo_allapot.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "bkk kijelző állapot [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
+
+      - name: ⏱️ Várakozás
+        if: always()
+        run: sleep 100
+
+      - name: 🔄 Következő futás indítása (önjavító)
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          SIKERULT=0
+          for i in 1 2 3; do
+            HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/dispatches" \
+              -d '{"event_type":"bkk_kijelzo_trigger"}')
+            if [ "$HTTP_KOD" = "204" ]; then
+              echo "✅ Dispatch sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "⚠️ Dispatch sikertelen (HTTP $HTTP_KOD), próbálkozás $i/3..."
+              cat /tmp/dispatch_resp.txt
+              sleep 5
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "❌ Nem sikerült - a schedule biztonsági háló legfeljebb 10 percen belül újraindítja."
+          fi
