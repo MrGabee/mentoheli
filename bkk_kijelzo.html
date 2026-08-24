@@ -142,6 +142,7 @@
 <main>
   <div class="nezet-valto">
     <button class="nezet-btn aktiv" data-nezet="busz">🚌 Busz nézet</button>
+    <button class="nezet-btn" data-nezet="vonat">🚆 Vonat nézet</button>
     <button class="nezet-btn" data-nezet="viszonylat">🔢 Viszonylat nézet</button>
   </div>
 
@@ -272,16 +273,24 @@
       );
     }
 
+    // "Vonat nézet"-ben csak a vasúti típusú járművekre szűrünk
+    const VONAT_TIPUSOK = ['RAIL', 'SUBURBAN_RAILWAY'];
+    if (aktivNezet === 'vonat') {
+      szurt = szurt.filter(j => VONAT_TIPUSOK.includes(j.eszkoz_tipus));
+    }
+
     // Rendellenesek elöl
     szurt.sort((a, b) => (a.kategoria === 'rendellenes' ? -1 : 1) - (b.kategoria === 'rendellenes' ? -1 : 1));
 
     const tartalom = document.getElementById('tartalom');
     if (szurt.length === 0) {
-      tartalom.innerHTML = '<div class="ures-allapot">Nincs a szűrésnek megfelelő jármű.</div>';
+      tartalom.innerHTML = aktivNezet === 'vonat'
+        ? '<div class="ures-allapot">Jelenleg nincs a szűrésnek megfelelő aktív vonat.</div>'
+        : '<div class="ures-allapot">Nincs a szűrésnek megfelelő jármű.</div>';
       return;
     }
 
-    if (aktivNezet === 'viszonylat') {
+    if (aktivNezet === 'viszonylat' || aktivNezet === 'vonat') {
       renderViszonylatNezet(szurt, tartalom);
     } else {
       renderBuszNezet(szurt, tartalom);
