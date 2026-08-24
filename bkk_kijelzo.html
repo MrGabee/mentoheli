@@ -325,11 +325,18 @@
 
   function renderViszonylatNezet(szurt, tartalom) {
     // Csoportosítás VONALSZÁM szerint (nem a belső route_id szerint) -
-    // ha nincs vonalszám, a belső route_id-t használjuk tartalék kulcsként.
+    // ha nincs megerősített vonalszám, a belső route_id-t használjuk
+    // tartalék kulcsként, de EGYÉRTELMŰEN megjelölve, hogy ez nem
+    // megerősített, hivatalos vonalszám.
     const csoportok = new Map();
+    const csoportVanVonalszam = new Map();
     szurt.forEach(j => {
+      const vanVonalszam = Boolean(j.vonal_szam);
       const kulcs = j.vonal_szam || j.route_id || '(ismeretlen vonal)';
-      if (!csoportok.has(kulcs)) csoportok.set(kulcs, []);
+      if (!csoportok.has(kulcs)) {
+        csoportok.set(kulcs, []);
+        csoportVanVonalszam.set(kulcs, vanVonalszam);
+      }
       csoportok.get(kulcs).push(j);
     });
 
@@ -343,6 +350,7 @@
 
     tartalom.innerHTML = rendezettKulcsok.map(kulcs => {
       const buszok = csoportok.get(kulcs);
+      const vanVonalszam = csoportVanVonalszam.get(kulcs);
       const vanRendellenes = buszok.some(j => j.kategoria === 'rendellenes');
       const nyitva = nyitottViszonylatok.has(kulcs);
       const tipus = buszok.find(j => j.eszkoz_tipus)?.eszkoz_tipus || '';
@@ -367,10 +375,17 @@
           </div>`;
       }).join('');
 
+      // Ha VAN megerősített vonalszám: "148. vonal (BKK_9010)"
+      // Ha NINCS (csak a belső ID-ra esett vissza): "Belső azonosító: BKK_9010"
+      // - így soha nem tűnik úgy, mintha megerősített vonalszám lenne.
+      const cimSzoveg = vanVonalszam
+        ? `${escapeHtml(kulcs)}. vonal`
+        : `Belső azonosító: ${escapeHtml(kulcs)}`;
+
       return `
         <div class="viszonylat-item ${nyitva ? 'nyitva' : ''}" data-kulcs="${escapeHtml(kulcs)}">
           <div class="viszonylat-fejlec">
-            <span class="viszonylat-cim">${escapeHtml(kulcs)}. vonal${tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(tipus)}</span>` : ''}${belsoAzonositok ? ` <span style="color:var(--text-muted);font-weight:400;font-size:11px">(${escapeHtml(belsoAzonositok)})</span>` : ''}${vanRendellenes ? ' 🚨' : ''}</span>
+            <span class="viszonylat-cim">${cimSzoveg}${tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(tipus)}</span>` : ''}${(vanVonalszam && belsoAzonositok) ? ` <span style="color:var(--text-muted);font-weight:400;font-size:11px">(${escapeHtml(belsoAzonositok)})</span>` : ''}${vanRendellenes ? ' 🚨' : ''}</span>
             <span class="viszonylat-info">
               <span class="viszonylat-darab">${buszok.length} busz</span>
               <span class="viszonylat-nyil">▶</span>
