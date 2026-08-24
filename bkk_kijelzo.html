@@ -299,17 +299,23 @@
       if (isRendellenes) badge = '🚨 ' + escapeHtml(j.egyezo_kulcsszo);
       else if (isIsmeretlen) badge = '❔ nincs adat';
 
+      // Színes vonalszám-jelvény a hivatalos BKK-szín alapján, ha ismert
+      const vonalJelveny = j.vonal_szam
+        ? `<span style="background:#${escapeHtml(j.hatterszin || '555')};color:#${escapeHtml(j.hatterszin_masodlagos || 'fff')};
+                        padding:2px 8px;border-radius:5px;font-weight:700;font-size:13px;margin-right:6px;display:inline-block">${escapeHtml(j.vonal_szam)}</span>`
+        : '';
+
       return `
         <div class="jarmu-item ${isRendellenes ? 'rendellenes' : ''}" data-idx="${idx}">
           <div class="jarmu-fejlec">
-            <span class="jarmu-jarat">${escapeHtml(j.rendszam || j.vehicle_label || j.vehicle_id)}${j.vonal_szam ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.vonal_szam)}. vonal (${escapeHtml(j.route_id || '')})</span>` : (j.route_id ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.route_id)}</span>` : '')}</span>
+            <span class="jarmu-jarat">${vonalJelveny}${escapeHtml(j.rendszam || j.vehicle_label || j.vehicle_id)}</span>
             <span class="jarmu-badge">${badge}</span>
           </div>
           <div class="jarmu-kijelzo">${isIsmeretlen ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.' : escapeHtml(j.kijelzo_szoveg || '—')}</div>
           <div class="jarmu-linkek">
             <div style="width:100%;font-size:12px;color:var(--text-muted);margin-bottom:6px">
               ${j.eszkoz_tipus ? `🚐 Típus: ${escapeHtml(j.eszkoz_tipus)} · ${escapeHtml(j.modell || '—')}<br>` : ''}
-              🆔 Jármű-azonosító: ${escapeHtml(j.vehicle_id)}<br>
+              🆔 Jármű-azonosító: ${escapeHtml(j.vehicle_id)} · Belső vonal-ID: ${escapeHtml(j.route_id || '—')}<br>
               ${j.statusz ? `📡 Állapot: ${escapeHtml(j.statusz)}${j.akadalymentes === true ? ' · ♿ akadálymentes' : ''}` : ''}
             </div>
             ${gmaps ? `<a href="${gmaps}" target="_blank">📍 Google Maps</a>` : ''}
@@ -375,11 +381,16 @@
           </div>`;
       }).join('');
 
-      // Ha VAN megerősített vonalszám: "148. vonal (BKK_9010)"
+      // Ha VAN megerősített vonalszám: színes jelvény + "148. vonal"
       // Ha NINCS (csak a belső ID-ra esett vissza): "Belső azonosító: BKK_9010"
       // - így soha nem tűnik úgy, mintha megerősített vonalszám lenne.
+      const szinesJelvenyMinta = buszok.find(j => j.hatterszin);
+      const jelvenyHtml = (vanVonalszam && szinesJelvenyMinta)
+        ? `<span style="background:#${escapeHtml(szinesJelvenyMinta.hatterszin || '555')};color:#${escapeHtml(szinesJelvenyMinta.hatterszin_masodlagos || 'fff')};
+                        padding:2px 8px;border-radius:5px;font-weight:700;font-size:14px;margin-right:8px;display:inline-block">${escapeHtml(kulcs)}</span>`
+        : '';
       const cimSzoveg = vanVonalszam
-        ? `${escapeHtml(kulcs)}. vonal`
+        ? `${jelvenyHtml}vonal`
         : `Belső azonosító: ${escapeHtml(kulcs)}`;
 
       return `
