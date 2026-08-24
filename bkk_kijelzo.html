@@ -302,15 +302,14 @@
       return `
         <div class="jarmu-item ${isRendellenes ? 'rendellenes' : ''}" data-idx="${idx}">
           <div class="jarmu-fejlec">
-            <span class="jarmu-jarat">${escapeHtml(j.route_id || '—')}${j.eszkoz_tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.eszkoz_tipus)}</span>` : ''}</span>
+            <span class="jarmu-jarat">${escapeHtml(j.rendszam || j.vehicle_label || j.vehicle_id)}${j.vonal_szam ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.vonal_szam)}. vonal (${escapeHtml(j.route_id || '')})</span>` : (j.route_id ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.route_id)}</span>` : '')}</span>
             <span class="jarmu-badge">${badge}</span>
           </div>
           <div class="jarmu-kijelzo">${isIsmeretlen ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.' : escapeHtml(j.kijelzo_szoveg || '—')}</div>
           <div class="jarmu-linkek">
             <div style="width:100%;font-size:12px;color:var(--text-muted);margin-bottom:6px">
-              ${j.rendszam ? `🔢 Rendszám: ${escapeHtml(j.rendszam)}<br>` : ''}
-              ${j.modell ? `🚐 Modell: ${escapeHtml(j.modell)}<br>` : ''}
-              🆔 Jármű: ${escapeHtml(j.vehicle_label || j.vehicle_id)}<br>
+              ${j.eszkoz_tipus ? `🚐 Típus: ${escapeHtml(j.eszkoz_tipus)} · ${escapeHtml(j.modell || '—')}<br>` : ''}
+              🆔 Jármű-azonosító: ${escapeHtml(j.vehicle_id)}<br>
               ${j.statusz ? `📡 Állapot: ${escapeHtml(j.statusz)}${j.akadalymentes === true ? ' · ♿ akadálymentes' : ''}` : ''}
             </div>
             ${gmaps ? `<a href="${gmaps}" target="_blank">📍 Google Maps</a>` : ''}
@@ -325,10 +324,11 @@
   }
 
   function renderViszonylatNezet(szurt, tartalom) {
-    // Csoportosítás route_id szerint
+    // Csoportosítás VONALSZÁM szerint (nem a belső route_id szerint) -
+    // ha nincs vonalszám, a belső route_id-t használjuk tartalék kulcsként.
     const csoportok = new Map();
     szurt.forEach(j => {
-      const kulcs = j.route_id || '(ismeretlen viszonylat)';
+      const kulcs = j.vonal_szam || j.route_id || '(ismeretlen vonal)';
       if (!csoportok.has(kulcs)) csoportok.set(kulcs, []);
       csoportok.get(kulcs).push(j);
     });
@@ -338,7 +338,7 @@
       const aVan = csoportok.get(a).some(j => j.kategoria === 'rendellenes');
       const bVan = csoportok.get(b).some(j => j.kategoria === 'rendellenes');
       if (aVan !== bVan) return aVan ? -1 : 1;
-      return a.localeCompare(b, 'hu');
+      return a.localeCompare(b, 'hu', {numeric: true});
     });
 
     tartalom.innerHTML = rendezettKulcsok.map(kulcs => {
@@ -346,6 +346,7 @@
       const vanRendellenes = buszok.some(j => j.kategoria === 'rendellenes');
       const nyitva = nyitottViszonylatok.has(kulcs);
       const tipus = buszok.find(j => j.eszkoz_tipus)?.eszkoz_tipus || '';
+      const belsoAzonositok = [...new Set(buszok.map(j => j.route_id).filter(Boolean))].join(', ');
 
       const buszSorok = buszok.map(j => {
         const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
@@ -369,7 +370,7 @@
       return `
         <div class="viszonylat-item ${nyitva ? 'nyitva' : ''}" data-kulcs="${escapeHtml(kulcs)}">
           <div class="viszonylat-fejlec">
-            <span class="viszonylat-cim">${escapeHtml(kulcs)}${tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(tipus)}</span>` : ''}${vanRendellenes ? ' 🚨' : ''}</span>
+            <span class="viszonylat-cim">${escapeHtml(kulcs)}. vonal${tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(tipus)}</span>` : ''}${belsoAzonositok ? ` <span style="color:var(--text-muted);font-weight:400;font-size:11px">(${escapeHtml(belsoAzonositok)})</span>` : ''}${vanRendellenes ? ' 🚨' : ''}</span>
             <span class="viszonylat-info">
               <span class="viszonylat-darab">${buszok.length} busz</span>
               <span class="viszonylat-nyil">▶</span>
