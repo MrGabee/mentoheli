@@ -40,6 +40,51 @@ jobs:
           BKK_API_KULCS: ${{ secrets.BKK_API_KULCS }}
         run: python bkk_kijelzo/bkk_kijelzo_figyelo.py
 
+      - name: 🌐 JSON feltöltése a saját tárhelyre (FTP)
+        if: always()
+        continue-on-error: true
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_JELSZO: ${{ secrets.FTP_JELSZO }}
+        run: |
+          python - << 'PYEOF'
+          import os
+          import ftplib
+
+          HOST = os.environ.get("FTP_HOST", "")
+          USER = os.environ.get("FTP_USER", "")
+          JELSZO = os.environ.get("FTP_JELSZO", "")
+          # ⬇️ Írd át a tényleges célmappára a saját tárhelyeden ⬇️
+          TAVOLI_MAPPA = "/bkk_kijelzo"
+          HELYI_FAJL = "bkk_kijelzo_aktiv.json"
+
+          if not (HOST and USER and JELSZO):
+              print("⚠️  Nincs beállítva FTP_HOST/FTP_USER/FTP_JELSZO - feltöltés kihagyva.")
+              exit(0)
+
+          if not os.path.exists(HELYI_FAJL):
+              print(f"⚠️  Nincs {HELYI_FAJL}, nincs mit feltölteni.")
+              exit(0)
+
+          try:
+              ftp = ftplib.FTP(HOST, timeout=30)
+              ftp.login(USER, JELSZO)
+              try:
+                  ftp.cwd(TAVOLI_MAPPA)
+              except ftplib.error_perm:
+                  print(f"ℹ️  A {TAVOLI_MAPPA} mappa nem létezik, létrehozom...")
+                  ftp.mkd(TAVOLI_MAPPA)
+                  ftp.cwd(TAVOLI_MAPPA)
+
+              with open(HELYI_FAJL, "rb") as f:
+                  ftp.storbinary(f"STOR {HELYI_FAJL}", f)
+              ftp.quit()
+              print(f"✅ {HELYI_FAJL} sikeresen feltöltve: {HOST}{TAVOLI_MAPPA}/{HELYI_FAJL}")
+          except Exception as e:
+              print(f"⚠️  FTP-feltöltési hiba: {type(e).__name__}: {e}")
+          PYEOF
+
       - name: 💾 Állapot commitolása (önjavító)
         if: always()
         continue-on-error: true
@@ -60,18 +105,28 @@ jobs:
             VAN_AKTIV_JSON=1
           fi
 
+          VAN_GTFS_CACHE=0
+          if [ -f bkk_vonalszamok_cache.json ]; then
+            cp bkk_vonalszamok_cache.json /tmp/bkk_vonalszamok_cache_sajat.json
+            VAN_GTFS_CACHE=1
+          fi
+
           SIKERULT=0
           for i in 1 2 3 4 5 6; do
             echo "Push kísérlet $i/6..."
             git fetch origin main
             git reset --hard origin/main
             cp /tmp/bkk_kijelzo_allapot_sajat.json bkk_kijelzo_allapot.json
+            MENTENDO_FAJLOK="bkk_kijelzo_allapot.json"
             if [ "$VAN_AKTIV_JSON" = "1" ]; then
               cp /tmp/bkk_kijelzo_aktiv_sajat.json bkk_kijelzo_aktiv.json
-              git add bkk_kijelzo_allapot.json bkk_kijelzo_aktiv.json
-            else
-              git add bkk_kijelzo_allapot.json
+              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo_aktiv.json"
             fi
+            if [ "$VAN_GTFS_CACHE" = "1" ]; then
+              cp /tmp/bkk_vonalszamok_cache_sajat.json bkk_vonalszamok_cache.json
+              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_vonalszamok_cache.json"
+            fi
+            git add $MENTENDO_FAJLOK
             if git diff --staged --quiet; then
               echo "Nincs változás, kész."
               SIKERULT=1
@@ -93,7 +148,7 @@ jobs:
 
       - name: ⏱️ Várakozás
         if: always()
-        run: sleep 20
+        run: sleep 5
 
       - name: 🔄 Következő futás indítása (önjavító)
         if: always()
