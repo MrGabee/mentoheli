@@ -21,8 +21,11 @@ ezt a listát a valós adatok alapján.
 
 import os
 import re
+import io
+import csv
 import json
 import time
+import zipfile
 import smtplib
 import requests
 from datetime import datetime, timedelta, timezone
@@ -146,56 +149,35 @@ def aktiv_jarmuvek_lekerdezese():
 # ════════════════════════════════════════════
 #  🚏  ÚTVONAL-RÉSZLETEK LEKÉRDEZÉSE (FUTÁR trip-details - kijelző-szöveg)
 # ════════════════════════════════════════════
-_VONAL_GYORSITOTAR = {}  # route_id -> vonalszám (ne kérdezzük le ugyanazt többször egy futáson belül)
-_VONAL_DIAGNOSZTIKA_SZAMLALO = {"ertek": 0}
-_VONAL_DIAGNOSZTIKA_MAX = 3
+GTFS_STATIKUS_URL = "https://go.bkk.hu/api/static/v1/public-gtfs/budapest_gtfs.zip"
 
 
-def vonalszam_lekerdezese(route_id):
-    if not route_id:
-        return None
-    if route_id in _VONAL_GYORSITOTAR:
-        return _VONAL_GYORSITOTAR[route_id]
-
-    diagnosztika_kell = _VONAL_DIAGNOSZTIKA_SZAMLALO["ertek"] < _VONAL_DIAGNOSZTIKA_MAX
-    cache_torles = str(int(time.time() * 1000))
-    url = (
-        f"{FUTAR_ALAP_URL}/route-details.json"
-        f"?routeId={route_id}"
-        f"&key={FUTAR_KULCS}&version={FUTAR_VERZIO}&appVersion={FUTAR_APP_VERZIO}"
-        f"&locale=hu&_={cache_torles}"
-    )
-
+def vonalszamok_betoltese_gtfs_bol():
+    """Letölti a BKK hivatalos, statikus GTFS-csomagját, és route_id ->
+    route_short_name (pl. 'BKK_9690' -> '969') szótárat épít belőle.
+    Ezt a teljes futás elején EGYSZER hívjuk, nem járművenként/vonalanként -
+    így nincs szükség bizonytalan mezőnév-találgatásra API-hívásokkal."""
+    print("📥 GTFS statikus adat letöltése (vonalszámokhoz)...")
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=15)
+        resp = requests.get(GTFS_STATIKUS_URL, headers=HEADERS, timeout=60)
+        resp.raise_for_status()
+
+        szotar = {}
+        with zipfile.ZipFile(io.BytesIO(resp.content)) as z:
+            with z.open("routes.txt") as f2:
+                szoveg = io.TextIOWrapper(f2, encoding="utf-8-sig")
+                olvaso = csv.DictReader(szoveg)
+                for sor in olvaso:
+                    route_id = (sor.get("route_id") or "").strip()
+                    rovid_nev = (sor.get("route_short_name") or "").strip()
+                    if route_id and rovid_nev:
+                        szotar[route_id] = rovid_nev
+
+        print(f"  ✅ {len(szotar)} vonal betöltve a GTFS-ből.")
+        return szotar
     except Exception as e:
-        if diagnosztika_kell:
-            print(f"      ⚠️  [route {route_id}] KAPCSOLÓDÁSI hiba: {type(e).__name__}: {e}")
-        _VONAL_GYORSITOTAR[route_id] = None
-        return None
-
-    if diagnosztika_kell:
-        print(f"      ℹ️  [route {route_id}] HTTP {resp.status_code} | hossz: {len(resp.content)} byte | "
-              f"eleje: {resp.content[:300]!r}")
-        _VONAL_DIAGNOSZTIKA_SZAMLALO["ertek"] += 1
-
-    vonalszam = None
-    if resp.status_code == 200 and resp.content.strip():
-        try:
-            adat = resp.json()
-            entry = adat.get("data", {}).get("entry", {})
-            # Több lehetséges mezőnevet is megpróbálunk - az élő tesztelés
-            # dönti majd el, melyik a helyes (lásd a fenti diagnosztikai sort).
-            for kulcs in ("shortName", "routeShortName", "shortTitle", "designation"):
-                if entry.get(kulcs):
-                    vonalszam = entry[kulcs]
-                    break
-        except Exception as e:
-            if diagnosztika_kell:
-                print(f"      ⚠️  [route {route_id}] JSON-értelmezési hiba: {type(e).__name__}: {e}")
-
-    _VONAL_GYORSITOTAR[route_id] = vonalszam
-    return vonalszam
+        print(f"  ⚠️  Nem sikerült betölteni a GTFS-adatot: {type(e).__name__}: {e}")
+        return {}
 
 
 _DIAGNOSZTIKA_SZAMLALO = {"ertek": 0}
@@ -260,6 +242,8 @@ def jarmu_adatok_kinyerese(trip_adat):
     if not vehicle:
         return None
 
+    stilus_ikon = vehicle.get("style", {}).get("icon", {})
+
     return {
         "kijelzo_szoveg": vehicle.get("label"),
         "rendszam": vehicle.get("licensePlate"),
@@ -273,6 +257,9 @@ def jarmu_adatok_kinyerese(trip_adat):
         "megallo_sorszam": vehicle.get("stopSequence"),
         "iranyszog": vehicle.get("bearing"),
         "utolso_frissites": vehicle.get("lastUpdateTime"),
+        "hatterszin": stilus_ikon.get("color"),            # hivatalos BKK-szín (hex, pl. "1E1E1E")
+        "hatterszin_masodlagos": stilus_ikon.get("secondaryColor"),
+        "ikon_nev": stilus_ikon.get("name"),                # pl. "night-bus"
     }
 
 
@@ -411,6 +398,11 @@ def main():
     regi = betolt_allapot()
     elso_futas = not os.path.exists(ALLAPOT_FAJL)
 
+    vonalszam_szotar = vonalszamok_betoltese_gtfs_bol()
+    if vonalszam_szotar:
+        minta_kulcsok = list(vonalszam_szotar.keys())[:5]
+        print(f"  ℹ️  Minta kulcsok a GTFS-szótárból: {minta_kulcsok}")
+
     jarmuvek = aktiv_jarmuvek_lekerdezese()
     if not jarmuvek:
         print("⚠️  Nincs lekérdezhető jármű-adat, kilépés.")
@@ -428,7 +420,11 @@ def main():
         trip_adat = trip_reszletek_lekerdezese(trip_id)
         time.sleep(0.03)  # minimális, csak hogy ne egyszerre záporozzon a kérés
 
-        vonal_szam = vonalszam_lekerdezese(jarmu["route_id"])
+        vonal_szam = (
+            vonalszam_szotar.get(jarmu["route_id"])
+            or vonalszam_szotar.get(f"BKK_{jarmu['route_id']}")
+            or vonalszam_szotar.get(jarmu["route_id"].replace("BKK_", "", 1))
+        )
 
         adatok = jarmu_adatok_kinyerese(trip_adat)
 
@@ -467,6 +463,9 @@ def main():
                 "megallo_sorszam": None,
                 "iranyszog": None,
                 "utolso_frissites": None,
+                "hatterszin": None,
+                "hatterszin_masodlagos": None,
+                "ikon_nev": None,
             })
             continue
 
