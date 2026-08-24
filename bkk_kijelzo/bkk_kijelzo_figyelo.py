@@ -385,12 +385,39 @@ def main():
             print(f"  🔍 ISMERETLEN MEZŐSZERKEZET (trip {trip_id}):")
             print(f"     {json.dumps(trip_adat, ensure_ascii=False)[:1000]}")
             ismeretlen_mezo_naplo_szamlalo += 1
-            continue
 
-        if not adatok or not adatok["kijelzo_szoveg"]:
+        if adatok is None:
+            # Nincs részletes adat (pl. a trip-nek nincs "vehicle" mezője a
+            # válaszban) - a weboldalra ETTŐL FÜGGETLENÜL bekerül, csak az
+            # alap (VehiclePositions-ból már ismert) adatokkal, kijelző-
+            # szöveg nélkül. E-mail-riasztáshoz értelemszerűen nem jó, mert
+            # nincs mit kulcsszó szerint megvizsgálni.
+            osszes_jarmu_export.append({
+                "vehicle_id": jarmu["vehicle_id"],
+                "vehicle_label": jarmu["vehicle_label"],
+                "route_id": jarmu["route_id"],
+                "lat": jarmu["lat"],
+                "lon": jarmu["lon"],
+                "kategoria": "ismeretlen",
+                "egyezo_kulcsszo": None,
+                "kijelzo_szoveg": None,
+                "rendszam": None,
+                "modell": None,
+                "eszkoz_tipus": None,
+                "statusz": None,
+                "elteres": None,
+                "torlodas": None,
+                "akadalymentes": None,
+                "kovetkezo_megallo_id": None,
+                "megallo_sorszam": None,
+                "iranyszog": None,
+                "utolso_frissites": None,
+            })
             continue
 
         kijelzo_szoveg = adatok["kijelzo_szoveg"]
+        if not kijelzo_szoveg:
+            continue
         egyezo_kulcsszo = rendellenes_e(kijelzo_szoveg)
 
         # A weboldal-exportba MINDEN jármű bekerül, kategóriával együtt
