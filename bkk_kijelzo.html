@@ -4,459 +4,1817 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BKK Kijelző Figyelő</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --bg: #1b1d1f; --bg-card: #232629; --amber: #f2a340; --turquoise: #2dd4bf;
-    --red: #e24444; --text: #eef0f2; --text-muted: #9aa0a6; --border: #34383c;
+    --bg: #1b1d1f;
+    --bg-card: #232629;
+    --amber: #f2a340;
+    --turquoise: #2dd4bf;
+    --red: #e24444;
+    --text: #eef0f2;
+    --text-muted: #9aa0a6;
+    --border: #34383c;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.5; }
 
-  .hazard-stripe { height: 6px; background: repeating-linear-gradient(-45deg, var(--amber), var(--amber) 14px, #1b1d1f 14px, #1b1d1f 28px); }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-  header { max-width: 800px; margin: 0 auto; padding: 40px 24px 20px; }
-  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
-  h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 38px); text-transform: uppercase; }
-  h1 span { color: var(--turquoise); }
-  header p.lead { color: var(--text-muted); font-size: 14px; margin-top: 10px; }
-  .frissitve { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
 
-  main { max-width: 800px; margin: 0 auto; padding: 0 24px 64px; }
+  .hazard-stripe {
+    height: 6px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--amber),
+      var(--amber) 14px,
+      #1b1d1f 14px,
+      #1b1d1f 28px
+    );
+  }
 
-  .szuro-sor { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  header {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 20px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(26px, 4vw, 38px);
+    text-transform: uppercase;
+  }
+
+  h1 span {
+    color: var(--turquoise);
+  }
+
+  header p.lead {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .frissitve {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 14px;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+  }
+
+  .szuro-sor {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
   .szuro-btn {
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 100px;
-    border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 7px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    cursor: pointer;
   }
-  .szuro-btn.aktiv { border-color: var(--amber); color: var(--amber); }
+
+  .szuro-btn.aktiv {
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+
   .kereso {
-    width: 100%; padding: 10px 14px; margin-bottom: 16px; border-radius: 8px;
-    border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-size: 14px;
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    font-size: 14px;
   }
 
   .jarmu-item {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
-    padding: 14px 16px; margin-bottom: 8px; cursor: pointer; border-left: 4px solid var(--border);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-left: 4px solid var(--border);
   }
-  .jarmu-item.rendellenes { border-left-color: var(--red); }
-  .jarmu-fejlec { display: flex; justify-content: space-between; align-items: center; }
-  .jarmu-jarat { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; }
-  .jarmu-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 100px; background: rgba(154,160,166,0.15); color: var(--text-muted); }
-  .jarmu-item.rendellenes .jarmu-badge { background: rgba(226,68,68,0.15); color: var(--red); }
-  .jarmu-kijelzo { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
-  .jarmu-linkek { display: none; margin-top: 10px; gap: 8px; }
-  .jarmu-item.nyitva .jarmu-linkek { display: flex; }
-  .jarmu-linkek a { font-size: 12px; color: var(--turquoise); text-decoration: none; }
-  .jarmu-linkek a:hover { text-decoration: underline; }
+
+  .jarmu-item.rendellenes {
+    border-left-color: var(--red);
+  }
+
+  .jarmu-fejlec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .jarmu-jarat {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .jarmu-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: rgba(154,160,166,0.15);
+    color: var(--text-muted);
+  }
+
+  .jarmu-item.rendellenes .jarmu-badge {
+    background: rgba(226,68,68,0.15);
+    color: var(--red);
+  }
+
+  .jarmu-kijelzo {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .jarmu-linkek {
+    display: none;
+    margin-top: 10px;
+    gap: 8px;
+  }
+
+  .jarmu-item.nyitva .jarmu-linkek {
+    display: flex;
+  }
+
+  .jarmu-linkek a {
+    font-size: 12px;
+    color: var(--turquoise);
+    text-decoration: none;
+  }
+
+  .jarmu-linkek a:hover {
+    text-decoration: underline;
+  }
 
   .nezet-valto {
-    display: flex; gap: 0; margin-bottom: 16px; border: 1px solid var(--border);
-    border-radius: 8px; overflow: hidden; width: fit-content;
+    display: flex;
+    gap: 0;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
   }
+
   .nezet-btn {
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 9px 16px;
-    border: none; background: var(--bg-card); color: var(--text-muted); cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 9px 16px;
+    border: none;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    cursor: pointer;
   }
-  .nezet-btn.aktiv { background: var(--amber); color: #1b1d1f; font-weight: 700; }
+
+  .nezet-btn.aktiv {
+    background: var(--amber);
+    color: #1b1d1f;
+    font-weight: 700;
+  }
 
   .viszonylat-item {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
-    margin-bottom: 8px; overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
   }
-  .viszonylat-fejlec {
-    padding: 14px 16px; cursor: pointer; display: flex; justify-content: space-between;
-    align-items: center; gap: 10px;
-  }
-  .viszonylat-cim { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 16px; }
-  .viszonylat-info { display: flex; align-items: center; gap: 8px; }
-  .viszonylat-darab { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); }
-  .viszonylat-nyil { color: var(--text-muted); transition: transform 0.15s; font-size: 12px; }
-  .viszonylat-item.nyitva .viszonylat-nyil { transform: rotate(90deg); }
-  .viszonylat-buszok { display: none; border-top: 1px solid var(--border); }
-  .viszonylat-item.nyitva .viszonylat-buszok { display: block; }
-  .viszonylat-busz-sor {
-    padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 13px;
-    display: flex; justify-content: space-between; align-items: center; gap: 10px;
-  }
-  .viszonylat-busz-sor:last-child { border-bottom: none; }
-  .viszonylat-busz-bal { color: var(--text-muted); }
-  .viszonylat-busz-bal strong { color: var(--text); }
-  .viszonylat-busz-link { font-size: 12px; color: var(--turquoise); text-decoration: none; white-space: nowrap; }
 
-  .ures-allapot { text-align: center; padding: 60px 20px; color: var(--text-muted); }
-  footer { text-align: center; padding: 10px 24px 40px; color: var(--text-muted); font-size: 12px; }
+  .viszonylat-fejlec {
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .viszonylat-cim {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .viszonylat-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .viszonylat-darab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .viszonylat-nyil {
+    color: var(--text-muted);
+    transition: transform 0.15s;
+    font-size: 12px;
+  }
+
+  .viszonylat-item.nyitva .viszonylat-nyil {
+    transform: rotate(90deg);
+  }
+
+  .viszonylat-buszok {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .viszonylat-item.nyitva .viszonylat-buszok {
+    display: block;
+  }
+
+  .viszonylat-busz-sor {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .viszonylat-busz-sor:last-child {
+    border-bottom: none;
+  }
+
+  .viszonylat-busz-bal {
+    color: var(--text-muted);
+  }
+
+  .viszonylat-busz-bal strong {
+    color: var(--text);
+  }
+
+  .viszonylat-busz-link {
+    font-size: 12px;
+    color: var(--turquoise);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .ures-allapot {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+
+  footer {
+    text-align: center;
+    padding: 10px 24px 40px;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+
+  /* ==========================================================
+     BELÉPÉSI ABLAK
+     ========================================================== */
 
   .kapu-overlay {
-    position: fixed; inset: 0; background: var(--bg); z-index: 2000;
-    display: flex; align-items: center; justify-content: center; padding: 24px;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
   }
-  .kapu-doboz { max-width: 340px; width: 100%; text-align: center; }
-  .kapu-doboz h2 { font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 20px; margin-bottom: 16px; }
-  .kapu-doboz input {
-    width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border);
-    background: var(--bg-card); color: var(--text); font-size: 15px; margin-bottom: 10px; text-align: center;
+
+  .kapu-doboz {
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
   }
-  .kapu-jelszo-sor { position: relative; }
-  .kapu-jelszo-sor input { padding-right: 44px; }
+
+  .kapu-doboz h2 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  /* Jelszómező */
+  .kapu-jelszo-sor {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .kapu-jelszo-sor input {
+    display: block;
+    width: 100%;
+
+    padding: 12px 46px 12px 14px;
+
+    border-radius: 8px;
+    border: 1px solid var(--border);
+
+    background: var(--bg-card);
+    color: var(--text);
+
+    font-size: 15px;
+    text-align: center;
+
+    margin: 0;
+    outline: none;
+  }
+
+  .kapu-jelszo-sor input:focus {
+    border-color: var(--amber);
+  }
+
+  /* ==========================================================
+     SZEM GOMB
+     FONTOS: nem örököl 100%-os szélességet
+     ========================================================== */
+
   .kapu-szem-btn {
-    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-    margin-top: -5px; background: none; border: none; cursor: pointer;
-    font-size: 18px; line-height: 1; padding: 4px; color: var(--text-muted); width: auto;
+    position: absolute;
+
+    right: 7px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 34px !important;
+    min-width: 34px;
+    max-width: 34px;
+
+    height: 34px;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent !important;
+    border: none !important;
+
+    color: var(--text-muted);
+
+    font-size: 18px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow: none;
   }
-  .kapu-doboz button {
-    width: 100%; padding: 12px; border-radius: 8px; border: none;
-    background: var(--amber); color: #1b1d1f; font-weight: 700; font-size: 14px; cursor: pointer;
+
+  .kapu-szem-btn:hover {
+    color: var(--text);
   }
-  .kapu-hiba { color: var(--red); font-size: 13px; margin-top: 8px; min-height: 18px; }
-  .rejtve { display: none !important; }
+
+  .kapu-szem-btn:focus {
+    outline: none;
+  }
+
+  /* ==========================================================
+     BELÉPÉS GOMB
+     ========================================================== */
+
+  #kapuBtn {
+    display: block;
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 8px;
+    border: none;
+
+    background: var(--amber);
+    color: #1b1d1f;
+
+    font-weight: 700;
+    font-size: 14px;
+
+    cursor: pointer;
+  }
+
+  #kapuBtn:hover {
+    filter: brightness(1.05);
+  }
+
+  #kapuBtn:active {
+    transform: translateY(1px);
+  }
+
+  .kapu-hiba {
+    color: var(--red);
+    font-size: 13px;
+    margin-top: 8px;
+    min-height: 18px;
+  }
+
+  .rejtve {
+    display: none !important;
+  }
 </style>
 </head>
+
 <body>
 
+<!-- ==========================================================
+     BELÉPÉS
+     ========================================================== -->
+
 <div class="kapu-overlay" id="kapuOverlay">
+
   <div class="kapu-doboz">
+
     <h2>🔒 Belépés</h2>
+
     <div class="kapu-jelszo-sor">
-      <input type="password" id="kapuJelszo" placeholder="Jelszó" autofocus>
-      <button type="button" class="kapu-szem-btn" id="kapuSzemBtn" aria-label="Jelszó mutatása/elrejtése">👁️</button>
+
+      <input
+        type="password"
+        id="kapuJelszo"
+        placeholder="Jelszó"
+        autocomplete="current-password"
+        autofocus
+      >
+
+      <button
+        type="button"
+        class="kapu-szem-btn"
+        id="kapuSzemBtn"
+        aria-label="Jelszó mutatása/elrejtése"
+        title="Jelszó mutatása/elrejtése"
+      >👁️</button>
+
     </div>
-    <button type="button" id="kapuBtn">Belépés</button>
-    <div class="kapu-hiba" id="kapuHiba"></div>
+
+    <button
+      type="button"
+      id="kapuBtn"
+    >Belépés</button>
+
+    <div
+      class="kapu-hiba"
+      id="kapuHiba"
+    ></div>
+
   </div>
+
 </div>
+
+
+<!-- ==========================================================
+     OLDAL TARTALMA
+     ========================================================== -->
 
 <div id="oldalTartalom" class="rejtve">
 
-<div class="hazard-stripe"></div>
+  <div class="hazard-stripe"></div>
 
-<header>
-  <div class="eyebrow">Élő adat · BKK FUTÁR</div>
-  <h1>Kijelző <span>·</span> Figyelő</h1>
-  <p class="lead">Az összes aktív BKK jármű célállomás-kijelzőjének szövege - kiemelve a rendellenes üzeneteket.</p>
-  <div class="frissitve" id="frissitve">Betöltés...</div>
-</header>
+  <header>
 
-<main>
-  <div class="nezet-valto">
-    <button class="nezet-btn aktiv" data-nezet="busz">🚌 Busz nézet</button>
-    <button class="nezet-btn" data-nezet="vonat">🚆 Vonat nézet</button>
-    <button class="nezet-btn" data-nezet="viszonylat">🔢 Viszonylat nézet</button>
-  </div>
+    <div class="eyebrow">
+      Élő adat · BKK FUTÁR
+    </div>
 
-  <div class="szuro-sor">
-    <button class="szuro-btn aktiv" data-szuro="mind">Mind</button>
-    <button class="szuro-btn" data-szuro="rendellenes">🚨 Rendellenes</button>
-    <button class="szuro-btn" data-szuro="normal">Normál</button>
-    <button class="szuro-btn" data-szuro="ismeretlen">❔ Nincs kijelző-adat</button>
-  </div>
-  <div class="szuro-sor" id="tipusSzurok"></div>
-  <input type="text" class="kereso" id="kereso" placeholder="Keresés járatszámra, rendszámra vagy kijelző-szövegre...">
+    <h1>
+      Kijelző <span>·</span> Figyelő
+    </h1>
 
-  <div id="tartalom">
-    <div class="ures-allapot">⏳ Adatok betöltése...</div>
-  </div>
-</main>
+    <p class="lead">
+      Az összes aktív BKK jármű célállomás-kijelzőjének szövege -
+      kiemelve a rendellenes üzeneteket.
+    </p>
 
-<footer>Adatforrás: BKK FUTÁR API · Automatikusan frissül</footer>
+    <div class="frissitve" id="frissitve">
+      Betöltés...
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <div class="nezet-valto">
+
+      <button
+        class="nezet-btn aktiv"
+        data-nezet="busz"
+      >
+        🚌 Busz nézet
+      </button>
+
+      <button
+        class="nezet-btn"
+        data-nezet="vonat"
+      >
+        🚆 Vonat nézet
+      </button>
+
+      <button
+        class="nezet-btn"
+        data-nezet="viszonylat"
+      >
+        🔢 Viszonylat nézet
+      </button>
+
+    </div>
+
+
+    <div class="szuro-sor">
+
+      <button
+        class="szuro-btn aktiv"
+        data-szuro="mind"
+      >
+        Mind
+      </button>
+
+      <button
+        class="szuro-btn"
+        data-szuro="rendellenes"
+      >
+        🚨 Rendellenes
+      </button>
+
+      <button
+        class="szuro-btn"
+        data-szuro="normal"
+      >
+        Normál
+      </button>
+
+      <button
+        class="szuro-btn"
+        data-szuro="ismeretlen"
+      >
+        ❔ Nincs kijelző-adat
+      </button>
+
+    </div>
+
+
+    <div
+      class="szuro-sor"
+      id="tipusSzurok"
+    ></div>
+
+
+    <input
+      type="text"
+      class="kereso"
+      id="kereso"
+      placeholder="Keresés járatszámra, rendszámra vagy kijelző-szövegre..."
+    >
+
+
+    <div id="tartalom">
+
+      <div class="ures-allapot">
+        ⏳ Adatok betöltése...
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    Adatforrás: BKK FUTÁR API · Automatikusan frissül
+  </footer>
 
 </div>
 
+
 <script>
-  // ⬇️⬇️⬇️ ITT ÍRD ÁT A SAJÁT JELSZAVADRA ⬇️⬇️⬇️
+
+  /* ==========================================================
+     BELÉPÉS BEÁLLÍTÁSAI
+     ========================================================== */
+
   const KAPU_JELSZO = "baleset2026";
-  const KAPU_EMLEKEZET_KULCS = "bkk_kijelzo_belepve";
+
+  const KAPU_EMLEKEZET_KULCS =
+    "bkk_kijelzo_belepve";
+
   const KAPU_EMLEKEZET_NAPOK = 1;
 
+
+  /* ==========================================================
+     BELÉPÉS ELLENŐRZÉSE
+     ========================================================== */
+
   function kapuEllenorzes() {
+
     try {
-      const mentett = localStorage.getItem(KAPU_EMLEKEZET_KULCS);
-      if (mentett && Number(mentett) > Date.now()) {
+
+      const mentett =
+        localStorage.getItem(KAPU_EMLEKEZET_KULCS);
+
+      if (
+        mentett &&
+        Number(mentett) > Date.now()
+      ) {
+
         kapuMegnyitas();
+
       }
-    } catch (e) { /* localStorage nem elérhető - marad a jelszókérés */ }
+
+    } catch (e) {
+
+      /*
+       * localStorage nem elérhető,
+       * ezért marad a jelszókérés.
+       */
+
+    }
+
   }
+
+
+  /* ==========================================================
+     OLDAL MEGNYITÁSA
+     ========================================================== */
 
   function kapuMegnyitas() {
-    document.getElementById('kapuOverlay').style.display = 'none';
-    document.getElementById('oldalTartalom').classList.remove('rejtve');
+
+    document
+      .getElementById('kapuOverlay')
+      .style.display = 'none';
+
+    document
+      .getElementById('oldalTartalom')
+      .classList
+      .remove('rejtve');
+
   }
 
-  document.getElementById('kapuBtn').addEventListener('click', probalkozas);
-  document.getElementById('kapuJelszo').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') probalkozas();
-  });
 
-  document.getElementById('kapuSzemBtn').addEventListener('click', () => {
-    const mezo = document.getElementById('kapuJelszo');
-    const gomb = document.getElementById('kapuSzemBtn');
-    if (mezo.type === 'password') {
-      mezo.type = 'text';
-      gomb.textContent = '🙈';
-    } else {
-      mezo.type = 'password';
-      gomb.textContent = '👁️';
-    }
-  });
+  /* ==========================================================
+     BELÉPÉS GOMB
+     ========================================================== */
+
+  document
+    .getElementById('kapuBtn')
+    .addEventListener('click', probalkozas);
+
+
+  /* ENTER A JELSZÓMEZŐBEN */
+
+  document
+    .getElementById('kapuJelszo')
+    .addEventListener('keydown', (e) => {
+
+      if (e.key === 'Enter') {
+        probalkozas();
+      }
+
+    });
+
+
+  /* ==========================================================
+     JELSZÓ MUTATÁSA / ELREJTÉSE
+     ========================================================== */
+
+  document
+    .getElementById('kapuSzemBtn')
+    .addEventListener('click', () => {
+
+      const mezo =
+        document.getElementById('kapuJelszo');
+
+      const gomb =
+        document.getElementById('kapuSzemBtn');
+
+
+      if (mezo.type === 'password') {
+
+        mezo.type = 'text';
+
+        gomb.textContent = '🙈';
+
+      } else {
+
+        mezo.type = 'password';
+
+        gomb.textContent = '👁️';
+
+      }
+
+      /*
+       * A fókusz maradjon a jelszómezőn.
+       */
+      mezo.focus();
+
+    });
+
+
+  /* ==========================================================
+     JELSZÓ ELLENŐRZÉSE
+     ========================================================== */
 
   function probalkozas() {
-    const beirt = document.getElementById('kapuJelszo').value;
+
+    const mezo =
+      document.getElementById('kapuJelszo');
+
+    const beirt =
+      mezo.value;
+
     if (beirt === KAPU_JELSZO) {
+
       try {
-        const lejarat = Date.now() + KAPU_EMLEKEZET_NAPOK * 24 * 60 * 60 * 1000;
-        localStorage.setItem(KAPU_EMLEKEZET_KULCS, String(lejarat));
-      } catch (e) { /* nem baj, ha nem tudjuk megjegyezni */ }
+
+        const lejarat =
+          Date.now() +
+          KAPU_EMLEKEZET_NAPOK *
+          24 *
+          60 *
+          60 *
+          1000;
+
+        localStorage.setItem(
+          KAPU_EMLEKEZET_KULCS,
+          String(lejarat)
+        );
+
+      } catch (e) {
+
+        /*
+         * Nem probléma, ha nem tudjuk
+         * megjegyezni a belépést.
+         */
+
+      }
+
       kapuMegnyitas();
+
     } else {
-      document.getElementById('kapuHiba').textContent = 'Helytelen jelszó.';
+
+      document
+        .getElementById('kapuHiba')
+        .textContent =
+        'Helytelen jelszó.';
+
+      mezo.select();
+
     }
+
   }
+
+
+  /* ==========================================================
+     BELÉPÉS AUTOMATIKUS ELLENŐRZÉSE
+     ========================================================== */
 
   kapuEllenorzes();
 
-  const ADAT_URL = 'bkk_kijelzo_aktiv.json';
+
+  /* ==========================================================
+     ADATOK
+     ========================================================== */
+
+  const ADAT_URL =
+    'bkk_kijelzo_aktiv.json';
+
   let osszesJarmu = [];
+
   let aktivSzuro = 'mind';
+
   let aktivTipusSzuro = 'mind';
+
   let keresoSzoveg = '';
+
   let aktivNezet = 'busz';
-  const nyitottViszonylatok = new Set();
+
+  const nyitottViszonylatok =
+    new Set();
+
+
+  /* ==========================================================
+     ADATOK BETÖLTÉSE
+     ========================================================== */
 
   async function betoltes() {
-    try {
-      const res = await fetch(ADAT_URL + '?t=' + Date.now());
-      const data = await res.json();
-      osszesJarmu = data.jarmuvek || [];
 
-      const frissitve = new Date(data.frissitve);
-      document.getElementById('frissitve').textContent = 'Frissítve: ' + frissitve.toLocaleString('hu-HU');
+    try {
+
+      const res =
+        await fetch(
+          ADAT_URL + '?t=' + Date.now()
+        );
+
+      const data =
+        await res.json();
+
+      osszesJarmu =
+        data.jarmuvek || [];
+
+
+      const frissitve =
+        new Date(data.frissitve);
+
+      document
+        .getElementById('frissitve')
+        .textContent =
+        'Frissítve: ' +
+        frissitve.toLocaleString('hu-HU');
+
 
       renderJarmuvek();
+
     } catch (err) {
-      document.getElementById('tartalom').innerHTML = '<div class="ures-allapot">⚠️ Nem sikerült betölteni az adatokat.</div>';
+
+      document
+        .getElementById('tartalom')
+        .innerHTML =
+        '<div class="ures-allapot">' +
+        '⚠️ Nem sikerült betölteni az adatokat.' +
+        '</div>';
+
     }
+
   }
+
+
+  /* ==========================================================
+     JÁRMŰVEK MEGJELENÍTÉSE
+     ========================================================== */
 
   function renderJarmuvek() {
-    // Jármű-típus szűrőgombok dinamikus felépítése az adatokból talált típusokból
-    const tipusok = [...new Set(osszesJarmu.map(j => j.eszkoz_tipus).filter(Boolean))].sort();
-    const tipusSzurokDiv = document.getElementById('tipusSzurok');
-    if (tipusSzurokDiv.dataset.epitve !== String(tipusok.length)) {
-      tipusSzurokDiv.innerHTML = ['<button class="szuro-btn aktiv" data-tipus="mind">Minden eszköztípus</button>']
-        .concat(tipusok.map(t => `<button class="szuro-btn" data-tipus="${escapeHtml(t)}">${escapeHtml(t)}</button>`))
+
+    const tipusok =
+      [
+        ...new Set(
+          osszesJarmu
+            .map(j => j.eszkoz_tipus)
+            .filter(Boolean)
+        )
+      ].sort();
+
+
+    const tipusSzurokDiv =
+      document.getElementById(
+        'tipusSzurok'
+      );
+
+
+    if (
+      tipusSzurokDiv.dataset.epitve !==
+      String(tipusok.length)
+    ) {
+
+      tipusSzurokDiv.innerHTML =
+        [
+          '<button class="szuro-btn aktiv" data-tipus="mind">' +
+          'Minden eszköztípus' +
+          '</button>'
+        ]
+        .concat(
+          tipusok.map(
+            t =>
+              `<button class="szuro-btn" data-tipus="${escapeHtml(t)}">${escapeHtml(t)}</button>`
+          )
+        )
         .join('');
-      tipusSzurokDiv.dataset.epitve = String(tipusok.length);
-      tipusSzurokDiv.querySelectorAll('.szuro-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          tipusSzurokDiv.querySelectorAll('.szuro-btn').forEach(b => b.classList.remove('aktiv'));
-          btn.classList.add('aktiv');
-          aktivTipusSzuro = btn.dataset.tipus;
-          renderJarmuvek();
+
+
+      tipusSzurokDiv.dataset.epitve =
+        tipusok.length;
+
+
+      tipusSzurokDiv
+        .querySelectorAll('.szuro-btn')
+        .forEach(btn => {
+
+          btn.addEventListener(
+            'click',
+            () => {
+
+              tipusSzurokDiv
+                .querySelectorAll('.szuro-btn')
+                .forEach(b =>
+                  b.classList.remove('aktiv')
+                );
+
+              btn.classList.add('aktiv');
+
+              aktivTipusSzuro =
+                btn.dataset.tipus;
+
+              renderJarmuvek();
+
+            }
+          );
+
         });
-      });
+
     }
 
-    let szurt = aktivSzuro === 'mind' ? osszesJarmu : osszesJarmu.filter(j => j.kategoria === aktivSzuro);
 
-    if (aktivTipusSzuro !== 'mind') {
-      szurt = szurt.filter(j => j.eszkoz_tipus === aktivTipusSzuro);
+    let szurt =
+      aktivSzuro === 'mind'
+        ? osszesJarmu
+        : osszesJarmu.filter(
+            j => j.kategoria === aktivSzuro
+          );
+
+
+    if (
+      aktivTipusSzuro !== 'mind'
+    ) {
+
+      szurt =
+        szurt.filter(
+          j =>
+            j.eszkoz_tipus ===
+            aktivTipusSzuro
+        );
+
     }
+
 
     if (keresoSzoveg) {
-      const q = keresoSzoveg.toLowerCase();
-      szurt = szurt.filter(j =>
-        (j.route_id || '').toLowerCase().includes(q) ||
-        (j.kijelzo_szoveg || '').toLowerCase().includes(q) ||
-        (j.rendszam || '').toLowerCase().includes(q)
+
+      const q =
+        keresoSzoveg.toLowerCase();
+
+      szurt =
+        szurt.filter(
+          j =>
+            (j.route_id || '')
+              .toLowerCase()
+              .includes(q) ||
+
+            (j.kijelzo_szoveg || '')
+              .toLowerCase()
+              .includes(q) ||
+
+            (j.rendszam || '')
+              .toLowerCase()
+              .includes(q)
+        );
+
+    }
+
+
+    /* Vonat nézet */
+
+    const VONAT_TIPUSOK = [
+      'RAIL',
+      'SUBURBAN_RAILWAY'
+    ];
+
+
+    if (
+      aktivNezet === 'vonat'
+    ) {
+
+      szurt =
+        szurt.filter(
+          j =>
+            VONAT_TIPUSOK.includes(
+              j.eszkoz_tipus
+            )
+        );
+
+    }
+
+
+    szurt.sort(
+      (a, b) =>
+        (a.kategoria === 'rendellenes'
+          ? -1
+          : 1)
+        -
+        (b.kategoria === 'rendellenes'
+          ? -1
+          : 1)
+    );
+
+
+    const tartalom =
+      document.getElementById(
+        'tartalom'
       );
-    }
 
-    // "Vonat nézet"-ben csak a vasúti típusú járművekre szűrünk
-    const VONAT_TIPUSOK = ['RAIL', 'SUBURBAN_RAILWAY'];
-    if (aktivNezet === 'vonat') {
-      szurt = szurt.filter(j => VONAT_TIPUSOK.includes(j.eszkoz_tipus));
-    }
 
-    // Rendellenesek elöl
-    szurt.sort((a, b) => (a.kategoria === 'rendellenes' ? -1 : 1) - (b.kategoria === 'rendellenes' ? -1 : 1));
-
-    const tartalom = document.getElementById('tartalom');
     if (szurt.length === 0) {
-      tartalom.innerHTML = aktivNezet === 'vonat'
-        ? '<div class="ures-allapot">Jelenleg nincs a szűrésnek megfelelő aktív vonat.</div>'
-        : '<div class="ures-allapot">Nincs a szűrésnek megfelelő jármű.</div>';
+
+      tartalom.innerHTML =
+        aktivNezet === 'vonat'
+
+          ? '<div class="ures-allapot">' +
+            'Jelenleg nincs a szűrésnek megfelelő aktív vonat.' +
+            '</div>'
+
+          : '<div class="ures-allapot">' +
+            'Nincs a szűrésnek megfelelő jármű.' +
+            '</div>';
+
       return;
+
     }
 
-    if (aktivNezet === 'viszonylat' || aktivNezet === 'vonat') {
-      renderViszonylatNezet(szurt, tartalom);
+
+    if (
+      aktivNezet === 'viszonylat' ||
+      aktivNezet === 'vonat'
+    ) {
+
+      renderViszonylatNezet(
+        szurt,
+        tartalom
+      );
+
     } else {
-      renderBuszNezet(szurt, tartalom);
+
+      renderBuszNezet(
+        szurt,
+        tartalom
+      );
+
     }
+
   }
 
-  function renderBuszNezet(szurt, tartalom) {
-    tartalom.innerHTML = szurt.map((j, idx) => {
-      const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
-      const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
-      const isRendellenes = j.kategoria === 'rendellenes';
-      const isIsmeretlen = j.kategoria === 'ismeretlen';
 
-      let badge = 'normál';
-      if (isRendellenes) badge = '🚨 ' + escapeHtml(j.egyezo_kulcsszo);
-      else if (isIsmeretlen) badge = '❔ nincs adat';
+  /* ==========================================================
+     BUSZ NÉZET
+     ========================================================== */
 
-      // Színes vonalszám-jelvény a hivatalos BKK-szín alapján, ha ismert
-      const vonalJelveny = j.vonal_szam
-        ? `<span style="background:#${escapeHtml(j.hatterszin || '555')};color:#${escapeHtml(j.hatterszin_masodlagos || 'fff')};
-                        padding:2px 8px;border-radius:5px;font-weight:700;font-size:13px;margin-right:6px;display:inline-block">${escapeHtml(j.vonal_szam)}</span>`
-        : '';
+  function renderBuszNezet(
+    szurt,
+    tartalom
+  ) {
 
-      return `
-        <div class="jarmu-item ${isRendellenes ? 'rendellenes' : ''}" data-idx="${idx}">
-          <div class="jarmu-fejlec">
-            <span class="jarmu-jarat">${vonalJelveny}${escapeHtml(j.rendszam || j.vehicle_label || j.vehicle_id)}</span>
-            <span class="jarmu-badge">${badge}</span>
-          </div>
-          <div class="jarmu-kijelzo">${isIsmeretlen ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.' : escapeHtml(j.kijelzo_szoveg || '—')}</div>
-          <div class="jarmu-linkek">
-            <div style="width:100%;font-size:12px;color:var(--text-muted);margin-bottom:6px">
-              ${j.eszkoz_tipus ? `🚐 Típus: ${escapeHtml(j.eszkoz_tipus)} · ${escapeHtml(j.modell || '—')}<br>` : ''}
-              🆔 Jármű-azonosító: ${escapeHtml(j.vehicle_id)} · Belső vonal-ID: ${escapeHtml(j.route_id || '—')}<br>
-              ${j.statusz ? `📡 Állapot: ${escapeHtml(j.statusz)}${j.akadalymentes === true ? ' · ♿ akadálymentes' : ''}` : ''}
+    tartalom.innerHTML =
+      szurt.map(
+        (j, idx) => {
+
+          const gmaps =
+            (j.lat && j.lon)
+              ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17`
+              : null;
+
+
+          const futarLink =
+            `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
+
+
+          const isRendellenes =
+            j.kategoria === 'rendellenes';
+
+
+          const isIsmeretlen =
+            j.kategoria === 'ismeretlen';
+
+
+          let badge = 'normál';
+
+
+          if (isRendellenes) {
+
+            badge =
+              '🚨 ' +
+              escapeHtml(
+                j.egyezo_kulcsszo
+              );
+
+          } else if (isIsmeretlen) {
+
+            badge =
+              '❔ nincs adat';
+
+          }
+
+
+          const vonalJelveny =
+            j.vonal_szam
+
+              ? `<span style="
+                  background:#${escapeHtml(j.hatterszin || '555')};
+                  color:#${escapeHtml(j.hatterszin_masodlagos || 'fff')};
+                  padding:2px 8px;
+                  border-radius:5px;
+                  font-weight:700;
+                  font-size:13px;
+                  margin-right:6px;
+                  display:inline-block
+                ">${escapeHtml(j.vonal_szam)}</span>`
+
+              : '';
+
+
+          return `
+
+            <div
+              class="jarmu-item ${isRendellenes ? 'rendellenes' : ''}"
+              data-idx="${idx}"
+            >
+
+              <div class="jarmu-fejlec">
+
+                <span class="jarmu-jarat">
+                  ${vonalJelveny}
+                  ${escapeHtml(
+                    j.rendszam ||
+                    j.vehicle_label ||
+                    j.vehicle_id
+                  )}
+                </span>
+
+                <span class="jarmu-badge">
+                  ${badge}
+                </span>
+
+              </div>
+
+
+              <div class="jarmu-kijelzo">
+
+                ${
+                  isIsmeretlen
+                    ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.'
+                    : escapeHtml(
+                        j.kijelzo_szoveg || '—'
+                      )
+                }
+
+              </div>
+
+
+              <div class="jarmu-linkek">
+
+                <div style="
+                  width:100%;
+                  font-size:12px;
+                  color:var(--text-muted);
+                  margin-bottom:6px
+                ">
+
+                  ${
+                    j.eszkoz_tipus
+                      ? `🚐 Típus:
+                         ${escapeHtml(j.eszkoz_tipus)}
+                         ·
+                         ${escapeHtml(j.modell || '—')}
+                         <br>`
+                      : ''
+                  }
+
+                  🆔 Jármű-azonosító:
+                  ${escapeHtml(j.vehicle_id)}
+
+                  ·
+
+                  Belső vonal-ID:
+                  ${escapeHtml(j.route_id || '—')}
+
+                  <br>
+
+                  ${
+                    j.statusz
+                      ? `📡 Állapot:
+                         ${escapeHtml(j.statusz)}
+                         ${
+                           j.akadalymentes === true
+                             ? ' · ♿ akadálymentes'
+                             : ''
+                         }`
+                      : ''
+                  }
+
+                </div>
+
+
+                ${
+                  gmaps
+                    ? `<a href="${gmaps}" target="_blank">
+                         📍 Google Maps
+                       </a>`
+                    : ''
+                }
+
+
+                <a
+                  href="${futarLink}"
+                  target="_blank"
+                >
+                  🚋 FUTÁR
+                </a>
+
+              </div>
+
             </div>
-            ${gmaps ? `<a href="${gmaps}" target="_blank">📍 Google Maps</a>` : ''}
-            <a href="${futarLink}" target="_blank">🚋 FUTÁR</a>
-          </div>
-        </div>`;
-    }).join('');
 
-    document.querySelectorAll('.jarmu-item').forEach(el => {
-      el.addEventListener('click', () => el.classList.toggle('nyitva'));
-    });
-  }
+          `;
 
-  function renderViszonylatNezet(szurt, tartalom) {
-    // Csoportosítás VONALSZÁM szerint (nem a belső route_id szerint) -
-    // ha nincs megerősített vonalszám, a belső route_id-t használjuk
-    // tartalék kulcsként, de EGYÉRTELMŰEN megjelölve, hogy ez nem
-    // megerősített, hivatalos vonalszám.
-    const csoportok = new Map();
-    const csoportVanVonalszam = new Map();
-    szurt.forEach(j => {
-      const vanVonalszam = Boolean(j.vonal_szam);
-      const kulcs = j.vonal_szam || j.route_id || '(ismeretlen vonal)';
-      if (!csoportok.has(kulcs)) {
-        csoportok.set(kulcs, []);
-        csoportVanVonalszam.set(kulcs, vanVonalszam);
-      }
-      csoportok.get(kulcs).push(j);
-    });
+        }
+      ).join('');
 
-    // Rendezés: amelyik csoportban van rendellenes busz, az elöl legyen
-    const rendezettKulcsok = [...csoportok.keys()].sort((a, b) => {
-      const aVan = csoportok.get(a).some(j => j.kategoria === 'rendellenes');
-      const bVan = csoportok.get(b).some(j => j.kategoria === 'rendellenes');
-      if (aVan !== bVan) return aVan ? -1 : 1;
-      return a.localeCompare(b, 'hu', {numeric: true});
-    });
 
-    tartalom.innerHTML = rendezettKulcsok.map(kulcs => {
-      const buszok = csoportok.get(kulcs);
-      const vanVonalszam = csoportVanVonalszam.get(kulcs);
-      const vanRendellenes = buszok.some(j => j.kategoria === 'rendellenes');
-      const nyitva = nyitottViszonylatok.has(kulcs);
-      const tipus = buszok.find(j => j.eszkoz_tipus)?.eszkoz_tipus || '';
-      const belsoAzonositok = [...new Set(buszok.map(j => j.route_id).filter(Boolean))].join(', ');
+    document
+      .querySelectorAll('.jarmu-item')
+      .forEach(el => {
 
-      const buszSorok = buszok.map(j => {
-        const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
-        const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
-        const isRendellenes = j.kategoria === 'rendellenes';
-        const isIsmeretlen = j.kategoria === 'ismeretlen';
-        let cimke = isRendellenes ? `🚨 ${escapeHtml(j.egyezo_kulcsszo)}` : (isIsmeretlen ? '❔ nincs adat' : escapeHtml(j.kijelzo_szoveg || '—'));
+        el.addEventListener(
+          'click',
+          () =>
+            el.classList.toggle(
+              'nyitva'
+            )
+        );
 
-        return `
-          <div class="viszonylat-busz-sor">
-            <div class="viszonylat-busz-bal">
-              <strong>${escapeHtml(j.rendszam || j.vehicle_label || j.vehicle_id)}</strong> — ${cimke}
-            </div>
-            <span>
-              ${gmaps ? `<a class="viszonylat-busz-link" href="${gmaps}" target="_blank">📍</a> ` : ''}
-              <a class="viszonylat-busz-link" href="${futarLink}" target="_blank">🚋</a>
-            </span>
-          </div>`;
-      }).join('');
-
-      // Ha VAN megerősített vonalszám: színes jelvény (vagy szín nélküli, ha
-      // nincs színadat) + "vonal". Ha NINCS: "Belső azonosító: X".
-      const szinesJelvenyMinta = buszok.find(j => j.hatterszin);
-      const jelvenyHtml = vanVonalszam
-        ? `<span style="background:${szinesJelvenyMinta ? '#' + escapeHtml(szinesJelvenyMinta.hatterszin) : 'var(--border)'};
-                        color:${szinesJelvenyMinta ? '#' + escapeHtml(szinesJelvenyMinta.hatterszin_masodlagos || 'fff') : 'var(--text)'};
-                        padding:2px 8px;border-radius:5px;font-weight:700;font-size:14px;margin-right:8px;display:inline-block">${escapeHtml(kulcs)}</span>`
-        : '';
-      const cimSzoveg = vanVonalszam
-        ? `${jelvenyHtml}vonal`
-        : `Belső azonosító: ${escapeHtml(kulcs)}`;
-
-      return `
-        <div class="viszonylat-item ${nyitva ? 'nyitva' : ''}" data-kulcs="${escapeHtml(kulcs)}">
-          <div class="viszonylat-fejlec">
-            <span class="viszonylat-cim">${cimSzoveg}${tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(tipus)}</span>` : ''}${(vanVonalszam && belsoAzonositok) ? ` <span style="color:var(--text-muted);font-weight:400;font-size:11px">(${escapeHtml(belsoAzonositok)})</span>` : ''}${vanRendellenes ? ' 🚨' : ''}</span>
-            <span class="viszonylat-info">
-              <span class="viszonylat-darab">${buszok.length} busz</span>
-              <span class="viszonylat-nyil">▶</span>
-            </span>
-          </div>
-          <div class="viszonylat-buszok">${buszSorok}</div>
-        </div>`;
-    }).join('');
-
-    document.querySelectorAll('.viszonylat-fejlec').forEach(el => {
-      el.addEventListener('click', () => {
-        const szulo = el.closest('.viszonylat-item');
-        const kulcs = szulo.dataset.kulcs;
-        szulo.classList.toggle('nyitva');
-        if (szulo.classList.contains('nyitva')) nyitottViszonylatok.add(kulcs);
-        else nyitottViszonylatok.delete(kulcs);
       });
-    });
+
   }
+
+
+  /* ==========================================================
+     VISZONYLAT / VONAT NÉZET
+     ========================================================== */
+
+  function renderViszonylatNezet(
+    szurt,
+    tartalom
+  ) {
+
+    const csoportok =
+      new Map();
+
+    const csoportVanVonalszam =
+      new Map();
+
+
+    szurt.forEach(j => {
+
+      const vanVonalszam =
+        Boolean(j.vonal_szam);
+
+      const kulcs =
+        j.vonal_szam ||
+        j.route_id ||
+        '(ismeretlen vonal)';
+
+
+      if (!csoportok.has(kulcs)) {
+
+        csoportok.set(
+          kulcs,
+          []
+        );
+
+        csoportVanVonalszam.set(
+          kulcs,
+          vanVonalszam
+        );
+
+      }
+
+
+      csoportok
+        .get(kulcs)
+        .push(j);
+
+    });
+
+
+    const rendezettKulcsok =
+      [...csoportok.keys()]
+        .sort((a, b) => {
+
+          const aVan =
+            csoportok
+              .get(a)
+              .some(
+                j =>
+                  j.kategoria ===
+                  'rendellenes'
+              );
+
+
+          const bVan =
+            csoportok
+              .get(b)
+              .some(
+                j =>
+                  j.kategoria ===
+                  'rendellenes'
+              );
+
+
+          if (aVan !== bVan) {
+
+            return aVan
+              ? -1
+              : 1;
+
+          }
+
+
+          return a.localeCompare(
+            b,
+            'hu',
+            {
+              numeric: true
+            }
+          );
+
+        });
+
+
+    tartalom.innerHTML =
+      rendezettKulcsok
+        .map(
+          kulcs => {
+
+            const buszok =
+              csoportok.get(kulcs);
+
+
+            const vanVonalszam =
+              csoportVanVonalszam
+                .get(kulcs);
+
+
+            const vanRendellenes =
+              buszok.some(
+                j =>
+                  j.kategoria ===
+                  'rendellenes'
+              );
+
+
+            const nyitva =
+              nyitottViszonylatok
+                .has(kulcs);
+
+
+            const tipus =
+              buszok.find(
+                j => j.eszkoz_tipus
+              )?.eszkoz_tipus || '';
+
+
+            const belsoAzonositok =
+              [
+                ...new Set(
+                  buszok
+                    .map(j => j.route_id)
+                    .filter(Boolean)
+                )
+              ].join(', ');
+
+
+            const buszSorok =
+              buszok
+                .map(j => {
+
+                  const gmaps =
+                    (j.lat && j.lon)
+                      ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17`
+                      : null;
+
+
+                  const futarLink =
+                    `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
+
+
+                  const isRendellenes =
+                    j.kategoria ===
+                    'rendellenes';
+
+
+                  const isIsmeretlen =
+                    j.kategoria ===
+                    'ismeretlen';
+
+
+                  let cimke =
+                    isRendellenes
+                      ? `🚨 ${escapeHtml(j.egyezo_kulcsszo)}`
+                      : (
+                          isIsmeretlen
+                            ? '❔ nincs adat'
+                            : escapeHtml(
+                                j.kijelzo_szoveg ||
+                                '—'
+                              )
+                        );
+
+
+                  return `
+
+                    <div class="viszonylat-busz-sor">
+
+                      <div class="viszonylat-busz-bal">
+
+                        <strong>
+                          ${escapeHtml(
+                            j.rendszam ||
+                            j.vehicle_label ||
+                            j.vehicle_id
+                          )}
+                        </strong>
+
+                        —
+                        ${cimke}
+
+                      </div>
+
+
+                      <span>
+
+                        ${
+                          gmaps
+                            ? `<a
+                                class="viszonylat-busz-link"
+                                href="${gmaps}"
+                                target="_blank"
+                              >📍</a>`
+                            : ''
+                        }
+
+                        <a
+                          class="viszonylat-busz-link"
+                          href="${futarLink}"
+                          target="_blank"
+                        >
+                          🚋
+                        </a>
+
+                      </span>
+
+                    </div>
+
+                  `;
+
+                })
+                .join('');
+
+
+            const szinesJelvenyMinta =
+              buszok.find(
+                j => j.hatterszin
+              );
+
+
+            const jelvenyHtml =
+              vanVonalszam
+
+                ? `<span style="
+                    background:${
+                      szinesJelvenyMinta
+                        ? '#' +
+                          escapeHtml(
+                            szinesJelvenyMinta.hatterszin
+                          )
+                        : 'var(--border)'
+                    };
+
+                    color:${
+                      szinesJelvenyMinta
+                        ? '#' +
+                          escapeHtml(
+                            szinesJelvenyMinta.hatterszin_masodlagos ||
+                            'fff'
+                          )
+                        : 'var(--text)'
+                    };
+
+                    padding:2px 8px;
+                    border-radius:5px;
+                    font-weight:700;
+                    font-size:14px;
+                    margin-right:8px;
+                    display:inline-block
+                  ">
+                    ${escapeHtml(kulcs)}
+                  </span>`
+
+                : '';
+
+
+            const cimSzoveg =
+              vanVonalszam
+
+                ? `${jelvenyHtml}vonal`
+
+                : `Belső azonosító:
+                   ${escapeHtml(kulcs)}`;
+
+
+            return `
+
+              <div
+                class="viszonylat-item ${nyitva ? 'nyitva' : ''}"
+                data-kulcs="${escapeHtml(kulcs)}"
+              >
+
+                <div class="viszonylat-fejlec">
+
+                  <span class="viszonylat-cim">
+
+                    ${cimSzoveg}
+
+                    ${
+                      tipus
+                        ? `
+
+                          <span style="
+                            color:var(--text-muted);
+                            font-weight:400
+                          ">
+                            · ${escapeHtml(tipus)}
+                          </span>
+
+                        `
+                        : ''
+                    }
+
+                    ${
+                      vanVonalszam &&
+                      belsoAzonositok
+
+                        ? `
+
+                          <span style="
+                            color:var(--text-muted);
+                            font-weight:400;
+                            font-size:11px
+                          ">
+                            (${escapeHtml(
+                              belsoAzonositok
+                            )})
+                          </span>
+
+                        `
+
+                        : ''
+                    }
+
+                    ${
+                      vanRendellenes
+                        ? ' 🚨'
+                        : ''
+                    }
+
+                  </span>
+
+
+                  <span class="viszonylat-info">
+
+                    <span class="viszonylat-darab">
+                      ${buszok.length} busz
+                    </span>
+
+                    <span class="viszonylat-nyil">
+                      ▶
+                    </span>
+
+                  </span>
+
+                </div>
+
+
+                <div class="viszonylat-buszok">
+                  ${buszSorok}
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join('');
+
+
+    document
+      .querySelectorAll(
+        '.viszonylat-fejlec'
+      )
+      .forEach(el => {
+
+        el.addEventListener(
+          'click',
+          () => {
+
+            const szulo =
+              el.closest(
+                '.viszonylat-item'
+              );
+
+
+            const kulcs =
+              szulo.dataset.kulcs;
+
+
+            szulo.classList.toggle(
+              'nyitva'
+            );
+
+
+            if (
+              szulo.classList.contains(
+                'nyitva'
+              )
+            ) {
+
+              nyitottViszonylatok.add(
+                kulcs
+              );
+
+            } else {
+
+              nyitottViszonylatok.delete(
+                kulcs
+              );
+
+            }
+
+          }
+        );
+
+      });
+
+  }
+
+
+  /* ==========================================================
+     HTML ESCAPE
+     ========================================================== */
 
   function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str ?? '';
+
+    const div =
+      document.createElement('div');
+
+    div.textContent =
+      str ?? '';
+
     return div.innerHTML;
+
   }
 
-  document.querySelectorAll('.nezet-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.nezet-btn').forEach(b => b.classList.remove('aktiv'));
-      btn.classList.add('aktiv');
-      aktivNezet = btn.dataset.nezet;
-      renderJarmuvek();
-    });
-  });
 
-  document.querySelectorAll('.szuro-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.szuro-btn').forEach(b => b.classList.remove('aktiv'));
-      btn.classList.add('aktiv');
-      aktivSzuro = btn.dataset.szuro;
-      renderJarmuvek();
-    });
-  });
+  /* ==========================================================
+     NÉZETVÁLTÓ GOMBOK
+     ========================================================== */
 
-  document.getElementById('kereso').addEventListener('input', (e) => {
-    keresoSzoveg = e.target.value;
-    renderJarmuvek();
-  });
+  document
+    .querySelectorAll('.nezet-btn')
+    .forEach(btn => {
+
+      btn.addEventListener(
+        'click',
+        () => {
+
+          document
+            .querySelectorAll('.nezet-btn')
+            .forEach(
+              b =>
+                b.classList.remove(
+                  'aktiv'
+                )
+            );
+
+
+          btn.classList.add(
+            'aktiv'
+          );
+
+
+          aktivNezet =
+            btn.dataset.nezet;
+
+
+          renderJarmuvek();
+
+        }
+      );
+
+    });
+
+
+  /* ==========================================================
+     SZŰRŐ GOMBOK
+     ========================================================== */
+
+  document
+    .querySelectorAll('.szuro-btn')
+    .forEach(btn => {
+
+      btn.addEventListener(
+        'click',
+        () => {
+
+          document
+            .querySelectorAll('.szuro-btn')
+            .forEach(
+              b =>
+                b.classList.remove(
+                  'aktiv'
+                )
+            );
+
+
+          btn.classList.add(
+            'aktiv'
+          );
+
+
+          aktivSzuro =
+            btn.dataset.szuro;
+
+
+          renderJarmuvek();
+
+        }
+      );
+
+    });
+
+
+  /* ==========================================================
+     KERESÉS
+     ========================================================== */
+
+  document
+    .getElementById('kereso')
+    .addEventListener(
+      'input',
+      (e) => {
+
+        keresoSzoveg =
+          e.target.value;
+
+        renderJarmuvek();
+
+      }
+    );
+
+
+  /* ==========================================================
+     INDÍTÁS
+     ========================================================== */
 
   betoltes();
-  setInterval(betoltes, 60000);
+
+  setInterval(
+    betoltes,
+    60000
+  );
+
 </script>
 
 </body>
