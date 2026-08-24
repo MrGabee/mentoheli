@@ -302,7 +302,7 @@
   function renderBuszNezet(szurt, tartalom) {
     tartalom.innerHTML = szurt.map((j, idx) => {
       const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
-      const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
+      const futarLink = j.trip_id ? `https://futar.bkk.hu/trip/${encodeURIComponent(j.trip_id)}/${maiDatumEvHoNap()}` : `https://futar.bkk.hu/`;
       const isRendellenes = j.kategoria === 'rendellenes';
       const isIsmeretlen = j.kategoria === 'ismeretlen';
 
@@ -375,7 +375,7 @@
 
       const buszSorok = buszok.map(j => {
         const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
-        const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
+        const futarLink = j.trip_id ? `https://futar.bkk.hu/trip/${encodeURIComponent(j.trip_id)}/${maiDatumEvHoNap()}` : `https://futar.bkk.hu/`;
         const isRendellenes = j.kategoria === 'rendellenes';
         const isIsmeretlen = j.kategoria === 'ismeretlen';
         let cimke = isRendellenes ? `🚨 ${escapeHtml(j.egyezo_kulcsszo)}` : (isIsmeretlen ? '❔ nincs adat' : escapeHtml(j.kijelzo_szoveg || '—'));
@@ -409,7 +409,7 @@
           <div class="viszonylat-fejlec">
             <span class="viszonylat-cim">${cimSzoveg}${tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(tipus)}</span>` : ''}${(vanVonalszam && belsoAzonositok) ? ` <span style="color:var(--text-muted);font-weight:400;font-size:11px">(${escapeHtml(belsoAzonositok)})</span>` : ''}${vanRendellenes ? ' 🚨' : ''}</span>
             <span class="viszonylat-info">
-              <span class="viszonylat-darab">${buszok.length} busz</span>
+              <span class="viszonylat-darab">${buszok.length} jármű</span>
               <span class="viszonylat-nyil">▶</span>
             </span>
           </div>
@@ -426,6 +426,12 @@
         else nyitottViszonylatok.delete(kulcs);
       });
     });
+  }
+
+  function maiDatumEvHoNap() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}`;
   }
 
   function escapeHtml(str) {
