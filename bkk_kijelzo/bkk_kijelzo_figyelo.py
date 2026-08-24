@@ -180,6 +180,21 @@ def vonalszamok_betoltese_volan_csv_bol():
 
 MAV_VONALSZAM_CSV = "mav_belso_kulso_vonalszamok.csv"
 
+# Hivatalos HÉV-vonalszínek - manuálisan felülbírálják az API-tól kapott
+# (gyakran hiányzó vagy pontatlan) színt, mert ezek jól ismert, fix színek.
+HEV_HIVATALOS_SZINEK = {
+    "H5": {"hatterszin": "2E8B57", "hatterszin_masodlagos": "FFFFFF"},  # zöld (Szentendrei HÉV)
+    "H6": {"hatterszin": "8E44AD", "hatterszin_masodlagos": "FFFFFF"},  # lila (Ráckevei HÉV)
+    "H7": {"hatterszin": "E67E22", "hatterszin_masodlagos": "FFFFFF"},  # narancs (Csepeli HÉV)
+    "H8": {"hatterszin": "2980B9", "hatterszin_masodlagos": "FFFFFF"},  # kék (Gödöllői HÉV)
+    "H9": {"hatterszin": "2980B9", "hatterszin_masodlagos": "FFFFFF"},  # kék (Gödöllői HÉV)
+}
+
+# Ha egy vonalnak VAN megerősített vonalszáma, de az API nem adott hozzá
+# színt (jellemzően a Volán-vonalaknál), ezt a jól felismerhető,
+# BKK/HÉV egyik hivatalos színétől sem ütköző színt használjuk helyette.
+NINCS_SZIN_TARTALEK = {"hatterszin": "6B4423", "hatterszin_masodlagos": "FFFFFF"}  # barna
+
 
 def vonalszamok_betoltese_mav_csv_bol():
     """Beolvassa a MÁV GTFS-ből előzetesen (helyben, a te gépeden)
@@ -489,6 +504,18 @@ def main():
         )
 
         adatok = jarmu_adatok_kinyerese(trip_adat)
+
+        # Szín-felülbírálás, ha van megerősített vonalszámunk:
+        # 1. HÉV vonalaknál mindig a hivatalos, fix színt használjuk
+        # 2. Ha egyáltalán nincs szín (jellemzően Volán), a jól
+        #    felismerhető tartalék színt adjuk hozzá
+        if adatok and vonal_szam:
+            if vonal_szam in HEV_HIVATALOS_SZINEK:
+                adatok["hatterszin"] = HEV_HIVATALOS_SZINEK[vonal_szam]["hatterszin"]
+                adatok["hatterszin_masodlagos"] = HEV_HIVATALOS_SZINEK[vonal_szam]["hatterszin_masodlagos"]
+            elif not adatok.get("hatterszin"):
+                adatok["hatterszin"] = NINCS_SZIN_TARTALEK["hatterszin"]
+                adatok["hatterszin_masodlagos"] = NINCS_SZIN_TARTALEK["hatterszin_masodlagos"]
 
         # Az ELSŐ néhány esetben, ha nem találtunk adatot, kiírjuk a
         # teljes választ a naplóba, hogy utólag pontosítani lehessen a
