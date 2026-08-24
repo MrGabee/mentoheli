@@ -218,7 +218,7 @@
 
   kapuEllenorzes();
 
-  const ADAT_URL = 'bkk_kijelzo_aktiv.json';
+  const ADAT_URL = 'https://raw.githubusercontent.com/MrGabee/mentoheli/main/bkk_kijelzo_aktiv.json';
   let osszesJarmu = [];
   let aktivSzuro = 'mind';
   let aktivTipusSzuro = 'mind';
@@ -228,7 +228,7 @@
 
   async function betoltes() {
     try {
-      const res = await fetch(ADAT_URL + '?t=' + Date.now());
+      const res = await fetch(ADAT_URL + '?t=' + Date.now(), { cache: 'no-store' });
       const data = await res.json();
       osszesJarmu = data.jarmuvek || [];
 
@@ -458,7 +458,7 @@
   });
 
   betoltes();
-  setInterval(betoltes, 60000);
+  setInterval(betoltes, 15000); // 15 másodpercenként próbál frissíteni
 </script>
 
 </body>
