@@ -152,6 +152,60 @@ def aktiv_jarmuvek_lekerdezese():
 GTFS_STATIKUS_URL = "https://go.bkk.hu/api/static/v1/public-gtfs/budapest_gtfs.zip"
 
 
+VOLAN_VONALSZAM_CSV = "volan_belso_kulso_vonalszamok.csv"
+
+
+def vonalszamok_betoltese_volan_csv_bol():
+    """Ugyanaz a minta, mint a MÁV CSV-nél - a Volánbusz GTFS-e is
+    regisztrációhoz kötött volt/lehet, ezért helyben generált CSV-ből
+    töltjük be, ha a repóban van."""
+    if not os.path.exists(VOLAN_VONALSZAM_CSV):
+        print(f"  ℹ️  Nincs {VOLAN_VONALSZAM_CSV} a repóban - a Volán-vonalak belső azonosítóval maradnak.")
+        return {}
+
+    szotar = {}
+    try:
+        with open(VOLAN_VONALSZAM_CSV, encoding="utf-8-sig") as f:
+            olvaso = csv.DictReader(f)
+            for sor in olvaso:
+                route_id = (sor.get("route_id") or "").strip()
+                rovid_nev = (sor.get("route_short_name") or "").strip()
+                if route_id and rovid_nev:
+                    szotar[route_id] = rovid_nev
+        print(f"  ✅ {len(szotar)} Volán-vonal betöltve a helyi CSV-ből.")
+    except Exception as e:
+        print(f"  ⚠️  Nem sikerült beolvasni a {VOLAN_VONALSZAM_CSV}-t: {type(e).__name__}: {e}")
+    return szotar
+
+
+MAV_VONALSZAM_CSV = "mav_belso_kulso_vonalszamok.csv"
+
+
+def vonalszamok_betoltese_mav_csv_bol():
+    """Beolvassa a MÁV GTFS-ből előzetesen (helyben, a te gépeden)
+    legenerált CSV-t, ha az a repóban létezik. Ez azért külön útvonal,
+    mert a MÁV saját GTFS-e regisztrációhoz kötött, nem tölthető le
+    automatikusan a GitHub Actions-ből - ezt a fájlt neked kell időnként
+    frissítened és feltöltened, ha a MÁV frissíti a saját adatait."""
+    if not os.path.exists(MAV_VONALSZAM_CSV):
+        print(f"  ℹ️  Nincs {MAV_VONALSZAM_CSV} a repóban - a MÁV-vonatok belső azonosítóval maradnak.")
+        return {}
+
+    szotar = {}
+    try:
+        with open(MAV_VONALSZAM_CSV, encoding="utf-8-sig") as f:
+            olvaso = csv.DictReader(f)
+            for sor in olvaso:
+                route_id = (sor.get("route_id") or "").strip()
+                rovid_nev = (sor.get("route_short_name") or "").strip()
+                if route_id and rovid_nev:
+                    szotar[route_id] = rovid_nev
+        print(f"  ✅ {len(szotar)} MÁV-vonal betöltve a helyi CSV-ből.")
+    except Exception as e:
+        print(f"  ⚠️  Nem sikerült beolvasni a {MAV_VONALSZAM_CSV}-t: {type(e).__name__}: {e}")
+    return szotar
+
+
 def vonalszamok_betoltese_gtfs_bol():
     """Letölti a BKK hivatalos, statikus GTFS-csomagját, és route_id ->
     route_short_name (pl. 'BKK_9690' -> '969') szótárat épít belőle.
@@ -402,6 +456,14 @@ def main():
     if vonalszam_szotar:
         minta_kulcsok = list(vonalszam_szotar.keys())[:5]
         print(f"  ℹ️  Minta kulcsok a GTFS-szótárból: {minta_kulcsok}")
+
+    mav_vonalszam_szotar = vonalszamok_betoltese_mav_csv_bol()
+    volan_vonalszam_szotar = vonalszamok_betoltese_volan_csv_bol()
+    # A MÁV és Volán adatok kiegészítik a BKK-szótárat (nem írják felül)
+    for kulcs, ertek in mav_vonalszam_szotar.items():
+        vonalszam_szotar.setdefault(kulcs, ertek)
+    for kulcs, ertek in volan_vonalszam_szotar.items():
+        vonalszam_szotar.setdefault(kulcs, ertek)
 
     jarmuvek = aktiv_jarmuvek_lekerdezese()
     if not jarmuvek:
