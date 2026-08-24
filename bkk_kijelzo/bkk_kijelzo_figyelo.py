@@ -426,7 +426,7 @@ def main():
             continue
 
         trip_adat = trip_reszletek_lekerdezese(trip_id)
-        time.sleep(0.15)  # udvarias várakozás a FUTÁR API felé
+        time.sleep(0.03)  # minimális, csak hogy ne egyszerre záporozzon a kérés
 
         vonal_szam = vonalszam_lekerdezese(jarmu["route_id"])
 
