@@ -93,7 +93,7 @@ jobs:
 
       - name: ⏱️ Várakozás
         if: always()
-        run: sleep 100
+        run: sleep 20
 
       - name: 🔄 Következő futás indítása (önjavító)
         if: always()
