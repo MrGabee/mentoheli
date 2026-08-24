@@ -53,13 +53,24 @@ jobs:
           fi
           cp bkk_kijelzo_allapot.json /tmp/bkk_kijelzo_allapot_sajat.json
 
+          VAN_AKTIV_JSON=0
+          if [ -f bkk_kijelzo_aktiv.json ]; then
+            cp bkk_kijelzo_aktiv.json /tmp/bkk_kijelzo_aktiv_sajat.json
+            VAN_AKTIV_JSON=1
+          fi
+
           SIKERULT=0
           for i in 1 2 3 4 5 6; do
             echo "Push kísérlet $i/6..."
             git fetch origin main
             git reset --hard origin/main
             cp /tmp/bkk_kijelzo_allapot_sajat.json bkk_kijelzo_allapot.json
-            git add bkk_kijelzo_allapot.json
+            if [ "$VAN_AKTIV_JSON" = "1" ]; then
+              cp /tmp/bkk_kijelzo_aktiv_sajat.json bkk_kijelzo_aktiv.json
+              git add bkk_kijelzo_allapot.json bkk_kijelzo_aktiv.json
+            else
+              git add bkk_kijelzo_allapot.json
+            fi
             if git diff --staged --quiet; then
               echo "Nincs változás, kész."
               SIKERULT=1
