@@ -65,6 +65,13 @@
     width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border);
     background: var(--bg-card); color: var(--text); font-size: 15px; margin-bottom: 10px; text-align: center;
   }
+  .kapu-jelszo-sor { position: relative; }
+  .kapu-jelszo-sor input { padding-right: 44px; }
+  .kapu-szem-btn {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    margin-top: -5px; background: none; border: none; cursor: pointer;
+    font-size: 18px; line-height: 1; padding: 4px; color: var(--text-muted); width: auto;
+  }
   .kapu-doboz button {
     width: 100%; padding: 12px; border-radius: 8px; border: none;
     background: var(--amber); color: #1b1d1f; font-weight: 700; font-size: 14px; cursor: pointer;
@@ -78,7 +85,10 @@
 <div class="kapu-overlay" id="kapuOverlay">
   <div class="kapu-doboz">
     <h2>🔒 Belépés</h2>
-    <input type="password" id="kapuJelszo" placeholder="Jelszó" autofocus>
+    <div class="kapu-jelszo-sor">
+      <input type="password" id="kapuJelszo" placeholder="Jelszó" autofocus>
+      <button type="button" class="kapu-szem-btn" id="kapuSzemBtn" aria-label="Jelszó mutatása/elrejtése">👁️</button>
+    </div>
     <button type="button" id="kapuBtn">Belépés</button>
     <div class="kapu-hiba" id="kapuHiba"></div>
   </div>
@@ -136,6 +146,18 @@
   document.getElementById('kapuBtn').addEventListener('click', probalkozas);
   document.getElementById('kapuJelszo').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') probalkozas();
+  });
+
+  document.getElementById('kapuSzemBtn').addEventListener('click', () => {
+    const mezo = document.getElementById('kapuJelszo');
+    const gomb = document.getElementById('kapuSzemBtn');
+    if (mezo.type === 'password') {
+      mezo.type = 'text';
+      gomb.textContent = '🙈';
+    } else {
+      mezo.type = 'password';
+      gomb.textContent = '👁️';
+    }
   });
 
   function probalkozas() {
