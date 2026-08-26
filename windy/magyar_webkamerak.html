@@ -244,6 +244,53 @@
     background: rgba(45, 212, 191, 0.12);
   }
 
+  /* ---- Közút Figyelő idővonal-csúszka ---- */
+  .cam-timeline-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--bkk-violet);
+    background: none;
+    border: 1px solid var(--bkk-violet);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .cam-timeline-btn:hover {
+    background: rgba(179, 132, 240, 0.12);
+  }
+
+  .cam-timeline-btn.active {
+    background: rgba(179, 132, 240, 0.18);
+  }
+
+  .cam-timeline {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .cam-timeline-range {
+    width: 100%;
+    accent-color: var(--bkk-violet);
+    cursor: pointer;
+  }
+
+  .cam-timeline-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-align: center;
+  }
+
   .cam-player-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -726,6 +773,12 @@
   const KOZUTFIGYELO_IMAGE_URL = 'https://kozutfigyelo-back.budapestkozut.hu/api/ikszr/camerahistoryimage';
   const KOZUTFIGYELO_PAGE_LIMIT = 100; // a szerver ennél nagyobb "limit" értéket 400-al elutasít
 
+  // A hivatalos Közút Figyelő alkalmazás is kb. ennyi visszamenőleges
+  // idővonalat kínál kameránként (kipróbálva: kb. 2 óránál régebbi
+  // időpontra mindig ugyanazt, a legkorábbi elérhető képet adja vissza) -
+  // ez a mi idővonal-csúszkánk felső határa is.
+  const KF_TIMELINE_RANGE_MINUTES = 120;
+
   const SOURCE_LABELS = {
     windy: 'Windy',
     utinform: 'Útinform',
@@ -734,6 +787,7 @@
 
   let allWebcams = [];
   let kfObserver = null;
+  let kfTimelineDebounceTimers = new Map(); // idx -> setTimeout id
 
   // A Közút Figyelő kameraképek base64-ben jönnek, ezért egyszer lekért
   // képet érdemes rövid ideig cache-elni (pl. görgetés oda-vissza esetén ne
@@ -788,24 +842,50 @@
     return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
   }
 
-  async function fetchKozutfigyeloImage(externalId) {
-    const cached = kfImageCache.get(externalId);
-    if (cached && (Date.now() - cached.fetchedAt) < KF_IMAGE_TTL_MS) {
+  // Az idővonal-csúszkához: "N perccel ezelőtt" -> "HH:MM" budapesti idő
+  // szerint. UTC-időbélyegből számolunk, így a látogató saját időzónája
+  // nem számít, a nyári/téli időszámítást pedig az Intl API kezeli.
+  function kfTimeMinusMinutes(minutesAgo) {
+    const target = new Date(Date.now() - minutesAgo * 60 * 1000);
+    try {
+      const parts = new Intl.DateTimeFormat('hu-HU', {
+        timeZone: 'Europe/Budapest', hour: '2-digit', minute: '2-digit', hour12: false,
+      }).formatToParts(target);
+      const hh = parts.find(p => p.type === 'hour')?.value;
+      const mm = parts.find(p => p.type === 'minute')?.value;
+      if (hh && mm) return `${hh}:${mm}`;
+    } catch (err) {
+      // ld. kfCurrentBudapestTime() - időzóna-támogatás nélkül a látogató
+      // helyi idejére esünk vissza.
+    }
+    return `${String(target.getHours()).padStart(2, '0')}:${String(target.getMinutes()).padStart(2, '0')}`;
+  }
+
+  // explicitTime nélkül a LEGFRISSEBB képet kérjük (rövid, 2 perces
+  // cache-eléssel - ld. fent). explicitTime megadásával egy konkrét múltbeli
+  // időpont képét (idővonal-csúszka) - ez a cache-ben VÉGLEGESEN tárolható,
+  // hiszen egy már elmúlt időpont képe soha nem változik meg utólag.
+  async function fetchKozutfigyeloImage(externalId, explicitTime) {
+    const isHistorical = Boolean(explicitTime);
+    const cacheKey = isHistorical ? `${externalId}@${explicitTime}` : String(externalId);
+
+    const cached = kfImageCache.get(cacheKey);
+    if (cached && (isHistorical || (Date.now() - cached.fetchedAt) < KF_IMAGE_TTL_MS)) {
       return cached.dataUri;
     }
     return kfEnqueue(async () => {
       // Lehet, hogy amíg a kérés a sorban várt, egy másik hívás már
       // frissítette a cache-t - ilyenkor azt használjuk, nincs értelme
       // duplán lekérni.
-      const freshlyCached = kfImageCache.get(externalId);
-      if (freshlyCached && (Date.now() - freshlyCached.fetchedAt) < KF_IMAGE_TTL_MS) {
+      const freshlyCached = kfImageCache.get(cacheKey);
+      if (freshlyCached && (isHistorical || (Date.now() - freshlyCached.fetchedAt) < KF_IMAGE_TTL_MS)) {
         return freshlyCached.dataUri;
       }
       try {
         const res = await fetch(KOZUTFIGYELO_IMAGE_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ time: kfCurrentBudapestTime(), externalId: String(externalId) }),
+          body: JSON.stringify({ time: explicitTime || kfCurrentBudapestTime(), externalId: String(externalId) }),
           cache: 'no-store',
         });
         if (!res.ok) {
@@ -816,7 +896,7 @@
         const b64 = data && data.data && data.data.image;
         if (!b64) return null;
         const dataUri = `data:image/jpeg;base64,${b64}`;
-        kfImageCache.set(externalId, { dataUri, fetchedAt: Date.now() });
+        kfImageCache.set(cacheKey, { dataUri, fetchedAt: Date.now() });
         return dataUri;
       } catch (err) {
         console.warn(`[kozutfigyelo] Hiba a kép lekérdezésekor (id=${externalId}):`, err);
@@ -1008,6 +1088,13 @@
             <div class="cam-coords">${lat}, ${lon}</div>
             ${mapsUrl ? `<div class="cam-exact-location">📍 ${escapeHtml(locationLine || 'Ismeretlen helyszín')}</div><a href="${mapsUrl}" target="_blank" rel="noopener" class="cam-maps-link">Pontos helyszín Google Mapsen →</a>` : ''}
             ${cam.player_embed ? `<button class="cam-playback-btn" data-player-idx="${idx}">▶ Visszajátszás</button>` : ''}
+            ${isKf ? `
+              <button class="cam-timeline-btn" data-timeline-idx="${idx}">🕐 Idővonal (2 óra)</button>
+              <div class="cam-timeline" data-timeline-panel="${idx}" hidden>
+                <input type="range" min="0" max="${KF_TIMELINE_RANGE_MINUTES}" value="0" step="1" class="cam-timeline-range" data-timeline-range="${idx}">
+                <div class="cam-timeline-time" data-timeline-time="${idx}">élő (most)</div>
+              </div>
+            ` : ''}
           </div>
         </div>
       `;
@@ -1084,6 +1171,66 @@
         slot.removeAttribute('data-idx');
         slot.style.cursor = 'default';
         btn.remove();
+      });
+    });
+
+    // Közút Figyelő idővonal: a gomb megnyitja/bezárja a csúszkát, a
+    // csúszka pedig - kicsit késleltetve (hogy húzás közben ne induljon el
+    // egy csomó felesleges kérés) - lekéri és becseréli a kamera képét a
+    // kiválasztott múltbeli időpontra. Új renderelés előtt minden korábbi,
+    // még függőben lévő késleltetett lekérdezést törlünk.
+    kfTimelineDebounceTimers.forEach(timeoutId => clearTimeout(timeoutId));
+    kfTimelineDebounceTimers = new Map();
+
+    content.querySelectorAll('.cam-timeline-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = Number(btn.dataset.timelineIdx);
+        const panel = content.querySelector(`.cam-timeline[data-timeline-panel="${idx}"]`);
+        if (!panel) return;
+        const willShow = panel.hasAttribute('hidden');
+        panel.toggleAttribute('hidden', !willShow);
+        btn.classList.toggle('active', willShow);
+      });
+    });
+
+    content.querySelectorAll('.cam-timeline-range').forEach(range => {
+      range.addEventListener('click', (e) => e.stopPropagation());
+      range.addEventListener('input', () => {
+        const idx = Number(range.dataset.timelineRange);
+        const cam = webcams[idx];
+        if (!cam) return;
+        const minutesAgo = Number(range.value);
+        const timeLabel = content.querySelector(`.cam-timeline-time[data-timeline-time="${idx}"]`);
+
+        if (timeLabel) {
+          timeLabel.textContent = minutesAgo === 0
+            ? 'élő (most)'
+            : `${kfTimeMinusMinutes(minutesAgo)} · ${minutesAgo} perccel ezelőtt`;
+        }
+
+        clearTimeout(kfTimelineDebounceTimers.get(idx));
+        const timeoutId = setTimeout(async () => {
+          const wrap = content.querySelector(`.cam-image-wrap[data-idx="${idx}"]`);
+          if (!wrap) return;
+          const explicitTime = minutesAgo === 0 ? undefined : kfTimeMinusMinutes(minutesAgo);
+          const dataUri = await fetchKozutfigyeloImage(cam.kfExternalId, explicitTime);
+          if (!dataUri) return;
+
+          let img = wrap.querySelector('img');
+          if (img) {
+            img.src = dataUri;
+          } else {
+            img = document.createElement('img');
+            img.alt = cam.title || 'Névtelen kamera';
+            img.loading = 'lazy';
+            img.src = dataUri;
+            const loadingEl = wrap.querySelector('.cam-kf-loading');
+            if (loadingEl) loadingEl.replaceWith(img);
+            else wrap.insertBefore(img, wrap.firstChild);
+          }
+        }, 300);
+        kfTimelineDebounceTimers.set(idx, timeoutId);
       });
     });
 
