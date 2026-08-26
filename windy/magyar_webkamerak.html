@@ -20,6 +20,7 @@
     --green: #4caf6f;
     --turquoise: #2dd4bf;
     --mk-blue: #4f8fe0;
+    --bkk-violet: #b384f0;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -382,6 +383,15 @@
     background: var(--mk-blue);
   }
 
+  .source-badge.source-kozutfigyelo {
+    color: var(--bkk-violet);
+    border-color: rgba(179, 132, 240, 0.4);
+  }
+
+  .source-badge.source-kozutfigyelo::before {
+    background: var(--bkk-violet);
+  }
+
   .source-pill {
     display: inline-flex;
     align-items: center;
@@ -403,6 +413,23 @@
   .source-pill.source-windy::before { background: var(--amber); }
   .source-pill.source-utinform { color: var(--mk-blue); }
   .source-pill.source-utinform::before { background: var(--mk-blue); }
+  .source-pill.source-kozutfigyelo { color: var(--bkk-violet); }
+  .source-pill.source-kozutfigyelo::before { background: var(--bkk-violet); }
+
+  .cam-kf-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    background: #141617;
+  }
 
   .cam-body {
     padding: 14px 16px 16px;
@@ -608,9 +635,9 @@
 <div class="hazard-stripe"></div>
 
 <header>
-  <div class="eyebrow">Windy Webcams API + Útinform (Magyar Közút) · GitHub Actions szinkron</div>
+  <div class="eyebrow">Windy Webcams API + Útinform (Magyar Közút) + Közút Figyelő (Budapest Közút)</div>
   <h1>Magyar<span>·</span>Webkamerák</h1>
-  <p class="subtitle">Élő webkamera-előnézetek Magyarországról, két forrásból: a Windy közösségi kameráiból és az Útinform hivatalos közútfigyelő kameráiból. Az adatokat GitHub Actions workflow-k frissítik a szerver oldalon, így nincs szükség API-kulcsra vagy böngészős lekérdezésre ezen az oldalon.</p>
+  <p class="subtitle">Élő webkamera-előnézetek Magyarországról, három forrásból: a Windy közösségi kameráiból, az Útinform hivatalos országos közútfigyelő kameráiból, és a Budapest Közút "Közút Figyelő" fővárosi kameráiból. A Windy és az Útinform adatait GitHub Actions workflow-k frissítik a szerver oldalon; a Közút Figyelő kamerák képei viszont közvetlenül, a te böngésződben töltődnek be, ahogy görgetsz - ezért néhány ilyen kártyán rövid ideig "Kamera kép betöltése…" felirat látszik, mielőtt megjelenik a kép.</p>
 </header>
 
 <div class="controls">
@@ -619,6 +646,7 @@
     <option value="">Összes forrás</option>
     <option value="windy">Csak Windy kamerák</option>
     <option value="utinform">Csak Útinform kamerák</option>
+    <option value="kozutfigyelo">Csak Közút Figyelő (Budapest) kamerák</option>
   </select>
   <select id="filterSelect" class="filter-select">
     <option value="">Összes helyszín</option>
@@ -649,7 +677,7 @@
 </main>
 
 <footer>
-  Adatforrás: Windy Webcams API (api.windy.com) és Útinform / Magyar Közút (utinform.hu), GitHub Actions által rendszeresen frissítve · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
+  Adatforrás: Windy Webcams API (api.windy.com), Útinform / Magyar Közút (utinform.hu) és Közút Figyelő / Budapest Közút Zrt. (kozutfigyelo.budapestkozut.hu) · A Windy és az Útinform adatokat GitHub Actions frissíti rendszeresen; a Közút Figyelő kamerák mindig élőben, közvetlenül a látogató böngészőjéből töltődnek be · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
 </footer>
 
 <div class="lightbox" id="lightbox">
@@ -681,12 +709,175 @@
   const DATA_URL_WINDY = 'data/webcams_hu.json';
   const DATA_URL_UTINFORM = 'https://baleset-info.hu/tv2/utinform/serve_utinform_webcams.php';
 
+  // A Közút Figyelő (Budapest Közút Zrt. fővárosi kameráit mutató saját
+  // rendszere) EGÉSZEN MÁSKÉNT működik, mint a windy/útinform: itt NINCS
+  // szükség se GitHub Actionre, se saját tárhelyre/PHP-ra, mert
+  //   1) a kozutfigyelo-back.budapestkozut.hu API szabadon (CORS-al)
+  //      hívható közvetlenül a böngészőből, MÁSIK domainről is (ellenőrizve),
+  //   2) nincs Azure/GitHub-Actions IP-tiltás sem (mert ez a hívás minden
+  //      látogató SAJÁT böngészőjéből megy ki, nem egy közös szerverről).
+  // A kameralistát (helyszín, koordináták) egyben töltjük be induláskor,
+  // de a kameraKÉPEKET (amik base64-kódolt JPEG-ként jönnek egy külön
+  // API-hívásra) csak akkor kérjük le, amikor egy adott kamera kártyája
+  // ténylegesen látszik a képernyőn (IntersectionObserver) - 281 kamera
+  // képét egyszerre lekérni minden oldalbetöltéskor felesleges terhelés
+  // lenne, és maga a hivatalos Közút Figyelő app sem így működik.
+  const KOZUTFIGYELO_LIST_URL = 'https://kozutfigyelo-back.budapestkozut.hu/api/ikszr/list';
+  const KOZUTFIGYELO_IMAGE_URL = 'https://kozutfigyelo-back.budapestkozut.hu/api/ikszr/camerahistoryimage';
+  const KOZUTFIGYELO_PAGE_LIMIT = 100; // a szerver ennél nagyobb "limit" értéket 400-al elutasít
+
   const SOURCE_LABELS = {
     windy: 'Windy',
     utinform: 'Útinform',
+    kozutfigyelo: 'Közút Figyelő',
   };
 
   let allWebcams = [];
+  let kfObserver = null;
+
+  // A Közút Figyelő kameraképek base64-ben jönnek, ezért egyszer lekért
+  // képet érdemes rövid ideig cache-elni (pl. görgetés oda-vissza esetén ne
+  // kérjük le ugyanazt kétszer egymás után) - de ne túl sokáig, hiszen a
+  // lényeg pont az, hogy élő legyen a kép.
+  const kfImageCache = new Map(); // externalId -> { dataUri, fetchedAt }
+  const KF_IMAGE_TTL_MS = 2 * 60 * 1000;
+
+  // Egyszerre legfeljebb ennyi Közút Figyelő kép-lekérdezés fusson - ha
+  // valaki gyorsan végiggörget egy 281 kamerás listán, ne küldjünk rá
+  // egyszerre 281 párhuzamos kérést a szolgáltató szerverére.
+  const KF_MAX_CONCURRENT = 6;
+  let kfActiveFetches = 0;
+  const kfQueue = [];
+
+  function kfProcessQueue() {
+    while (kfActiveFetches < KF_MAX_CONCURRENT && kfQueue.length) {
+      const { task, resolve } = kfQueue.shift();
+      kfActiveFetches++;
+      task().then(resolve).finally(() => {
+        kfActiveFetches--;
+        kfProcessQueue();
+      });
+    }
+  }
+
+  function kfEnqueue(task) {
+    return new Promise((resolve) => {
+      kfQueue.push({ task, resolve });
+      kfProcessQueue();
+    });
+  }
+
+  // A Közút Figyelő API "time" mezője (HH:MM) formailag kötelező, de a
+  // megfigyelés szerint bármilyen - akár jövőbeli vagy nem létező -
+  // időbélyegre a legfrissebb elérhető képet adja vissza. Azért mégis a
+  // valós budapesti időt küldjük, hogy a jövőben esetlegesen szigorodó
+  // API-validáció se akadjon el rajta.
+  function kfCurrentBudapestTime() {
+    try {
+      const parts = new Intl.DateTimeFormat('hu-HU', {
+        timeZone: 'Europe/Budapest', hour: '2-digit', minute: '2-digit', hour12: false,
+      }).formatToParts(new Date());
+      const hh = parts.find(p => p.type === 'hour')?.value;
+      const mm = parts.find(p => p.type === 'minute')?.value;
+      if (hh && mm) return `${hh}:${mm}`;
+    } catch (err) {
+      // Intl.DateTimeFormat időzóna-támogatás nélkül is lefuthat a kód -
+      // ilyenkor a látogató helyi idejére esünk vissza.
+    }
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  }
+
+  async function fetchKozutfigyeloImage(externalId) {
+    const cached = kfImageCache.get(externalId);
+    if (cached && (Date.now() - cached.fetchedAt) < KF_IMAGE_TTL_MS) {
+      return cached.dataUri;
+    }
+    return kfEnqueue(async () => {
+      // Lehet, hogy amíg a kérés a sorban várt, egy másik hívás már
+      // frissítette a cache-t - ilyenkor azt használjuk, nincs értelme
+      // duplán lekérni.
+      const freshlyCached = kfImageCache.get(externalId);
+      if (freshlyCached && (Date.now() - freshlyCached.fetchedAt) < KF_IMAGE_TTL_MS) {
+        return freshlyCached.dataUri;
+      }
+      try {
+        const res = await fetch(KOZUTFIGYELO_IMAGE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ time: kfCurrentBudapestTime(), externalId: String(externalId) }),
+          cache: 'no-store',
+        });
+        if (!res.ok) {
+          console.warn(`[kozutfigyelo] Kép lekérdezése sikertelen (HTTP ${res.status}, id=${externalId})`);
+          return null;
+        }
+        const data = await res.json();
+        const b64 = data && data.data && data.data.image;
+        if (!b64) return null;
+        const dataUri = `data:image/jpeg;base64,${b64}`;
+        kfImageCache.set(externalId, { dataUri, fetchedAt: Date.now() });
+        return dataUri;
+      } catch (err) {
+        console.warn(`[kozutfigyelo] Hiba a kép lekérdezésekor (id=${externalId}):`, err);
+        return null;
+      }
+    });
+  }
+
+  // A kamera-LISTÁT (helyszínek, koordináták) egyben töltjük be - ez sokkal
+  // kisebb adatmennyiség, mint a képek, és kellenek a szűrőhöz/rácshoz is.
+  // A szerver oldalankénti "limit" paramétere maximum 100 lehet, ezért
+  // lapozva kérjük le az összes (jelenleg kb. 281) kamerát.
+  async function loadKozutfigyeloSource() {
+    try {
+      let page = 1;
+      let totalPages = 1;
+      let allDocs = [];
+
+      do {
+        const res = await fetch(KOZUTFIGYELO_LIST_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page, limit: KOZUTFIGYELO_PAGE_LIMIT, objectType: 'cameras', filter: '' }),
+          cache: 'no-store',
+        });
+        if (!res.ok) {
+          console.warn(`[kozutfigyelo] Lista lekérdezése sikertelen (HTTP ${res.status}, ${page}. oldal) - a már betöltött oldalakkal folytatjuk.`);
+          break;
+        }
+        const data = await res.json();
+        const docs = (data.data && data.data.docs) || [];
+        allDocs = allDocs.concat(docs);
+        totalPages = (data.data && data.data.pages) || 1;
+        page += 1;
+      } while (page <= totalPages);
+
+      if (!allDocs.length) return null;
+
+      const webcams = allDocs
+        .filter(doc => doc.is_active !== false && doc.status !== 'inactive')
+        .map(doc => ({
+          id: `kf-${doc.external_id}`,
+          kfExternalId: doc.external_id,
+          source: 'kozutfigyelo',
+          title: doc.location_description || `Kamera #${doc.external_id}`,
+          city: 'Budapest',
+          county: null,
+          road: null,
+          latitude: doc.latitude != null ? parseFloat(doc.latitude) : null,
+          longitude: doc.longitude != null ? parseFloat(doc.longitude) : null,
+          image_preview: null,
+          image_thumbnail: null,
+          player_embed: null,
+        }));
+
+      return { webcams, updated_at: new Date().toISOString() };
+    } catch (err) {
+      console.warn('[kozutfigyelo] Hiba a lista betöltésekor:', err);
+      return null;
+    }
+  }
 
   function setStatus(message, type) {
     statusEl.textContent = message;
@@ -784,8 +975,9 @@
 
     const cards = webcams.map((cam, idx) => {
       const title = escapeHtml(cam.title || 'Névtelen kamera');
-      const source = cam.source === 'utinform' ? 'utinform' : 'windy';
+      const source = (cam.source === 'utinform' || cam.source === 'kozutfigyelo') ? cam.source : 'windy';
       const sourceLabel = SOURCE_LABELS[source];
+      const isKf = source === 'kozutfigyelo';
       // A windy kameráknál "region", az útinform kameráknál "county" (megye)
       // jelzi a tágabb elhelyezkedést - a kártyán ugyanabban a sorban
       // jelenítjük meg, akármelyik forrásból is jön a kamera.
@@ -794,6 +986,9 @@
       const hasCoords = typeof cam.latitude === 'number' && typeof cam.longitude === 'number';
       const lat = hasCoords ? cam.latitude.toFixed(4) : '?';
       const lon = hasCoords ? cam.longitude.toFixed(4) : '?';
+      // A Közút Figyelő kameráknak nincs kész kép-URL-jük (image_preview
+      // null) - a képük csak akkor kerül elő, amikor a kártya láthatóvá
+      // válik (lásd a renderCameras végén az IntersectionObserver-t).
       const imgUrl = withCacheBust(cam.image_preview || cam.image_thumbnail || '');
       const mapsUrl = hasCoords
         ? `https://www.google.com/maps/search/?api=1&query=${cam.latitude},${cam.longitude}`
@@ -801,8 +996,9 @@
 
       return `
         <div class="cam-card">
-          <div class="cam-image-wrap" ${imgUrl ? `data-idx="${idx}"` : ''} data-media-slot="${idx}">
+          <div class="cam-image-wrap" data-idx="${idx}" data-media-slot="${idx}" ${isKf ? `data-kf-id="${escapeHtml(String(cam.kfExternalId))}"` : ''}>
             ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
+            ${(!imgUrl && isKf) ? `<div class="cam-kf-loading">Kamera kép betöltése…</div>` : ''}
             <div class="live-dot">élő</div>
             <div class="source-badge source-${source}">${escapeHtml(sourceLabel)}</div>
           </div>
@@ -819,15 +1015,60 @@
 
     content.innerHTML = `<div class="grid">${cards}</div>`;
 
-    // Kattintható nagyítás: minden képre külön eseménykezelő
+    // Kattintható nagyítás: minden képre külön eseménykezelő. A Közút
+    // Figyelő kameráknál nincs kész kép-URL - vagy a már betöltött (a
+    // kártyán látszó) képet használjuk, vagy ha még nem töltődött be,
+    // kattintáskor azonnal lekérjük.
     content.querySelectorAll('.cam-image-wrap[data-idx]').forEach(wrap => {
-      wrap.addEventListener('click', () => {
+      wrap.addEventListener('click', async () => {
         const idx = Number(wrap.dataset.idx);
         const cam = webcams[idx];
+        if (cam.source === 'kozutfigyelo') {
+          const loadedImg = wrap.querySelector('img');
+          const dataUri = loadedImg ? loadedImg.src : await fetchKozutfigyeloImage(cam.kfExternalId);
+          openLightbox(dataUri, cam.title || 'Névtelen kamera');
+          return;
+        }
         const bigUrl = withCacheBust(cam.image_preview || cam.image_thumbnail || '');
         openLightbox(bigUrl, cam.title || 'Névtelen kamera');
       });
     });
+
+    // Közút Figyelő képek lusta betöltése: csak akkor kérjük le egy kamera
+    // képét, amikor a kártyája ténylegesen a látható területre kerül.
+    if (kfObserver) {
+      kfObserver.disconnect();
+    }
+    const kfWraps = content.querySelectorAll('.cam-image-wrap[data-kf-id]');
+    if (kfWraps.length) {
+      kfObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const wrap = entry.target;
+          kfObserver.unobserve(wrap);
+          const idx = Number(wrap.dataset.idx);
+          const cam = webcams[idx];
+          if (!cam) return;
+          fetchKozutfigyeloImage(cam.kfExternalId).then(dataUri => {
+            const loadingEl = wrap.querySelector('.cam-kf-loading');
+            if (!dataUri) {
+              if (loadingEl) loadingEl.textContent = 'Kép jelenleg nem elérhető.';
+              return;
+            }
+            const img = document.createElement('img');
+            img.src = dataUri;
+            img.alt = cam.title || 'Névtelen kamera';
+            img.loading = 'lazy';
+            if (loadingEl) {
+              loadingEl.replaceWith(img);
+            } else {
+              wrap.insertBefore(img, wrap.firstChild);
+            }
+          });
+        });
+      }, { root: null, rootMargin: '300px', threshold: 0.01 });
+      kfWraps.forEach(wrap => kfObserver.observe(wrap));
+    }
 
     // Visszajátszás gomb: a statikus kép helyére a hivatalos, csúszkás
     // Windy timelapse-lejátszót tölti be iframe-ben.
@@ -848,7 +1089,8 @@
 
     const windyCount = webcams.filter(c => c.source === 'windy').length;
     const utinformCount = webcams.filter(c => c.source === 'utinform').length;
-    const breakdown = `(windy: ${windyCount} · útinform: ${utinformCount})`;
+    const kozutfigyeloCount = webcams.filter(c => c.source === 'kozutfigyelo').length;
+    const breakdown = `(windy: ${windyCount} · útinform: ${utinformCount} · közútfigyelő: ${kozutfigyeloCount})`;
 
     if (updatedAt) {
       const dt = new Date(updatedAt);
@@ -905,35 +1147,44 @@
     renderLoading();
 
     try {
-      const [windyResult, utinformResult] = await Promise.all([
+      const [windyResult, utinformResult, kozutfigyeloResult] = await Promise.all([
         loadOneSource(DATA_URL_WINDY, 'windy'),
         loadOneSource(DATA_URL_UTINFORM, 'utinform'),
+        loadKozutfigyeloSource(),
       ]);
 
-      if (!windyResult && !utinformResult) {
-        setStatus('Nem sikerült betölteni egyik adatfájlt sem.', 'error');
-        renderEmpty('Ellenőrizd, hogy a GitHub Actions workflow-k lefutottak-e már legalább egyszer, és hogy a windy/data/webcams_hu.json illetve windy/data/webcams_utinform.json a repóban vannak-e.');
+      if (!windyResult && !utinformResult && !kozutfigyeloResult) {
+        setStatus('Nem sikerült betölteni egyik adatforrást sem.', 'error');
+        renderEmpty('Ellenőrizd, hogy a GitHub Actions workflow-k lefutottak-e már legalább egyszer, és hogy a windy/data/webcams_hu.json illetve windy/data/webcams_utinform.json a repóban vannak-e - illetve hogy a kozutfigyelo-back.budapestkozut.hu API épp elérhető-e.');
         return;
       }
 
       allWebcams = [
         ...(windyResult ? windyResult.webcams : []),
         ...(utinformResult ? utinformResult.webcams : []),
+        ...(kozutfigyeloResult ? kozutfigyeloResult.webcams : []),
       ];
 
-      // A státuszsorban a KÉT forrás közül a KÉSŐBBI "utoljára frissítve"
+      // A státuszsorban a HÁROM forrás közül a KÉSŐBBI "utoljára frissítve"
       // időpontot mutatjuk - ha valamelyik forrás épp nem töltött be, csak
-      // a másik időpontja számít.
-      const timestamps = [windyResult && windyResult.updated_at, utinformResult && utinformResult.updated_at]
+      // a többi időpontja számít.
+      const timestamps = [
+        windyResult && windyResult.updated_at,
+        utinformResult && utinformResult.updated_at,
+        kozutfigyeloResult && kozutfigyeloResult.updated_at,
+      ]
         .filter(Boolean)
         .map(t => new Date(t).getTime());
       const latestUpdatedAt = timestamps.length ? new Date(Math.max(...timestamps)).toISOString() : null;
 
       if (!windyResult) {
-        console.warn('A windy adatforrás nem érhető el - csak útinform kamerák jelennek meg.');
+        console.warn('A windy adatforrás nem érhető el - csak a másik két forrás kamerái jelennek meg.');
+      }
+      if (!kozutfigyeloResult) {
+        console.warn('A Közút Figyelő adatforrás nem érhető el - csak a másik két forrás kamerái jelennek meg.');
       }
       if (!utinformResult) {
-        console.warn('Az útinform adatforrás nem érhető el - csak windy kamerák jelennek meg.');
+        console.warn('Az útinform adatforrás nem érhető el - csak a másik két forrás kamerái jelennek meg.');
       }
 
       populateFilter(webcamsForSelectedSource());
