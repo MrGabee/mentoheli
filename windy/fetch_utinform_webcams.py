@@ -9,13 +9,24 @@ weboldal saját maga nem tudná közvetlenül lekérdezni ezt az API-t -
 ezért van szükség erre a szerveroldali köztes lépésre, pont úgy, mint
 a windy-s fetch_windy_webcams.py esetében.)
 
+FONTOS - MIÉRT PLAYWRIGHT ÉS NEM SIMA "requests":
+Az első verzió sima `requests.get()`-tel hívta az API-t - ez helyben
+(böngészőből) és a felderítéskor is működött, de GitHub Actionből futtatva
+403 Forbidden-t adott vissza. Ez feltehetően bot-védelem: az útinform.hu
+szűri a nem-valódi-böngésző kéréseket (más TLS/HTTP-ujjlenyomat, hiányzó
+böngésző-fejlécek). A megoldás - ugyanaz a minta, mint a repóban már
+meglévő bkk_kozut_playwright_monitor.py-nál -: egy VALÓDI, headless Chrome
+böngészőt indítunk (Playwright), betöltjük vele az Útinform térkép-oldalát
+(ettől valódi böngésző-munkamenet jön létre), és MAGÁBÓL AZ OLDAL
+KONTEXTUSÁBÓL, egy page.evaluate()-be csomagolt fetch()-csel hívjuk az
+API-t - ez ugyanaz a hívás, amit egy valódi látogató böngészője is
+indítana, ezért nem szűri a bot-védelem.
+
 Az eredményt egy statikus JSON fájlba menti, amit a weboldal
 (magyar_webkamerak.html) egyszerű fetch()-csel tud beolvasni, API-kulcs
 nélkül - a windy adatokkal együtt jelenítve meg, forrás-jelöléssel.
 
-FORRÁS FELDERÍTÉSE (böngésző hálózati forgalom alapján, mivel az
-utinform.hu közvetlen géppel/scripttel történő elérése egyes útvonalakon
-átirányítást ad, ha az "Accept: application/json" fejléc hiányzik):
+FORRÁS FELDERÍTÉSE (böngésző hálózati forgalom alapján):
   - Lista végpont : https://www.utinform.hu/api/public/webcam/all
     -> GeoJSON FeatureCollection, "helyszínenként" (properties.id, pl.
        "mcs217") csoportosítva, minden helyszínhez 1-4 db kamera tartozik
@@ -34,46 +45,90 @@ import os
 import sys
 from datetime import datetime, timezone
 
-import requests
+from playwright.sync_api import sync_playwright
 
+MAP_URL = "https://www.utinform.hu/hu/map"
 API_URL = "https://www.utinform.hu/api/public/webcam/all"
 OUTPUT_FILE = "windy/data/webcams_utinform.json"
-
-# Az útinform.hu API néhány elérési módnál (pl. böngésző címsorba írt
-# közvetlen navigáció) a weboldalra irányít vissza, ha nem kap explicit
-# JSON Accept fejlécet - ezért ezt mindig kifejezetten kérjük, plusz egy
-# valódi böngészőre hasonlító User-Agent-et adunk meg.
-HEADERS = {
-    "Accept": "application/json",
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
-    ),
-    "Referer": "https://www.utinform.hu/hu/map",
-}
-
 IMAGE_BASE = "https://cdnuiwebcams.utinform.hu/webcamimages"
 
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+)
 
-def fetch_utinform_webcams():
-    print("🔍 Útinform közúti kamerák lekérdezése...")
-    response = requests.get(API_URL, headers=HEADERS, timeout=20)
-    response.raise_for_status()
-    data = response.json()
+MAX_PROBALKOZAS = 3
 
-    features = data.get("features", [])
-    print(f"   -> {len(features)} helyszín érkezett az API-ból.")
-    return features
+
+def fetch_utinform_features():
+    print("🔍 Útinform közúti kamerák lekérdezése (Playwright, valódi böngészővel)...")
+
+    utolso_hiba = None
+    for probalkozas in range(1, MAX_PROBALKOZAS + 1):
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                context = browser.new_context(
+                    user_agent=USER_AGENT,
+                    viewport={"width": 1400, "height": 1000},
+                )
+                page = context.new_page()
+
+                print(f"🌐 Betöltés ({probalkozas}/{MAX_PROBALKOZAS}): {MAP_URL}")
+                page.goto(MAP_URL, wait_until="load", timeout=30000)
+                page.wait_for_timeout(2000)
+
+                # Az API-hívást MAGÁBÓL AZ OLDAL KONTEXTUSÁBÓL indítjuk (nem
+                # külön Python http-kliensből) - lásd a fenti modul-szintű
+                # magyarázatot arról, hogy ez miért kerüli el a 403-at.
+                result = page.evaluate(
+                    """async (apiUrl) => {
+                        try {
+                            const res = await fetch(apiUrl, { headers: { 'Accept': 'application/json' } });
+                            if (!res.ok) {
+                                return { ok: false, status: res.status };
+                            }
+                            const data = await res.json();
+                            return { ok: true, data };
+                        } catch (e) {
+                            return { ok: false, error: String(e) };
+                        }
+                    }""",
+                    API_URL,
+                )
+
+                browser.close()
+
+                if not result.get("ok"):
+                    raise RuntimeError(
+                        f"Az Útinform API hívása a böngésző-kontextusból sem sikerült "
+                        f"(status={result.get('status')}, error={result.get('error')})."
+                    )
+
+                features = result["data"].get("features", [])
+                print(f"   -> {len(features)} helyszín érkezett az API-ból.")
+                return features
+
+        except Exception as ex:
+            utolso_hiba = ex
+            print(f"  ⚠️ Sikertelen próbálkozás ({probalkozas}/{MAX_PROBALKOZAS}): {ex}")
+            if probalkozas < MAX_PROBALKOZAS:
+                page_wait = 5 * probalkozas
+                print(f"  ⏳ Várakozás {page_wait} másodpercet újrapróbálkozás előtt...")
+                import time
+                time.sleep(page_wait)
+
+    raise RuntimeError(f"Az Útinform lekérdezés {MAX_PROBALKOZAS} próbálkozás után is sikertelen: {utolso_hiba}")
 
 
 def main():
     try:
-        features = fetch_utinform_webcams()
+        features = fetch_utinform_features()
     except Exception as e:
-        # Az útinform API időnként instabil / átmenetileg elérhetetlen lehet -
-        # ilyenkor NEM írjuk felül a meglévő adatfájlt egy üressel, inkább
-        # kilépünk hibával, hogy a weboldalon a korábbi (még mindig jó) adat
-        # maradjon látható a következő sikeres futásig.
+        # Az útinform API/oldal időnként instabil / átmenetileg elérhetetlen
+        # lehet - ilyenkor NEM írjuk felül a meglévő adatfájlt egy üressel,
+        # inkább kilépünk hibával, hogy a weboldalon a korábbi (még mindig
+        # jó) adat maradjon látható a következő sikeres futásig.
         print(f"❌ HIBA az Útinform API lekérdezésekor: {e}")
         sys.exit(1)
 
