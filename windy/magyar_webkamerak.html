@@ -668,14 +668,18 @@
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
 
-  // A weboldallal azonos repóban, a data/ mappában tárolt, GitHub Actions
-  // által rendszeresen frissített statikus JSON fájlok - nincs API-kulcs,
-  // nincs közvetlen böngészős hívás a Windy vagy az Útinform felé, tehát
-  // nincs CORS-hiba (az Útinform API-ja egyébként sem engedné a közvetlen
-  // böngészős hívást idegen domainről - nincs Access-Control-Allow-Origin
-  // fejléce - ezért is kell szerveroldali köztes lépés mindkét forrásnál).
+  // A windy adat a weboldallal azonos repóban, a data/ mappában van -
+  // GitHub Actions frissíti rendszeresen, nincs API-kulcs, nincs CORS-hiba
+  // (same-origin).
+  //
+  // Az útinform adat viszont MÁSIK domainről jön: GitHub Actionből (Azure
+  // IP) az Útinform API 403-at ad, ezért azt egy külön tárhelyen (cron
+  // jobbal futó PHP script) generáljuk, és onnan töltjük be cross-origin
+  // fetch()-csel - ehhez az a tárhely küld Access-Control-Allow-Origin
+  // fejlécet (lásd: .htaccess a tárhelyen), különben a böngésző blokkolná
+  // a választ.
   const DATA_URL_WINDY = 'data/webcams_hu.json';
-  const DATA_URL_UTINFORM = 'data/webcams_utinform.json';
+  const DATA_URL_UTINFORM = 'https://baleset-info.hu/tv2/utinform/webcams_utinform.json';
 
   const SOURCE_LABELS = {
     windy: 'Windy',
