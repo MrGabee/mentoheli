@@ -36,7 +36,14 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: 📦 Függőségek telepítése
-        run: pip install playwright==1.61.0
+        # FONTOS: "python -m pip install", NEM önálló "pip install" - ebben
+        # a Microsoft-féle image-ben a sima "pip" parancs és a "python"
+        # parancs időnként két KÜLÖNBÖZŐ interpreterre/site-packages-re
+        # mutathat, emiatt a telepítés "sikeresnek" tűnik, de a script
+        # futtatásakor mégis "ModuleNotFoundError: No module named
+        # 'playwright'" a vége. A "python -m pip install" garantáltan
+        # ugyanabba a Python-környezetbe telepít, amivel utána futtatunk.
+        run: python -m pip install playwright==1.61.0
 
       - name: 📹 Webkamerák lekérdezése
         run: python windy/fetch_utinform_webcams.py
