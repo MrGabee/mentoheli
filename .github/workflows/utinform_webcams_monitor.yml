@@ -1,0 +1,115 @@
+name: 📹 Útinform Webkamerák Frissítése (HU)
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [utinform_webcams_trigger]
+  schedule:
+    # Biztonsági háló: ha az önindító lánc bármi okból megszakadna
+    # (pl. GitHub API hiba, elakadt futás), ez legkésőbb 15 percen
+    # belül újraindítja a frissítést - ugyanaz a minta, mint a windy
+    # webkamera-monitornál.
+    - cron: '*/15 * * * *'
+
+concurrency:
+  group: utinform-webcams-hu
+  cancel-in-progress: false
+
+jobs:
+  frissit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests
+
+      - name: 📹 Webkamerák lekérdezése
+        run: python windy/fetch_utinform_webcams.py
+
+      - name: 💾 Adat commitolása
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ ! -f windy/data/webcams_utinform.json ]; then
+            echo "Nincs adatfájl, nincs mit commitolni."
+            exit 0
+          fi
+
+          cp windy/data/webcams_utinform.json /tmp/webcams_utinform_sajat.json
+
+          SIKERULT=0
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p windy/data
+            cp /tmp/webcams_utinform_sajat.json windy/data/webcams_utinform.json
+            git add windy/data/webcams_utinform.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              SIKERULT=1
+              break
+            fi
+            git commit -m "útinform webkamerák frissítve [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Push sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "Push ütközött, újrapróbálkozás..."
+              sleep $((RANDOM % 6 + 2))
+            fi
+          done
+
+          if [ "$SIKERULT" != "1" ]; then
+            echo "⚠️ 6 próbálkozás után sem sikerült a push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: ⏱️ Várakozás
+        if: always()
+        run: sleep 90
+
+      - name: 🔄 Következő futás indítása
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          SIKERULT=0
+          for i in 1 2 3; do
+            HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/dispatches \
+              -d '{"event_type":"utinform_webcams_trigger"}')
+            if [ "$HTTP_KOD" = "204" ]; then
+              echo "✅ Dispatch sikeres."
+              SIKERULT=1
+              break
+            else
+              echo "⚠️ Dispatch sikertelen (HTTP $HTTP_KOD), próbálkozás $i/3..."
+              cat /tmp/dispatch_resp.txt
+              sleep 5
+            fi
+          done
+          if [ "$SIKERULT" != "1" ]; then
+            echo "❌ FIGYELEM: nem sikerült elindítani a következő futást! A schedule biztonsági háló legfeljebb 15 percen belül úgyis újraindítja."
+          fi
