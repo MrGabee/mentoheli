@@ -18,6 +18,13 @@ concurrency:
 jobs:
   frissit:
     runs-on: ubuntu-latest
+    # Előre kész Playwright + Chromium image - nem kell telepíteni, gyorsabb
+    # indulás. Ugyanaz a minta, mint a bkk_kozut_playwright_monitor.py-nál:
+    # az útinform.hu API-ja sima "requests"-szel (nem-böngésző kliens) 403
+    # Forbidden-t ad GitHub Actionből, de egy valódi headless Chrome
+    # kontextusából indított fetch() átmegy.
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.61.0-jammy
     timeout-minutes: 5
     permissions:
       contents: write
@@ -28,13 +35,8 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: 🐍 Python beállítása
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
       - name: 📦 Függőségek telepítése
-        run: pip install requests
+        run: pip install playwright==1.61.0
 
       - name: 📹 Webkamerák lekérdezése
         run: python windy/fetch_utinform_webcams.py
@@ -44,6 +46,7 @@ jobs:
         continue-on-error: true
         run: |
           set +e
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
