@@ -11,12 +11,47 @@ API-kulcs nélkül.
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 
 import requests
 
 API_KEY = os.environ.get("WINDY_API_KEY")
 OUTPUT_FILE = "windy/data/webcams_hu.json"
+
+# Ez a workflow gyakorlatilag folyamatosan fut (önindító lánc, kb.
+# 1.5-2 percenként), és futásonként akár 24 külön kérést küld a Windy
+# szerverének (6 régió x max. 4 oldal). Ilyen gyakoriság mellett időnként
+# - ritkán, rendszertelenül - egy-egy kérésre 403/429/5xx érkezik, ami
+# szinte mindig a Windy szerverének pillanatnyi akadása, NEM valódi
+# jogosultsági/kulcs-probléma. Enélkül a retry nélkül egy ilyen szórványos
+# hiba feleslegesen "pirosra" futtatja a teljes GitHub Actions futást,
+# pedig a következő próbálkozásra már működne.
+RETRYABLE_STATUS_CODES = {403, 429, 500, 502, 503, 504}
+MAX_RETRIES = 3
+RETRY_BASE_DELAY_SECONDS = 3
+
+
+def windy_get(url, params, headers):
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            response = requests.get(url, params=params, headers=headers, timeout=15)
+        except requests.exceptions.RequestException as e:
+            if attempt == MAX_RETRIES:
+                raise
+            delay = RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1))
+            print(f"   ⚠️  Hálózati hiba (kísérlet {attempt}/{MAX_RETRIES}): {e} - újrapróbálás {delay}s múlva...")
+            time.sleep(delay)
+            continue
+
+        if response.status_code in RETRYABLE_STATUS_CODES and attempt < MAX_RETRIES:
+            delay = RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1))
+            print(f"   ⚠️  HTTP {response.status_code} érkezett (kísérlet {attempt}/{MAX_RETRIES}) - valószínűleg a Windy szerver pillanatnyi akadása, újrapróbálás {delay}s múlva...")
+            time.sleep(delay)
+            continue
+
+        response.raise_for_status()
+        return response
 
 # A Windy API a régiókat angolul adja vissza - ez fordítja magyarra a
 # weboldalon való megjelenítéshez. Ha egy régiónév nem szerepel itt,
@@ -72,8 +107,7 @@ def fetch_hungarian_webcams():
                 "offset": offset,
                 "include": "images,location,player",
             }
-            response = requests.get(url, params=params, headers=headers, timeout=15)
-            response.raise_for_status()
+            response = windy_get(url, params, headers)
             page_data = response.json().get("webcams", [])
 
             if not page_data:
