@@ -125,14 +125,23 @@ def magyar_ma():
 # ────────────────────────────────────────────
 #  ⚙️  BEÁLLÍTÁSOK
 # ────────────────────────────────────────────
-IMAP_HOST = os.environ.get("SZAMLA_IMAP_HOST", "imap.gmail.com")
-IMAP_PORT = int(os.environ.get("SZAMLA_IMAP_PORT", "993"))
+# FONTOS: itt szándékosan "os.environ.get(NEV) or alapérték" mintát
+# használunk, NEM "os.environ.get(NEV, alapérték)"-et. A GitHub Actions
+# workflow ugyanis egy nem létező secretet is behelyettesít - üres
+# szöveggel, nem hagyja ki a környezeti változót. A sima .get(NEV, alap)
+# csak akkor adná vissza az alapértéket, ha a változó EGYÁLTALÁN NINCS
+# beállítva - üresen beállított változónál nem, és pont ez okozott
+# korábban "Connection refused" hibát (üres hostname -> a script a
+# futtatógépet magát próbálta elérni). Az "or" forma mindkét esetben
+# (hiányzó VAGY üres) helyesen az alapértékre esik vissza.
+IMAP_HOST = os.environ.get("SZAMLA_IMAP_HOST") or "imap.gmail.com"
+IMAP_PORT = int(os.environ.get("SZAMLA_IMAP_PORT") or "993")
 IMAP_USER = os.environ.get("SZAMLA_IMAP_USER", "")
 IMAP_JELSZO = os.environ.get("SZAMLA_IMAP_JELSZO", "")
-IMAP_MAPPA = os.environ.get("SZAMLA_IMAP_MAPPA", "INBOX")
+IMAP_MAPPA = os.environ.get("SZAMLA_IMAP_MAPPA") or "INBOX"
 
-SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", "465"))
+SMTP_HOST = os.environ.get("SMTP_HOST") or "smtp.gmail.com"
+SMTP_PORT = int(os.environ.get("SMTP_PORT") or "465")
 EMAIL_KULDO = os.environ.get("EMAIL_KULDO_SZAMLA") or IMAP_USER
 EMAIL_JELSZO_KULDES = os.environ.get("EMAIL_JELSZO_SZAMLA") or IMAP_JELSZO
 EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_SZAMLA", "")
