@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Számla áttekintő</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #111827;
+    --muted: #6b7280;
+    --blue: #1d4ed8;
+    --red: #dc2626;
+    --green: #16a34a;
+    --amber: #b45309;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .alcim { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+  /* ── Jelszó-képernyő ── */
+  #jelszo-kepernyo {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 70vh; text-align: center; gap: 14px;
+  }
+  #jelszo-kepernyo input {
+    padding: 12px 14px; font-size: 16px; border: 1px solid var(--border);
+    border-radius: 10px; width: 260px; max-width: 80vw;
+  }
+  #jelszo-kepernyo button {
+    padding: 12px 22px; font-size: 15px; border: none; border-radius: 10px;
+    background: var(--blue); color: #fff; cursor: pointer;
+  }
+  #jelszo-hiba { color: var(--red); font-size: 14px; min-height: 20px; }
+  #jelszo-info { color: var(--muted); font-size: 13px; max-width: 380px; }
+
+  /* ── Tartalom ── */
+  #tartalom { display: none; }
+  .kartyak { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .kartya { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .kartya .cimke { color: var(--muted); font-size: 13px; }
+  .kartya .ertek { font-size: 22px; font-weight: 700; margin-top: 4px; }
+
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; }
+  th, td { padding: 10px 12px; text-align: left; font-size: 14px; border-bottom: 1px solid var(--border); }
+  th { background: #f3f4f6; color: var(--muted); font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .badge-fizetve { background: #dcfce7; color: var(--green); }
+  .badge-fizetetlen { background: #fef3c7; color: var(--amber); }
+  .badge-lejart { background: #fee2e2; color: var(--red); }
+  .osszeg { text-align: right; font-variant-numeric: tabular-nums; }
+  .szurok { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .szurok button {
+    padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--card); cursor: pointer; font-size: 13px;
+  }
+  .szurok button.aktiv { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .frissitve { color: var(--muted); font-size: 12px; margin-top: 20px; text-align: center; }
+  .ures { color: var(--muted); text-align: center; padding: 30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="jelszo-kepernyo">
+    <h1>🔒 Számla áttekintő</h1>
+    <p id="jelszo-info">Az adatok titkosítva vannak tárolva - add meg a jelszót a megtekintéshez. A jelszó csak a böngésződben marad, sehova nem kerül elküldésre.</p>
+    <input type="password" id="jelszo-input" placeholder="Jelszó" autocomplete="off">
+    <button id="jelszo-gomb">Megnyitás</button>
+    <div id="jelszo-hiba"></div>
+  </div>
+
+  <div id="tartalom">
+    <h1>💰 Számla áttekintő</h1>
+    <div class="alcim">Vízművek · MVM · Díjnet</div>
+
+    <div class="kartyak" id="kartyak"></div>
+
+    <div class="szurok">
+      <button data-szuro="mind" class="aktiv">Összes</button>
+      <button data-szuro="fizetetlen">Fizetetlen</button>
+      <button data-szuro="fizetve">Fizetve</button>
+    </div>
+
+    <div id="tabla-hely"></div>
+
+    <h2 id="meroallas-cim" style="font-size:18px;margin:32px 0 10px;display:none;">🔢 Mérőállások / mérő-események</h2>
+    <div id="meroallas-hely"></div>
+
+    <h2 id="ismeretlen-cim" style="font-size:18px;margin:32px 0 10px;display:none;">❓ Fel nem ismert levelek</h2>
+    <div id="ismeretlen-hely"></div>
+
+    <div class="frissitve" id="frissitve"></div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const ADAT_URL = "szamla_allapot.enc.json";
+  let osszesSzamla = [];
+
+  function b64ToBytes(b64) {
+    const bin = atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return arr;
+  }
+
+  async function kulcsSzarmaztatas(jelszo, saltBytes) {
+    const enc = new TextEncoder();
+    const alapKulcs = await crypto.subtle.importKey(
+      "raw", enc.encode(jelszo), { name: "PBKDF2" }, false, ["deriveKey"]
+    );
+    return crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt: saltBytes, iterations: 200000, hash: "SHA-256" },
+      alapKulcs,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["decrypt"]
+    );
+  }
+
+  async function visszafejtes(csomag, jelszo) {
+    const salt = b64ToBytes(csomag.salt);
+    const nonce = b64ToBytes(csomag.nonce);
+    const titkositott = b64ToBytes(csomag.adat);
+    const kulcs = await kulcsSzarmaztatas(jelszo, salt);
+    const nyersBuffer = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: nonce }, kulcs, titkositott
+    );
+    const dekoder = new TextDecoder();
+    return JSON.parse(dekoder.decode(nyersBuffer));
+  }
+
+  function forint(osszeg) {
+    if (osszeg === null || osszeg === undefined) return "ismeretlen";
+    return Math.round(osszeg).toLocaleString("hu-HU") + " Ft";
+  }
+
+  function maiNap() {
+    const d = new Date();
+    return d.toISOString().slice(0, 10);
+  }
+
+  function allapotBadge(rekord) {
+    if (rekord.fizetve) return '<span class="badge badge-fizetve">fizetve</span>';
+    if (rekord.hatarido && rekord.hatarido < maiNap()) {
+      return '<span class="badge badge-lejart">lejárt</span>';
+    }
+    return '<span class="badge badge-fizetetlen">fizetetlen</span>';
+  }
+
+  function kartyakRenderelese(lista) {
+    const fizetetlenek = lista.filter(r => !r.fizetve);
+    const vegosszeg = fizetetlenek.reduce((s, r) => s + (r.osszeg || 0), 0);
+    const lejartak = fizetetlenek.filter(r => r.hatarido && r.hatarido < maiNap());
+
+    document.getElementById("kartyak").innerHTML = `
+      <div class="kartya">
+        <div class="cimke">Fizetetlen számlák</div>
+        <div class="ertek">${fizetetlenek.length} db</div>
+      </div>
+      <div class="kartya">
+        <div class="cimke">Fizetetlen összeg</div>
+        <div class="ertek">${forint(vegosszeg)}</div>
+      </div>
+      <div class="kartya">
+        <div class="cimke">Lejárt határidejű</div>
+        <div class="ertek" style="color:${lejartak.length ? '#dc2626' : 'inherit'}">${lejartak.length} db</div>
+      </div>
+    `;
+  }
+
+  function tablaRenderelese(lista) {
+    const hely = document.getElementById("tabla-hely");
+    if (!lista.length) {
+      hely.innerHTML = '<div class="ures">Nincs ide tartozó számla.</div>';
+      return;
+    }
+    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const sorok = rendezett.map(r => `
+      <tr>
+        <td>${r.szolgaltato_nev || ""}</td>
+        <td>${r.targy || ""}</td>
+        <td class="osszeg">${forint(r.osszeg)}</td>
+        <td>${r.hatarido || "ismeretlen"}</td>
+        <td>${allapotBadge(r)}</td>
+      </tr>
+    `).join("");
+
+    hely.innerHTML = `
+      <table>
+        <thead>
+          <tr><th>Szolgáltató</th><th>Tárgy</th><th>Összeg</th><th>Határidő</th><th>Állapot</th></tr>
+        </thead>
+        <tbody>${sorok}</tbody>
+      </table>
+    `;
+  }
+
+  function meroallasokRenderelese(lista) {
+    const cim = document.getElementById("meroallas-cim");
+    const hely = document.getElementById("meroallas-hely");
+    if (!lista.length) { cim.style.display = "none"; hely.innerHTML = ""; return; }
+    cim.style.display = "block";
+    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const sorok = rendezett.map(r => `
+      <tr>
+        <td>${r.szolgaltato_nev || ""}</td>
+        <td>${r.targy || ""}</td>
+        <td>${r.ertek ? (r.ertek + (r.mertekegyseg ? " " + r.mertekegyseg : "")) : "ismeretlen"}</td>
+        <td>${(r.erkezett || "").slice(0, 10)}</td>
+      </tr>
+    `).join("");
+    hely.innerHTML = `
+      <table>
+        <thead><tr><th>Szolgáltató</th><th>Tárgy</th><th>Érték</th><th>Érkezett</th></tr></thead>
+        <tbody>${sorok}</tbody>
+      </table>`;
+  }
+
+  function ismeretlenekRenderelese(lista) {
+    const cim = document.getElementById("ismeretlen-cim");
+    const hely = document.getElementById("ismeretlen-hely");
+    if (!lista.length) { cim.style.display = "none"; hely.innerHTML = ""; return; }
+    cim.style.display = "block";
+    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const sorok = rendezett.map(r => `
+      <tr>
+        <td>${r.szolgaltato_nev || ""}</td>
+        <td>${r.targy || ""}</td>
+        <td>${(r.erkezett || "").slice(0, 10)}</td>
+      </tr>
+    `).join("");
+    hely.innerHTML = `
+      <table>
+        <thead><tr><th>Szolgáltató</th><th>Tárgy</th><th>Érkezett</th></tr></thead>
+        <tbody>${sorok}</tbody>
+      </table>`;
+  }
+
+  function szuresAlkalmazasa(szuro) {
+    let szurt = osszesSzamla;
+    if (szuro === "fizetetlen") szurt = osszesSzamla.filter(r => !r.fizetve);
+    if (szuro === "fizetve") szurt = osszesSzamla.filter(r => r.fizetve);
+    tablaRenderelese(szurt);
+  }
+
+  document.querySelectorAll(".szurok button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".szurok button").forEach(b => b.classList.remove("aktiv"));
+      btn.classList.add("aktiv");
+      szuresAlkalmazasa(btn.dataset.szuro);
+    });
+  });
+
+  async function betoltesJelszoval(jelszo) {
+    const hibaEl = document.getElementById("jelszo-hiba");
+    hibaEl.textContent = "";
+    try {
+      const resp = await fetch(ADAT_URL, { cache: "no-store" });
+      if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
+      const csomag = await resp.json();
+      const adat = await visszafejtes(csomag, jelszo);
+
+      osszesSzamla = Object.values(adat.szamlak || {});
+      kartyakRenderelese(osszesSzamla);
+      tablaRenderelese(osszesSzamla);
+      meroallasokRenderelese(Object.values(adat.meroallasok || {}));
+      ismeretlenekRenderelese(Object.values(adat.ismeretlen_dokumentumok || {}));
+      document.getElementById("frissitve").textContent =
+        "Frissítve: " + (csomag.frissitve ? new Date(csomag.frissitve).toLocaleString("hu-HU") : "ismeretlen");
+
+      document.getElementById("jelszo-kepernyo").style.display = "none";
+      document.getElementById("tartalom").style.display = "block";
+      try { sessionStorage.setItem("szamla_jelszo", jelszo); } catch (e) { /* ignorálható */ }
+    } catch (e) {
+      hibaEl.textContent = "Hibás jelszó, vagy az adatfájl még nem létezik.";
+    }
+  }
+
+  document.getElementById("jelszo-gomb").addEventListener("click", () => {
+    betoltesJelszoval(document.getElementById("jelszo-input").value);
+  });
+  document.getElementById("jelszo-input").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") betoltesJelszoval(document.getElementById("jelszo-input").value);
+  });
+
+  // Kényelmi funkció: ugyanabban a böngésző-fülben (session alatt) nem
+  // kell újra beírni a jelszót - de új fül/böngésző-indítás után igen.
+  try {
+    const mentettJelszo = sessionStorage.getItem("szamla_jelszo");
+    if (mentettJelszo) betoltesJelszoval(mentettJelszo);
+  } catch (e) { /* ignorálható */ }
+})();
+</script>
+</body>
+</html>
