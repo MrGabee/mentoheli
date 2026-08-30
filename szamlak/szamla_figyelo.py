@@ -476,6 +476,7 @@ def visszafejt(jelszo: str, fajl: str) -> dict:
         return alap
 
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    from cryptography.exceptions import InvalidTag
 
     with open(fajl, "r", encoding="utf-8") as f:
         csomag = json.load(f)
@@ -489,7 +490,28 @@ def visszafejt(jelszo: str, fajl: str) -> dict:
     iteraciok = csomag.get("iterations", PBKDF2_ITERACIOSZAM)
     kulcs = _kulcs_szarmaztatas(jelszo, salt, iteraciok)
     aesgcm = AESGCM(kulcs)
-    nyers = aesgcm.decrypt(nonce, titkositott, None)
+    try:
+        nyers = aesgcm.decrypt(nonce, titkositott, None)
+    except InvalidTag:
+        # Ez NEM egy váratlan/programozási hiba - az AES-GCM szándékosan
+        # ezt dobja, ha a levezetett kulcs (vagyis a megadott jelszó) NEM
+        # egyezik azzal, amivel a fájlt eredetileg titkosították. Egy
+        # nyers Python-traceback helyett egy világos, magyar, ok-okozatot
+        # is megadó hibaüzenetet adunk - ez a leggyakrabban akkor
+        # jelentkezik, ha valaki megváltoztatja a SZAMLA_TITKOSITAS_JELSZO
+        # secretet, miközben a repóban még a RÉGI jelszóval titkosított
+        # fájl van.
+        raise RuntimeError(
+            f"Nem sikerült visszafejteni a titkosított állapotfájlt ({fajl}) "
+            "a megadott SZAMLA_TITKOSITAS_JELSZO jelszóval. Két gyakori ok: "
+            "1) megváltoztattad a SZAMLA_TITKOSITAS_JELSZO secretet, de a "
+            "meglévő fájl még a RÉGI jelszóval van titkosítva - ha "
+            "szándékosan váltottál jelszót, töröld ezt a fájlt a repóból "
+            "(GitHub webes felületén), hogy a script friss, üres "
+            "állapotból induljon újra az ÚJ jelszóval; 2) elgépelted / "
+            "hibásan másoltad be a secret értékét (pl. felesleges "
+            "szóköz/sortörés került bele)."
+        ) from None
     betoltott = json.loads(nyers.decode("utf-8"))
     alap.update(betoltott)
     return alap
@@ -1162,7 +1184,12 @@ def main():
         print("❌ Nincs beállítva SZAMLA_IMAP_USER / SZAMLA_IMAP_JELSZO - leállás.")
         return
 
-    allapot = visszafejt(TITKOSITAS_JELSZO, ALLAPOT_FAJL)
+    try:
+        allapot = visszafejt(TITKOSITAS_JELSZO, ALLAPOT_FAJL)
+    except RuntimeError as e:
+        print(f"❌ {e}")
+        return
+
     szamlak = allapot.setdefault("szamlak", {})
     meroallasok = allapot.setdefault("meroallasok", {})
     ismeretlen_dokumentumok = allapot.setdefault("ismeretlen_dokumentumok", {})
