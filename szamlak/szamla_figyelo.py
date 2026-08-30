@@ -471,6 +471,14 @@ def visszafejt(jelszo: str, fajl: str) -> dict:
         "ismeretlen_fizetesek": {},
         "feldolgozott_uidok": [],
         "utolso_emlekezteto_nap": None,
+        # invoice-id -> base64-kódolt PDF bytes. Ez a felhasználó KIFEJEZETT
+        # kérésére/döntésére került be (ld. commit-üzenet) - korábban a
+        # PDF-eket szándékosan SOHA nem tároltuk tartósan, csak átmenetileg,
+        # az emailhez csatolva. Mivel ez az egész "adat" dict egyben megy át
+        # az AES-GCM titkosításon (titkosit_es_ment), a PDF-ek is ugyanazzal
+        # a jelszóval védettek, mint a számla-adatok - nincs szükség külön
+        # titkosítási rétegre.
+        "pdf_adatok": {},
     }
     if not os.path.exists(fajl):
         return alap
@@ -642,6 +650,65 @@ def pdf_szoveg_kinyerese(pdf_bytes) -> str:
     except Exception as e:
         print(f"      ⚠️  PDF-szöveg kiolvasása sikertelen: {e}")
         return ""
+
+
+# ════════════════════════════════════════════
+#  📎  PDF-EK TARTÓS (TITKOSÍTOTT) TÁROLÁSA
+# ════════════════════════════════════════════
+# A felhasználó kifejezett kérésére/döntésére a PDF-számlákat mostantól
+# NEM csak átmenetileg (email-csatolmányként), hanem tartósan, a
+# titkosított állapotfájl részeként is eltároljuk - ez teszi lehetővé a
+# dashboardon a soronkénti letöltés-gombot és a dátum-intervallumos
+# email-küldést, mindkettő új adatot nem igényel, a már eltárolt PDF-t
+# használja. Mivel az egész állapot-dict egyben megy át az AES-GCM
+# titkosításon, a PDF-ek is a számla-adatokkal AZONOS szintű védelmet
+# kapnak, külön réteg nélkül.
+#
+# MÉRETKORLÁT: ez a fájl mérete jelentősen megnő (a PDF-ek base64-ben,
+# ~37%-os többlettel kerülnek be) - ezt a felhasználó tudatosan
+# vállalta. Hogy ne nőjön a végtelenségig, a _pdf_tarolas_ritkitasa()
+# függvény minden mentés előtt lefut: a FIZETETLEN számlák PDF-jét
+# mindig megtartja, a FIZETETT számláknál viszont csak az utóbbi
+# PDF_MEGORZESI_NAPOK napból tartja meg (a számla-METAADAT ettől
+# függetlenül megmarad örökre, csak a hozzá tartozó PDF-bájtok esnek ki,
+# ha egy fizetett számla PDF-je ennél régebbi).
+PDF_MEGORZESI_NAPOK = 400
+
+
+def pdf_tarolas(allapot: dict, invoice_id: str, pdf_bytes):
+    """Eltárolja (base64-ben) egy adott számlához tartozó PDF-et az
+    állapotban, HA van mit tárolni és MÉG NINCS ott (ne töltsük le/
+    tároljuk feleslegesen újra ugyanazt minden futáskor)."""
+    if not pdf_bytes:
+        return
+    pdf_tar = allapot.setdefault("pdf_adatok", {})
+    if invoice_id in pdf_tar:
+        return
+    pdf_tar[invoice_id] = base64.b64encode(pdf_bytes).decode("ascii")
+
+
+def _pdf_tarolas_ritkitasa(allapot: dict):
+    """Ld. a fenti szekció-komment MÉRETKORLÁT részét - fizetetlen
+    számláknál mindig megtartjuk a PDF-et, fizetetteknél csak
+    PDF_MEGORZESI_NAPOK napig. Az árva bejegyzéseket (olyan invoice-id,
+    ami már nincs a szamlak dict-ben) is eltávolítja."""
+    szamlak = allapot.get("szamlak", {})
+    pdf_tar = allapot.get("pdf_adatok", {})
+    if not pdf_tar:
+        return
+    hatar_nap = (magyar_ma() - timedelta(days=PDF_MEGORZESI_NAPOK)).isoformat()
+    megtartando = {}
+    for invoice_id, b64_adat in pdf_tar.items():
+        rekord = szamlak.get(invoice_id)
+        if rekord is None:
+            continue  # árva bejegyzés - a számla-metaadat már nincs meg, a PDF-et sem tartjuk
+        if not rekord.get("fizetve"):
+            megtartando[invoice_id] = b64_adat
+            continue
+        fizetve_datum = (rekord.get("fizetve_datum") or "")[:10]
+        if fizetve_datum >= hatar_nap:
+            megtartando[invoice_id] = b64_adat
+    allapot["pdf_adatok"] = megtartando
 
 
 def _forint_szoveg_szamma(nyers: str):
@@ -1396,6 +1463,7 @@ def main():
                     "uid": uid_str,
                 }
                 szamlak[rid] = rekord
+                pdf_tarolas(allapot, rid, pdf_bytes)
                 print(f"      🆕 Új számla: {cfg['nev']} – {forint(osszeg)} – határidő: {hatarido}")
 
                 statisztika["email_ertesitesek"] += 1
@@ -1458,9 +1526,13 @@ def main():
                         # "új számla" riasztás egy már rendezett tételről). A PDF-
                         # letöltést egy futáson belül korlátozzuk (ld. DIJNET_MAX_
                         # PDF_LETOLTES_FUTASONKENT), hogy egy bulk (sok új számlát
-                        # egyszerre találó) futás ne fusson percekig.
+                        # egyszerre találó) futás ne fusson percekig - MINDEN
+                        # számlához próbálunk PDF-et szerezni (nem csak a
+                        # fizetetlenekhez), mert a felhasználó kérésére mostantól
+                        # tartósan is eltároljuk (pdf_tarolas), nem csak az
+                        # email-csatolmányhoz kell.
                         pdf_bytes = None
-                        if not fizetve_e and dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
+                        if dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
                             pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
                             dijnet_pdf_letoltesek_szama += 1
                         rekord = {
@@ -1478,6 +1550,7 @@ def main():
                             "szamlaszam": sor["szamlaszam"],
                         }
                         szamlak[did] = rekord
+                        pdf_tarolas(allapot, did, pdf_bytes)
                         statisztika["dijnet_uj_szamla"] += 1
                         print(f"      🆕 Új Díjnet-számla: {rekord['szolgaltato_nev']} – "
                               f"{forint(osszeg)} – határidő: {hatarido}")
@@ -1502,6 +1575,16 @@ def main():
                             letezo["osszeg"] = osszeg
                         if hatarido is not None:
                             letezo["hatarido"] = hatarido
+                        # Utólagos PDF-pótlás: ha ennek a MÁR ISMERT számlának
+                        # még nincs eltárolt PDF-je (pl. mert az első
+                        # feldolgozáskor elérte a sapkát), most - a még
+                        # rendelkezésre álló kereten belül - megpróbáljuk
+                        # pótolni. Több futás alatt fokozatosan az összes
+                        # (a 120 napos ablakban látott) számla PDF-je bekerül.
+                        if did not in allapot.get("pdf_adatok", {}) and dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
+                            potolt_pdf = dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
+                            dijnet_pdf_letoltesek_szama += 1
+                            pdf_tarolas(allapot, did, potolt_pdf)
             else:
                 print("  ℹ️  Díjnet: bejelentkezés nem sikerült - kihagyva ebben a futásban.")
         except Exception as e:
@@ -1578,6 +1661,7 @@ def main():
     if len(ismeretlen_dokumentumok) > 300:
         rendezett = sorted(ismeretlen_dokumentumok.items(), key=lambda kv: kv[1]["erkezett"])
         allapot["ismeretlen_dokumentumok"] = dict(rendezett[-300:])
+    _pdf_tarolas_ritkitasa(allapot)
 
     if DRY_RUN:
         print("  🧪 [DRY RUN] Állapot MENTÉSE kihagyva - a felismerés/lekérdezés lefutott, "

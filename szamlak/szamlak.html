@@ -87,11 +87,15 @@
 
     <div class="kartyak" id="kartyak"></div>
 
-    <div class="szurok">
+    <div class="szurok" id="allapot-szurok">
       <button data-szuro="mind" class="aktiv">Összes</button>
-      <button data-szuro="fizetetlen">Fizetetlen</button>
+      <button data-szuro="fizetetlen">Fizetendő</button>
       <button data-szuro="fizetve">Fizetve</button>
+      <button data-szuro="lejart">Lejárt</button>
+      <button id="osszeg-rendezo" type="button">Összeg ⇅</button>
     </div>
+
+    <div class="szurok" id="szolgaltato-szurok" style="display:none;"></div>
 
     <div id="tabla-hely"></div>
 
@@ -112,6 +116,25 @@
 
   const ADAT_URL = "szamla_allapot.enc.json";
   let osszesSzamla = [];
+  let pdfTar = {};           // invoice-id -> base64 PDF (a titkosított csomagból)
+  let aktivAllapotSzuro = "mind";     // "mind" | "fizetetlen" | "fizetve" | "lejart"
+  let aktivSzolgaltatoSzuro = "mind"; // "mind" | egy konkrét szolgaltato_nev érték
+  let osszegRendezesIrany = 0;        // 0 = nincs aktív összeg-rendezés, 1 = növekvő, -1 = csökkenő
+
+  // Minden, emailből/PDF-ből származó, a felhasználó felé kiírt szöveget
+  // ezen keresztül fűzünk be - ez egy sima (nem HTML-alkalmazás-célú)
+  // adatnézegető oldal, de a "targy"/"szolgaltato_nev" stb. mezők végső
+  // soron bejövő emailek tartalmából származnak, amit soha nem szabad
+  // csendben, escape-elés nélkül a DOM-ba engedni (XSS-védelem).
+  function escHtml(s) {
+    if (s === null || s === undefined) return "";
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
 
   function b64ToBytes(b64) {
     const bin = atob(b64);
@@ -194,31 +217,77 @@
     `;
   }
 
+  // Egy letölthető fájlnévhez alkalmas, "biztonságos" szöveget készít
+  // (ékezetek/speciális karakterek nélkül, ésszerű hosszra vágva).
+  function fajlnevBiztonsagos(s) {
+    return String(s || "szamla")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // ékezetek levétele (kombinálódiakritikus jelek, NFD után)
+      .replace(/[^a-zA-Z0-9._-]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 80) || "szamla";
+  }
+
+  function pdfLetoltese(id, r) {
+    const b64 = pdfTar[id];
+    if (!b64) return;
+    const bytes = b64ToBytes(b64);
+    const blob = new Blob([bytes], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fajlnevBiztonsagos((r.szolgaltato_nev || "") + "_" + (r.szamlaszam || r.targy || "")) + ".pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  }
   function tablaRenderelese(lista) {
     const hely = document.getElementById("tabla-hely");
     if (!lista.length) {
       hely.innerHTML = '<div class="ures">Nincs ide tartozó számla.</div>';
       return;
     }
-    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
-    const sorok = rendezett.map(r => `
+    let rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    if (osszegRendezesIrany !== 0) {
+      rendezett = [...lista].sort((a, b) => osszegRendezesIrany * ((a.osszeg || 0) - (b.osszeg || 0)));
+    }
+    const sorok = rendezett.map(r => {
+      const vanPdf = !!pdfTar[r.id];
+      // FONTOS: szándékosan NEM inline onclick-attribútumot használunk (azzal
+      // az r.id/rekord beágyazása törékeny lenne, pl. idézőjel-ütközés miatt) -
+      // helyette a renderelés után, DOM-elemre kötve iratkozunk fel a klikkre
+      // (ld. lentebb, a hely.querySelectorAll(".letoltes-gomb") blokk).
+      const letoltesGomb = vanPdf
+        ? `<button type="button" class="letoltes-gomb" data-id="${escHtml(r.id)}">⬇️ PDF</button>`
+        : `<span style="color:var(--muted);font-size:12px;">nincs PDF</span>`;
+      return `
       <tr>
-        <td>${r.szolgaltato_nev || ""}</td>
-        <td>${r.targy || ""}</td>
+        <td>${escHtml(r.szolgaltato_nev)}</td>
+        <td>${escHtml(r.targy)}</td>
         <td class="osszeg">${forint(r.osszeg)}</td>
-        <td>${r.hatarido || "ismeretlen"}</td>
+        <td>${escHtml(r.hatarido) || "ismeretlen"}</td>
         <td>${allapotBadge(r)}</td>
+        <td>${letoltesGomb}</td>
       </tr>
-    `).join("");
+    `;
+    }).join("");
 
     hely.innerHTML = `
       <table>
         <thead>
-          <tr><th>Szolgáltató</th><th>Tárgy</th><th>Összeg</th><th>Határidő</th><th>Állapot</th></tr>
+          <tr><th>Szolgáltató</th><th>Tárgy</th><th>Összeg</th><th>Határidő</th><th>Állapot</th><th>Számla</th></tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
     `;
+    // A letöltés-gombokhoz hozzákötjük magát a rekordot is (fájlnévhez kell) -
+    // ezt DOM-elemre akasztva tesszük, hogy ne kelljen a teljes rekordot
+    // (esetleg hosszú tárgy-szöveget) az onclick-attribútumba string-elni.
+    hely.querySelectorAll(".letoltes-gomb").forEach(btn => {
+      const id = btn.dataset.id;
+      const rekord = rendezett.find(r => String(r.id) === id);
+      btn.addEventListener("click", () => pdfLetoltese(id, rekord));
+    });
   }
 
   function meroallasokRenderelese(lista) {
@@ -229,10 +298,10 @@
     const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
     const sorok = rendezett.map(r => `
       <tr>
-        <td>${r.szolgaltato_nev || ""}</td>
-        <td>${r.targy || ""}</td>
-        <td>${r.ertek ? (r.ertek + (r.mertekegyseg ? " " + r.mertekegyseg : "")) : "ismeretlen"}</td>
-        <td>${(r.erkezett || "").slice(0, 10)}</td>
+        <td>${escHtml(r.szolgaltato_nev)}</td>
+        <td>${escHtml(r.targy)}</td>
+        <td>${r.ertek ? (escHtml(r.ertek) + (r.mertekegyseg ? " " + escHtml(r.mertekegyseg) : "")) : "ismeretlen"}</td>
+        <td>${escHtml((r.erkezett || "").slice(0, 10))}</td>
       </tr>
     `).join("");
     hely.innerHTML = `
@@ -250,9 +319,9 @@
     const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
     const sorok = rendezett.map(r => `
       <tr>
-        <td>${r.szolgaltato_nev || ""}</td>
-        <td>${r.targy || ""}</td>
-        <td>${(r.erkezett || "").slice(0, 10)}</td>
+        <td>${escHtml(r.szolgaltato_nev)}</td>
+        <td>${escHtml(r.targy)}</td>
+        <td>${escHtml((r.erkezett || "").slice(0, 10))}</td>
       </tr>
     `).join("");
     hely.innerHTML = `
@@ -262,20 +331,56 @@
       </table>`;
   }
 
-  function szuresAlkalmazasa(szuro) {
+  // A két szűrő (állapot + szolgáltató) EGYÜTT (AND-kapcsolatban) érvényesül,
+  // az összeg-rendezés pedig ezen felül, függetlenül alkalmazható.
+  function szuresAlkalmazasa() {
     let szurt = osszesSzamla;
-    if (szuro === "fizetetlen") szurt = osszesSzamla.filter(r => !r.fizetve);
-    if (szuro === "fizetve") szurt = osszesSzamla.filter(r => r.fizetve);
+    if (aktivAllapotSzuro === "fizetetlen") szurt = szurt.filter(r => !r.fizetve);
+    if (aktivAllapotSzuro === "fizetve") szurt = szurt.filter(r => r.fizetve);
+    if (aktivAllapotSzuro === "lejart") szurt = szurt.filter(r => !r.fizetve && r.hatarido && r.hatarido < maiNap());
+    if (aktivSzolgaltatoSzuro !== "mind") szurt = szurt.filter(r => (r.szolgaltato_nev || "") === aktivSzolgaltatoSzuro);
     tablaRenderelese(szurt);
   }
 
-  document.querySelectorAll(".szurok button").forEach(btn => {
+  document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll(".szurok button").forEach(b => b.classList.remove("aktiv"));
+      document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(b => b.classList.remove("aktiv"));
       btn.classList.add("aktiv");
-      szuresAlkalmazasa(btn.dataset.szuro);
+      aktivAllapotSzuro = btn.dataset.szuro;
+      szuresAlkalmazasa();
     });
   });
+
+  document.getElementById("osszeg-rendezo").addEventListener("click", (e) => {
+    // Körbeforgó háromállapotú kapcsoló: nincs rendezés -> csökkenő -> növekvő -> nincs...
+    if (osszegRendezesIrany === 0) osszegRendezesIrany = -1;
+    else if (osszegRendezesIrany === -1) osszegRendezesIrany = 1;
+    else osszegRendezesIrany = 0;
+    const gomb = e.currentTarget;
+    gomb.classList.toggle("aktiv", osszegRendezesIrany !== 0);
+    gomb.textContent = osszegRendezesIrany === -1 ? "Összeg ↓" : (osszegRendezesIrany === 1 ? "Összeg ↑" : "Összeg ⇅");
+    szuresAlkalmazasa();
+  });
+
+  // A szolgáltató-gombsort a ténylegesen előforduló szolgáltató-nevekből
+  // építjük fel dinamikusan, minden adatbetöltés után.
+  function szolgaltatoSzurokEpitese(lista) {
+    const hely = document.getElementById("szolgaltato-szurok");
+    const nevek = [...new Set(lista.map(r => r.szolgaltato_nev).filter(Boolean))].sort((a, b) => a.localeCompare(b, "hu"));
+    if (!nevek.length) { hely.style.display = "none"; hely.innerHTML = ""; return; }
+    hely.style.display = "flex";
+    const gombok = ['<button type="button" data-szolg="mind" class="aktiv">Mind (szolgáltató)</button>']
+      .concat(nevek.map(nev => `<button type="button" data-szolg="${escHtml(nev)}">${escHtml(nev)}</button>`));
+    hely.innerHTML = gombok.join("");
+    hely.querySelectorAll("button[data-szolg]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        hely.querySelectorAll("button[data-szolg]").forEach(b => b.classList.remove("aktiv"));
+        btn.classList.add("aktiv");
+        aktivSzolgaltatoSzuro = btn.dataset.szolg === "mind" ? "mind" : nevek.find(n => n === btn.dataset.szolg) || btn.dataset.szolg;
+        szuresAlkalmazasa();
+      });
+    });
+  }
 
   async function betoltesJelszoval(jelszo) {
     const hibaEl = document.getElementById("jelszo-hiba");
@@ -286,8 +391,22 @@
       const csomag = await resp.json();
       const adat = await visszafejtes(csomag, jelszo);
 
-      osszesSzamla = Object.values(adat.szamlak || {});
+      // Object.values() elveszítené a kulcsokat (a számla egyedi
+      // azonosítóját) - a letöltés-gombhoz és a jövőbeli "kiválasztás az
+      // összesítőhöz" funkcióhoz is szükség van rá, ezért Object.entries()-
+      // szel minden rekordba visszatesszük "id" mezőként.
+      osszesSzamla = Object.entries(adat.szamlak || {}).map(([id, r]) => Object.assign({ id }, r));
+      pdfTar = adat.pdf_adatok || {};
+      aktivAllapotSzuro = "mind";
+      aktivSzolgaltatoSzuro = "mind";
+      osszegRendezesIrany = 0;
+      document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(b => b.classList.toggle("aktiv", b.dataset.szuro === "mind"));
+      const rendezoGomb = document.getElementById("osszeg-rendezo");
+      rendezoGomb.classList.remove("aktiv");
+      rendezoGomb.textContent = "Összeg ⇅";
+
       kartyakRenderelese(osszesSzamla);
+      szolgaltatoSzurokEpitese(osszesSzamla);
       tablaRenderelese(osszesSzamla);
       meroallasokRenderelese(Object.values(adat.meroallasok || {}));
       ismeretlenekRenderelese(Object.values(adat.ismeretlen_dokumentumok || {}));
