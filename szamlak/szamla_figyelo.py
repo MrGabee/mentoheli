@@ -934,7 +934,15 @@ def _dijnet_vfw_token(session):
 
     valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_search", timeout=12)
     valasz.encoding = "iso-8859-2"  # a Díjnet ezt a régi kódlapot használja
-    soup = BeautifulSoup(valasz.text, "lxml")
+    # "html.parser" (a Python beépített parsere) szándékosan, NEM "lxml" -
+    # a Díjnet válasza <?xml ...?> deklarációval kezdődik, ami az lxml-t
+    # XML-szerű módba kapcsolja (ld. korábbi "XMLParsedAsHTMLWarning" a
+    # naplóban) - ilyenkor nem szúr be automatikus <tbody>-t egy explicit
+    # <tbody> nélküli <table>-be, ami kiszámíthatatlanná tette a CSS
+    # szelektorokat. A html.parser mindig HTML5-ként értelmezi a
+    # dokumentumot, a deklarációtól függetlenül - kiszámíthatóbb, és nem
+    # igényel külön csomagot.
+    soup = BeautifulSoup(valasz.text, "html.parser")
     mezo = soup.select_one('input[name="vfw_token"]')
     if mezo:
         return mezo.get("value")
@@ -943,11 +951,19 @@ def _dijnet_vfw_token(session):
     # ismét nem találjuk a mezőt - a napló megmutatja, valójában milyen
     # oldalt kaptunk vissza (pl. ha visszairányított egy bejelentkező
     # oldalra, vagy a mezőnév/oldal-szerkezet megváltozott).
+    # FONTOS - ADATVÉDELEM: a diagnosztika itt SZÁNDÉKOSAN csak
+    # SZERKEZETI infót ír ki (URL, státuszkód, mező-NEVEK, <title> szövege) -
+    # SOHA nem írjuk ki a válasz nyers tartalmát/szövegét, mert egy
+    # bejelentkezett Díjnet-oldal akár személyes adatot (pl. regisztrált
+    # szolgáltatók, ügyfélazonosítók) is tartalmazhat, és ez a napló egy
+    # PUBLIKUS GitHub Actions futás naplójába kerülne (a repó nyilvános,
+    # a GitHub Pages miatt). Egy korábbi verzió ezt hibásan mégis kiírta -
+    # ez javítva lett.
     input_nevek = [i.get("name") for i in soup.find_all("input") if i.get("name")]
+    cim_elem = soup.find("title")
     print(f"      🔍 Díjnet diagnosztika - végső URL: {valasz.url} | "
-          f"státuszkód: {valasz.status_code} | talált <input name=...> mezők: {input_nevek}")
-    oldal_eleje = re.sub(r"\s+", " ", valasz.text[:500])
-    print(f"      🔍 Díjnet diagnosztika - oldal eleje: {oldal_eleje!r}")
+          f"státuszkód: {valasz.status_code} | oldal <title>: {cim_elem.get_text(strip=True) if cim_elem else '(nincs)'} | "
+          f"talált <input name=...> mezők: {input_nevek}")
     return None
 
 
@@ -991,43 +1007,72 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
     }
     valasz = session.post(DIJNET_BASE + "/ekonto/control/szamla_search_submit", data=adatok, timeout=20)
     valasz.encoding = "iso-8859-2"
-    soup = BeautifulSoup(valasz.text, "lxml")
+    soup = BeautifulSoup(valasz.text, "html.parser")  # ld. _dijnet_vfw_token() kommentje a parser-választásról
 
     talalt_szamlak = []
-    # FONTOS: szándékosan NEM "table.table > tbody > tr" (közvetlen gyerek) -
-    # a Díjnet válasza a naplóban látott "XMLParsedAsHTMLWarning" miatt
-    # valószínűleg XML-ként (nem HTML5-ként) lett értelmezve, ilyenkor a
-    # parser NEM szúr be automatikusan <tbody>-t egy explicit <tbody>
-    # nélküli <table>-be, tehát a " > tbody > " szigorú minta hamisan 0
-    # sort adott vissza, még ha a <tr>-ek ténylegesen ott is voltak.
+    # A "table.table tr" leszármazott-szelektor (nem szigorú " > tbody > "
+    # gyerek-szelektor) szándékos - html.parser-rel ez már nem lenne
+    # kritikus (automatikusan beszúr <tbody>-t), de a bővebb szelektor
+    # attól még biztonságosabb, ha a Díjnet oldalán a táblázat szerkezete
+    # bármikor máshogy alakulna.
     sorok = soup.select("table.table tr")
     if not sorok:
-        # Diagnosztika: lássuk pontosan, mi jött vissza, hogy ne kelljen
-        # tovább találgatni, ha ez a szélesebb minta sem talál semmit.
+        # FONTOS - ADATVÉDELEM: itt SOHA nem írjuk ki a válasz nyers
+        # tartalmát/szövegét (sem az elejét, sem a közepét) - egy korábbi
+        # verzió ezt hibásan megtette, és egy éles futásnál ez ténylegesen
+        # kiírta a Díjnet-fiókhoz regisztrált szolgáltatók/ügyfélazonosítók
+        # egy részét egy PUBLIKUS GitHub Actions napló-fájlba (a repó
+        # nyilvános, a GitHub Pages miatt). Ez javítva lett - a
+        # diagnosztika mostantól KIZÁRÓLAG szerkezeti információt ír ki
+        # (darabszámok, igaz/hamis jelzők, statikus - minden felhasználónál
+        # egyforma - felületi feliratok), sosem a tényleges tartalmat.
         osszes_table = soup.find_all("table")
-        print(f"      🔍 Díjnet diagnosztika - válasz státuszkód: {valasz.status_code} | "
-              f"talált <table> elemek száma: {len(osszes_table)} | "
-              f"osztályaik: {[t.get('class') for t in osszes_table]} | "
-              f"összes <tr> a teljes oldalon: {len(soup.find_all('tr'))}")
-        oldal_eleje = re.sub(r"\s+", " ", valasz.text[:800])
-        print(f"      🔍 Díjnet diagnosztika - oldal eleje: {oldal_eleje!r}")
-        print(f"      🔍 Díjnet diagnosztika - teljes válasz hossza: {len(valasz.text)} karakter")
-        # Megnézzük, van-e a szövegben "nincs találat" jellegű üzenet - ha
-        # igen, az azt jelentené, hogy a keresés lefutott, csak tényleg
-        # nincs számla a lekérdezett időszakban (nem hibáról van szó).
-        NINCS_TALALAT_KULCSSZAVAK = ["nincs találat", "nem talál", "nincs megjeleníthető", "0 db", "nincs adat"]
         also_szoveg = valasz.text.lower()
+
+        # Van-e a szövegben "nincs találat" jellegű üzenet - ha igen, az
+        # azt jelentené, hogy a keresés lefutott, csak tényleg nincs
+        # számla a lekérdezett időszakban (nem hibáról van szó).
+        NINCS_TALALAT_KULCSSZAVAK = ["nincs találat", "nem talál", "nincs megjeleníthető", "0 db", "nincs adat"]
         talalt_kulcsszo = next((k for k in NINCS_TALALAT_KULCSSZAVAK if k in also_szoveg), None)
+
+        # Van-e bejelentkező-űrlapra utaló mező (jelszó-mező) - ha igen,
+        # az azt jelentené, hogy a session valójában NEM bejelentkezett
+        # állapotban kapta ezt a választ (pl. lejárt/érvénytelen session),
+        # és minket visszairányított egy login-oldalra.
+        van_jelszo_mezo = soup.select_one('input[type="password"]') is not None
+
+        # Van-e olyan beágyazott <script>, ami a számla-adatok jellemző
+        # JSON-kulcsait tartalmazza (pl. "szamlaszam", "osszeg",
+        # "hatarido") - ez arra utalna, hogy az oldal az eredményeket már
+        # NEM szerver-oldalon renderelt HTML-táblázatként, hanem
+        # kliens-oldali JS-sel, beágyazott JSON-ból építi fel, és emiatt
+        # nem találunk <table>-t. Csak a kulcsNEVEK jelenlétét/darabszámát
+        # nézzük, a script-tartalmat magát nem írjuk ki.
+        script_szovegek = [s.get_text() for s in soup.find_all("script")]
+        JSON_KULCS_JELOLTEK = ["szamlaszam", "számlaszám", "osszeg", "összeg", "hatarido", "határidő"]
+        json_szeru_script_db = sum(
+            1 for sz in script_szovegek
+            if any(kulcs in sz.lower() for kulcs in JSON_KULCS_JELOLTEK)
+        )
+
+        cim_elem = soup.find("title")
+        print(f"      🔍 Díjnet diagnosztika - válasz státuszkód: {valasz.status_code} | "
+              f"végső URL: {valasz.url} | oldal <title>: "
+              f"{cim_elem.get_text(strip=True) if cim_elem else '(nincs)'} | "
+              f"teljes válasz hossza: {len(valasz.text)} karakter")
+        print(f"      🔍 Díjnet diagnosztika - talált <table> elemek száma: {len(osszes_table)} | "
+              f"összes <tr> a teljes oldalon: {len(soup.find_all('tr'))} | "
+              f"jelszó-mező jelen van (session-probléma jele): {van_jelszo_mezo} | "
+              f"számla-adatra utaló JSON-kulcsot tartalmazó <script> elemek száma: {json_szeru_script_db}")
         if talalt_kulcsszo:
             print(f"      🔍 Díjnet diagnosztika - a válaszban szerepel egy 'nincs találat'-szerű "
                   f"kifejezés ('{talalt_kulcsszo}') - lehet, hogy a keresés lefutott, csak "
                   f"tényleg nincs számla a lekérdezett {DIJNET_LEKERDEZES_NAPOK_VISSZA} napban.")
-        else:
-            # Ha ilyen se, adjunk egy darabot a válasz KÖZEPÉRŐL is - a
-            # tényleges tartalom (ha van) gyakran nem az elején van.
-            kozep_kezdet = max(0, len(valasz.text) // 2 - 400)
-            kozep_resz = re.sub(r"\s+", " ", valasz.text[kozep_kezdet:kozep_kezdet + 800])
-            print(f"      🔍 Díjnet diagnosztika - a válasz közepéről: {kozep_resz!r}")
+        elif json_szeru_script_db > 0:
+            print("      🔍 Díjnet diagnosztika - úgy tűnik, az eredmények nem szerver-oldali HTML-"
+                  "táblázatként, hanem beágyazott JSON-ból, kliens-oldali JS-sel épülnek fel - ez "
+                  "esetben a jelenlegi HTML-táblázat-kereső logika nem fog működni, más "
+                  "megközelítés (a JSON kiolvasása) kellene.")
     kihagyott_db = 0
     for idx, sor in enumerate(sorok):
         cellak = sor.find_all("td")
@@ -1090,7 +1135,7 @@ def dijnet_pdf_letoltese(session, sor_index: int):
         )
         valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_letolt", timeout=12)
         valasz.encoding = "iso-8859-2"
-        soup = BeautifulSoup(valasz.text, "lxml")
+        soup = BeautifulSoup(valasz.text, "html.parser")  # ld. _dijnet_vfw_token() kommentje a parser-választásról
         link = soup.select_one('a[href*="szamla_pdf"]')
         if not link or not link.get("href"):
             return None
