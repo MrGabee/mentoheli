@@ -33,6 +33,7 @@ jobs:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_ARAM: ${{ secrets.EMAIL_CIMZETT_ARAM }}
+          MAKE_WEBHOOK_URL:   ${{ secrets.MAKE_WEBHOOK_URL }}
         run: python aramszunet_monitor.py
       - name: 💾 Állapot commitolása
         if: always()
