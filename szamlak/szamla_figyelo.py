@@ -784,7 +784,23 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
     soup = BeautifulSoup(valasz.text, "lxml")
 
     talalt_szamlak = []
-    sorok = soup.select("table.table > tbody > tr")
+    # FONTOS: szándékosan NEM "table.table > tbody > tr" (közvetlen gyerek) -
+    # a Díjnet válasza a naplóban látott "XMLParsedAsHTMLWarning" miatt
+    # valószínűleg XML-ként (nem HTML5-ként) lett értelmezve, ilyenkor a
+    # parser NEM szúr be automatikusan <tbody>-t egy explicit <tbody>
+    # nélküli <table>-be, tehát a " > tbody > " szigorú minta hamisan 0
+    # sort adott vissza, még ha a <tr>-ek ténylegesen ott is voltak.
+    sorok = soup.select("table.table tr")
+    if not sorok:
+        # Diagnosztika: lássuk pontosan, mi jött vissza, hogy ne kelljen
+        # tovább találgatni, ha ez a szélesebb minta sem talál semmit.
+        osszes_table = soup.find_all("table")
+        print(f"      🔍 Díjnet diagnosztika - válasz státuszkód: {valasz.status_code} | "
+              f"talált <table> elemek száma: {len(osszes_table)} | "
+              f"osztályaik: {[t.get('class') for t in osszes_table]} | "
+              f"összes <tr> a teljes oldalon: {len(soup.find_all('tr'))}")
+        oldal_eleje = re.sub(r"\s+", " ", valasz.text[:800])
+        print(f"      🔍 Díjnet diagnosztika - oldal eleje: {oldal_eleje!r}")
     for idx, sor in enumerate(sorok):
         cellak = sor.find_all("td")
         if len(cellak) < 9:
