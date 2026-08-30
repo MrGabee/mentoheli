@@ -808,6 +808,23 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
               f"összes <tr> a teljes oldalon: {len(soup.find_all('tr'))}")
         oldal_eleje = re.sub(r"\s+", " ", valasz.text[:800])
         print(f"      🔍 Díjnet diagnosztika - oldal eleje: {oldal_eleje!r}")
+        print(f"      🔍 Díjnet diagnosztika - teljes válasz hossza: {len(valasz.text)} karakter")
+        # Megnézzük, van-e a szövegben "nincs találat" jellegű üzenet - ha
+        # igen, az azt jelentené, hogy a keresés lefutott, csak tényleg
+        # nincs számla a lekérdezett időszakban (nem hibáról van szó).
+        NINCS_TALALAT_KULCSSZAVAK = ["nincs találat", "nem talál", "nincs megjeleníthető", "0 db", "nincs adat"]
+        also_szoveg = valasz.text.lower()
+        talalt_kulcsszo = next((k for k in NINCS_TALALAT_KULCSSZAVAK if k in also_szoveg), None)
+        if talalt_kulcsszo:
+            print(f"      🔍 Díjnet diagnosztika - a válaszban szerepel egy 'nincs találat'-szerű "
+                  f"kifejezés ('{talalt_kulcsszo}') - lehet, hogy a keresés lefutott, csak "
+                  f"tényleg nincs számla a lekérdezett {DIJNET_LEKERDEZES_NAPOK_VISSZA} napban.")
+        else:
+            # Ha ilyen se, adjunk egy darabot a válasz KÖZEPÉRŐL is - a
+            # tényleges tartalom (ha van) gyakran nem az elején van.
+            kozep_kezdet = max(0, len(valasz.text) // 2 - 400)
+            kozep_resz = re.sub(r"\s+", " ", valasz.text[kozep_kezdet:kozep_kezdet + 800])
+            print(f"      🔍 Díjnet diagnosztika - a válasz közepéről: {kozep_resz!r}")
     for idx, sor in enumerate(sorok):
         cellak = sor.find_all("td")
         if len(cellak) < 9:
