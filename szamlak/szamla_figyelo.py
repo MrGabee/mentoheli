@@ -1103,20 +1103,36 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
                   "táblázatként, hanem beágyazott JSON-ból, kliens-oldali JS-sel épülnek fel - ez "
                   "esetben a jelenlegi HTML-táblázat-kereső logika nem fog működni, más "
                   "megközelítés (a JSON kiolvasása) kellene.")
+    # Oszlop-index térkép - az aktívan karbantartott laszlojakab/
+    # homeassistant-dijnet integráció JELENLEGI forráskódjából ellenőrizve
+    # (1-indexelt oszlopszámaikat 0-indexre átszámolva): 0=szolgáltató,
+    # 1=megjelenített név, 2=számlaszám, 3=kiállítás dátuma, 4=(nem
+    # használt - a referencia-kód sem hivatkozik rá), 5=fizetési
+    # határidő, 6=összeg, 7=fizetési állapot. Ez a KORÁBBI (hibás)
+    # verzióhoz képest eggyel el volt tolva mindenhol, és emiatt a
+    # minimum-cellaszám ellenőrzés is 9 helyett most helyesen 8.
+    MIN_CELLASZAM = 8
     kihagyott_db = 0
+    cellaszam_eloszlas = {}  # csak SZÁMOK (darabszám cellánként), nem tartalom - diagnosztikához
     for idx, sor in enumerate(sorok):
         cellak = sor.find_all("td")
-        if len(cellak) < 9:
-            continue  # fejléc/üres/eltérő szerkezetű sor - kihagyjuk
+        cellaszam_eloszlas[len(cellak)] = cellaszam_eloszlas.get(len(cellak), 0) + 1
+        if len(cellak) < MIN_CELLASZAM:
+            continue  # fejléc/üres/eltérő szerkezetű sor - kihagyjuk (nem számít bele a kihagyott_db-be, ez várható zaj pl. fejléc-soroknál)
         szoveg = [c.get_text(strip=True) for c in cellak]
         try:
-            szamlaszam = szoveg[3]
-            osszeg_nyers = szoveg[7]
-            hatarido_nyers = szoveg[6]
-            allapot_szoveg = szoveg[8]
+            szamlaszam = szoveg[2]
+            kiallitas_nyers = szoveg[3]
+            hatarido_nyers = szoveg[5]
+            osszeg_nyers = szoveg[6]
+            allapot_szoveg = szoveg[7]
         except IndexError:
-            print(f"  ⚠️  Díjnet: nem várt oszlopszerkezetű sor, kihagyva (nézd meg, "
-                  f"esetleg finomítani kell az oszlop-indexeket): {szoveg}")
+            # FONTOS - ADATVÉDELEM: itt SOHA nem írjuk ki a sor tényleges
+            # celláinak tartalmát (szoveg) - az valódi számla-adatokat
+            # (szolgáltató, összeg, számlaszám) tartalmazhat, ami egy
+            # PUBLIKUS Actions naplóba kerülne. Csak a cellaszámot írjuk ki.
+            print(f"  ⚠️  Díjnet: nem várt oszlopszerkezetű sor, kihagyva "
+                  f"(talált cellák száma: {len(cellak)}, {MIN_CELLASZAM} kellene minimum).")
             kihagyott_db += 1
             continue
 
@@ -1126,22 +1142,24 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
         # puszta "elég cella van-e" ellenőrzés simán átengedne egy olyan
         # sort, ahol a cellák tartalma már nem azt jelenti, amit várunk -
         # ez rossz adat (pl. hibás összeg) csendes elmentéséhez vezetne.
+        # ADATVÉDELEM: itt sem írjuk ki a sor tartalmát, csak azt, hogy
+        # hányadik sorról (sor_index) van szó.
         if not szamlaszam:
-            print(f"  ⚠️  Díjnet: nincs számlaszám ebben a sorban, kihagyva "
-                  f"(nem tudnánk stabil azonosítót képezni belőle): {szoveg}")
+            print(f"  ⚠️  Díjnet: nincs számlaszám a(z) {idx}. sorban, kihagyva "
+                  "(nem tudnánk stabil azonosítót képezni belőle).")
             kihagyott_db += 1
             continue
         osszeg = _dijnet_osszeg_konvertalas(osszeg_nyers)
         if osszeg is None:
-            print(f"  ⚠️  Díjnet: nem sikerült értelmezhető összeget kiolvasni "
-                  f"(számla: {szamlaszam}), a sor rögzül, de összeg nélkül: {szoveg}")
+            print(f"  ⚠️  Díjnet: a(z) {idx}. sorban nem sikerült értelmezhető összeget "
+                  "kiolvasni, a sor rögzül, de összeg nélkül.")
 
         talalt_szamlak.append({
             "sor_index": idx,
-            "szolgaltato_nyers": szoveg[1],
-            "megjelenitett_nev": szoveg[2] or szoveg[1],
+            "szolgaltato_nyers": szoveg[0],
+            "megjelenitett_nev": szoveg[1] or szoveg[0],
             "szamlaszam": szamlaszam,
-            "kiallitas_nyers": szoveg[4],
+            "kiallitas_nyers": kiallitas_nyers,
             "hatarido_nyers": hatarido_nyers,
             "osszeg_nyers": osszeg_nyers,
             "allapot_szoveg": allapot_szoveg,
@@ -1149,6 +1167,12 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
 
     print(f"  🧾 Díjnet: {len(talalt_szamlak)} érvényes számla-sor az elmúlt {napok_vissza} "
           f"napból (kihagyva: {kihagyott_db}).")
+    if not talalt_szamlak and sorok:
+        # Volt <tr>, de egyetlen érvényes számla-sor sem lett belőle - a
+        # cellaszám-eloszlás (csak darabszámok, nem tartalom) segít
+        # eldönteni, hogy a MIN_CELLASZAM küszöb még mindig rossz-e.
+        print(f"      🔍 Díjnet diagnosztika - talált <tr> sorok száma: {len(sorok)} | "
+              f"cellaszám-eloszlás (cellák/db): {cellaszam_eloszlas}")
     return talalt_szamlak
 
 
