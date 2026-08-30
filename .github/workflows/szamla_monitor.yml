@@ -8,6 +8,21 @@ on:
         required: false
         default: false
         type: boolean
+      datumtol:
+        description: "Dátum-intervallumos küldés: kezdő dátum (ÉÉÉÉ-HH-NN) - a dashboard tölti ki, kézzel üresen hagyható"
+        required: false
+        default: ""
+        type: string
+      datumig:
+        description: "Dátum-intervallumos küldés: záró dátum (ÉÉÉÉ-HH-NN) - a dashboard tölti ki, kézzel üresen hagyható"
+        required: false
+        default: ""
+        type: string
+      cel_email:
+        description: "Dátum-intervallumos küldés: célcím - a dashboard tölti ki, kézzel üresen hagyható"
+        required: false
+        default: ""
+        type: string
   schedule:
     # Naponta 3x - kb. 08:00, 14:00, 20:00 magyar idő (nyáridőben; télen
     # ez UTC+1 miatt 1 órával eltolódik, ez nem gond ennél a feladatnál).
@@ -56,6 +71,12 @@ jobs:
           # a "dry_run" opciót - az ütemezett (napi 3x-os) futásoknál mindig
           # üres/false, tehát ott mindig éles módban fut.
           SZAMLA_DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '1' || '' }}
+          # Csak workflow_dispatch-nál lehet tartalmuk (a dashboard tölti ki) -
+          # ütemezett futásnál mindhárom üres, a script ilyenkor kihagyja az
+          # ehhez tartozó szakaszt.
+          SZAMLA_DATUMTOL: ${{ (github.event_name == 'workflow_dispatch' && inputs.datumtol) || '' }}
+          SZAMLA_DATUMIG: ${{ (github.event_name == 'workflow_dispatch' && inputs.datumig) || '' }}
+          SZAMLA_CEL_EMAIL: ${{ (github.event_name == 'workflow_dispatch' && inputs.cel_email) || '' }}
         run: python szamlak/szamla_figyelo.py
 
       - name: 💾 Állapot commitolása (önjavító)
