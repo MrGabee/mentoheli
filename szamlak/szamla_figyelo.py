@@ -3017,12 +3017,14 @@ def statisztika_kiirasa(
         f"{len(allapot.get('szamlak', {}))}"
     )
 
+    fizetetlen_db = sum(
+        1 for r in allapot.get('szamlak', {}).values()
+        if not r.get('fizetve', False)
+    )
+
     log(
         f"  Fizetetlen számla:      "
-        f"{sum("
-        f"1 for r in allapot.get('szamlak', {}).values()"
-        f" if not r.get('fizetve', False)"
-        f")}"
+        f"{fizetetlen_db}"
     )
 
     log(
