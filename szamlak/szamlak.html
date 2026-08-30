@@ -120,13 +120,22 @@
     return arr;
   }
 
-  async function kulcsSzarmaztatas(jelszo, saltBytes) {
+  // Az iterációszámot NEM égetjük be fixen - a Python-oldal (szamla_figyelo.py)
+  // a titkosított csomagba is beleírja ("iterations" mező), így ha ott
+  // valaha erősítünk rajta (vagy egy régebbi, korábbi iterációszámmal
+  // mentett fájlt kell visszafejteni), itt is a fájlból olvasott érték
+  // számít, nem egy fixen ide írt szám. Régebbi (verzió<3) fájloknál
+  // nincs "iterations" mező - akkor esünk vissza erre az alapértékre
+  // (ez volt a korábbi, mindig fixen beégetett érték is).
+  const ALAPERTELMEZETT_ITERACIOSZAM = 200000;
+
+  async function kulcsSzarmaztatas(jelszo, saltBytes, iteraciok) {
     const enc = new TextEncoder();
     const alapKulcs = await crypto.subtle.importKey(
       "raw", enc.encode(jelszo), { name: "PBKDF2" }, false, ["deriveKey"]
     );
     return crypto.subtle.deriveKey(
-      { name: "PBKDF2", salt: saltBytes, iterations: 200000, hash: "SHA-256" },
+      { name: "PBKDF2", salt: saltBytes, iterations: iteraciok || ALAPERTELMEZETT_ITERACIOSZAM, hash: "SHA-256" },
       alapKulcs,
       { name: "AES-GCM", length: 256 },
       false,
@@ -138,7 +147,7 @@
     const salt = b64ToBytes(csomag.salt);
     const nonce = b64ToBytes(csomag.nonce);
     const titkositott = b64ToBytes(csomag.adat);
-    const kulcs = await kulcsSzarmaztatas(jelszo, salt);
+    const kulcs = await kulcsSzarmaztatas(jelszo, salt, csomag.iterations);
     const nyersBuffer = await crypto.subtle.decrypt(
       { name: "AES-GCM", iv: nonce }, kulcs, titkositott
     );
