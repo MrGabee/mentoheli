@@ -3,9 +3,14 @@
 """
 SZÁMLA FIGYELŐ
 ==================================================================
-IMAP-on keresztül figyel egy dedikált email-postafiókot (vagy egy
-meglévő postafiók egy külön mappáját/címkéjét), és a Vízművek, MVM és
-Díjnet leveleit dolgozza fel.
+Két forrásból dolgozik:
+  1. IMAP-on keresztül figyel egy dedikált email-postafiókot (vagy egy
+     meglévő postafiók egy külön mappáját/címkéjét), és a Vízművek és
+     MVM leveleit dolgozza fel.
+  2. A Díjnet-számlákat NEM emailből, hanem közvetlenül a dijnet.hu
+     portálról olvassa ki, bejelentkezve (ld. lentebb a "DÍJNET -
+     KÖZVETLEN PORTÁL-LEKÉRDEZÉS" szekciót) - ez megbízhatóbb, mert nem
+     attól függ, küld-e egyáltalán emailt a Díjnet.
 
 FONTOS - TARTALOM-ALAPÚ FELISMERÉS (nem tárgy-sablon)
 ------------------------------------------------------
@@ -91,6 +96,9 @@ Szükséges GitHub Secretek:
   EMAIL_CIMZETT_SZAMLA    ide mennek az értesítők
   SZAMLA_TITKOSITAS_JELSZO  a titkosításhoz használt jelszó (Te találod ki -
                             ugyanezt kell majd beírnod a dashboard oldalon is)
+  SZAMLA_DIJNET_USER      a dijnet.hu bejelentkezési felhasználóneved (opcionális -
+                          ha kihagyod, a Díjnet-lekérdezés egyszerűen kimarad)
+  SZAMLA_DIJNET_JELSZO    a dijnet.hu jelszavad (opcionális, ld. fent)
 """
 
 import os
@@ -107,6 +115,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from datetime import datetime, timedelta, timezone
+
+import requests
+from bs4 import BeautifulSoup
 
 # ────────────────────────────────────────────
 #  🕐  MAGYAR IDŐZÓNA
@@ -148,6 +159,17 @@ EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_SZAMLA", "")
 
 TITKOSITAS_JELSZO = os.environ.get("SZAMLA_TITKOSITAS_JELSZO", "")
 
+# Díjnet - közvetlen portál-bejelentkezéshez (nem email-alapú, ld. lentebb).
+# Ha ezt a kettőt nem állítod be, a Díjnet-lekérdezés egyszerűen kimarad,
+# minden más (Vízművek/MVM email-figyelés) változatlanul működik.
+DIJNET_USER = os.environ.get("SZAMLA_DIJNET_USER") or ""
+DIJNET_JELSZO = os.environ.get("SZAMLA_DIJNET_JELSZO") or ""
+# Hány napra visszamenőleg kérdezze le a Díjnet-számlákat minden futáskor.
+# Ez szándékosan egy mozgó ablak (nem "csak az újakat" nézzük) - így a
+# már ismert, még fizetetlen számláknak az esetleges fizetve-állapot-
+# váltását is elkapja, nem csak a vadonatúj számlákat.
+DIJNET_LEKERDEZES_NAPOK_VISSZA = 120
+
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, HÁNY NAPPAL A HATÁRIDŐ ELŐTT MENJEN AZ ÖSSZESÍTŐ ⬇️⬇️⬇️
 SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
 
@@ -171,10 +193,14 @@ SZOLGALTATOK = {
         "nev": "MVM",
         "feladok": ["mvmnext.hu", "mvm.hu", "mvmenergia.hu"],
     },
-    "dijnet": {
-        "nev": "Díjnet",
-        "feladok": ["dijnet.hu"],
-    },
+    # A Díjnet SZÁNDÉKOSAN nincs itt - a Díjnet-számlákat mostantól nem az
+    # emailjeiből ismerjük fel, hanem közvetlenül a dijnet.hu portálról,
+    # bejelentkezve olvassuk ki (ld. lentebb, "DÍJNET - KÖZVETLEN PORTÁL-
+    # LEKÉRDEZÉS" szekció) - ez megbízhatóbb, mint az email-alapú
+    # felismerés, mert nem attól függ, küld-e egyáltalán emailt a Díjnet.
+    # Ha egy dijnet.hu-ról érkező email mégis bejön a postafiókba, azt az
+    # email-alapú ág innentől figyelmen kívül hagyja (nincs "dijnet" kulcs
+    # a szolgáltató-azonosításban), hogy ne keletkezzen duplikált tétel.
 }
 
 
@@ -630,6 +656,168 @@ def osszesito_email_html(fizetetlen_lista, vegosszeg, provider_osszegek):
 
 
 # ════════════════════════════════════════════
+#  🧾  DÍJNET - KÖZVETLEN PORTÁL-LEKÉRDEZÉS
+# ════════════════════════════════════════════
+# Nem email-alapú! Ez a rész közvetlenül bejelentkezik a dijnet.hu
+# oldalra a Te felhasználóneveddel/jelszavaddal, és onnan olvassa ki a
+# számláid pontos állapotát (összeg, határidő, fizetve-e) - így nem
+# számít, hogy a Díjnet küld-e egyáltalán emailt, és nem kell a levél
+# tárgyából/törzséből találgatni.
+#
+# A bejelentkezési/lekérdezési lépéseket egy nyílt forráskódú, aktívan
+# karbantartott Home Assistant integráció (laszlojakab/homeassistant-
+# dijnet, MIT licenc) alapján építettük fel - onnan ismertek a pontos
+# végpontok. Mivel nincs saját, éles Díjnet-fiókunk a teszteléshez, az
+# oszlop-beosztást (melyik táblázat-oszlopban mi van) és a PDF-letöltést
+# az ELSŐ ÉLES FUTÁS naplójából kell majd megerősíteni/finomítani - a
+# kód emiatt védekezően van megírva: ha egy sor nem a várt szerkezetű,
+# nem áll le, csak kihagyja és naplózza a nyers sort.
+DIJNET_BASE = "https://www.dijnet.hu"
+
+# Ezekre a (kisbetűs) kulcsszavakra illeszkedő állapot-szöveg jelenti
+# azt, hogy egy Díjnet-számla ki van fizetve. Minden más állapot-szöveg
+# ("Tovább a fizetéshez", "Rendezetlen", "Csoportos beszedés" stb.)
+# fizetetlennek számít.
+DIJNET_FIZETVE_KULCSSZAVAK = ("rendezett", "fizetve")
+
+
+def dijnet_bejelentkezes():
+    """Bejelentkezik a dijnet.hu portálra, és a bejelentkezett
+    requests.Session()-t adja vissza - vagy None-t, ha nincs beállítva a
+    Díjnet-hozzáférés, vagy a bejelentkezés sikertelen."""
+    if not (DIJNET_USER and DIJNET_JELSZO):
+        return None
+
+    session = requests.Session()
+    session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; SzamlaFigyelo/1.0)"})
+    try:
+        session.get(DIJNET_BASE + "/", timeout=20)  # session-cookie felvétele
+        valasz = session.post(
+            DIJNET_BASE + "/ekonto/login/login_check_ajax",
+            data={"username": DIJNET_USER, "password": DIJNET_JELSZO},
+            timeout=20,
+        )
+        try:
+            adat = valasz.json()
+        except Exception:
+            print("  ⚠️  Díjnet bejelentkezés: a válasz nem JSON - valószínűleg megváltozott a portál.")
+            return None
+        if not adat.get("success"):
+            print(f"  ⚠️  Díjnet bejelentkezés sikertelen (rossz felhasználónév/jelszó?): {adat}")
+            return None
+        print("  ✅ Díjnet bejelentkezés sikeres.")
+        return session
+    except Exception as e:
+        print(f"  ⚠️  Díjnet bejelentkezési hiba: {e}")
+        return None
+
+
+def _dijnet_vfw_token(session):
+    """A számla-kereső oldalról kiolvassa a rejtett 'vfw_token' mezőt,
+    ami a keresési űrlap beküldéséhez kell (CSRF-szerű védelem)."""
+    valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_search", timeout=20)
+    valasz.encoding = "iso-8859-2"  # a Díjnet ezt a régi kódlapot használja
+    soup = BeautifulSoup(valasz.text, "lxml")
+    mezo = soup.select_one('input[name="vfw_token"]')
+    return mezo.get("value") if mezo else None
+
+
+def _dijnet_datum_konvertalas(nyers: str):
+    """"2026.09.15." / "2026-09-15" -> "2026-09-15". None, ha nem talál dátumot."""
+    talalat = re.search(r"(\d{4})\D+(\d{1,2})\D+(\d{1,2})", nyers or "")
+    if not talalat:
+        return None
+    ev, ho, nap = talalat.groups()
+    return f"{int(ev):04d}-{int(ho):02d}-{int(nap):02d}"
+
+
+def _dijnet_osszeg_konvertalas(nyers: str):
+    szam = re.sub(r"[^0-9\-]", "", nyers or "")
+    try:
+        return float(szam) if szam not in ("", "-") else None
+    except ValueError:
+        return None
+
+
+def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VISSZA):
+    """Lekérdezi a Díjnet-fiókhoz tartozó számlákat az elmúlt N napból,
+    és egy listát ad vissza (Python dict-ek), soronként egy számlával."""
+    nap_ig = magyar_ma()
+    naptol = nap_ig - timedelta(days=napok_vissza)
+
+    token = _dijnet_vfw_token(session)
+    if not token:
+        print("  ⚠️  Díjnet: nem található vfw_token a keresőoldalon - a portál felülete "
+              "valószínűleg megváltozott, a lekérdezés így is megpróbálkozik, de lehet, "
+              "hogy üres eredményt ad.")
+
+    adatok = {
+        "vfw_form": "szamla_search_submit",
+        "vfw_coll": "szamla_search_params",
+        "vfw_token": token or "",
+        "szlaszolgnev": "",  # üres = minden szolgáltató
+        "regszolgid": "",    # üres = minden regisztrált szolgáltató
+        "datumtol": naptol.strftime("%Y.%m.%d"),
+        "datumig": nap_ig.strftime("%Y.%m.%d"),
+    }
+    valasz = session.post(DIJNET_BASE + "/ekonto/control/szamla_search_submit", data=adatok, timeout=30)
+    valasz.encoding = "iso-8859-2"
+    soup = BeautifulSoup(valasz.text, "lxml")
+
+    talalt_szamlak = []
+    sorok = soup.select("table.table > tbody > tr")
+    for idx, sor in enumerate(sorok):
+        cellak = sor.find_all("td")
+        if len(cellak) < 9:
+            continue  # fejléc/üres/eltérő szerkezetű sor - kihagyjuk
+        szoveg = [c.get_text(strip=True) for c in cellak]
+        try:
+            talalt_szamlak.append({
+                "sor_index": idx,
+                "szolgaltato_nyers": szoveg[1],
+                "megjelenitett_nev": szoveg[2] or szoveg[1],
+                "szamlaszam": szoveg[3],
+                "kiallitas_nyers": szoveg[4],
+                "hatarido_nyers": szoveg[6],
+                "osszeg_nyers": szoveg[7],
+                "allapot_szoveg": szoveg[8],
+            })
+        except IndexError:
+            print(f"  ⚠️  Díjnet: nem várt oszlopszerkezetű sor, kihagyva (nézd meg, "
+                  f"esetleg finomítani kell az oszlop-indexeket): {szoveg}")
+            continue
+
+    print(f"  🧾 Díjnet: {len(talalt_szamlak)} számla-sor az elmúlt {napok_vissza} napból.")
+    return talalt_szamlak
+
+
+def dijnet_pdf_letoltese(session, sor_index: int):
+    """Best-effort PDF-letöltés egy adott számla-sorhoz. Ha bármi nem a
+    várt módon viselkedik (a portál felülete változott, nincs PDF-link
+    stb.), None-t ad vissza - ez NEM állítja meg a számla rögzítését,
+    csak a PDF-csatolmány marad el az értesítő emailből."""
+    try:
+        session.get(
+            DIJNET_BASE + "/ekonto/control/szamla_select",
+            params={"vfw_coll": "szamla_list", "vfw_rowid": sor_index, "exp": "K"},
+            timeout=20,
+        )
+        valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_letolt", timeout=20)
+        valasz.encoding = "iso-8859-2"
+        soup = BeautifulSoup(valasz.text, "lxml")
+        link = soup.select_one('a[href*="szamla_pdf"]')
+        if not link or not link.get("href"):
+            return None
+        pdf_url = DIJNET_BASE + "/ekonto/control/" + link["href"].lstrip("/")
+        pdf_valasz = session.get(pdf_url, timeout=30)
+        if pdf_valasz.status_code == 200 and pdf_valasz.content:
+            return pdf_valasz.content
+    except Exception as e:
+        print(f"      ⚠️  Díjnet PDF-letöltés sikertelen (nem kritikus): {e}")
+    return None
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
 # ════════════════════════════════════════════
 def main():
@@ -813,6 +1001,72 @@ def main():
             conn.logout()
         except Exception:
             pass
+
+    # ---- 1b. Díjnet - közvetlen portál-lekérdezés (nem email-alapú) ----
+    if DIJNET_USER and DIJNET_JELSZO:
+        try:
+            dijnet_session = dijnet_bejelentkezes()
+            if dijnet_session:
+                dijnet_sorok = dijnet_szamlak_lekerdezese(dijnet_session)
+                for sor in dijnet_sorok:
+                    did = hashlib.md5(
+                        f"dijnet|{sor['szolgaltato_nyers']}|{sor['szamlaszam']}".encode("utf-8")
+                    ).hexdigest()[:16]
+                    fizetve_e = any(
+                        kulcs in sor["allapot_szoveg"].strip().lower()
+                        for kulcs in DIJNET_FIZETVE_KULCSSZAVAK
+                    )
+                    osszeg = _dijnet_osszeg_konvertalas(sor["osszeg_nyers"])
+                    hatarido = _dijnet_datum_konvertalas(sor["hatarido_nyers"])
+                    kiallitas = _dijnet_datum_konvertalas(sor["kiallitas_nyers"])
+
+                    if did not in szamlak:
+                        # Új számla - rögzítjük, és (best-effort PDF-fel) értesítünk,
+                        # kivéve, ha már eleve fizetve érkezett (akkor nem kell
+                        # "új számla" riasztás egy már rendezett tételről).
+                        pdf_bytes = None if fizetve_e else dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
+                        rekord = {
+                            "szolgaltato": "dijnet",
+                            "szolgaltato_nev": f"{sor['megjelenitett_nev']} (Díjnet)",
+                            "targy": f"Számla – {sor['szamlaszam']}",
+                            "erkezett": kiallitas or magyar_ido().isoformat(),
+                            "erkezett_fejlec": None,
+                            "osszeg": osszeg,
+                            "hatarido": hatarido,
+                            "fizetve": fizetve_e,
+                            "fizetve_datum": magyar_ido().isoformat() if fizetve_e else None,
+                            "uid": None,
+                            "forras": "dijnet_portal",
+                            "szamlaszam": sor["szamlaszam"],
+                        }
+                        szamlak[did] = rekord
+                        print(f"      🆕 Új Díjnet-számla: {rekord['szolgaltato_nev']} – "
+                              f"{forint(osszeg)} – határidő: {hatarido}")
+                        if not fizetve_e:
+                            email_kuldes(
+                                f"📄 Új számla – {rekord['szolgaltato_nev']}",
+                                uj_szamla_email_html(rekord),
+                                [(f"{sor['szamlaszam']}.pdf", pdf_bytes)] if pdf_bytes else None,
+                            )
+                    else:
+                        # Már ismert számla - csendben frissítjük (elsősorban a
+                        # fizetve-állapotot), nem küldünk újabb "új számla" emailt.
+                        letezo = szamlak[did]
+                        if fizetve_e and not letezo.get("fizetve"):
+                            letezo["fizetve"] = True
+                            letezo["fizetve_datum"] = magyar_ido().isoformat()
+                            print(f"      ✅ Díjnet-számla fizetettre állítva: "
+                                  f"{letezo['szolgaltato_nev']} – {letezo['targy']}")
+                        if osszeg is not None:
+                            letezo["osszeg"] = osszeg
+                        if hatarido is not None:
+                            letezo["hatarido"] = hatarido
+            else:
+                print("  ℹ️  Díjnet: bejelentkezés nem sikerült - kihagyva ebben a futásban.")
+        except Exception as e:
+            print(f"  ⚠️  Díjnet-lekérdezés hiba (a többi feldolgozást ez nem érinti): {e}")
+    else:
+        print("  ℹ️  Díjnet: SZAMLA_DIJNET_USER / SZAMLA_DIJNET_JELSZO nincs beállítva - kihagyva.")
 
     # ---- 2. Határidő-előtti összesítő (naponta legfeljebb egyszer) ----
     ma_str = magyar_ma().isoformat()
