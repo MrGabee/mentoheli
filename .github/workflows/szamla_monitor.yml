@@ -2,6 +2,12 @@ name: 💰 Számla Figyelő (Vízművek / MVM / Díjnet)
 
 on:
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Teszt mód (dry run): nem küld emailt, nem menti/pusholja az állapotot - csak naplózza, mit tenne"
+        required: false
+        default: false
+        type: boolean
   schedule:
     # Naponta 3x - kb. 08:00, 14:00, 20:00 magyar idő (nyáridőben; télen
     # ez UTC+1 miatt 1 órával eltolódik, ez nem gond ennél a feladatnál).
@@ -46,6 +52,10 @@ jobs:
           SZAMLA_TITKOSITAS_JELSZO: ${{ secrets.SZAMLA_TITKOSITAS_JELSZO }}
           SZAMLA_DIJNET_USER: ${{ secrets.SZAMLA_DIJNET_USER }}
           SZAMLA_DIJNET_JELSZO: ${{ secrets.SZAMLA_DIJNET_JELSZO }}
+          # Csak akkor "1", ha valaki kézzel (Run workflow gombbal) bepipálta
+          # a "dry_run" opciót - az ütemezett (napi 3x-os) futásoknál mindig
+          # üres/false, tehát ott mindig éles módban fut.
+          SZAMLA_DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '1' || '' }}
         run: python szamlak/szamla_figyelo.py
 
       - name: 💾 Állapot commitolása (önjavító)
