@@ -30,7 +30,7 @@ jobs:
           python-version: '3.12'
 
       - name: 📦 Függőségek telepítése
-        run: pip install cryptography pdfplumber
+        run: pip install cryptography pdfplumber requests beautifulsoup4 lxml
 
       - name: 💰 Számla figyelő futtatása
         env:
@@ -44,6 +44,8 @@ jobs:
           EMAIL_JELSZO_SZAMLA: ${{ secrets.EMAIL_JELSZO_SZAMLA }}
           EMAIL_CIMZETT_SZAMLA: ${{ secrets.EMAIL_CIMZETT_SZAMLA }}
           SZAMLA_TITKOSITAS_JELSZO: ${{ secrets.SZAMLA_TITKOSITAS_JELSZO }}
+          SZAMLA_DIJNET_USER: ${{ secrets.SZAMLA_DIJNET_USER }}
+          SZAMLA_DIJNET_JELSZO: ${{ secrets.SZAMLA_DIJNET_JELSZO }}
         run: python szamlak/szamla_figyelo.py
 
       - name: 💾 Állapot commitolása (önjavító)
