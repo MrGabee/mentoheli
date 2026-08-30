@@ -1,5 +1,5 @@
 """
-⚡ E.ON Áramszünet Monitor – Csepel (XXI.) + Pesterzsébet (XX.) + Kispest (XIX.)
+⚡ E.ON Áramszünet Monitor – Csepel (XXI.) + Pesterzsébet (XX.)
    + Szigetszentmiklós
 Szűrés: city mező (kerület-azonosító vagy településnév) + polygon
 """
@@ -22,14 +22,15 @@ def magyar_ido():
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
-FB_PAGE_ID    = os.environ.get("FB_PAGE_ID", "104411308403346")
-FB_PAGE_TOKEN = os.environ.get("FB_PAGE_TOKEN", "")
+MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
-# True  = automatikusan posztol a Facebook Oldalra is (jelenleg nem publikus,
-#         amíg nincs elvégezve a Meta Business Verification)
+# True  = automatikusan posztol a Facebook Oldalra is, egy Make.com
+#         automatizáción keresztül (webhook -> Facebook Pages modul) -
+#         ehhez csak egy érvényes MAKE_WEBHOOK_URL GitHub Secret kell,
+#         Meta fejlesztői app / token NEM szükséges hozzá.
 # False = csak emailt küld, a Facebook-szöveg ott lesz kimásolható
-FACEBOOK_POSZTOLAS_AKTIV = False
+FACEBOOK_POSZTOLAS_AKTIV = True
 
 API_TERVEZETT = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/poweroutage.json"
 API_UZEMZAVAR = "https://www.eon.hu/content/dam/eon/eon-hungary/external-app-data/outages/unexpectedoutage.json"
@@ -94,7 +95,7 @@ def reverse_geocode(lat, lon):
 
 
 # ════════════════════════════════════════════
-#  📍  SZŰRŐ – Csepel (XXI.) + Pesterzsébet (XX.) + Kispest (XIX.)
+#  📍  SZŰRŐ – Csepel (XXI.) + Pesterzsébet (XX.)
 #      + Szigetszentmiklós (önálló település, nincs kerület-száma)
 # ════════════════════════════════════════════
 
@@ -105,7 +106,6 @@ TERULETEK = [
     (None,        "szigetszentmiklós", "Szigetszentmiklós"),
     (r'\bXXI\b',  "csepel",           "XXI. kerület (Csepel)"),
     (r'\bXX\b',   "pesterzsébet",     "XX. kerület (Pesterzsébet)"),
-    (r'\bXIX\b',  "kispest",          "XIX. kerület (Kispest)"),
 ]
 
 
@@ -337,7 +337,7 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     # A kért bevezető mondat - jelezve, hogy nem csak Csepelről olvasnak minket
     sorok.append(
         "👋 Mivel nemcsak Csepelről, hanem a környező kerületekből és "
-        "városokból (Pesterzsébet, Kispest, Szigetszentmiklós) is sokan "
+        "városokból (Pesterzsébet, Szigetszentmiklós) is sokan "
         "olvastok minket, mostantól ezekről a területekről is beszámolunk, "
         "hogy senki ne maradjon le a fontos hírekről! 💙"
     )
@@ -386,7 +386,7 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     sorok.append("─" * 32)
     sorok.append("ℹ️ Forrás: E.ON nyilvános tájékoztatás")
     sorok.append("🤖 Automatikus értesítő – Baleset-info.hu")
-    sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Kispest, Szigetszentmiklós")
+    sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Szigetszentmiklós")
 
     if KEP_URL:
         sorok.append("")
@@ -396,23 +396,23 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
 
 
 # ════════════════════════════════════════════
-#  📘  FACEBOOK AUTOMATA POSZTOLÁS (Graph API, szövegesen)
+#  📘  FACEBOOK AUTOMATA POSZTOLÁS (Make.com webhookon keresztül)
 # ════════════════════════════════════════════
 def facebook_poszt_kuldese(szoveg):
-    """Szöveges posztot küld a Facebook Oldalra a Graph API-n keresztül.
-    Nincs kép csatolva - tisztán szöveges bejegyzés (feed poszt)."""
-    if not FB_PAGE_ID or not FB_PAGE_TOKEN:
-        print("  ⚠️  Nincs beállítva FB_PAGE_ID / FB_PAGE_TOKEN - Facebook-posztolás kihagyva.")
+    """Szöveges posztot küld a Facebook Oldalra - nem közvetlenül a Meta
+    Graph API-n keresztül, hanem egy Make.com automatizáción (Scenario)
+    keresztül: ide küldünk egy egyszerű webhook-hívást a szöveggel, a
+    Make.com pedig ezt posztolja ki a Facebook Oldalra. Ez elkerüli a
+    Meta fejlesztői app / Business Portfolio beállítását."""
+    if not MAKE_WEBHOOK_URL:
+        print("  ⚠️  Nincs beállítva MAKE_WEBHOOK_URL - Facebook-posztolás kihagyva.")
         return False
 
     try:
-        url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/feed"
-        payload = {"message": szoveg, "access_token": FB_PAGE_TOKEN}
-        resp = requests.post(url, data=payload, timeout=20)
+        resp = requests.post(MAKE_WEBHOOK_URL, json={"message": szoveg}, timeout=20)
 
         if resp.status_code == 200:
-            poszt_id = resp.json().get("id", "")
-            print(f"  ✅ Facebook poszt elküldve. ID: {poszt_id}")
+            print("  ✅ Facebook poszt elküldve (Make.com-on keresztül).")
             return True
         else:
             print(f"  ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
@@ -428,7 +428,7 @@ def facebook_poszt_kuldese(szoveg):
 def email_kuldes(uj_esetek, osszes_aktiv_esetek):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"⚡ Áramszünet (Csepel/Pesterzsébet/Kispest/Sziget.) – {db} új esemény | {ido}"
+    targy = f"⚡ Áramszünet (Csepel/Pesterzsébet/Sziget.) – {db} új esemény | {ido}"
 
     uj_adatok      = [kinyert_adatok(e) for e in uj_esetek]
     aktiv_adatok   = [kinyert_adatok(e) for e in osszes_aktiv_esetek]
@@ -487,7 +487,7 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
-    <h1>⚡ Áramszünet értesítő – Csepel / Pesterzsébet / Kispest / Szigetszentmiklós</h1>
+    <h1>⚡ Áramszünet értesítő – Csepel / Pesterzsébet / Szigetszentmiklós</h1>
     <small>{ido} | {db} új esemény</small>
   </div>
   <div class="body">
