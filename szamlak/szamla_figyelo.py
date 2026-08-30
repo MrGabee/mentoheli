@@ -204,6 +204,16 @@ DRY_RUN = os.environ.get("SZAMLA_DRY_RUN") == "1"
 
 ALLAPOT_FAJL = "szamlak/szamla_allapot.enc.json"  # TITKOSÍTVA, ez kerül git-be
 
+# A dashboardon (szamlak.html) beállítható paraméterek fájlja - a
+# felhasználó a saját GitHub tokenjével közvetlenül a böngészőből írja
+# felül (ld. szamlak.html "Beállítások" panelje). SZÁNDÉKOSAN NEM
+# titkosított: csak számokat (napok száma, hónap napja) és a számlák
+# saját (amúgy is értelmezhetetlen, hash-alapú) belső azonosítóit
+# tartalmazza, ezekből nem olvasható ki személyes/pénzügyi adat - ezért
+# nem indokolt, hogy a Python-oldalnak a titkosítási jelszóra is
+# szüksége legyen csak ennek beolvasásához.
+BEALLITASOK_FAJL = "szamlak/szamla_beallitasok.json"
+
 # ── Szolgáltatók - csak a feladó-domain -> megjelenítendő név társítás ──
 # A milyen FAJTA levél érkezett kérdést innentől NEM ez dönti el (ld. a
 # TARTALOM-ALAPÚ FELISMERÉS részt a fájl elején), csak azt, hogy melyik
@@ -471,6 +481,7 @@ def visszafejt(jelszo: str, fajl: str) -> dict:
         "ismeretlen_fizetesek": {},
         "feldolgozott_uidok": [],
         "utolso_emlekezteto_nap": None,
+        "utolso_fix_osszesito_datum": None,
         # invoice-id -> base64-kódolt PDF bytes. Ez a felhasználó KIFEJEZETT
         # kérésére/döntésére került be (ld. commit-üzenet) - korábban a
         # PDF-eket szándékosan SOHA nem tároltuk tartósan, csak átmenetileg,
@@ -522,6 +533,43 @@ def visszafejt(jelszo: str, fajl: str) -> dict:
         ) from None
     betoltott = json.loads(nyers.decode("utf-8"))
     alap.update(betoltott)
+    return alap
+
+
+def beallitasok_betoltese() -> dict:
+    """A dashboardon beállítható paraméterek beolvasása (ld.
+    BEALLITASOK_FAJL fenti kommentjét - ez NEM titkosított). Ha a fájl
+    nem létezik, vagy egy adott mező hiányzik/érvénytelen belőle, a
+    biztonságos alapérték marad érvényben (visszafelé kompatibilis - a
+    dashboard "Beállítások" panelje nélkül, vagy annak első használata
+    előtt is minden a régi módon működik)."""
+    alap = {
+        "emlekezteto_napok_elotte": None,   # None = a SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE modul-konstans marad érvényben
+        "osszesito_honap_nap": None,        # None = nincs fix-napi tételes összesítő beállítva
+        "kivalasztott_szamlak": None,       # None = a fix-napi összesítő (ha be van kapcsolva) minden fizetetlen számlát tartalmaz
+    }
+    if not os.path.exists(BEALLITASOK_FAJL):
+        return alap
+    try:
+        with open(BEALLITASOK_FAJL, "r", encoding="utf-8") as f:
+            betoltott = json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"  ⚠️  A beállítások fájl ({BEALLITASOK_FAJL}) nem olvasható be, alapértékekkel "
+              f"folytatjuk: {e}")
+        return alap
+
+    napok = betoltott.get("emlekezteto_napok_elotte")
+    if isinstance(napok, int) and 0 < napok <= 90:
+        alap["emlekezteto_napok_elotte"] = napok
+
+    honap_nap = betoltott.get("osszesito_honap_nap")
+    if isinstance(honap_nap, int) and 1 <= honap_nap <= 28:
+        alap["osszesito_honap_nap"] = honap_nap
+
+    kivalasztott = betoltott.get("kivalasztott_szamlak")
+    if isinstance(kivalasztott, list) and all(isinstance(x, str) for x in kivalasztott):
+        alap["kivalasztott_szamlak"] = kivalasztott
+
     return alap
 
 
@@ -898,7 +946,11 @@ def ismeretlen_email_html(rekord):
     """
 
 
-def osszesito_email_html(fizetetlen_lista, vegosszeg, provider_osszegek):
+def osszesito_email_html(fizetetlen_lista, vegosszeg, provider_osszegek, cim=None, bevezeto=None):
+    """cim/bevezeto: felülírható fejléc/bevezető szöveg - a küszöb-alapú
+    (határidő-vezérelt) és a fix-napi, kézzel kiválasztott összesítő más
+    szöveget indokol, ezért paraméterezhető, alapértéken a régi
+    (küszöb-alapú) szöveg marad."""
     sorok = ""
     for r in fizetetlen_lista:
         lejart = r["hatarido"] and r["hatarido"] < magyar_ma().isoformat()
@@ -918,11 +970,15 @@ def osszesito_email_html(fizetetlen_lista, vegosszeg, provider_osszegek):
         for nev, osszeg in provider_osszegek.items()
     )
 
+    cim_vegso = cim or "💰 Fizetetlen számlák összesítője"
+    bevezeto_vegso = bevezeto or (
+        "<p>Az alábbi számlák még nincsenek kifizetve, és valamelyik határideje "
+        f"{SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE} napon belül lejár (vagy már lejárt):</p>"
+    )
     return f"""
     <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;">
-      <h2 style="color:#b91c1c;">💰 Fizetetlen számlák összesítője</h2>
-      <p>Az alábbi számlák még nincsenek kifizetve, és valamelyik határideje
-         {SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE} napon belül lejár (vagy már lejárt):</p>
+      <h2 style="color:#b91c1c;">{cim_vegso}</h2>
+      {bevezeto_vegso}
       <table style="width:100%;border-collapse:collapse;font-size:14px;">
         <tr style="background:#f3f4f6;">
           <th style="padding:8px;text-align:left;">Szolgáltató</th>
@@ -1295,6 +1351,12 @@ def main():
     ismeretlen_fizetesek = allapot.setdefault("ismeretlen_fizetesek", {})
     feldolgozott_uidok = set(allapot.setdefault("feldolgozott_uidok", []))
 
+    # A dashboardon (szamlak.html "Beállítások" panel) esetlegesen
+    # felülírt paraméterek - ha nincs beállítás-fájl, minden a régi
+    # (modul-konstans/automatikus) módon működik.
+    beallitasok = beallitasok_betoltese()
+    emlekezteto_napok = beallitasok["emlekezteto_napok_elotte"] or SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE
+
     # Futási statisztika - a végén egy összefoglaló sorban kiírjuk, ez
     # sokat segít a naplóból gyorsan átlátni, mi történt egy futás alatt.
     statisztika = {
@@ -1535,10 +1597,25 @@ def main():
                         if dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
                             pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
                             dijnet_pdf_letoltesek_szama += 1
+                        # FONTOS - a Díjnet táblázat "Szolgáltató" oszlopa (szoveg[0],
+                        # itt: szolgaltato_nyers) tartalmazza a valódi szolgáltató-nevet
+                        # (pl. "FCSM Zrt.", "MOHU Zrt.") - a "Számlakibocsátói azonosító"
+                        # oszlop (szoveg[1], megjelenitett_nev) ezzel szemben egy
+                        # belső azonosító/cím (pl. "Rákóczi 121", "HOLLANDI DÍJBESZEDŐ"),
+                        # NEM a szolgáltató neve. Korábban ez fel volt cserélve - a
+                        # dashboard szolgáltató-oszlopa/szűrője emiatt az azonosítót
+                        # mutatta a valódi név helyett. Az azonosítót továbbra is
+                        # megtartjuk, csak a tárgy-mezőben, zárójelben, ha van és eltér.
+                        szolgaltato_valodi_nev = sor["szolgaltato_nyers"] or sor["megjelenitett_nev"]
+                        azonosito_resz = (
+                            f" ({sor['megjelenitett_nev']})"
+                            if sor["megjelenitett_nev"] and sor["megjelenitett_nev"] != szolgaltato_valodi_nev
+                            else ""
+                        )
                         rekord = {
                             "szolgaltato": "dijnet",
-                            "szolgaltato_nev": f"{sor['megjelenitett_nev']} (Díjnet)",
-                            "targy": f"Számla – {sor['szamlaszam']}",
+                            "szolgaltato_nev": f"{szolgaltato_valodi_nev} (Díjnet)",
+                            "targy": f"Számla – {sor['szamlaszam']}{azonosito_resz}",
                             "erkezett": kiallitas or magyar_ido().isoformat(),
                             "erkezett_fejlec": None,
                             "osszeg": osszeg,
@@ -1575,6 +1652,20 @@ def main():
                             letezo["osszeg"] = osszeg
                         if hatarido is not None:
                             letezo["hatarido"] = hatarido
+                        # Utólagos szolgáltató-név javítás: a korábbi (hibás)
+                        # kódverzió a "Számlakibocsátói azonosító" oszlopot
+                        # (megjelenitett_nev) tette a szolgáltató-név helyére -
+                        # a MÁR ELMENTETT, ezzel a régi hibás névvel rögzített
+                        # számlákat itt, minden futáskor felülírjuk a helyes
+                        # névvel, hogy ne kelljen kézzel javítani/törölni őket.
+                        szolgaltato_valodi_nev = sor["szolgaltato_nyers"] or sor["megjelenitett_nev"]
+                        azonosito_resz = (
+                            f" ({sor['megjelenitett_nev']})"
+                            if sor["megjelenitett_nev"] and sor["megjelenitett_nev"] != szolgaltato_valodi_nev
+                            else ""
+                        )
+                        letezo["szolgaltato_nev"] = f"{szolgaltato_valodi_nev} (Díjnet)"
+                        letezo["targy"] = f"Számla – {sor['szamlaszam']}{azonosito_resz}"
                         # Utólagos PDF-pótlás: ha ennek a MÁR ISMERT számlának
                         # még nincs eltárolt PDF-je (pl. mert az első
                         # feldolgozáskor elérte a sapkát), most - a még
@@ -1594,13 +1685,51 @@ def main():
 
     # ---- 2. Határidő-előtti összesítő (naponta legfeljebb egyszer) ----
     ma_str = magyar_ma().isoformat()
-    kuszob = (magyar_ma() + timedelta(days=SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE)).isoformat()
+    kuszob = (magyar_ma() + timedelta(days=emlekezteto_napok)).isoformat()
 
-    fizetetlen = [r for r in szamlak.values() if not r["fizetve"]]
+    # (rid, rekord) párokban dolgozunk (nem csak a rekordokkal) - a PDF-
+    # gyűjtéshez a rid (az állapotban lévő "pdf_adatok" kulcsa) kell, és
+    # így nem kell a rekord-objektumok Python-beli azonosságára (id())
+    # támaszkodni egy utólagos visszakereséshez.
+    fizetetlen_rid_rekord = [(rid, r) for rid, r in szamlak.items() if not r["fizetve"]]
+    fizetetlen = [r for _, r in fizetetlen_rid_rekord]
     figyelmeztetendo = [
         r for r in fizetetlen
         if r["hatarido"] and r["hatarido"] <= kuszob
     ]
+
+    def _csatolmanyok_osszegyujtese(rid_rekord_lista):
+        """rid_rekord_lista: [(rid, rekord), ...]. Elsőként a MÁR TÁROLT
+        (titkosított állapotban lévő) PDF-eket használja - ez lefedi mind
+        az email-, mind a Díjnet-eredetű számlákat (utóbbiaknak korábban
+        SOHA nem volt PDF-je ebben az összesítőben, mert nincs IMAP
+        "uid"-juk). Csak azokhoz próbál meg élőben, IMAP-on keresztül
+        PDF-et szerezni, amikhez sem tárolt PDF, sem uid nincs elmentve -
+        ez egy ritka, visszafelé-kompatibilitási tartalék ág."""
+        csatolmanyok = []
+        potlando = []
+        for rid, r in rid_rekord_lista:
+            b64 = allapot.get("pdf_adatok", {}).get(rid)
+            if b64:
+                fajlnev = f"{r.get('szamlaszam') or r['szolgaltato']}_szamla.pdf"
+                csatolmanyok.append((fajlnev, base64.b64decode(b64)))
+            elif r.get("uid"):
+                potlando.append((rid, r))
+
+        if potlando:
+            try:
+                conn2 = imap_kapcsolat()
+                for rid, r in potlando:
+                    msg = uid_letoltese(conn2, r["uid"].encode())
+                    if msg is None:
+                        continue
+                    pdf_nev, pdf_bytes = pdf_csatolmany(msg)
+                    if pdf_bytes:
+                        csatolmanyok.append((pdf_nev or f"{r['szolgaltato']}_szamla.pdf", pdf_bytes))
+                conn2.logout()
+            except Exception as e:
+                print(f"  ⚠️  PDF-ek pótlólagos IMAP-visszatöltése sikertelen: {e}")
+        return csatolmanyok
 
     if figyelmeztetendo and allapot.get("utolso_emlekezteto_nap") != ma_str:
         vegosszeg = sum(r["osszeg"] or 0 for r in fizetetlen)
@@ -1610,31 +1739,71 @@ def main():
                 provider_osszegek.get(r["szolgaltato_nev"], 0) + (r["osszeg"] or 0)
             )
 
-        # PDF-ek friss visszatöltése az IMAP-ból (nem tartósan tárolt
-        # másolatból), amennyire lehetséges.
-        csatolmanyok = []
-        try:
-            conn2 = imap_kapcsolat()
-            for r in fizetetlen:
-                uid = r.get("uid")
-                if not uid:
-                    continue
-                msg = uid_letoltese(conn2, uid.encode())
-                if msg is None:
-                    continue
-                pdf_nev, pdf_bytes = pdf_csatolmany(msg)
-                if pdf_bytes:
-                    csatolmanyok.append((pdf_nev or f"{r['szolgaltato']}_szamla.pdf", pdf_bytes))
-            conn2.logout()
-        except Exception as e:
-            print(f"  ⚠️  PDF-ek friss visszatöltése sikertelen: {e}")
+        csatolmanyok = _csatolmanyok_osszegyujtese(fizetetlen_rid_rekord)
 
         email_kuldes(
             f"💰 Fizetetlen számlák – {len(fizetetlen)} db – {forint(vegosszeg)}",
-            osszesito_email_html(fizetetlen, vegosszeg, provider_osszegek),
+            osszesito_email_html(
+                fizetetlen, vegosszeg, provider_osszegek,
+                bevezeto=(
+                    "<p>Az alábbi számlák még nincsenek kifizetve, és valamelyik határideje "
+                    f"{emlekezteto_napok} napon belül lejár (vagy már lejárt):</p>"
+                ),
+            ),
             csatolmanyok,
         )
         allapot["utolso_emlekezteto_nap"] = ma_str
+
+    # ---- 2b. Fix-napi, tételesen KIVÁLASZTOTT összesítő (opcionális) ----
+    # Ez FÜGGETLEN a fenti, határidő-küszöb-alapú automatikus emlékeztetőtől -
+    # a felhasználó a dashboardon állíthatja be (ld. BEALLITASOK_FAJL), hogy
+    # a hónap melyik napján menjen, és melyik számlákról (ha nem választ ki
+    # semmit, az ÖSSZES fizetetlen számláról, mint a fenti ág).
+    if beallitasok["osszesito_honap_nap"] is not None:
+        ma_datum = magyar_ma()
+        if (
+            ma_datum.day == beallitasok["osszesito_honap_nap"]
+            and allapot.get("utolso_fix_osszesito_datum") != ma_str
+        ):
+            kivalasztott_id_k = beallitasok["kivalasztott_szamlak"]
+            if kivalasztott_id_k is None:
+                erintett = [(rid, r) for rid, r in szamlak.items() if not r["fizetve"]]
+            else:
+                erintett = [(rid, szamlak[rid]) for rid in kivalasztott_id_k if rid in szamlak]
+
+            if erintett:
+                erintett_rekordok = [r for _, r in erintett]
+                vegosszeg = sum(r["osszeg"] or 0 for r in erintett_rekordok)
+                provider_osszegek = {}
+                for r in erintett_rekordok:
+                    provider_osszegek[r["szolgaltato_nev"]] = (
+                        provider_osszegek.get(r["szolgaltato_nev"], 0) + (r["osszeg"] or 0)
+                    )
+                # "erintett" már eleve [(rid, rekord), ...] párokból áll,
+                # tehát közvetlenül átadható a 2. szakaszban definiált
+                # általános segédfüggvénynek - nincs szükség külön,
+                # duplikált PDF-gyűjtő logikára ehhez a szakaszhoz.
+                csatolmanyok = _csatolmanyok_osszegyujtese(erintett)
+
+                forras_szoveg = (
+                    "a Te kifejezett kiválasztásod alapján" if kivalasztott_id_k is not None
+                    else "az ÖSSZES jelenleg fizetetlen számláról (nem volt egyedi kiválasztás)"
+                )
+                email_kuldes(
+                    f"📅 Havi tételes összesítő ({beallitasok['osszesito_honap_nap']}.) – "
+                    f"{len(erintett_rekordok)} db – {forint(vegosszeg)}",
+                    osszesito_email_html(
+                        erintett_rekordok, vegosszeg, provider_osszegek,
+                        cim=f"📅 Havi tételes összesítő – a hónap {beallitasok['osszesito_honap_nap']}. napja",
+                        bevezeto=f"<p>Ez egy általad beállított, fix napi összesítő - {forras_szoveg}:</p>",
+                    ),
+                    csatolmanyok,
+                )
+                print(f"      📅 Fix-napi tételes összesítő elküldve ({len(erintett_rekordok)} számla).")
+            else:
+                print("      ℹ️  Fix-napi összesítő esedékes lenne, de a kiválasztott számlák közül "
+                      "egyik sem található az állapotban - kihagyva.")
+            allapot["utolso_fix_osszesito_datum"] = ma_str
 
     # ---- 3. Állapot mentése (titkosítva) ----
     # FONTOS: a feldolgozott_uidok egy set volt, aminek a sorrendje NEM
