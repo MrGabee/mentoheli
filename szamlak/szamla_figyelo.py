@@ -714,12 +714,31 @@ def dijnet_bejelentkezes():
 
 def _dijnet_vfw_token(session):
     """A számla-kereső oldalról kiolvassa a rejtett 'vfw_token' mezőt,
-    ami a keresési űrlap beküldéséhez kell (CSRF-szerű védelem)."""
+    ami a keresési űrlap beküldéséhez kell (CSRF-szerű védelem).
+
+    FONTOS: bejelentkezés után előbb a portál "főoldalát" kell
+    meglátogatni (/ekonto/control/main) - enélkül a keresőoldal úgy
+    viselkedhet, mintha a session nem lenne bejelentkezve (ez okozta az
+    első éles futásnál, hogy nem találtunk vfw_token mezőt)."""
+    session.get(DIJNET_BASE + "/ekonto/control/main", timeout=20)
+
     valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_search", timeout=20)
     valasz.encoding = "iso-8859-2"  # a Díjnet ezt a régi kódlapot használja
     soup = BeautifulSoup(valasz.text, "lxml")
     mezo = soup.select_one('input[name="vfw_token"]')
-    return mezo.get("value") if mezo else None
+    if mezo:
+        return mezo.get("value")
+
+    # Diagnosztika, hogy KÖVETKEZŐ alkalommal ne kelljen találgatni, ha
+    # ismét nem találjuk a mezőt - a napló megmutatja, valójában milyen
+    # oldalt kaptunk vissza (pl. ha visszairányított egy bejelentkező
+    # oldalra, vagy a mezőnév/oldal-szerkezet megváltozott).
+    input_nevek = [i.get("name") for i in soup.find_all("input") if i.get("name")]
+    print(f"      🔍 Díjnet diagnosztika - végső URL: {valasz.url} | "
+          f"státuszkód: {valasz.status_code} | talált <input name=...> mezők: {input_nevek}")
+    oldal_eleje = re.sub(r"\s+", " ", valasz.text[:500])
+    print(f"      🔍 Díjnet diagnosztika - oldal eleje: {oldal_eleje!r}")
+    return None
 
 
 def _dijnet_datum_konvertalas(nyers: str):
