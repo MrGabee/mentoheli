@@ -1018,14 +1018,22 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
               "valószínűleg megváltozott, a lekérdezés így is megpróbálkozik, de lehet, "
               "hogy üres eredményt ad.")
 
+    # FONTOS: a dátumokat "%Y-%m-%d" (kötőjeles, ISO) formátumban küldjük,
+    # NEM "%Y.%m.%d" (pontos, magyar) formátumban - ez utóbbi volt a
+    # tényleges hiba oka a "0 érvényes számla-sor" mögött (a szerver a
+    # rosszul formázott dátumot nem tudta értelmezni, és emiatt
+    # valószínűleg a keresőoldalt adta vissza eredmények helyett - nulla
+    # <table> elemmel). Ezt az aktívan karbantartott laszlojakab/
+    # homeassistant-dijnet integráció jelenlegi forráskódjából ellenőriztük
+    # (ők DATE_FORMAT = "%Y-%m-%d"-t használnak a keresési kéréshez).
     adatok = {
         "vfw_form": "szamla_search_submit",
         "vfw_coll": "szamla_search_params",
         "vfw_token": token or "",
         "szlaszolgnev": "",  # üres = minden szolgáltató
         "regszolgid": "",    # üres = minden regisztrált szolgáltató
-        "datumtol": naptol.strftime("%Y.%m.%d"),
-        "datumig": nap_ig.strftime("%Y.%m.%d"),
+        "datumtol": naptol.strftime("%Y-%m-%d"),
+        "datumig": nap_ig.strftime("%Y-%m-%d"),
     }
     valasz = session.post(DIJNET_BASE + "/ekonto/control/szamla_search_submit", data=adatok, timeout=20)
     valasz.encoding = "iso-8859-2"
