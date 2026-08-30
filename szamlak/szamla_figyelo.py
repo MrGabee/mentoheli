@@ -169,6 +169,13 @@ DIJNET_JELSZO = os.environ.get("SZAMLA_DIJNET_JELSZO") or ""
 # már ismert, még fizetetlen számláknak az esetleges fizetve-állapot-
 # váltását is elkapja, nem csak a vadonatúj számlákat.
 DIJNET_LEKERDEZES_NAPOK_VISSZA = 120
+# Egy futáson belül legfeljebb ennyi PDF-letöltést próbál meg - ez védi
+# ki, hogy egy első/bulk lekérdezés (amikor sok "új" számlát talál
+# egyszerre, mert még semmi nincs elmentve) ne fusson percekig azzal,
+# hogy egyenként, sorban próbál PDF-et letölteni mindegyikhez. A sapkán
+# túli számlák PDF-csatolmány nélkül kerülnek be (attól még rögzülnek és
+# az email is kimegy értük).
+DIJNET_MAX_PDF_LETOLTES_FUTASONKENT = 8
 
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, HÁNY NAPPAL A HATÁRIDŐ ELŐTT MENJEN AZ ÖSSZESÍTŐ ⬇️⬇️⬇️
 SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
@@ -691,11 +698,11 @@ def dijnet_bejelentkezes():
     session = requests.Session()
     session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; SzamlaFigyelo/1.0)"})
     try:
-        session.get(DIJNET_BASE + "/", timeout=20)  # session-cookie felvétele
+        session.get(DIJNET_BASE + "/", timeout=12)  # session-cookie felvétele
         valasz = session.post(
             DIJNET_BASE + "/ekonto/login/login_check_ajax",
             data={"username": DIJNET_USER, "password": DIJNET_JELSZO},
-            timeout=20,
+            timeout=12,
         )
         try:
             adat = valasz.json()
@@ -720,9 +727,9 @@ def _dijnet_vfw_token(session):
     meglátogatni (/ekonto/control/main) - enélkül a keresőoldal úgy
     viselkedhet, mintha a session nem lenne bejelentkezve (ez okozta az
     első éles futásnál, hogy nem találtunk vfw_token mezőt)."""
-    session.get(DIJNET_BASE + "/ekonto/control/main", timeout=20)
+    session.get(DIJNET_BASE + "/ekonto/control/main", timeout=12)
 
-    valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_search", timeout=20)
+    valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_search", timeout=12)
     valasz.encoding = "iso-8859-2"  # a Díjnet ezt a régi kódlapot használja
     soup = BeautifulSoup(valasz.text, "lxml")
     mezo = soup.select_one('input[name="vfw_token"]')
@@ -779,7 +786,7 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
         "datumtol": naptol.strftime("%Y.%m.%d"),
         "datumig": nap_ig.strftime("%Y.%m.%d"),
     }
-    valasz = session.post(DIJNET_BASE + "/ekonto/control/szamla_search_submit", data=adatok, timeout=30)
+    valasz = session.post(DIJNET_BASE + "/ekonto/control/szamla_search_submit", data=adatok, timeout=20)
     valasz.encoding = "iso-8859-2"
     soup = BeautifulSoup(valasz.text, "lxml")
 
@@ -835,16 +842,16 @@ def dijnet_pdf_letoltese(session, sor_index: int):
         session.get(
             DIJNET_BASE + "/ekonto/control/szamla_select",
             params={"vfw_coll": "szamla_list", "vfw_rowid": sor_index, "exp": "K"},
-            timeout=20,
+            timeout=12,
         )
-        valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_letolt", timeout=20)
+        valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_letolt", timeout=12)
         valasz.encoding = "iso-8859-2"
         soup = BeautifulSoup(valasz.text, "lxml")
         link = soup.select_one('a[href*="szamla_pdf"]')
         if not link or not link.get("href"):
             return None
         pdf_url = DIJNET_BASE + "/ekonto/control/" + link["href"].lstrip("/")
-        pdf_valasz = session.get(pdf_url, timeout=30)
+        pdf_valasz = session.get(pdf_url, timeout=20)
         if pdf_valasz.status_code == 200 and pdf_valasz.content:
             return pdf_valasz.content
     except Exception as e:
@@ -1043,6 +1050,7 @@ def main():
             dijnet_session = dijnet_bejelentkezes()
             if dijnet_session:
                 dijnet_sorok = dijnet_szamlak_lekerdezese(dijnet_session)
+                dijnet_pdf_letoltesek_szama = 0
                 for sor in dijnet_sorok:
                     did = hashlib.md5(
                         f"dijnet|{sor['szolgaltato_nyers']}|{sor['szamlaszam']}".encode("utf-8")
@@ -1058,8 +1066,14 @@ def main():
                     if did not in szamlak:
                         # Új számla - rögzítjük, és (best-effort PDF-fel) értesítünk,
                         # kivéve, ha már eleve fizetve érkezett (akkor nem kell
-                        # "új számla" riasztás egy már rendezett tételről).
-                        pdf_bytes = None if fizetve_e else dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
+                        # "új számla" riasztás egy már rendezett tételről). A PDF-
+                        # letöltést egy futáson belül korlátozzuk (ld. DIJNET_MAX_
+                        # PDF_LETOLTES_FUTASONKENT), hogy egy bulk (sok új számlát
+                        # egyszerre találó) futás ne fusson percekig.
+                        pdf_bytes = None
+                        if not fizetve_e and dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
+                            pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
+                            dijnet_pdf_letoltesek_szama += 1
                         rekord = {
                             "szolgaltato": "dijnet",
                             "szolgaltato_nev": f"{sor['megjelenitett_nev']} (Díjnet)",
