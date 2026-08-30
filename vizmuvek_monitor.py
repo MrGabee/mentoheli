@@ -1,6 +1,6 @@
 """
 💧 Fővárosi Vízművek Monitor – Csepel (XXI.) + Pesterzsébet (XX.)
-   + Kispest (XIX.) + Szigetszentmiklós
+   + Szigetszentmiklós
 Adatforrás: vizmuvek.hu munkatérkép
 Szűrés: kerület-prefix vagy településnév
 Értesítés: E-mail (EMAIL_CIMZETT_ARAM) + Facebook poszt (Mr.Gabee oldal, AUTOMATA, szövegesen)
@@ -28,14 +28,15 @@ def magyar_ido():
 EMAIL_KULDO      = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO     = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT    = os.environ["EMAIL_CIMZETT_ARAM"]
-FB_PAGE_ID       = os.environ.get("FB_PAGE_ID", "104411308403346")
-FB_PAGE_TOKEN    = os.environ.get("FB_PAGE_TOKEN", "")
+MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
-# True  = automatikusan posztol a Facebook Oldalra is (jelenleg nem publikus,
-#         amíg nincs elvégezve a Meta Business Verification)
+# True  = automatikusan posztol a Facebook Oldalra is, egy Make.com
+#         automatizáción keresztül (webhook -> Facebook Pages modul) -
+#         ehhez csak egy érvényes MAKE_WEBHOOK_URL GitHub Secret kell,
+#         Meta fejlesztői app / token NEM szükséges hozzá.
 # False = csak emailt küld, a Facebook-szöveg ott lesz kimásolható
-FACEBOOK_POSZTOLAS_AKTIV = False
+FACEBOOK_POSZTOLAS_AKTIV = True
 
 VIZMUVEK_URL = "https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
 ALLAPOT_FAJL = "vizmuvek_allapot.json"
@@ -79,7 +80,7 @@ def hash_id(szoveg):
 
 # ════════════════════════════════════════════
 #  📍  TERÜLET SZŰRŐ – Csepel (XXI.) + Pesterzsébet (XX.)
-#      + Kispest (XIX.) + Szigetszentmiklós
+#      + Szigetszentmiklós
 # ════════════════════════════════════════════
 def terulet_cimke(cim):
     """Visszaadja a megjelenítendő terület-címkét, ha a cím a figyelt
@@ -89,8 +90,6 @@ def terulet_cimke(cim):
         return "XXI. kerület (Csepel)"
     if c.startswith("XX."):
         return "XX. kerület (Pesterzsébet)"
-    if c.startswith("XIX."):
-        return "XIX. kerület (Kispest)"
     if "szigetszentmiklós" in c.lower():
         return "Szigetszentmiklós"
     return None
@@ -196,7 +195,7 @@ def facebook_szoveg(esetek):
         "═" * 32,
         "",
         "👋 Mivel nemcsak Csepelről, hanem a környező kerületekből és "
-        "városokból (Pesterzsébet, Kispest, Szigetszentmiklós) is sokan "
+        "városokból (Pesterzsébet, Szigetszentmiklós) is sokan "
         "olvastok minket, mostantól ezekről a területekről is beszámolunk, "
         "hogy senki ne maradjon le a fontos hírekről! 💙",
         "",
@@ -218,29 +217,29 @@ def facebook_szoveg(esetek):
     sorok.append("─" * 32)
     sorok.append("🔗 Vízművek munkatérkép:")
     sorok.append("https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk")
-    sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Kispest, Szigetszentmiklós")
+    sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Szigetszentmiklós")
 
     return "\n".join(sorok)
 
 
 # ════════════════════════════════════════════
-#  📘  FACEBOOK AUTOMATA POSZTOLÁS (Graph API, szövegesen)
+#  📘  FACEBOOK AUTOMATA POSZTOLÁS (Make.com webhookon keresztül)
 # ════════════════════════════════════════════
 def facebook_poszt_kuldese(szoveg):
-    """Szöveges posztot küld a Facebook Oldalra a Graph API-n keresztül.
-    Nincs kép csatolva - tisztán szöveges bejegyzés (feed poszt)."""
-    if not FB_PAGE_ID or not FB_PAGE_TOKEN:
-        print("  ⚠️  Nincs beállítva FB_PAGE_ID / FB_PAGE_TOKEN - Facebook-posztolás kihagyva.")
+    """Szöveges posztot küld a Facebook Oldalra - nem közvetlenül a Meta
+    Graph API-n keresztül, hanem egy Make.com automatizáción (Scenario)
+    keresztül: ide küldünk egy egyszerű webhook-hívást a szöveggel, a
+    Make.com pedig ezt posztolja ki a Facebook Oldalra. Ez elkerüli a
+    Meta fejlesztői app / Business Portfolio beállítását."""
+    if not MAKE_WEBHOOK_URL:
+        print("  ⚠️  Nincs beállítva MAKE_WEBHOOK_URL - Facebook-posztolás kihagyva.")
         return False
 
     try:
-        url = f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}/feed"
-        payload = {"message": szoveg, "access_token": FB_PAGE_TOKEN}
-        resp = requests.post(url, data=payload, timeout=20)
+        resp = requests.post(MAKE_WEBHOOK_URL, json={"message": szoveg}, timeout=20)
 
         if resp.status_code == 200:
-            poszt_id = resp.json().get("id", "")
-            print(f"  ✅ Facebook poszt elküldve. ID: {poszt_id}")
+            print("  ✅ Facebook poszt elküldve (Make.com-on keresztül).")
             return True
         else:
             print(f"  ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
@@ -256,7 +255,7 @@ def facebook_poszt_kuldese(szoveg):
 def email_kuldes(uj_esetek):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"💧 Vízművek (Csepel/Pesterzsébet/Kispest/Sziget.) – {db} új esemény | {ido}"
+    targy = f"💧 Vízművek (Csepel/Pesterzsébet/Sziget.) – {db} új esemény | {ido}"
 
     sorok_html = ""
     sorok_txt  = ""
@@ -335,13 +334,13 @@ def email_kuldes(uj_esetek):
 </style>
 </head><body><div class="wrap">
   <div class="hdr">
-    <h1>💧 Fővárosi Vízművek – Csepel / Pesterzsébet / Kispest / Szigetszentmiklós</h1>
+    <h1>💧 Fővárosi Vízművek – Csepel / Pesterzsébet / Szigetszentmiklós</h1>
     <small>{ido} | {db} új esemény</small>
   </div>
   <div class="body">
 
     <div class="bevezeto">
-      ℹ️ A Fővárosi Vízművek az alábbi helyszíneken (Csepel, Pesterzsébet, Kispest,
+      ℹ️ A Fővárosi Vízművek az alábbi helyszíneken (Csepel, Pesterzsébet,
       Szigetszentmiklós) végez jelenleg hálózati munkálatokat.
       A munkák ideje alatt az érintett területeken <strong>vízhiány, nyomáscsökkenés
       vagy forgalomkorlátozás</strong> tapasztalható.
@@ -371,7 +370,7 @@ def email_kuldes(uj_esetek):
   <div class="foot">Automatikus értesítő – GitHub Actions | Fővárosi Vízművek adatai alapján</div>
 </div></body></html>"""
 
-    szoveges = f"💧 Fővárosi Vízművek – Csepel/Pesterzsébet/Kispest/Szigetszentmiklós\nIdőpont: {ido}\n{sorok_txt}"
+    szoveges = f"💧 Fővárosi Vízművek – Csepel/Pesterzsébet/Szigetszentmiklós\nIdőpont: {ido}\n{sorok_txt}"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
