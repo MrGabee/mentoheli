@@ -115,7 +115,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from email.utils import parsedate_to_datetime
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from html import escape as _esc
 
 import requests
@@ -201,6 +201,15 @@ IMAP_LEKERDEZES_NAPOK = 90
 # nem kell attól tartani, hogy feleslegesen email-lavina indul, vagy
 # hibás adat kerül a titkosított állapotba.
 DRY_RUN = os.environ.get("SZAMLA_DRY_RUN") == "1"
+
+# Dátum-intervallumos, tetszőleges címzettnek szóló küldés (a dashboard
+# "Számlák küldése emailben" panelje indítja egy workflow_dispatch hívással,
+# ld. .github/workflows/szamla_monitor.yml). Mindhárom üres/hiányzik
+# normál (ütemezett) futásnál - csak akkor van tartalmuk, ha valaki a
+# dashboardon keresztül kifejezetten kérte ezt a küldést.
+SZAMLA_DATUMTOL = os.environ.get("SZAMLA_DATUMTOL", "").strip()
+SZAMLA_DATUMIG = os.environ.get("SZAMLA_DATUMIG", "").strip()
+SZAMLA_CEL_EMAIL = os.environ.get("SZAMLA_CEL_EMAIL", "").strip()
 
 ALLAPOT_FAJL = "szamlak/szamla_allapot.enc.json"  # TITKOSÍTVA, ez kerül git-be
 
@@ -828,21 +837,25 @@ def meroallas_ertek_kinyerese(szoveg: str):
 # ════════════════════════════════════════════
 #  📧  EMAIL KÜLDÉS
 # ════════════════════════════════════════════
-def email_kuldes(targy, html_torzs, csatolmanyok=None):
-    """csatolmanyok: [(fajlnev, bytes), ...] - lehet üres/None."""
+def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None):
+    """csatolmanyok: [(fajlnev, bytes), ...] - lehet üres/None.
+    cimzett: ha None, az alapértelmezett EMAIL_CIMZETT-re megy (a szokásos
+    értesítők) - a dashboard "dátum-intervallumos küldés" funkciója viszont
+    egy tetszőleges, a felhasználó által megadott címre is tud küldeni."""
+    cimzett_vegso = cimzett or EMAIL_CIMZETT
     if DRY_RUN:
         csatolmany_nevek = [fajlnev for fajlnev, _ in (csatolmanyok or [])]
-        print(f"  🧪 [DRY RUN] Email KIMENNE (de nem megy ki): {targy!r} "
-              f"(csatolmányok: {csatolmany_nevek or 'nincs'})")
+        print(f"  🧪 [DRY RUN] Email KIMENNE (de nem megy ki): {targy!r} -> "
+              f"{cimzett_vegso!r} (csatolmányok: {csatolmany_nevek or 'nincs'})")
         return True
-    if not (EMAIL_KULDO and EMAIL_JELSZO_KULDES and EMAIL_CIMZETT):
+    if not (EMAIL_KULDO and EMAIL_JELSZO_KULDES and cimzett_vegso):
         print("  ⚠️  Nincs teljesen beállítva az email-küldés - kihagyva.")
         return False
 
     msg = MIMEMultipart("mixed")
     msg["Subject"] = targy
     msg["From"] = EMAIL_KULDO
-    msg["To"] = EMAIL_CIMZETT
+    msg["To"] = cimzett_vegso
     msg.attach(MIMEText(html_torzs, "html", "utf-8"))
 
     for fajlnev, tartalom in (csatolmanyok or []):
@@ -1804,6 +1817,62 @@ def main():
                 print("      ℹ️  Fix-napi összesítő esedékes lenne, de a kiválasztott számlák közül "
                       "egyik sem található az állapotban - kihagyva.")
             allapot["utolso_fix_osszesito_datum"] = ma_str
+
+    # ---- 2c. Dátum-intervallumos, eseti küldés egy megadott email-címre ----
+    # Ezt a dashboard "Számlák küldése emailben" panelje indítja el egy
+    # workflow_dispatch hívással (SZAMLA_DATUMTOL/SZAMLA_DATUMIG/
+    # SZAMLA_CEL_EMAIL inputok) - ütemezett (napi 3x-os) futásnál mindhárom
+    # üres, ilyenkor ez a szakasz simán kimarad. A szűrés a fizetési
+    # határidő (hatarido) alapján történik, mert ez a felhasználó számára
+    # releváns "mikor esedékes" adat - nem az érkezés/kiállítás dátuma.
+    if SZAMLA_DATUMTOL and SZAMLA_DATUMIG and SZAMLA_CEL_EMAIL:
+        print(f"  📤 Dátum-intervallumos küldés kérve: {SZAMLA_DATUMTOL} .. "
+              f"{SZAMLA_DATUMIG} -> {SZAMLA_CEL_EMAIL}")
+        try:
+            # Egyszerű, biztonságos validáció - ha a formátum nem
+            # ISO-dátum (YYYY-MM-DD), inkább kihagyjuk a küldést, minthogy
+            # egy elgépelt inputtal rossz szűrést csináljunk.
+            date.fromisoformat(SZAMLA_DATUMTOL)
+            date.fromisoformat(SZAMLA_DATUMIG)
+            if SZAMLA_DATUMTOL > SZAMLA_DATUMIG:
+                print("  ⚠️  Dátum-intervallum érvénytelen (a kezdő dátum a záró dátum után van) - kihagyva.")
+            else:
+                intervallumba_eso = [
+                    (rid, r) for rid, r in szamlak.items()
+                    if r.get("hatarido") and SZAMLA_DATUMTOL <= r["hatarido"] <= SZAMLA_DATUMIG
+                ]
+                if not intervallumba_eso:
+                    print("  ℹ️  Dátum-intervallumos küldés: egyik számla határideje sem esik a "
+                          "megadott intervallumba - nem megy ki email.")
+                else:
+                    rekordok = [r for _, r in intervallumba_eso]
+                    osszeg_intervallum = sum(r["osszeg"] or 0 for r in rekordok)
+                    provider_osszegek_intervallum = {}
+                    for r in rekordok:
+                        provider_osszegek_intervallum[r["szolgaltato_nev"]] = (
+                            provider_osszegek_intervallum.get(r["szolgaltato_nev"], 0) + (r["osszeg"] or 0)
+                        )
+                    csatolmanyok_intervallum = _csatolmanyok_osszegyujtese(intervallumba_eso)
+                    email_kuldes(
+                        f"📤 Számlák ({SZAMLA_DATUMTOL} – {SZAMLA_DATUMIG}) – "
+                        f"{len(rekordok)} db – {forint(osszeg_intervallum)}",
+                        osszesito_email_html(
+                            rekordok, osszeg_intervallum, provider_osszegek_intervallum,
+                            cim=f"📤 Számlák – {SZAMLA_DATUMTOL} és {SZAMLA_DATUMIG} között esedékes",
+                            bevezeto=(
+                                "<p>Ezt az összesítőt a dashboardon keresztül kifejezetten kérted, "
+                                f"a(z) {SZAMLA_DATUMTOL} és {SZAMLA_DATUMIG} közötti (fizetési "
+                                "határidejű) számlákról:</p>"
+                            ),
+                        ),
+                        csatolmanyok_intervallum,
+                        cimzett=SZAMLA_CEL_EMAIL,
+                    )
+                    print(f"      📤 Dátum-intervallumos email elküldve ({len(rekordok)} számla) "
+                          f"-> {SZAMLA_CEL_EMAIL}.")
+        except ValueError:
+            print(f"  ⚠️  Dátum-intervallumos küldés: érvénytelen dátumformátum "
+                  f"(datumtol={SZAMLA_DATUMTOL!r}, datumig={SZAMLA_DATUMIG!r}) - kihagyva.")
 
     # ---- 3. Állapot mentése (titkosítva) ----
     # FONTOS: a feldolgozott_uidok egy set volt, aminek a sorrendje NEM

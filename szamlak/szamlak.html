@@ -68,6 +68,43 @@
   .szurok button.aktiv { background: var(--blue); color: #fff; border-color: var(--blue); }
   .frissitve { color: var(--muted); font-size: 12px; margin-top: 20px; text-align: center; }
   .ures { color: var(--muted); text-align: center; padding: 30px; }
+
+  /* ── Beállítások / küldés panelek ── */
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-top: 16px; overflow: hidden; }
+  .panel-toggle {
+    width: 100%; text-align: left; padding: 14px 16px; border: none; background: none;
+    font-size: 15px; font-weight: 600; cursor: pointer; color: var(--text);
+  }
+  .panel-toggle:hover { background: #f3f4f6; }
+  .panel-tartalom { padding: 4px 16px 18px; }
+  .panel-info { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .panel-tartalom label {
+    display: block; font-size: 13px; color: var(--muted); margin-bottom: 12px;
+  }
+  .panel-tartalom input[type="password"],
+  .panel-tartalom input[type="number"],
+  .panel-tartalom input[type="date"],
+  .panel-tartalom input[type="email"] {
+    display: block; width: 100%; max-width: 320px; margin-top: 4px;
+    padding: 8px 10px; font-size: 14px; border: 1px solid var(--border); border-radius: 8px;
+  }
+  .be-kivalasztas label { display: flex; align-items: center; gap: 8px; }
+  .be-kivalasztas input[type="radio"] { width: auto; }
+  #be-kiv-lista {
+    max-height: 220px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px;
+    margin: 8px 0 14px; padding: 6px 10px;
+  }
+  .be-kiv-sor { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .be-kiv-sor:last-child { border-bottom: none; }
+  .be-kiv-sor input[type="checkbox"] { width: auto; }
+  .panel-tartalom button {
+    padding: 9px 18px; border: none; border-radius: 8px; background: var(--blue);
+    color: #fff; font-size: 14px; cursor: pointer;
+  }
+  .panel-tartalom button:disabled { opacity: 0.6; cursor: default; }
+  .panel-statusz { font-size: 13px; margin-top: 10px; min-height: 18px; }
+  .panel-statusz.siker { color: var(--green); }
+  .panel-statusz.hiba { color: var(--red); }
 </style>
 </head>
 <body>
@@ -104,6 +141,41 @@
 
     <h2 id="ismeretlen-cim" style="font-size:18px;margin:32px 0 10px;display:none;">❓ Fel nem ismert levelek</h2>
     <div id="ismeretlen-hely"></div>
+
+    <div class="panel" id="beallitasok-panel">
+      <button type="button" class="panel-toggle" id="beallitasok-toggle">⚙️ Beállítások (emlékeztető, összesítő-ütemezés) ▾</button>
+      <div class="panel-tartalom" id="beallitasok-tartalom" style="display:none;">
+        <p class="panel-info">A mentéshez egy GitHub Personal Access Token szükséges (a repóhoz írási joggal) - ez csak a böngésződben marad (a jelszóhoz hasonlóan, session-tárolóban), a mentés közvetlenül innen, a böngésződből megy a GitHub API-nak, sehova máshova nem kerül.</p>
+        <label>GitHub token
+          <input type="password" id="gh-pat-input" autocomplete="off" placeholder="ghp_...">
+        </label>
+        <label>Hány nappal a határidő előtt jelezzen (emlékeztető email)?
+          <input type="number" id="be-napok-elotte" min="1" max="90" placeholder="üresen hagyva: a script beépített alapértéke">
+        </label>
+        <label>A hónap melyik napján menjen a fix, tételes összesítő?
+          <input type="number" id="be-honap-nap" min="1" max="28" placeholder="üresen hagyva: kikapcsolva">
+        </label>
+        <div class="be-kivalasztas">
+          <label><input type="radio" name="be-kivmod" id="be-kiv-mind" checked> A fix, tételes összesítőbe az ÖSSZES fizetetlen számla kerüljön</label>
+          <label><input type="radio" name="be-kivmod" id="be-kiv-egyedi"> Csak az alább kiválasztott számlák kerüljenek bele</label>
+        </div>
+        <div id="be-kiv-lista" style="display:none;"></div>
+        <button type="button" id="be-mentes-gomb">Beállítások mentése</button>
+        <div class="panel-statusz" id="be-statusz"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="kuldes-panel">
+      <button type="button" class="panel-toggle" id="kuldes-toggle">📤 Számlák küldése emailben, dátum szerint ▾</button>
+      <div class="panel-tartalom" id="kuldes-tartalom" style="display:none;">
+        <p class="panel-info">A megadott fizetési határidő-intervallumba eső számlákat PDF-csatolmánnyal elküldi a megadott címre. A küldés a GitHub Actions-ön keresztül indul, néhány percen belül lefut - ehhez is a fenti GitHub token kell.</p>
+        <label>Kezdő dátum (fizetési határidő) <input type="date" id="ku-datumtol"></label>
+        <label>Záró dátum (fizetési határidő) <input type="date" id="ku-datumig"></label>
+        <label>Célcím <input type="email" id="ku-email" placeholder="pl. sajat@email.hu"></label>
+        <button type="button" id="ku-inditas-gomb">Küldés indítása</button>
+        <div class="panel-statusz" id="ku-statusz"></div>
+      </div>
+    </div>
 
     <div class="frissitve" id="frissitve"></div>
   </div>
@@ -381,6 +453,213 @@
       });
     });
   }
+
+  // ── GitHub API-alapú mentés (Beállítások) és futtatás-indítás (dátum-
+  // intervallumos küldés) ── A repó nyilvános, ezért OLVASÁSHOZ (GET
+  // /contents) nem feltétlenül kell token, de íráshoz (PUT /contents) és a
+  // workflow_dispatch indításához mindenképp kell egy, a felhasználó saját
+  // GitHub tokenje (repo-írási joggal) - ezt a felhasználó adja meg, a
+  // böngészőjéből közvetlenül a GitHub API-nak küldjük, a szerverünk/
+  // Actions-ünk sosem látja, és nem kerül git-be.
+  const GH_OWNER = "MrGabee";
+  const GH_REPO = "mentoheli";
+  const GH_BRANCH = "main";
+  const GH_BEALLITASOK_PATH = "szamlak/szamla_beallitasok.json";
+  const GH_WORKFLOW_FAJL = "szamla_monitor.yml";
+
+  function bytesToB64(bytes) {
+    let bin = "";
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+  function utf8ToB64(str) {
+    return bytesToB64(new TextEncoder().encode(str));
+  }
+  function b64ToUtf8(b64) {
+    return new TextDecoder().decode(b64ToBytes(String(b64).replace(/\n/g, "")));
+  }
+
+  function ghFejlecek(pat) {
+    const h = { "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" };
+    if (pat) h["Authorization"] = "Bearer " + pat;
+    return h;
+  }
+
+  async function ghBeallitasokBetoltese(pat) {
+    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_BEALLITASOK_PATH}?ref=${GH_BRANCH}`;
+    const resp = await fetch(url, { headers: ghFejlecek(pat) });
+    if (resp.status === 404) return { ertekek: {}, sha: null };
+    if (!resp.ok) throw new Error("Beállítások betöltése sikertelen (HTTP " + resp.status + ")");
+    const adat = await resp.json();
+    return { ertekek: JSON.parse(b64ToUtf8(adat.content)), sha: adat.sha };
+  }
+
+  async function ghBeallitasokMentese(pat, ujMezok) {
+    const { ertekek, sha } = await ghBeallitasokBetoltese(pat);
+    const egyesitett = Object.assign({}, ertekek, ujMezok);
+    const body = {
+      message: "Beállítások frissítve a dashboardról",
+      content: utf8ToB64(JSON.stringify(egyesitett, null, 2)),
+      branch: GH_BRANCH,
+    };
+    if (sha) body.sha = sha;
+    const resp = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_BEALLITASOK_PATH}`,
+      { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
+    );
+    if (!resp.ok) {
+      const szoveg = await resp.text().catch(() => "");
+      throw new Error("Mentés sikertelen (HTTP " + resp.status + "): " + szoveg.slice(0, 200));
+    }
+  }
+
+  async function ghWorkflowInditasa(pat, inputs) {
+    const resp = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${GH_WORKFLOW_FAJL}/dispatches`,
+      { method: "POST", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify({ ref: GH_BRANCH, inputs }) }
+    );
+    if (!resp.ok) {
+      const szoveg = await resp.text().catch(() => "");
+      throw new Error("Indítás sikertelen (HTTP " + resp.status + "): " + szoveg.slice(0, 200));
+    }
+  }
+
+  function aktualisPat() {
+    return document.getElementById("gh-pat-input").value.trim();
+  }
+  function patMentese() {
+    const pat = aktualisPat();
+    try { if (pat) sessionStorage.setItem("szamla_gh_pat", pat); } catch (e) { /* ignorálható */ }
+  }
+
+  // A kiválasztható-számlák checklistát a jelenleg betöltött (fizetetlen)
+  // számlákból építjük fel - "kivalasztottIdk" (Set) jelöli, mely id-k
+  // legyenek eleve kipipálva (pl. a GitHub-ról betöltött korábbi mentésből).
+  function beKivListaEpitese(kivalasztottIdk) {
+    const hely = document.getElementById("be-kiv-lista");
+    const fizetetlenek = osszesSzamla.filter(r => !r.fizetve);
+    if (!fizetetlenek.length) {
+      hely.innerHTML = '<div style="color:var(--muted);">Nincs jelenleg fizetetlen számla.</div>';
+      return;
+    }
+    hely.innerHTML = fizetetlenek.map(r => `
+      <div class="be-kiv-sor">
+        <input type="checkbox" data-id="${escHtml(r.id)}" ${kivalasztottIdk && kivalasztottIdk.has(r.id) ? "checked" : ""}>
+        <span>${escHtml(r.szolgaltato_nev)} – ${escHtml(r.targy)} – ${forint(r.osszeg)}</span>
+      </div>
+    `).join("");
+  }
+
+  function beStatuszMutat(elemId, szoveg, tipus) {
+    const el = document.getElementById(elemId);
+    el.textContent = szoveg;
+    el.className = "panel-statusz" + (tipus ? " " + tipus : "");
+  }
+
+  // Panelek nyitása/csukása (mindkettő ugyanazt a mintát követi).
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
+    document.getElementById(toggleId).addEventListener("click", () => {
+      const tartalom = document.getElementById(tartalomId);
+      const nyitva = tartalom.style.display !== "none";
+      tartalom.style.display = nyitva ? "none" : "block";
+    });
+  });
+
+  document.getElementById("be-kiv-mind").addEventListener("change", () => {
+    document.getElementById("be-kiv-lista").style.display = "none";
+  });
+  document.getElementById("be-kiv-egyedi").addEventListener("change", () => {
+    document.getElementById("be-kiv-lista").style.display = "block";
+  });
+
+  // A Beállítások panel megnyitásakor (első alkalommal utána mindig,
+  // hiszen a GitHub-on lévő állapot időközben máshonnan is változhatott)
+  // frissen betöltjük az aktuális mentett értékeket.
+  document.getElementById("beallitasok-toggle").addEventListener("click", async () => {
+    beStatuszMutat("be-statusz", "Betöltés...", "");
+    try {
+      const { ertekek } = await ghBeallitasokBetoltese(aktualisPat());
+      document.getElementById("be-napok-elotte").value = ertekek.emlekezteto_napok_elotte ?? "";
+      document.getElementById("be-honap-nap").value = ertekek.osszesito_honap_nap ?? "";
+      const kivalasztott = Array.isArray(ertekek.kivalasztott_szamlak) ? new Set(ertekek.kivalasztott_szamlak) : null;
+      document.getElementById("be-kiv-egyedi").checked = !!kivalasztott;
+      document.getElementById("be-kiv-mind").checked = !kivalasztott;
+      document.getElementById("be-kiv-lista").style.display = kivalasztott ? "block" : "none";
+      beKivListaEpitese(kivalasztott);
+      beStatuszMutat("be-statusz", "", "");
+    } catch (e) {
+      beKivListaEpitese(null);
+      beStatuszMutat("be-statusz", "Nem sikerült betölteni a jelenlegi beállításokat (" + e.message + ") - az alábbi mezők üresek/alapértékek.", "hiba");
+    }
+  }, { once: true }); // csak első nyitáskor töltjük be automatikusan - utána a mentés-gomb úgyis mindig frisset olvas
+
+  document.getElementById("be-mentes-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("be-mentes-gomb");
+    const pat = aktualisPat();
+    if (!pat) { beStatuszMutat("be-statusz", "Add meg a GitHub tokent a mentéshez.", "hiba"); return; }
+    patMentese();
+
+    const napokNyers = document.getElementById("be-napok-elotte").value.trim();
+    const honapNapNyers = document.getElementById("be-honap-nap").value.trim();
+    const napok = napokNyers === "" ? null : parseInt(napokNyers, 10);
+    const honapNap = honapNapNyers === "" ? null : parseInt(honapNapNyers, 10);
+    if (napok !== null && (isNaN(napok) || napok < 1 || napok > 90)) {
+      beStatuszMutat("be-statusz", "Az emlékeztető-napok értéke 1 és 90 között lehet (vagy hagyd üresen).", "hiba");
+      return;
+    }
+    if (honapNap !== null && (isNaN(honapNap) || honapNap < 1 || honapNap > 28)) {
+      beStatuszMutat("be-statusz", "A hónap napja 1 és 28 között lehet (vagy hagyd üresen a kikapcsoláshoz).", "hiba");
+      return;
+    }
+    let kivalasztottSzamlak = null;
+    if (document.getElementById("be-kiv-egyedi").checked) {
+      kivalasztottSzamlak = Array.from(document.querySelectorAll("#be-kiv-lista input[type=checkbox]:checked")).map(cb => cb.dataset.id);
+    }
+
+    gomb.disabled = true;
+    beStatuszMutat("be-statusz", "Mentés...", "");
+    try {
+      await ghBeallitasokMentese(pat, {
+        emlekezteto_napok_elotte: napok,
+        osszesito_honap_nap: honapNap,
+        kivalasztott_szamlak: kivalasztottSzamlak,
+      });
+      beStatuszMutat("be-statusz", "✅ Beállítások elmentve.", "siker");
+    } catch (e) {
+      beStatuszMutat("be-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
+  document.getElementById("ku-inditas-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("ku-inditas-gomb");
+    const pat = aktualisPat();
+    const datumtol = document.getElementById("ku-datumtol").value;
+    const datumig = document.getElementById("ku-datumig").value;
+    const email = document.getElementById("ku-email").value.trim();
+    if (!pat) { beStatuszMutat("ku-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a küldéshez.", "hiba"); return; }
+    if (!datumtol || !datumig) { beStatuszMutat("ku-statusz", "Add meg mindkét dátumot.", "hiba"); return; }
+    if (datumtol > datumig) { beStatuszMutat("ku-statusz", "A kezdő dátum nem lehet a záró dátum után.", "hiba"); return; }
+    if (!email || !email.includes("@")) { beStatuszMutat("ku-statusz", "Adj meg egy érvényes célcímet.", "hiba"); return; }
+    patMentese();
+
+    gomb.disabled = true;
+    beStatuszMutat("ku-statusz", "Indítás...", "");
+    try {
+      await ghWorkflowInditasa(pat, { datumtol, datumig, cel_email: email });
+      beStatuszMutat("ku-statusz", "✅ Elindítva - néhány percen belül megérkezik az email a(z) " + email + " címre (ellenőrizd a GitHub Actions futásokat, ha nem jön meg).", "siker");
+    } catch (e) {
+      beStatuszMutat("ku-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
+  try {
+    const mentettPat = sessionStorage.getItem("szamla_gh_pat");
+    if (mentettPat) document.getElementById("gh-pat-input").value = mentettPat;
+  } catch (e) { /* ignorálható */ }
 
   async function betoltesJelszoval(jelszo) {
     const hibaEl = document.getElementById("jelszo-hiba");
