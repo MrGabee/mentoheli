@@ -40,8 +40,7 @@ jobs:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_ARAM: ${{ secrets.EMAIL_CIMZETT_ARAM }}
-          FB_PAGE_TOKEN:      ${{ secrets.FB_PAGE_TOKEN }}
-          FB_PAGE_ID:         ${{ secrets.FB_PAGE_ID }}
+          MAKE_WEBHOOK_URL:   ${{ secrets.MAKE_WEBHOOK_URL }}
         run: python vizmuvek_monitor.py
 
       - name: 💾 Állapot commitolása
