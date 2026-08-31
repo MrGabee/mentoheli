@@ -395,6 +395,59 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     return "\n".join(sorok)
 
 
+def facebook_szoveg_emlekezteto(emlekezteto_adatok, ido):
+    """Az emlékeztető-posztokhoz tartozó FB-szöveg - explicit jelzi, hogy ez
+    egy korábban már bejelentett áramszünetről szóló EMLÉKEZTETŐ, nem új
+    esemény, hogy a követők ne értsék félre kétszeri bejelentésnek."""
+    db = len(emlekezteto_adatok)
+    erintett_keruletek = sorted(set(f["kerulet"] for f in emlekezteto_adatok))
+
+    sorok = [
+        "⏰ EMLÉKEZTETŐ – közelgő áramszünet ⏰",
+        f"🕒 {ido}   •   {db} esemény",
+        "═" * 32,
+        "",
+        "ℹ️ Ez egy emlékeztető korábban már bejelentett, tervezett "
+        "áramszünet(ek)ről, amik hamarosan esedékesek:",
+        "",
+    ]
+
+    def esemeny_blokk(f):
+        nap = f.get("emlekezteto_nap")
+        nap_cimke = f"{nap} nap múlva esedékes" if nap else "hamarosan esedékes"
+        sor = [f"🔌 TERVEZETT  |  📌 {f['kerulet']}  |  ⏰ {nap_cimke.upper()}"]
+        sor.append(f"   📅 {f['kezdes'][:10] if f['kezdes'] != '—' else '—'}")
+        kezdes_ido = f['kezdes'][11:] if len(f['kezdes']) > 10 else f['kezdes']
+        veg_ido    = f['veg'][11:]    if len(f['veg'])    > 10 else f['veg']
+        sor.append(f"   🕐 {kezdes_ido} → {veg_ido}")
+        if f["utcak_lista"]:
+            for cim in f["utcak_lista"]:
+                sor.append(f"   📍 {cim}")
+        else:
+            sor.append(f"   📍 {f['utcak']}")
+        sor.append(f"   👥 Érintett: {f['fogyaszto']} fogyasztó")
+        return "\n".join(sor)
+
+    for kerulet in erintett_keruletek:
+        keruleti = [f for f in emlekezteto_adatok if f["kerulet"] == kerulet]
+        sorok.append(f"▸▸▸  {kerulet.upper()}  ◂◂◂")
+        sorok.append("─" * 32)
+        for f in keruleti:
+            sorok.append(esemeny_blokk(f))
+            sorok.append("")
+
+    sorok.append("─" * 32)
+    sorok.append("ℹ️ Forrás: E.ON nyilvános tájékoztatás")
+    sorok.append("🤖 Automatikus értesítő – Baleset-info.hu")
+    sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Szigetszentmiklós")
+
+    if KEP_URL:
+        sorok.append("")
+        sorok.append(KEP_URL)
+
+    return "\n".join(sorok)
+
+
 # ════════════════════════════════════════════
 #  📘  FACEBOOK AUTOMATA POSZTOLÁS (Make.com webhookon keresztül)
 # ════════════════════════════════════════════
@@ -531,7 +584,7 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
 # ════════════════════════════════════════════
 #  ⏰  EMLÉKEZTETŐ (2 nappal a tervezett esemény előtt)
 # ════════════════════════════════════════════
-EMLEKEZTETO_NAPOK_ELOTTE = [7, 2, 1]  # több érték is megadható - mindegyikhez külön emlékeztető megy, ahogy közeledik az esemény
+EMLEKEZTETO_NAPOK_ELOTTE = [7, 1]  # több érték is megadható - mindegyikhez külön emlékeztető megy, ahogy közeledik az esemény
 
 
 def emlekezteto_kuldes(emlekezteto_adatok):
@@ -729,6 +782,13 @@ def main():
     if emlekezteto_kuldendo:
         print(f"\n⏰ Emlékeztető küldése {len(emlekezteto_kuldendo)} közelgő eseményről...")
         emlekezteto_kuldes(emlekezteto_kuldendo)
+
+        if FACEBOOK_POSZTOLAS_AKTIV:
+            print("\n📘 Emlékeztető Facebook poszt küldése...")
+            fb_emlekezteto_szoveg = facebook_szoveg_emlekezteto(
+                emlekezteto_kuldendo, most.strftime("%Y.%m.%d %H:%M:%S")
+            )
+            facebook_poszt_kuldese(fb_emlekezteto_szoveg)
     else:
         print("⏰ Nincs a beállított küszöbök egyikén belül sem esedékes, még nem jelzett tervezett esemény.")
 
