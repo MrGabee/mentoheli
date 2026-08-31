@@ -194,10 +194,7 @@ def facebook_szoveg(esetek):
         f"🕐 {ido}   •   {db} új esemény",
         "═" * 32,
         "",
-        "👋 Mivel nemcsak Csepelről, hanem a környező kerületekből és "
-        "városokból (Pesterzsébet, Szigetszentmiklós) is sokan "
-        "olvastok minket, mostantól ezekről a területekről is beszámolunk, "
-        "hogy senki ne maradjon le a fontos hírekről! 💙",
+        "",
         "",
     ]
 
