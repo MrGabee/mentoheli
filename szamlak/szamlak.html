@@ -66,6 +66,8 @@
     background: var(--card); cursor: pointer; font-size: 13px;
   }
   .szurok button.aktiv { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .szurok.nezet-valto { margin-bottom: 10px; }
+  .szurok.nezet-valto button { font-weight: 600; padding: 8px 16px; font-size: 14px; }
   .frissitve { color: var(--muted); font-size: 12px; margin-top: 20px; text-align: center; }
   .ures { color: var(--muted); text-align: center; padding: 30px; }
 
@@ -123,6 +125,12 @@
     <div class="alcim">Vízművek · MVM · Díjnet</div>
 
     <div class="kartyak" id="kartyak"></div>
+
+    <div class="szurok nezet-valto" id="forras-nezet-szurok">
+      <button type="button" data-nezet="mind" class="aktiv">📋 Összes</button>
+      <button type="button" data-nezet="vizmuvek">💧 Vízművek</button>
+      <button type="button" data-nezet="dijnet">🧾 Díjnet</button>
+    </div>
 
     <div class="szurok" id="allapot-szurok">
       <button data-szuro="mind" class="aktiv">Összes</button>
@@ -189,9 +197,35 @@
   const ADAT_URL = "szamla_allapot.enc.json";
   let osszesSzamla = [];
   let pdfTar = {};           // invoice-id -> base64 PDF (a titkosított csomagból)
+  let legutobbiAdat = null;  // a legutóbb visszafejtett teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
   let aktivAllapotSzuro = "mind";     // "mind" | "fizetetlen" | "fizetve" | "lejart"
   let aktivSzolgaltatoSzuro = "mind"; // "mind" | egy konkrét szolgaltato_nev érték
+  let aktivNezet = "mind";            // "mind" | "vizmuvek" | "dijnet" - a lap tetején lévő forrás-nézet gombok
   let osszegRendezesIrany = 0;        // 0 = nincs aktív összeg-rendezés, 1 = növekvő, -1 = csökkenő
+
+  // A Díjneten keresztül érkezett tételeket a Python-oldal "forras":
+  // "dijnet_portal" mezővel jelöli (ld. szamla_figyelo.py) - ez a megbízható
+  // jel. A név-alapú (" (Díjnet)" végződés) ellenőrzés csak tartalék,
+  // olyan régebbi, még "forras" mező nélkül elmentett rekordokhoz, amik a
+  // séma korábbi verziójából származnak.
+  function dijnetesRekord(r) {
+    return r.forras === "dijnet_portal" || /\(Díjnet\)\s*$/.test(r.szolgaltato_nev || "");
+  }
+
+  // A közvetlenül (IMAP-on, Díjnet nélkül) figyelt Vízművek-levelekből
+  // származó rekordokat a "szolgaltato" mező ("vizmuvek") jelöli - ha ez
+  // valamiért hiányozna (régi rekord), a pontos szolgáltató-névre esünk
+  // vissza, de a Díjnetes tételeket mindenképp kizárjuk.
+  function vizmuvekesRekord(r) {
+    if (dijnetesRekord(r)) return false;
+    return r.szolgaltato === "vizmuvek" || r.szolgaltato_nev === "Fővárosi Vízművek";
+  }
+
+  function nezetSzuro(r, nezet) {
+    if (nezet === "vizmuvek") return vizmuvekesRekord(r);
+    if (nezet === "dijnet") return dijnetesRekord(r);
+    return true; // "mind"
+  }
 
   // Minden, emailből/PDF-ből származó, a felhasználó felé kiírt szöveget
   // ezen keresztül fűzünk be - ez egy sima (nem HTML-alkalmazás-célú)
@@ -313,7 +347,24 @@
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 4000);
   }
-  function tablaRenderelese(lista) {
+  // A három nézethez (Összes / Vízművek / Díjnet) eltérő táblázat-oszlopokat
+  // definiálunk - nem csak szűrünk, hanem a Díjnet nézetben pl. a "Tárgy"
+  // helyett a Díjnet portálján is szereplő "Számlaszám" oszlopot mutatjuk
+  // (ez a mező csak a Díjnetes rekordokban van megbízhatóan kitöltve),
+  // a Vízművek nézetben pedig elhagyjuk a "Szolgáltató" oszlopot, mert ott
+  // az úgyis mindig ugyanaz - felesleges ismételgetni minden sorban.
+  function tablaOszlopokDefinialasa(nezet) {
+    if (nezet === "vizmuvek") {
+      return { fejlecek: ["Tárgy", "Összeg", "Határidő", "Állapot", "Számla"], szolgaltatoOszlop: false, szamlaszamOszlop: false };
+    }
+    if (nezet === "dijnet") {
+      return { fejlecek: ["Szolgáltató", "Számlaszám", "Összeg", "Határidő", "Állapot", "Számla"], szolgaltatoOszlop: true, szamlaszamOszlop: true };
+    }
+    return { fejlecek: ["Szolgáltató", "Tárgy", "Összeg", "Határidő", "Állapot", "Számla"], szolgaltatoOszlop: true, szamlaszamOszlop: false };
+  }
+
+  function tablaRenderelese(lista, nezet) {
+    nezet = nezet || "mind";
     const hely = document.getElementById("tabla-hely");
     if (!lista.length) {
       hely.innerHTML = '<div class="ures">Nincs ide tartozó számla.</div>';
@@ -323,6 +374,7 @@
     if (osszegRendezesIrany !== 0) {
       rendezett = [...lista].sort((a, b) => osszegRendezesIrany * ((a.osszeg || 0) - (b.osszeg || 0)));
     }
+    const { fejlecek, szolgaltatoOszlop, szamlaszamOszlop } = tablaOszlopokDefinialasa(nezet);
     const sorok = rendezett.map(r => {
       const vanPdf = !!pdfTar[r.id];
       // FONTOS: szándékosan NEM inline onclick-attribútumot használunk (azzal
@@ -332,22 +384,22 @@
       const letoltesGomb = vanPdf
         ? `<button type="button" class="letoltes-gomb" data-id="${escHtml(r.id)}">⬇️ PDF</button>`
         : `<span style="color:var(--muted);font-size:12px;">nincs PDF</span>`;
-      return `
-      <tr>
-        <td>${escHtml(r.szolgaltato_nev)}</td>
-        <td>${escHtml(r.targy)}</td>
-        <td class="osszeg">${forint(r.osszeg)}</td>
-        <td>${escHtml(r.hatarido) || "ismeretlen"}</td>
-        <td>${allapotBadge(r)}</td>
-        <td>${letoltesGomb}</td>
-      </tr>
-    `;
+      const cellak = [];
+      if (szolgaltatoOszlop) cellak.push(`<td>${escHtml(r.szolgaltato_nev)}</td>`);
+      cellak.push(szamlaszamOszlop
+        ? `<td>${escHtml(r.szamlaszam) || "ismeretlen"}</td>`
+        : `<td>${escHtml(r.targy)}</td>`);
+      cellak.push(`<td class="osszeg">${forint(r.osszeg)}</td>`);
+      cellak.push(`<td>${escHtml(r.hatarido) || "ismeretlen"}</td>`);
+      cellak.push(`<td>${allapotBadge(r)}</td>`);
+      cellak.push(`<td>${letoltesGomb}</td>`);
+      return `<tr>${cellak.join("")}</tr>`;
     }).join("");
 
     hely.innerHTML = `
       <table>
         <thead>
-          <tr><th>Szolgáltató</th><th>Tárgy</th><th>Összeg</th><th>Határidő</th><th>Állapot</th><th>Számla</th></tr>
+          <tr>${fejlecek.map(f => `<th>${escHtml(f)}</th>`).join("")}</tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -403,15 +455,22 @@
       </table>`;
   }
 
-  // A két szűrő (állapot + szolgáltató) EGYÜTT (AND-kapcsolatban) érvényesül,
-  // az összeg-rendezés pedig ezen felül, függetlenül alkalmazható.
+  // A forrás-nézet (Összes / Vízművek / Díjnet) a legkülső szűrő, utána jön
+  // az állapot + szolgáltató (AND-kapcsolatban), az összeg-rendezés pedig
+  // ezen felül, függetlenül alkalmazható. A kártyák (fizetetlen db/összeg,
+  // lejárt db) a nézet szerint szűrt, de állapot-szűrőtől független
+  // listából épülnek - így nézetváltáskor frissülnek, de a Fizetendő/
+  // Fizetve/Lejárt gombok kattintása nem módosítja a kártyák értékét
+  // (ez így volt eddig is, csak eddig a kártyák sosem frissültek újra).
   function szuresAlkalmazasa() {
-    let szurt = osszesSzamla;
+    const nezetSzerint = osszesSzamla.filter(r => nezetSzuro(r, aktivNezet));
+    let szurt = nezetSzerint;
     if (aktivAllapotSzuro === "fizetetlen") szurt = szurt.filter(r => !r.fizetve);
     if (aktivAllapotSzuro === "fizetve") szurt = szurt.filter(r => r.fizetve);
     if (aktivAllapotSzuro === "lejart") szurt = szurt.filter(r => !r.fizetve && r.hatarido && r.hatarido < maiNap());
     if (aktivSzolgaltatoSzuro !== "mind") szurt = szurt.filter(r => (r.szolgaltato_nev || "") === aktivSzolgaltatoSzuro);
-    tablaRenderelese(szurt);
+    kartyakRenderelese(nezetSzerint);
+    tablaRenderelese(szurt, aktivNezet);
   }
 
   document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(btn => {
@@ -419,6 +478,42 @@
       document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(b => b.classList.remove("aktiv"));
       btn.classList.add("aktiv");
       aktivAllapotSzuro = btn.dataset.szuro;
+      szuresAlkalmazasa();
+    });
+  });
+
+  // A mérőállások / fel nem ismert levelek szekciók is a nézethez igazodnak
+  // (a Díjnet nézetben ezek mindig üresek lesznek, mert ott csak számlák
+  // vannak - a saját "ha üres, rejtsd el" logikájuk ilyenkor automatikusan
+  // eltünteti a szekciót).
+  function mellekletekUjrarenderelese() {
+    const adat = legutobbiAdat || {};
+    meroallasokRenderelese(Object.values(adat.meroallasok || {}).filter(r => nezetSzuro(r, aktivNezet)));
+    ismeretlenekRenderelese(Object.values(adat.ismeretlen_dokumentumok || {}).filter(r => nezetSzuro(r, aktivNezet)));
+  }
+
+  document.querySelectorAll("#forras-nezet-szurok button[data-nezet]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#forras-nezet-szurok button[data-nezet]").forEach(b => b.classList.remove("aktiv"));
+      btn.classList.add("aktiv");
+      aktivNezet = btn.dataset.nezet;
+
+      // A korábban kiválasztott szolgáltató-szűrő az új nézetben már más
+      // (vagy értelmezhetetlen) halmazt takarhat - nézetváltáskor "Mind"-ra
+      // állunk vissza, és a gombsort is a nézethez tartozó rekordokból
+      // építjük újra (Vízművek nézetben - ahol úgyis csak 1 szolgáltató
+      // van - egyszerűen elrejtjük, felesleges).
+      aktivSzolgaltatoSzuro = "mind";
+      const szolgHely = document.getElementById("szolgaltato-szurok");
+      if (aktivNezet === "vizmuvek") {
+        szolgHely.style.display = "none";
+        szolgHely.innerHTML = "";
+      } else {
+        const nezetLista = osszesSzamla.filter(r => nezetSzuro(r, aktivNezet));
+        szolgaltatoSzurokEpitese(nezetLista);
+      }
+
+      mellekletekUjrarenderelese();
       szuresAlkalmazasa();
     });
   });
@@ -674,21 +769,22 @@
       // azonosítóját) - a letöltés-gombhoz és a jövőbeli "kiválasztás az
       // összesítőhöz" funkcióhoz is szükség van rá, ezért Object.entries()-
       // szel minden rekordba visszatesszük "id" mezőként.
+      legutobbiAdat = adat;
       osszesSzamla = Object.entries(adat.szamlak || {}).map(([id, r]) => Object.assign({ id }, r));
       pdfTar = adat.pdf_adatok || {};
       aktivAllapotSzuro = "mind";
       aktivSzolgaltatoSzuro = "mind";
+      aktivNezet = "mind";
       osszegRendezesIrany = 0;
       document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(b => b.classList.toggle("aktiv", b.dataset.szuro === "mind"));
+      document.querySelectorAll("#forras-nezet-szurok button[data-nezet]").forEach(b => b.classList.toggle("aktiv", b.dataset.nezet === "mind"));
       const rendezoGomb = document.getElementById("osszeg-rendezo");
       rendezoGomb.classList.remove("aktiv");
       rendezoGomb.textContent = "Összeg ⇅";
 
-      kartyakRenderelese(osszesSzamla);
       szolgaltatoSzurokEpitese(osszesSzamla);
-      tablaRenderelese(osszesSzamla);
-      meroallasokRenderelese(Object.values(adat.meroallasok || {}));
-      ismeretlenekRenderelese(Object.values(adat.ismeretlen_dokumentumok || {}));
+      mellekletekUjrarenderelese();
+      szuresAlkalmazasa();
       document.getElementById("frissitve").textContent =
         "Frissítve: " + (csomag.frissitve ? new Date(csomag.frissitve).toLocaleString("hu-HU") : "ismeretlen");
 
