@@ -202,6 +202,14 @@ IMAP_LEKERDEZES_NAPOK = 90
 # hibás adat kerül a titkosított állapotba.
 DRY_RUN = os.environ.get("SZAMLA_DRY_RUN") == "1"
 
+# A dashboardon (Beállítások panel, "Email-küldés engedélyezve" kapcsoló)
+# ki/bekapcsolható - ez a modul-szintű alapérték, amit main() a
+# beallitasok_betoltese() eredményével felülír, MIELŐTT bármelyik
+# email_kuldes()-hívás megtörténne. SZÁNDÉKOSAN True (=letiltva) az
+# alapállapot: amíg a felhasználó a dashboardon kifejezetten be nem
+# kapcsolja (és el nem menti) a küldést, egyetlen email se menjen ki.
+EMAIL_KIKAPCSOLVA = True
+
 # Dátum-intervallumos, tetszőleges címzettnek szóló küldés (a dashboard
 # "Számlák küldése emailben" panelje indítja egy workflow_dispatch hívással,
 # ld. .github/workflows/szamla_monitor.yml). Mindhárom üres/hiányzik
@@ -556,6 +564,7 @@ def beallitasok_betoltese() -> dict:
         "emlekezteto_napok_elotte": None,   # None = a SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE modul-konstans marad érvényben
         "osszesito_honap_nap": None,        # None = nincs fix-napi tételes összesítő beállítva
         "kivalasztott_szamlak": None,       # None = a fix-napi összesítő (ha be van kapcsolva) minden fizetetlen számlát tartalmaz
+        "email_kikapcsolva": True,          # True = NINCS email-küldés - ez a biztonságos alapállapot, amíg a dashboardon valaki kifejezetten be nem kapcsolja
     }
     if not os.path.exists(BEALLITASOK_FAJL):
         return alap
@@ -578,6 +587,16 @@ def beallitasok_betoltese() -> dict:
     kivalasztott = betoltott.get("kivalasztott_szamlak")
     if isinstance(kivalasztott, list) and all(isinstance(x, str) for x in kivalasztott):
         alap["kivalasztott_szamlak"] = kivalasztott
+
+    # FONTOS: itt (a többi mezővel ellentétben) a hiányzó/érvénytelen érték
+    # NEM a "régi működést" jelenti, hanem a biztonságos "nincs email"
+    # alapállapotot (ld. fent az "alap" szótárban) - csak egy explicit
+    # "email_kikapcsolva": false menti felül, azt is csak akkor, ha a
+    # dashboard "Email-küldés engedélyezve" kapcsolóját valaki bepipálva
+    # mentette.
+    email_kikapcsolva = betoltott.get("email_kikapcsolva")
+    if isinstance(email_kikapcsolva, bool):
+        alap["email_kikapcsolva"] = email_kikapcsolva
 
     return alap
 
@@ -842,6 +861,9 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None):
     cimzett: ha None, az alapértelmezett EMAIL_CIMZETT-re megy (a szokásos
     értesítők) - a dashboard "dátum-intervallumos küldés" funkciója viszont
     egy tetszőleges, a felhasználó által megadott címre is tud küldeni."""
+    if EMAIL_KIKAPCSOLVA:
+        print(f"  🔕 Email-küldés le van tiltva a dashboard beállításaiban - kihagyva: {targy!r}")
+        return False
     cimzett_vegso = cimzett or EMAIL_CIMZETT
     if DRY_RUN:
         csatolmany_nevek = [fajlnev for fajlnev, _ in (csatolmanyok or [])]
@@ -1369,6 +1391,16 @@ def main():
     # (modul-konstans/automatikus) módon működik.
     beallitasok = beallitasok_betoltese()
     emlekezteto_napok = beallitasok["emlekezteto_napok_elotte"] or SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE
+
+    # Az email-küldés globális ki/bekapcsolása - ezt MINDEN email_kuldes()-
+    # hívás előtt be kell állítani, ezért itt, a feldolgozás legelején
+    # történik meg.
+    global EMAIL_KIKAPCSOLVA
+    EMAIL_KIKAPCSOLVA = beallitasok["email_kikapcsolva"]
+    if EMAIL_KIKAPCSOLVA:
+        print("🔕 Email-küldés jelenleg LE VAN TILTVA a dashboard beállításaiban "
+              "(Beállítások → Email-küldés engedélyezve) - a feldolgozás/adatmentés "
+              "változatlanul lezajlik, csak értesítő email nem megy ki.")
 
     # Futási statisztika - a végén egy összefoglaló sorban kiírjuk, ez
     # sokat segít a naplóból gyorsan átlátni, mi történt egy futás alatt.
