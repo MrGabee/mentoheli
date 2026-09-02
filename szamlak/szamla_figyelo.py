@@ -165,6 +165,19 @@ EMAIL_KULDO = os.environ.get("EMAIL_KULDO_SZAMLA") or IMAP_USER
 EMAIL_JELSZO_KULDES = os.environ.get("EMAIL_JELSZO_SZAMLA") or IMAP_JELSZO
 EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_SZAMLA", "")
 
+# ── Bérlői körök - két külön email-cím a két bérlői körnek ──
+# A Díjneten/Vízműveknél érkező számlákat a felhasználó a dashboardon
+# (ld. "Bérlői körök" panel) sorolja be az egyik körbe (a kibocsátó
+# azonosítója, ill. a Vízművek esetén az egész fiók alapján) - ld. a
+# "BÉRLŐI KÖRÖK" szekciót lentebb. A két cím SZÁNDÉKOSAN GitHub Secretben
+# van, NEM a (publikus repóban lévő, akár titkosítatlan) beállítás-
+# fájlban - egy email-cím önmagában is személyes adat, ezt nem tesszük ki
+# nyilvánosan olvashatóvá.
+KOR_EMAIL_CIMEK = {
+    "kor_a": os.environ.get("SZAMLA_KOR_A_EMAIL", "").strip(),
+    "kor_b": os.environ.get("SZAMLA_KOR_B_EMAIL", "").strip(),
+}
+
 TITKOSITAS_JELSZO = os.environ.get("SZAMLA_TITKOSITAS_JELSZO", "")
 
 # Díjnet - közvetlen portál-bejelentkezéshez (nem email-alapú, ld. lentebb).
@@ -524,6 +537,24 @@ def visszafejt(jelszo: str, fajl: str) -> dict:
         # a jelszóval védettek, mint a számla-adatok - nincs szükség külön
         # titkosítási rétegre.
         "pdf_adatok": {},
+        # ── Bérlői körök (ld. "BÉRLŐI KÖRÖK" szekció lentebb) ──
+        # kibocsato_csoportok: {kibocsato_azonosito: "kor_a"/"kor_b"} - a
+        # Díjnetes számlák "Számlakibocsátói azonosítója" alapján, a
+        # felhasználó a dashboardon állítja be. Ez SZÁNDÉKOSAN a
+        # TITKOSÍTOTT állapotban van (nem a publikus beallitasok-fájlban),
+        # mert a kibocsátó-azonosító (pl. egy cím vagy cégnév-töredék)
+        # önmagában is beazonosító adat lehet - ezt a felhasználó
+        # kifejezetten így kérte (privát maradjon, de a dashboardról
+        # kezelhető legyen).
+        "kibocsato_csoportok": {},
+        # vizmuvek_kor: "kor_a"/"kor_b"/None - a Vízművek-fiók (a benne lévő
+        # összes mérő/számla) EGYBEN tartozik az egyik körhöz, NINCS
+        # számlánkénti szétválasztás (a felhasználó kifejezett döntése).
+        "vizmuvek_kor": None,
+        # kor_nevek: a két kör (kor_a/kor_b) felhasználó által megadott,
+        # emberi neve - csak megjelenítéshez kell, ha üres/None, a dashboard
+        # egy generikus "1. kör"/"2. kör" feliratra esik vissza.
+        "kor_nevek": {"kor_a": None, "kor_b": None},
     }
     if not os.path.exists(fajl):
         return alap
@@ -582,6 +613,15 @@ def beallitasok_betoltese() -> dict:
         "osszesito_honap_nap": None,        # None = nincs fix-napi tételes összesítő beállítva
         "kivalasztott_szamlak": None,       # None = a fix-napi összesítő (ha be van kapcsolva) minden fizetetlen számlát tartalmaz
         "email_kikapcsolva": True,          # True = NINCS email-küldés - ez a biztonságos alapállapot, amíg a dashboardon valaki kifejezetten be nem kapcsolja
+        # A dashboard "X" (végleges elrejtés) gombjával törölt számlák saját,
+        # amúgy is értelmezhetetlen, hash-alapú belső azonosítói (ld. a
+        # BEALLITASOK_FAJL fenti kommentjét - ezért NEM titkosított: ezekből
+        # nem olvasható ki semmilyen személyes/pénzügyi adat). A script
+        # minden futáskor véglegesen eltávolítja ezeket a szamlak/pdf_adatok
+        # közül - ha a forrás-portálon később ismét megjelenne UGYANAZ a
+        # számla (ugyanaz a hash-azonosító adódna ki belőle), azonnal újra
+        # törlődik, tehát tartósan "el van némítva".
+        "torolt_szamla_id_k": [],
     }
     if not os.path.exists(BEALLITASOK_FAJL):
         return alap
@@ -604,6 +644,10 @@ def beallitasok_betoltese() -> dict:
     kivalasztott = betoltott.get("kivalasztott_szamlak")
     if isinstance(kivalasztott, list) and all(isinstance(x, str) for x in kivalasztott):
         alap["kivalasztott_szamlak"] = kivalasztott
+
+    torolt = betoltott.get("torolt_szamla_id_k")
+    if isinstance(torolt, list) and all(isinstance(x, str) for x in torolt):
+        alap["torolt_szamla_id_k"] = torolt
 
     # FONTOS: itt (a többi mezővel ellentétben) a hiányzó/érvénytelen érték
     # NEM a "régi működést" jelenti, hanem a biztonságos "nincs email"
@@ -1741,6 +1785,107 @@ def vizmuvek_pdf_letoltese(session, token, sor, probalkozasok=3, varakozas_masod
 
 
 # ════════════════════════════════════════════
+#  👥  BÉRLŐI KÖRÖK
+# ════════════════════════════════════════════
+# A Díjneten/Vízműveken érkező számlák két bérlői körhöz (két külön "cég")
+# tartoznak, és a két körnek KÜLÖN email-címre kell mennie minden
+# értesítés (új számla + havi összesítő, PDF-fel). A besorolást a
+# felhasználó a dashboardon (szamlak.html "Bérlői körök" panelje) végzi:
+#   - Díjnet: kibocsátónként (a "Számlakibocsátói azonosító" alapján,
+#     ld. allapot["kibocsato_csoportok"]) - EZ SZÁMLÁNKÉNT ELTÉRHET, mert
+#     egy Díjnet-fiókban több kibocsátó (több cég/cím) számlája is
+#     keveredhet.
+#   - Vízművek: EGYBEN, az egész fiók egy körhöz tartozik (ld.
+#     allapot["vizmuvek_kor"]) - a felhasználó kifejezett döntése szerint
+#     itt NINCS számlánkénti szétválasztás, még akkor sem, ha a fiók több
+#     mérőt/felhasználási helyet is tartalmaz.
+# Amíg egy kibocsátó (ill. a Vízművek-fiók) nincs besorolva, az onnan
+# érkező számlák "fuggoben" állapotban vannak: rögzülnek és PDF-jük is
+# letöltődik, de ÉRTESÍTŐ EMAIL NEM MEGY KI róluk, amíg a felhasználó be
+# nem sorolja a kibocsátót/fiókot valamelyik körbe - ezután a dashboardon
+# beállítható, hogy a MÁR függőben lévő (visszamenőleges) számlákról is
+# menjen-e utólag értesítés, vagy csak az EZUTÁN érkezőkről (ld.
+# "ertesites_szukseges" rekord-mezőt lentebb).
+def _dijnet_kor_meghatarozasa(allapot: dict, kibocsato_azonosito: str) -> str:
+    """"kor_a" / "kor_b" / "fuggoben" (ha a kibocsátó még nincs besorolva,
+    vagy nincs is azonosítható kibocsátó-azonosító)."""
+    if not kibocsato_azonosito:
+        return "fuggoben"
+    return allapot.get("kibocsato_csoportok", {}).get(kibocsato_azonosito) or "fuggoben"
+
+
+def _vizmuvek_kor_meghatarozasa(allapot: dict) -> str:
+    """"kor_a" / "kor_b" / "fuggoben" (ha a Vízművek-fiók még nincs
+    besorolva egyik körbe sem)."""
+    return allapot.get("vizmuvek_kor") or "fuggoben"
+
+
+def _uj_szamla_email_kuldese(rekord: dict, pdf_bytes, statisztika: dict, kor_kulcs=None):
+    """Egységesen kezeli az "új számla" értesítő email kiküldését - ezt
+    hívja az email-alapú (MVM stb.), a Díjnet- és a Vízművek-ág is.
+
+    kor_kulcs=None: a szolgáltató NEM vesz részt a bérlői körös
+    felosztásban (pl. MVM, IMAP-os felismerés) - a szokásos, alap
+    EMAIL_CIMZETT címre megy, változatlanul, mint eddig.
+
+    kor_kulcs="fuggoben": a kibocsátó/fiók MÉG NINCS besorolva egyik
+    bérlői körbe sem - SZÁNDÉKOSAN NEM küldünk emailt (a felhasználó
+    kifejezett kérése), csak naplózzuk, hogy a dashboardon besorolásra vár.
+
+    kor_kulcs="kor_a"/"kor_b": a hozzá tartozó KOR_EMAIL_CIMEK címre megy -
+    ha az a secret nincs beállítva, kihagyjuk (nem esünk vissza az alap
+    EMAIL_CIMZETT-re, mert az félrekézbesítés lenne: a másik bérlő
+    email-címére semmiképp nem mehet a másik kör számlája)."""
+    if kor_kulcs == "fuggoben":
+        print(f"      ⏳ Új számla érkezett, de a kibocsátó/forrás még nincs bérlői körbe sorolva - "
+              f"értesítő email NEM megy ki, amíg be nem sorolod a dashboardon ('Bérlői körök' panel): "
+              f"{rekord['targy']}")
+        return
+    cimzett = None
+    if kor_kulcs in ("kor_a", "kor_b"):
+        cimzett = KOR_EMAIL_CIMEK.get(kor_kulcs) or None
+        if not cimzett:
+            print(f"      ⚠️  A(z) '{kor_kulcs}' bérlői körhöz nincs beállítva email-cím "
+                  f"(SZAMLA_{kor_kulcs.upper()}_EMAIL secret) - értesítő email kihagyva: {rekord['targy']}")
+            return
+    statisztika["email_ertesitesek"] += 1
+    email_kuldes(
+        f"📄 Új számla – {rekord['szolgaltato_nev']}",
+        uj_szamla_email_html(rekord),
+        [(f"{rekord.get('szamlaszam') or rekord['szolgaltato']}.pdf", pdf_bytes)] if pdf_bytes else None,
+        cimzett=cimzett,
+    )
+
+
+def _kor_utolagos_ertesites_ha_kell(rid: str, rekord: dict, allapot: dict, statisztika: dict, kor_kulcs: str):
+    """MÁR ISMERT (nem most érkezett) számláknál hívjuk, miután frissen
+    újraszámoltuk a "kor" mezőjét. Ha a dashboardon a felhasználó egy
+    korábban függőben lévő számláról kifejezetten kérte az utólagos
+    értesítést (ld. a "Bérlői körök" panel "küldjön értesítőt a már
+    beérkezett számlákról is" kapcsolóját, ami a rekord
+    "ertesites_szukseges" mezőjét állítja be), és a számla időközben nem
+    lett kifizetve, most - a besorolás megtörténtével - kiküldjük az "új
+    számla" értesítőt, majd töröljük a jelzőt (hogy csak egyszer menjen ki)."""
+    if not rekord.get("ertesites_szukseges"):
+        return
+    if kor_kulcs == "fuggoben":
+        # Még mindig nincs besorolva (pl. a felhasználó a jelzőt állította,
+        # de a kibocsátó besorolása valamiért mégsem történt meg/vagy egy
+        # másik, még besorolatlan kibocsátóé) - a jelzőt SZÁNDÉKOSAN nem
+        # töröljük, hogy a következő futás újra megpróbálja, amint tényleg
+        # besorolásra kerül.
+        return
+    rekord["ertesites_szukseges"] = False
+    if rekord.get("fizetve"):
+        return
+    b64 = allapot.get("pdf_adatok", {}).get(rid)
+    pdf_bytes = base64.b64decode(b64) if b64 else None
+    print(f"      📬 Utólagos értesítés küldése egy most besorolt, korábban függőben lévő "
+          f"számláról: {rekord['targy']}")
+    _uj_szamla_email_kuldese(rekord, pdf_bytes, statisztika, kor_kulcs)
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
 # ════════════════════════════════════════════
 def main():
@@ -1771,6 +1916,25 @@ def main():
     # (modul-konstans/automatikus) módon működik.
     beallitasok = beallitasok_betoltese()
     emlekezteto_napok = beallitasok["emlekezteto_napok_elotte"] or SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE
+
+    # A dashboard "X" gombjával véglegesen elrejtett számlák törlése - ld.
+    # a BEALLITASOK_FAJL "torolt_szamla_id_k" mezőjének kommentjét. Minden
+    # futáskor megtörténik, MIELŐTT a portál-lekérdezések újra beírnák
+    # ugyanezeket (ha időközben ismét megjelennének a forrásnál) - így egy
+    # törölt számla tartósan el marad rejtve, nem "támad fel" a következő
+    # futásnál.
+    torolt_id_k = beallitasok["torolt_szamla_id_k"]
+    torolt_id_szet = set(torolt_id_k)  # gyors "benne van-e" ellenőrzéshez a lenti feldolgozó-ágakban
+    if torolt_id_k:
+        pdf_adatok = allapot.setdefault("pdf_adatok", {})
+        torolve_db = 0
+        for tid in torolt_id_k:
+            if tid in szamlak:
+                del szamlak[tid]
+                torolve_db += 1
+            pdf_adatok.pop(tid, None)
+        if torolve_db:
+            print(f"  🗑️  {torolve_db} db, a dashboardon véglegesen elrejtett számla törölve.")
 
     # Az email-küldés globális ki/bekapcsolása - ezt MINDEN email_kuldes()-
     # hívás előtt be kell állítani, ezért itt, a feldolgozás legelején
@@ -1925,7 +2089,7 @@ def main():
             if tipus == "uj_szamla":
                 statisztika["uj_szamla"] += 1
                 rid = hashlib.md5(f"{uid_str}|uj_szamla".encode("utf-8")).hexdigest()[:16]
-                if rid in szamlak:
+                if rid in szamlak or rid in torolt_id_szet:
                     continue
 
                 osszeg = osszeg_kinyerese(szoveg)
@@ -2003,6 +2167,8 @@ def main():
                     did = hashlib.md5(
                         f"dijnet|{sor['szolgaltato_nyers']}|{sor['szamlaszam']}".encode("utf-8")
                     ).hexdigest()[:16]
+                    if did in torolt_id_szet:
+                        continue  # a felhasználó véglegesen elrejtette ezt a számlát - ld. torolt_szamla_id_k
                     fizetve_e = _dijnet_fizetve_e(sor["allapot_szoveg"])
                     osszeg = _dijnet_osszeg_konvertalas(sor["osszeg_nyers"])
                     hatarido = _dijnet_datum_konvertalas(sor["hatarido_nyers"])
@@ -2038,6 +2204,14 @@ def main():
                             if sor["megjelenitett_nev"] and sor["megjelenitett_nev"] != szolgaltato_valodi_nev
                             else ""
                         )
+                        # kibocsato_azonosito: a "Számlakibocsátói azonosító" oszlop
+                        # (megjelenitett_nev) KÜLÖN mezőben is eltárolva (nem csak a
+                        # targy zárójeles részeként) - ez alapján sorolja be a
+                        # felhasználó a dashboardon a bérlői körök egyikébe (ld.
+                        # "BÉRLŐI KÖRÖK" szekció) - a kor mezőt minden futáskor
+                        # frissen újraszámoljuk ez alapján.
+                        kibocsato_azonosito = sor["megjelenitett_nev"] or ""
+                        kor = _dijnet_kor_meghatarozasa(allapot, kibocsato_azonosito)
                         rekord = {
                             "szolgaltato": "dijnet",
                             "szolgaltato_nev": f"{szolgaltato_valodi_nev} (Díjnet)",
@@ -2051,22 +2225,22 @@ def main():
                             "uid": None,
                             "forras": "dijnet_portal",
                             "szamlaszam": sor["szamlaszam"],
+                            "kibocsato_azonosito": kibocsato_azonosito,
+                            "kor": kor,
                         }
                         szamlak[did] = rekord
                         pdf_tarolas(allapot, did, pdf_bytes)
                         statisztika["dijnet_uj_szamla"] += 1
                         print(f"      🆕 Új Díjnet-számla: {rekord['szolgaltato_nev']} – "
-                              f"{forint(osszeg)} – határidő: {hatarido}")
+                              f"{forint(osszeg)} – határidő: {hatarido} – kör: {kor}")
                         if not fizetve_e:
-                            statisztika["email_ertesitesek"] += 1
-                            email_kuldes(
-                                f"📄 Új számla – {rekord['szolgaltato_nev']}",
-                                uj_szamla_email_html(rekord),
-                                [(f"{sor['szamlaszam']}.pdf", pdf_bytes)] if pdf_bytes else None,
-                            )
+                            _uj_szamla_email_kuldese(rekord, pdf_bytes, statisztika, kor)
                     else:
                         # Már ismert számla - csendben frissítjük (elsősorban a
-                        # fizetve-állapotot), nem küldünk újabb "új számla" emailt.
+                        # fizetve-állapotot), nem küldünk újabb "új számla" emailt
+                        # (kivéve, ha épp most sorolódott be egy korábban függőben
+                        # lévő kibocsátó, és a felhasználó kérte az utólagos
+                        # értesítést - ld. _kor_utolagos_ertesites_ha_kell()).
                         letezo = szamlak[did]
                         if fizetve_e and not letezo.get("fizetve"):
                             letezo["fizetve"] = True
@@ -2092,6 +2266,19 @@ def main():
                         )
                         letezo["szolgaltato_nev"] = f"{szolgaltato_valodi_nev} (Díjnet)"
                         letezo["targy"] = f"Számla – {sor['szamlaszam']}{azonosito_resz}"
+                        # kibocsato_azonosito utólagos pótlása/frissítése (régebbi
+                        # rekordoknál még hiányozhat), és a "kor" mező MINDEN
+                        # futáskor frissen újraszámolva - így ha a felhasználó
+                        # időközben besorolt egy korábban ismeretlen kibocsátót, a
+                        # nála MÁR meglévő számlák automatikusan átkerülnek a
+                        # megfelelő körbe (nem kell egyesével kézzel javítani).
+                        letezo["kibocsato_azonosito"] = sor["megjelenitett_nev"] or ""
+                        uj_kor = _dijnet_kor_meghatarozasa(allapot, letezo["kibocsato_azonosito"])
+                        if uj_kor != letezo.get("kor"):
+                            print(f"      👥 Díjnet-számla kör-besorolása frissült: "
+                                  f"{letezo['targy']} – {letezo.get('kor')} → {uj_kor}")
+                        letezo["kor"] = uj_kor
+                        _kor_utolagos_ertesites_ha_kell(did, letezo, allapot, statisztika, uj_kor)
                         # Utólagos PDF-pótlás: ha ennek a MÁR ISMERT számlának
                         # még nincs eltárolt PDF-je (pl. mert az első
                         # feldolgozáskor elérte a sapkát), most - a még
@@ -2125,6 +2312,8 @@ def main():
                     vid = hashlib.md5(
                         f"vizmuvek|{szamlaszam}".encode("utf-8")
                     ).hexdigest()[:16]
+                    if vid in torolt_id_szet:
+                        continue  # a felhasználó véglegesen elrejtette ezt a számlát - ld. torolt_szamla_id_k
                     fizetve_e = _vizmuvek_fizetve_e(sor.get("STATUS_MEGNEV"))
                     # Az AMOUNT mező a valós portál-válaszban MÁR szám (nem
                     # szöveg), ezért itt nem kell a Díjnetnél használt
@@ -2136,6 +2325,12 @@ def main():
                     hatarido = _dijnet_datum_konvertalas(sor.get("FAEDN"))
                     kiallitas = _dijnet_datum_konvertalas(sor.get("INV_DATE"))
                     targy_nev = sor.get("MEGNEV") or "Számla"
+
+                    # A Vízművek EGY EGÉSZBEN tartozik az egyik bérlői körhöz (a
+                    # felhasználó kifejezett döntése szerint NINCS számlánkénti
+                    # szétválasztás, még akkor sem, ha több mérő/felhasználási
+                    # hely is szerepel a fiókban) - ld. "BÉRLŐI KÖRÖK" szekció.
+                    kor = _vizmuvek_kor_meghatarozasa(allapot)
 
                     if vid not in szamlak:
                         rekord = {
@@ -2151,30 +2346,29 @@ def main():
                             "uid": None,
                             "forras": "vizmuvek_portal",
                             "szamlaszam": szamlaszam,
+                            "kor": kor,
                         }
                         szamlak[vid] = rekord
                         statisztika["vizmuvek_uj_szamla"] += 1
                         print(f"      🆕 Új Vízművek-számla: {rekord['targy']} – "
-                              f"{forint(osszeg)} – határidő: {hatarido}")
+                              f"{forint(osszeg)} – határidő: {hatarido} – kör: {kor}")
                         # PDF-letöltés MINDEN új számlához megpróbálva (nem
                         # csak a fizetetlenekhez), egy futáson belül
                         # korlátozva - ld. VIZMUVEK_MAX_PDF_LETOLTES_
                         # FUTASONKENT és a Díjnet-résznél lévő azonos
                         # indoklást.
+                        pdf_bytes = None
                         if vizmuvek_pdf_letoltesek_szama < VIZMUVEK_MAX_PDF_LETOLTES_FUTASONKENT:
                             pdf_bytes = vizmuvek_pdf_letoltese(vizmuvek_session, vizmuvek_token, sor)
                             vizmuvek_pdf_letoltesek_szama += 1
                             pdf_tarolas(allapot, vid, pdf_bytes)
                         if not fizetve_e:
-                            statisztika["email_ertesitesek"] += 1
-                            email_kuldes(
-                                f"📄 Új számla – {rekord['szolgaltato_nev']}",
-                                uj_szamla_email_html(rekord),
-                            )
+                            _uj_szamla_email_kuldese(rekord, pdf_bytes, statisztika, kor)
                     else:
                         # Már ismert számla - csendben frissítjük
                         # (elsősorban a fizetve-állapotot), nem küldünk
-                        # újabb "új számla" emailt.
+                        # újabb "új számla" emailt (kivéve utólagos
+                        # értesítést, ld. _kor_utolagos_ertesites_ha_kell()).
                         letezo = szamlak[vid]
                         if fizetve_e and not letezo.get("fizetve"):
                             letezo["fizetve"] = True
@@ -2185,6 +2379,11 @@ def main():
                             letezo["osszeg"] = osszeg
                         if hatarido is not None:
                             letezo["hatarido"] = hatarido
+                        if kor != letezo.get("kor"):
+                            print(f"      👥 Vízművek-számla kör-besorolása frissült: "
+                                  f"{letezo['targy']} – {letezo.get('kor')} → {kor}")
+                        letezo["kor"] = kor
+                        _kor_utolagos_ertesites_ha_kell(vid, letezo, allapot, statisztika, kor)
                         # Utólagos PDF-pótlás: ha ennek a MÁR ISMERT számlának
                         # még nincs eltárolt PDF-je, most - a még rendelkezésre
                         # álló kereten belül - megpróbáljuk pótolni (ld. a
@@ -2277,6 +2476,15 @@ def main():
     # a felhasználó a dashboardon állíthatja be (ld. BEALLITASOK_FAJL), hogy
     # a hónap melyik napján menjen, és melyik számlákról (ha nem választ ki
     # semmit, az ÖSSZES fizetetlen számláról, mint a fenti ág).
+    #
+    # BÉRLŐI KÖRÖK: a felhasználó kifejezett kérésére a besorolt (kor_a/
+    # kor_b) számlák CSAK a saját körük havi összesítőjébe kerülnek, a
+    # "fő" (itt lentebb, "általános" néven szereplő) összesítő ezért ilyenkor
+    # már csak a be nem sorolt/egyéb számlákat (pl. MVM, vagy még "fuggoben"
+    # állapotú Díjnet/Vízművek-tételek) fogja össze - EZ CSAK AKKOR igaz, ha
+    # a felhasználó nem választott ki kézzel konkrét számlákat
+    # (kivalasztott_szamlak) - egy KIFEJEZETT kézi kiválasztás felülír
+    # mindent, változatlanul (ahogy eddig is).
     if beallitasok["osszesito_honap_nap"] is not None:
         ma_datum = magyar_ma()
         if (
@@ -2284,12 +2492,12 @@ def main():
             and allapot.get("utolso_fix_osszesito_datum") != ma_str
         ):
             kivalasztott_id_k = beallitasok["kivalasztott_szamlak"]
-            if kivalasztott_id_k is None:
-                erintett = [(rid, r) for rid, r in szamlak.items() if not r["fizetve"]]
-            else:
-                erintett = [(rid, szamlak[rid]) for rid in kivalasztott_id_k if rid in szamlak]
 
-            if erintett:
+            def _fix_osszesito_kuldese(erintett, cim_resz, bevezeto, cimzett=None):
+                """Közös segédfüggvény a lenti három (általános + 2 körös)
+                havi összesítőhöz - erintett: [(rid, rekord), ...]."""
+                if not erintett:
+                    return
                 erintett_rekordok = [r for _, r in erintett]
                 vegosszeg = sum(r["osszeg"] or 0 for r in erintett_rekordok)
                 provider_osszegek = {}
@@ -2297,30 +2505,69 @@ def main():
                     provider_osszegek[r["szolgaltato_nev"]] = (
                         provider_osszegek.get(r["szolgaltato_nev"], 0) + (r["osszeg"] or 0)
                     )
-                # "erintett" már eleve [(rid, rekord), ...] párokból áll,
-                # tehát közvetlenül átadható a 2. szakaszban definiált
-                # általános segédfüggvénynek - nincs szükség külön,
-                # duplikált PDF-gyűjtő logikára ehhez a szakaszhoz.
                 csatolmanyok = _csatolmanyok_osszegyujtese(erintett)
-
-                forras_szoveg = (
-                    "a Te kifejezett kiválasztásod alapján" if kivalasztott_id_k is not None
-                    else "az ÖSSZES jelenleg fizetetlen számláról (nem volt egyedi kiválasztás)"
-                )
                 email_kuldes(
-                    f"📅 Havi tételes összesítő ({beallitasok['osszesito_honap_nap']}.) – "
+                    f"📅 Havi tételes összesítő{cim_resz} – "
                     f"{len(erintett_rekordok)} db – {forint(vegosszeg)}",
                     osszesito_email_html(
                         erintett_rekordok, vegosszeg, provider_osszegek,
-                        cim=f"📅 Havi tételes összesítő – a hónap {beallitasok['osszesito_honap_nap']}. napja",
-                        bevezeto=f"<p>Ez egy általad beállított, fix napi összesítő - {forras_szoveg}:</p>",
+                        cim=f"📅 Havi tételes összesítő{cim_resz}",
+                        bevezeto=bevezeto,
                     ),
                     csatolmanyok,
+                    cimzett=cimzett,
                 )
-                print(f"      📅 Fix-napi tételes összesítő elküldve ({len(erintett_rekordok)} számla).")
+                print(f"      📅 Fix-napi tételes összesítő elküldve{cim_resz} "
+                      f"({len(erintett_rekordok)} számla).")
+
+            if kivalasztott_id_k is not None:
+                # Kifejezett kézi kiválasztás - változatlanul, körök nélkül.
+                erintett = [(rid, szamlak[rid]) for rid in kivalasztott_id_k if rid in szamlak]
+                if erintett:
+                    _fix_osszesito_kuldese(
+                        erintett,
+                        f" ({beallitasok['osszesito_honap_nap']}.)",
+                        f"<p>Ez egy általad beállított, fix napi összesítő - a Te kifejezett "
+                        f"kiválasztásod alapján:</p>",
+                    )
+                else:
+                    print("      ℹ️  Fix-napi összesítő esedékes lenne, de a kiválasztott számlák "
+                          "közül egyik sem található az állapotban - kihagyva.")
             else:
-                print("      ℹ️  Fix-napi összesítő esedékes lenne, de a kiválasztott számlák közül "
-                      "egyik sem található az állapotban - kihagyva.")
+                # Nincs kézi kiválasztás - a besorolt (kor_a/kor_b) számlák a
+                # saját körük összesítőjébe kerülnek, minden más (be nem
+                # sorolt/egyéb) az "általános" összesítőbe.
+                altalanos = [
+                    (rid, r) for rid, r in szamlak.items()
+                    if not r["fizetve"] and r.get("kor") not in ("kor_a", "kor_b")
+                ]
+                _fix_osszesito_kuldese(
+                    altalanos,
+                    f" ({beallitasok['osszesito_honap_nap']}.)",
+                    "<p>Ez egy általad beállított, fix napi összesítő - az ÖSSZES jelenleg "
+                    "fizetetlen, bérlői körbe NEM sorolt számláról (nem volt egyedi kiválasztás):</p>",
+                )
+                for kor_kulcs in ("kor_a", "kor_b"):
+                    cimzett = KOR_EMAIL_CIMEK.get(kor_kulcs) or None
+                    kor_erintett = [
+                        (rid, r) for rid, r in szamlak.items()
+                        if not r["fizetve"] and r.get("kor") == kor_kulcs
+                    ]
+                    if kor_erintett and not cimzett:
+                        print(f"      ⚠️  A(z) '{kor_kulcs}' körnek lenne mit összesíteni "
+                              f"({len(kor_erintett)} számla), de nincs beállítva email-cím "
+                              f"(SZAMLA_{kor_kulcs.upper()}_EMAIL secret) - kihagyva.")
+                        continue
+                    kor_nev = (allapot.get("kor_nevek") or {}).get(kor_kulcs) or (
+                        "1. kör" if kor_kulcs == "kor_a" else "2. kör"
+                    )
+                    _fix_osszesito_kuldese(
+                        kor_erintett,
+                        f" – {kor_nev} ({beallitasok['osszesito_honap_nap']}.)",
+                        f"<p>Ez a(z) <strong>{_esc(kor_nev)}</strong> havi, fix napi összesítője - "
+                        "az ehhez a körhöz tartozó, jelenleg fizetetlen számlákról:</p>",
+                        cimzett=cimzett,
+                    )
             allapot["utolso_fix_osszesito_datum"] = ma_str
 
     # ---- 2c. Dátum-intervallumos, eseti küldés egy megadott email-címre ----
