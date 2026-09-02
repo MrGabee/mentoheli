@@ -99,6 +99,11 @@ Szükséges GitHub Secretek:
   SZAMLA_DIJNET_USER      a dijnet.hu bejelentkezési felhasználóneved (opcionális -
                           ha kihagyod, a Díjnet-lekérdezés egyszerűen kimarad)
   SZAMLA_DIJNET_JELSZO    a dijnet.hu jelszavad (opcionális, ld. fent)
+  SZAMLA_VIZMUVEK_USER    a ugyfelszolgalat.vizmuvek.hu bejelentkezési felhasználóneved
+                          (opcionális - ha kihagyod, a Vízművek-portál közvetlen
+                          lekérdezése egyszerűen kimarad; ld. lentebb a "VÍZMŰVEK -
+                          KÖZVETLEN PORTÁL-LEKÉRDEZÉS" szekciót)
+  SZAMLA_VIZMUVEK_JELSZO  a ugyfelszolgalat.vizmuvek.hu jelszavad (opcionális, ld. fent)
 """
 
 import os
@@ -178,6 +183,14 @@ DIJNET_LEKERDEZES_NAPOK_VISSZA = 120
 # túli számlák PDF-csatolmány nélkül kerülnek be (attól még rögzülnek és
 # az email is kimegy értük).
 DIJNET_MAX_PDF_LETOLTES_FUTASONKENT = 8
+
+# Vízművek - közvetlen portál-bejelentkezéshez (nem email-alapú, ugyanaz
+# az elv, mint a Díjnetnél fent - ld. lentebb a "VÍZMŰVEK - KÖZVETLEN
+# PORTÁL-LEKÉRDEZÉS" szekciót). Ha ezt a kettőt nem állítod be, a
+# Vízművek-portál közvetlen lekérdezése egyszerűen kimarad, minden más
+# (email-figyelés, Díjnet) változatlanul működik.
+VIZMUVEK_USER = os.environ.get("SZAMLA_VIZMUVEK_USER") or ""
+VIZMUVEK_JELSZO = os.environ.get("SZAMLA_VIZMUVEK_JELSZO") or ""
 
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, HÁNY NAPPAL A HATÁRIDŐ ELŐTT MENJEN AZ ÖSSZESÍTŐ ⬇️⬇️⬇️
 SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
@@ -1361,6 +1374,234 @@ def dijnet_pdf_letoltese(session, sor_index: int):
 
 
 # ════════════════════════════════════════════
+#  🚰  VÍZMŰVEK - KÖZVETLEN PORTÁL-LEKÉRDEZÉS (nem email-alapú)
+# ════════════════════════════════════════════
+# Ugyanaz az elv, mint a Díjnetnél fent: NEM a beérkező emailekre
+# támaszkodunk, hanem közvetlenül bejelentkezünk a Te
+# ugyfelszolgalat.vizmuvek.hu fiókodba, és onnan olvassuk ki a valódi
+# számlaállapotot. Erre azért volt szükség, mert egy élő, bejelentkezett
+# böngészős ellenőrzéssel kiderült, hogy ennek a Vízművek-fióknak a
+# számlái NEM a Díjneten, és eddigi tapasztalat szerint NEM is a
+# figyelt IMAP-postafiókba érkező emailen keresztül érhetők el, hanem
+# KIZÁRÓLAG ezen a közvetlen portálon.
+#
+# FONTOS KORLÁT - ELTÉRŐEN A DÍJNET-KÓDTÓL: a Díjnet bejelentkezési/
+# lekérdezési végpontjait egy létező, aktívan karbantartott nyílt
+# forráskódú integrációból (laszlojakab/homeassistant-dijnet) ismertük
+# meg pontosan. A Fővárosi Vízművek portáljához NINCS ilyen ismert,
+# publikus referencia-integráció (rákerestünk, nem találtunk) - ezért ez
+# a bejelentkezés-kód SZÁNDÉKOSAN NEM egy fixen beégetett mezőnév-
+# feltételezésre épül, hanem a bejelentkező oldal HTML-jéből ÉLŐBEN,
+# minden futáskor kiolvassa, milyen <form>/<input> mezők vannak rajta
+# (beleértve a rejtett, pl. CSRF-token jellegű mezőket is), és ezek közül
+# TÍPUS alapján (type="password", ill. az első nem-rejtett szöveges/email
+# mező) azonosítja be a jelszó- és felhasználónév-mezőt - így nem kell
+# előre kitalálni a pontos mezőneveket.
+#
+# A számlatáblázat oszlop-sorrendjét (számlaszám, típus, kelte, határidő,
+# bruttó összeg, teljesített összeg, fennmaradó tartozás, státusz) egy
+# élő, bejelentkezett böngészős ellenőrzésből ismerjük - ez valós adat,
+# nem feltételezés. Amit VISZONT nem tudunk biztosan: hogy ez a
+# táblázat a sima requests.get() válaszában (szerver-oldali HTML-ként)
+# is megjelenik-e, vagy csak a böngészőben, kliens-oldali JavaScript/
+# AJAX-hívás után épül fel - utóbbi esetben ez a kód üres eredményt
+# kapna. Emiatt ez a rész az ELSŐ ÉLES FUTÁS naplója alapján még
+# finomításra szorulhat (pontosan úgy, ahogy a Díjnet-kódnál is történt a
+# korábbi menetek során) - ha a bejelentkezés vagy a táblázat-felismerés
+# nem sikerül, a napló (SZEMÉLYES ADAT NÉLKÜL, csak mezőnevekkel/
+# szerkezeti infóval) megmutatja, mit talált ténylegesen a program.
+#
+# PDF-letöltés jelenleg NINCS megvalósítva ehhez a forráshoz (a "LETÖLTÉS"
+# oszlop mögötti tényleges letöltési végpontot még nem ismerjük) - a
+# számla-tétel PDF nélkül kerül be, ez később pótolható.
+VIZMUVEK_BASE = "https://ugyfelszolgalat.vizmuvek.hu"
+VIZMUVEK_BEJELENTKEZES_URL = VIZMUVEK_BASE + "/Fiok/Bejelentkezes?ReturnUrl=%2F"
+VIZMUVEK_SZAMLAK_URL = VIZMUVEK_BASE + "/Szamlazas/FizetendoSzamlak"
+
+# Ezekre a (kisbetűs) kulcsszavakra KEZDŐDŐ állapot-szöveg jelenti azt,
+# hogy egy Vízművek-számla ki van fizetve/rendezve - ezt egy élő,
+# bejelentkezett böngészős ellenőrzéssel láttuk (a portál ténylegesen
+# "Kiegyenlített" / "Befizetésre vár" / "Lejárt tartozás" feliratokat
+# használ - a "Stornó számla" tételek is "Kiegyenlített"-ként jelennek
+# meg, mert a portál már nettósítva/rendezve mutatja őket). Minden más
+# állapot-szöveg fizetetlennek számít.
+VIZMUVEK_FIZETVE_KULCSSZAVAK = ("kiegyenlített", "rendezett", "fizetve")
+
+
+def _vizmuvek_fizetve_e(allapot_szoveg: str) -> bool:
+    szoveg = (allapot_szoveg or "").strip().lower()
+    return any(szoveg.startswith(k) for k in VIZMUVEK_FIZETVE_KULCSSZAVAK)
+
+
+def _vizmuvek_login_form_mezok(soup):
+    """Megkeresi a bejelentkező-oldal formját (azt, amelyikben van
+    type="password" mező), és visszaadja: (form_elem, mezok_dict,
+    felhasznalonev_mezonev, jelszo_mezonev). A mezok_dict MINDEN, a
+    formban talált input mezőt tartalmazza a jelenlegi (rejtett mezőknél
+    - pl. CSRF-token - a szerver által előre beállított) értékével, hogy
+    ezeket változtatás nélkül vissza tudjuk küldeni. Bármelyik
+    visszatérési érték lehet None, ha nem sikerül beazonosítani - ezt a
+    hívó fél kezeli (nem dob kivételt)."""
+    for form in soup.find_all("form"):
+        jelszo_input = form.find("input", {"type": "password"})
+        if not jelszo_input or not jelszo_input.get("name"):
+            continue
+        mezok = {}
+        felhasznalonev_mezonev = None
+        for inp in form.find_all("input"):
+            nev = inp.get("name")
+            if not nev:
+                continue
+            tipus = (inp.get("type") or "text").lower()
+            mezok[nev] = inp.get("value") or ""
+            if tipus == "password":
+                continue
+            if tipus in ("text", "email") and felhasznalonev_mezonev is None:
+                felhasznalonev_mezonev = nev
+        return form, mezok, felhasznalonev_mezonev, jelszo_input.get("name")
+    return None, {}, None, None
+
+
+def vizmuvek_bejelentkezes():
+    """Bejelentkezik a ugyfelszolgalat.vizmuvek.hu portálra, és a
+    bejelentkezett requests.Session()-t adja vissza - vagy None-t, ha
+    nincs beállítva a hozzáférés, vagy a bejelentkezés sikertelen."""
+    if not (VIZMUVEK_USER and VIZMUVEK_JELSZO):
+        return None
+
+    session = requests.Session()
+    session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; SzamlaFigyelo/1.0)"})
+    try:
+        valasz = session.get(VIZMUVEK_BEJELENTKEZES_URL, timeout=15)
+        soup = BeautifulSoup(valasz.text, "html.parser")
+        form, mezok, felhasznalonev_mezo, jelszo_mezo = _vizmuvek_login_form_mezok(soup)
+
+        if not form or not felhasznalonev_mezo or not jelszo_mezo:
+            # ADATVÉDELEM: csak mezőNEVEKET és típusokat írunk ki, sosem
+            # a mezők/oldal tényleges tartalmát/értékét.
+            osszes_input = [
+                f"{i.get('name')}(type={i.get('type') or 'text'})"
+                for i in soup.find_all("input") if i.get("name")
+            ]
+            cim_elem = soup.find("title")
+            print(f"  ⚠️  Vízművek bejelentkezés: nem sikerült beazonosítani a "
+                  f"bejelentkező-űrlap mezőit - státuszkód: {valasz.status_code} | "
+                  f"végső URL: {valasz.url} | oldal <title>: "
+                  f"{cim_elem.get_text(strip=True) if cim_elem else '(nincs)'} | "
+                  f"talált <input name=... type=...> mezők: {osszes_input}")
+            return None
+
+        mezok[felhasznalonev_mezo] = VIZMUVEK_USER
+        mezok[jelszo_mezo] = VIZMUVEK_JELSZO
+
+        action = form.get("action") or VIZMUVEK_BEJELENTKEZES_URL
+        if action.startswith("/"):
+            action = VIZMUVEK_BASE + action
+        elif not action.startswith("http"):
+            action = VIZMUVEK_BEJELENTKEZES_URL
+
+        valasz2 = session.post(action, data=mezok, timeout=15)
+        soup2 = BeautifulSoup(valasz2.text, "html.parser")
+        meg_van_jelszo_mezo = soup2.find("input", {"type": "password"}) is not None
+
+        if meg_van_jelszo_mezo:
+            cim_elem = soup2.find("title")
+            print(f"  ⚠️  Vízművek bejelentkezés sikertelen (rossz felhasználónév/jelszó, vagy "
+                  f"a portál felülete megváltozott) - státuszkód: {valasz2.status_code} | "
+                  f"végső URL: {valasz2.url} | oldal <title>: "
+                  f"{cim_elem.get_text(strip=True) if cim_elem else '(nincs)'}")
+            return None
+
+        print("  ✅ Vízművek bejelentkezés sikeres.")
+        return session
+    except Exception as e:
+        print(f"  ⚠️  Vízművek bejelentkezési hiba: {e}")
+        return None
+
+
+def vizmuvek_szamlak_lekerdezese(session):
+    """Lekérdezi a bejelentkezett fiókhoz tartozó, a "Fizetendő számlák"
+    oldalon látható számlákat, és egy listát ad vissza (Python dict-ek),
+    soronként egy számlával. Ld. a szekció elején lévő komment a
+    táblázat-szerkezettel kapcsolatos bizonytalanságról."""
+    valasz = session.get(VIZMUVEK_SZAMLAK_URL, timeout=15)
+    soup = BeautifulSoup(valasz.text, "html.parser")
+
+    sorok = soup.select("table tr")
+    talalt_szamlak = []
+    cellaszam_eloszlas = {}  # csak SZÁMOK (darabszám cellánként), nem tartalom - diagnosztikához
+
+    for sor in sorok:
+        cellak = sor.find_all("td")
+        if not cellak:
+            continue
+        szoveg = [c.get_text(strip=True) for c in cellak]
+        # Az első két oszlop (Online díjfizetés jelölőnégyzet, Letöltés
+        # ikon) egy éles böngészős ellenőrzés szerint NEM ad szöveges
+        # tartalmat - az üres cellákat ezért kiszűrjük. A pozíció szerinti
+        # ([:8]) értelmezés helyett SZÁNDÉKOSAN a számlaszám-mintára
+        # (csupa szám, min. 5 jegy) horgonyozunk: ha a "Letöltés" oszlop
+        # mégis adna valamilyen szöveget (pl. egy ikon-betűtípus
+        # ligatúrája, vagy a felület máshogy alakul), a horgonyzott
+        # keresés akkor is megtalálja a helyes 8 mezőt, nem csúszik el.
+        nem_ures = [s for s in szoveg if s]
+        cellaszam_eloszlas[len(nem_ures)] = cellaszam_eloszlas.get(len(nem_ures), 0) + 1
+        szamlaszam_idx = next(
+            (i for i, s in enumerate(nem_ures) if re.match(r"^\d{5,}$", s)), None
+        )
+        if szamlaszam_idx is None or len(nem_ures) < szamlaszam_idx + 8:
+            # Nincs számlaszámra illeszkedő cella (fejléc/üres/összegző
+            # sor), vagy utána nincs elég mező - kihagyjuk, nem számít
+            # hibának.
+            continue
+        (szamlaszam, tipus_nyers, kelte_nyers, hatarido_nyers,
+         brutto_nyers, teljesitett_nyers, fennmarado_nyers, allapot_szoveg) = (
+            nem_ures[szamlaszam_idx:szamlaszam_idx + 8]
+        )
+
+        talalt_szamlak.append({
+            "szamlaszam": szamlaszam,
+            "tipus_nyers": tipus_nyers,
+            "kelte_nyers": kelte_nyers,
+            "hatarido_nyers": hatarido_nyers,
+            "brutto_nyers": brutto_nyers,
+            "teljesitett_nyers": teljesitett_nyers,
+            "fennmarado_nyers": fennmarado_nyers,
+            "allapot_szoveg": allapot_szoveg,
+        })
+
+    print(f"  🚰 Vízművek: {len(talalt_szamlak)} érvényes számla-sor.")
+    if not talalt_szamlak:
+        # FONTOS - ADATVÉDELEM: itt SOHA nem írjuk ki a válasz nyers
+        # tartalmát/szövegét - ld. a Díjnet-résznél lévő azonos indoklást
+        # (ez a napló egy PUBLIKUS GitHub Actions futásba kerül). Csak
+        # szerkezeti infót (darabszámok, igaz/hamis jelzők, statikus
+        # feliratok) írunk ki.
+        van_jelszo_mezo = soup.find("input", {"type": "password"}) is not None
+        script_szovegek = [s.get_text() for s in soup.find_all("script")]
+        JSON_KULCS_JELOLTEK = ["szamlaszam", "számlaszám", "osszeg", "összeg", "hatarido", "határidő"]
+        json_szeru_script_db = sum(
+            1 for sz in script_szovegek
+            if any(kulcs in sz.lower() for kulcs in JSON_KULCS_JELOLTEK)
+        )
+        cim_elem = soup.find("title")
+        print(f"      🔍 Vízművek diagnosztika - státuszkód: {valasz.status_code} | "
+              f"végső URL: {valasz.url} | oldal <title>: "
+              f"{cim_elem.get_text(strip=True) if cim_elem else '(nincs)'} | "
+              f"talált <table> elemek száma: {len(soup.find_all('table'))} | "
+              f"összes <tr>: {len(sorok)} | cellaszám-eloszlás (nem üres cellák/db): {cellaszam_eloszlas} | "
+              f"jelszó-mező jelen van (session-probléma jele): {van_jelszo_mezo} | "
+              f"számla-adatra utaló JSON-kulcsot tartalmazó <script> elemek száma: {json_szeru_script_db}")
+        if json_szeru_script_db > 0:
+            print("      🔍 Vízművek diagnosztika - úgy tűnik, az eredmények nem szerver-oldali "
+                  "HTML-táblázatként, hanem kliens-oldali JS-sel (pl. AJAX-hívásból) épülnek fel - "
+                  "ez esetben a jelenlegi HTML-táblázat-kereső logika nem fog működni, más "
+                  "megközelítés (a JSON-végpont közvetlen lekérdezése) kellene.")
+
+    return talalt_szamlak
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
 # ════════════════════════════════════════════
 def main():
@@ -1409,6 +1650,7 @@ def main():
         "fizetesi_emlekezteto": 0, "meroallas": 0, "ismeretlen": 0,
         "fizetes_nem_azonositott": 0, "dijnet_uj_szamla": 0,
         "dijnet_fizetve_frissites": 0, "email_ertesitesek": 0,
+        "vizmuvek_uj_szamla": 0, "vizmuvek_fizetve_frissites": 0,
     }
 
     # ---- 1. Új emailek beolvasása ----
@@ -1728,6 +1970,72 @@ def main():
     else:
         print("  ℹ️  Díjnet: SZAMLA_DIJNET_USER / SZAMLA_DIJNET_JELSZO nincs beállítva - kihagyva.")
 
+    # ---- 1c. Vízművek - közvetlen portál-lekérdezés (nem email-alapú) ----
+    if VIZMUVEK_USER and VIZMUVEK_JELSZO:
+        try:
+            vizmuvek_session = vizmuvek_bejelentkezes()
+            if vizmuvek_session:
+                vizmuvek_sorok = vizmuvek_szamlak_lekerdezese(vizmuvek_session)
+                for sor in vizmuvek_sorok:
+                    vid = hashlib.md5(
+                        f"vizmuvek|{sor['szamlaszam']}".encode("utf-8")
+                    ).hexdigest()[:16]
+                    fizetve_e = _vizmuvek_fizetve_e(sor["allapot_szoveg"])
+                    # A "_dijnet_..." konverter-függvények szándékosan
+                    # újrahasznosítva - általános Ft-szöveg -> szám és
+                    # dátum-konverziót végeznek, nem Díjnet-specifikus a
+                    # logikájuk (a névben csak az első felhasználási hely
+                    # látszik).
+                    osszeg = _dijnet_osszeg_konvertalas(sor["brutto_nyers"])
+                    hatarido = _dijnet_datum_konvertalas(sor["hatarido_nyers"])
+                    kiallitas = _dijnet_datum_konvertalas(sor["kelte_nyers"])
+
+                    if vid not in szamlak:
+                        rekord = {
+                            "szolgaltato": "vizmuvek",
+                            "szolgaltato_nev": SZOLGALTATOK["vizmuvek"]["nev"],
+                            "targy": f"{sor['tipus_nyers'] or 'Számla'} – {sor['szamlaszam']}",
+                            "erkezett": kiallitas or magyar_ido().isoformat(),
+                            "erkezett_fejlec": None,
+                            "osszeg": osszeg,
+                            "hatarido": hatarido,
+                            "fizetve": fizetve_e,
+                            "fizetve_datum": magyar_ido().isoformat() if fizetve_e else None,
+                            "uid": None,
+                            "forras": "vizmuvek_portal",
+                            "szamlaszam": sor["szamlaszam"],
+                        }
+                        szamlak[vid] = rekord
+                        statisztika["vizmuvek_uj_szamla"] += 1
+                        print(f"      🆕 Új Vízművek-számla: {rekord['targy']} – "
+                              f"{forint(osszeg)} – határidő: {hatarido}")
+                        if not fizetve_e:
+                            statisztika["email_ertesitesek"] += 1
+                            email_kuldes(
+                                f"📄 Új számla – {rekord['szolgaltato_nev']}",
+                                uj_szamla_email_html(rekord),
+                            )
+                    else:
+                        # Már ismert számla - csendben frissítjük
+                        # (elsősorban a fizetve-állapotot), nem küldünk
+                        # újabb "új számla" emailt.
+                        letezo = szamlak[vid]
+                        if fizetve_e and not letezo.get("fizetve"):
+                            letezo["fizetve"] = True
+                            letezo["fizetve_datum"] = magyar_ido().isoformat()
+                            statisztika["vizmuvek_fizetve_frissites"] += 1
+                            print(f"      ✅ Vízművek-számla fizetettre állítva: {letezo['targy']}")
+                        if osszeg is not None:
+                            letezo["osszeg"] = osszeg
+                        if hatarido is not None:
+                            letezo["hatarido"] = hatarido
+            else:
+                print("  ℹ️  Vízművek: bejelentkezés nem sikerült - kihagyva ebben a futásban.")
+        except Exception as e:
+            print(f"  ⚠️  Vízművek-lekérdezés hiba (a többi feldolgozást ez nem érinti): {e}")
+    else:
+        print("  ℹ️  Vízművek: SZAMLA_VIZMUVEK_USER / SZAMLA_VIZMUVEK_JELSZO nincs beállítva - kihagyva.")
+
     # ---- 2. Határidő-előtti összesítő (naponta legfeljebb egyszer) ----
     ma_str = magyar_ma().isoformat()
     kuszob = (magyar_ma() + timedelta(days=emlekezteto_napok)).isoformat()
@@ -1945,10 +2253,12 @@ def main():
     # ---- 4. Futási összesítő ----
     print("📊 Futási összesítő:")
     print(f"   • Feldolgozott email: {statisztika['email_osszesen']}")
-    print(f"   • Új számla (email): {statisztika['uj_szamla']}  |  Új Díjnet-számla: {statisztika['dijnet_uj_szamla']}")
+    print(f"   • Új számla (email): {statisztika['uj_szamla']}  |  Új Díjnet-számla: {statisztika['dijnet_uj_szamla']}  |  "
+          f"Új Vízművek-számla (portál): {statisztika['vizmuvek_uj_szamla']}")
     print(f"   • Fizetve-visszaigazolás: {statisztika['fizetve']}  "
           f"(ebből nem azonosítható: {statisztika['fizetes_nem_azonositott']})  |  "
-          f"Díjnet fizetve-frissítés: {statisztika['dijnet_fizetve_frissites']}")
+          f"Díjnet fizetve-frissítés: {statisztika['dijnet_fizetve_frissites']}  |  "
+          f"Vízművek fizetve-frissítés: {statisztika['vizmuvek_fizetve_frissites']}")
     print(f"   • Fizetési emlékeztető (kihagyva): {statisztika['fizetesi_emlekezteto']}")
     print(f"   • Mérőállás-esemény: {statisztika['meroallas']}  |  Fel nem ismert levél: {statisztika['ismeretlen']}")
     print(f"   • Kiküldött (vagy dry-run miatt csak naplózott) email-értesítés: {statisztika['email_ertesitesek']}")
