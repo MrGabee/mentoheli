@@ -69,6 +69,12 @@ jobs:
           SZAMLA_DIJNET_JELSZO: ${{ secrets.SZAMLA_DIJNET_JELSZO }}
           SZAMLA_VIZMUVEK_USER: ${{ secrets.SZAMLA_VIZMUVEK_USER }}
           SZAMLA_VIZMUVEK_JELSZO: ${{ secrets.SZAMLA_VIZMUVEK_JELSZO }}
+          # Bérlői körök - a dashboardon besorolt Díjnet/Vízművek-számlák
+          # ide mennek (értesítő + havi összesítő) - ha valamelyik nincs
+          # beállítva, az adott kör számláiról egyszerűen nem megy ki email
+          # (a script naplózza, de nem áll le emiatt).
+          SZAMLA_KOR_A_EMAIL: ${{ secrets.SZAMLA_KOR_A_EMAIL }}
+          SZAMLA_KOR_B_EMAIL: ${{ secrets.SZAMLA_KOR_B_EMAIL }}
           # Csak akkor "1", ha valaki kézzel (Run workflow gombbal) bepipálta
           # a "dry_run" opciót - az ütemezett (napi 3x-os) futásoknál mindig
           # üres/false, tehát ott mindig éles módban fut.
