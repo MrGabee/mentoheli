@@ -66,8 +66,20 @@
     background: var(--card); cursor: pointer; font-size: 13px;
   }
   .szurok button.aktiv { background: var(--blue); color: #fff; border-color: var(--blue); }
-  .szurok.nezet-valto { margin-bottom: 10px; }
-  .szurok.nezet-valto button { font-weight: 600; padding: 8px 16px; font-size: 14px; }
+
+  /* ── Nézet-váltó (Összes / Vízművek / Díjnet) - ugyanolyan "nagy kártya"
+     megjelenés, mint a fenti KPI-kártyáké (.kartya), hogy jól látható,
+     elsődleges vezérlőelemként hasson. ── */
+  .nezet-gombok { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .nezet-gomb {
+    background: var(--card); border: 2px solid var(--border); border-radius: 12px;
+    padding: 20px 16px; cursor: pointer; font-size: 17px; font-weight: 700;
+    text-align: center; color: var(--text); font-family: inherit;
+    transition: border-color .15s ease, background-color .15s ease, color .15s ease;
+  }
+  .nezet-gomb:hover { border-color: var(--blue); }
+  .nezet-gomb .ikon { display: block; font-size: 30px; margin-bottom: 8px; }
+  .nezet-gomb.aktiv { border-color: var(--blue); background: #eff6ff; color: var(--blue); }
   .frissitve { color: var(--muted); font-size: 12px; margin-top: 20px; text-align: center; }
   .ures { color: var(--muted); text-align: center; padding: 30px; }
 
@@ -126,10 +138,10 @@
 
     <div class="kartyak" id="kartyak"></div>
 
-    <div class="szurok nezet-valto" id="forras-nezet-szurok">
-      <button type="button" data-nezet="mind" class="aktiv">📋 Összes</button>
-      <button type="button" data-nezet="vizmuvek">💧 Vízművek</button>
-      <button type="button" data-nezet="dijnet">🧾 Díjnet</button>
+    <div class="nezet-gombok" id="forras-nezet-szurok">
+      <button type="button" class="nezet-gomb aktiv" data-nezet="mind"><span class="ikon">📋</span>Összes</button>
+      <button type="button" class="nezet-gomb" data-nezet="vizmuvek"><span class="ikon">💧</span>Vízművek</button>
+      <button type="button" class="nezet-gomb" data-nezet="dijnet"><span class="ikon">🧾</span>Díjnet</button>
     </div>
 
     <div class="szurok" id="allapot-szurok">
@@ -154,6 +166,10 @@
       <button type="button" class="panel-toggle" id="beallitasok-toggle">⚙️ Beállítások (emlékeztető, összesítő-ütemezés) ▾</button>
       <div class="panel-tartalom" id="beallitasok-tartalom" style="display:none;">
         <p class="panel-info">A mentéshez egy GitHub Personal Access Token szükséges (a repóhoz írási joggal) - ez csak a böngésződben marad (a jelszóhoz hasonlóan, session-tárolóban), a mentés közvetlenül innen, a böngésződből megy a GitHub API-nak, sehova máshova nem kerül.</p>
+        <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
+          <input type="checkbox" id="be-email-engedelyezve" style="width:auto;flex:none;">
+          <span>📧 Email-küldés engedélyezve — ha nincs bepipálva, egyetlen értesítő/emlékeztető/összesítő email sem megy ki (a dashboard adatai ettől függetlenül frissülnek). Amíg ezt nem mented bepipálva, alapból NINCS email-küldés.</span>
+        </label>
         <label>GitHub token
           <input type="password" id="gh-pat-input" autocomplete="off" placeholder="ghp_...">
         </label>
@@ -212,13 +228,19 @@
     return r.forras === "dijnet_portal" || /\(Díjnet\)\s*$/.test(r.szolgaltato_nev || "");
   }
 
-  // A közvetlenül (IMAP-on, Díjnet nélkül) figyelt Vízművek-levelekből
-  // származó rekordokat a "szolgaltato" mező ("vizmuvek") jelöli - ha ez
-  // valamiért hiányozna (régi rekord), a pontos szolgáltató-névre esünk
-  // vissza, de a Díjnetes tételeket mindenképp kizárjuk.
+  // A "Vízművek" nézet a VALÓDI szolgáltatót jelenti, függetlenül attól,
+  // hogy a számla közvetlenül (IMAP-on, "szolgaltato": "vizmuvek") vagy a
+  // Díjneten keresztül érkezett-e ("Fővárosi Vízművek (Díjnet)" néven) -
+  // sok szolgáltató (köztük a Vízművek is) ma már kizárólag a Díjneten
+  // keresztül küld számlát, ezért ha itt a Díjnetes tételeket kizárnánk,
+  // a Vízművek nézet sokaknál üresen maradna. Emiatt egy Díjneten érkezett
+  // vízműves számla mindkét nézetben (Vízművek ÉS Díjnet) megjelenik - ez
+  // szándékos, a kettő két különböző kérdésre válaszol ("mennyi a
+  // vízdíjam" vs. "mi jött a Díjneten").
   function vizmuvekesRekord(r) {
-    if (dijnetesRekord(r)) return false;
-    return r.szolgaltato === "vizmuvek" || r.szolgaltato_nev === "Fővárosi Vízművek";
+    if (r.szolgaltato === "vizmuvek") return true;
+    const nev = r.szolgaltato_nev || "";
+    return nev === "Fővárosi Vízművek" || nev.startsWith("Fővárosi Vízművek ");
   }
 
   function nezetSzuro(r, nezet) {
@@ -674,6 +696,11 @@
     beStatuszMutat("be-statusz", "Betöltés...", "");
     try {
       const { ertekek } = await ghBeallitasokBetoltese(aktualisPat());
+      // email_kikapcsolva === false az EGYETLEN eset, amikor a küldés
+      // ténylegesen engedélyezve van - minden más (hiányzó mező, true) a
+      // biztonságos, "nincs email" alapállapotot jelenti (ld. Python-oldal
+      // beallitasok_betoltese()).
+      document.getElementById("be-email-engedelyezve").checked = ertekek.email_kikapcsolva === false;
       document.getElementById("be-napok-elotte").value = ertekek.emlekezteto_napok_elotte ?? "";
       document.getElementById("be-honap-nap").value = ertekek.osszesito_honap_nap ?? "";
       const kivalasztott = Array.isArray(ertekek.kivalasztott_szamlak) ? new Set(ertekek.kivalasztott_szamlak) : null;
@@ -715,6 +742,7 @@
     beStatuszMutat("be-statusz", "Mentés...", "");
     try {
       await ghBeallitasokMentese(pat, {
+        email_kikapcsolva: !document.getElementById("be-email-engedelyezve").checked,
         emlekezteto_napok_elotte: napok,
         osszesito_honap_nap: honapNap,
         kivalasztott_szamlak: kivalasztottSzamlak,
