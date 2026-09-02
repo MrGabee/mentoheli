@@ -67,6 +67,8 @@ jobs:
           SZAMLA_TITKOSITAS_JELSZO: ${{ secrets.SZAMLA_TITKOSITAS_JELSZO }}
           SZAMLA_DIJNET_USER: ${{ secrets.SZAMLA_DIJNET_USER }}
           SZAMLA_DIJNET_JELSZO: ${{ secrets.SZAMLA_DIJNET_JELSZO }}
+          SZAMLA_VIZMUVEK_USER: ${{ secrets.SZAMLA_VIZMUVEK_USER }}
+          SZAMLA_VIZMUVEK_JELSZO: ${{ secrets.SZAMLA_VIZMUVEK_JELSZO }}
           # Csak akkor "1", ha valaki kézzel (Run workflow gombbal) bepipálta
           # a "dry_run" opciót - az ütemezett (napi 3x-os) futásoknál mindig
           # üres/false, tehát ott mindig éles módban fut.
