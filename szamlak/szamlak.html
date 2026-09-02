@@ -119,6 +119,32 @@
   .panel-statusz { font-size: 13px; margin-top: 10px; min-height: 18px; }
   .panel-statusz.siker { color: var(--green); }
   .panel-statusz.hiba { color: var(--red); }
+
+  /* ── Bérlői körök panel ── */
+  .kor-sor {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px;
+    font-size: 13px; flex-wrap: wrap;
+  }
+  .kor-sor .kor-cim { font-weight: 600; }
+  .kor-sor .kor-info { color: var(--muted); font-size: 12px; }
+  .kor-sor .kor-gombok { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .kor-sor button {
+    padding: 5px 10px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--card); cursor: pointer; font-size: 12px;
+  }
+  .kor-sor button.kor-aktiv-a { background: #eff6ff; border-color: var(--blue); color: var(--blue); }
+  .kor-sor button.kor-aktiv-b { background: #fdf4ff; border-color: #a21caf; color: #a21caf; }
+  .kor-sor label.kor-jeloles { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); font-weight: 400; }
+  .kor-sor label.kor-jeloles input { width: auto; }
+  .kor-ures { color: var(--muted); font-size: 13px; padding: 6px 0; }
+
+  /* ── X (végleges elrejtés) gomb minden sor végén ── */
+  .torles-gomb {
+    border: 1px solid var(--border); background: var(--card); color: var(--muted);
+    border-radius: 6px; width: 26px; height: 26px; line-height: 1; cursor: pointer; font-size: 14px;
+  }
+  .torles-gomb:hover { background: #fee2e2; border-color: var(--red); color: var(--red); }
 </style>
 </head>
 <body>
@@ -189,6 +215,38 @@
       </div>
     </div>
 
+    <div class="panel" id="korok-panel">
+      <button type="button" class="panel-toggle" id="korok-toggle">👥 Bérlői körök kezelése ▾</button>
+      <div class="panel-tartalom" id="korok-tartalom" style="display:none;">
+        <p class="panel-info">A Díjneten/Vízműveken érkező számlákat két bérlői körhöz sorolhatod - mindkettő saját email-címre kap "új számla" értesítőt (PDF-fel) és havi összesítőt. A besorolás a titkosított adatban tárolódik (nem publikus), ehhez is a fenti GitHub token + a megnyitáshoz használt jelszó kell (ez utóbbi csak a böngésződben marad).</p>
+        <label>1. kör neve <input type="text" id="kor-a-nev-input" placeholder="pl. Nagy Kft. bérlemény" style="max-width:320px;"></label>
+        <label>2. kör neve <input type="text" id="kor-b-nev-input" placeholder="pl. Kis Kft. bérlemény" style="max-width:320px;"></label>
+        <p class="panel-info" style="margin-top:2px;">A két email-cím GitHub Secretként van beállítva (SZAMLA_KOR_A_EMAIL / SZAMLA_KOR_B_EMAIL) - ezt a GitHub repó Settings → Secrets felületén tudod megadni/módosítani, itt csak a besorolást és a köröknevet kezeled.</p>
+
+        <label>Vízművek-számlák köre <em>(a teljes fiók egyben tartozik ide)</em>
+          <select id="kor-vizmuvek-select" style="display:block;width:100%;max-width:320px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;">
+            <option value="">Nincs besorolva (függőben)</option>
+            <option value="kor_a">1. kör</option>
+            <option value="kor_b">2. kör</option>
+          </select>
+        </label>
+        <label class="kor-jeloles" style="display:flex;max-width:320px;margin-top:6px;">
+          <input type="checkbox" id="kor-vizmuvek-ertesites">
+          Utólagos értesítő email is menjen a már meglévő, fizetetlen Vízművek-számlákról
+        </label>
+
+        <h3 style="font-size:14px;margin:18px 0 6px;">⏳ Függőben lévő Díjnet-kibocsátók</h3>
+        <p class="panel-info" style="margin:0 0 8px;">Ezekről a kibocsátókról már van rögzített számla, de még nincs bérlői körbe sorolva - amíg itt be nem sorolod, NEM megy ki róluk értesítő email.</p>
+        <div id="kor-fuggoben-lista" style="margin-bottom:14px;"></div>
+
+        <h3 style="font-size:14px;margin:18px 0 6px;">✅ Már besorolt Díjnet-kibocsátók</h3>
+        <div id="kor-besorolt-lista" style="margin-bottom:6px;"></div>
+
+        <button type="button" id="kor-mentes-gomb" style="margin-top:10px;">Bérlői körök mentése</button>
+        <div class="panel-statusz" id="kor-statusz"></div>
+      </div>
+    </div>
+
     <div class="panel" id="kuldes-panel">
       <button type="button" class="panel-toggle" id="kuldes-toggle">📤 Számlák küldése emailben, dátum szerint ▾</button>
       <div class="panel-tartalom" id="kuldes-tartalom" style="display:none;">
@@ -214,6 +272,14 @@
   let osszesSzamla = [];
   let pdfTar = {};           // invoice-id -> base64 PDF (a titkosított csomagból)
   let legutobbiAdat = null;  // a legutóbb visszafejtett teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
+  let aktualisJelszo = null; // a sikeres megnyitáskor megadott titkosítási jelszó - KIZÁRÓLAG a "Bérlői körök" panel újra-titkosításhoz használja, sehova nem küldjük el
+  let helyilegTorolt = new Set(); // ebben a böngésző-munkamenetben, az X gombbal épp most elrejtett (de a GitHub-mentés még folyamatban lévő/már megtörtént) számla-id-k - azonnali UI-visszajelzéshez
+  // A "Bérlői körök" panelben, mentés ELŐTT, memóriában tartott
+  // szerkesztési állapot: kibocsato_azonosito -> {kor: null|"kor_a"|"kor_b", ertesites: bool}.
+  // Csak a "Bérlői körök mentése" gombra kattintva íródik ki a GitHub-ra
+  // (ld. korokMentese()) - eddig csak a felhasználó képernyőjén létezik.
+  let korValasztasok = {};
+  let vizmuvekKorValasztas = null;   // null|"kor_a"|"kor_b" - a <select> aktuális (még el nem mentett) értéke
   let aktivAllapotSzuro = "mind";     // "mind" | "fizetetlen" | "fizetve" | "lejart"
   let aktivSzolgaltatoSzuro = "mind"; // "mind" | egy konkrét szolgaltato_nev érték
   let aktivNezet = "mind";            // "mind" | "vizmuvek" | "dijnet" - a lap tetején lévő forrás-nézet gombok
@@ -230,17 +296,24 @@
 
   // A "Vízművek" nézet a VALÓDI szolgáltatót jelenti, függetlenül attól,
   // hogy a számla közvetlenül (IMAP-on, "szolgaltato": "vizmuvek") vagy a
-  // Díjneten keresztül érkezett-e ("Fővárosi Vízművek (Díjnet)" néven) -
+  // Díjneten keresztül érkezett-e ("... Vízművek ... (Díjnet)" néven) -
   // sok szolgáltató (köztük a Vízművek is) ma már kizárólag a Díjneten
   // keresztül küld számlát, ezért ha itt a Díjnetes tételeket kizárnánk,
   // a Vízművek nézet sokaknál üresen maradna. Emiatt egy Díjneten érkezett
   // vízműves számla mindkét nézetben (Vízművek ÉS Díjnet) megjelenik - ez
   // szándékos, a kettő két különböző kérdésre válaszol ("mennyi a
   // vízdíjam" vs. "mi jött a Díjneten").
+  //
+  // A névegyezést SZÁNDÉKOSAN nem egzakt "Fővárosi Vízművek" stringre,
+  // hanem kis-nagybetűtől független "vízmű"/"vizmu" töredékre végezzük -
+  // a Díjnet portálja a szolgáltatót esetleg más pontos jogi néven/
+  // toldalékkal listázza (pl. "... Vízművek Zrt."), mint a közvetlen
+  // (IMAP-os) integráció "Fővárosi Vízművek" elnevezése - így nem
+  // szabad egzakt egyezésre hagyatkozni.
   function vizmuvekesRekord(r) {
     if (r.szolgaltato === "vizmuvek") return true;
-    const nev = r.szolgaltato_nev || "";
-    return nev === "Fővárosi Vízművek" || nev.startsWith("Fővárosi Vízművek ");
+    const nev = (r.szolgaltato_nev || "").toLowerCase();
+    return nev.includes("vízmű") || nev.includes("vizmu");
   }
 
   function nezetSzuro(r, nezet) {
@@ -280,7 +353,7 @@
   // (ez volt a korábbi, mindig fixen beégetett érték is).
   const ALAPERTELMEZETT_ITERACIOSZAM = 200000;
 
-  async function kulcsSzarmaztatas(jelszo, saltBytes, iteraciok) {
+  async function kulcsSzarmaztatas(jelszo, saltBytes, iteraciok, hasznalat) {
     const enc = new TextEncoder();
     const alapKulcs = await crypto.subtle.importKey(
       "raw", enc.encode(jelszo), { name: "PBKDF2" }, false, ["deriveKey"]
@@ -290,7 +363,7 @@
       alapKulcs,
       { name: "AES-GCM", length: 256 },
       false,
-      ["decrypt"]
+      hasznalat || ["decrypt"]
     );
   }
 
@@ -298,12 +371,37 @@
     const salt = b64ToBytes(csomag.salt);
     const nonce = b64ToBytes(csomag.nonce);
     const titkositott = b64ToBytes(csomag.adat);
-    const kulcs = await kulcsSzarmaztatas(jelszo, salt, csomag.iterations);
+    const kulcs = await kulcsSzarmaztatas(jelszo, salt, csomag.iterations, ["decrypt"]);
     const nyersBuffer = await crypto.subtle.decrypt(
       { name: "AES-GCM", iv: nonce }, kulcs, titkositott
     );
     const dekoder = new TextDecoder();
     return JSON.parse(dekoder.decode(nyersBuffer));
+  }
+
+  // Titkosítás - a Python-oldali titkosit_es_ment() TÖKÉLETES tükörképe
+  // (ugyanaz a formátum: verzio/kdf/iterations/salt/nonce/adat/frissitve),
+  // hogy a Python-oldal változtatás nélkül vissza tudja fejteni, amit innen
+  // mentünk. KIZÁRÓLAG a "Bérlői körök" panel és a sor-törlés használja -
+  // mindig FRISSEN letöltött+visszafejtett állapotra épül (ld.
+  // allapotFrissitesEsMentese()), hogy ne írjuk felül véletlenül egy
+  // időközbeni (pl. ütemezett) script-futás eredményét.
+  async function titkositas(adatObj, jelszo, iteraciok) {
+    const iters = iteraciok || ALAPERTELMEZETT_ITERACIOSZAM;
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const nonce = crypto.getRandomValues(new Uint8Array(12));
+    const kulcs = await kulcsSzarmaztatas(jelszo, salt, iters, ["encrypt"]);
+    const nyersBytes = new TextEncoder().encode(JSON.stringify(adatObj));
+    const titkositottBuffer = await crypto.subtle.encrypt({ name: "AES-GCM", iv: nonce }, kulcs, nyersBytes);
+    return {
+      verzio: 3,
+      kdf: "PBKDF2-SHA256",
+      iterations: iters,
+      salt: bytesToB64(salt),
+      nonce: bytesToB64(nonce),
+      adat: bytesToB64(new Uint8Array(titkositottBuffer)),
+      frissitve: new Date().toISOString(),
+    };
   }
 
   function forint(osszeg) {
@@ -376,13 +474,26 @@
   // a Vízművek nézetben pedig elhagyjuk a "Szolgáltató" oszlopot, mert ott
   // az úgyis mindig ugyanaz - felesleges ismételgetni minden sorban.
   function tablaOszlopokDefinialasa(nezet) {
+    // A "" (üres) gomb-fejléc a legvégén az X (végleges elrejtés) oszlopé -
+    // ez MINDEN nézetben megjelenik, ezért nem az egyes ág-visszatéréseknél,
+    // hanem egységesen, a hívó (tablaRenderelese) fűzi hozzá a lenti
+    // fejléc-listák végéhez.
     if (nezet === "vizmuvek") {
-      return { fejlecek: ["Tárgy", "Összeg", "Határidő", "Állapot", "Számla"], szolgaltatoOszlop: false, szamlaszamOszlop: false };
+      return {
+        fejlecek: ["Tárgy", "Kelte", "Összeg", "Határidő", "Állapot", "Számla"],
+        szolgaltatoOszlop: false, szamlaszamOszlop: false, kelteOszlop: true, kibocsatoOszlop: false,
+      };
     }
     if (nezet === "dijnet") {
-      return { fejlecek: ["Szolgáltató", "Számlaszám", "Összeg", "Határidő", "Állapot", "Számla"], szolgaltatoOszlop: true, szamlaszamOszlop: true };
+      return {
+        fejlecek: ["Szolgáltató", "Számlaszám", "Kibocsátó azonosító", "Összeg", "Határidő", "Állapot", "Számla"],
+        szolgaltatoOszlop: true, szamlaszamOszlop: true, kelteOszlop: false, kibocsatoOszlop: true,
+      };
     }
-    return { fejlecek: ["Szolgáltató", "Tárgy", "Összeg", "Határidő", "Állapot", "Számla"], szolgaltatoOszlop: true, szamlaszamOszlop: false };
+    return {
+      fejlecek: ["Szolgáltató", "Tárgy", "Összeg", "Határidő", "Állapot", "Számla"],
+      szolgaltatoOszlop: true, szamlaszamOszlop: false, kelteOszlop: false, kibocsatoOszlop: false,
+    };
   }
 
   function tablaRenderelese(lista, nezet) {
@@ -396,7 +507,7 @@
     if (osszegRendezesIrany !== 0) {
       rendezett = [...lista].sort((a, b) => osszegRendezesIrany * ((a.osszeg || 0) - (b.osszeg || 0)));
     }
-    const { fejlecek, szolgaltatoOszlop, szamlaszamOszlop } = tablaOszlopokDefinialasa(nezet);
+    const { fejlecek, szolgaltatoOszlop, szamlaszamOszlop, kelteOszlop, kibocsatoOszlop } = tablaOszlopokDefinialasa(nezet);
     const sorok = rendezett.map(r => {
       const vanPdf = !!pdfTar[r.id];
       // FONTOS: szándékosan NEM inline onclick-attribútumot használunk (azzal
@@ -411,17 +522,22 @@
       cellak.push(szamlaszamOszlop
         ? `<td>${escHtml(r.szamlaszam) || "ismeretlen"}</td>`
         : `<td>${escHtml(r.targy)}</td>`);
+      if (kelteOszlop) cellak.push(`<td>${escHtml(r.erkezett) || "ismeretlen"}</td>`);
+      if (kibocsatoOszlop) cellak.push(`<td>${escHtml(r.kibocsato_azonosito) || "—"}</td>`);
       cellak.push(`<td class="osszeg">${forint(r.osszeg)}</td>`);
       cellak.push(`<td>${escHtml(r.hatarido) || "ismeretlen"}</td>`);
       cellak.push(`<td>${allapotBadge(r)}</td>`);
       cellak.push(`<td>${letoltesGomb}</td>`);
+      // Az X gomb minden nézetben az utolsó oszlop - a rekordot a saját
+      // "id" mezője (nem a DOM-index) azonosítja, ld. torlesVegrehajtasa().
+      cellak.push(`<td><button type="button" class="torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
       return `<tr>${cellak.join("")}</tr>`;
     }).join("");
 
     hely.innerHTML = `
       <table>
         <thead>
-          <tr>${fejlecek.map(f => `<th>${escHtml(f)}</th>`).join("")}</tr>
+          <tr>${fejlecek.map(f => `<th>${escHtml(f)}</th>`).join("")}<th></th></tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -434,6 +550,49 @@
       const rekord = rendezett.find(r => String(r.id) === id);
       btn.addEventListener("click", () => pdfLetoltese(id, rekord));
     });
+    hely.querySelectorAll(".torles-gomb").forEach(btn => {
+      btn.addEventListener("click", () => torlesVegrehajtasa(btn.dataset.id));
+    });
+  }
+
+  // A "✕" gombra kattintva egy számlát VÉGLEGESEN elrejt. FONTOS: ez NEM
+  // törli magát a rekordot a titkosított állapotból (a script legközelebbi
+  // futásakor a forrás-portál/email újra "látná" és visszahozná), hanem a
+  // kis, titkosítatlan beállítás-fájlban ("torolt_szamla_id_k" lista)
+  // jegyzi meg az id-ját - a Python-oldal ez alapján dobja el minden
+  // futáskor (ld. szamla_figyelo.py main() - "torolt_id_szet" ellenőrzés).
+  // A dashboardon azonnal, optimistán eltüntetjük (helyilegTorolt +
+  // osszesSzamla szűrése), a GitHub-mentés a háttérben fut - a
+  // ghBeallitasokBetoltese/ghBeallitasokMentese függvények lentebb vannak
+  // definiálva, de function-deklarációként hoisztolva vannak, tehát itt is
+  // hívhatók (a tényleges hívás úgyis csak kattintáskor történik).
+  async function torlesVegrehajtasa(id) {
+    if (!id) return;
+    if (!window.confirm("Biztosan véglegesen elrejted ezt a számlát? Ez nem vonható vissza - a jövőben, akár a forrás-portálon is meglévő azonos számla esetén sem jelenik meg többé.")) return;
+    const pat = aktualisPat();
+    if (!pat) {
+      alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a végleges elrejtéshez.");
+      return;
+    }
+    patMentese();
+
+    // Azonnali, optimista UI-frissítés - nem várunk a hálózati mentésre.
+    helyilegTorolt.add(id);
+    osszesSzamla = osszesSzamla.filter(r => r.id !== id);
+    szuresAlkalmazasa();
+
+    try {
+      const { ertekek } = await ghBeallitasokBetoltese(pat);
+      const lista = Array.isArray(ertekek.torolt_szamla_id_k) ? ertekek.torolt_szamla_id_k.slice() : [];
+      if (!lista.includes(id)) lista.push(id);
+      await ghBeallitasokMentese(pat, { torolt_szamla_id_k: lista });
+    } catch (e) {
+      // A helyi elrejtés megmarad (a felhasználó ezt már nem akarja
+      // visszalátni), de figyelmeztetjük, hogy a GitHub-mentés sikertelen
+      // volt - frissítés/új megnyitás után a számla visszatérhet, amíg ez
+      // nem sikerül (pl. újrapróbálkozással).
+      alert("A számla a képernyőn elrejtve, de a mentés a GitHub-ra sikertelen volt (" + e.message + ") - frissítés után újra megjelenhet, próbáld meg újra.");
+    }
   }
 
   function meroallasokRenderelese(lista) {
@@ -582,6 +741,7 @@
   const GH_REPO = "mentoheli";
   const GH_BRANCH = "main";
   const GH_BEALLITASOK_PATH = "szamlak/szamla_beallitasok.json";
+  const GH_ALLAPOT_PATH = "szamlak/szamla_allapot.enc.json";
   const GH_WORKFLOW_FAJL = "szamla_monitor.yml";
 
   function bytesToB64(bytes) {
@@ -641,6 +801,69 @@
     }
   }
 
+  // ── A NAGY, titkosított állapotfájl (szamla_allapot.enc.json) írása ──
+  // Ezt KIZÁRÓLAG a "Bérlői körök" panel használja (kör-besorolás mentése).
+  // FONTOS: a fájl a Python-script MINDEN futásakor (naponta 3x) frissül -
+  // ezért SOSE a lapbetöltéskor már memóriában lévő ("legutobbiAdat")
+  // állapotot titkosítjuk újra és küldjük vissza (az egy időközbeni
+  // script-futás eredményét felülírná / eldobná), hanem MINDIG frissen
+  // letöltjük+visszafejtjük a GitHub-on JELENLEG lévő állapotot közvetlenül
+  // mentés előtt, arra alkalmazzuk a módosítást, és AZT titkosítjuk +
+  // küldjük vissza - ez minimálisra csökkenti (bár nem tünteti el teljesen)
+  // az ütközés esélyét egy épp futó Actions-workflow-val.
+  //
+  // A GitHub Contents API GET-je 1 MB fölötti fájloknál nem adja vissza a
+  // "content" (base64) mezőt a JSON-válaszban - ez nálunk (a PDF-eket is
+  // tartalmazó, több MB-os fájlnál) rendszeresen előfordulna. EZÉRT a
+  // fájl TARTALMÁT a publikus GitHub Pages URL-ről (ADAT_URL, cache
+  // megkerülésével) töltjük le, a Contents API-t csak a "sha" mezőért
+  // hívjuk (ez a mező MÉRETTŐL FÜGGETLENÜL mindig szerepel a válaszban) -
+  // ez a "sha" kell a PUT-hoz, hogy a GitHub tudja, melyik verziót
+  // frissítjük (ütközés-védelem).
+  async function ghAllapotSha(pat) {
+    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}?ref=${GH_BRANCH}`;
+    const resp = await fetch(url, { headers: ghFejlecek(pat) });
+    if (!resp.ok) throw new Error("Az állapotfájl sha-jának lekérdezése sikertelen (HTTP " + resp.status + ")");
+    const meta = await resp.json();
+    return meta.sha;
+  }
+
+  async function allapotFrissFrissFeltoltese(jelszo) {
+    const resp = await fetch(ADAT_URL, { cache: "no-store" });
+    if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
+    const csomag = await resp.json();
+    const adat = await visszafejtes(csomag, jelszo);
+    return { adat, iterations: csomag.iterations };
+  }
+
+  // modositoFn(adat) - szinkron függvény, ami MÓDOSÍTJA (mutálja) a frissen
+  // letöltött+visszafejtett "adat" objektumot a kívánt módon (pl. beállítja
+  // a kibocsato_csoportok/vizmuvek_kor/kor_nevek mezőket, vagy adott
+  // rekordokon az ertesites_szukseges jelzőt). A függvény visszatér a
+  // mentés utáni, teljes friss "adat"-tal, hogy a hívó ez alapján tudja
+  // frissíteni a képernyőt.
+  async function allapotFrissitesEsMentese(pat, jelszo, modositoFn) {
+    const { adat, iterations } = await allapotFrissFrissFeltoltese(jelszo);
+    modositoFn(adat);
+    const ujCsomag = await titkositas(adat, jelszo, iterations);
+    const sha = await ghAllapotSha(pat);
+    const body = {
+      message: "Bérlői körök / számla-elrejtés frissítve a dashboardról",
+      content: utf8ToB64(JSON.stringify(ujCsomag, null, 2)),
+      branch: GH_BRANCH,
+      sha,
+    };
+    const resp = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
+      { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
+    );
+    if (!resp.ok) {
+      const szoveg = await resp.text().catch(() => "");
+      throw new Error("Mentés sikertelen (HTTP " + resp.status + "): " + szoveg.slice(0, 200));
+    }
+    return adat;
+  }
+
   function aktualisPat() {
     return document.getElementById("gh-pat-input").value.trim();
   }
@@ -673,8 +896,111 @@
     el.className = "panel-statusz" + (tipus ? " " + tipus : "");
   }
 
-  // Panelek nyitása/csukása (mindkettő ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  // ── "Bérlői körök" panel ──────────────────────────────────────────
+  // kibocsatoAdatok: kibocsato_azonosito -> {darab, nev} - csak megjelenítési
+  // infó (hány számla, milyen néven), a friss "adat"-ból épül fel minden
+  // panel-nyitáskor/mentés-utáni frissítéskor. A TÉNYLEGES (még el nem
+  // mentett) döntéseket a "korValasztasok" modul-szintű objektum tartja.
+  let kibocsatoAdatok = {};
+
+  function korSorHtml(kib) {
+    const valasztas = korValasztasok[kib] || { kor: null, ertesites: false };
+    const info = kibocsatoAdatok[kib] || { darab: 0, nev: "" };
+    return `
+      <div class="kor-sor" data-kibocsato="${escHtml(kib)}">
+        <div>
+          <div class="kor-cim">${escHtml(kib)}</div>
+          <div class="kor-info">${info.darab} db számla – ${escHtml(info.nev)}</div>
+        </div>
+        <div class="kor-gombok">
+          <button type="button" class="kor-valaszto-gomb ${valasztas.kor === "kor_a" ? "kor-aktiv-a" : ""}" data-kor="kor_a">1. kör</button>
+          <button type="button" class="kor-valaszto-gomb ${valasztas.kor === "kor_b" ? "kor-aktiv-b" : ""}" data-kor="kor_b">2. kör</button>
+          <label class="kor-jeloles"><input type="checkbox" class="kor-ertesites-jelolo" ${valasztas.ertesites ? "checked" : ""}> utólagos email a meglévő számlákról is</label>
+        </div>
+      </div>
+    `;
+  }
+
+  // Csak a MEGJELENÍTÉST (a két lista HTML-jét) építi újra a JELENLEGI
+  // korValasztasok/kibocsatoAdatok alapján - NEM tölt be semmit a
+  // GitHub-ról, és NEM inicializálja újra a korValasztasok-ot, így egy
+  // gombkattintás utáni újrarajzolás nem veszíti el a még el nem mentett
+  // döntéseket (ld. korokListakEpitese() lentebb, ami ezt hívja meg az
+  // ELSŐ, friss adat-betöltés UTÁN).
+  function korokListakRenderelese() {
+    const fuggobenHely = document.getElementById("kor-fuggoben-lista");
+    const besoroltHely = document.getElementById("kor-besorolt-lista");
+    const osszesKib = Object.keys(kibocsatoAdatok).sort((a, b) => a.localeCompare(b, "hu"));
+    const fuggoben = osszesKib.filter(k => !(korValasztasok[k] || {}).kor);
+    const besorolt = osszesKib.filter(k => (korValasztasok[k] || {}).kor);
+
+    fuggobenHely.innerHTML = fuggoben.length
+      ? fuggoben.map(korSorHtml).join("")
+      : '<div class="kor-ures">Nincs jelenleg függőben lévő kibocsátó.</div>';
+    besoroltHely.innerHTML = besorolt.length
+      ? besorolt.map(korSorHtml).join("")
+      : '<div class="kor-ures">Még nincs besorolt kibocsátó.</div>';
+
+    [fuggobenHely, besoroltHely].forEach(hely => {
+      hely.querySelectorAll(".kor-sor").forEach(sor => {
+        const kib = sor.dataset.kibocsato;
+        sor.querySelectorAll(".kor-valaszto-gomb").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const uj = btn.dataset.kor;
+            const jelenlegi = korValasztasok[kib] || { kor: null, ertesites: false };
+            // Az aktív kör gombjára újra kattintva visszaáll "függőben"-re
+            // (ez a törlés/visszavonás módja) - más gombra kattintva
+            // átsorolja a másik körbe.
+            jelenlegi.kor = jelenlegi.kor === uj ? null : uj;
+            korValasztasok[kib] = jelenlegi;
+            korokListakRenderelese();
+          });
+        });
+        const ertesitesCb = sor.querySelector(".kor-ertesites-jelolo");
+        ertesitesCb.addEventListener("change", () => {
+          const jelenlegi = korValasztasok[kib] || { kor: null, ertesites: false };
+          jelenlegi.ertesites = ertesitesCb.checked;
+          korValasztasok[kib] = jelenlegi;
+        });
+      });
+    });
+  }
+
+  // A panel TELJES állapotát (kör-nevek, Vízművek-kör, kibocsátó-listák)
+  // felépíti egy frissen betöltött+visszafejtett "adat" alapján - ez a még
+  // el nem mentett szerkesztéseket (korValasztasok) is felülírja, ezért
+  // ezt csak panel-nyitáskor és sikeres mentés UTÁN hívjuk, nem minden
+  // kattintásnál (ld. korokListakRenderelese() fent, ami nem ír felül).
+  function korokListakEpitese(adat) {
+    document.getElementById("kor-a-nev-input").value = (adat.kor_nevek && adat.kor_nevek.kor_a) || "";
+    document.getElementById("kor-b-nev-input").value = (adat.kor_nevek && adat.kor_nevek.kor_b) || "";
+    document.getElementById("kor-vizmuvek-select").value = adat.vizmuvek_kor || "";
+    document.getElementById("kor-vizmuvek-ertesites").checked = false;
+
+    // A Díjnet-kibocsátókat magukból a rekordokból gyűjtjük össze (nem
+    // csak a már ismert kibocsato_csoportok kulcsaiból) - így egy
+    // vadonatúj, MÉG BE NEM SOROLT kibocsátó is megjelenik a "függőben"
+    // listában, amint érkezett tőle legalább egy számla.
+    kibocsatoAdatok = {};
+    Object.values(adat.szamlak || {}).forEach(r => {
+      if (r.szolgaltato !== "dijnet" && r.forras !== "dijnet_portal") return;
+      const kib = r.kibocsato_azonosito;
+      if (!kib) return;
+      if (!kibocsatoAdatok[kib]) kibocsatoAdatok[kib] = { darab: 0, nev: r.szolgaltato_nev || kib };
+      kibocsatoAdatok[kib].darab += 1;
+    });
+
+    const csoportok = adat.kibocsato_csoportok || {};
+    korValasztasok = {};
+    Object.keys(kibocsatoAdatok).forEach(kib => {
+      korValasztasok[kib] = { kor: csoportok[kib] || null, ertesites: false };
+    });
+
+    korokListakRenderelese();
+  }
+
+  // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["korok-toggle", "korok-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -714,6 +1040,92 @@
       beStatuszMutat("be-statusz", "Nem sikerült betölteni a jelenlegi beállításokat (" + e.message + ") - az alábbi mezők üresek/alapértékek.", "hiba");
     }
   }, { once: true }); // csak első nyitáskor töltjük be automatikusan - utána a mentés-gomb úgyis mindig frisset olvas
+
+  // A "Bérlői körök" panel megnyitásakor (első alkalommal) frissen
+  // letöltjük+visszafejtjük a NAGY állapotfájlt (nem a lapbetöltéskori
+  // "legutobbiAdat"-ot használjuk, ami időközben elavulhatott) - ehhez már
+  // nem kell a GitHub token, csak a jelszó (a fájl a publikus Pages
+  // URL-ről jön). A "kor-mentes-gomb" mentéskor úgyis mindig saját maga
+  // tölt be egy újabb, még frissebb másolatot (ld. allapotFrissitesEsMentese).
+  document.getElementById("korok-toggle").addEventListener("click", async () => {
+    if (!aktualisJelszo) return; // a panel csak a jelszavas megnyitás UTÁN érhető el ténylegesen
+    beStatuszMutat("kor-statusz", "Betöltés...", "");
+    try {
+      const { adat } = await allapotFrissFrissFeltoltese(aktualisJelszo);
+      korokListakEpitese(adat);
+      beStatuszMutat("kor-statusz", "", "");
+    } catch (e) {
+      beStatuszMutat("kor-statusz", "Nem sikerült betölteni a jelenlegi besorolásokat (" + e.message + ") - a lenti mezők üresek/alapértékek.", "hiba");
+    }
+  }, { once: true });
+
+  document.getElementById("kor-mentes-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("kor-mentes-gomb");
+    const pat = aktualisPat();
+    if (!pat) { beStatuszMutat("kor-statusz", "Add meg a GitHub tokent (fent) a mentéshez.", "hiba"); return; }
+    if (!aktualisJelszo) { beStatuszMutat("kor-statusz", "Előbb nyisd meg a dashboardot a jelszavaddal.", "hiba"); return; }
+    patMentese();
+
+    const korANev = document.getElementById("kor-a-nev-input").value.trim() || null;
+    const korBNev = document.getElementById("kor-b-nev-input").value.trim() || null;
+    const ujVizmuvekKor = document.getElementById("kor-vizmuvek-select").value || null;
+    const vizmuvekErtesitesKell = document.getElementById("kor-vizmuvek-ertesites").checked;
+    // Pillanatkép a képernyőn most látható (még el nem mentett)
+    // kibocsátó-besorolásokról - a modositoFn a MENTÉSKOR frissen
+    // letöltött "adat"-on fut (ld. allapotFrissitesEsMentese), ezért ide
+    // NEM azt, hanem ezt a független másolatot zárjuk be.
+    const korValasztasokMasolat = JSON.parse(JSON.stringify(korValasztasok));
+
+    gomb.disabled = true;
+    beStatuszMutat("kor-statusz", "Mentés...", "");
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.kor_nevek = { kor_a: korANev, kor_b: korBNev };
+
+        adat.vizmuvek_kor = ujVizmuvekKor;
+        if (ujVizmuvekKor && vizmuvekErtesitesKell) {
+          Object.values(adat.szamlak || {}).forEach(r => {
+            if (r.szolgaltato === "vizmuvek") r.ertesites_szukseges = true;
+          });
+        }
+
+        adat.kibocsato_csoportok = adat.kibocsato_csoportok || {};
+        Object.entries(korValasztasokMasolat).forEach(([kib, valasztas]) => {
+          if (valasztas.kor) {
+            adat.kibocsato_csoportok[kib] = valasztas.kor;
+            if (valasztas.ertesites) {
+              Object.values(adat.szamlak || {}).forEach(r => {
+                if (r.kibocsato_azonosito === kib && (r.szolgaltato === "dijnet" || r.forras === "dijnet_portal")) {
+                  r.ertesites_szukseges = true;
+                }
+              });
+            }
+          } else {
+            delete adat.kibocsato_csoportok[kib];
+          }
+        });
+      });
+
+      // A dashboard memóriájában lévő adatot is frissítjük a mentett
+      // (a GitHub-on ténylegesen most már ott lévő) állapotra, hogy a
+      // további műveletek ne egy elavult másolatból induljanak.
+      legutobbiAdat = friss;
+      osszesSzamla = Object.entries(friss.szamlak || {})
+        .filter(([id]) => !helyilegTorolt.has(id))
+        .map(([id, r]) => Object.assign({ id }, r));
+      pdfTar = friss.pdf_adatok || {};
+      szolgaltatoSzurokEpitese(osszesSzamla);
+      mellekletekUjrarenderelese();
+      szuresAlkalmazasa();
+      korokListakEpitese(friss);
+
+      beStatuszMutat("kor-statusz", "✅ Bérlői körök elmentve.", "siker");
+    } catch (e) {
+      beStatuszMutat("kor-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
 
   document.getElementById("be-mentes-gomb").addEventListener("click", async () => {
     const gomb = document.getElementById("be-mentes-gomb");
@@ -798,7 +1210,10 @@
       // összesítőhöz" funkcióhoz is szükség van rá, ezért Object.entries()-
       // szel minden rekordba visszatesszük "id" mezőként.
       legutobbiAdat = adat;
-      osszesSzamla = Object.entries(adat.szamlak || {}).map(([id, r]) => Object.assign({ id }, r));
+      aktualisJelszo = jelszo;
+      osszesSzamla = Object.entries(adat.szamlak || {})
+        .filter(([id]) => !helyilegTorolt.has(id))
+        .map(([id, r]) => Object.assign({ id }, r));
       pdfTar = adat.pdf_adatok || {};
       aktivAllapotSzuro = "mind";
       aktivSzolgaltatoSzuro = "mind";
