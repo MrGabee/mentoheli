@@ -1462,17 +1462,51 @@ def _vizmuvek_login_form_mezok(soup):
     return None, {}, None, None
 
 
+def _vizmuvek_user_logged_attr(soup):
+    """A <html ... user-logged="be"/"ki" ...> attribútumot olvassa ki (ha
+    van) - ez egy ÉLŐ, bejelentkezett böngészős ellenőrzéssel megismert,
+    a portál által ténylegesen kiírt jelző arról, hogy a szerver
+    bejelentkezettnek látja-e az adott kérést (user-logged="out", ha
+    nincs bejelentkezve). Megbízhatóbb jel, mint pusztán a jelszó-mező
+    hiánya/jelenléte, ezért ezt is felhasználjuk a diagnosztikában és a
+    sikeresség-ellenőrzésben."""
+    html_tag = soup.find("html")
+    return html_tag.get("user-logged") if html_tag else None
+
+
 def vizmuvek_bejelentkezes():
     """Bejelentkezik a ugyfelszolgalat.vizmuvek.hu portálra, és a
     bejelentkezett requests.Session()-t adja vissza - vagy None-t, ha
-    nincs beállítva a hozzáférés, vagy a bejelentkezés sikertelen."""
+    nincs beállítva a hozzáférés, vagy a bejelentkezés sikertelen.
+
+    FONTOS - ÉLŐ TESZTTEL MEGERŐSÍTETT VISELKEDÉS: egy munkamenet-cookie
+    (session-cookie) nélküli, "hidegen" induló kérés a bejelentkező URL-re
+    NEM a bejelentkező űrlapot adja vissza, hanem egyszerűen visszairányít
+    a kezdőlapra (ugyanígy viselkedett egy hitelesítő adatok nélküli,
+    böngészőből indított, cookie-mentes fetch-hívás is - tehát ez nem a
+    Python/requests-specifikus probléma, hanem a szerver tényleges
+    viselkedése). Ez pontosan ugyanaz a jelenség, mint amit a Díjnetnél
+    korábban tapasztaltunk (ld. a Díjnet-résznél a "bemelegítő" komment) -
+    ezért itt is ELŐSZÖR meglátogatjuk a kezdőlapot (session-cookie
+    felvétele), és csak utána kérjük le a bejelentkező oldalt."""
     if not (VIZMUVEK_USER and VIZMUVEK_JELSZO):
         return None
 
     session = requests.Session()
-    session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; SzamlaFigyelo/1.0)"})
+    session.headers.update({
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "hu-HU,hu;q=0.9,en;q=0.8",
+    })
     try:
-        valasz = session.get(VIZMUVEK_BEJELENTKEZES_URL, timeout=15)
+        session.get(VIZMUVEK_BASE + "/", timeout=15)  # session-cookie felvétele (ld. fenti komment)
+        valasz = session.get(
+            VIZMUVEK_BEJELENTKEZES_URL, timeout=15,
+            headers={"Referer": VIZMUVEK_BASE + "/"},
+        )
         soup = BeautifulSoup(valasz.text, "html.parser")
         form, mezok, felhasznalonev_mezo, jelszo_mezo = _vizmuvek_login_form_mezok(soup)
 
@@ -1488,6 +1522,8 @@ def vizmuvek_bejelentkezes():
                   f"bejelentkező-űrlap mezőit - státuszkód: {valasz.status_code} | "
                   f"végső URL: {valasz.url} | oldal <title>: "
                   f"{cim_elem.get_text(strip=True) if cim_elem else '(nincs)'} | "
+                  f"user-logged attribútum: {_vizmuvek_user_logged_attr(soup)!r} | "
+                  f"talált <form> elemek száma: {len(soup.find_all('form'))} | "
                   f"talált <input name=... type=...> mezők: {osszes_input}")
             return None
 
@@ -1500,16 +1536,18 @@ def vizmuvek_bejelentkezes():
         elif not action.startswith("http"):
             action = VIZMUVEK_BEJELENTKEZES_URL
 
-        valasz2 = session.post(action, data=mezok, timeout=15)
+        valasz2 = session.post(action, data=mezok, timeout=15, headers={"Referer": valasz.url})
         soup2 = BeautifulSoup(valasz2.text, "html.parser")
         meg_van_jelszo_mezo = soup2.find("input", {"type": "password"}) is not None
+        user_logged_attr = _vizmuvek_user_logged_attr(soup2)
 
-        if meg_van_jelszo_mezo:
+        if meg_van_jelszo_mezo or user_logged_attr == "out":
             cim_elem = soup2.find("title")
             print(f"  ⚠️  Vízművek bejelentkezés sikertelen (rossz felhasználónév/jelszó, vagy "
                   f"a portál felülete megváltozott) - státuszkód: {valasz2.status_code} | "
                   f"végső URL: {valasz2.url} | oldal <title>: "
-                  f"{cim_elem.get_text(strip=True) if cim_elem else '(nincs)'}")
+                  f"{cim_elem.get_text(strip=True) if cim_elem else '(nincs)'} | "
+                  f"user-logged attribútum: {user_logged_attr!r}")
             return None
 
         print("  ✅ Vízművek bejelentkezés sikeres.")
