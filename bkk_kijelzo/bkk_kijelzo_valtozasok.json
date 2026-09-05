@@ -1,5 +1,5 @@
 {
-  "frissitve": "2026-09-06T01:42:36.265395+02:00",
+  "frissitve": "2026-09-06T01:43:04.550305+02:00",
   "valtozasok": [
     {
       "idopont": "2026-09-05T21:12:15.565004+02:00",
@@ -50180,6 +50180,58 @@
       "lon": 19.103227615356445,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-06T01:43:04.527159+02:00",
+      "kulcs": "FLR715",
+      "rendszam": "FLR715",
+      "vehicle_id": "3129",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.524662017822266,
+      "lon": 19.063457489013672,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-06T01:43:04.528481+02:00",
+      "kulcs": "PDB731",
+      "rendszam": "PDB731",
+      "vehicle_id": "7057",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.51994705200195,
+      "lon": 19.038114547729492,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-06T01:43:04.528828+02:00",
+      "kulcs": "AOFL203",
+      "rendszam": "AOFL203",
+      "vehicle_id": "787",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "987",
+      "route_id": "9870",
+      "lat": 47.44662857055664,
+      "lon": 18.998140335083008,
+      "elozo_szoveg": "Kőérberek",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-06T01:43:04.529171+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.547096252441406,
+      "lon": 19.142013549804688,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
