@@ -56,6 +56,25 @@ BKK_API_KULCS = os.environ.get("BKK_API_KULCS", "")  # opendata.bkk.hu-n regiszt
 
 ALLAPOT_FAJL = "bkk_kijelzo_allapot.json"
 
+# ── Kijelző-előzmények (ÚJ) ──────────────────────────────────────────
+# UTOLSO_SZOVEGEK_FAJL: jármű-kulcsonként (rendszám, vagy ha az nincs,
+# akkor a jármű-azonosító) az UTOLJÁRA látott kijelző-szöveg - ebből
+# derül ki minden futáskor, hogy VÁLTOZOTT-e valami az előzőhöz képest.
+# VALTOZASOK_FAJL: csak a TÉNYLEGES változásokat naplózó, időrendi lista
+# (nem minden lekérdezést, csak amikor a szöveg ténylegesen más lett) -
+# ez adja az "Előzmények" fülön kereshető/lekérdezhető történetet.
+# FLAGEK_FAJL: a dashboardon (a felhasználó által, GitHub tokennel) meg-
+# jelölt kijelző-szövegek listája - ha egy ÚJ változás illeszkedik
+# valamelyikre, arról is email megy (a rendellenes-kulcsszavaktól
+# függetlenül, ld. flagelt_egyezes()). Ezt a fájlt a Python-script CSAK
+# OLVASSA, írni a weboldal írja (a GitHub Contents API-n keresztül).
+UTOLSO_SZOVEGEK_FAJL = "bkk_kijelzo_utolso_szovegek.json"
+VALTOZASOK_FAJL = "bkk_kijelzo_valtozasok.json"
+FLAGEK_FAJL = "bkk_kijelzo_flagek.json"
+# Ésszerű felső korlát a változás-naplóra, hogy a fájl ne nőjön a
+# végtelenségig - ha eléri, a legrégebbi bejegyzéseket dobja el.
+MAX_VALTOZAS_BEJEGYZES = 20000
+
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, MILYEN KIJELZŐ-SZÖVEGEK SZÁMÍTANAK "RENDELLENES"-NEK ⬇️⬇️⬇️
 # Kis-nagybetűtől független, RÉSZLEGES egyezés (bárhol a szövegben előfordulhat).
 # AZ ELSŐ ÉLES FUTÁS UTÁN nézd meg a naplóban a tényleges kijelző-szövegeket,
@@ -96,6 +115,24 @@ def betolt_allapot():
 def ment_allapot(allapot):
     with open(ALLAPOT_FAJL, "w", encoding="utf-8") as f:
         json.dump(allapot, f, ensure_ascii=False, indent=2)
+
+
+def json_betoltese(fajl, alapertelmezett):
+    """Általános JSON-betöltő (az UTOLSO_SZOVEGEK/VALTOZASOK/FLAGEK
+    fájlokhoz) - hibás/hiányzó fájlnál az alapértelmezett értéket adja
+    vissza, sosem dob kivételt."""
+    if os.path.exists(fajl):
+        try:
+            with open(fajl, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"  ⚠️  Hibás {fajl}, alapértelmezett érték használata: {type(e).__name__}: {e}")
+    return alapertelmezett
+
+
+def json_mentese(fajl, adat):
+    with open(fajl, "w", encoding="utf-8") as f:
+        json.dump(adat, f, ensure_ascii=False, indent=2)
 
 
 # ════════════════════════════════════════════
@@ -382,6 +419,31 @@ def rendellenes_e(kijelzo_szoveg):
 
 
 # ════════════════════════════════════════════
+#  🚩  FELHASZNÁLÓ ÁLTAL MEGJELÖLT SZÖVEGEK ("Előzmények" fül)
+# ════════════════════════════════════════════
+def flagelt_szovegek_betoltese():
+    """A dashboard "Előzmények" fülén megjelölt kijelző-szövegek listája -
+    ezt a fájlt a weboldal írja (GitHub token + Contents API-n keresztül),
+    a script csak olvassa. Hibás/hiányzó fájlnál üres listát ad vissza -
+    ez nem hiba, csak azt jelenti, hogy még senki nem jelölt meg semmit."""
+    adat = json_betoltese(FLAGEK_FAJL, {"flagek": []})
+    return [f.get("szoveg", "") for f in (adat.get("flagek") or []) if f.get("szoveg")]
+
+
+def flagelt_egyezes(kijelzo_szoveg, flagelt_szovegek):
+    """Ugyanazzal a logikával, mint rendellenes_e() - kis-nagybetűtől
+    független, RÉSZLEGES (bárhol a szövegben előfordulhat) egyezés -
+    ez volt a felhasználóval egyeztetett elvárás a kereséshez is."""
+    if not kijelzo_szoveg:
+        return None
+    szoveg_kisbetus = kijelzo_szoveg.lower()
+    for flag_szoveg in flagelt_szovegek:
+        if flag_szoveg and flag_szoveg.lower() in szoveg_kisbetus:
+            return flag_szoveg
+    return None
+
+
+# ════════════════════════════════════════════
 #  📧  EMAIL KÜLDÉS
 # ════════════════════════════════════════════
 def formaz_unix_ido(unix_masodperc):
@@ -474,6 +536,90 @@ def email_kuldes(talalatok):
     print(f"📧 E-mail elküldve: {targy}")
 
 
+def flag_email_kuldes(talalatok):
+    """Ugyanaz a vizuális stílus, mint email_kuldes()-nél, de a
+    felhasználó ÁLTAL megjelölt szövegek újbóli megjelenéséről szól -
+    ettől függetlenül megy, hogy a szöveg szerepel-e a beépített
+    RENDELLENES_KULCSSZAVAK listán."""
+    ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
+    db = len(talalatok)
+    targy = f"🚩 BKK kijelző - megjelölt szöveg újra megjelent ({db} db) | {ido}"
+
+    sorok_html = ""
+    sorok_txt = ""
+
+    for i, t in enumerate(talalatok, 1):
+        gmaps = f"https://www.google.com/maps?q={t['lat']},{t['lon']}&z=17" if t.get("lat") and t.get("lon") else None
+        futar_link = f"https://futar.bkk.hu/?vehicleId={t['vehicle_id']}"
+
+        sorok_html += f"""
+        <tr style="border-bottom:2px solid #eee">
+          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
+          <td style="padding:14px">
+            <span style="background:#b45309;color:#fff;padding:5px 12px;border-radius:4px;
+                         font-size:13px;font-weight:bold">🚩 {t['egyezo_flag'].upper()}</span>
+            <table style="font-size:13px;width:100%;margin-top:10px">
+              <tr><td style="color:#888;width:140px">🚌 Vonal:</td><td><strong>{t['vonal_szam'] or '—'}</strong> <span style="color:#aaa">({t['route_id'] or '—'})</span></td></tr>
+              <tr><td style="color:#888">💬 Új kijelző-szöveg:</td><td><strong>{t['uj_szoveg']}</strong></td></tr>
+              <tr><td style="color:#888">↩️ Előző szöveg:</td><td>{t.get('elozo_szoveg') or '—'}</td></tr>
+              <tr><td style="color:#888">🔢 Rendszám:</td><td>{t.get('rendszam') or '—'}</td></tr>
+              <tr><td style="color:#888">🆔 Jármű-azonosító:</td><td>{t['vehicle_label'] or t['vehicle_id']}</td></tr>
+            </table>
+            <div style="margin-top:8px">
+              {f'<a href="{gmaps}" style="background:#4285f4;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold;margin-right:6px">📍 Google Maps</a>' if gmaps else ''}
+              <a href="{futar_link}" style="background:#2c5f6f;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold">🚋 FUTÁR pozíció</a>
+            </div>
+          </td>
+        </tr>"""
+
+        sorok_txt += (
+            f"\n{'─'*45}\n{i}. 🚩 {t['egyezo_flag']}\n"
+            f"Vonal: {t['vonal_szam']} ({t['route_id']})\nÚj szöveg: {t['uj_szoveg']}\n"
+            f"Előző szöveg: {t.get('elozo_szoveg') or '—'}\nRendszám: {t.get('rendszam')}\n"
+            f"Jármű: {t['vehicle_label'] or t['vehicle_id']}\n"
+            f"Maps: {gmaps or '—'}\nFUTÁR: {futar_link}\n"
+        )
+
+    html = f"""<!DOCTYPE html>
+<html lang="hu"><head><meta charset="UTF-8">
+<style>
+  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
+  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
+         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
+  .hdr{{background:#b45309;color:#fff;padding:22px 28px}}
+  .hdr h1{{margin:0;font-size:20px}}
+  .hdr small{{opacity:.85;font-size:13px}}
+  .body{{padding:20px 28px}}
+  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
+</style>
+</head><body><div class="wrap">
+  <div class="hdr">
+    <h1>🚩 BKK kijelző - megjelölt szöveg újra megjelent</h1>
+    <small>{ido} | {db} találat</small>
+  </div>
+  <div class="body">
+    <p style="font-size:13px;color:#555">Ez a szöveg szerepel az "Előzmények" fülön általad megjelölt listán -
+    most újra megjelent (vagy egy másik járművön jelent meg) a kijelzőn.</p>
+    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
+  </div>
+  <div class="foot">Automatikus figyelő – GitHub Actions | FUTÁR API adatok alapján</div>
+</div></body></html>"""
+
+    szoveges = f"🚩 BKK kijelző - megjelölt szöveg újra megjelent\nIdőpont: {ido}\n{sorok_txt}"
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = targy
+    msg["From"] = f"🚌 BKK Kijelző Figyelő <{EMAIL_KULDO}>"
+    msg["To"] = EMAIL_CIMZETT
+    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
+    msg.attach(MIMEText(html, "html", "utf-8"))
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+        smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    print(f"📧 E-mail elküldve: {targy}")
+
+
 # ════════════════════════════════════════════
 #  🌐  WEBOLDAL-ADAT EXPORT
 # ════════════════════════════════════════════
@@ -502,6 +648,15 @@ def main():
 
     regi = betolt_allapot()
     elso_futas = not os.path.exists(ALLAPOT_FAJL)
+
+    # ── Kijelző-előzmények (ÚJ) - előkészítés ──
+    utolso_szovegek = json_betoltese(UTOLSO_SZOVEGEK_FAJL, {})
+    elso_futas_valtozas = not os.path.exists(UTOLSO_SZOVEGEK_FAJL)
+    flagelt_szovegek = flagelt_szovegek_betoltese()
+    if flagelt_szovegek:
+        print(f"  🚩 {len(flagelt_szovegek)} megjelölt szöveg betöltve ({FLAGEK_FAJL}).")
+    uj_valtozasok = []
+    flag_talalatok = []
 
     vonalszam_szotar = vonalszamok_betoltese_gtfs_bol()
     if vonalszam_szotar:
@@ -628,6 +783,43 @@ def main():
             continue
         egyezo_kulcsszo = rendellenes_e(kijelzo_szoveg)
 
+        # ── Kijelző-előzmények (ÚJ): csak akkor naplózunk, ha a szöveg
+        # TÉNYLEGESEN változott az adott jármű (rendszám, vagy ha az
+        # nincs, a jármű-azonosító) utoljára ismert szövegéhez képest -
+        # így a napló nem nő minden egyes lekérdezésnél, csak amikor
+        # valóban történt valami. Az ELSŐ futásnál (amikor még nincs
+        # UTOLSO_SZOVEGEK_FAJL) csak az alapállapotot mentjük, változást
+        # nem naplózunk - egyébként egyetlen futás alatt több ezer
+        # "változás" jönne létre a semmiből.
+        elozmeny_kulcs = adatok.get("rendszam") or f"VID:{jarmu['vehicle_id']}"
+        elozo_bejegyzes = utolso_szovegek.get(elozmeny_kulcs)
+        elozo_szoveg = elozo_bejegyzes.get("szoveg") if elozo_bejegyzes else None
+        if kijelzo_szoveg != elozo_szoveg:
+            if not elso_futas_valtozas:
+                valtozas_bejegyzes = {
+                    "idopont": magyar_ido().isoformat(),
+                    "kulcs": elozmeny_kulcs,
+                    "rendszam": adatok.get("rendszam"),
+                    "vehicle_id": jarmu["vehicle_id"],
+                    "vehicle_label": jarmu["vehicle_label"],
+                    "vonal_szam": vonal_szam,
+                    "route_id": jarmu["route_id"],
+                    "lat": jarmu["lat"],
+                    "lon": jarmu["lon"],
+                    "elozo_szoveg": elozo_szoveg,
+                    "uj_szoveg": kijelzo_szoveg,
+                }
+                uj_valtozasok.append(valtozas_bejegyzes)
+
+                egyezo_flag = flagelt_egyezes(kijelzo_szoveg, flagelt_szovegek)
+                if egyezo_flag:
+                    flag_talalatok.append({**valtozas_bejegyzes, "egyezo_flag": egyezo_flag})
+
+            utolso_szovegek[elozmeny_kulcs] = {
+                "szoveg": kijelzo_szoveg,
+                "idopont": magyar_ido().isoformat(),
+            }
+
         # A weboldal-exportba MINDEN jármű bekerül, kategóriával együtt
         osszes_jarmu_export.append({
             "vehicle_id": jarmu["vehicle_id"],
@@ -680,6 +872,27 @@ def main():
         print("✅ Nincs új rendellenes kijelző-üzenet.")
 
     ment_allapot(regi)
+
+    # ── Kijelző-előzmények (ÚJ) - mentés ──
+    valtozasok_csomag = json_betoltese(VALTOZASOK_FAJL, {"valtozasok": []})
+    teljes_valtozas_lista = (valtozasok_csomag.get("valtozasok") or []) + uj_valtozasok
+    if len(teljes_valtozas_lista) > MAX_VALTOZAS_BEJEGYZES:
+        teljes_valtozas_lista = teljes_valtozas_lista[-MAX_VALTOZAS_BEJEGYZES:]
+    json_mentese(VALTOZASOK_FAJL, {
+        "frissitve": magyar_ido().isoformat(),
+        "valtozasok": teljes_valtozas_lista,
+    })
+    json_mentese(UTOLSO_SZOVEGEK_FAJL, utolso_szovegek)
+
+    if elso_futas_valtozas:
+        print(f"📝 Kijelző-előzmények: első futás - {len(utolso_szovegek)} jármű alapállapota elmentve, változás nem naplózva.")
+    else:
+        print(f"📝 Kijelző-változások ezen a futáson: {len(uj_valtozasok)}  (összesen tárolva: {len(teljes_valtozas_lista)})")
+
+    if flag_talalatok:
+        print(f"🚩 Megjelölt szöveg újbóli megjelenése: {len(flag_talalatok)} db")
+        flag_email_kuldes(flag_talalatok)
+
     print("💾 Állapot mentve. ✅ Kész.\n")
 
 
