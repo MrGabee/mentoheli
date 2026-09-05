@@ -68,9 +68,15 @@ ALLAPOT_FAJL = "bkk_kijelzo_allapot.json"
 # valamelyikre, arról is email megy (a rendellenes-kulcsszavaktól
 # függetlenül, ld. flagelt_egyezes()). Ezt a fájlt a Python-script CSAK
 # OLVASSA, írni a weboldal írja (a GitHub Contents API-n keresztül).
-UTOLSO_SZOVEGEK_FAJL = "bkk_kijelzo_utolso_szovegek.json"
-VALTOZASOK_FAJL = "bkk_kijelzo_valtozasok.json"
-FLAGEK_FAJL = "bkk_kijelzo_flagek.json"
+# FONTOS: ez a három fájl a "bkk_kijelzo/" ALMAPPÁBA kerül (nem a repó
+# gyökerébe) - ugyanoda, ahol a bkk_kijelzo.html is van. Ez azért fontos,
+# mert a weboldal EGYSZERŰ RELATÍV fetch()-csel tölti be őket (pl.
+# fetch('bkk_kijelzo_aktiv.json')), ami a HTML saját mappájához képest
+# oldódik fel - GitHub Pages-en ez azt jelenti, hogy a fájloknak a HTML
+# MELLETT kell lenniük, különben 404-et kapunk.
+UTOLSO_SZOVEGEK_FAJL = "bkk_kijelzo/bkk_kijelzo_utolso_szovegek.json"
+VALTOZASOK_FAJL = "bkk_kijelzo/bkk_kijelzo_valtozasok.json"
+FLAGEK_FAJL = "bkk_kijelzo/bkk_kijelzo_flagek.json"
 # Ésszerű felső korlát a változás-naplóra, hogy a fájl ne nőjön a
 # végtelenségig - ha eléri, a legrégebbi bejegyzéseket dobja el.
 MAX_VALTOZAS_BEJEGYZES = 20000
@@ -623,7 +629,11 @@ def flag_email_kuldes(talalatok):
 # ════════════════════════════════════════════
 #  🌐  WEBOLDAL-ADAT EXPORT
 # ════════════════════════════════════════════
-AKTIV_JSON_FAJL = "bkk_kijelzo_aktiv.json"
+# Ugyanaz okból, mint a fenti UTOLSO_SZOVEGEK_FAJL/VALTOZASOK_FAJL/
+# FLAGEK_FAJL-nál: a bkk_kijelzo.html MELLETT (a "bkk_kijelzo/" almappában)
+# kell lennie, különben a weboldal relatív fetch()-e (GitHub Pages-en)
+# nem találja meg.
+AKTIV_JSON_FAJL = "bkk_kijelzo/bkk_kijelzo_aktiv.json"
 
 
 def ment_aktiv_json(osszes_jarmu_adat):

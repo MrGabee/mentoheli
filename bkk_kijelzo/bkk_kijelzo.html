@@ -201,7 +201,7 @@
 
 <script>
   // ⬇️⬇️⬇️ ITT ÍRD ÁT A SAJÁT JELSZAVADRA ⬇️⬇️⬇️
-  const KAPU_JELSZO = "baleset2026";
+  const KAPU_JELSZO = "valtoztasdmeg";
   const KAPU_EMLEKEZET_KULCS = "bkk_kijelzo_belepve";
   const KAPU_EMLEKEZET_NAPOK = 7;
 
@@ -411,7 +411,10 @@
   const GH_OWNER = 'MrGabee';
   const GH_REPO = 'mentoheli';
   const GH_BRANCH = 'main';
-  const GH_FLAGEK_PATH = 'bkk_kijelzo_flagek.json';
+  // A "bkk_kijelzo/" előtag azért kell, mert a Python-script is ide írja
+  // (a bkk_kijelzo.html mellé, hogy a fenti relatív fetch()-ek - GitHub
+  // Pages-en is - megtalálják).
+  const GH_FLAGEK_PATH = 'bkk_kijelzo/bkk_kijelzo_flagek.json';
 
   function ghFejlecek(token) {
     return { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
