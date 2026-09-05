@@ -437,14 +437,17 @@ def flagelt_szovegek_betoltese():
 
 
 def flagelt_egyezes(kijelzo_szoveg, flagelt_szovegek):
-    """Ugyanazzal a logikával, mint rendellenes_e() - kis-nagybetűtől
-    független, RÉSZLEGES (bárhol a szövegben előfordulhat) egyezés -
-    ez volt a felhasználóval egyeztetett elvárás a kereséshez is."""
+    """Kis-nagybetűtől és szélső szóközöktől független, de PONTOS egyezés -
+    egy flag csak akkor "fedi" (és vált ki emailt) egy kijelző-szöveget, ha
+    az SZÓ SZERINT ugyanaz. (Korábban RÉSZLEGES/substring egyezés volt, mint
+    a keresésnél - ez viszont azt okozta, hogy egy jármű megjelölése után
+    minden más, ugyanahhoz a gyakori célállomáshoz tartó jármű is
+    "figyeltnek" tűnt, és feleslegesen emailt is kaptunk volna róluk.)"""
     if not kijelzo_szoveg:
         return None
-    szoveg_kisbetus = kijelzo_szoveg.lower()
+    szoveg_kisbetus = kijelzo_szoveg.strip().lower()
     for flag_szoveg in flagelt_szovegek:
-        if flag_szoveg and flag_szoveg.lower() in szoveg_kisbetus:
+        if flag_szoveg and flag_szoveg.strip().lower() == szoveg_kisbetus:
             return flag_szoveg
     return None
 

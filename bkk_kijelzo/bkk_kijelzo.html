@@ -62,11 +62,15 @@
   }
   .jarmu-item.rendellenes { border-left-color: var(--red); }
   .jarmu-fejlec { display: flex; justify-content: space-between; align-items: center; }
-  .jarmu-jarat { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; }
+  /* A rendszám/jármű-azonosító csak másodlagos infó - a lényeg a kijelző
+     szövege (lásd .jarmu-kijelzo lejjebb), ezért ez visszafogottabb. */
+  .jarmu-jarat { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px; color: var(--text-muted); }
   .jarmu-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 100px; background: rgba(154,160,166,0.15); color: var(--text-muted); }
   .jarmu-item.rendellenes .jarmu-badge { background: rgba(226,68,68,0.15); color: var(--red); }
-  .jarmu-kijelzo-sor { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
-  .jarmu-kijelzo { font-size: 13px; color: var(--text-muted); flex: 1; min-width: 0; }
+  .jarmu-kijelzo-sor { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px; }
+  /* A kijelző szövege a lényeg (ezért "Kijelző Figyelő") - ez legyen a
+     legszembetűnőbb elem minden jármű-kártyán, kinyitás nélkül is. */
+  .jarmu-kijelzo { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 16px; color: var(--text); flex: 1; min-width: 0; }
   .jarmu-kijelzo-sor .flag-btn { margin-top: 0; flex-shrink: 0; }
   .jarmu-linkek { display: none; margin-top: 10px; gap: 8px; }
   .jarmu-item.nyitva .jarmu-linkek { display: flex; }
@@ -364,12 +368,16 @@
   function escapeHtml2(str) { return escapeHtml(str); }
 
   // Ugyanaz a logika, mint a Python-oldali flagelt_egyezes()-nél: kis-
-  // nagybetűtől független, RÉSZLEGES egyezés - egy flag akkor "fedi" egy
-  // szöveget, ha a flag szövege BÁRHOL előfordul benne.
+  // nagybetűtől (és a szélső szóközöktől) független, de PONTOS egyezés -
+  // egy flag csak akkor "fedi" egy szöveget, ha az SZÓ SZERINT ugyanaz.
+  // (Korábban RÉSZLEGES/substring egyezés volt, ez viszont azt okozta,
+  // hogy egyetlen jármű megjelölése után minden más jármű is "Figyelve"-
+  // ként jelent meg, aminek a kijelzőjén ugyanaz a gyakori célállomás-
+  // szöveg szerepelt - pl. "Széll Kálmán tér M" több vonalon is.)
   function flagEgyezes(szoveg) {
     if (!szoveg) return null;
-    const kicsi = szoveg.toLowerCase();
-    return (flagekAdat.flagek || []).find(f => f.szoveg && kicsi.includes(f.szoveg.toLowerCase())) || null;
+    const kicsi = szoveg.trim().toLowerCase();
+    return (flagekAdat.flagek || []).find(f => f.szoveg && f.szoveg.trim().toLowerCase() === kicsi) || null;
   }
 
   function jelenlegIsLatszik(valtozas) {
