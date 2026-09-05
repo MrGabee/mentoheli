@@ -88,9 +88,14 @@
   /* ── Előzmények fül ── */
   .token-sor { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
   .token-info { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+  .token-input-sor { display: flex; gap: 8px; flex-wrap: wrap; align-items: stretch; }
   .token-sor input[type="password"] {
-    width: 100%; max-width: 360px; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border);
+    flex: 1; min-width: 200px; max-width: 360px; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border);
     background: var(--bg); color: var(--text); font-size: 13px;
+  }
+  .token-input-sor button {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 8px;
+    border: none; background: var(--amber); color: #1b1d1f; font-weight: 700; cursor: pointer;
   }
   .elozmeny-talalat {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
@@ -212,7 +217,11 @@
 <main id="figyeltPanel" class="rejtve">
   <div class="token-sor">
     <div class="token-info">🚩 A megjelöléshez (és az azt követő email-riasztáshoz, ha a szöveg újra megjelenik) egy GitHub Personal Access Token szükséges (a repóhoz írási joggal) - ez tartósan, ezen a gépen/böngészőben eltárolódik, hogy csak egyszer kelljen beírnod; a mentés közvetlenül innen megy a GitHub API-nak, sehova máshova nem kerül.</div>
-    <input type="password" id="ghTokenInput" placeholder="ghp_..." autocomplete="off">
+    <div class="token-input-sor">
+      <input type="password" id="ghTokenInput" placeholder="ghp_..." autocomplete="off">
+      <button type="button" id="tokenMentesBtn">💾 Mentés</button>
+    </div>
+    <div class="flag-statusz" id="tokenStatusz"></div>
   </div>
 
   <div class="flagelt-panel" id="flageltPanel">
@@ -574,6 +583,27 @@
     const mentettToken = localStorage.getItem('bkk_kijelzo_gh_token');
     if (mentettToken) document.getElementById('ghTokenInput').value = mentettToken;
   } catch (e) { /* ignorálható */ }
+
+  // A tokent nem csak mellékesen (egy megjelöléskor) lehet elmenteni - a
+  // "💾 Mentés" gombbal (vagy Enter-rel) is explicit módon menthető, hogy
+  // rögtön legyen visszajelzés ("beküldve"), mielőtt bárhol megjelölnél
+  // valamit.
+  function tokenMentesGombKezelo() {
+    const token = ghTokenLekerese();
+    const statusz = document.getElementById('tokenStatusz');
+    if (!token) {
+      statusz.textContent = '❌ Írj be egy tokent a mentéshez.';
+      statusz.className = 'flag-statusz hiba';
+      return;
+    }
+    tokenMentese();
+    statusz.textContent = '✅ Token elmentve - mostantól ezzel tudsz megjelölni.';
+    statusz.className = 'flag-statusz siker';
+  }
+  document.getElementById('tokenMentesBtn').addEventListener('click', tokenMentesGombKezelo);
+  document.getElementById('ghTokenInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') tokenMentesGombKezelo();
+  });
 
   // ── Fő fülek (Élő / Előzmények / Figyelt szövegek) váltása ──
   const FOTAB_FULEK = [
