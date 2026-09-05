@@ -428,27 +428,55 @@ def rendellenes_e(kijelzo_szoveg):
 #  🚩  FELHASZNÁLÓ ÁLTAL MEGJELÖLT SZÖVEGEK ("Előzmények" fül)
 # ════════════════════════════════════════════
 def flagelt_szovegek_betoltese():
-    """A dashboard "Előzmények" fülén megjelölt kijelző-szövegek listája -
-    ezt a fájlt a weboldal írja (GitHub token + Contents API-n keresztül),
-    a script csak olvassa. Hibás/hiányzó fájlnál üres listát ad vissza -
-    ez nem hiba, csak azt jelenti, hogy még senki nem jelölt meg semmit."""
+    """A dashboard "Figyelt szövegek" fülén megjelölt/beírt kijelző-szövegek
+    listája - ezt a fájlt a weboldal írja (GitHub token + Contents API-n
+    keresztül), a script csak olvassa. Hibás/hiányzó fájlnál üres listát ad
+    vissza - ez nem hiba, csak azt jelenti, hogy még senki nem jelölt meg
+    semmit.
+
+    Minden elem egy {"szoveg": ..., "tipus": ...} szótár:
+      - tipus == "kulcsszo": a felhasználó saját kezűleg beírt kulcsszava -
+        ez RÉSZLEGES (substring) egyezéssel talál, pl. "helyszínelés" megfog
+        egy "Helyszínelésre vár" kijelzőt is.
+      - tipus == "pontos" (vagy ha a mezőt korábbi, e funkció előtti mentés
+        miatt nem tartalmazza a bejegyzés): egy jármű 🚩-gombjával hozzáadott
+        szöveg - ez PONTOS egyezéssel talál, ld. flagelt_egyezes()."""
     adat = json_betoltese(FLAGEK_FAJL, {"flagek": []})
-    return [f.get("szoveg", "") for f in (adat.get("flagek") or []) if f.get("szoveg")]
+    return [
+        {"szoveg": f.get("szoveg", ""), "tipus": f.get("tipus") or "pontos"}
+        for f in (adat.get("flagek") or [])
+        if f.get("szoveg")
+    ]
 
 
 def flagelt_egyezes(kijelzo_szoveg, flagelt_szovegek):
-    """Kis-nagybetűtől és szélső szóközöktől független, de PONTOS egyezés -
-    egy flag csak akkor "fedi" (és vált ki emailt) egy kijelző-szöveget, ha
-    az SZÓ SZERINT ugyanaz. (Korábban RÉSZLEGES/substring egyezés volt, mint
-    a keresésnél - ez viszont azt okozta, hogy egy jármű megjelölése után
-    minden más, ugyanahhoz a gyakori célállomáshoz tartó jármű is
-    "figyeltnek" tűnt, és feleslegesen emailt is kaptunk volna róluk.)"""
+    """Két féle egyezési logika, bejegyzés-típusonként:
+
+    - "pontos" (jármű 🚩-gombjával hozzáadva): kis-nagybetűtől és szélső
+      szóközöktől független, de PONTOS egyezés - egy ilyen flag csak akkor
+      "fedi" (és vált ki emailt) egy kijelző-szöveget, ha az SZÓ SZERINT
+      ugyanaz. (Korábban RÉSZLEGES/substring egyezés volt, mint a keresésnél
+      - ez viszont azt okozta, hogy egy jármű megjelölése után minden más,
+      ugyanahhoz a gyakori célállomáshoz tartó jármű is "figyeltnek" tűnt, és
+      feleslegesen emailt is kaptunk volna róluk.)
+    - "kulcsszo" (a felhasználó által kézzel beírt kulcsszó): szándékosan
+      RÉSZLEGES/substring egyezés - pl. a "helyszínelés" kulcsszó megfogja a
+      "Helyszínelésre vár" kijelző-szöveget is."""
     if not kijelzo_szoveg:
         return None
     szoveg_kisbetus = kijelzo_szoveg.strip().lower()
-    for flag_szoveg in flagelt_szovegek:
-        if flag_szoveg and flag_szoveg.strip().lower() == szoveg_kisbetus:
-            return flag_szoveg
+    for flag in flagelt_szovegek:
+        flag_szoveg = flag.get("szoveg") if isinstance(flag, dict) else flag
+        if not flag_szoveg:
+            continue
+        flag_szoveg_kicsi = flag_szoveg.strip().lower()
+        tipus = flag.get("tipus", "pontos") if isinstance(flag, dict) else "pontos"
+        if tipus == "kulcsszo":
+            if flag_szoveg_kicsi in szoveg_kisbetus:
+                return flag_szoveg
+        else:
+            if flag_szoveg_kicsi == szoveg_kisbetus:
+                return flag_szoveg
     return None
 
 

@@ -228,6 +228,15 @@
     <div class="flag-statusz" id="tokenStatusz"></div>
   </div>
 
+  <div class="token-sor">
+    <div class="token-info">🔑 Ide olyan kulcsszót is beírhatsz, ami nem egy konkrét, teljes kijelző-szöveg, hanem annak csak egy RÉSZLETE - pl. "helyszínelés" beírásával a "Helyszínelésre vár" (vagy bármely, ezt a szót tartalmazó) kijelző is figyelt lesz. (Ez eltér a 🚩 gombbal hozzáadott, PONTOS egyezésű bejegyzésektől.)</div>
+    <div class="token-input-sor">
+      <input type="text" id="kulcsszoInput" placeholder="pl. helyszínelés" autocomplete="off">
+      <button type="button" id="kulcsszoMentesBtn">➕ Hozzáadás</button>
+    </div>
+    <div class="flag-statusz" id="kulcsszoStatusz"></div>
+  </div>
+
   <div class="flagelt-panel" id="flageltPanel">
     <h3>🚩 Jelenleg megjelölt szövegek</h3>
     <div id="flageltListaTartalom"></div>
@@ -367,17 +376,26 @@
   // ════════════════════════════════════════════
   function escapeHtml2(str) { return escapeHtml(str); }
 
-  // Ugyanaz a logika, mint a Python-oldali flagelt_egyezes()-nél: kis-
-  // nagybetűtől (és a szélső szóközöktől) független, de PONTOS egyezés -
-  // egy flag csak akkor "fedi" egy szöveget, ha az SZÓ SZERINT ugyanaz.
-  // (Korábban RÉSZLEGES/substring egyezés volt, ez viszont azt okozta,
-  // hogy egyetlen jármű megjelölése után minden más jármű is "Figyelve"-
-  // ként jelent meg, aminek a kijelzőjén ugyanaz a gyakori célállomás-
-  // szöveg szerepelt - pl. "Széll Kálmán tér M" több vonalon is.)
+  // Ugyanaz a logika, mint a Python-oldali flagelt_egyezes()-nél, két féle
+  // bejegyzés-típusra:
+  //   - "pontos" (jármű 🚩-gombjával hozzáadva): kis-nagybetűtől (és a
+  //     szélső szóközöktől) független, de PONTOS egyezés - egy ilyen flag
+  //     csak akkor "fedi" egy szöveget, ha az SZÓ SZERINT ugyanaz. (Korábban
+  //     RÉSZLEGES/substring egyezés volt, ez viszont azt okozta, hogy
+  //     egyetlen jármű megjelölése után minden más jármű is "Figyelve"-ként
+  //     jelent meg, aminek a kijelzőjén ugyanaz a gyakori célállomás-szöveg
+  //     szerepelt - pl. "Széll Kálmán tér M" több vonalon is.)
+  //   - "kulcsszo" (a "Figyelt szövegek" fülön kézzel beírt kulcsszó):
+  //     szándékosan RÉSZLEGES/substring egyezés - pl. a "helyszínelés"
+  //     kulcsszó megfogja a "Helyszínelésre vár" kijelző-szöveget is.
   function flagEgyezes(szoveg) {
     if (!szoveg) return null;
     const kicsi = szoveg.trim().toLowerCase();
-    return (flagekAdat.flagek || []).find(f => f.szoveg && f.szoveg.trim().toLowerCase() === kicsi) || null;
+    return (flagekAdat.flagek || []).find(f => {
+      if (!f.szoveg) return false;
+      const fKicsi = f.szoveg.trim().toLowerCase();
+      return (f.tipus || 'pontos') === 'kulcsszo' ? kicsi.includes(fKicsi) : fKicsi === kicsi;
+    }) || null;
   }
 
   function jelenlegIsLatszik(valtozas) {
@@ -450,15 +468,20 @@
     const hely = document.getElementById('flageltListaTartalom');
     const flagek = flagekAdat.flagek || [];
     if (!flagek.length) {
-      hely.innerHTML = '<div class="ures-allapot">Még nincs megjelölt kijelző-szöveg. Az "Élő figyelés" vagy az "Előzmények" fülön a 🚩 gombbal jelölhetsz meg szövegeket - ha újra megjelennek bármelyik járművön, itt fognak látszani, és emailt is kapsz róla.</div>';
+      hely.innerHTML = '<div class="ures-allapot">Még nincs megjelölt kijelző-szöveg. Az "Élő figyelés" vagy az "Előzmények" fülön a 🚩 gombbal jelölhetsz meg egy konkrét szöveget, vagy itt fent írhatsz be egy kulcsszót - ha bármelyik újra megjelenik/előfordul valamelyik jármű kijelzőjén, itt fog látszani, és emailt is kapsz róla.</div>';
       return;
     }
-    hely.innerHTML = flagek.map(f => `
+    hely.innerHTML = flagek.map(f => {
+      const kulcsszo = (f.tipus || 'pontos') === 'kulcsszo';
+      const cimke = kulcsszo
+        ? `🔑 kulcsszó (részlet-egyezés): "${escapeHtml2(f.szoveg)}"`
+        : `🚩 pontos szöveg: "${escapeHtml2(f.szoveg)}"`;
+      return `
       <div class="flagelt-sor">
-        <span>🚩 "${escapeHtml2(f.szoveg)}"${f.hozzaadva ? ` <span style="color:var(--text-muted);font-size:11px;">(${new Date(f.hozzaadva).toLocaleDateString('hu-HU')})</span>` : ''}</span>
+        <span>${cimke}${f.hozzaadva ? ` <span style="color:var(--text-muted);font-size:11px;">(${new Date(f.hozzaadva).toLocaleDateString('hu-HU')})</span>` : ''}</span>
         <button type="button" class="flagelt-torles-btn" data-szoveg="${escapeHtml2(f.szoveg)}">✕ Törlés</button>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
     hely.querySelectorAll('.flagelt-torles-btn').forEach(btn => {
       btn.addEventListener('click', () => flagTorlese(btn.dataset.szoveg));
     });
@@ -537,19 +560,23 @@
     }
   }
 
-  async function flagHozzaadasa(szoveg) {
+  // tipus: "pontos" (alapértelmezett - jármű 🚩-gombjával, egy konkrét
+  // kijelző-szöveghez) vagy "kulcsszo" (a "Figyelt szövegek" fülön kézzel
+  // beírt, RÉSZLEGES egyezéssel kereső kulcsszó).
+  async function flagHozzaadasa(szoveg, tipus) {
+    tipus = tipus || 'pontos';
     const token = ghTokenLekerese();
     if (!token) { flagStatuszMutat('Add meg a GitHub tokent a "Figyelt szövegek" fülön a megjelöléshez.', 'hiba'); return; }
     tokenMentese();
     flagStatuszMutat('Mentés...', '');
     try {
       const { sha, adat } = await ghFlagekBetolteseFriss(token);
-      if (!adat.flagek.some(f => (f.szoveg || '').toLowerCase() === szoveg.toLowerCase())) {
-        adat.flagek.push({ szoveg, hozzaadva: new Date().toISOString() });
+      if (!adat.flagek.some(f => (f.szoveg || '').toLowerCase() === szoveg.toLowerCase() && (f.tipus || 'pontos') === tipus)) {
+        adat.flagek.push({ szoveg, tipus, hozzaadva: new Date().toISOString() });
       }
       await ghFlagekMentese(token, adat, sha);
       flagekAdat = adat;
-      flagStatuszMutat('✅ Megjelölve - a következő futástól kezdve figyeli.', 'siker');
+      flagStatuszMutat(tipus === 'kulcsszo' ? '✅ Kulcsszó hozzáadva - a következő futástól kezdve figyeli.' : '✅ Megjelölve - a következő futástól kezdve figyeli.', 'siker');
       renderJarmuvek();
       elozmenyKeresesFuttatasa();
       flageltListaRenderelese();
@@ -611,6 +638,26 @@
   document.getElementById('tokenMentesBtn').addEventListener('click', tokenMentesGombKezelo);
   document.getElementById('ghTokenInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') tokenMentesGombKezelo();
+  });
+
+  // Kézzel beírt kulcsszó hozzáadása a "Figyelt szövegek" fülön - ez mindig
+  // "kulcsszo" típusú (RÉSZLEGES/substring egyezésű) bejegyzésként kerül
+  // mentésre, szemben a 🚩 gombbal hozzáadott "pontos" bejegyzésekkel.
+  function kulcsszoMentesGombKezelo() {
+    const input = document.getElementById('kulcsszoInput');
+    const szoveg = input.value.trim();
+    const statusz = document.getElementById('kulcsszoStatusz');
+    if (!szoveg) {
+      statusz.textContent = '❌ Írj be egy kulcsszót a hozzáadáshoz.';
+      statusz.className = 'flag-statusz hiba';
+      return;
+    }
+    flagHozzaadasa(szoveg, 'kulcsszo');
+    input.value = '';
+  }
+  document.getElementById('kulcsszoMentesBtn').addEventListener('click', kulcsszoMentesGombKezelo);
+  document.getElementById('kulcsszoInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') kulcsszoMentesGombKezelo();
   });
 
   // ── Fő fülek (Élő / Előzmények / Figyelt szövegek) váltása ──
