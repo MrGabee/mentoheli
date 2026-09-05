@@ -60,11 +60,14 @@ jobs:
           # Az "aktiv" (élő pillanatkép) mellett az "Előzmények" fülhöz
           # szükséges két fájlt is feltöltjük ide - a bkk_kijelzo_flagek.json
           # NINCS ezek között, mert azt a weboldal közvetlenül a GitHub-ra
-          # írja (nem a Python-script hozza létre).
+          # írja (nem a Python-script hozza létre). A HELYI útvonal a
+          # "bkk_kijelzo/" almappát tartalmazza (a script is oda írja őket),
+          # de a TÁVOLI (FTP) oldalon a puszta fájlnévvel töltjük fel, a már
+          # eleve "/bkk_kijelzo" célmappába - ld. HELYI_FAJLOK feldolgozása lent.
           HELYI_FAJLOK = [
-              "bkk_kijelzo_aktiv.json",
-              "bkk_kijelzo_valtozasok.json",
-              "bkk_kijelzo_utolso_szovegek.json",
+              "bkk_kijelzo/bkk_kijelzo_aktiv.json",
+              "bkk_kijelzo/bkk_kijelzo_valtozasok.json",
+              "bkk_kijelzo/bkk_kijelzo_utolso_szovegek.json",
           ]
 
           if not (HOST and USER and JELSZO):
@@ -87,9 +90,13 @@ jobs:
                   ftp.cwd(TAVOLI_MAPPA)
 
               for helyi_fajl in letezo_fajlok:
+                  # A távoli fájlnév a puszta fájlnév (mappa-előtag nélkül) -
+                  # a TAVOLI_MAPPA-ba töltjük fel, nem egy "bkk_kijelzo"
+                  # nevű almappát próbálunk létrehozni odabent.
+                  tavoli_nev = os.path.basename(helyi_fajl)
                   with open(helyi_fajl, "rb") as f:
-                      ftp.storbinary(f"STOR {helyi_fajl}", f)
-                  print(f"✅ {helyi_fajl} sikeresen feltöltve: {HOST}{TAVOLI_MAPPA}/{helyi_fajl}")
+                      ftp.storbinary(f"STOR {tavoli_nev}", f)
+                  print(f"✅ {helyi_fajl} sikeresen feltöltve: {HOST}{TAVOLI_MAPPA}/{tavoli_nev}")
               ftp.quit()
           except Exception as e:
               print(f"⚠️  FTP-feltöltési hiba: {type(e).__name__}: {e}")
@@ -109,9 +116,15 @@ jobs:
           fi
           cp bkk_kijelzo_allapot.json /tmp/bkk_kijelzo_allapot_sajat.json
 
+          # FONTOS: az aktiv/valtozasok/utolso_szovegek fájlok a "bkk_kijelzo/"
+          # ALMAPPÁBAN élnek (a bkk_kijelzo.html mellett), mert a weboldal
+          # relatív fetch()-csel tölti be őket - GitHub Pages-en ez azt
+          # jelenti, hogy a HTML mellett kell lenniük, különben 404. Az
+          # allapot.json és a GTFS-cache viszont MARADNAK a repó gyökerében
+          # (őket a böngésző sosem tölti be, csak a script használja).
           VAN_AKTIV_JSON=0
-          if [ -f bkk_kijelzo_aktiv.json ]; then
-            cp bkk_kijelzo_aktiv.json /tmp/bkk_kijelzo_aktiv_sajat.json
+          if [ -f bkk_kijelzo/bkk_kijelzo_aktiv.json ]; then
+            cp bkk_kijelzo/bkk_kijelzo_aktiv.json /tmp/bkk_kijelzo_aktiv_sajat.json
             VAN_AKTIV_JSON=1
           fi
 
@@ -127,13 +140,13 @@ jobs:
           # módosítja/commitolja, hogy a "git reset --hard origin/main" a
           # legfrissebb (böngészőből mentett) verziót hagyja érintetlenül.
           VAN_VALTOZASOK=0
-          if [ -f bkk_kijelzo_valtozasok.json ]; then
-            cp bkk_kijelzo_valtozasok.json /tmp/bkk_kijelzo_valtozasok_sajat.json
+          if [ -f bkk_kijelzo/bkk_kijelzo_valtozasok.json ]; then
+            cp bkk_kijelzo/bkk_kijelzo_valtozasok.json /tmp/bkk_kijelzo_valtozasok_sajat.json
             VAN_VALTOZASOK=1
           fi
           VAN_UTOLSO_SZOVEGEK=0
-          if [ -f bkk_kijelzo_utolso_szovegek.json ]; then
-            cp bkk_kijelzo_utolso_szovegek.json /tmp/bkk_kijelzo_utolso_szovegek_sajat.json
+          if [ -f bkk_kijelzo/bkk_kijelzo_utolso_szovegek.json ]; then
+            cp bkk_kijelzo/bkk_kijelzo_utolso_szovegek.json /tmp/bkk_kijelzo_utolso_szovegek_sajat.json
             VAN_UTOLSO_SZOVEGEK=1
           fi
 
@@ -144,21 +157,22 @@ jobs:
             git reset --hard origin/main
             cp /tmp/bkk_kijelzo_allapot_sajat.json bkk_kijelzo_allapot.json
             MENTENDO_FAJLOK="bkk_kijelzo_allapot.json"
+            mkdir -p bkk_kijelzo
             if [ "$VAN_AKTIV_JSON" = "1" ]; then
-              cp /tmp/bkk_kijelzo_aktiv_sajat.json bkk_kijelzo_aktiv.json
-              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo_aktiv.json"
+              cp /tmp/bkk_kijelzo_aktiv_sajat.json bkk_kijelzo/bkk_kijelzo_aktiv.json
+              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo/bkk_kijelzo_aktiv.json"
             fi
             if [ "$VAN_GTFS_CACHE" = "1" ]; then
               cp /tmp/bkk_vonalszamok_cache_sajat.json bkk_vonalszamok_cache.json
               MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_vonalszamok_cache.json"
             fi
             if [ "$VAN_VALTOZASOK" = "1" ]; then
-              cp /tmp/bkk_kijelzo_valtozasok_sajat.json bkk_kijelzo_valtozasok.json
-              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo_valtozasok.json"
+              cp /tmp/bkk_kijelzo_valtozasok_sajat.json bkk_kijelzo/bkk_kijelzo_valtozasok.json
+              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo/bkk_kijelzo_valtozasok.json"
             fi
             if [ "$VAN_UTOLSO_SZOVEGEK" = "1" ]; then
-              cp /tmp/bkk_kijelzo_utolso_szovegek_sajat.json bkk_kijelzo_utolso_szovegek.json
-              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo_utolso_szovegek.json"
+              cp /tmp/bkk_kijelzo_utolso_szovegek_sajat.json bkk_kijelzo/bkk_kijelzo_utolso_szovegek.json
+              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo/bkk_kijelzo_utolso_szovegek.json"
             fi
             git add $MENTENDO_FAJLOK
             if git diff --staged --quiet; then
