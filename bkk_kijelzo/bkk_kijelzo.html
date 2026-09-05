@@ -39,11 +39,15 @@
   }
 
   /* ── Vonalankénti csoportosítás (Élő fül) ── */
-  .vonal-csoport { margin-bottom: 20px; }
+  .vonal-csoport { margin-bottom: 10px; }
   .vonal-csoport-fejlec {
     display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    margin-bottom: 8px; padding: 4px 0 8px; border-bottom: 1px solid var(--border); cursor: pointer;
   }
+  .vonal-csoport-fejlec-bal { display: flex; align-items: center; gap: 8px; }
+  .vonal-csoport-nyilas { display: inline-block; color: var(--text-muted); font-size: 11px; transition: transform 0.15s; transform: rotate(0deg); }
+  .vonal-csoport.osszecsukva .vonal-csoport-nyilas { transform: rotate(-90deg); }
+  .vonal-csoport.osszecsukva .vonal-csoport-tetelek { display: none; }
   .vonalszam-jelveny {
     display: inline-flex; align-items: baseline; gap: 7px; background: var(--line-blue);
     color: #fff; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 19px;
@@ -54,15 +58,16 @@
 
   .jarmu-item {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
-    padding: 14px 16px; margin-bottom: 8px; cursor: pointer; border-left: 4px solid var(--border);
+    padding: 10px 16px; margin-bottom: 8px; cursor: pointer; border-left: 4px solid var(--border);
   }
   .jarmu-item.rendellenes { border-left-color: var(--red); }
   .jarmu-fejlec { display: flex; justify-content: space-between; align-items: center; }
   .jarmu-jarat { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; }
   .jarmu-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 100px; background: rgba(154,160,166,0.15); color: var(--text-muted); }
   .jarmu-item.rendellenes .jarmu-badge { background: rgba(226,68,68,0.15); color: var(--red); }
-  .jarmu-kijelzo { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
-  .jarmu-item .flag-btn { margin-top: 10px; }
+  .jarmu-kijelzo-sor { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
+  .jarmu-kijelzo { font-size: 13px; color: var(--text-muted); flex: 1; min-width: 0; }
+  .jarmu-kijelzo-sor .flag-btn { margin-top: 0; flex-shrink: 0; }
   .jarmu-linkek { display: none; margin-top: 10px; gap: 8px; }
   .jarmu-item.nyitva .jarmu-linkek { display: flex; }
   .jarmu-linkek a { font-size: 12px; color: var(--turquoise); text-decoration: none; }
@@ -279,6 +284,24 @@
   let aktivSzuro = 'mind';
   let aktivTipusSzuro = 'mind';
   let keresoSzoveg = '';
+  // Melyik vonal-csoport van kinyitva az Élő fülön - vonalszám szerinti
+  // kulcsokkal, hogy a 60mp-enkénti automatikus frissítés NE csukja vissza
+  // azt, amit a felhasználó kézzel kinyitott. Alapból csak a rendellenes
+  // jármüvet tartalmazó csoportok vannak nyitva (lásd renderJarmuvek).
+  const csoportNyitva = {};
+
+  // Egyszerű YIQ-kontraszt-számítás: a jelvény háttérszínéhez (hivatalos
+  // BKK-szín, pl. busz=kék, villamos=sárga, troli=piros) világos vagy
+  // sötét szöveget választ, hogy mindig olvasható maradjon.
+  function kontrasztSzoveg(hexSzin) {
+    if (!hexSzin) return '#fff';
+    const hex = hexSzin.replace('#', '');
+    if (hex.length !== 6) return '#fff';
+    const r = parseInt(hex.slice(0, 2), 16), g = parseInt(hex.slice(2, 4), 16), b = parseInt(hex.slice(4, 6), 16);
+    if ([r, g, b].some(Number.isNaN)) return '#fff';
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 150 ? '#1b1d1f' : '#fff';
+  }
 
   // ── Előzmények fül - adatok ──
   let osszesValtozas = [];               // bkk_kijelzo_valtozasok.json "valtozasok" tömbje
@@ -630,6 +653,14 @@
     csoportLista.forEach(cs => {
       cs.vanRendellenes = cs.tetelek.some(j => j.kategoria === 'rendellenes');
       cs.tetelek.sort((a, b) => (a.kategoria === 'rendellenes' ? -1 : 1) - (b.kategoria === 'rendellenes' ? -1 : 1));
+      // A hivatalos BKK-szín (busz=kék, villamos=sárga, troli=piros, stb.)
+      // a FUTÁR-adatból jön, vonalanként egységes - az első jármű elég.
+      cs.hatterszin = cs.tetelek.map(j => j.hatterszin).find(Boolean) || null;
+      // Alapállapot: csak a rendellenest tartalmazó csoportok legyenek
+      // nyitva - ezt csak EGYSZER (első látáskor) állítjuk be, utána a
+      // felhasználó kézi nyitása/csukása a mérvadó (lásd lejjebb a
+      // fejléc-kattintás kezelőt).
+      if (!(cs.vonalszam in csoportNyitva)) csoportNyitva[cs.vonalszam] = cs.vanRendellenes;
     });
     csoportLista.sort((a, b) => {
       if (a.vanRendellenes !== b.vanRendellenes) return a.vanRendellenes ? -1 : 1;
@@ -663,10 +694,12 @@
               <span class="jarmu-jarat">${escapeHtml(j.rendszam || j.vehicle_label || j.vehicle_id || '—')}${j.eszkoz_tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.eszkoz_tipus)}</span>` : ''}</span>
               <span class="jarmu-badge">${badge}</span>
             </div>
-            <div class="jarmu-kijelzo">${isIsmeretlen ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.' : escapeHtml(j.kijelzo_szoveg || '—')}</div>
-            <button type="button" class="flag-btn ${marFlagelt ? 'flagelve' : ''}" data-flag-idx="${j._idx}">
-              ${marFlagelt ? '✅ Figyelve' : '🚩 Megjelölés (email, ha újra megjelenik)'}
-            </button>
+            <div class="jarmu-kijelzo-sor">
+              <div class="jarmu-kijelzo">${isIsmeretlen ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.' : escapeHtml(j.kijelzo_szoveg || '—')}</div>
+              <button type="button" class="flag-btn ${marFlagelt ? 'flagelve' : ''}" data-flag-idx="${j._idx}" title="Megjelölés - email, ha újra megjelenik">
+                ${marFlagelt ? '✅ Figyelve' : '🚩 Megjelölés'}
+              </button>
+            </div>
             <div class="jarmu-linkek">
               <div style="width:100%;font-size:12px;color:var(--text-muted);margin-bottom:6px">
                 ${j.rendszam ? `🔢 Rendszám: ${escapeHtml(j.rendszam)}<br>` : ''}
@@ -680,15 +713,31 @@
           </div>`;
       }).join('');
 
+      const nyitva = !!csoportNyitva[cs.vonalszam];
+      const jelvenySzin = cs.hatterszin ? `#${cs.hatterszin}` : null;
+      const jelvenyStilus = jelvenySzin ? ` style="background:${jelvenySzin};color:${kontrasztSzoveg(cs.hatterszin)}"` : '';
+
       return `
-        <div class="vonal-csoport">
+        <div class="vonal-csoport ${nyitva ? '' : 'osszecsukva'}" data-kulcs="${escapeHtml(String(cs.vonalszam))}">
           <div class="vonal-csoport-fejlec">
-            <span class="vonalszam-jelveny">${escapeHtml(String(cs.vonalszam))}${cs.route_id && cs.route_id !== cs.vonalszam ? `<span class="jelveny-routeid">${escapeHtml(cs.route_id)}</span>` : ''}</span>
+            <div class="vonal-csoport-fejlec-bal">
+              <span class="vonal-csoport-nyilas">▾</span>
+              <span class="vonalszam-jelveny"${jelvenyStilus}>${escapeHtml(String(cs.vonalszam))}${cs.route_id && cs.route_id !== cs.vonalszam ? `<span class="jelveny-routeid">${escapeHtml(cs.route_id)}</span>` : ''}</span>
+            </div>
             <span class="vonal-csoport-szamlalo">${cs.tetelek.length} jármű</span>
           </div>
-          ${tetelekHtml}
+          <div class="vonal-csoport-tetelek">${tetelekHtml}</div>
         </div>`;
     }).join('');
+
+    document.querySelectorAll('#tartalom .vonal-csoport-fejlec').forEach(fejlec => {
+      fejlec.addEventListener('click', () => {
+        const csoport = fejlec.closest('.vonal-csoport');
+        const kulcs = csoport.dataset.kulcs;
+        const uj = csoport.classList.toggle('osszecsukva');
+        csoportNyitva[kulcs] = !uj;
+      });
+    });
 
     document.querySelectorAll('#tartalom .jarmu-item').forEach(el => {
       el.addEventListener('click', () => el.classList.toggle('nyitva'));
