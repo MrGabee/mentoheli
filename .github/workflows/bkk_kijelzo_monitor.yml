@@ -1,177 +1,636 @@
-name: 🚌 BKK Kijelző Figyelő
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BKK Kijelző Figyelő</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1b1d1f; --bg-card: #232629; --amber: #f2a340; --turquoise: #2dd4bf;
+    --red: #e24444; --text: #eef0f2; --text-muted: #9aa0a6; --border: #34383c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.5; }
 
-on:
-  workflow_dispatch:
-  repository_dispatch:
-    types: [bkk_kijelzo_trigger]
-  schedule:
-    - cron: '*/10 * * * *'
+  .hazard-stripe { height: 6px; background: repeating-linear-gradient(-45deg, var(--amber), var(--amber) 14px, #1b1d1f 14px, #1b1d1f 28px); }
 
-concurrency:
-  group: bkk-kijelzo-figyelo
-  cancel-in-progress: false
+  header { max-width: 800px; margin: 0 auto; padding: 40px 24px 20px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+  h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 38px); text-transform: uppercase; }
+  h1 span { color: var(--turquoise); }
+  header p.lead { color: var(--text-muted); font-size: 14px; margin-top: 10px; }
+  .frissitve { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
 
-jobs:
-  figyel:
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    permissions:
-      contents: write
+  main { max-width: 800px; margin: 0 auto; padding: 0 24px 64px; }
 
-    steps:
-      - name: 📥 Kód letöltése
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
+  .szuro-sor { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .szuro-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 100px;
+    border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer;
+  }
+  .szuro-btn.aktiv { border-color: var(--amber); color: var(--amber); }
+  .kereso {
+    width: 100%; padding: 10px 14px; margin-bottom: 16px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-size: 14px;
+  }
 
-      - name: 🐍 Python beállítása
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+  .jarmu-item {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 8px; cursor: pointer; border-left: 4px solid var(--border);
+  }
+  .jarmu-item.rendellenes { border-left-color: var(--red); }
+  .jarmu-fejlec { display: flex; justify-content: space-between; align-items: center; }
+  .jarmu-jarat { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; }
+  .jarmu-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 100px; background: rgba(154,160,166,0.15); color: var(--text-muted); }
+  .jarmu-item.rendellenes .jarmu-badge { background: rgba(226,68,68,0.15); color: var(--red); }
+  .jarmu-kijelzo { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+  .jarmu-linkek { display: none; margin-top: 10px; gap: 8px; }
+  .jarmu-item.nyitva .jarmu-linkek { display: flex; }
+  .jarmu-linkek a { font-size: 12px; color: var(--turquoise); text-decoration: none; }
+  .jarmu-linkek a:hover { text-decoration: underline; }
 
-      - name: 📦 Függőségek telepítése
-        run: pip install requests gtfs-realtime-bindings
+  .ures-allapot { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+  footer { text-align: center; padding: 10px 24px 40px; color: var(--text-muted); font-size: 12px; }
 
-      - name: 🚌 Kijelző-figyelés futtatása
-        env:
-          EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
-          EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
-          EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
-          BKK_API_KULCS: ${{ secrets.BKK_API_KULCS }}
-        run: python bkk_kijelzo/bkk_kijelzo_figyelo.py
+  /* ── Fő fülek: Élő figyelés / Előzmények ── */
+  .fotab-sor { display: flex; gap: 8px; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+  .fotab-btn {
+    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px; text-transform: uppercase;
+    letter-spacing: 0.03em; padding: 10px 18px; border-radius: 8px 8px 0 0; border: 1px solid var(--border);
+    border-bottom: none; background: transparent; color: var(--text-muted); cursor: pointer;
+  }
+  .fotab-btn.aktiv { color: var(--turquoise); border-color: var(--border); background: var(--bg-card); }
 
-      - name: 🌐 JSON feltöltése a saját tárhelyre (FTP)
-        if: always()
-        continue-on-error: true
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_JELSZO: ${{ secrets.FTP_JELSZO }}
-        run: |
-          python - << 'PYEOF'
-          import os
-          import ftplib
+  /* ── Előzmények fül ── */
+  .token-sor { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+  .token-info { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+  .token-sor input[type="password"] {
+    width: 100%; max-width: 360px; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text); font-size: 13px;
+  }
+  .elozmeny-talalat {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px; margin-bottom: 8px; border-left: 4px solid var(--border);
+  }
+  .elozmeny-talalat.jelenleg-is { border-left-color: var(--turquoise); }
+  .elozmeny-talalat .ef-fejlec { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .elozmeny-talalat .ef-jarat { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14px; }
+  .elozmeny-talalat .ef-ido { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); }
+  .elozmeny-talalat .ef-valtozas { font-size: 13px; margin-top: 6px; color: var(--text-muted); }
+  .elozmeny-talalat .ef-valtozas .ef-regi { text-decoration: line-through; }
+  .elozmeny-talalat .ef-valtozas .ef-uj { color: var(--text); font-weight: 600; }
+  .elo-most-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; background: rgba(45,212,191,0.15);
+    color: var(--turquoise); padding: 2px 8px; border-radius: 100px;
+  }
+  .flag-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 5px 10px; border-radius: 100px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); cursor: pointer; margin-top: 8px;
+  }
+  .flag-btn.flagelve { border-color: var(--amber); color: var(--amber); background: rgba(242,163,64,0.1); }
+  .flag-btn:disabled { opacity: 0.5; cursor: default; }
+  .flag-statusz { font-size: 12px; margin-top: 8px; min-height: 16px; }
+  .flag-statusz.siker { color: var(--turquoise); }
+  .flag-statusz.hiba { color: var(--red); }
+  .flagelt-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+  .flagelt-panel h3 { font-family: 'Oswald', sans-serif; font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
+  .flagelt-sor { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .flagelt-sor:last-child { border-bottom: none; }
+  .flagelt-torles-btn { border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); border-radius: 6px; padding: 3px 8px; cursor: pointer; font-size: 11px; }
 
-          HOST = os.environ.get("FTP_HOST", "")
-          USER = os.environ.get("FTP_USER", "")
-          JELSZO = os.environ.get("FTP_JELSZO", "")
-          # ⬇️ Írd át a tényleges célmappára a saját tárhelyeden ⬇️
-          TAVOLI_MAPPA = "/bkk_kijelzo"
-          HELYI_FAJL = "bkk_kijelzo_aktiv.json"
+  .kapu-overlay {
+    position: fixed; inset: 0; background: var(--bg); z-index: 2000;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .kapu-doboz { max-width: 340px; width: 100%; text-align: center; }
+  .kapu-doboz h2 { font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 20px; margin-bottom: 16px; }
+  .kapu-doboz input {
+    width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--bg-card); color: var(--text); font-size: 15px; margin-bottom: 10px; text-align: center;
+  }
+  .kapu-jelszo-sor { position: relative; }
+  .kapu-jelszo-sor input { padding-right: 44px; }
+  .kapu-szem-btn {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    margin-top: -5px; background: none; border: none; cursor: pointer;
+    font-size: 18px; line-height: 1; padding: 4px; color: var(--text-muted); width: auto;
+  }
+  .kapu-doboz button {
+    width: 100%; padding: 12px; border-radius: 8px; border: none;
+    background: var(--amber); color: #1b1d1f; font-weight: 700; font-size: 14px; cursor: pointer;
+  }
+  .kapu-hiba { color: var(--red); font-size: 13px; margin-top: 8px; min-height: 18px; }
+  .rejtve { display: none !important; }
+</style>
+</head>
+<body>
 
-          if not (HOST and USER and JELSZO):
-              print("⚠️  Nincs beállítva FTP_HOST/FTP_USER/FTP_JELSZO - feltöltés kihagyva.")
-              exit(0)
+<div class="kapu-overlay" id="kapuOverlay">
+  <div class="kapu-doboz">
+    <h2>🔒 Belépés</h2>
+    <div class="kapu-jelszo-sor">
+      <input type="password" id="kapuJelszo" placeholder="Jelszó" autofocus>
+      <button type="button" class="kapu-szem-btn" id="kapuSzemBtn" aria-label="Jelszó mutatása/elrejtése">👁️</button>
+    </div>
+    <button type="button" id="kapuBtn">Belépés</button>
+    <div class="kapu-hiba" id="kapuHiba"></div>
+  </div>
+</div>
 
-          if not os.path.exists(HELYI_FAJL):
-              print(f"⚠️  Nincs {HELYI_FAJL}, nincs mit feltölteni.")
-              exit(0)
+<div id="oldalTartalom" class="rejtve">
 
-          try:
-              ftp = ftplib.FTP(HOST, timeout=30)
-              ftp.login(USER, JELSZO)
-              try:
-                  ftp.cwd(TAVOLI_MAPPA)
-              except ftplib.error_perm:
-                  print(f"ℹ️  A {TAVOLI_MAPPA} mappa nem létezik, létrehozom...")
-                  ftp.mkd(TAVOLI_MAPPA)
-                  ftp.cwd(TAVOLI_MAPPA)
+<div class="hazard-stripe"></div>
 
-              with open(HELYI_FAJL, "rb") as f:
-                  ftp.storbinary(f"STOR {HELYI_FAJL}", f)
-              ftp.quit()
-              print(f"✅ {HELYI_FAJL} sikeresen feltöltve: {HOST}{TAVOLI_MAPPA}/{HELYI_FAJL}")
-          except Exception as e:
-              print(f"⚠️  FTP-feltöltési hiba: {type(e).__name__}: {e}")
-          PYEOF
+<header>
+  <div class="eyebrow">Élő adat · BKK FUTÁR</div>
+  <h1>Kijelző <span>·</span> Figyelő</h1>
+  <p class="lead">Az összes aktív BKK jármű célállomás-kijelzőjének szövege - kiemelve a rendellenes üzeneteket.</p>
+  <div class="frissitve" id="frissitve">Betöltés...</div>
+</header>
 
-      - name: 💾 Állapot commitolása (önjavító)
-        if: always()
-        continue-on-error: true
-        run: |
-          set +e
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+<div class="fotab-sor">
+  <button type="button" class="fotab-btn aktiv" id="fotabElo">🔴 Élő figyelés</button>
+  <button type="button" class="fotab-btn" id="fotabElozmeny">📜 Előzmények</button>
+</div>
 
-          if [ ! -f bkk_kijelzo_allapot.json ]; then
-            echo "Nincs állapotfájl, nincs mit commitolni."
-            exit 0
-          fi
-          cp bkk_kijelzo_allapot.json /tmp/bkk_kijelzo_allapot_sajat.json
+<main id="eloPanel">
+  <div class="szuro-sor">
+    <button class="szuro-btn aktiv" data-szuro="mind">Mind</button>
+    <button class="szuro-btn" data-szuro="rendellenes">🚨 Rendellenes</button>
+    <button class="szuro-btn" data-szuro="normal">Normál</button>
+    <button class="szuro-btn" data-szuro="ismeretlen">❔ Nincs kijelző-adat</button>
+  </div>
+  <div class="szuro-sor" id="tipusSzurok"></div>
+  <input type="text" class="kereso" id="kereso" placeholder="Keresés járatszámra, rendszámra vagy kijelző-szövegre...">
 
-          VAN_AKTIV_JSON=0
-          if [ -f bkk_kijelzo_aktiv.json ]; then
-            cp bkk_kijelzo_aktiv.json /tmp/bkk_kijelzo_aktiv_sajat.json
-            VAN_AKTIV_JSON=1
-          fi
+  <div id="tartalom">
+    <div class="ures-allapot">⏳ Adatok betöltése...</div>
+  </div>
+</main>
 
-          VAN_GTFS_CACHE=0
-          if [ -f bkk_vonalszamok_cache.json ]; then
-            cp bkk_vonalszamok_cache.json /tmp/bkk_vonalszamok_cache_sajat.json
-            VAN_GTFS_CACHE=1
-          fi
+<main id="elozmenyPanel" class="rejtve">
+  <div class="token-sor">
+    <div class="token-info">🚩 A megjelöléshez (és az azt követő email-riasztáshoz, ha a szöveg újra megjelenik) egy GitHub Personal Access Token szükséges (a repóhoz írási joggal) - ez csak a böngésződben marad (session-tárolóban), a mentés közvetlenül innen megy a GitHub API-nak, sehova máshova nem kerül.</div>
+    <input type="password" id="ghTokenInput" placeholder="ghp_..." autocomplete="off">
+  </div>
 
-          SIKERULT=0
-          for i in 1 2 3 4 5 6; do
-            echo "Push kísérlet $i/6..."
-            git fetch origin main
-            git reset --hard origin/main
-            cp /tmp/bkk_kijelzo_allapot_sajat.json bkk_kijelzo_allapot.json
-            MENTENDO_FAJLOK="bkk_kijelzo_allapot.json"
-            if [ "$VAN_AKTIV_JSON" = "1" ]; then
-              cp /tmp/bkk_kijelzo_aktiv_sajat.json bkk_kijelzo_aktiv.json
-              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_kijelzo_aktiv.json"
-            fi
-            if [ "$VAN_GTFS_CACHE" = "1" ]; then
-              cp /tmp/bkk_vonalszamok_cache_sajat.json bkk_vonalszamok_cache.json
-              MENTENDO_FAJLOK="$MENTENDO_FAJLOK bkk_vonalszamok_cache.json"
-            fi
-            git add $MENTENDO_FAJLOK
-            if git diff --staged --quiet; then
-              echo "Nincs változás, kész."
-              SIKERULT=1
-              break
-            fi
-            git commit -m "bkk kijelző állapot [skip ci]"
-            if git push origin HEAD:main; then
-              echo "Push sikeres."
-              SIKERULT=1
-              break
-            else
-              echo "Push ütközött, újrapróbálkozás..."
-              sleep $((RANDOM % 6 + 2))
-            fi
-          done
-          if [ "$SIKERULT" != "1" ]; then
-            echo "⚠️ 6 próbálkozás után sem sikerült a push."
-          fi
+  <div class="flagelt-panel rejtve" id="flageltPanel">
+    <h3>🚩 Jelenleg megjelölt szövegek</h3>
+    <div id="flageltListaTartalom"></div>
+  </div>
 
-      - name: ⏱️ Várakozás
-        if: always()
-        run: sleep 5
+  <input type="text" class="kereso" id="elozmenyKereso" placeholder="Keresés rendszámra, vonalszámra vagy kijelző-szövegre (pl. 'mentő' minden előfordulást megtalálja)...">
 
-      - name: 🔄 Következő futás indítása (önjavító)
-        if: always()
-        continue-on-error: true
-        run: |
-          set +e
-          SIKERULT=0
-          for i in 1 2 3; do
-            HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
-              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${{ github.repository }}/dispatches" \
-              -d '{"event_type":"bkk_kijelzo_trigger"}')
-            if [ "$HTTP_KOD" = "204" ]; then
-              echo "✅ Dispatch sikeres."
-              SIKERULT=1
-              break
-            else
-              echo "⚠️ Dispatch sikertelen (HTTP $HTTP_KOD), próbálkozás $i/3..."
-              cat /tmp/dispatch_resp.txt
-              sleep 5
-            fi
-          done
-          if [ "$SIKERULT" != "1" ]; then
-            echo "❌ Nem sikerült - a schedule biztonsági háló legfeljebb 10 percen belül újraindítja."
-          fi
+  <div class="flag-statusz" id="flagStatusz"></div>
+
+  <div id="elozmenyTartalom">
+    <div class="ures-allapot">Írj be egy rendszámot, vonalszámot vagy kijelző-szöveg-részletet a kereséshez.</div>
+  </div>
+</main>
+
+<footer>Adatforrás: BKK FUTÁR API · Automatikusan frissül</footer>
+
+</div>
+
+<script>
+  // ⬇️⬇️⬇️ ITT ÍRD ÁT A SAJÁT JELSZAVADRA ⬇️⬇️⬇️
+  const KAPU_JELSZO = "valtoztasdmeg";
+  const KAPU_EMLEKEZET_KULCS = "bkk_kijelzo_belepve";
+  const KAPU_EMLEKEZET_NAPOK = 7;
+
+  function kapuEllenorzes() {
+    try {
+      const mentett = localStorage.getItem(KAPU_EMLEKEZET_KULCS);
+      if (mentett && Number(mentett) > Date.now()) {
+        kapuMegnyitas();
+      }
+    } catch (e) { /* localStorage nem elérhető - marad a jelszókérés */ }
+  }
+
+  function kapuMegnyitas() {
+    document.getElementById('kapuOverlay').style.display = 'none';
+    document.getElementById('oldalTartalom').classList.remove('rejtve');
+  }
+
+  document.getElementById('kapuBtn').addEventListener('click', probalkozas);
+  document.getElementById('kapuJelszo').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') probalkozas();
+  });
+
+  document.getElementById('kapuSzemBtn').addEventListener('click', () => {
+    const mezo = document.getElementById('kapuJelszo');
+    const gomb = document.getElementById('kapuSzemBtn');
+    if (mezo.type === 'password') {
+      mezo.type = 'text';
+      gomb.textContent = '🙈';
+    } else {
+      mezo.type = 'password';
+      gomb.textContent = '👁️';
+    }
+  });
+
+  function probalkozas() {
+    const beirt = document.getElementById('kapuJelszo').value;
+    if (beirt === KAPU_JELSZO) {
+      try {
+        const lejarat = Date.now() + KAPU_EMLEKEZET_NAPOK * 24 * 60 * 60 * 1000;
+        localStorage.setItem(KAPU_EMLEKEZET_KULCS, String(lejarat));
+      } catch (e) { /* nem baj, ha nem tudjuk megjegyezni */ }
+      kapuMegnyitas();
+    } else {
+      document.getElementById('kapuHiba').textContent = 'Helytelen jelszó.';
+    }
+  }
+
+  kapuEllenorzes();
+
+  const ADAT_URL = 'bkk_kijelzo_aktiv.json';
+  const VALTOZASOK_URL = 'bkk_kijelzo_valtozasok.json';
+  const FLAGEK_URL = 'bkk_kijelzo_flagek.json';
+  let osszesJarmu = [];
+  let aktivSzuro = 'mind';
+  let aktivTipusSzuro = 'mind';
+  let keresoSzoveg = '';
+
+  // ── Előzmények fül - adatok ──
+  let osszesValtozas = [];               // bkk_kijelzo_valtozasok.json "valtozasok" tömbje
+  let flagekAdat = { flagek: [] };       // a jelenleg megjelölt szövegek (a saját tárhelyről betöltve, a mentés után helyben is frissítve)
+
+  async function betoltes() {
+    try {
+      const res = await fetch(ADAT_URL + '?t=' + Date.now());
+      const data = await res.json();
+      osszesJarmu = data.jarmuvek || [];
+
+      const frissitve = new Date(data.frissitve);
+      document.getElementById('frissitve').textContent = 'Frissítve: ' + frissitve.toLocaleString('hu-HU');
+
+      renderJarmuvek();
+    } catch (err) {
+      document.getElementById('tartalom').innerHTML = '<div class="ures-allapot">⚠️ Nem sikerült betölteni az adatokat.</div>';
+    }
+
+    // A két új fájl (előzmények, flagek) betöltési hibája NEM akadályozza
+    // meg az "Élő" nézet működését - ezért külön try/catch-ben, csendben.
+    try {
+      const res2 = await fetch(VALTOZASOK_URL + '?t=' + Date.now());
+      if (res2.ok) {
+        const data2 = await res2.json();
+        osszesValtozas = data2.valtozasok || [];
+      }
+    } catch (err) { /* az Előzmények fül majd jelzi, ha megnyitják és üres */ }
+
+    try {
+      const res3 = await fetch(FLAGEK_URL + '?t=' + Date.now());
+      if (res3.ok) {
+        flagekAdat = await res3.json();
+      }
+    } catch (err) { /* nincs még flag-fájl, vagy nem sikerült - üres listával indulunk */ }
+
+    if (document.getElementById('elozmenyPanel').classList.contains('rejtve') === false) {
+      elozmenyKeresesFuttatasa();
+      flageltListaRenderelese();
+    }
+  }
+
+  // ════════════════════════════════════════════
+  //  📜  ELŐZMÉNYEK FÜL
+  // ════════════════════════════════════════════
+  function escapeHtml2(str) { return escapeHtml(str); }
+
+  // Ugyanaz a logika, mint a Python-oldali flagelt_egyezes()-nél: kis-
+  // nagybetűtől független, RÉSZLEGES egyezés - egy flag akkor "fedi" egy
+  // szöveget, ha a flag szövege BÁRHOL előfordul benne.
+  function flagEgyezes(szoveg) {
+    if (!szoveg) return null;
+    const kicsi = szoveg.toLowerCase();
+    return (flagekAdat.flagek || []).find(f => f.szoveg && kicsi.includes(f.szoveg.toLowerCase())) || null;
+  }
+
+  function jelenlegIsLatszik(valtozas) {
+    return osszesJarmu.some(j =>
+      ((valtozas.rendszam && j.rendszam === valtozas.rendszam) || (!valtozas.rendszam && j.vehicle_id === valtozas.vehicle_id)) &&
+      j.kijelzo_szoveg === valtozas.uj_szoveg
+    );
+  }
+
+  function elozmenyKeresesFuttatasa() {
+    const q = (document.getElementById('elozmenyKereso').value || '').trim().toLowerCase();
+    const hely = document.getElementById('elozmenyTartalom');
+
+    if (!q) {
+      hely.innerHTML = '<div class="ures-allapot">Írj be egy rendszámot, vonalszámot vagy kijelző-szöveg-részletet a kereséshez.</div>';
+      return;
+    }
+
+    const talalatok = osszesValtozas.filter(v =>
+      (v.rendszam || '').toLowerCase().includes(q) ||
+      (v.vonal_szam || '').toLowerCase().includes(q) ||
+      (v.uj_szoveg || '').toLowerCase().includes(q) ||
+      (v.elozo_szoveg || '').toLowerCase().includes(q)
+    ).sort((a, b) => (b.idopont || '').localeCompare(a.idopont || ''));
+
+    if (!talalatok.length) {
+      hely.innerHTML = '<div class="ures-allapot">Nincs találat erre: "' + escapeHtml2(q) + '".</div>';
+      return;
+    }
+
+    hely.innerHTML = talalatok.map((v, idx) => {
+      const most = jelenlegIsLatszik(v);
+      const mar_flagelt = flagEgyezes(v.uj_szoveg);
+      const ido = v.idopont ? new Date(v.idopont).toLocaleString('hu-HU') : '—';
+      return `
+        <div class="elozmeny-talalat ${most ? 'jelenleg-is' : ''}" data-idx="${idx}">
+          <div class="ef-fejlec">
+            <span class="ef-jarat">${escapeHtml2(v.vonal_szam || '—')} <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml2(v.rendszam || v.vehicle_label || v.vehicle_id || '—')}</span></span>
+            <span class="ef-ido">${ido}</span>
+          </div>
+          <div class="ef-valtozas">
+            ${v.elozo_szoveg ? `<span class="ef-regi">${escapeHtml2(v.elozo_szoveg)}</span> → ` : ''}
+            <span class="ef-uj">${escapeHtml2(v.uj_szoveg)}</span>
+            ${most ? '<span class="elo-most-badge" style="margin-left:8px;">🔴 jelenleg is ez látszik</span>' : ''}
+          </div>
+          <button type="button" class="flag-btn ${mar_flagelt ? 'flagelve' : ''}" data-idx="${idx}">
+            ${mar_flagelt ? `✅ Figyelve ("${escapeHtml2(mar_flagelt.szoveg)}") - kattints a törléshez` : '🚩 Megjelölés (email, ha újra megjelenik)'}
+          </button>
+        </div>`;
+    }).join('');
+
+    hely.querySelectorAll('.flag-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = talalatok[Number(btn.dataset.idx)];
+        const mar = flagEgyezes(v.uj_szoveg);
+        if (mar) {
+          flagTorlese(mar.szoveg);
+        } else {
+          flagHozzaadasa(v.uj_szoveg);
+        }
+      });
+    });
+  }
+
+  document.getElementById('elozmenyKereso').addEventListener('input', elozmenyKeresesFuttatasa);
+
+  function flageltListaRenderelese() {
+    const panel = document.getElementById('flageltPanel');
+    const hely = document.getElementById('flageltListaTartalom');
+    const flagek = flagekAdat.flagek || [];
+    if (!flagek.length) {
+      panel.classList.add('rejtve');
+      return;
+    }
+    panel.classList.remove('rejtve');
+    hely.innerHTML = flagek.map(f => `
+      <div class="flagelt-sor">
+        <span>🚩 "${escapeHtml2(f.szoveg)}"${f.hozzaadva ? ` <span style="color:var(--text-muted);font-size:11px;">(${new Date(f.hozzaadva).toLocaleDateString('hu-HU')})</span>` : ''}</span>
+        <button type="button" class="flagelt-torles-btn" data-szoveg="${escapeHtml2(f.szoveg)}">✕ Törlés</button>
+      </div>
+    `).join('');
+    hely.querySelectorAll('.flagelt-torles-btn').forEach(btn => {
+      btn.addEventListener('click', () => flagTorlese(btn.dataset.szoveg));
+    });
+  }
+
+  function ghTokenLekerese() {
+    return document.getElementById('ghTokenInput').value.trim();
+  }
+
+  function flagStatuszMutat(szoveg, tipus) {
+    const el = document.getElementById('flagStatusz');
+    el.textContent = szoveg;
+    el.className = 'flag-statusz' + (tipus ? ' ' + tipus : '');
+  }
+
+  const GH_OWNER = 'MrGabee';
+  const GH_REPO = 'mentoheli';
+  const GH_BRANCH = 'main';
+  const GH_FLAGEK_PATH = 'bkk_kijelzo_flagek.json';
+
+  function ghFejlecek(token) {
+    return { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
+  }
+
+  function b64ToUtf8(b64) {
+    const bin = atob(b64.replace(/\n/g, ''));
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+
+  function utf8ToB64(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = '';
+    bytes.forEach(b => { bin += String.fromCharCode(b); });
+    return btoa(bin);
+  }
+
+  // Mindig FRISSEN letöltjük a jelenlegi (GitHub-on lévő) flag-fájlt
+  // mentés előtt - így két külön alkalommal/eszközön történő módosítás
+  // nem írja felül egymást csendben (ugyanaz a minta, mint a számlás
+  // dashboard "Bérlői körök" mentésénél).
+  async function ghFlagekBetolteseFriss(token) {
+    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FLAGEK_PATH}?ref=${GH_BRANCH}`;
+    const resp = await fetch(url, { headers: ghFejlecek(token) });
+    if (resp.status === 404) return { sha: null, adat: { flagek: [] } };
+    if (!resp.ok) throw new Error('Nem sikerült betölteni a jelenlegi flag-listát (HTTP ' + resp.status + ')');
+    const json = await resp.json();
+    let adat;
+    try {
+      adat = JSON.parse(b64ToUtf8(json.content));
+    } catch (e) {
+      adat = { flagek: [] };
+    }
+    if (!Array.isArray(adat.flagek)) adat.flagek = [];
+    return { sha: json.sha, adat };
+  }
+
+  async function ghFlagekMentese(token, adat, sha) {
+    const body = {
+      message: 'BKK kijelző - megjelölt szövegek frissítve',
+      content: utf8ToB64(JSON.stringify(adat, null, 2)),
+      branch: GH_BRANCH,
+    };
+    if (sha) body.sha = sha;
+    const resp = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FLAGEK_PATH}`,
+      { method: 'PUT', headers: Object.assign(ghFejlecek(token), { 'Content-Type': 'application/json' }), body: JSON.stringify(body) }
+    );
+    if (!resp.ok) {
+      const szoveg = await resp.text().catch(() => '');
+      throw new Error('Mentés sikertelen (HTTP ' + resp.status + '): ' + szoveg.slice(0, 200));
+    }
+  }
+
+  async function flagHozzaadasa(szoveg) {
+    const token = ghTokenLekerese();
+    if (!token) { flagStatuszMutat('Add meg a GitHub tokent fent a megjelöléshez.', 'hiba'); return; }
+    tokenMentese();
+    flagStatuszMutat('Mentés...', '');
+    try {
+      const { sha, adat } = await ghFlagekBetolteseFriss(token);
+      if (!adat.flagek.some(f => (f.szoveg || '').toLowerCase() === szoveg.toLowerCase())) {
+        adat.flagek.push({ szoveg, hozzaadva: new Date().toISOString() });
+      }
+      await ghFlagekMentese(token, adat, sha);
+      flagekAdat = adat;
+      flagStatuszMutat('✅ Megjelölve - a következő futástól kezdve figyeli.', 'siker');
+      elozmenyKeresesFuttatasa();
+      flageltListaRenderelese();
+    } catch (e) {
+      flagStatuszMutat('❌ ' + e.message, 'hiba');
+    }
+  }
+
+  async function flagTorlese(szoveg) {
+    const token = ghTokenLekerese();
+    if (!token) { flagStatuszMutat('Add meg a GitHub tokent fent a törléshez.', 'hiba'); return; }
+    tokenMentese();
+    flagStatuszMutat('Törlés...', '');
+    try {
+      const { sha, adat } = await ghFlagekBetolteseFriss(token);
+      adat.flagek = adat.flagek.filter(f => (f.szoveg || '').toLowerCase() !== szoveg.toLowerCase());
+      await ghFlagekMentese(token, adat, sha);
+      flagekAdat = adat;
+      flagStatuszMutat('✅ Törölve.', 'siker');
+      elozmenyKeresesFuttatasa();
+      flageltListaRenderelese();
+    } catch (e) {
+      flagStatuszMutat('❌ ' + e.message, 'hiba');
+    }
+  }
+
+  function tokenMentese() {
+    try {
+      const token = ghTokenLekerese();
+      if (token) sessionStorage.setItem('bkk_kijelzo_gh_token', token);
+    } catch (e) { /* ignorálható */ }
+  }
+
+  try {
+    const mentettToken = sessionStorage.getItem('bkk_kijelzo_gh_token');
+    if (mentettToken) document.getElementById('ghTokenInput').value = mentettToken;
+  } catch (e) { /* ignorálható */ }
+
+  // ── Fő fülek (Élő / Előzmények) váltása ──
+  document.getElementById('fotabElo').addEventListener('click', () => {
+    document.getElementById('fotabElo').classList.add('aktiv');
+    document.getElementById('fotabElozmeny').classList.remove('aktiv');
+    document.getElementById('eloPanel').classList.remove('rejtve');
+    document.getElementById('elozmenyPanel').classList.add('rejtve');
+  });
+  document.getElementById('fotabElozmeny').addEventListener('click', () => {
+    document.getElementById('fotabElozmeny').classList.add('aktiv');
+    document.getElementById('fotabElo').classList.remove('aktiv');
+    document.getElementById('elozmenyPanel').classList.remove('rejtve');
+    document.getElementById('eloPanel').classList.add('rejtve');
+    elozmenyKeresesFuttatasa();
+    flageltListaRenderelese();
+  });
+
+  function renderJarmuvek() {
+    // Jármű-típus szűrőgombok dinamikus felépítése az adatokból talált típusokból
+    const tipusok = [...new Set(osszesJarmu.map(j => j.eszkoz_tipus).filter(Boolean))].sort();
+    const tipusSzurokDiv = document.getElementById('tipusSzurok');
+    if (tipusSzurokDiv.dataset.epitve !== String(tipusok.length)) {
+      tipusSzurokDiv.innerHTML = ['<button class="szuro-btn aktiv" data-tipus="mind">Minden eszköztípus</button>']
+        .concat(tipusok.map(t => `<button class="szuro-btn" data-tipus="${escapeHtml(t)}">${escapeHtml(t)}</button>`))
+        .join('');
+      tipusSzurokDiv.dataset.epitve = String(tipusok.length);
+      tipusSzurokDiv.querySelectorAll('.szuro-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          tipusSzurokDiv.querySelectorAll('.szuro-btn').forEach(b => b.classList.remove('aktiv'));
+          btn.classList.add('aktiv');
+          aktivTipusSzuro = btn.dataset.tipus;
+          renderJarmuvek();
+        });
+      });
+    }
+
+    let szurt = aktivSzuro === 'mind' ? osszesJarmu : osszesJarmu.filter(j => j.kategoria === aktivSzuro);
+
+    if (aktivTipusSzuro !== 'mind') {
+      szurt = szurt.filter(j => j.eszkoz_tipus === aktivTipusSzuro);
+    }
+
+    if (keresoSzoveg) {
+      const q = keresoSzoveg.toLowerCase();
+      szurt = szurt.filter(j =>
+        (j.route_id || '').toLowerCase().includes(q) ||
+        (j.kijelzo_szoveg || '').toLowerCase().includes(q) ||
+        (j.rendszam || '').toLowerCase().includes(q)
+      );
+    }
+
+    // Rendellenesek elöl
+    szurt.sort((a, b) => (a.kategoria === 'rendellenes' ? -1 : 1) - (b.kategoria === 'rendellenes' ? -1 : 1));
+
+    const tartalom = document.getElementById('tartalom');
+    if (szurt.length === 0) {
+      tartalom.innerHTML = '<div class="ures-allapot">Nincs a szűrésnek megfelelő jármű.</div>';
+      return;
+    }
+
+    tartalom.innerHTML = szurt.map((j, idx) => {
+      const gmaps = (j.lat && j.lon) ? `https://www.google.com/maps?q=${j.lat},${j.lon}&z=17` : null;
+      const futarLink = `https://futar.bkk.hu/?vehicleId=${encodeURIComponent(j.vehicle_id)}`;
+      const isRendellenes = j.kategoria === 'rendellenes';
+      const isIsmeretlen = j.kategoria === 'ismeretlen';
+
+      let badge = 'normál';
+      if (isRendellenes) badge = '🚨 ' + escapeHtml(j.egyezo_kulcsszo);
+      else if (isIsmeretlen) badge = '❔ nincs adat';
+
+      return `
+        <div class="jarmu-item ${isRendellenes ? 'rendellenes' : ''}" data-idx="${idx}">
+          <div class="jarmu-fejlec">
+            <span class="jarmu-jarat">${escapeHtml(j.route_id || '—')}${j.eszkoz_tipus ? ` <span style="color:var(--text-muted);font-weight:400">· ${escapeHtml(j.eszkoz_tipus)}</span>` : ''}</span>
+            <span class="jarmu-badge">${badge}</span>
+          </div>
+          <div class="jarmu-kijelzo">${isIsmeretlen ? 'Ez a jármű online, de a kijelző-adata jelenleg nem lekérdezhető.' : escapeHtml(j.kijelzo_szoveg || '—')}</div>
+          <div class="jarmu-linkek">
+            <div style="width:100%;font-size:12px;color:var(--text-muted);margin-bottom:6px">
+              ${j.rendszam ? `🔢 Rendszám: ${escapeHtml(j.rendszam)}<br>` : ''}
+              ${j.modell ? `🚐 Modell: ${escapeHtml(j.modell)}<br>` : ''}
+              🆔 Jármű: ${escapeHtml(j.vehicle_label || j.vehicle_id)}<br>
+              ${j.statusz ? `📡 Állapot: ${escapeHtml(j.statusz)}${j.akadalymentes === true ? ' · ♿ akadálymentes' : ''}` : ''}
+            </div>
+            ${gmaps ? `<a href="${gmaps}" target="_blank">📍 Google Maps</a>` : ''}
+            <a href="${futarLink}" target="_blank">🚋 FUTÁR</a>
+          </div>
+        </div>`;
+    }).join('');
+
+    document.querySelectorAll('.jarmu-item').forEach(el => {
+      el.addEventListener('click', () => el.classList.toggle('nyitva'));
+    });
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  document.querySelectorAll('.szuro-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.szuro-btn').forEach(b => b.classList.remove('aktiv'));
+      btn.classList.add('aktiv');
+      aktivSzuro = btn.dataset.szuro;
+      renderJarmuvek();
+    });
+  });
+
+  document.getElementById('kereso').addEventListener('input', (e) => {
+    keresoSzoveg = e.target.value;
+    renderJarmuvek();
+  });
+
+  betoltes();
+  setInterval(betoltes, 60000);
+</script>
+
+</body>
+</html>
