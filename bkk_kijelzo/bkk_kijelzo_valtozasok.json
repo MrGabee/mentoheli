@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-06T23:32:22.568696+02:00",
+  "frissitve": "2026-09-06T23:33:04.894405+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:02:53.023157+02:00",
-      "kulcs": "FLR715",
-      "rendszam": "FLR715",
-      "vehicle_id": "3129",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.59876251220703,
-      "lon": 19.121318817138672,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-06T12:02:53.023367+02:00",
-      "kulcs": "AAGL324",
-      "rendszam": "AAGL324",
-      "vehicle_id": "354",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.44873809814453,
-      "lon": 18.90523910522461,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-06T12:02:53.024045+02:00",
-      "kulcs": "V1441",
-      "rendszam": "V1441",
-      "vehicle_id": "4511",
-      "vehicle_label": "Döbrentei tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.432945251464844,
-      "lon": 19.037073135375977,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Szent Gellért tér - Műegyetem M"
-    },
-    {
-      "idopont": "2026-09-06T12:02:53.024109+02:00",
-      "kulcs": "AAMH616",
-      "rendszam": "AAMH616",
-      "vehicle_id": "459",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.57769012451172,
-      "lon": 19.11483383178711,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-06T12:02:53.024255+02:00",
-      "kulcs": "V4036",
-      "rendszam": "V4036",
-      "vehicle_id": "4725",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.49231719970703,
-      "lon": 19.08778190612793,
-      "elozo_szoveg": "Kőbányai út ► Új köztemető (Kozma utca)",
-      "uj_szoveg": "Új köztemető (Kozma utca)"
-    },
     {
       "idopont": "2026-09-06T12:02:53.024411+02:00",
       "kulcs": "V4116",
@@ -260000,6 +259935,71 @@
       "lon": 18.989757537841797,
       "elozo_szoveg": "Mindszenty József bíboros tér",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-06T23:33:04.816234+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "250B",
+      "route_id": "2502",
+      "lat": 47.42844772338867,
+      "lon": 19.023805618286133,
+      "elozo_szoveg": "Regényes utca ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-06T23:33:04.819001+02:00",
+      "kulcs": "V2289",
+      "rendszam": "V2289",
+      "vehicle_id": "587",
+      "vehicle_label": "Budafok kocsiszín",
+      "vonal_szam": "56",
+      "route_id": "3560",
+      "lat": 47.54300308227539,
+      "lon": 18.96432113647461,
+      "elozo_szoveg": "Krisztina körút ► Budafok kocsiszín",
+      "uj_szoveg": "Budafok kocsiszín"
+    },
+    {
+      "idopont": "2026-09-06T23:33:04.819720+02:00",
+      "kulcs": "NCV286",
+      "rendszam": "NCV286",
+      "vehicle_id": "6251",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "16",
+      "route_id": "0160",
+      "lat": 47.506591796875,
+      "lon": 19.023963928222656,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-06T23:33:04.820008+02:00",
+      "kulcs": "PDB382",
+      "rendszam": "PDB382",
+      "vehicle_id": "7064",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "44",
+      "route_id": "0440",
+      "lat": 47.51569366455078,
+      "lon": 19.183813095092773,
+      "elozo_szoveg": "Centenáriumi lakótelep",
+      "uj_szoveg": "Veres Péter út ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-06T23:33:04.820735+02:00",
+      "kulcs": "AOFL191",
+      "rendszam": "AOFL191",
+      "vehicle_id": "775",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "27",
+      "route_id": "0270",
+      "lat": 47.48801803588867,
+      "lon": 19.036861419677734,
+      "elozo_szoveg": "Sánc utca",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
