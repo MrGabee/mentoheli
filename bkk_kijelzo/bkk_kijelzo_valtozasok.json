@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:27:33.530756+02:00",
+  "frissitve": "2026-09-07T01:28:00.624869+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:23:16.417956+02:00",
-      "kulcs": "PDN606",
-      "rendszam": "PDN606",
-      "vehicle_id": "7078",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41046905517578,
-      "lon": 19.060609817504883,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-06T12:23:16.418266+02:00",
-      "kulcs": "PHG632",
-      "rendszam": "PHG632",
-      "vehicle_id": "7156",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.501487731933594,
-      "lon": 19.135984420776367,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-06T12:23:16.418881+02:00",
-      "kulcs": "RVY612",
-      "rendszam": "RVY612",
-      "vehicle_id": "7441",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.399200439453125,
-      "lon": 19.205638885498047,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-06T12:23:16.418932+02:00",
-      "kulcs": "RVY619",
-      "rendszam": "RVY619",
-      "vehicle_id": "7448",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.49971389770508,
-      "lon": 19.287151336669922,
-      "elozo_szoveg": "Rákoscsaba-Újtelep",
-      "uj_szoveg": "Dél-pesti autóbuszgarázs"
-    },
     {
       "idopont": "2026-09-06T12:23:16.419059+02:00",
       "kulcs": "AOGF679",
@@ -260000,6 +259948,58 @@
       "lon": 19.056947708129883,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-07T01:28:00.541245+02:00",
+      "kulcs": "RVY619",
+      "rendszam": "RVY619",
+      "vehicle_id": "7448",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59781265258789,
+      "lon": 19.05388069152832,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-07T01:28:00.541301+02:00",
+      "kulcs": "RVY716",
+      "rendszam": "RVY716",
+      "vehicle_id": "7465",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46484375,
+      "lon": 19.127883911132812,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-07T01:28:00.541416+02:00",
+      "kulcs": "SGY818",
+      "rendszam": "SGY818",
+      "vehicle_id": "7736",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.4796028137207,
+      "lon": 19.067264556884766,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-07T01:28:00.541837+02:00",
+      "kulcs": "AOIM043",
+      "rendszam": "AOIM043",
+      "vehicle_id": "964",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47492599487305,
+      "lon": 19.04681968688965,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
