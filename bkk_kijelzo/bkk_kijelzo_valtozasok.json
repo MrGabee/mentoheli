@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:16:21.290663+02:00",
+  "frissitve": "2026-09-07T01:16:50.838411+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:22:23.401239+02:00",
-      "kulcs": "AAHY812",
-      "rendszam": "AAHY812",
-      "vehicle_id": "372",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.60304641723633,
-      "lon": 19.066112518310547,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-06T12:22:23.401412+02:00",
-      "kulcs": "AAHY840",
-      "rendszam": "AAHY840",
-      "vehicle_id": "401",
-      "vehicle_label": "Rákospalota, Bogáncs u.",
-      "vonal_szam": "124",
-      "route_id": "1240",
-      "lat": 47.519126892089844,
-      "lon": 19.113115310668945,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Rákospalota, Bogáncs utca"
-    },
-    {
-      "idopont": "2026-09-06T12:22:23.401678+02:00",
-      "kulcs": "V1357",
-      "rendszam": "V1357",
-      "vehicle_id": "4458",
-      "vehicle_label": "Döbrentei tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.4269905090332,
-      "lon": 19.039264678955078,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Szent Gellért tér - Műegyetem M"
-    },
     {
       "idopont": "2026-09-06T12:22:23.401781+02:00",
       "kulcs": "V1444",
@@ -260000,6 +259961,45 @@
       "lon": 19.19628143310547,
       "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
       "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-09-07T01:16:50.749162+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.497493743896484,
+      "lon": 18.963958740234375,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T01:16:50.752907+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54155731201172,
+      "lon": 19.15142822265625,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T01:16:50.753699+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51202392578125,
+      "lon": 19.056930541992188,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
