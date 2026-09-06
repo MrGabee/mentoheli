@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:50:33.289059+02:00",
+  "frissitve": "2026-09-07T00:51:06.393298+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:18:00.831688+02:00",
-      "kulcs": "415 019",
-      "rendszam": "415 019",
-      "vehicle_id": "945514150198",
-      "vehicle_label": "Balatonszentgyörgy",
-      "vonal_szam": "IR",
-      "route_id": "IR",
-      "lat": 47.464088439941406,
-      "lon": 19.021230697631836,
-      "elozo_szoveg": "Győr",
-      "uj_szoveg": "Balatonszentgyörgy"
-    },
-    {
-      "idopont": "2026-09-06T12:18:58.997134+02:00",
-      "kulcs": "AADI606",
-      "rendszam": "AADI606",
-      "vehicle_id": "103",
-      "vehicle_label": "Csillebérc, KFKI",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.50056076049805,
-      "lon": 18.970325469970703,
-      "elozo_szoveg": "Normafa ► Csillebérc, KFKI",
-      "uj_szoveg": "Csillebérc, KFKI"
-    },
-    {
-      "idopont": "2026-09-06T12:18:58.997207+02:00",
-      "kulcs": "AILJ858",
-      "rendszam": "AILJ858",
-      "vehicle_id": "1057",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.597801208496094,
-      "lon": 19.053861618041992,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Pince köz ► Donát utca"
-    },
     {
       "idopont": "2026-09-06T12:18:58.997225+02:00",
       "kulcs": "AADI609",
@@ -260000,6 +259961,45 @@
       "lon": 19.129972457885742,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-07T00:51:06.307735+02:00",
+      "kulcs": "AAMH631",
+      "rendszam": "AAMH631",
+      "vehicle_id": "474",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49784469604492,
+      "lon": 19.054859161376953,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-07T00:51:06.307887+02:00",
+      "kulcs": "NBW015",
+      "rendszam": "NBW015",
+      "vehicle_id": "5985",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.5502815246582,
+      "lon": 19.042083740234375,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-07T00:51:06.308020+02:00",
+      "kulcs": "NNE055",
+      "rendszam": "NNE055",
+      "vehicle_id": "6451",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59849166870117,
+      "lon": 19.121301651000977,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
