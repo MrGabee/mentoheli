@@ -1,5 +1,5 @@
 {
-  "frissitve": "2026-09-06T02:09:39.308331+02:00",
+  "frissitve": "2026-09-06T02:10:11.250813+02:00",
   "valtozasok": [
     {
       "idopont": "2026-09-05T21:12:15.565004+02:00",
@@ -52117,6 +52117,32 @@
       "lon": 19.127338409423828,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-06T02:10:11.224959+02:00",
+      "kulcs": "AAGL271",
+      "rendszam": "AAGL271",
+      "vehicle_id": "271",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45518493652344,
+      "lon": 18.907825469970703,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-06T02:10:11.226268+02:00",
+      "kulcs": "AADI601",
+      "rendszam": "AADI601",
+      "vehicle_id": "61",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49976348876953,
+      "lon": 19.287109375,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
     }
   ]
 }
