@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:58:05.874432+02:00",
+  "frissitve": "2026-09-07T00:58:37.885530+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:18:59.008005+02:00",
-      "kulcs": "AOFL249",
-      "rendszam": "AOFL249",
-      "vehicle_id": "837",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.44132614135742,
-      "lon": 19.18509864807129,
-      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-06T12:18:59.008300+02:00",
-      "kulcs": "AOIB802",
-      "rendszam": "AOIB802",
-      "vehicle_id": "873",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "210B",
-      "route_id": "2102",
-      "lat": 47.54884338378906,
-      "lon": 19.0734806060791,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Normafa"
-    },
-    {
-      "idopont": "2026-09-06T12:18:59.008413+02:00",
-      "kulcs": "AADI593",
-      "rendszam": "AADI593",
-      "vehicle_id": "89",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.49344253540039,
-      "lon": 19.032535552978516,
-      "elozo_szoveg": "Naphegy tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-09-06T12:18:59.008476+02:00",
       "kulcs": "AOGL307",
@@ -260000,6 +259961,45 @@
       "lon": 19.046785354614258,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-07T00:58:37.823013+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.486995697021484,
+      "lon": 19.057546615600586,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-07T00:58:37.823141+02:00",
+      "kulcs": "RVY704",
+      "rendszam": "RVY704",
+      "vehicle_id": "7453",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.426631927490234,
+      "lon": 19.161073684692383,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-07T00:58:37.823160+02:00",
+      "kulcs": "RVY709",
+      "rendszam": "RVY709",
+      "vehicle_id": "7458",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.4327507019043,
+      "lon": 19.26156234741211,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
