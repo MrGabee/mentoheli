@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:32:01.660662+02:00",
+  "frissitve": "2026-09-07T01:32:29.866132+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:24:20.384156+02:00",
-      "kulcs": "PDB722",
-      "rendszam": "PDB722",
-      "vehicle_id": "7048",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53226852416992,
-      "lon": 19.067638397216797,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-06T12:24:20.385151+02:00",
-      "kulcs": "PKN615",
-      "rendszam": "PKN615",
-      "vehicle_id": "7204",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50136184692383,
-      "lon": 19.135986328125,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Bosnyák tér"
-    },
-    {
-      "idopont": "2026-09-06T12:24:20.385413+02:00",
-      "kulcs": "V2245",
-      "rendszam": "V2245",
-      "vehicle_id": "7377",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.50093460083008,
-      "lon": 19.024051666259766,
-      "elozo_szoveg": "Alkotás utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
     {
       "idopont": "2026-09-06T12:24:20.385572+02:00",
       "kulcs": "RVY607",
@@ -260000,6 +259961,45 @@
       "lon": 19.02289581298828,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-07T01:32:29.783611+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519283294677734,
+      "lon": 19.038209915161133,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-07T01:32:29.787772+02:00",
+      "kulcs": "PKN609",
+      "rendszam": "PKN609",
+      "vehicle_id": "7198",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51426315307617,
+      "lon": 19.097810745239258,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-07T01:32:29.787859+02:00",
+      "kulcs": "T8100",
+      "rendszam": "T8100",
+      "vehicle_id": "7337",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.497108459472656,
+      "lon": 19.055490493774414,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
