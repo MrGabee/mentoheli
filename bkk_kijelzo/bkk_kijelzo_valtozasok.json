@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:52:09.666552+02:00",
+  "frissitve": "2026-09-07T00:52:44.054171+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:18:58.997957+02:00",
-      "kulcs": "AADR755",
-      "rendszam": "AADR755",
-      "vehicle_id": "204",
-      "vehicle_label": "Nagyvárad tér M",
-      "vonal_szam": "OP24",
-      "route_id": "OP24",
-      "lat": 47.479496002197266,
-      "lon": 19.0898494720459,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Nagyvárad tér M"
-    },
-    {
-      "idopont": "2026-09-06T12:18:58.998066+02:00",
-      "kulcs": "AAGL262",
-      "rendszam": "AAGL262",
-      "vehicle_id": "262",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.456199645996094,
-      "lon": 18.94150161743164,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-06T12:18:58.998339+02:00",
       "kulcs": "AAGL283",
@@ -260000,6 +259974,32 @@
       "lon": 19.0382080078125,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-07T00:52:43.955588+02:00",
+      "kulcs": "AAGL317",
+      "rendszam": "AAGL317",
+      "vehicle_id": "345",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.448822021484375,
+      "lon": 18.907018661499023,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-07T00:52:43.955634+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.5804328918457,
+      "lon": 19.087303161621094,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
     }
   ]
 }
