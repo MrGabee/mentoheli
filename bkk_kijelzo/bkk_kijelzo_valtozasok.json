@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:36:35.254014+02:00",
+  "frissitve": "2026-09-07T01:37:06.000884+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:24:20.387315+02:00",
-      "kulcs": "AOGL304",
-      "rendszam": "AOGL304",
-      "vehicle_id": "894",
-      "vehicle_label": "Apor Vilmos tér",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.54942321777344,
-      "lon": 19.074222564697266,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Apor Vilmos tér"
-    },
-    {
-      "idopont": "2026-09-06T12:25:16.521225+02:00",
-      "kulcs": "AADI616",
-      "rendszam": "AADI616",
-      "vehicle_id": "113",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.533287048339844,
-      "lon": 19.06727409362793,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-06T12:25:16.521730+02:00",
-      "kulcs": "V2022",
-      "rendszam": "V2022",
-      "vehicle_id": "2022",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.50735855102539,
-      "lon": 19.024784088134766,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-06T12:25:16.521862+02:00",
       "kulcs": "V2040",
@@ -260000,6 +259961,45 @@
       "lon": 18.928041458129883,
       "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
       "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-07T01:37:05.917143+02:00",
+      "kulcs": "FJX190",
+      "rendszam": "FJX190",
+      "vehicle_id": "3010",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44279479980469,
+      "lon": 19.179222106933594,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T01:37:05.917191+02:00",
+      "kulcs": "FLR716",
+      "rendszam": "FLR716",
+      "vehicle_id": "3130",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52509307861328,
+      "lon": 19.063701629638672,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-07T01:37:05.920415+02:00",
+      "kulcs": "NBW015",
+      "rendszam": "NBW015",
+      "vehicle_id": "5985",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48521423339844,
+      "lon": 19.125093460083008,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
