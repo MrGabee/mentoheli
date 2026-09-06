@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:29:06.874706+02:00",
+  "frissitve": "2026-09-07T00:29:45.871119+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:15:51.749858+02:00",
-      "kulcs": "AADI605",
-      "rendszam": "AADI605",
-      "vehicle_id": "102",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.46474075317383,
-      "lon": 19.01764488220215,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Jégmadár utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-09-06T12:15:51.750552+02:00",
-      "kulcs": "V2015",
-      "rendszam": "V2015",
-      "vehicle_id": "2015",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.50742721557617,
-      "lon": 19.023571014404297,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-06T12:15:51.750791+02:00",
-      "kulcs": "V2041",
-      "rendszam": "V2041",
-      "vehicle_id": "2041",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.47673416137695,
-      "lon": 19.05117416381836,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-06T12:15:51.750848+02:00",
-      "kulcs": "AAGL255",
-      "rendszam": "AAGL255",
-      "vehicle_id": "255",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "113",
-      "route_id": "1130",
-      "lat": 47.40806579589844,
-      "lon": 18.953054428100586,
-      "elozo_szoveg": "Diósd, Sashegyi út",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
     {
       "idopont": "2026-09-06T12:15:51.751060+02:00",
       "kulcs": "FLR711",
@@ -260000,6 +259948,58 @@
       "lon": 19.024839401245117,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-07T00:29:45.813158+02:00",
+      "kulcs": "AAMH663",
+      "rendszam": "AAMH663",
+      "vehicle_id": "506",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50153732299805,
+      "lon": 19.13618278503418,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-07T00:29:45.813209+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50746154785156,
+      "lon": 19.025257110595703,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-07T00:29:45.813398+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.527732849121094,
+      "lon": 19.036691665649414,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-07T00:29:45.813742+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.514041900634766,
+      "lon": 19.103105545043945,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
