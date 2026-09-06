@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:47:21.314667+02:00",
+  "frissitve": "2026-09-07T00:47:54.010463+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:18:00.823051+02:00",
-      "kulcs": "V1590",
-      "rendszam": "V1590",
-      "vehicle_id": "4642",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.465030670166016,
-      "lon": 19.1260929107666,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-09-06T12:18:00.823222+02:00",
-      "kulcs": "V4087",
-      "rendszam": "V4087",
-      "vehicle_id": "4776",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.49592590332031,
-      "lon": 19.072717666625977,
-      "elozo_szoveg": "Izraelita temető",
-      "uj_szoveg": "Kőbányai út ► Új köztemető (Kozma utca)"
-    },
     {
       "idopont": "2026-09-06T12:18:00.824107+02:00",
       "kulcs": "V2209",
@@ -260000,6 +259974,32 @@
       "lon": 19.186643600463867,
       "elozo_szoveg": null,
       "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-07T00:47:53.921568+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48478698730469,
+      "lon": 19.02206802368164,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-07T00:47:53.925375+02:00",
+      "kulcs": "NGC162",
+      "rendszam": "NGC162",
+      "vehicle_id": "6202",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.52496337890625,
+      "lon": 19.037921905517578,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
     }
   ]
 }
