@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:34:07.867663+02:00",
+  "frissitve": "2026-09-07T01:34:35.294174+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:24:20.386706+02:00",
-      "kulcs": "T9149",
-      "rendszam": "T9149",
-      "vehicle_id": "7888",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489356994628906,
-      "lon": 19.09014320373535,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-06T12:24:20.386931+02:00",
-      "kulcs": "AOFL228",
-      "rendszam": "AOFL228",
-      "vehicle_id": "815",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53529739379883,
-      "lon": 19.02655601501465,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-06T12:24:20.386954+02:00",
-      "kulcs": "AOFL230",
-      "rendszam": "AOFL230",
-      "vehicle_id": "818",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.57234573364258,
-      "lon": 19.005306243896484,
-      "elozo_szoveg": "Harsánylejtő",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
     {
       "idopont": "2026-09-06T12:24:20.386988+02:00",
       "kulcs": "AOFL235",
@@ -260000,6 +259961,45 @@
       "lon": 19.107227325439453,
       "elozo_szoveg": "Rákoskeresztúr, városkp.",
       "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-07T01:34:35.210627+02:00",
+      "kulcs": "NWB360",
+      "rendszam": "NWB360",
+      "vehicle_id": "6540",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.46278381347656,
+      "lon": 19.00539779663086,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-07T01:34:35.210708+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.473777770996094,
+      "lon": 18.991119384765625,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-07T01:34:35.211373+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.5101432800293,
+      "lon": 19.127883911132812,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
     }
   ]
 }
