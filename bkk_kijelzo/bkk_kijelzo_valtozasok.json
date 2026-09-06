@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:28:32.556403+02:00",
+  "frissitve": "2026-09-07T00:29:06.874706+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:14:41.566154+02:00",
-      "kulcs": "1107-754-1108-1109-755-1110",
-      "rendszam": "1107-754-1108-1109-755-1110",
-      "vehicle_id": "905516561073-905536467541-905516561081-905516561099-905536467558-905516561107",
-      "vehicle_label": "Szentendre",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.50709915161133,
-      "lon": 19.039409637451172,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Szentendre"
-    },
-    {
-      "idopont": "2026-09-06T12:15:51.749714+02:00",
-      "kulcs": "AOJM876",
-      "rendszam": "AOJM876",
-      "vehicle_id": "1000",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46900939941406,
-      "lon": 19.29726219177246,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-06T12:15:51.749814+02:00",
-      "kulcs": "AONW951",
-      "rendszam": "AONW951",
-      "vehicle_id": "1016",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.50639724731445,
-      "lon": 19.02431297302246,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Gazdagréti tér"
-    },
     {
       "idopont": "2026-09-06T12:15:51.749858+02:00",
       "kulcs": "AADI605",
@@ -260000,6 +259961,45 @@
       "lon": 19.14798927307129,
       "elozo_szoveg": "Csepel, Határ utca",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-07T00:29:06.787302+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.598487854003906,
+      "lon": 19.121280670166016,
+      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T00:29:06.787372+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.53721618652344,
+      "lon": 19.068613052368164,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T00:29:06.787403+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507530212402344,
+      "lon": 19.024839401245117,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
