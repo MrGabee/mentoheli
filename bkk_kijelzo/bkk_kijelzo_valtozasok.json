@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-06T23:37:07.131462+02:00",
+  "frissitve": "2026-09-06T23:37:45.982466+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:04:44.788502+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.499855041503906,
-      "lon": 19.035139083862305,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-06T12:04:44.788552+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50657653808594,
-      "lon": 19.023948669433594,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-06T12:04:44.788660+02:00",
-      "kulcs": "NLE860",
-      "rendszam": "NLE860",
-      "vehicle_id": "6412",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50695037841797,
-      "lon": 19.02334976196289,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-06T12:04:44.788741+02:00",
-      "kulcs": "NNE055",
-      "rendszam": "NNE055",
-      "vehicle_id": "6451",
-      "vehicle_label": "Pasaréti tér",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.56766891479492,
-      "lon": 19.127195358276367,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Pasaréti tér"
-    },
-    {
-      "idopont": "2026-09-06T12:04:44.788794+02:00",
-      "kulcs": "V1613",
-      "rendszam": "V1613",
-      "vehicle_id": "6474",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.4219856262207,
-      "lon": 19.122220993041992,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-06T12:04:44.788989+02:00",
       "kulcs": "AADI592",
@@ -260000,6 +259935,71 @@
       "lon": 19.048709869384766,
       "elozo_szoveg": "Újbuda-központ M",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-06T23:37:45.907814+02:00",
+      "kulcs": "V2209",
+      "rendszam": "V2209",
+      "vehicle_id": "5849",
+      "vehicle_label": "Kispest, Tulipán utca",
+      "vonal_szam": "42",
+      "route_id": "3420",
+      "lat": 47.4649772644043,
+      "lon": 19.1262264251709,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Kispest, Tulipán utca"
+    },
+    {
+      "idopont": "2026-09-06T23:37:45.908130+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Jégmadár utca",
+      "vonal_szam": "141",
+      "route_id": "1410",
+      "lat": 47.43036651611328,
+      "lon": 19.036361694335938,
+      "elozo_szoveg": "Savoyai Jenő tér (Törley tér)",
+      "uj_szoveg": "Jégmadár utca"
+    },
+    {
+      "idopont": "2026-09-06T23:37:45.908154+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Csillebérc, KFKI",
+      "vonal_szam": "221",
+      "route_id": "2210",
+      "lat": 47.50056838989258,
+      "lon": 18.970304489135742,
+      "elozo_szoveg": "Normafa ► Csillebérc, KFKI",
+      "uj_szoveg": "Csillebérc, KFKI"
+    },
+    {
+      "idopont": "2026-09-06T23:37:45.909700+02:00",
+      "kulcs": "RVY613",
+      "rendszam": "RVY613",
+      "vehicle_id": "7442",
+      "vehicle_label": "Havanna-lakótelep",
+      "vonal_szam": "136",
+      "route_id": "1360",
+      "lat": 47.46339797973633,
+      "lon": 19.14731788635254,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Havanna-lakótelep"
+    },
+    {
+      "idopont": "2026-09-06T23:37:45.910507+02:00",
+      "kulcs": "AOFL205",
+      "rendszam": "AOFL205",
+      "vehicle_id": "789",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "987",
+      "route_id": "9870",
+      "lat": 47.44633102416992,
+      "lon": 18.99854278564453,
+      "elozo_szoveg": "Kőérberek",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
