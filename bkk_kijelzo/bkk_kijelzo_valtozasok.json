@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:28:02.109795+02:00",
+  "frissitve": "2026-09-07T00:28:32.556403+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:14:41.565713+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.59465026855469,
-      "lon": 19.051498413085938,
-      "elozo_szoveg": "Pince köz ► Donát utca",
-      "uj_szoveg": "Donát utca ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-06T12:14:41.565733+02:00",
-      "kulcs": "AOFL237",
-      "rendszam": "AOFL237",
-      "vehicle_id": "825",
-      "vehicle_label": "Óbudai autóbuszgarázs",
-      "vonal_szam": "118",
-      "route_id": "1180",
-      "lat": 47.53986740112305,
-      "lon": 19.045875549316406,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Óbudai autóbuszgarázs"
-    },
     {
       "idopont": "2026-09-06T12:14:41.566154+02:00",
       "kulcs": "1107-754-1108-1109-755-1110",
@@ -260000,6 +259974,32 @@
       "lon": 19.15955352783203,
       "elozo_szoveg": "Gloriett-lakótelep",
       "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-07T00:28:32.472082+02:00",
+      "kulcs": "480 014",
+      "rendszam": "480 014",
+      "vehicle_id": "915504800144",
+      "vehicle_label": "Székesfehérvár",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.46318054199219,
+      "lon": 19.02083969116211,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Székesfehérvár"
+    },
+    {
+      "idopont": "2026-09-07T00:28:32.472174+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46321487426758,
+      "lon": 19.14798927307129,
+      "elozo_szoveg": "Csepel, Határ utca",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
