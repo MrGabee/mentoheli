@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:15:14.701388+02:00",
+  "frissitve": "2026-09-07T00:15:51.805151+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:14:41.559558+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.577762603759766,
-      "lon": 19.106218338012695,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-06T12:14:41.559753+02:00",
-      "kulcs": "V1301",
-      "rendszam": "V1301",
-      "vehicle_id": "4406",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.426513671875,
-      "lon": 19.039464950561523,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-06T12:14:41.560419+02:00",
-      "kulcs": "V1335",
-      "rendszam": "V1335",
-      "vehicle_id": "4438",
-      "vehicle_label": "Széchenyi István tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51261520385742,
-      "lon": 19.04784393310547,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Széchenyi István tér"
-    },
     {
       "idopont": "2026-09-06T12:14:41.560513+02:00",
       "kulcs": "V1359",
@@ -260000,6 +259961,45 @@
       "lon": 19.159727096557617,
       "elozo_szoveg": "Gloriett-lakótelep",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-07T00:15:51.718396+02:00",
+      "kulcs": "V2020",
+      "rendszam": "V2020",
+      "vehicle_id": "2020",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.5109748840332,
+      "lon": 19.032093048095703,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-07T00:15:51.718812+02:00",
+      "kulcs": "PKN610",
+      "rendszam": "PKN610",
+      "vehicle_id": "7199",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.515541076660156,
+      "lon": 19.031707763671875,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-07T00:15:51.718969+02:00",
+      "kulcs": "AOFL255",
+      "rendszam": "AOFL255",
+      "vehicle_id": "844",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.434410095214844,
+      "lon": 19.200210571289062,
+      "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
+      "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
     }
   ]
 }
