@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:41:30.528862+02:00",
+  "frissitve": "2026-09-07T01:41:58.466548+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:25:16.527619+02:00",
-      "kulcs": "V2242",
-      "rendszam": "V2242",
-      "vehicle_id": "7374",
-      "vehicle_label": "Clark Ádám tér",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.465858459472656,
-      "lon": 19.021970748901367,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Clark Ádám tér"
-    },
-    {
-      "idopont": "2026-09-06T12:25:16.527670+02:00",
-      "kulcs": "V2248",
-      "rendszam": "V2248",
-      "vehicle_id": "7380",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.48433303833008,
-      "lon": 19.02635383605957,
-      "elozo_szoveg": "Alkotás utca ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-06T12:25:16.527701+02:00",
-      "kulcs": "V2254",
-      "rendszam": "V2254",
-      "vehicle_id": "7386",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.548282623291016,
-      "lon": 19.028955459594727,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-09-06T12:25:16.528347+02:00",
-      "kulcs": "SKR736",
-      "rendszam": "SKR736",
-      "vehicle_id": "7685",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.432716369628906,
-      "lon": 19.26156997680664,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-06T12:25:16.528366+02:00",
       "kulcs": "SKR805",
@@ -260000,6 +259948,58 @@
       "lon": 19.263208389282227,
       "elozo_szoveg": "Rákoskert sugárút",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-07T01:41:58.377045+02:00",
+      "kulcs": "AADR708",
+      "rendszam": "AADR708",
+      "vehicle_id": "176",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.46153259277344,
+      "lon": 19.130332946777344,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-07T01:41:58.377093+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.4376335144043,
+      "lon": 19.100927352905273,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-07T01:41:58.381412+02:00",
+      "kulcs": "NGC150",
+      "rendszam": "NGC150",
+      "vehicle_id": "6197",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47788619995117,
+      "lon": 19.046415328979492,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-07T01:41:58.381777+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55045700073242,
+      "lon": 19.042160034179688,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
