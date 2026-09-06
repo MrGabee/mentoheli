@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:56:22.611534+02:00",
+  "frissitve": "2026-09-07T00:56:53.238633+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:18:59.002977+02:00",
-      "kulcs": "NLE852",
-      "rendszam": "NLE852",
-      "vehicle_id": "6404",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.506263732910156,
-      "lon": 19.024396896362305,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-06T12:18:59.003017+02:00",
-      "kulcs": "NLE860",
-      "rendszam": "NLE860",
-      "vehicle_id": "6412",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.506797790527344,
-      "lon": 19.02371597290039,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-06T12:18:59.003185+02:00",
-      "kulcs": "NNE067",
-      "rendszam": "NNE067",
-      "vehicle_id": "6463",
-      "vehicle_label": "Római úti lakótelep",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.53236389160156,
-      "lon": 19.067535400390625,
-      "elozo_szoveg": null,
-      "uj_szoveg": "Római úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-06T12:18:59.003664+02:00",
-      "kulcs": "PDB705",
-      "rendszam": "PDB705",
-      "vehicle_id": "7031",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.48396301269531,
-      "lon": 19.127700805664062,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
-    {
-      "idopont": "2026-09-06T12:18:59.003744+02:00",
-      "kulcs": "PDB716",
-      "rendszam": "PDB716",
-      "vehicle_id": "7042",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.60281753540039,
-      "lon": 19.06645965576172,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-06T12:18:59.004379+02:00",
       "kulcs": "PDN616",
@@ -260000,6 +259935,71 @@
       "lon": 19.105915069580078,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T00:56:53.151859+02:00",
+      "kulcs": "V2020",
+      "rendszam": "V2020",
+      "vehicle_id": "2020",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.4776496887207,
+      "lon": 19.048828125,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-07T00:56:53.154040+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.585655212402344,
+      "lon": 19.094127655029297,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-07T00:56:53.154244+02:00",
+      "kulcs": "NGC150",
+      "rendszam": "NGC150",
+      "vehicle_id": "6197",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.507965087890625,
+      "lon": 19.02646827697754,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-07T00:56:53.154283+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50404739379883,
+      "lon": 19.02523422241211,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-07T00:56:53.154538+02:00",
+      "kulcs": "RVY717",
+      "rendszam": "RVY717",
+      "vehicle_id": "7466",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.462547302246094,
+      "lon": 19.133005142211914,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
