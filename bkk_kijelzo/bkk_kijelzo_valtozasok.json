@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:38:46.023963+02:00",
+  "frissitve": "2026-09-07T00:39:18.668576+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:16:53.696751+02:00",
-      "kulcs": "AAHY814",
-      "rendszam": "AAHY814",
-      "vehicle_id": "375",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.585411071777344,
-      "lon": 19.124996185302734,
-      "elozo_szoveg": "Rákospalota, Csömöri-patak",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-06T12:16:53.696939+02:00",
-      "kulcs": "AAHY867",
-      "rendszam": "AAHY867",
-      "vehicle_id": "429",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.56023406982422,
-      "lon": 19.090909957885742,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-06T12:16:53.697395+02:00",
-      "kulcs": "V1321",
-      "rendszam": "V1321",
-      "vehicle_id": "4425",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.4676399230957,
-      "lon": 19.076030731201172,
-      "elozo_szoveg": "Nagyvárad tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-06T12:16:53.697423+02:00",
       "kulcs": "V1330",
@@ -260000,6 +259961,45 @@
       "lon": 19.16109275817871,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-07T00:39:18.585371+02:00",
+      "kulcs": "NGC162",
+      "rendszam": "NGC162",
+      "vehicle_id": "6202",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.50981521606445,
+      "lon": 19.057117462158203,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-07T00:39:18.585497+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53398895263672,
+      "lon": 19.082149505615234,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-07T00:39:18.585738+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50104522705078,
+      "lon": 19.114395141601562,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
