@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:50:53.276432+02:00",
+  "frissitve": "2026-09-07T01:51:20.777145+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:27:09.349955+02:00",
-      "kulcs": "FLR714",
-      "rendszam": "FLR714",
-      "vehicle_id": "3128",
-      "vehicle_label": "Rákoshegy",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.501548767089844,
-      "lon": 19.13616943359375,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákoshegy"
-    },
-    {
-      "idopont": "2026-09-06T12:27:09.350325+02:00",
-      "kulcs": "AAHY827",
-      "rendszam": "AAHY827",
-      "vehicle_id": "388",
-      "vehicle_label": "Újpest, Fóti út",
-      "vonal_szam": "96",
-      "route_id": "0960",
-      "lat": 47.541542053222656,
-      "lon": 19.151412963867188,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest, Fóti út"
-    },
-    {
-      "idopont": "2026-09-06T12:27:09.350371+02:00",
-      "kulcs": "AAHY834",
-      "rendszam": "AAHY834",
-      "vehicle_id": "395",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.602664947509766,
-      "lon": 19.06618309020996,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Budakalász, Auchan áruház ► Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-06T12:27:09.351401+02:00",
-      "kulcs": "AAMH610",
-      "rendszam": "AAMH610",
-      "vehicle_id": "453",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.541717529296875,
-      "lon": 19.151103973388672,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
     {
       "idopont": "2026-09-06T12:27:09.352022+02:00",
       "kulcs": "V1609",
@@ -260000,6 +259948,58 @@
       "lon": 19.07628631591797,
       "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-07T01:51:20.685034+02:00",
+      "kulcs": "FJX190",
+      "rendszam": "FJX190",
+      "vehicle_id": "3010",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40449142456055,
+      "lon": 19.185911178588867,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-07T01:51:20.687568+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48179626464844,
+      "lon": 19.143651962280273,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-07T01:51:20.687991+02:00",
+      "kulcs": "PKN622",
+      "rendszam": "PKN622",
+      "vehicle_id": "7211",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55027389526367,
+      "lon": 19.04206657409668,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-07T01:51:20.688031+02:00",
+      "kulcs": "RTA297",
+      "rendszam": "RTA297",
+      "vehicle_id": "7413",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48275375366211,
+      "lon": 19.130327224731445,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
