@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:44:57.762681+02:00",
+  "frissitve": "2026-09-07T01:45:29.327896+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:26:05.980643+02:00",
-      "kulcs": "V1340",
-      "rendszam": "V1340",
-      "vehicle_id": "4443",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49934005737305,
-      "lon": 19.08252716064453,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-06T12:26:05.980689+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49247741699219,
-      "lon": 19.040943145751953,
-      "elozo_szoveg": "Döbrentei tér",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-06T12:26:05.980918+02:00",
-      "kulcs": "V1591",
-      "rendszam": "V1591",
-      "vehicle_id": "4643",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51887512207031,
-      "lon": 19.091642379760742,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
     {
       "idopont": "2026-09-06T12:26:05.981547+02:00",
       "kulcs": "AAMH670",
@@ -260000,6 +259961,45 @@
       "lon": 19.121206283569336,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-07T01:45:29.244450+02:00",
+      "kulcs": "PMP920",
+      "rendszam": "PMP920",
+      "vehicle_id": "7238",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50236511230469,
+      "lon": 19.13639259338379,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-07T01:45:29.244578+02:00",
+      "kulcs": "RVY704",
+      "rendszam": "RVY704",
+      "vehicle_id": "7453",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51103591918945,
+      "lon": 19.05623435974121,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-07T01:45:29.244773+02:00",
+      "kulcs": "AADI588",
+      "rendszam": "AADI588",
+      "vehicle_id": "88",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.47809600830078,
+      "lon": 19.045289993286133,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
     }
   ]
 }
