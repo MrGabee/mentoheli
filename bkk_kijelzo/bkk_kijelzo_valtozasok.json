@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T00:26:27.141057+02:00",
+  "frissitve": "2026-09-07T00:26:57.012096+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:14:41.563643+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.49678421020508,
-      "lon": 19.042030334472656,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-06T12:14:41.563686+02:00",
-      "kulcs": "V2248",
-      "rendszam": "V2248",
-      "vehicle_id": "7380",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47549057006836,
-      "lon": 19.046979904174805,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-06T12:14:41.564868+02:00",
-      "kulcs": "SCD593",
-      "rendszam": "SCD593",
-      "vehicle_id": "7654",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.427520751953125,
-      "lon": 19.17317008972168,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-06T12:14:41.564929+02:00",
       "kulcs": "SKR729",
@@ -260000,6 +259961,45 @@
       "lon": 19.0485897064209,
       "elozo_szoveg": null,
       "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-07T00:26:56.928991+02:00",
+      "kulcs": "MOS289",
+      "rendszam": "MOS289",
+      "vehicle_id": "196",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.50127029418945,
+      "lon": 19.119489669799805,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-09-07T00:26:56.929090+02:00",
+      "kulcs": "AAGL271",
+      "rendszam": "AAGL271",
+      "vehicle_id": "271",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45573806762695,
+      "lon": 18.940956115722656,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-07T00:26:56.929312+02:00",
+      "kulcs": "NBW011",
+      "rendszam": "NBW011",
+      "vehicle_id": "5981",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50397872924805,
+      "lon": 19.142215728759766,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
     }
   ]
 }
