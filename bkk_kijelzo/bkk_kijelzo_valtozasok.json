@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:33:31.222067+02:00",
+  "frissitve": "2026-09-07T01:34:07.867663+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:24:20.386288+02:00",
-      "kulcs": "SGY811",
-      "rendszam": "SGY811",
-      "vehicle_id": "7729",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.47405242919922,
-      "lon": 19.048534393310547,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-06T12:24:20.386358+02:00",
-      "kulcs": "SGY823",
-      "rendszam": "SGY823",
-      "vehicle_id": "7741",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.454673767089844,
-      "lon": 19.181779861450195,
-      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
-      "uj_szoveg": "Pestszentlőrinc vasútáll."
-    },
-    {
-      "idopont": "2026-09-06T12:24:20.386405+02:00",
-      "kulcs": "AOFL195",
-      "rendszam": "AOFL195",
-      "vehicle_id": "779",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.48296356201172,
-      "lon": 19.04465675354004,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
-    {
-      "idopont": "2026-09-06T12:24:20.386517+02:00",
-      "kulcs": "T9123",
-      "rendszam": "T9123",
-      "vehicle_id": "7862",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.506080627441406,
-      "lon": 19.050798416137695,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
     {
       "idopont": "2026-09-06T12:24:20.386706+02:00",
       "kulcs": "T9149",
@@ -260000,6 +259948,58 @@
       "lon": 19.014127731323242,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-07T01:34:07.803318+02:00",
+      "kulcs": "FKU918",
+      "rendszam": "FKU918",
+      "vehicle_id": "3074",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54156494140625,
+      "lon": 19.151384353637695,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-07T01:34:07.805746+02:00",
+      "kulcs": "AAGL319",
+      "rendszam": "AAGL319",
+      "vehicle_id": "348",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.544700622558594,
+      "lon": 18.719430923461914,
+      "elozo_szoveg": "Astoria M ► Zsámbék",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-07T01:34:07.806012+02:00",
+      "kulcs": "NWB355",
+      "rendszam": "NWB355",
+      "vehicle_id": "6535",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.53657150268555,
+      "lon": 19.10697364807129,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-07T01:34:07.806104+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.53648376464844,
+      "lon": 19.107227325439453,
+      "elozo_szoveg": "Rákoskeresztúr, városkp.",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
     }
   ]
 }
