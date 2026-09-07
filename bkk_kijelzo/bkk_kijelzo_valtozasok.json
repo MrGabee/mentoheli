@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T02:34:56.959836+02:00",
+  "frissitve": "2026-09-07T02:35:26.887697+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:32:55.462557+02:00",
-      "kulcs": "SKR805",
-      "rendszam": "SKR805",
-      "vehicle_id": "7691",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51448440551758,
-      "lon": 19.0017032623291,
-      "elozo_szoveg": "Rózsadomb ► Nyugati pályaudvar M",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-06T12:32:55.462647+02:00",
-      "kulcs": "SKR817",
-      "rendszam": "SKR817",
-      "vehicle_id": "7702",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.51659393310547,
-      "lon": 18.976720809936523,
-      "elozo_szoveg": "Zugliget, Libegő",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-06T12:32:55.462754+02:00",
-      "kulcs": "SKR826",
-      "rendszam": "SKR826",
-      "vehicle_id": "7712",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46451187133789,
-      "lon": 19.126771926879883,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-09-06T12:32:55.462944+02:00",
       "kulcs": "SGY819",
@@ -260000,6 +259961,45 @@
       "lon": 19.06722640991211,
       "elozo_szoveg": "Boráros tér H",
       "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-07T02:35:26.827487+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.455772399902344,
+      "lon": 18.941085815429688,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-09-07T02:35:26.827810+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.431209564208984,
+      "lon": 18.928096771240234,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-07T02:35:26.827876+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44255828857422,
+      "lon": 19.179798126220703,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
     }
   ]
 }
