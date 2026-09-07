@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T00:58:02.186127+02:00",
+  "frissitve": "2026-09-08T00:58:31.243548+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T14:59:56.909007+02:00",
-      "kulcs": "T8121",
-      "rendszam": "T8121",
-      "vehicle_id": "7900",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52534103393555,
-      "lon": 19.063432693481445,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-07T14:59:56.909056+02:00",
-      "kulcs": "AOFL213",
-      "rendszam": "AOFL213",
-      "vehicle_id": "800",
-      "vehicle_label": "Kurucles",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.50770950317383,
-      "lon": 19.024646759033203,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Kurucles"
-    },
-    {
-      "idopont": "2026-09-07T14:59:56.909163+02:00",
-      "kulcs": "AOFL225",
-      "rendszam": "AOFL225",
-      "vehicle_id": "812",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54017639160156,
-      "lon": 19.046279907226562,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Erdőalja út ► Máramaros út"
-    },
     {
       "idopont": "2026-09-07T14:59:56.909194+02:00",
       "kulcs": "AOFL228",
@@ -260000,6 +259961,45 @@
       "lon": 19.161060333251953,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-08T00:58:31.160546+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48720169067383,
+      "lon": 19.05791664123535,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-08T00:58:31.160743+02:00",
+      "kulcs": "NTM437",
+      "rendszam": "NTM437",
+      "vehicle_id": "6505",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.568538665771484,
+      "lon": 19.027048110961914,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-08T00:58:31.160793+02:00",
+      "kulcs": "NWB361",
+      "rendszam": "NWB361",
+      "vehicle_id": "6541",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523826599121094,
+      "lon": 18.993255615234375,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
     }
   ]
 }
