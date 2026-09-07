@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:25:28.308633+02:00",
+  "frissitve": "2026-09-08T01:26:04.238143+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:02:53.979968+02:00",
-      "kulcs": "T8011",
-      "rendszam": "T8011",
-      "vehicle_id": "6131",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.516944885253906,
-      "lon": 19.092838287353516,
-      "elozo_szoveg": "Erzsébet k.né útja, alulj.",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.980010+02:00",
-      "kulcs": "T8014",
-      "rendszam": "T8014",
-      "vehicle_id": "6134",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50617980957031,
-      "lon": 19.050813674926758,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.980027+02:00",
-      "kulcs": "T8016",
-      "rendszam": "T8016",
-      "vehicle_id": "6136",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.4759521484375,
-      "lon": 19.100217819213867,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
     {
       "idopont": "2026-09-07T15:02:53.980340+02:00",
       "kulcs": "NGC164",
@@ -260000,6 +259961,45 @@
       "lon": 19.121299743652344,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-08T01:26:04.154480+02:00",
+      "kulcs": "NTM437",
+      "rendszam": "NTM437",
+      "vehicle_id": "6505",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50768280029297,
+      "lon": 19.024925231933594,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-08T01:26:04.154764+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.508052825927734,
+      "lon": 19.027423858642578,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-08T01:26:04.155214+02:00",
+      "kulcs": "AOIM043",
+      "rendszam": "AOIM043",
+      "vehicle_id": "964",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.475921630859375,
+      "lon": 19.047109603881836,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
