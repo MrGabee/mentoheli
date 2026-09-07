@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T04:00:40.977648+02:00",
+  "frissitve": "2026-09-07T04:01:11.615256+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:47:18.863455+02:00",
-      "kulcs": "AADI643",
-      "rendszam": "AADI643",
-      "vehicle_id": "142",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44160079956055,
-      "lon": 19.034194946289062,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-06T12:47:18.863789+02:00",
-      "kulcs": "V2011",
-      "rendszam": "V2011",
-      "vehicle_id": "2011",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.50730895996094,
-      "lon": 19.024738311767578,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-06T12:47:18.864149+02:00",
-      "kulcs": "AAGL272",
-      "rendszam": "AAGL272",
-      "vehicle_id": "272",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "188",
-      "route_id": "1880",
-      "lat": 47.46436309814453,
-      "lon": 19.018552780151367,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budakeszi, Honfoglalás sétány"
-    },
     {
       "idopont": "2026-09-06T12:47:18.864399+02:00",
       "kulcs": "AAGL288",
@@ -260000,6 +259961,45 @@
       "lon": 19.051101684570312,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-07T04:01:11.526748+02:00",
+      "kulcs": "MOS287",
+      "rendszam": "MOS287",
+      "vehicle_id": "5740",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "38A",
+      "route_id": "0381",
+      "lat": 47.37700653076172,
+      "lon": 19.007062911987305,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-09-07T04:01:11.526827+02:00",
+      "kulcs": "MUT894",
+      "rendszam": "MUT894",
+      "vehicle_id": "5947",
+      "vehicle_label": "Ültetvény utca",
+      "vonal_szam": "54",
+      "route_id": "0540",
+      "lat": 47.42466354370117,
+      "lon": 19.158796310424805,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Pestszentimre, Ültetvény utca"
+    },
+    {
+      "idopont": "2026-09-07T04:01:11.526897+02:00",
+      "kulcs": "AELD563",
+      "rendszam": "AELD563",
+      "vehicle_id": "615",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "54",
+      "route_id": "0540",
+      "lat": 47.427242279052734,
+      "lon": 19.15597915649414,
+      "elozo_szoveg": "Szentlőrinci úti lakótelep",
+      "uj_szoveg": "Boráros tér H"
     }
   ]
 }
