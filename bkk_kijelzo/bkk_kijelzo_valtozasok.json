@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:33:06.792211+02:00",
+  "frissitve": "2026-09-08T01:33:39.308713+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:02:53.984707+02:00",
-      "kulcs": "T9140",
-      "rendszam": "T9140",
-      "vehicle_id": "7879",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49977111816406,
-      "lon": 19.083343505859375,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.984754+02:00",
-      "kulcs": "T9144",
-      "rendszam": "T9144",
-      "vehicle_id": "7883",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50553512573242,
-      "lon": 19.136295318603516,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.984861+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517765045166016,
-      "lon": 19.077791213989258,
-      "elozo_szoveg": "Hősök tere M ► Dózsa György út M",
-      "uj_szoveg": "Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.984918+02:00",
-      "kulcs": "AOFL206",
-      "rendszam": "AOFL206",
-      "vehicle_id": "791",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.48307800292969,
-      "lon": 19.044071197509766,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.984956+02:00",
-      "kulcs": "AOFL211",
-      "rendszam": "AOFL211",
-      "vehicle_id": "798",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "121",
-      "route_id": "1210",
-      "lat": 47.577640533447266,
-      "lon": 19.11450958251953,
-      "elozo_szoveg": "Káp.megyer, Szilas-patak",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-09-07T15:02:53.985029+02:00",
       "kulcs": "AOFL222",
@@ -260000,6 +259935,71 @@
       "lon": 19.079185485839844,
       "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
       "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-08T01:33:39.219871+02:00",
+      "kulcs": "AADR701",
+      "rendszam": "AADR701",
+      "vehicle_id": "168",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.4266242980957,
+      "lon": 19.160844802856445,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-08T01:33:39.219952+02:00",
+      "kulcs": "AADR716",
+      "rendszam": "AADR716",
+      "vehicle_id": "184",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51797866821289,
+      "lon": 19.03862953186035,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-08T01:33:39.221030+02:00",
+      "kulcs": "FJX198",
+      "rendszam": "FJX198",
+      "vehicle_id": "3018",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44044876098633,
+      "lon": 19.18483543395996,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-08T01:33:39.222069+02:00",
+      "kulcs": "AAGL319",
+      "rendszam": "AAGL319",
+      "vehicle_id": "348",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.54449462890625,
+      "lon": 18.71932029724121,
+      "elozo_szoveg": "Astoria M ► Zsámbék",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-08T01:33:39.223430+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51011657714844,
+      "lon": 19.12791633605957,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
     }
   ]
 }
