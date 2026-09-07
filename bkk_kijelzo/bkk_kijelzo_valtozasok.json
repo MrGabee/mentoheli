@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:20:45.117726+02:00",
+  "frissitve": "2026-09-08T01:21:14.056054+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:02:53.976545+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49649429321289,
-      "lon": 19.057199478149414,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.976660+02:00",
-      "kulcs": "V1402",
-      "rendszam": "V1402",
-      "vehicle_id": "4474",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.426368713378906,
-      "lon": 19.039573669433594,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.976688+02:00",
-      "kulcs": "AAMH605",
-      "rendszam": "AAMH605",
-      "vehicle_id": "448",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.541744232177734,
-      "lon": 19.1511287689209,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
     {
       "idopont": "2026-09-07T15:02:53.976701+02:00",
       "kulcs": "V1427",
@@ -260000,6 +259961,45 @@
       "lon": 19.046585083007812,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-08T01:21:13.991972+02:00",
+      "kulcs": "AAMH630",
+      "rendszam": "AAMH630",
+      "vehicle_id": "473",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54209899902344,
+      "lon": 19.151155471801758,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-08T01:21:13.992909+02:00",
+      "kulcs": "AOFL251",
+      "rendszam": "AOFL251",
+      "vehicle_id": "840",
+      "vehicle_label": "Szarvas csárda tér",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.41672134399414,
+      "lon": 19.205957412719727,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-09-08T01:21:13.993099+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.40597915649414,
+      "lon": 19.014131546020508,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
