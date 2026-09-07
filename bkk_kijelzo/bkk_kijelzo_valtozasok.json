@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:50:19.270140+02:00",
+  "frissitve": "2026-09-08T01:50:54.699454+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:04:22.456195+02:00",
-      "kulcs": "RCT311",
-      "rendszam": "RCT311",
-      "vehicle_id": "7325",
-      "vehicle_label": "Soroksár, IKEA áruház",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.464759826660156,
-      "lon": 19.126127243041992,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Soroksár, IKEA áruház"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.456643+02:00",
-      "kulcs": "V2256",
-      "rendszam": "V2256",
-      "vehicle_id": "7388",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54361343383789,
-      "lon": 19.02999496459961,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.456806+02:00",
-      "kulcs": "RVY608",
-      "rendszam": "RVY608",
-      "vehicle_id": "7437",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.460758209228516,
-      "lon": 19.114845275878906,
-      "elozo_szoveg": "József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "Ecseri út M ► Aszódi utca"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.456825+02:00",
-      "kulcs": "RVY610",
-      "rendszam": "RVY610",
-      "vehicle_id": "7439",
-      "vehicle_label": "Ferencvárosi rendelőint.",
-      "vonal_szam": "281",
-      "route_id": "2810",
-      "lat": 47.47361755371094,
-      "lon": 19.079570770263672,
-      "elozo_szoveg": "Ferencvárosi rendelőintézet",
-      "uj_szoveg": "Aszódi utca"
-    },
     {
       "idopont": "2026-09-07T15:04:22.457376+02:00",
       "kulcs": "RVY748",
@@ -260000,6 +259948,58 @@
       "lon": 19.109586715698242,
       "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-08T01:50:54.613848+02:00",
+      "kulcs": "AAGL274",
+      "rendszam": "AAGL274",
+      "vehicle_id": "274",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.44662857055664,
+      "lon": 18.90953826904297,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-08T01:50:54.613882+02:00",
+      "kulcs": "AAGL278",
+      "rendszam": "AAGL278",
+      "vehicle_id": "278",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.498897552490234,
+      "lon": 19.05075454711914,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-08T01:50:54.616546+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.479942321777344,
+      "lon": 19.14146614074707,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-08T01:50:54.616628+02:00",
+      "kulcs": "AEGB792",
+      "rendszam": "AEGB792",
+      "vehicle_id": "547",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48274612426758,
+      "lon": 19.127056121826172,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
