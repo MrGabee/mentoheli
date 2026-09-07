@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-08T00:51:06.033957+02:00",
+  "frissitve": "2026-09-08T00:51:39.011823+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T14:59:56.899667+02:00",
-      "kulcs": "V4149",
-      "rendszam": "V4149",
-      "vehicle_id": "4837",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464561462402344,
-      "lon": 19.02376937866211,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-07T14:59:56.899888+02:00",
-      "kulcs": "V4265",
-      "rendszam": "V4265",
-      "vehicle_id": "4924",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.51747512817383,
-      "lon": 19.060867309570312,
-      "elozo_szoveg": null,
-      "uj_szoveg": "Lehel tér M"
-    },
     {
       "idopont": "2026-09-07T14:59:56.900096+02:00",
       "kulcs": "V4337",
@@ -260000,6 +259974,32 @@
       "lon": 19.159265518188477,
       "elozo_szoveg": "Gubacsi út / Határ út",
       "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-08T00:51:38.925051+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57990264892578,
+      "lon": 19.088415145874023,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-08T00:51:38.925227+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48543930053711,
+      "lon": 19.07097053527832,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
     }
   ]
 }
