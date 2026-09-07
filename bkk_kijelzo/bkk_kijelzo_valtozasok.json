@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-07T23:56:33.856332+02:00",
+  "frissitve": "2026-09-07T23:57:08.187932+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T14:55:16.370687+02:00",
-      "kulcs": "T9133",
-      "rendszam": "T9133",
-      "vehicle_id": "7872",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51675033569336,
-      "lon": 19.10802459716797,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-07T14:55:16.370791+02:00",
-      "kulcs": "T9148",
-      "rendszam": "T9148",
-      "vehicle_id": "7887",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.519195556640625,
-      "lon": 19.090919494628906,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-07T14:55:16.370851+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517818450927734,
-      "lon": 19.094419479370117,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-07T14:55:16.371022+02:00",
-      "kulcs": "AOFL229",
-      "rendszam": "AOFL229",
-      "vehicle_id": "817",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.508121490478516,
-      "lon": 18.989953994750977,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-07T14:55:16.371037+02:00",
-      "kulcs": "AOFL231",
-      "rendszam": "AOFL231",
-      "vehicle_id": "819",
-      "vehicle_label": "Regőczi István tér",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.5077018737793,
-      "lon": 19.024660110473633,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Regőczi István tér"
-    },
     {
       "idopont": "2026-09-07T14:55:16.371049+02:00",
       "kulcs": "AOFL232",
@@ -260000,6 +259935,71 @@
       "lon": 19.124778747558594,
       "elozo_szoveg": "Miskolci utca ► Mexikói út M",
       "uj_szoveg": "Mexikói út M"
+    },
+    {
+      "idopont": "2026-09-07T23:57:08.095408+02:00",
+      "kulcs": "AAGL269",
+      "rendszam": "AAGL269",
+      "vehicle_id": "269",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "88A",
+      "route_id": "0881",
+      "lat": 47.46438217163086,
+      "lon": 19.0185546875,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-07T23:57:08.100416+02:00",
+      "kulcs": "V1519",
+      "rendszam": "V1519",
+      "vehicle_id": "4571",
+      "vehicle_label": "Sörgyár",
+      "vonal_szam": "37A",
+      "route_id": "3371",
+      "lat": 47.4923095703125,
+      "lon": 19.087846755981445,
+      "elozo_szoveg": "Salgótarjáni utca ► Sörgyár",
+      "uj_szoveg": "Sörgyár"
+    },
+    {
+      "idopont": "2026-09-07T23:57:08.100729+02:00",
+      "kulcs": "V4251",
+      "rendszam": "V4251",
+      "vehicle_id": "4910",
+      "vehicle_label": "Káp.megyer, Megyeri út",
+      "vonal_szam": "14",
+      "route_id": "3140",
+      "lat": 47.51747512817383,
+      "lon": 19.061017990112305,
+      "elozo_szoveg": "Lehel tér M",
+      "uj_szoveg": "Káposztásmegyer, Megyeri út"
+    },
+    {
+      "idopont": "2026-09-07T23:57:08.102567+02:00",
+      "kulcs": "SGY980",
+      "rendszam": "SGY980",
+      "vehicle_id": "7660",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "VP06",
+      "route_id": "VP06",
+      "lat": 47.50753402709961,
+      "lon": 19.023845672607422,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-07T23:57:08.103390+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47462844848633,
+      "lon": 19.046688079833984,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
