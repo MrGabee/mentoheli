@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T01:59:57.915150+02:00",
+  "frissitve": "2026-09-07T02:00:31.888362+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:28:16.272355+02:00",
-      "kulcs": "T9010",
-      "rendszam": "T9010",
-      "vehicle_id": "6149",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49980545043945,
-      "lon": 19.08324432373047,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-06T12:28:16.272432+02:00",
-      "kulcs": "NCV293",
-      "rendszam": "NCV293",
-      "vehicle_id": "6258",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50651931762695,
-      "lon": 19.02391242980957,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-06T12:28:16.272970+02:00",
-      "kulcs": "V2232",
-      "rendszam": "V2232",
-      "vehicle_id": "6443",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42966842651367,
-      "lon": 19.216867446899414,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-06T12:28:16.273201+02:00",
-      "kulcs": "AADI580",
-      "rendszam": "AADI580",
-      "vehicle_id": "66",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "65",
-      "route_id": "0650",
-      "lat": 47.5391731262207,
-      "lon": 19.011505126953125,
-      "elozo_szoveg": "Szépvölgyi dűlő",
-      "uj_szoveg": "Kolosy tér"
-    },
     {
       "idopont": "2026-09-06T12:28:16.273507+02:00",
       "kulcs": "PDB376",
@@ -260000,6 +259948,58 @@
       "lon": 19.125932693481445,
       "elozo_szoveg": "Rákospalota, Kossuth utca",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-07T02:00:31.810971+02:00",
+      "kulcs": "NNE065",
+      "rendszam": "NNE065",
+      "vehicle_id": "6461",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.441680908203125,
+      "lon": 19.186002731323242,
+      "elozo_szoveg": "Pestszentlőrinc",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-07T02:00:31.811365+02:00",
+      "kulcs": "AOFL255",
+      "rendszam": "AOFL255",
+      "vehicle_id": "844",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.441612243652344,
+      "lon": 19.186128616333008,
+      "elozo_szoveg": "Pestszentimre",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
+    },
+    {
+      "idopont": "2026-09-07T02:00:31.811513+02:00",
+      "kulcs": "AOIM044",
+      "rendszam": "AOIM044",
+      "vehicle_id": "965",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51365280151367,
+      "lon": 19.102405548095703,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T02:00:31.811537+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.389896392822266,
+      "lon": 18.96184539794922,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
