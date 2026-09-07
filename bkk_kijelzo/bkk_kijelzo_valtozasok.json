@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-07T03:12:10.564597+02:00",
+  "frissitve": "2026-09-07T03:12:39.517688+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:38:12.260526+02:00",
-      "kulcs": "SCD593",
-      "rendszam": "SCD593",
-      "vehicle_id": "7654",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.46492004394531,
-      "lon": 19.12771224975586,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-06T12:38:12.260719+02:00",
-      "kulcs": "SKR816",
-      "rendszam": "SKR816",
-      "vehicle_id": "7703",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.514583587646484,
-      "lon": 19.036130905151367,
-      "elozo_szoveg": "Rózsadomb ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-06T12:38:12.260996+02:00",
       "kulcs": "SKN821",
@@ -260000,6 +259974,32 @@
       "lon": 19.070770263671875,
       "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
       "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T03:12:39.428664+02:00",
+      "kulcs": "AADR720",
+      "rendszam": "AADR720",
+      "vehicle_id": "189",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47977066040039,
+      "lon": 19.255525588989258,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-07T03:12:39.428719+02:00",
+      "kulcs": "MOS289",
+      "rendszam": "MOS289",
+      "vehicle_id": "196",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497161865234375,
+      "lon": 19.05545997619629,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
     }
   ]
 }
