@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:39:20.959884+02:00",
+  "frissitve": "2026-09-08T01:39:47.968843+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:04:22.447203+02:00",
-      "kulcs": "AADR708",
-      "rendszam": "AADR708",
-      "vehicle_id": "176",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.46443176269531,
-      "lon": 19.126375198364258,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.447295+02:00",
-      "kulcs": "AADR720",
-      "rendszam": "AADR720",
-      "vehicle_id": "189",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51081466674805,
-      "lon": 19.056354522705078,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Rózsadomb ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-07T15:04:22.447576+02:00",
       "kulcs": "AADR755",
@@ -260000,6 +259974,32 @@
       "lon": 19.11499786376953,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-08T01:39:47.878048+02:00",
+      "kulcs": "PDB729",
+      "rendszam": "PDB729",
+      "vehicle_id": "7055",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48504638671875,
+      "lon": 19.07253074645996,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-08T01:39:47.878404+02:00",
+      "kulcs": "SKR827",
+      "rendszam": "SKR827",
+      "vehicle_id": "7713",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43891906738281,
+      "lon": 19.10321617126465,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
     }
   ]
 }
