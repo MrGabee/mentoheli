@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T03:46:04.513314+02:00",
+  "frissitve": "2026-09-07T03:46:36.109803+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:43:08.655280+02:00",
-      "kulcs": "SKR819",
-      "rendszam": "SKR819",
-      "vehicle_id": "7705",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.55450439453125,
-      "lon": 19.05780601501465,
-      "elozo_szoveg": "Óbudai-sziget",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-06T12:43:08.655807+02:00",
-      "kulcs": "AOFL203",
-      "rendszam": "AOFL203",
-      "vehicle_id": "787",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "251A",
-      "route_id": "2511",
-      "lat": 47.43429946899414,
-      "lon": 19.020998001098633,
-      "elozo_szoveg": "Lomnici utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-06T12:43:08.655997+02:00",
-      "kulcs": "T9144",
-      "rendszam": "T9144",
-      "vehicle_id": "7883",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48956298828125,
-      "lon": 19.089963912963867,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-09-06T12:43:08.656231+02:00",
       "kulcs": "AOFL210",
@@ -260000,6 +259961,45 @@
       "lon": 19.06678581237793,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-07T03:46:36.021505+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47751998901367,
+      "lon": 19.048673629760742,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-07T03:46:36.023399+02:00",
+      "kulcs": "NWB359",
+      "rendszam": "NWB359",
+      "vehicle_id": "6539",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.49386215209961,
+      "lon": 19.278078079223633,
+      "elozo_szoveg": "Rákoscsaba vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-07T03:46:36.023488+02:00",
+      "kulcs": "PHG631",
+      "rendszam": "PHG631",
+      "vehicle_id": "7155",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.4796257019043,
+      "lon": 19.255489349365234,
+      "elozo_szoveg": "Rákoskeresztúr, városkp.",
+      "uj_szoveg": "Rákoscsaba"
     }
   ]
 }
