@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:19:40.548442+02:00",
+  "frissitve": "2026-09-08T01:20:13.963727+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:02:53.973664+02:00",
-      "kulcs": "AAGL281",
-      "rendszam": "AAGL281",
-      "vehicle_id": "316",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.507080078125,
-      "lon": 18.921497344970703,
-      "elozo_szoveg": "Budakeszi, Dózsa Gy. tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.973825+02:00",
-      "kulcs": "AAGL316",
-      "rendszam": "AAGL316",
-      "vehicle_id": "344",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.59724807739258,
-      "lon": 18.927757263183594,
-      "elozo_szoveg": "Solymár, PEMÜ",
-      "uj_szoveg": "Solymár vasútállomás ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-07T15:02:53.974058+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.561153411865234,
-      "lon": 19.09014129638672,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
     {
       "idopont": "2026-09-07T15:02:53.974792+02:00",
       "kulcs": "AAHY859",
@@ -260000,6 +259961,45 @@
       "lon": 19.047313690185547,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-08T01:20:13.876969+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.48497772216797,
+      "lon": 19.072509765625,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-08T01:20:13.877153+02:00",
+      "kulcs": "AADI568",
+      "rendszam": "AADI568",
+      "vehicle_id": "53",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.598487854003906,
+      "lon": 19.054285049438477,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-08T01:20:13.878049+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.47684097290039,
+      "lon": 19.04721450805664,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
