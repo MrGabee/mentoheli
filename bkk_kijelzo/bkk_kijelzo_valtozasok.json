@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:11:51.264151+02:00",
+  "frissitve": "2026-09-08T01:12:25.937144+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:01:25.380221+02:00",
-      "kulcs": "PHG629",
-      "rendszam": "PHG629",
-      "vehicle_id": "7153",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.54062271118164,
-      "lon": 19.252653121948242,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
-    {
-      "idopont": "2026-09-07T15:01:25.380481+02:00",
-      "kulcs": "PKN602",
-      "rendszam": "PKN602",
-      "vehicle_id": "7191",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50101089477539,
-      "lon": 19.135717391967773,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-07T15:01:25.380545+02:00",
-      "kulcs": "PKN609",
-      "rendszam": "PKN609",
-      "vehicle_id": "7198",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.494327545166016,
-      "lon": 19.287050247192383,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Dél-pesti autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-09-07T15:01:25.380610+02:00",
-      "kulcs": "PKN614",
-      "rendszam": "PKN614",
-      "vehicle_id": "7203",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.5319709777832,
-      "lon": 19.128320693969727,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-07T15:01:25.380747+02:00",
-      "kulcs": "PMP912",
-      "rendszam": "PMP912",
-      "vehicle_id": "7229",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.46468734741211,
-      "lon": 19.018495559692383,
-      "elozo_szoveg": "Hengermalom út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-07T15:01:25.380882+02:00",
       "kulcs": "PDZ834",
@@ -260000,6 +259935,71 @@
       "lon": 19.067161560058594,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-08T01:12:25.849116+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.47103500366211,
+      "lon": 19.073333740234375,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
+      "uj_szoveg": "Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-08T01:12:25.853235+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.496089935302734,
+      "lon": 19.05797576904297,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-08T01:12:25.853448+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.5192756652832,
+      "lon": 19.038240432739258,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-08T01:12:25.853602+02:00",
+      "kulcs": "PMP919",
+      "rendszam": "PMP919",
+      "vehicle_id": "7237",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51466369628906,
+      "lon": 19.104049682617188,
+      "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-08T01:12:25.853837+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.42403030395508,
+      "lon": 19.02324104309082,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
     }
   ]
 }
