@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T03:38:27.982888+02:00",
+  "frissitve": "2026-09-07T03:39:02.000670+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:42:04.369192+02:00",
-      "kulcs": "PHG646",
-      "rendszam": "PHG646",
-      "vehicle_id": "7170",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.520023345947266,
-      "lon": 19.148197174072266,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Rákosszentmihály vá."
-    },
-    {
-      "idopont": "2026-09-06T12:42:04.369308+02:00",
-      "kulcs": "PKN612",
-      "rendszam": "PKN612",
-      "vehicle_id": "7201",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.48641586303711,
-      "lon": 19.287370681762695,
-      "elozo_szoveg": "Rákoscsaba",
-      "uj_szoveg": "Kucorgó tér ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-06T12:42:04.369927+02:00",
-      "kulcs": "PKN619",
-      "rendszam": "PKN619",
-      "vehicle_id": "7208",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.523284912109375,
-      "lon": 19.1718692779541,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Mátyás király utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-06T12:42:04.370731+02:00",
-      "kulcs": "V2252",
-      "rendszam": "V2252",
-      "vehicle_id": "7384",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.54304885864258,
-      "lon": 18.964418411254883,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Krisztina körút ► Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-06T12:42:04.370889+02:00",
       "kulcs": "RVY616",
@@ -260000,6 +259948,58 @@
       "lon": 19.11503028869629,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-07T03:39:01.913957+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49881362915039,
+      "lon": 19.05011558532715,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-07T03:39:01.915960+02:00",
+      "kulcs": "NGC162",
+      "rendszam": "NGC162",
+      "vehicle_id": "6202",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43891143798828,
+      "lon": 19.10318946838379,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-07T03:39:01.916708+02:00",
+      "kulcs": "415 063",
+      "rendszam": "415 063",
+      "vehicle_id": "945514150636",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.346519470214844,
+      "lon": 20.043609619140625,
+      "elozo_szoveg": "Szeged",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-07T03:39:01.916761+02:00",
+      "kulcs": "415 074",
+      "rendszam": "415 074",
+      "vehicle_id": "945514150743",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.7735595703125,
+      "lon": 19.149459838867188,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
