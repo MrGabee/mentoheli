@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-07T03:00:36.320735+02:00",
+  "frissitve": "2026-09-07T03:01:08.483655+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:36:59.253663+02:00",
-      "kulcs": "AAGL320",
-      "rendszam": "AAGL320",
-      "vehicle_id": "349",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.43539047241211,
-      "lon": 18.918560028076172,
-      "elozo_szoveg": "Nyár utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-06T12:36:59.253679+02:00",
-      "kulcs": "AAGL324",
-      "rendszam": "AAGL324",
-      "vehicle_id": "354",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.464134216308594,
-      "lon": 19.018524169921875,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
-    },
-    {
-      "idopont": "2026-09-06T12:36:59.254110+02:00",
-      "kulcs": "V1327",
-      "rendszam": "V1327",
-      "vehicle_id": "4430",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.48162078857422,
-      "lon": 19.064664840698242,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-06T12:36:59.254685+02:00",
       "kulcs": "V4160",
@@ -260000,6 +259961,45 @@
       "lon": 19.020172119140625,
       "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
       "uj_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-07T03:01:08.416784+02:00",
+      "kulcs": "T8100",
+      "rendszam": "T8100",
+      "vehicle_id": "7337",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.497100830078125,
+      "lon": 19.05553436279297,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-07T03:01:08.417029+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.510704040527344,
+      "lon": 19.097259521484375,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-07T03:01:08.417222+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509342193603516,
+      "lon": 19.096120834350586,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
