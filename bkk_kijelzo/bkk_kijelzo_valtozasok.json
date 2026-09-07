@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-07T02:03:59.984821+02:00",
+  "frissitve": "2026-09-07T02:04:33.184785+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-06T12:29:24.350501+02:00",
-      "kulcs": "V2012",
-      "rendszam": "V2012",
-      "vehicle_id": "2012",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.47740936279297,
-      "lon": 19.04878807067871,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-06T12:29:24.350632+02:00",
-      "kulcs": "V2032",
-      "rendszam": "V2032",
-      "vehicle_id": "2032",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.50735092163086,
-      "lon": 19.024673461914062,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-06T12:29:24.350709+02:00",
-      "kulcs": "AAGL252",
-      "rendszam": "AAGL252",
-      "vehicle_id": "252",
-      "vehicle_label": "Budakeszi, Tesco áruház",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50741195678711,
-      "lon": 19.025590896606445,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Tesco áruház"
-    },
-    {
-      "idopont": "2026-09-06T12:29:24.351205+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56045150756836,
-      "lon": 19.09052085876465,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
     {
       "idopont": "2026-09-06T12:29:24.351433+02:00",
       "kulcs": "V1328",
@@ -260000,6 +259948,58 @@
       "lon": 19.074710845947266,
       "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
       "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-07T02:04:33.069425+02:00",
+      "kulcs": "V2018",
+      "rendszam": "V2018",
+      "vehicle_id": "2018",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507301330566406,
+      "lon": 19.02507972717285,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-07T02:04:33.072248+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47857666015625,
+      "lon": 19.049318313598633,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-07T02:04:33.072657+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51569747924805,
+      "lon": 19.077537536621094,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-07T02:04:33.072705+02:00",
+      "kulcs": "PMP920",
+      "rendszam": "PMP920",
+      "vehicle_id": "7238",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.510154724121094,
+      "lon": 19.1279296875,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
     }
   ]
 }
