@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T01:43:10.615908+02:00",
+  "frissitve": "2026-09-08T01:43:44.893229+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:04:22.449986+02:00",
-      "kulcs": "V4067",
-      "rendszam": "V4067",
-      "vehicle_id": "4756",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.46999740600586,
-      "lon": 19.025785446166992,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.450860+02:00",
-      "kulcs": "V4249",
-      "rendszam": "V4249",
-      "vehicle_id": "4908",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.4749641418457,
-      "lon": 19.178176879882812,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Salgótarjáni utca ► Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.451514+02:00",
-      "kulcs": "V2257",
-      "rendszam": "V2257",
-      "vehicle_id": "555",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.50105667114258,
-      "lon": 19.02412223815918,
-      "elozo_szoveg": "Alkotás utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.452097+02:00",
-      "kulcs": "MPW618",
-      "rendszam": "MPW618",
-      "vehicle_id": "5606",
-      "vehicle_label": "Újhegyi lakótelep",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.48420333862305,
-      "lon": 19.127384185791016,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Újhegyi lakótelep"
-    },
-    {
-      "idopont": "2026-09-07T15:04:22.452364+02:00",
-      "kulcs": "PKD002",
-      "rendszam": "PKD002",
-      "vehicle_id": "5812",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50773620605469,
-      "lon": 19.024372100830078,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
     {
       "idopont": "2026-09-07T15:04:22.453068+02:00",
       "kulcs": "T8011",
@@ -260000,6 +259935,71 @@
       "lon": 18.964815139770508,
       "elozo_szoveg": "Máriaremete",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-08T01:43:44.800877+02:00",
+      "kulcs": "FJX198",
+      "rendszam": "FJX198",
+      "vehicle_id": "3018",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.462425231933594,
+      "lon": 19.133256912231445,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-08T01:43:44.800931+02:00",
+      "kulcs": "FLR710",
+      "rendszam": "FLR710",
+      "vehicle_id": "3124",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54083251953125,
+      "lon": 19.15020751953125,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-08T01:43:44.804345+02:00",
+      "kulcs": "RVY618",
+      "rendszam": "RVY618",
+      "vehicle_id": "7447",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48596954345703,
+      "lon": 19.06962013244629,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-08T01:43:44.804393+02:00",
+      "kulcs": "RVY717",
+      "rendszam": "RVY717",
+      "vehicle_id": "7466",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51209259033203,
+      "lon": 19.056949615478516,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-08T01:43:44.804525+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56771469116211,
+      "lon": 19.127216339111328,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
