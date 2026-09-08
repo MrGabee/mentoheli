@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T04:15:41.098288+02:00",
+  "frissitve": "2026-09-08T04:16:18.857033+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:20:44.195337+02:00",
-      "kulcs": "MXJ010",
-      "rendszam": "MXJ010",
-      "vehicle_id": "5883",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.405982971191406,
-      "lon": 19.014116287231445,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Lomnici utca ► Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-07T15:20:44.195755+02:00",
-      "kulcs": "NBW004",
-      "rendszam": "NBW004",
-      "vehicle_id": "5974",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.501792907714844,
-      "lon": 19.13591957092285,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
-    {
-      "idopont": "2026-09-07T15:20:44.195831+02:00",
-      "kulcs": "NBW009",
-      "rendszam": "NBW009",
-      "vehicle_id": "5979",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.519744873046875,
-      "lon": 19.11143684387207,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-07T15:20:44.195865+02:00",
-      "kulcs": "NBW011",
-      "rendszam": "NBW011",
-      "vehicle_id": "5981",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.501373291015625,
-      "lon": 19.135995864868164,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Madárdomb"
-    },
-    {
-      "idopont": "2026-09-07T15:20:44.196136+02:00",
-      "kulcs": "T8012",
-      "rendszam": "T8012",
-      "vehicle_id": "6132",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50925827026367,
-      "lon": 19.05876350402832,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
     {
       "idopont": "2026-09-07T15:20:44.198215+02:00",
       "kulcs": "NCV291",
@@ -260000,6 +259935,71 @@
       "lon": 19.077367782592773,
       "elozo_szoveg": "Közvágóhíd",
       "uj_szoveg": "Ráckeve"
+    },
+    {
+      "idopont": "2026-09-08T04:16:18.790733+02:00",
+      "kulcs": "FLR714",
+      "rendszam": "FLR714",
+      "vehicle_id": "3128",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "85",
+      "route_id": "0850",
+      "lat": 47.46293258666992,
+      "lon": 19.148681640625,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-08T04:16:18.791963+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497013092041016,
+      "lon": 19.05571746826172,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-08T04:16:18.792892+02:00",
+      "kulcs": "PDN684",
+      "rendszam": "PDN684",
+      "vehicle_id": "7187",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.42383575439453,
+      "lon": 19.234603881835938,
+      "elozo_szoveg": "Pestszentimre, Benjámin utca",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-08T04:16:18.793322+02:00",
+      "kulcs": "SKR730",
+      "rendszam": "SKR730",
+      "vehicle_id": "7679",
+      "vehicle_label": "Cargo C.-Liszt F. Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46505355834961,
+      "lon": 19.127330780029297,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Cargo City ► Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-08T04:16:18.793571+02:00",
+      "kulcs": "T8112",
+      "rendszam": "T8112",
+      "vehicle_id": "7890",
+      "vehicle_label": "Fővám tér M",
+      "vonal_szam": "83",
+      "route_id": "4830",
+      "lat": 47.47589111328125,
+      "lon": 19.099924087524414,
+      "elozo_szoveg": "Mexikói út M",
+      "uj_szoveg": "Fővám tér M"
     }
   ]
 }
