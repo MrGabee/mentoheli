@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T02:03:54.322936+02:00",
+  "frissitve": "2026-09-08T02:04:25.096495+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:05:44.107070+02:00",
-      "kulcs": "RCT316",
-      "rendszam": "RCT316",
-      "vehicle_id": "7330",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.46491241455078,
-      "lon": 19.125999450683594,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-07T15:05:44.107112+02:00",
-      "kulcs": "T8103",
-      "rendszam": "T8103",
-      "vehicle_id": "7340",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50941848754883,
-      "lon": 19.058813095092773,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-09-07T15:05:44.107586+02:00",
-      "kulcs": "RVY613",
-      "rendszam": "RVY613",
-      "vehicle_id": "7442",
-      "vehicle_label": "József A. ltp., Távíró utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.47028350830078,
-      "lon": 19.10873031616211,
-      "elozo_szoveg": "Ecseri út M ► József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "József Attila lakótelep, Távíró utca"
-    },
     {
       "idopont": "2026-09-07T15:05:44.107631+02:00",
       "kulcs": "RVY619",
@@ -260000,6 +259961,45 @@
       "lon": 19.09895133972168,
       "elozo_szoveg": "Astoria M ► Máriaremete",
       "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-08T02:04:25.030348+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50752639770508,
+      "lon": 19.02570152282715,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-08T02:04:25.030662+02:00",
+      "kulcs": "SKR828",
+      "rendszam": "SKR828",
+      "vehicle_id": "7714",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59785842895508,
+      "lon": 19.05402374267578,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-08T02:04:25.030843+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.541812896728516,
+      "lon": 19.151159286499023,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
