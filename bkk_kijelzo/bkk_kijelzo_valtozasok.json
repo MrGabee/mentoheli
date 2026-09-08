@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T03:56:27.874099+02:00",
+  "frissitve": "2026-09-08T03:56:58.033319+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:16:06.615715+02:00",
-      "kulcs": "T9147",
-      "rendszam": "T9147",
-      "vehicle_id": "7886",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50515365600586,
-      "lon": 19.13640785217285,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-07T15:16:06.615798+02:00",
-      "kulcs": "T8116",
-      "rendszam": "T8116",
-      "vehicle_id": "7895",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517520904541016,
-      "lon": 19.093900680541992,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-07T15:16:06.616097+02:00",
-      "kulcs": "AOFL224",
-      "rendszam": "AOFL224",
-      "vehicle_id": "811",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.4958610534668,
-      "lon": 19.011045455932617,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-07T15:16:06.616159+02:00",
       "kulcs": "AOFL231",
@@ -260000,6 +259961,45 @@
       "lon": 19.126123428344727,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-08T03:56:57.948816+02:00",
+      "kulcs": "NGC146",
+      "rendszam": "NGC146",
+      "vehicle_id": "6199",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.5076789855957,
+      "lon": 19.024988174438477,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-08T03:56:57.949533+02:00",
+      "kulcs": "SKN817",
+      "rendszam": "SKN817",
+      "vehicle_id": "7787",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.504600524902344,
+      "lon": 19.02474594116211,
+      "elozo_szoveg": "Széll Kálmán tér M ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-08T03:56:57.949683+02:00",
+      "kulcs": "480 004",
+      "rendszam": "480 004",
+      "vehicle_id": "915504800045",
+      "vehicle_label": "Pusztaszabolcs",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 47.463558197021484,
+      "lon": 19.02069091796875,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Pusztaszabolcs"
     }
   ]
 }
