@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:38:28.455246+02:00",
+  "frissitve": "2026-09-09T00:38:57.680144+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:58:46.813008+02:00",
-      "kulcs": "V1610",
-      "rendszam": "V1610",
-      "vehicle_id": "6471",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.481544494628906,
-      "lon": 19.069110870361328,
-      "elozo_szoveg": "Mester utca/Ferenc körút",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.813024+02:00",
-      "kulcs": "V1613",
-      "rendszam": "V1613",
-      "vehicle_id": "6474",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.445648193359375,
-      "lon": 19.152746200561523,
-      "elozo_szoveg": "Kispest, Tulipán utca",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.813206+02:00",
-      "kulcs": "NTM434",
-      "rendszam": "NTM434",
-      "vehicle_id": "6502",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250",
-      "route_id": "2500",
-      "lat": 47.428855895996094,
-      "lon": 19.023714065551758,
-      "elozo_szoveg": "Regényes utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.813337+02:00",
-      "kulcs": "NTP543",
-      "rendszam": "NTP543",
-      "vehicle_id": "6519",
-      "vehicle_label": "Nagytétény-Diósd vá.",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.476993560791016,
-      "lon": 19.047443389892578,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
     {
       "idopont": "2026-09-08T14:58:46.814001+02:00",
       "kulcs": "PDB727",
@@ -260000,6 +259948,58 @@
       "lon": 19.057119369506836,
       "elozo_szoveg": "Nagybányai út",
       "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-09T00:38:57.593820+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.496978759765625,
+      "lon": 19.05573844909668,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-09T00:38:57.593964+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42671203613281,
+      "lon": 19.161056518554688,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-09T00:38:57.594109+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53249740600586,
+      "lon": 19.08132553100586,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-09T00:38:57.594128+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47500991821289,
+      "lon": 18.989076614379883,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
