@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T03:44:51.647196+02:00",
+  "frissitve": "2026-09-08T03:45:54.650685+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:14:36.931850+02:00",
-      "kulcs": "RCT269",
-      "rendszam": "RCT269",
-      "vehicle_id": "7320",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.49068832397461,
-      "lon": 19.30419158935547,
-      "elozo_szoveg": "Színes utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.932081+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50419998168945,
-      "lon": 19.13658905029297,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.932190+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.465213775634766,
-      "lon": 19.127403259277344,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
     {
       "idopont": "2026-09-07T15:14:36.932234+02:00",
       "kulcs": "V2246",
@@ -260000,6 +259961,45 @@
       "lon": 19.280054092407227,
       "elozo_szoveg": "Rákoscsaba vasútállomás",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-08T03:45:54.556079+02:00",
+      "kulcs": "AADR702",
+      "rendszam": "AADR702",
+      "vehicle_id": "169",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.42385482788086,
+      "lon": 19.234601974487305,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-08T03:45:54.558297+02:00",
+      "kulcs": "MXJ008",
+      "rendszam": "MXJ008",
+      "vehicle_id": "5885",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.447872161865234,
+      "lon": 19.042255401611328,
+      "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-08T03:45:54.558704+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.483280181884766,
+      "lon": 19.022951126098633,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
     }
   ]
 }
