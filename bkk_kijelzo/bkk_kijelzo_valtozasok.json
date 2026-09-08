@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T01:30:38.149296+02:00",
+  "frissitve": "2026-09-09T01:31:11.378123+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:03:26.144062+02:00",
-      "kulcs": "T9140",
-      "rendszam": "T9140",
-      "vehicle_id": "7879",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.4997444152832,
-      "lon": 19.083274841308594,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.144123+02:00",
-      "kulcs": "T9149",
-      "rendszam": "T9149",
-      "vehicle_id": "7888",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48919677734375,
-      "lon": 19.089061737060547,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.144155+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.481693267822266,
-      "lon": 19.045570373535156,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
     {
       "idopont": "2026-09-08T15:03:26.144202+02:00",
       "kulcs": "T8115",
@@ -260000,6 +259961,45 @@
       "lon": 19.18568229675293,
       "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
       "uj_szoveg": "Pestszentimre"
+    },
+    {
+      "idopont": "2026-09-09T01:31:11.311934+02:00",
+      "kulcs": "AAMH631",
+      "rendszam": "AAMH631",
+      "vehicle_id": "474",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.432518005371094,
+      "lon": 19.261049270629883,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-09T01:31:11.312583+02:00",
+      "kulcs": "SGY818",
+      "rendszam": "SGY818",
+      "vehicle_id": "7736",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.479610443115234,
+      "lon": 19.06722640991211,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-09T01:31:11.312739+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.580299377441406,
+      "lon": 19.108144760131836,
+      "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
