@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T23:51:57.151739+02:00",
+  "frissitve": "2026-09-08T23:52:39.356468+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:55:51.256132+02:00",
-      "kulcs": "AADR701",
-      "rendszam": "AADR701",
-      "vehicle_id": "168",
-      "vehicle_label": "Ecseri út M-József A. ltp.",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.46881866455078,
-      "lon": 19.107519149780273,
-      "elozo_szoveg": "Ecseri út M ► József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "József Attila lakótelep, Távíró utca"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.256320+02:00",
-      "kulcs": "MOS288",
-      "rendszam": "MOS288",
-      "vehicle_id": "195",
-      "vehicle_label": "Szigetszentmiklós",
-      "vonal_szam": "278",
-      "route_id": "2780",
-      "lat": 47.430843353271484,
-      "lon": 19.071157455444336,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szigetszentmiklós, Szabadság utca"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.256340+02:00",
-      "kulcs": "V2001",
-      "rendszam": "V2001",
-      "vehicle_id": "2001",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.50739669799805,
-      "lon": 19.023555755615234,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.256412+02:00",
-      "kulcs": "V2008",
-      "rendszam": "V2008",
-      "vehicle_id": "2008",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.50735092163086,
-      "lon": 19.0250301361084,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.256523+02:00",
-      "kulcs": "V2023",
-      "rendszam": "V2023",
-      "vehicle_id": "2023",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.473995208740234,
-      "lon": 19.04709815979004,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-08T14:55:51.256660+02:00",
       "kulcs": "AADR758",
@@ -260000,6 +259935,71 @@
       "lon": 19.109174728393555,
       "elozo_szoveg": "Normafa",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-08T23:52:39.286674+02:00",
+      "kulcs": "AOJM878",
+      "rendszam": "AOJM878",
+      "vehicle_id": "1004",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.40703582763672,
+      "lon": 19.080303192138672,
+      "elozo_szoveg": "Szent László utcai lakótelep",
+      "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-09-08T23:52:39.288529+02:00",
+      "kulcs": "AAMH652",
+      "rendszam": "AAMH652",
+      "vehicle_id": "495",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49707794189453,
+      "lon": 19.05558967590332,
+      "elozo_szoveg": "Deák F. tér (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-08T23:52:39.289240+02:00",
+      "kulcs": "PDB386",
+      "rendszam": "PDB386",
+      "vehicle_id": "7068",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.499961853027344,
+      "lon": 19.135334014892578,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-09-08T23:52:39.289318+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Rákosszentmihály",
+      "vonal_szam": "144",
+      "route_id": "1440",
+      "lat": 47.504722595214844,
+      "lon": 19.136842727661133,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Rákosszentmihály, Mátyás király utca"
+    },
+    {
+      "idopont": "2026-09-08T23:52:39.289360+02:00",
+      "kulcs": "PDZ832",
+      "rendszam": "PDZ832",
+      "vehicle_id": "7295",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "34",
+      "route_id": "0340",
+      "lat": 47.53178405761719,
+      "lon": 19.068429946899414,
+      "elozo_szoveg": "Göncz Árpád városközpont M",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
     }
   ]
 }
