@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T23:52:39.356468+02:00",
+  "frissitve": "2026-09-08T23:53:22.129700+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:55:51.256660+02:00",
-      "kulcs": "AADR758",
-      "rendszam": "AADR758",
-      "vehicle_id": "207",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.51132583618164,
-      "lon": 19.056453704833984,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Margitsziget ► Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.256796+02:00",
-      "kulcs": "AAGL262",
-      "rendszam": "AAGL262",
-      "vehicle_id": "262",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40",
-      "route_id": "0400",
-      "lat": 47.46406555175781,
-      "lon": 19.01882553100586,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.257008+02:00",
-      "kulcs": "FJX200",
-      "rendszam": "FJX200",
-      "vehicle_id": "3020",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.504329681396484,
-      "lon": 19.137027740478516,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Veres Péter út ► Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.257452+02:00",
-      "kulcs": "AAGL288",
-      "rendszam": "AAGL288",
-      "vehicle_id": "321",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50703811645508,
-      "lon": 18.921510696411133,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-08T14:55:51.257638+02:00",
-      "kulcs": "AAHY801",
-      "rendszam": "AAHY801",
-      "vehicle_id": "361",
-      "vehicle_label": "Megyer, Julianus barát u.",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.56074142456055,
-      "lon": 19.090087890625,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Megyer, Julianus barát utca"
-    },
     {
       "idopont": "2026-09-08T14:55:51.257668+02:00",
       "kulcs": "LOV853",
@@ -260000,6 +259935,71 @@
       "lon": 19.068429946899414,
       "elozo_szoveg": "Göncz Árpád városközpont M",
       "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-08T23:53:22.038856+02:00",
+      "kulcs": "AAGL320",
+      "rendszam": "AAGL320",
+      "vehicle_id": "349",
+      "vehicle_label": "Törökbálint, Nyár utca",
+      "vonal_szam": "172",
+      "route_id": "1720",
+      "lat": 47.464473724365234,
+      "lon": 19.01815414428711,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
+    },
+    {
+      "idopont": "2026-09-08T23:53:22.039217+02:00",
+      "kulcs": "AAMH623",
+      "rendszam": "AAMH623",
+      "vehicle_id": "466",
+      "vehicle_label": "Káp.megyer, Szilas-patak",
+      "vonal_szam": "20E",
+      "route_id": "0205",
+      "lat": 47.49993133544922,
+      "lon": 19.084272384643555,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
+    },
+    {
+      "idopont": "2026-09-08T23:53:22.039898+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.54958724975586,
+      "lon": 19.04326629638672,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-08T23:53:22.040871+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46114730834961,
+      "lon": 19.136333465576172,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-08T23:53:22.040919+02:00",
+      "kulcs": "PDB385",
+      "rendszam": "PDB385",
+      "vehicle_id": "7067",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47977828979492,
+      "lon": 19.25551986694336,
+      "elozo_szoveg": "Rákoshegy vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
