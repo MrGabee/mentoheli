@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:14:46.773413+02:00",
+  "frissitve": "2026-09-09T00:15:25.047725+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:57:22.154177+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51945877075195,
-      "lon": 19.07135772705078,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-08T14:57:22.154210+02:00",
-      "kulcs": "T8107",
-      "rendszam": "T8107",
-      "vehicle_id": "7344",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50511169433594,
-      "lon": 19.13643455505371,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
     {
       "idopont": "2026-09-08T14:57:22.154267+02:00",
       "kulcs": "T9105",
@@ -260000,6 +259974,32 @@
       "lon": 19.123315811157227,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T00:15:24.979787+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.477840423583984,
+      "lon": 19.045747756958008,
+      "elozo_szoveg": "Törökbálint, Márta utca",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-09T00:15:24.980168+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51544952392578,
+      "lon": 19.031755447387695,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
     }
   ]
 }
