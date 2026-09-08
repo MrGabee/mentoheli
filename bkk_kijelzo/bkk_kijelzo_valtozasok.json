@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T04:09:19.136239+02:00",
+  "frissitve": "2026-09-08T04:09:54.523102+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:19:10.165898+02:00",
-      "kulcs": "NGC150",
-      "rendszam": "NGC150",
-      "vehicle_id": "6197",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "118",
-      "route_id": "1180",
-      "lat": 47.56803512573242,
-      "lon": 19.0262393951416,
-      "elozo_szoveg": "Óbudai autóbuszgarázs",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-07T15:19:10.165940+02:00",
-      "kulcs": "NGC146",
-      "rendszam": "NGC146",
-      "vehicle_id": "6199",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54507827758789,
-      "lon": 18.96361541748047,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-07T15:19:10.165959+02:00",
-      "kulcs": "NGC149",
-      "rendszam": "NGC149",
-      "vehicle_id": "6200",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.5667839050293,
-      "lon": 18.955284118652344,
-      "elozo_szoveg": "Pesthidegkút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-07T15:19:10.166158+02:00",
-      "kulcs": "NCV286",
-      "rendszam": "NCV286",
-      "vehicle_id": "6251",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49766540527344,
-      "lon": 19.051687240600586,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-07T15:19:10.166196+02:00",
-      "kulcs": "NCV288",
-      "rendszam": "NCV288",
-      "vehicle_id": "6253",
-      "vehicle_label": "Aranyhegy",
-      "vonal_szam": "219",
-      "route_id": "2190",
-      "lat": 47.584381103515625,
-      "lon": 19.04417610168457,
-      "elozo_szoveg": "Csillaghegy H",
-      "uj_szoveg": "Aranyhegy"
-    },
     {
       "idopont": "2026-09-07T15:19:10.166264+02:00",
       "kulcs": "NCV295",
@@ -260000,6 +259935,71 @@
       "lon": 20.09680938720703,
       "elozo_szoveg": "Szolnok",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-08T04:09:54.431989+02:00",
+      "kulcs": "FKU930",
+      "rendszam": "FKU930",
+      "vehicle_id": "3086",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "97E",
+      "route_id": "0975",
+      "lat": 47.479610443115234,
+      "lon": 19.25555992126465,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-08T04:09:54.433626+02:00",
+      "kulcs": "AEHE427",
+      "rendszam": "AEHE427",
+      "vehicle_id": "624",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "123A",
+      "route_id": "1231",
+      "lat": 47.416900634765625,
+      "lon": 19.130508422851562,
+      "elozo_szoveg": "Blaha Lujza tér M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-08T04:09:54.434207+02:00",
+      "kulcs": "RVY713",
+      "rendszam": "RVY713",
+      "vehicle_id": "7462",
+      "vehicle_label": "Gloriett-lakótelep",
+      "vonal_szam": "142E",
+      "route_id": "1425",
+      "lat": 47.427154541015625,
+      "lon": 19.17251968383789,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Gloriett-lakótelep"
+    },
+    {
+      "idopont": "2026-09-08T04:09:54.434267+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54267120361328,
+      "lon": 18.96483039855957,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-08T04:09:54.434682+02:00",
+      "kulcs": "873-637-874",
+      "rendszam": "873-637-874",
+      "vehicle_id": "905516568730-905536466378-905516568748",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.17564392089844,
+      "lon": 18.941682815551758,
+      "elozo_szoveg": "Ráckeve",
+      "uj_szoveg": "Közvágóhíd"
     }
   ]
 }
