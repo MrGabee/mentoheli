@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T02:00:50.323487+02:00",
+  "frissitve": "2026-09-08T02:01:16.853122+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:05:44.103834+02:00",
-      "kulcs": "V2111",
-      "rendszam": "V2111",
-      "vehicle_id": "5839",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54851150512695,
-      "lon": 19.029903411865234,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-07T15:05:44.103954+02:00",
-      "kulcs": "V2223",
-      "rendszam": "V2223",
-      "vehicle_id": "5863",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.44364547729492,
-      "lon": 19.096548080444336,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-07T15:05:44.104403+02:00",
-      "kulcs": "T8002",
-      "rendszam": "T8002",
-      "vehicle_id": "6122",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.53635787963867,
-      "lon": 19.06515884399414,
-      "elozo_szoveg": "Dagály utcai lakótelep",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-07T15:05:44.104579+02:00",
       "kulcs": "T9011",
@@ -260000,6 +259961,45 @@
       "lon": 19.136274337768555,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-08T02:01:16.753404+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45519256591797,
+      "lon": 18.907878875732422,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-08T02:01:16.759179+02:00",
+      "kulcs": "RVY618",
+      "rendszam": "RVY618",
+      "vehicle_id": "7447",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44343948364258,
+      "lon": 19.0930118560791,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-08T02:01:16.759351+02:00",
+      "kulcs": "SKR827",
+      "rendszam": "SKR827",
+      "vehicle_id": "7713",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48736572265625,
+      "lon": 19.058155059814453,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
     }
   ]
 }
