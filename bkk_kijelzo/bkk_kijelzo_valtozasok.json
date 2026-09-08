@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:58:06.339766+02:00",
+  "frissitve": "2026-09-09T00:58:38.264630+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:00:22.155047+02:00",
-      "kulcs": "PKN602",
-      "rendszam": "PKN602",
-      "vehicle_id": "7191",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.52325439453125,
-      "lon": 19.171857833862305,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-08T15:00:22.155237+02:00",
-      "kulcs": "PMP916",
-      "rendszam": "PMP916",
-      "vehicle_id": "7234",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.46485137939453,
-      "lon": 19.01807403564453,
-      "elozo_szoveg": "Hengermalom út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-08T15:00:22.155409+02:00",
-      "kulcs": "RCT318",
-      "rendszam": "RCT318",
-      "vehicle_id": "7332",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.41273880004883,
-      "lon": 19.160924911499023,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-08T15:00:22.155540+02:00",
       "kulcs": "T9106",
@@ -260000,6 +259961,45 @@
       "lon": 19.12114715576172,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-09T00:58:38.201066+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50828552246094,
+      "lon": 19.026798248291016,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-09T00:58:38.201732+02:00",
+      "kulcs": "415 046",
+      "rendszam": "415 046",
+      "vehicle_id": "945514150461",
+      "vehicle_label": "Pusztaszabolcs",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 47.463619232177734,
+      "lon": 19.0206298828125,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Pusztaszabolcs"
+    },
+    {
+      "idopont": "2026-09-09T00:58:38.201774+02:00",
+      "kulcs": "415 123",
+      "rendszam": "415 123",
+      "vehicle_id": "945514151238",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.492000579833984,
+      "lon": 19.132709503173828,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Nagykáta"
     }
   ]
 }
