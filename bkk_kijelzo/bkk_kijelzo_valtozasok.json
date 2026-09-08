@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:40:34.712446+02:00",
+  "frissitve": "2026-09-09T00:41:15.162225+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:58:46.815829+02:00",
-      "kulcs": "V2238",
-      "rendszam": "V2238",
-      "vehicle_id": "7370",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51646041870117,
-      "lon": 19.036767959594727,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.816110+02:00",
-      "kulcs": "AOGF661",
-      "rendszam": "AOGF661",
-      "vehicle_id": "743",
-      "vehicle_label": "Csepel, Soroksári rév",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.46213912963867,
-      "lon": 19.148290634155273,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Csepel, Soroksári rév"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.816166+02:00",
-      "kulcs": "RVY606",
-      "rendszam": "RVY606",
-      "vehicle_id": "7435",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "284E",
-      "route_id": "2845",
-      "lat": 47.46284103393555,
-      "lon": 19.148359298706055,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
     {
       "idopont": "2026-09-08T14:58:46.816233+02:00",
       "kulcs": "RVY612",
@@ -260000,6 +259961,45 @@
       "lon": 19.0510196685791,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T00:41:15.076369+02:00",
+      "kulcs": "PDB385",
+      "rendszam": "PDB385",
+      "vehicle_id": "7067",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49711227416992,
+      "lon": 19.055490493774414,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-09T00:41:15.076690+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50101852416992,
+      "lon": 19.114274978637695,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-09T00:41:15.076976+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.4752082824707,
+      "lon": 19.040019989013672,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
