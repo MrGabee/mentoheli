@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T01:03:17.240507+02:00",
+  "frissitve": "2026-09-09T01:03:52.044958+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:01:52.972474+02:00",
-      "kulcs": "FLR700",
-      "rendszam": "FLR700",
-      "vehicle_id": "3114",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.515804290771484,
-      "lon": 19.186973571777344,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Veres Péter út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-08T15:01:52.972504+02:00",
-      "kulcs": "FLR704",
-      "rendszam": "FLR704",
-      "vehicle_id": "3118",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.51502227783203,
-      "lon": 19.184770584106445,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Rákosi út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-08T15:01:52.972680+02:00",
-      "kulcs": "FLR742",
-      "rendszam": "FLR742",
-      "vehicle_id": "3156",
-      "vehicle_label": "Rákoskert sugárút",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.501953125,
-      "lon": 19.136173248291016,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoskert sugárút"
-    },
     {
       "idopont": "2026-09-08T15:01:52.972946+02:00",
       "kulcs": "AAHY802",
@@ -260000,6 +259961,45 @@
       "lon": 19.126453399658203,
       "elozo_szoveg": "Rákospalota, Mélyfúró utca",
       "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-09T01:03:51.982156+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49702453613281,
+      "lon": 19.055767059326172,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-09T01:03:51.982190+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.517425537109375,
+      "lon": 19.0776424407959,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-09T01:03:51.982391+02:00",
+      "kulcs": "415 077",
+      "rendszam": "415 077",
+      "vehicle_id": "945514150776",
+      "vehicle_label": "Hatvan",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.49203109741211,
+      "lon": 19.133039474487305,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Hatvan"
     }
   ]
 }
