@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:11:05.098441+02:00",
+  "frissitve": "2026-09-09T00:11:39.210434+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:57:22.151972+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.506595611572266,
-      "lon": 19.024003982543945,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-08T14:57:22.152012+02:00",
-      "kulcs": "NCV294",
-      "rendszam": "NCV294",
-      "vehicle_id": "6259",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.499237060546875,
-      "lon": 19.036178588867188,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-08T14:57:22.152084+02:00",
-      "kulcs": "NGC023",
-      "rendszam": "NGC023",
-      "vehicle_id": "6322",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.4055290222168,
-      "lon": 19.01404571533203,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
     {
       "idopont": "2026-09-08T14:57:22.152105+02:00",
       "kulcs": "NGC029",
@@ -260000,6 +259961,45 @@
       "lon": 19.108776092529297,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-09T00:11:39.119038+02:00",
+      "kulcs": "AAGL266",
+      "rendszam": "AAGL266",
+      "vehicle_id": "266",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.507164001464844,
+      "lon": 18.921417236328125,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-09T00:11:39.119662+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523643493652344,
+      "lon": 19.02094841003418,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-09T00:11:39.119925+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49879837036133,
+      "lon": 19.05016326904297,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
     }
   ]
 }
