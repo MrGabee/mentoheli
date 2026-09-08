@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T01:30:06.940051+02:00",
+  "frissitve": "2026-09-09T01:30:38.149296+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:03:26.143412+02:00",
-      "kulcs": "STZ835",
-      "rendszam": "STZ835",
-      "vehicle_id": "7790",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "240",
-      "route_id": "2400",
-      "lat": 47.47814178466797,
-      "lon": 19.045276641845703,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.144019+02:00",
-      "kulcs": "T9137",
-      "rendszam": "T9137",
-      "vehicle_id": "7876",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49568557739258,
-      "lon": 19.058956146240234,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.144047+02:00",
-      "kulcs": "T9139",
-      "rendszam": "T9139",
-      "vehicle_id": "7878",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.505348205566406,
-      "lon": 19.13631820678711,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-08T15:03:26.144062+02:00",
       "kulcs": "T9140",
@@ -260000,6 +259961,45 @@
       "lon": 19.16240882873535,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-09T01:30:38.087779+02:00",
+      "kulcs": "AAGL266",
+      "rendszam": "AAGL266",
+      "vehicle_id": "266",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45677947998047,
+      "lon": 18.947587966918945,
+      "elozo_szoveg": "Törökbálint",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T01:30:38.090301+02:00",
+      "kulcs": "PDB385",
+      "rendszam": "PDB385",
+      "vehicle_id": "7067",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.46925735473633,
+      "lon": 19.293792724609375,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-09T01:30:38.090600+02:00",
+      "kulcs": "AOFL245",
+      "rendszam": "AOFL245",
+      "vehicle_id": "833",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.44183349609375,
+      "lon": 19.18568229675293,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Pestszentimre"
     }
   ]
 }
