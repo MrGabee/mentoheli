@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T02:15:29.572478+02:00",
+  "frissitve": "2026-09-08T02:15:57.152846+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:06:55.402948+02:00",
-      "kulcs": "NAE996",
-      "rendszam": "NAE996",
-      "vehicle_id": "6024",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.427616119384766,
-      "lon": 19.03956413269043,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-07T15:06:55.403021+02:00",
-      "kulcs": "T8003",
-      "rendszam": "T8003",
-      "vehicle_id": "6123",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51675796508789,
-      "lon": 19.092674255371094,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Erzsébet k.né útja, alulj."
-    },
-    {
-      "idopont": "2026-09-07T15:06:55.403296+02:00",
-      "kulcs": "NGC149",
-      "rendszam": "NGC149",
-      "vehicle_id": "6200",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.543243408203125,
-      "lon": 18.96401596069336,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Pesthidegkút"
-    },
     {
       "idopont": "2026-09-07T15:06:55.403489+02:00",
       "kulcs": "NCV290",
@@ -260000,6 +259961,45 @@
       "lon": 19.1246337890625,
       "elozo_szoveg": "Rákospalota, Kossuth utca",
       "uj_szoveg": "Rákospalota"
+    },
+    {
+      "idopont": "2026-09-08T02:15:57.072878+02:00",
+      "kulcs": "NWB365",
+      "rendszam": "NWB365",
+      "vehicle_id": "6545",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47809600830078,
+      "lon": 19.045236587524414,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-08T02:15:57.072990+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.487274169921875,
+      "lon": 19.06683349609375,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-08T02:15:57.073171+02:00",
+      "kulcs": "RVY715",
+      "rendszam": "RVY715",
+      "vehicle_id": "7464",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.43274688720703,
+      "lon": 19.261577606201172,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
