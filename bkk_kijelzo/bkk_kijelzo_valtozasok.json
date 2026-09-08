@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:32:20.968619+02:00",
+  "frissitve": "2026-09-09T00:33:08.593413+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:58:46.811033+02:00",
-      "kulcs": "V2207",
-      "rendszam": "V2207",
-      "vehicle_id": "5847",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.44374084472656,
-      "lon": 19.095556259155273,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.811064+02:00",
-      "kulcs": "V2209",
-      "rendszam": "V2209",
-      "vehicle_id": "5849",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46512985229492,
-      "lon": 19.127349853515625,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.811141+02:00",
-      "kulcs": "V2215",
-      "rendszam": "V2215",
-      "vehicle_id": "5855",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54377746582031,
-      "lon": 19.029949188232422,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.811220+02:00",
-      "kulcs": "V2223",
-      "rendszam": "V2223",
-      "vehicle_id": "5863",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.518707275390625,
-      "lon": 19.09589195251465,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.811404+02:00",
-      "kulcs": "MXJ013",
-      "rendszam": "MXJ013",
-      "vehicle_id": "5889",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.498512268066406,
-      "lon": 19.0358829498291,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-09-08T14:58:46.811491+02:00",
       "kulcs": "V2294",
@@ -260000,6 +259935,71 @@
       "lon": 19.159255981445312,
       "elozo_szoveg": "Gloriett-lakótelep",
       "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-09T00:33:08.499196+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.514434814453125,
+      "lon": 19.097518920898438,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-09T00:33:08.499272+02:00",
+      "kulcs": "NWB354",
+      "rendszam": "NWB354",
+      "vehicle_id": "6534",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43891143798828,
+      "lon": 19.103214263916016,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-09T00:33:08.499329+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507511138916016,
+      "lon": 19.025848388671875,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-09T00:33:08.499603+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.512672424316406,
+      "lon": 19.07925796508789,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-09T00:33:08.499928+02:00",
+      "kulcs": "415 024",
+      "rendszam": "415 024",
+      "vehicle_id": "945514150248",
+      "vehicle_label": "Komárom",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.464290618896484,
+      "lon": 19.020490646362305,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Komárom"
     }
   ]
 }
