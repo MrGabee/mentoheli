@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-08T02:55:08.821284+02:00",
+  "frissitve": "2026-09-08T02:55:39.000832+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:10:56.333006+02:00",
-      "kulcs": "V2219",
-      "rendszam": "V2219",
-      "vehicle_id": "5859",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.44375228881836,
-      "lon": 19.096742630004883,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-07T15:10:56.333021+02:00",
-      "kulcs": "V2220",
-      "rendszam": "V2220",
-      "vehicle_id": "5860",
-      "vehicle_label": "Kispest, Tulipán utca",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.46502685546875,
-      "lon": 19.12615966796875,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Kispest, Tulipán utca"
-    },
     {
       "idopont": "2026-09-07T15:10:56.333367+02:00",
       "kulcs": "MUT900",
@@ -260000,6 +259974,32 @@
       "lon": 19.343158721923828,
       "elozo_szoveg": "Pécel, Kun József utca",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-08T02:55:38.918434+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.508460998535156,
+      "lon": 19.027023315429688,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-08T02:55:38.919177+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.513214111328125,
+      "lon": 19.101655960083008,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
