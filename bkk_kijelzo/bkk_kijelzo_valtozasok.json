@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T03:36:36.154823+02:00",
+  "frissitve": "2026-09-08T03:37:16.501354+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:13:27.703008+02:00",
-      "kulcs": "AOIM009",
-      "rendszam": "AOIM009",
-      "vehicle_id": "927",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.410465240478516,
-      "lon": 19.060609817504883,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.921344+02:00",
-      "kulcs": "AADI636",
-      "rendszam": "AADI636",
-      "vehicle_id": "134",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.467811584472656,
-      "lon": 19.302444458007812,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.921585+02:00",
-      "kulcs": "SKN825",
-      "rendszam": "SKN825",
-      "vehicle_id": "161",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.5012092590332,
-      "lon": 19.136272430419922,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.921675+02:00",
-      "kulcs": "AADR704",
-      "rendszam": "AADR704",
-      "vehicle_id": "172",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "183",
-      "route_id": "1830",
-      "lat": 47.44281768798828,
-      "lon": 19.21351432800293,
-      "elozo_szoveg": "Szemeretelep vasútállomás",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.921743+02:00",
-      "kulcs": "AADR710",
-      "rendszam": "AADR710",
-      "vehicle_id": "178",
-      "vehicle_label": "Ferihegy vasútállomás",
-      "vonal_szam": "166",
-      "route_id": "1660",
-      "lat": 47.4445686340332,
-      "lon": 19.097440719604492,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Ferihegy vasútállomás"
-    },
     {
       "idopont": "2026-09-07T15:14:36.921791+02:00",
       "kulcs": "AADR714",
@@ -260000,6 +259935,71 @@
       "lon": 19.681360244750977,
       "elozo_szoveg": "Nagykáta",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-08T03:37:16.417392+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.4322509765625,
+      "lon": 19.26109504699707,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-08T03:37:16.417455+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497013092041016,
+      "lon": 19.055728912353516,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-08T03:37:16.417555+02:00",
+      "kulcs": "AEGB792",
+      "rendszam": "AEGB792",
+      "vehicle_id": "547",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48381042480469,
+      "lon": 19.12614631652832,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-08T03:37:16.417755+02:00",
+      "kulcs": "NGC149",
+      "rendszam": "NGC149",
+      "vehicle_id": "6200",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.526371002197266,
+      "lon": 19.038211822509766,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-08T03:37:16.418352+02:00",
+      "kulcs": "T8120",
+      "rendszam": "T8120",
+      "vehicle_id": "7899",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50401306152344,
+      "lon": 19.13674545288086,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
     }
   ]
 }
