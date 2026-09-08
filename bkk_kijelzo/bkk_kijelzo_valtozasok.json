@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T03:41:29.169607+02:00",
+  "frissitve": "2026-09-08T03:41:59.502361+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:14:36.927338+02:00",
-      "kulcs": "MOS295",
-      "rendszam": "MOS295",
-      "vehicle_id": "5748",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.39302062988281,
-      "lon": 19.22357177734375,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.927497+02:00",
-      "kulcs": "V2109",
-      "rendszam": "V2109",
-      "vehicle_id": "5837",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.462947845458984,
-      "lon": 19.023052215576172,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.927663+02:00",
-      "kulcs": "V2221",
-      "rendszam": "V2221",
-      "vehicle_id": "5861",
-      "vehicle_label": "Szent Gellért tér M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.486724853515625,
-      "lon": 19.050880432128906,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Szent Gellért tér - Műegyetem M"
-    },
     {
       "idopont": "2026-09-07T15:14:36.927764+02:00",
       "kulcs": "MXJ007",
@@ -260000,6 +259961,45 @@
       "lon": 19.028793334960938,
       "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
       "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-08T03:41:59.416072+02:00",
+      "kulcs": "V4082",
+      "rendszam": "V4082",
+      "vehicle_id": "4771",
+      "vehicle_label": "Káp.megyer, Megyeri út",
+      "vonal_szam": "14",
+      "route_id": "3140",
+      "lat": 47.55616760253906,
+      "lon": 19.088834762573242,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Káposztásmegyer, Megyeri út"
+    },
+    {
+      "idopont": "2026-09-08T03:41:59.416206+02:00",
+      "kulcs": "MFW528",
+      "rendszam": "MFW528",
+      "vehicle_id": "5090",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47966003417969,
+      "lon": 19.25599479675293,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-08T03:41:59.417005+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54707717895508,
+      "lon": 19.142047882080078,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
