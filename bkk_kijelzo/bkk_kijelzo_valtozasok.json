@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:12:16.516541+02:00",
+  "frissitve": "2026-09-09T00:13:00.847711+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:57:22.152367+02:00",
-      "kulcs": "V1618",
-      "rendszam": "V1618",
-      "vehicle_id": "6479",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.54240798950195,
-      "lon": 19.121885299682617,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-08T14:57:22.152668+02:00",
-      "kulcs": "NWB364",
-      "rendszam": "NWB364",
-      "vehicle_id": "6544",
-      "vehicle_label": "Akadémiaújtelep, 525. tér",
-      "vonal_szam": "68",
-      "route_id": "0680",
-      "lat": 47.44175720214844,
-      "lon": 19.140914916992188,
-      "elozo_szoveg": "Kispest, Vas Gereben utca",
-      "uj_szoveg": "Akadémiaújtelep, 525. tér"
-    },
-    {
-      "idopont": "2026-09-08T14:57:22.152755+02:00",
-      "kulcs": "AOCT652",
-      "rendszam": "AOCT652",
-      "vehicle_id": "682",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.47344970703125,
-      "lon": 18.991596221923828,
-      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-08T14:57:22.153020+02:00",
-      "kulcs": "PDB721",
-      "rendszam": "PDB721",
-      "vehicle_id": "7047",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.501190185546875,
-      "lon": 19.13625717163086,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-08T14:57:22.153136+02:00",
       "kulcs": "PDB382",
@@ -260000,6 +259948,58 @@
       "lon": 19.0402889251709,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-09T00:13:00.768238+02:00",
+      "kulcs": "FLR700",
+      "rendszam": "FLR700",
+      "vehicle_id": "3114",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.465782165527344,
+      "lon": 19.15303611755371,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T00:13:00.768518+02:00",
+      "kulcs": "MXJ011",
+      "rendszam": "MXJ011",
+      "vehicle_id": "5887",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.405601501464844,
+      "lon": 19.013776779174805,
+      "elozo_szoveg": "Savoya Park",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T00:13:00.768885+02:00",
+      "kulcs": "SKR722",
+      "rendszam": "SKR722",
+      "vehicle_id": "7671",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46559524536133,
+      "lon": 19.12546157836914,
+      "elozo_szoveg": "Soroksár, IKEA áruház",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-09T00:13:00.768922+02:00",
+      "kulcs": "SKR829",
+      "rendszam": "SKR829",
+      "vehicle_id": "7715",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.49824142456055,
+      "lon": 19.237443923950195,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
