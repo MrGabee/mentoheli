@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T03:24:22.889156+02:00",
+  "frissitve": "2026-09-08T03:24:54.988205+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:13:27.687665+02:00",
-      "kulcs": "V1438",
-      "rendszam": "V1438",
-      "vehicle_id": "4508",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51268768310547,
-      "lon": 19.04766082763672,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-09-07T15:13:27.687680+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.467796325683594,
-      "lon": 19.07571029663086,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-07T15:13:27.687816+02:00",
-      "kulcs": "V1511",
-      "rendszam": "V1511",
-      "vehicle_id": "4563",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.54227828979492,
-      "lon": 19.12139129638672,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-07T15:13:27.687890+02:00",
       "kulcs": "V1552",
@@ -260000,6 +259961,45 @@
       "lon": 19.136707305908203,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-08T03:24:54.898934+02:00",
+      "kulcs": "AAMH630",
+      "rendszam": "AAMH630",
+      "vehicle_id": "473",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46243667602539,
+      "lon": 19.133235931396484,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-08T03:24:54.899203+02:00",
+      "kulcs": "NBW005",
+      "rendszam": "NBW005",
+      "vehicle_id": "5975",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50798797607422,
+      "lon": 19.02901268005371,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-08T03:24:54.900309+02:00",
+      "kulcs": "415 111",
+      "rendszam": "415 111",
+      "vehicle_id": "945514151113",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.6273193359375,
+      "lon": 19.590110778808594,
+      "elozo_szoveg": "Gödöllő",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
