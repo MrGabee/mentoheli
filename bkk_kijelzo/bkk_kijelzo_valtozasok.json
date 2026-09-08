@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T03:41:59.502361+02:00",
+  "frissitve": "2026-09-08T03:42:33.606005+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:14:36.927764+02:00",
-      "kulcs": "MXJ007",
-      "rendszam": "MXJ007",
-      "vehicle_id": "5879",
-      "vehicle_label": "Dániel út",
-      "vonal_szam": "156",
-      "route_id": "1560",
-      "lat": 47.507469177246094,
-      "lon": 19.025001525878906,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Dániel út"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.927873+02:00",
-      "kulcs": "MXJ015",
-      "rendszam": "MXJ015",
-      "vehicle_id": "5891",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.436744689941406,
-      "lon": 19.017045974731445,
-      "elozo_szoveg": "Lomnici utca ► Újbuda-központ M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-07T15:14:36.928020+02:00",
-      "kulcs": "MUT899",
-      "rendszam": "MUT899",
-      "vehicle_id": "5952",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.4798469543457,
-      "lon": 19.06650161743164,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-09-07T15:14:36.928115+02:00",
       "kulcs": "NBW006",
@@ -260000,6 +259961,45 @@
       "lon": 19.142047882080078,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-08T03:42:33.440389+02:00",
+      "kulcs": "MFW528",
+      "rendszam": "MFW528",
+      "vehicle_id": "5090",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.479774475097656,
+      "lon": 19.255563735961914,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-08T03:42:33.441007+02:00",
+      "kulcs": "PKN620",
+      "rendszam": "PKN620",
+      "vehicle_id": "7209",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.497135162353516,
+      "lon": 19.055524826049805,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-08T03:42:33.441521+02:00",
+      "kulcs": "861-631-862",
+      "rendszam": "861-631-862",
+      "vehicle_id": "905516568615-905536466311-905516568623",
+      "vehicle_label": "Ráckeve",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.360687255859375,
+      "lon": 19.08681869506836,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Ráckeve"
     }
   ]
 }
