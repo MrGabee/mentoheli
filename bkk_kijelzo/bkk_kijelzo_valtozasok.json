@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-09T00:31:46.879175+02:00",
+  "frissitve": "2026-09-09T00:32:20.968619+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T14:58:46.805615+02:00",
-      "kulcs": "V1343",
-      "rendszam": "V1343",
-      "vehicle_id": "4446",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49748229980469,
-      "lon": 19.08252716064453,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.806269+02:00",
-      "kulcs": "V1573",
-      "rendszam": "V1573",
-      "vehicle_id": "4625",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.54231643676758,
-      "lon": 19.121837615966797,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.806484+02:00",
-      "kulcs": "V4013",
-      "rendszam": "V4013",
-      "vehicle_id": "4702",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.49797821044922,
-      "lon": 19.023855209350586,
-      "elozo_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.809384+02:00",
-      "kulcs": "PKD001",
-      "rendszam": "PKD001",
-      "vehicle_id": "5626",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.474037170410156,
-      "lon": 19.048446655273438,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-08T14:58:46.810658+02:00",
-      "kulcs": "MOS257",
-      "rendszam": "MOS257",
-      "vehicle_id": "5710",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.38306427001953,
-      "lon": 19.20199966430664,
-      "elozo_szoveg": "Gyál, Bem József utca",
-      "uj_szoveg": "Bem József utca ► Határ út M"
-    },
     {
       "idopont": "2026-09-08T14:58:46.811033+02:00",
       "kulcs": "V2207",
@@ -260000,6 +259935,71 @@
       "lon": 19.01414680480957,
       "elozo_szoveg": "Apor Vilmos tér",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-09T00:32:20.902682+02:00",
+      "kulcs": "V2006",
+      "rendszam": "V2006",
+      "vehicle_id": "2006",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.477420806884766,
+      "lon": 19.048677444458008,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-09T00:32:20.902719+02:00",
+      "kulcs": "V2016",
+      "rendszam": "V2016",
+      "vehicle_id": "2016",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507362365722656,
+      "lon": 19.025007247924805,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-09T00:32:20.902936+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.538421630859375,
+      "lon": 19.06913185119629,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T00:32:20.903090+02:00",
+      "kulcs": "AADI577",
+      "rendszam": "AADI577",
+      "vehicle_id": "68",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51931381225586,
+      "lon": 19.038240432739258,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-09T00:32:20.903364+02:00",
+      "kulcs": "SKR828",
+      "rendszam": "SKR828",
+      "vehicle_id": "7714",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.427581787109375,
+      "lon": 19.159255981445312,
+      "elozo_szoveg": "Gloriett-lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
     }
   ]
 }
