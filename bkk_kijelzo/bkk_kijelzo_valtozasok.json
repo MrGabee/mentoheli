@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T02:22:35.897688+02:00",
+  "frissitve": "2026-09-08T02:23:08.707788+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:08:19.388654+02:00",
-      "kulcs": "AOJM876",
-      "rendszam": "AOJM876",
-      "vehicle_id": "1000",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.395145416259766,
-      "lon": 19.107336044311523,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-07T15:08:19.388915+02:00",
-      "kulcs": "AONW957",
-      "rendszam": "AONW957",
-      "vehicle_id": "1024",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52430725097656,
-      "lon": 19.117834091186523,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
-    {
-      "idopont": "2026-09-07T15:08:19.388984+02:00",
-      "kulcs": "AONW960",
-      "rendszam": "AONW960",
-      "vehicle_id": "1027",
-      "vehicle_label": "Rákospatak u./Csömöri út",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.49473190307617,
-      "lon": 18.99851417541504,
-      "elozo_szoveg": "Thomán István utca",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
     {
       "idopont": "2026-09-07T15:08:19.389020+02:00",
       "kulcs": "AADI606",
@@ -260000,6 +259961,45 @@
       "lon": 19.095378875732422,
       "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
       "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-08T02:23:08.623309+02:00",
+      "kulcs": "AAGL278",
+      "rendszam": "AAGL278",
+      "vehicle_id": "278",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.455657958984375,
+      "lon": 18.940473556518555,
+      "elozo_szoveg": "Törökbálint",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-08T02:23:08.625094+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46790313720703,
+      "lon": 19.07583236694336,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-08T02:23:08.625249+02:00",
+      "kulcs": "SKN819",
+      "rendszam": "SKN819",
+      "vehicle_id": "7788",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55003356933594,
+      "lon": 19.042085647583008,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
