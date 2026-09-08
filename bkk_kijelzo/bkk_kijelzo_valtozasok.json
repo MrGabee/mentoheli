@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-08T03:34:23.597925+02:00",
+  "frissitve": "2026-09-08T03:34:54.072622+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:13:27.697033+02:00",
-      "kulcs": "AOGF657",
-      "rendszam": "AOGF657",
-      "vehicle_id": "739",
-      "vehicle_label": "Csepel, Határ utca",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.48395538330078,
-      "lon": 19.127534866333008,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Csepel, Határ utca"
-    },
-    {
-      "idopont": "2026-09-07T15:13:27.697084+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "275",
-      "route_id": "2750",
-      "lat": 47.4992561340332,
-      "lon": 19.25676918029785,
-      "elozo_szoveg": "Piski utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-09-07T15:13:27.697520+02:00",
-      "kulcs": "RVY717",
-      "rendszam": "RVY717",
-      "vehicle_id": "7466",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.417259216308594,
-      "lon": 19.130725860595703,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-07T15:13:27.697893+02:00",
-      "kulcs": "RVY735",
-      "rendszam": "RVY735",
-      "vehicle_id": "7633",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.388702392578125,
-      "lon": 19.219999313354492,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-07T15:13:27.699440+02:00",
-      "kulcs": "T9115",
-      "rendszam": "T9115",
-      "vehicle_id": "7853",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51479721069336,
-      "lon": 19.05052375793457,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-07T15:13:27.699536+02:00",
       "kulcs": "AOFL202",
@@ -260000,6 +259935,71 @@
       "lon": 19.15570831298828,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-08T03:34:54.005998+02:00",
+      "kulcs": "FJX190",
+      "rendszam": "FJX190",
+      "vehicle_id": "3010",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.541568756103516,
+      "lon": 19.15142059326172,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-08T03:34:54.007064+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.43124008178711,
+      "lon": 18.928041458129883,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-08T03:34:54.007826+02:00",
+      "kulcs": "SKR725",
+      "rendszam": "SKR725",
+      "vehicle_id": "7674",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59848403930664,
+      "lon": 19.121295928955078,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-08T03:34:54.008039+02:00",
+      "kulcs": "971-686-972-1101-751-1102",
+      "rendszam": "971-686-972-1101-751-1102",
+      "vehicle_id": "905516569712-905536466865-905516569720-905516561016-905536467517-905516561024",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.660400390625,
+      "lon": 19.07483673095703,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
+    },
+    {
+      "idopont": "2026-09-08T03:34:54.008320+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.5124397277832,
+      "lon": 19.079566955566406,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
     }
   ]
 }
