@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-08T02:56:09.177855+02:00",
+  "frissitve": "2026-09-08T02:56:41.113472+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:10:56.335568+02:00",
-      "kulcs": "PDB384",
-      "rendszam": "PDB384",
-      "vehicle_id": "7066",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.502132415771484,
-      "lon": 19.135751724243164,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-07T15:10:56.335746+02:00",
-      "kulcs": "PDN617",
-      "rendszam": "PDN617",
-      "vehicle_id": "7088",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.390018463134766,
-      "lon": 19.097206115722656,
-      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-07T15:10:56.335902+02:00",
-      "kulcs": "PDN634",
-      "rendszam": "PDN634",
-      "vehicle_id": "7105",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.40546417236328,
-      "lon": 19.01456642150879,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-07T15:10:56.336088+02:00",
       "kulcs": "PHG631",
@@ -260000,6 +259961,45 @@
       "lon": 18.95812225341797,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-08T02:56:41.030020+02:00",
+      "kulcs": "RVY717",
+      "rendszam": "RVY717",
+      "vehicle_id": "7466",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59849166870117,
+      "lon": 19.12129783630371,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-08T02:56:41.030357+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.54838562011719,
+      "lon": 19.02976417541504,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-08T02:56:41.030435+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47380828857422,
+      "lon": 19.04631996154785,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
