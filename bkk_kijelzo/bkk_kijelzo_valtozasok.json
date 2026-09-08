@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T01:37:51.178630+02:00",
+  "frissitve": "2026-09-09T01:38:25.949701+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:04:54.628485+02:00",
-      "kulcs": "V1450",
-      "rendszam": "V1450",
-      "vehicle_id": "4520",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.46757888793945,
-      "lon": 19.07593536376953,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-08T15:04:54.628678+02:00",
-      "kulcs": "V1570",
-      "rendszam": "V1570",
-      "vehicle_id": "4622",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.46271514892578,
-      "lon": 19.124982833862305,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-09-08T15:04:54.628892+02:00",
-      "kulcs": "V4032",
-      "rendszam": "V4032",
-      "vehicle_id": "4721",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.47164535522461,
-      "lon": 19.030942916870117,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-08T15:04:54.628908+02:00",
       "kulcs": "V4034",
@@ -260000,6 +259961,45 @@
       "lon": 19.041065216064453,
       "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
       "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-09T01:38:25.865384+02:00",
+      "kulcs": "FLR700",
+      "rendszam": "FLR700",
+      "vehicle_id": "3114",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.525230407714844,
+      "lon": 19.063751220703125,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-09T01:38:25.868111+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.533451080322266,
+      "lon": 19.08185577392578,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-09T01:38:25.868397+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49888229370117,
+      "lon": 19.050642013549805,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
