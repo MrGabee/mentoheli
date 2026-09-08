@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-09T01:18:09.580289+02:00",
+  "frissitve": "2026-09-09T01:18:41.421568+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:03:26.130129+02:00",
-      "kulcs": "AADI631",
-      "rendszam": "AADI631",
-      "vehicle_id": "127",
-      "vehicle_label": "R.csaba-Újtelep, Naplás út",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.50114440917969,
-      "lon": 19.135940551757812,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Naplás út"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.130194+02:00",
-      "kulcs": "AADI637",
-      "rendszam": "AADI637",
-      "vehicle_id": "135",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.49732971191406,
-      "lon": 19.26416778564453,
-      "elozo_szoveg": "Naplás út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.130323+02:00",
-      "kulcs": "AADI649",
-      "rendszam": "AADI649",
-      "vehicle_id": "148",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.48365783691406,
-      "lon": 19.127912521362305,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.131061+02:00",
-      "kulcs": "AADR719",
-      "rendszam": "AADR719",
-      "vehicle_id": "188",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49938201904297,
-      "lon": 19.035934448242188,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-08T15:03:26.131918+02:00",
-      "kulcs": "FKU939",
-      "rendszam": "FKU939",
-      "vehicle_id": "3095",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.48684310913086,
-      "lon": 19.286239624023438,
-      "elozo_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-08T15:03:26.132192+02:00",
       "kulcs": "FLR737",
@@ -260000,6 +259935,71 @@
       "lon": 19.110031127929688,
       "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-09T01:18:41.318625+02:00",
+      "kulcs": "AADR711",
+      "rendszam": "AADR711",
+      "vehicle_id": "179",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.487274169921875,
+      "lon": 19.05801773071289,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-09T01:18:41.321805+02:00",
+      "kulcs": "NGC162",
+      "rendszam": "NGC162",
+      "vehicle_id": "6202",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.546321868896484,
+      "lon": 19.02939796447754,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-09T01:18:41.322083+02:00",
+      "kulcs": "PKN631",
+      "rendszam": "PKN631",
+      "vehicle_id": "7220",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.501277923583984,
+      "lon": 19.1077880859375,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-09T01:18:41.322415+02:00",
+      "kulcs": "T8110",
+      "rendszam": "T8110",
+      "vehicle_id": "7889",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50328063964844,
+      "lon": 19.07625961303711,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-09T01:18:41.322759+02:00",
+      "kulcs": "AOIM044",
+      "rendszam": "AOIM044",
+      "vehicle_id": "965",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.512210845947266,
+      "lon": 19.10002326965332,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
