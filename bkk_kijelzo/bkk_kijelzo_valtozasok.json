@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-08T02:01:47.801525+02:00",
+  "frissitve": "2026-09-08T02:02:21.833887+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-07T15:05:44.104862+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Fény utcai piac",
-      "vonal_szam": "116",
-      "route_id": "1160",
-      "lat": 47.500370025634766,
-      "lon": 19.034507751464844,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Fény utcai piac"
-    },
-    {
-      "idopont": "2026-09-07T15:05:44.104899+02:00",
-      "kulcs": "NCV293",
-      "rendszam": "NCV293",
-      "vehicle_id": "6258",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50655746459961,
-      "lon": 19.023916244506836,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-07T15:05:44.105096+02:00",
-      "kulcs": "NHB036",
-      "rendszam": "NHB036",
-      "vehicle_id": "6335",
-      "vehicle_label": "Balatoni út / Háros utca",
-      "vonal_szam": "58",
-      "route_id": "0580",
-      "lat": 47.47715759277344,
-      "lon": 19.049663543701172,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-07T15:05:44.105390+02:00",
-      "kulcs": "NTM431",
-      "rendszam": "NTM431",
-      "vehicle_id": "6499",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50661849975586,
-      "lon": 19.023862838745117,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
     {
       "idopont": "2026-09-07T15:05:44.105436+02:00",
       "kulcs": "NTM439",
@@ -260000,6 +259948,58 @@
       "lon": 19.051490783691406,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-08T02:02:21.731427+02:00",
+      "kulcs": "AAGL278",
+      "rendszam": "AAGL278",
+      "vehicle_id": "278",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47856140136719,
+      "lon": 19.049266815185547,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-08T02:02:21.734487+02:00",
+      "kulcs": "PDB703",
+      "rendszam": "PDB703",
+      "vehicle_id": "7029",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.441707611083984,
+      "lon": 19.185941696166992,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-08T02:02:21.735088+02:00",
+      "kulcs": "SGY818",
+      "rendszam": "SGY818",
+      "vehicle_id": "7736",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.44147872924805,
+      "lon": 19.02171516418457,
+      "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
+      "uj_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-08T02:02:21.735173+02:00",
+      "kulcs": "T8119",
+      "rendszam": "T8119",
+      "vehicle_id": "7898",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.496978759765625,
+      "lon": 19.055747985839844,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
