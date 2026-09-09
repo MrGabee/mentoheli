@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:30:26.426234+02:00",
+  "frissitve": "2026-09-10T01:30:57.159626+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:01:38.956180+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49610900878906,
-      "lon": 19.058338165283203,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.956279+02:00",
-      "kulcs": "V2115",
-      "rendszam": "V2115",
-      "vehicle_id": "7365",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46430206298828,
-      "lon": 19.023324966430664,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.956965+02:00",
-      "kulcs": "RVY721",
-      "rendszam": "RVY721",
-      "vehicle_id": "7613",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.5019645690918,
-      "lon": 19.135921478271484,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Pécel, Kun József utca"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.957528+02:00",
-      "kulcs": "SKR819",
-      "rendszam": "SKR819",
-      "vehicle_id": "7705",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.5135612487793,
-      "lon": 19.003061294555664,
-      "elozo_szoveg": "Rózsadomb ► Nyugati pályaudvar M",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-09T15:01:38.957543+02:00",
       "kulcs": "SKR822",
@@ -260000,6 +259948,58 @@
       "lon": 19.294206619262695,
       "elozo_szoveg": "Rákoskert sugárút",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-10T01:30:57.070606+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44162368774414,
+      "lon": 19.186134338378906,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-10T01:30:57.070730+02:00",
+      "kulcs": "AAMH601",
+      "rendszam": "AAMH601",
+      "vehicle_id": "444",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46507263183594,
+      "lon": 19.022716522216797,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-10T01:30:57.071598+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.58095932006836,
+      "lon": 19.106557846069336,
+      "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-10T01:30:57.071796+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50108337402344,
+      "lon": 19.1365909576416,
+      "elozo_szoveg": "Apor Vilmos tér",
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
     }
   ]
 }
