@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-09T02:47:51.400188+02:00",
+  "frissitve": "2026-09-09T02:48:58.032225+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:10:13.071053+02:00",
-      "kulcs": "RVY617",
-      "rendszam": "RVY617",
-      "vehicle_id": "7446",
-      "vehicle_label": "Zodony utca",
-      "vonal_szam": "119",
-      "route_id": "1190",
-      "lat": 47.44508743286133,
-      "lon": 19.098196029663086,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Zodony utca"
-    },
-    {
-      "idopont": "2026-09-08T15:10:13.071215+02:00",
-      "kulcs": "RVY716",
-      "rendszam": "RVY716",
-      "vehicle_id": "7465",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.441650390625,
-      "lon": 19.159902572631836,
-      "elozo_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-08T15:10:13.071249+02:00",
-      "kulcs": "RVY719",
-      "rendszam": "RVY719",
-      "vehicle_id": "7468",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.463111877441406,
-      "lon": 19.148242950439453,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-08T15:10:13.071759+02:00",
-      "kulcs": "SKR728",
-      "rendszam": "SKR728",
-      "vehicle_id": "7677",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46323013305664,
-      "lon": 19.14765739440918,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-08T15:10:13.071892+02:00",
-      "kulcs": "SKR811",
-      "rendszam": "SKR811",
-      "vehicle_id": "7697",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.50766372680664,
-      "lon": 19.0250301361084,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-08T15:10:13.072527+02:00",
       "kulcs": "T9114",
@@ -260000,6 +259935,71 @@
       "lon": 19.49843978881836,
       "elozo_szoveg": null,
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-09T02:48:57.933167+02:00",
+      "kulcs": "V2002",
+      "rendszam": "V2002",
+      "vehicle_id": "2002",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.4773063659668,
+      "lon": 19.048723220825195,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-09T02:48:57.934312+02:00",
+      "kulcs": "FLR745",
+      "rendszam": "FLR745",
+      "vehicle_id": "3159",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.484893798828125,
+      "lon": 19.07268714904785,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T02:48:57.935500+02:00",
+      "kulcs": "NTP540",
+      "rendszam": "NTP540",
+      "vehicle_id": "6516",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.477935791015625,
+      "lon": 19.04555892944336,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-09T02:48:57.936007+02:00",
+      "kulcs": "T8110",
+      "rendszam": "T8110",
+      "vehicle_id": "7889",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50401306152344,
+      "lon": 19.07555389404297,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-09T02:48:57.936025+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50075912475586,
+      "lon": 19.114055633544922,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
