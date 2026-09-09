@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T00:40:36.478579+02:00",
+  "frissitve": "2026-09-10T00:41:08.361847+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:57:26.831939+02:00",
-      "kulcs": "SKR804",
-      "rendszam": "SKR804",
-      "vehicle_id": "7690",
-      "vehicle_label": "Zugliget, Libegő",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.510772705078125,
-      "lon": 19.056364059448242,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Zugliget, Libegő"
-    },
-    {
-      "idopont": "2026-09-09T14:57:26.832402+02:00",
-      "kulcs": "STZ846",
-      "rendszam": "STZ846",
-      "vehicle_id": "7801",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50718307495117,
-      "lon": 18.921688079833984,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Budakeszi, Dózsa Gy. tér"
-    },
-    {
-      "idopont": "2026-09-09T14:57:26.832418+02:00",
-      "kulcs": "STZ847",
-      "rendszam": "STZ847",
-      "vehicle_id": "7802",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.51768493652344,
-      "lon": 18.923851013183594,
-      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
-      "uj_szoveg": "Budakeszi, Honfoglalás s."
-    },
     {
       "idopont": "2026-09-09T14:57:26.832669+02:00",
       "kulcs": "T9116",
@@ -260000,6 +259961,45 @@
       "lon": 19.08065414428711,
       "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T00:41:08.276689+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.508052825927734,
+      "lon": 19.027626037597656,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-10T00:41:08.277005+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.50981903076172,
+      "lon": 19.057138442993164,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-10T00:41:08.277632+02:00",
+      "kulcs": "AOIM044",
+      "rendszam": "AOIM044",
+      "vehicle_id": "965",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.41188049316406,
+      "lon": 19.030376434326172,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
