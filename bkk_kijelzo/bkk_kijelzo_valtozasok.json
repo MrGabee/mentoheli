@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T00:21:41.313874+02:00",
+  "frissitve": "2026-09-10T00:22:19.270522+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:55:50.955747+02:00",
-      "kulcs": "T9133",
-      "rendszam": "T9133",
-      "vehicle_id": "7872",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51725387573242,
-      "lon": 19.10732078552246,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-09T14:55:50.955973+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.5247688293457,
-      "lon": 19.124910354614258,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-09T14:55:50.956256+02:00",
-      "kulcs": "AOFL226",
-      "rendszam": "AOFL226",
-      "vehicle_id": "813",
-      "vehicle_label": "Remetehegyi út",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.5278205871582,
-      "lon": 19.03688621520996,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Remetehegyi út"
-    },
     {
       "idopont": "2026-09-09T14:55:50.956335+02:00",
       "kulcs": "AOFL233",
@@ -260000,6 +259961,45 @@
       "lon": 19.148000717163086,
       "elozo_szoveg": "Kőbánya alsó vasútállomás",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-10T00:22:19.199203+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.598487854003906,
+      "lon": 19.054275512695312,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-10T00:22:19.199380+02:00",
+      "kulcs": "RVY601",
+      "rendszam": "RVY601",
+      "vehicle_id": "7430",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.48495864868164,
+      "lon": 19.258472442626953,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T00:22:19.199681+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.441619873046875,
+      "lon": 19.18614959716797,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Astoria M ► Újpalota"
     }
   ]
 }
