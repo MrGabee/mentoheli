@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-09T02:31:04.666702+02:00",
+  "frissitve": "2026-09-09T02:31:37.563587+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:09:03.995213+02:00",
-      "kulcs": "V2252",
-      "rendszam": "V2252",
-      "vehicle_id": "7384",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54802703857422,
-      "lon": 19.029752731323242,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-08T15:09:03.996290+02:00",
-      "kulcs": "SKR723",
-      "rendszam": "SKR723",
-      "vehicle_id": "7672",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46452331542969,
-      "lon": 19.126750946044922,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-08T15:09:03.996393+02:00",
-      "kulcs": "SKR734",
-      "rendszam": "SKR734",
-      "vehicle_id": "7683",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.46794128417969,
-      "lon": 19.07575225830078,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-08T15:09:03.996430+02:00",
-      "kulcs": "SKR802",
-      "rendszam": "SKR802",
-      "vehicle_id": "7688",
-      "vehicle_label": "Szemlőhegy",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.51078796386719,
-      "lon": 19.05636215209961,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Szemlőhegy"
-    },
     {
       "idopont": "2026-09-08T15:09:03.997009+02:00",
       "kulcs": "STZ843",
@@ -260000,6 +259948,58 @@
       "lon": 19.108320236206055,
       "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-09T02:31:37.495097+02:00",
+      "kulcs": "AADI654",
+      "rendszam": "AADI654",
+      "vehicle_id": "153",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47965621948242,
+      "lon": 19.051151275634766,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-09T02:31:37.497358+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.489219665527344,
+      "lon": 19.062715530395508,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-09-09T02:31:37.497735+02:00",
+      "kulcs": "PMP915",
+      "rendszam": "PMP915",
+      "vehicle_id": "7233",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.508766174316406,
+      "lon": 19.095369338989258,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-09T02:31:37.497891+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.527801513671875,
+      "lon": 19.03691864013672,
+      "elozo_szoveg": "Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
     }
   ]
 }
