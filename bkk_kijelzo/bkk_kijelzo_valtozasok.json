@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T03:27:15.158035+02:00",
+  "frissitve": "2026-09-09T03:27:48.576328+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:14:52.551571+02:00",
-      "kulcs": "V1582",
-      "rendszam": "V1582",
-      "vehicle_id": "4634",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.46780776977539,
-      "lon": 19.075796127319336,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-08T15:14:52.551881+02:00",
-      "kulcs": "AAMH634",
-      "rendszam": "AAMH634",
-      "vehicle_id": "477",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49736404418945,
-      "lon": 19.055965423583984,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Deák F. tér (City centre)"
-    },
-    {
-      "idopont": "2026-09-08T15:14:52.553585+02:00",
-      "kulcs": "V4201",
-      "rendszam": "V4201",
-      "vehicle_id": "4861",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47562789916992,
-      "lon": 19.046884536743164,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-08T15:14:52.553689+02:00",
       "kulcs": "V4251",
@@ -260000,6 +259961,45 @@
       "lon": 19.498430252075195,
       "elozo_szoveg": null,
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-09T03:27:48.483524+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.524566650390625,
+      "lon": 19.037782669067383,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-09T03:27:48.485927+02:00",
+      "kulcs": "NTM435",
+      "rendszam": "NTM435",
+      "vehicle_id": "6503",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50802230834961,
+      "lon": 19.02654266357422,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-09T03:27:48.486404+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.504356384277344,
+      "lon": 19.13700294494629,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
