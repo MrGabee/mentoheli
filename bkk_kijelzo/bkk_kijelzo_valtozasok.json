@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:48:05.215155+02:00",
+  "frissitve": "2026-09-10T01:49:07.276511+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:04:30.704534+02:00",
-      "kulcs": "AAGL291",
-      "rendszam": "AAGL291",
-      "vehicle_id": "324",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "222",
-      "route_id": "2220",
-      "lat": 47.507415771484375,
-      "lon": 19.025617599487305,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Honfoglalás sétány"
-    },
-    {
-      "idopont": "2026-09-09T15:04:30.704612+02:00",
-      "kulcs": "AAGL302",
-      "rendszam": "AAGL302",
-      "vehicle_id": "332",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "173",
-      "route_id": "1730",
-      "lat": 47.44701385498047,
-      "lon": 18.909244537353516,
-      "elozo_szoveg": "Harangláb ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-09T15:04:30.704647+02:00",
-      "kulcs": "AAGL310",
-      "rendszam": "AAGL310",
-      "vehicle_id": "340",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "240",
-      "route_id": "2400",
-      "lat": 47.45574188232422,
-      "lon": 18.9409236907959,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-09T15:04:30.704779+02:00",
-      "kulcs": "AAGL320",
-      "rendszam": "AAGL320",
-      "vehicle_id": "349",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.464111328125,
-      "lon": 19.018531799316406,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
-    },
     {
       "idopont": "2026-09-09T15:04:30.704889+02:00",
       "kulcs": "LOV874",
@@ -260000,6 +259948,58 @@
       "lon": 19.099590301513672,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-10T01:49:07.183750+02:00",
+      "kulcs": "PKD003",
+      "rendszam": "PKD003",
+      "vehicle_id": "5813",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51969528198242,
+      "lon": 19.148366928100586,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-10T01:49:07.183814+02:00",
+      "kulcs": "NBW007",
+      "rendszam": "NBW007",
+      "vehicle_id": "5977",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50043487548828,
+      "lon": 19.1356201171875,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-10T01:49:07.184026+02:00",
+      "kulcs": "RVY601",
+      "rendszam": "RVY601",
+      "vehicle_id": "7430",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.477787017822266,
+      "lon": 19.255640029907227,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-10T01:49:07.184539+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47785949707031,
+      "lon": 19.047624588012695,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
