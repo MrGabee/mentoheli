@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T02:12:30.422897+02:00",
+  "frissitve": "2026-09-09T02:13:30.357919+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:07:31.545449+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.575408935546875,
-      "lon": 19.104368209838867,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-08T15:07:31.545786+02:00",
-      "kulcs": "T0601",
-      "rendszam": "T0601",
-      "vehicle_id": "4285",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49571228027344,
-      "lon": 19.0601863861084,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-09-08T15:07:31.545860+02:00",
-      "kulcs": "T0614",
-      "rendszam": "T0614",
-      "vehicle_id": "4298",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.536468505859375,
-      "lon": 19.107036590576172,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-09-08T15:07:31.546046+02:00",
       "kulcs": "V1337",
@@ -260000,6 +259961,45 @@
       "lon": 19.14204216003418,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-09T02:13:30.278760+02:00",
+      "kulcs": "AAGL259",
+      "rendszam": "AAGL259",
+      "vehicle_id": "259",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.5935173034668,
+      "lon": 19.35759925842285,
+      "elozo_szoveg": "Gödöllő H",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-09T02:13:30.280364+02:00",
+      "kulcs": "RVY601",
+      "rendszam": "RVY601",
+      "vehicle_id": "7430",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.485572814941406,
+      "lon": 19.069833755493164,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-09T02:13:30.280629+02:00",
+      "kulcs": "AOHZ844",
+      "rendszam": "AOHZ844",
+      "vehicle_id": "856",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542667388916016,
+      "lon": 18.964792251586914,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota, MEDIMPEX"
     }
   ]
 }
