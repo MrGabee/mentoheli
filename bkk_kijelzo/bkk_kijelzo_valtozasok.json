@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:25:15.580736+02:00",
+  "frissitve": "2026-09-10T01:25:59.210680+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:01:38.950380+02:00",
-      "kulcs": "V4066",
-      "rendszam": "V4066",
-      "vehicle_id": "4755",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.430076599121094,
-      "lon": 19.03772735595703,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.950687+02:00",
-      "kulcs": "V4152",
-      "rendszam": "V4152",
-      "vehicle_id": "4840",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.509681701660156,
-      "lon": 19.009994506835938,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.950771+02:00",
-      "kulcs": "V4201",
-      "rendszam": "V4201",
-      "vehicle_id": "4861",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.44119644165039,
-      "lon": 18.9798583984375,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.951439+02:00",
-      "kulcs": "AAMH678",
-      "rendszam": "AAMH678",
-      "vehicle_id": "521",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.55966567993164,
-      "lon": 19.082408905029297,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.951790+02:00",
-      "kulcs": "V2269",
-      "rendszam": "V2269",
-      "vehicle_id": "567",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.498260498046875,
-      "lon": 19.023916244506836,
-      "elozo_szoveg": "Alkotás utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
     {
       "idopont": "2026-09-09T15:01:38.951825+02:00",
       "kulcs": "MOS257",
@@ -260000,6 +259935,71 @@
       "lon": 19.028953552246094,
       "elozo_szoveg": "Bécsi út / Vörösvári út",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-10T01:25:59.156246+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50705337524414,
+      "lon": 18.9215030670166,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-10T01:25:59.156484+02:00",
+      "kulcs": "PKD002",
+      "rendszam": "PKD002",
+      "vehicle_id": "5812",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.50014877319336,
+      "lon": 19.024166107177734,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-10T01:25:59.156518+02:00",
+      "kulcs": "MUT894",
+      "rendszam": "MUT894",
+      "vehicle_id": "5947",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51130676269531,
+      "lon": 19.056381225585938,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-10T01:25:59.156617+02:00",
+      "kulcs": "AADI567",
+      "rendszam": "AADI567",
+      "vehicle_id": "65",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50907897949219,
+      "lon": 19.09575653076172,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-10T01:25:59.156700+02:00",
+      "kulcs": "PKN615",
+      "rendszam": "PKN615",
+      "vehicle_id": "7204",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.5040283203125,
+      "lon": 19.142841339111328,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
     }
   ]
 }
