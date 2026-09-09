@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T00:56:00.063127+02:00",
+  "frissitve": "2026-09-10T00:56:31.966032+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:59:02.664596+02:00",
-      "kulcs": "RCT318",
-      "rendszam": "RCT318",
-      "vehicle_id": "7332",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.41273498535156,
-      "lon": 19.160917282104492,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-09T14:59:02.664758+02:00",
-      "kulcs": "T9107",
-      "rendszam": "T9107",
-      "vehicle_id": "7354",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.5145263671875,
-      "lon": 19.05022621154785,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-09T14:59:02.664827+02:00",
-      "kulcs": "V2117",
-      "rendszam": "V2117",
-      "vehicle_id": "7367",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54714584350586,
-      "lon": 19.031692504882812,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-09T14:59:02.664870+02:00",
       "kulcs": "V2240",
@@ -260000,6 +259961,45 @@
       "lon": 19.0467472076416,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-10T00:56:31.865792+02:00",
+      "kulcs": "AADR716",
+      "rendszam": "AADR716",
+      "vehicle_id": "184",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49854278564453,
+      "lon": 19.054731369018555,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-10T00:56:31.869944+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483909606933594,
+      "lon": 19.12749671936035,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-10T00:56:31.870483+02:00",
+      "kulcs": "415 090",
+      "rendszam": "415 090",
+      "vehicle_id": "945514150909",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.492000579833984,
+      "lon": 19.132959365844727,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Nagykáta"
     }
   ]
 }
