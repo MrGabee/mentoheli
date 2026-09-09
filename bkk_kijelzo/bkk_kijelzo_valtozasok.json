@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T00:10:39.027767+02:00",
+  "frissitve": "2026-09-10T00:11:26.899003+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:55:50.944839+02:00",
-      "kulcs": "MFW533",
-      "rendszam": "MFW533",
-      "vehicle_id": "5060",
-      "vehicle_label": "Helikopter lakópark",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.54680252075195,
-      "lon": 19.14250946044922,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Helikopter lakópark"
-    },
-    {
-      "idopont": "2026-09-09T14:55:50.945395+02:00",
-      "kulcs": "MFW525",
-      "rendszam": "MFW525",
-      "vehicle_id": "5087",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.480674743652344,
-      "lon": 19.232852935791016,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-09T14:55:50.945434+02:00",
-      "kulcs": "AAMH667",
-      "rendszam": "AAMH667",
-      "vehicle_id": "510",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "196",
-      "route_id": "1960",
-      "lat": 47.54172134399414,
-      "lon": 19.151140213012695,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-09-09T14:55:50.945679+02:00",
       "kulcs": "V2257",
@@ -260000,6 +259961,45 @@
       "lon": 19.054655075073242,
       "elozo_szoveg": "Boráros tér H",
       "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-09-10T00:11:26.846037+02:00",
+      "kulcs": "AAGL266",
+      "rendszam": "AAGL266",
+      "vehicle_id": "266",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.507301330566406,
+      "lon": 18.921586990356445,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-10T00:11:26.846323+02:00",
+      "kulcs": "PKD003",
+      "rendszam": "PKD003",
+      "vehicle_id": "5813",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40560531616211,
+      "lon": 19.01374626159668,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T00:11:26.846476+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.4981575012207,
+      "lon": 19.05471420288086,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
