@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-09T03:18:12.760088+02:00",
+  "frissitve": "2026-09-09T03:18:45.554207+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:13:18.938823+02:00",
-      "kulcs": "T9146",
-      "rendszam": "T9146",
-      "vehicle_id": "7885",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51073455810547,
-      "lon": 19.09731674194336,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-09-08T15:13:18.938883+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.505332946777344,
-      "lon": 19.136343002319336,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-08T15:13:18.938928+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.4759407043457,
-      "lon": 19.09999656677246,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-09-08T15:13:18.939150+02:00",
-      "kulcs": "AOFL231",
-      "rendszam": "AOFL231",
-      "vehicle_id": "819",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.508541107177734,
-      "lon": 18.990705490112305,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-08T15:13:18.939208+02:00",
-      "kulcs": "AOFL238",
-      "rendszam": "AOFL238",
-      "vehicle_id": "826",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.55665588378906,
-      "lon": 19.010723114013672,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
     {
       "idopont": "2026-09-08T15:13:18.939275+02:00",
       "kulcs": "AOFL246",
@@ -260000,6 +259935,71 @@
       "lon": 19.132661819458008,
       "elozo_szoveg": "Rákospalota, MEDIMPEX",
       "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-09T03:18:45.465081+02:00",
+      "kulcs": "AAGL293",
+      "rendszam": "AAGL293",
+      "vehicle_id": "326",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507057189941406,
+      "lon": 18.921606063842773,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-09T03:18:45.465859+02:00",
+      "kulcs": "MXJ011",
+      "rendszam": "MXJ011",
+      "vehicle_id": "5887",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.41056823730469,
+      "lon": 18.994569778442383,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T03:18:45.466012+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.5465202331543,
+      "lon": 19.029356002807617,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-09T03:18:45.466443+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.512001037597656,
+      "lon": 19.11573028564453,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T03:18:45.466637+02:00",
+      "kulcs": "425 002",
+      "rendszam": "425 002",
+      "vehicle_id": "945514250022",
+      "vehicle_label": "Győr",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.46376037597656,
+      "lon": 19.02039909362793,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Győr"
     }
   ]
 }
