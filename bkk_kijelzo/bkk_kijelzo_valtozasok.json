@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T03:46:32.879469+02:00",
+  "frissitve": "2026-09-09T03:47:07.473204+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:16:51.422301+02:00",
-      "kulcs": "MXJ002",
-      "rendszam": "MXJ002",
-      "vehicle_id": "5828",
-      "vehicle_label": "Nyeremény utca",
-      "vonal_szam": "297",
-      "route_id": "2970",
-      "lat": 47.48659133911133,
-      "lon": 19.271141052246094,
-      "elozo_szoveg": "Rákoscsaba-Újtelep vasútállomás",
-      "uj_szoveg": "Nyeremény utca"
-    },
-    {
-      "idopont": "2026-09-08T15:16:51.422310+02:00",
-      "kulcs": "V2101",
-      "rendszam": "V2101",
-      "vehicle_id": "5829",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.548500061035156,
-      "lon": 19.0299129486084,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-08T15:16:51.422617+02:00",
-      "kulcs": "MXJ013",
-      "rendszam": "MXJ013",
-      "vehicle_id": "5889",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.497657775878906,
-      "lon": 19.053003311157227,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-09-08T15:16:51.422702+02:00",
       "kulcs": "MUT888",
@@ -260000,6 +259961,45 @@
       "lon": 19.068220138549805,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-09T03:47:07.369828+02:00",
+      "kulcs": "FJX190",
+      "rendszam": "FJX190",
+      "vehicle_id": "3010",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54583740234375,
+      "lon": 19.137624740600586,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-09T03:47:07.369919+02:00",
+      "kulcs": "FLR737",
+      "rendszam": "FLR737",
+      "vehicle_id": "3151",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.463836669921875,
+      "lon": 19.12992286682129,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-09T03:47:07.373240+02:00",
+      "kulcs": "SKR808",
+      "rendszam": "SKR808",
+      "vehicle_id": "7694",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.550193786621094,
+      "lon": 19.042068481445312,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
