@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T00:09:22.879542+02:00",
+  "frissitve": "2026-09-10T00:09:59.622806+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:55:50.944325+02:00",
-      "kulcs": "V4133",
-      "rendszam": "V4133",
-      "vehicle_id": "4821",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.48163604736328,
-      "lon": 18.999155044555664,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
-    {
-      "idopont": "2026-09-09T14:55:50.944371+02:00",
-      "kulcs": "V4150",
-      "rendszam": "V4150",
-      "vehicle_id": "4838",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.48444366455078,
-      "lon": 19.026317596435547,
-      "elozo_szoveg": "Alkotás utca ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-09T14:55:50.944785+02:00",
-      "kulcs": "MFW532",
-      "rendszam": "MFW532",
-      "vehicle_id": "5045",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.491703033447266,
-      "lon": 19.281940460205078,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-09T14:55:50.944839+02:00",
       "kulcs": "MFW533",
@@ -260000,6 +259961,45 @@
       "lon": 19.14725685119629,
       "elozo_szoveg": "Kőbánya-Kispest M",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-10T00:09:59.529496+02:00",
+      "kulcs": "MOS289",
+      "rendszam": "MOS289",
+      "vehicle_id": "196",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49702453613281,
+      "lon": 19.0556583404541,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-10T00:09:59.529674+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.49504470825195,
+      "lon": 19.108890533447266,
+      "elozo_szoveg": "Nagybányai út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-10T00:09:59.530043+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49848175048828,
+      "lon": 19.054655075073242,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Csepel, Szent Imre tér"
     }
   ]
 }
