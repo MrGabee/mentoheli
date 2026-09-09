@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-09T02:39:07.809756+02:00",
+  "frissitve": "2026-09-09T02:39:39.591358+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:10:13.060696+02:00",
-      "kulcs": "AAHY823",
-      "rendszam": "AAHY823",
-      "vehicle_id": "384",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.560462951660156,
-      "lon": 19.090377807617188,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-08T15:10:13.060725+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.579402923583984,
-      "lon": 19.10203742980957,
-      "elozo_szoveg": "Izzó utcai lakótelep ► Újpest-központ M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-08T15:10:13.061814+02:00",
-      "kulcs": "AAMH612",
-      "rendszam": "AAMH612",
-      "vehicle_id": "455",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30A",
-      "route_id": "0301",
-      "lat": 47.58564758300781,
-      "lon": 19.094093322753906,
-      "elozo_szoveg": "Megyer, Szondi utca",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-08T15:10:13.061892+02:00",
-      "kulcs": "V1518",
-      "rendszam": "V1518",
-      "vehicle_id": "4570",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51922607421875,
-      "lon": 19.091001510620117,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
     {
       "idopont": "2026-09-08T15:10:13.062179+02:00",
       "kulcs": "AAMH626",
@@ -260000,6 +259948,58 @@
       "lon": 19.050920486450195,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T02:39:39.519621+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52605438232422,
+      "lon": 19.064006805419922,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-09T02:39:39.519900+02:00",
+      "kulcs": "PKN617",
+      "rendszam": "PKN617",
+      "vehicle_id": "7206",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48548889160156,
+      "lon": 19.124919891357422,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-09T02:39:39.519982+02:00",
+      "kulcs": "RVY606",
+      "rendszam": "RVY606",
+      "vehicle_id": "7435",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.422672271728516,
+      "lon": 19.079021453857422,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-09T02:39:39.520211+02:00",
+      "kulcs": "AOHZ844",
+      "rendszam": "AOHZ844",
+      "vehicle_id": "856",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.49113464355469,
+      "lon": 19.043987274169922,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX"
     }
   ]
 }
