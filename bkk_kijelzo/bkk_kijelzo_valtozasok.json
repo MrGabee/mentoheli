@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-10T00:57:13.309294+02:00",
+  "frissitve": "2026-09-10T00:57:44.743698+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:59:02.665122+02:00",
-      "kulcs": "RVY610",
-      "rendszam": "RVY610",
-      "vehicle_id": "7439",
-      "vehicle_label": "Aszódi utca",
-      "vonal_szam": "281",
-      "route_id": "2810",
-      "lat": 47.477115631103516,
-      "lon": 19.075883865356445,
-      "elozo_szoveg": "Ferencvárosi rendelőintézet",
-      "uj_szoveg": "Aszódi utca"
-    },
-    {
-      "idopont": "2026-09-09T14:59:02.665154+02:00",
-      "kulcs": "RVY612",
-      "rendszam": "RVY612",
-      "vehicle_id": "7441",
-      "vehicle_label": "Kispest, Vas Gereben utca",
-      "vonal_szam": "268",
-      "route_id": "2680",
-      "lat": 47.48076248168945,
-      "lon": 19.21984100341797,
-      "elozo_szoveg": "Akadémiaújtelep, 525. tér",
-      "uj_szoveg": "Kispest, Vas Gereben utca"
-    },
-    {
-      "idopont": "2026-09-09T14:59:02.665259+02:00",
-      "kulcs": "RVY701",
-      "rendszam": "RVY701",
-      "vehicle_id": "7450",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.433128356933594,
-      "lon": 19.17435073852539,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-09T14:59:02.665316+02:00",
-      "kulcs": "RVY708",
-      "rendszam": "RVY708",
-      "vehicle_id": "7457",
-      "vehicle_label": "Soroksár, IKEA áruház",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.465816497802734,
-      "lon": 19.124874114990234,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Soroksár, IKEA áruház"
-    },
-    {
-      "idopont": "2026-09-09T14:59:02.665359+02:00",
-      "kulcs": "RVY715",
-      "rendszam": "RVY715",
-      "vehicle_id": "7464",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.46297073364258,
-      "lon": 19.148693084716797,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-09T14:59:02.665381+02:00",
       "kulcs": "RVY717",
@@ -260000,6 +259935,71 @@
       "lon": 19.13678741455078,
       "elozo_szoveg": "Kápolna tér",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-10T00:57:44.655452+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.49887466430664,
+      "lon": 19.049612045288086,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-10T00:57:44.659184+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58415222167969,
+      "lon": 19.092599868774414,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-10T00:57:44.659526+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50847244262695,
+      "lon": 19.026992797851562,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-10T00:57:44.659619+02:00",
+      "kulcs": "NTM441",
+      "rendszam": "NTM441",
+      "vehicle_id": "6509",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.568050384521484,
+      "lon": 19.026107788085938,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-10T00:57:44.660119+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51323318481445,
+      "lon": 19.101667404174805,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
