@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-09T03:45:56.366325+02:00",
+  "frissitve": "2026-09-09T03:46:32.879469+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:16:51.422032+02:00",
-      "kulcs": "MPW616",
-      "rendszam": "MPW616",
-      "vehicle_id": "5604",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "132E",
-      "route_id": "1325",
-      "lat": 47.43327713012695,
-      "lon": 19.174358367919922,
-      "elozo_szoveg": "Havanna-lakótelep ► Szent Lőrinc-telep",
-      "uj_szoveg": "Szent Lőrinc-telep"
-    },
-    {
-      "idopont": "2026-09-08T15:16:51.422079+02:00",
-      "kulcs": "MPW636",
-      "rendszam": "MPW636",
-      "vehicle_id": "5624",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.42754364013672,
-      "lon": 19.173267364501953,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-08T15:16:51.422229+02:00",
-      "kulcs": "MOS287",
-      "rendszam": "MOS287",
-      "vehicle_id": "5740",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.38931655883789,
-      "lon": 19.2189998626709,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-08T15:16:51.422247+02:00",
-      "kulcs": "MOS295",
-      "rendszam": "MOS295",
-      "vehicle_id": "5748",
-      "vehicle_label": "Szigetszentmiklós",
-      "vonal_szam": "38",
-      "route_id": "0380",
-      "lat": 47.43083953857422,
-      "lon": 19.071043014526367,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Auchan Sziget ► Szigetszentmiklós"
-    },
     {
       "idopont": "2026-09-08T15:16:51.422301+02:00",
       "kulcs": "MXJ002",
@@ -260000,6 +259948,58 @@
       "lon": 19.05251693725586,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-09T03:46:32.788938+02:00",
+      "kulcs": "AADR702",
+      "rendszam": "AADR702",
+      "vehicle_id": "169",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.42385482788086,
+      "lon": 19.234596252441406,
+      "elozo_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T03:46:32.789072+02:00",
+      "kulcs": "V2019",
+      "rendszam": "V2019",
+      "vehicle_id": "2019",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47743225097656,
+      "lon": 19.048717498779297,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-09T03:46:32.791220+02:00",
+      "kulcs": "AAMH654",
+      "rendszam": "AAMH654",
+      "vehicle_id": "497",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49702835083008,
+      "lon": 19.055727005004883,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-09T03:46:32.791835+02:00",
+      "kulcs": "SGY801",
+      "rendszam": "SGY801",
+      "vehicle_id": "7719",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48654556274414,
+      "lon": 19.068220138549805,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
