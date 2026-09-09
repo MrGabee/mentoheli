@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:32:04.696082+02:00",
+  "frissitve": "2026-09-10T01:32:40.399306+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:01:38.958615+02:00",
-      "kulcs": "AOFL223",
-      "rendszam": "AOFL223",
-      "vehicle_id": "810",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54882049560547,
-      "lon": 19.015243530273438,
-      "elozo_szoveg": "Máramaros út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.958860+02:00",
-      "kulcs": "AOFL252",
-      "rendszam": "AOFL252",
-      "vehicle_id": "841",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.48313903808594,
-      "lon": 19.12828254699707,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.958904+02:00",
-      "kulcs": "AOIA474",
-      "rendszam": "AOIA474",
-      "vehicle_id": "851",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.500755310058594,
-      "lon": 18.96634292602539,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-09T15:01:38.960358+02:00",
-      "kulcs": "AOIM016",
-      "rendszam": "AOIM016",
-      "vehicle_id": "936",
-      "vehicle_label": "Soroksár, közp. raktárak",
-      "vonal_szam": "66",
-      "route_id": "0660",
-      "lat": 47.464603424072266,
-      "lon": 19.12725830078125,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Soroksár, központi raktárak"
-    },
     {
       "idopont": "2026-09-09T15:01:38.960418+02:00",
       "kulcs": "AOIM020",
@@ -260000,6 +259948,58 @@
       "lon": 19.051475524902344,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-10T01:32:40.303013+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47756576538086,
+      "lon": 19.048843383789062,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-10T01:32:40.305114+02:00",
+      "kulcs": "AAMH631",
+      "rendszam": "AAMH631",
+      "vehicle_id": "474",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43202590942383,
+      "lon": 19.260738372802734,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-10T01:32:40.305178+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.484867095947266,
+      "lon": 19.073135375976562,
+      "elozo_szoveg": "Határ út M ► Pestszentlőrinc",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-09-10T01:32:40.305845+02:00",
+      "kulcs": "AOFL255",
+      "rendszam": "AOFL255",
+      "vehicle_id": "844",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.441741943359375,
+      "lon": 19.185876846313477,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Pestszentimre"
     }
   ]
 }
