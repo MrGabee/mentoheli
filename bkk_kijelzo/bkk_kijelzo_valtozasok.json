@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-09T02:27:49.702056+02:00",
+  "frissitve": "2026-09-09T02:28:21.550367+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:09:03.990534+02:00",
-      "kulcs": "MUT900",
-      "rendszam": "MUT900",
-      "vehicle_id": "5953",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.413089752197266,
-      "lon": 19.201892852783203,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-09-08T15:09:03.990591+02:00",
-      "kulcs": "MUU907",
-      "rendszam": "MUU907",
-      "vehicle_id": "5960",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.47981262207031,
-      "lon": 19.066478729248047,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-09-08T15:09:03.990632+02:00",
       "kulcs": "NBW003",
@@ -260000,6 +259974,32 @@
       "lon": 19.16059112548828,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-09T02:28:21.466404+02:00",
+      "kulcs": "NTM436",
+      "rendszam": "NTM436",
+      "vehicle_id": "6504",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.464637756347656,
+      "lon": 19.02294921875,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-09T02:28:21.466951+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.598487854003906,
+      "lon": 19.121299743652344,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
     }
   ]
 }
