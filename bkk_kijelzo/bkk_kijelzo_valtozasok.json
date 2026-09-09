@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:32:40.399306+02:00",
+  "frissitve": "2026-09-10T01:33:14.776517+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:01:38.960418+02:00",
-      "kulcs": "AOIM020",
-      "rendszam": "AOIM020",
-      "vehicle_id": "940",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.41048812866211,
-      "lon": 19.060598373413086,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-09T15:02:45.297034+02:00",
-      "kulcs": "AOJM882",
-      "rendszam": "AOJM882",
-      "vehicle_id": "1008",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.430782318115234,
-      "lon": 19.070571899414062,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-09T15:02:45.297099+02:00",
-      "kulcs": "AOJM885",
-      "rendszam": "AOJM885",
-      "vehicle_id": "1011",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40643310546875,
-      "lon": 19.080570220947266,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-09T15:02:45.297449+02:00",
       "kulcs": "AADI629",
@@ -260000,6 +259961,45 @@
       "lon": 19.185876846313477,
       "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
       "uj_szoveg": "Pestszentimre"
+    },
+    {
+      "idopont": "2026-09-10T01:33:14.700795+02:00",
+      "kulcs": "AADR701",
+      "rendszam": "AADR701",
+      "vehicle_id": "168",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42661666870117,
+      "lon": 19.160831451416016,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-10T01:33:14.700929+02:00",
+      "kulcs": "V2011",
+      "rendszam": "V2011",
+      "vehicle_id": "2011",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507259368896484,
+      "lon": 19.025421142578125,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-10T01:33:14.702837+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507484436035156,
+      "lon": 19.024808883666992,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
