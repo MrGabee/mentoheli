@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T03:10:58.361911+02:00",
+  "frissitve": "2026-09-09T03:11:31.129560+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:13:18.932812+02:00",
-      "kulcs": "V2109",
-      "rendszam": "V2109",
-      "vehicle_id": "5837",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464447021484375,
-      "lon": 19.02342987060547,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-08T15:13:18.932942+02:00",
-      "kulcs": "V2219",
-      "rendszam": "V2219",
-      "vehicle_id": "5859",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.44588088989258,
-      "lon": 19.15243148803711,
-      "elozo_szoveg": "Kispest, Tulipán utca",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-08T15:13:18.932965+02:00",
-      "kulcs": "V2221",
-      "rendszam": "V2221",
-      "vehicle_id": "5861",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.44375228881836,
-      "lon": 19.0967960357666,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-09-08T15:13:18.933141+02:00",
       "kulcs": "MXJ014",
@@ -260000,6 +259961,45 @@
       "lon": 19.071027755737305,
       "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
       "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T03:11:31.040514+02:00",
+      "kulcs": "AADI654",
+      "rendszam": "AADI654",
+      "vehicle_id": "153",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475711822509766,
+      "lon": 19.041616439819336,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-09T03:11:31.040578+02:00",
+      "kulcs": "AADR711",
+      "rendszam": "AADR711",
+      "vehicle_id": "179",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.487300872802734,
+      "lon": 19.06682014465332,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-09T03:11:31.040638+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55027770996094,
+      "lon": 19.042055130004883,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
