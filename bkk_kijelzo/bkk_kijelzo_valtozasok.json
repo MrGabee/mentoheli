@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-09T03:26:39.060695+02:00",
+  "frissitve": "2026-09-09T03:27:15.158035+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-08T15:14:52.551455+02:00",
-      "kulcs": "V1552",
-      "rendszam": "V1552",
-      "vehicle_id": "4604",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.49558639526367,
-      "lon": 19.07317352294922,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-09-08T15:14:52.551494+02:00",
-      "kulcs": "V1562",
-      "rendszam": "V1562",
-      "vehicle_id": "4614",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51",
-      "route_id": "3510",
-      "lat": 47.44392013549805,
-      "lon": 19.099971771240234,
-      "elozo_szoveg": "Erzsébetfalva",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
-    {
-      "idopont": "2026-09-08T15:14:52.551508+02:00",
-      "kulcs": "V1564",
-      "rendszam": "V1564",
-      "vehicle_id": "4616",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.54232406616211,
-      "lon": 19.121896743774414,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-08T15:14:52.551571+02:00",
       "kulcs": "V1582",
@@ -260000,6 +259961,45 @@
       "lon": 19.055774688720703,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-09T03:27:15.074239+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.4872932434082,
+      "lon": 19.058103561401367,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-09T03:27:15.074470+02:00",
+      "kulcs": "AOHZ844",
+      "rendszam": "AOHZ844",
+      "vehicle_id": "856",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.567840576171875,
+      "lon": 19.125560760498047,
+      "elozo_szoveg": "Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-09T03:27:15.074757+02:00",
+      "kulcs": "416 019",
+      "rendszam": "416 019",
+      "vehicle_id": "955514160196",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S21",
+      "route_id": "S21",
+      "lat": 47.068870544433594,
+      "lon": 19.498430252075195,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
