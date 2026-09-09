@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:10:26.730143+02:00",
+  "frissitve": "2026-09-10T01:11:10.528057+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:00:31.164526+02:00",
-      "kulcs": "MXJ006",
-      "rendszam": "MXJ006",
-      "vehicle_id": "5886",
-      "vehicle_label": "Balatoni út / Háros utca",
-      "vonal_szam": "58",
-      "route_id": "0580",
-      "lat": 47.47710418701172,
-      "lon": 19.04966163635254,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Balatoni út / Háros utca"
-    },
-    {
-      "idopont": "2026-09-09T15:00:31.164656+02:00",
-      "kulcs": "MUT887",
-      "rendszam": "MUT887",
-      "vehicle_id": "5940",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "54",
-      "route_id": "0540",
-      "lat": 47.3903694152832,
-      "lon": 19.16511344909668,
-      "elozo_szoveg": "Péterimajor, Víztorony tér",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-09T15:00:31.164711+02:00",
-      "kulcs": "MUU903",
-      "rendszam": "MUU903",
-      "vehicle_id": "5956",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85E",
-      "route_id": "0855",
-      "lat": 47.50155258178711,
-      "lon": 19.135677337646484,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-09T15:00:31.165016+02:00",
       "kulcs": "T8017",
@@ -260000,6 +259961,45 @@
       "lon": 19.055477142333984,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-10T01:11:10.370540+02:00",
+      "kulcs": "LMG123",
+      "rendszam": "LMG123",
+      "vehicle_id": "1112",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.485443115234375,
+      "lon": 19.070993423461914,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T01:11:10.373167+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523197174072266,
+      "lon": 19.017663955688477,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-10T01:11:10.373303+02:00",
+      "kulcs": "SGY983",
+      "rendszam": "SGY983",
+      "vehicle_id": "7663",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475242614746094,
+      "lon": 19.040016174316406,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
