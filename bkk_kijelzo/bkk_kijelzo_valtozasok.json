@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:11:53.578905+02:00",
+  "frissitve": "2026-09-10T01:12:28.157311+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:00:31.166597+02:00",
-      "kulcs": "CITY001",
-      "rendszam": "CITY001",
-      "vehicle_id": "656",
-      "vehicle_label": "Árpádföld, Bekecs utca",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.520381927490234,
-      "lon": 19.218887329101562,
-      "elozo_szoveg": "Cinkota H",
-      "uj_szoveg": "Árpádföld, Bekecs utca"
-    },
-    {
-      "idopont": "2026-09-09T15:00:31.166972+02:00",
-      "kulcs": "PDB730",
-      "rendszam": "PDB730",
-      "vehicle_id": "7056",
-      "vehicle_label": "Albertfalva vasútállomás",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.546905517578125,
-      "lon": 19.142335891723633,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Albertfalva vasútállomás"
-    },
-    {
-      "idopont": "2026-09-09T15:00:31.167133+02:00",
-      "kulcs": "PDN604",
-      "rendszam": "PDN604",
-      "vehicle_id": "7076",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41689682006836,
-      "lon": 19.1313533782959,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-09-09T15:00:31.167382+02:00",
       "kulcs": "PDN640",
@@ -260000,6 +259961,45 @@
       "lon": 19.115718841552734,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-10T01:12:28.067100+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.519378662109375,
+      "lon": 19.0382022857666,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-10T01:12:28.067445+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.4994010925293,
+      "lon": 19.28671646118164,
+      "elozo_szoveg": "Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-10T01:12:28.067573+02:00",
+      "kulcs": "SGY985",
+      "rendszam": "SGY985",
+      "vehicle_id": "7665",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.514522552490234,
+      "lon": 19.103832244873047,
+      "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
     }
   ]
 }
