@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:36:57.149022+02:00",
+  "frissitve": "2026-09-10T01:37:30.567682+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:02:45.305678+02:00",
-      "kulcs": "NGC159",
-      "rendszam": "NGC159",
-      "vehicle_id": "6209",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.54542541503906,
-      "lon": 19.033781051635742,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
-    {
-      "idopont": "2026-09-09T15:02:45.305705+02:00",
-      "kulcs": "NGC143",
-      "rendszam": "NGC143",
-      "vehicle_id": "6215",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.539947509765625,
-      "lon": 19.0467529296875,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-09T15:02:45.306666+02:00",
-      "kulcs": "NGC028",
-      "rendszam": "NGC028",
-      "vehicle_id": "6327",
-      "vehicle_label": "Savoyai Jenő tér",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.46437072753906,
-      "lon": 19.018800735473633,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Regényes utca ► Savoyai Jenő tér"
-    },
     {
       "idopont": "2026-09-09T15:02:45.307215+02:00",
       "kulcs": "NTP538",
@@ -260000,6 +259961,45 @@
       "lon": 19.142122268676758,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-10T01:37:30.478963+02:00",
+      "kulcs": "FKU901",
+      "rendszam": "FKU901",
+      "vehicle_id": "3057",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.5252571105957,
+      "lon": 19.063777923583984,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-10T01:37:30.479357+02:00",
+      "kulcs": "NNE053",
+      "rendszam": "NNE053",
+      "vehicle_id": "6449",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534027099609375,
+      "lon": 19.082149505615234,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T01:37:30.479749+02:00",
+      "kulcs": "SIF015",
+      "rendszam": "SIF015",
+      "vehicle_id": "7750",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42719268798828,
+      "lon": 19.15985107421875,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
