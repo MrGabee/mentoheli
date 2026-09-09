@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T01:54:13.666737+02:00",
+  "frissitve": "2026-09-10T01:54:48.212622+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:04:30.711943+02:00",
-      "kulcs": "MUT886",
-      "rendszam": "MUT886",
-      "vehicle_id": "5939",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "255E",
-      "route_id": "2555",
-      "lat": 47.41307067871094,
-      "lon": 19.20189666748047,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-09T15:04:30.712036+02:00",
-      "kulcs": "NBW002",
-      "rendszam": "NBW002",
-      "vehicle_id": "5972",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.504539489746094,
-      "lon": 19.13671112060547,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-09T15:04:30.712156+02:00",
-      "kulcs": "T8000",
-      "rendszam": "T8000",
-      "vehicle_id": "6115",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53638458251953,
-      "lon": 19.107275009155273,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-09-09T15:04:30.712270+02:00",
       "kulcs": "T8013",
@@ -260000,6 +259961,45 @@
       "lon": 19.014360427856445,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-09-10T01:54:48.129960+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50876235961914,
+      "lon": 19.095375061035156,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-10T01:54:48.130498+02:00",
+      "kulcs": "SIF015",
+      "rendszam": "SIF015",
+      "vehicle_id": "7750",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46342849731445,
+      "lon": 19.130847930908203,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-10T01:54:48.130612+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.511329650878906,
+      "lon": 19.056373596191406,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
