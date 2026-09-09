@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T00:41:38.076979+02:00",
+  "frissitve": "2026-09-10T00:42:04.644265+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:57:26.833078+02:00",
-      "kulcs": "AOFL209",
-      "rendszam": "AOFL209",
-      "vehicle_id": "795",
-      "vehicle_label": "Szemeretelep vasútáll.",
-      "vonal_szam": "183",
-      "route_id": "1830",
-      "lat": 47.44160079956055,
-      "lon": 19.18620491027832,
-      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
-      "uj_szoveg": "Szemeretelep vasútállomás"
-    },
-    {
-      "idopont": "2026-09-09T14:57:26.833223+02:00",
-      "kulcs": "AOFL231",
-      "rendszam": "AOFL231",
-      "vehicle_id": "819",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.5401496887207,
-      "lon": 19.04627227783203,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Erdőalja út ► Máramaros út"
-    },
-    {
-      "idopont": "2026-09-09T14:57:26.833307+02:00",
-      "kulcs": "AOFL236",
-      "rendszam": "AOFL236",
-      "vehicle_id": "824",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.527400970458984,
-      "lon": 18.97943687438965,
-      "elozo_szoveg": "Kurucles ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-09T14:57:26.833597+02:00",
       "kulcs": "AOIB799",
@@ -260000,6 +259961,45 @@
       "lon": 19.050256729125977,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T00:42:04.578082+02:00",
+      "kulcs": "V2013",
+      "rendszam": "V2013",
+      "vehicle_id": "2013",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47746658325195,
+      "lon": 19.048856735229492,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-10T00:42:04.578736+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48678207397461,
+      "lon": 19.06770896911621,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T00:42:04.579152+02:00",
+      "kulcs": "RWA600",
+      "rendszam": "RWA600",
+      "vehicle_id": "7572",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.45972442626953,
+      "lon": 19.132875442504883,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
     }
   ]
 }
