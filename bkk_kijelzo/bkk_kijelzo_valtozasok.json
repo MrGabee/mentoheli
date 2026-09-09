@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-09T23:59:11.919564+02:00",
+  "frissitve": "2026-09-09T23:59:52.044083+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T14:54:18.222340+02:00",
-      "kulcs": "AOFL200",
-      "rendszam": "AOFL200",
-      "vehicle_id": "784",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.47806167602539,
-      "lon": 19.045642852783203,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Citadella ► Sánc utca"
-    },
-    {
-      "idopont": "2026-09-09T14:54:18.222431+02:00",
-      "kulcs": "T9120",
-      "rendszam": "T9120",
-      "vehicle_id": "7859",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489662170410156,
-      "lon": 19.089733123779297,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-09T14:54:18.222795+02:00",
-      "kulcs": "AADI578",
-      "rendszam": "AADI578",
-      "vehicle_id": "79",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.53367614746094,
-      "lon": 18.993410110473633,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-09T14:54:18.223074+02:00",
-      "kulcs": "AOFL235",
-      "rendszam": "AOFL235",
-      "vehicle_id": "823",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.5340690612793,
-      "lon": 19.026159286499023,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-09T14:54:18.223093+02:00",
-      "kulcs": "AOFL236",
-      "rendszam": "AOFL236",
-      "vehicle_id": "824",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52296829223633,
-      "lon": 18.988506317138672,
-      "elozo_szoveg": "Kurucles",
-      "uj_szoveg": "Kurucles ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-09T14:54:18.223122+02:00",
       "kulcs": "AOFL238",
@@ -260000,6 +259935,71 @@
       "lon": 19.127304077148438,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Kőb.-Kispest M-Határ út M"
+    },
+    {
+      "idopont": "2026-09-09T23:59:51.927306+02:00",
+      "kulcs": "AADI629",
+      "rendszam": "AADI629",
+      "vehicle_id": "124",
+      "vehicle_label": "Rákoskeresztúr, városkp.",
+      "vonal_szam": "97E",
+      "route_id": "0975",
+      "lat": 47.46907043457031,
+      "lon": 19.294315338134766,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-09-09T23:59:51.933273+02:00",
+      "kulcs": "MOS265",
+      "rendszam": "MOS265",
+      "vehicle_id": "5718",
+      "vehicle_label": "Pestszentimre vasútáll.",
+      "vonal_szam": "55",
+      "route_id": "0550",
+      "lat": 47.389320373535156,
+      "lon": 19.218982696533203,
+      "elozo_szoveg": "Gyál, Vecsési út",
+      "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-09T23:59:51.934092+02:00",
+      "kulcs": "T8108",
+      "rendszam": "T8108",
+      "vehicle_id": "7345",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "77",
+      "route_id": "4770",
+      "lat": 47.52244186401367,
+      "lon": 19.13068962097168,
+      "elozo_szoveg": "Öv utca / Egressy út",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-09T23:59:51.934409+02:00",
+      "kulcs": "SKR722",
+      "rendszam": "SKR722",
+      "vehicle_id": "7671",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42664337158203,
+      "lon": 19.161102294921875,
+      "elozo_szoveg": "Szentlőrinci úti lakótelep",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-09T23:59:51.934511+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48701477050781,
+      "lon": 19.057584762573242,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
     }
   ]
 }
