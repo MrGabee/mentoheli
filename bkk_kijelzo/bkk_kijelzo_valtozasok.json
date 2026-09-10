@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:09:29.305327+02:00",
+  "frissitve": "2026-09-10T02:09:57.265211+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:06:00.866439+02:00",
-      "kulcs": "NTM441",
-      "rendszam": "NTM441",
-      "vehicle_id": "6509",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.40541076660156,
-      "lon": 19.014179229736328,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
-    {
-      "idopont": "2026-09-09T15:06:00.866448+02:00",
-      "kulcs": "NTP537",
-      "rendszam": "NTP537",
-      "vehicle_id": "6513",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.51111602783203,
-      "lon": 18.97209358215332,
-      "elozo_szoveg": "Fácános tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-09T15:06:00.866557+02:00",
-      "kulcs": "NWB364",
-      "rendszam": "NWB364",
-      "vehicle_id": "6544",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.50029373168945,
-      "lon": 19.135250091552734,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-09T15:06:00.867016+02:00",
       "kulcs": "PDN604",
@@ -260000,6 +259961,45 @@
       "lon": 19.004274368286133,
       "elozo_szoveg": "Rózsadomb ► Árpádföld",
       "uj_szoveg": "Nyugati pályaudvar M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-10T02:09:57.175515+02:00",
+      "kulcs": "AAGL254",
+      "rendszam": "AAGL254",
+      "vehicle_id": "254",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507957458496094,
+      "lon": 19.028789520263672,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-10T02:09:57.176366+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.485984802246094,
+      "lon": 19.07111930847168,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T02:09:57.176828+02:00",
+      "kulcs": "RVY617",
+      "rendszam": "RVY617",
+      "vehicle_id": "7446",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.47102737426758,
+      "lon": 19.07329559326172,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
+      "uj_szoveg": "Millenniumtelep H"
     }
   ]
 }
