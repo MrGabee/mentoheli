@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:10:51.486500+02:00",
+  "frissitve": "2026-09-11T01:12:00.816463+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:00:28.633150+02:00",
-      "kulcs": "AOFL213",
-      "rendszam": "AOFL213",
-      "vehicle_id": "800",
-      "vehicle_label": "Kurucles",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.507694244384766,
-      "lon": 19.024669647216797,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Kurucles"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.633164+02:00",
-      "kulcs": "AOFL214",
-      "rendszam": "AOFL214",
-      "vehicle_id": "801",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.50725555419922,
-      "lon": 18.98830795288086,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.633178+02:00",
-      "kulcs": "AOFL215",
-      "rendszam": "AOFL215",
-      "vehicle_id": "802",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.494388580322266,
-      "lon": 19.011552810668945,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.633284+02:00",
-      "kulcs": "AADI581",
-      "rendszam": "AADI581",
-      "vehicle_id": "81",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "213",
-      "route_id": "2130",
-      "lat": 47.407470703125,
-      "lon": 18.991220474243164,
-      "elozo_szoveg": "Donát-hegy",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.633343+02:00",
-      "kulcs": "AOFL228",
-      "rendszam": "AOFL228",
-      "vehicle_id": "815",
-      "vehicle_label": "Fenyőgyöngye",
-      "vonal_szam": "65A",
-      "route_id": "0651",
-      "lat": 47.5277214050293,
-      "lon": 19.03668212890625,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Fenyőgyöngye"
-    },
     {
       "idopont": "2026-09-10T15:00:28.633496+02:00",
       "kulcs": "AOFL246",
@@ -260000,6 +259935,71 @@
       "lon": 19.01692771911621,
       "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
       "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-11T01:12:00.733064+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50160217285156,
+      "lon": 19.135631561279297,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-11T01:12:00.733147+02:00",
+      "kulcs": "MXJ006",
+      "rendszam": "MXJ006",
+      "vehicle_id": "5886",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.4777946472168,
+      "lon": 19.046159744262695,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-11T01:12:00.733177+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.483863830566406,
+      "lon": 19.12751579284668,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-11T01:12:00.733360+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56813049316406,
+      "lon": 19.1258544921875,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-11T01:12:00.733535+02:00",
+      "kulcs": "SGY989",
+      "rendszam": "SGY989",
+      "vehicle_id": "7669",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47518539428711,
+      "lon": 19.040250778198242,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
