@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:54:23.258036+02:00",
+  "frissitve": "2026-09-10T02:54:53.437588+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:10:12.102324+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.49980545043945,
-      "lon": 19.035234451293945,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-09T15:10:12.102536+02:00",
-      "kulcs": "NGC029",
-      "rendszam": "NGC029",
-      "vehicle_id": "6328",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.42810821533203,
-      "lon": 19.023632049560547,
-      "elozo_szoveg": "Regényes utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-09T15:10:12.102599+02:00",
-      "kulcs": "NHB035",
-      "rendszam": "NHB035",
-      "vehicle_id": "6334",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.40833282470703,
-      "lon": 19.016498565673828,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Lomnici utca ► Újbuda-központ M"
-    },
     {
       "idopont": "2026-09-09T15:10:12.102675+02:00",
       "kulcs": "NLE848",
@@ -260000,6 +259961,45 @@
       "lon": 19.133291244506836,
       "elozo_szoveg": "Astoria M ► Káposztásmegyer",
       "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-10T02:54:53.306395+02:00",
+      "kulcs": "AAGL266",
+      "rendszam": "AAGL266",
+      "vehicle_id": "266",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.48703384399414,
+      "lon": 19.057586669921875,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-10T02:54:53.307256+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49885177612305,
+      "lon": 19.050336837768555,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-10T02:54:53.307746+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.4474983215332,
+      "lon": 19.150068283081055,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
