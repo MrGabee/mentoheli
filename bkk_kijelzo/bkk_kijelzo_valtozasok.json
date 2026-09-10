@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:49:35.149606+02:00",
+  "frissitve": "2026-09-10T02:50:05.887766+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:10:12.096516+02:00",
-      "kulcs": "V1359",
-      "rendszam": "V1359",
-      "vehicle_id": "4460",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.512935638427734,
-      "lon": 19.047866821289062,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-09T15:10:12.096533+02:00",
-      "kulcs": "V1360",
-      "rendszam": "V1360",
-      "vehicle_id": "4461",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.4656982421875,
-      "lon": 19.021921157836914,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-09-09T15:10:12.096600+02:00",
       "kulcs": "V1404",
@@ -260000,6 +259974,32 @@
       "lon": 19.139938354492188,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T02:50:05.806082+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.4044189453125,
+      "lon": 19.18596649169922,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-10T02:50:05.806458+02:00",
+      "kulcs": "PKN622",
+      "rendszam": "PKN622",
+      "vehicle_id": "7211",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.47852325439453,
+      "lon": 19.256099700927734,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
