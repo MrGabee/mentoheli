@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:04:41.711634+02:00",
+  "frissitve": "2026-09-10T02:05:14.602422+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:06:00.862109+02:00",
-      "kulcs": "AAMH605",
-      "rendszam": "AAMH605",
-      "vehicle_id": "448",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.54171371459961,
-      "lon": 19.15113067626953,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
-    {
-      "idopont": "2026-09-09T15:06:00.862962+02:00",
-      "kulcs": "AAMH624",
-      "rendszam": "AAMH624",
-      "vehicle_id": "467",
-      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.499820709228516,
-      "lon": 19.08417320251465,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
-    },
-    {
-      "idopont": "2026-09-09T15:06:00.863003+02:00",
-      "kulcs": "V4006",
-      "rendszam": "V4006",
-      "vehicle_id": "4695",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.5388298034668,
-      "lon": 18.96657371520996,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
     {
       "idopont": "2026-09-09T15:06:00.863109+02:00",
       "kulcs": "AAMH630",
@@ -260000,6 +259961,45 @@
       "lon": 19.260986328125,
       "elozo_szoveg": "Liszt Ferenc Airport 2",
       "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-10T02:05:14.549752+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46249771118164,
+      "lon": 19.13309669494629,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-10T02:05:14.549943+02:00",
+      "kulcs": "NWB356",
+      "rendszam": "NWB356",
+      "vehicle_id": "6536",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52214431762695,
+      "lon": 18.990406036376953,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-10T02:05:14.550043+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.489566802978516,
+      "lon": 19.076583862304688,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
     }
   ]
 }
