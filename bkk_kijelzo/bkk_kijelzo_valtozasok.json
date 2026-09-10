@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T00:25:04.981139+02:00",
+  "frissitve": "2026-09-11T00:25:43.962920+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T14:56:39.528326+02:00",
-      "kulcs": "877-639-878-861-631-862",
-      "rendszam": "877-639-878-861-631-862",
-      "vehicle_id": "905516568771-905536466394-905516568789-905516568615-905536466311-905516568623",
-      "vehicle_label": "Közvágóhíd",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.176063537597656,
-      "lon": 18.941640853881836,
-      "elozo_szoveg": "Ráckeve",
-      "uj_szoveg": "Közvágóhíd"
-    },
-    {
-      "idopont": "2026-09-10T14:56:39.528365+02:00",
-      "kulcs": "887-644-888-867-634-868",
-      "rendszam": "887-644-888-867-634-868",
-      "vehicle_id": "905516568870-905536466444-905516568888-905516568672-905536466345-905516568680",
-      "vehicle_label": "Tököl",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.46611785888672,
-      "lon": 19.07724952697754,
-      "elozo_szoveg": "Közvágóhíd",
-      "uj_szoveg": "Tököl"
-    },
-    {
-      "idopont": "2026-09-10T14:56:39.528631+02:00",
-      "kulcs": "973-687-974-907-654-908",
-      "rendszam": "973-687-974-907-654-908",
-      "vehicle_id": "905516569738-905536466873-905516569746-905516569076-905536466543-905516569084",
-      "vehicle_label": "Boráros tér",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.42182540893555,
-      "lon": 19.066415786743164,
-      "elozo_szoveg": "Csepel",
-      "uj_szoveg": "Boráros tér"
-    },
     {
       "idopont": "2026-09-10T14:56:39.528656+02:00",
       "kulcs": "981-691-982-1135-768-1136",
@@ -260000,6 +259961,45 @@
       "lon": 19.157203674316406,
       "elozo_szoveg": "Pestszentimre vasútállomás",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-11T00:25:43.882146+02:00",
+      "kulcs": "NBW001",
+      "rendszam": "NBW001",
+      "vehicle_id": "5971",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54681396484375,
+      "lon": 19.142499923706055,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T00:25:43.882317+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.503883361816406,
+      "lon": 19.141780853271484,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-11T00:25:43.882493+02:00",
+      "kulcs": "SKR817",
+      "rendszam": "SKR817",
+      "vehicle_id": "7702",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50403594970703,
+      "lon": 19.136720657348633,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
