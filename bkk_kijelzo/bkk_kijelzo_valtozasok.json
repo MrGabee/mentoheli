@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:17:15.489747+02:00",
+  "frissitve": "2026-09-11T01:17:59.966759+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:01:32.948350+02:00",
-      "kulcs": "AAHY857",
-      "rendszam": "AAHY857",
-      "vehicle_id": "419",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.560001373291016,
-      "lon": 19.092605590820312,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.948821+02:00",
-      "kulcs": "T0239",
-      "rendszam": "T0239",
-      "vehicle_id": "4221",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.4997444152832,
-      "lon": 19.08440589904785,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.949501+02:00",
-      "kulcs": "T0275",
-      "rendszam": "T0275",
-      "vehicle_id": "4257",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.503902435302734,
-      "lon": 19.136621475219727,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-10T15:01:32.949750+02:00",
       "kulcs": "AAHY876",
@@ -260000,6 +259961,45 @@
       "lon": 19.123432159423828,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T01:17:59.901988+02:00",
+      "kulcs": "NNE057",
+      "rendszam": "NNE057",
+      "vehicle_id": "6453",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534053802490234,
+      "lon": 19.082162857055664,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T01:17:59.902160+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.50128936767578,
+      "lon": 19.10777473449707,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-11T01:17:59.902319+02:00",
+      "kulcs": "SKR817",
+      "rendszam": "SKR817",
+      "vehicle_id": "7702",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.500709533691406,
+      "lon": 19.113046646118164,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
