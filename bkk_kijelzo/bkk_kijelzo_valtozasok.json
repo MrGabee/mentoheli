@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:16:11.647078+02:00",
+  "frissitve": "2026-09-11T01:16:45.082271+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:01:32.948068+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.576663970947266,
-      "lon": 19.105518341064453,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.948284+02:00",
-      "kulcs": "AAHY850",
-      "rendszam": "AAHY850",
-      "vehicle_id": "411",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "126",
-      "route_id": "1260",
-      "lat": 47.60899353027344,
-      "lon": 19.117366790771484,
-      "elozo_szoveg": "Dunakeszi, Auchan áruház",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.948298+02:00",
-      "kulcs": "AAHY851",
-      "rendszam": "AAHY851",
-      "vehicle_id": "412",
-      "vehicle_label": "Dunakeszi, Auchan áruház",
-      "vonal_szam": "126",
-      "route_id": "1260",
-      "lat": 47.57778549194336,
-      "lon": 19.114845275878906,
-      "elozo_szoveg": "Káp.megyer, Szilas-patak",
-      "uj_szoveg": "Dunakeszi, Auchan áruház"
-    },
     {
       "idopont": "2026-09-10T15:01:32.948350+02:00",
       "kulcs": "AAHY857",
@@ -260000,6 +259961,45 @@
       "lon": 19.029266357421875,
       "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
       "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-11T01:16:45.000517+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43251037597656,
+      "lon": 19.260910034179688,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-11T01:16:45.001028+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.497737884521484,
+      "lon": 18.964012145996094,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-11T01:16:45.001093+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.461448669433594,
+      "lon": 19.123432159423828,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
