@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-10T03:31:06.849969+02:00",
+  "frissitve": "2026-09-10T03:31:50.794941+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:13:30.663483+02:00",
-      "kulcs": "V1318",
-      "rendszam": "V1318",
-      "vehicle_id": "4422",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.497501373291016,
-      "lon": 19.055265426635742,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.665326+02:00",
-      "kulcs": "V4119",
-      "rendszam": "V4119",
-      "vehicle_id": "4808",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47569274902344,
-      "lon": 19.047142028808594,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.665705+02:00",
-      "kulcs": "AAMH651",
-      "rendszam": "AAMH651",
-      "vehicle_id": "494",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49700927734375,
-      "lon": 19.055734634399414,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.665861+02:00",
-      "kulcs": "V4328",
-      "rendszam": "V4328",
-      "vehicle_id": "4987",
-      "vehicle_label": "Izraelita temető",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.4954833984375,
-      "lon": 19.074373245239258,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Kőbányai út ► Izraelita temető"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.666307+02:00",
-      "kulcs": "AAMH675",
-      "rendszam": "AAMH675",
-      "vehicle_id": "518",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.49993133544922,
-      "lon": 19.084293365478516,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-09-09T15:13:30.666598+02:00",
       "kulcs": "V2263",
@@ -260000,6 +259935,71 @@
       "lon": 19.073501586914062,
       "elozo_szoveg": "Határ út M ► Pestszentlőrinc",
       "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-09-10T03:31:50.730120+02:00",
+      "kulcs": "V2011",
+      "rendszam": "V2011",
+      "vehicle_id": "2011",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47737503051758,
+      "lon": 19.048479080200195,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-10T03:31:50.731097+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45578384399414,
+      "lon": 18.94109535217285,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-10T03:31:50.732291+02:00",
+      "kulcs": "SGY983",
+      "rendszam": "SGY983",
+      "vehicle_id": "7663",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50872802734375,
+      "lon": 19.09542465209961,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-10T03:31:50.732308+02:00",
+      "kulcs": "SGY985",
+      "rendszam": "SGY985",
+      "vehicle_id": "7665",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.479591369628906,
+      "lon": 19.051067352294922,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-10T03:31:50.732386+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48920822143555,
+      "lon": 19.06284523010254,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
     }
   ]
 }
