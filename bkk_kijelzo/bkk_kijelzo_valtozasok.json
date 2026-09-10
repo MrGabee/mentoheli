@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T03:18:15.526464+02:00",
+  "frissitve": "2026-09-10T03:18:46.748375+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:12:26.902586+02:00",
-      "kulcs": "AAMH623",
-      "rendszam": "AAMH623",
-      "vehicle_id": "466",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30A",
-      "route_id": "0301",
-      "lat": 47.58584976196289,
-      "lon": 19.09465789794922,
-      "elozo_szoveg": "Megyer, Szondi utca",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-09T15:12:26.902964+02:00",
-      "kulcs": "V4103",
-      "rendszam": "V4103",
-      "vehicle_id": "4792",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.543060302734375,
-      "lon": 18.964418411254883,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-09T15:12:26.903019+02:00",
-      "kulcs": "V4118",
-      "rendszam": "V4118",
-      "vehicle_id": "4807",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.50965118408203,
-      "lon": 19.009977340698242,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
     {
       "idopont": "2026-09-09T15:12:26.903409+02:00",
       "kulcs": "V4266",
@@ -260000,6 +259961,45 @@
       "lon": 19.099597930908203,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-10T03:18:46.667118+02:00",
+      "kulcs": "AADI566",
+      "rendszam": "AADI566",
+      "vehicle_id": "42",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.54820251464844,
+      "lon": 19.029142379760742,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-10T03:18:46.667303+02:00",
+      "kulcs": "PKD003",
+      "rendszam": "PKD003",
+      "vehicle_id": "5813",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40959548950195,
+      "lon": 18.995691299438477,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T03:18:46.667398+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.598506927490234,
+      "lon": 19.054279327392578,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
     }
   ]
 }
