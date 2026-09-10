@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-10T04:16:56.873631+02:00",
+  "frissitve": "2026-09-10T04:17:33.150960+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:20:15.215050+02:00",
-      "kulcs": "T9139",
-      "rendszam": "T9139",
-      "vehicle_id": "7878",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50509262084961,
-      "lon": 19.13645362854004,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-09T15:20:15.215204+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.53382873535156,
-      "lon": 19.10734748840332,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-09T15:20:15.215374+02:00",
-      "kulcs": "AOFL224",
-      "rendszam": "AOFL224",
-      "vehicle_id": "811",
-      "vehicle_label": "Kissvábhegy",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50587844848633,
-      "lon": 19.038532257080078,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M H"
-    },
-    {
-      "idopont": "2026-09-09T15:20:15.215538+02:00",
-      "kulcs": "AOFL241",
-      "rendszam": "AOFL241",
-      "vehicle_id": "829",
-      "vehicle_label": "Sáránd utca-Kucorgó tér",
-      "vonal_szam": "197",
-      "route_id": "1970",
-      "lat": 47.45735168457031,
-      "lon": 19.29515838623047,
-      "elozo_szoveg": "Rákoskert vasútállomás",
-      "uj_szoveg": "Sáránd utca ► Kucorgó tér"
-    },
     {
       "idopont": "2026-09-09T15:20:15.215594+02:00",
       "kulcs": "AOFL248",
@@ -260000,6 +259948,58 @@
       "lon": 19.046220779418945,
       "elozo_szoveg": "Szentlélek tér H",
       "uj_szoveg": "Üröm ► Pilisborosjenő"
+    },
+    {
+      "idopont": "2026-09-10T04:17:33.059299+02:00",
+      "kulcs": "FLR727",
+      "rendszam": "FLR727",
+      "vehicle_id": "3141",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.47960662841797,
+      "lon": 19.25557518005371,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kucorgó tér ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-10T04:17:33.059890+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "240",
+      "route_id": "2400",
+      "lat": 47.45597457885742,
+      "lon": 18.94036865234375,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-10T04:17:33.060818+02:00",
+      "kulcs": "PDN615",
+      "rendszam": "PDN615",
+      "vehicle_id": "7086",
+      "vehicle_label": "Szent Imre tér",
+      "vonal_szam": "152",
+      "route_id": "1520",
+      "lat": 47.38930130004883,
+      "lon": 19.0997371673584,
+      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
+      "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-09-10T04:17:33.061830+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47878646850586,
+      "lon": 19.049842834472656,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
