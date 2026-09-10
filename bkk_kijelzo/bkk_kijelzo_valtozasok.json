@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:41:46.362383+02:00",
+  "frissitve": "2026-09-11T01:42:22.105674+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:04:02.320592+02:00",
-      "kulcs": "LOV874",
-      "rendszam": "LOV874",
-      "vehicle_id": "3666",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46450424194336,
-      "lon": 19.126712799072266,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-10T15:04:02.321122+02:00",
-      "kulcs": "T0603",
-      "rendszam": "T0603",
-      "vehicle_id": "4287",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49592590332031,
-      "lon": 19.060354232788086,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-09-10T15:04:02.321477+02:00",
-      "kulcs": "V1350",
-      "rendszam": "V1350",
-      "vehicle_id": "4452",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51264572143555,
-      "lon": 19.047727584838867,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-10T15:04:02.321831+02:00",
       "kulcs": "V1549",
@@ -260000,6 +259961,45 @@
       "lon": 19.105684280395508,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T01:42:22.018665+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46578598022461,
+      "lon": 19.153043746948242,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-11T01:42:22.019150+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47719192504883,
+      "lon": 19.26378631591797,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-11T01:42:22.019322+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56768035888672,
+      "lon": 19.127206802368164,
+      "elozo_szoveg": "Rákospalota",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
