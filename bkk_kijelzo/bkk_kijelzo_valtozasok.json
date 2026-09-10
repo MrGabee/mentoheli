@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:18:58.541997+02:00",
+  "frissitve": "2026-09-11T01:19:30.217351+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:01:32.951918+02:00",
-      "kulcs": "AAMH654",
-      "rendszam": "AAMH654",
-      "vehicle_id": "497",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49698257446289,
-      "lon": 19.05571937561035,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.951997+02:00",
-      "kulcs": "V4331",
-      "rendszam": "V4331",
-      "vehicle_id": "4990",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.470279693603516,
-      "lon": 19.027280807495117,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-10T15:01:32.952327+02:00",
       "kulcs": "AAMH676",
@@ -260000,6 +259974,32 @@
       "lon": 19.102155685424805,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-11T01:19:30.133666+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.598487854003906,
+      "lon": 19.054279327392578,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-11T01:19:30.134146+02:00",
+      "kulcs": "RWA600",
+      "rendszam": "RWA600",
+      "vehicle_id": "7572",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.487281799316406,
+      "lon": 19.058021545410156,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
     }
   ]
 }
