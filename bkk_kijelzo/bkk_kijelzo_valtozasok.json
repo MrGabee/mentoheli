@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T00:47:23.339455+02:00",
+  "frissitve": "2026-09-11T00:47:55.693354+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T14:59:24.818549+02:00",
-      "kulcs": "AAHY807",
-      "rendszam": "AAHY807",
-      "vehicle_id": "367",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.603084564208984,
-      "lon": 19.067052841186523,
-      "elozo_szoveg": "B.megyer, Újmegyeri tér",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-10T14:59:24.818594+02:00",
-      "kulcs": "LYH110",
-      "rendszam": "LYH110",
-      "vehicle_id": "3699",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.5464973449707,
-      "lon": 18.964269638061523,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-10T14:59:24.818633+02:00",
-      "kulcs": "AAHY814",
-      "rendszam": "AAHY814",
-      "vehicle_id": "375",
-      "vehicle_label": "Megyer, Julianus barát u.",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.56074905395508,
-      "lon": 19.09010124206543,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Megyer, Julianus barát utca"
-    },
     {
       "idopont": "2026-09-10T14:59:24.818697+02:00",
       "kulcs": "AAHY825",
@@ -260000,6 +259961,45 @@
       "lon": 19.06027603149414,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-11T00:47:55.611436+02:00",
+      "kulcs": "SGY805",
+      "rendszam": "SGY805",
+      "vehicle_id": "7723",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48590087890625,
+      "lon": 19.069427490234375,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-11T00:47:55.611769+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.48003005981445,
+      "lon": 19.05149269104004,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-11T00:47:55.611831+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.405330657958984,
+      "lon": 19.014413833618164,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
