@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:20:05.471647+02:00",
+  "frissitve": "2026-09-10T02:20:40.069746+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:07:21.975707+02:00",
-      "kulcs": "AAHY876",
-      "rendszam": "AAHY876",
-      "vehicle_id": "438",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "96",
-      "route_id": "0960",
-      "lat": 47.582725524902344,
-      "lon": 19.082347869873047,
-      "elozo_szoveg": "Újpest, Fóti út",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-09-09T15:07:21.976912+02:00",
-      "kulcs": "V1433",
-      "rendszam": "V1433",
-      "vehicle_id": "4503",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.46866989135742,
-      "lon": 19.024076461791992,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-09T15:07:21.977880+02:00",
-      "kulcs": "V1562",
-      "rendszam": "V1562",
-      "vehicle_id": "4614",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.497779846191406,
-      "lon": 19.082735061645508,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
     {
       "idopont": "2026-09-09T15:07:21.978590+02:00",
       "kulcs": "V4162",
@@ -260000,6 +259961,45 @@
       "lon": 19.100345611572266,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-10T02:20:39.983571+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50718307495117,
+      "lon": 18.921648025512695,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-10T02:20:39.983740+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.48486328125,
+      "lon": 19.07326316833496,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T02:20:39.984320+02:00",
+      "kulcs": "AOFL255",
+      "rendszam": "AOFL255",
+      "vehicle_id": "844",
+      "vehicle_label": "Szarvas csárda tér",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.416404724121094,
+      "lon": 19.20547866821289,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
     }
   ]
 }
