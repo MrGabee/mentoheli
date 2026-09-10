@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:38:39.493279+02:00",
+  "frissitve": "2026-09-11T01:39:23.193487+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:02:50.874079+02:00",
-      "kulcs": "AOFL221",
-      "rendszam": "AOFL221",
-      "vehicle_id": "808",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54903030395508,
-      "lon": 19.014816284179688,
-      "elozo_szoveg": "Máramaros út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-10T15:02:50.874224+02:00",
-      "kulcs": "AOFL240",
-      "rendszam": "AOFL240",
-      "vehicle_id": "828",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.60294723510742,
-      "lon": 19.048519134521484,
-      "elozo_szoveg": "Donát utca ► Békásmegyer H",
-      "uj_szoveg": "Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-10T15:02:50.874259+02:00",
-      "kulcs": "AOFL242",
-      "rendszam": "AOFL242",
-      "vehicle_id": "830",
-      "vehicle_label": "Zimonyi utca",
-      "vonal_szam": "298",
-      "route_id": "2980",
-      "lat": 47.491024017333984,
-      "lon": 19.28281593322754,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Zimonyi utca"
-    },
-    {
-      "idopont": "2026-09-10T15:02:50.874289+02:00",
-      "kulcs": "AOFL244",
-      "rendszam": "AOFL244",
-      "vehicle_id": "832",
-      "vehicle_label": "Újhegy",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.48427963256836,
-      "lon": 19.127168655395508,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Újhegy"
-    },
-    {
-      "idopont": "2026-09-10T15:02:50.874354+02:00",
-      "kulcs": "AOFL252",
-      "rendszam": "AOFL252",
-      "vehicle_id": "841",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.483158111572266,
-      "lon": 19.128286361694336,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
     {
       "idopont": "2026-09-10T15:02:50.875956+02:00",
       "kulcs": "AOIM013",
@@ -260000,6 +259935,71 @@
       "lon": 19.054685592651367,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-11T01:39:23.133350+02:00",
+      "kulcs": "AAGL266",
+      "rendszam": "AAGL266",
+      "vehicle_id": "266",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.429237365722656,
+      "lon": 18.92957305908203,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-11T01:39:23.134585+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48963165283203,
+      "lon": 19.076831817626953,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-11T01:39:23.134748+02:00",
+      "kulcs": "PDB381",
+      "rendszam": "PDB381",
+      "vehicle_id": "7063",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48612594604492,
+      "lon": 19.124408721923828,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-11T01:39:23.134760+02:00",
+      "kulcs": "PDB382",
+      "rendszam": "PDB382",
+      "vehicle_id": "7064",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.550472259521484,
+      "lon": 19.042083740234375,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-11T01:39:23.134960+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55030059814453,
+      "lon": 19.042055130004883,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
