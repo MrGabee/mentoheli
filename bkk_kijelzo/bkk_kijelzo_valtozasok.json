@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:53:09.955272+02:00",
+  "frissitve": "2026-09-11T01:53:43.336735+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:05:26.213509+02:00",
-      "kulcs": "FKU904",
-      "rendszam": "FKU904",
-      "vehicle_id": "3060",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.51517868041992,
-      "lon": 19.185285568237305,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Veres Péter út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-10T15:05:26.214428+02:00",
-      "kulcs": "FLR741",
-      "rendszam": "FLR741",
-      "vehicle_id": "3155",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.48646926879883,
-      "lon": 19.287328720092773,
-      "elozo_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-10T15:05:26.214506+02:00",
       "kulcs": "AAGL291",
@@ -260000,6 +259974,32 @@
       "lon": 19.136734008789062,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-11T01:53:43.271378+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49885559082031,
+      "lon": 19.05054473876953,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-11T01:53:43.271802+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.48004150390625,
+      "lon": 19.051557540893555,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
