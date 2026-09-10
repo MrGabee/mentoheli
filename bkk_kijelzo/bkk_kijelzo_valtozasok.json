@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:56:27.045281+02:00",
+  "frissitve": "2026-09-10T02:56:54.813597+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:10:12.103973+02:00",
-      "kulcs": "PDB706",
-      "rendszam": "PDB706",
-      "vehicle_id": "7032",
-      "vehicle_label": "Pasaréti tér",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.567501068115234,
-      "lon": 19.12757110595703,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Pasaréti tér"
-    },
-    {
-      "idopont": "2026-09-09T15:10:12.104399+02:00",
-      "kulcs": "PDN604",
-      "rendszam": "PDN604",
-      "vehicle_id": "7076",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.423797607421875,
-      "lon": 19.131322860717773,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-09-09T15:10:12.104854+02:00",
-      "kulcs": "PHG622",
-      "rendszam": "PHG622",
-      "vehicle_id": "7146",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51963424682617,
-      "lon": 19.148212432861328,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
     {
       "idopont": "2026-09-09T15:10:12.104877+02:00",
       "kulcs": "PHG623",
@@ -260000,6 +259961,45 @@
       "lon": 19.050554275512695,
       "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
       "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-10T02:56:54.747945+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50389862060547,
+      "lon": 19.141746520996094,
+      "elozo_szoveg": "Astoria M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-10T02:56:54.750081+02:00",
+      "kulcs": "NBW007",
+      "rendszam": "NBW007",
+      "vehicle_id": "5977",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.524757385253906,
+      "lon": 19.037830352783203,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-10T02:56:54.750604+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47502517700195,
+      "lon": 19.046838760375977,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
