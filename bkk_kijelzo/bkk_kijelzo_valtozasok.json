@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-10T03:35:55.770506+02:00",
+  "frissitve": "2026-09-10T03:36:49.465219+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:13:30.671525+02:00",
-      "kulcs": "V2252",
-      "rendszam": "V2252",
-      "vehicle_id": "7384",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54353332519531,
-      "lon": 19.029970169067383,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.671761+02:00",
-      "kulcs": "RVY613",
-      "rendszam": "RVY613",
-      "vehicle_id": "7442",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.46065139770508,
-      "lon": 19.11486053466797,
-      "elozo_szoveg": "József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "Ecseri út M ► Aszódi utca"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.671870+02:00",
-      "kulcs": "RVY701",
-      "rendszam": "RVY701",
-      "vehicle_id": "7450",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46492004394531,
-      "lon": 19.126659393310547,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.672039+02:00",
-      "kulcs": "RVY719",
-      "rendszam": "RVY719",
-      "vehicle_id": "7468",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.46303939819336,
-      "lon": 19.148685455322266,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-09T15:13:30.672357+02:00",
-      "kulcs": "RVY734",
-      "rendszam": "RVY734",
-      "vehicle_id": "7632",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50142288208008,
-      "lon": 19.13559341430664,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-09T15:13:30.672443+02:00",
       "kulcs": "RVY741",
@@ -260000,6 +259935,71 @@
       "lon": 18.873319625854492,
       "elozo_szoveg": "Szob",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-10T03:36:49.406131+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.478065490722656,
+      "lon": 19.04557991027832,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T03:36:49.406363+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.4978141784668,
+      "lon": 19.019372940063477,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-10T03:36:49.406496+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.4896240234375,
+      "lon": 19.07569122314453,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-10T03:36:49.406530+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49859619140625,
+      "lon": 19.054656982421875,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-10T03:36:49.406943+02:00",
+      "kulcs": "415 090",
+      "rendszam": "415 090",
+      "vehicle_id": "945514150909",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.43212127685547,
+      "lon": 19.68037986755371,
+      "elozo_szoveg": "Nagykáta",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
