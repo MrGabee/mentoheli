@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:03:52.142042+02:00",
+  "frissitve": "2026-09-11T01:04:29.044172+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:00:28.627057+02:00",
-      "kulcs": "NGC142",
-      "rendszam": "NGC142",
-      "vehicle_id": "6217",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54305648803711,
-      "lon": 18.964515686035156,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Pesthidegkút"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.627315+02:00",
-      "kulcs": "NGC024",
-      "rendszam": "NGC024",
-      "vehicle_id": "6323",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.40552520751953,
-      "lon": 19.01423454284668,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.627719+02:00",
-      "kulcs": "NTM430",
-      "rendszam": "NTM430",
-      "vehicle_id": "6498",
-      "vehicle_label": "Svábhegy",
-      "vonal_szam": "21A",
-      "route_id": "0211",
-      "lat": 47.50664138793945,
-      "lon": 19.02388572692871,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Svábhegy"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.627813+02:00",
-      "kulcs": "NTP543",
-      "rendszam": "NTP543",
-      "vehicle_id": "6519",
-      "vehicle_label": "Nagytétény-Diósd vá.",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.47748947143555,
-      "lon": 19.04860496520996,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.628171+02:00",
-      "kulcs": "AOCT671",
-      "rendszam": "AOCT671",
-      "vehicle_id": "702",
-      "vehicle_label": "Rákospatak u./Csömöri út",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.49471664428711,
-      "lon": 18.998483657836914,
-      "elozo_szoveg": "Thomán István utca",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
     {
       "idopont": "2026-09-10T15:00:28.628336+02:00",
       "kulcs": "PDB722",
@@ -260000,6 +259935,71 @@
       "lon": 19.07772445678711,
       "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
       "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-11T01:04:28.946500+02:00",
+      "kulcs": "AADI568",
+      "rendszam": "AADI568",
+      "vehicle_id": "53",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51619338989258,
+      "lon": 19.077566146850586,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-11T01:04:28.946601+02:00",
+      "kulcs": "MXJ016",
+      "rendszam": "MXJ016",
+      "vehicle_id": "5892",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.504947662353516,
+      "lon": 19.09923553466797,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-11T01:04:28.946703+02:00",
+      "kulcs": "AADI573",
+      "rendszam": "AADI573",
+      "vehicle_id": "64",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542659759521484,
+      "lon": 18.964778900146484,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-11T01:04:28.946846+02:00",
+      "kulcs": "PKN607",
+      "rendszam": "PKN607",
+      "vehicle_id": "7196",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523460388183594,
+      "lon": 18.992786407470703,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-11T01:04:28.947165+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.442176818847656,
+      "lon": 19.018476486206055,
+      "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
+      "uj_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H"
     }
   ]
 }
