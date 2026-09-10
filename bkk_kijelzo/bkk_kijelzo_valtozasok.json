@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-10T03:14:02.635093+02:00",
+  "frissitve": "2026-09-10T03:14:34.385527+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:11:20.495163+02:00",
-      "kulcs": "873-637-874",
-      "rendszam": "873-637-874",
-      "vehicle_id": "905516568730-905536466378-905516568748",
-      "vehicle_label": "Tököl",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.465999603271484,
-      "lon": 19.07735824584961,
-      "elozo_szoveg": "Dunaharaszti külső",
-      "uj_szoveg": "Tököl"
-    },
-    {
-      "idopont": "2026-09-09T15:11:20.495268+02:00",
-      "kulcs": "907-654-908-931-666-932",
-      "rendszam": "907-654-908-931-666-932",
-      "vehicle_id": "905516569076-905536466543-905516569084-905516569316-905536466667-905516569324",
-      "vehicle_label": "Boráros tér",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.42185592651367,
-      "lon": 19.066434860229492,
-      "elozo_szoveg": "Csepel",
-      "uj_szoveg": "Boráros tér"
-    },
-    {
-      "idopont": "2026-09-09T15:11:20.496795+02:00",
-      "kulcs": "415 064",
-      "rendszam": "415 064",
-      "vehicle_id": "945514150644",
-      "vehicle_label": "Monor",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.51129150390625,
-      "lon": 19.101219177246094,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Monor"
-    },
-    {
-      "idopont": "2026-09-09T15:11:20.497005+02:00",
-      "kulcs": "415 097",
-      "rendszam": "415 097",
-      "vehicle_id": "945514150974",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.37112045288086,
-      "lon": 19.388919830322266,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-09T15:11:20.497249+02:00",
-      "kulcs": "815 029",
-      "rendszam": "815 029",
-      "vehicle_id": "945518150293",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.74306869506836,
-      "lon": 18.717880249023438,
-      "elozo_szoveg": "Esztergom",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
     {
       "idopont": "2026-09-09T15:11:20.497508+02:00",
       "kulcs": "AADI599",
@@ -260000,6 +259935,71 @@
       "lon": 18.92884635925293,
       "elozo_szoveg": "Márta utca ► Budaörsi lakótelep",
       "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-10T03:14:34.301558+02:00",
+      "kulcs": "PKD002",
+      "rendszam": "PKD002",
+      "vehicle_id": "5812",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.477783203125,
+      "lon": 19.04637336730957,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T03:14:34.301670+02:00",
+      "kulcs": "NGC146",
+      "rendszam": "NGC146",
+      "vehicle_id": "6199",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56678771972656,
+      "lon": 19.128623962402344,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-10T03:14:34.301917+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54277038574219,
+      "lon": 18.964759826660156,
+      "elozo_szoveg": "Máriaremete",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-10T03:14:34.302139+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.42381286621094,
+      "lon": 19.025068283081055,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-10T03:14:34.302452+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50239181518555,
+      "lon": 19.136423110961914,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
     }
   ]
 }
