@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:45:57.883052+02:00",
+  "frissitve": "2026-09-11T01:46:39.750736+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:04:02.327105+02:00",
-      "kulcs": "AOCT676",
-      "rendszam": "AOCT676",
-      "vehicle_id": "707",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52432632446289,
-      "lon": 19.117795944213867,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
-    {
-      "idopont": "2026-09-10T15:04:02.327207+02:00",
-      "kulcs": "PDN611",
-      "rendszam": "PDN611",
-      "vehicle_id": "7082",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.39060974121094,
-      "lon": 19.096363067626953,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-10T15:04:02.327265+02:00",
-      "kulcs": "PDN618",
-      "rendszam": "PDN618",
-      "vehicle_id": "7089",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.43098449707031,
-      "lon": 19.070707321166992,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Királyerdő út ► Hollandi út"
-    },
     {
       "idopont": "2026-09-10T15:04:02.327318+02:00",
       "kulcs": "PDN625",
@@ -260000,6 +259961,45 @@
       "lon": 19.014198303222656,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-09-11T01:46:39.690607+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.48588943481445,
+      "lon": 19.192594528198242,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-11T01:46:39.690671+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.5364875793457,
+      "lon": 19.10716438293457,
+      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-11T01:46:39.690933+02:00",
+      "kulcs": "SKR814",
+      "rendszam": "SKR814",
+      "vehicle_id": "7700",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50020980834961,
+      "lon": 19.10950469970703,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
