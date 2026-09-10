@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-10T03:41:07.230488+02:00",
+  "frissitve": "2026-09-10T03:41:43.686806+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:14:54.221785+02:00",
-      "kulcs": "AAHY805",
-      "rendszam": "AAHY805",
-      "vehicle_id": "365",
-      "vehicle_label": "R.palota, Székely Elek út",
-      "vonal_szam": "225",
-      "route_id": "2250",
-      "lat": 47.52016830444336,
-      "lon": 19.091508865356445,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Rákospalota, Székely Elek út"
-    },
-    {
-      "idopont": "2026-09-09T15:14:54.221898+02:00",
-      "kulcs": "AAHY810",
-      "rendszam": "AAHY810",
-      "vehicle_id": "370",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.53938293457031,
-      "lon": 19.047014236450195,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
-    {
-      "idopont": "2026-09-09T15:14:54.222384+02:00",
-      "kulcs": "T0601",
-      "rendszam": "T0601",
-      "vehicle_id": "4285",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50189971923828,
-      "lon": 19.08205795288086,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-09-09T15:14:54.222408+02:00",
-      "kulcs": "AAHY867",
-      "rendszam": "AAHY867",
-      "vehicle_id": "429",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56047058105469,
-      "lon": 19.090402603149414,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
     {
       "idopont": "2026-09-09T15:14:54.223962+02:00",
       "kulcs": "V1511",
@@ -260000,6 +259948,58 @@
       "lon": 19.262470245361328,
       "elozo_szoveg": "XVIII. utca",
       "uj_szoveg": "Rákoscsaba vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T03:41:43.614702+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486839294433594,
+      "lon": 19.067644119262695,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T03:41:43.617507+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.465484619140625,
+      "lon": 19.152870178222656,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T03:41:43.617614+02:00",
+      "kulcs": "415 080",
+      "rendszam": "415 080",
+      "vehicle_id": "945514150800",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.34571838378906,
+      "lon": 20.044090270996094,
+      "elozo_szoveg": "Szeged",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-10T03:41:43.617655+02:00",
+      "kulcs": "415 097",
+      "rendszam": "415 097",
+      "vehicle_id": "945514150974",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.77214813232422,
+      "lon": 19.150999069213867,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
