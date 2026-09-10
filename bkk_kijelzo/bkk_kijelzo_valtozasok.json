@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:32:26.104681+02:00",
+  "frissitve": "2026-09-10T02:33:07.089924+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:08:55.864738+02:00",
-      "kulcs": "V2012",
-      "rendszam": "V2012",
-      "vehicle_id": "2012",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.47740936279297,
-      "lon": 19.048816680908203,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-09T15:08:55.864753+02:00",
-      "kulcs": "V2015",
-      "rendszam": "V2015",
-      "vehicle_id": "2015",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.50838088989258,
-      "lon": 19.027162551879883,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-09T15:08:55.865430+02:00",
-      "kulcs": "FKU937",
-      "rendszam": "FKU937",
-      "vehicle_id": "3093",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.598731994628906,
-      "lon": 19.1213321685791,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-09T15:08:55.865494+02:00",
       "kulcs": "FKU950",
@@ -260000,6 +259961,45 @@
       "lon": 19.067216873168945,
       "elozo_szoveg": "Boráros tér H",
       "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-10T02:33:07.000657+02:00",
+      "kulcs": "NBW007",
+      "rendszam": "NBW007",
+      "vehicle_id": "5977",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48960494995117,
+      "lon": 19.076311111450195,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-10T02:33:07.001186+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.40546798706055,
+      "lon": 19.014352798461914,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-10T02:33:07.001230+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46463394165039,
+      "lon": 19.022960662841797,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
