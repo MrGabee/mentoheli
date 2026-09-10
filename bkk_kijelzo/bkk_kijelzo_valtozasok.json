@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:03:17.340501+02:00",
+  "frissitve": "2026-09-11T01:03:52.142042+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:00:28.626617+02:00",
-      "kulcs": "T8005",
-      "rendszam": "T8005",
-      "vehicle_id": "6125",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.516605377197266,
-      "lon": 19.092588424682617,
-      "elozo_szoveg": "Erzsébet k.né útja, alulj.",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.626765+02:00",
-      "kulcs": "T9003",
-      "rendszam": "T9003",
-      "vehicle_id": "6142",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.504173278808594,
-      "lon": 19.136804580688477,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-10T15:00:28.626825+02:00",
-      "kulcs": "AELD563",
-      "rendszam": "AELD563",
-      "vehicle_id": "615",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.44484329223633,
-      "lon": 19.09790802001953,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Kálvin tér M"
-    },
     {
       "idopont": "2026-09-10T15:00:28.627057+02:00",
       "kulcs": "NGC142",
@@ -260000,6 +259961,45 @@
       "lon": 19.022748947143555,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-11T01:03:52.047344+02:00",
+      "kulcs": "V2029",
+      "rendszam": "V2029",
+      "vehicle_id": "2029",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47769546508789,
+      "lon": 19.04853630065918,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-11T01:03:52.048350+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45590591430664,
+      "lon": 18.940561294555664,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-11T01:03:52.049625+02:00",
+      "kulcs": "AADI568",
+      "rendszam": "AADI568",
+      "vehicle_id": "53",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.517799377441406,
+      "lon": 19.07772445678711,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
     }
   ]
 }
