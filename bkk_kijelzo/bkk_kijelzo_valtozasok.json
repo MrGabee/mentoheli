@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T00:48:26.073678+02:00",
+  "frissitve": "2026-09-11T00:49:24.887716+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T14:59:24.820274+02:00",
-      "kulcs": "V1515",
-      "rendszam": "V1515",
-      "vehicle_id": "4567",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.48007583618164,
-      "lon": 19.125595092773438,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-09-10T14:59:24.820337+02:00",
-      "kulcs": "V1556",
-      "rendszam": "V1556",
-      "vehicle_id": "4608",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.541412353515625,
-      "lon": 19.12096405029297,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-10T14:59:24.820405+02:00",
-      "kulcs": "V1571",
-      "rendszam": "V1571",
-      "vehicle_id": "4623",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.445655822753906,
-      "lon": 19.152698516845703,
-      "elozo_szoveg": "Kispest, Tulipán utca",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-10T14:59:24.820638+02:00",
-      "kulcs": "AAMH629",
-      "rendszam": "AAMH629",
-      "vehicle_id": "472",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.53515625,
-      "lon": 19.20524024963379,
-      "elozo_szoveg": "Árpádföld",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-10T14:59:24.821313+02:00",
-      "kulcs": "V4078",
-      "rendszam": "V4078",
-      "vehicle_id": "4767",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "12",
-      "route_id": "3120",
-      "lat": 47.56739807128906,
-      "lon": 19.124975204467773,
-      "elozo_szoveg": "Angyalföld kocsiszín",
-      "uj_szoveg": "Lehel tér M"
-    },
     {
       "idopont": "2026-09-10T14:59:24.821696+02:00",
       "kulcs": "V4235",
@@ -260000,6 +259935,71 @@
       "lon": 19.1480712890625,
       "elozo_szoveg": "Rákosszentmihály vasútállomás",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-11T00:49:24.784256+02:00",
+      "kulcs": "AADR706",
+      "rendszam": "AADR706",
+      "vehicle_id": "174",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.4875373840332,
+      "lon": 19.05855369567871,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-11T00:49:24.787215+02:00",
+      "kulcs": "NGC164",
+      "rendszam": "NGC164",
+      "vehicle_id": "6213",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.5273551940918,
+      "lon": 19.038463592529297,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-11T00:49:24.787545+02:00",
+      "kulcs": "SKR829",
+      "rendszam": "SKR829",
+      "vehicle_id": "7715",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.479854583740234,
+      "lon": 19.256845474243164,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-11T00:49:24.787614+02:00",
+      "kulcs": "AOFL206",
+      "rendszam": "AOFL206",
+      "vehicle_id": "791",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.51115036010742,
+      "lon": 18.972070693969727,
+      "elozo_szoveg": "Fácános tér",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-11T00:49:24.788007+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48378372192383,
+      "lon": 19.022563934326172,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
     }
   ]
 }
