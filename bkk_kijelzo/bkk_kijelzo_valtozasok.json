@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-10T03:54:17.249770+02:00",
+  "frissitve": "2026-09-10T03:54:53.192981+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:16:38.711014+02:00",
-      "kulcs": "V2111",
-      "rendszam": "V2111",
-      "vehicle_id": "5839",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464107513427734,
-      "lon": 19.023338317871094,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-09T15:16:38.711164+02:00",
-      "kulcs": "V2224",
-      "rendszam": "V2224",
-      "vehicle_id": "5864",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.445865631103516,
-      "lon": 19.15247344970703,
-      "elozo_szoveg": "Kispest, Tulipán utca",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-09T15:16:38.711257+02:00",
-      "kulcs": "MXJ013",
-      "rendszam": "MXJ013",
-      "vehicle_id": "5889",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.4976806640625,
-      "lon": 19.053194046020508,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-09-09T15:16:38.711428+02:00",
       "kulcs": "MUT899",
@@ -260000,6 +259961,45 @@
       "lon": 18.253189086914062,
       "elozo_szoveg": "Dombóvár",
       "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-09-10T03:54:53.113252+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4871826171875,
+      "lon": 19.05784034729004,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-10T03:54:53.114692+02:00",
+      "kulcs": "PHG628",
+      "rendszam": "PHG628",
+      "vehicle_id": "7152",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.474220275878906,
+      "lon": 19.293991088867188,
+      "elozo_szoveg": "Kucorgó tér ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-10T03:54:53.115131+02:00",
+      "kulcs": "1119-760-1120-1121-761-1122",
+      "rendszam": "1119-760-1120-1121-761-1122",
+      "vehicle_id": "905516561198-905536467608-905516561206-905516561214-905536467616-905516561222",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.66084671020508,
+      "lon": 19.075151443481445,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
     }
   ]
 }
