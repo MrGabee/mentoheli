@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-10T02:39:40.075770+02:00",
+  "frissitve": "2026-09-10T02:40:10.332992+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-09T15:08:55.869534+02:00",
-      "kulcs": "MOS287",
-      "rendszam": "MOS287",
-      "vehicle_id": "5740",
-      "vehicle_label": "Szigetszentmiklós",
-      "vonal_szam": "278",
-      "route_id": "2780",
-      "lat": 47.43085479736328,
-      "lon": 19.071041107177734,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szigetszentmiklós, Szabadság utca"
-    },
-    {
-      "idopont": "2026-09-09T15:08:55.869646+02:00",
-      "kulcs": "MXJ002",
-      "rendszam": "MXJ002",
-      "vehicle_id": "5828",
-      "vehicle_label": "R.csaba-Újt. vasútállomás",
-      "vonal_szam": "297",
-      "route_id": "2970",
-      "lat": 47.474205017089844,
-      "lon": 19.283493041992188,
-      "elozo_szoveg": "Nyeremény utca",
-      "uj_szoveg": "Rákoscsaba-Újtelep vasútállomás"
-    },
-    {
-      "idopont": "2026-09-09T15:08:55.871610+02:00",
-      "kulcs": "MUM645",
-      "rendszam": "MUM645",
-      "vehicle_id": "5877",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "282E",
-      "route_id": "2825",
-      "lat": 47.46284103393555,
-      "lon": 19.148359298706055,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-09T15:08:55.871630+02:00",
-      "kulcs": "MXJ007",
-      "rendszam": "MXJ007",
-      "vehicle_id": "5879",
-      "vehicle_label": "Dániel út",
-      "vonal_szam": "156",
-      "route_id": "1560",
-      "lat": 47.507484436035156,
-      "lon": 19.024477005004883,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Dániel út"
-    },
-    {
-      "idopont": "2026-09-09T15:08:55.872367+02:00",
-      "kulcs": "NBW002",
-      "rendszam": "NBW002",
-      "vehicle_id": "5972",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.50471115112305,
-      "lon": 19.136882781982422,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákosszentmihály, Mátyás király utca"
-    },
     {
       "idopont": "2026-09-09T15:08:55.872395+02:00",
       "kulcs": "NBW004",
@@ -260000,6 +259935,71 @@
       "lon": 19.07135581970215,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T02:40:10.246737+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42247772216797,
+      "lon": 19.0844783782959,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-10T02:40:10.248968+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.56045150756836,
+      "lon": 19.09038543701172,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-09-10T02:40:10.249317+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.485374450683594,
+      "lon": 19.124982833862305,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-10T02:40:10.249686+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49891662597656,
+      "lon": 19.0506534576416,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T02:40:10.249780+02:00",
+      "kulcs": "415 101",
+      "rendszam": "415 101",
+      "vehicle_id": "945514151014",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.51131820678711,
+      "lon": 19.101320266723633,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
