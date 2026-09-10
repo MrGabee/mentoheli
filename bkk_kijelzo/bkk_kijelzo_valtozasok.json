@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:52:06.303774+02:00",
+  "frissitve": "2026-09-11T01:52:34.767473+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:04:02.332416+02:00",
-      "kulcs": "AOIM005",
-      "rendszam": "AOIM005",
-      "vehicle_id": "923",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45453643798828,
-      "lon": 19.182228088378906,
-      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-09-10T15:05:26.211782+02:00",
-      "kulcs": "AOJM885",
-      "rendszam": "AOJM885",
-      "vehicle_id": "1011",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40852737426758,
-      "lon": 19.07850456237793,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-10T15:05:26.212022+02:00",
-      "kulcs": "AADI611",
-      "rendszam": "AADI611",
-      "vehicle_id": "108",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44154357910156,
-      "lon": 19.034269332885742,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-10T15:05:26.212436+02:00",
       "kulcs": "AADR717",
@@ -260000,6 +259961,45 @@
       "lon": 19.136394500732422,
       "elozo_szoveg": "Astoria M ► Káposztásmegyer",
       "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-11T01:52:34.683875+02:00",
+      "kulcs": "AADI562",
+      "rendszam": "AADI562",
+      "vehicle_id": "41",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.467899322509766,
+      "lon": 19.075822830200195,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-11T01:52:34.684457+02:00",
+      "kulcs": "SKR802",
+      "rendszam": "SKR802",
+      "vehicle_id": "7688",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.528045654296875,
+      "lon": 19.00708770751953,
+      "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
+      "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-11T01:52:34.684476+02:00",
+      "kulcs": "SKR809",
+      "rendszam": "SKR809",
+      "vehicle_id": "7695",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.410282135009766,
+      "lon": 19.060367584228516,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
