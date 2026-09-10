@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T00:39:57.593108+02:00",
+  "frissitve": "2026-09-11T00:40:32.729815+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T14:58:12.211528+02:00",
-      "kulcs": "SCD590",
-      "rendszam": "SCD590",
-      "vehicle_id": "7651",
-      "vehicle_label": "Szent Lőrinc-telep",
-      "vonal_szam": "132E",
-      "route_id": "1325",
-      "lat": 47.463340759277344,
-      "lon": 19.14734649658203,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Havanna-lakótelep ► Szent Lőrinc-telep"
-    },
-    {
-      "idopont": "2026-09-10T14:58:12.211542+02:00",
-      "kulcs": "SCD591",
-      "rendszam": "SCD591",
-      "vehicle_id": "7652",
-      "vehicle_label": "Szemeretelep vasútáll.",
-      "vonal_szam": "93",
-      "route_id": "0930",
-      "lat": 47.46335220336914,
-      "lon": 19.14748191833496,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Szemeretelep vasútállomás"
-    },
-    {
-      "idopont": "2026-09-10T14:58:12.211573+02:00",
-      "kulcs": "SCD594",
-      "rendszam": "SCD594",
-      "vehicle_id": "7657",
-      "vehicle_label": "Soroksár, IKEA áruház",
-      "vonal_szam": "135",
-      "route_id": "1350",
-      "lat": 47.37955856323242,
-      "lon": 19.104272842407227,
-      "elozo_szoveg": "Millenniumtelep H",
-      "uj_szoveg": "Soroksár, IKEA áruház"
-    },
     {
       "idopont": "2026-09-10T14:58:12.211731+02:00",
       "kulcs": "SKR802",
@@ -260000,6 +259961,45 @@
       "lon": 19.066753387451172,
       "elozo_szoveg": "Hűvösvölgy",
       "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-11T00:40:32.662694+02:00",
+      "kulcs": "AADI610",
+      "rendszam": "AADI610",
+      "vehicle_id": "107",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498958587646484,
+      "lon": 19.0510196685791,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-11T00:40:32.664918+02:00",
+      "kulcs": "NGC164",
+      "rendszam": "NGC164",
+      "vehicle_id": "6213",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.50981903076172,
+      "lon": 19.057132720947266,
+      "elozo_szoveg": "Óbudai rendelőintézet",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-11T00:40:32.665141+02:00",
+      "kulcs": "SKR802",
+      "rendszam": "SKR802",
+      "vehicle_id": "7688",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37950134277344,
+      "lon": 19.10421371459961,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
