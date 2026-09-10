@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-11T01:27:21.200330+02:00",
+  "frissitve": "2026-09-11T01:27:58.124938+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:01:32.960583+02:00",
-      "kulcs": "918071938891",
-      "rendszam": "918071938891",
-      "vehicle_id": "918071938891",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.69416046142578,
-      "lon": 17.290420532226562,
-      "elozo_szoveg": "Keszthely",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.961116+02:00",
-      "kulcs": "415 027",
-      "rendszam": "415 027",
-      "vehicle_id": "945514150271",
-      "vehicle_label": "Dombóvár",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.46089172363281,
-      "lon": 19.020660400390625,
-      "elozo_szoveg": "Győr",
-      "uj_szoveg": "Dombóvár"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.961142+02:00",
-      "kulcs": "415 030",
-      "rendszam": "415 030",
-      "vehicle_id": "945514150305",
-      "vehicle_label": "Tárnok",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.441490173339844,
-      "lon": 19.03342056274414,
-      "elozo_szoveg": "Budapest-Kelenföld",
-      "uj_szoveg": "Tárnok"
-    },
-    {
-      "idopont": "2026-09-10T15:01:32.962179+02:00",
-      "kulcs": "AOJM863",
-      "rendszam": "AOJM863",
-      "vehicle_id": "986",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.48878860473633,
-      "lon": 19.060955047607422,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-09-10T15:02:50.858436+02:00",
       "kulcs": "AADI637",
@@ -260000,6 +259948,58 @@
       "lon": 19.02958106994629,
       "elozo_szoveg": "Bécsi út / Vörösvári út",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T01:27:58.045949+02:00",
+      "kulcs": "MMM139",
+      "rendszam": "MMM139",
+      "vehicle_id": "5411",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.504852294921875,
+      "lon": 19.02442169189453,
+      "elozo_szoveg": "Széll Kálmán tér M ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-11T01:27:58.046012+02:00",
+      "kulcs": "MOS271",
+      "rendszam": "MOS271",
+      "vehicle_id": "5724",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.501441955566406,
+      "lon": 19.120798110961914,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-09-11T01:27:58.046216+02:00",
+      "kulcs": "PDB380",
+      "rendszam": "PDB380",
+      "vehicle_id": "7062",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48719787597656,
+      "lon": 19.023462295532227,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-11T01:27:58.046680+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50764083862305,
+      "lon": 19.02508544921875,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
