@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-10T23:57:25.876367+02:00",
+  "frissitve": "2026-09-10T23:57:57.982653+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T14:55:09.906438+02:00",
-      "kulcs": "MUT896",
-      "rendszam": "MUT896",
-      "vehicle_id": "5949",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.41305160522461,
-      "lon": 19.201906204223633,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-09-10T14:55:09.906663+02:00",
-      "kulcs": "T8008",
-      "rendszam": "T8008",
-      "vehicle_id": "6128",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50676345825195,
-      "lon": 19.05166244506836,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-09-10T14:55:09.906882+02:00",
-      "kulcs": "T9009",
-      "rendszam": "T9009",
-      "vehicle_id": "6148",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51922607421875,
-      "lon": 19.090877532958984,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-10T14:55:09.907047+02:00",
-      "kulcs": "AELD567",
-      "rendszam": "AELD567",
-      "vehicle_id": "620",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.48935317993164,
-      "lon": 19.061594009399414,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-10T14:55:09.907168+02:00",
-      "kulcs": "V2203",
-      "rendszam": "V2203",
-      "vehicle_id": "6220",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.429359436035156,
-      "lon": 19.21773338317871,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-10T14:55:09.907202+02:00",
       "kulcs": "NCV286",
@@ -260000,6 +259935,71 @@
       "lon": 19.10384750366211,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T23:57:57.878061+02:00",
+      "kulcs": "V1573",
+      "rendszam": "V1573",
+      "vehicle_id": "4625",
+      "vehicle_label": "Sörgyár",
+      "vonal_szam": "37A",
+      "route_id": "3371",
+      "lat": 47.49251174926758,
+      "lon": 19.087722778320312,
+      "elozo_szoveg": "Salgótarjáni utca ► Sörgyár",
+      "uj_szoveg": "Sörgyár"
+    },
+    {
+      "idopont": "2026-09-10T23:57:57.881638+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.53511047363281,
+      "lon": 19.082765579223633,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-10T23:57:57.883395+02:00",
+      "kulcs": "T9001",
+      "rendszam": "T9001",
+      "vehicle_id": "6140",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "76",
+      "route_id": "4760",
+      "lat": 47.51413345336914,
+      "lon": 19.049413681030273,
+      "elozo_szoveg": "Jászai Mari tér",
+      "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-09-10T23:57:57.884015+02:00",
+      "kulcs": "RVY716",
+      "rendszam": "RVY716",
+      "vehicle_id": "7465",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266357421875,
+      "lon": 19.16107940673828,
+      "elozo_szoveg": "Soroksár, Auchan áruház",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-10T23:57:57.884900+02:00",
+      "kulcs": "415 022",
+      "rendszam": "415 022",
+      "vehicle_id": "945514150222",
+      "vehicle_label": "Pusztaszabolcs",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 47.463401794433594,
+      "lon": 19.020599365234375,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Pusztaszabolcs"
     }
   ]
 }
