@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:54:36.130994+02:00",
+  "frissitve": "2026-09-11T02:55:15.816662+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:12:02.962088+02:00",
-      "kulcs": "AADR710",
-      "rendszam": "AADR710",
-      "vehicle_id": "178",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "183",
-      "route_id": "1830",
-      "lat": 47.44252014160156,
-      "lon": 19.21392250061035,
-      "elozo_szoveg": "Szemeretelep vasútállomás",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-09-10T15:12:02.962213+02:00",
-      "kulcs": "V2004",
-      "rendszam": "V2004",
-      "vehicle_id": "2004",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.474029541015625,
-      "lon": 19.047130584716797,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-10T15:12:02.962367+02:00",
-      "kulcs": "V2023",
-      "rendszam": "V2023",
-      "vehicle_id": "2023",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.50731658935547,
-      "lon": 19.02505874633789,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-10T15:12:02.962449+02:00",
       "kulcs": "V2033",
@@ -260000,6 +259961,45 @@
       "lon": 19.05469512939453,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-11T02:55:15.726715+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50014114379883,
+      "lon": 19.02415657043457,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-11T02:55:15.726770+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43239974975586,
+      "lon": 19.261005401611328,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-11T02:55:15.726839+02:00",
+      "kulcs": "MMM139",
+      "rendszam": "MMM139",
+      "vehicle_id": "5411",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.509063720703125,
+      "lon": 19.095783233642578,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
     }
   ]
 }
