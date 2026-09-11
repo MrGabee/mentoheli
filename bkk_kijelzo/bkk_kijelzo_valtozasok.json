@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T04:17:16.426819+02:00",
+  "frissitve": "2026-09-11T04:17:57.173780+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:22:29.396759+02:00",
-      "kulcs": "V1327",
-      "rendszam": "V1327",
-      "vehicle_id": "4430",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.499290466308594,
-      "lon": 19.082578659057617,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.397055+02:00",
-      "kulcs": "AAMH604",
-      "rendszam": "AAMH604",
-      "vehicle_id": "447",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.55964279174805,
-      "lon": 19.08240509033203,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.397174+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51259994506836,
-      "lon": 19.0477352142334,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.397304+02:00",
-      "kulcs": "V1519",
-      "rendszam": "V1519",
-      "vehicle_id": "4571",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.54073715209961,
-      "lon": 19.143415451049805,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.397318+02:00",
-      "kulcs": "V1533",
-      "rendszam": "V1533",
-      "vehicle_id": "4585",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.54174041748047,
-      "lon": 19.12112808227539,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-10T15:22:29.397425+02:00",
       "kulcs": "V1571",
@@ -260000,6 +259935,71 @@
       "lon": 19.141775131225586,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T04:17:57.082547+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "220",
+      "route_id": "2200",
+      "lat": 47.579429626464844,
+      "lon": 19.1019344329834,
+      "elozo_szoveg": "Izzó utcai lakótelep ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-11T04:17:57.082617+02:00",
+      "kulcs": "V1344",
+      "rendszam": "V1344",
+      "vehicle_id": "4447",
+      "vehicle_label": "P.erzsébet, Pacsirtatelep",
+      "vonal_szam": "2B",
+      "route_id": "3022",
+      "lat": 47.47133255004883,
+      "lon": 19.082006454467773,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
+    },
+    {
+      "idopont": "2026-09-11T04:17:57.084186+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "198",
+      "route_id": "1980",
+      "lat": 47.426631927490234,
+      "lon": 19.16106605529785,
+      "elozo_szoveg": "Gloriett-lakótelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-11T04:17:57.084218+02:00",
+      "kulcs": "RVY703",
+      "rendszam": "RVY703",
+      "vehicle_id": "7452",
+      "vehicle_label": "Gloriett-lakótelep",
+      "vonal_szam": "142E",
+      "route_id": "1425",
+      "lat": 47.42844772338867,
+      "lon": 19.17047119140625,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Gloriett-lakótelep"
+    },
+    {
+      "idopont": "2026-09-11T04:17:57.084515+02:00",
+      "kulcs": "JARMU1",
+      "rendszam": "JARMU1",
+      "vehicle_id": "7834",
+      "vehicle_label": "Pilisborosjenő",
+      "vonal_szam": "218",
+      "route_id": "2180",
+      "lat": 47.540103912353516,
+      "lon": 19.04621696472168,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Üröm ► Pilisborosjenő"
     }
   ]
 }
