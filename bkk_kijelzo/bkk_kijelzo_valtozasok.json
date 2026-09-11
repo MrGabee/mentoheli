@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:58:13.108781+02:00",
+  "frissitve": "2026-09-11T02:58:45.656297+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:12:02.968689+02:00",
-      "kulcs": "V2210",
-      "rendszam": "V2210",
-      "vehicle_id": "5850",
-      "vehicle_label": "Kispest, Tulipán utca",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.46379470825195,
-      "lon": 19.127107620239258,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Kispest, Tulipán utca"
-    },
-    {
-      "idopont": "2026-09-10T15:12:02.968737+02:00",
-      "kulcs": "V2215",
-      "rendszam": "V2215",
-      "vehicle_id": "5855",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.46855926513672,
-      "lon": 19.02381706237793,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-10T15:12:02.968810+02:00",
       "kulcs": "V2221",
@@ -260000,6 +259974,32 @@
       "lon": 19.16933822631836,
       "elozo_szoveg": "Árpádföld",
       "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-11T02:58:45.506708+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5074577331543,
+      "lon": 19.025068283081055,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-11T02:58:45.507150+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47432327270508,
+      "lon": 19.04659080505371,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
