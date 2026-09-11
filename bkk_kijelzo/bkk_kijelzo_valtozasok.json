@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:57:40.080413+02:00",
+  "frissitve": "2026-09-11T03:58:12.244567+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:17:28.649619+02:00",
-      "kulcs": "T8105",
-      "rendszam": "T8105",
-      "vehicle_id": "7342",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.481327056884766,
-      "lon": 19.136423110961914,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.650094+02:00",
-      "kulcs": "RVY618",
-      "rendszam": "RVY618",
-      "vehicle_id": "7447",
-      "vehicle_label": "Millenniumtelep H",
-      "vonal_szam": "135",
-      "route_id": "1350",
-      "lat": 47.41265106201172,
-      "lon": 19.161039352416992,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Millenniumtelep H"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.650152+02:00",
-      "kulcs": "RVY706",
-      "rendszam": "RVY706",
-      "vehicle_id": "7455",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.41278076171875,
-      "lon": 19.160884857177734,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-10T15:17:28.650818+02:00",
       "kulcs": "SGY985",
@@ -260000,6 +259961,45 @@
       "lon": 19.001474380493164,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-11T03:58:12.177414+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Batthyány tér M H",
+      "vonal_szam": "11",
+      "route_id": "0110",
+      "lat": 47.53369140625,
+      "lon": 18.993412017822266,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Batthyány tér M+H"
+    },
+    {
+      "idopont": "2026-09-11T03:58:12.178996+02:00",
+      "kulcs": "SKR831",
+      "rendszam": "SKR831",
+      "vehicle_id": "7717",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.446128845214844,
+      "lon": 19.15199089050293,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T03:58:12.179033+02:00",
+      "kulcs": "SKN817",
+      "rendszam": "SKN817",
+      "vehicle_id": "7787",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.504852294921875,
+      "lon": 19.02452850341797,
+      "elozo_szoveg": "Széll Kálmán tér M ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
     }
   ]
 }
