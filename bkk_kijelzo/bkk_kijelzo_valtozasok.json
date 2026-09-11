@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:25:18.855250+02:00",
+  "frissitve": "2026-09-11T02:25:49.991150+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:09:11.721167+02:00",
-      "kulcs": "AOJM876",
-      "rendszam": "AOJM876",
-      "vehicle_id": "1000",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.398258209228516,
-      "lon": 19.106019973754883,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.721298+02:00",
-      "kulcs": "AOJM883",
-      "rendszam": "AOJM883",
-      "vehicle_id": "1009",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.430789947509766,
-      "lon": 19.070554733276367,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.721322+02:00",
-      "kulcs": "AADI604",
-      "rendszam": "AADI604",
-      "vehicle_id": "101",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.416622161865234,
-      "lon": 19.001461029052734,
-      "elozo_szoveg": "Baross Gábor-telep, Ispiláng utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-10T15:09:11.721442+02:00",
       "kulcs": "AONW960",
@@ -260000,6 +259961,45 @@
       "lon": 19.024349212646484,
       "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-11T02:25:49.903906+02:00",
+      "kulcs": "MXJ006",
+      "rendszam": "MXJ006",
+      "vehicle_id": "5886",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50800704956055,
+      "lon": 19.02651596069336,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-11T02:25:49.904325+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51069641113281,
+      "lon": 19.097257614135742,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-11T02:25:49.904468+02:00",
+      "kulcs": "SKN817",
+      "rendszam": "SKN817",
+      "vehicle_id": "7787",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.508811950683594,
+      "lon": 19.09542465209961,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
     }
   ]
 }
