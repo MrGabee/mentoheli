@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:28:24.940482+02:00",
+  "frissitve": "2026-09-11T03:29:04.010360+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:14:24.746030+02:00",
-      "kulcs": "PKN618",
-      "rendszam": "PKN618",
-      "vehicle_id": "7207",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.47933578491211,
-      "lon": 19.234012603759766,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-10T15:14:24.746167+02:00",
-      "kulcs": "PMP912",
-      "rendszam": "PMP912",
-      "vehicle_id": "7229",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.46466064453125,
-      "lon": 19.018484115600586,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-10T15:14:24.746278+02:00",
-      "kulcs": "RCT269",
-      "rendszam": "RCT269",
-      "vehicle_id": "7320",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.4908561706543,
-      "lon": 19.30642318725586,
-      "elozo_szoveg": "Színes utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-09-10T15:14:24.746683+02:00",
       "kulcs": "V2254",
@@ -260000,6 +259961,45 @@
       "lon": 19.12763214111328,
       "elozo_szoveg": "Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya alsó vasútáll."
+    },
+    {
+      "idopont": "2026-09-11T03:29:03.930113+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49745178222656,
+      "lon": 19.055797576904297,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Deák F. tér (City centre)"
+    },
+    {
+      "idopont": "2026-09-11T03:29:03.930195+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.5013313293457,
+      "lon": 19.119993209838867,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-09-11T03:29:03.931021+02:00",
+      "kulcs": "AOIM033",
+      "rendszam": "AOIM033",
+      "vehicle_id": "953",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.4759407043457,
+      "lon": 19.047109603881836,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
