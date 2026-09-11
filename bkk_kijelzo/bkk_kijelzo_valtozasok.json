@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:31:14.624083+02:00",
+  "frissitve": "2026-09-11T02:31:43.756386+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:09:11.729620+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50228500366211,
-      "lon": 19.035371780395508,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.729731+02:00",
-      "kulcs": "NGC029",
-      "rendszam": "NGC029",
-      "vehicle_id": "6328",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.435890197753906,
-      "lon": 19.01291275024414,
-      "elozo_szoveg": "Lomnici utca ► Újbuda-központ M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.730059+02:00",
-      "kulcs": "NTM431",
-      "rendszam": "NTM431",
-      "vehicle_id": "6499",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "214",
-      "route_id": "2140",
-      "lat": 47.47745895385742,
-      "lon": 19.04644012451172,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Baross Gábor-telep, Ispiláng utca"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.730182+02:00",
-      "kulcs": "NTP544",
-      "rendszam": "NTP544",
-      "vehicle_id": "6520",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.430362701416016,
-      "lon": 19.03638458251953,
-      "elozo_szoveg": "Savoyai Jenő tér (Törley tér)",
-      "uj_szoveg": "Regényes utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.730465+02:00",
-      "kulcs": "PDB704",
-      "rendszam": "PDB704",
-      "vehicle_id": "7030",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.52141571044922,
-      "lon": 18.99798011779785,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
     {
       "idopont": "2026-09-10T15:09:11.730646+02:00",
       "kulcs": "PDB386",
@@ -260000,6 +259935,71 @@
       "lon": 19.046348571777344,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T02:31:43.680315+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.57996368408203,
+      "lon": 19.108491897583008,
+      "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-11T02:31:43.680696+02:00",
+      "kulcs": "SGY988",
+      "rendszam": "SGY988",
+      "vehicle_id": "7668",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.508766174316406,
+      "lon": 19.095407485961914,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-11T02:31:43.680750+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51066589355469,
+      "lon": 19.081506729125977,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-11T02:31:43.680922+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54206848144531,
+      "lon": 19.15125846862793,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-11T02:31:43.681015+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46464157104492,
+      "lon": 19.0229434967041,
+      "elozo_szoveg": "Kelenföld vasútáll. M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
