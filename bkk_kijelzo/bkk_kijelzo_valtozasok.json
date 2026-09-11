@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:29:04.010360+02:00",
+  "frissitve": "2026-09-11T03:29:33.208508+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:14:24.746683+02:00",
-      "kulcs": "V2254",
-      "rendszam": "V2254",
-      "vehicle_id": "7386",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54828643798828,
-      "lon": 19.029027938842773,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-10T15:14:24.747021+02:00",
-      "kulcs": "RVY716",
-      "rendszam": "RVY716",
-      "vehicle_id": "7465",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41657257080078,
-      "lon": 19.131006240844727,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
-    {
-      "idopont": "2026-09-10T15:14:24.747038+02:00",
-      "kulcs": "RVY718",
-      "rendszam": "RVY718",
-      "vehicle_id": "7467",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.46327209472656,
-      "lon": 19.148656845092773,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-10T15:14:24.747246+02:00",
       "kulcs": "AOGF679",
@@ -260000,6 +259961,45 @@
       "lon": 19.047109603881836,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-11T03:29:33.124603+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Göncz Árpád városkp. M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.4648551940918,
+      "lon": 19.023775100708008,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Göncz Árpád városközpont M"
+    },
+    {
+      "idopont": "2026-09-11T03:29:33.125466+02:00",
+      "kulcs": "FLR743",
+      "rendszam": "FLR743",
+      "vehicle_id": "3157",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.441619873046875,
+      "lon": 19.1861515045166,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-11T03:29:33.125492+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54130935668945,
+      "lon": 19.151689529418945,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota"
     }
   ]
 }
