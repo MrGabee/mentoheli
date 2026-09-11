@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:34:58.515680+02:00",
+  "frissitve": "2026-09-12T01:35:32.409921+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:01:12.756300+02:00",
-      "kulcs": "T0237",
-      "rendszam": "T0237",
-      "vehicle_id": "4219",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50429916381836,
-      "lon": 19.13678741455078,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-11T15:01:12.756496+02:00",
-      "kulcs": "AAHY872",
-      "rendszam": "AAHY872",
-      "vehicle_id": "434",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.602657318115234,
-      "lon": 19.06607437133789,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-09-11T15:01:12.756532+02:00",
-      "kulcs": "AAHY876",
-      "rendszam": "AAHY876",
-      "vehicle_id": "438",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "96",
-      "route_id": "0960",
-      "lat": 47.58271789550781,
-      "lon": 19.08233642578125,
-      "elozo_szoveg": "Újpest, Fóti út",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
     {
       "idopont": "2026-09-11T15:01:12.756673+02:00",
       "kulcs": "V1340",
@@ -260000,6 +259961,45 @@
       "lon": 19.127334594726562,
       "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-12T01:35:32.318444+02:00",
+      "kulcs": "AADR760",
+      "rendszam": "AADR760",
+      "vehicle_id": "209",
+      "vehicle_label": "Bosnyák tér",
+      "vonal_szam": "907A",
+      "route_id": "9071",
+      "lat": 47.49439239501953,
+      "lon": 19.06057357788086,
+      "elozo_szoveg": "Bosnyák tér",
+      "uj_szoveg": "Zugló vasútállomás ► Bosnyák tér"
+    },
+    {
+      "idopont": "2026-09-12T01:35:32.322820+02:00",
+      "kulcs": "MUU903",
+      "rendszam": "MUU903",
+      "vehicle_id": "5956",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.426612854003906,
+      "lon": 19.160839080810547,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-12T01:35:32.322845+02:00",
+      "kulcs": "MUU904",
+      "rendszam": "MUU904",
+      "vehicle_id": "5957",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.58115768432617,
+      "lon": 19.049196243286133,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
