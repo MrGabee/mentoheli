@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:11:48.246298+02:00",
+  "frissitve": "2026-09-11T02:12:18.839083+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:06:41.256796+02:00",
-      "kulcs": "SKR729",
-      "rendszam": "SKR729",
-      "vehicle_id": "7678",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.43178939819336,
-      "lon": 19.26105308532715,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.256850+02:00",
-      "kulcs": "SKR736",
-      "rendszam": "SKR736",
-      "vehicle_id": "7685",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85E",
-      "route_id": "0855",
-      "lat": 47.46315002441406,
-      "lon": 19.148366928100586,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.256971+02:00",
-      "kulcs": "SKR815",
-      "rendszam": "SKR815",
-      "vehicle_id": "7701",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.51909637451172,
-      "lon": 19.033416748046875,
-      "elozo_szoveg": "Szemlőhegy",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.257003+02:00",
-      "kulcs": "SKR824",
-      "rendszam": "SKR824",
-      "vehicle_id": "7710",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.45794677734375,
-      "lon": 19.176584243774414,
-      "elozo_szoveg": "Felsőcsatári köz",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.257016+02:00",
-      "kulcs": "SKR825",
-      "rendszam": "SKR825",
-      "vehicle_id": "7711",
-      "vehicle_label": "Ferihegy vasútállomás",
-      "vonal_szam": "166",
-      "route_id": "1660",
-      "lat": 47.44442367553711,
-      "lon": 19.09718132019043,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Ferihegy vasútállomás"
-    },
     {
       "idopont": "2026-09-10T15:06:41.257238+02:00",
       "kulcs": "T9113",
@@ -260000,6 +259935,71 @@
       "lon": 19.10157585144043,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T02:12:18.752464+02:00",
+      "kulcs": "AADR720",
+      "rendszam": "AADR720",
+      "vehicle_id": "189",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55027389526367,
+      "lon": 19.042043685913086,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-11T02:12:18.754889+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49707794189453,
+      "lon": 19.055593490600586,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-11T02:12:18.754982+02:00",
+      "kulcs": "MOS281",
+      "rendszam": "MOS281",
+      "vehicle_id": "5734",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497222900390625,
+      "lon": 19.055282592773438,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-11T02:12:18.755053+02:00",
+      "kulcs": "NBW007",
+      "rendszam": "NBW007",
+      "vehicle_id": "5977",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.501625061035156,
+      "lon": 19.122465133666992,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-11T02:12:18.755107+02:00",
+      "kulcs": "NGC164",
+      "rendszam": "NGC164",
+      "vehicle_id": "6213",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.519432067871094,
+      "lon": 19.038190841674805,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
