@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:44:48.100479+02:00",
+  "frissitve": "2026-09-11T03:45:16.578749+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:15:59.599592+02:00",
-      "kulcs": "RVY735",
-      "rendszam": "RVY735",
-      "vehicle_id": "7633",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.38926315307617,
-      "lon": 19.219066619873047,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-10T15:15:59.599642+02:00",
-      "kulcs": "RVY741",
-      "rendszam": "RVY741",
-      "vehicle_id": "7639",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.4794921875,
-      "lon": 19.067394256591797,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Vecsési út-Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-10T15:15:59.599728+02:00",
-      "kulcs": "AILJ860",
-      "rendszam": "AILJ860",
-      "vehicle_id": "765",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.43560791015625,
-      "lon": 19.139190673828125,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-10T15:15:59.599822+02:00",
       "kulcs": "SGY985",
@@ -260000,6 +259961,45 @@
       "lon": 19.28029441833496,
       "elozo_szoveg": "Rákoscsaba vasútállomás",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-11T03:45:16.491111+02:00",
+      "kulcs": "V2008",
+      "rendszam": "V2008",
+      "vehicle_id": "2008",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50738525390625,
+      "lon": 19.02317237854004,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-11T03:45:16.493412+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542667388916016,
+      "lon": 18.964855194091797,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-11T03:45:16.493782+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.48601150512695,
+      "lon": 19.1915225982666,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
     }
   ]
 }
