@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:54:57.760286+02:00",
+  "frissitve": "2026-09-11T03:55:30.606240+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:17:28.645011+02:00",
-      "kulcs": "T8000",
-      "rendszam": "T8000",
-      "vehicle_id": "6115",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53643035888672,
-      "lon": 19.107290267944336,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.645101+02:00",
-      "kulcs": "T8009",
-      "rendszam": "T8009",
-      "vehicle_id": "6129",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50656509399414,
-      "lon": 19.050851821899414,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.645248+02:00",
-      "kulcs": "T9006",
-      "rendszam": "T9006",
-      "vehicle_id": "6145",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.499794006347656,
-      "lon": 19.103710174560547,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
     {
       "idopont": "2026-09-10T15:17:28.645346+02:00",
       "kulcs": "NCZ545",
@@ -260000,6 +259961,45 @@
       "lon": 18.252750396728516,
       "elozo_szoveg": "Dombóvár",
       "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-09-11T03:55:30.523576+02:00",
+      "kulcs": "AAGL293",
+      "rendszam": "AAGL293",
+      "vehicle_id": "326",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.498966217041016,
+      "lon": 19.05177879333496,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-11T03:55:30.525293+02:00",
+      "kulcs": "AOGF661",
+      "rendszam": "AOGF661",
+      "vehicle_id": "743",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "148",
+      "route_id": "1480",
+      "lat": 47.398521423339844,
+      "lon": 19.106203079223633,
+      "elozo_szoveg": "Csepel, Soroksári rév",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-11T03:55:30.525331+02:00",
+      "kulcs": "RVY605",
+      "rendszam": "RVY605",
+      "vehicle_id": "7434",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.49885940551758,
+      "lon": 19.050582885742188,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
     }
   ]
 }
