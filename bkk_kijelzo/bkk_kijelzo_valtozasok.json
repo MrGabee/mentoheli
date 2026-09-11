@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:29:44.576298+02:00",
+  "frissitve": "2026-09-11T02:30:16.255535+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:09:11.728056+02:00",
-      "kulcs": "V2263",
-      "rendszam": "V2263",
-      "vehicle_id": "561",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42591094970703,
-      "lon": 19.039705276489258,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.728082+02:00",
-      "kulcs": "MPW637",
-      "rendszam": "MPW637",
-      "vehicle_id": "5625",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.464500427246094,
-      "lon": 19.126310348510742,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.728134+02:00",
-      "kulcs": "V2270",
-      "rendszam": "V2270",
-      "vehicle_id": "568",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.49845504760742,
-      "lon": 19.02397346496582,
-      "elozo_szoveg": "Alkotás utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.728188+02:00",
-      "kulcs": "V2272",
-      "rendszam": "V2272",
-      "vehicle_id": "570",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.50101089477539,
-      "lon": 19.024707794189453,
-      "elozo_szoveg": "Krisztina körút ► Városház tér",
-      "uj_szoveg": "Városház tér"
-    },
     {
       "idopont": "2026-09-10T15:09:11.729000+02:00",
       "kulcs": "T8003",
@@ -260000,6 +259948,58 @@
       "lon": 19.151704788208008,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Újpalota"
+    },
+    {
+      "idopont": "2026-09-11T02:30:16.172854+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48332977294922,
+      "lon": 19.127962112426758,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútáll."
+    },
+    {
+      "idopont": "2026-09-11T02:30:16.173011+02:00",
+      "kulcs": "NBW001",
+      "rendszam": "NBW001",
+      "vehicle_id": "5971",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.42715072631836,
+      "lon": 19.16008949279785,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-11T02:30:16.173221+02:00",
+      "kulcs": "PDB385",
+      "rendszam": "PDB385",
+      "vehicle_id": "7067",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.469032287597656,
+      "lon": 19.294635772705078,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-11T02:30:16.173311+02:00",
+      "kulcs": "RVY608",
+      "rendszam": "RVY608",
+      "vehicle_id": "7437",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44316101074219,
+      "lon": 19.093061447143555,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
