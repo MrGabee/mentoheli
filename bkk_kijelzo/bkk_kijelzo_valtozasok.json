@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:26:53.372174+02:00",
+  "frissitve": "2026-09-11T02:27:26.610456+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:09:11.722347+02:00",
-      "kulcs": "AADR701",
-      "rendszam": "AADR701",
-      "vehicle_id": "168",
-      "vehicle_label": "Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.470855712890625,
-      "lon": 19.10933494567871,
-      "elozo_szoveg": "Ecseri út M ► Aszódi utca",
-      "uj_szoveg": "Aszódi utca"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.723380+02:00",
-      "kulcs": "FKU945",
-      "rendszam": "FKU945",
-      "vehicle_id": "3101",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85E",
-      "route_id": "0855",
-      "lat": 47.50209426879883,
-      "lon": 19.135652542114258,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.723418+02:00",
-      "kulcs": "FLR701",
-      "rendszam": "FLR701",
-      "vehicle_id": "3115",
-      "vehicle_label": "Rákoshegy",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.501529693603516,
-      "lon": 19.136180877685547,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoshegy"
-    },
     {
       "idopont": "2026-09-10T15:09:11.723492+02:00",
       "kulcs": "FLR715",
@@ -260000,6 +259961,45 @@
       "lon": 19.06722640991211,
       "elozo_szoveg": "Boráros tér H",
       "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-11T02:27:26.527730+02:00",
+      "kulcs": "FLR701",
+      "rendszam": "FLR701",
+      "vehicle_id": "3115",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.53944778442383,
+      "lon": 19.06955909729004,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-11T02:27:26.529549+02:00",
+      "kulcs": "RVY605",
+      "rendszam": "RVY605",
+      "vehicle_id": "7434",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.4868049621582,
+      "lon": 19.05714225769043,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-11T02:27:26.529670+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50466537475586,
+      "lon": 19.024662017822266,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
     }
   ]
 }
