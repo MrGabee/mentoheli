@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:02:58.754233+02:00",
+  "frissitve": "2026-09-12T01:03:29.999471+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:56:54.772139+02:00",
-      "kulcs": "903-652-904-985-693-986",
-      "rendszam": "903-652-904-985-693-986",
-      "vehicle_id": "905516569035-905536466527-905516569043-905516569852-905536466931-905516569860",
-      "vehicle_label": "Gödöllő",
-      "vonal_szam": "H8",
-      "route_id": "H8",
-      "lat": 47.50359344482422,
-      "lon": 19.137500762939453,
-      "elozo_szoveg": "Örs vezér tere",
-      "uj_szoveg": "Gödöllő"
-    },
-    {
-      "idopont": "2026-09-11T14:56:54.772203+02:00",
-      "kulcs": "961-681-962-931-666-932",
-      "rendszam": "961-681-962-931-666-932",
-      "vehicle_id": "905516569613-905536466816-905516569621-905516569316-905536466667-905516569324",
-      "vehicle_label": "Boráros tér",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.4217414855957,
-      "lon": 19.06633949279785,
-      "elozo_szoveg": "Csepel",
-      "uj_szoveg": "Boráros tér"
-    },
-    {
-      "idopont": "2026-09-11T14:56:54.772250+02:00",
-      "kulcs": "975-688-976-977-689-978",
-      "rendszam": "975-688-976-977-689-978",
-      "vehicle_id": "905516569753-905536466881-905516569761-905516569779-905536466899-905516569787",
-      "vehicle_label": "Batthyány tér",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.6605224609375,
-      "lon": 19.074705123901367,
-      "elozo_szoveg": "Szentendre",
-      "uj_szoveg": "Batthyány tér"
-    },
-    {
-      "idopont": "2026-09-11T14:56:54.772612+02:00",
-      "kulcs": "AOIM005",
-      "rendszam": "AOIM005",
-      "vehicle_id": "923",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45453643798828,
-      "lon": 19.182146072387695,
-      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
     {
       "idopont": "2026-09-11T14:56:54.772936+02:00",
       "kulcs": "415 051",
@@ -260000,6 +259948,58 @@
       "lon": 19.096195220947266,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T01:03:29.910769+02:00",
+      "kulcs": "AADI611",
+      "rendszam": "AADI611",
+      "vehicle_id": "108",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519351959228516,
+      "lon": 19.038175582885742,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T01:03:29.911055+02:00",
+      "kulcs": "AADR756",
+      "rendszam": "AADR756",
+      "vehicle_id": "205",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.51103210449219,
+      "lon": 19.056196212768555,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-12T01:03:29.911098+02:00",
+      "kulcs": "AADR760",
+      "rendszam": "AADR760",
+      "vehicle_id": "209",
+      "vehicle_label": "Bosnyák tér",
+      "vonal_szam": "907A",
+      "route_id": "9071",
+      "lat": 47.49452209472656,
+      "lon": 19.061161041259766,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Bosnyák tér"
+    },
+    {
+      "idopont": "2026-09-12T01:03:29.913975+02:00",
+      "kulcs": "FLR735",
+      "rendszam": "FLR735",
+      "vehicle_id": "3149",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46378707885742,
+      "lon": 19.144426345825195,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
