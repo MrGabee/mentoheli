@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:15:34.349331+02:00",
+  "frissitve": "2026-09-12T01:16:06.836906+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:58:32.197962+02:00",
-      "kulcs": "T9139",
-      "rendszam": "T9139",
-      "vehicle_id": "7878",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.499977111816406,
-      "lon": 19.083616256713867,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.198000+02:00",
-      "kulcs": "T9141",
-      "rendszam": "T9141",
-      "vehicle_id": "7880",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.50090408325195,
-      "lon": 19.054872512817383,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.198112+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.486995697021484,
-      "lon": 19.057605743408203,
-      "elozo_szoveg": "Fővám tér M",
-      "uj_szoveg": "Népliget M"
-    },
     {
       "idopont": "2026-09-11T14:58:32.198292+02:00",
       "kulcs": "AOFL211",
@@ -260000,6 +259961,45 @@
       "lon": 19.038211822509766,
       "elozo_szoveg": "Astoria M ► Pesterzsébet",
       "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-12T01:16:06.751893+02:00",
+      "kulcs": "V2041",
+      "rendszam": "V2041",
+      "vehicle_id": "2041",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507328033447266,
+      "lon": 19.024690628051758,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-12T01:16:06.751975+02:00",
+      "kulcs": "AADR760",
+      "rendszam": "AADR760",
+      "vehicle_id": "209",
+      "vehicle_label": "Bosnyák tér",
+      "vonal_szam": "907A",
+      "route_id": "9071",
+      "lat": 47.514923095703125,
+      "lon": 19.104705810546875,
+      "elozo_szoveg": "Zugló vasútállomás ► Bosnyák tér",
+      "uj_szoveg": "Bosnyák tér"
+    },
+    {
+      "idopont": "2026-09-12T01:16:06.756629+02:00",
+      "kulcs": "SGY980",
+      "rendszam": "SGY980",
+      "vehicle_id": "7660",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50324630737305,
+      "lon": 19.13752555847168,
+      "elozo_szoveg": "Astoria M",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
     }
   ]
 }
