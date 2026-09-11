@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:52:32.138921+02:00",
+  "frissitve": "2026-09-11T02:53:01.201097+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:10:50.052597+02:00",
-      "kulcs": "AOIM009",
-      "rendszam": "AOIM009",
-      "vehicle_id": "927",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.41048812866211,
-      "lon": 19.060596466064453,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-10T15:10:50.052611+02:00",
-      "kulcs": "480 001",
-      "rendszam": "480 001",
-      "vehicle_id": "928600015236",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.956268310546875,
-      "lon": 17.88283920288086,
-      "elozo_szoveg": "Balatonfüred",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-10T15:10:50.052962+02:00",
-      "kulcs": "415 052",
-      "rendszam": "415 052",
-      "vehicle_id": "945514150529",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.377010345458984,
-      "lon": 18.901309967041016,
-      "elozo_szoveg": "Százhalombatta",
-      "uj_szoveg": "Budapest-Déli"
-    },
     {
       "idopont": "2026-09-10T15:10:50.053180+02:00",
       "kulcs": "815 032",
@@ -260000,6 +259961,45 @@
       "lon": 19.00753402709961,
       "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
       "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-11T02:53:01.137965+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48054504394531,
+      "lon": 19.142112731933594,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-11T02:53:01.138415+02:00",
+      "kulcs": "RVY717",
+      "rendszam": "RVY717",
+      "vehicle_id": "7466",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59872817993164,
+      "lon": 19.12169075012207,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T02:53:01.138433+02:00",
+      "kulcs": "RWA600",
+      "rendszam": "RWA600",
+      "vehicle_id": "7572",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.519962310791016,
+      "lon": 19.03810691833496,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
