@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:42:05.039224+02:00",
+  "frissitve": "2026-09-11T03:42:36.372183+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:15:59.596737+02:00",
-      "kulcs": "NTM425",
-      "rendszam": "NTM425",
-      "vehicle_id": "6493",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.397972106933594,
-      "lon": 18.973325729370117,
-      "elozo_szoveg": "Nagytétény-Diósd vasútállomás",
-      "uj_szoveg": "Nagytétény-Diósd vá."
-    },
-    {
-      "idopont": "2026-09-10T15:15:59.597015+02:00",
-      "kulcs": "NWB362",
-      "rendszam": "NWB362",
-      "vehicle_id": "6542",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50102233886719,
-      "lon": 19.135690689086914,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-10T15:15:59.597152+02:00",
-      "kulcs": "AOCT659",
-      "rendszam": "AOCT659",
-      "vehicle_id": "689",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.464752197265625,
-      "lon": 19.017799377441406,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-10T15:15:59.597680+02:00",
-      "kulcs": "PDN617",
-      "rendszam": "PDN617",
-      "vehicle_id": "7088",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.43112564086914,
-      "lon": 19.07073402404785,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-10T15:15:59.597733+02:00",
-      "kulcs": "PDN623",
-      "rendszam": "PDN623",
-      "vehicle_id": "7094",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.38800811767578,
-      "lon": 19.103269577026367,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-10T15:15:59.597836+02:00",
       "kulcs": "PDN638",
@@ -260000,6 +259935,71 @@
       "lon": 19.0463924407959,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-11T03:42:36.282649+02:00",
+      "kulcs": "V2007",
+      "rendszam": "V2007",
+      "vehicle_id": "2007",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50730895996094,
+      "lon": 19.024799346923828,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-11T03:42:36.283649+02:00",
+      "kulcs": "FLR701",
+      "rendszam": "FLR701",
+      "vehicle_id": "3115",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48391342163086,
+      "lon": 19.12753677368164,
+      "elozo_szoveg": "Kőbánya alsó vasútáll.",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-11T03:42:36.284422+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "20E",
+      "route_id": "0205",
+      "lat": 47.57743835449219,
+      "lon": 19.11438751220703,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-09-11T03:42:36.285127+02:00",
+      "kulcs": "NWB357",
+      "rendszam": "NWB357",
+      "vehicle_id": "6537",
+      "vehicle_label": "Rákoskeresztúr, városkp.",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.546791076660156,
+      "lon": 19.142539978027344,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-09-11T03:42:36.285720+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54706573486328,
+      "lon": 19.14204216003418,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
