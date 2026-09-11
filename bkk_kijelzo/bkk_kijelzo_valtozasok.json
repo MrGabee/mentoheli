@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-12T00:30:57.148895+02:00",
+  "frissitve": "2026-09-12T00:31:58.538070+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:53:44.149931+02:00",
-      "kulcs": "RVY727",
-      "rendszam": "RVY727",
-      "vehicle_id": "7625",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50125503540039,
-      "lon": 19.13559913635254,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-11T14:53:44.150052+02:00",
-      "kulcs": "RVY740",
-      "rendszam": "RVY740",
-      "vehicle_id": "7638",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.47764587402344,
-      "lon": 19.343088150024414,
-      "elozo_szoveg": "Pécel, Kun József utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-11T14:53:44.150233+02:00",
-      "kulcs": "SCD592",
-      "rendszam": "SCD592",
-      "vehicle_id": "7656",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.428619384765625,
-      "lon": 19.175373077392578,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-11T14:53:44.150271+02:00",
-      "kulcs": "SCD596",
-      "rendszam": "SCD596",
-      "vehicle_id": "7658",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "236A",
-      "route_id": "2361",
-      "lat": 47.423828125,
-      "lon": 19.2346134185791,
-      "elozo_szoveg": "Ganztelep, Mednyánszky utca",
-      "uj_szoveg": "Ferihegy vasútállomás ► Havanna-lakótelep"
-    },
-    {
-      "idopont": "2026-09-11T14:53:44.150339+02:00",
-      "kulcs": "SGY984",
-      "rendszam": "SGY984",
-      "vehicle_id": "7664",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.550296783447266,
-      "lon": 19.04203224182129,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-11T14:53:44.150934+02:00",
       "kulcs": "SGY810",
@@ -260000,6 +259935,71 @@
       "lon": 19.090890884399414,
       "elozo_szoveg": "Óbuda",
       "uj_szoveg": "Esztergom"
+    },
+    {
+      "idopont": "2026-09-12T00:31:58.444465+02:00",
+      "kulcs": "AOJM878",
+      "rendszam": "AOJM878",
+      "vehicle_id": "1004",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48588180541992,
+      "lon": 19.069543838500977,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-12T00:31:58.444566+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.508609771728516,
+      "lon": 19.09517478942871,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T00:31:58.450124+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.455963134765625,
+      "lon": 18.940425872802734,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-12T00:31:58.450478+02:00",
+      "kulcs": "PDB725",
+      "rendszam": "PDB725",
+      "vehicle_id": "7051",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.488338470458984,
+      "lon": 19.060049057006836,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-12T00:31:58.450672+02:00",
+      "kulcs": "AOFL206",
+      "rendszam": "AOFL206",
+      "vehicle_id": "791",
+      "vehicle_label": "Fácános tér",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.507713317871094,
+      "lon": 19.024629592895508,
+      "elozo_szoveg": "Madárhegy",
+      "uj_szoveg": "Fácános tér"
     }
   ]
 }
