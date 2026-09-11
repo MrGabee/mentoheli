@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:55:31.697514+02:00",
+  "frissitve": "2026-09-12T01:56:07.064982+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:02:21.335451+02:00",
-      "kulcs": "AOFL201",
-      "rendszam": "AOFL201",
-      "vehicle_id": "785",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.549339294433594,
-      "lon": 19.073686599731445,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-09-11T15:02:21.335833+02:00",
-      "kulcs": "T9135",
-      "rendszam": "T9135",
-      "vehicle_id": "7874",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49985122680664,
-      "lon": 19.08324432373047,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-11T15:02:21.336103+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51890563964844,
-      "lon": 19.0850830078125,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-11T15:02:21.336189+02:00",
       "kulcs": "AOFL207",
@@ -260000,6 +259961,45 @@
       "lon": 19.342945098876953,
       "elozo_szoveg": "Pécel, Kun József utca",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-12T01:56:06.978855+02:00",
+      "kulcs": "AADR756",
+      "rendszam": "AADR756",
+      "vehicle_id": "205",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.598751068115234,
+      "lon": 19.12128257751465,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-12T01:56:06.978963+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.48700714111328,
+      "lon": 19.057592391967773,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-12T01:56:06.980707+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50011444091797,
+      "lon": 19.02410125732422,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
     }
   ]
 }
