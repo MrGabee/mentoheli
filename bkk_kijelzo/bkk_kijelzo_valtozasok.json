@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:37:13.897517+02:00",
+  "frissitve": "2026-09-12T01:37:57.668317+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:01:12.756951+02:00",
-      "kulcs": "V1440",
-      "rendszam": "V1440",
-      "vehicle_id": "4510",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.497352600097656,
-      "lon": 19.055498123168945,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-11T15:01:12.757642+02:00",
-      "kulcs": "V1557",
-      "rendszam": "V1557",
-      "vehicle_id": "4609",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.47584533691406,
-      "lon": 19.17816925048828,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Salgótarjáni utca ► Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-09-11T15:01:12.757794+02:00",
-      "kulcs": "V4004",
-      "rendszam": "V4004",
-      "vehicle_id": "4693",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.539337158203125,
-      "lon": 18.96614646911621,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-11T15:01:12.757871+02:00",
-      "kulcs": "AAMH629",
-      "rendszam": "AAMH629",
-      "vehicle_id": "472",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.53166961669922,
-      "lon": 19.200923919677734,
-      "elozo_szoveg": "Árpádföld",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-11T15:01:12.758039+02:00",
       "kulcs": "V4098",
@@ -260000,6 +259948,58 @@
       "lon": 19.179624557495117,
       "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
       "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-12T01:37:57.584855+02:00",
+      "kulcs": "V2012",
+      "rendszam": "V2012",
+      "vehicle_id": "2012",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47758865356445,
+      "lon": 19.048828125,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-12T01:37:57.587973+02:00",
+      "kulcs": "AAGL292",
+      "rendszam": "AAGL292",
+      "vehicle_id": "325",
+      "vehicle_label": "Páty-Telki-Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.52082061767578,
+      "lon": 18.938955307006836,
+      "elozo_szoveg": "Budakeszi ► Páty ► Telki ► Zsámbék",
+      "uj_szoveg": "Páty ► Telki ► Zsámbék"
+    },
+    {
+      "idopont": "2026-09-12T01:37:57.589641+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43891525268555,
+      "lon": 19.103174209594727,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-12T01:37:57.589988+02:00",
+      "kulcs": "SKN819",
+      "rendszam": "SKN819",
+      "vehicle_id": "7788",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.497867584228516,
+      "lon": 19.019804000854492,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
     }
   ]
 }
