@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:33:43.607561+02:00",
+  "frissitve": "2026-09-11T02:34:23.048365+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:09:11.732636+02:00",
-      "kulcs": "SKR721",
-      "rendszam": "SKR721",
-      "vehicle_id": "7670",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.442440032958984,
-      "lon": 19.15850067138672,
-      "elozo_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.732650+02:00",
-      "kulcs": "SKR723",
-      "rendszam": "SKR723",
-      "vehicle_id": "7672",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46452331542969,
-      "lon": 19.126752853393555,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-10T15:09:11.732677+02:00",
-      "kulcs": "SKR728",
-      "rendszam": "SKR728",
-      "vehicle_id": "7677",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46321487426758,
-      "lon": 19.148008346557617,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
     {
       "idopont": "2026-09-10T15:09:11.733387+02:00",
       "kulcs": "T9115",
@@ -260000,6 +259961,45 @@
       "lon": 19.056236267089844,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-11T02:34:22.964584+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.441505432128906,
+      "lon": 19.18222999572754,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-11T02:34:22.964892+02:00",
+      "kulcs": "NNE065",
+      "rendszam": "NNE065",
+      "vehicle_id": "6461",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.5113410949707,
+      "lon": 19.056411743164062,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-11T02:34:22.964943+02:00",
+      "kulcs": "PDB380",
+      "rendszam": "PDB380",
+      "vehicle_id": "7062",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.46266174316406,
+      "lon": 19.00548553466797,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
     }
   ]
 }
