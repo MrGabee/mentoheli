@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:05:28.716926+02:00",
+  "frissitve": "2026-09-12T01:05:59.208513+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:58:32.183449+02:00",
-      "kulcs": "LOV864",
-      "rendszam": "LOV864",
-      "vehicle_id": "3656",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.47980499267578,
-      "lon": 19.06649398803711,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.183592+02:00",
-      "kulcs": "AAHY815",
-      "rendszam": "AAHY815",
-      "vehicle_id": "376",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.580970764160156,
-      "lon": 19.086193084716797,
-      "elozo_szoveg": "Megyer, Julianus barát utca",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.183671+02:00",
-      "kulcs": "AAHY827",
-      "rendszam": "AAHY827",
-      "vehicle_id": "388",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.602638244628906,
-      "lon": 19.06606101989746,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Budakalász, Auchan áruház ► Rákospalota, Kossuth utca"
-    },
     {
       "idopont": "2026-09-11T14:58:32.183784+02:00",
       "kulcs": "AAHY838",
@@ -260000,6 +259961,45 @@
       "lon": 19.160781860351562,
       "elozo_szoveg": "Szentlőrinci úti lakótelep",
       "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-12T01:05:59.112125+02:00",
+      "kulcs": "FKU930",
+      "rendszam": "FKU930",
+      "vehicle_id": "3086",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.474815368652344,
+      "lon": 18.989439010620117,
+      "elozo_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-12T01:05:59.112158+02:00",
+      "kulcs": "FKU943",
+      "rendszam": "FKU943",
+      "vehicle_id": "3099",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49979019165039,
+      "lon": 19.28713035583496,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-12T01:05:59.116347+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.441646575927734,
+      "lon": 19.18610954284668,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Astoria M ► Újpalota"
     }
   ]
 }
