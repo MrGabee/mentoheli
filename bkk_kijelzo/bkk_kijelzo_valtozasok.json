@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:07:39.899303+02:00",
+  "frissitve": "2026-09-12T01:08:10.936627+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:58:32.185075+02:00",
-      "kulcs": "AADI574",
-      "rendszam": "AADI574",
-      "vehicle_id": "47",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.50666809082031,
-      "lon": 19.03892707824707,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Verecke lépcső ► Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.185400+02:00",
-      "kulcs": "AADI589",
-      "rendszam": "AADI589",
-      "vehicle_id": "48",
-      "vehicle_label": "Balatoni út / Háros utca",
-      "vonal_szam": "58",
-      "route_id": "0580",
-      "lat": 47.47705078125,
-      "lon": 19.04743766784668,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.185952+02:00",
-      "kulcs": "V4324",
-      "rendszam": "V4324",
-      "vehicle_id": "4983",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.4816780090332,
-      "lon": 18.999034881591797,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
     {
       "idopont": "2026-09-11T14:58:32.186014+02:00",
       "kulcs": "V4339",
@@ -260000,6 +259961,45 @@
       "lon": 19.037878036499023,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
       "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-12T01:08:10.842210+02:00",
+      "kulcs": "FLR710",
+      "rendszam": "FLR710",
+      "vehicle_id": "3124",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.539520263671875,
+      "lon": 19.069536209106445,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-12T01:08:10.843319+02:00",
+      "kulcs": "PKN626",
+      "rendszam": "PKN626",
+      "vehicle_id": "7215",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51647186279297,
+      "lon": 19.004283905029297,
+      "elozo_szoveg": "Rózsadomb ► Árpádföld",
+      "uj_szoveg": "Nyugati pályaudvar M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-12T01:08:10.843648+02:00",
+      "kulcs": "918061932177",
+      "rendszam": "918061932177",
+      "vehicle_id": "918061932177",
+      "vehicle_label": "Keszthely",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.463661193847656,
+      "lon": 19.020889282226562,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Keszthely"
     }
   ]
 }
