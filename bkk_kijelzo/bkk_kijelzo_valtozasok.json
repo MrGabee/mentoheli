@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:58:45.583635+02:00",
+  "frissitve": "2026-09-11T03:59:16.588016+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:17:28.651640+02:00",
-      "kulcs": "STZ869",
-      "rendszam": "STZ869",
-      "vehicle_id": "7824",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.44919204711914,
-      "lon": 18.90521812438965,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.651967+02:00",
-      "kulcs": "T9142",
-      "rendszam": "T9142",
-      "vehicle_id": "7881",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51081848144531,
-      "lon": 19.09723663330078,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.652014+02:00",
-      "kulcs": "T9149",
-      "rendszam": "T9149",
-      "vehicle_id": "7888",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51543426513672,
-      "lon": 19.051006317138672,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.652312+02:00",
-      "kulcs": "AOFL230",
-      "rendszam": "AOFL230",
-      "vehicle_id": "818",
-      "vehicle_label": "Regőczi István tér",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.50770568847656,
-      "lon": 19.024642944335938,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Regőczi István tér"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.652466+02:00",
-      "kulcs": "AOFL245",
-      "rendszam": "AOFL245",
-      "vehicle_id": "833",
-      "vehicle_label": "Újhegyi lakótelep",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.484214782714844,
-      "lon": 19.127338409423828,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Újhegyi lakótelep"
-    },
     {
       "idopont": "2026-09-10T15:17:28.652500+02:00",
       "kulcs": "AOFL250",
@@ -260000,6 +259935,71 @@
       "lon": 19.182315826416016,
       "elozo_szoveg": "Pestszentimre vá.",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-11T03:59:16.498004+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58287811279297,
+      "lon": 19.091230392456055,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-11T03:59:16.499677+02:00",
+      "kulcs": "PDB385",
+      "rendszam": "PDB385",
+      "vehicle_id": "7067",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.50135803222656,
+      "lon": 19.12010383605957,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-11T03:59:16.499709+02:00",
+      "kulcs": "PDN643",
+      "rendszam": "PDN643",
+      "vehicle_id": "7114",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "154",
+      "route_id": "1540",
+      "lat": 47.47335433959961,
+      "lon": 18.992595672607422,
+      "elozo_szoveg": "Mindszenty József bíboros tér",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T03:59:16.499836+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46506881713867,
+      "lon": 19.12729835510254,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-11T03:59:16.499949+02:00",
+      "kulcs": "SKR824",
+      "rendszam": "SKR824",
+      "vehicle_id": "7710",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44354248046875,
+      "lon": 19.09294891357422,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
