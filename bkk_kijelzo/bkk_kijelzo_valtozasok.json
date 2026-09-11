@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:50:20.246163+02:00",
+  "frissitve": "2026-09-12T01:50:53.211586+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:02:21.323291+02:00",
-      "kulcs": "T0712",
-      "rendszam": "T0712",
-      "vehicle_id": "4314",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50224685668945,
-      "lon": 19.082656860351562,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-09-11T15:02:21.324668+02:00",
-      "kulcs": "V1451",
-      "rendszam": "V1451",
-      "vehicle_id": "4521",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.512779235839844,
-      "lon": 19.047733306884766,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-09-11T15:02:21.324851+02:00",
-      "kulcs": "V1562",
-      "rendszam": "V1562",
-      "vehicle_id": "4614",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.49932098388672,
-      "lon": 19.082509994506836,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-09-11T15:02:21.324874+02:00",
-      "kulcs": "V1567",
-      "rendszam": "V1567",
-      "vehicle_id": "4619",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.468017578125,
-      "lon": 19.075469970703125,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-11T15:02:21.325074+02:00",
-      "kulcs": "V4018",
-      "rendszam": "V4018",
-      "vehicle_id": "4707",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "1A",
-      "route_id": "3011",
-      "lat": 47.548484802246094,
-      "lon": 19.029802322387695,
-      "elozo_szoveg": "Káposztásmegyer, Megyeri út",
-      "uj_szoveg": "Népliget M"
-    },
     {
       "idopont": "2026-09-11T15:02:21.325526+02:00",
       "kulcs": "V4148",
@@ -260000,6 +259935,71 @@
       "lon": 19.05755043029785,
       "elozo_szoveg": "Astoria M ► Békásmegyer H",
       "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-12T01:50:53.123014+02:00",
+      "kulcs": "AOJM879",
+      "rendszam": "AOJM879",
+      "vehicle_id": "1005",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41015625,
+      "lon": 19.060300827026367,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-12T01:50:53.123114+02:00",
+      "kulcs": "LMG123",
+      "rendszam": "LMG123",
+      "vehicle_id": "1112",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55029296875,
+      "lon": 19.042020797729492,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T01:50:53.123447+02:00",
+      "kulcs": "AAGL275",
+      "rendszam": "AAGL275",
+      "vehicle_id": "275",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.462711334228516,
+      "lon": 19.00588607788086,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-12T01:50:53.125358+02:00",
+      "kulcs": "NBW007",
+      "rendszam": "NBW007",
+      "vehicle_id": "5977",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.5237922668457,
+      "lon": 18.993118286132812,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-12T01:50:53.125449+02:00",
+      "kulcs": "NNE061",
+      "rendszam": "NNE061",
+      "vehicle_id": "6457",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54897689819336,
+      "lon": 18.95171546936035,
+      "elozo_szoveg": "Máriaremete ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
     }
   ]
 }
