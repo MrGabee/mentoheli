@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T00:14:08.496563+02:00",
+  "frissitve": "2026-09-12T00:14:47.151740+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:53:44.139793+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49736785888672,
-      "lon": 19.055438995361328,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-11T14:53:44.139886+02:00",
-      "kulcs": "V1364",
-      "rendszam": "V1364",
-      "vehicle_id": "4465",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49746322631836,
-      "lon": 19.055347442626953,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-11T14:53:44.139979+02:00",
-      "kulcs": "V1427",
-      "rendszam": "V1427",
-      "vehicle_id": "4497",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.470645904541016,
-      "lon": 19.073566436767578,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-09-11T14:53:44.140114+02:00",
       "kulcs": "V1503",
@@ -260000,6 +259961,45 @@
       "lon": 19.231828689575195,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-12T00:14:47.057617+02:00",
+      "kulcs": "V2016",
+      "rendszam": "V2016",
+      "vehicle_id": "2016",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50733947753906,
+      "lon": 19.025009155273438,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-12T00:14:47.063067+02:00",
+      "kulcs": "PDB707",
+      "rendszam": "PDB707",
+      "vehicle_id": "7033",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56658935546875,
+      "lon": 19.12886619567871,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-12T00:14:47.063236+02:00",
+      "kulcs": "SGY980",
+      "rendszam": "SGY980",
+      "vehicle_id": "7660",
+      "vehicle_label": "Astoria M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.47807693481445,
+      "lon": 19.045726776123047,
+      "elozo_szoveg": "Blaha Lujza tér M",
+      "uj_szoveg": "Astoria M"
     }
   ]
 }
