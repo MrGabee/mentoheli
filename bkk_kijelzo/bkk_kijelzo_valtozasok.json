@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:15:07.394245+02:00",
+  "frissitve": "2026-09-12T01:15:34.349331+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:58:32.197131+02:00",
-      "kulcs": "T9113",
-      "rendszam": "T9113",
-      "vehicle_id": "7754",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52262496948242,
-      "lon": 19.130786895751953,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.197653+02:00",
-      "kulcs": "T9117",
-      "rendszam": "T9117",
-      "vehicle_id": "7855",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.52159881591797,
-      "lon": 19.10059928894043,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.197720+02:00",
-      "kulcs": "T9120",
-      "rendszam": "T9120",
-      "vehicle_id": "7859",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49392318725586,
-      "lon": 19.060192108154297,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-09-11T14:58:32.197962+02:00",
       "kulcs": "T9139",
@@ -260000,6 +259961,45 @@
       "lon": 19.142215728759766,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-12T01:15:34.261920+02:00",
+      "kulcs": "AADI606",
+      "rendszam": "AADI606",
+      "vehicle_id": "103",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.405818939208984,
+      "lon": 19.013673782348633,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-12T01:15:34.262281+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4559211730957,
+      "lon": 18.940488815307617,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-12T01:15:34.266284+02:00",
+      "kulcs": "MUT889",
+      "rendszam": "MUT889",
+      "vehicle_id": "5942",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.51930618286133,
+      "lon": 19.038211822509766,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
