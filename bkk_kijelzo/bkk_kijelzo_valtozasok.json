@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:36:00.967835+02:00",
+  "frissitve": "2026-09-11T02:36:51.946177+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:10:50.041716+02:00",
-      "kulcs": "V2012",
-      "rendszam": "V2012",
-      "vehicle_id": "2012",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.47390365600586,
-      "lon": 19.047527313232422,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-10T15:10:50.041846+02:00",
-      "kulcs": "V2032",
-      "rendszam": "V2032",
-      "vehicle_id": "2032",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.50732421875,
-      "lon": 19.024669647216797,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-10T15:10:50.042067+02:00",
-      "kulcs": "AAGL278",
-      "rendszam": "AAGL278",
-      "vehicle_id": "278",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40E",
-      "route_id": "0405",
-      "lat": 47.4559211730957,
-      "lon": 18.940406799316406,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-10T15:10:50.042288+02:00",
       "kulcs": "FKU945",
@@ -260000,6 +259961,45 @@
       "lon": 19.119630813598633,
       "elozo_szoveg": "Káposztásmegyer",
       "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-11T02:36:51.859284+02:00",
+      "kulcs": "MUU903",
+      "rendszam": "MUU903",
+      "vehicle_id": "5956",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534751892089844,
+      "lon": 19.08251953125,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T02:36:51.859518+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.497806549072266,
+      "lon": 19.01944351196289,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-11T02:36:51.859686+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42595672607422,
+      "lon": 19.06999397277832,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Csepel-Királyerdő"
     }
   ]
 }
