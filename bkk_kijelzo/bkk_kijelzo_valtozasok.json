@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:03:56.985046+02:00",
+  "frissitve": "2026-09-11T02:04:30.881687+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:06:41.245880+02:00",
-      "kulcs": "AAGL290",
-      "rendszam": "AAGL290",
-      "vehicle_id": "323",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50743865966797,
-      "lon": 19.025423049926758,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.246604+02:00",
-      "kulcs": "AAHY860",
-      "rendszam": "AAHY860",
-      "vehicle_id": "422",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.56026840209961,
-      "lon": 19.091468811035156,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.249187+02:00",
-      "kulcs": "V4120",
-      "rendszam": "V4120",
-      "vehicle_id": "4809",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.54818344116211,
-      "lon": 19.028947830200195,
-      "elozo_szoveg": "Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.249589+02:00",
-      "kulcs": "AAMH653",
-      "rendszam": "AAMH653",
-      "vehicle_id": "496",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49699783325195,
-      "lon": 19.05573272705078,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.249906+02:00",
-      "kulcs": "MFW529",
-      "rendszam": "MFW529",
-      "vehicle_id": "5074",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.51976013183594,
-      "lon": 19.111480712890625,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-10T15:06:41.250106+02:00",
       "kulcs": "AAMD173",
@@ -260000,6 +259935,71 @@
       "lon": 19.057167053222656,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-11T02:04:30.816265+02:00",
+      "kulcs": "NNE057",
+      "rendszam": "NNE057",
+      "vehicle_id": "6453",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45140838623047,
+      "lon": 19.15904998779297,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T02:04:30.816341+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52354431152344,
+      "lon": 18.992889404296875,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-11T02:04:30.816408+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.517425537109375,
+      "lon": 19.077638626098633,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-11T02:04:30.816523+02:00",
+      "kulcs": "SGY989",
+      "rendszam": "SGY989",
+      "vehicle_id": "7669",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51017761230469,
+      "lon": 19.12784194946289,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T02:04:30.816774+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47957992553711,
+      "lon": 19.051084518432617,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
