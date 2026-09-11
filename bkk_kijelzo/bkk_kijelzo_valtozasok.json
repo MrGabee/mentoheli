@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-11T04:19:19.638650+02:00",
+  "frissitve": "2026-09-11T04:20:00.090588+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:22:29.401499+02:00",
-      "kulcs": "NTP539",
-      "rendszam": "NTP539",
-      "vehicle_id": "6515",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.493465423583984,
-      "lon": 19.03252410888672,
-      "elozo_szoveg": "Naphegy tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.401530+02:00",
-      "kulcs": "NTP542",
-      "rendszam": "NTP542",
-      "vehicle_id": "6518",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50773620605469,
-      "lon": 19.024375915527344,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.401840+02:00",
-      "kulcs": "AOCT667",
-      "rendszam": "AOCT667",
-      "vehicle_id": "698",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.389041900634766,
-      "lon": 18.958656311035156,
-      "elozo_szoveg": "Nagytétény, ipartelep",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.402095+02:00",
-      "kulcs": "PDB731",
-      "rendszam": "PDB731",
-      "vehicle_id": "7057",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.52366256713867,
-      "lon": 18.99410629272461,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-10T15:22:29.402351+02:00",
-      "kulcs": "PDN619",
-      "rendszam": "PDN619",
-      "vehicle_id": "7090",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.4370002746582,
-      "lon": 19.183765411376953,
-      "elozo_szoveg": "Gilice tér (Varjú utca)",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-10T15:22:29.402450+02:00",
       "kulcs": "PDN630",
@@ -260000,6 +259935,71 @@
       "lon": 19.048410415649414,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-11T04:19:59.988974+02:00",
+      "kulcs": "AADI631",
+      "rendszam": "AADI631",
+      "vehicle_id": "127",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.49102783203125,
+      "lon": 19.24303436279297,
+      "elozo_szoveg": "Vidor utca",
+      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-11T04:19:59.990498+02:00",
+      "kulcs": "AAHY813",
+      "rendszam": "AAHY813",
+      "vehicle_id": "373",
+      "vehicle_label": "Újpest-városkapu M",
+      "vonal_szam": "122E",
+      "route_id": "1225",
+      "lat": 47.59855270385742,
+      "lon": 19.120973587036133,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Újpest-városkapu M"
+    },
+    {
+      "idopont": "2026-09-11T04:19:59.992250+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Újpest-városkapu M",
+      "vonal_szam": "196A",
+      "route_id": "1961",
+      "lat": 47.542137145996094,
+      "lon": 19.151086807250977,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Újpest-városkapu M"
+    },
+    {
+      "idopont": "2026-09-11T04:19:59.992282+02:00",
+      "kulcs": "AAMH671",
+      "rendszam": "AAMH671",
+      "vehicle_id": "514",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "31",
+      "route_id": "0310",
+      "lat": 47.52951431274414,
+      "lon": 19.194896697998047,
+      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-11T04:19:59.993330+02:00",
+      "kulcs": "V2253",
+      "rendszam": "V2253",
+      "vehicle_id": "7385",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.484161376953125,
+      "lon": 19.026735305786133,
+      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
     }
   ]
 }
