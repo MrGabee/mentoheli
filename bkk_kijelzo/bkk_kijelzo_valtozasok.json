@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:31:25.693528+02:00",
+  "frissitve": "2026-09-12T01:31:59.185491+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:00:03.752002+02:00",
-      "kulcs": "1133-767-1134-1143-772-1144",
-      "rendszam": "1133-767-1134-1143-772-1144",
-      "vehicle_id": "905516561339-905536467673-905516561347-905516561438-905536467723-905516561446",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.47894287109375,
-      "lon": 19.06669044494629,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-09-11T15:00:03.752312+02:00",
-      "kulcs": "915504702142",
-      "rendszam": "915504702142",
-      "vehicle_id": "915504702142",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.51028823852539,
-      "lon": 19.102649688720703,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
     {
       "idopont": "2026-09-11T15:00:03.752635+02:00",
       "kulcs": "AADI597",
@@ -260000,6 +259974,32 @@
       "lon": 19.12757682800293,
       "elozo_szoveg": "Boráros tér H",
       "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-12T01:31:59.096574+02:00",
+      "kulcs": "PMP920",
+      "rendszam": "PMP920",
+      "vehicle_id": "7238",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509029388427734,
+      "lon": 19.095714569091797,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T01:31:59.097163+02:00",
+      "kulcs": "415 091",
+      "rendszam": "415 091",
+      "vehicle_id": "945514150917",
+      "vehicle_label": "Esztergom",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.52711868286133,
+      "lon": 19.090869903564453,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Esztergom"
     }
   ]
 }
