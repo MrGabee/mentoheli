@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T02:02:04.493662+02:00",
+  "frissitve": "2026-09-11T02:02:39.022863+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:06:41.243419+02:00",
-      "kulcs": "AADI658",
-      "rendszam": "AADI658",
-      "vehicle_id": "157",
-      "vehicle_label": "Albertfalva vasútállomás",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.546875,
-      "lon": 19.142333984375,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Albertfalva vasútállomás"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.243636+02:00",
-      "kulcs": "AADR718",
-      "rendszam": "AADR718",
-      "vehicle_id": "186",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "225",
-      "route_id": "2250",
-      "lat": 47.57775115966797,
-      "lon": 19.12518310546875,
-      "elozo_szoveg": "Rákospalota, Székely Elek út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-10T15:06:41.245138+02:00",
-      "kulcs": "AAGL267",
-      "rendszam": "AAGL267",
-      "vehicle_id": "267",
-      "vehicle_label": "Solymár, PEMÜ",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.595123291015625,
-      "lon": 18.9460391998291,
-      "elozo_szoveg": "Solymár vasútállomás ► Solymár, PEMÜ",
-      "uj_szoveg": "Solymár, PEMÜ"
-    },
     {
       "idopont": "2026-09-10T15:06:41.245390+02:00",
       "kulcs": "FKU907",
@@ -260000,6 +259961,45 @@
       "lon": 19.094057083129883,
       "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-11T02:02:38.936404+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45522689819336,
+      "lon": 18.9078311920166,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-11T02:02:38.937925+02:00",
+      "kulcs": "NGC024",
+      "rendszam": "NGC024",
+      "vehicle_id": "6323",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.50504684448242,
+      "lon": 19.0991268157959,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-11T02:02:38.938369+02:00",
+      "kulcs": "SKN817",
+      "rendszam": "SKN817",
+      "vehicle_id": "7787",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50763702392578,
+      "lon": 19.02545928955078,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
