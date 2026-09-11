@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-12T01:06:30.860260+02:00",
+  "frissitve": "2026-09-12T01:07:06.696914+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T14:58:32.183901+02:00",
-      "kulcs": "AADI562",
-      "rendszam": "AADI562",
-      "vehicle_id": "41",
-      "vehicle_label": "Nagybányai út",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.50664138793945,
-      "lon": 19.038660049438477,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Nagybányai út"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.183963+02:00",
-      "kulcs": "AAHY857",
-      "rendszam": "AAHY857",
-      "vehicle_id": "419",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.56019973754883,
-      "lon": 19.09090805053711,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.184088+02:00",
-      "kulcs": "AAHY867",
-      "rendszam": "AAHY867",
-      "vehicle_id": "429",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57659149169922,
-      "lon": 19.105449676513672,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-11T14:58:32.184863+02:00",
-      "kulcs": "V1519",
-      "rendszam": "V1519",
-      "vehicle_id": "4571",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.54233932495117,
-      "lon": 19.12133026123047,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-11T14:58:32.185075+02:00",
       "kulcs": "AADI574",
@@ -260000,6 +259948,58 @@
       "lon": 19.130727767944336,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-12T01:07:06.622297+02:00",
+      "kulcs": "AAGL252",
+      "rendszam": "AAGL252",
+      "vehicle_id": "252",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47825241088867,
+      "lon": 19.04847526550293,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-12T01:07:06.624852+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499671936035156,
+      "lon": 19.09049415588379,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-09-12T01:07:06.625610+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56728744506836,
+      "lon": 19.1246337890625,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-12T01:07:06.625991+02:00",
+      "kulcs": "RVY703",
+      "rendszam": "RVY703",
+      "vehicle_id": "7452",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.52497863769531,
+      "lon": 19.037878036499023,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
     }
   ]
 }
