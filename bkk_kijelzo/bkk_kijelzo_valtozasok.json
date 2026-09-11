@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-11T03:54:29.720534+02:00",
+  "frissitve": "2026-09-11T03:54:57.760286+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-10T15:17:28.644504+02:00",
-      "kulcs": "V2218",
-      "rendszam": "V2218",
-      "vehicle_id": "5858",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42942428588867,
-      "lon": 19.217500686645508,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.644782+02:00",
-      "kulcs": "V2296",
-      "rendszam": "V2296",
-      "vehicle_id": "594",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.43590545654297,
-      "lon": 19.042362213134766,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-10T15:17:28.644888+02:00",
-      "kulcs": "MUU904",
-      "rendszam": "MUU904",
-      "vehicle_id": "5957",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.475929260253906,
-      "lon": 19.10051155090332,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
     {
       "idopont": "2026-09-10T15:17:28.645011+02:00",
       "kulcs": "T8000",
@@ -260000,6 +259961,45 @@
       "lon": 19.294940948486328,
       "elozo_szoveg": "Kucorgó tér ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-11T03:54:57.666943+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Gödöllő H",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.598846435546875,
+      "lon": 19.351106643676758,
+      "elozo_szoveg": "Gödöllő, autóbusz-állomás",
+      "uj_szoveg": "Gödöllő H"
+    },
+    {
+      "idopont": "2026-09-11T03:54:57.668918+02:00",
+      "kulcs": "AADI584",
+      "rendszam": "AADI584",
+      "vehicle_id": "84",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.54845428466797,
+      "lon": 19.029605865478516,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-11T03:54:57.669171+02:00",
+      "kulcs": "415 029",
+      "rendszam": "415 029",
+      "vehicle_id": "945514150297",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G40",
+      "route_id": "G40",
+      "lat": 46.415771484375,
+      "lon": 18.252750396728516,
+      "elozo_szoveg": "Dombóvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
