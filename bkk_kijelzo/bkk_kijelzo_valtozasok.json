@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T00:29:26.786007+02:00",
+  "frissitve": "2026-09-13T00:30:01.863070+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:36:47.171246+02:00",
-      "kulcs": "V2027",
-      "rendszam": "V2027",
-      "vehicle_id": "2027",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.47748947143555,
-      "lon": 19.04878044128418,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.171263+02:00",
-      "kulcs": "V2028",
-      "rendszam": "V2028",
-      "vehicle_id": "2028",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.507354736328125,
-      "lon": 19.024988174438477,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.171414+02:00",
-      "kulcs": "AADR761",
-      "rendszam": "AADR761",
-      "vehicle_id": "210",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.51156997680664,
-      "lon": 19.056629180908203,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Margitsziget ► Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-12T12:36:47.171429+02:00",
       "kulcs": "AAGL251",
@@ -260000,6 +259961,45 @@
       "lon": 19.103063583374023,
       "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-13T00:30:01.772455+02:00",
+      "kulcs": "PDB702",
+      "rendszam": "PDB702",
+      "vehicle_id": "7028",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48788070678711,
+      "lon": 19.059141159057617,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-13T00:30:01.772754+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42661666870117,
+      "lon": 19.16109848022461,
+      "elozo_szoveg": "Szentlőrinci úti lakótelep",
+      "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-13T00:30:01.772810+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.4416389465332,
+      "lon": 19.18610191345215,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
