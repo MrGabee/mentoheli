@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T00:46:41.266472+02:00",
+  "frissitve": "2026-09-13T00:47:23.590548+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:37:44.181475+02:00",
-      "kulcs": "T9142",
-      "rendszam": "T9142",
-      "vehicle_id": "7881",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50518798828125,
-      "lon": 19.136417388916016,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-12T12:37:44.181513+02:00",
-      "kulcs": "T9147",
-      "rendszam": "T9147",
-      "vehicle_id": "7886",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51922607421875,
-      "lon": 19.09095001220703,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-12T12:37:44.181532+02:00",
-      "kulcs": "T9149",
-      "rendszam": "T9149",
-      "vehicle_id": "7888",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.49995422363281,
-      "lon": 19.0836181640625,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-09-12T12:37:44.181552+02:00",
       "kulcs": "T8111",
@@ -260000,6 +259961,45 @@
       "lon": 18.974716186523438,
       "elozo_szoveg": "Fácános tér",
       "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-13T00:47:23.503456+02:00",
+      "kulcs": "AAKM017",
+      "rendszam": "AAKM017",
+      "vehicle_id": "536",
+      "vehicle_label": "Harsánylejtő",
+      "vonal_szam": "960",
+      "route_id": "9600",
+      "lat": 47.540069580078125,
+      "lon": 19.046600341796875,
+      "elozo_szoveg": "Testvér-hegy ► Tábor-hegy",
+      "uj_szoveg": "Harsánylejtő"
+    },
+    {
+      "idopont": "2026-09-13T00:47:23.503740+02:00",
+      "kulcs": "RVY718",
+      "rendszam": "RVY718",
+      "vehicle_id": "7467",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48681640625,
+      "lon": 19.067644119262695,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-13T00:47:23.503902+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51971435546875,
+      "lon": 19.148269653320312,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
