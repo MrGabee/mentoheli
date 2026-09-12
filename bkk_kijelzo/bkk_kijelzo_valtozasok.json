@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:29:09.289412+02:00",
+  "frissitve": "2026-09-12T03:29:41.596664+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:14:31.456394+02:00",
-      "kulcs": "AOJM881",
-      "rendszam": "AOJM881",
-      "vehicle_id": "1007",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.4307861328125,
-      "lon": 19.070552825927734,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.456469+02:00",
-      "kulcs": "AOJM885",
-      "rendszam": "AOJM885",
-      "vehicle_id": "1011",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.43107604980469,
-      "lon": 19.070554733276367,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.456613+02:00",
-      "kulcs": "AONW960",
-      "rendszam": "AONW960",
-      "vehicle_id": "1027",
-      "vehicle_label": "Rákospatak u./Csömöri út",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.49468994140625,
-      "lon": 18.998506546020508,
-      "elozo_szoveg": "Thomán István utca",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
     {
       "idopont": "2026-09-11T15:14:31.456704+02:00",
       "kulcs": "AONW965",
@@ -260000,6 +259961,45 @@
       "lon": 19.151676177978516,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-12T03:29:41.489663+02:00",
+      "kulcs": "AADR762",
+      "rendszam": "AADR762",
+      "vehicle_id": "211",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59846496582031,
+      "lon": 19.121259689331055,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-12T03:29:41.491814+02:00",
+      "kulcs": "PKN610",
+      "rendszam": "PKN610",
+      "vehicle_id": "7199",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.547664642333984,
+      "lon": 19.14081382751465,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Cinkotai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-12T03:29:41.491984+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52772903442383,
+      "lon": 19.036714553833008,
+      "elozo_szoveg": "Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
     }
   ]
 }
