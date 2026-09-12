@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:06:00.575133+02:00",
+  "frissitve": "2026-09-12T02:06:34.880983+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:03:55.338329+02:00",
-      "kulcs": "415 021",
-      "rendszam": "415 021",
-      "vehicle_id": "945514150214",
-      "vehicle_label": "Tárnok",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.440860748291016,
-      "lon": 19.0338191986084,
-      "elozo_szoveg": "Budapest-Kelenföld",
-      "uj_szoveg": "Tárnok"
-    },
-    {
-      "idopont": "2026-09-11T15:03:55.338746+02:00",
-      "kulcs": "815 030",
-      "rendszam": "815 030",
-      "vehicle_id": "945518150301",
-      "vehicle_label": "Esztergom",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.55815124511719,
-      "lon": 19.080230712890625,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Esztergom"
-    },
     {
       "idopont": "2026-09-11T15:03:55.338935+02:00",
       "kulcs": "AADI599",
@@ -260000,6 +259974,32 @@
       "lon": 19.051620483398438,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-12T02:06:34.821078+02:00",
+      "kulcs": "FKU930",
+      "rendszam": "FKU930",
+      "vehicle_id": "3086",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.474971771240234,
+      "lon": 18.98914337158203,
+      "elozo_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-12T02:06:34.822369+02:00",
+      "kulcs": "NNE051",
+      "rendszam": "NNE051",
+      "vehicle_id": "6447",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48970413208008,
+      "lon": 19.074636459350586,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
     }
   ]
 }
