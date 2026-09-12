@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T04:18:59.275772+02:00",
+  "frissitve": "2026-09-12T04:19:36.555531+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:20:31.857371+02:00",
-      "kulcs": "AELD566",
-      "rendszam": "AELD566",
-      "vehicle_id": "619",
-      "vehicle_label": "Nem szállít utasokat",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.41660690307617,
-      "lon": 19.131101608276367,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
-    {
-      "idopont": "2026-09-11T15:20:31.857412+02:00",
-      "kulcs": "NGC150",
-      "rendszam": "NGC150",
-      "vehicle_id": "6197",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.548606872558594,
-      "lon": 18.96476173400879,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-11T15:20:31.857430+02:00",
-      "kulcs": "NGC152",
-      "rendszam": "NGC152",
-      "vehicle_id": "6198",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.54541015625,
-      "lon": 19.033754348754883,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
     {
       "idopont": "2026-09-11T15:20:31.858168+02:00",
       "kulcs": "NCV286",
@@ -260000,6 +259961,45 @@
       "lon": 19.064594268798828,
       "elozo_szoveg": "Csepel",
       "uj_szoveg": "Boráros tér"
+    },
+    {
+      "idopont": "2026-09-12T04:19:36.482698+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "22A",
+      "route_id": "0221",
+      "lat": 47.5072135925293,
+      "lon": 18.922740936279297,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-12T04:19:36.483998+02:00",
+      "kulcs": "MXJ010",
+      "rendszam": "MXJ010",
+      "vehicle_id": "5883",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "221",
+      "route_id": "2210",
+      "lat": 47.48679733276367,
+      "lon": 18.95491600036621,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-12T04:19:36.485094+02:00",
+      "kulcs": "415 001",
+      "rendszam": "415 001",
+      "vehicle_id": "945514150016",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 46.41571044921875,
+      "lon": 18.252649307250977,
+      "elozo_szoveg": "Dombóvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
