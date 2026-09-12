@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:45:17.178324+02:00",
+  "frissitve": "2026-09-12T02:45:52.621688+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:08:38.918495+02:00",
-      "kulcs": "AOFL229",
-      "rendszam": "AOFL229",
-      "vehicle_id": "817",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50348663330078,
-      "lon": 19.01600456237793,
-      "elozo_szoveg": "Kissvábhegy",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-11T15:08:38.918536+02:00",
-      "kulcs": "AOFL233",
-      "rendszam": "AOFL233",
-      "vehicle_id": "821",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "237",
-      "route_id": "2370",
-      "lat": 47.5621223449707,
-      "lon": 19.008079528808594,
-      "elozo_szoveg": "Jablonka út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-11T15:08:38.918548+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Jablonka út",
-      "vonal_szam": "237",
-      "route_id": "2370",
-      "lat": 47.54015350341797,
-      "lon": 19.046279907226562,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Jablonka út"
-    },
     {
       "idopont": "2026-09-11T15:08:38.918763+02:00",
       "kulcs": "AOGF778",
@@ -260000,6 +259961,45 @@
       "lon": 19.14189338684082,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-12T02:45:52.555986+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.485897064208984,
+      "lon": 19.192556381225586,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-12T02:45:52.556018+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54680252075195,
+      "lon": 19.142478942871094,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-12T02:45:52.556138+02:00",
+      "kulcs": "953-677-954",
+      "rendszam": "953-677-954",
+      "vehicle_id": "905516569530-905536466774-905516569548",
+      "vehicle_label": "Szigetszentmiklós-Gyártelep",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.17451858520508,
+      "lon": 18.941829681396484,
+      "elozo_szoveg": "Ráckeve",
+      "uj_szoveg": "Szigetszentmiklós-Gyártelep"
     }
   ]
 }
