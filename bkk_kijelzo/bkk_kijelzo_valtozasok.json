@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T04:07:46.274775+02:00",
+  "frissitve": "2026-09-12T04:08:31.099880+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:19:13.784072+02:00",
-      "kulcs": "MOS262",
-      "rendszam": "MOS262",
-      "vehicle_id": "5715",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50144958496094,
-      "lon": 19.136316299438477,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Pécel, Kun József utca"
-    },
-    {
-      "idopont": "2026-09-11T15:19:13.784173+02:00",
-      "kulcs": "MOS274",
-      "rendszam": "MOS274",
-      "vehicle_id": "5727",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50215530395508,
-      "lon": 19.13608741760254,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-11T15:19:13.784377+02:00",
-      "kulcs": "MXJ002",
-      "rendszam": "MXJ002",
-      "vehicle_id": "5828",
-      "vehicle_label": "Nyeremény utca",
-      "vonal_szam": "297",
-      "route_id": "2970",
-      "lat": 47.48658752441406,
-      "lon": 19.27111053466797,
-      "elozo_szoveg": "Rákoscsaba-Újtelep vasútállomás",
-      "uj_szoveg": "Nyeremény utca"
-    },
     {
       "idopont": "2026-09-11T15:19:13.784399+02:00",
       "kulcs": "V2101",
@@ -260000,6 +259961,45 @@
       "lon": 19.1599063873291,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-12T04:08:31.015052+02:00",
+      "kulcs": "AADI640",
+      "rendszam": "AADI640",
+      "vehicle_id": "139",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.498226165771484,
+      "lon": 19.266468048095703,
+      "elozo_szoveg": "Naplás út ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T04:08:31.017121+02:00",
+      "kulcs": "RVY741",
+      "rendszam": "RVY741",
+      "vehicle_id": "7639",
+      "vehicle_label": "Gyál, Vecsési út",
+      "vonal_szam": "55",
+      "route_id": "0550",
+      "lat": 47.38532257080078,
+      "lon": 19.210412979125977,
+      "elozo_szoveg": "Vecsési út-Boráros tér H",
+      "uj_szoveg": "Gyál, Vecsési út"
+    },
+    {
+      "idopont": "2026-09-12T04:08:31.017443+02:00",
+      "kulcs": "961-681-962",
+      "rendszam": "961-681-962",
+      "vehicle_id": "905516569613-905536466816-905516569621",
+      "vehicle_label": "Boráros tér",
+      "vonal_szam": "H7",
+      "route_id": "H7",
+      "lat": 47.41954040527344,
+      "lon": 19.064638137817383,
+      "elozo_szoveg": "Csepel",
+      "uj_szoveg": "Boráros tér"
     }
   ]
 }
