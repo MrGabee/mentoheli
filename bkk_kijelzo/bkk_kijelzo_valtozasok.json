@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-13T00:34:13.547494+02:00",
+  "frissitve": "2026-09-13T00:35:03.160330+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:36:47.176142+02:00",
-      "kulcs": "PDB381",
-      "rendszam": "PDB381",
-      "vehicle_id": "7063",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.49515151977539,
-      "lon": 19.275774002075195,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.176209+02:00",
-      "kulcs": "PDB390",
-      "rendszam": "PDB390",
-      "vehicle_id": "7072",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.4796257019043,
-      "lon": 19.23274803161621,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.176277+02:00",
-      "kulcs": "AOCT677",
-      "rendszam": "AOCT677",
-      "vehicle_id": "708",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52472686767578,
-      "lon": 19.117002487182617,
-      "elozo_szoveg": "Rákospatak u./Csömöri út",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.176591+02:00",
-      "kulcs": "PHG654",
-      "rendszam": "PHG654",
-      "vehicle_id": "7178",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "162",
-      "route_id": "1620",
-      "lat": 47.459144592285156,
-      "lon": 19.332117080688477,
-      "elozo_szoveg": "Maglód, Auchan áruház",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-12T12:36:47.176623+02:00",
       "kulcs": "PKN601",
@@ -260000,6 +259948,58 @@
       "lon": 19.141855239868164,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-13T00:35:03.073486+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509464263916016,
+      "lon": 19.096269607543945,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-13T00:35:03.076400+02:00",
+      "kulcs": "RVY726",
+      "rendszam": "RVY726",
+      "vehicle_id": "7624",
+      "vehicle_label": "Pécel, Kun József utca",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.502532958984375,
+      "lon": 19.136367797851562,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-09-13T00:35:03.076652+02:00",
+      "kulcs": "AOGL323",
+      "rendszam": "AOGL323",
+      "vehicle_id": "914",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.4796028137207,
+      "lon": 19.067241668701172,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-13T00:35:03.076880+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.405967712402344,
+      "lon": 19.014137268066406,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
