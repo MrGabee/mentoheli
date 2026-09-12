@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T01:37:31.566027+02:00",
+  "frissitve": "2026-09-13T01:38:00.989728+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:46:22.180282+02:00",
-      "kulcs": "T8101",
-      "rendszam": "T8101",
-      "vehicle_id": "7338",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.476219177246094,
-      "lon": 19.100753784179688,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-09-12T12:46:22.180516+02:00",
-      "kulcs": "V2113",
-      "rendszam": "V2113",
-      "vehicle_id": "7363",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464561462402344,
-      "lon": 19.023454666137695,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-12T12:46:22.182069+02:00",
-      "kulcs": "SKR821",
-      "rendszam": "SKR821",
-      "vehicle_id": "7707",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.499332427978516,
-      "lon": 19.035703659057617,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-09-12T12:46:22.182393+02:00",
       "kulcs": "STZ846",
@@ -260000,6 +259961,45 @@
       "lon": 19.014110565185547,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-13T01:38:00.900568+02:00",
+      "kulcs": "AOJM879",
+      "rendszam": "AOJM879",
+      "vehicle_id": "1005",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41010665893555,
+      "lon": 19.060386657714844,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-13T01:38:00.903769+02:00",
+      "kulcs": "AADI622",
+      "rendszam": "AADI622",
+      "vehicle_id": "50",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48383331298828,
+      "lon": 19.127567291259766,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-13T01:38:00.904443+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42146301269531,
+      "lon": 19.041351318359375,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
     }
   ]
 }
