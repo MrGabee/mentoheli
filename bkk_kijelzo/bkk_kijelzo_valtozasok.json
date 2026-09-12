@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:37:26.335934+02:00",
+  "frissitve": "2026-09-12T03:38:02.760936+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:14:31.466824+02:00",
-      "kulcs": "T8012",
-      "rendszam": "T8012",
-      "vehicle_id": "6132",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.534996032714844,
-      "lon": 19.064380645751953,
-      "elozo_szoveg": "Dagály utcai lakótelep",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.467439+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49894332885742,
-      "lon": 19.051424026489258,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.467495+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50656509399414,
-      "lon": 19.02393913269043,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.467574+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50593948364258,
-      "lon": 19.02794075012207,
-      "elozo_szoveg": "Budai Vár ► Deák Ferenc tér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.467768+02:00",
-      "kulcs": "NGC026",
-      "rendszam": "NGC026",
-      "vehicle_id": "6325",
-      "vehicle_label": "Kondorosi út",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.47681427001953,
-      "lon": 19.04739761352539,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
     {
       "idopont": "2026-09-11T15:14:31.467877+02:00",
       "kulcs": "NHB035",
@@ -260000,6 +259935,71 @@
       "lon": 18.989063262939453,
       "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-12T03:38:02.689672+02:00",
+      "kulcs": "V2035",
+      "rendszam": "V2035",
+      "vehicle_id": "2035",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.49085235595703,
+      "lon": 19.109020233154297,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-12T03:38:02.689819+02:00",
+      "kulcs": "FKU930",
+      "rendszam": "FKU930",
+      "vehicle_id": "3086",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.499656677246094,
+      "lon": 19.087207794189453,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-12T03:38:02.690510+02:00",
+      "kulcs": "AAGL307",
+      "rendszam": "AAGL307",
+      "vehicle_id": "337",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.478271484375,
+      "lon": 19.048564910888672,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-12T03:38:02.690841+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.431278228759766,
+      "lon": 18.928003311157227,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-12T03:38:02.691503+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.426639556884766,
+      "lon": 19.161087036132812,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpest-központ M"
     }
   ]
 }
