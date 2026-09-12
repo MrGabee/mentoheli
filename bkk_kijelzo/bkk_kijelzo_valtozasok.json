@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:42:19.469128+02:00",
+  "frissitve": "2026-09-12T03:42:52.452500+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:14:31.473970+02:00",
-      "kulcs": "SKR814",
-      "rendszam": "SKR814",
-      "vehicle_id": "7700",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.497379302978516,
-      "lon": 19.07152557373047,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.473994+02:00",
-      "kulcs": "SKR815",
-      "rendszam": "SKR815",
-      "vehicle_id": "7701",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.51653289794922,
-      "lon": 18.976747512817383,
-      "elozo_szoveg": "Zugliget, Libegő",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.474216+02:00",
-      "kulcs": "SGY804",
-      "rendszam": "SGY804",
-      "vehicle_id": "7722",
-      "vehicle_label": "Szentmiklósi út",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.43101119995117,
-      "lon": 19.070735931396484,
-      "elozo_szoveg": "Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-11T15:14:31.474391+02:00",
       "kulcs": "SGY819",
@@ -260000,6 +259961,45 @@
       "lon": 19.038188934326172,
       "elozo_szoveg": "Astoria M ► Pesterzsébet",
       "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-12T03:42:52.377576+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46515655517578,
+      "lon": 19.022634506225586,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútáll. M"
+    },
+    {
+      "idopont": "2026-09-12T03:42:52.377660+02:00",
+      "kulcs": "V2016",
+      "rendszam": "V2016",
+      "vehicle_id": "2016",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47745132446289,
+      "lon": 19.04840087890625,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-12T03:42:52.379655+02:00",
+      "kulcs": "PDB714",
+      "rendszam": "PDB714",
+      "vehicle_id": "7040",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542667388916016,
+      "lon": 18.964767456054688,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
