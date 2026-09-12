@@ -39,8 +39,10 @@ jobs:
           EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          # Ugyanaz a Secret (MAKE_WEBHOOK_URL), mint az áramszünet- és
+          # vízművek-monitornál - egyetlen Make.com webhook URL-t kell
+          # csak beállítani a repóban, ami mindhárom monitorhoz elég.
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
         run: python korozes/police_figyelo.py
 
       - name: 💾 Adat commitolása (önjavító)
