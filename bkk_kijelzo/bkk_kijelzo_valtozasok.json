@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T01:55:54.160569+02:00",
+  "frissitve": "2026-09-13T01:56:27.345501+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:49:21.325318+02:00",
-      "kulcs": "AOFL251",
-      "rendszam": "AOFL251",
-      "vehicle_id": "840",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.472537994384766,
-      "lon": 19.165367126464844,
-      "elozo_szoveg": "Újhegy",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-12T12:49:21.326044+02:00",
-      "kulcs": "AOGL324",
-      "rendszam": "AOGL324",
-      "vehicle_id": "915",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.41664505004883,
-      "lon": 19.00150489807129,
-      "elozo_szoveg": "Baross Gábor-telep, Ispiláng utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-12T12:49:21.327065+02:00",
-      "kulcs": "416 033",
-      "rendszam": "416 033",
-      "vehicle_id": "955514160337",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S21",
-      "route_id": "S21",
-      "lat": 47.069419860839844,
-      "lon": 19.498119354248047,
-      "elozo_szoveg": "Lajosmizse",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
     {
       "idopont": "2026-09-12T12:50:16.154963+02:00",
       "kulcs": "AADI617",
@@ -260000,6 +259961,45 @@
       "lon": 19.103897094726562,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-13T01:56:27.269824+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.504817962646484,
+      "lon": 19.02452278137207,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-13T01:56:27.269869+02:00",
+      "kulcs": "AAGL280",
+      "rendszam": "AAGL280",
+      "vehicle_id": "315",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.488311767578125,
+      "lon": 19.060014724731445,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-13T01:56:27.270851+02:00",
+      "kulcs": "RVY718",
+      "rendszam": "RVY718",
+      "vehicle_id": "7467",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.4875602722168,
+      "lon": 19.066194534301758,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
