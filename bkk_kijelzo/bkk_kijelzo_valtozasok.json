@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-13T00:37:29.760733+02:00",
+  "frissitve": "2026-09-13T00:38:06.566883+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:36:47.178946+02:00",
-      "kulcs": "AOFL231",
-      "rendszam": "AOFL231",
-      "vehicle_id": "819",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.54543685913086,
-      "lon": 19.03376579284668,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.178962+02:00",
-      "kulcs": "AOFL232",
-      "rendszam": "AOFL232",
-      "vehicle_id": "820",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.5072135925293,
-      "lon": 18.988248825073242,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.178976+02:00",
-      "kulcs": "AOFL233",
-      "rendszam": "AOFL233",
-      "vehicle_id": "821",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54014205932617,
-      "lon": 19.046236038208008,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Erdőalja út ► Máramaros út"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.178991+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.59781265258789,
-      "lon": 19.053852081298828,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Pince köz ► Donát utca"
-    },
     {
       "idopont": "2026-09-12T12:36:47.179206+02:00",
       "kulcs": "AOIB793",
@@ -260000,6 +259948,58 @@
       "lon": 19.181734085083008,
       "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
       "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-13T00:38:06.509498+02:00",
+      "kulcs": "V2020",
+      "rendszam": "V2020",
+      "vehicle_id": "2020",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.5073356628418,
+      "lon": 19.024999618530273,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-13T00:38:06.510027+02:00",
+      "kulcs": "FLR715",
+      "rendszam": "FLR715",
+      "vehicle_id": "3129",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.473785400390625,
+      "lon": 18.991104125976562,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-13T00:38:06.510956+02:00",
+      "kulcs": "MUT887",
+      "rendszam": "MUT887",
+      "vehicle_id": "5940",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266471862793,
+      "lon": 19.161041259765625,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-13T00:38:06.510997+02:00",
+      "kulcs": "NNE053",
+      "rendszam": "NNE053",
+      "vehicle_id": "6449",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54268264770508,
+      "lon": 18.96479034423828,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
