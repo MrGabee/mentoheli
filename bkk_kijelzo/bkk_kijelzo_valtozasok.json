@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T01:54:10.534430+02:00",
+  "frissitve": "2026-09-13T01:54:38.545811+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:49:21.320317+02:00",
-      "kulcs": "V2220",
-      "rendszam": "V2220",
-      "vehicle_id": "5860",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42950439453125,
-      "lon": 19.217376708984375,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-12T12:49:21.320597+02:00",
-      "kulcs": "AELD561",
-      "rendszam": "AELD561",
-      "vehicle_id": "612",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.47982406616211,
-      "lon": 19.06650161743164,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-12T12:49:21.320854+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49772644042969,
-      "lon": 19.053422927856445,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-12T12:49:21.320898+02:00",
       "kulcs": "AADI579",
@@ -260000,6 +259961,45 @@
       "lon": 19.10205841064453,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-13T01:54:38.449668+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.579872131347656,
+      "lon": 19.08843231201172,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-13T01:54:38.449883+02:00",
+      "kulcs": "MUT887",
+      "rendszam": "MUT887",
+      "vehicle_id": "5940",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.5797233581543,
+      "lon": 19.109031677246094,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-13T01:54:38.451327+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.511329650878906,
+      "lon": 19.056425094604492,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
