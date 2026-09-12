@@ -4,17 +4,23 @@
 POLICE.HU FIGYELŐ
 ==================================================================
 Figyeli a police.hu körözési rendszerét és hírfolyamát, és értesít
-minden ÚJ bejegyzésről, ami a XX./XXI. kerülethez kapcsolódik.
+minden ÚJ bejegyzésről, ami a XX./XXI. kerülethez vagy Szigetszentmiklóshoz
+kapcsolódik.
 
 - Körözések (koral): az "Elrendelő szerv" / "Eljáró szerv" mezőben
   keresi a megadott szervezeteket.
 - Hírek: a címben/összefoglalóban keresi a "XX. kerület"/"XXI. kerület"/
   "XX. KER"/"XXI. KER" mintát (pontos illesztés, "XXI. század"-szerű
-  hamis találatok nélkül).
+  hamis találatok nélkül), valamint a "Szigetszentmiklós" szót.
 
 MINDEN KATEGÓRIÁNÁL külön beállítható a 'facebook_post' jelző - ha
 True, az adott kategória új találatai a Facebook Oldalra is
-automatikusan kikerülnek email mellett.
+automatikusan kikerülnek email mellett, egy Make.com webhookon keresztül
+(lásd MAKE_WEBHOOK_AKTIV kapcsoló lent).
+
+Adatvédelem: "Elfogatóparancs alapján körözött személy" találatnál a
+Facebook-posztból (nem az emailből!) kihagyjuk a nevet és a fényképet is,
+mivel ott egy még el nem ítélt, valódi ember személyes adatairól van szó.
 """
 
 import os
@@ -32,16 +38,36 @@ BASE_URL = "https://www.police.hu"
 DATA_FAJL = "korozes/data/police_figyelo.json"
 MAX_UJ_RESZLET_LEKERDEZES = 40  # egy futásban max ennyi ÚJ elem részletét kérdezzük le
 
+# ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE A MAKE.COM-ON KERESZTÜLI FACEBOOK-POSZTOLÁST (FŐKAPCSOLÓ) ⬇️⬇️⬇️
+# True  = a lent, kategóriánként "facebook_post": True-ra állított
+#         kategóriák új találatai automatikusan kikerülnek a Facebook
+#         Oldalra is, egy Make.com automatizáción (webhook) keresztül -
+#         ehhez egy érvényes MAKE_WEBHOOK_URL GitHub Secret kell.
+# False = ez a Make.com-kapcsoló - akkor is letiltja a Facebook-posztolást,
+#         ha egy-egy kategóriánál "facebook_post": True van beállítva.
+#         Az email-küldést ez NEM érinti.
+MAKE_WEBHOOK_AKTIV = True  # = "Make.com kapcsoló"
+
 # A körözési rendszerben ezekre a szervekre szűrünk (Elrendelő VAGY Eljáró szerv mezőben)
 KOROZES_SZERV_SZURO = [
     "BUDAPESTI XXI. KER. RK",
     "BUDAPESTI XX-XXIII. KER. RK",
     "Budapesti XX., XXI. és XXIII. Kerületi Bíróság",
+    # Szigetszentmiklós saját rendőrkapitányságához tartozik (Pest Vármegyei
+    # Rendőr-főkapitányság alá) - egyszerű "SZIGETSZENTMIKLÓS" részszöveges
+    # szűrés, hogy a hivatalos elnevezés bármelyik formájára (teljes néven
+    # "Szigetszentmiklósi Rendőrkapitányság" vagy rövidítve "SZIGETSZENTMIKLÓSI
+    # RK") illeszkedjen.
+    "SZIGETSZENTMIKLÓS",
 ]
 
 # A hírekben erre a mintára szűrünk (kerület-jelölés, "XXI. század"-szerű hamis
-# találatok elkerülésével - csak akkor egyezik, ha utána KER/kerület áll)
-HIREK_MINTA = re.compile(r"XX\.?\s*(KER|kerület)|XXI\.?\s*(KER|kerület)", re.IGNORECASE)
+# találatok elkerülésével - csak akkor egyezik, ha utána KER/kerület áll -,
+# valamint Szigetszentmiklós néven, ékezettel és ékezet nélkül is)
+HIREK_MINTA = re.compile(
+    r"XX\.?\s*(KER|kerület)|XXI\.?\s*(KER|kerület)|szigetszentmikl[oó]s",
+    re.IGNORECASE,
+)
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PoliceHuFigyelo/1.0)"}
 
@@ -238,28 +264,33 @@ def hirek_egyezik(cikk):
 
 
 # =====================================================================
-# FACEBOOK POSZTOLÁS (Graph API)
+# FACEBOOK POSZTOLÁS (Make.com webhookon keresztül)
 # =====================================================================
 
 def facebook_post(uzenet, kep_url=None):
-    """Szükséges env változók: FB_PAGE_ID, FB_PAGE_ACCESS_TOKEN"""
-    page_id = os.environ.get("FB_PAGE_ID", "")
-    token = os.environ.get("FB_PAGE_ACCESS_TOKEN", "")
-    if not page_id or not token:
-        print("      ⚠️  Nincs beállítva FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN, Facebook-posztolás kihagyva.")
+    """Szöveges posztot küld a Facebook Oldalra - nem közvetlenül a Meta
+    Graph API-n keresztül, hanem egy Make.com automatizáción (Scenario)
+    keresztül: ide küldünk egy egyszerű webhook-hívást a szöveggel, a
+    Make.com pedig ezt posztolja ki a Facebook Oldalra. Ez elkerüli a
+    Meta fejlesztői app / Business Portfolio beállítását.
+    Szükséges env változó: MAKE_WEBHOOK_URL.
+    Ha van kep_url (a cikk borítóképe), azt egyszerű linkként fűzzük a
+    szöveg végéhez, mert a jelenlegi Make Scenario szöveges posztot
+    küld - ha később külön képes posztot is szeretnél, a Make Scenario-t
+    bővíteni kell egy Router/Filter ággal."""
+    make_webhook_url = os.environ.get("MAKE_WEBHOOK_URL", "")
+    if not make_webhook_url:
+        print("      ⚠️  Nincs beállítva MAKE_WEBHOOK_URL, Facebook-posztolás kihagyva.")
         return False
 
-    try:
-        if kep_url:
-            url = f"https://graph.facebook.com/v21.0/{page_id}/photos"
-            payload = {"url": kep_url, "caption": uzenet, "access_token": token}
-        else:
-            url = f"https://graph.facebook.com/v21.0/{page_id}/feed"
-            payload = {"message": uzenet, "access_token": token}
+    teljes_uzenet = uzenet
+    if kep_url:
+        teljes_uzenet = f"{uzenet}\n\n{kep_url}"
 
-        resp = requests.post(url, data=payload, timeout=20)
+    try:
+        resp = requests.post(make_webhook_url, json={"message": teljes_uzenet}, timeout=20)
         if resp.status_code == 200:
-            print("      ✅ Facebook poszt sikeres.")
+            print("      ✅ Facebook poszt sikeres (Make.com-on keresztül).")
             return True
         else:
             print(f"      ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
@@ -331,12 +362,15 @@ def main():
         for elem in lista:
             if elem["id"] in latott_idk:
                 continue
-            cache["korozes"][kulcs].append(elem["id"])
 
             if elso_futas:
+                cache["korozes"][kulcs].append(elem["id"])
                 continue
 
             if uj_lekerdezes_szamlalo >= MAX_UJ_RESZLET_LEKERDEZES:
+                # Elértük a lekérdezési limitet ebben a futásban - NEM jelöljük
+                # látottnak, hogy a következő futás újra megpróbálja (ne vesszen el).
+                print(f"   ⏳ Limit elérve, később újrapróbáljuk: {elem['id']}")
                 continue
 
             try:
@@ -345,7 +379,13 @@ def main():
                 time.sleep(0.3)
             except Exception as e:
                 print(f"   ⚠️  Részlet-hiba ({elem['url']}): {e}")
+                # Hálózati/parszolási hiba esetén se jelöljük látottnak,
+                # hogy legközelebb újra megpróbáljuk.
                 continue
+
+            # Csak most, sikeres részlet-lekérdezés után jelöljük látottnak,
+            # hogy a limit vagy hiba miatt kihagyott elemek ne vesszenek el örökre.
+            cache["korozes"][kulcs].append(elem["id"])
 
             egyezo_szerv = korozes_szerv_egyezik(reszlet["mezok"])
             if not egyezo_szerv:
@@ -356,6 +396,8 @@ def main():
             mezok_html = "".join(
                 f"<p><strong>{k}:</strong> {v}</p>" for k, v in reszlet["mezok"].items() if v
             )
+            # Az emailben mindig minden adat (név, fénykép, mezők) szerepel -
+            # ez a szűrésre feliratkozott, megbízható címzettnek szól.
             torzs = (
                 f"<h2>{reszlet['cim']}</h2>"
                 f"<p><em>Kategória: {kat['label']} · Egyező szerv: {egyezo_szerv}</em></p>"
@@ -363,11 +405,33 @@ def main():
                 + mezok_html
                 + f'<p><a href="{elem["url"]}">Megnyitás a police.hu-n</a></p>'
             )
+
+            # A Facebook-poszt (nyilvános felület!) más elbírálás alá esik:
+            # "elfogatóparancs alapján körözött személy" esetén - mivel ez egy
+            # élő, még el nem ítélt, valódi ember személyes adata - sem a nevét,
+            # sem a fényképét NEM tesszük ki nyilvánosan, csak a szervet és a
+            # police.hu-s hivatkozást (ott, bejelentkezés nélkül is, megnézhető
+            # a teljes, hivatalos közlemény). Minden más kategóriánál (eltűnt
+            # személy, jármű-/légi-/vízijármű-körözés, holttest) ez a
+            # korlátozás nem indokolt, ott a korábbi, teljes tartalom marad.
+            if kulcs == "korozott_szemelyek":
+                fb_szoveg = (
+                    f"Új körözés: {kat['label']}\n\n"
+                    f"Egyező szerv: {egyezo_szerv}\n\n"
+                    f"A nevet és a fényképet adatvédelmi okból itt nem tesszük közzé - "
+                    f"a teljes hivatalos közlemény bejelentkezés nélkül elérhető:\n{elem['url']}"
+                )
+                fb_kep = None
+            else:
+                fb_szoveg = f"{reszlet['cim']}\n\n{kat['label']} · {egyezo_szerv}\n\n{elem['url']}"
+                fb_kep = reszlet["kep"]
+
             talalt_ertesitesek.append({
                 "tema": f"[Körözés] {reszlet['cim']}",
                 "torzs": torzs,
                 "kep": reszlet["kep"],
-                "fb_szoveg": f"{reszlet['cim']}\n\n{kat['label']} · {egyezo_szerv}\n\n{elem['url']}",
+                "fb_szoveg": fb_szoveg,
+                "fb_kep": fb_kep,
                 "facebook_post": kat["facebook_post"],
             })
 
@@ -406,6 +470,7 @@ def main():
                 "torzs": torzs,
                 "kep": None,
                 "fb_szoveg": f"{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n{cikk['url']}",
+                "fb_kep": None,
                 "facebook_post": kat["facebook_post"],
             })
 
@@ -439,8 +504,8 @@ def main():
         else:
             print("   ⚠️  Nincs beállítva SMTP - email kihagyva.")
 
-        if ertesites["facebook_post"]:
-            facebook_post(ertesites["fb_szoveg"], ertesites["kep"])
+        if MAKE_WEBHOOK_AKTIV and ertesites["facebook_post"]:
+            facebook_post(ertesites["fb_szoveg"], ertesites["fb_kep"])
 
         time.sleep(1)
 
