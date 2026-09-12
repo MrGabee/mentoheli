@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:47:20.424816+02:00",
+  "frissitve": "2026-09-12T03:47:54.504466+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:16:09.882532+02:00",
-      "kulcs": "V2018",
-      "rendszam": "V2018",
-      "vehicle_id": "2018",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.477420806884766,
-      "lon": 19.048856735229492,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-09-11T15:16:09.883139+02:00",
-      "kulcs": "FJX218",
-      "rendszam": "FJX218",
-      "vehicle_id": "3038",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.50578689575195,
-      "lon": 19.136669158935547,
-      "elozo_szoveg": "Rákosi út ► Centenáriumi lakótelep",
-      "uj_szoveg": "Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-09-11T15:16:09.883313+02:00",
-      "kulcs": "FKU943",
-      "rendszam": "FKU943",
-      "vehicle_id": "3099",
-      "vehicle_label": "Rákoskert sugárút",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.50193786621094,
-      "lon": 19.136194229125977,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoskert sugárút"
-    },
-    {
-      "idopont": "2026-09-11T15:16:09.883369+02:00",
-      "kulcs": "FLR701",
-      "rendszam": "FLR701",
-      "vehicle_id": "3115",
-      "vehicle_label": "Cinkota, Lassú utca",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.50514602661133,
-      "lon": 19.136756896972656,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Cinkota, Lassú utca"
-    },
-    {
-      "idopont": "2026-09-11T15:16:09.883777+02:00",
-      "kulcs": "AAGL291",
-      "rendszam": "AAGL291",
-      "vehicle_id": "324",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.5074462890625,
-      "lon": 19.02510643005371,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
     {
       "idopont": "2026-09-11T15:16:09.883795+02:00",
       "kulcs": "AAGL292",
@@ -260000,6 +259935,71 @@
       "lon": 19.12469482421875,
       "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Budakalász, Auchan áruház ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-12T03:47:54.434060+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Városház tér",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51972579956055,
+      "lon": 19.148296356201172,
+      "elozo_szoveg": "Rákosszentmihály vá.",
+      "uj_szoveg": "Városház tér"
+    },
+    {
+      "idopont": "2026-09-12T03:47:54.436049+02:00",
+      "kulcs": "NBW011",
+      "rendszam": "NBW011",
+      "vehicle_id": "5981",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.4796142578125,
+      "lon": 19.255558013916016,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-12T03:47:54.436217+02:00",
+      "kulcs": "PDB716",
+      "rendszam": "PDB716",
+      "vehicle_id": "7042",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51203155517578,
+      "lon": 19.056900024414062,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-12T03:47:54.436309+02:00",
+      "kulcs": "RVY610",
+      "rendszam": "RVY610",
+      "vehicle_id": "7439",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.46002960205078,
+      "lon": 19.121257781982422,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-12T03:47:54.436807+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.4796142578125,
+      "lon": 19.051090240478516,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
