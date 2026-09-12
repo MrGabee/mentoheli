@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:11:49.645236+02:00",
+  "frissitve": "2026-09-12T03:12:26.160481+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:11:32.715362+02:00",
-      "kulcs": "STZ859",
-      "rendszam": "STZ859",
-      "vehicle_id": "7814",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40E",
-      "route_id": "0405",
-      "lat": 47.46437072753906,
-      "lon": 19.018543243408203,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-09-11T15:11:32.715830+02:00",
-      "kulcs": "T9133",
-      "rendszam": "T9133",
-      "vehicle_id": "7872",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51521682739258,
-      "lon": 19.11023712158203,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-11T15:11:32.715851+02:00",
-      "kulcs": "T9134",
-      "rendszam": "T9134",
-      "vehicle_id": "7873",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.499114990234375,
-      "lon": 19.054880142211914,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-09-11T15:11:32.716102+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.53138732910156,
-      "lon": 19.10430335998535,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-11T15:11:32.716484+02:00",
       "kulcs": "AOFL242",
@@ -260000,6 +259948,58 @@
       "lon": 19.040172576904297,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T03:12:26.071735+02:00",
+      "kulcs": "AADI644",
+      "rendszam": "AADI644",
+      "vehicle_id": "143",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.569400787353516,
+      "lon": 19.12679100036621,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-12T03:12:26.071804+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51420211791992,
+      "lon": 19.103343963623047,
+      "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-12T03:12:26.074408+02:00",
+      "kulcs": "PDB725",
+      "rendszam": "PDB725",
+      "vehicle_id": "7051",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43709945678711,
+      "lon": 19.099885940551758,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-12T03:12:26.074703+02:00",
+      "kulcs": "SIF015",
+      "rendszam": "SIF015",
+      "vehicle_id": "7750",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.51932144165039,
+      "lon": 19.038166046142578,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
