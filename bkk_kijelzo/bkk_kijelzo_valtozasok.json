@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T00:26:38.578447+02:00",
+  "frissitve": "2026-09-13T00:27:05.638291+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:35:51.724138+02:00",
-      "kulcs": "STZ847",
-      "rendszam": "STZ847",
-      "vehicle_id": "7802",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "88A",
-      "route_id": "0881",
-      "lat": 47.46440505981445,
-      "lon": 19.018550872802734,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint, Nyár utca"
-    },
-    {
-      "idopont": "2026-09-12T12:35:51.724155+02:00",
-      "kulcs": "STZ850",
-      "rendszam": "STZ850",
-      "vehicle_id": "7805",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "88",
-      "route_id": "0880",
-      "lat": 47.4134521484375,
-      "lon": 18.95337677001953,
-      "elozo_szoveg": "Törökbálint ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-12T12:35:51.724198+02:00",
-      "kulcs": "STZ859",
-      "rendszam": "STZ859",
-      "vehicle_id": "7814",
-      "vehicle_label": "Törökbálint vasútállomás",
-      "vonal_szam": "173",
-      "route_id": "1730",
-      "lat": 47.43634033203125,
-      "lon": 18.927093505859375,
-      "elozo_szoveg": "Nyár utca ► Törökbálint vasútállomás",
-      "uj_szoveg": "Harangláb ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-12T12:35:51.724459+02:00",
       "kulcs": "T9130",
@@ -260000,6 +259961,45 @@
       "lon": 19.075803756713867,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-13T00:27:05.566009+02:00",
+      "kulcs": "FLR715",
+      "rendszam": "FLR715",
+      "vehicle_id": "3129",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48731994628906,
+      "lon": 19.02361297607422,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-13T00:27:05.567384+02:00",
+      "kulcs": "MUT896",
+      "rendszam": "MUT896",
+      "vehicle_id": "5949",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42739486694336,
+      "lon": 19.159696578979492,
+      "elozo_szoveg": "Alacskai úti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-13T00:27:05.567440+02:00",
+      "kulcs": "NNE063",
+      "rendszam": "NNE063",
+      "vehicle_id": "6459",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.52041244506836,
+      "lon": 19.03801918029785,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
