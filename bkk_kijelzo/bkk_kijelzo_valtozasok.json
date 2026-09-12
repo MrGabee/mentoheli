@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T00:48:01.173198+02:00",
+  "frissitve": "2026-09-13T00:48:37.802901+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:37:44.181813+02:00",
-      "kulcs": "AOFL235",
-      "rendszam": "AOFL235",
-      "vehicle_id": "823",
-      "vehicle_label": "Máriaremete",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.543190002441406,
-      "lon": 18.964527130126953,
-      "elozo_szoveg": "Máriaremete",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-12T12:37:44.182095+02:00",
-      "kulcs": "AOIB809",
-      "rendszam": "AOIB809",
-      "vehicle_id": "880",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.500755310058594,
-      "lon": 18.965917587280273,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-12T12:38:39.171305+02:00",
-      "kulcs": "AOJM885",
-      "rendszam": "AOJM885",
-      "vehicle_id": "1011",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40696334838867,
-      "lon": 19.07903480529785,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-12T12:38:39.171484+02:00",
       "kulcs": "AADI608",
@@ -260000,6 +259961,45 @@
       "lon": 19.060348510742188,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-13T00:48:37.696305+02:00",
+      "kulcs": "FLR701",
+      "rendszam": "FLR701",
+      "vehicle_id": "3115",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.509986877441406,
+      "lon": 19.056379318237305,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-13T00:48:37.696370+02:00",
+      "kulcs": "FLR714",
+      "rendszam": "FLR714",
+      "vehicle_id": "3128",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.53400802612305,
+      "lon": 19.082143783569336,
+      "elozo_szoveg": "Astoria M ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-13T00:48:37.698101+02:00",
+      "kulcs": "PKN606",
+      "rendszam": "PKN606",
+      "vehicle_id": "7195",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.547157287597656,
+      "lon": 19.142581939697266,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
