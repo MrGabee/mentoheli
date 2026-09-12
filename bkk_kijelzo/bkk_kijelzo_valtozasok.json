@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:44:33.126742+02:00",
+  "frissitve": "2026-09-12T03:45:06.431151+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:14:31.477181+02:00",
-      "kulcs": "AOGL314",
-      "rendszam": "AOGL314",
-      "vehicle_id": "904",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.4166259765625,
-      "lon": 19.00145721435547,
-      "elozo_szoveg": "Baross Gábor-telep, Ispiláng utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.477310+02:00",
-      "kulcs": "1139-770-1140-1147-774-1148",
-      "rendszam": "1139-770-1140-1147-774-1148",
-      "vehicle_id": "905516561396-905536467707-905516561404-905516561479-905536467749-905516561487",
-      "vehicle_label": "Békásmegyer",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.507171630859375,
-      "lon": 19.039480209350586,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Békásmegyer"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.477538+02:00",
-      "kulcs": "961-681-962-931-666-932",
-      "rendszam": "961-681-962-931-666-932",
-      "vehicle_id": "905516569613-905536466816-905516569621-905516569316-905536466667-905516569324",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.478782653808594,
-      "lon": 19.066715240478516,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.478444+02:00",
-      "kulcs": "AOIM013",
-      "rendszam": "AOIM013",
-      "vehicle_id": "933",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45457458496094,
-      "lon": 19.182098388671875,
-      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
     {
       "idopont": "2026-09-11T15:14:31.479514+02:00",
       "kulcs": "AOIM030",
@@ -260000,6 +259948,58 @@
       "lon": 19.103816986083984,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-12T03:45:06.350369+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48398971557617,
+      "lon": 19.127466201782227,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-12T03:45:06.351040+02:00",
+      "kulcs": "V2293",
+      "rendszam": "V2293",
+      "vehicle_id": "591",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.440364837646484,
+      "lon": 19.034833908081055,
+      "elozo_szoveg": "Városház tér",
+      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-12T03:45:06.351113+02:00",
+      "kulcs": "NBW013",
+      "rendszam": "NBW013",
+      "vehicle_id": "5983",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.49283981323242,
+      "lon": 19.279891967773438,
+      "elozo_szoveg": "Rákoscsaba vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-12T03:45:06.351130+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.4858512878418,
+      "lon": 19.192644119262695,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
     }
   ]
 }
