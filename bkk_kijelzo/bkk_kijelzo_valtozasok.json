@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-13T00:31:57.173745+02:00",
+  "frissitve": "2026-09-13T00:32:31.354712+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:36:47.172609+02:00",
-      "kulcs": "AAHY826",
-      "rendszam": "AAHY826",
-      "vehicle_id": "387",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "231",
-      "route_id": "2310",
-      "lat": 47.56085968017578,
-      "lon": 19.130107879638672,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-12T12:36:47.172921+02:00",
-      "kulcs": "AAHY875",
-      "rendszam": "AAHY875",
-      "vehicle_id": "437",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.603172302246094,
-      "lon": 19.06636619567871,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
     {
       "idopont": "2026-09-12T12:36:47.173210+02:00",
       "kulcs": "V1400",
@@ -260000,6 +259974,32 @@
       "lon": 19.0229434967041,
       "elozo_szoveg": "Gazdagréti tér",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-13T00:32:31.270110+02:00",
+      "kulcs": "PDB706",
+      "rendszam": "PDB706",
+      "vehicle_id": "7032",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507469177246094,
+      "lon": 19.02499771118164,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-13T00:32:31.270312+02:00",
+      "kulcs": "AOFL191",
+      "rendszam": "AOFL191",
+      "vehicle_id": "775",
+      "vehicle_label": "Fácános tér",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.50767517089844,
+      "lon": 19.02465057373047,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Fácános tér"
     }
   ]
 }
