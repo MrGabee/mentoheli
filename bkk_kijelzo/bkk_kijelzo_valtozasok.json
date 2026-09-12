@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-13T01:59:11.901954+02:00",
+  "frissitve": "2026-09-13T01:59:44.444444+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:50:16.157309+02:00",
-      "kulcs": "V4116",
-      "rendszam": "V4116",
-      "vehicle_id": "4805",
-      "vehicle_label": "Sörgyár",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.49590301513672,
-      "lon": 19.072689056396484,
-      "elozo_szoveg": "Sörgyár",
-      "uj_szoveg": "Salgótarjáni utca ► Sörgyár"
-    },
-    {
-      "idopont": "2026-09-12T12:50:16.157417+02:00",
-      "kulcs": "V4156",
-      "rendszam": "V4156",
-      "vehicle_id": "4844",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.509727478027344,
-      "lon": 19.009946823120117,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
     {
       "idopont": "2026-09-12T12:50:16.157926+02:00",
       "kulcs": "V2266",
@@ -260000,6 +259974,32 @@
       "lon": 18.99057960510254,
       "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-13T01:59:44.365351+02:00",
+      "kulcs": "PKN629",
+      "rendszam": "PKN629",
+      "vehicle_id": "7218",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52109909057617,
+      "lon": 19.16713523864746,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-13T01:59:44.366648+02:00",
+      "kulcs": "AOIM027",
+      "rendszam": "AOIM027",
+      "vehicle_id": "947",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47389602661133,
+      "lon": 19.046367645263672,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
