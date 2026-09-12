@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:50:55.498239+02:00",
+  "frissitve": "2026-09-12T02:51:28.473693+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:09:56.683157+02:00",
-      "kulcs": "V1353",
-      "rendszam": "V1353",
-      "vehicle_id": "4454",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.50872039794922,
-      "lon": 19.04654884338379,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-11T15:09:56.683197+02:00",
-      "kulcs": "AAMH603",
-      "rendszam": "AAMH603",
-      "vehicle_id": "446",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.54172134399414,
-      "lon": 19.15109634399414,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
-    {
-      "idopont": "2026-09-11T15:09:56.683210+02:00",
-      "kulcs": "V1359",
-      "rendszam": "V1359",
-      "vehicle_id": "4460",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.46744918823242,
-      "lon": 19.075864791870117,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-11T15:09:56.683262+02:00",
-      "kulcs": "V1365",
-      "rendszam": "V1365",
-      "vehicle_id": "4466",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49736785888672,
-      "lon": 19.055503845214844,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
     {
       "idopont": "2026-09-11T15:09:56.683680+02:00",
       "kulcs": "AAMH622",
@@ -260000,6 +259948,58 @@
       "lon": 19.075624465942383,
       "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-12T02:51:28.403806+02:00",
+      "kulcs": "FLR708",
+      "rendszam": "FLR708",
+      "vehicle_id": "3122",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.465049743652344,
+      "lon": 19.127355575561523,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-12T02:51:28.405071+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57997131347656,
+      "lon": 19.088254928588867,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-12T02:51:28.405459+02:00",
+      "kulcs": "RCT313",
+      "rendszam": "RCT313",
+      "vehicle_id": "7327",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57957077026367,
+      "lon": 19.10959815979004,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-12T02:51:28.405846+02:00",
+      "kulcs": "AOIM028",
+      "rendszam": "AOIM028",
+      "vehicle_id": "948",
+      "vehicle_label": "Üres kijelző",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.4056282043457,
+      "lon": 19.014402389526367,
+      "elozo_szoveg": "Budatétény",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
