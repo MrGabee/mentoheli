@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:54:55.410934+02:00",
+  "frissitve": "2026-09-12T02:55:25.559591+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:09:56.688123+02:00",
-      "kulcs": "NGC145",
-      "rendszam": "NGC145",
-      "vehicle_id": "6194",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.53998565673828,
-      "lon": 19.046737670898438,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-11T15:09:56.688137+02:00",
-      "kulcs": "NGC150",
-      "rendszam": "NGC150",
-      "vehicle_id": "6197",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54279327392578,
-      "lon": 18.964204788208008,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-11T15:09:56.688219+02:00",
-      "kulcs": "NGC158",
-      "rendszam": "NGC158",
-      "vehicle_id": "6208",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54471206665039,
-      "lon": 18.963481903076172,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-11T15:09:56.688242+02:00",
       "kulcs": "NGC160",
@@ -260000,6 +259961,45 @@
       "lon": 19.150075912475586,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-12T02:55:25.474125+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.498966217041016,
+      "lon": 19.05128288269043,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-12T02:55:25.474467+02:00",
+      "kulcs": "815 025",
+      "rendszam": "815 025",
+      "vehicle_id": "945518150251",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.5259895324707,
+      "lon": 19.089969635009766,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Szob"
+    },
+    {
+      "idopont": "2026-09-12T02:55:25.474626+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.49924850463867,
+      "lon": 19.0241641998291,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
     }
   ]
 }
