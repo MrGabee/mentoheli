@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:39:46.095929+02:00",
+  "frissitve": "2026-09-12T03:40:15.631522+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:14:31.470736+02:00",
-      "kulcs": "PKN602",
-      "rendszam": "PKN602",
-      "vehicle_id": "7191",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50034713745117,
-      "lon": 19.13521957397461,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.470834+02:00",
-      "kulcs": "AADI586",
-      "rendszam": "AADI586",
-      "vehicle_id": "72",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.47658157348633,
-      "lon": 19.043882369995117,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Baross Gábor-telep, Ispiláng utca"
-    },
-    {
-      "idopont": "2026-09-11T15:14:31.471422+02:00",
-      "kulcs": "T8102",
-      "rendszam": "T8102",
-      "vehicle_id": "7339",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51653289794922,
-      "lon": 19.092790603637695,
-      "elozo_szoveg": "Erzsébet k.né útja, alulj.",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
     {
       "idopont": "2026-09-11T15:14:31.471466+02:00",
       "kulcs": "T8103",
@@ -260000,6 +259961,45 @@
       "lon": 19.149539947509766,
       "elozo_szoveg": "Vác",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-12T03:40:15.550941+02:00",
+      "kulcs": "AADI606",
+      "rendszam": "AADI606",
+      "vehicle_id": "103",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42147445678711,
+      "lon": 19.040327072143555,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-12T03:40:15.551365+02:00",
+      "kulcs": "FKU926",
+      "rendszam": "FKU926",
+      "vehicle_id": "3082",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.551353454589844,
+      "lon": 19.041852951049805,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T03:40:15.553159+02:00",
+      "kulcs": "AAMH661",
+      "rendszam": "AAMH661",
+      "vehicle_id": "504",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.4754753112793,
+      "lon": 19.040929794311523,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
