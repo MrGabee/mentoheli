@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T01:38:00.989728+02:00",
+  "frissitve": "2026-09-13T01:38:34.716938+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:46:22.182393+02:00",
-      "kulcs": "STZ846",
-      "rendszam": "STZ846",
-      "vehicle_id": "7801",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.45577621459961,
-      "lon": 18.94118309020996,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-12T12:46:22.182500+02:00",
-      "kulcs": "STZ865",
-      "rendszam": "STZ865",
-      "vehicle_id": "7820",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "188",
-      "route_id": "1880",
-      "lat": 47.464385986328125,
-      "lon": 19.018566131591797,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budakeszi, Honfoglalás sétány"
-    },
-    {
-      "idopont": "2026-09-12T12:46:22.182533+02:00",
-      "kulcs": "AOFL199",
-      "rendszam": "AOFL199",
-      "vehicle_id": "783",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "251",
-      "route_id": "2510",
-      "lat": 47.436859130859375,
-      "lon": 19.01414680480957,
-      "elozo_szoveg": "Lomnici utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
     {
       "idopont": "2026-09-12T12:46:22.182591+02:00",
       "kulcs": "T9114",
@@ -260000,6 +259961,45 @@
       "lon": 19.041351318359375,
       "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
       "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-13T01:38:34.626127+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.474849700927734,
+      "lon": 18.989391326904297,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-13T01:38:34.626179+02:00",
+      "kulcs": "FLR714",
+      "rendszam": "FLR714",
+      "vehicle_id": "3128",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.46507263183594,
+      "lon": 19.12732696533203,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-13T01:38:34.627890+02:00",
+      "kulcs": "PDB721",
+      "rendszam": "PDB721",
+      "vehicle_id": "7047",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53413772583008,
+      "lon": 19.082189559936523,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
