@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:48:08.923226+02:00",
+  "frissitve": "2026-09-12T02:48:40.619215+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:09:56.680632+02:00",
-      "kulcs": "AAGL251",
-      "rendszam": "AAGL251",
-      "vehicle_id": "251",
-      "vehicle_label": "Solymár, Auchan áruház",
-      "vonal_szam": "64",
-      "route_id": "0640",
-      "lat": 47.59501266479492,
-      "lon": 18.94091796875,
-      "elozo_szoveg": "Solymár vasútállomás ► Solymár, Auchan áruház",
-      "uj_szoveg": "Solymár, Auchan áruház"
-    },
-    {
-      "idopont": "2026-09-11T15:09:56.680755+02:00",
-      "kulcs": "AAGL273",
-      "rendszam": "AAGL273",
-      "vehicle_id": "273",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40E",
-      "route_id": "0405",
-      "lat": 47.4559326171875,
-      "lon": 18.940397262573242,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-11T15:09:56.681384+02:00",
-      "kulcs": "FKU907",
-      "rendszam": "FKU907",
-      "vehicle_id": "3063",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.465484619140625,
-      "lon": 19.234088897705078,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-11T15:09:56.681616+02:00",
       "kulcs": "FLR716",
@@ -260000,6 +259961,45 @@
       "lon": 19.01441192626953,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-09-12T02:48:40.527333+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.486454010009766,
+      "lon": 19.02286148071289,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-12T02:48:40.529036+02:00",
+      "kulcs": "SKN832",
+      "rendszam": "SKN832",
+      "vehicle_id": "544",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.511009216308594,
+      "lon": 19.05620574951172,
+      "elozo_szoveg": "Béke tér ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-12T02:48:40.529517+02:00",
+      "kulcs": "T9124",
+      "rendszam": "T9124",
+      "vehicle_id": "7863",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50037384033203,
+      "lon": 19.110639572143555,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
