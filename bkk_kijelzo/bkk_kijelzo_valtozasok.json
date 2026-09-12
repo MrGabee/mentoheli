@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:11:41.134586+02:00",
+  "frissitve": "2026-09-12T02:12:16.188522+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:05:27.057788+02:00",
-      "kulcs": "AAHY826",
-      "rendszam": "AAHY826",
-      "vehicle_id": "387",
-      "vehicle_label": "Rákospalota, Bogáncs u.",
-      "vonal_szam": "124",
-      "route_id": "1240",
-      "lat": 47.51931381225586,
-      "lon": 19.112777709960938,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Rákospalota, Bogáncs utca"
-    },
-    {
-      "idopont": "2026-09-11T15:05:27.058263+02:00",
-      "kulcs": "AAHY869",
-      "rendszam": "AAHY869",
-      "vehicle_id": "431",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.51998519897461,
-      "lon": 19.09125328063965,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-11T15:05:27.058392+02:00",
-      "kulcs": "V1318",
-      "rendszam": "V1318",
-      "vehicle_id": "4422",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.43024444580078,
-      "lon": 19.03766632080078,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-11T15:05:27.058845+02:00",
-      "kulcs": "V1443",
-      "rendszam": "V1443",
-      "vehicle_id": "4513",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.4661750793457,
-      "lon": 19.02195930480957,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-11T15:05:27.059509+02:00",
-      "kulcs": "AAMH635",
-      "rendszam": "AAMH635",
-      "vehicle_id": "478",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.43251419067383,
-      "lon": 19.260873794555664,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
     {
       "idopont": "2026-09-11T15:05:27.059773+02:00",
       "kulcs": "V4157",
@@ -260000,6 +259935,71 @@
       "lon": 19.050138473510742,
       "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
       "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-12T02:12:16.102803+02:00",
+      "kulcs": "AADI611",
+      "rendszam": "AADI611",
+      "vehicle_id": "108",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175094604492,
+      "lon": 19.135540008544922,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-12T02:12:16.104832+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46662902832031,
+      "lon": 19.153818130493164,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-12T02:12:16.105160+02:00",
+      "kulcs": "PDB725",
+      "rendszam": "PDB725",
+      "vehicle_id": "7051",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.5192985534668,
+      "lon": 19.038198471069336,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-12T02:12:16.105179+02:00",
+      "kulcs": "AADI590",
+      "rendszam": "AADI590",
+      "vehicle_id": "71",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.47783660888672,
+      "lon": 19.0460262298584,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-12T02:12:16.105572+02:00",
+      "kulcs": "AOIM020",
+      "rendszam": "AOIM020",
+      "vehicle_id": "940",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.56038284301758,
+      "lon": 19.0908203125,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
     }
   ]
 }
