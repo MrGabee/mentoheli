@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:40:43.317720+02:00",
+  "frissitve": "2026-09-12T02:41:16.000213+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:08:38.912918+02:00",
-      "kulcs": "NAE996",
-      "rendszam": "NAE996",
-      "vehicle_id": "6024",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.428733825683594,
-      "lon": 19.023950576782227,
-      "elozo_szoveg": "Regényes utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-11T15:08:38.913096+02:00",
-      "kulcs": "T8016",
-      "rendszam": "T8016",
-      "vehicle_id": "6136",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.50108337402344,
-      "lon": 19.082956314086914,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-11T15:08:38.913130+02:00",
-      "kulcs": "T8019",
-      "rendszam": "T8019",
-      "vehicle_id": "6139",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.499691009521484,
-      "lon": 19.081087112426758,
-      "elozo_szoveg": "Keleti pályaudvar M ► Kápolna tér",
-      "uj_szoveg": "Kápolna tér"
-    },
-    {
-      "idopont": "2026-09-11T15:08:38.913162+02:00",
-      "kulcs": "T9005",
-      "rendszam": "T9005",
-      "vehicle_id": "6144",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49979019165039,
-      "lon": 19.083206176757812,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-11T15:08:38.913283+02:00",
       "kulcs": "NGC150",
@@ -260000,6 +259948,58 @@
       "lon": 19.11465072631836,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-12T02:41:15.917639+02:00",
+      "kulcs": "V2018",
+      "rendszam": "V2018",
+      "vehicle_id": "2018",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47738265991211,
+      "lon": 19.048728942871094,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-12T02:41:15.917918+02:00",
+      "kulcs": "FLR742",
+      "rendszam": "FLR742",
+      "vehicle_id": "3156",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.477455139160156,
+      "lon": 19.263090133666992,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-12T02:41:15.919100+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.49774169921875,
+      "lon": 19.055015563964844,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-09-12T02:41:15.920210+02:00",
+      "kulcs": "470 006",
+      "rendszam": "470 006",
+      "vehicle_id": "915504700062",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.46200942993164,
+      "lon": 21.486679077148438,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
