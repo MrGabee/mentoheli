@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:24:03.237988+02:00",
+  "frissitve": "2026-09-12T02:24:36.878551+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:06:59.973886+02:00",
-      "kulcs": "AADR719",
-      "rendszam": "AADR719",
-      "vehicle_id": "188",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.52073287963867,
-      "lon": 19.031949996948242,
-      "elozo_szoveg": "Szemlőhegy",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-11T15:06:59.973976+02:00",
-      "kulcs": "V2006",
-      "rendszam": "V2006",
-      "vehicle_id": "2006",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.50727462768555,
-      "lon": 19.024980545043945,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-11T15:06:59.974014+02:00",
-      "kulcs": "V2010",
-      "rendszam": "V2010",
-      "vehicle_id": "2010",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.47378921508789,
-      "lon": 19.048778533935547,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-11T15:06:59.974163+02:00",
       "kulcs": "AADR754",
@@ -260000,6 +259961,45 @@
       "lon": 19.14401626586914,
       "elozo_szoveg": "Astoria M ► Pasaréti tér",
       "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-12T02:24:36.788587+02:00",
+      "kulcs": "V2009",
+      "rendszam": "V2009",
+      "vehicle_id": "2009",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47738265991211,
+      "lon": 19.048559188842773,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-12T02:24:36.790830+02:00",
+      "kulcs": "PDB707",
+      "rendszam": "PDB707",
+      "vehicle_id": "7033",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.508766174316406,
+      "lon": 19.095375061035156,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-12T02:24:36.790949+02:00",
+      "kulcs": "RCT313",
+      "rendszam": "RCT313",
+      "vehicle_id": "7327",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51124954223633,
+      "lon": 19.056333541870117,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
     }
   ]
 }
