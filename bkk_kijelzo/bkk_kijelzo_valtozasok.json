@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T03:22:45.983273+02:00",
+  "frissitve": "2026-09-12T03:23:22.519760+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:13:13.544808+02:00",
-      "kulcs": "PKN602",
-      "rendszam": "PKN602",
-      "vehicle_id": "7191",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50209426879883,
-      "lon": 19.135791778564453,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-11T15:13:13.545099+02:00",
-      "kulcs": "PKN629",
-      "rendszam": "PKN629",
-      "vehicle_id": "7218",
-      "vehicle_label": "Rákoscsaba-Újtelep",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.426639556884766,
-      "lon": 19.161067962646484,
-      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
-    },
-    {
-      "idopont": "2026-09-11T15:13:13.545581+02:00",
-      "kulcs": "T8105",
-      "rendszam": "T8105",
-      "vehicle_id": "7342",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.50114059448242,
-      "lon": 19.083148956298828,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
     {
       "idopont": "2026-09-11T15:13:13.545631+02:00",
       "kulcs": "T8108",
@@ -260000,6 +259961,45 @@
       "lon": 19.136146545410156,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-09-12T03:23:22.430923+02:00",
+      "kulcs": "V2020",
+      "rendszam": "V2020",
+      "vehicle_id": "2020",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50735092163086,
+      "lon": 19.02581214904785,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-12T03:23:22.433789+02:00",
+      "kulcs": "415 048",
+      "rendszam": "415 048",
+      "vehicle_id": "945514150487",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.1810302734375,
+      "lon": 18.564380645751953,
+      "elozo_szoveg": "Székesfehérvár",
+      "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-09-12T03:23:22.433962+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.476318359375,
+      "lon": 19.047080993652344,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
