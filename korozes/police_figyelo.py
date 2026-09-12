@@ -46,7 +46,7 @@ MAX_UJ_RESZLET_LEKERDEZES = 40  # egy futásban max ennyi ÚJ elem részletét k
 # False = ez a Make.com-kapcsoló - akkor is letiltja a Facebook-posztolást,
 #         ha egy-egy kategóriánál "facebook_post": True van beállítva.
 #         Az email-küldést ez NEM érinti.
-MAKE_WEBHOOK_AKTIV = True  # = "Make.com kapcsoló"
+MAKE_WEBHOOK_AKTIV = False  # = "Make.com kapcsoló"
 
 # A körözési rendszerben ezekre a szervekre szűrünk (Elrendelő VAGY Eljáró szerv mezőben)
 KOROZES_SZERV_SZURO = [
