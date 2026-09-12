@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:42:59.030384+02:00",
+  "frissitve": "2026-09-12T02:43:38.000373+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:08:38.915938+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48944091796875,
-      "lon": 19.089906692504883,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-11T15:08:38.915989+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.519447326660156,
-      "lon": 19.09071159362793,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-11T15:08:38.916324+02:00",
-      "kulcs": "RVY601",
-      "rendszam": "RVY601",
-      "vehicle_id": "7430",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.46444320678711,
-      "lon": 19.12637710571289,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-09-11T15:08:38.916575+02:00",
       "kulcs": "RVY713",
@@ -260000,6 +259961,45 @@
       "lon": 19.040069580078125,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T02:43:37.915452+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54268264770508,
+      "lon": 18.96476173400879,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-12T02:43:37.917607+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51140594482422,
+      "lon": 19.056425094604492,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-12T02:43:37.918089+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47779846191406,
+      "lon": 19.046356201171875,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
     }
   ]
 }
