@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-12T02:32:12.882945+02:00",
+  "frissitve": "2026-09-12T02:32:46.535301+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-11T15:06:59.987475+02:00",
-      "kulcs": "T9124",
-      "rendszam": "T9124",
-      "vehicle_id": "7863",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.52139663696289,
-      "lon": 19.10086441040039,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-11T15:06:59.987534+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.50056457519531,
-      "lon": 19.054866790771484,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
     {
       "idopont": "2026-09-11T15:06:59.987590+02:00",
       "kulcs": "T9136",
@@ -260000,6 +259974,32 @@
       "lon": 19.022899627685547,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T02:32:46.453236+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50883102416992,
+      "lon": 19.09542465209961,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-12T02:32:46.455539+02:00",
+      "kulcs": "NNE061",
+      "rendszam": "NNE061",
+      "vehicle_id": "6457",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50762939453125,
+      "lon": 19.025524139404297,
+      "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
