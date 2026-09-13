@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T02:52:20.431348+02:00",
+  "frissitve": "2026-09-13T02:52:55.609584+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:57:46.804693+02:00",
-      "kulcs": "AOIM014",
-      "rendszam": "AOIM014",
-      "vehicle_id": "934",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.416221618652344,
-      "lon": 19.093215942382812,
-      "elozo_szoveg": "Csepel, Határ utca",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-12T12:57:46.805077+02:00",
-      "kulcs": "415 072",
-      "rendszam": "415 072",
-      "vehicle_id": "945514150727",
-      "vehicle_label": "Sülysáp",
-      "vonal_szam": "S60",
-      "route_id": "S60",
-      "lat": 47.492431640625,
-      "lon": 19.136119842529297,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Sülysáp"
-    },
-    {
-      "idopont": "2026-09-12T12:57:46.805653+02:00",
-      "kulcs": "AOIM040",
-      "rendszam": "AOIM040",
-      "vehicle_id": "960",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.47419738769531,
-      "lon": 18.99530601501465,
-      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-12T12:58:48.070562+02:00",
       "kulcs": "AADI625",
@@ -260000,6 +259961,45 @@
       "lon": 19.109642028808594,
       "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-13T02:52:55.512746+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.5798225402832,
+      "lon": 19.08856201171875,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-13T02:52:55.512832+02:00",
+      "kulcs": "AAMH635",
+      "rendszam": "AAMH635",
+      "vehicle_id": "478",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49700927734375,
+      "lon": 19.055723190307617,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-13T02:52:55.514063+02:00",
+      "kulcs": "T9147",
+      "rendszam": "T9147",
+      "vehicle_id": "7886",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50398254394531,
+      "lon": 19.136796951293945,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
