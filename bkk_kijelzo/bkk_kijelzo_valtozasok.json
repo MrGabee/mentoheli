@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-13T02:34:58.816082+02:00",
+  "frissitve": "2026-09-13T02:35:30.802994+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:55:34.795997+02:00",
-      "kulcs": "V2273",
-      "rendszam": "V2273",
-      "vehicle_id": "571",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.51730728149414,
-      "lon": 19.06103515625,
-      "elozo_szoveg": "Lehel tér M",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-09-12T12:55:34.796051+02:00",
-      "kulcs": "MOS282",
-      "rendszam": "MOS282",
-      "vehicle_id": "5735",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "294E",
-      "route_id": "2945",
-      "lat": 47.381595611572266,
-      "lon": 19.230974197387695,
-      "elozo_szoveg": "Vecsési út ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-12T12:55:34.796300+02:00",
-      "kulcs": "V2223",
-      "rendszam": "V2223",
-      "vehicle_id": "5863",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.429473876953125,
-      "lon": 19.217435836791992,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-12T12:55:34.796570+02:00",
-      "kulcs": "T8008",
-      "rendszam": "T8008",
-      "vehicle_id": "6128",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.49977111816406,
-      "lon": 19.103700637817383,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
-    {
-      "idopont": "2026-09-12T12:55:34.796591+02:00",
-      "kulcs": "T8015",
-      "rendszam": "T8015",
-      "vehicle_id": "6135",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.501121520996094,
-      "lon": 19.08318328857422,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
     {
       "idopont": "2026-09-12T12:55:34.796712+02:00",
       "kulcs": "NCV290",
@@ -260000,6 +259935,71 @@
       "lon": 19.047029495239258,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-13T02:35:30.715071+02:00",
+      "kulcs": "AADI612",
+      "rendszam": "AADI612",
+      "vehicle_id": "109",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.4896240234375,
+      "lon": 19.075559616088867,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-13T02:35:30.716510+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.46272659301758,
+      "lon": 19.005359649658203,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-13T02:35:30.716588+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47480010986328,
+      "lon": 18.98946762084961,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-13T02:35:30.717433+02:00",
+      "kulcs": "AAMH662",
+      "rendszam": "AAMH662",
+      "vehicle_id": "505",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509822845458984,
+      "lon": 19.12820053100586,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-13T02:35:30.717935+02:00",
+      "kulcs": "SKR818",
+      "rendszam": "SKR818",
+      "vehicle_id": "7704",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.528656005859375,
+      "lon": 19.027162551879883,
+      "elozo_szoveg": "Verecke lépcső ► Millenniumtelep H",
+      "uj_szoveg": "Deák Ferenc tér M ► Millenniumtelep H"
     }
   ]
 }
