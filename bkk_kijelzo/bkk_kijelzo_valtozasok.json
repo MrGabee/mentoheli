@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-13T03:49:48.029336+02:00",
+  "frissitve": "2026-09-13T03:50:15.286396+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T13:06:57.916261+02:00",
-      "kulcs": "PDB385",
-      "rendszam": "PDB385",
-      "vehicle_id": "7067",
-      "vehicle_label": "Újpalota, Sárfű utca",
-      "vonal_szam": "130",
-      "route_id": "1300",
-      "lat": 47.50016784667969,
-      "lon": 19.10348129272461,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Újpalota, Sárfű utca"
-    },
-    {
-      "idopont": "2026-09-12T13:06:57.917294+02:00",
-      "kulcs": "T8109",
-      "rendszam": "T8109",
-      "vehicle_id": "7346",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52122497558594,
-      "lon": 19.136343002319336,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-12T13:06:57.917481+02:00",
-      "kulcs": "V2244",
-      "rendszam": "V2244",
-      "vehicle_id": "7376",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.48517990112305,
-      "lon": 19.025484085083008,
-      "elozo_szoveg": "Alkotás utca ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-12T13:06:57.917497+02:00",
-      "kulcs": "V2245",
-      "rendszam": "V2245",
-      "vehicle_id": "7377",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.466060638427734,
-      "lon": 19.02203369140625,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-12T13:06:57.917608+02:00",
-      "kulcs": "AADI563",
-      "rendszam": "AADI563",
-      "vehicle_id": "74",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.54317855834961,
-      "lon": 18.964515686035156,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
     {
       "idopont": "2026-09-12T13:06:57.917702+02:00",
       "kulcs": "RVY609",
@@ -260000,6 +259935,71 @@
       "lon": 19.150741577148438,
       "elozo_szoveg": "Rákosszentmihály vasútállomás",
       "uj_szoveg": "Városház tér"
+    },
+    {
+      "idopont": "2026-09-13T03:50:15.189369+02:00",
+      "kulcs": "AOJM878",
+      "rendszam": "AOJM878",
+      "vehicle_id": "1004",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.50069046020508,
+      "lon": 19.054927825927734,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-09-13T03:50:15.189453+02:00",
+      "kulcs": "AADI648",
+      "rendszam": "AADI648",
+      "vehicle_id": "147",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.501705169677734,
+      "lon": 19.136138916015625,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-13T03:50:15.190611+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Szentlélek tér H",
+      "vonal_szam": "218",
+      "route_id": "2180",
+      "lat": 47.609127044677734,
+      "lon": 18.98971176147461,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Szentlélek tér H"
+    },
+    {
+      "idopont": "2026-09-13T03:50:15.190961+02:00",
+      "kulcs": "AAMH675",
+      "rendszam": "AAMH675",
+      "vehicle_id": "518",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48046112060547,
+      "lon": 19.142004013061523,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-13T03:50:15.192238+02:00",
+      "kulcs": "NNE057",
+      "rendszam": "NNE057",
+      "vehicle_id": "6453",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60307693481445,
+      "lon": 19.066272735595703,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer"
     }
   ]
 }
