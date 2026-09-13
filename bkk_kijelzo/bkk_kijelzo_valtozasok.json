@@ -1,19 +1,6 @@
 {
-  "frissitve": "2026-09-13T03:32:35.848696+02:00",
+  "frissitve": "2026-09-13T03:33:07.359029+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T13:05:03.541638+02:00",
-      "kulcs": "AOJM882",
-      "rendszam": "AOJM882",
-      "vehicle_id": "1008",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.406951904296875,
-      "lon": 19.079002380371094,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-12T13:05:03.541768+02:00",
       "kulcs": "AONW957",
@@ -260000,6 +259987,19 @@
       "lon": 19.02582359313965,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-13T03:33:07.261777+02:00",
+      "kulcs": "PDB706",
+      "rendszam": "PDB706",
+      "vehicle_id": "7032",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50751495361328,
+      "lon": 19.025821685791016,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
