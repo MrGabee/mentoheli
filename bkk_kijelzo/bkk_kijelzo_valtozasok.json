@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-13T03:39:26.467320+02:00",
+  "frissitve": "2026-09-13T03:40:03.873074+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T13:05:03.552930+02:00",
-      "kulcs": "AADI598",
-      "rendszam": "AADI598",
-      "vehicle_id": "95",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50669860839844,
-      "lon": 19.023916244506836,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
-    {
-      "idopont": "2026-09-12T13:05:03.553128+02:00",
-      "kulcs": "AOJM863",
-      "rendszam": "AOJM863",
-      "vehicle_id": "986",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.48882293701172,
-      "lon": 19.06102752685547,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.072110+02:00",
-      "kulcs": "AADR701",
-      "rendszam": "AADR701",
-      "vehicle_id": "168",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46342468261719,
-      "lon": 19.14774513244629,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.074995+02:00",
-      "kulcs": "V2036",
-      "rendszam": "V2036",
-      "vehicle_id": "2036",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.50730895996094,
-      "lon": 19.024980545043945,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.075139+02:00",
-      "kulcs": "AAGL278",
-      "rendszam": "AAGL278",
-      "vehicle_id": "278",
-      "vehicle_label": "Solymár, Auchan áruház",
-      "vonal_szam": "64",
-      "route_id": "0640",
-      "lat": 47.595272064208984,
-      "lon": 18.94446563720703,
-      "elozo_szoveg": "Solymár vasútállomás ► Solymár, Auchan áruház",
-      "uj_szoveg": "Solymár, Auchan áruház"
-    },
     {
       "idopont": "2026-09-12T13:05:57.075297+02:00",
       "kulcs": "FKU945",
@@ -260000,6 +259935,71 @@
       "lon": 19.0872745513916,
       "elozo_szoveg": "Ráckeve",
       "uj_szoveg": "Közvágóhíd"
+    },
+    {
+      "idopont": "2026-09-13T03:40:03.808828+02:00",
+      "kulcs": "MUT885",
+      "rendszam": "MUT885",
+      "vehicle_id": "5938",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60268020629883,
+      "lon": 19.06607437133789,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-13T03:40:03.808989+02:00",
+      "kulcs": "PDB727",
+      "rendszam": "PDB727",
+      "vehicle_id": "7053",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48561477661133,
+      "lon": 19.12477684020996,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-13T03:40:03.809081+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48552322387695,
+      "lon": 19.071060180664062,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-13T03:40:03.809282+02:00",
+      "kulcs": "T9144",
+      "rendszam": "T9144",
+      "vehicle_id": "7883",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50115966796875,
+      "lon": 19.114553451538086,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-13T03:40:03.809605+02:00",
+      "kulcs": "AOIM049",
+      "rendszam": "AOIM049",
+      "vehicle_id": "970",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54722595214844,
+      "lon": 19.14185905456543,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
