@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T03:44:24.121904+02:00",
+  "frissitve": "2026-09-13T03:44:59.829643+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T13:05:57.082180+02:00",
-      "kulcs": "AOFL251",
-      "rendszam": "AOFL251",
-      "vehicle_id": "840",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.483768463134766,
-      "lon": 19.127477645874023,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.082291+02:00",
-      "kulcs": "AOIB792",
-      "rendszam": "AOIB792",
-      "vehicle_id": "863",
-      "vehicle_label": "Mindszenty J. bíboros tér",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.47407531738281,
-      "lon": 19.048240661621094,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Mindszenty József bíboros tér"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.082342+02:00",
-      "kulcs": "AADI587",
-      "rendszam": "AADI587",
-      "vehicle_id": "87",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.436561584472656,
-      "lon": 19.039731979370117,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-12T13:06:57.909994+02:00",
       "kulcs": "AADI638",
@@ -260000,6 +259961,45 @@
       "lon": 19.12725830078125,
       "elozo_szoveg": "Rákospalota, Kossuth utca",
       "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-13T03:44:59.745300+02:00",
+      "kulcs": "V2040",
+      "rendszam": "V2040",
+      "vehicle_id": "2040",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50746154785156,
+      "lon": 19.02333641052246,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-13T03:44:59.745497+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48481369018555,
+      "lon": 19.022077560424805,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-13T03:44:59.746613+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.42396926879883,
+      "lon": 19.23464012145996,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
     }
   ]
 }
