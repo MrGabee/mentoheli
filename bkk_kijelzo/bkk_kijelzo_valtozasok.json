@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T00:40:32.084609+02:00",
+  "frissitve": "2026-09-14T00:41:04.179147+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:24:37.848171+02:00",
-      "kulcs": "NTM434",
-      "rendszam": "NTM434",
-      "vehicle_id": "6502",
-      "vehicle_label": "Mechanikai Művek",
-      "vonal_szam": "87",
-      "route_id": "0870",
-      "lat": 47.46406173706055,
-      "lon": 19.018749237060547,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Mechanikai Művek"
-    },
-    {
-      "idopont": "2026-09-13T12:24:37.848203+02:00",
-      "kulcs": "NTM439",
-      "rendszam": "NTM439",
-      "vehicle_id": "6507",
-      "vehicle_label": "Infopark - BudaPart",
-      "vonal_szam": "107",
-      "route_id": "1070",
-      "lat": 47.50000762939453,
-      "lon": 19.080373764038086,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Infopark ► BudaPart"
-    },
-    {
-      "idopont": "2026-09-13T12:24:37.849444+02:00",
-      "kulcs": "PDB390",
-      "rendszam": "PDB390",
-      "vehicle_id": "7072",
-      "vehicle_label": "Újpalota, Sárfű utca",
-      "vonal_szam": "130",
-      "route_id": "1300",
-      "lat": 47.500152587890625,
-      "lon": 19.10348892211914,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Újpalota, Sárfű utca"
-    },
     {
       "idopont": "2026-09-13T12:24:37.849509+02:00",
       "kulcs": "PDN606",
@@ -260000,6 +259961,45 @@
       "lon": 19.050153732299805,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T00:41:04.113844+02:00",
+      "kulcs": "PKN607",
+      "rendszam": "PKN607",
+      "vehicle_id": "7196",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49711990356445,
+      "lon": 19.05547332763672,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-14T00:41:04.113884+02:00",
+      "kulcs": "PKN622",
+      "rendszam": "PKN622",
+      "vehicle_id": "7211",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43889617919922,
+      "lon": 19.103233337402344,
+      "elozo_szoveg": "Sasvár utca",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-14T00:41:04.113951+02:00",
+      "kulcs": "RVY605",
+      "rendszam": "RVY605",
+      "vehicle_id": "7434",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42268371582031,
+      "lon": 19.078760147094727,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
