@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T00:37:11.872868+02:00",
+  "frissitve": "2026-09-14T00:37:54.509320+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:24:37.843889+02:00",
-      "kulcs": "AADI652",
-      "rendszam": "AADI652",
-      "vehicle_id": "151",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44161605834961,
-      "lon": 19.03417205810547,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-13T12:24:37.845269+02:00",
-      "kulcs": "AAHY860",
-      "rendszam": "AAHY860",
-      "vehicle_id": "422",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.5200080871582,
-      "lon": 19.091222763061523,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-13T12:24:37.845603+02:00",
-      "kulcs": "V1400",
-      "rendszam": "V1400",
-      "vehicle_id": "4472",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49750900268555,
-      "lon": 19.055267333984375,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
     {
       "idopont": "2026-09-13T12:24:37.845815+02:00",
       "kulcs": "V4044",
@@ -260000,6 +259961,45 @@
       "lon": 19.11642074584961,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-14T00:37:54.448581+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.455684661865234,
+      "lon": 18.948278427124023,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T00:37:54.448947+02:00",
+      "kulcs": "RCT314",
+      "rendszam": "RCT314",
+      "vehicle_id": "7328",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42665100097656,
+      "lon": 19.161001205444336,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-14T00:37:54.449087+02:00",
+      "kulcs": "STZ864",
+      "rendszam": "STZ864",
+      "vehicle_id": "7819",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45575714111328,
+      "lon": 18.940841674804688,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Kamaraerdő"
     }
   ]
 }
