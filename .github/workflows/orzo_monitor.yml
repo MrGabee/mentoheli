@@ -28,11 +28,14 @@ jobs:
           # Ha valamelyik túl régen futott, azt automatikusan újraindítja.
           FIGYELT_WORKFLOWOK=(
             "⚡ Csepel Áramszünet Monitor"
+            "🚌 BKK Kijelző Figyelő"
             "🚧 BKK KÖZÚT-i (bal)eset Monitor"
             "🔥 FŐTÁV Monitor"
             "🚂 MÁV/Volán Monitor"
             "🚁 Mentőhelikopter Monitor"
+            "🚔 Police.hu Figyelő (XX./XXI. kerület)"
             "🚔 Rendőrség Baleseti Hírek Monitor"
+            "💰 Számla Figyelő (Vízművek / MVM / Díjnet)"
             "💧 Vízművek Monitor"
             "📷 Windy Webkamerák Frissítése (HU)"
           )
