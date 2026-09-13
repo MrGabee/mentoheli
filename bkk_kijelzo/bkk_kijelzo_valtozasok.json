@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-14T00:33:14.610289+02:00",
+  "frissitve": "2026-09-14T00:33:45.832040+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:23:46.411407+02:00",
-      "kulcs": "NTM429",
-      "rendszam": "NTM429",
-      "vehicle_id": "6497",
-      "vehicle_label": "Nagytétény-Diósd vá.",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.477386474609375,
-      "lon": 19.04878044128418,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Nagytétény-Diósd vasútállomás"
-    },
-    {
-      "idopont": "2026-09-13T12:23:46.411559+02:00",
-      "kulcs": "NWB362",
-      "rendszam": "NWB362",
-      "vehicle_id": "6542",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.485565185546875,
-      "lon": 19.287996292114258,
-      "elozo_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-13T12:23:46.413983+02:00",
-      "kulcs": "PHG645",
-      "rendszam": "PHG645",
-      "vehicle_id": "7169",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "162",
-      "route_id": "1620",
-      "lat": 47.459144592285156,
-      "lon": 19.332107543945312,
-      "elozo_szoveg": "Maglód, Auchan áruház",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-13T12:23:46.414291+02:00",
-      "kulcs": "PKN631",
-      "rendszam": "PKN631",
-      "vehicle_id": "7220",
-      "vehicle_label": "Rákoscsaba-Újtelep",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.426490783691406,
-      "lon": 19.16127586364746,
-      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
-    },
     {
       "idopont": "2026-09-13T12:23:46.415711+02:00",
       "kulcs": "RVY608",
@@ -260000,6 +259948,58 @@
       "lon": 19.020490646362305,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Komárom"
+    },
+    {
+      "idopont": "2026-09-14T00:33:45.742548+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.56801986694336,
+      "lon": 19.026199340820312,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-14T00:33:45.742997+02:00",
+      "kulcs": "NBW010",
+      "rendszam": "NBW010",
+      "vehicle_id": "5980",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50174331665039,
+      "lon": 19.13555908203125,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-14T00:33:45.743392+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.47960662841797,
+      "lon": 19.06722068786621,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-14T00:33:45.743442+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.497154235839844,
+      "lon": 19.05548095703125,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
