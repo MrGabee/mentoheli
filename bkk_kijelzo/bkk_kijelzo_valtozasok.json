@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-14T00:47:09.091049+02:00",
+  "frissitve": "2026-09-14T00:47:45.687490+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:25:51.881697+02:00",
-      "kulcs": "PDB719",
-      "rendszam": "PDB719",
-      "vehicle_id": "7045",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.532527923583984,
-      "lon": 19.06732177734375,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
-    {
-      "idopont": "2026-09-13T12:25:51.882269+02:00",
-      "kulcs": "PHG638",
-      "rendszam": "PHG638",
-      "vehicle_id": "7162",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.53977966308594,
-      "lon": 19.252531051635742,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Auchan Liget ► Rákosszentmihály vá."
-    },
-    {
-      "idopont": "2026-09-13T12:25:51.882457+02:00",
-      "kulcs": "AADI586",
-      "rendszam": "AADI586",
-      "vehicle_id": "72",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.48686599731445,
-      "lon": 18.9534969329834,
-      "elozo_szoveg": "Csillebérc, KFKI",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-13T12:25:51.882498+02:00",
-      "kulcs": "PKN614",
-      "rendszam": "PKN614",
-      "vehicle_id": "7203",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.45804977416992,
-      "lon": 19.177032470703125,
-      "elozo_szoveg": "Felsőcsatári köz",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-13T12:25:51.882651+02:00",
-      "kulcs": "T8103",
-      "rendszam": "T8103",
-      "vehicle_id": "7340",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.487003326416016,
-      "lon": 19.05764389038086,
-      "elozo_szoveg": "Fővám tér M",
-      "uj_szoveg": "Népliget M"
-    },
     {
       "idopont": "2026-09-13T12:25:51.882702+02:00",
       "kulcs": "T8108",
@@ -260000,6 +259935,71 @@
       "lon": 19.120031356811523,
       "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
       "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-09-14T00:47:45.580212+02:00",
+      "kulcs": "V2034",
+      "rendszam": "V2034",
+      "vehicle_id": "2034",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47743606567383,
+      "lon": 19.048532485961914,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-14T00:47:45.580303+02:00",
+      "kulcs": "FJX188",
+      "rendszam": "FJX188",
+      "vehicle_id": "3008",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.539527893066406,
+      "lon": 19.0695743560791,
+      "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T00:47:45.582733+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.5252685546875,
+      "lon": 19.037919998168945,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-14T00:47:45.583420+02:00",
+      "kulcs": "SGY805",
+      "rendszam": "SGY805",
+      "vehicle_id": "7723",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.486995697021484,
+      "lon": 19.067150115966797,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-14T00:47:45.583483+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.500343322753906,
+      "lon": 19.11061668395996,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
