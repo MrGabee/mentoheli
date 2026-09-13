@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T01:55:59.985395+02:00",
+  "frissitve": "2026-09-14T01:56:39.325741+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:35:14.764808+02:00",
-      "kulcs": "AADI602",
-      "rendszam": "AADI602",
-      "vehicle_id": "99",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50071716308594,
-      "lon": 18.96733283996582,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-13T12:36:21.584987+02:00",
-      "kulcs": "AADR751",
-      "rendszam": "AADR751",
-      "vehicle_id": "200",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.51156997680664,
-      "lon": 19.056636810302734,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Margitsziget ► Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-13T12:36:21.585069+02:00",
-      "kulcs": "AADR752",
-      "rendszam": "AADR752",
-      "vehicle_id": "201",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.532188415527344,
-      "lon": 19.067852020263672,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-13T12:36:21.585390+02:00",
       "kulcs": "AAGL313",
@@ -260000,6 +259961,45 @@
       "lon": 19.102994918823242,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T01:56:39.236951+02:00",
+      "kulcs": "AAGL291",
+      "rendszam": "AAGL291",
+      "vehicle_id": "324",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45577621459961,
+      "lon": 18.940881729125977,
+      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-14T01:56:39.238292+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.531375885009766,
+      "lon": 19.0806827545166,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T01:56:39.239006+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46495056152344,
+      "lon": 19.02252769470215,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
     }
   ]
 }
