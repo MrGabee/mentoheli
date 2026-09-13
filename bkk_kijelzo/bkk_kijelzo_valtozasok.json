@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-13T03:40:03.873074+02:00",
+  "frissitve": "2026-09-13T03:40:35.209682+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T13:05:57.075297+02:00",
-      "kulcs": "FKU945",
-      "rendszam": "FKU945",
-      "vehicle_id": "3101",
-      "vehicle_label": "Cinkota, Lassú utca",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.50515365600586,
-      "lon": 19.136768341064453,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Cinkota, Lassú utca"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.075332+02:00",
-      "kulcs": "FLR710",
-      "rendszam": "FLR710",
-      "vehicle_id": "3124",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.49828338623047,
-      "lon": 19.266632080078125,
-      "elozo_szoveg": "Naplás út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.075461+02:00",
-      "kulcs": "AAGL290",
-      "rendszam": "AAGL290",
-      "vehicle_id": "323",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50745391845703,
-      "lon": 19.025571823120117,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.075609+02:00",
-      "kulcs": "AAHY802",
-      "rendszam": "AAHY802",
-      "vehicle_id": "362",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.53229904174805,
-      "lon": 19.16324806213379,
-      "elozo_szoveg": "Kisszentmihály, Baross utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.076056+02:00",
-      "kulcs": "AAHY824",
-      "rendszam": "AAHY824",
-      "vehicle_id": "385",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "231",
-      "route_id": "2310",
-      "lat": 47.55887985229492,
-      "lon": 19.13080406188965,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-12T13:05:57.076930+02:00",
       "kulcs": "V4044",
@@ -260000,6 +259935,71 @@
       "lon": 19.14185905456543,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-13T03:40:35.121908+02:00",
+      "kulcs": "FLR747",
+      "rendszam": "FLR747",
+      "vehicle_id": "3161",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47383499145508,
+      "lon": 19.273176193237305,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-13T03:40:35.122756+02:00",
+      "kulcs": "SKN830",
+      "rendszam": "SKN830",
+      "vehicle_id": "545",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.501609802246094,
+      "lon": 19.13597869873047,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-09-13T03:40:35.123492+02:00",
+      "kulcs": "PDB382",
+      "rendszam": "PDB382",
+      "vehicle_id": "7064",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.497886657714844,
+      "lon": 19.01990509033203,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-13T03:40:35.123941+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49740982055664,
+      "lon": 19.055025100708008,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-13T03:40:35.124094+02:00",
+      "kulcs": "815 028",
+      "rendszam": "815 028",
+      "vehicle_id": "945518150285",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.17329025268555,
+      "lon": 20.017709732055664,
+      "elozo_szoveg": "Szolnok",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
