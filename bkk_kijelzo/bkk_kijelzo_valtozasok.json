@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T02:30:46.312763+02:00",
+  "frissitve": "2026-09-13T02:31:17.197518+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:54:26.746502+02:00",
-      "kulcs": "AOFL224",
-      "rendszam": "AOFL224",
-      "vehicle_id": "811",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.572265625,
-      "lon": 19.005367279052734,
-      "elozo_szoveg": "Harsánylejtő",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
-    {
-      "idopont": "2026-09-12T12:54:26.746603+02:00",
-      "kulcs": "AOFL237",
-      "rendszam": "AOFL237",
-      "vehicle_id": "825",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.5401611328125,
-      "lon": 19.046245574951172,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Erdőalja út ► Máramaros út"
-    },
-    {
-      "idopont": "2026-09-12T12:54:26.746644+02:00",
-      "kulcs": "AOFL243",
-      "rendszam": "AOFL243",
-      "vehicle_id": "831",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.461734771728516,
-      "lon": 19.116207122802734,
-      "elozo_szoveg": "József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "Ecseri út M ► Aszódi utca"
-    },
     {
       "idopont": "2026-09-12T12:54:26.746907+02:00",
       "kulcs": "AOIB808",
@@ -260000,6 +259961,45 @@
       "lon": 19.127548217773438,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-13T02:31:17.127894+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50937271118164,
+      "lon": 19.09613037109375,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-13T02:31:17.129798+02:00",
+      "kulcs": "PDB706",
+      "rendszam": "PDB706",
+      "vehicle_id": "7032",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.502628326416016,
+      "lon": 19.02656364440918,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-13T02:31:17.130762+02:00",
+      "kulcs": "415 113",
+      "rendszam": "415 113",
+      "vehicle_id": "945514151139",
+      "vehicle_label": "Esztergom",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.52730178833008,
+      "lon": 19.091049194335938,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Esztergom"
     }
   ]
 }
