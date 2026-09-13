@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T02:48:16.500410+02:00",
+  "frissitve": "2026-09-13T02:48:48.160837+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:57:46.795670+02:00",
-      "kulcs": "V2271",
-      "rendszam": "V2271",
-      "vehicle_id": "569",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.51925277709961,
-      "lon": 19.091087341308594,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-12T12:57:46.796271+02:00",
-      "kulcs": "T8003",
-      "rendszam": "T8003",
-      "vehicle_id": "6123",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50656509399414,
-      "lon": 19.050846099853516,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-12T12:57:46.796301+02:00",
-      "kulcs": "T8005",
-      "rendszam": "T8005",
-      "vehicle_id": "6125",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50928497314453,
-      "lon": 19.057706832885742,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
     {
       "idopont": "2026-09-12T12:57:46.796613+02:00",
       "kulcs": "AELD558",
@@ -260000,6 +259961,45 @@
       "lon": 19.06032371520996,
       "elozo_szoveg": "Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-13T02:48:48.078969+02:00",
+      "kulcs": "AADR701",
+      "rendszam": "AADR701",
+      "vehicle_id": "168",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37950897216797,
+      "lon": 19.104211807250977,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-13T02:48:48.081432+02:00",
+      "kulcs": "RVY616",
+      "rendszam": "RVY616",
+      "vehicle_id": "7445",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.42742156982422,
+      "lon": 19.15970230102539,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-13T02:48:48.082507+02:00",
+      "kulcs": "416 038",
+      "rendszam": "416 038",
+      "vehicle_id": "955514160386",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S21",
+      "route_id": "S21",
+      "lat": 47.06874084472656,
+      "lon": 19.4985294342041,
+      "elozo_szoveg": "Lajosmizse",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
