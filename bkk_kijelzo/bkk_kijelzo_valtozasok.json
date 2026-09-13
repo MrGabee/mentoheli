@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T02:23:12.704092+02:00",
+  "frissitve": "2026-09-13T02:23:50.002512+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T12:53:17.495100+02:00",
-      "kulcs": "T9115",
-      "rendszam": "T9115",
-      "vehicle_id": "7853",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.506248474121094,
-      "lon": 19.050743103027344,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-09-12T12:53:17.495298+02:00",
-      "kulcs": "T9139",
-      "rendszam": "T9139",
-      "vehicle_id": "7878",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50415802001953,
-      "lon": 19.13670539855957,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-12T12:53:17.495421+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.48131561279297,
-      "lon": 19.136154174804688,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-12T12:53:17.495660+02:00",
       "kulcs": "AOFL225",
@@ -260000,6 +259961,45 @@
       "lon": 19.0386962890625,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-13T02:23:49.932227+02:00",
+      "kulcs": "AADI647",
+      "rendszam": "AADI647",
+      "vehicle_id": "146",
+      "vehicle_label": "Bosnyák tér",
+      "vonal_szam": "907A",
+      "route_id": "9071",
+      "lat": 47.51731872558594,
+      "lon": 19.10886573791504,
+      "elozo_szoveg": "Zugló vasútállomás ► Bosnyák tér",
+      "uj_szoveg": "Bosnyák tér"
+    },
+    {
+      "idopont": "2026-09-13T02:23:49.932301+02:00",
+      "kulcs": "SKN824",
+      "rendszam": "SKN824",
+      "vehicle_id": "160",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50904846191406,
+      "lon": 19.095718383789062,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-13T02:23:49.934741+02:00",
+      "kulcs": "AOFL255",
+      "rendszam": "AOFL255",
+      "vehicle_id": "844",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.43412399291992,
+      "lon": 19.19860076904297,
+      "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
+      "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
     }
   ]
 }
