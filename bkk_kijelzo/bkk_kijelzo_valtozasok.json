@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T00:57:50.520632+02:00",
+  "frissitve": "2026-09-14T00:58:20.232139+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:26:46.195393+02:00",
-      "kulcs": "SKR735",
-      "rendszam": "SKR735",
-      "vehicle_id": "7684",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46358871459961,
-      "lon": 19.147890090942383,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-13T12:26:46.195487+02:00",
-      "kulcs": "SKR821",
-      "rendszam": "SKR821",
-      "vehicle_id": "7707",
-      "vehicle_label": "Szemlőhegy",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.51073455810547,
-      "lon": 19.056371688842773,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Szemlőhegy"
-    },
-    {
-      "idopont": "2026-09-13T12:26:46.195712+02:00",
-      "kulcs": "STZ863",
-      "rendszam": "STZ863",
-      "vehicle_id": "7818",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40",
-      "route_id": "0400",
-      "lat": 47.45577621459961,
-      "lon": 18.941171646118164,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-13T12:26:46.196034+02:00",
       "kulcs": "T8117",
@@ -260000,6 +259961,45 @@
       "lon": 19.0467472076416,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-14T00:58:20.140002+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46465301513672,
+      "lon": 19.02296257019043,
+      "elozo_szoveg": "Göncz Árpád városközpont M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-14T00:58:20.144954+02:00",
+      "kulcs": "NGC024",
+      "rendszam": "NGC024",
+      "vehicle_id": "6323",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39967346191406,
+      "lon": 18.99039649963379,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-14T00:58:20.145190+02:00",
+      "kulcs": "PMP912",
+      "rendszam": "PMP912",
+      "vehicle_id": "7229",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.472923278808594,
+      "lon": 19.033538818359375,
+      "elozo_szoveg": "Albertfalva vasútállomás",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
