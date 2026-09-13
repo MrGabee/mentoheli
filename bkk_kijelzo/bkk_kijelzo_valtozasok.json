@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T04:01:22.084535+02:00",
+  "frissitve": "2026-09-13T04:01:55.703567+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T13:09:48.278945+02:00",
-      "kulcs": "AAMH647",
-      "rendszam": "AAMH647",
-      "vehicle_id": "490",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.497013092041016,
-      "lon": 19.055700302124023,
-      "elozo_szoveg": "Deák F. tér (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-12T13:09:48.278988+02:00",
-      "kulcs": "AAMH650",
-      "rendszam": "AAMH650",
-      "vehicle_id": "493",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49742889404297,
-      "lon": 19.054841995239258,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-12T13:09:48.279002+02:00",
-      "kulcs": "V4271",
-      "rendszam": "V4271",
-      "vehicle_id": "4930",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.47456359863281,
-      "lon": 19.17824363708496,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Kőbányai út ► Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-12T13:09:48.279437+02:00",
       "kulcs": "V2267",
@@ -260000,6 +259961,45 @@
       "lon": 19.09291648864746,
       "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-13T04:01:55.632452+02:00",
+      "kulcs": "PDB703",
+      "rendszam": "PDB703",
+      "vehicle_id": "7029",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.488956451416016,
+      "lon": 19.06322479248047,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-09-13T04:01:55.632773+02:00",
+      "kulcs": "SKR735",
+      "rendszam": "SKR735",
+      "vehicle_id": "7684",
+      "vehicle_label": "Havanna-lakótelep",
+      "vonal_szam": "136",
+      "route_id": "1360",
+      "lat": 47.44437789916992,
+      "lon": 19.169418334960938,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Havanna-lakótelep"
+    },
+    {
+      "idopont": "2026-09-13T04:01:55.632816+02:00",
+      "kulcs": "SIF014",
+      "rendszam": "SIF014",
+      "vehicle_id": "7749",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48536682128906,
+      "lon": 19.07129669189453,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
