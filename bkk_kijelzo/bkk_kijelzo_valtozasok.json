@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-14T00:41:41.374551+02:00",
+  "frissitve": "2026-09-14T00:42:15.954645+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:24:37.849541+02:00",
-      "kulcs": "PDN608",
-      "rendszam": "PDN608",
-      "vehicle_id": "7080",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40668869018555,
-      "lon": 19.077186584472656,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-13T12:24:37.849641+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.39582443237305,
-      "lon": 19.107345581054688,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-13T12:24:37.849774+02:00",
       "kulcs": "PDN648",
@@ -260000,6 +259974,32 @@
       "lon": 19.132081985473633,
       "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
       "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-14T00:42:15.881429+02:00",
+      "kulcs": "MMM139",
+      "rendszam": "MMM139",
+      "vehicle_id": "5411",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54267120361328,
+      "lon": 18.964767456054688,
+      "elozo_szoveg": "Máriaremete",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-14T00:42:15.882092+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.463722229003906,
+      "lon": 19.130178451538086,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
