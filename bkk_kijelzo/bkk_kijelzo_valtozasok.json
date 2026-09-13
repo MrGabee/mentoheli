@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-13T03:40:35.209682+02:00",
+  "frissitve": "2026-09-13T03:41:02.460803+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-12T13:05:57.076930+02:00",
-      "kulcs": "V4044",
-      "rendszam": "V4044",
-      "vehicle_id": "4733",
-      "vehicle_label": "Sörgyár",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.4958610534668,
-      "lon": 19.07291603088379,
-      "elozo_szoveg": "Sörgyár",
-      "uj_szoveg": "Salgótarjáni utca ► Sörgyár"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.077013+02:00",
-      "kulcs": "AAMH637",
-      "rendszam": "AAMH637",
-      "vehicle_id": "480",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.43217849731445,
-      "lon": 19.26108169555664,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-09-12T13:05:57.077131+02:00",
-      "kulcs": "V4165",
-      "rendszam": "V4165",
-      "vehicle_id": "4853",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.491966247558594,
-      "lon": 19.14438819885254,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Salgótarjáni utca ► Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-12T13:05:57.077219+02:00",
       "kulcs": "V4250",
@@ -260000,6 +259961,45 @@
       "lon": 20.017709732055664,
       "elozo_szoveg": "Szolnok",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-13T03:41:02.372831+02:00",
+      "kulcs": "LMG122",
+      "rendszam": "LMG122",
+      "vehicle_id": "1114",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.497127532958984,
+      "lon": 19.055496215820312,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-13T03:41:02.375362+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699020385742,
+      "lon": 19.055740356445312,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-13T03:41:02.375388+02:00",
+      "kulcs": "AAMH662",
+      "rendszam": "AAMH662",
+      "vehicle_id": "505",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475013732910156,
+      "lon": 19.040019989013672,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
