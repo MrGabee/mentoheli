@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-14T01:31:04.781658+02:00",
+  "frissitve": "2026-09-14T01:31:40.356874+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:32:27.786252+02:00",
-      "kulcs": "AAHY801",
-      "rendszam": "AAHY801",
-      "vehicle_id": "361",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.59012222290039,
-      "lon": 19.12249755859375,
-      "elozo_szoveg": "Rákospalota, Csömöri-patak",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-13T12:32:27.786360+02:00",
-      "kulcs": "AAHY821",
-      "rendszam": "AAHY821",
-      "vehicle_id": "382",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57823944091797,
-      "lon": 19.10478973388672,
-      "elozo_szoveg": "Izzó utcai lakótelep ► Újpest-központ M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-13T12:32:27.786378+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.560447692871094,
-      "lon": 19.09062957763672,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-13T12:32:27.787127+02:00",
-      "kulcs": "AAHY831",
-      "rendszam": "AAHY831",
-      "vehicle_id": "392",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.60452651977539,
-      "lon": 19.060022354125977,
-      "elozo_szoveg": "Budakalász, Auchan áruház ► Rákospalota, Kossuth utca",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-13T12:32:27.787289+02:00",
-      "kulcs": "AAHY855",
-      "rendszam": "AAHY855",
-      "vehicle_id": "417",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.56022262573242,
-      "lon": 19.090898513793945,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-13T12:32:27.787679+02:00",
       "kulcs": "V1441",
@@ -260000,6 +259935,71 @@
       "lon": 19.136524200439453,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-14T01:31:40.266855+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44163131713867,
+      "lon": 19.18612289428711,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-14T01:31:40.268560+02:00",
+      "kulcs": "NWB361",
+      "rendszam": "NWB361",
+      "vehicle_id": "6541",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51472091674805,
+      "lon": 19.097143173217773,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-14T01:31:40.268633+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.536460876464844,
+      "lon": 19.10714340209961,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-14T01:31:40.268938+02:00",
+      "kulcs": "SGY980",
+      "rendszam": "SGY980",
+      "vehicle_id": "7660",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.48006820678711,
+      "lon": 19.051456451416016,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-14T01:31:40.268968+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48904037475586,
+      "lon": 19.0627384185791,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
     }
   ]
 }
