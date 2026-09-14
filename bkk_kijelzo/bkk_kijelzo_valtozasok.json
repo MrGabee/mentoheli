@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-14T02:30:29.579443+02:00",
+  "frissitve": "2026-09-14T02:30:59.268425+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:40:15.560486+02:00",
-      "kulcs": "V2239",
-      "rendszam": "V2239",
-      "vehicle_id": "7371",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.51908874511719,
-      "lon": 19.091251373291016,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-13T12:40:15.561350+02:00",
-      "kulcs": "SGY819",
-      "rendszam": "SGY819",
-      "vehicle_id": "7737",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.410030364990234,
-      "lon": 19.06033706665039,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-13T12:40:15.561417+02:00",
-      "kulcs": "AOFL191",
-      "rendszam": "AOFL191",
-      "vehicle_id": "775",
-      "vehicle_label": "Kamaraerdő",
-      "vonal_szam": "187",
-      "route_id": "1870",
-      "lat": 47.46403884887695,
-      "lon": 19.018775939941406,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Kamaraerdő"
-    },
-    {
-      "idopont": "2026-09-13T12:40:15.561461+02:00",
-      "kulcs": "AOFL193",
-      "rendszam": "AOFL193",
-      "vehicle_id": "777",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.49024200439453,
-      "lon": 19.060802459716797,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-09-13T12:40:15.561623+02:00",
-      "kulcs": "T9114",
-      "rendszam": "T9114",
-      "vehicle_id": "7852",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50413513183594,
-      "lon": 19.13660430908203,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-13T12:40:15.561780+02:00",
       "kulcs": "T9134",
@@ -260000,6 +259935,71 @@
       "lon": 18.940893173217773,
       "elozo_szoveg": "Budaörsi lakótelep",
       "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-14T02:30:59.181338+02:00",
+      "kulcs": "V2016",
+      "rendszam": "V2016",
+      "vehicle_id": "2016",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50730514526367,
+      "lon": 19.024751663208008,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-14T02:30:59.182821+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48900604248047,
+      "lon": 19.063125610351562,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-09-14T02:30:59.183235+02:00",
+      "kulcs": "PKN614",
+      "rendszam": "PKN614",
+      "vehicle_id": "7203",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.46904754638672,
+      "lon": 19.294729232788086,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-14T02:30:59.183292+02:00",
+      "kulcs": "PMP912",
+      "rendszam": "PMP912",
+      "vehicle_id": "7229",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.478694915771484,
+      "lon": 19.0496826171875,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-14T02:30:59.183417+02:00",
+      "kulcs": "SGY984",
+      "rendszam": "SGY984",
+      "vehicle_id": "7664",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50909423828125,
+      "lon": 19.095792770385742,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
