@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-14T03:22:57.261139+02:00",
+  "frissitve": "2026-09-14T03:23:27.207992+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:48:39.928219+02:00",
-      "kulcs": "PDN608",
-      "rendszam": "PDN608",
-      "vehicle_id": "7080",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.43079376220703,
-      "lon": 19.07058334350586,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-13T12:48:39.928279+02:00",
-      "kulcs": "PDN619",
-      "rendszam": "PDN619",
-      "vehicle_id": "7090",
-      "vehicle_label": "Csepel, Soroksári rév",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.462921142578125,
-      "lon": 19.14969825744629,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Csepel, Soroksári rév"
-    },
-    {
-      "idopont": "2026-09-13T12:48:39.928689+02:00",
-      "kulcs": "PKN616",
-      "rendszam": "PKN616",
-      "vehicle_id": "7205",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.5003662109375,
-      "lon": 19.135238647460938,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-13T12:48:39.928887+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.4939079284668,
-      "lon": 19.06027603149414,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-13T12:48:39.929134+02:00",
-      "kulcs": "RVY609",
-      "rendszam": "RVY609",
-      "vehicle_id": "7438",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.40444564819336,
-      "lon": 19.185888290405273,
-      "elozo_szoveg": "Pestszentimre vasútállomás",
-      "uj_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca"
-    },
     {
       "idopont": "2026-09-13T12:48:39.929258+02:00",
       "kulcs": "RWA600",
@@ -260000,6 +259935,71 @@
       "lon": 19.136432647705078,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-09-14T03:23:27.127579+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Pestszentlőrinc, Béke tér",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54139709472656,
+      "lon": 19.15154457092285,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Pestszentlőrinc, Béke tér"
+    },
+    {
+      "idopont": "2026-09-14T03:23:27.128583+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.462467193603516,
+      "lon": 19.133087158203125,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-14T03:23:27.129337+02:00",
+      "kulcs": "NNE057",
+      "rendszam": "NNE057",
+      "vehicle_id": "6453",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51212692260742,
+      "lon": 19.0570125579834,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-14T03:23:27.129385+02:00",
+      "kulcs": "NWB362",
+      "rendszam": "NWB362",
+      "vehicle_id": "6542",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54695510864258,
+      "lon": 19.142271041870117,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Cinkotai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-14T03:23:27.129767+02:00",
+      "kulcs": "T8110",
+      "rendszam": "T8110",
+      "vehicle_id": "7889",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50405502319336,
+      "lon": 19.13668441772461,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
