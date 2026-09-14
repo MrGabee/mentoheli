@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-14T03:08:27.479998+02:00",
+  "frissitve": "2026-09-14T03:08:55.309867+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:45:44.655323+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.54937744140625,
-      "lon": 19.073680877685547,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-09-13T12:45:44.655508+02:00",
-      "kulcs": "AOFL213",
-      "rendszam": "AOFL213",
-      "vehicle_id": "800",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52171325683594,
-      "lon": 18.990373611450195,
-      "elozo_szoveg": "Kurucles",
-      "uj_szoveg": "Kurucles ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-13T12:45:44.655524+02:00",
-      "kulcs": "AOFL216",
-      "rendszam": "AOFL216",
-      "vehicle_id": "803",
-      "vehicle_label": "Kissvábhegy",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50592803955078,
-      "lon": 19.03899383544922,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-13T12:45:44.656033+02:00",
-      "kulcs": "AOFL248",
-      "rendszam": "AOFL248",
-      "vehicle_id": "836",
-      "vehicle_label": "Ecseri út M-József A. ltp.",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.46870803833008,
-      "lon": 19.107440948486328,
-      "elozo_szoveg": "Ecseri út M ► József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "József Attila lakótelep, Távíró utca"
-    },
     {
       "idopont": "2026-09-13T12:45:44.656247+02:00",
       "kulcs": "AOIB804",
@@ -260000,6 +259948,58 @@
       "lon": 19.004846572875977,
       "elozo_szoveg": "Rózsadomb ► Árpádföld",
       "uj_szoveg": "Nyugati pályaudvar M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-14T03:08:55.229941+02:00",
+      "kulcs": "MOS271",
+      "rendszam": "MOS271",
+      "vehicle_id": "5724",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49771499633789,
+      "lon": 19.055042266845703,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-14T03:08:55.230091+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.486717224121094,
+      "lon": 19.12394905090332,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-14T03:08:55.230160+02:00",
+      "kulcs": "AADI577",
+      "rendszam": "AADI577",
+      "vehicle_id": "68",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.52374267578125,
+      "lon": 19.037553787231445,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-14T03:08:55.230258+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499698638916016,
+      "lon": 19.08932113647461,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M"
     }
   ]
 }
