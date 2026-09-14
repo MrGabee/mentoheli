@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-14T04:06:51.882949+02:00",
+  "frissitve": "2026-09-14T04:07:28.230560+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:57:27.359673+02:00",
-      "kulcs": "AAHY834",
-      "rendszam": "AAHY834",
-      "vehicle_id": "395",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.6026496887207,
-      "lon": 19.06604766845703,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-13T12:57:27.359781+02:00",
-      "kulcs": "AAHY849",
-      "rendszam": "AAHY849",
-      "vehicle_id": "410",
-      "vehicle_label": "Árpádföld",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.5046272277832,
-      "lon": 19.136804580688477,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-13T12:57:27.359967+02:00",
-      "kulcs": "V1337",
-      "rendszam": "V1337",
-      "vehicle_id": "4440",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.499202728271484,
-      "lon": 19.082523345947266,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-13T12:57:27.360119+02:00",
-      "kulcs": "V1357",
-      "rendszam": "V1357",
-      "vehicle_id": "4458",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49742126464844,
-      "lon": 19.05550765991211,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-13T12:57:27.360288+02:00",
-      "kulcs": "AAMH618",
-      "rendszam": "AAMH618",
-      "vehicle_id": "461",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.57741928100586,
-      "lon": 19.114431381225586,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-13T12:57:27.361685+02:00",
       "kulcs": "AAMH643",
@@ -260000,6 +259935,71 @@
       "lon": 19.171274185180664,
       "elozo_szoveg": "Havanna-lakótelep",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-14T04:07:28.158689+02:00",
+      "kulcs": "AONW951",
+      "rendszam": "AONW951",
+      "vehicle_id": "1016",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "139",
+      "route_id": "1390",
+      "lat": 47.473182678222656,
+      "lon": 18.99230194091797,
+      "elozo_szoveg": "Gazdagréti tér",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-14T04:07:28.159186+02:00",
+      "kulcs": "V1577",
+      "rendszam": "V1577",
+      "vehicle_id": "4629",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "24",
+      "route_id": "3240",
+      "lat": 47.46772384643555,
+      "lon": 19.075735092163086,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-09-14T04:07:28.159826+02:00",
+      "kulcs": "AOGF659",
+      "rendszam": "AOGF659",
+      "vehicle_id": "741",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "151",
+      "route_id": "1510",
+      "lat": 47.454803466796875,
+      "lon": 19.13950538635254,
+      "elozo_szoveg": "Sósfürdő",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T04:07:28.160147+02:00",
+      "kulcs": "432 360",
+      "rendszam": "432 360",
+      "vehicle_id": "915504323600",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.43207931518555,
+      "lon": 19.680349349975586,
+      "elozo_szoveg": "Cegléd",
+      "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-14T04:07:28.160217+02:00",
+      "kulcs": "918071930294",
+      "rendszam": "918071930294",
+      "vehicle_id": "918071930294",
+      "vehicle_label": "Miskolc-Tiszai",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.492210388183594,
+      "lon": 19.1337890625,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Miskolc-Tiszai"
     }
   ]
 }
