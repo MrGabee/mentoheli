@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T01:21:47.521826+02:00",
+  "frissitve": "2026-09-15T01:22:18.629226+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:05:27.661812+02:00",
-      "kulcs": "SKR803",
-      "rendszam": "SKR803",
-      "vehicle_id": "7689",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.519100189208984,
-      "lon": 19.03343963623047,
-      "elozo_szoveg": "Szemlőhegy",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-14T15:05:27.662258+02:00",
-      "kulcs": "STZ843",
-      "rendszam": "STZ843",
-      "vehicle_id": "7798",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50028610229492,
-      "lon": 18.916776657104492,
-      "elozo_szoveg": "Budakeszi, Tesco áruház",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-14T15:05:27.662279+02:00",
-      "kulcs": "STZ845",
-      "rendszam": "STZ845",
-      "vehicle_id": "7800",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.5076904296875,
-      "lon": 19.02448272705078,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
     {
       "idopont": "2026-09-14T15:05:27.662447+02:00",
       "kulcs": "STZ869",
@@ -260000,6 +259961,45 @@
       "lon": 19.042055130004883,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T01:22:18.552280+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.598472595214844,
+      "lon": 19.054288864135742,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-15T01:22:18.552374+02:00",
+      "kulcs": "T8103",
+      "rendszam": "T8103",
+      "vehicle_id": "7340",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50398254394531,
+      "lon": 19.07560920715332,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-15T01:22:18.552640+02:00",
+      "kulcs": "AADI575",
+      "rendszam": "AADI575",
+      "vehicle_id": "78",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50847625732422,
+      "lon": 19.09498405456543,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
     }
   ]
 }
