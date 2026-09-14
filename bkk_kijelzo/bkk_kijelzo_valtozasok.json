@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-14T03:25:07.695612+02:00",
+  "frissitve": "2026-09-14T03:25:44.488069+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:48:39.931948+02:00",
-      "kulcs": "AADI593",
-      "rendszam": "AADI593",
-      "vehicle_id": "89",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49778747558594,
-      "lon": 19.053787231445312,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-13T12:48:39.933693+02:00",
-      "kulcs": "416 040",
-      "rendszam": "416 040",
-      "vehicle_id": "955514160402",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S21",
-      "route_id": "S21",
-      "lat": 47.068931579589844,
-      "lon": 19.49835968017578,
-      "elozo_szoveg": "Lajosmizse",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-13T12:48:39.933802+02:00",
-      "kulcs": "AOIM046",
-      "rendszam": "AOIM046",
-      "vehicle_id": "967",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.547115325927734,
-      "lon": 19.141979217529297,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
-    {
-      "idopont": "2026-09-13T12:49:45.854831+02:00",
-      "kulcs": "AADR716",
-      "rendszam": "AADR716",
-      "vehicle_id": "184",
-      "vehicle_label": "Óbudai-sziget",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.512977600097656,
-      "lon": 19.048866271972656,
-      "elozo_szoveg": "Margitsziget ► Óbudai-sziget",
-      "uj_szoveg": "Óbudai-sziget"
-    },
     {
       "idopont": "2026-09-13T12:49:45.855295+02:00",
       "kulcs": "AAGL295",
@@ -259989,7 +259937,20 @@
       "uj_szoveg": "Budapest-Keleti"
     },
     {
-      "idopont": "2026-09-14T03:25:07.610115+02:00",
+      "idopont": "2026-09-14T03:25:44.393482+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.560455322265625,
+      "lon": 19.090375900268555,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-09-14T03:25:44.394178+02:00",
       "kulcs": "MXJ013",
       "rendszam": "MXJ013",
       "vehicle_id": "5889",
@@ -259997,9 +259958,48 @@
       "vonal_szam": "910",
       "route_id": "9100",
       "lat": 47.51065444946289,
-      "lon": 19.097246170043945,
+      "lon": 19.097227096557617,
       "elozo_szoveg": "Zugló vasútállomás",
       "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-14T03:25:44.394314+02:00",
+      "kulcs": "NGC023",
+      "rendszam": "NGC023",
+      "vehicle_id": "6322",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50809860229492,
+      "lon": 19.026609420776367,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-14T03:25:44.394486+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.4873161315918,
+      "lon": 19.023590087890625,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-14T03:25:44.394769+02:00",
+      "kulcs": "873-637-874-867-634-868",
+      "rendszam": "873-637-874-867-634-868",
+      "vehicle_id": "905516568730-905536466378-905516568748-905516568672-905536466345-905516568680",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.17449951171875,
+      "lon": 18.94186019897461,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Közvágóhíd"
     }
   ]
 }
