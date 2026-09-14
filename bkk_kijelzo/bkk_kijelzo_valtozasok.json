@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-15T00:43:28.747830+02:00",
+  "frissitve": "2026-09-15T00:44:01.764002+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:02:39.370337+02:00",
-      "kulcs": "PDN616",
-      "rendszam": "PDN616",
-      "vehicle_id": "7087",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.38914489746094,
-      "lon": 19.100191116333008,
-      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-14T15:02:39.370351+02:00",
-      "kulcs": "PDN617",
-      "rendszam": "PDN617",
-      "vehicle_id": "7088",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41566467285156,
-      "lon": 19.072996139526367,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-14T15:02:39.370398+02:00",
-      "kulcs": "PDN624",
-      "rendszam": "PDN624",
-      "vehicle_id": "7095",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.43075942993164,
-      "lon": 19.070674896240234,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Királyerdő út ► Hollandi út"
-    },
-    {
-      "idopont": "2026-09-14T15:02:39.370580+02:00",
-      "kulcs": "PHG635",
-      "rendszam": "PHG635",
-      "vehicle_id": "7159",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "162",
-      "route_id": "1620",
-      "lat": 47.45915985107422,
-      "lon": 19.332210540771484,
-      "elozo_szoveg": "Maglód, Auchan áruház",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-14T15:02:39.370647+02:00",
       "kulcs": "T0624",
@@ -260000,6 +259948,58 @@
       "lon": 19.135578155517578,
       "elozo_szoveg": "Kispest, Vas Gereben utca",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-15T00:44:01.678450+02:00",
+      "kulcs": "AAGL253",
+      "rendszam": "AAGL253",
+      "vehicle_id": "253",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.49713134765625,
+      "lon": 19.055599212646484,
+      "elozo_szoveg": "Pilisborosjenő",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-09-15T00:44:01.678490+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.43125915527344,
+      "lon": 18.92803192138672,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-15T00:44:01.678868+02:00",
+      "kulcs": "MUU903",
+      "rendszam": "MUU903",
+      "vehicle_id": "5956",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.43895721435547,
+      "lon": 19.167098999023438,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-15T00:44:01.679045+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54680252075195,
+      "lon": 19.14249038696289,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
