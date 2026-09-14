@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-15T00:55:28.326110+02:00",
+  "frissitve": "2026-09-15T00:56:05.251224+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:04:19.486396+02:00",
-      "kulcs": "AAGL310",
-      "rendszam": "AAGL310",
-      "vehicle_id": "340",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "240",
-      "route_id": "2400",
-      "lat": 47.455745697021484,
-      "lon": 18.940895080566406,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-14T15:04:19.486467+02:00",
-      "kulcs": "AAGL324",
-      "rendszam": "AAGL324",
-      "vehicle_id": "354",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "140",
-      "route_id": "1400",
-      "lat": 47.44055938720703,
-      "lon": 18.897165298461914,
-      "elozo_szoveg": "Törökbálint, Sportközpont",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-14T15:04:19.486566+02:00",
-      "kulcs": "LOV872",
-      "rendszam": "LOV872",
-      "vehicle_id": "3664",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46450424194336,
-      "lon": 19.126720428466797,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-14T15:04:19.486590+02:00",
-      "kulcs": "LOV881",
-      "rendszam": "LOV881",
-      "vehicle_id": "3673",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.43738555908203,
-      "lon": 19.170686721801758,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-14T15:04:19.486658+02:00",
       "kulcs": "AAHY811",
@@ -260000,6 +259948,58 @@
       "lon": 18.909011840820312,
       "elozo_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-15T00:56:05.167516+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48675537109375,
+      "lon": 19.057029724121094,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-15T00:56:05.167958+02:00",
+      "kulcs": "AADI573",
+      "rendszam": "AADI573",
+      "vehicle_id": "64",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5089111328125,
+      "lon": 19.095535278320312,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-15T00:56:05.168444+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51420974731445,
+      "lon": 19.10344886779785,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-15T00:56:05.168598+02:00",
+      "kulcs": "815 033",
+      "rendszam": "815 033",
+      "vehicle_id": "945518150335",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.526039123535156,
+      "lon": 19.09004020690918,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szob"
     }
   ]
 }
