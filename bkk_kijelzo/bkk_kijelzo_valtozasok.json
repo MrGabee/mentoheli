@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-15T01:55:19.553228+02:00",
+  "frissitve": "2026-09-15T01:55:50.688782+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:09:16.003680+02:00",
-      "kulcs": "MOS270",
-      "rendszam": "MOS270",
-      "vehicle_id": "5723",
-      "vehicle_label": "Szigetszentmiklós",
-      "vonal_szam": "238",
-      "route_id": "2380",
-      "lat": 47.38623046875,
-      "lon": 19.024303436279297,
-      "elozo_szoveg": "Auchan Sziget ► Szigetszentmiklós",
-      "uj_szoveg": "Szigetszentmiklós, kertváros"
-    },
-    {
-      "idopont": "2026-09-14T15:09:16.003713+02:00",
-      "kulcs": "V2275",
-      "rendszam": "V2275",
-      "vehicle_id": "573",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.543182373046875,
-      "lon": 18.96422004699707,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
-    {
-      "idopont": "2026-09-14T15:09:16.003892+02:00",
-      "kulcs": "V2104",
-      "rendszam": "V2104",
-      "vehicle_id": "5832",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46402359008789,
-      "lon": 19.023284912109375,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-14T15:09:16.004082+02:00",
-      "kulcs": "V2214",
-      "rendszam": "V2214",
-      "vehicle_id": "5854",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.443756103515625,
-      "lon": 19.096744537353516,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-09-14T15:09:16.004136+02:00",
       "kulcs": "V2220",
@@ -260000,6 +259948,58 @@
       "lon": 19.050636291503906,
       "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
       "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-15T01:55:50.607929+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.4678955078125,
+      "lon": 19.07579803466797,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-15T01:55:50.607960+02:00",
+      "kulcs": "MMM139",
+      "rendszam": "MMM139",
+      "vehicle_id": "5411",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50747299194336,
+      "lon": 19.02464485168457,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-15T01:55:50.608238+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50789260864258,
+      "lon": 19.026397705078125,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-15T01:55:50.608286+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50457000732422,
+      "lon": 19.02474594116211,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
     }
   ]
 }
