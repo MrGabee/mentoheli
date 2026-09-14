@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T02:52:16.596010+02:00",
+  "frissitve": "2026-09-14T02:52:50.172554+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:43:28.039966+02:00",
-      "kulcs": "SGY823",
-      "rendszam": "SGY823",
-      "vehicle_id": "7741",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45482635498047,
-      "lon": 19.181550979614258,
-      "elozo_szoveg": "Pestszentlőrinc vasútáll.",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-13T12:43:28.040122+02:00",
-      "kulcs": "AOFL198",
-      "rendszam": "AOFL198",
-      "vehicle_id": "782",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.48344039916992,
-      "lon": 19.043434143066406,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
-    {
-      "idopont": "2026-09-13T12:43:28.040552+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54541015625,
-      "lon": 18.963703155517578,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-13T12:43:28.040726+02:00",
       "kulcs": "AOFL234",
@@ -260000,6 +259961,45 @@
       "lon": 19.128440856933594,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-14T02:52:50.080534+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.549476623535156,
+      "lon": 19.043365478515625,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-14T02:52:50.080638+02:00",
+      "kulcs": "NGC150",
+      "rendszam": "NGC150",
+      "vehicle_id": "6197",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.509063720703125,
+      "lon": 19.095745086669922,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-09-14T02:52:50.082009+02:00",
+      "kulcs": "RVY612",
+      "rendszam": "RVY612",
+      "vehicle_id": "7441",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51932144165039,
+      "lon": 19.03820037841797,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
