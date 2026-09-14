@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T02:32:28.767804+02:00",
+  "frissitve": "2026-09-14T02:33:03.468192+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:40:15.563010+02:00",
-      "kulcs": "AOGL303",
-      "rendszam": "AOGL303",
-      "vehicle_id": "893",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "210B",
-      "route_id": "2102",
-      "lat": 47.49749755859375,
-      "lon": 18.963871002197266,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-09-13T12:40:15.563033+02:00",
-      "kulcs": "AOGL305",
-      "rendszam": "AOGL305",
-      "vehicle_id": "895",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.49100112915039,
-      "lon": 19.01382064819336,
-      "elozo_szoveg": "Apor Vilmos tér",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-09-13T12:40:15.563905+02:00",
-      "kulcs": "415 060",
-      "rendszam": "415 060",
-      "vehicle_id": "945514150602",
-      "vehicle_label": "Győr",
-      "vonal_szam": "S10",
-      "route_id": "S10",
-      "lat": 47.46345138549805,
-      "lon": 19.020349502563477,
-      "elozo_szoveg": "Székesfehérvár",
-      "uj_szoveg": "Győr"
-    },
     {
       "idopont": "2026-09-13T12:40:15.563924+02:00",
       "kulcs": "415 061",
@@ -260000,6 +259961,45 @@
       "lon": 19.05473518371582,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-14T02:33:03.379692+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.512481689453125,
+      "lon": 19.079465866088867,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-14T02:33:03.381365+02:00",
+      "kulcs": "MMM139",
+      "rendszam": "MMM139",
+      "vehicle_id": "5411",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.51444625854492,
+      "lon": 19.097461700439453,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-14T02:33:03.381485+02:00",
+      "kulcs": "NGC150",
+      "rendszam": "NGC150",
+      "vehicle_id": "6197",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50751876831055,
+      "lon": 19.025840759277344,
+      "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
