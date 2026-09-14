@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-15T01:43:03.484053+02:00",
+  "frissitve": "2026-09-15T01:43:34.462339+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:08:05.776958+02:00",
-      "kulcs": "NTP539",
-      "rendszam": "NTP539",
-      "vehicle_id": "6515",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.40546798706055,
-      "lon": 19.01413345336914,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-14T15:08:05.778181+02:00",
-      "kulcs": "PDN619",
-      "rendszam": "PDN619",
-      "vehicle_id": "7090",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.39909744262695,
-      "lon": 19.20560073852539,
-      "elozo_szoveg": "Pestszentimre",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-14T15:08:05.778213+02:00",
-      "kulcs": "PDN620",
-      "rendszam": "PDN620",
-      "vehicle_id": "7091",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46300506591797,
-      "lon": 19.14850616455078,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-09-14T15:08:05.778363+02:00",
-      "kulcs": "PDN632",
-      "rendszam": "PDN632",
-      "vehicle_id": "7103",
-      "vehicle_label": "Donát-hegy",
-      "vonal_szam": "213",
-      "route_id": "2130",
-      "lat": 47.47719192504883,
-      "lon": 19.047531127929688,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-14T15:08:05.778538+02:00",
       "kulcs": "PHG624",
@@ -260000,6 +259948,58 @@
       "lon": 19.120201110839844,
       "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
       "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-09-15T01:43:34.374104+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.4476432800293,
+      "lon": 19.03759765625,
+      "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-15T01:43:34.378490+02:00",
+      "kulcs": "NGC159",
+      "rendszam": "NGC159",
+      "vehicle_id": "6209",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54268264770508,
+      "lon": 18.964778900146484,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-15T01:43:34.378554+02:00",
+      "kulcs": "AADI573",
+      "rendszam": "AADI573",
+      "vehicle_id": "64",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56768798828125,
+      "lon": 19.12721824645996,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-15T01:43:34.378845+02:00",
+      "kulcs": "SKR726",
+      "rendszam": "SKR726",
+      "vehicle_id": "7675",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.5113639831543,
+      "lon": 19.056406021118164,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
     }
   ]
 }
