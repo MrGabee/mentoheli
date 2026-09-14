@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T01:01:47.972401+02:00",
+  "frissitve": "2026-09-15T01:02:18.667798+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:04:19.494248+02:00",
-      "kulcs": "PDZ834",
-      "rendszam": "PDZ834",
-      "vehicle_id": "7297",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.501182556152344,
-      "lon": 19.13626480102539,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-14T15:04:19.494339+02:00",
-      "kulcs": "RCT311",
-      "rendszam": "RCT311",
-      "vehicle_id": "7325",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85E",
-      "route_id": "0855",
-      "lat": 47.50171661376953,
-      "lon": 19.13561248779297,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-14T15:04:19.494437+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.536468505859375,
-      "lon": 19.107280731201172,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-09-14T15:04:19.494556+02:00",
       "kulcs": "T9107",
@@ -260000,6 +259961,45 @@
       "lon": 19.095382690429688,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T01:02:18.607690+02:00",
+      "kulcs": "V2031",
+      "rendszam": "V2031",
+      "vehicle_id": "2031",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47764587402344,
+      "lon": 19.048479080200195,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-15T01:02:18.610353+02:00",
+      "kulcs": "NBW008",
+      "rendszam": "NBW008",
+      "vehicle_id": "5978",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519290924072266,
+      "lon": 19.03821563720703,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T01:02:18.610899+02:00",
+      "kulcs": "415 106",
+      "rendszam": "415 106",
+      "vehicle_id": "945514151063",
+      "vehicle_label": "Hatvan",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.492088317871094,
+      "lon": 19.133249282836914,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Hatvan"
     }
   ]
 }
