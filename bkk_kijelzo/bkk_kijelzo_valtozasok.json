@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-14T03:13:15.399638+02:00",
+  "frissitve": "2026-09-14T03:13:52.833082+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:46:44.134560+02:00",
-      "kulcs": "T8106",
-      "rendszam": "T8106",
-      "vehicle_id": "7343",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.499603271484375,
-      "lon": 19.080646514892578,
-      "elozo_szoveg": "Keleti pályaudvar M ► Kápolna tér",
-      "uj_szoveg": "Kápolna tér"
-    },
-    {
-      "idopont": "2026-09-13T12:46:44.134599+02:00",
-      "kulcs": "T9101",
-      "rendszam": "T9101",
-      "vehicle_id": "7348",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51662063598633,
-      "lon": 19.09259605407715,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-09-13T12:46:44.134655+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.4651985168457,
-      "lon": 19.12738800048828,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-09-13T12:46:44.134804+02:00",
-      "kulcs": "RVY603",
-      "rendszam": "RVY603",
-      "vehicle_id": "7432",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.416908264160156,
-      "lon": 19.130512237548828,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-13T12:46:44.135168+02:00",
-      "kulcs": "SKR808",
-      "rendszam": "SKR808",
-      "vehicle_id": "7694",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.499881744384766,
-      "lon": 19.104869842529297,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
     {
       "idopont": "2026-09-13T12:46:44.135407+02:00",
       "kulcs": "STZ846",
@@ -260000,6 +259935,71 @@
       "lon": 19.04200553894043,
       "elozo_szoveg": "Óbudai autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-14T03:13:52.772740+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46585464477539,
+      "lon": 19.153099060058594,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T03:13:52.773516+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.462554931640625,
+      "lon": 19.005525588989258,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-14T03:13:52.773766+02:00",
+      "kulcs": "NGC151",
+      "rendszam": "NGC151",
+      "vehicle_id": "6193",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56767272949219,
+      "lon": 19.12717056274414,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-14T03:13:52.773811+02:00",
+      "kulcs": "NGC164",
+      "rendszam": "NGC164",
+      "vehicle_id": "6213",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54268264770508,
+      "lon": 18.964757919311523,
+      "elozo_szoveg": "Máriaremete",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-14T03:13:52.773884+02:00",
+      "kulcs": "NWB359",
+      "rendszam": "NWB359",
+      "vehicle_id": "6539",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.478118896484375,
+      "lon": 19.045209884643555,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
     }
   ]
 }
