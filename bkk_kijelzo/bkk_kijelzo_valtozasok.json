@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T04:04:29.615322+02:00",
+  "frissitve": "2026-09-14T04:05:04.116315+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:56:23.553515+02:00",
-      "kulcs": "PDB388",
-      "rendszam": "PDB388",
-      "vehicle_id": "7070",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.520851135253906,
-      "lon": 19.227128982543945,
-      "elozo_szoveg": "Cinkota, Lassú utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-13T12:56:23.553703+02:00",
-      "kulcs": "PDN634",
-      "rendszam": "PDN634",
-      "vehicle_id": "7105",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.38842010498047,
-      "lon": 19.027875900268555,
-      "elozo_szoveg": "Auchan Sziget ► Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-13T12:56:23.553878+02:00",
-      "kulcs": "PHG651",
-      "rendszam": "PHG651",
-      "vehicle_id": "7175",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.5196647644043,
-      "lon": 19.148256301879883,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
     {
       "idopont": "2026-09-13T12:56:23.553930+02:00",
       "kulcs": "PKN607",
@@ -260000,6 +259961,45 @@
       "lon": 19.127933502197266,
       "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-14T04:05:04.051689+02:00",
+      "kulcs": "V4041",
+      "rendszam": "V4041",
+      "vehicle_id": "4730",
+      "vehicle_label": "Lehel tér M",
+      "vonal_szam": "14",
+      "route_id": "3140",
+      "lat": 47.59177017211914,
+      "lon": 19.119855880737305,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Lehel tér M"
+    },
+    {
+      "idopont": "2026-09-14T04:05:04.052423+02:00",
+      "kulcs": "RVY734",
+      "rendszam": "RVY734",
+      "vehicle_id": "7632",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.38840103149414,
+      "lon": 19.21640968322754,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Vecsési út ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-14T04:05:04.052805+02:00",
+      "kulcs": "815 018",
+      "rendszam": "815 018",
+      "vehicle_id": "945518150186",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.81644058227539,
+      "lon": 18.87299919128418,
+      "elozo_szoveg": "Szob",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
