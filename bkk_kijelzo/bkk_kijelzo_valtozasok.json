@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T01:50:09.710326+02:00",
+  "frissitve": "2026-09-15T01:50:43.677804+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:09:15.997731+02:00",
-      "kulcs": "AONW957",
-      "rendszam": "AONW957",
-      "vehicle_id": "1024",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52428436279297,
-      "lon": 19.117834091186523,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
-    {
-      "idopont": "2026-09-14T15:09:15.998568+02:00",
-      "kulcs": "V2015",
-      "rendszam": "V2015",
-      "vehicle_id": "2015",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.50732421875,
-      "lon": 19.024721145629883,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-14T15:09:15.998671+02:00",
-      "kulcs": "V2030",
-      "rendszam": "V2030",
-      "vehicle_id": "2030",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.47744369506836,
-      "lon": 19.04853630065918,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-14T15:09:15.998743+02:00",
       "kulcs": "V2039",
@@ -260000,6 +259961,45 @@
       "lon": 18.964662551879883,
       "elozo_szoveg": "Hűvösvölgy",
       "uj_szoveg": "Astoria M ► Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-09-15T01:50:43.587993+02:00",
+      "kulcs": "FKU939",
+      "rendszam": "FKU939",
+      "vehicle_id": "3095",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40426254272461,
+      "lon": 19.186567306518555,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vá."
+    },
+    {
+      "idopont": "2026-09-15T01:50:43.591018+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59822082519531,
+      "lon": 19.1182861328125,
+      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-15T01:50:43.591710+02:00",
+      "kulcs": "SGY805",
+      "rendszam": "SGY805",
+      "vehicle_id": "7723",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.4111213684082,
+      "lon": 19.06102752685547,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
