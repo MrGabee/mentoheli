@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-14T03:14:25.643229+02:00",
+  "frissitve": "2026-09-14T03:14:56.442682+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-13T12:46:44.135407+02:00",
-      "kulcs": "STZ846",
-      "rendszam": "STZ846",
-      "vehicle_id": "7801",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.45577621459961,
-      "lon": 18.941179275512695,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-13T12:46:44.135503+02:00",
-      "kulcs": "T9122",
-      "rendszam": "T9122",
-      "vehicle_id": "7861",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.501426696777344,
-      "lon": 19.107677459716797,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-13T12:46:44.137176+02:00",
-      "kulcs": "AOFL216",
-      "rendszam": "AOFL216",
-      "vehicle_id": "803",
-      "vehicle_label": "Kissvábhegy",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50592803955078,
-      "lon": 19.039016723632812,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Kissvábhegy"
-    },
     {
       "idopont": "2026-09-13T12:46:44.137258+02:00",
       "kulcs": "AOFL224",
@@ -260000,6 +259961,45 @@
       "lon": 19.045209884643555,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-14T03:14:56.359552+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47975540161133,
+      "lon": 19.2554931640625,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-14T03:14:56.360712+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51597595214844,
+      "lon": 19.030696868896484,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-14T03:14:56.360824+02:00",
+      "kulcs": "NNE053",
+      "rendszam": "NNE053",
+      "vehicle_id": "6449",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46209716796875,
+      "lon": 19.134063720703125,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
