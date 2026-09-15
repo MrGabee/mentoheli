@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-15T03:04:03.475948+02:00",
+  "frissitve": "2026-09-15T03:04:38.710210+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:16:10.920749+02:00",
-      "kulcs": "T9124",
-      "rendszam": "T9124",
-      "vehicle_id": "7863",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50400161743164,
-      "lon": 19.136924743652344,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.921093+02:00",
-      "kulcs": "AOFL213",
-      "rendszam": "AOFL213",
-      "vehicle_id": "800",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "65A",
-      "route_id": "0651",
-      "lat": 47.54035186767578,
-      "lon": 19.006223678588867,
-      "elozo_szoveg": "Fenyőgyöngye",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.921133+02:00",
-      "kulcs": "AOFL218",
-      "rendszam": "AOFL218",
-      "vehicle_id": "805",
-      "vehicle_label": "Kurucles",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.50774383544922,
-      "lon": 19.0230770111084,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Kurucles"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.921171+02:00",
-      "kulcs": "AOFL222",
-      "rendszam": "AOFL222",
-      "vehicle_id": "809",
-      "vehicle_label": "Szépvölgyi dűlő",
-      "vonal_szam": "65",
-      "route_id": "0650",
-      "lat": 47.52779769897461,
-      "lon": 19.03713607788086,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Szépvölgyi dűlő"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.921509+02:00",
-      "kulcs": "AOIB794",
-      "rendszam": "AOIB794",
-      "vehicle_id": "865",
-      "vehicle_label": "Infopark - BudaPart",
-      "vonal_szam": "154",
-      "route_id": "1540",
-      "lat": 47.47336196899414,
-      "lon": 18.99258041381836,
-      "elozo_szoveg": "Gazdagréti tér",
-      "uj_szoveg": "Infopark ► BudaPart"
-    },
     {
       "idopont": "2026-09-14T15:16:10.921806+02:00",
       "kulcs": "1133-767-1134-1143-772-1144",
@@ -260000,6 +259935,71 @@
       "lon": 19.055620193481445,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T03:04:38.643077+02:00",
+      "kulcs": "AADI648",
+      "rendszam": "AADI648",
+      "vehicle_id": "147",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46464157104492,
+      "lon": 19.022951126098633,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T03:04:38.645182+02:00",
+      "kulcs": "MXJ012",
+      "rendszam": "MXJ012",
+      "vehicle_id": "5888",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.405452728271484,
+      "lon": 19.014074325561523,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-15T03:04:38.645245+02:00",
+      "kulcs": "NBW006",
+      "rendszam": "NBW006",
+      "vehicle_id": "5976",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52354049682617,
+      "lon": 18.99294090270996,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-15T03:04:38.645375+02:00",
+      "kulcs": "NWB351",
+      "rendszam": "NWB351",
+      "vehicle_id": "6531",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.516475677490234,
+      "lon": 19.077547073364258,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-15T03:04:38.645601+02:00",
+      "kulcs": "SGY989",
+      "rendszam": "SGY989",
+      "vehicle_id": "7669",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51164627075195,
+      "lon": 19.1253719329834,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
     }
   ]
 }
