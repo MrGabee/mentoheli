@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T02:44:39.460013+02:00",
+  "frissitve": "2026-09-15T02:45:08.268437+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:13:03.456288+02:00",
-      "kulcs": "AOFL232",
-      "rendszam": "AOFL232",
-      "vehicle_id": "820",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.50813293457031,
-      "lon": 18.9899959564209,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-14T15:13:03.456397+02:00",
-      "kulcs": "AOFL243",
-      "rendszam": "AOFL243",
-      "vehicle_id": "831",
-      "vehicle_label": "Újhegyi lakótelep",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.48365020751953,
-      "lon": 19.127586364746094,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-14T15:13:03.457300+02:00",
-      "kulcs": "AOGL317",
-      "rendszam": "AOGL317",
-      "vehicle_id": "908",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.4166259765625,
-      "lon": 19.00150489807129,
-      "elozo_szoveg": "Baross Gábor-telep, Ispiláng utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-14T15:13:03.458815+02:00",
       "kulcs": "AOIM055",
@@ -260000,6 +259961,45 @@
       "lon": 19.136293411254883,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-09-15T02:45:08.203150+02:00",
+      "kulcs": "NGC159",
+      "rendszam": "NGC159",
+      "vehicle_id": "6209",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56743621826172,
+      "lon": 19.124919891357422,
+      "elozo_szoveg": "Rákospalota",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-15T02:45:08.203339+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54267501831055,
+      "lon": 18.96434211730957,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-15T02:45:08.203704+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38859176635742,
+      "lon": 18.957889556884766,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
