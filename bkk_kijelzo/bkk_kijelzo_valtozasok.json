@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T01:19:23.817002+02:00",
+  "frissitve": "2026-09-16T01:19:56.487489+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:08:26.473144+02:00",
-      "kulcs": "V1419",
-      "rendszam": "V1419",
-      "vehicle_id": "4489",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.46775817871094,
-      "lon": 19.075803756713867,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-15T15:08:26.473448+02:00",
-      "kulcs": "V1557",
-      "rendszam": "V1557",
-      "vehicle_id": "4609",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.47469711303711,
-      "lon": 19.178281784057617,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Új köztemető (Kozma u.)"
-    },
-    {
-      "idopont": "2026-09-15T15:08:26.473612+02:00",
-      "kulcs": "AAMH624",
-      "rendszam": "AAMH624",
-      "vehicle_id": "467",
-      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.49983596801758,
-      "lon": 19.0838680267334,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
-    },
     {
       "idopont": "2026-09-15T15:08:26.473728+02:00",
       "kulcs": "V4038",
@@ -260000,6 +259961,45 @@
       "lon": 19.05152130126953,
       "elozo_szoveg": "Budatétény",
       "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-16T01:19:56.419127+02:00",
+      "kulcs": "MUT896",
+      "rendszam": "MUT896",
+      "vehicle_id": "5949",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.48183822631836,
+      "lon": 19.143695831298828,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Káposztásmegyer",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-16T01:19:56.419325+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.41167068481445,
+      "lon": 18.99313735961914,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-16T01:19:56.419407+02:00",
+      "kulcs": "PKN614",
+      "rendszam": "PKN614",
+      "vehicle_id": "7203",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.50126647949219,
+      "lon": 19.107784271240234,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
     }
   ]
 }
