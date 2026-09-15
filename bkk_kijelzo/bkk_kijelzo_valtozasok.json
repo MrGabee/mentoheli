@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T02:31:11.000870+02:00",
+  "frissitve": "2026-09-15T02:31:43.146492+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:11:50.987004+02:00",
-      "kulcs": "928600015046",
-      "rendszam": "928600015046",
-      "vehicle_id": "915504800201",
-      "vehicle_label": "Tapolca",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.956180572509766,
-      "lon": 17.88319969177246,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Tapolca"
-    },
-    {
-      "idopont": "2026-09-14T15:11:50.987145+02:00",
-      "kulcs": "918071936713",
-      "rendszam": "918071936713",
-      "vehicle_id": "918071936713",
-      "vehicle_label": "Zalaegerszeg",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.463470458984375,
-      "lon": 19.020849227905273,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Zalaegerszeg"
-    },
-    {
-      "idopont": "2026-09-14T15:11:50.987212+02:00",
-      "kulcs": "AOIM005",
-      "rendszam": "AOIM005",
-      "vehicle_id": "923",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45452880859375,
-      "lon": 19.182188034057617,
-      "elozo_szoveg": "Pestszentlőrinc vasútáll.",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
     {
       "idopont": "2026-09-14T15:11:50.987554+02:00",
       "kulcs": "415 077",
@@ -260000,6 +259961,45 @@
       "lon": 19.121999740600586,
       "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
       "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-15T02:31:43.056878+02:00",
+      "kulcs": "AADI648",
+      "rendszam": "AADI648",
+      "vehicle_id": "147",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.479549407958984,
+      "lon": 19.05107307434082,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-15T02:31:43.059221+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.489097595214844,
+      "lon": 19.06294822692871,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-09-15T02:31:43.059664+02:00",
+      "kulcs": "SKR819",
+      "rendszam": "SKR819",
+      "vehicle_id": "7705",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52781677246094,
+      "lon": 19.036909103393555,
+      "elozo_szoveg": "Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
     }
   ]
 }
