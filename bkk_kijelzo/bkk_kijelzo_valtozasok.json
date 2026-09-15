@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-15T03:49:33.269864+02:00",
+  "frissitve": "2026-09-15T03:50:11.220624+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:20:30.130066+02:00",
-      "kulcs": "T9133",
-      "rendszam": "T9133",
-      "vehicle_id": "7872",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51726531982422,
-      "lon": 19.10740089416504,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-14T15:20:30.130089+02:00",
-      "kulcs": "T9138",
-      "rendszam": "T9138",
-      "vehicle_id": "7877",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48942565917969,
-      "lon": 19.09020233154297,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-14T15:20:30.130215+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517822265625,
-      "lon": 19.07773208618164,
-      "elozo_szoveg": "Hősök tere M ► Dózsa György út M",
-      "uj_szoveg": "Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-14T15:20:30.130246+02:00",
-      "kulcs": "T8120",
-      "rendszam": "T8120",
-      "vehicle_id": "7899",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.4957275390625,
-      "lon": 19.060197830200195,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
     {
       "idopont": "2026-09-14T15:20:30.130321+02:00",
       "kulcs": "AOFL214",
@@ -260000,6 +259948,58 @@
       "lon": 19.099637985229492,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-15T03:50:11.130733+02:00",
+      "kulcs": "FLR701",
+      "rendszam": "FLR701",
+      "vehicle_id": "3115",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48188018798828,
+      "lon": 19.143733978271484,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-15T03:50:11.132100+02:00",
+      "kulcs": "NTP539",
+      "rendszam": "NTP539",
+      "vehicle_id": "6515",
+      "vehicle_label": "Városház tér",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51995086669922,
+      "lon": 19.14875602722168,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Városház tér"
+    },
+    {
+      "idopont": "2026-09-15T03:50:11.132170+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57958221435547,
+      "lon": 19.109567642211914,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-15T03:50:11.132512+02:00",
+      "kulcs": "SGY805",
+      "rendszam": "SGY805",
+      "vehicle_id": "7723",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41053771972656,
+      "lon": 19.060577392578125,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
