@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-16T01:42:13.090705+02:00",
+  "frissitve": "2026-09-16T01:42:42.594811+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:09:35.961315+02:00",
-      "kulcs": "AOFL192",
-      "rendszam": "AOFL192",
-      "vehicle_id": "776",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.46446228027344,
-      "lon": 19.018821716308594,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-15T15:09:35.961525+02:00",
-      "kulcs": "STZ843",
-      "rendszam": "STZ843",
-      "vehicle_id": "7798",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50026321411133,
-      "lon": 18.916784286499023,
-      "elozo_szoveg": "Budakeszi, Tesco áruház",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-15T15:09:35.961577+02:00",
-      "kulcs": "AOFL196",
-      "rendszam": "AOFL196",
-      "vehicle_id": "780",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.48780822753906,
-      "lon": 19.037202835083008,
-      "elozo_szoveg": "Sánc utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-15T15:09:35.962015+02:00",
-      "kulcs": "AOFL200",
-      "rendszam": "AOFL200",
-      "vehicle_id": "784",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.48878860473633,
-      "lon": 19.060977935791016,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Astoria M ► Gyöngyösi utca M"
-    },
     {
       "idopont": "2026-09-15T15:09:35.962258+02:00",
       "kulcs": "T9124",
@@ -260000,6 +259948,58 @@
       "lon": 19.13558578491211,
       "elozo_szoveg": "Örs vezér tere M H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-16T01:42:42.501033+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.477657318115234,
+      "lon": 19.04861831665039,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-16T01:42:42.503779+02:00",
+      "kulcs": "MXJ016",
+      "rendszam": "MXJ016",
+      "vehicle_id": "5892",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.52002716064453,
+      "lon": 19.148134231567383,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-16T01:42:42.503816+02:00",
+      "kulcs": "NBW011",
+      "rendszam": "NBW011",
+      "vehicle_id": "5981",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50136184692383,
+      "lon": 19.120203018188477,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-09-16T01:42:42.503995+02:00",
+      "kulcs": "PDB707",
+      "rendszam": "PDB707",
+      "vehicle_id": "7033",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483917236328125,
+      "lon": 19.127511978149414,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
     }
   ]
 }
