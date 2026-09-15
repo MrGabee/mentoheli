@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-15T03:36:12.301842+02:00",
+  "frissitve": "2026-09-15T03:36:50.416204+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:18:59.583744+02:00",
-      "kulcs": "RCT313",
-      "rendszam": "RCT313",
-      "vehicle_id": "7327",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.46491241455078,
-      "lon": 19.12598419189453,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-14T15:18:59.584000+02:00",
-      "kulcs": "T9102",
-      "rendszam": "T9102",
-      "vehicle_id": "7349",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49403762817383,
-      "lon": 19.060325622558594,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-14T15:18:59.584386+02:00",
-      "kulcs": "V2253",
-      "rendszam": "V2253",
-      "vehicle_id": "7385",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.489009857177734,
-      "lon": 19.048412322998047,
-      "elozo_szoveg": "Krisztina körút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-14T15:18:59.584865+02:00",
-      "kulcs": "RVY706",
-      "rendszam": "RVY706",
-      "vehicle_id": "7455",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.464542388916016,
-      "lon": 19.12674331665039,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-09-14T15:18:59.585715+02:00",
       "kulcs": "SGY984",
@@ -260000,6 +259948,58 @@
       "lon": 19.097190856933594,
       "elozo_szoveg": "Corvin-negyed M",
       "uj_szoveg": "Kálvin tér M"
+    },
+    {
+      "idopont": "2026-09-15T03:36:50.349590+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.431243896484375,
+      "lon": 18.928037643432617,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-15T03:36:50.349652+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.598609924316406,
+      "lon": 19.120277404785156,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-15T03:36:50.349892+02:00",
+      "kulcs": "NWB351",
+      "rendszam": "NWB351",
+      "vehicle_id": "6531",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49781799316406,
+      "lon": 19.019420623779297,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-15T03:36:50.350269+02:00",
+      "kulcs": "415 092",
+      "rendszam": "415 092",
+      "vehicle_id": "945514150925",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.43225860595703,
+      "lon": 19.679899215698242,
+      "elozo_szoveg": "Nagykáta",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
