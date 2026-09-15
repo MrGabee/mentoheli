@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T00:54:43.881183+02:00",
+  "frissitve": "2026-09-16T00:55:16.818043+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:05:39.710435+02:00",
-      "kulcs": "RVY748",
-      "rendszam": "RVY748",
-      "vehicle_id": "7646",
-      "vehicle_label": "Vecsési út-Boráros tér H",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.38861846923828,
-      "lon": 19.216747283935547,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-15T15:05:39.710478+02:00",
-      "kulcs": "SCD590",
-      "rendszam": "SCD590",
-      "vehicle_id": "7651",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "236A",
-      "route_id": "2361",
-      "lat": 47.43101501464844,
-      "lon": 19.21937370300293,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Havanna-lakótelep",
-      "uj_szoveg": "Havanna-lakótelep"
-    },
-    {
-      "idopont": "2026-09-15T15:05:39.710986+02:00",
-      "kulcs": "SKR831",
-      "rendszam": "SKR831",
-      "vehicle_id": "7717",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "93A",
-      "route_id": "0931",
-      "lat": 47.4521598815918,
-      "lon": 19.19536590576172,
-      "elozo_szoveg": "Pestszentlőrinc, Fedezék utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-15T15:05:39.711018+02:00",
       "kulcs": "SGY802",
@@ -260000,6 +259961,45 @@
       "lon": 19.13315773010254,
       "elozo_szoveg": "Astoria M ► Káposztásmegyer",
       "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-16T00:55:16.731648+02:00",
+      "kulcs": "AAGL291",
+      "rendszam": "AAGL291",
+      "vehicle_id": "324",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.43589401245117,
+      "lon": 18.978755950927734,
+      "elozo_szoveg": "Kamaraerdő",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-16T00:55:16.731934+02:00",
+      "kulcs": "NBW012",
+      "rendszam": "NBW012",
+      "vehicle_id": "5982",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47810363769531,
+      "lon": 19.045257568359375,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-16T00:55:16.732122+02:00",
+      "kulcs": "PDB386",
+      "rendszam": "PDB386",
+      "vehicle_id": "7068",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50391387939453,
+      "lon": 19.141746520996094,
+      "elozo_szoveg": "Astoria M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
     }
   ]
 }
