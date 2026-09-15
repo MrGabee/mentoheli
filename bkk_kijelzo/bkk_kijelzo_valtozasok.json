@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T00:40:24.871493+02:00",
+  "frissitve": "2026-09-16T00:41:03.346937+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:04:06.289925+02:00",
-      "kulcs": "918071938941",
-      "rendszam": "918071938941",
-      "vehicle_id": "918071938941",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.69403076171875,
-      "lon": 17.290390014648438,
-      "elozo_szoveg": "Keszthely",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-15T15:04:06.289981+02:00",
-      "kulcs": "AOIM005",
-      "rendszam": "AOIM005",
-      "vehicle_id": "923",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.454532623291016,
-      "lon": 19.182178497314453,
-      "elozo_szoveg": "Pestszentlőrinc vasútáll.",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-09-15T15:04:06.290379+02:00",
-      "kulcs": "415 069",
-      "rendszam": "415 069",
-      "vehicle_id": "945514150693",
-      "vehicle_label": "Sülysáp",
-      "vonal_szam": "S60",
-      "route_id": "S60",
-      "lat": 47.49293899536133,
-      "lon": 19.15144920349121,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Sülysáp"
-    },
     {
       "idopont": "2026-09-15T15:04:06.290882+02:00",
       "kulcs": "AOIM056",
@@ -260000,6 +259961,45 @@
       "lon": 19.07908821105957,
       "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-16T00:41:03.281981+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54153823852539,
+      "lon": 19.151412963867188,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-16T00:41:03.282319+02:00",
+      "kulcs": "T8107",
+      "rendszam": "T8107",
+      "vehicle_id": "7344",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.501407623291016,
+      "lon": 19.115070343017578,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-16T00:41:03.282445+02:00",
+      "kulcs": "SKR735",
+      "rendszam": "SKR735",
+      "vehicle_id": "7684",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.432735443115234,
+      "lon": 19.261594772338867,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
