@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-15T03:01:24.506312+02:00",
+  "frissitve": "2026-09-15T03:01:57.858127+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:16:10.918766+02:00",
-      "kulcs": "T8109",
-      "rendszam": "T8109",
-      "vehicle_id": "7346",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.50115203857422,
-      "lon": 19.08307456970215,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.918883+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.499839782714844,
-      "lon": 19.08329963684082,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.918959+02:00",
-      "kulcs": "V2241",
-      "rendszam": "V2241",
-      "vehicle_id": "7373",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.429107666015625,
-      "lon": 19.0379638671875,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.919031+02:00",
-      "kulcs": "V2249",
-      "rendszam": "V2249",
-      "vehicle_id": "7381",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54356002807617,
-      "lon": 19.02997589111328,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-14T15:16:10.919506+02:00",
-      "kulcs": "AOGF679",
-      "rendszam": "AOGF679",
-      "vehicle_id": "762",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.416202545166016,
-      "lon": 19.093198776245117,
-      "elozo_szoveg": "Csepel, Határ utca",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-14T15:16:10.919535+02:00",
       "kulcs": "RVY724",
@@ -260000,6 +259935,71 @@
       "lon": 19.095415115356445,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T03:01:57.767413+02:00",
+      "kulcs": "LYH110",
+      "rendszam": "LYH110",
+      "vehicle_id": "3699",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.520355224609375,
+      "lon": 19.03799819946289,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T03:01:57.767935+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507469177246094,
+      "lon": 19.025007247924805,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-15T03:01:57.768037+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51449966430664,
+      "lon": 19.0974178314209,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-15T03:01:57.768054+02:00",
+      "kulcs": "RWA600",
+      "rendszam": "RWA600",
+      "vehicle_id": "7572",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52777862548828,
+      "lon": 19.036890029907227,
+      "elozo_szoveg": "Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-15T03:01:57.768123+02:00",
+      "kulcs": "SKR819",
+      "rendszam": "SKR819",
+      "vehicle_id": "7705",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.488319396972656,
+      "lon": 19.064659118652344,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
     }
   ]
 }
