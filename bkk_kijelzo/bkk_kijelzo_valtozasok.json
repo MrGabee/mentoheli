@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T00:33:16.253544+02:00",
+  "frissitve": "2026-09-16T00:33:46.087380+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:04:06.283737+02:00",
-      "kulcs": "NNE052",
-      "rendszam": "NNE052",
-      "vehicle_id": "6448",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.523536682128906,
-      "lon": 18.994356155395508,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-15T15:04:06.284210+02:00",
-      "kulcs": "NWB365",
-      "rendszam": "NWB365",
-      "vehicle_id": "6545",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.48040771484375,
-      "lon": 19.232742309570312,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-15T15:04:06.284245+02:00",
-      "kulcs": "AADI569",
-      "rendszam": "AADI569",
-      "vehicle_id": "67",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.54494857788086,
-      "lon": 19.034408569335938,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
     {
       "idopont": "2026-09-15T15:04:06.284268+02:00",
       "kulcs": "AILJ861",
@@ -260000,6 +259961,45 @@
       "lon": 19.095378875732422,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T00:33:45.989309+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.56804656982422,
+      "lon": 19.0262393951416,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-16T00:33:45.991585+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51018142700195,
+      "lon": 19.127840042114258,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-16T00:33:45.992412+02:00",
+      "kulcs": "415 017",
+      "rendszam": "415 017",
+      "vehicle_id": "945514150172",
+      "vehicle_label": "Komárom",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.463539123535156,
+      "lon": 19.020410537719727,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Komárom"
     }
   ]
 }
