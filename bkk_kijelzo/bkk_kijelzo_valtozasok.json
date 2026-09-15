@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T01:04:26.655689+02:00",
+  "frissitve": "2026-09-16T01:05:00.152790+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:06:57.602593+02:00",
-      "kulcs": "NGC160",
-      "rendszam": "NGC160",
-      "vehicle_id": "6210",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.566993713378906,
-      "lon": 18.95467758178711,
-      "elozo_szoveg": "Pesthidegkút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-15T15:06:57.602610+02:00",
-      "kulcs": "NGC164",
-      "rendszam": "NGC164",
-      "vehicle_id": "6213",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54323959350586,
-      "lon": 18.964000701904297,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Pesthidegkút"
-    },
-    {
-      "idopont": "2026-09-15T15:06:57.602656+02:00",
-      "kulcs": "V2201",
-      "rendszam": "V2201",
-      "vehicle_id": "6218",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42948532104492,
-      "lon": 19.217443466186523,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-15T15:06:57.602752+02:00",
       "kulcs": "NCV288",
@@ -260000,6 +259961,45 @@
       "lon": 19.127988815307617,
       "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-16T01:05:00.066436+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46287536621094,
+      "lon": 19.132186889648438,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-16T01:05:00.066697+02:00",
+      "kulcs": "NBW010",
+      "rendszam": "NBW010",
+      "vehicle_id": "5980",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48957824707031,
+      "lon": 19.0762882232666,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-16T01:05:00.067382+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.51240539550781,
+      "lon": 19.057235717773438,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
     }
   ]
 }
