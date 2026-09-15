@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T00:55:43.399047+02:00",
+  "frissitve": "2026-09-16T00:56:12.817140+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:05:39.711302+02:00",
-      "kulcs": "SRN170",
-      "rendszam": "SRN170",
-      "vehicle_id": "7764",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.42633819580078,
-      "lon": 19.039987564086914,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-15T15:05:39.712053+02:00",
-      "kulcs": "T9142",
-      "rendszam": "T9142",
-      "vehicle_id": "7881",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.5216178894043,
-      "lon": 19.100425720214844,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-15T15:05:39.712182+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.509761810302734,
-      "lon": 19.057018280029297,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
     {
       "idopont": "2026-09-15T15:05:39.712235+02:00",
       "kulcs": "AOFL208",
@@ -260000,6 +259961,45 @@
       "lon": 19.1016902923584,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-16T00:56:12.730611+02:00",
+      "kulcs": "AADI568",
+      "rendszam": "AADI568",
+      "vehicle_id": "53",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50012969970703,
+      "lon": 19.024152755737305,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-16T00:56:12.731083+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50934982299805,
+      "lon": 19.09611701965332,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-16T00:56:12.731487+02:00",
+      "kulcs": "815 004",
+      "rendszam": "815 004",
+      "vehicle_id": "945518150046",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.52606964111328,
+      "lon": 19.09008026123047,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szob"
     }
   ]
 }
