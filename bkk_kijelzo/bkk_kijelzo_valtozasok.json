@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-15T02:40:42.096184+02:00",
+  "frissitve": "2026-09-15T02:41:25.344391+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:13:03.452980+02:00",
-      "kulcs": "V1622",
-      "rendszam": "V1622",
-      "vehicle_id": "7291",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51",
-      "route_id": "3510",
-      "lat": 47.44229507446289,
-      "lon": 19.101978302001953,
-      "elozo_szoveg": "Erzsébetfalva",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
-    {
-      "idopont": "2026-09-14T15:13:03.453227+02:00",
-      "kulcs": "T8107",
-      "rendszam": "T8107",
-      "vehicle_id": "7344",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.501121520996094,
-      "lon": 19.083084106445312,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-14T15:13:03.453409+02:00",
-      "kulcs": "V2238",
-      "rendszam": "V2238",
-      "vehicle_id": "7370",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.47983169555664,
-      "lon": 19.071590423583984,
-      "elozo_szoveg": "Mester utca / Ferenc körút",
-      "uj_szoveg": "Koppány utca"
-    },
-    {
-      "idopont": "2026-09-14T15:13:03.453497+02:00",
-      "kulcs": "AOGF656",
-      "rendszam": "AOGF656",
-      "vehicle_id": "738",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "66E",
-      "route_id": "0665",
-      "lat": 47.37837600708008,
-      "lon": 19.120973587036133,
-      "elozo_szoveg": "Soroksár, BILK",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-14T15:13:03.453621+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "275",
-      "route_id": "2750",
-      "lat": 47.50092315673828,
-      "lon": 19.257997512817383,
-      "elozo_szoveg": "Piski utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-09-14T15:13:03.453872+02:00",
       "kulcs": "RVY711",
@@ -260000,6 +259935,71 @@
       "lon": 19.072946548461914,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-15T02:41:25.249215+02:00",
+      "kulcs": "AAGL291",
+      "rendszam": "AAGL291",
+      "vehicle_id": "324",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.497833251953125,
+      "lon": 19.054882049560547,
+      "elozo_szoveg": "Móricz Zs. körtér M",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-09-15T02:41:25.251079+02:00",
+      "kulcs": "RVY602",
+      "rendszam": "RVY602",
+      "vehicle_id": "7431",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.46025085449219,
+      "lon": 19.132137298583984,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-15T02:41:25.251102+02:00",
+      "kulcs": "RVY616",
+      "rendszam": "RVY616",
+      "vehicle_id": "7445",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37950134277344,
+      "lon": 19.10419273376465,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-15T02:41:25.251452+02:00",
+      "kulcs": "415 114",
+      "rendszam": "415 114",
+      "vehicle_id": "945514151147",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.511558532714844,
+      "lon": 19.100929260253906,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
+    },
+    {
+      "idopont": "2026-09-15T02:41:25.251502+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47629928588867,
+      "lon": 19.04323387145996,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
