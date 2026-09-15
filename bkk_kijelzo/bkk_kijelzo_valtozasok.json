@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-15T02:23:10.844313+02:00",
+  "frissitve": "2026-09-15T02:23:49.245574+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:11:50.981279+02:00",
-      "kulcs": "AADI601",
-      "rendszam": "AADI601",
-      "vehicle_id": "61",
-      "vehicle_label": "Savoyai Jenő tér",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.464664459228516,
-      "lon": 19.01795196533203,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Regényes utca ► Savoyai Jenő tér"
-    },
-    {
-      "idopont": "2026-09-14T15:11:50.981338+02:00",
-      "kulcs": "T8003",
-      "rendszam": "T8003",
-      "vehicle_id": "6123",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.4958610534668,
-      "lon": 19.060245513916016,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-09-14T15:11:50.981380+02:00",
-      "kulcs": "T8006",
-      "rendszam": "T8006",
-      "vehicle_id": "6126",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.505523681640625,
-      "lon": 19.136280059814453,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-14T15:11:50.981421+02:00",
-      "kulcs": "T8009",
-      "rendszam": "T8009",
-      "vehicle_id": "6129",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.525291442871094,
-      "lon": 19.0631160736084,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-14T15:11:50.981444+02:00",
-      "kulcs": "T8012",
-      "rendszam": "T8012",
-      "vehicle_id": "6132",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51865768432617,
-      "lon": 19.085561752319336,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-14T15:11:50.981523+02:00",
       "kulcs": "T8019",
@@ -260000,6 +259935,71 @@
       "lon": 19.134305953979492,
       "elozo_szoveg": "Astoria M ► Újpalota",
       "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-15T02:23:49.160884+02:00",
+      "kulcs": "AAGL291",
+      "rendszam": "AAGL291",
+      "vehicle_id": "324",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.477867126464844,
+      "lon": 19.047985076904297,
+      "elozo_szoveg": "Móricz Zs. körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-15T02:23:49.162118+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4988899230957,
+      "lon": 19.050683975219727,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-15T02:23:49.162344+02:00",
+      "kulcs": "MUT893",
+      "rendszam": "MUT893",
+      "vehicle_id": "5946",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.5125617980957,
+      "lon": 19.057218551635742,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-15T02:23:49.162511+02:00",
+      "kulcs": "NGC159",
+      "rendszam": "NGC159",
+      "vehicle_id": "6209",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.509002685546875,
+      "lon": 19.095680236816406,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-15T02:23:49.162958+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.541748046875,
+      "lon": 19.151042938232422,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
     }
   ]
 }
