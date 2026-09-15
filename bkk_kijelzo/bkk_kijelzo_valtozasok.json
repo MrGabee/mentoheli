@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T02:00:41.243412+02:00",
+  "frissitve": "2026-09-15T02:01:16.105639+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:09:16.008049+02:00",
-      "kulcs": "PKN621",
-      "rendszam": "PKN621",
-      "vehicle_id": "7210",
-      "vehicle_label": "Rákoshegy vasútállomás",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.46318435668945,
-      "lon": 19.149370193481445,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoshegy vasútállomás"
-    },
-    {
-      "idopont": "2026-09-14T15:09:16.008094+02:00",
-      "kulcs": "PKN625",
-      "rendszam": "PKN625",
-      "vehicle_id": "7214",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.532283782958984,
-      "lon": 19.163236618041992,
-      "elozo_szoveg": "Kisszentmihály, Baross utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-14T15:09:16.008118+02:00",
-      "kulcs": "PKN627",
-      "rendszam": "PKN627",
-      "vehicle_id": "7216",
-      "vehicle_label": "Kispest, Vas Gereben utca",
-      "vonal_szam": "68",
-      "route_id": "0680",
-      "lat": 47.48074722290039,
-      "lon": 19.219825744628906,
-      "elozo_szoveg": "Akadémiaújtelep, 525. tér",
-      "uj_szoveg": "Kispest, Vas Gereben utca"
-    },
     {
       "idopont": "2026-09-14T15:09:16.008338+02:00",
       "kulcs": "RCT314",
@@ -260000,6 +259961,45 @@
       "lon": 19.070999145507812,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-15T02:01:16.041046+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.455116271972656,
+      "lon": 18.90796661376953,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-15T02:01:16.043538+02:00",
+      "kulcs": "PDB706",
+      "rendszam": "PDB706",
+      "vehicle_id": "7032",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42705154418945,
+      "lon": 19.160436630249023,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-15T02:01:16.043558+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4513053894043,
+      "lon": 19.159282684326172,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
