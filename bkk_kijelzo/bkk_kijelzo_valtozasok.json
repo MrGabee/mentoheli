@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T03:48:59.664765+02:00",
+  "frissitve": "2026-09-15T03:49:33.269864+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:20:30.129509+02:00",
-      "kulcs": "STZ836",
-      "rendszam": "STZ836",
-      "vehicle_id": "7791",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.464385986328125,
-      "lon": 19.018569946289062,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budakeszi, Honfoglalás sétány"
-    },
-    {
-      "idopont": "2026-09-14T15:20:30.129613+02:00",
-      "kulcs": "STZ850",
-      "rendszam": "STZ850",
-      "vehicle_id": "7805",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.44627380371094,
-      "lon": 18.905832290649414,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-14T15:20:30.130050+02:00",
-      "kulcs": "T9132",
-      "rendszam": "T9132",
-      "vehicle_id": "7871",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.505165100097656,
-      "lon": 19.136493682861328,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
     {
       "idopont": "2026-09-14T15:20:30.130066+02:00",
       "kulcs": "T9133",
@@ -260000,6 +259961,45 @@
       "lon": 19.35814094543457,
       "elozo_szoveg": "Gödöllő",
       "uj_szoveg": "Örs vezér tere"
+    },
+    {
+      "idopont": "2026-09-15T03:49:33.176952+02:00",
+      "kulcs": "RVY747",
+      "rendszam": "RVY747",
+      "vehicle_id": "7645",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.38862228393555,
+      "lon": 19.21668243408203,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Vecsési út ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-15T03:49:33.177203+02:00",
+      "kulcs": "AOFL238",
+      "rendszam": "AOFL238",
+      "vehicle_id": "826",
+      "vehicle_label": "Pince köz-Donát utca",
+      "vonal_szam": "243",
+      "route_id": "2430",
+      "lat": 47.598731994628906,
+      "lon": 19.054306030273438,
+      "elozo_szoveg": "Harsánylejtő",
+      "uj_szoveg": "Pince köz ► Donát utca"
+    },
+    {
+      "idopont": "2026-09-15T03:49:33.177646+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.511924743652344,
+      "lon": 19.099637985229492,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
