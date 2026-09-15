@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T01:55:15.214487+02:00",
+  "frissitve": "2026-09-16T01:55:44.886714+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:11:12.709037+02:00",
-      "kulcs": "PKN606",
-      "rendszam": "PKN606",
-      "vehicle_id": "7195",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.4999885559082,
-      "lon": 19.135339736938477,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-15T15:11:12.709051+02:00",
-      "kulcs": "PKN607",
-      "rendszam": "PKN607",
-      "vehicle_id": "7196",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.4859733581543,
-      "lon": 19.287675857543945,
-      "elozo_szoveg": "Rákoscsaba",
-      "uj_szoveg": "Kucorgó tér ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-15T15:11:12.709484+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49738693237305,
-      "lon": 19.056074142456055,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-09-15T15:11:12.709638+02:00",
       "kulcs": "V2247",
@@ -260000,6 +259961,45 @@
       "lon": 19.024181365966797,
       "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
       "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-16T01:55:44.802679+02:00",
+      "kulcs": "PDB389",
+      "rendszam": "PDB389",
+      "vehicle_id": "7071",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50419998168945,
+      "lon": 19.025135040283203,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-16T01:55:44.803196+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38893508911133,
+      "lon": 18.958480834960938,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-16T01:55:44.803237+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47490310668945,
+      "lon": 19.046781539916992,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
