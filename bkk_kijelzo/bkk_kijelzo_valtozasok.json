@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-16T01:14:01.402772+02:00",
+  "frissitve": "2026-09-16T01:14:32.637901+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:06:57.608311+02:00",
-      "kulcs": "AADI587",
-      "rendszam": "AADI587",
-      "vehicle_id": "87",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.43656921386719,
-      "lon": 19.039743423461914,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-15T15:06:57.608567+02:00",
-      "kulcs": "1115-758-1116-1117-759-1118",
-      "rendszam": "1115-758-1116-1117-759-1118",
-      "vehicle_id": "905516561156-905536467582-905516561164-905516561172-905536467590-905516561180",
-      "vehicle_label": "Szentendre",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.50709915161133,
-      "lon": 19.039409637451172,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Szentendre"
-    },
-    {
-      "idopont": "2026-09-15T15:06:57.608621+02:00",
-      "kulcs": "1139-770-1140-1147-774-1148",
-      "rendszam": "1139-770-1140-1147-774-1148",
-      "vehicle_id": "905516561396-905536467707-905516561404-905516561479-905536467749-905516561487",
-      "vehicle_label": "Batthyány tér",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.59785842895508,
-      "lon": 19.054288864135742,
-      "elozo_szoveg": "Békásmegyer",
-      "uj_szoveg": "Batthyány tér"
-    },
-    {
-      "idopont": "2026-09-15T15:06:57.609237+02:00",
-      "kulcs": "928600015244",
-      "rendszam": "928600015244",
-      "vehicle_id": "928600015244",
-      "vehicle_label": "Tapolca",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.93790817260742,
-      "lon": 17.854829788208008,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Tapolca"
-    },
     {
       "idopont": "2026-09-15T15:08:26.469001+02:00",
       "kulcs": "AONW960",
@@ -260000,6 +259948,58 @@
       "lon": 19.042055130004883,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-16T01:14:32.554577+02:00",
+      "kulcs": "NGC145",
+      "rendszam": "NGC145",
+      "vehicle_id": "6194",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48598098754883,
+      "lon": 19.06942367553711,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-16T01:14:32.554612+02:00",
+      "kulcs": "NGC162",
+      "rendszam": "NGC162",
+      "vehicle_id": "6202",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175857543945,
+      "lon": 19.13559341430664,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-16T01:14:32.555265+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51130294799805,
+      "lon": 19.056381225585938,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-16T01:14:32.555424+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54711151123047,
+      "lon": 19.142017364501953,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
