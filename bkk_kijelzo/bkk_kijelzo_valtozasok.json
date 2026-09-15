@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-15T04:04:45.479206+02:00",
+  "frissitve": "2026-09-15T04:05:23.550610+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:23:45.400867+02:00",
-      "kulcs": "AAHY827",
-      "rendszam": "AAHY827",
-      "vehicle_id": "388",
-      "vehicle_label": "Újpest, Fóti út",
-      "vonal_szam": "96",
-      "route_id": "0960",
-      "lat": 47.541534423828125,
-      "lon": 19.151424407958984,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest, Fóti út"
-    },
-    {
-      "idopont": "2026-09-14T15:23:45.401060+02:00",
-      "kulcs": "AAHY851",
-      "rendszam": "AAHY851",
-      "vehicle_id": "412",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "126",
-      "route_id": "1260",
-      "lat": 47.60957336425781,
-      "lon": 19.116891860961914,
-      "elozo_szoveg": "Dunakeszi, Auchan áruház",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
-    {
-      "idopont": "2026-09-14T15:23:45.401212+02:00",
-      "kulcs": "T0601",
-      "rendszam": "T0601",
-      "vehicle_id": "4285",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50695037841797,
-      "lon": 19.052413940429688,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-14T15:23:45.401259+02:00",
-      "kulcs": "T0611",
-      "rendszam": "T0611",
-      "vehicle_id": "4295",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50608825683594,
-      "lon": 19.050840377807617,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
     {
       "idopont": "2026-09-14T15:23:45.402392+02:00",
       "kulcs": "V1366",
@@ -260000,6 +259948,58 @@
       "lon": 19.07067108154297,
       "elozo_szoveg": "Csepel, Királyerdő út",
       "uj_szoveg": "Királyerdő út ► Hollandi út"
+    },
+    {
+      "idopont": "2026-09-15T04:05:23.460532+02:00",
+      "kulcs": "FLR701",
+      "rendszam": "FLR701",
+      "vehicle_id": "3115",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.462486267089844,
+      "lon": 19.133140563964844,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-15T04:05:23.460604+02:00",
+      "kulcs": "FLR713",
+      "rendszam": "FLR713",
+      "vehicle_id": "3127",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "85",
+      "route_id": "0850",
+      "lat": 47.46307373046875,
+      "lon": 19.148656845092773,
+      "elozo_szoveg": "Rákoshegy vasútállomás",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T04:05:23.463095+02:00",
+      "kulcs": "415 082",
+      "rendszam": "415 082",
+      "vehicle_id": "945514150826",
+      "vehicle_label": "Vác",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.52614974975586,
+      "lon": 19.090139389038086,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Vác"
+    },
+    {
+      "idopont": "2026-09-15T04:05:23.463236+02:00",
+      "kulcs": "815 036",
+      "rendszam": "815 036",
+      "vehicle_id": "945518150368",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.81645965576172,
+      "lon": 18.87302017211914,
+      "elozo_szoveg": "Szob",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
