@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T03:53:11.545059+02:00",
+  "frissitve": "2026-09-15T03:53:42.743054+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:22:09.026435+02:00",
-      "kulcs": "V2020",
-      "rendszam": "V2020",
-      "vehicle_id": "2020",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.474063873291016,
-      "lon": 19.04737663269043,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-14T15:22:09.026458+02:00",
-      "kulcs": "V2023",
-      "rendszam": "V2023",
-      "vehicle_id": "2023",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.508392333984375,
-      "lon": 19.02720832824707,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-14T15:22:09.026604+02:00",
-      "kulcs": "AADR762",
-      "rendszam": "AADR762",
-      "vehicle_id": "211",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.547054290771484,
-      "lon": 19.14206314086914,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-14T15:22:09.026628+02:00",
       "kulcs": "AAGL251",
@@ -260000,6 +259961,45 @@
       "lon": 19.255529403686523,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-15T03:53:42.682711+02:00",
+      "kulcs": "AAGL307",
+      "rendszam": "AAGL307",
+      "vehicle_id": "337",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.498931884765625,
+      "lon": 19.050792694091797,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-15T03:53:42.683992+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Bosnyák tér",
+      "vonal_szam": "277",
+      "route_id": "2770",
+      "lat": 47.49996566772461,
+      "lon": 19.135313034057617,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Bosnyák tér"
+    },
+    {
+      "idopont": "2026-09-15T03:53:42.684379+02:00",
+      "kulcs": "AOFL238",
+      "rendszam": "AOFL238",
+      "vehicle_id": "826",
+      "vehicle_label": "Pince köz-Donát utca",
+      "vonal_szam": "243",
+      "route_id": "2430",
+      "lat": 47.598731994628906,
+      "lon": 19.05432891845703,
+      "elozo_szoveg": "Pince köz ► Donát utca",
+      "uj_szoveg": "Békásmegyer H"
     }
   ]
 }
