@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T01:12:31.114766+02:00",
+  "frissitve": "2026-09-16T01:13:02.696232+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:06:57.606515+02:00",
-      "kulcs": "SKR802",
-      "rendszam": "SKR802",
-      "vehicle_id": "7688",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.50768280029297,
-      "lon": 19.02495002746582,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-15T15:06:57.606761+02:00",
-      "kulcs": "SGY811",
-      "rendszam": "SGY811",
-      "vehicle_id": "7729",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.40567398071289,
-      "lon": 18.999486923217773,
-      "elozo_szoveg": "Baross Gábor-telep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-15T15:06:57.606824+02:00",
-      "kulcs": "SGY819",
-      "rendszam": "SGY819",
-      "vehicle_id": "7737",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.462684631347656,
-      "lon": 19.14962387084961,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
     {
       "idopont": "2026-09-15T15:06:57.606884+02:00",
       "kulcs": "AOFL191",
@@ -260000,6 +259961,45 @@
       "lon": 19.103425979614258,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-16T01:13:02.610298+02:00",
+      "kulcs": "AADR717",
+      "rendszam": "AADR717",
+      "vehicle_id": "185",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49764633178711,
+      "lon": 18.96376609802246,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-16T01:13:02.615571+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40562057495117,
+      "lon": 19.013776779174805,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-16T01:13:02.615622+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49821472167969,
+      "lon": 19.286792755126953,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
     }
   ]
 }
