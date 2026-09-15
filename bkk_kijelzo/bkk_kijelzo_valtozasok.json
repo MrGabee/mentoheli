@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T02:52:33.677952+02:00",
+  "frissitve": "2026-09-15T02:53:09.747040+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:14:38.662653+02:00",
-      "kulcs": "AOFL224",
-      "rendszam": "AOFL224",
-      "vehicle_id": "811",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.495811462402344,
-      "lon": 19.01104736328125,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-14T15:14:38.662755+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53541946411133,
-      "lon": 19.027265548706055,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-14T15:14:38.662931+02:00",
-      "kulcs": "AADI584",
-      "rendszam": "AADI584",
-      "vehicle_id": "84",
-      "vehicle_label": "Savoyai Jenő tér",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.43084716796875,
-      "lon": 19.01258087158203,
-      "elozo_szoveg": "Regényes utca ► Savoyai Jenő tér",
-      "uj_szoveg": "Savoyai Jenő tér (Törley tér)"
-    },
     {
       "idopont": "2026-09-14T15:14:38.663075+02:00",
       "kulcs": "AADI585",
@@ -260000,6 +259961,45 @@
       "lon": 19.00724220275879,
       "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
       "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-15T02:53:09.653924+02:00",
+      "kulcs": "V2036",
+      "rendszam": "V2036",
+      "vehicle_id": "2036",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47740173339844,
+      "lon": 19.048799514770508,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-15T02:53:09.656670+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.4827995300293,
+      "lon": 19.13043212890625,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-15T02:53:09.656775+02:00",
+      "kulcs": "SKR829",
+      "rendszam": "SKR829",
+      "vehicle_id": "7715",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51808547973633,
+      "lon": 19.03854751586914,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
