@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-15T02:01:16.105639+02:00",
+  "frissitve": "2026-09-15T02:01:51.606986+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:09:16.008338+02:00",
-      "kulcs": "RCT314",
-      "rendszam": "RCT314",
-      "vehicle_id": "7328",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.41720962524414,
-      "lon": 19.130714416503906,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-14T15:09:16.009542+02:00",
-      "kulcs": "V2115",
-      "rendszam": "V2115",
-      "vehicle_id": "7365",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54844665527344,
-      "lon": 19.02979278564453,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-14T15:09:16.009583+02:00",
-      "kulcs": "V2238",
-      "rendszam": "V2238",
-      "vehicle_id": "7370",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.481773376464844,
-      "lon": 19.068675994873047,
-      "elozo_szoveg": "Mester utca/Ferenc körút",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
     {
       "idopont": "2026-09-14T15:09:16.010151+02:00",
       "kulcs": "RVY702",
@@ -260000,6 +259961,45 @@
       "lon": 19.159282684326172,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-15T02:01:51.506195+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50905990600586,
+      "lon": 19.095767974853516,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-15T02:01:51.506622+02:00",
+      "kulcs": "RVY616",
+      "rendszam": "RVY616",
+      "vehicle_id": "7445",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.488929748535156,
+      "lon": 19.063255310058594,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-15T02:01:51.506997+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47916793823242,
+      "lon": 19.050525665283203,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
