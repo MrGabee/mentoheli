@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-15T03:12:53.227534+02:00",
+  "frissitve": "2026-09-15T03:13:59.916085+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-14T15:17:38.685180+02:00",
-      "kulcs": "V4343",
-      "rendszam": "V4343",
-      "vehicle_id": "5002",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.49707794189453,
-      "lon": 19.04189109802246,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-14T15:17:38.685386+02:00",
-      "kulcs": "MFW522",
-      "rendszam": "MFW522",
-      "vehicle_id": "5079",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.49987030029297,
-      "lon": 19.104938507080078,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
-    {
-      "idopont": "2026-09-14T15:17:38.685400+02:00",
-      "kulcs": "V1609",
-      "rendszam": "V1609",
-      "vehicle_id": "5081",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.467254638671875,
-      "lon": 19.080415725708008,
-      "elozo_szoveg": "Koppány utca",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
-    {
-      "idopont": "2026-09-14T15:17:38.685433+02:00",
-      "kulcs": "MFW528",
-      "rendszam": "MFW528",
-      "vehicle_id": "5090",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.46913528442383,
-      "lon": 19.226137161254883,
-      "elozo_szoveg": "Helikopter lakópark",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-14T15:17:38.685455+02:00",
-      "kulcs": "V1608",
-      "rendszam": "V1608",
-      "vehicle_id": "5096",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.422691345214844,
-      "lon": 19.123416900634766,
-      "elozo_szoveg": "P.erzsébet, Pacsirtatelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-14T15:17:38.685621+02:00",
       "kulcs": "V1600",
@@ -260000,6 +259935,71 @@
       "lon": 19.255517959594727,
       "elozo_szoveg": "Rákoscsaba",
       "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-15T03:13:59.831998+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46268081665039,
+      "lon": 19.00583267211914,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-15T03:13:59.832125+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51201629638672,
+      "lon": 19.05692481994629,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-15T03:13:59.832238+02:00",
+      "kulcs": "MUT893",
+      "rendszam": "MUT893",
+      "vehicle_id": "5946",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59854507446289,
+      "lon": 19.121257781982422,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-15T03:13:59.832421+02:00",
+      "kulcs": "NWB365",
+      "rendszam": "NWB365",
+      "vehicle_id": "6545",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50193786621094,
+      "lon": 19.125244140625,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-15T03:13:59.833048+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54707717895508,
+      "lon": 19.14200782775879,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
