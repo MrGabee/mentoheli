@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T03:59:33.987290+02:00",
+  "frissitve": "2026-09-16T04:00:02.034239+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:24:15.004960+02:00",
-      "kulcs": "CITY001",
-      "rendszam": "CITY001",
-      "vehicle_id": "656",
-      "vehicle_label": "Árpádföld, Bekecs utca",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.52053451538086,
-      "lon": 19.218643188476562,
-      "elozo_szoveg": "Cinkota H",
-      "uj_szoveg": "Árpádföld, Bekecs utca"
-    },
-    {
-      "idopont": "2026-09-15T15:24:15.005169+02:00",
-      "kulcs": "AOCT661",
-      "rendszam": "AOCT661",
-      "vehicle_id": "691",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.47330856323242,
-      "lon": 18.992765426635742,
-      "elozo_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-15T15:24:15.005588+02:00",
-      "kulcs": "PDB377",
-      "rendszam": "PDB377",
-      "vehicle_id": "7059",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.5013427734375,
-      "lon": 19.136001586914062,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Bosnyák tér"
-    },
     {
       "idopont": "2026-09-15T15:24:15.005768+02:00",
       "kulcs": "PDN605",
@@ -260000,6 +259961,45 @@
       "lon": 18.960594177246094,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-09-16T04:00:01.947606+02:00",
+      "kulcs": "AAMH638",
+      "rendszam": "AAMH638",
+      "vehicle_id": "481",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43204879760742,
+      "lon": 19.261363983154297,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-16T04:00:01.949309+02:00",
+      "kulcs": "480 022",
+      "rendszam": "480 022",
+      "vehicle_id": "915504800227",
+      "vehicle_label": "Szeged",
+      "vonal_szam": "IC",
+      "route_id": "IC",
+      "lat": 47.510650634765625,
+      "lon": 19.102149963378906,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szeged"
+    },
+    {
+      "idopont": "2026-09-16T04:00:01.949764+02:00",
+      "kulcs": "AOIM040",
+      "rendszam": "AOIM040",
+      "vehicle_id": "960",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46464920043945,
+      "lon": 19.022960662841797,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
