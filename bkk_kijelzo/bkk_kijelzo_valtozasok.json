@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-17T00:25:44.053162+02:00",
+  "frissitve": "2026-09-17T00:26:20.695811+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:01:33.327938+02:00",
-      "kulcs": "V4323",
-      "rendszam": "V4323",
-      "vehicle_id": "4982",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.517112731933594,
-      "lon": 19.061429977416992,
-      "elozo_szoveg": "KOCSISZÍNBE  Lehel utca / Róbert Károly körút",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-09-16T15:01:33.328637+02:00",
-      "kulcs": "MPW612",
-      "rendszam": "MPW612",
-      "vehicle_id": "5599",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.42731857299805,
-      "lon": 19.17284393310547,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-16T15:01:33.328718+02:00",
-      "kulcs": "MPW633",
-      "rendszam": "MPW633",
-      "vehicle_id": "5621",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.49613952636719,
-      "lon": 19.071252822875977,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-09-16T15:01:33.328754+02:00",
-      "kulcs": "V2268",
-      "rendszam": "V2268",
-      "vehicle_id": "566",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.54721450805664,
-      "lon": 19.0290584564209,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-09-16T15:01:33.328773+02:00",
-      "kulcs": "V2269",
-      "rendszam": "V2269",
-      "vehicle_id": "567",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.43586730957031,
-      "lon": 19.042509078979492,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-16T15:01:33.329647+02:00",
       "kulcs": "V2213",
@@ -260000,6 +259935,71 @@
       "lon": 19.022804260253906,
       "elozo_szoveg": "Kőérberek",
       "uj_szoveg": "Fácános tér"
+    },
+    {
+      "idopont": "2026-09-17T00:26:20.631054+02:00",
+      "kulcs": "AADI607",
+      "rendszam": "AADI607",
+      "vehicle_id": "104",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.465065002441406,
+      "lon": 19.022716522216797,
+      "elozo_szoveg": "Nagytétény-Diósd vasútállomás",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-17T00:26:20.631779+02:00",
+      "kulcs": "FLR737",
+      "rendszam": "FLR737",
+      "vehicle_id": "3151",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48392868041992,
+      "lon": 19.12755584716797,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-17T00:26:20.631807+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.487552642822266,
+      "lon": 19.058542251586914,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-17T00:26:20.632171+02:00",
+      "kulcs": "NWB360",
+      "rendszam": "NWB360",
+      "vehicle_id": "6540",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48702621459961,
+      "lon": 19.02327537536621,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-17T00:26:20.632484+02:00",
+      "kulcs": "T8119",
+      "rendszam": "T8119",
+      "vehicle_id": "7898",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50474166870117,
+      "lon": 19.136865615844727,
+      "elozo_szoveg": "Dózsa György út M",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
