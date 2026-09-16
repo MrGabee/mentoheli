@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T00:52:10.579053+02:00",
+  "frissitve": "2026-09-17T00:52:43.276337+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:04:11.564371+02:00",
-      "kulcs": "V1438",
-      "rendszam": "V1438",
-      "vehicle_id": "4508",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.47813415527344,
-      "lon": 19.068498611450195,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-16T15:04:11.564546+02:00",
-      "kulcs": "V1519",
-      "rendszam": "V1519",
-      "vehicle_id": "4571",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.54119873046875,
-      "lon": 19.120920181274414,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-16T15:04:11.564658+02:00",
-      "kulcs": "V1564",
-      "rendszam": "V1564",
-      "vehicle_id": "4616",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49589538574219,
-      "lon": 19.072479248046875,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)"
-    },
     {
       "idopont": "2026-09-16T15:04:11.564705+02:00",
       "kulcs": "V1577",
@@ -260000,6 +259961,45 @@
       "lon": 19.185863494873047,
       "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
       "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-17T00:52:43.195483+02:00",
+      "kulcs": "MUT894",
+      "rendszam": "MUT894",
+      "vehicle_id": "5947",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46242141723633,
+      "lon": 19.13321876525879,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-17T00:52:43.195536+02:00",
+      "kulcs": "NBW006",
+      "rendszam": "NBW006",
+      "vehicle_id": "5976",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47978210449219,
+      "lon": 19.255516052246094,
+      "elozo_szoveg": "Felsőcsatári köz",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-17T00:52:43.195916+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.379520416259766,
+      "lon": 19.10421371459961,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
