@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T03:13:40.870589+02:00",
+  "frissitve": "2026-09-16T03:14:12.733806+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:18:14.275895+02:00",
-      "kulcs": "AOIM028",
-      "rendszam": "AOIM028",
-      "vehicle_id": "948",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52470779418945,
-      "lon": 19.116985321044922,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Rákospatak u./Csömöri út"
-    },
-    {
-      "idopont": "2026-09-15T15:18:14.275931+02:00",
-      "kulcs": "AOIM030",
-      "rendszam": "AOIM030",
-      "vehicle_id": "950",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.47320556640625,
-      "lon": 18.99232292175293,
-      "elozo_szoveg": "Gazdagréti tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-15T15:18:14.276237+02:00",
-      "kulcs": "AOJM867",
-      "rendszam": "AOJM867",
-      "vehicle_id": "990",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.48940658569336,
-      "lon": 19.061622619628906,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-09-15T15:19:39.145077+02:00",
       "kulcs": "AOJM882",
@@ -260000,6 +259961,45 @@
       "lon": 19.10158348083496,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-16T03:14:12.649661+02:00",
+      "kulcs": "V2038",
+      "rendszam": "V2038",
+      "vehicle_id": "2038",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507347106933594,
+      "lon": 19.024948120117188,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-16T03:14:12.652269+02:00",
+      "kulcs": "NBW010",
+      "rendszam": "NBW010",
+      "vehicle_id": "5980",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.501766204833984,
+      "lon": 19.135570526123047,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-16T03:14:12.652545+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.478126525878906,
+      "lon": 19.045223236083984,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
     }
   ]
 }
