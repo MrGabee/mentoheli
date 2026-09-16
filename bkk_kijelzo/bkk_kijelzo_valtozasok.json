@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T03:25:35.127739+02:00",
+  "frissitve": "2026-09-16T03:26:05.522336+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:19:39.158713+02:00",
-      "kulcs": "SKR732",
-      "rendszam": "SKR732",
-      "vehicle_id": "7681",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4327278137207,
-      "lon": 19.261568069458008,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-15T15:19:39.159185+02:00",
-      "kulcs": "SGY813",
-      "rendszam": "SGY813",
-      "vehicle_id": "7731",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.46413803100586,
-      "lon": 19.01878547668457,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Baross Gábor-telep"
-    },
-    {
-      "idopont": "2026-09-15T15:19:39.159223+02:00",
-      "kulcs": "SGY815",
-      "rendszam": "SGY815",
-      "vehicle_id": "7733",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.40573501586914,
-      "lon": 19.01322364807129,
-      "elozo_szoveg": "Budatétény vasútáll. (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-15T15:19:39.159413+02:00",
       "kulcs": "STZ836",
@@ -260000,6 +259961,45 @@
       "lon": 19.103025436401367,
       "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-16T03:26:05.438516+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.487579345703125,
+      "lon": 19.058542251586914,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-16T03:26:05.440231+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50465774536133,
+      "lon": 19.024681091308594,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-16T03:26:05.440973+02:00",
+      "kulcs": "AADI595",
+      "rendszam": "AADI595",
+      "vehicle_id": "91",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51080322265625,
+      "lon": 19.097305297851562,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
     }
   ]
 }
