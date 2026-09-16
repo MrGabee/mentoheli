@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-16T04:07:57.517881+02:00",
+  "frissitve": "2026-09-16T04:08:34.229125+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:25:59.790912+02:00",
-      "kulcs": "V2281",
-      "rendszam": "V2281",
-      "vehicle_id": "579",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.51903533935547,
-      "lon": 19.091259002685547,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-15T15:25:59.791163+02:00",
-      "kulcs": "V2112",
-      "rendszam": "V2112",
-      "vehicle_id": "5840",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464630126953125,
-      "lon": 19.0261287689209,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-15T15:25:59.791293+02:00",
-      "kulcs": "V2216",
-      "rendszam": "V2216",
-      "vehicle_id": "5856",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.429622650146484,
-      "lon": 19.216962814331055,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-15T15:25:59.791688+02:00",
-      "kulcs": "V2293",
-      "rendszam": "V2293",
-      "vehicle_id": "591",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.54252243041992,
-      "lon": 18.96474838256836,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
-    {
-      "idopont": "2026-09-15T15:25:59.792142+02:00",
-      "kulcs": "T8000",
-      "rendszam": "T8000",
-      "vehicle_id": "6115",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49576187133789,
-      "lon": 19.060338973999023,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
     {
       "idopont": "2026-09-15T15:25:59.792467+02:00",
       "kulcs": "T9013",
@@ -260000,6 +259935,71 @@
       "lon": 19.23456573486328,
       "elozo_szoveg": "József Attila lakótelep, Távíró utca",
       "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-16T04:08:34.161064+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50799560546875,
+      "lon": 19.029123306274414,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-16T04:08:34.162259+02:00",
+      "kulcs": "PDB386",
+      "rendszam": "PDB386",
+      "vehicle_id": "7068",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49977493286133,
+      "lon": 19.287172317504883,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-16T04:08:34.162352+02:00",
+      "kulcs": "PKN629",
+      "rendszam": "PKN629",
+      "vehicle_id": "7218",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "198",
+      "route_id": "1980",
+      "lat": 47.47976303100586,
+      "lon": 19.25550651550293,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-16T04:08:34.163102+02:00",
+      "kulcs": "T9114",
+      "rendszam": "T9114",
+      "vehicle_id": "7852",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "80",
+      "route_id": "4800",
+      "lat": 47.503318786621094,
+      "lon": 19.118410110473633,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T04:08:34.163233+02:00",
+      "kulcs": "963-682-964-961-681-962",
+      "rendszam": "963-682-964-961-681-962",
+      "vehicle_id": "905516569639-905536466824-905516569647-905516569613-905536466816-905516569621",
+      "vehicle_label": "Boráros tér",
+      "vonal_szam": "H7",
+      "route_id": "H7",
+      "lat": 47.419551849365234,
+      "lon": 19.06462287902832,
+      "elozo_szoveg": "Csepel",
+      "uj_szoveg": "Boráros tér"
     }
   ]
 }
