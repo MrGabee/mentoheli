@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-16T03:37:39.517090+02:00",
+  "frissitve": "2026-09-16T03:38:45.242803+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:21:07.113739+02:00",
-      "kulcs": "V2239",
-      "rendszam": "V2239",
-      "vehicle_id": "7371",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.445743560791016,
-      "lon": 19.152629852294922,
-      "elozo_szoveg": "Kispest, Tulipán utca",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-15T15:21:07.113776+02:00",
-      "kulcs": "V2241",
-      "rendszam": "V2241",
-      "vehicle_id": "7373",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.427066802978516,
-      "lon": 19.039230346679688,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-15T15:21:07.113814+02:00",
-      "kulcs": "V2244",
-      "rendszam": "V2244",
-      "vehicle_id": "7376",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.543704986572266,
-      "lon": 19.029937744140625,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-15T15:21:07.114061+02:00",
-      "kulcs": "RVY603",
-      "rendszam": "RVY603",
-      "vehicle_id": "7432",
-      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.430335998535156,
-      "lon": 19.218936920166016,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás",
-      "uj_szoveg": "Pestszentimre vasútállomás"
-    },
     {
       "idopont": "2026-09-15T15:21:07.114177+02:00",
       "kulcs": "RVY613",
@@ -259999,6 +259947,58 @@
       "lat": 47.46200180053711,
       "lon": 21.486610412597656,
       "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-16T03:38:45.150324+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.4320068359375,
+      "lon": 19.26148223876953,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-09-16T03:38:45.151168+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42152786254883,
+      "lon": 19.040119171142578,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-16T03:38:45.151496+02:00",
+      "kulcs": "SXE201",
+      "rendszam": "SXE201",
+      "vehicle_id": "7838",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42667770385742,
+      "lon": 19.161033630371094,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-16T03:38:45.151842+02:00",
+      "kulcs": "415 063",
+      "rendszam": "415 063",
+      "vehicle_id": "945514150636",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.34654998779297,
+      "lon": 20.043550491333008,
+      "elozo_szoveg": "Szeged",
       "uj_szoveg": "Budapest-Nyugati"
     }
   ]
