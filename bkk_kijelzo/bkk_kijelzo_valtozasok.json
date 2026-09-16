@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-16T02:54:40.737514+02:00",
+  "frissitve": "2026-09-16T02:55:08.656853+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:17:06.182518+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50510025024414,
-      "lon": 19.030609130859375,
-      "elozo_szoveg": "Budai Vár ► Deák Ferenc tér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-15T15:17:06.182574+02:00",
-      "kulcs": "AELD557",
-      "rendszam": "AELD557",
-      "vehicle_id": "631",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.43842697143555,
-      "lon": 19.13473892211914,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-09-15T15:17:06.183143+02:00",
-      "kulcs": "NLE856",
-      "rendszam": "NLE856",
-      "vehicle_id": "6408",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.49967956542969,
-      "lon": 19.035490036010742,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-15T15:17:06.183386+02:00",
-      "kulcs": "V1613",
-      "rendszam": "V1613",
-      "vehicle_id": "6474",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.464927673339844,
-      "lon": 19.126083374023438,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
     {
       "idopont": "2026-09-15T15:17:06.183406+02:00",
       "kulcs": "V1614",
@@ -260000,6 +259948,58 @@
       "lon": 19.049591064453125,
       "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
       "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-16T02:55:08.561363+02:00",
+      "kulcs": "V2019",
+      "rendszam": "V2019",
+      "vehicle_id": "2019",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47740173339844,
+      "lon": 19.048799514770508,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-16T02:55:08.562347+02:00",
+      "kulcs": "AAGL264",
+      "rendszam": "AAGL264",
+      "vehicle_id": "264",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49897003173828,
+      "lon": 19.050634384155273,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-16T02:55:08.562416+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.446632385253906,
+      "lon": 18.90947914123535,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-16T02:55:08.563688+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.49971389770508,
+      "lon": 19.02417755126953,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
     }
   ]
 }
