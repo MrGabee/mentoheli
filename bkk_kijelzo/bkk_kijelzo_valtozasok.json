@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T00:16:56.187358+02:00",
+  "frissitve": "2026-09-17T00:17:34.354946+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:00:26.323221+02:00",
-      "kulcs": "915504702142",
-      "rendszam": "915504702142",
-      "vehicle_id": "915504702142",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.27328109741211,
-      "lon": 20.089820861816406,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-16T15:00:26.323580+02:00",
-      "kulcs": "AOIM020",
-      "rendszam": "AOIM020",
-      "vehicle_id": "940",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.41048049926758,
-      "lon": 19.060548782348633,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-16T15:00:26.323775+02:00",
-      "kulcs": "415 049",
-      "rendszam": "415 049",
-      "vehicle_id": "945514150495",
-      "vehicle_label": "Tárnok",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.438331604003906,
-      "lon": 19.03558921813965,
-      "elozo_szoveg": "Budapest-Kelenföld",
-      "uj_szoveg": "Tárnok"
-    },
     {
       "idopont": "2026-09-16T15:01:33.322977+02:00",
       "kulcs": "AOJM885",
@@ -260000,6 +259961,45 @@
       "lon": 19.031984329223633,
       "elozo_szoveg": "Astoria M ► Árpádföld",
       "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-17T00:17:34.260011+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.52370071411133,
+      "lon": 18.99419403076172,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-17T00:17:34.260541+02:00",
+      "kulcs": "SGY803",
+      "rendszam": "SGY803",
+      "vehicle_id": "7721",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.486907958984375,
+      "lon": 19.067691802978516,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-17T00:17:34.260588+02:00",
+      "kulcs": "SKN817",
+      "rendszam": "SKN817",
+      "vehicle_id": "7787",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56768798828125,
+      "lon": 19.12721061706543,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
