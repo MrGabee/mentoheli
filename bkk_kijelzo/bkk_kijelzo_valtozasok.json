@@ -1,19 +1,6 @@
 {
-  "frissitve": "2026-09-16T03:28:11.432525+02:00",
+  "frissitve": "2026-09-16T03:28:41.261497+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:21:07.097592+02:00",
-      "kulcs": "AADI605",
-      "rendszam": "AADI605",
-      "vehicle_id": "102",
-      "vehicle_label": "Savoyai Jenő tér",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.46437072753906,
-      "lon": 19.018810272216797,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Regényes utca ► Savoyai Jenő tér"
-    },
     {
       "idopont": "2026-09-15T15:21:07.099769+02:00",
       "kulcs": "AADI638",
@@ -260000,6 +259987,19 @@
       "lon": 19.046720504760742,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-16T03:28:41.177931+02:00",
+      "kulcs": "AAGL264",
+      "rendszam": "AAGL264",
+      "vehicle_id": "264",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45588684082031,
+      "lon": 18.94024085998535,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Budaörsi lakótelep"
     }
   ]
 }
