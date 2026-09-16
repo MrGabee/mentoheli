@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-16T02:06:52.207564+02:00",
+  "frissitve": "2026-09-16T02:07:59.525420+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:12:44.454652+02:00",
-      "kulcs": "AAMH664",
-      "rendszam": "AAMH664",
-      "vehicle_id": "507",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.541709899902344,
-      "lon": 19.15111541748047,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
-    {
-      "idopont": "2026-09-15T15:12:44.454742+02:00",
-      "kulcs": "V1602",
-      "rendszam": "V1602",
-      "vehicle_id": "5101",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.54227828979492,
-      "lon": 19.1408748626709,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-15T15:12:44.454870+02:00",
-      "kulcs": "MMM139",
-      "rendszam": "MMM139",
-      "vehicle_id": "5411",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.53226089477539,
-      "lon": 18.99544906616211,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-15T15:12:44.455024+02:00",
-      "kulcs": "V2268",
-      "rendszam": "V2268",
-      "vehicle_id": "566",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.49901580810547,
-      "lon": 19.027713775634766,
-      "elozo_szoveg": "Krisztina körút ► Városház tér",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-15T15:12:44.455108+02:00",
-      "kulcs": "MOS276",
-      "rendszam": "MOS276",
-      "vehicle_id": "5729",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50153732299805,
-      "lon": 19.13555145263672,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-15T15:12:44.455534+02:00",
       "kulcs": "V2224",
@@ -260000,6 +259935,71 @@
       "lon": 19.124399185180664,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T02:07:59.439255+02:00",
+      "kulcs": "FLR736",
+      "rendszam": "FLR736",
+      "vehicle_id": "3150",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.5672721862793,
+      "lon": 19.12462043762207,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-16T02:07:59.439330+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47824478149414,
+      "lon": 19.04850959777832,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-16T02:07:59.440238+02:00",
+      "kulcs": "AADI622",
+      "rendszam": "AADI622",
+      "vehicle_id": "50",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53810119628906,
+      "lon": 19.068994522094727,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-16T02:07:59.440551+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49970626831055,
+      "lon": 19.090290069580078,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-09-16T02:07:59.441040+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40575408935547,
+      "lon": 19.01419448852539,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
     }
   ]
 }
