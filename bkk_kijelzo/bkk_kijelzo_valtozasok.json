@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-16T02:25:48.229685+02:00",
+  "frissitve": "2026-09-16T02:26:19.099001+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:14:20.345745+02:00",
-      "kulcs": "NTM441",
-      "rendszam": "NTM441",
-      "vehicle_id": "6509",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50772476196289,
-      "lon": 19.024402618408203,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
-    {
-      "idopont": "2026-09-15T15:14:20.345764+02:00",
-      "kulcs": "NTP537",
-      "rendszam": "NTP537",
-      "vehicle_id": "6513",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.473995208740234,
-      "lon": 19.048423767089844,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
     {
       "idopont": "2026-09-15T15:14:20.346333+02:00",
       "kulcs": "PDB379",
@@ -260000,6 +259974,32 @@
       "lon": 19.04657554626465,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-16T02:26:19.011220+02:00",
+      "kulcs": "AADR717",
+      "rendszam": "AADR717",
+      "vehicle_id": "185",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.510765075683594,
+      "lon": 19.097200393676758,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-16T02:26:19.016233+02:00",
+      "kulcs": "T8117",
+      "rendszam": "T8117",
+      "vehicle_id": "7896",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5040397644043,
+      "lon": 19.1367130279541,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
