@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T03:31:07.175204+02:00",
+  "frissitve": "2026-09-16T03:31:48.604487+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:21:07.102580+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56044006347656,
-      "lon": 19.090408325195312,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-15T15:21:07.103539+02:00",
-      "kulcs": "AAHY879",
-      "rendszam": "AAHY879",
-      "vehicle_id": "441",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.602638244628906,
-      "lon": 19.06605339050293,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-09-15T15:21:07.103979+02:00",
-      "kulcs": "V1364",
-      "rendszam": "V1364",
-      "vehicle_id": "4465",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.467811584472656,
-      "lon": 19.02240562438965,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-09-15T15:21:07.104466+02:00",
       "kulcs": "V1519",
@@ -260000,6 +259961,45 @@
       "lon": 19.136333465576172,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-16T03:31:48.515994+02:00",
+      "kulcs": "AADI654",
+      "rendszam": "AADI654",
+      "vehicle_id": "153",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50910568237305,
+      "lon": 19.095792770385742,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T03:31:48.516972+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.456329345703125,
+      "lon": 18.941295623779297,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-16T03:31:48.518690+02:00",
+      "kulcs": "AADI622",
+      "rendszam": "AADI622",
+      "vehicle_id": "50",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.440277099609375,
+      "lon": 19.18524932861328,
+      "elozo_szoveg": "Pestszentlőrinc",
+      "uj_szoveg": "Astoria M ► Újpalota"
     }
   ]
 }
