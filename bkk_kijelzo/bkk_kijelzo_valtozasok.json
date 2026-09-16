@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-16T02:42:46.870228+02:00",
+  "frissitve": "2026-09-16T02:43:19.506201+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:15:33.421371+02:00",
-      "kulcs": "T8108",
-      "rendszam": "T8108",
-      "vehicle_id": "7345",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.501346588134766,
-      "lon": 19.083290100097656,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-15T15:15:33.421525+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.499759674072266,
-      "lon": 19.083375930786133,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-15T15:15:33.421876+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "275",
-      "route_id": "2750",
-      "lat": 47.500186920166016,
-      "lon": 19.257001876831055,
-      "elozo_szoveg": "Piski utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-09-15T15:15:33.422014+02:00",
-      "kulcs": "RVY603",
-      "rendszam": "RVY603",
-      "vehicle_id": "7432",
-      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.42387390136719,
-      "lon": 19.234615325927734,
-      "elozo_szoveg": "Ganztelep, Mednyánszky utca",
-      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
-    },
     {
       "idopont": "2026-09-15T15:15:33.422155+02:00",
       "kulcs": "RVY613",
@@ -260000,6 +259948,58 @@
       "lon": 19.09040069580078,
       "elozo_szoveg": "Újpest-központ M",
       "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-09-16T02:43:19.416071+02:00",
+      "kulcs": "AADI654",
+      "rendszam": "AADI654",
+      "vehicle_id": "153",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46493148803711,
+      "lon": 19.022632598876953,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútáll. M"
+    },
+    {
+      "idopont": "2026-09-16T02:43:19.418053+02:00",
+      "kulcs": "AAGL291",
+      "rendszam": "AAGL291",
+      "vehicle_id": "324",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.49702072143555,
+      "lon": 19.055727005004883,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-09-16T02:43:19.419042+02:00",
+      "kulcs": "NWB357",
+      "rendszam": "NWB357",
+      "vehicle_id": "6537",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49587631225586,
+      "lon": 19.058521270751953,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-16T02:43:19.419426+02:00",
+      "kulcs": "SGY804",
+      "rendszam": "SGY804",
+      "vehicle_id": "7722",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49441146850586,
+      "lon": 19.059839248657227,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
