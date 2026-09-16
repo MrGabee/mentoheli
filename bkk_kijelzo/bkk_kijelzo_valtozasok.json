@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-17T01:54:43.577962+02:00",
+  "frissitve": "2026-09-17T01:55:15.226698+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:09:55.892367+02:00",
-      "kulcs": "V2113",
-      "rendszam": "V2113",
-      "vehicle_id": "7363",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46458053588867,
-      "lon": 19.023391723632812,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-16T15:09:55.892427+02:00",
-      "kulcs": "V2238",
-      "rendszam": "V2238",
-      "vehicle_id": "7370",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.515316009521484,
-      "lon": 19.037080764770508,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-16T15:09:55.892500+02:00",
-      "kulcs": "V2248",
-      "rendszam": "V2248",
-      "vehicle_id": "7380",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.4261360168457,
-      "lon": 19.039602279663086,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-16T15:09:55.892674+02:00",
-      "kulcs": "RVY608",
-      "rendszam": "RVY608",
-      "vehicle_id": "7437",
-      "vehicle_label": "Gilice tér (Varjú utca)",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.46296310424805,
-      "lon": 19.14785385131836,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Gilice tér (Varjú utca)"
-    },
-    {
-      "idopont": "2026-09-16T15:09:55.892692+02:00",
-      "kulcs": "RVY609",
-      "rendszam": "RVY609",
-      "vehicle_id": "7438",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.404449462890625,
-      "lon": 19.18587875366211,
-      "elozo_szoveg": "Ferihegy vá.-Pszt.imre vá.",
-      "uj_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca"
-    },
     {
       "idopont": "2026-09-16T15:09:55.892717+02:00",
       "kulcs": "AOGF662",
@@ -260000,6 +259935,71 @@
       "lon": 19.05734634399414,
       "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
       "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-17T01:55:15.158662+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47514724731445,
+      "lon": 19.04685401916504,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-17T01:55:15.160316+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.508419036865234,
+      "lon": 19.026992797851562,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-17T01:55:15.160430+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.5074577331543,
+      "lon": 19.024686813354492,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-17T01:55:15.160702+02:00",
+      "kulcs": "PKN606",
+      "rendszam": "PKN606",
+      "vehicle_id": "7195",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50394821166992,
+      "lon": 19.142160415649414,
+      "elozo_szoveg": "Astoria M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-17T01:55:15.161003+02:00",
+      "kulcs": "T8119",
+      "rendszam": "T8119",
+      "vehicle_id": "7898",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50404739379883,
+      "lon": 19.13671875,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
