@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-16T02:27:21.346898+02:00",
+  "frissitve": "2026-09-16T02:27:53.681679+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:14:20.348616+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51393127441406,
-      "lon": 19.04958152770996,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-15T15:14:20.348834+02:00",
-      "kulcs": "V2250",
-      "rendszam": "V2250",
-      "vehicle_id": "7382",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.427040100097656,
-      "lon": 19.039222717285156,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-15T15:14:20.348935+02:00",
-      "kulcs": "RTA297",
-      "rendszam": "RTA297",
-      "vehicle_id": "7413",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.53367233276367,
-      "lon": 18.993412017822266,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-15T15:14:20.349218+02:00",
-      "kulcs": "RVY714",
-      "rendszam": "RVY714",
-      "vehicle_id": "7463",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.47978973388672,
-      "lon": 19.066495895385742,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-09-15T15:14:20.349301+02:00",
       "kulcs": "AADI576",
@@ -260000,6 +259948,58 @@
       "lon": 19.103239059448242,
       "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-16T02:27:53.595237+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50735092163086,
+      "lon": 19.02504539489746,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-16T02:27:53.599953+02:00",
+      "kulcs": "RVY617",
+      "rendszam": "RVY617",
+      "vehicle_id": "7446",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.430912017822266,
+      "lon": 19.070344924926758,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-16T02:27:53.599996+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.464881896972656,
+      "lon": 19.12781524658203,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-16T02:27:53.600022+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50473403930664,
+      "lon": 19.02459716796875,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
     }
   ]
 }
