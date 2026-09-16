@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-16T04:02:28.722798+02:00",
+  "frissitve": "2026-09-16T04:03:05.547668+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:24:15.010297+02:00",
-      "kulcs": "T9135",
-      "rendszam": "T9135",
-      "vehicle_id": "7874",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489444732666016,
-      "lon": 19.090024948120117,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-15T15:24:15.010419+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.549442291259766,
-      "lon": 19.074207305908203,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-09-15T15:24:15.010443+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517616271972656,
-      "lon": 19.094154357910156,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-15T15:24:15.010552+02:00",
-      "kulcs": "AOFL207",
-      "rendszam": "AOFL207",
-      "vehicle_id": "793",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.4834098815918,
-      "lon": 19.04343605041504,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
-    {
-      "idopont": "2026-09-15T15:24:15.010673+02:00",
-      "kulcs": "AOFL222",
-      "rendszam": "AOFL222",
-      "vehicle_id": "809",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.535404205322266,
-      "lon": 19.026599884033203,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
     {
       "idopont": "2026-09-15T15:24:15.010808+02:00",
       "kulcs": "AOFL238",
@@ -260000,6 +259935,71 @@
       "lon": 19.142059326171875,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-16T04:03:05.483563+02:00",
+      "kulcs": "AADI624",
+      "rendszam": "AADI624",
+      "vehicle_id": "119",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.49106216430664,
+      "lon": 19.2430362701416,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
+      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T04:03:05.484665+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint, Nyár utca",
+      "vonal_szam": "172",
+      "route_id": "1720",
+      "lat": 47.43330383300781,
+      "lon": 18.919626235961914,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
+    },
+    {
+      "idopont": "2026-09-16T04:03:05.484736+02:00",
+      "kulcs": "FLR725",
+      "rendszam": "FLR725",
+      "vehicle_id": "3139",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.475677490234375,
+      "lon": 19.267309188842773,
+      "elozo_szoveg": "Kucorgó tér ► Rákoscsaba",
+      "uj_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-16T04:03:05.485708+02:00",
+      "kulcs": "NGC160",
+      "rendszam": "NGC160",
+      "vehicle_id": "6210",
+      "vehicle_label": "Szentlélek tér H",
+      "vonal_szam": "118",
+      "route_id": "1180",
+      "lat": 47.56803512573242,
+      "lon": 19.02800750732422,
+      "elozo_szoveg": "Solymári elágazás",
+      "uj_szoveg": "Szentlélek tér H"
+    },
+    {
+      "idopont": "2026-09-16T04:03:05.485855+02:00",
+      "kulcs": "PDN615",
+      "rendszam": "PDN615",
+      "vehicle_id": "7086",
+      "vehicle_label": "Hollandi út",
+      "vonal_szam": "152",
+      "route_id": "1520",
+      "lat": 47.43080139160156,
+      "lon": 19.070693969726562,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Királyerdő út ► Hollandi út"
     }
   ]
 }
