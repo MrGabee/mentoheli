@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T23:59:20.147490+02:00",
+  "frissitve": "2026-09-16T23:59:57.915725+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:00:26.312552+02:00",
-      "kulcs": "AAHY815",
-      "rendszam": "AAHY815",
-      "vehicle_id": "376",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.58000183105469,
-      "lon": 19.088176727294922,
-      "elozo_szoveg": "Megyer, Julianus barát utca",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-16T15:00:26.312613+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57543182373047,
-      "lon": 19.104373931884766,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-16T15:00:26.312643+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56044387817383,
-      "lon": 19.090431213378906,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
     {
       "idopont": "2026-09-16T15:00:26.312806+02:00",
       "kulcs": "AAHY848",
@@ -260000,6 +259961,45 @@
       "lon": 19.20606231689453,
       "elozo_szoveg": "Szabadságtelep",
       "uj_szoveg": "Cinkota"
+    },
+    {
+      "idopont": "2026-09-16T23:59:57.759952+02:00",
+      "kulcs": "V1331",
+      "rendszam": "V1331",
+      "vehicle_id": "4434",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "2B",
+      "route_id": "3022",
+      "lat": 47.47138977050781,
+      "lon": 19.081981658935547,
+      "elozo_szoveg": "Mester u./Könyves K. krt.",
+      "uj_szoveg": "KOCSISZÍNBE  Mester utca / Könyves Kálmán körút"
+    },
+    {
+      "idopont": "2026-09-16T23:59:57.761297+02:00",
+      "kulcs": "RVY747",
+      "rendszam": "RVY747",
+      "vehicle_id": "7645",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "89E",
+      "route_id": "0895",
+      "lat": 47.38300704956055,
+      "lon": 19.20193099975586,
+      "elozo_szoveg": "Gyál, Bem József utca",
+      "uj_szoveg": "Bem József utca ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-16T23:59:57.761417+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.487388610839844,
+      "lon": 19.058162689208984,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
     }
   ]
 }
