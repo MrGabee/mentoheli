@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T03:02:11.467880+02:00",
+  "frissitve": "2026-09-16T03:02:37.982417+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:18:14.265199+02:00",
-      "kulcs": "AAMH639",
-      "rendszam": "AAMH639",
-      "vehicle_id": "482",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.497432708740234,
-      "lon": 19.05568504333496,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Deák F. tér (City centre)"
-    },
-    {
-      "idopont": "2026-09-15T15:18:14.265486+02:00",
-      "kulcs": "AAMH650",
-      "rendszam": "AAMH650",
-      "vehicle_id": "493",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.42839050292969,
-      "lon": 19.264448165893555,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-09-15T15:18:14.265671+02:00",
-      "kulcs": "V4333",
-      "rendszam": "V4333",
-      "vehicle_id": "4992",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.468666076660156,
-      "lon": 19.024080276489258,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-15T15:18:14.265958+02:00",
       "kulcs": "MFW528",
@@ -260000,6 +259961,45 @@
       "lon": 19.096054077148438,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T03:02:37.899562+02:00",
+      "kulcs": "PDB389",
+      "rendszam": "PDB389",
+      "vehicle_id": "7071",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50761413574219,
+      "lon": 19.02529525756836,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-16T03:02:37.899866+02:00",
+      "kulcs": "SKN817",
+      "rendszam": "SKN817",
+      "vehicle_id": "7787",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.5192756652832,
+      "lon": 19.038204193115234,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T03:02:37.899913+02:00",
+      "kulcs": "AOFL243",
+      "rendszam": "AOFL243",
+      "vehicle_id": "831",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.44159698486328,
+      "lon": 19.186235427856445,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
     }
   ]
 }
