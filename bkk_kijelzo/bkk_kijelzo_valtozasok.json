@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T00:39:56.897457+02:00",
+  "frissitve": "2026-09-17T00:40:25.971094+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:02:38.174196+02:00",
-      "kulcs": "AAMH630",
-      "rendszam": "AAMH630",
-      "vehicle_id": "473",
-      "vehicle_label": "Árpádföld",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.504276275634766,
-      "lon": 19.13678741455078,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Árpádföld"
-    },
-    {
-      "idopont": "2026-09-16T15:02:38.174510+02:00",
-      "kulcs": "V4145",
-      "rendszam": "V4145",
-      "vehicle_id": "4833",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.54228973388672,
-      "lon": 18.96480369567871,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
-    {
-      "idopont": "2026-09-16T15:02:38.174813+02:00",
-      "kulcs": "V4287",
-      "rendszam": "V4287",
-      "vehicle_id": "4946",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.47494125366211,
-      "lon": 19.17820930480957,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Salgótarjáni utca ► Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-16T15:02:38.174961+02:00",
       "kulcs": "V4337",
@@ -260000,6 +259961,45 @@
       "lon": 19.114675521850586,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-17T00:40:25.899726+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42127990722656,
+      "lon": 19.041183471679688,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-17T00:40:25.902399+02:00",
+      "kulcs": "NWB357",
+      "rendszam": "NWB357",
+      "vehicle_id": "6537",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49711608886719,
+      "lon": 19.055517196655273,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-17T00:40:25.902897+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49900817871094,
+      "lon": 19.051485061645508,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
