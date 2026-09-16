@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-16T02:01:31.030980+02:00",
+  "frissitve": "2026-09-16T02:02:00.513009+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-15T15:12:44.451186+02:00",
-      "kulcs": "AAGL273",
-      "rendszam": "AAGL273",
-      "vehicle_id": "273",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40E",
-      "route_id": "0405",
-      "lat": 47.45579528808594,
-      "lon": 18.941186904907227,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-15T15:12:44.451404+02:00",
-      "kulcs": "AAGL287",
-      "rendszam": "AAGL287",
-      "vehicle_id": "309",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50741195678711,
-      "lon": 19.02560806274414,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-09-15T15:12:44.451549+02:00",
-      "kulcs": "FLR714",
-      "rendszam": "FLR714",
-      "vehicle_id": "3128",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.468685150146484,
-      "lon": 19.299671173095703,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-15T15:12:44.451605+02:00",
       "kulcs": "FLR727",
@@ -260000,6 +259961,45 @@
       "lon": 19.0725154876709,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-16T02:02:00.459549+02:00",
+      "kulcs": "T8105",
+      "rendszam": "T8105",
+      "vehicle_id": "7342",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.497005462646484,
+      "lon": 19.055763244628906,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-16T02:02:00.459595+02:00",
+      "kulcs": "RVY607",
+      "rendszam": "RVY607",
+      "vehicle_id": "7436",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48920440673828,
+      "lon": 19.062707901000977,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-16T02:02:00.459770+02:00",
+      "kulcs": "AADI575",
+      "rendszam": "AADI575",
+      "vehicle_id": "78",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.426631927490234,
+      "lon": 19.16080665588379,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
     }
   ]
 }
