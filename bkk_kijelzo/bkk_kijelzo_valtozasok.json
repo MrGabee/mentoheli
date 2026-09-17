@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-18T01:42:27.539414+02:00",
+  "frissitve": "2026-09-18T01:42:57.085330+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:09:09.487130+02:00",
-      "kulcs": "AAGL280",
-      "rendszam": "AAGL280",
-      "vehicle_id": "315",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "63",
-      "route_id": "0630",
-      "lat": 47.575767517089844,
-      "lon": 18.879594802856445,
-      "elozo_szoveg": "Nagykovácsi, Tisza István tér",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-17T15:09:09.487203+02:00",
-      "kulcs": "AAGL281",
-      "rendszam": "AAGL281",
-      "vehicle_id": "316",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "88",
-      "route_id": "0880",
-      "lat": 47.4643669128418,
-      "lon": 19.01857566833496,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint ► Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-17T15:09:09.487454+02:00",
-      "kulcs": "AAGL316",
-      "rendszam": "AAGL316",
-      "vehicle_id": "344",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.59553527832031,
-      "lon": 18.949626922607422,
-      "elozo_szoveg": "Solymár vasútállomás ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-17T15:09:09.487727+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.5760498046875,
-      "lon": 19.104955673217773,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
     {
       "idopont": "2026-09-17T15:09:09.487877+02:00",
       "kulcs": "AAHY840",
@@ -260000,6 +259948,58 @@
       "lon": 19.103429794311523,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-18T01:42:56.998731+02:00",
+      "kulcs": "FKU926",
+      "rendszam": "FKU926",
+      "vehicle_id": "3082",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46245574951172,
+      "lon": 19.13319206237793,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-18T01:42:57.000487+02:00",
+      "kulcs": "NGC149",
+      "rendszam": "NGC149",
+      "vehicle_id": "6200",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175476074219,
+      "lon": 19.135608673095703,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-18T01:42:57.000541+02:00",
+      "kulcs": "NNE062",
+      "rendszam": "NNE062",
+      "vehicle_id": "6458",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48542022705078,
+      "lon": 19.071443557739258,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-18T01:42:57.000648+02:00",
+      "kulcs": "PDB386",
+      "rendszam": "PDB386",
+      "vehicle_id": "7068",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49653625488281,
+      "lon": 19.05701446533203,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
     }
   ]
 }
