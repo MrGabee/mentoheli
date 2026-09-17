@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T01:26:06.455668+02:00",
+  "frissitve": "2026-09-18T01:26:38.431783+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:06:06.689086+02:00",
-      "kulcs": "T9141",
-      "rendszam": "T9141",
-      "vehicle_id": "7880",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.499855041503906,
-      "lon": 19.104511260986328,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.689286+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.525211334228516,
-      "lon": 19.063648223876953,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.689354+02:00",
-      "kulcs": "AOFL206",
-      "rendszam": "AOFL206",
-      "vehicle_id": "791",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.4643669128418,
-      "lon": 19.018815994262695,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Városház tér"
-    },
     {
       "idopont": "2026-09-17T15:06:06.689704+02:00",
       "kulcs": "AOFL233",
@@ -260000,6 +259961,45 @@
       "lon": 19.02489471435547,
       "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-18T01:26:38.299602+02:00",
+      "kulcs": "PKN619",
+      "rendszam": "PKN619",
+      "vehicle_id": "7208",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48537826538086,
+      "lon": 19.022045135498047,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-18T01:26:38.299697+02:00",
+      "kulcs": "SKR808",
+      "rendszam": "SKR808",
+      "vehicle_id": "7694",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50541305541992,
+      "lon": 19.136699676513672,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-18T01:26:38.300118+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47382736206055,
+      "lon": 19.046323776245117,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
