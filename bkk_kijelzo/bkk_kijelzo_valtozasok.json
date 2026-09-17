@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T01:33:10.032452+02:00",
+  "frissitve": "2026-09-18T01:33:48.636291+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:07:12.785071+02:00",
-      "kulcs": "V2103",
-      "rendszam": "V2103",
-      "vehicle_id": "5831",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54881286621094,
-      "lon": 19.029565811157227,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-17T15:07:12.785460+02:00",
-      "kulcs": "MXJ005",
-      "rendszam": "MXJ005",
-      "vehicle_id": "5867",
-      "vehicle_label": "Csillebérc, KFKI",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.50056838989258,
-      "lon": 18.970243453979492,
-      "elozo_szoveg": "Normafa ► Csillebérc, KFKI",
-      "uj_szoveg": "Csillebérc, KFKI"
-    },
-    {
-      "idopont": "2026-09-17T15:07:12.785620+02:00",
-      "kulcs": "MXJ013",
-      "rendszam": "MXJ013",
-      "vehicle_id": "5889",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.43658447265625,
-      "lon": 19.039613723754883,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-17T15:07:12.785678+02:00",
       "kulcs": "MXJ017",
@@ -260000,6 +259961,45 @@
       "lon": 19.079193115234375,
       "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
       "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-18T01:33:48.550527+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.47806930541992,
+      "lon": 19.045669555664062,
+      "elozo_szoveg": "Törökbálint vasútállomás",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T01:33:48.552135+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464691162109375,
+      "lon": 19.02254295349121,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-18T01:33:48.552669+02:00",
+      "kulcs": "SKR818",
+      "rendszam": "SKR818",
+      "vehicle_id": "7704",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49713897705078,
+      "lon": 19.055509567260742,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
