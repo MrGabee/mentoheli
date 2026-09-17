@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T00:33:57.751742+02:00",
+  "frissitve": "2026-09-18T00:34:31.622034+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:01:36.416973+02:00",
-      "kulcs": "AOFL198",
-      "rendszam": "AOFL198",
-      "vehicle_id": "782",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.489662170410156,
-      "lon": 19.03614616394043,
-      "elozo_szoveg": "Sánc utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-17T15:01:36.417091+02:00",
-      "kulcs": "AOFL199",
-      "rendszam": "AOFL199",
-      "vehicle_id": "783",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.47804260253906,
-      "lon": 19.045639038085938,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Citadella ► Sánc utca"
-    },
-    {
-      "idopont": "2026-09-17T15:01:36.417672+02:00",
-      "kulcs": "T9146",
-      "rendszam": "T9146",
-      "vehicle_id": "7885",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.505958557128906,
-      "lon": 19.136394500732422,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-09-17T15:01:36.417743+02:00",
       "kulcs": "T8110",
@@ -260000,6 +259961,45 @@
       "lon": 19.020679473876953,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Komárom"
+    },
+    {
+      "idopont": "2026-09-18T00:34:31.536670+02:00",
+      "kulcs": "V2013",
+      "rendszam": "V2013",
+      "vehicle_id": "2013",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47736740112305,
+      "lon": 19.04878044128418,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-18T00:34:31.539099+02:00",
+      "kulcs": "NBW006",
+      "rendszam": "NBW006",
+      "vehicle_id": "5976",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.439022064208984,
+      "lon": 19.103458404541016,
+      "elozo_szoveg": "XVIII. utca",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-18T00:34:31.539646+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46323776245117,
+      "lon": 19.131319046020508,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
