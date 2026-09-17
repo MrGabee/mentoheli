@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T02:22:05.700288+02:00",
+  "frissitve": "2026-09-17T02:22:39.592730+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:12:47.287303+02:00",
-      "kulcs": "NCZ571",
-      "rendszam": "NCZ571",
-      "vehicle_id": "6187",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.48130416870117,
-      "lon": 19.136512756347656,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-16T15:12:47.287577+02:00",
-      "kulcs": "NCV286",
-      "rendszam": "NCV286",
-      "vehicle_id": "6251",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50697326660156,
-      "lon": 19.023258209228516,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-16T15:12:47.287606+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "116",
-      "route_id": "1160",
-      "lat": 47.508426666259766,
-      "lon": 19.02366828918457,
-      "elozo_szoveg": "Fény utcai piac",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-09-16T15:12:47.287631+02:00",
       "kulcs": "NCV291",
@@ -260000,6 +259961,45 @@
       "lon": 19.038043975830078,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-17T02:22:39.512816+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.54875564575195,
+      "lon": 19.043241500854492,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-17T02:22:39.513089+02:00",
+      "kulcs": "RVY610",
+      "rendszam": "RVY610",
+      "vehicle_id": "7439",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.5200080871582,
+      "lon": 19.038097381591797,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-17T02:22:39.513282+02:00",
+      "kulcs": "SKN817",
+      "rendszam": "SKN817",
+      "vehicle_id": "7787",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50874710083008,
+      "lon": 19.095359802246094,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
     }
   ]
 }
