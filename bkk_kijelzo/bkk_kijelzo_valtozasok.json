@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T03:19:12.410284+02:00",
+  "frissitve": "2026-09-17T03:19:50.398031+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:18:59.071349+02:00",
-      "kulcs": "AADI567",
-      "rendszam": "AADI567",
-      "vehicle_id": "65",
-      "vehicle_label": "Nagybányai út",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.50666046142578,
-      "lon": 19.038938522338867,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Nagybányai út"
-    },
-    {
-      "idopont": "2026-09-16T15:18:59.071371+02:00",
-      "kulcs": "NTM435",
-      "rendszam": "NTM435",
-      "vehicle_id": "6503",
-      "vehicle_label": "Csillebérc, KFKI",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.4996337890625,
-      "lon": 18.973224639892578,
-      "elozo_szoveg": "Normafa ► Csillebérc, KFKI",
-      "uj_szoveg": "Csillebérc, KFKI"
-    },
-    {
-      "idopont": "2026-09-16T15:18:59.071393+02:00",
-      "kulcs": "NTM437",
-      "rendszam": "NTM437",
-      "vehicle_id": "6505",
-      "vehicle_label": "Kondorosi út",
-      "vonal_szam": "33A",
-      "route_id": "0331",
-      "lat": 47.47737121582031,
-      "lon": 19.048828125,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Kondorosi út"
-    },
     {
       "idopont": "2026-09-16T15:18:59.071408+02:00",
       "kulcs": "NTM438",
@@ -260000,6 +259961,45 @@
       "lon": 19.020450592041016,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Győr"
+    },
+    {
+      "idopont": "2026-09-17T03:19:50.307225+02:00",
+      "kulcs": "AAGL264",
+      "rendszam": "AAGL264",
+      "vehicle_id": "264",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46269226074219,
+      "lon": 19.005884170532227,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-17T03:19:50.309479+02:00",
+      "kulcs": "NGC162",
+      "rendszam": "NGC162",
+      "vehicle_id": "6202",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.58708953857422,
+      "lon": 19.133607864379883,
+      "elozo_szoveg": "Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-17T03:19:50.309579+02:00",
+      "kulcs": "NTM437",
+      "rendszam": "NTM437",
+      "vehicle_id": "6505",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.411190032958984,
+      "lon": 18.993770599365234,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
     }
   ]
 }
