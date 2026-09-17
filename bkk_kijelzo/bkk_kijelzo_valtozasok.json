@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T00:54:59.127029+02:00",
+  "frissitve": "2026-09-18T00:55:32.983127+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:03:11.944423+02:00",
-      "kulcs": "915504702142",
-      "rendszam": "915504702142",
-      "vehicle_id": "915504702142",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.34756851196289,
-      "lon": 20.042850494384766,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-17T15:03:11.944914+02:00",
-      "kulcs": "415 004",
-      "rendszam": "415 004",
-      "vehicle_id": "945514150040",
-      "vehicle_label": "Dombóvár",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.46355056762695,
-      "lon": 19.02083969116211,
-      "elozo_szoveg": "Győr",
-      "uj_szoveg": "Dombóvár"
-    },
-    {
-      "idopont": "2026-09-17T15:03:11.945426+02:00",
-      "kulcs": "815 039",
-      "rendszam": "815 039",
-      "vehicle_id": "945518150392",
-      "vehicle_label": "Esztergom",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.55826950073242,
-      "lon": 19.080209732055664,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Esztergom"
-    },
     {
       "idopont": "2026-09-17T15:03:11.945717+02:00",
       "kulcs": "AOJM861",
@@ -260000,6 +259961,45 @@
       "lon": 19.07094383239746,
       "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T00:55:32.916275+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49911117553711,
+      "lon": 19.053512573242188,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-18T00:55:32.917452+02:00",
+      "kulcs": "PKD002",
+      "rendszam": "PKD002",
+      "vehicle_id": "5812",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.4748420715332,
+      "lon": 19.0467529296875,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T00:55:32.917680+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56792449951172,
+      "lon": 19.125614166259766,
+      "elozo_szoveg": "Vidor utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
