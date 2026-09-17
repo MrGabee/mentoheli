@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-17T02:12:10.310043+02:00",
+  "frissitve": "2026-09-17T02:12:44.843418+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:11:35.253834+02:00",
-      "kulcs": "RVY704",
-      "rendszam": "RVY704",
-      "vehicle_id": "7453",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.464717864990234,
-      "lon": 19.126136779785156,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-16T15:11:35.253911+02:00",
-      "kulcs": "RVY716",
-      "rendszam": "RVY716",
-      "vehicle_id": "7465",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.429969787597656,
-      "lon": 19.174970626831055,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-16T15:11:35.254484+02:00",
-      "kulcs": "SKR737",
-      "rendszam": "SKR737",
-      "vehicle_id": "7686",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.463531494140625,
-      "lon": 19.147687911987305,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-16T15:11:35.254758+02:00",
-      "kulcs": "SGY814",
-      "rendszam": "SGY814",
-      "vehicle_id": "7732",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.46416091918945,
-      "lon": 19.0188045501709,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budatétény vasútáll. (Campona)"
-    },
-    {
-      "idopont": "2026-09-16T15:11:35.254909+02:00",
-      "kulcs": "SKN817",
-      "rendszam": "SKN817",
-      "vehicle_id": "7787",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.506649017333984,
-      "lon": 19.038902282714844,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Verecke lépcső ► Óbuda, Bogdáni út"
-    },
     {
       "idopont": "2026-09-16T15:11:35.255055+02:00",
       "kulcs": "STZ859",
@@ -260000,6 +259935,71 @@
       "lon": 19.109073638916016,
       "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-17T02:12:44.753324+02:00",
+      "kulcs": "FLR737",
+      "rendszam": "FLR737",
+      "vehicle_id": "3151",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56745910644531,
+      "lon": 19.124923706054688,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-17T02:12:44.755045+02:00",
+      "kulcs": "MXJ010",
+      "rendszam": "MXJ010",
+      "vehicle_id": "5883",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49767303466797,
+      "lon": 18.96380043029785,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-17T02:12:44.755125+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52368927001953,
+      "lon": 19.021181106567383,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-17T02:12:44.755514+02:00",
+      "kulcs": "RVY615",
+      "rendszam": "RVY615",
+      "vehicle_id": "7444",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42751693725586,
+      "lon": 19.15941047668457,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-17T02:12:44.755587+02:00",
+      "kulcs": "SKR804",
+      "rendszam": "SKR804",
+      "vehicle_id": "7690",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55029296875,
+      "lon": 19.042055130004883,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
