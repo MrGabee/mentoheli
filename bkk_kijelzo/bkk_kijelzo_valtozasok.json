@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T00:09:48.762114+02:00",
+  "frissitve": "2026-09-18T00:10:21.395601+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:00:06.637245+02:00",
-      "kulcs": "SGY808",
-      "rendszam": "SGY808",
-      "vehicle_id": "7726",
-      "vehicle_label": "Donát-hegy",
-      "vonal_szam": "213",
-      "route_id": "2130",
-      "lat": 47.475589752197266,
-      "lon": 19.041013717651367,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Donát-hegy"
-    },
-    {
-      "idopont": "2026-09-17T15:00:06.637306+02:00",
-      "kulcs": "SGY817",
-      "rendszam": "SGY817",
-      "vehicle_id": "7735",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.40592956542969,
-      "lon": 19.013612747192383,
-      "elozo_szoveg": "Budatétény vasútáll. (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
-    {
-      "idopont": "2026-09-17T15:00:06.637472+02:00",
-      "kulcs": "AOFL193",
-      "rendszam": "AOFL193",
-      "vehicle_id": "777",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.490116119384766,
-      "lon": 19.06074333190918,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
     {
       "idopont": "2026-09-17T15:00:06.637570+02:00",
       "kulcs": "STZ843",
@@ -260000,6 +259961,45 @@
       "lon": 18.963802337646484,
       "elozo_szoveg": "Normafa",
       "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T00:10:21.305140+02:00",
+      "kulcs": "AADI659",
+      "rendszam": "AADI659",
+      "vehicle_id": "158",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47537612915039,
+      "lon": 19.040693283081055,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-18T00:10:21.307568+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.498085021972656,
+      "lon": 19.0546932220459,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-18T00:10:21.307996+02:00",
+      "kulcs": "815 011",
+      "rendszam": "815 011",
+      "vehicle_id": "945518150111",
+      "vehicle_label": "Hatvan",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.4921989440918,
+      "lon": 19.155839920043945,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Hatvan"
     }
   ]
 }
