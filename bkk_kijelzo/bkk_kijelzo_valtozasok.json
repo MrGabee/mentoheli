@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T00:58:23.894852+02:00",
+  "frissitve": "2026-09-18T00:58:58.373132+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:04:49.284101+02:00",
-      "kulcs": "T8011",
-      "rendszam": "T8011",
-      "vehicle_id": "6131",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.536495208740234,
-      "lon": 19.10732650756836,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-09-17T15:04:49.284123+02:00",
-      "kulcs": "T8013",
-      "rendszam": "T8013",
-      "vehicle_id": "6133",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.5365104675293,
-      "lon": 19.107057571411133,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-09-17T15:04:49.284144+02:00",
-      "kulcs": "T8014",
-      "rendszam": "T8014",
-      "vehicle_id": "6134",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.53447723388672,
-      "lon": 19.063827514648438,
-      "elozo_szoveg": "Dagály utcai lakótelep",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-17T15:04:49.284309+02:00",
       "kulcs": "T9012",
@@ -260000,6 +259961,45 @@
       "lon": 19.04686737060547,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-18T00:58:58.305577+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52527618408203,
+      "lon": 19.037864685058594,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-18T00:58:58.307074+02:00",
+      "kulcs": "NBW006",
+      "rendszam": "NBW006",
+      "vehicle_id": "5976",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48830032348633,
+      "lon": 19.059993743896484,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-18T00:58:58.307299+02:00",
+      "kulcs": "PKN614",
+      "rendszam": "PKN614",
+      "vehicle_id": "7203",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.50128936767578,
+      "lon": 19.119544982910156,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
     }
   ]
 }
