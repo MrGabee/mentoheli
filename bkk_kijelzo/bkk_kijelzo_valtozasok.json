@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-18T00:37:49.905002+02:00",
+  "frissitve": "2026-09-18T00:38:20.623676+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:01:36.420424+02:00",
-      "kulcs": "AOIM020",
-      "rendszam": "AOIM020",
-      "vehicle_id": "940",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.41048049926758,
-      "lon": 19.06060218811035,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-17T15:01:36.420866+02:00",
-      "kulcs": "415 054",
-      "rendszam": "415 054",
-      "vehicle_id": "945514150545",
-      "vehicle_label": "Tárnok",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.42776107788086,
-      "lon": 19.041309356689453,
-      "elozo_szoveg": "Budapest-Kelenföld",
-      "uj_szoveg": "Tárnok"
-    },
     {
       "idopont": "2026-09-17T15:01:36.421470+02:00",
       "kulcs": "AADI598",
@@ -260000,6 +259974,32 @@
       "lon": 18.988229751586914,
       "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-18T00:38:20.536690+02:00",
+      "kulcs": "AAGL284",
+      "rendszam": "AAGL284",
+      "vehicle_id": "308",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45595932006836,
+      "lon": 18.940420150756836,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-09-18T00:38:20.539412+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53472137451172,
+      "lon": 19.082561492919922,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
