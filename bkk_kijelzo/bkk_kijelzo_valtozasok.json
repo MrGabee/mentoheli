@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T01:20:41.181010+02:00",
+  "frissitve": "2026-09-18T01:21:19.250506+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:06:06.683103+02:00",
-      "kulcs": "AADI580",
-      "rendszam": "AADI580",
-      "vehicle_id": "66",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.59846878051758,
-      "lon": 19.054288864135742,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.684088+02:00",
-      "kulcs": "PDN620",
-      "rendszam": "PDN620",
-      "vehicle_id": "7091",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46293258666992,
-      "lon": 19.149051666259766,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.684276+02:00",
-      "kulcs": "PDN637",
-      "rendszam": "PDN637",
-      "vehicle_id": "7108",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.384361267089844,
-      "lon": 19.02585220336914,
-      "elozo_szoveg": "Auchan Sziget ► Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.684717+02:00",
-      "kulcs": "PHG652",
-      "rendszam": "PHG652",
-      "vehicle_id": "7176",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.541927337646484,
-      "lon": 19.151514053344727,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Cinkota H"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.684994+02:00",
-      "kulcs": "PKN624",
-      "rendszam": "PKN624",
-      "vehicle_id": "7213",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.479347229003906,
-      "lon": 19.234012603759766,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-17T15:06:06.685061+02:00",
       "kulcs": "PMP912",
@@ -260000,6 +259935,71 @@
       "lon": 19.136316299438477,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-09-18T01:21:19.151546+02:00",
+      "kulcs": "AADI647",
+      "rendszam": "AADI647",
+      "vehicle_id": "146",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.48554611206055,
+      "lon": 19.070693969726562,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T01:21:19.153364+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50712585449219,
+      "lon": 18.921499252319336,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-18T01:21:19.153921+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.542057037353516,
+      "lon": 19.15119171142578,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T01:21:19.154052+02:00",
+      "kulcs": "NBW006",
+      "rendszam": "NBW006",
+      "vehicle_id": "5976",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.525367736816406,
+      "lon": 19.037944793701172,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-18T01:21:19.154628+02:00",
+      "kulcs": "AOFL244",
+      "rendszam": "AOFL244",
+      "vehicle_id": "832",
+      "vehicle_label": "Szarvas csárda tér",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.41611862182617,
+      "lon": 19.20501708984375,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
     }
   ]
 }
