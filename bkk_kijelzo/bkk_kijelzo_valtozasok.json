@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T03:24:46.885145+02:00",
+  "frissitve": "2026-09-17T03:25:15.374544+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:18:59.074401+02:00",
-      "kulcs": "SGY815",
-      "rendszam": "SGY815",
-      "vehicle_id": "7733",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.40560531616211,
-      "lon": 19.013776779174805,
-      "elozo_szoveg": "Budatétény vasútáll. (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-16T15:18:59.074579+02:00",
-      "kulcs": "STZ837",
-      "rendszam": "STZ837",
-      "vehicle_id": "7792",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.507179260253906,
-      "lon": 18.92144775390625,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Budakeszi, Dózsa Gy. tér"
-    },
-    {
-      "idopont": "2026-09-16T15:18:59.074757+02:00",
-      "kulcs": "AOFL198",
-      "rendszam": "AOFL198",
-      "vehicle_id": "782",
-      "vehicle_label": "Nem szállít utasokat",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.477943420410156,
-      "lon": 19.045730590820312,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-16T15:18:59.074812+02:00",
       "kulcs": "STZ873",
@@ -260000,6 +259961,45 @@
       "lon": 19.238813400268555,
       "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
       "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-17T03:25:15.286032+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507293701171875,
+      "lon": 19.025026321411133,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-17T03:25:15.289131+02:00",
+      "kulcs": "415 074",
+      "rendszam": "415 074",
+      "vehicle_id": "945514150743",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.17308044433594,
+      "lon": 20.016660690307617,
+      "elozo_szoveg": "Monor",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-17T03:25:15.289190+02:00",
+      "kulcs": "415 101",
+      "rendszam": "415 101",
+      "vehicle_id": "945514151014",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.626468658447266,
+      "lon": 19.596820831298828,
+      "elozo_szoveg": "Gödöllő",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
