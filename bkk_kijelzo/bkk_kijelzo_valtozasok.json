@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-18T01:23:22.473794+02:00",
+  "frissitve": "2026-09-18T01:24:00.707307+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:06:06.686827+02:00",
-      "kulcs": "RVY723",
-      "rendszam": "RVY723",
-      "vehicle_id": "7621",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.501495361328125,
-      "lon": 19.136301040649414,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Pécel, Kun József utca"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.687039+02:00",
-      "kulcs": "RVY748",
-      "rendszam": "RVY748",
-      "vehicle_id": "7646",
-      "vehicle_label": "Vecsési út-Boráros tér H",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.38927459716797,
-      "lon": 19.21906852722168,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.687249+02:00",
-      "kulcs": "SGY989",
-      "rendszam": "SGY989",
-      "vehicle_id": "7669",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.55026626586914,
-      "lon": 19.042015075683594,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.687471+02:00",
-      "kulcs": "SKR803",
-      "rendszam": "SKR803",
-      "vehicle_id": "7689",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51062774658203,
-      "lon": 19.05636215209961,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Rózsadomb ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-17T15:06:06.687530+02:00",
       "kulcs": "SKR808",
@@ -260000,6 +259948,58 @@
       "lon": 19.048988342285156,
       "elozo_szoveg": "Hengermalom út ► Budatétény",
       "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T01:24:00.643360+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.476776123046875,
+      "lon": 19.04738998413086,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T01:24:00.645272+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4511604309082,
+      "lon": 19.159664154052734,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-18T01:24:00.645504+02:00",
+      "kulcs": "SKR822",
+      "rendszam": "SKR822",
+      "vehicle_id": "7708",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.4679069519043,
+      "lon": 19.0758056640625,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-18T01:24:00.645729+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.461143493652344,
+      "lon": 19.136333465576172,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
