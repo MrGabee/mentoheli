@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-17T03:49:20.113612+02:00",
+  "frissitve": "2026-09-17T03:49:55.131489+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:21:52.144833+02:00",
-      "kulcs": "AILJ856",
-      "rendszam": "AILJ856",
-      "vehicle_id": "659",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54802322387695,
-      "lon": 19.015777587890625,
-      "elozo_szoveg": "Máramaros út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-16T15:21:52.144858+02:00",
-      "kulcs": "AILJ861",
-      "rendszam": "AILJ861",
-      "vehicle_id": "680",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.551021575927734,
-      "lon": 19.042221069335938,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Verecke lépcső ► Batthyány tér M+H"
-    },
     {
       "idopont": "2026-09-16T15:21:52.145161+02:00",
       "kulcs": "PDB379",
@@ -260000,6 +259974,32 @@
       "lon": 19.07622528076172,
       "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-17T03:49:55.045469+02:00",
+      "kulcs": "MOS264",
+      "rendszam": "MOS264",
+      "vehicle_id": "5717",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.3874626159668,
+      "lon": 19.21512794494629,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Vecsési út ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-17T03:49:55.045697+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48273468017578,
+      "lon": 19.13025665283203,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
