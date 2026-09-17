@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-17T23:57:50.341515+02:00",
+  "frissitve": "2026-09-17T23:58:31.679930+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:00:06.628273+02:00",
-      "kulcs": "V1554",
-      "rendszam": "V1554",
-      "vehicle_id": "4606",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.48173522949219,
-      "lon": 19.12706184387207,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-09-17T15:00:06.628548+02:00",
-      "kulcs": "V4056",
-      "rendszam": "V4056",
-      "vehicle_id": "4745",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.50932693481445,
-      "lon": 19.009689331054688,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
-    {
-      "idopont": "2026-09-17T15:00:06.628710+02:00",
-      "kulcs": "V4098",
-      "rendszam": "V4098",
-      "vehicle_id": "4787",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1A",
-      "route_id": "3011",
-      "lat": 47.478389739990234,
-      "lon": 19.10087013244629,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-17T15:00:06.629044+02:00",
-      "kulcs": "AAMH645",
-      "rendszam": "AAMH645",
-      "vehicle_id": "488",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.43244934082031,
-      "lon": 19.260969161987305,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-09-17T15:00:06.629123+02:00",
-      "kulcs": "V4253",
-      "rendszam": "V4253",
-      "vehicle_id": "4912",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46442794799805,
-      "lon": 19.023405075073242,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-17T15:00:06.629197+02:00",
       "kulcs": "V4271",
@@ -260000,6 +259935,71 @@
       "lon": 19.04690170288086,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-17T23:58:31.610839+02:00",
+      "kulcs": "V4043",
+      "rendszam": "V4043",
+      "vehicle_id": "4732",
+      "vehicle_label": "Tél utca / Pozsonyi utca",
+      "vonal_szam": "14",
+      "route_id": "3140",
+      "lat": 47.593082427978516,
+      "lon": 19.1204833984375,
+      "elozo_szoveg": "Lehel tér M",
+      "uj_szoveg": "KOCSISZÍNBE  Tél utca / Pozsonyi utca"
+    },
+    {
+      "idopont": "2026-09-17T23:58:31.611453+02:00",
+      "kulcs": "AELD556",
+      "rendszam": "AELD556",
+      "vehicle_id": "630",
+      "vehicle_label": "Ady Endre tér",
+      "vonal_szam": "99",
+      "route_id": "0990",
+      "lat": 47.43717575073242,
+      "lon": 19.13707160949707,
+      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
+      "uj_szoveg": "Ady Endre tér"
+    },
+    {
+      "idopont": "2026-09-17T23:58:31.613274+02:00",
+      "kulcs": "RVY604",
+      "rendszam": "RVY604",
+      "vehicle_id": "7433",
+      "vehicle_label": "Rákoscsaba vasútállomás",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.462894439697266,
+      "lon": 19.1492862701416,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Rákoscsaba vasútállomás"
+    },
+    {
+      "idopont": "2026-09-17T23:58:31.613585+02:00",
+      "kulcs": "SXE203",
+      "rendszam": "SXE203",
+      "vehicle_id": "7840",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.536468505859375,
+      "lon": 19.083478927612305,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-17T23:58:31.613787+02:00",
+      "kulcs": "911-656-912",
+      "rendszam": "911-656-912",
+      "vehicle_id": "905516569118-905536466568-905516569126",
+      "vehicle_label": "Cinkota",
+      "vonal_szam": "H9",
+      "route_id": "H9",
+      "lat": 47.53705596923828,
+      "lon": 19.20607566833496,
+      "elozo_szoveg": "Szabadságtelep",
+      "uj_szoveg": "Cinkota"
     }
   ]
 }
