@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T02:55:16.195564+02:00",
+  "frissitve": "2026-09-17T02:55:52.671313+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:15:33.914070+02:00",
-      "kulcs": "480 001",
-      "rendszam": "480 001",
-      "vehicle_id": "915504800011",
-      "vehicle_label": "Tapolca",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.463218688964844,
-      "lon": 19.020830154418945,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Tapolca"
-    },
-    {
-      "idopont": "2026-09-16T15:15:33.914118+02:00",
-      "kulcs": "928600015244",
-      "rendszam": "928600015244",
-      "vehicle_id": "915504800086",
-      "vehicle_label": "Tapolca",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.956180572509766,
-      "lon": 17.883220672607422,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Tapolca"
-    },
-    {
-      "idopont": "2026-09-16T15:15:33.915003+02:00",
-      "kulcs": "415 074",
-      "rendszam": "415 074",
-      "vehicle_id": "945514150743",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.375728607177734,
-      "lon": 19.381580352783203,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
     {
       "idopont": "2026-09-16T15:15:33.915366+02:00",
       "kulcs": "AOIM026",
@@ -260000,6 +259961,45 @@
       "lon": 19.103866577148438,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-17T02:55:52.577691+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58564376831055,
+      "lon": 19.094133377075195,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-17T02:55:52.577929+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.508060455322266,
+      "lon": 19.026622772216797,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-17T02:55:52.578042+02:00",
+      "kulcs": "MXJ011",
+      "rendszam": "MXJ011",
+      "vehicle_id": "5887",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.475067138671875,
+      "lon": 19.046865463256836,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
     }
   ]
 }
