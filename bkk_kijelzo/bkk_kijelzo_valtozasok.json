@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-17T23:37:31.102492+02:00",
+  "frissitve": "2026-09-17T23:38:05.832858+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T14:54:22.208013+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.505332946777344,
-      "lon": 19.136341094970703,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-17T14:54:22.208040+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517425537109375,
-      "lon": 19.093786239624023,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-17T14:54:22.208055+02:00",
-      "kulcs": "T8116",
-      "rendszam": "T8116",
-      "vehicle_id": "7895",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.522125244140625,
-      "lon": 19.121780395507812,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-17T14:54:22.208188+02:00",
-      "kulcs": "AOFL221",
-      "rendszam": "AOFL221",
-      "vehicle_id": "808",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.59779357910156,
-      "lon": 19.05384635925293,
-      "elozo_szoveg": "Pince köz ► Donát utca",
-      "uj_szoveg": "Donát utca ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-17T14:54:22.208231+02:00",
-      "kulcs": "AOFL224",
-      "rendszam": "AOFL224",
-      "vehicle_id": "811",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.55537033081055,
-      "lon": 19.0118408203125,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
     {
       "idopont": "2026-09-17T14:54:22.208254+02:00",
       "kulcs": "AOFL226",
@@ -260000,6 +259935,71 @@
       "lon": 18.994979858398438,
       "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-17T23:38:05.740189+02:00",
+      "kulcs": "AADR715",
+      "rendszam": "AADR715",
+      "vehicle_id": "183",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "25",
+      "route_id": "0250",
+      "lat": 47.52000045776367,
+      "lon": 19.091264724731445,
+      "elozo_szoveg": "Mexikói út M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-17T23:38:05.742047+02:00",
+      "kulcs": "PDB719",
+      "rendszam": "PDB719",
+      "vehicle_id": "7045",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.426639556884766,
+      "lon": 19.16107177734375,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-17T23:38:05.742908+02:00",
+      "kulcs": "V1620",
+      "rendszam": "V1620",
+      "vehicle_id": "7289",
+      "vehicle_label": "Sörgyár",
+      "vonal_szam": "37A",
+      "route_id": "3371",
+      "lat": 47.49226379394531,
+      "lon": 19.087980270385742,
+      "elozo_szoveg": "Salgótarjáni utca ► Sörgyár",
+      "uj_szoveg": "Sörgyár"
+    },
+    {
+      "idopont": "2026-09-17T23:38:05.743055+02:00",
+      "kulcs": "V2240",
+      "rendszam": "V2240",
+      "vehicle_id": "7372",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "50",
+      "route_id": "3500",
+      "lat": 47.429443359375,
+      "lon": 19.21770668029785,
+      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-17T23:38:05.743069+02:00",
+      "kulcs": "V2247",
+      "rendszam": "V2247",
+      "vehicle_id": "7379",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.44150924682617,
+      "lon": 19.036436080932617,
+      "elozo_szoveg": "KOCSISZÍNBE  Budafok kocsiszín",
+      "uj_szoveg": "Budafok kocsiszín"
     }
   ]
 }
