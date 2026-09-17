@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T03:32:00.404646+02:00",
+  "frissitve": "2026-09-17T03:32:32.896314+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:20:22.258224+02:00",
-      "kulcs": "AAGL297",
-      "rendszam": "AAGL297",
-      "vehicle_id": "329",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "140A",
-      "route_id": "1401",
-      "lat": 47.506404876708984,
-      "lon": 19.024288177490234,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-09-16T15:20:22.259111+02:00",
-      "kulcs": "AAGL319",
-      "rendszam": "AAGL319",
-      "vehicle_id": "348",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "240",
-      "route_id": "2400",
-      "lat": 47.45573043823242,
-      "lon": 18.940902709960938,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-16T15:20:22.259528+02:00",
-      "kulcs": "AAHY814",
-      "rendszam": "AAHY814",
-      "vehicle_id": "375",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.581268310546875,
-      "lon": 19.085615158081055,
-      "elozo_szoveg": "Megyer, Julianus barát utca",
-      "uj_szoveg": "Újpest-központ M"
-    },
     {
       "idopont": "2026-09-16T15:20:22.259932+02:00",
       "kulcs": "AAHY845",
@@ -260000,6 +259961,45 @@
       "lon": 19.13614273071289,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-17T03:32:32.811258+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507469177246094,
+      "lon": 19.024974822998047,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-17T03:32:32.811447+02:00",
+      "kulcs": "PDB388",
+      "rendszam": "PDB388",
+      "vehicle_id": "7070",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51765441894531,
+      "lon": 19.038681030273438,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-17T03:32:32.811500+02:00",
+      "kulcs": "PMP918",
+      "rendszam": "PMP918",
+      "vehicle_id": "7236",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.48051452636719,
+      "lon": 19.051843643188477,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
