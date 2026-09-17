@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-17T02:27:40.396301+02:00",
+  "frissitve": "2026-09-17T02:28:09.530248+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:12:47.290963+02:00",
-      "kulcs": "RVY709",
-      "rendszam": "RVY709",
-      "vehicle_id": "7458",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.48125457763672,
-      "lon": 19.064960479736328,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-16T15:12:47.291355+02:00",
-      "kulcs": "RVY741",
-      "rendszam": "RVY741",
-      "vehicle_id": "7639",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.47965621948242,
-      "lon": 19.067058563232422,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Vecsési út-Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-16T15:12:47.291453+02:00",
-      "kulcs": "SCD592",
-      "rendszam": "SCD592",
-      "vehicle_id": "7656",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.42731475830078,
-      "lon": 19.172866821289062,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-16T15:12:47.291505+02:00",
-      "kulcs": "SGY985",
-      "rendszam": "SGY985",
-      "vehicle_id": "7665",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.500831604003906,
-      "lon": 19.08216094970703,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Kelenföld vasútállomás M ► Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-09-16T15:12:47.291770+02:00",
-      "kulcs": "SKR817",
-      "rendszam": "SKR817",
-      "vehicle_id": "7702",
-      "vehicle_label": "Zugliget, Libegő",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.510807037353516,
-      "lon": 19.05638313293457,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Zugliget, Libegő"
-    },
     {
       "idopont": "2026-09-16T15:12:47.292263+02:00",
       "kulcs": "AOFL197",
@@ -260000,6 +259935,71 @@
       "lon": 19.02468490600586,
       "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
       "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-17T02:28:09.444760+02:00",
+      "kulcs": "MOS289",
+      "rendszam": "MOS289",
+      "vehicle_id": "196",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.501441955566406,
+      "lon": 19.120933532714844,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-09-17T02:28:09.445734+02:00",
+      "kulcs": "FLR703",
+      "rendszam": "FLR703",
+      "vehicle_id": "3117",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.464759826660156,
+      "lon": 19.128171920776367,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-17T02:28:09.446867+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483917236328125,
+      "lon": 19.127504348754883,
+      "elozo_szoveg": "Kőbánya alsó vasútáll.",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-17T02:28:09.447110+02:00",
+      "kulcs": "NGC142",
+      "rendszam": "NGC142",
+      "vehicle_id": "6217",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52650833129883,
+      "lon": 19.038230895996094,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-17T02:28:09.447868+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.475120544433594,
+      "lon": 19.046833038330078,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
