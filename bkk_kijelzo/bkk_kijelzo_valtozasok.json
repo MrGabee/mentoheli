@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-18T01:56:30.342208+02:00",
+  "frissitve": "2026-09-18T01:56:56.393829+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:09:09.503606+02:00",
-      "kulcs": "AADI595",
-      "rendszam": "AADI595",
-      "vehicle_id": "91",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.43033981323242,
-      "lon": 19.036415100097656,
-      "elozo_szoveg": "Savoyai Jenő tér (Törley tér)",
-      "uj_szoveg": "Regényes utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-17T15:09:09.504244+02:00",
-      "kulcs": "415 029",
-      "rendszam": "415 029",
-      "vehicle_id": "945514150297",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.36920166015625,
-      "lon": 18.900989532470703,
-      "elozo_szoveg": "Százhalombatta",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-17T15:09:09.504585+02:00",
-      "kulcs": "815 033",
-      "rendszam": "815 033",
-      "vehicle_id": "945518150335",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.77233123779297,
-      "lon": 19.150510787963867,
-      "elozo_szoveg": "Vác",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-17T15:09:09.504672+02:00",
-      "kulcs": "AOIM032",
-      "rendszam": "AOIM032",
-      "vehicle_id": "952",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.547080993652344,
-      "lon": 19.14202308654785,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
     {
       "idopont": "2026-09-17T15:09:09.504788+02:00",
       "kulcs": "AOIM048",
@@ -260000,6 +259948,58 @@
       "lon": 19.027555465698242,
       "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-18T01:56:56.300880+02:00",
+      "kulcs": "AAGL251",
+      "rendszam": "AAGL251",
+      "vehicle_id": "251",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.487327575683594,
+      "lon": 19.0581111907959,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-18T01:56:56.302990+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50706100463867,
+      "lon": 18.921506881713867,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-18T01:56:56.303430+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.538116455078125,
+      "lon": 19.164417266845703,
+      "elozo_szoveg": "Pesti út",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T01:56:56.303933+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.475868225097656,
+      "lon": 19.047060012817383,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
