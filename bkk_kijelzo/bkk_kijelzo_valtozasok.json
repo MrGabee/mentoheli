@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T01:15:28.507386+02:00",
+  "frissitve": "2026-09-18T01:16:01.822527+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:06:06.677372+02:00",
-      "kulcs": "V4160",
-      "rendszam": "V4160",
-      "vehicle_id": "4848",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.4921989440918,
-      "lon": 19.141300201416016,
-      "elozo_szoveg": "Kőbányai út ► Blaha Lujza tér M",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.677407+02:00",
-      "kulcs": "V4163",
-      "rendszam": "V4163",
-      "vehicle_id": "4851",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.53938674926758,
-      "lon": 18.970661163330078,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.677874+02:00",
-      "kulcs": "MFW532",
-      "rendszam": "MFW532",
-      "vehicle_id": "5045",
-      "vehicle_label": "Akadémiaújtelep, 525. tér",
-      "vonal_szam": "68",
-      "route_id": "0680",
-      "lat": 47.44163131713867,
-      "lon": 19.140743255615234,
-      "elozo_szoveg": "Kispest, Vas Gereben utca",
-      "uj_szoveg": "Akadémiaújtelep, 525. tér"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.678038+02:00",
-      "kulcs": "MFW534",
-      "rendszam": "MFW534",
-      "vehicle_id": "5091",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.494510650634766,
-      "lon": 19.272674560546875,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-17T15:06:06.678276+02:00",
-      "kulcs": "AEGB791",
-      "rendszam": "AEGB791",
-      "vehicle_id": "546",
-      "vehicle_label": "Nagybányai út",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.506649017333984,
-      "lon": 19.03891372680664,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Nagybányai út"
-    },
     {
       "idopont": "2026-09-17T15:06:06.678943+02:00",
       "kulcs": "V2216",
@@ -260000,6 +259935,71 @@
       "lon": 19.04208755493164,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-18T01:16:01.710875+02:00",
+      "kulcs": "MXJ012",
+      "rendszam": "MXJ012",
+      "vehicle_id": "5888",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50128173828125,
+      "lon": 19.11957359313965,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-18T01:16:01.711071+02:00",
+      "kulcs": "NWB358",
+      "rendszam": "NWB358",
+      "vehicle_id": "6538",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47811508178711,
+      "lon": 19.04523468017578,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-18T01:16:01.711198+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.5146484375,
+      "lon": 19.032855987548828,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-18T01:16:01.711572+02:00",
+      "kulcs": "SKR820",
+      "rendszam": "SKR820",
+      "vehicle_id": "7706",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.497745513916016,
+      "lon": 18.96407699584961,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T01:16:01.711954+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.5128059387207,
+      "lon": 19.057470321655273,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
