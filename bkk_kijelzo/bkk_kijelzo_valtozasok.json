@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-17T02:51:42.417826+02:00",
+  "frissitve": "2026-09-17T02:52:24.125828+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-16T15:15:33.910163+02:00",
-      "kulcs": "PHG624",
-      "rendszam": "PHG624",
-      "vehicle_id": "7148",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.525169372558594,
-      "lon": 19.17616081237793,
-      "elozo_szoveg": "Mátyás király utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-16T15:15:33.910704+02:00",
-      "kulcs": "T8102",
-      "rendszam": "T8102",
-      "vehicle_id": "7339",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.504268646240234,
-      "lon": 19.13667106628418,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-16T15:15:33.910745+02:00",
-      "kulcs": "T8107",
-      "rendszam": "T8107",
-      "vehicle_id": "7344",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47594451904297,
-      "lon": 19.099838256835938,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
     {
       "idopont": "2026-09-16T15:15:33.911195+02:00",
       "kulcs": "RVY619",
@@ -260000,6 +259961,45 @@
       "lon": 19.18583869934082,
       "elozo_szoveg": "Pestszentimre vasútállomás",
       "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-17T02:52:24.065973+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.54845428466797,
+      "lon": 19.029571533203125,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-17T02:52:24.067831+02:00",
+      "kulcs": "AAMH635",
+      "rendszam": "AAMH635",
+      "vehicle_id": "478",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49700164794922,
+      "lon": 19.05571174621582,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-17T02:52:24.068300+02:00",
+      "kulcs": "SKR818",
+      "rendszam": "SKR818",
+      "vehicle_id": "7704",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.482810974121094,
+      "lon": 19.130430221557617,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
