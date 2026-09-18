@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:45:43.029011+02:00",
+  "frissitve": "2026-09-19T01:46:26.153970+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:01:38.290824+02:00",
-      "kulcs": "RTA297",
-      "rendszam": "RTA297",
-      "vehicle_id": "7413",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.530029296875,
-      "lon": 19.00872230529785,
-      "elozo_szoveg": "Verecke lépcső ► Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.290951+02:00",
-      "kulcs": "RVY612",
-      "rendszam": "RVY612",
-      "vehicle_id": "7441",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "284E",
-      "route_id": "2845",
-      "lat": 47.39914321899414,
-      "lon": 19.20560646057129,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.291119+02:00",
-      "kulcs": "RVY712",
-      "rendszam": "RVY712",
-      "vehicle_id": "7461",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "255E",
-      "route_id": "2555",
-      "lat": 47.4799919128418,
-      "lon": 19.067493438720703,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.291814+02:00",
-      "kulcs": "SKR724",
-      "rendszam": "SKR724",
-      "vehicle_id": "7673",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.4366340637207,
-      "lon": 19.17243766784668,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-18T15:01:38.291916+02:00",
       "kulcs": "SKR803",
@@ -260000,6 +259948,58 @@
       "lon": 19.014570236206055,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-09-19T01:46:26.064066+02:00",
+      "kulcs": "AADI630",
+      "rendszam": "AADI630",
+      "vehicle_id": "125",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47856521606445,
+      "lon": 19.260400772094727,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-09-19T01:46:26.068206+02:00",
+      "kulcs": "AAKM017",
+      "rendszam": "AAKM017",
+      "vehicle_id": "536",
+      "vehicle_label": "Harsánylejtő",
+      "vonal_szam": "960",
+      "route_id": "9600",
+      "lat": 47.54022216796875,
+      "lon": 19.04633140563965,
+      "elozo_szoveg": "Testvér-hegy ► Tábor-hegy",
+      "uj_szoveg": "Harsánylejtő"
+    },
+    {
+      "idopont": "2026-09-19T01:46:26.068389+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56768035888672,
+      "lon": 19.12723731994629,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-19T01:46:26.069136+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.54713821411133,
+      "lon": 19.14266014099121,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
