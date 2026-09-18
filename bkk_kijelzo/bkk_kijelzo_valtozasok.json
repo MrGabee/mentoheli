@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:51:49.954113+02:00",
+  "frissitve": "2026-09-19T01:52:20.384756+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:02:47.940435+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49616241455078,
-      "lon": 19.058012008666992,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.940553+02:00",
-      "kulcs": "V1366",
-      "rendszam": "V1366",
-      "vehicle_id": "4467",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.42671203613281,
-      "lon": 19.039369583129883,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.940701+02:00",
-      "kulcs": "V1440",
-      "rendszam": "V1440",
-      "vehicle_id": "4510",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.48484420776367,
-      "lon": 19.05319595336914,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.940790+02:00",
-      "kulcs": "V1503",
-      "rendszam": "V1503",
-      "vehicle_id": "4555",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.5396614074707,
-      "lon": 19.14468765258789,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.941012+02:00",
-      "kulcs": "V1567",
-      "rendszam": "V1567",
-      "vehicle_id": "4619",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.4694709777832,
-      "lon": 19.074445724487305,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-18T15:02:47.941358+02:00",
       "kulcs": "V4062",
@@ -260000,6 +259935,71 @@
       "lon": 19.075834274291992,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-19T01:52:20.293153+02:00",
+      "kulcs": "FJX188",
+      "rendszam": "FJX188",
+      "vehicle_id": "3008",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55029296875,
+      "lon": 19.042081832885742,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-19T01:52:20.293249+02:00",
+      "kulcs": "FLR700",
+      "rendszam": "FLR700",
+      "vehicle_id": "3114",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40424346923828,
+      "lon": 19.18656349182129,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vá."
+    },
+    {
+      "idopont": "2026-09-19T01:52:20.293287+02:00",
+      "kulcs": "FLR710",
+      "rendszam": "FLR710",
+      "vehicle_id": "3124",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.534400939941406,
+      "lon": 19.08228302001953,
+      "elozo_szoveg": "Astoria M ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-19T01:52:20.294093+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598487854003906,
+      "lon": 19.121315002441406,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T01:52:20.294158+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37948226928711,
+      "lon": 19.104211807250977,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
