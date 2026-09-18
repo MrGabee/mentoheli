@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:55:43.232257+02:00",
+  "frissitve": "2026-09-19T01:56:17.455881+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:02:47.947947+02:00",
-      "kulcs": "PDB707",
-      "rendszam": "PDB707",
-      "vehicle_id": "7033",
-      "vehicle_label": "Pasaréti tér",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.567649841308594,
-      "lon": 19.12723159790039,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Pasaréti tér"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.948494+02:00",
-      "kulcs": "PDN612",
-      "rendszam": "PDN612",
-      "vehicle_id": "7083",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.39060974121094,
-      "lon": 19.096378326416016,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.949045+02:00",
-      "kulcs": "T0622",
-      "rendszam": "T0622",
-      "vehicle_id": "715",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.506736755371094,
-      "lon": 19.051010131835938,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-18T15:02:47.949091+02:00",
       "kulcs": "PHG627",
@@ -260000,6 +259961,45 @@
       "lon": 19.090639114379883,
       "elozo_szoveg": "Esztergom",
       "uj_szoveg": "Vác"
+    },
+    {
+      "idopont": "2026-09-19T01:56:17.366637+02:00",
+      "kulcs": "FKU916",
+      "rendszam": "FKU916",
+      "vehicle_id": "3072",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50453567504883,
+      "lon": 19.024890899658203,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-19T01:56:17.367258+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.53403091430664,
+      "lon": 19.082120895385742,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T01:56:17.367392+02:00",
+      "kulcs": "MUU906",
+      "rendszam": "MUU906",
+      "vehicle_id": "5959",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57962417602539,
+      "lon": 19.10941505432129,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
