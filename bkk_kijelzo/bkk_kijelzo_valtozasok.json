@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T02:17:45.469484+02:00",
+  "frissitve": "2026-09-18T02:18:14.695966+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:12:01.416762+02:00",
-      "kulcs": "T9012",
-      "rendszam": "T9012",
-      "vehicle_id": "6151",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50373840332031,
-      "lon": 19.136926651000977,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-17T15:12:01.416875+02:00",
-      "kulcs": "NGC149",
-      "rendszam": "NGC149",
-      "vehicle_id": "6200",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.53994369506836,
-      "lon": 19.04671287536621,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-17T15:12:01.418955+02:00",
-      "kulcs": "NGC025",
-      "rendszam": "NGC025",
-      "vehicle_id": "6324",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.436283111572266,
-      "lon": 19.041290283203125,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-17T15:12:01.419241+02:00",
       "kulcs": "NNE067",
@@ -260000,6 +259961,45 @@
       "lon": 18.994478225708008,
       "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T02:18:14.617825+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54927062988281,
+      "lon": 18.95147705078125,
+      "elozo_szoveg": "Máriaremete ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-18T02:18:14.617881+02:00",
+      "kulcs": "PKN619",
+      "rendszam": "PKN619",
+      "vehicle_id": "7208",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47810363769531,
+      "lon": 19.04532241821289,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-18T02:18:14.618367+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51337432861328,
+      "lon": 19.10198974609375,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
