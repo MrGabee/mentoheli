@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-18T03:10:36.447975+02:00",
+  "frissitve": "2026-09-18T03:11:07.377867+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:17:13.984591+02:00",
-      "kulcs": "T9009",
-      "rendszam": "T9009",
-      "vehicle_id": "6148",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49966812133789,
-      "lon": 19.083187103271484,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-17T15:17:13.984877+02:00",
-      "kulcs": "NGC143",
-      "rendszam": "NGC143",
-      "vehicle_id": "6215",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.5667724609375,
-      "lon": 18.955276489257812,
-      "elozo_szoveg": "Pesthidegkút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-17T15:17:13.985082+02:00",
-      "kulcs": "NCV296",
-      "rendszam": "NCV296",
-      "vehicle_id": "6261",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50676727294922,
-      "lon": 19.023645401000977,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-17T15:17:13.985347+02:00",
-      "kulcs": "NGC033",
-      "rendszam": "NGC033",
-      "vehicle_id": "6332",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.48677444458008,
-      "lon": 18.95491600036621,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-17T15:17:13.985405+02:00",
       "kulcs": "NLE854",
@@ -260000,6 +259948,58 @@
       "lon": 19.02557373046875,
       "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
       "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-18T03:11:07.310813+02:00",
+      "kulcs": "AAGL257",
+      "rendszam": "AAGL257",
+      "vehicle_id": "257",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50703811645508,
+      "lon": 18.921504974365234,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-18T03:11:07.312946+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.579586029052734,
+      "lon": 19.109603881835938,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-18T03:11:07.313152+02:00",
+      "kulcs": "SKR806",
+      "rendszam": "SKR806",
+      "vehicle_id": "7692",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49713134765625,
+      "lon": 19.055530548095703,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-18T03:11:07.313175+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.4699821472168,
+      "lon": 19.07421875,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
+      "uj_szoveg": "Millenniumtelep H"
     }
   ]
 }
