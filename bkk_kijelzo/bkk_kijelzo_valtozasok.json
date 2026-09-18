@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T00:15:26.203728+02:00",
+  "frissitve": "2026-09-19T00:16:23.142275+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T14:52:28.243955+02:00",
-      "kulcs": "T9144",
-      "rendszam": "T9144",
-      "vehicle_id": "7883",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489505767822266,
-      "lon": 19.089887619018555,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.243997+02:00",
-      "kulcs": "T9148",
-      "rendszam": "T9148",
-      "vehicle_id": "7887",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51676940917969,
-      "lon": 19.05184555053711,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.244037+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.532955169677734,
-      "lon": 19.105554580688477,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-18T14:52:28.244158+02:00",
       "kulcs": "AOFL206",
@@ -260000,6 +259961,45 @@
       "lon": 19.066091537475586,
       "elozo_szoveg": "Pasaréti tér",
       "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-19T00:16:23.053508+02:00",
+      "kulcs": "AOLH518",
+      "rendszam": "AOLH518",
+      "vehicle_id": "1049",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.45787048339844,
+      "lon": 19.027328491210938,
+      "elozo_szoveg": "Baross Gábor-telep, Ispiláng utca",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-19T00:16:23.058374+02:00",
+      "kulcs": "AAKM017",
+      "rendszam": "AAKM017",
+      "vehicle_id": "536",
+      "vehicle_label": "Tábor-hegy",
+      "vonal_szam": "937",
+      "route_id": "9370",
+      "lat": 47.54018020629883,
+      "lon": 19.046276092529297,
+      "elozo_szoveg": "Széchenyi-hegy, Gyermekvasút",
+      "uj_szoveg": "Testvér-hegy ► Tábor-hegy"
+    },
+    {
+      "idopont": "2026-09-19T00:16:23.058577+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.479740142822266,
+      "lon": 19.25555992126465,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
     }
   ]
 }
