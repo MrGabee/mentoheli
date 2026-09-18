@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T02:58:12.966093+02:00",
+  "frissitve": "2026-09-18T02:58:43.075499+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:15:52.244472+02:00",
-      "kulcs": "PDB702",
-      "rendszam": "PDB702",
-      "vehicle_id": "7028",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.55065155029297,
-      "lon": 19.041797637939453,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-17T15:15:52.244670+02:00",
-      "kulcs": "PDB381",
-      "rendszam": "PDB381",
-      "vehicle_id": "7063",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.45877456665039,
-      "lon": 19.177173614501953,
-      "elozo_szoveg": "Felsőcsatári köz",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-17T15:15:52.244964+02:00",
-      "kulcs": "PDN627",
-      "rendszam": "PDN627",
-      "vehicle_id": "7098",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.49960708618164,
-      "lon": 18.97283172607422,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Boráros tér H"
-    },
     {
       "idopont": "2026-09-17T15:15:52.245146+02:00",
       "kulcs": "PDN609",
@@ -260000,6 +259961,45 @@
       "lon": 19.081104278564453,
       "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T02:58:42.987244+02:00",
+      "kulcs": "AELD559",
+      "rendszam": "AELD559",
+      "vehicle_id": "633",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42687225341797,
+      "lon": 19.160507202148438,
+      "elozo_szoveg": "Ady Endre tér",
+      "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-18T02:58:42.987618+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44397735595703,
+      "lon": 19.092796325683594,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-18T02:58:42.987890+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47377014160156,
+      "lon": 19.046335220336914,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
