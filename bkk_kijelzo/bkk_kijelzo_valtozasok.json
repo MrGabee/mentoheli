@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T02:47:48.444572+02:00",
+  "frissitve": "2026-09-18T02:48:19.855684+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:14:25.265398+02:00",
-      "kulcs": "T9124",
-      "rendszam": "T9124",
-      "vehicle_id": "7863",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52101516723633,
-      "lon": 19.13592529296875,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-17T15:14:25.265595+02:00",
-      "kulcs": "T9147",
-      "rendszam": "T9147",
-      "vehicle_id": "7886",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.521453857421875,
-      "lon": 19.100847244262695,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-17T15:14:25.265766+02:00",
-      "kulcs": "AOFL213",
-      "rendszam": "AOFL213",
-      "vehicle_id": "800",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "65A",
-      "route_id": "0651",
-      "lat": 47.54037094116211,
-      "lon": 19.006200790405273,
-      "elozo_szoveg": "Fenyőgyöngye",
-      "uj_szoveg": "Kolosy tér"
-    },
     {
       "idopont": "2026-09-17T15:14:25.266022+02:00",
       "kulcs": "AOFL246",
@@ -260000,6 +259961,45 @@
       "lon": 19.06959342956543,
       "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
       "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T02:48:19.773342+02:00",
+      "kulcs": "AADI659",
+      "rendszam": "AADI659",
+      "vehicle_id": "158",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50151824951172,
+      "lon": 19.13619613647461,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-18T02:48:19.773557+02:00",
+      "kulcs": "FKU926",
+      "rendszam": "FKU926",
+      "vehicle_id": "3082",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.540157318115234,
+      "lon": 19.148605346679688,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-18T02:48:19.775703+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40446090698242,
+      "lon": 19.1859073638916,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
     }
   ]
 }
