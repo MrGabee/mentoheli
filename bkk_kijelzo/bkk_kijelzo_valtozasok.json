@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T03:23:05.525744+02:00",
+  "frissitve": "2026-09-18T03:23:39.371052+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:18:33.792363+02:00",
-      "kulcs": "V2278",
-      "rendszam": "V2278",
-      "vehicle_id": "576",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.4271240234375,
-      "lon": 19.03909683227539,
-      "elozo_szoveg": "Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-17T15:18:33.792734+02:00",
-      "kulcs": "V2210",
-      "rendszam": "V2210",
-      "vehicle_id": "5850",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42953109741211,
-      "lon": 19.217411041259766,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-17T15:18:33.793038+02:00",
-      "kulcs": "MXJ012",
-      "rendszam": "MXJ012",
-      "vehicle_id": "5888",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "156",
-      "route_id": "1560",
-      "lat": 47.51286697387695,
-      "lon": 18.994720458984375,
-      "elozo_szoveg": "Dániel út",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-17T15:18:33.793253+02:00",
       "kulcs": "MUT900",
@@ -260000,6 +259961,45 @@
       "lon": 18.253170013427734,
       "elozo_szoveg": "Dombóvár",
       "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-09-18T03:23:39.286189+02:00",
+      "kulcs": "AADR716",
+      "rendszam": "AADR716",
+      "vehicle_id": "184",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5040397644043,
+      "lon": 19.136707305908203,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-18T03:23:39.289507+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597877502441406,
+      "lon": 19.05398941040039,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-18T03:23:39.289639+02:00",
+      "kulcs": "AADI587",
+      "rendszam": "AADI587",
+      "vehicle_id": "87",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.477081298828125,
+      "lon": 19.049869537353516,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
     }
   ]
 }
