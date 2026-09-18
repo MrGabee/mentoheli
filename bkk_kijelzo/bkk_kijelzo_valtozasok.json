@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T00:37:48.519476+02:00",
+  "frissitve": "2026-09-19T00:38:28.429321+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T14:54:02.752383+02:00",
-      "kulcs": "T9128",
-      "rendszam": "T9128",
-      "vehicle_id": "7867",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.504173278808594,
-      "lon": 19.136720657348633,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-18T14:54:02.752422+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.52092361450195,
-      "lon": 19.101879119873047,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T14:54:02.752824+02:00",
-      "kulcs": "AOFL211",
-      "rendszam": "AOFL211",
-      "vehicle_id": "798",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.55531311035156,
-      "lon": 19.01190948486328,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
     {
       "idopont": "2026-09-18T14:54:02.752870+02:00",
       "kulcs": "AOFL216",
@@ -260000,6 +259961,45 @@
       "lon": 19.067733764648438,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-19T00:38:28.361800+02:00",
+      "kulcs": "FLR722",
+      "rendszam": "FLR722",
+      "vehicle_id": "3136",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.560394287109375,
+      "lon": 19.090862274169922,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-19T00:38:28.361838+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Centenáriumi lakótelep",
+      "vonal_szam": "44",
+      "route_id": "0440",
+      "lat": 47.503482818603516,
+      "lon": 19.13629913330078,
+      "elozo_szoveg": "Veres Péter út ► Centenáriumi lakótelep",
+      "uj_szoveg": "Centenáriumi lakótelep"
+    },
+    {
+      "idopont": "2026-09-19T00:38:28.362831+02:00",
+      "kulcs": "MUU906",
+      "rendszam": "MUU906",
+      "vehicle_id": "5959",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.426658630371094,
+      "lon": 19.161056518554688,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
