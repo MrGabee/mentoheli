@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T02:42:56.029627+02:00",
+  "frissitve": "2026-09-18T02:44:00.670160+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:14:25.255095+02:00",
-      "kulcs": "V4115",
-      "rendszam": "V4115",
-      "vehicle_id": "4804",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.541255950927734,
-      "lon": 18.965063095092773,
-      "elozo_szoveg": "Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-17T15:14:25.255142+02:00",
-      "kulcs": "V4122",
-      "rendszam": "V4122",
-      "vehicle_id": "4810",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.475704193115234,
-      "lon": 19.0469970703125,
-      "elozo_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-17T15:14:25.255583+02:00",
-      "kulcs": "V4293",
-      "rendszam": "V4293",
-      "vehicle_id": "4952",
-      "vehicle_label": "Izraelita temető",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49079513549805,
-      "lon": 19.08949851989746,
-      "elozo_szoveg": "Kőbányai út ► Izraelita temető",
-      "uj_szoveg": "Izraelita temető"
-    },
-    {
-      "idopont": "2026-09-17T15:14:25.255782+02:00",
-      "kulcs": "AAMH660",
-      "rendszam": "AAMH660",
-      "vehicle_id": "503",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.59870910644531,
-      "lon": 19.121389389038086,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-17T15:14:25.255805+02:00",
-      "kulcs": "MFW506",
-      "rendszam": "MFW506",
-      "vehicle_id": "5039",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.46913146972656,
-      "lon": 19.226110458374023,
-      "elozo_szoveg": "Helikopter lakópark",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-17T15:14:25.256338+02:00",
       "kulcs": "MPW608",
@@ -260000,6 +259935,71 @@
       "lon": 19.046382904052734,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-18T02:44:00.580257+02:00",
+      "kulcs": "V2015",
+      "rendszam": "V2015",
+      "vehicle_id": "2015",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.5074462890625,
+      "lon": 19.02313995361328,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-18T02:44:00.582611+02:00",
+      "kulcs": "NBW012",
+      "rendszam": "NBW012",
+      "vehicle_id": "5982",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50132369995117,
+      "lon": 19.11981201171875,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-09-18T02:44:00.582723+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51423263549805,
+      "lon": 19.058603286743164,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-18T02:44:00.583212+02:00",
+      "kulcs": "182 563",
+      "rendszam": "182 563",
+      "vehicle_id": "918061825637",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.46059036254883,
+      "lon": 21.483570098876953,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-18T02:44:00.583235+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.541019439697266,
+      "lon": 19.150758743286133,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
     }
   ]
 }
