@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T03:40:54.889783+02:00",
+  "frissitve": "2026-09-18T03:41:30.845696+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:19:57.059941+02:00",
-      "kulcs": "SKR811",
-      "rendszam": "SKR811",
-      "vehicle_id": "7697",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.507537841796875,
-      "lon": 19.023639678955078,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.060090+02:00",
-      "kulcs": "SGY801",
-      "rendszam": "SGY801",
-      "vehicle_id": "7719",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.462913513183594,
-      "lon": 19.149658203125,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.060157+02:00",
-      "kulcs": "SGY813",
-      "rendszam": "SGY813",
-      "vehicle_id": "7731",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.46403884887695,
-      "lon": 19.018775939941406,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Baross Gábor-telep"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.060180+02:00",
-      "kulcs": "SGY815",
-      "rendszam": "SGY815",
-      "vehicle_id": "7733",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.4048957824707,
-      "lon": 19.01219940185547,
-      "elozo_szoveg": "Budatétény vasútáll. (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.060719+02:00",
-      "kulcs": "SXE202",
-      "rendszam": "SXE202",
-      "vehicle_id": "7839",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.5003776550293,
-      "lon": 19.13562774658203,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-17T15:19:57.060883+02:00",
       "kulcs": "T9128",
@@ -260000,6 +259935,71 @@
       "lon": 19.142017364501953,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-18T03:41:30.757493+02:00",
+      "kulcs": "AAGL301",
+      "rendszam": "AAGL301",
+      "vehicle_id": "281",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50799560546875,
+      "lon": 19.028894424438477,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-18T03:41:30.760036+02:00",
+      "kulcs": "NWB356",
+      "rendszam": "NWB356",
+      "vehicle_id": "6536",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49720001220703,
+      "lon": 19.055360794067383,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-18T03:41:30.760357+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37955093383789,
+      "lon": 19.10416603088379,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-18T03:41:30.760404+02:00",
+      "kulcs": "SKR822",
+      "rendszam": "SKR822",
+      "vehicle_id": "7708",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55028533935547,
+      "lon": 19.042022705078125,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-18T03:41:30.760687+02:00",
+      "kulcs": "182 569",
+      "rendszam": "182 569",
+      "vehicle_id": "918061825694",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "G60",
+      "route_id": "G60",
+      "lat": 47.24565887451172,
+      "lon": 20.096519470214844,
+      "elozo_szoveg": "Szolnok",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
