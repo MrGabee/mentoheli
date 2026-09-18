@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T04:01:31.293624+02:00",
+  "frissitve": "2026-09-18T04:02:05.891323+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:22:32.963753+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.525230407714844,
-      "lon": 19.063552856445312,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.963914+02:00",
-      "kulcs": "AOFL208",
-      "rendszam": "AOFL208",
-      "vehicle_id": "794",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "253",
-      "route_id": "2530",
-      "lat": 47.466487884521484,
-      "lon": 18.99066162109375,
-      "elozo_szoveg": "Madárhegy",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.964388+02:00",
-      "kulcs": "AOFL244",
-      "rendszam": "AOFL244",
-      "vehicle_id": "832",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.472862243652344,
-      "lon": 19.164960861206055,
-      "elozo_szoveg": "Újhegy",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.964451+02:00",
-      "kulcs": "AOFL248",
-      "rendszam": "AOFL248",
-      "vehicle_id": "836",
-      "vehicle_label": "Újhegy",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.4832878112793,
-      "lon": 19.128171920776367,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Újhegy"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.964674+02:00",
-      "kulcs": "AOIA475",
-      "rendszam": "AOIA475",
-      "vehicle_id": "852",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "210",
-      "route_id": "2100",
-      "lat": 47.49787902832031,
-      "lon": 18.98944664001465,
-      "elozo_szoveg": "Apor Vilmos tér",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
     {
       "idopont": "2026-09-17T15:22:32.964868+02:00",
       "kulcs": "AOIB800",
@@ -260000,6 +259935,71 @@
       "lon": 19.00897216796875,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-09-18T04:02:05.800517+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509307861328125,
+      "lon": 19.09605598449707,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-18T04:02:05.800579+02:00",
+      "kulcs": "V4269",
+      "rendszam": "V4269",
+      "vehicle_id": "4928",
+      "vehicle_label": "Káp.megyer, Megyeri út",
+      "vonal_szam": "14",
+      "route_id": "3140",
+      "lat": 47.55721664428711,
+      "lon": 19.08877182006836,
+      "elozo_szoveg": "Népliget M",
+      "uj_szoveg": "Káposztásmegyer, Megyeri út"
+    },
+    {
+      "idopont": "2026-09-18T04:02:05.801656+02:00",
+      "kulcs": "V2242",
+      "rendszam": "V2242",
+      "vehicle_id": "7374",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.44377136230469,
+      "lon": 19.036869049072266,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-18T04:02:05.801947+02:00",
+      "kulcs": "SKR831",
+      "rendszam": "SKR831",
+      "vehicle_id": "7717",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.489280700683594,
+      "lon": 19.062671661376953,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-18T04:02:05.802107+02:00",
+      "kulcs": "AADI587",
+      "rendszam": "AADI587",
+      "vehicle_id": "87",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39961242675781,
+      "lon": 18.990816116333008,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
