@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-19T00:51:46.328058+02:00",
+  "frissitve": "2026-09-19T00:52:24.267168+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T14:55:32.848623+02:00",
-      "kulcs": "RCT269",
-      "rendszam": "RCT269",
-      "vehicle_id": "7320",
-      "vehicle_label": "Színes utca",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.49106979370117,
-      "lon": 19.282859802246094,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Színes utca"
-    },
-    {
-      "idopont": "2026-09-18T14:55:32.848752+02:00",
-      "kulcs": "RCT316",
-      "rendszam": "RCT316",
-      "vehicle_id": "7330",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.415748596191406,
-      "lon": 19.132884979248047,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
     {
       "idopont": "2026-09-18T14:55:32.849024+02:00",
       "kulcs": "T9105",
@@ -260000,6 +259974,32 @@
       "lon": 19.089197158813477,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-19T00:52:24.181235+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.52561569213867,
+      "lon": 19.03795051574707,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-19T00:52:24.181601+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.404483795166016,
+      "lon": 19.185876846313477,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
     }
   ]
 }
