@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T00:10:16.018440+02:00",
+  "frissitve": "2026-09-19T00:10:53.819989+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T14:52:28.240518+02:00",
-      "kulcs": "AOCT675",
-      "rendszam": "AOCT675",
-      "vehicle_id": "706",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.52184295654297,
-      "lon": 19.11528778076172,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.240613+02:00",
-      "kulcs": "PDB389",
-      "rendszam": "PDB389",
-      "vehicle_id": "7071",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.53140640258789,
-      "lon": 19.16417121887207,
-      "elozo_szoveg": "Kisszentmihály, Baross utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.240671+02:00",
-      "kulcs": "PDN606",
-      "rendszam": "PDN606",
-      "vehicle_id": "7078",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41658401489258,
-      "lon": 19.13109016418457,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
     {
       "idopont": "2026-09-18T14:52:28.240686+02:00",
       "kulcs": "PDN607",
@@ -260000,6 +259961,45 @@
       "lon": 19.132869720458984,
       "elozo_szoveg": "Gödöllő",
       "uj_szoveg": "Hatvan"
+    },
+    {
+      "idopont": "2026-09-19T00:10:53.740809+02:00",
+      "kulcs": "FLR722",
+      "rendszam": "FLR722",
+      "vehicle_id": "3136",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.51050567626953,
+      "lon": 19.05613136291504,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-19T00:10:53.741449+02:00",
+      "kulcs": "RVY719",
+      "rendszam": "RVY719",
+      "vehicle_id": "7468",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46473693847656,
+      "lon": 19.127792358398438,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T00:10:53.741501+02:00",
+      "kulcs": "SKR830",
+      "rendszam": "SKR830",
+      "vehicle_id": "7716",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.49824142456055,
+      "lon": 19.237449645996094,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
