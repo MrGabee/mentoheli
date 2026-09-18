@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T04:19:10.702202+02:00",
+  "frissitve": "2026-09-18T04:19:50.562665+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:27:02.182795+02:00",
-      "kulcs": "V1448",
-      "rendszam": "V1448",
-      "vehicle_id": "4518",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.495357513427734,
-      "lon": 19.059303283691406,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-17T15:27:02.182832+02:00",
-      "kulcs": "AAMH611",
-      "rendszam": "AAMH611",
-      "vehicle_id": "454",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.57731628417969,
-      "lon": 19.114486694335938,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-17T15:27:02.182855+02:00",
-      "kulcs": "V1503",
-      "rendszam": "V1503",
-      "vehicle_id": "4555",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51933288574219,
-      "lon": 19.091175079345703,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
-    {
-      "idopont": "2026-09-17T15:27:02.182867+02:00",
-      "kulcs": "AAMH613",
-      "rendszam": "AAMH613",
-      "vehicle_id": "456",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.49993133544922,
-      "lon": 19.084259033203125,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
-    {
-      "idopont": "2026-09-17T15:27:02.183721+02:00",
-      "kulcs": "AAMH625",
-      "rendszam": "AAMH625",
-      "vehicle_id": "468",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30A",
-      "route_id": "0301",
-      "lat": 47.585693359375,
-      "lon": 19.09449577331543,
-      "elozo_szoveg": "Megyer, Szondi utca",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-17T15:27:02.183772+02:00",
       "kulcs": "V4016",
@@ -260000,6 +259935,71 @@
       "lon": 19.099613189697266,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-18T04:19:50.491074+02:00",
+      "kulcs": "AADI634",
+      "rendszam": "AADI634",
+      "vehicle_id": "132",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.49104309082031,
+      "lon": 19.243019104003906,
+      "elozo_szoveg": "Vidor utca",
+      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-18T04:19:50.491339+02:00",
+      "kulcs": "AAGL257",
+      "rendszam": "AAGL257",
+      "vehicle_id": "257",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46164321899414,
+      "lon": 19.002830505371094,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-18T04:19:50.492771+02:00",
+      "kulcs": "V1461",
+      "rendszam": "V1461",
+      "vehicle_id": "4531",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "49",
+      "route_id": "3490",
+      "lat": 47.465999603271484,
+      "lon": 19.021942138671875,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-18T04:19:50.493735+02:00",
+      "kulcs": "V2242",
+      "rendszam": "V2242",
+      "vehicle_id": "7374",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.484092712402344,
+      "lon": 19.026870727539062,
+      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-18T04:19:50.493811+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "284E",
+      "route_id": "2845",
+      "lat": 47.39912414550781,
+      "lon": 19.20561981201172,
+      "elozo_szoveg": "Pestszentimre, Benjámin utca",
+      "uj_szoveg": "Kőbánya-Kispest M"
     }
   ]
 }
