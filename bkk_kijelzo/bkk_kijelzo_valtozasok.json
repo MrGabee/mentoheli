@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T02:31:42.796718+02:00",
+  "frissitve": "2026-09-18T02:32:17.982339+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:13:08.212761+02:00",
-      "kulcs": "V2259",
-      "rendszam": "V2259",
-      "vehicle_id": "557",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42713165283203,
-      "lon": 19.039138793945312,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-17T15:13:08.214237+02:00",
-      "kulcs": "V2275",
-      "rendszam": "V2275",
-      "vehicle_id": "573",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.49910354614258,
-      "lon": 19.023963928222656,
-      "elozo_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-17T15:13:08.214387+02:00",
-      "kulcs": "MXJ002",
-      "rendszam": "MXJ002",
-      "vehicle_id": "5828",
-      "vehicle_label": "Nyeremény utca",
-      "vonal_szam": "297",
-      "route_id": "2970",
-      "lat": 47.48660659790039,
-      "lon": 19.271135330200195,
-      "elozo_szoveg": "Rákoscsaba-Újtelep vasútállomás",
-      "uj_szoveg": "Nyeremény utca"
-    },
-    {
-      "idopont": "2026-09-17T15:13:08.214607+02:00",
-      "kulcs": "V2206",
-      "rendszam": "V2206",
-      "vehicle_id": "5846",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.44584274291992,
-      "lon": 19.152496337890625,
-      "elozo_szoveg": "Kispest, Tulipán utca",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-17T15:13:08.214747+02:00",
-      "kulcs": "V2213",
-      "rendszam": "V2213",
-      "vehicle_id": "5853",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.4969482421875,
-      "lon": 19.13817596435547,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-17T15:13:08.214908+02:00",
       "kulcs": "MUM641",
@@ -260000,6 +259935,71 @@
       "lon": 19.107677459716797,
       "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-18T02:32:17.893471+02:00",
+      "kulcs": "AADI650",
+      "rendszam": "AADI650",
+      "vehicle_id": "149",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47965621948242,
+      "lon": 19.05109405517578,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-18T02:32:17.893518+02:00",
+      "kulcs": "AADI659",
+      "rendszam": "AADI659",
+      "vehicle_id": "158",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51030349731445,
+      "lon": 19.097442626953125,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-18T02:32:17.893588+02:00",
+      "kulcs": "AADR716",
+      "rendszam": "AADR716",
+      "vehicle_id": "184",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49715042114258,
+      "lon": 19.055450439453125,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-18T02:32:17.896538+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.598487854003906,
+      "lon": 19.121292114257812,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T02:32:17.896621+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.54705047607422,
+      "lon": 19.142053604125977,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
