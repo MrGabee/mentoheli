@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T00:32:43.067863+02:00",
+  "frissitve": "2026-09-19T00:33:27.927641+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T14:54:02.749676+02:00",
-      "kulcs": "PKN604",
-      "rendszam": "PKN604",
-      "vehicle_id": "7193",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50014114379883,
-      "lon": 19.13530921936035,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T14:54:02.749770+02:00",
-      "kulcs": "PKN614",
-      "rendszam": "PKN614",
-      "vehicle_id": "7203",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.47366714477539,
-      "lon": 19.294260025024414,
-      "elozo_szoveg": "Kucorgó tér ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T14:54:02.749786+02:00",
-      "kulcs": "PKN615",
-      "rendszam": "PKN615",
-      "vehicle_id": "7204",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "176E",
-      "route_id": "1765",
-      "lat": 47.49930953979492,
-      "lon": 19.286766052246094,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Rákoscsaba-Újtelep"
-    },
     {
       "idopont": "2026-09-18T14:54:02.750465+02:00",
       "kulcs": "V2255",
@@ -260000,6 +259961,45 @@
       "lon": 19.025846481323242,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-19T00:33:27.840545+02:00",
+      "kulcs": "FLR705",
+      "rendszam": "FLR705",
+      "vehicle_id": "3119",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.51158142089844,
+      "lon": 19.05659294128418,
+      "elozo_szoveg": "Béke tér ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-19T00:33:27.842008+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.510887145996094,
+      "lon": 19.056116104125977,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-19T00:33:27.842128+02:00",
+      "kulcs": "SKN828",
+      "rendszam": "SKN828",
+      "vehicle_id": "76",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519290924072266,
+      "lon": 19.038232803344727,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
