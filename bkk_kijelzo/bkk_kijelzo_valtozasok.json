@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T00:08:16.290994+02:00",
+  "frissitve": "2026-09-19T00:09:00.991519+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T14:52:28.239212+02:00",
-      "kulcs": "V2203",
-      "rendszam": "V2203",
-      "vehicle_id": "6220",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46519470214844,
-      "lon": 19.12742042541504,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.239236+02:00",
-      "kulcs": "AEHE427",
-      "rendszam": "AEHE427",
-      "vehicle_id": "624",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.49571990966797,
-      "lon": 19.072893142700195,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.239313+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.506107330322266,
-      "lon": 19.024700164794922,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.239327+02:00",
-      "kulcs": "NCV296",
-      "rendszam": "NCV296",
-      "vehicle_id": "6261",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.506591796875,
-      "lon": 19.023984909057617,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-18T14:52:28.239824+02:00",
-      "kulcs": "NTM437",
-      "rendszam": "NTM437",
-      "vehicle_id": "6505",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.4055290222168,
-      "lon": 19.014083862304688,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Lomnici utca ► Újbuda-központ M"
-    },
     {
       "idopont": "2026-09-18T14:52:28.239958+02:00",
       "kulcs": "NWB355",
@@ -260000,6 +259935,71 @@
       "lon": 19.10668182373047,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-19T00:09:00.898407+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.426883697509766,
+      "lon": 19.15950584411621,
+      "elozo_szoveg": "Blaha Lujza tér M",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-19T00:09:00.898446+02:00",
+      "kulcs": "V2002",
+      "rendszam": "V2002",
+      "vehicle_id": "2002",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50822830200195,
+      "lon": 19.0269832611084,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-19T00:09:00.898475+02:00",
+      "kulcs": "V2015",
+      "rendszam": "V2015",
+      "vehicle_id": "2015",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47748947143555,
+      "lon": 19.048561096191406,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-19T00:09:00.900628+02:00",
+      "kulcs": "AAGL264",
+      "rendszam": "AAGL264",
+      "vehicle_id": "264",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.44963455200195,
+      "lon": 18.905078887939453,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-19T00:09:00.903794+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43888473510742,
+      "lon": 19.103199005126953,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
     }
   ]
 }
