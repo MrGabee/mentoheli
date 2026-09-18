@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-18T04:00:27.870737+02:00",
+  "frissitve": "2026-09-18T04:01:00.350028+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:22:32.958887+02:00",
-      "kulcs": "PKN608",
-      "rendszam": "PKN608",
-      "vehicle_id": "7197",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "176E",
-      "route_id": "1765",
-      "lat": 47.49969482421875,
-      "lon": 19.2869873046875,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Rákoscsaba-Újtelep"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.959303+02:00",
-      "kulcs": "RCT269",
-      "rendszam": "RCT269",
-      "vehicle_id": "7320",
-      "vehicle_label": "Színes utca",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.490943908691406,
-      "lon": 19.28290557861328,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Színes utca"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.959736+02:00",
-      "kulcs": "T9107",
-      "rendszam": "T9107",
-      "vehicle_id": "7354",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.503902435302734,
-      "lon": 19.13679313659668,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.960335+02:00",
-      "kulcs": "RVY615",
-      "rendszam": "RVY615",
-      "vehicle_id": "7444",
-      "vehicle_label": "Ecseri út M",
-      "vonal_szam": "OP03",
-      "route_id": "OP03",
-      "lat": 47.482810974121094,
-      "lon": 19.130414962768555,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Ecseri út M"
-    },
-    {
-      "idopont": "2026-09-17T15:22:32.960577+02:00",
-      "kulcs": "RVY713",
-      "rendszam": "RVY713",
-      "vehicle_id": "7462",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.43241500854492,
-      "lon": 19.174144744873047,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-17T15:22:32.961147+02:00",
       "kulcs": "RVY740",
@@ -260000,6 +259935,71 @@
       "lon": 19.047107696533203,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-18T04:01:00.298032+02:00",
+      "kulcs": "AAGL309",
+      "rendszam": "AAGL309",
+      "vehicle_id": "339",
+      "vehicle_label": "Nagykovácsi, Tisza I. tér",
+      "vonal_szam": "63",
+      "route_id": "0630",
+      "lat": 47.54269027709961,
+      "lon": 18.96437644958496,
+      "elozo_szoveg": "Solymár, PEMÜ",
+      "uj_szoveg": "Nagykovácsi, Tisza István tér"
+    },
+    {
+      "idopont": "2026-09-18T04:01:00.298457+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.57014846801758,
+      "lon": 19.127716064453125,
+      "elozo_szoveg": "Rákospalota, Mélyfúró utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-18T04:01:00.298914+02:00",
+      "kulcs": "NBW012",
+      "rendszam": "NBW012",
+      "vehicle_id": "5982",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51445388793945,
+      "lon": 19.035547256469727,
+      "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
+      "uj_szoveg": "Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-18T04:01:00.299461+02:00",
+      "kulcs": "480 011",
+      "rendszam": "480 011",
+      "vehicle_id": "915504800110",
+      "vehicle_label": "Szeged",
+      "vonal_szam": "IC",
+      "route_id": "IC",
+      "lat": 47.51094055175781,
+      "lon": 19.101789474487305,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szeged"
+    },
+    {
+      "idopont": "2026-09-18T04:01:00.299662+02:00",
+      "kulcs": "815 039",
+      "rendszam": "815 039",
+      "vehicle_id": "945518150392",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.74311065673828,
+      "lon": 18.71803092956543,
+      "elozo_szoveg": "Esztergom",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
