@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:57:56.537654+02:00",
+  "frissitve": "2026-09-19T01:58:31.763485+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:02:47.953320+02:00",
-      "kulcs": "STZ867",
-      "rendszam": "STZ867",
-      "vehicle_id": "7822",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.4454460144043,
-      "lon": 18.906112670898438,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.953662+02:00",
-      "kulcs": "T9122",
-      "rendszam": "T9122",
-      "vehicle_id": "7861",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.4894905090332,
-      "lon": 19.090213775634766,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.954611+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Remetehegyi út",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.52783203125,
-      "lon": 19.036853790283203,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Remetehegyi út"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.954643+02:00",
-      "kulcs": "AOFL235",
-      "rendszam": "AOFL235",
-      "vehicle_id": "823",
-      "vehicle_label": "Regőczi István tér",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.50770950317383,
-      "lon": 19.024660110473633,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Regőczi István tér"
-    },
     {
       "idopont": "2026-09-18T15:02:47.954931+02:00",
       "kulcs": "AADI585",
@@ -260000,6 +259948,58 @@
       "lon": 19.103052139282227,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T01:58:31.682019+02:00",
+      "kulcs": "FKU918",
+      "rendszam": "FKU918",
+      "vehicle_id": "3074",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50396728515625,
+      "lon": 19.142234802246094,
+      "elozo_szoveg": "Astoria M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-19T01:58:31.682101+02:00",
+      "kulcs": "FLR702",
+      "rendszam": "FLR702",
+      "vehicle_id": "3116",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.50161361694336,
+      "lon": 19.12238883972168,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-19T01:58:31.682384+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497459411621094,
+      "lon": 19.055631637573242,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Deák F. tér (City centre)"
+    },
+    {
+      "idopont": "2026-09-19T01:58:31.682541+02:00",
+      "kulcs": "AADI567",
+      "rendszam": "AADI567",
+      "vehicle_id": "65",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50753402709961,
+      "lon": 19.023889541625977,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
     }
   ]
 }
