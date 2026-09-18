@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:10:00.396965+02:00",
+  "frissitve": "2026-09-19T01:10:41.229028+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T14:56:54.370635+02:00",
-      "kulcs": "415 054",
-      "rendszam": "415 054",
-      "vehicle_id": "945514150545",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "Z30",
-      "route_id": "Z30",
-      "lat": 47.36627960205078,
-      "lon": 18.87574005126953,
-      "elozo_szoveg": "Martonvásár",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-18T14:56:54.370892+02:00",
-      "kulcs": "815 027",
-      "rendszam": "815 027",
-      "vehicle_id": "945518150277",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.5261116027832,
-      "lon": 19.090110778808594,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
-    {
-      "idopont": "2026-09-18T14:56:54.371007+02:00",
-      "kulcs": "AOIM033",
-      "rendszam": "AOIM033",
-      "vehicle_id": "953",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.388938903808594,
-      "lon": 18.95850944519043,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-18T14:56:54.371187+02:00",
-      "kulcs": "AADI600",
-      "rendszam": "AADI600",
-      "vehicle_id": "98",
-      "vehicle_label": "Fácános tér",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.50746536254883,
-      "lon": 19.024972915649414,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fácános tér"
-    },
-    {
-      "idopont": "2026-09-18T14:56:54.371249+02:00",
-      "kulcs": "AOJM867",
-      "rendszam": "AOJM867",
-      "vehicle_id": "990",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.444847106933594,
-      "lon": 19.097932815551758,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Kálvin tér M"
-    },
     {
       "idopont": "2026-09-18T14:58:21.991308+02:00",
       "kulcs": "AADI649",
@@ -260000,6 +259935,71 @@
       "lon": 19.055782318115234,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-19T01:10:41.141272+02:00",
+      "kulcs": "AADR712",
+      "rendszam": "AADR712",
+      "vehicle_id": "180",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.422603607177734,
+      "lon": 19.08060073852539,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T01:10:41.141508+02:00",
+      "kulcs": "AAGL251",
+      "rendszam": "AAGL251",
+      "vehicle_id": "251",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45597457885742,
+      "lon": 18.940420150756836,
+      "elozo_szoveg": "Törökbálint, Márta utca",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-19T01:10:41.145891+02:00",
+      "kulcs": "NBW013",
+      "rendszam": "NBW013",
+      "vehicle_id": "5983",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52309036254883,
+      "lon": 19.01718521118164,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-19T01:10:41.146124+02:00",
+      "kulcs": "RVY704",
+      "rendszam": "RVY704",
+      "vehicle_id": "7453",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42863464355469,
+      "lon": 19.155696868896484,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-19T01:10:41.146518+02:00",
+      "kulcs": "AOIM012",
+      "rendszam": "AOIM012",
+      "vehicle_id": "931",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.464481353759766,
+      "lon": 19.128000259399414,
+      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
     }
   ]
 }
