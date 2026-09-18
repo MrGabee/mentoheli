@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-18T03:35:59.031754+02:00",
+  "frissitve": "2026-09-18T03:36:26.727452+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:19:57.055484+02:00",
-      "kulcs": "NBW001",
-      "rendszam": "NBW001",
-      "vehicle_id": "5971",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50094985961914,
-      "lon": 19.136075973510742,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.055617+02:00",
-      "kulcs": "T9000",
-      "rendszam": "T9000",
-      "vehicle_id": "6116",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.4996452331543,
-      "lon": 19.083539962768555,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.055787+02:00",
-      "kulcs": "T9002",
-      "rendszam": "T9002",
-      "vehicle_id": "6141",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49959182739258,
-      "lon": 19.083209991455078,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.055828+02:00",
-      "kulcs": "T9008",
-      "rendszam": "T9008",
-      "vehicle_id": "6147",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51411819458008,
-      "lon": 19.049402236938477,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-17T15:19:57.056007+02:00",
       "kulcs": "NGC165",
@@ -260000,6 +259948,58 @@
       "lon": 18.872900009155273,
       "elozo_szoveg": "Szob",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-18T03:36:26.660196+02:00",
+      "kulcs": "AAGL264",
+      "rendszam": "AAGL264",
+      "vehicle_id": "264",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.43132400512695,
+      "lon": 18.927949905395508,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-18T03:36:26.662317+02:00",
+      "kulcs": "RCT314",
+      "rendszam": "RCT314",
+      "vehicle_id": "7328",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534427642822266,
+      "lon": 19.08232879638672,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-18T03:36:26.662415+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.4324951171875,
+      "lon": 19.261198043823242,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-18T03:36:26.662847+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.405982971191406,
+      "lon": 19.014118194580078,
+      "elozo_szoveg": "Budatétény",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
