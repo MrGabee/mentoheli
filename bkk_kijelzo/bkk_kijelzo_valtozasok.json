@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:56:17.455881+02:00",
+  "frissitve": "2026-09-19T01:56:51.753462+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:02:47.949091+02:00",
-      "kulcs": "PHG627",
-      "rendszam": "PHG627",
-      "vehicle_id": "7151",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.52512741088867,
-      "lon": 19.17601203918457,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.949703+02:00",
-      "kulcs": "PMP914",
-      "rendszam": "PMP914",
-      "vehicle_id": "7232",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.467403411865234,
-      "lon": 19.016773223876953,
-      "elozo_szoveg": "Kelenföld vasútállomás M ► Gazdagréti tér",
-      "uj_szoveg": "Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.949769+02:00",
-      "kulcs": "PCC934",
-      "rendszam": "PCC934",
-      "vehicle_id": "7273",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.441585540771484,
-      "lon": 19.034202575683594,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.950216+02:00",
-      "kulcs": "T9101",
-      "rendszam": "T9101",
-      "vehicle_id": "7348",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49978256225586,
-      "lon": 19.08327865600586,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:02:47.950255+02:00",
-      "kulcs": "T9103",
-      "rendszam": "T9103",
-      "vehicle_id": "7350",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.517208099365234,
-      "lon": 19.107379913330078,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-09-18T15:02:47.950335+02:00",
       "kulcs": "AOGF654",
@@ -260000,6 +259935,71 @@
       "lon": 19.10941505432129,
       "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-19T01:56:51.654129+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507041931152344,
+      "lon": 18.921506881713867,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-19T01:56:51.654161+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58595657348633,
+      "lon": 19.09476089477539,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-19T01:56:51.654474+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48173904418945,
+      "lon": 19.064573287963867,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-19T01:56:51.654598+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48688888549805,
+      "lon": 19.06752586364746,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-19T01:56:51.654724+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.49881362915039,
+      "lon": 19.05019760131836,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
     }
   ]
 }
