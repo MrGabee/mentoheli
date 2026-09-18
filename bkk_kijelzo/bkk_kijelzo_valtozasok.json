@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:44:32.309499+02:00",
+  "frissitve": "2026-09-19T01:45:05.964835+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:01:38.289789+02:00",
-      "kulcs": "PDN643",
-      "rendszam": "PDN643",
-      "vehicle_id": "7114",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.487300872802734,
-      "lon": 18.989816665649414,
-      "elozo_szoveg": "Mindszenty József bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.289966+02:00",
-      "kulcs": "PHG643",
-      "rendszam": "PHG643",
-      "vehicle_id": "7167",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.54195022583008,
-      "lon": 19.15153694152832,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Cinkota H"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.290195+02:00",
-      "kulcs": "PKN627",
-      "rendszam": "PKN627",
-      "vehicle_id": "7216",
-      "vehicle_label": "Rákoshegy vasútállomás",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.46272659301758,
-      "lon": 19.15083122253418,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoshegy vasútállomás"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.290272+02:00",
-      "kulcs": "V1621",
-      "rendszam": "V1621",
-      "vehicle_id": "7290",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.481876373291016,
-      "lon": 19.068767547607422,
-      "elozo_szoveg": "Mester utca/Ferenc körút",
-      "uj_szoveg": "Koppány utca"
-    },
     {
       "idopont": "2026-09-18T15:01:38.290503+02:00",
       "kulcs": "T8109",
@@ -260000,6 +259948,58 @@
       "lon": 18.964311599731445,
       "elozo_szoveg": "Hűvösvölgy",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-19T01:45:05.911778+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483924865722656,
+      "lon": 19.12757682800293,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-19T01:45:05.912557+02:00",
+      "kulcs": "AOFL207",
+      "rendszam": "AOFL207",
+      "vehicle_id": "793",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.51115036010742,
+      "lon": 18.972063064575195,
+      "elozo_szoveg": "Fácános tér",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-19T01:45:05.912571+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.47787857055664,
+      "lon": 19.045976638793945,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-19T01:45:05.912591+02:00",
+      "kulcs": "432 200",
+      "rendszam": "432 200",
+      "vehicle_id": "915504322008",
+      "vehicle_label": "Szolnok",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.511268615722656,
+      "lon": 19.10140037536621,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szolnok"
     }
   ]
 }
