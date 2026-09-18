@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-18T04:13:31.661076+02:00",
+  "frissitve": "2026-09-18T04:14:01.995055+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:25:38.929338+02:00",
-      "kulcs": "PDB730",
-      "rendszam": "PDB730",
-      "vehicle_id": "7056",
-      "vehicle_label": "Pasaréti tér",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.56766891479492,
-      "lon": 19.12723159790039,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Pasaréti tér"
-    },
-    {
-      "idopont": "2026-09-17T15:25:38.929632+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Gilice tér (Varjú utca)",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.463199615478516,
-      "lon": 19.1479434967041,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Gilice tér (Varjú utca)"
-    },
-    {
-      "idopont": "2026-09-17T15:25:38.929660+02:00",
-      "kulcs": "PDN624",
-      "rendszam": "PDN624",
-      "vehicle_id": "7095",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.387901306152344,
-      "lon": 19.103246688842773,
-      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-17T15:25:38.929714+02:00",
-      "kulcs": "PDN631",
-      "rendszam": "PDN631",
-      "vehicle_id": "7102",
-      "vehicle_label": "Infopark - BudaPart",
-      "vonal_szam": "154",
-      "route_id": "1540",
-      "lat": 47.47661209106445,
-      "lon": 19.059247970581055,
-      "elozo_szoveg": "Infopark",
-      "uj_szoveg": "Infopark ► BudaPart"
-    },
     {
       "idopont": "2026-09-17T15:25:38.929785+02:00",
       "kulcs": "PDN639",
@@ -260000,6 +259948,58 @@
       "lon": 19.2127742767334,
       "elozo_szoveg": "Bem József utca ► Határ út M",
       "uj_szoveg": "Távíró utca ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-18T04:14:01.904246+02:00",
+      "kulcs": "NBW010",
+      "rendszam": "NBW010",
+      "vehicle_id": "5980",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50128173828125,
+      "lon": 19.11956214904785,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-18T04:14:01.904420+02:00",
+      "kulcs": "NWB354",
+      "rendszam": "NWB354",
+      "vehicle_id": "6534",
+      "vehicle_label": "Rákoscsaba vasútállomás",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.49201202392578,
+      "lon": 19.260753631591797,
+      "elozo_szoveg": "XVIII. utca",
+      "uj_szoveg": "Rákoscsaba vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T04:14:01.905525+02:00",
+      "kulcs": "415 039",
+      "rendszam": "415 039",
+      "vehicle_id": "945514150396",
+      "vehicle_label": "Siófok",
+      "vonal_szam": "S30",
+      "route_id": "S30",
+      "lat": 47.46427917480469,
+      "lon": 19.021190643310547,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Siófok"
+    },
+    {
+      "idopont": "2026-09-18T04:14:01.905674+02:00",
+      "kulcs": "415 108",
+      "rendszam": "415 108",
+      "vehicle_id": "945514151089",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "G71",
+      "route_id": "G71",
+      "lat": 47.7724494934082,
+      "lon": 19.15066909790039,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
