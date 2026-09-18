@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-18T03:38:03.774685+02:00",
+  "frissitve": "2026-09-18T03:38:36.565841+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-17T15:19:57.056732+02:00",
-      "kulcs": "NTM431",
-      "rendszam": "NTM431",
-      "vehicle_id": "6499",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.499366760253906,
-      "lon": 19.035694122314453,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.056950+02:00",
-      "kulcs": "NWB363",
-      "rendszam": "NWB363",
-      "vehicle_id": "6543",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.5013542175293,
-      "lon": 19.136016845703125,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Madárdomb"
-    },
-    {
-      "idopont": "2026-09-17T15:19:57.056982+02:00",
-      "kulcs": "CITY001",
-      "rendszam": "CITY001",
-      "vehicle_id": "656",
-      "vehicle_label": "Árpádföld, Bekecs utca",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.52054977416992,
-      "lon": 19.2188720703125,
-      "elozo_szoveg": "Biztató út / Szakács utca",
-      "uj_szoveg": "Árpádföld, Bekecs utca"
-    },
     {
       "idopont": "2026-09-17T15:19:57.057209+02:00",
       "kulcs": "PDB701",
@@ -259999,6 +259960,45 @@
       "lat": 47.77244186401367,
       "lon": 19.150650024414062,
       "elozo_szoveg": "Vác",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-18T03:38:36.503270+02:00",
+      "kulcs": "RWA600",
+      "rendszam": "RWA600",
+      "vehicle_id": "7572",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.42386245727539,
+      "lon": 19.2346248626709,
+      "elozo_szoveg": "Gubacsi út / Határ út",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T03:38:36.503351+02:00",
+      "kulcs": "SKR820",
+      "rendszam": "SKR820",
+      "vehicle_id": "7706",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498802185058594,
+      "lon": 19.05015754699707,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-18T03:38:36.503557+02:00",
+      "kulcs": "918061932144",
+      "rendszam": "918061932144",
+      "vehicle_id": "918061932144",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.46175003051758,
+      "lon": 21.48657989501953,
+      "elozo_szoveg": "Debrecen",
       "uj_szoveg": "Budapest-Nyugati"
     }
   ]
