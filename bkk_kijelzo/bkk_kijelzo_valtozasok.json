@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T01:39:55.355847+02:00",
+  "frissitve": "2026-09-19T01:40:31.630633+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:01:38.282754+02:00",
-      "kulcs": "AAHY859",
-      "rendszam": "AAHY859",
-      "vehicle_id": "421",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.53370666503906,
-      "lon": 19.067407608032227,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.282940+02:00",
-      "kulcs": "AAHY872",
-      "rendszam": "AAHY872",
-      "vehicle_id": "434",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.6027946472168,
-      "lon": 19.06647491455078,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.283019+02:00",
-      "kulcs": "V1318",
-      "rendszam": "V1318",
-      "vehicle_id": "4422",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49480056762695,
-      "lon": 19.059511184692383,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-18T15:01:38.283387+02:00",
-      "kulcs": "V1444",
-      "rendszam": "V1444",
-      "vehicle_id": "4514",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.468650817871094,
-      "lon": 19.075101852416992,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-09-18T15:01:38.283409+02:00",
       "kulcs": "V1450",
@@ -260000,6 +259948,58 @@
       "lon": 19.127397537231445,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-19T01:40:31.566839+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59895706176758,
+      "lon": 19.054471969604492,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-19T01:40:31.567141+02:00",
+      "kulcs": "SKR821",
+      "rendszam": "SKR821",
+      "vehicle_id": "7707",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49905776977539,
+      "lon": 19.05295753479004,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T01:40:31.567214+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42681121826172,
+      "lon": 19.160900115966797,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-19T01:40:31.567238+02:00",
+      "kulcs": "T9136",
+      "rendszam": "T9136",
+      "vehicle_id": "7875",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50172805786133,
+      "lon": 19.115318298339844,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
