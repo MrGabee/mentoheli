@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T04:01:11.460453+02:00",
+  "frissitve": "2026-09-19T04:01:49.923763+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:17:18.919756+02:00",
-      "kulcs": "AADR757",
-      "rendszam": "AADR757",
-      "vehicle_id": "206",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.46315383911133,
-      "lon": 19.1486873626709,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:17:18.919893+02:00",
-      "kulcs": "AAGL266",
-      "rendszam": "AAGL266",
-      "vehicle_id": "266",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "88",
-      "route_id": "0880",
-      "lat": 47.4053840637207,
-      "lon": 19.014177322387695,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Törökbálint ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-18T15:17:18.920160+02:00",
-      "kulcs": "FKU930",
-      "rendszam": "FKU930",
-      "vehicle_id": "3086",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.50455856323242,
-      "lon": 19.136926651000977,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákosi út ► Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-09-18T15:17:18.920274+02:00",
-      "kulcs": "FLR710",
-      "rendszam": "FLR710",
-      "vehicle_id": "3124",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.51558303833008,
-      "lon": 19.18638801574707,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Rákosi út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:17:18.920291+02:00",
-      "kulcs": "FLR713",
-      "rendszam": "FLR713",
-      "vehicle_id": "3127",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44160461425781,
-      "lon": 19.03419303894043,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-18T15:17:18.920472+02:00",
       "kulcs": "AAGL286",
@@ -260000,6 +259935,71 @@
       "lon": 19.071434020996094,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T04:01:49.838477+02:00",
+      "kulcs": "MOS293",
+      "rendszam": "MOS293",
+      "vehicle_id": "5746",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "38A",
+      "route_id": "0381",
+      "lat": 47.37698745727539,
+      "lon": 19.007080078125,
+      "elozo_szoveg": "Lakihegy, Cseresznyés utca",
+      "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-09-19T04:01:49.838538+02:00",
+      "kulcs": "NBW013",
+      "rendszam": "NBW013",
+      "vehicle_id": "5983",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523494720458984,
+      "lon": 18.99295425415039,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-19T04:01:49.838574+02:00",
+      "kulcs": "AEHE426",
+      "rendszam": "AEHE426",
+      "vehicle_id": "623",
+      "vehicle_label": "Ültetvény utca",
+      "vonal_szam": "54",
+      "route_id": "0540",
+      "lat": 47.42462921142578,
+      "lon": 19.158828735351562,
+      "elozo_szoveg": "Ady Endre tér",
+      "uj_szoveg": "Pestszentimre, Ültetvény utca"
+    },
+    {
+      "idopont": "2026-09-19T04:01:49.838726+02:00",
+      "kulcs": "PDB381",
+      "rendszam": "PDB381",
+      "vehicle_id": "7063",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.4796142578125,
+      "lon": 19.255577087402344,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Kucorgó tér ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-19T04:01:49.839599+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.480262756347656,
+      "lon": 19.051692962646484,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
