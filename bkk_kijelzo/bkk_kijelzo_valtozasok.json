@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:39:44.731559+02:00",
+  "frissitve": "2026-09-19T03:40:17.757960+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:14:20.588363+02:00",
-      "kulcs": "FLR714",
-      "rendszam": "FLR714",
-      "vehicle_id": "3128",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.49686813354492,
-      "lon": 19.069120407104492,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.588605+02:00",
-      "kulcs": "AAGL288",
-      "rendszam": "AAGL288",
-      "vehicle_id": "321",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50742721557617,
-      "lon": 19.025623321533203,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.589080+02:00",
-      "kulcs": "AAHY820",
-      "rendszam": "AAHY820",
-      "vehicle_id": "381",
-      "vehicle_label": "Rákospalota, Bogáncs u.",
-      "vonal_szam": "124",
-      "route_id": "1240",
-      "lat": 47.51932907104492,
-      "lon": 19.11281394958496,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Rákospalota, Bogáncs utca"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.589166+02:00",
-      "kulcs": "AAHY830",
-      "rendszam": "AAHY830",
-      "vehicle_id": "391",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.590553283691406,
-      "lon": 19.083864212036133,
-      "elozo_szoveg": "Budakalász, Auchan áruház ► Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
     {
       "idopont": "2026-09-18T15:14:20.589326+02:00",
       "kulcs": "AAHY843",
@@ -260000,6 +259948,58 @@
       "lon": 19.115116119384766,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-19T03:40:17.682750+02:00",
+      "kulcs": "AADI607",
+      "rendszam": "AADI607",
+      "vehicle_id": "104",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.4215087890625,
+      "lon": 19.041337966918945,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-19T03:40:17.682985+02:00",
+      "kulcs": "V2034",
+      "rendszam": "V2034",
+      "vehicle_id": "2034",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.49052429199219,
+      "lon": 19.10906982421875,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-19T03:40:17.685107+02:00",
+      "kulcs": "PDB706",
+      "rendszam": "PDB706",
+      "vehicle_id": "7032",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43891143798828,
+      "lon": 19.10320472717285,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-19T03:40:17.685294+02:00",
+      "kulcs": "RVY719",
+      "rendszam": "RVY719",
+      "vehicle_id": "7468",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48476028442383,
+      "lon": 19.073083877563477,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
