@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-20T00:54:54.965331+02:00",
+  "frissitve": "2026-09-20T00:55:23.704097+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T10:43:20.920706+02:00",
-      "kulcs": "AOFL193",
-      "rendszam": "AOFL193",
-      "vehicle_id": "777",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "251A",
-      "route_id": "2511",
-      "lat": 47.4346923828125,
-      "lon": 19.020864486694336,
-      "elozo_szoveg": "Lomnici utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-19T10:43:20.920768+02:00",
-      "kulcs": "AOFL198",
-      "rendszam": "AOFL198",
-      "vehicle_id": "782",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.483375549316406,
-      "lon": 19.043428421020508,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
     {
       "idopont": "2026-09-19T10:43:20.920836+02:00",
       "kulcs": "T9143",
@@ -260000,6 +259974,32 @@
       "lon": 19.064556121826172,
       "elozo_szoveg": "Astoria M ► Zsámbék",
       "uj_szoveg": "Zsámbék"
+    },
+    {
+      "idopont": "2026-09-20T00:55:23.637880+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50981521606445,
+      "lon": 19.057126998901367,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-20T00:55:23.638024+02:00",
+      "kulcs": "RTA297",
+      "rendszam": "RTA297",
+      "vehicle_id": "7413",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.499691009521484,
+      "lon": 19.02423858642578,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
     }
   ]
 }
