@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T02:11:35.859657+02:00",
+  "frissitve": "2026-09-19T02:12:06.641219+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:05:07.834515+02:00",
-      "kulcs": "AADI644",
-      "rendszam": "AADI644",
-      "vehicle_id": "143",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.550296783447266,
-      "lon": 19.042081832885742,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-18T15:05:07.834870+02:00",
-      "kulcs": "V2002",
-      "rendszam": "V2002",
-      "vehicle_id": "2002",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.474056243896484,
-      "lon": 19.047134399414062,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-18T15:05:07.835146+02:00",
-      "kulcs": "V2039",
-      "rendszam": "V2039",
-      "vehicle_id": "2039",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.5073356628418,
-      "lon": 19.0250244140625,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-09-18T15:05:07.835251+02:00",
       "kulcs": "AAGL250",
@@ -260000,6 +259961,45 @@
       "lon": 19.10317039489746,
       "elozo_szoveg": "Pesterzsébeti lakótelep",
       "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-19T02:12:06.556588+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.520538330078125,
+      "lon": 19.038042068481445,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-19T02:12:06.556841+02:00",
+      "kulcs": "RVY719",
+      "rendszam": "RVY719",
+      "vehicle_id": "7468",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57960510253906,
+      "lon": 19.109516143798828,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-19T02:12:06.556893+02:00",
+      "kulcs": "RVY745",
+      "rendszam": "RVY745",
+      "vehicle_id": "7643",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49703598022461,
+      "lon": 19.05577850341797,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
     }
   ]
 }
