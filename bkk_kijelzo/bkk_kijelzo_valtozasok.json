@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:35:09.953148+02:00",
+  "frissitve": "2026-09-19T03:36:13.976687+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:13:10.687393+02:00",
-      "kulcs": "T9131",
-      "rendszam": "T9131",
-      "vehicle_id": "7870",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51072311401367,
-      "lon": 19.097230911254883,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-09-18T15:13:10.687425+02:00",
-      "kulcs": "T9132",
-      "rendszam": "T9132",
-      "vehicle_id": "7871",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.500701904296875,
-      "lon": 19.107955932617188,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-18T15:13:10.687684+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.505348205566406,
-      "lon": 19.136404037475586,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
     {
       "idopont": "2026-09-18T15:13:10.687780+02:00",
       "kulcs": "T8116",
@@ -260000,6 +259961,45 @@
       "lon": 19.02294158935547,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-19T03:36:13.879851+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.4426383972168,
+      "lon": 19.1796875,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T03:36:13.881855+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266357421875,
+      "lon": 19.161073684692383,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-19T03:36:13.881929+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.528812408447266,
+      "lon": 19.025659561157227,
+      "elozo_szoveg": "Verecke lépcső ► Millenniumtelep H",
+      "uj_szoveg": "Deák Ferenc tér M ► Millenniumtelep H"
     }
   ]
 }
