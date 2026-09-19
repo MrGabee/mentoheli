@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:36:44.060643+02:00",
+  "frissitve": "2026-09-19T03:37:24.068852+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:13:10.688202+02:00",
-      "kulcs": "AOFL228",
-      "rendszam": "AOFL228",
-      "vehicle_id": "815",
-      "vehicle_label": "Remetehegyi út",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.52777862548828,
-      "lon": 19.037139892578125,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Remetehegyi út"
-    },
-    {
-      "idopont": "2026-09-18T15:13:10.688320+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53425598144531,
-      "lon": 19.0262393951416,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-18T15:13:10.688375+02:00",
-      "kulcs": "AOFL239",
-      "rendszam": "AOFL239",
-      "vehicle_id": "827",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.59781265258789,
-      "lon": 19.053861618041992,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Pince köz ► Donát utca"
-    },
     {
       "idopont": "2026-09-18T15:13:10.688795+02:00",
       "kulcs": "AOIB797",
@@ -260000,6 +259961,45 @@
       "lon": 19.014116287231445,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-19T03:37:24.013827+02:00",
+      "kulcs": "AADI646",
+      "rendszam": "AADI646",
+      "vehicle_id": "145",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.474788665771484,
+      "lon": 18.989469528198242,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-19T03:37:24.015435+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49785614013672,
+      "lon": 19.019792556762695,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-19T03:37:24.015790+02:00",
+      "kulcs": "918061932144",
+      "rendszam": "918061932144",
+      "vehicle_id": "918061932144",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.46202087402344,
+      "lon": 21.486650466918945,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
