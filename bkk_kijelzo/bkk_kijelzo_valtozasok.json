@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T02:53:54.101055+02:00",
+  "frissitve": "2026-09-19T02:54:23.583541+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:09:14.555142+02:00",
-      "kulcs": "1127-764-1128-1129-765-1130",
-      "rendszam": "1127-764-1128-1129-765-1130",
-      "vehicle_id": "905516561271-905536467640-905516561289-905516561297-905536467657-905516561305",
-      "vehicle_label": "Szentendre",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.50709915161133,
-      "lon": 19.039409637451172,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Szentendre"
-    },
-    {
-      "idopont": "2026-09-18T15:09:14.556318+02:00",
-      "kulcs": "815 004",
-      "rendszam": "815 004",
-      "vehicle_id": "945518150046",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.76906967163086,
-      "lon": 19.15328025817871,
-      "elozo_szoveg": "Vác",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-18T15:09:14.556610+02:00",
-      "kulcs": "AOIM040",
-      "rendszam": "AOIM040",
-      "vehicle_id": "960",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.4743537902832,
-      "lon": 18.994964599609375,
-      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-18T15:09:14.556748+02:00",
-      "kulcs": "AOJM862",
-      "rendszam": "AOJM862",
-      "vehicle_id": "985",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.46794509887695,
-      "lon": 19.075773239135742,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-18T15:10:48.547422+02:00",
-      "kulcs": "AADI603",
-      "rendszam": "AADI603",
-      "vehicle_id": "100",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.46403121948242,
-      "lon": 19.018783569335938,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Jégmadár utca ► Savoya Park"
-    },
     {
       "idopont": "2026-09-18T15:10:48.547571+02:00",
       "kulcs": "AOJM886",
@@ -260000,6 +259935,71 @@
       "lon": 19.0996036529541,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-19T02:54:23.498157+02:00",
+      "kulcs": "FLR700",
+      "rendszam": "FLR700",
+      "vehicle_id": "3114",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51099395751953,
+      "lon": 19.056222915649414,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-19T02:54:23.499958+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.53659439086914,
+      "lon": 19.106822967529297,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-19T02:54:23.499992+02:00",
+      "kulcs": "PDZ831",
+      "rendszam": "PDZ831",
+      "vehicle_id": "7294",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50828170776367,
+      "lon": 19.094745635986328,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-09-19T02:54:23.500098+02:00",
+      "kulcs": "RVY719",
+      "rendszam": "RVY719",
+      "vehicle_id": "7468",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598487854003906,
+      "lon": 19.121299743652344,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T02:54:23.500196+02:00",
+      "kulcs": "SKR828",
+      "rendszam": "SKR828",
+      "vehicle_id": "7714",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.44759750366211,
+      "lon": 19.14996337890625,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
