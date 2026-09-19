@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:58:13.963449+02:00",
+  "frissitve": "2026-09-19T03:58:40.913299+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:15:58.040678+02:00",
-      "kulcs": "SGY824",
-      "rendszam": "SGY824",
-      "vehicle_id": "7742",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.400115966796875,
-      "lon": 19.204524993896484,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-18T15:15:58.040834+02:00",
-      "kulcs": "SKN817",
-      "rendszam": "SKN817",
-      "vehicle_id": "7787",
-      "vehicle_label": "Nagybányai út",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.506649017333984,
-      "lon": 19.03873062133789,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:15:58.041068+02:00",
-      "kulcs": "STZ848",
-      "rendszam": "STZ848",
-      "vehicle_id": "7803",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50709533691406,
-      "lon": 18.922338485717773,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-18T15:15:58.041618+02:00",
-      "kulcs": "T9126",
-      "rendszam": "T9126",
-      "vehicle_id": "7865",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.504146575927734,
-      "lon": 19.1367244720459,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-18T15:15:58.041781+02:00",
-      "kulcs": "T9136",
-      "rendszam": "T9136",
-      "vehicle_id": "7875",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.4893913269043,
-      "lon": 19.09001350402832,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-09-18T15:15:58.042143+02:00",
       "kulcs": "T8118",
@@ -260000,6 +259935,71 @@
       "lon": 19.04701042175293,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-19T03:58:40.847254+02:00",
+      "kulcs": "AADR758",
+      "rendszam": "AADR758",
+      "vehicle_id": "207",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46464920043945,
+      "lon": 19.02297019958496,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-19T03:58:40.847312+02:00",
+      "kulcs": "AAGL250",
+      "rendszam": "AAGL250",
+      "vehicle_id": "250",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.455726623535156,
+      "lon": 18.940898895263672,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-19T03:58:40.848719+02:00",
+      "kulcs": "V4277",
+      "rendszam": "V4277",
+      "vehicle_id": "4936",
+      "vehicle_label": "Új köztemető (Kozma u.)",
+      "vonal_szam": "28A",
+      "route_id": "3281",
+      "lat": 47.490516662597656,
+      "lon": 19.08931541442871,
+      "elozo_szoveg": "Blaha Lujza tér M",
+      "uj_szoveg": "Új köztemető (Kozma utca)"
+    },
+    {
+      "idopont": "2026-09-19T03:58:40.848799+02:00",
+      "kulcs": "MUU906",
+      "rendszam": "MUU906",
+      "vehicle_id": "5959",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266471862793,
+      "lon": 19.161075592041016,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-19T03:58:40.849124+02:00",
+      "kulcs": "RVY739",
+      "rendszam": "RVY739",
+      "vehicle_id": "7637",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "38",
+      "route_id": "0380",
+      "lat": 47.35489273071289,
+      "lon": 19.03533363342285,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
     }
   ]
 }
