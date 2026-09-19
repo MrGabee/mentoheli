@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-20T01:53:24.587688+02:00",
+  "frissitve": "2026-09-20T01:53:59.516793+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T10:56:58.408778+02:00",
-      "kulcs": "V1348",
-      "rendszam": "V1348",
-      "vehicle_id": "5309",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49928665161133,
-      "lon": 19.082508087158203,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-19T10:56:58.408799+02:00",
-      "kulcs": "AAMD173",
-      "rendszam": "AAMD173",
-      "vehicle_id": "533",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "158",
-      "route_id": "1580",
-      "lat": 47.4321403503418,
-      "lon": 19.00524139404297,
-      "elozo_szoveg": "Balatoni út / Háros utca",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-09-19T10:56:58.408993+02:00",
-      "kulcs": "V2267",
-      "rendszam": "V2267",
-      "vehicle_id": "565",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.59326171875,
-      "lon": 19.1204776763916,
-      "elozo_szoveg": "Káp.megyer, Megyeri út",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
     {
       "idopont": "2026-09-19T10:56:58.410236+02:00",
       "kulcs": "NTM436",
@@ -260000,6 +259961,45 @@
       "lon": 19.075855255126953,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-20T01:53:59.424975+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.5798225402832,
+      "lon": 19.088647842407227,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-20T01:53:59.425702+02:00",
+      "kulcs": "SKR806",
+      "rendszam": "SKR806",
+      "vehicle_id": "7692",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.528099060058594,
+      "lon": 19.007020950317383,
+      "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
+      "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-20T01:53:59.426141+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.512203216552734,
+      "lon": 19.100027084350586,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
