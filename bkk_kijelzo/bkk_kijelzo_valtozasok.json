@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:15:02.956028+02:00",
+  "frissitve": "2026-09-19T03:15:33.839465+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:12:03.446489+02:00",
-      "kulcs": "MUT897",
-      "rendszam": "MUT897",
-      "vehicle_id": "5950",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.43178176879883,
-      "lon": 19.173751831054688,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.448959+02:00",
-      "kulcs": "AELD561",
-      "rendszam": "AELD561",
-      "vehicle_id": "612",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.479793548583984,
-      "lon": 19.06654167175293,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.448994+02:00",
-      "kulcs": "T8001",
-      "rendszam": "T8001",
-      "vehicle_id": "6121",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53648376464844,
-      "lon": 19.107318878173828,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.449150+02:00",
-      "kulcs": "T8012",
-      "rendszam": "T8012",
-      "vehicle_id": "6132",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49577713012695,
-      "lon": 19.060375213623047,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
     {
       "idopont": "2026-09-18T15:12:03.449477+02:00",
       "kulcs": "AELD565",
@@ -260000,6 +259948,58 @@
       "lon": 19.02849578857422,
       "elozo_szoveg": "Astoria M ► Árpádföld",
       "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-19T03:15:33.749543+02:00",
+      "kulcs": "AADR709",
+      "rendszam": "AADR709",
+      "vehicle_id": "177",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.45957946777344,
+      "lon": 19.12060546875,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T03:15:33.749796+02:00",
+      "kulcs": "FJX188",
+      "rendszam": "FJX188",
+      "vehicle_id": "3008",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50160598754883,
+      "lon": 19.135868072509766,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-19T03:15:33.751648+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.478065490722656,
+      "lon": 19.04563331604004,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-19T03:15:33.751739+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.602542877197266,
+      "lon": 19.06589126586914,
+      "elozo_szoveg": "Békásmegyer",
+      "uj_szoveg": "Astoria M ► Pesterzsébet"
     }
   ]
 }
