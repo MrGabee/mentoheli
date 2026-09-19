@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T23:41:30.173649+02:00",
+  "frissitve": "2026-09-19T23:42:13.082414+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T10:27:39.223306+02:00",
-      "kulcs": "AAGL311",
-      "rendszam": "AAGL311",
-      "vehicle_id": "282",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.46474075317383,
-      "lon": 19.018470764160156,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
-    },
-    {
-      "idopont": "2026-09-19T10:27:39.223366+02:00",
-      "kulcs": "FKU903",
-      "rendszam": "FKU903",
-      "vehicle_id": "3059",
-      "vehicle_label": "Rákoshegy",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.50151824951172,
-      "lon": 19.136188507080078,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoshegy"
-    },
-    {
-      "idopont": "2026-09-19T10:27:39.223433+02:00",
-      "kulcs": "FLR717",
-      "rendszam": "FLR717",
-      "vehicle_id": "3131",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.518436431884766,
-      "lon": 19.226118087768555,
-      "elozo_szoveg": "Cinkota, Lassú utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T10:27:39.223654+02:00",
-      "kulcs": "AAHY801",
-      "rendszam": "AAHY801",
-      "vehicle_id": "361",
-      "vehicle_label": "Rákospalota, Csömöri-p.",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.56037902832031,
-      "lon": 19.090864181518555,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Rákospalota, Csömöri-patak"
-    },
     {
       "idopont": "2026-09-19T10:27:39.223855+02:00",
       "kulcs": "AAHY827",
@@ -260000,6 +259948,58 @@
       "lon": 19.055469512939453,
       "elozo_szoveg": "Csepel, Határ utca",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-19T23:42:12.987905+02:00",
+      "kulcs": "FLR735",
+      "rendszam": "FLR735",
+      "vehicle_id": "3149",
+      "vehicle_label": "Cinkota, Lassú utca",
+      "vonal_szam": "45",
+      "route_id": "0450",
+      "lat": 47.505149841308594,
+      "lon": 19.136751174926758,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Cinkota, Lassú utca"
+    },
+    {
+      "idopont": "2026-09-19T23:42:12.989302+02:00",
+      "kulcs": "V2268",
+      "rendszam": "V2268",
+      "vehicle_id": "566",
+      "vehicle_label": "Városház tér",
+      "vonal_szam": "61",
+      "route_id": "3610",
+      "lat": 47.50114059448242,
+      "lon": 19.024127960205078,
+      "elozo_szoveg": "Alkotás utca ► Városház tér",
+      "uj_szoveg": "Városház tér"
+    },
+    {
+      "idopont": "2026-09-19T23:42:12.989442+02:00",
+      "kulcs": "V2286",
+      "rendszam": "V2286",
+      "vehicle_id": "584",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "56A",
+      "route_id": "3561",
+      "lat": 47.465843200683594,
+      "lon": 19.021976470947266,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-19T23:42:12.992360+02:00",
+      "kulcs": "963-682-964",
+      "rendszam": "963-682-964",
+      "vehicle_id": "905516569639-905536466824-905516569647",
+      "vehicle_label": "Csepel",
+      "vonal_szam": "H7",
+      "route_id": "H7",
+      "lat": 47.47883987426758,
+      "lon": 19.066822052001953,
+      "elozo_szoveg": "Boráros tér",
+      "uj_szoveg": "Csepel"
     }
   ]
 }
