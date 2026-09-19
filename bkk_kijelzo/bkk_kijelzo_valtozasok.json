@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:21:26.562628+02:00",
+  "frissitve": "2026-09-19T03:22:20.629730+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:12:03.457437+02:00",
-      "kulcs": "AADI575",
-      "rendszam": "AADI575",
-      "vehicle_id": "78",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.55060577392578,
-      "lon": 19.042133331298828,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Verecke lépcső ► Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.457514+02:00",
-      "kulcs": "STZ848",
-      "rendszam": "STZ848",
-      "vehicle_id": "7803",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50707244873047,
-      "lon": 18.92150115966797,
-      "elozo_szoveg": "Budakeszi, Dózsa Gy. tér",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.457665+02:00",
-      "kulcs": "STZ858",
-      "rendszam": "STZ858",
-      "vehicle_id": "7813",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "140A",
-      "route_id": "1401",
-      "lat": 47.4556884765625,
-      "lon": 18.94058609008789,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-18T15:12:03.457706+02:00",
       "kulcs": "STZ859",
@@ -260000,6 +259961,45 @@
       "lon": 19.15093994140625,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Pestszentlőrinc, Béke tér"
+    },
+    {
+      "idopont": "2026-09-19T03:22:20.541044+02:00",
+      "kulcs": "V2022",
+      "rendszam": "V2022",
+      "vehicle_id": "2022",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.477455139160156,
+      "lon": 19.04867935180664,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-19T03:22:20.543443+02:00",
+      "kulcs": "STZ835",
+      "rendszam": "STZ835",
+      "vehicle_id": "7790",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46269989013672,
+      "lon": 19.00594711303711,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T03:22:20.543738+02:00",
+      "kulcs": "415 050",
+      "rendszam": "415 050",
+      "vehicle_id": "945514150503",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.180850982666016,
+      "lon": 18.563919067382812,
+      "elozo_szoveg": "Székesfehérvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
