@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T01:27:09.890839+02:00",
+  "frissitve": "2026-09-20T01:27:41.149933+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T10:50:56.820927+02:00",
-      "kulcs": "T8108",
-      "rendszam": "T8108",
-      "vehicle_id": "7345",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50968933105469,
-      "lon": 19.057266235351562,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-09-19T10:50:56.820991+02:00",
-      "kulcs": "V2239",
-      "rendszam": "V2239",
-      "vehicle_id": "7371",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.5174560546875,
-      "lon": 19.093849182128906,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-19T10:50:56.821064+02:00",
-      "kulcs": "RVY609",
-      "rendszam": "RVY609",
-      "vehicle_id": "7438",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "119",
-      "route_id": "1190",
-      "lat": 47.431819915771484,
-      "lon": 19.098678588867188,
-      "elozo_szoveg": "Zodony utca",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-19T10:50:56.821077+02:00",
-      "kulcs": "RVY611",
-      "rendszam": "RVY611",
-      "vehicle_id": "7440",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.46282196044922,
-      "lon": 19.148452758789062,
-      "elozo_szoveg": "Rákoscsaba",
-      "uj_szoveg": "Kucorgó tér ► Rákoscsaba"
-    },
-    {
-      "idopont": "2026-09-19T10:50:56.822326+02:00",
-      "kulcs": "AOFL211",
-      "rendszam": "AOFL211",
-      "vehicle_id": "798",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.54557418823242,
-      "lon": 18.96342658996582,
-      "elozo_szoveg": "Máriaremete",
-      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-19T10:50:56.822473+02:00",
       "kulcs": "AOFL229",
@@ -260000,6 +259935,71 @@
       "lon": 19.099599838256836,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-20T01:27:41.058601+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.5484619140625,
+      "lon": 19.02962303161621,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-20T01:27:41.061079+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50803756713867,
+      "lon": 19.027746200561523,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-20T01:27:41.061221+02:00",
+      "kulcs": "PDB731",
+      "rendszam": "PDB731",
+      "vehicle_id": "7057",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59879684448242,
+      "lon": 19.12148666381836,
+      "elozo_szoveg": "Káp.megyer, Mogyoródi-p.",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-20T01:27:41.061258+02:00",
+      "kulcs": "PKN610",
+      "rendszam": "PKN610",
+      "vehicle_id": "7199",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.503761291503906,
+      "lon": 19.140392303466797,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-20T01:27:41.061314+02:00",
+      "kulcs": "RVY619",
+      "rendszam": "RVY619",
+      "vehicle_id": "7448",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.44756317138672,
+      "lon": 19.15004539489746,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
