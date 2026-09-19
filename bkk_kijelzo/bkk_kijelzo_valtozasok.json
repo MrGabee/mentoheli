@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:56:42.466130+02:00",
+  "frissitve": "2026-09-19T03:57:13.758239+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:15:58.037658+02:00",
-      "kulcs": "T8103",
-      "rendszam": "T8103",
-      "vehicle_id": "7340",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.500160217285156,
-      "lon": 19.079103469848633,
-      "elozo_szoveg": "Keleti pályaudvar M ► Kápolna tér",
-      "uj_szoveg": "Kápolna tér"
-    },
-    {
-      "idopont": "2026-09-18T15:15:58.037806+02:00",
-      "kulcs": "T9108",
-      "rendszam": "T9108",
-      "vehicle_id": "7355",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52275848388672,
-      "lon": 19.130950927734375,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-18T15:15:58.038772+02:00",
-      "kulcs": "RVY714",
-      "rendszam": "RVY714",
-      "vehicle_id": "7463",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.43731689453125,
-      "lon": 19.170818328857422,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-18T15:15:58.038883+02:00",
       "kulcs": "T9111",
@@ -260000,6 +259961,45 @@
       "lon": 19.103628158569336,
       "elozo_szoveg": "Csáktornya park",
       "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-19T03:57:13.687196+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.56797790527344,
+      "lon": 19.026086807250977,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-19T03:57:13.689192+02:00",
+      "kulcs": "T9106",
+      "rendszam": "T9106",
+      "vehicle_id": "7353",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.506126403808594,
+      "lon": 19.1393985748291,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-19T03:57:13.689797+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.388641357421875,
+      "lon": 18.958173751831055,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Keleti pályaudvar M"
     }
   ]
 }
