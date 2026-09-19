@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T02:01:44.851605+02:00",
+  "frissitve": "2026-09-19T02:02:18.659489+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:04:00.816501+02:00",
-      "kulcs": "AAMH629",
-      "rendszam": "AAMH629",
-      "vehicle_id": "472",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.532108306884766,
-      "lon": 19.204551696777344,
-      "elozo_szoveg": "Árpádföld",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-18T15:04:00.816727+02:00",
-      "kulcs": "AAMH635",
-      "rendszam": "AAMH635",
-      "vehicle_id": "478",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.43247985839844,
-      "lon": 19.260847091674805,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-09-18T15:04:00.816773+02:00",
-      "kulcs": "V4100",
-      "rendszam": "V4100",
-      "vehicle_id": "4789",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "12",
-      "route_id": "3120",
-      "lat": 47.51868438720703,
-      "lon": 19.065448760986328,
-      "elozo_szoveg": "Lehel tér M",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-18T15:04:00.816788+02:00",
-      "kulcs": "V4102",
-      "rendszam": "V4102",
-      "vehicle_id": "4791",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.509613037109375,
-      "lon": 19.010074615478516,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
     {
       "idopont": "2026-09-18T15:04:00.816957+02:00",
       "kulcs": "V4160",
@@ -260000,6 +259948,58 @@
       "lon": 19.13302993774414,
       "elozo_szoveg": "Sülysáp",
       "uj_szoveg": "Gödöllő"
+    },
+    {
+      "idopont": "2026-09-19T02:02:18.548866+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46464920043945,
+      "lon": 19.022977828979492,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-19T02:02:18.552888+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.510318756103516,
+      "lon": 19.097408294677734,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-19T02:02:18.553049+02:00",
+      "kulcs": "NNE055",
+      "rendszam": "NNE055",
+      "vehicle_id": "6451",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50743865966797,
+      "lon": 19.02564239501953,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-19T02:02:18.553138+02:00",
+      "kulcs": "PDB706",
+      "rendszam": "PDB706",
+      "vehicle_id": "7032",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60296630859375,
+      "lon": 19.066844940185547,
+      "elozo_szoveg": "Békásmegyer",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
     }
   ]
 }
