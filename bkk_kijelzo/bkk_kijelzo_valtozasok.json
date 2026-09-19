@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:45:19.477764+02:00",
+  "frissitve": "2026-09-19T03:45:49.616305+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:14:20.602491+02:00",
-      "kulcs": "SKR724",
-      "rendszam": "SKR724",
-      "vehicle_id": "7673",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.464820861816406,
-      "lon": 19.12700080871582,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.602531+02:00",
-      "kulcs": "SKR727",
-      "rendszam": "SKR727",
-      "vehicle_id": "7676",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.41307830810547,
-      "lon": 19.20196533203125,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.602665+02:00",
-      "kulcs": "SKR805",
-      "rendszam": "SKR805",
-      "vehicle_id": "7691",
-      "vehicle_label": "Zugliget, Libegő",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.51080322265625,
-      "lon": 19.056392669677734,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Zugliget, Libegő"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.602975+02:00",
-      "kulcs": "SGY802",
-      "rendszam": "SGY802",
-      "vehicle_id": "7720",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "282E",
-      "route_id": "2825",
-      "lat": 47.413204193115234,
-      "lon": 19.20149040222168,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-18T15:14:20.603160+02:00",
       "kulcs": "SGY819",
@@ -260000,6 +259948,58 @@
       "lon": 19.277729034423828,
       "elozo_szoveg": "Rákoscsaba vasútállomás",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-19T03:45:49.517516+02:00",
+      "kulcs": "AADI630",
+      "rendszam": "AADI630",
+      "vehicle_id": "125",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.479618072509766,
+      "lon": 19.256088256835938,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-19T03:45:49.520009+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.56072998046875,
+      "lon": 19.09010124206543,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-09-19T03:45:49.520244+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48442077636719,
+      "lon": 19.127214431762695,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-19T03:45:49.520571+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.48588562011719,
+      "lon": 19.192590713500977,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
     }
   ]
 }
