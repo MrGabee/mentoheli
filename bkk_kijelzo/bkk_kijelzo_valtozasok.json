@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T00:56:24.570096+02:00",
+  "frissitve": "2026-09-20T00:57:00.466886+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T10:43:20.922566+02:00",
-      "kulcs": "415 105",
-      "rendszam": "415 105",
-      "vehicle_id": "945514151055",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S71",
-      "route_id": "S71",
-      "lat": 47.77132034301758,
-      "lon": 19.15180015563965,
-      "elozo_szoveg": "Vác",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-19T10:44:05.004474+02:00",
-      "kulcs": "AADI611",
-      "rendszam": "AADI611",
-      "vehicle_id": "108",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.49641418457031,
-      "lon": 19.069177627563477,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-19T10:44:05.004604+02:00",
-      "kulcs": "AADR709",
-      "rendszam": "AADR709",
-      "vehicle_id": "177",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.40444564819336,
-      "lon": 19.18583869934082,
-      "elozo_szoveg": "Pestszentimre vasútállomás",
-      "uj_szoveg": "Pestszentimre vasútáll."
-    },
-    {
-      "idopont": "2026-09-19T10:44:05.004768+02:00",
-      "kulcs": "V2009",
-      "rendszam": "V2009",
-      "vehicle_id": "2009",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.47726058959961,
-      "lon": 19.04927635192871,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-19T10:44:05.005661+02:00",
-      "kulcs": "AAGL282",
-      "rendszam": "AAGL282",
-      "vehicle_id": "317",
-      "vehicle_label": "Solymár, Auchan áruház",
-      "vonal_szam": "64",
-      "route_id": "0640",
-      "lat": 47.54302215576172,
-      "lon": 18.96462631225586,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Solymár vasútállomás ► Solymár, Auchan áruház"
-    },
     {
       "idopont": "2026-09-19T10:44:05.005770+02:00",
       "kulcs": "AAGL302",
@@ -260000,6 +259935,71 @@
       "lon": 19.090850830078125,
       "elozo_szoveg": "Monor",
       "uj_szoveg": "Szob"
+    },
+    {
+      "idopont": "2026-09-20T00:57:00.414362+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40083694458008,
+      "lon": 18.990633010864258,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-20T00:57:00.415004+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49888610839844,
+      "lon": 19.051008224487305,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-20T00:57:00.415032+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47784423828125,
+      "lon": 19.04729652404785,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-09-20T00:57:00.415862+02:00",
+      "kulcs": "PDB380",
+      "rendszam": "PDB380",
+      "vehicle_id": "7062",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523799896240234,
+      "lon": 18.993253707885742,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-20T00:57:00.416244+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38890838623047,
+      "lon": 18.9584903717041,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
