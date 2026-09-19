@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:47:20.807682+02:00",
+  "frissitve": "2026-09-19T03:47:56.095276+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:14:20.604692+02:00",
-      "kulcs": "AOFL219",
-      "rendszam": "AOFL219",
-      "vehicle_id": "806",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "65A",
-      "route_id": "0651",
-      "lat": 47.54045867919922,
-      "lon": 19.006547927856445,
-      "elozo_szoveg": "Fenyőgyöngye",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.604834+02:00",
-      "kulcs": "AOFL229",
-      "rendszam": "AOFL229",
-      "vehicle_id": "817",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.557376861572266,
-      "lon": 19.010093688964844,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
-    {
-      "idopont": "2026-09-18T15:14:20.605339+02:00",
-      "kulcs": "AADI587",
-      "rendszam": "AADI587",
-      "vehicle_id": "87",
-      "vehicle_label": "Naphegy tér",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.49761962890625,
-      "lon": 19.05304718017578,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Naphegy tér"
-    },
     {
       "idopont": "2026-09-18T15:14:20.605468+02:00",
       "kulcs": "AADI588",
@@ -260000,6 +259961,45 @@
       "lon": 19.118436813354492,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T03:47:55.981587+02:00",
+      "kulcs": "V2018",
+      "rendszam": "V2018",
+      "vehicle_id": "2018",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507293701171875,
+      "lon": 19.025026321411133,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-19T03:47:55.984875+02:00",
+      "kulcs": "T9136",
+      "rendszam": "T9136",
+      "vehicle_id": "7875",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5002555847168,
+      "lon": 19.109859466552734,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-19T03:47:55.985116+02:00",
+      "kulcs": "415 015",
+      "rendszam": "415 015",
+      "vehicle_id": "945514150156",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.68452835083008,
+      "lon": 17.66366958618164,
+      "elozo_szoveg": "Győr",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
