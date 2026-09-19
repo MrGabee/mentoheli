@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:03:20.577018+02:00",
+  "frissitve": "2026-09-19T03:03:55.742435+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:10:48.563632+02:00",
-      "kulcs": "STZ848",
-      "rendszam": "STZ848",
-      "vehicle_id": "7803",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50727844238281,
-      "lon": 18.921619415283203,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Budakeszi, Dózsa Gy. tér"
-    },
-    {
-      "idopont": "2026-09-18T15:10:48.563854+02:00",
-      "kulcs": "T9115",
-      "rendszam": "T9115",
-      "vehicle_id": "7853",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49958801269531,
-      "lon": 19.085206985473633,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-18T15:10:48.563999+02:00",
       "kulcs": "T9129",
@@ -260000,6 +259974,32 @@
       "lon": 19.05575180053711,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-19T03:03:55.652844+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.517704010009766,
+      "lon": 19.077693939208984,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-19T03:03:55.652992+02:00",
+      "kulcs": "SKN828",
+      "rendszam": "SKN828",
+      "vehicle_id": "76",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51919174194336,
+      "lon": 19.0382137298584,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
