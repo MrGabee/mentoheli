@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T01:40:58.714538+02:00",
+  "frissitve": "2026-09-20T01:41:29.549596+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T10:54:57.181863+02:00",
-      "kulcs": "AADR711",
-      "rendszam": "AADR711",
-      "vehicle_id": "179",
-      "vehicle_label": "Kispest, Vas Gereben utca",
-      "vonal_szam": "68",
-      "route_id": "0680",
-      "lat": 47.480743408203125,
-      "lon": 19.219818115234375,
-      "elozo_szoveg": "Akadémiaújtelep, 525. tér",
-      "uj_szoveg": "Kispest, Vas Gereben utca"
-    },
-    {
-      "idopont": "2026-09-19T10:54:57.182513+02:00",
-      "kulcs": "AAGL302",
-      "rendszam": "AAGL302",
-      "vehicle_id": "332",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "218",
-      "route_id": "2180",
-      "lat": 47.60921096801758,
-      "lon": 18.989376068115234,
-      "elozo_szoveg": "Pilisborosjenő",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-19T10:54:57.182535+02:00",
-      "kulcs": "AAGL303",
-      "rendszam": "AAGL303",
-      "vehicle_id": "333",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "63",
-      "route_id": "0630",
-      "lat": 47.57573318481445,
-      "lon": 18.87959098815918,
-      "elozo_szoveg": "Nagykovácsi, Tisza István tér",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-19T10:54:57.182734+02:00",
-      "kulcs": "AAHY821",
-      "rendszam": "AAHY821",
-      "vehicle_id": "382",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.574405670166016,
-      "lon": 19.10342788696289,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-19T10:54:57.182919+02:00",
-      "kulcs": "AAHY861",
-      "rendszam": "AAHY861",
-      "vehicle_id": "423",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.56025695800781,
-      "lon": 19.091480255126953,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-09-19T10:54:57.183227+02:00",
       "kulcs": "V4027",
@@ -260000,6 +259935,71 @@
       "lon": 19.04024314880371,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-20T01:41:29.460103+02:00",
+      "kulcs": "SKN829",
+      "rendszam": "SKN829",
+      "vehicle_id": "162",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.438865661621094,
+      "lon": 19.103166580200195,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-20T01:41:29.461303+02:00",
+      "kulcs": "FLR702",
+      "rendszam": "FLR702",
+      "vehicle_id": "3116",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49703598022461,
+      "lon": 19.055727005004883,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-20T01:41:29.461376+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44261169433594,
+      "lon": 19.179670333862305,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-20T01:41:29.462370+02:00",
+      "kulcs": "AAMH615",
+      "rendszam": "AAMH615",
+      "vehicle_id": "458",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.542091369628906,
+      "lon": 19.15114974975586,
+      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-20T01:41:29.462841+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.46031188964844,
+      "lon": 19.132051467895508,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
     }
   ]
 }
