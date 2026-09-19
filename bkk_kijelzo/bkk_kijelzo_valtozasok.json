@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T04:10:22.153047+02:00",
+  "frissitve": "2026-09-19T04:11:00.777270+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:18:56.303783+02:00",
-      "kulcs": "V4032",
-      "rendszam": "V4032",
-      "vehicle_id": "4721",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.54106521606445,
-      "lon": 18.965126037597656,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
-    {
-      "idopont": "2026-09-18T15:18:56.303869+02:00",
-      "kulcs": "V4062",
-      "rendszam": "V4062",
-      "vehicle_id": "4751",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.49359893798828,
-      "lon": 19.04413604736328,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-18T15:18:56.304142+02:00",
-      "kulcs": "V4152",
-      "rendszam": "V4152",
-      "vehicle_id": "4840",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.46867370605469,
-      "lon": 19.024124145507812,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-18T15:18:56.304729+02:00",
       "kulcs": "432 299",
@@ -260000,6 +259961,45 @@
       "lon": 18.941614151000977,
       "elozo_szoveg": "Ráckeve",
       "uj_szoveg": "Közvágóhíd"
+    },
+    {
+      "idopont": "2026-09-19T04:11:00.686663+02:00",
+      "kulcs": "AAGL268",
+      "rendszam": "AAGL268",
+      "vehicle_id": "268",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.47499465942383,
+      "lon": 19.03945541381836,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T04:11:00.686707+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint, Nyár utca",
+      "vonal_szam": "172",
+      "route_id": "1720",
+      "lat": 47.44770050048828,
+      "lon": 18.90532684326172,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
+      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-19T04:11:00.687373+02:00",
+      "kulcs": "AAGL303",
+      "rendszam": "AAGL303",
+      "vehicle_id": "333",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50795364379883,
+      "lon": 19.02977180480957,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
     }
   ]
 }
