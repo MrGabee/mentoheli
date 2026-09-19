@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T02:39:34.207192+02:00",
+  "frissitve": "2026-09-19T02:40:14.885844+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:07:37.101445+02:00",
-      "kulcs": "NCV300",
-      "rendszam": "NCV300",
-      "vehicle_id": "6265",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.497703552246094,
-      "lon": 19.053434371948242,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-18T15:07:37.101902+02:00",
-      "kulcs": "NGC025",
-      "rendszam": "NGC025",
-      "vehicle_id": "6324",
-      "vehicle_label": "Csillebérc, KFKI",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.506656646728516,
-      "lon": 19.023914337158203,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa ► Csillebérc, KFKI"
-    },
-    {
-      "idopont": "2026-09-18T15:07:37.101955+02:00",
-      "kulcs": "NGC033",
-      "rendszam": "NGC033",
-      "vehicle_id": "6332",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.506980895996094,
-      "lon": 19.023311614990234,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
-    {
-      "idopont": "2026-09-18T15:07:37.102017+02:00",
-      "kulcs": "NLE854",
-      "rendszam": "NLE854",
-      "vehicle_id": "6406",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50656509399414,
-      "lon": 19.02398109436035,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-09-18T15:07:37.103151+02:00",
       "kulcs": "NTP539",
@@ -260000,6 +259948,58 @@
       "lon": 19.020578384399414,
       "elozo_szoveg": "Budatétény",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-19T02:40:14.821039+02:00",
+      "kulcs": "AADR759",
+      "rendszam": "AADR759",
+      "vehicle_id": "208",
+      "vehicle_label": "Bosnyák tér",
+      "vonal_szam": "907A",
+      "route_id": "9071",
+      "lat": 47.494510650634766,
+      "lon": 19.061168670654297,
+      "elozo_szoveg": "Bosnyák tér",
+      "uj_szoveg": "Zugló vasútállomás ► Bosnyák tér"
+    },
+    {
+      "idopont": "2026-09-19T02:40:14.823075+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49901580810547,
+      "lon": 19.052104949951172,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T02:40:14.823235+02:00",
+      "kulcs": "AOIM022",
+      "rendszam": "AOIM022",
+      "vehicle_id": "942",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49819564819336,
+      "lon": 19.05473518371582,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-19T02:40:14.823280+02:00",
+      "kulcs": "415 063",
+      "rendszam": "415 063",
+      "vehicle_id": "945514150636",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.511348724365234,
+      "lon": 19.101200103759766,
+      "elozo_szoveg": "Esztergom",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
