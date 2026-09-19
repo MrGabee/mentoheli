@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-19T04:21:18.623653+02:00",
+  "frissitve": "2026-09-19T04:21:48.912089+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:20:19.209716+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.497493743896484,
-      "lon": 19.052291870117188,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-18T15:20:19.209730+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50659942626953,
-      "lon": 19.02397346496582,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-18T15:20:19.209753+02:00",
-      "kulcs": "AELD554",
-      "rendszam": "AELD554",
-      "vehicle_id": "627",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.49570846557617,
-      "lon": 19.072952270507812,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-09-18T15:20:19.210008+02:00",
-      "kulcs": "NHB034",
-      "rendszam": "NHB034",
-      "vehicle_id": "6333",
-      "vehicle_label": "Kamaraerdő",
-      "vonal_szam": "187",
-      "route_id": "1870",
-      "lat": 47.46400451660156,
-      "lon": 19.018756866455078,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Kamaraerdő"
-    },
-    {
-      "idopont": "2026-09-18T15:20:19.210118+02:00",
-      "kulcs": "V2229",
-      "rendszam": "V2229",
-      "vehicle_id": "6440",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.4294319152832,
-      "lon": 19.217723846435547,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-18T15:20:19.210190+02:00",
       "kulcs": "V2235",
@@ -260000,6 +259935,71 @@
       "lon": 19.25556755065918,
       "elozo_szoveg": "Csepel, Soroksári rév",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-19T04:21:48.817154+02:00",
+      "kulcs": "V4251",
+      "rendszam": "V4251",
+      "vehicle_id": "4910",
+      "vehicle_label": "Kamaraerdei Ifj. Park",
+      "vonal_szam": "41",
+      "route_id": "3410",
+      "lat": 47.548213958740234,
+      "lon": 19.02892303466797,
+      "elozo_szoveg": "Káposztásmegyer, Megyeri út",
+      "uj_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park"
+    },
+    {
+      "idopont": "2026-09-19T04:21:48.817342+02:00",
+      "kulcs": "V2282",
+      "rendszam": "V2282",
+      "vehicle_id": "580",
+      "vehicle_label": "Mexikói út M",
+      "vonal_szam": "3",
+      "route_id": "3030",
+      "lat": 47.443973541259766,
+      "lon": 19.09589195251465,
+      "elozo_szoveg": "Gubacsi út / Határ út",
+      "uj_szoveg": "Mexikói út M"
+    },
+    {
+      "idopont": "2026-09-19T04:21:48.817622+02:00",
+      "kulcs": "PDB714",
+      "rendszam": "PDB714",
+      "vehicle_id": "7040",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.509361267089844,
+      "lon": 19.096132278442383,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-19T04:21:48.817912+02:00",
+      "kulcs": "RWA600",
+      "rendszam": "RWA600",
+      "vehicle_id": "7572",
+      "vehicle_label": "Gubacsi út / Határ út",
+      "vonal_szam": "166",
+      "route_id": "1660",
+      "lat": 47.43669891357422,
+      "lon": 19.222620010375977,
+      "elozo_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Gubacsi út / Határ út"
+    },
+    {
+      "idopont": "2026-09-19T04:21:48.817938+02:00",
+      "kulcs": "SKN828",
+      "rendszam": "SKN828",
+      "vehicle_id": "76",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.4827995300293,
+      "lon": 19.130434036254883,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
