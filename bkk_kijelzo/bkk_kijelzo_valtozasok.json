@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:19:02.972389+02:00",
+  "frissitve": "2026-09-19T03:19:53.851954+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:12:03.453408+02:00",
-      "kulcs": "PKN603",
-      "rendszam": "PKN603",
-      "vehicle_id": "7192",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.50175857543945,
-      "lon": 19.13593101501465,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.454047+02:00",
-      "kulcs": "RCT316",
-      "rendszam": "RCT316",
-      "vehicle_id": "7330",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41693878173828,
-      "lon": 19.131296157836914,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.454224+02:00",
-      "kulcs": "T8105",
-      "rendszam": "T8105",
-      "vehicle_id": "7342",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47590255737305,
-      "lon": 19.0999698638916,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.454674+02:00",
-      "kulcs": "V2249",
-      "rendszam": "V2249",
-      "vehicle_id": "7381",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42668533325195,
-      "lon": 19.03944969177246,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-18T15:12:03.454749+02:00",
       "kulcs": "V2255",
@@ -260000,6 +259948,58 @@
       "lon": 19.05730438232422,
       "elozo_szoveg": "Béke tér ► Újpest-központ M",
       "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-19T03:19:53.768708+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59852981567383,
+      "lon": 19.054248809814453,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-19T03:19:53.768751+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51157760620117,
+      "lon": 19.115053176879883,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-19T03:19:53.768863+02:00",
+      "kulcs": "PDZ831",
+      "rendszam": "PDZ831",
+      "vehicle_id": "7294",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.58445358276367,
+      "lon": 19.131269454956055,
+      "elozo_szoveg": "Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-19T03:19:53.769355+02:00",
+      "kulcs": "AOIM021",
+      "rendszam": "AOIM021",
+      "vehicle_id": "941",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41048812866211,
+      "lon": 19.060590744018555,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
