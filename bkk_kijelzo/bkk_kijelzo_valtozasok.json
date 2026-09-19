@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-19T03:13:22.994481+02:00",
+  "frissitve": "2026-09-19T03:13:55.977671+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-18T15:12:03.445061+02:00",
-      "kulcs": "MOS270",
-      "rendszam": "MOS270",
-      "vehicle_id": "5723",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.39268493652344,
-      "lon": 19.222557067871094,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.445330+02:00",
-      "kulcs": "V2206",
-      "rendszam": "V2206",
-      "vehicle_id": "5846",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.445674896240234,
-      "lon": 19.152629852294922,
-      "elozo_szoveg": "Kispest, Tulipán utca",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-18T15:12:03.445345+02:00",
-      "kulcs": "V2208",
-      "rendszam": "V2208",
-      "vehicle_id": "5848",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.4815788269043,
-      "lon": 19.06900405883789,
-      "elozo_szoveg": "Mester utca / Ferenc körút",
-      "uj_szoveg": "Koppány utca"
-    },
     {
       "idopont": "2026-09-18T15:12:03.445427+02:00",
       "kulcs": "V2216",
@@ -260000,6 +259961,45 @@
       "lon": 19.097097396850586,
       "elozo_szoveg": "Zugló vasútállomás",
       "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-19T03:13:55.909445+02:00",
+      "kulcs": "RVY707",
+      "rendszam": "RVY707",
+      "vehicle_id": "7456",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486751556396484,
+      "lon": 19.067819595336914,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-19T03:13:55.909589+02:00",
+      "kulcs": "SKR803",
+      "rendszam": "SKR803",
+      "vehicle_id": "7689",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47975540161133,
+      "lon": 19.25550651550293,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-19T03:13:55.909655+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598533630371094,
+      "lon": 19.12126922607422,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
