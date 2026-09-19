@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-20T00:45:35.798338+02:00",
+  "frissitve": "2026-09-20T00:46:09.322462+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T10:41:33.623222+02:00",
-      "kulcs": "AOFL230",
-      "rendszam": "AOFL230",
-      "vehicle_id": "818",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.54331970214844,
-      "lon": 19.03058433532715,
-      "elozo_szoveg": "Szent Margit Kórház ► Békásmegyer H",
-      "uj_szoveg": "Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-19T10:41:33.623263+02:00",
-      "kulcs": "AOFL244",
-      "rendszam": "AOFL244",
-      "vehicle_id": "832",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.46169662475586,
-      "lon": 19.115602493286133,
-      "elozo_szoveg": "József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "Ecseri út M ► Aszódi utca"
-    },
-    {
-      "idopont": "2026-09-19T10:41:33.623275+02:00",
-      "kulcs": "AOFL245",
-      "rendszam": "AOFL245",
-      "vehicle_id": "833",
-      "vehicle_label": "Market Central Ferihegy",
-      "vonal_szam": "236",
-      "route_id": "2360",
-      "lat": 47.4373893737793,
-      "lon": 19.173227310180664,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Ferihegy vasútállomás ► Vecsés, Market Central Ferihegy"
-    },
     {
       "idopont": "2026-09-19T10:41:33.623722+02:00",
       "kulcs": "985-693-986",
@@ -260000,6 +259961,45 @@
       "lon": 19.10137939453125,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-09-20T00:46:09.249228+02:00",
+      "kulcs": "V2020",
+      "rendszam": "V2020",
+      "vehicle_id": "2020",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50731658935547,
+      "lon": 19.025028228759766,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-20T00:46:09.250932+02:00",
+      "kulcs": "MUT888",
+      "rendszam": "MUT888",
+      "vehicle_id": "5941",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.4643440246582,
+      "lon": 19.128948211669922,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-20T00:46:09.251176+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.486026763916016,
+      "lon": 19.191471099853516,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
     }
   ]
 }
