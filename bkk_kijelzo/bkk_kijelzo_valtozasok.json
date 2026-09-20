@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-20T04:03:50.763215+02:00",
+  "frissitve": "2026-09-20T04:04:23.963353+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:26:03.515378+02:00",
-      "kulcs": "PDN640",
-      "rendszam": "PDN640",
-      "vehicle_id": "7111",
-      "vehicle_label": "Szentmiklósi út",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.43077850341797,
-      "lon": 19.07072639465332,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Horgásztanya ► Szentmiklósi út"
-    },
-    {
-      "idopont": "2026-09-19T11:26:03.516340+02:00",
-      "kulcs": "V2255",
-      "rendszam": "V2255",
-      "vehicle_id": "7387",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.46603012084961,
-      "lon": 19.022096633911133,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-19T11:26:03.516395+02:00",
-      "kulcs": "RVY611",
-      "rendszam": "RVY611",
-      "vehicle_id": "7440",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.483489990234375,
-      "lon": 19.28961181640625,
-      "elozo_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-19T11:26:03.516449+02:00",
-      "kulcs": "RVY713",
-      "rendszam": "RVY713",
-      "vehicle_id": "7462",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.43271255493164,
-      "lon": 19.261632919311523,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-19T11:26:03.516613+02:00",
       "kulcs": "RVY740",
@@ -260000,6 +259948,58 @@
       "lon": 19.31262969970703,
       "elozo_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-20T04:04:23.876611+02:00",
+      "kulcs": "AADI660",
+      "rendszam": "AADI660",
+      "vehicle_id": "159",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51008605957031,
+      "lon": 19.127967834472656,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-20T04:04:23.877692+02:00",
+      "kulcs": "AAGL257",
+      "rendszam": "AAGL257",
+      "vehicle_id": "257",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.456382751464844,
+      "lon": 18.90591049194336,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-20T04:04:23.878698+02:00",
+      "kulcs": "NNE052",
+      "rendszam": "NNE052",
+      "vehicle_id": "6448",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.489356994628906,
+      "lon": 19.078521728515625,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-20T04:04:23.879039+02:00",
+      "kulcs": "SKR735",
+      "rendszam": "SKR735",
+      "vehicle_id": "7684",
+      "vehicle_label": "Havanna-lakótelep",
+      "vonal_szam": "136",
+      "route_id": "1360",
+      "lat": 47.44438934326172,
+      "lon": 19.169422149658203,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Havanna-lakótelep"
     }
   ]
 }
