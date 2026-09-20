@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T23:52:47.214673+02:00",
+  "frissitve": "2026-09-20T23:53:30.880828+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:09:41.774867+02:00",
-      "kulcs": "SKR802",
-      "rendszam": "SKR802",
-      "vehicle_id": "7688",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.516544342041016,
-      "lon": 18.976734161376953,
-      "elozo_szoveg": "Zugliget, Libegő",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-20T12:09:41.774952+02:00",
-      "kulcs": "SKR826",
-      "rendszam": "SKR826",
-      "vehicle_id": "7712",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46104431152344,
-      "lon": 19.15349006652832,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-09-20T12:09:41.775396+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50398635864258,
-      "lon": 19.136770248413086,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-20T12:09:41.775416+02:00",
-      "kulcs": "T9131",
-      "rendszam": "T9131",
-      "vehicle_id": "7870",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.4943733215332,
-      "lon": 19.05998992919922,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-20T12:09:41.775476+02:00",
-      "kulcs": "T9140",
-      "rendszam": "T9140",
-      "vehicle_id": "7879",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51392364501953,
-      "lon": 19.049528121948242,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-09-20T12:09:41.775578+02:00",
       "kulcs": "T8114",
@@ -260000,6 +259935,71 @@
       "lon": 18.998191833496094,
       "elozo_szoveg": "Thomán István utca",
       "uj_szoveg": "Apor Vilmos tér"
+    },
+    {
+      "idopont": "2026-09-20T23:53:30.782333+02:00",
+      "kulcs": "AAMH652",
+      "rendszam": "AAMH652",
+      "vehicle_id": "495",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699020385742,
+      "lon": 19.055740356445312,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-20T23:53:30.782782+02:00",
+      "kulcs": "MUT893",
+      "rendszam": "MUT893",
+      "vehicle_id": "5946",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.464759826660156,
+      "lon": 19.127756118774414,
+      "elozo_szoveg": "Alacskai úti lakótelep",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-20T23:53:30.783265+02:00",
+      "kulcs": "PDN620",
+      "rendszam": "PDN620",
+      "vehicle_id": "7091",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.41017150878906,
+      "lon": 19.07268714904785,
+      "elozo_szoveg": "Szent László utcai lakótelep",
+      "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-09-20T23:53:30.783443+02:00",
+      "kulcs": "V2254",
+      "rendszam": "V2254",
+      "vehicle_id": "7386",
+      "vehicle_label": "Városház tér",
+      "vonal_szam": "61",
+      "route_id": "3610",
+      "lat": 47.54007339477539,
+      "lon": 18.965755462646484,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Alkotás utca ► Városház tér"
+    },
+    {
+      "idopont": "2026-09-20T23:53:30.785441+02:00",
+      "kulcs": "981-691-982",
+      "rendszam": "981-691-982",
+      "vehicle_id": "905516569811-905536466915-905516569829",
+      "vehicle_label": "Szentendre",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.50709915161133,
+      "lon": 19.039409637451172,
+      "elozo_szoveg": "Batthyány tér",
+      "uj_szoveg": "Szentendre"
     }
   ]
 }
