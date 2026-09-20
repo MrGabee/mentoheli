@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-20T02:10:16.529818+02:00",
+  "frissitve": "2026-09-20T02:10:49.053832+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:01:27.187039+02:00",
-      "kulcs": "AADR759",
-      "rendszam": "AADR759",
-      "vehicle_id": "208",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53248596191406,
-      "lon": 19.067323684692383,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-19T11:01:27.187955+02:00",
-      "kulcs": "AAHY805",
-      "rendszam": "AAHY805",
-      "vehicle_id": "365",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.53164291381836,
-      "lon": 19.200963973999023,
-      "elozo_szoveg": "Árpádföld",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T11:01:27.188202+02:00",
-      "kulcs": "AAHY839",
-      "rendszam": "AAHY839",
-      "vehicle_id": "400",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "124",
-      "route_id": "1240",
-      "lat": 47.570350646972656,
-      "lon": 19.134288787841797,
-      "elozo_szoveg": "Rákospalota, Bogáncs utca",
-      "uj_szoveg": "Bosnyák tér"
-    },
     {
       "idopont": "2026-09-19T11:01:27.188306+02:00",
       "kulcs": "AAHY852",
@@ -260000,6 +259961,45 @@
       "lon": 19.07758331298828,
       "elozo_szoveg": "Csepel-Királyerdő",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-20T02:10:48.968115+02:00",
+      "kulcs": "MOS273",
+      "rendszam": "MOS273",
+      "vehicle_id": "5726",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497093200683594,
+      "lon": 19.055578231811523,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-20T02:10:48.968194+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52320861816406,
+      "lon": 19.017911911010742,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-20T02:10:48.968535+02:00",
+      "kulcs": "SKR723",
+      "rendszam": "SKR723",
+      "vehicle_id": "7672",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.579551696777344,
+      "lon": 19.10968017578125,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
