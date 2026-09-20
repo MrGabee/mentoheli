@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T03:37:41.962923+02:00",
+  "frissitve": "2026-09-20T03:38:16.358780+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:18:57.010624+02:00",
-      "kulcs": "NCV286",
-      "rendszam": "NCV286",
-      "vehicle_id": "6251",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50155258178711,
-      "lon": 19.035743713378906,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-19T11:18:57.010873+02:00",
-      "kulcs": "NWB353",
-      "rendszam": "NWB353",
-      "vehicle_id": "6533",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.471683502197266,
-      "lon": 19.220169067382812,
-      "elozo_szoveg": "Helikopter lakópark",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-19T11:18:57.011076+02:00",
-      "kulcs": "PDB703",
-      "rendszam": "PDB703",
-      "vehicle_id": "7029",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.532379150390625,
-      "lon": 19.067562103271484,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Göncz Árpád városkp. M"
-    },
-    {
-      "idopont": "2026-09-19T11:18:57.011598+02:00",
-      "kulcs": "PKN621",
-      "rendszam": "PKN621",
-      "vehicle_id": "7210",
-      "vehicle_label": "Helikopter lakópark",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.546775817871094,
-      "lon": 19.142601013183594,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Helikopter lakópark"
-    },
-    {
-      "idopont": "2026-09-19T11:18:57.012106+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "121",
-      "route_id": "1210",
-      "lat": 47.57743453979492,
-      "lon": 19.114925384521484,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
     {
       "idopont": "2026-09-19T11:18:57.013937+02:00",
       "kulcs": "SKR814",
@@ -260000,6 +259935,71 @@
       "lon": 20.043909072875977,
       "elozo_szoveg": "Szeged",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-20T03:38:16.261935+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.421451568603516,
+      "lon": 19.04041290283203,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-20T03:38:16.264533+02:00",
+      "kulcs": "AAGL257",
+      "rendszam": "AAGL257",
+      "vehicle_id": "257",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.47807693481445,
+      "lon": 19.045650482177734,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Törökbálint"
+    },
+    {
+      "idopont": "2026-09-20T03:38:16.265362+02:00",
+      "kulcs": "MUT888",
+      "rendszam": "MUT888",
+      "vehicle_id": "5941",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.51103591918945,
+      "lon": 19.05625343322754,
+      "elozo_szoveg": "Béke tér ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-20T03:38:16.265491+02:00",
+      "kulcs": "PDB731",
+      "rendszam": "PDB731",
+      "vehicle_id": "7057",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.426658630371094,
+      "lon": 19.161088943481445,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-20T03:38:16.265841+02:00",
+      "kulcs": "1127-764-1128",
+      "rendszam": "1127-764-1128",
+      "vehicle_id": "905516561271-905536467640-905516561289",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.660709381103516,
+      "lon": 19.075227737426758,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
     }
   ]
 }
