@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T23:38:03.112277+02:00",
+  "frissitve": "2026-09-20T23:38:46.437605+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:05:08.791557+02:00",
-      "kulcs": "AAGL250",
-      "rendszam": "AAGL250",
-      "vehicle_id": "250",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50031280517578,
-      "lon": 18.916772842407227,
-      "elozo_szoveg": "Budakeszi, Tesco áruház",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:05:08.791647+02:00",
-      "kulcs": "AAGL277",
-      "rendszam": "AAGL277",
-      "vehicle_id": "277",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.595314025878906,
-      "lon": 18.94391441345215,
-      "elozo_szoveg": "Solymár vasútállomás ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-20T12:05:08.791822+02:00",
-      "kulcs": "AAGL282",
-      "rendszam": "AAGL282",
-      "vehicle_id": "317",
-      "vehicle_label": "Solymár, PEMÜ",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.54657745361328,
-      "lon": 18.964359283447266,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Solymár vasútállomás ► Solymár, PEMÜ"
-    },
-    {
-      "idopont": "2026-09-20T12:05:08.791994+02:00",
-      "kulcs": "AAGL312",
-      "rendszam": "AAGL312",
-      "vehicle_id": "341",
-      "vehicle_label": "Törökbálint vasútállomás",
-      "vonal_szam": "173",
-      "route_id": "1730",
-      "lat": 47.436275482177734,
-      "lon": 18.9269962310791,
-      "elozo_szoveg": "Nyár utca ► Törökbálint vasútállomás",
-      "uj_szoveg": "Harangláb ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-20T12:05:08.792538+02:00",
-      "kulcs": "V1336",
-      "rendszam": "V1336",
-      "vehicle_id": "4439",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.512916564941406,
-      "lon": 19.04783821105957,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
     {
       "idopont": "2026-09-20T12:05:08.792662+02:00",
       "kulcs": "AAMH611",
@@ -260000,6 +259935,71 @@
       "lon": 18.98975372314453,
       "elozo_szoveg": "Mindszenty J. bíboros tér",
       "uj_szoveg": "Mindszenty József bíboros tér"
+    },
+    {
+      "idopont": "2026-09-20T23:38:46.343208+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50740051269531,
+      "lon": 19.02376365661621,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-20T23:38:46.344058+02:00",
+      "kulcs": "V1547",
+      "rendszam": "V1547",
+      "vehicle_id": "4599",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "52",
+      "route_id": "3520",
+      "lat": 47.42202377319336,
+      "lon": 19.122264862060547,
+      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-20T23:38:46.346644+02:00",
+      "kulcs": "AEHE426",
+      "rendszam": "AEHE426",
+      "vehicle_id": "623",
+      "vehicle_label": "Ady Endre tér",
+      "vonal_szam": "99",
+      "route_id": "0990",
+      "lat": 47.43720626831055,
+      "lon": 19.13700294494629,
+      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
+      "uj_szoveg": "Ady Endre tér"
+    },
+    {
+      "idopont": "2026-09-20T23:38:46.347300+02:00",
+      "kulcs": "V2256",
+      "rendszam": "V2256",
+      "vehicle_id": "7388",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "19",
+      "route_id": "3190",
+      "lat": 47.49359893798828,
+      "lon": 19.0440731048584,
+      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-20T23:38:46.347752+02:00",
+      "kulcs": "AOFL198",
+      "rendszam": "AOFL198",
+      "vehicle_id": "782",
+      "vehicle_label": "Citadella - Sánc utca",
+      "vonal_szam": "27",
+      "route_id": "0270",
+      "lat": 47.478031158447266,
+      "lon": 19.045690536499023,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Citadella ► Sánc utca"
     }
   ]
 }
