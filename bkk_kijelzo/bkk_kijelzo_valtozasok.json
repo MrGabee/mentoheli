@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T01:23:14.864967+02:00",
+  "frissitve": "2026-09-21T01:23:42.053693+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:23:01.636632+02:00",
-      "kulcs": "AADI626",
-      "rendszam": "AADI626",
-      "vehicle_id": "121",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.598758697509766,
-      "lon": 19.121360778808594,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-20T12:23:01.636660+02:00",
-      "kulcs": "AADI630",
-      "rendszam": "AADI630",
-      "vehicle_id": "125",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.50178527832031,
-      "lon": 19.135581970214844,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-20T12:23:01.636676+02:00",
-      "kulcs": "AADI631",
-      "rendszam": "AADI631",
-      "vehicle_id": "127",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.496891021728516,
-      "lon": 19.0690975189209,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-20T12:23:01.636891+02:00",
       "kulcs": "AADR702",
@@ -260000,6 +259961,45 @@
       "lon": 19.038118362426758,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-21T01:23:41.964806+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.478065490722656,
+      "lon": 19.0456600189209,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-21T01:23:41.969516+02:00",
+      "kulcs": "MUT893",
+      "rendszam": "MUT893",
+      "vehicle_id": "5946",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51271057128906,
+      "lon": 19.057437896728516,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-21T01:23:41.969583+02:00",
+      "kulcs": "NBW012",
+      "rendszam": "NBW012",
+      "vehicle_id": "5982",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50392150878906,
+      "lon": 19.14176368713379,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
     }
   ]
 }
