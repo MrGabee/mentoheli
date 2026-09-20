@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-20T02:22:12.697594+02:00",
+  "frissitve": "2026-09-20T02:22:42.714953+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:04:08.703455+02:00",
-      "kulcs": "PDB710",
-      "rendszam": "PDB710",
-      "vehicle_id": "7036",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.532127380371094,
-      "lon": 19.067928314208984,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-19T11:04:08.703547+02:00",
-      "kulcs": "PDB380",
-      "rendszam": "PDB380",
-      "vehicle_id": "7062",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.4766845703125,
-      "lon": 19.26500701904297,
-      "elozo_szoveg": "Kucorgó tér ► Rákoscsaba",
-      "uj_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-19T11:04:08.703652+02:00",
       "kulcs": "PDB389",
@@ -260000,6 +259974,32 @@
       "lon": 19.049034118652344,
       "elozo_szoveg": "Hengermalom út ► Budatétény",
       "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-09-20T02:22:42.646814+02:00",
+      "kulcs": "AADR705",
+      "rendszam": "AADR705",
+      "vehicle_id": "173",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.48612976074219,
+      "lon": 19.25873565673828,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-20T02:22:42.649167+02:00",
+      "kulcs": "RVY702",
+      "rendszam": "RVY702",
+      "vehicle_id": "7451",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.5200080871582,
+      "lon": 19.03812026977539,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
