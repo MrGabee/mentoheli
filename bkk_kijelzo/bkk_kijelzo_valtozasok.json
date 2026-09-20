@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T01:51:28.930782+02:00",
+  "frissitve": "2026-09-21T01:51:55.167747+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:26:19.706202+02:00",
-      "kulcs": "T9145",
-      "rendszam": "T9145",
-      "vehicle_id": "7884",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.4998893737793,
-      "lon": 19.083642959594727,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-20T12:26:19.706293+02:00",
-      "kulcs": "T8114",
-      "rendszam": "T8114",
-      "vehicle_id": "7893",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.4813232421875,
-      "lon": 19.13612174987793,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-20T12:26:19.706452+02:00",
-      "kulcs": "AOFL218",
-      "rendszam": "AOFL218",
-      "vehicle_id": "805",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.545406341552734,
-      "lon": 19.03377342224121,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
     {
       "idopont": "2026-09-20T12:26:19.706544+02:00",
       "kulcs": "AOFL230",
@@ -260000,6 +259961,45 @@
       "lon": 19.042068481445312,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-21T01:51:55.079467+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.579795837402344,
+      "lon": 19.08866310119629,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-21T01:51:55.080041+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.548439025878906,
+      "lon": 19.029619216918945,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T01:51:55.080160+02:00",
+      "kulcs": "AADI575",
+      "rendszam": "AADI575",
+      "vehicle_id": "78",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46795654296875,
+      "lon": 19.075780868530273,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
