@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T01:02:47.648363+02:00",
+  "frissitve": "2026-09-21T01:03:32.008448+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:19:42.153711+02:00",
-      "kulcs": "PDN614",
-      "rendszam": "PDN614",
-      "vehicle_id": "7085",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.42645263671875,
-      "lon": 19.078657150268555,
-      "elozo_szoveg": "Horgásztanya ► Szentmiklósi út",
-      "uj_szoveg": "Szentmiklósi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-20T12:19:42.153911+02:00",
-      "kulcs": "PHG628",
-      "rendszam": "PHG628",
-      "vehicle_id": "7152",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.52044677734375,
-      "lon": 19.218576431274414,
-      "elozo_szoveg": "Cinkota H",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-09-20T12:19:42.153951+02:00",
-      "kulcs": "PHG647",
-      "rendszam": "PHG647",
-      "vehicle_id": "7171",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.50469970703125,
-      "lon": 19.136884689331055,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákosszentmihály, Mátyás király utca"
-    },
     {
       "idopont": "2026-09-20T12:19:42.154350+02:00",
       "kulcs": "V2242",
@@ -260000,6 +259961,45 @@
       "lon": 19.095386505126953,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-21T01:03:31.915941+02:00",
+      "kulcs": "AADI655",
+      "rendszam": "AADI655",
+      "vehicle_id": "154",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464630126953125,
+      "lon": 19.02299690246582,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-21T01:03:31.916236+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.478206634521484,
+      "lon": 19.048458099365234,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-21T01:03:31.921333+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48820495605469,
+      "lon": 19.064626693725586,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
     }
   ]
 }
