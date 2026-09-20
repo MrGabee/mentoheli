@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-20T03:32:39.960305+02:00",
+  "frissitve": "2026-09-20T03:33:09.501666+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:18:04.388223+02:00",
-      "kulcs": "SKR805",
-      "rendszam": "SKR805",
-      "vehicle_id": "7691",
-      "vehicle_label": "Naphegy tér",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.497615814208984,
-      "lon": 19.053266525268555,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Naphegy tér"
-    },
-    {
-      "idopont": "2026-09-19T11:18:04.388303+02:00",
-      "kulcs": "SKR819",
-      "rendszam": "SKR819",
-      "vehicle_id": "7705",
-      "vehicle_label": "Óbudai-sziget",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.51137161254883,
-      "lon": 19.053302764892578,
-      "elozo_szoveg": "Margitsziget ► Óbudai-sziget",
-      "uj_szoveg": "Óbudai-sziget"
-    },
     {
       "idopont": "2026-09-19T11:18:04.388321+02:00",
       "kulcs": "SKR820",
@@ -260000,6 +259974,32 @@
       "lon": 19.02548599243164,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-20T03:33:09.415883+02:00",
+      "kulcs": "SKN830",
+      "rendszam": "SKN830",
+      "vehicle_id": "545",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.51494216918945,
+      "lon": 19.09682273864746,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-20T03:33:09.416161+02:00",
+      "kulcs": "RVY704",
+      "rendszam": "RVY704",
+      "vehicle_id": "7453",
+      "vehicle_label": "Pesterzsébeti lakótelep",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.4882698059082,
+      "lon": 19.064712524414062,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
     }
   ]
 }
