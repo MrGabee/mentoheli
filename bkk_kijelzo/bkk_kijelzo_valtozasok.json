@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-20T02:32:44.092587+02:00",
+  "frissitve": "2026-09-20T02:33:16.588365+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:06:05.734254+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.505348205566406,
-      "lon": 19.1363468170166,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T11:06:05.734300+02:00",
-      "kulcs": "T8110",
-      "rendszam": "T8110",
-      "vehicle_id": "7889",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47592544555664,
-      "lon": 19.099987030029297,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Kálvin tér M"
-    },
     {
       "idopont": "2026-09-19T11:06:05.734379+02:00",
       "kulcs": "AOFL209",
@@ -260000,6 +259974,32 @@
       "lon": 19.066774368286133,
       "elozo_szoveg": "Astoria M ► Kolosy tér",
       "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-20T02:33:16.497805+02:00",
+      "kulcs": "AADI653",
+      "rendszam": "AADI653",
+      "vehicle_id": "152",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51033020019531,
+      "lon": 19.09746742248535,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-20T02:33:16.501138+02:00",
+      "kulcs": "AOIM026",
+      "rendszam": "AOIM026",
+      "vehicle_id": "946",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.4750862121582,
+      "lon": 19.046831130981445,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
