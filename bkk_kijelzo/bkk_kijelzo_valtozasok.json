@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-20T03:05:44.782766+02:00",
+  "frissitve": "2026-09-20T03:06:13.590849+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:12:16.970221+02:00",
-      "kulcs": "NTM429",
-      "rendszam": "NTM429",
-      "vehicle_id": "6497",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.4989013671875,
-      "lon": 19.03441047668457,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-19T11:12:16.970381+02:00",
-      "kulcs": "AADI569",
-      "rendszam": "AADI569",
-      "vehicle_id": "67",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54642105102539,
-      "lon": 18.96425437927246,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-19T11:12:16.970539+02:00",
-      "kulcs": "PDB716",
-      "rendszam": "PDB716",
-      "vehicle_id": "7042",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.57291793823242,
-      "lon": 19.053621292114258,
-      "elozo_szoveg": "Római úti lakótelep",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-19T11:12:16.971084+02:00",
       "kulcs": "PDZ831",
@@ -260000,6 +259961,45 @@
       "lon": 19.16016960144043,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-20T03:06:13.499073+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Dayka Gábor utca",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499324798583984,
+      "lon": 19.28671646118164,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-20T03:06:13.500629+02:00",
+      "kulcs": "PDB705",
+      "rendszam": "PDB705",
+      "vehicle_id": "7031",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519927978515625,
+      "lon": 19.038070678710938,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-20T03:06:13.500680+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46245574951172,
+      "lon": 19.133209228515625,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
