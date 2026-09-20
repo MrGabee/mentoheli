@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T01:55:56.889805+02:00",
+  "frissitve": "2026-09-21T01:56:35.631671+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:27:22.143029+02:00",
-      "kulcs": "MXJ009",
-      "rendszam": "MXJ009",
-      "vehicle_id": "5884",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.523250579833984,
-      "lon": 19.002418518066406,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:27:22.143197+02:00",
-      "kulcs": "NBW014",
-      "rendszam": "NBW014",
-      "vehicle_id": "5984",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.5233039855957,
-      "lon": 19.171871185302734,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Mátyás király utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:27:22.143281+02:00",
-      "kulcs": "T8003",
-      "rendszam": "T8003",
-      "vehicle_id": "6123",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.495758056640625,
-      "lon": 19.060443878173828,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
     {
       "idopont": "2026-09-20T12:27:22.143407+02:00",
       "kulcs": "AELD567",
@@ -260000,6 +259961,45 @@
       "lon": 18.921384811401367,
       "elozo_szoveg": "Budakeszi",
       "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-21T01:56:35.529765+02:00",
+      "kulcs": "AAGL251",
+      "rendszam": "AAGL251",
+      "vehicle_id": "251",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4882926940918,
+      "lon": 19.059940338134766,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-21T01:56:35.533438+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58563995361328,
+      "lon": 19.09416389465332,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-21T01:56:35.534344+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51554870605469,
+      "lon": 19.105716705322266,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
