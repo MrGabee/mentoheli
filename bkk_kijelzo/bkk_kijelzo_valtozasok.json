@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T01:29:52.590290+02:00",
+  "frissitve": "2026-09-21T01:30:27.257454+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:23:01.647668+02:00",
-      "kulcs": "815 014",
-      "rendszam": "815 014",
-      "vehicle_id": "945518150145",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.52613830566406,
-      "lon": 19.09008026123047,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
-    {
-      "idopont": "2026-09-20T12:23:01.647760+02:00",
-      "kulcs": "815 040",
-      "rendszam": "815 040",
-      "vehicle_id": "945518150400",
-      "vehicle_label": "Szolnok",
-      "vonal_szam": "Z60",
-      "route_id": "Z60",
-      "lat": 47.492088317871094,
-      "lon": 19.13311004638672,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Szolnok"
-    },
-    {
-      "idopont": "2026-09-20T12:23:01.647988+02:00",
-      "kulcs": "AOIM051",
-      "rendszam": "AOIM051",
-      "vehicle_id": "972",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.38872528076172,
-      "lon": 18.958251953125,
-      "elozo_szoveg": "Nagytétény, ipartelep",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-20T12:23:54.049737+02:00",
       "kulcs": "AADR710",
@@ -260000,6 +259961,45 @@
       "lon": 19.02479362487793,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Fácános tér"
+    },
+    {
+      "idopont": "2026-09-21T01:30:27.170354+02:00",
+      "kulcs": "AAGL251",
+      "rendszam": "AAGL251",
+      "vehicle_id": "251",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.455726623535156,
+      "lon": 18.940887451171875,
+      "elozo_szoveg": "Törökbálint, Márta utca",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-21T01:30:27.170437+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54163360595703,
+      "lon": 19.151348114013672,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-21T01:30:27.175039+02:00",
+      "kulcs": "NGC158",
+      "rendszam": "NGC158",
+      "vehicle_id": "6208",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.443206787109375,
+      "lon": 19.093032836914062,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
