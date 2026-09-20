@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-20T02:53:18.655918+02:00",
+  "frissitve": "2026-09-20T02:53:50.948094+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:09:59.206154+02:00",
-      "kulcs": "V2271",
-      "rendszam": "V2271",
-      "vehicle_id": "569",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.443729400634766,
-      "lon": 19.09680938720703,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-19T11:09:59.206367+02:00",
-      "kulcs": "V2104",
-      "rendszam": "V2104",
-      "vehicle_id": "5832",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54845428466797,
-      "lon": 19.029800415039062,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-19T11:09:59.206660+02:00",
       "kulcs": "AADI601",
@@ -260000,6 +259974,32 @@
       "lon": 19.085582733154297,
       "elozo_szoveg": "Astoria M ► Pesterzsébet",
       "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-20T02:53:50.860035+02:00",
+      "kulcs": "AADI617",
+      "rendszam": "AADI617",
+      "vehicle_id": "114",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.501792907714844,
+      "lon": 19.13629150390625,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-20T02:53:50.860106+02:00",
+      "kulcs": "AADI654",
+      "rendszam": "AADI654",
+      "vehicle_id": "153",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.548439025878906,
+      "lon": 19.029592514038086,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
