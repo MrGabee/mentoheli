@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T00:09:59.471455+02:00",
+  "frissitve": "2026-09-21T00:10:30.426996+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:13:43.220091+02:00",
-      "kulcs": "AADI632",
-      "rendszam": "AADI632",
-      "vehicle_id": "130",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.488155364990234,
-      "lon": 19.244789123535156,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:13:43.220441+02:00",
-      "kulcs": "AADR706",
-      "rendszam": "AADR706",
-      "vehicle_id": "174",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.43844985961914,
-      "lon": 19.13469123840332,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:13:43.220544+02:00",
-      "kulcs": "AADR722",
-      "rendszam": "AADR722",
-      "vehicle_id": "191",
-      "vehicle_label": "Óbudai-sziget",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.511566162109375,
-      "lon": 19.056665420532227,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Margitsziget ► Óbudai-sziget"
-    },
     {
       "idopont": "2026-09-20T12:13:43.220681+02:00",
       "kulcs": "V2024",
@@ -260000,6 +259961,45 @@
       "lon": 19.127805709838867,
       "elozo_szoveg": "Pesterzsébet",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-21T00:10:30.337238+02:00",
+      "kulcs": "V2002",
+      "rendszam": "V2002",
+      "vehicle_id": "2002",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50732421875,
+      "lon": 19.024751663208008,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-21T00:10:30.342961+02:00",
+      "kulcs": "PDB715",
+      "rendszam": "PDB715",
+      "vehicle_id": "7041",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59847640991211,
+      "lon": 19.12132453918457,
+      "elozo_szoveg": "Göncz Árpád városkp. M",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-21T00:10:30.343000+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49746322631836,
+      "lon": 19.05491065979004,
+      "elozo_szoveg": "Csepel, Soroksári rév",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
