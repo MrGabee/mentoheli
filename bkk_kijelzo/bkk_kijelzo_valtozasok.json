@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T03:25:55.159847+02:00",
+  "frissitve": "2026-09-20T03:26:24.173963+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:15:58.888294+02:00",
-      "kulcs": "AOIM036",
-      "rendszam": "AOIM036",
-      "vehicle_id": "956",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.469051361083984,
-      "lon": 19.294553756713867,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T11:15:58.888454+02:00",
-      "kulcs": "AOJM871",
-      "rendszam": "AOJM871",
-      "vehicle_id": "994",
-      "vehicle_label": "Rákoskert sugárút",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.50193786621094,
-      "lon": 19.1362247467041,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákoskert sugárút"
-    },
-    {
-      "idopont": "2026-09-19T11:17:00.051490+02:00",
-      "kulcs": "AOJM881",
-      "rendszam": "AOJM881",
-      "vehicle_id": "1007",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40687561035156,
-      "lon": 19.078811645507812,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-19T11:17:00.051627+02:00",
-      "kulcs": "AADI610",
-      "rendszam": "AADI610",
-      "vehicle_id": "107",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "58",
-      "route_id": "0580",
-      "lat": 47.42853927612305,
-      "lon": 19.008037567138672,
-      "elozo_szoveg": "Balatoni út / Háros utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-19T11:17:00.051881+02:00",
-      "kulcs": "V2007",
-      "rendszam": "V2007",
-      "vehicle_id": "2007",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.47374725341797,
-      "lon": 19.049100875854492,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-19T11:17:00.052161+02:00",
       "kulcs": "AADR761",
@@ -260000,6 +259935,71 @@
       "lon": 19.037864685058594,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-20T03:26:24.088090+02:00",
+      "kulcs": "AADR756",
+      "rendszam": "AADR756",
+      "vehicle_id": "205",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.598506927490234,
+      "lon": 19.121292114257812,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-20T03:26:24.090579+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.481815338134766,
+      "lon": 19.064496994018555,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-20T03:26:24.091031+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.4987907409668,
+      "lon": 19.0546875,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-20T03:26:24.091218+02:00",
+      "kulcs": "AOIM026",
+      "rendszam": "AOIM026",
+      "vehicle_id": "946",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.514137268066406,
+      "lon": 19.103191375732422,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-20T03:26:24.091281+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50867462158203,
+      "lon": 19.027284622192383,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
