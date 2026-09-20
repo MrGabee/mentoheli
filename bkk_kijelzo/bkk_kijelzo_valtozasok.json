@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-20T03:59:14.879054+02:00",
+  "frissitve": "2026-09-20T03:59:44.928739+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:24:15.831350+02:00",
-      "kulcs": "T8113",
-      "rendszam": "T8113",
-      "vehicle_id": "7892",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.5251579284668,
-      "lon": 19.063629150390625,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T11:24:15.831377+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.518714904785156,
-      "lon": 19.085350036621094,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T11:24:15.831407+02:00",
-      "kulcs": "T8118",
-      "rendszam": "T8118",
-      "vehicle_id": "7897",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.4759407043457,
-      "lon": 19.100162506103516,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Kálvin tér M"
-    },
     {
       "idopont": "2026-09-19T11:24:15.831449+02:00",
       "kulcs": "AOFL209",
@@ -260000,6 +259961,45 @@
       "lon": 19.029783248901367,
       "elozo_szoveg": "Gubacsi út / Határ út",
       "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-20T03:59:44.841259+02:00",
+      "kulcs": "AADI617",
+      "rendszam": "AADI617",
+      "vehicle_id": "114",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52537155151367,
+      "lon": 19.03798484802246,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-20T03:59:44.843887+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "198",
+      "route_id": "1980",
+      "lat": 47.47977066040039,
+      "lon": 19.255525588989258,
+      "elozo_szoveg": "Cinkotai autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-20T03:59:44.844224+02:00",
+      "kulcs": "SXE203",
+      "rendszam": "SXE203",
+      "vehicle_id": "7840",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42667007446289,
+      "lon": 19.161052703857422,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
