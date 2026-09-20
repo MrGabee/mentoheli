@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-20T02:38:34.236859+02:00",
+  "frissitve": "2026-09-20T02:39:04.593969+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:06:58.906773+02:00",
-      "kulcs": "PDB378",
-      "rendszam": "PDB378",
-      "vehicle_id": "7060",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "231",
-      "route_id": "2310",
-      "lat": 47.558502197265625,
-      "lon": 19.12941551208496,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T11:06:58.907024+02:00",
-      "kulcs": "PHG625",
-      "rendszam": "PHG625",
-      "vehicle_id": "7149",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.504634857177734,
-      "lon": 19.136898040771484,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-19T11:06:58.907067+02:00",
-      "kulcs": "PHG641",
-      "rendszam": "PHG641",
-      "vehicle_id": "7165",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.54191207885742,
-      "lon": 19.15158462524414,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Cinkota H"
-    },
     {
       "idopont": "2026-09-19T11:06:58.907081+02:00",
       "kulcs": "PHG643",
@@ -260000,6 +259961,45 @@
       "lon": 19.081483840942383,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-20T02:39:04.505916+02:00",
+      "kulcs": "FJX188",
+      "rendszam": "FJX188",
+      "vehicle_id": "3008",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.497032165527344,
+      "lon": 19.055747985839844,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-20T02:39:04.507181+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.47822952270508,
+      "lon": 19.043867111206055,
+      "elozo_szoveg": "Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-20T02:39:04.507582+02:00",
+      "kulcs": "PDB721",
+      "rendszam": "PDB721",
+      "vehicle_id": "7047",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.51131820678711,
+      "lon": 19.056398391723633,
+      "elozo_szoveg": "Béke tér ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
     }
   ]
 }
