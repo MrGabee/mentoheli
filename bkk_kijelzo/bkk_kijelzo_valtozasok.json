@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-21T00:56:59.245602+02:00",
+  "frissitve": "2026-09-21T00:57:26.881844+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:18:50.127543+02:00",
-      "kulcs": "PDB388",
-      "rendszam": "PDB388",
-      "vehicle_id": "7070",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.503971099853516,
-      "lon": 19.136247634887695,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-20T12:18:50.127975+02:00",
-      "kulcs": "PKN625",
-      "rendszam": "PKN625",
-      "vehicle_id": "7214",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.519775390625,
-      "lon": 19.111255645751953,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:18:50.128061+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53666687011719,
-      "lon": 19.106910705566406,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-09-20T12:18:50.128734+02:00",
-      "kulcs": "SKR803",
-      "rendszam": "SKR803",
-      "vehicle_id": "7689",
-      "vehicle_label": "Zugliget, Libegő",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.51081085205078,
-      "lon": 19.05636978149414,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Zugliget, Libegő"
-    },
-    {
-      "idopont": "2026-09-20T12:18:50.128777+02:00",
-      "kulcs": "SKR814",
-      "rendszam": "SKR814",
-      "vehicle_id": "7700",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.55442810058594,
-      "lon": 19.057825088500977,
-      "elozo_szoveg": "Óbudai-sziget",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-20T12:18:50.128816+02:00",
       "kulcs": "SKR824",
@@ -260000,6 +259935,71 @@
       "lon": 19.11956024169922,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-21T00:57:26.787050+02:00",
+      "kulcs": "AAGL264",
+      "rendszam": "AAGL264",
+      "vehicle_id": "264",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48720169067383,
+      "lon": 19.05791664123535,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-21T00:57:26.791458+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.53474044799805,
+      "lon": 19.082548141479492,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-21T00:57:26.791797+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50750732421875,
+      "lon": 19.024709701538086,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-21T00:57:26.791823+02:00",
+      "kulcs": "PDB388",
+      "rendszam": "PDB388",
+      "vehicle_id": "7070",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48777389526367,
+      "lon": 19.058942794799805,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-21T00:57:26.792233+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51396179199219,
+      "lon": 19.102968215942383,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
