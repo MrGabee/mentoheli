@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-20T03:07:25.746504+02:00",
+  "frissitve": "2026-09-20T03:07:54.660060+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:12:16.974291+02:00",
-      "kulcs": "1143-772-1144",
-      "rendszam": "1143-772-1144",
-      "vehicle_id": "905516561438-905536467723-905516561446",
-      "vehicle_label": "Boráros tér",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.42185592651367,
-      "lon": 19.066486358642578,
-      "elozo_szoveg": "Csepel",
-      "uj_szoveg": "Boráros tér"
-    },
-    {
-      "idopont": "2026-09-19T11:12:16.974393+02:00",
-      "kulcs": "961-681-962",
-      "rendszam": "961-681-962",
-      "vehicle_id": "905516569613-905536466816-905516569621",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.478858947753906,
-      "lon": 19.066858291625977,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-09-19T11:12:16.974536+02:00",
-      "kulcs": "480 006",
-      "rendszam": "480 006",
-      "vehicle_id": "915504800060",
-      "vehicle_label": "Tapolca",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.463539123535156,
-      "lon": 19.020910263061523,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Tapolca"
-    },
     {
       "idopont": "2026-09-19T11:13:00.290959+02:00",
       "kulcs": "FKU945",
@@ -260000,6 +259961,45 @@
       "lon": 19.28719139099121,
       "elozo_szoveg": "Rákoscsaba-Újtelep",
       "uj_szoveg": "Dayka Gábor utca"
+    },
+    {
+      "idopont": "2026-09-20T03:07:54.588600+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Páty - Telki - Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.522377014160156,
+      "lon": 18.940956115722656,
+      "elozo_szoveg": "Budakeszi ► Páty ► Telki ► Zsámbék",
+      "uj_szoveg": "Páty ► Telki ► Zsámbék"
+    },
+    {
+      "idopont": "2026-09-20T03:07:54.590761+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53950881958008,
+      "lon": 19.06951141357422,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-20T03:07:54.590868+02:00",
+      "kulcs": "415 049",
+      "rendszam": "415 049",
+      "vehicle_id": "945514150495",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 46.72808074951172,
+      "lon": 18.476160049438477,
+      "elozo_szoveg": "Pincehely",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
