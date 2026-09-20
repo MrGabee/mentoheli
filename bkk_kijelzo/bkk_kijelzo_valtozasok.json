@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T00:55:54.510196+02:00",
+  "frissitve": "2026-09-21T00:56:29.558077+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:18:50.126382+02:00",
-      "kulcs": "NBW013",
-      "rendszam": "NBW013",
-      "vehicle_id": "5983",
-      "vehicle_label": "Helikopter lakópark",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.54680252075195,
-      "lon": 19.14257049560547,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Helikopter lakópark"
-    },
-    {
-      "idopont": "2026-09-20T12:18:50.126875+02:00",
-      "kulcs": "NCV294",
-      "rendszam": "NCV294",
-      "vehicle_id": "6259",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50674819946289,
-      "lon": 19.023681640625,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:18:50.126943+02:00",
-      "kulcs": "NGC023",
-      "rendszam": "NGC023",
-      "vehicle_id": "6322",
-      "vehicle_label": "Nagytétény-Diósd vá.",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.477054595947266,
-      "lon": 19.04745101928711,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
     {
       "idopont": "2026-09-20T12:18:50.127120+02:00",
       "kulcs": "NTP538",
@@ -260000,6 +259961,45 @@
       "lon": 19.046815872192383,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-21T00:56:29.491361+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Budatétény vá. (Campona)",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40068054199219,
+      "lon": 18.99061393737793,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-21T00:56:29.495240+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.479434967041016,
+      "lon": 19.256181716918945,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-21T00:56:29.495816+02:00",
+      "kulcs": "415 122",
+      "rendszam": "415 122",
+      "vehicle_id": "945514151220",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.492008209228516,
+      "lon": 19.132919311523438,
+      "elozo_szoveg": "Gödöllő",
+      "uj_szoveg": "Nagykáta"
     }
   ]
 }
