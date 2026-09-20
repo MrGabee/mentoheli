@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-20T04:13:21.071463+02:00",
+  "frissitve": "2026-09-20T04:13:55.589750+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-19T11:28:56.082926+02:00",
-      "kulcs": "415 020",
-      "rendszam": "415 020",
-      "vehicle_id": "945514150206",
-      "vehicle_label": "Százhalombatta",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.46411895751953,
-      "lon": 19.02096939086914,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Százhalombatta"
-    },
-    {
-      "idopont": "2026-09-19T11:28:56.083153+02:00",
-      "kulcs": "415 100",
-      "rendszam": "415 100",
-      "vehicle_id": "945514151006",
-      "vehicle_label": "Sülysáp",
-      "vonal_szam": "S60",
-      "route_id": "S60",
-      "lat": 47.49203872680664,
-      "lon": 19.132930755615234,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Sülysáp"
-    },
-    {
-      "idopont": "2026-09-19T11:29:51.483553+02:00",
-      "kulcs": "AADR757",
-      "rendszam": "AADR757",
-      "vehicle_id": "206",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53218078613281,
-      "lon": 19.067855834960938,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-19T11:29:51.483651+02:00",
-      "kulcs": "AAGL267",
-      "rendszam": "AAGL267",
-      "vehicle_id": "267",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.46436309814453,
-      "lon": 19.01860237121582,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-09-19T11:29:51.484342+02:00",
-      "kulcs": "AAHY856",
-      "rendszam": "AAHY856",
-      "vehicle_id": "418",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.53643035888672,
-      "lon": 19.068511962890625,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Újpest-központ M"
-    },
     {
       "idopont": "2026-09-19T11:29:51.484824+02:00",
       "kulcs": "V4062",
@@ -260000,6 +259935,71 @@
       "lon": 19.02096939086914,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Székesfehérvár"
+    },
+    {
+      "idopont": "2026-09-20T04:13:55.502174+02:00",
+      "kulcs": "FLR740",
+      "rendszam": "FLR740",
+      "vehicle_id": "3154",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50128173828125,
+      "lon": 19.11957359313965,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-20T04:13:55.503587+02:00",
+      "kulcs": "PDB705",
+      "rendszam": "PDB705",
+      "vehicle_id": "7031",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.501800537109375,
+      "lon": 19.13625717163086,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-09-20T04:13:55.503838+02:00",
+      "kulcs": "RVY609",
+      "rendszam": "RVY609",
+      "vehicle_id": "7438",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.423858642578125,
+      "lon": 19.234603881835938,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-20T04:13:55.504223+02:00",
+      "kulcs": "AOFL213",
+      "rendszam": "AOFL213",
+      "vehicle_id": "800",
+      "vehicle_label": "Pince köz-Donát utca",
+      "vonal_szam": "243",
+      "route_id": "2430",
+      "lat": 47.597835540771484,
+      "lon": 19.053890228271484,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Pince köz ► Donát utca"
+    },
+    {
+      "idopont": "2026-09-20T04:13:55.504390+02:00",
+      "kulcs": "AOGL316",
+      "rendszam": "AOGL316",
+      "vehicle_id": "906",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "213",
+      "route_id": "2130",
+      "lat": 47.41598129272461,
+      "lon": 18.986867904663086,
+      "elozo_szoveg": "Baross Gábor-telep, Ispiláng utca",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
