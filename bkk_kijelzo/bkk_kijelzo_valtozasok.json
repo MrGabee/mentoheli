@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-21T01:04:07.815006+02:00",
+  "frissitve": "2026-09-21T01:04:43.481572+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:19:42.155407+02:00",
-      "kulcs": "STZ852",
-      "rendszam": "STZ852",
-      "vehicle_id": "7807",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "88",
-      "route_id": "0880",
-      "lat": 47.40492630004883,
-      "lon": 19.012187957763672,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Törökbálint ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-20T12:19:42.155492+02:00",
-      "kulcs": "AOFL200",
-      "rendszam": "AOFL200",
-      "vehicle_id": "784",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.48945999145508,
-      "lon": 19.035823822021484,
-      "elozo_szoveg": "Sánc utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-20T12:19:42.155570+02:00",
-      "kulcs": "T9122",
-      "rendszam": "T9122",
-      "vehicle_id": "7861",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.5000114440918,
-      "lon": 19.083627700805664,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-20T12:19:42.155755+02:00",
-      "kulcs": "T9146",
-      "rendszam": "T9146",
-      "vehicle_id": "7885",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.499351501464844,
-      "lon": 19.054710388183594,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-09-20T12:19:42.155832+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51784133911133,
-      "lon": 19.106557846069336,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-09-20T12:19:42.155844+02:00",
       "kulcs": "T8116",
@@ -260000,6 +259935,71 @@
       "lon": 19.100133895874023,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-21T01:04:43.395179+02:00",
+      "kulcs": "AADI609",
+      "rendszam": "AADI609",
+      "vehicle_id": "106",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51079177856445,
+      "lon": 19.097137451171875,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-21T01:04:43.400684+02:00",
+      "kulcs": "NGC152",
+      "rendszam": "NGC152",
+      "vehicle_id": "6198",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51791000366211,
+      "lon": 19.077817916870117,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-21T01:04:43.400852+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499717712402344,
+      "lon": 19.28705596923828,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-21T01:04:43.400917+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52238082885742,
+      "lon": 18.990802764892578,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-21T01:04:43.401285+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.51194763183594,
+      "lon": 19.056854248046875,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
     }
   ]
 }
