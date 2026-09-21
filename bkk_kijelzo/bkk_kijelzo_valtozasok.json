@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:13:12.056013+02:00",
+  "frissitve": "2026-09-22T01:13:43.961156+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T14:57:19.872219+02:00",
-      "kulcs": "SKR815",
-      "rendszam": "SKR815",
-      "vehicle_id": "7701",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.51652908325195,
-      "lon": 18.976463317871094,
-      "elozo_szoveg": "Zugliget, Libegő",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-21T14:57:19.872760+02:00",
-      "kulcs": "T9116",
-      "rendszam": "T9116",
-      "vehicle_id": "7854",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51079177856445,
-      "lon": 19.097213745117188,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-09-21T14:57:19.873098+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50519561767578,
-      "lon": 19.136432647705078,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
     {
       "idopont": "2026-09-21T14:57:19.873125+02:00",
       "kulcs": "T8120",
@@ -260000,6 +259961,45 @@
       "lon": 19.038227081298828,
       "elozo_szoveg": "Astoria M ► Pesterzsébet",
       "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-22T01:13:43.892094+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.508026123046875,
+      "lon": 19.028884887695312,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-22T01:13:43.892773+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56768798828125,
+      "lon": 19.127208709716797,
+      "elozo_szoveg": "Cinkotai autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-22T01:13:43.893284+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54707717895508,
+      "lon": 19.142051696777344,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
