@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:55:33.347178+02:00",
+  "frissitve": "2026-09-21T02:56:00.018322+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:35:55.022767+02:00",
-      "kulcs": "NTP540",
-      "rendszam": "NTP540",
-      "vehicle_id": "6516",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.500640869140625,
-      "lon": 18.96792984008789,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:35:55.022882+02:00",
-      "kulcs": "NWB364",
-      "rendszam": "NWB364",
-      "vehicle_id": "6544",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.4796142578125,
-      "lon": 19.232906341552734,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:35:55.023080+02:00",
-      "kulcs": "PDB710",
-      "rendszam": "PDB710",
-      "vehicle_id": "7036",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.60281753540039,
-      "lon": 19.066492080688477,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-20T12:35:55.023398+02:00",
       "kulcs": "PDN607",
@@ -260000,6 +259961,45 @@
       "lon": 19.04974937438965,
       "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
       "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-21T02:55:59.921408+02:00",
+      "kulcs": "AADI656",
+      "rendszam": "AADI656",
+      "vehicle_id": "155",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50154113769531,
+      "lon": 19.136184692382812,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T02:55:59.921590+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.487056732177734,
+      "lon": 19.0576171875,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-21T02:55:59.922751+02:00",
+      "kulcs": "LYH110",
+      "rendszam": "LYH110",
+      "vehicle_id": "3699",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.50456619262695,
+      "lon": 19.0247802734375,
+      "elozo_szoveg": "Széll Kálmán tér M ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
     }
   ]
 }
