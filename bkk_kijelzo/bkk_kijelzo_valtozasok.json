@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:39:34.166001+02:00",
+  "frissitve": "2026-09-22T01:40:08.149214+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:00:02.877320+02:00",
-      "kulcs": "AOFL235",
-      "rendszam": "AOFL235",
-      "vehicle_id": "823",
-      "vehicle_label": "Fenyőgyöngye",
-      "vonal_szam": "65A",
-      "route_id": "0651",
-      "lat": 47.52775192260742,
-      "lon": 19.036701202392578,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Fenyőgyöngye"
-    },
-    {
-      "idopont": "2026-09-21T15:00:02.877583+02:00",
-      "kulcs": "AOFL252",
-      "rendszam": "AOFL252",
-      "vehicle_id": "841",
-      "vehicle_label": "Újhegyi lakótelep",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.46861267089844,
-      "lon": 19.155900955200195,
-      "elozo_szoveg": "Újhegyi lakótelep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-21T15:00:02.878244+02:00",
-      "kulcs": "957-679-958-959-680-960",
-      "rendszam": "957-679-958-959-680-960",
-      "vehicle_id": "905516569571-905536466790-905516569589-905516569597-905536466808-905516569605",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.478946685791016,
-      "lon": 19.066650390625,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-09-21T15:00:02.878310+02:00",
-      "kulcs": "991-696-992-989-695-990",
-      "rendszam": "991-696-992-989-695-990",
-      "vehicle_id": "905516569910-905536466964-905516569928-905516569894-905536466956-905516569902",
-      "vehicle_label": "Békásmegyer",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.507171630859375,
-      "lon": 19.039480209350586,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Békásmegyer"
-    },
     {
       "idopont": "2026-09-21T15:00:02.879508+02:00",
       "kulcs": "AADI599",
@@ -260000,6 +259948,58 @@
       "lon": 19.0584659576416,
       "elozo_szoveg": "Astoria M ► Békásmegyer",
       "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-22T01:40:08.046939+02:00",
+      "kulcs": "FKU926",
+      "rendszam": "FKU926",
+      "vehicle_id": "3082",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44294357299805,
+      "lon": 19.17891502380371,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-22T01:40:08.049948+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.474918365478516,
+      "lon": 19.039365768432617,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-22T01:40:08.050437+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.485504150390625,
+      "lon": 19.07097053527832,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-22T01:40:08.051061+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50156021118164,
+      "lon": 19.11504554748535,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
