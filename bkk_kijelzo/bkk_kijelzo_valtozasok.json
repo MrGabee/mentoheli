@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:57:23.881135+02:00",
+  "frissitve": "2026-09-21T02:57:50.678658+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:35:55.025773+02:00",
-      "kulcs": "AOFL227",
-      "rendszam": "AOFL227",
-      "vehicle_id": "814",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.497230529785156,
-      "lon": 19.010480880737305,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:35:55.025813+02:00",
-      "kulcs": "AOFL235",
-      "rendszam": "AOFL235",
-      "vehicle_id": "823",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "118",
-      "route_id": "1180",
-      "lat": 47.5680046081543,
-      "lon": 19.02626609802246,
-      "elozo_szoveg": "Óbudai autóbuszgarázs",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-20T12:35:55.028376+02:00",
-      "kulcs": "415 082",
-      "rendszam": "415 082",
-      "vehicle_id": "945514150826",
-      "vehicle_label": "Monor",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.51176834106445,
-      "lon": 19.10063934326172,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Monor"
-    },
     {
       "idopont": "2026-09-20T12:35:55.028860+02:00",
       "kulcs": "AOIM035",
@@ -260000,6 +259961,45 @@
       "lon": 19.103015899658203,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-21T02:57:50.592603+02:00",
+      "kulcs": "NTM437",
+      "rendszam": "NTM437",
+      "vehicle_id": "6505",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39965057373047,
+      "lon": 18.991458892822266,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-21T02:57:50.592665+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.4875602722168,
+      "lon": 19.058475494384766,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-21T02:57:50.594013+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.534027099609375,
+      "lon": 19.082120895385742,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
     }
   ]
 }
