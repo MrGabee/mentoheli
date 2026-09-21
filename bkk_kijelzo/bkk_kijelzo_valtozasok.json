@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T03:02:00.024686+02:00",
+  "frissitve": "2026-09-21T03:02:26.827385+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:36:47.919723+02:00",
-      "kulcs": "415 094",
-      "rendszam": "415 094",
-      "vehicle_id": "945514150941",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.3707389831543,
-      "lon": 19.38953971862793,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-20T12:36:47.919964+02:00",
-      "kulcs": "815 019",
-      "rendszam": "815 019",
-      "vehicle_id": "945518150194",
-      "vehicle_label": "Székesfehérvár",
-      "vonal_szam": "G43",
-      "route_id": "G43",
-      "lat": 47.46873092651367,
-      "lon": 19.090320587158203,
-      "elozo_szoveg": "Kőbánya-Kispest",
-      "uj_szoveg": "Székesfehérvár"
-    },
-    {
-      "idopont": "2026-09-20T12:37:43.142553+02:00",
-      "kulcs": "AADI637",
-      "rendszam": "AADI637",
-      "vehicle_id": "135",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.49909210205078,
-      "lon": 19.26877784729004,
-      "elozo_szoveg": "Naplás út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-20T12:37:43.142621+02:00",
       "kulcs": "AADI644",
@@ -260000,6 +259961,45 @@
       "lon": 19.064977645874023,
       "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-21T03:02:26.743227+02:00",
+      "kulcs": "PKN620",
+      "rendszam": "PKN620",
+      "vehicle_id": "7209",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52421188354492,
+      "lon": 19.173938751220703,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-21T03:02:26.743261+02:00",
+      "kulcs": "PKN621",
+      "rendszam": "PKN621",
+      "vehicle_id": "7210",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50748825073242,
+      "lon": 19.02497673034668,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-21T03:02:26.744094+02:00",
+      "kulcs": "T8113",
+      "rendszam": "T8113",
+      "vehicle_id": "7892",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49711227416992,
+      "lon": 19.05548095703125,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
