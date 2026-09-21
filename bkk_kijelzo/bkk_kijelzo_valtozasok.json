@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-21T03:57:03.967421+02:00",
+  "frissitve": "2026-09-21T03:57:45.842716+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:45:10.966819+02:00",
-      "kulcs": "AOJM873",
-      "rendszam": "AOJM873",
-      "vehicle_id": "996",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46795654296875,
-      "lon": 19.302001953125,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:46:11.987293+02:00",
-      "kulcs": "AADI623",
-      "rendszam": "AADI623",
-      "vehicle_id": "118",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.501190185546875,
-      "lon": 19.136302947998047,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-20T12:46:11.987325+02:00",
-      "kulcs": "AADI625",
-      "rendszam": "AADI625",
-      "vehicle_id": "120",
-      "vehicle_label": "R.csaba-Újtelep, Naplás út",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.501163482666016,
-      "lon": 19.135963439941406,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Naplás út"
-    },
-    {
-      "idopont": "2026-09-20T12:46:11.988017+02:00",
-      "kulcs": "AAGL254",
-      "rendszam": "AAGL254",
-      "vehicle_id": "254",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50742721557617,
-      "lon": 19.025617599487305,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-09-20T12:46:11.988304+02:00",
-      "kulcs": "AAGL297",
-      "rendszam": "AAGL297",
-      "vehicle_id": "329",
-      "vehicle_label": "Diósd, Sashegyi út",
-      "vonal_szam": "113",
-      "route_id": "1130",
-      "lat": 47.40536880493164,
-      "lon": 19.014137268066406,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Diósd, Sashegyi út"
-    },
     {
       "idopont": "2026-09-20T12:46:11.988783+02:00",
       "kulcs": "AAHY865",
@@ -260000,6 +259935,71 @@
       "lon": 19.021930694580078,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Pusztaszabolcs"
+    },
+    {
+      "idopont": "2026-09-21T03:57:45.781233+02:00",
+      "kulcs": "AAGL284",
+      "rendszam": "AAGL284",
+      "vehicle_id": "308",
+      "vehicle_label": "Gödöllő H",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.598907470703125,
+      "lon": 19.352191925048828,
+      "elozo_szoveg": "Gödöllő, autóbusz-állomás",
+      "uj_szoveg": "Gödöllő H"
+    },
+    {
+      "idopont": "2026-09-21T03:57:45.782598+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.501346588134766,
+      "lon": 19.120027542114258,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-21T03:57:45.782619+02:00",
+      "kulcs": "NBW012",
+      "rendszam": "NBW012",
+      "vehicle_id": "5982",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.522552490234375,
+      "lon": 19.170207977294922,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-21T03:57:45.782755+02:00",
+      "kulcs": "NWB362",
+      "rendszam": "NWB362",
+      "vehicle_id": "6542",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52532958984375,
+      "lon": 19.037967681884766,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-21T03:57:45.783890+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51323699951172,
+      "lon": 19.101688385009766,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
