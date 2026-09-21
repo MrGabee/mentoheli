@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:42:47.540550+02:00",
+  "frissitve": "2026-09-22T01:43:26.313187+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:01:19.483965+02:00",
-      "kulcs": "V2040",
-      "rendszam": "V2040",
-      "vehicle_id": "2040",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.50733947753906,
-      "lon": 19.0247859954834,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-21T15:01:19.484278+02:00",
-      "kulcs": "FJX226",
-      "rendszam": "FJX226",
-      "vehicle_id": "3046",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.51520538330078,
-      "lon": 19.18531036376953,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Rákosi út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-21T15:01:19.484468+02:00",
-      "kulcs": "FLR709",
-      "rendszam": "FLR709",
-      "vehicle_id": "3123",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.469032287597656,
-      "lon": 19.295082092285156,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-21T15:01:19.484662+02:00",
       "kulcs": "FLR747",
@@ -260000,6 +259961,45 @@
       "lon": 19.119583129882812,
       "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
       "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-09-22T01:43:26.219859+02:00",
+      "kulcs": "FJX234",
+      "rendszam": "FJX234",
+      "vehicle_id": "3054",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46329116821289,
+      "lon": 19.131206512451172,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-22T01:43:26.223431+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.40575408935547,
+      "lon": 19.01419448852539,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-09-22T01:43:26.223532+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.54707717895508,
+      "lon": 19.142080307006836,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
