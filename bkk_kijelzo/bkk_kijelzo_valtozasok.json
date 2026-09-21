@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-22T00:56:29.219532+02:00",
+  "frissitve": "2026-09-22T00:57:00.712341+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T14:56:06.972622+02:00",
-      "kulcs": "V2238",
-      "rendszam": "V2238",
-      "vehicle_id": "7370",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51896286010742,
-      "lon": 19.091392517089844,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
-    {
-      "idopont": "2026-09-21T14:56:06.972863+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Árpádföld, Bekecs utca",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.52055740356445,
-      "lon": 19.218875885009766,
-      "elozo_szoveg": "Árpádföld, Bekecs utca",
-      "uj_szoveg": "Menyhért utca / Budapesti út"
-    },
-    {
-      "idopont": "2026-09-21T14:56:06.972976+02:00",
-      "kulcs": "RVY610",
-      "rendszam": "RVY610",
-      "vehicle_id": "7439",
-      "vehicle_label": "Ferencvárosi rendelőint.",
-      "vonal_szam": "281",
-      "route_id": "2810",
-      "lat": 47.473636627197266,
-      "lon": 19.07960319519043,
-      "elozo_szoveg": "Ferencvárosi rendelőintézet",
-      "uj_szoveg": "Aszódi utca"
-    },
-    {
-      "idopont": "2026-09-21T14:56:06.973038+02:00",
-      "kulcs": "RVY616",
-      "rendszam": "RVY616",
-      "vehicle_id": "7445",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.4676399230957,
-      "lon": 19.109466552734375,
-      "elozo_szoveg": "Ecseri út M ► Aszódi utca",
-      "uj_szoveg": "Aszódi utca"
-    },
-    {
-      "idopont": "2026-09-21T14:56:06.973221+02:00",
-      "kulcs": "RVY719",
-      "rendszam": "RVY719",
-      "vehicle_id": "7468",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.502140045166016,
-      "lon": 19.135881423950195,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-09-21T14:56:06.973457+02:00",
       "kulcs": "RVY730",
@@ -260000,6 +259935,71 @@
       "lon": 19.09000015258789,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Szob"
+    },
+    {
+      "idopont": "2026-09-22T00:57:00.649611+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.585655212402344,
+      "lon": 19.094144821166992,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-22T00:57:00.650001+02:00",
+      "kulcs": "NGC029",
+      "rendszam": "NGC029",
+      "vehicle_id": "6328",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.56800842285156,
+      "lon": 19.026119232177734,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-22T00:57:00.650268+02:00",
+      "kulcs": "RVY617",
+      "rendszam": "RVY617",
+      "vehicle_id": "7446",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59783172607422,
+      "lon": 19.053869247436523,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-22T00:57:00.650327+02:00",
+      "kulcs": "SKR806",
+      "rendszam": "SKR806",
+      "vehicle_id": "7692",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52540969848633,
+      "lon": 19.03789710998535,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-22T00:57:00.650533+02:00",
+      "kulcs": "415 123",
+      "rendszam": "415 123",
+      "vehicle_id": "945514151238",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.49201965332031,
+      "lon": 19.132959365844727,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Nagykáta"
     }
   ]
 }
