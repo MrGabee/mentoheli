@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:36:52.106678+02:00",
+  "frissitve": "2026-09-21T02:37:19.426863+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:33:52.482625+02:00",
-      "kulcs": "V2029",
-      "rendszam": "V2029",
-      "vehicle_id": "2029",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.5485725402832,
-      "lon": 19.0296630859375,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.482656+02:00",
-      "kulcs": "V2033",
-      "rendszam": "V2033",
-      "vehicle_id": "2033",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46415710449219,
-      "lon": 19.023527145385742,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.482743+02:00",
-      "kulcs": "AADR761",
-      "rendszam": "AADR761",
-      "vehicle_id": "210",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53755187988281,
-      "lon": 19.05437660217285,
-      "elozo_szoveg": "Margitsziget ► Nyugati pályaudvar M",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-20T12:33:52.482949+02:00",
       "kulcs": "AAGL282",
@@ -260000,6 +259961,45 @@
       "lon": 19.023134231567383,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-21T02:37:19.343240+02:00",
+      "kulcs": "MUT893",
+      "rendszam": "MUT893",
+      "vehicle_id": "5946",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53440475463867,
+      "lon": 19.082279205322266,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-21T02:37:19.343440+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42664337158203,
+      "lon": 19.16106414794922,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-21T02:37:19.343800+02:00",
+      "kulcs": "AOFL243",
+      "rendszam": "AOFL243",
+      "vehicle_id": "831",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.4416389465332,
+      "lon": 19.186176300048828,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Pestszentimre"
     }
   ]
 }
