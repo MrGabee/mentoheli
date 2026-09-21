@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:37:19.426863+02:00",
+  "frissitve": "2026-09-21T02:37:48.371416+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:33:52.482949+02:00",
-      "kulcs": "AAGL282",
-      "rendszam": "AAGL282",
-      "vehicle_id": "317",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.59502410888672,
-      "lon": 18.93513298034668,
-      "elozo_szoveg": "Solymár, PEMÜ",
-      "uj_szoveg": "Solymár vasútállomás ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.483044+02:00",
-      "kulcs": "AAGL298",
-      "rendszam": "AAGL298",
-      "vehicle_id": "330",
-      "vehicle_label": "Solymár, PEMÜ",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.54326629638672,
-      "lon": 18.96398162841797,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Solymár vasútállomás ► Solymár, PEMÜ"
-    },
     {
       "idopont": "2026-09-20T12:33:52.483295+02:00",
       "kulcs": "AAHY831",
@@ -260000,6 +259974,32 @@
       "lon": 19.186176300048828,
       "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
       "uj_szoveg": "Pestszentimre"
+    },
+    {
+      "idopont": "2026-09-21T02:37:48.307907+02:00",
+      "kulcs": "MUT893",
+      "rendszam": "MUT893",
+      "vehicle_id": "5946",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.532169342041016,
+      "lon": 19.081087112426758,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-21T02:37:48.308099+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49781799316406,
+      "lon": 19.01940155029297,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
     }
   ]
 }
