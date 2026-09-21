@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:04:08.910504+02:00",
+  "frissitve": "2026-09-21T02:04:43.771095+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:28:32.190017+02:00",
-      "kulcs": "PDB729",
-      "rendszam": "PDB729",
-      "vehicle_id": "7055",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.603031158447266,
-      "lon": 19.066919326782227,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-09-20T12:28:32.190046+02:00",
-      "kulcs": "PDB377",
-      "rendszam": "PDB377",
-      "vehicle_id": "7059",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.50374221801758,
-      "lon": 19.14137840270996,
-      "elozo_szoveg": "Veres Péter út ► Centenáriumi lakótelep",
-      "uj_szoveg": "Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-09-20T12:28:32.190449+02:00",
-      "kulcs": "PDN638",
-      "rendszam": "PDN638",
-      "vehicle_id": "7109",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41047286987305,
-      "lon": 19.060623168945312,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-09-20T12:28:32.190868+02:00",
       "kulcs": "T8108",
@@ -260000,6 +259961,45 @@
       "lon": 19.28673553466797,
       "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
       "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-21T02:04:43.681367+02:00",
+      "kulcs": "AADI655",
+      "rendszam": "AADI655",
+      "vehicle_id": "154",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51021957397461,
+      "lon": 19.127756118774414,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T02:04:43.684616+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.489620208740234,
+      "lon": 19.07628059387207,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-21T02:04:43.684849+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.5174446105957,
+      "lon": 19.0776309967041,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
     }
   ]
 }
