@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:02:36.124358+02:00",
+  "frissitve": "2026-09-21T02:03:05.509187+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:28:32.189234+02:00",
-      "kulcs": "T9002",
-      "rendszam": "T9002",
-      "vehicle_id": "6141",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49971008300781,
-      "lon": 19.082977294921875,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:28:32.189265+02:00",
-      "kulcs": "V2202",
-      "rendszam": "V2202",
-      "vehicle_id": "6219",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46507263183594,
-      "lon": 19.1275691986084,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-09-20T12:28:32.189509+02:00",
-      "kulcs": "V2235",
-      "rendszam": "V2235",
-      "vehicle_id": "6446",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54825973510742,
-      "lon": 19.028959274291992,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-20T12:28:32.189822+02:00",
       "kulcs": "AOCT658",
@@ -260000,6 +259961,45 @@
       "lon": 19.025766372680664,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-21T02:03:05.440157+02:00",
+      "kulcs": "RVY603",
+      "rendszam": "RVY603",
+      "vehicle_id": "7432",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48911666870117,
+      "lon": 19.062725067138672,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-21T02:03:05.440409+02:00",
+      "kulcs": "AOFL243",
+      "rendszam": "AOFL243",
+      "vehicle_id": "831",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.441654205322266,
+      "lon": 19.186153411865234,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
+    },
+    {
+      "idopont": "2026-09-21T02:03:05.440574+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38961410522461,
+      "lon": 18.977890014648438,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
