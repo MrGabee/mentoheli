@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:40:09.851502+02:00",
+  "frissitve": "2026-09-21T02:40:40.826133+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:33:52.487376+02:00",
-      "kulcs": "PDB388",
-      "rendszam": "PDB388",
-      "vehicle_id": "7070",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.50429153442383,
-      "lon": 19.137039184570312,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Veres Péter út ► Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.488559+02:00",
-      "kulcs": "T9108",
-      "rendszam": "T9108",
-      "vehicle_id": "7355",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51660919189453,
-      "lon": 19.092668533325195,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
     {
       "idopont": "2026-09-20T12:33:52.488707+02:00",
       "kulcs": "V2255",
@@ -260000,6 +259974,32 @@
       "lon": 19.101490020751953,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Debrecen"
+    },
+    {
+      "idopont": "2026-09-21T02:40:40.740041+02:00",
+      "kulcs": "AADI609",
+      "rendszam": "AADI609",
+      "vehicle_id": "106",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49887466430664,
+      "lon": 19.050668716430664,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-21T02:40:40.741532+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.49147033691406,
+      "lon": 19.04325294494629,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX"
     }
   ]
 }
