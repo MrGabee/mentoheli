@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:52:16.707998+02:00",
+  "frissitve": "2026-09-22T01:52:54.084845+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:01:19.501386+02:00",
-      "kulcs": "480 022",
-      "rendszam": "480 022",
-      "vehicle_id": "915504800227",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.34730911254883,
-      "lon": 20.04302978515625,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-21T15:01:19.502091+02:00",
-      "kulcs": "415 031",
-      "rendszam": "415 031",
-      "vehicle_id": "945514150313",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "Z30",
-      "route_id": "Z30",
-      "lat": 47.373619079589844,
-      "lon": 18.891490936279297,
-      "elozo_szoveg": "Martonvásár",
-      "uj_szoveg": "Budapest-Déli"
-    },
     {
       "idopont": "2026-09-21T15:01:19.502169+02:00",
       "kulcs": "415 050",
@@ -260000,6 +259974,32 @@
       "lon": 19.129104614257812,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-22T01:52:54.008272+02:00",
+      "kulcs": "NWB352",
+      "rendszam": "NWB352",
+      "vehicle_id": "6532",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.56695556640625,
+      "lon": 19.049177169799805,
+      "elozo_szoveg": "Békásmegyer",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-22T01:52:54.008789+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.519290924072266,
+      "lon": 19.038244247436523,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
