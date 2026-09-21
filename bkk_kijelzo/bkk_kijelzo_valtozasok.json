@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:48:32.944483+02:00",
+  "frissitve": "2026-09-22T01:49:04.979475+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:01:19.494509+02:00",
-      "kulcs": "PDN621",
-      "rendszam": "PDN621",
-      "vehicle_id": "7092",
-      "vehicle_label": "Gilice tér (Varjú utca)",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.45966720581055,
-      "lon": 19.156709671020508,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Gilice tér (Varjú utca)"
-    },
-    {
-      "idopont": "2026-09-21T15:01:19.494583+02:00",
-      "kulcs": "PDN629",
-      "rendszam": "PDN629",
-      "vehicle_id": "7100",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.48733139038086,
-      "lon": 18.989761352539062,
-      "elozo_szoveg": "Mindszenty József bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-09-21T15:01:19.494674+02:00",
       "kulcs": "PDN643",
@@ -260000,6 +259974,32 @@
       "lon": 19.15153694152832,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Újpalota"
+    },
+    {
+      "idopont": "2026-09-22T01:49:04.886182+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.598716735839844,
+      "lon": 19.054332733154297,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-22T01:49:04.886584+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.48056411743164,
+      "lon": 19.051902770996094,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
