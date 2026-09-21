@@ -1,19 +1,6 @@
 {
-  "frissitve": "2026-09-21T03:45:21.571477+02:00",
+  "frissitve": "2026-09-21T03:45:53.223410+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:43:31.081899+02:00",
-      "kulcs": "V1577",
-      "rendszam": "V1577",
-      "vehicle_id": "4629",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.46782302856445,
-      "lon": 19.075773239135742,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-09-20T12:43:31.082146+02:00",
       "kulcs": "AADI589",
@@ -260000,6 +259987,19 @@
       "lon": 19.10350227355957,
       "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T03:45:53.137808+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46248245239258,
+      "lon": 19.13311767578125,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
