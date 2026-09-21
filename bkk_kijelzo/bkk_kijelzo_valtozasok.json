@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T03:18:41.131341+02:00",
+  "frissitve": "2026-09-21T03:19:18.114736+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:39:29.278251+02:00",
-      "kulcs": "NLE848",
-      "rendszam": "NLE848",
-      "vehicle_id": "6400",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.499671936035156,
-      "lon": 19.035539627075195,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:39:29.278307+02:00",
-      "kulcs": "V2228",
-      "rendszam": "V2228",
-      "vehicle_id": "6439",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.443603515625,
-      "lon": 19.096546173095703,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-20T12:39:29.278989+02:00",
-      "kulcs": "PDB381",
-      "rendszam": "PDB381",
-      "vehicle_id": "7063",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.485435485839844,
-      "lon": 19.288103103637695,
-      "elozo_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-20T12:39:29.279133+02:00",
       "kulcs": "PDN612",
@@ -260000,6 +259961,45 @@
       "lon": 19.357885360717773,
       "elozo_szoveg": "Gödöllő",
       "uj_szoveg": "Örs vezér tere"
+    },
+    {
+      "idopont": "2026-09-21T03:19:18.039802+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.584503173828125,
+      "lon": 19.131290435791016,
+      "elozo_szoveg": "Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-21T03:19:18.039857+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.598506927490234,
+      "lon": 19.05429458618164,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-21T03:19:18.040309+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.499969482421875,
+      "lon": 19.13567543029785,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
