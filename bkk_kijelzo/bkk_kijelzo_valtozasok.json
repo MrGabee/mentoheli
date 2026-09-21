@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:38:03.054330+02:00",
+  "frissitve": "2026-09-22T01:38:32.678671+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:00:02.875135+02:00",
-      "kulcs": "STZ861",
-      "rendszam": "STZ861",
-      "vehicle_id": "7816",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.46438980102539,
-      "lon": 19.018564224243164,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-09-21T15:00:02.876370+02:00",
-      "kulcs": "T9123",
-      "rendszam": "T9123",
-      "vehicle_id": "7862",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49421310424805,
-      "lon": 19.060260772705078,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-21T15:00:02.876721+02:00",
-      "kulcs": "T9148",
-      "rendszam": "T9148",
-      "vehicle_id": "7887",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51546096801758,
-      "lon": 19.05101203918457,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-21T15:00:02.877017+02:00",
-      "kulcs": "AOFL215",
-      "rendszam": "AOFL215",
-      "vehicle_id": "802",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.4958381652832,
-      "lon": 19.011056900024414,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-21T15:00:02.877104+02:00",
       "kulcs": "AOFL221",
@@ -260000,6 +259948,58 @@
       "lon": 19.063810348510742,
       "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
       "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-22T01:38:32.602940+02:00",
+      "kulcs": "NTM420",
+      "rendszam": "NTM420",
+      "vehicle_id": "6486",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42228317260742,
+      "lon": 19.040996551513672,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-22T01:38:32.603351+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49889373779297,
+      "lon": 19.050615310668945,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-22T01:38:32.603407+02:00",
+      "kulcs": "SKR831",
+      "rendszam": "SKR831",
+      "vehicle_id": "7717",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.524627685546875,
+      "lon": 19.03779411315918,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-22T01:38:32.603448+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42659378051758,
+      "lon": 19.1611270904541,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
