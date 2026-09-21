@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-21T03:11:01.890297+02:00",
+  "frissitve": "2026-09-21T03:11:34.773423+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:38:37.452123+02:00",
-      "kulcs": "AAGL320",
-      "rendszam": "AAGL320",
-      "vehicle_id": "349",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.43540573120117,
-      "lon": 18.918575286865234,
-      "elozo_szoveg": "Nyár utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-20T12:38:37.452693+02:00",
-      "kulcs": "AAMH614",
-      "rendszam": "AAMH614",
-      "vehicle_id": "457",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.49995422363281,
-      "lon": 19.08426856994629,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
-    {
-      "idopont": "2026-09-20T12:38:37.452768+02:00",
-      "kulcs": "V1590",
-      "rendszam": "V1590",
-      "vehicle_id": "4642",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.464378356933594,
-      "lon": 19.1267147064209,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-09-20T12:38:37.452886+02:00",
-      "kulcs": "V4064",
-      "rendszam": "V4064",
-      "vehicle_id": "4753",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.54801940917969,
-      "lon": 19.029483795166016,
-      "elozo_szoveg": "Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park"
-    },
-    {
-      "idopont": "2026-09-20T12:38:37.452927+02:00",
-      "kulcs": "V4107",
-      "rendszam": "V4107",
-      "vehicle_id": "4796",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.4921875,
-      "lon": 19.14253044128418,
-      "elozo_szoveg": "Kőbányai út ► Blaha Lujza tér M",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-20T12:38:37.453595+02:00",
       "kulcs": "V2105",
@@ -260000,6 +259935,71 @@
       "lon": 19.05063247680664,
       "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
       "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-21T03:11:34.684502+02:00",
+      "kulcs": "AADI655",
+      "rendszam": "AADI655",
+      "vehicle_id": "154",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47540283203125,
+      "lon": 19.04070472717285,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-21T03:11:34.685798+02:00",
+      "kulcs": "NGC145",
+      "rendszam": "NGC145",
+      "vehicle_id": "6194",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54269027709961,
+      "lon": 18.964799880981445,
+      "elozo_szoveg": "Máriaremete",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-21T03:11:34.686161+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49716567993164,
+      "lon": 19.055448532104492,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-21T03:11:34.686243+02:00",
+      "kulcs": "SXE203",
+      "rendszam": "SXE203",
+      "vehicle_id": "7840",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59888458251953,
+      "lon": 19.121139526367188,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-21T03:11:34.687363+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.547088623046875,
+      "lon": 19.14203453063965,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
