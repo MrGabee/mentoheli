@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:48:56.477013+02:00",
+  "frissitve": "2026-09-21T02:49:37.153972+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:34:45.913352+02:00",
-      "kulcs": "AOFL195",
-      "rendszam": "AOFL195",
-      "vehicle_id": "779",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "251A",
-      "route_id": "2511",
-      "lat": 47.4263801574707,
-      "lon": 19.04000473022461,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Lomnici utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-20T12:34:45.913755+02:00",
-      "kulcs": "T9132",
-      "rendszam": "T9132",
-      "vehicle_id": "7871",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.499839782714844,
-      "lon": 19.083192825317383,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:34:45.914561+02:00",
-      "kulcs": "AOFL250",
-      "rendszam": "AOFL250",
-      "vehicle_id": "838",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.473533630371094,
-      "lon": 19.1640567779541,
-      "elozo_szoveg": "Újhegy",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-09-20T12:34:45.915397+02:00",
       "kulcs": "AOGL316",
@@ -260000,6 +259961,45 @@
       "lon": 19.02957534790039,
       "elozo_szoveg": "Bécsi út / Vörösvári út",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T02:49:37.066655+02:00",
+      "kulcs": "V2041",
+      "rendszam": "V2041",
+      "vehicle_id": "2041",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47745895385742,
+      "lon": 19.048707962036133,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-21T02:49:37.066749+02:00",
+      "kulcs": "FLR717",
+      "rendszam": "FLR717",
+      "vehicle_id": "3131",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48545455932617,
+      "lon": 19.071035385131836,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-21T02:49:37.068182+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.480621337890625,
+      "lon": 19.142179489135742,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
