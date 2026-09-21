@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T03:25:54.917383+02:00",
+  "frissitve": "2026-09-21T03:26:21.118956+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:40:37.258795+02:00",
-      "kulcs": "PHG627",
-      "rendszam": "PHG627",
-      "vehicle_id": "7151",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.53983688354492,
-      "lon": 19.25251007080078,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Auchan Liget ► Rákosszentmihály vá."
-    },
-    {
-      "idopont": "2026-09-20T12:40:37.258872+02:00",
-      "kulcs": "PHG651",
-      "rendszam": "PHG651",
-      "vehicle_id": "7175",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51979446411133,
-      "lon": 19.148046493530273,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Rákosszentmihály vá."
-    },
-    {
-      "idopont": "2026-09-20T12:40:37.259049+02:00",
-      "kulcs": "PKN627",
-      "rendszam": "PKN627",
-      "vehicle_id": "7216",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.462860107421875,
-      "lon": 19.149219512939453,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-09-20T12:40:37.260234+02:00",
       "kulcs": "RVY735",
@@ -260000,6 +259961,45 @@
       "lon": 18.941829681396484,
       "elozo_szoveg": null,
       "uj_szoveg": "Közvágóhíd"
+    },
+    {
+      "idopont": "2026-09-21T03:26:21.051816+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.486793518066406,
+      "lon": 19.023082733154297,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-21T03:26:21.053813+02:00",
+      "kulcs": "AADI580",
+      "rendszam": "AADI580",
+      "vehicle_id": "66",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.504390716552734,
+      "lon": 19.024892807006836,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-21T03:26:21.054357+02:00",
+      "kulcs": "415 100",
+      "rendszam": "415 100",
+      "vehicle_id": "945514151006",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.62649154663086,
+      "lon": 19.596710205078125,
+      "elozo_szoveg": "Hatvan",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
