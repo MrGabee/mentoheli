@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-21T04:04:14.911647+02:00",
+  "frissitve": "2026-09-21T04:04:45.285348+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:48:34.121675+02:00",
-      "kulcs": "V2294",
-      "rendszam": "V2294",
-      "vehicle_id": "592",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.593284606933594,
-      "lon": 19.12041473388672,
-      "elozo_szoveg": "Káposztásmegyer, Megyeri út",
-      "uj_szoveg": "Lehel tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:48:34.121856+02:00",
-      "kulcs": "T8004",
-      "rendszam": "T8004",
-      "vehicle_id": "6124",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.5029182434082,
-      "lon": 19.104387283325195,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
-    {
-      "idopont": "2026-09-20T12:48:34.122290+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517921447753906,
-      "lon": 19.07777214050293,
-      "elozo_szoveg": "Hősök tere M ► Dózsa György út M",
-      "uj_szoveg": "Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-20T12:48:34.122482+02:00",
-      "kulcs": "NCV300",
-      "rendszam": "NCV300",
-      "vehicle_id": "6265",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50650405883789,
-      "lon": 19.02396583557129,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-20T12:48:34.122553+02:00",
-      "kulcs": "NLE848",
-      "rendszam": "NLE848",
-      "vehicle_id": "6400",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.507080078125,
-      "lon": 19.023054122924805,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-09-20T12:48:34.122867+02:00",
       "kulcs": "NWB361",
@@ -260000,6 +259935,71 @@
       "lon": 19.04521369934082,
       "elozo_szoveg": "Gazdagréti tér",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T04:04:45.141763+02:00",
+      "kulcs": "AAHY831",
+      "rendszam": "AAHY831",
+      "vehicle_id": "392",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "204",
+      "route_id": "2040",
+      "lat": 47.56913757324219,
+      "lon": 19.124643325805664,
+      "elozo_szoveg": "Székesdűlő, ipartelep",
+      "uj_szoveg": "Budakalász, Auchan áruház ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-21T04:04:45.142089+02:00",
+      "kulcs": "V2102",
+      "rendszam": "V2102",
+      "vehicle_id": "5830",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.49016189575195,
+      "lon": 19.10782241821289,
+      "elozo_szoveg": "KOCSISZÍNBE  Hidegkuti N. Stadion",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-21T04:04:45.142150+02:00",
+      "kulcs": "V2214",
+      "rendszam": "V2214",
+      "vehicle_id": "5854",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "19",
+      "route_id": "3190",
+      "lat": 47.54811096191406,
+      "lon": 19.02983856201172,
+      "elozo_szoveg": "KOCSISZÍNBE  Határ út M",
+      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T04:04:45.142776+02:00",
+      "kulcs": "STZ845",
+      "rendszam": "STZ845",
+      "vehicle_id": "7800",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "40",
+      "route_id": "0400",
+      "lat": 47.45574951171875,
+      "lon": 18.94110679626465,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T04:04:45.142927+02:00",
+      "kulcs": "953-677-954",
+      "rendszam": "953-677-954",
+      "vehicle_id": "905516569530-905536466774-905516569548",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.17561721801758,
+      "lon": 18.941665649414062,
+      "elozo_szoveg": "Ráckeve",
+      "uj_szoveg": "Közvágóhíd"
     }
   ]
 }
