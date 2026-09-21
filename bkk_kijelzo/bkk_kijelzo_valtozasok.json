@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:06:52.360963+02:00",
+  "frissitve": "2026-09-21T02:07:24.354314+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:28:32.191731+02:00",
-      "kulcs": "SKR825",
-      "rendszam": "SKR825",
-      "vehicle_id": "7711",
-      "vehicle_label": "Péterimajor, Víztorony tér",
-      "vonal_szam": "54",
-      "route_id": "0540",
-      "lat": 47.47999572753906,
-      "lon": 19.067537307739258,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Péterimajor, Víztorony tér"
-    },
-    {
-      "idopont": "2026-09-20T12:28:32.191820+02:00",
-      "kulcs": "SGY807",
-      "rendszam": "SGY807",
-      "vehicle_id": "7725",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.47404098510742,
-      "lon": 19.048452377319336,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-20T12:28:32.191850+02:00",
-      "kulcs": "SGY817",
-      "rendszam": "SGY817",
-      "vehicle_id": "7735",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.464046478271484,
-      "lon": 19.01875877380371,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
     {
       "idopont": "2026-09-20T12:28:32.192297+02:00",
       "kulcs": "T9144",
@@ -260000,6 +259961,45 @@
       "lon": 19.050430297851562,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-21T02:07:24.268178+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49979019165039,
+      "lon": 19.287071228027344,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-21T02:07:24.268540+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53876876831055,
+      "lon": 19.069286346435547,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-21T02:07:24.270879+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48006057739258,
+      "lon": 19.051555633544922,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
     }
   ]
 }
