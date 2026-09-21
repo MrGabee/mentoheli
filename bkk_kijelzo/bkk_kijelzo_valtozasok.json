@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:42:17.698818+02:00",
+  "frissitve": "2026-09-21T02:42:46.640839+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:33:52.489401+02:00",
-      "kulcs": "SGY820",
-      "rendszam": "SGY820",
-      "vehicle_id": "7738",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.41047668457031,
-      "lon": 19.06061363220215,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.489448+02:00",
-      "kulcs": "AOFL192",
-      "rendszam": "AOFL192",
-      "vehicle_id": "776",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "251",
-      "route_id": "2510",
-      "lat": 47.46437072753906,
-      "lon": 19.018831253051758,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Lomnici utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.489559+02:00",
-      "kulcs": "AOFL198",
-      "rendszam": "AOFL198",
-      "vehicle_id": "782",
-      "vehicle_label": "Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.48552322387695,
-      "lon": 19.03990936279297,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.490347+02:00",
-      "kulcs": "AOFL239",
-      "rendszam": "AOFL239",
-      "vehicle_id": "827",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50221252441406,
-      "lon": 19.01754379272461,
-      "elozo_szoveg": "Kissvábhegy",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-20T12:33:52.490400+02:00",
-      "kulcs": "AOFL248",
-      "rendszam": "AOFL248",
-      "vehicle_id": "836",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.48373794555664,
-      "lon": 19.127521514892578,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
     {
       "idopont": "2026-09-20T12:33:52.490598+02:00",
       "kulcs": "AOIB793",
@@ -260000,6 +259935,71 @@
       "lon": 19.014429092407227,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-21T02:42:46.576986+02:00",
+      "kulcs": "AAGL284",
+      "rendszam": "AAGL284",
+      "vehicle_id": "308",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.49712371826172,
+      "lon": 19.05547523498535,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-09-21T02:42:46.577629+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49701690673828,
+      "lon": 19.055747985839844,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-21T02:42:46.577897+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.53646469116211,
+      "lon": 19.10718536376953,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-21T02:42:46.578127+02:00",
+      "kulcs": "SGY805",
+      "rendszam": "SGY805",
+      "vehicle_id": "7723",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.494544982910156,
+      "lon": 19.05976104736328,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-21T02:42:46.578150+02:00",
+      "kulcs": "STZ869",
+      "rendszam": "STZ869",
+      "vehicle_id": "7824",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46268844604492,
+      "lon": 19.005903244018555,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
     }
   ]
 }
