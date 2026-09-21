@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-21T02:09:26.711046+02:00",
+  "frissitve": "2026-09-21T02:09:55.172393+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-20T12:28:32.195315+02:00",
-      "kulcs": "416 040",
-      "rendszam": "416 040",
-      "vehicle_id": "955514160402",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S21",
-      "route_id": "S21",
-      "lat": 47.24740982055664,
-      "lon": 19.31739044189453,
-      "elozo_szoveg": "Dabas",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-20T12:29:37.656817+02:00",
-      "kulcs": "AADR703",
-      "rendszam": "AADR703",
-      "vehicle_id": "170",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.46371841430664,
-      "lon": 19.14775276184082,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Kucorgó tér ► Rákoscsaba"
-    },
-    {
-      "idopont": "2026-09-20T12:29:37.656916+02:00",
-      "kulcs": "AADR708",
-      "rendszam": "AADR708",
-      "vehicle_id": "176",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.41310119628906,
-      "lon": 19.20140266418457,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-20T12:29:37.656937+02:00",
       "kulcs": "AADR709",
@@ -260000,6 +259961,45 @@
       "lon": 19.042036056518555,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-21T02:09:55.089361+02:00",
+      "kulcs": "MOS265",
+      "rendszam": "MOS265",
+      "vehicle_id": "5718",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49772644042969,
+      "lon": 19.054731369018555,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-21T02:09:55.089396+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.47758865356445,
+      "lon": 19.343154907226562,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Pécel"
+    },
+    {
+      "idopont": "2026-09-21T02:09:55.089754+02:00",
+      "kulcs": "SKR735",
+      "rendszam": "SKR735",
+      "vehicle_id": "7684",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.4327507019043,
+      "lon": 19.261564254760742,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
