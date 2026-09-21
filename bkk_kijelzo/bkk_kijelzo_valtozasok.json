@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:09:06.392193+02:00",
+  "frissitve": "2026-09-22T01:09:41.932542+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T14:57:19.870333+02:00",
-      "kulcs": "PDN624",
-      "rendszam": "PDN624",
-      "vehicle_id": "7095",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.43095016479492,
-      "lon": 19.07072639465332,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-21T14:57:19.870446+02:00",
-      "kulcs": "PDN640",
-      "rendszam": "PDN640",
-      "vehicle_id": "7111",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "179",
-      "route_id": "1790",
-      "lat": 47.43079376220703,
-      "lon": 19.070798873901367,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-09-21T14:57:19.870631+02:00",
-      "kulcs": "PHG638",
-      "rendszam": "PHG638",
-      "vehicle_id": "7162",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.52535629272461,
-      "lon": 19.176464080810547,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-21T14:57:19.870736+02:00",
       "kulcs": "PKN601",
@@ -260000,6 +259961,45 @@
       "lon": 19.03820037841797,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
       "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-22T01:09:41.787806+02:00",
+      "kulcs": "FJX193",
+      "rendszam": "FJX193",
+      "vehicle_id": "3013",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56747055053711,
+      "lon": 19.124954223632812,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-22T01:09:41.789839+02:00",
+      "kulcs": "MOS259",
+      "rendszam": "MOS259",
+      "vehicle_id": "5712",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.47740936279297,
+      "lon": 19.342981338500977,
+      "elozo_szoveg": "Pécel",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-22T01:09:41.790246+02:00",
+      "kulcs": "RVY605",
+      "rendszam": "RVY605",
+      "vehicle_id": "7434",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42259979248047,
+      "lon": 19.081466674804688,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
