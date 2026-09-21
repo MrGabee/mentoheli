@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-22T00:55:48.397180+02:00",
+  "frissitve": "2026-09-22T00:56:29.219532+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T14:56:06.971652+02:00",
-      "kulcs": "PHG630",
-      "rendszam": "PHG630",
-      "vehicle_id": "7154",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.47983169555664,
-      "lon": 19.25529670715332,
-      "elozo_szoveg": "Rákoskeresztúr, városközpont",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-21T14:56:06.971677+02:00",
-      "kulcs": "PHG633",
-      "rendszam": "PHG633",
-      "vehicle_id": "7157",
-      "vehicle_label": "Helikopter lakópark",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.54685592651367,
-      "lon": 19.142471313476562,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Helikopter lakópark"
-    },
-    {
-      "idopont": "2026-09-21T14:56:06.972180+02:00",
-      "kulcs": "PDZ831",
-      "rendszam": "PDZ831",
-      "vehicle_id": "7294",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44162368774414,
-      "lon": 19.034181594848633,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-21T14:56:06.972401+02:00",
-      "kulcs": "T8105",
-      "rendszam": "T8105",
-      "vehicle_id": "7342",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52522659301758,
-      "lon": 19.063383102416992,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-21T14:56:06.972622+02:00",
       "kulcs": "V2238",
@@ -260000,6 +259948,58 @@
       "lon": 18.958351135253906,
       "elozo_szoveg": "Apor Vilmos tér",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-22T00:56:28.886000+02:00",
+      "kulcs": "AADI573",
+      "rendszam": "AADI573",
+      "vehicle_id": "64",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.510414123535156,
+      "lon": 19.097511291503906,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-22T00:56:28.886282+02:00",
+      "kulcs": "RVY612",
+      "rendszam": "RVY612",
+      "vehicle_id": "7441",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.4986686706543,
+      "lon": 19.049654006958008,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-22T00:56:28.886581+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51395034790039,
+      "lon": 19.102834701538086,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-09-22T00:56:28.886661+02:00",
+      "kulcs": "815 018",
+      "rendszam": "815 018",
+      "vehicle_id": "945518150186",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.5259895324707,
+      "lon": 19.09000015258789,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szob"
     }
   ]
 }
