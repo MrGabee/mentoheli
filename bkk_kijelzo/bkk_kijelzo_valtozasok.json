@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-22T02:54:35.441522+02:00",
+  "frissitve": "2026-09-22T02:55:12.337491+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:08:34.196943+02:00",
-      "kulcs": "V1533",
-      "rendszam": "V1533",
-      "vehicle_id": "4585",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.474822998046875,
-      "lon": 19.178241729736328,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Új köztemető (Kozma u.)"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.197236+02:00",
-      "kulcs": "V4018",
-      "rendszam": "V4018",
-      "vehicle_id": "4707",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.51752471923828,
-      "lon": 19.060909271240234,
-      "elozo_szoveg": "Lehel tér M",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.198464+02:00",
-      "kulcs": "V4072",
-      "rendszam": "V4072",
-      "vehicle_id": "4761",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.49357604980469,
-      "lon": 19.044111251831055,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.198550+02:00",
-      "kulcs": "V4102",
-      "rendszam": "V4102",
-      "vehicle_id": "4791",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.548126220703125,
-      "lon": 19.029521942138672,
-      "elozo_szoveg": "Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.199033+02:00",
-      "kulcs": "V4301",
-      "rendszam": "V4301",
-      "vehicle_id": "4960",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.490577697753906,
-      "lon": 19.108989715576172,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-21T15:08:34.199241+02:00",
       "kulcs": "AAMH661",
@@ -260000,6 +259935,71 @@
       "lon": 19.02751922607422,
       "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-22T02:55:12.254496+02:00",
+      "kulcs": "AADR720",
+      "rendszam": "AADR720",
+      "vehicle_id": "189",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.49909210205078,
+      "lon": 19.052865982055664,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-22T02:55:12.255973+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.48726272583008,
+      "lon": 19.057973861694336,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-22T02:55:12.256020+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.4989128112793,
+      "lon": 19.050718307495117,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-22T02:55:12.257040+02:00",
+      "kulcs": "NTM420",
+      "rendszam": "NTM420",
+      "vehicle_id": "6486",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47456741333008,
+      "lon": 19.046667098999023,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-22T02:55:12.257097+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46236038208008,
+      "lon": 19.133434295654297,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
