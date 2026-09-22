@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-22T03:10:13.222726+02:00",
+  "frissitve": "2026-09-22T03:10:43.102634+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:09:55.165703+02:00",
-      "kulcs": "AEGB791",
-      "rendszam": "AEGB791",
-      "vehicle_id": "546",
-      "vehicle_label": "Nagybányai út",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.506675720214844,
-      "lon": 19.03866195678711,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Nagybányai út"
-    },
-    {
-      "idopont": "2026-09-21T15:09:55.165745+02:00",
-      "kulcs": "V2257",
-      "rendszam": "V2257",
-      "vehicle_id": "555",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.498497009277344,
-      "lon": 19.028610229492188,
-      "elozo_szoveg": "Krisztina körút ► Városház tér",
-      "uj_szoveg": "Városház tér"
-    },
     {
       "idopont": "2026-09-21T15:09:55.165768+02:00",
       "kulcs": "V2259",
@@ -260000,6 +259974,32 @@
       "lon": 19.078426361083984,
       "elozo_szoveg": "Csepel-Királyerdő",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-22T03:10:43.048545+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50150680541992,
+      "lon": 19.11503791809082,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-22T03:10:43.048652+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.484886169433594,
+      "lon": 19.072608947753906,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
     }
   ]
 }
