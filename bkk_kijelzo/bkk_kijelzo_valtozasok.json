@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-22T02:15:14.802515+02:00",
+  "frissitve": "2026-09-22T02:15:43.694514+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:03:57.234829+02:00",
-      "kulcs": "STZ843",
-      "rendszam": "STZ843",
-      "vehicle_id": "7798",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50025939941406,
-      "lon": 18.916784286499023,
-      "elozo_szoveg": "Budakeszi, Tesco áruház",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-21T15:03:57.235033+02:00",
-      "kulcs": "STZ867",
-      "rendszam": "STZ867",
-      "vehicle_id": "7822",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.44547653198242,
-      "lon": 18.9061222076416,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-21T15:03:57.235293+02:00",
-      "kulcs": "T9126",
-      "rendszam": "T9126",
-      "vehicle_id": "7865",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49968719482422,
-      "lon": 19.083250045776367,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-21T15:03:57.235498+02:00",
       "kulcs": "T9146",
@@ -260000,6 +259961,45 @@
       "lon": 19.04239273071289,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-22T02:15:43.612633+02:00",
+      "kulcs": "NGC155",
+      "rendszam": "NGC155",
+      "vehicle_id": "6204",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54243850708008,
+      "lon": 18.96479606628418,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-09-22T02:15:43.612842+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.513694763183594,
+      "lon": 19.034320831298828,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-22T02:15:43.613046+02:00",
+      "kulcs": "RVY712",
+      "rendszam": "RVY712",
+      "vehicle_id": "7461",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534671783447266,
+      "lon": 19.08250617980957,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
