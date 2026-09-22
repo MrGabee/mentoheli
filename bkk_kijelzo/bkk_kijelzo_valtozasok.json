@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T00:54:40.787208+02:00",
+  "frissitve": "2026-09-23T00:55:15.294602+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T14:57:48.355998+02:00",
-      "kulcs": "SCD591",
-      "rendszam": "SCD591",
-      "vehicle_id": "7652",
-      "vehicle_label": "Szemeretelep vasútáll.",
-      "vonal_szam": "93",
-      "route_id": "0930",
-      "lat": 47.46335220336914,
-      "lon": 19.147436141967773,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Szemeretelep vasútállomás"
-    },
-    {
-      "idopont": "2026-09-22T14:57:48.356555+02:00",
-      "kulcs": "STZ852",
-      "rendszam": "STZ852",
-      "vehicle_id": "7807",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40",
-      "route_id": "0400",
-      "lat": 47.45850372314453,
-      "lon": 18.939464569091797,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-22T14:57:48.357334+02:00",
-      "kulcs": "AOFL236",
-      "rendszam": "AOFL236",
-      "vehicle_id": "824",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.525516510009766,
-      "lon": 18.9848690032959,
-      "elozo_szoveg": "Kurucles",
-      "uj_szoveg": "Kurucles ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-22T14:57:48.357402+02:00",
       "kulcs": "AOFL243",
@@ -260000,6 +259961,45 @@
       "lon": 19.142642974853516,
       "elozo_szoveg": "Astoria M ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-23T00:55:15.210924+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58553695678711,
+      "lon": 19.09423065185547,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-09-23T00:55:15.211171+02:00",
+      "kulcs": "MUT895",
+      "rendszam": "MUT895",
+      "vehicle_id": "5948",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46209716796875,
+      "lon": 19.134078979492188,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-23T00:55:15.211515+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46797180175781,
+      "lon": 19.075756072998047,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
