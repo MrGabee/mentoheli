@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-22T02:57:35.487647+02:00",
+  "frissitve": "2026-09-22T02:58:06.966163+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:08:34.202412+02:00",
-      "kulcs": "T8002",
-      "rendszam": "T8002",
-      "vehicle_id": "6122",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50193405151367,
-      "lon": 19.081846237182617,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.202500+02:00",
-      "kulcs": "T8008",
-      "rendszam": "T8008",
-      "vehicle_id": "6128",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47590255737305,
-      "lon": 19.09990882873535,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.202615+02:00",
-      "kulcs": "T8016",
-      "rendszam": "T8016",
-      "vehicle_id": "6136",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.49951934814453,
-      "lon": 19.080820083618164,
-      "elozo_szoveg": "Keleti pályaudvar M ► Kápolna tér",
-      "uj_szoveg": "Kápolna tér"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.202818+02:00",
-      "kulcs": "T9015",
-      "rendszam": "T9015",
-      "vehicle_id": "6154",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.505348205566406,
-      "lon": 19.136457443237305,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.202914+02:00",
-      "kulcs": "NGC152",
-      "rendszam": "NGC152",
-      "vehicle_id": "6198",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.53005599975586,
-      "lon": 19.00868034362793,
-      "elozo_szoveg": "Verecke lépcső ► Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
     {
       "idopont": "2026-09-21T15:08:34.203160+02:00",
       "kulcs": "V2203",
@@ -260000,6 +259935,71 @@
       "lon": 19.08135414123535,
       "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-22T02:58:06.898546+02:00",
+      "kulcs": "NBW001",
+      "rendszam": "NBW001",
+      "vehicle_id": "5971",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52629470825195,
+      "lon": 19.038183212280273,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-22T02:58:06.898732+02:00",
+      "kulcs": "PDB385",
+      "rendszam": "PDB385",
+      "vehicle_id": "7067",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50749588012695,
+      "lon": 19.024642944335938,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-22T02:58:06.899065+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50429153442383,
+      "lon": 19.13665199279785,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-22T02:58:06.899088+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48834228515625,
+      "lon": 19.060007095336914,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-22T02:58:06.899180+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38893508911133,
+      "lon": 18.958492279052734,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
