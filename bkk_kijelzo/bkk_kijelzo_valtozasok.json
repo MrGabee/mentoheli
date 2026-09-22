@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T01:03:31.268029+02:00",
+  "frissitve": "2026-09-23T01:04:09.956803+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T14:59:11.446126+02:00",
-      "kulcs": "PDN629",
-      "rendszam": "PDN629",
-      "vehicle_id": "7100",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.487327575683594,
-      "lon": 18.989755630493164,
-      "elozo_szoveg": "Mindszenty József bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-22T14:59:11.446784+02:00",
-      "kulcs": "RCT308",
-      "rendszam": "RCT308",
-      "vehicle_id": "7322",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.412750244140625,
-      "lon": 19.160919189453125,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-22T14:59:11.447076+02:00",
-      "kulcs": "V2241",
-      "rendszam": "V2241",
-      "vehicle_id": "7373",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.475406646728516,
-      "lon": 19.046661376953125,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-22T14:59:11.447232+02:00",
       "kulcs": "RVY601",
@@ -260000,6 +259961,45 @@
       "lon": 19.07776641845703,
       "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
       "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-23T01:04:09.872391+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.479278564453125,
+      "lon": 19.050495147705078,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-23T01:04:09.872741+02:00",
+      "kulcs": "NBW001",
+      "rendszam": "NBW001",
+      "vehicle_id": "5971",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499202728271484,
+      "lon": 19.286754608154297,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-23T01:04:09.873605+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.508758544921875,
+      "lon": 19.09535789489746,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
