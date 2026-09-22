@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-22T04:25:12.550322+02:00",
+  "frissitve": "2026-09-22T04:25:45.044264+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:20:08.214646+02:00",
-      "kulcs": "815 029",
-      "rendszam": "815 029",
-      "vehicle_id": "945518150293",
-      "vehicle_label": "Budapest-Keleti",
-      "vonal_szam": "Z60",
-      "route_id": "Z60",
-      "lat": 47.250850677490234,
-      "lon": 20.09256935119629,
-      "elozo_szoveg": "Szolnok",
-      "uj_szoveg": "Budapest-Keleti"
-    },
-    {
-      "idopont": "2026-09-21T15:20:08.214810+02:00",
-      "kulcs": "AADI599",
-      "rendszam": "AADI599",
-      "vehicle_id": "96",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.51118087768555,
-      "lon": 18.972063064575195,
-      "elozo_szoveg": "Fácános tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-21T15:21:39.209154+02:00",
-      "kulcs": "AONW954",
-      "rendszam": "AONW954",
-      "vehicle_id": "1020",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.506324768066406,
-      "lon": 19.024497985839844,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-09-21T15:21:39.209250+02:00",
-      "kulcs": "AONW961",
-      "rendszam": "AONW961",
-      "vehicle_id": "1028",
-      "vehicle_label": "Rákospatak u./Csömöri út",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.4947395324707,
-      "lon": 18.99848175048828,
-      "elozo_szoveg": "Thomán István utca",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
-    {
-      "idopont": "2026-09-21T15:21:39.209389+02:00",
-      "kulcs": "AILJ858",
-      "rendszam": "AILJ858",
-      "vehicle_id": "1057",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.545448303222656,
-      "lon": 19.03375816345215,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
     {
       "idopont": "2026-09-21T15:21:39.209954+02:00",
       "kulcs": "AADR711",
@@ -260000,6 +259935,71 @@
       "lon": 19.094409942626953,
       "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
       "uj_szoveg": "Hősök tere M ► Dózsa György út M"
+    },
+    {
+      "idopont": "2026-09-22T04:25:44.944720+02:00",
+      "kulcs": "AOJM883",
+      "rendszam": "AOJM883",
+      "vehicle_id": "1009",
+      "vehicle_label": "Szent László utcai ltp.",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.43080139160156,
+      "lon": 19.0705623626709,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Szent László utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-22T04:25:44.945603+02:00",
+      "kulcs": "AAGL279",
+      "rendszam": "AAGL279",
+      "vehicle_id": "279",
+      "vehicle_label": "Nagykovácsi, Tisza I. tér",
+      "vonal_szam": "63",
+      "route_id": "0630",
+      "lat": 47.54318618774414,
+      "lon": 18.96458625793457,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Nagykovácsi, Tisza István tér"
+    },
+    {
+      "idopont": "2026-09-22T04:25:44.946533+02:00",
+      "kulcs": "V4266",
+      "rendszam": "V4266",
+      "vehicle_id": "4925",
+      "vehicle_label": "Márton Áron tér",
+      "vonal_szam": "59",
+      "route_id": "3590",
+      "lat": 47.518096923828125,
+      "lon": 18.992712020874023,
+      "elozo_szoveg": "KOCSISZÍNBE  Budagyöngye",
+      "uj_szoveg": "Márton Áron tér"
+    },
+    {
+      "idopont": "2026-09-22T04:25:44.947233+02:00",
+      "kulcs": "V2281",
+      "rendszam": "V2281",
+      "vehicle_id": "579",
+      "vehicle_label": "Gubacsi út / Határ út",
+      "vonal_szam": "3",
+      "route_id": "3030",
+      "lat": 47.518714904785156,
+      "lon": 19.11365509033203,
+      "elozo_szoveg": "KOCSISZÍNBE  Nagykőrösi út / Határ út",
+      "uj_szoveg": "Gubacsi út / Határ út"
+    },
+    {
+      "idopont": "2026-09-22T04:25:44.947445+02:00",
+      "kulcs": "NGC155",
+      "rendszam": "NGC155",
+      "vehicle_id": "6204",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.50465774536133,
+      "lon": 19.02469825744629,
+      "elozo_szoveg": "Széll Kálmán tér M ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
     }
   ]
 }
