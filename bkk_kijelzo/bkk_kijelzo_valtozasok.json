@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-22T01:59:41.920732+02:00",
+  "frissitve": "2026-09-22T02:00:08.591689+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:02:27.597383+02:00",
-      "kulcs": "PDN601",
-      "rendszam": "PDN601",
-      "vehicle_id": "7073",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.4263916015625,
-      "lon": 19.080244064331055,
-      "elozo_szoveg": "Horgásztanya ► Szentmiklósi út",
-      "uj_szoveg": "Szentmiklósi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-21T15:02:27.597482+02:00",
-      "kulcs": "PDN617",
-      "rendszam": "PDN617",
-      "vehicle_id": "7088",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41654586791992,
-      "lon": 19.072172164916992,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-21T15:02:27.597539+02:00",
-      "kulcs": "PDN623",
-      "rendszam": "PDN623",
-      "vehicle_id": "7094",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.389251708984375,
-      "lon": 19.10001564025879,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-21T15:02:27.597662+02:00",
       "kulcs": "PDN639",
@@ -260000,6 +259961,45 @@
       "lon": 19.00865364074707,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-09-22T02:00:08.488927+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.507164001464844,
+      "lon": 18.921598434448242,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-22T02:00:08.489809+02:00",
+      "kulcs": "RVY606",
+      "rendszam": "RVY606",
+      "vehicle_id": "7435",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48834228515625,
+      "lon": 19.060007095336914,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-22T02:00:08.490329+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54707336425781,
+      "lon": 19.14208984375,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
