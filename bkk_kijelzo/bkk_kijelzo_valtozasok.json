@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T01:27:12.447770+02:00",
+  "frissitve": "2026-09-23T01:27:41.958310+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:01:59.725520+02:00",
-      "kulcs": "V2017",
-      "rendszam": "V2017",
-      "vehicle_id": "2017",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.474063873291016,
-      "lon": 19.053625106811523,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-22T15:01:59.725740+02:00",
-      "kulcs": "AADR762",
-      "rendszam": "AADR762",
-      "vehicle_id": "211",
-      "vehicle_label": "Infopark - BudaPart",
-      "vonal_szam": "107",
-      "route_id": "1070",
-      "lat": 47.501426696777344,
-      "lon": 19.08443260192871,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Infopark ► BudaPart"
-    },
-    {
-      "idopont": "2026-09-22T15:01:59.725866+02:00",
-      "kulcs": "AAGL265",
-      "rendszam": "AAGL265",
-      "vehicle_id": "265",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50709533691406,
-      "lon": 18.921478271484375,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-22T15:01:59.725989+02:00",
       "kulcs": "F0055",
@@ -260000,6 +259961,45 @@
       "lon": 19.025253295898438,
       "elozo_szoveg": "Széll Kálmán tér M ► Hűvösvölgy",
       "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-23T01:27:41.895621+02:00",
+      "kulcs": "AADI601",
+      "rendszam": "AADI601",
+      "vehicle_id": "61",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50785446166992,
+      "lon": 19.02638053894043,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-23T01:27:41.896013+02:00",
+      "kulcs": "SGY818",
+      "rendszam": "SGY818",
+      "vehicle_id": "7736",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.47962951660156,
+      "lon": 19.067216873168945,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-23T01:27:41.896296+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51398849487305,
+      "lon": 19.10291862487793,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
