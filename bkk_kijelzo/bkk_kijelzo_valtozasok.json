@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T01:50:16.224799+02:00",
+  "frissitve": "2026-09-23T01:50:45.265551+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:03:24.869401+02:00",
-      "kulcs": "STZ861",
-      "rendszam": "STZ861",
-      "vehicle_id": "7816",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.464839935302734,
-      "lon": 19.017629623413086,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-09-22T15:03:24.869512+02:00",
-      "kulcs": "SXE203",
-      "rendszam": "SXE203",
-      "vehicle_id": "7840",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "255E",
-      "route_id": "2555",
-      "lat": 47.41307067871094,
-      "lon": 19.201597213745117,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-22T15:03:24.869616+02:00",
-      "kulcs": "T9126",
-      "rendszam": "T9126",
-      "vehicle_id": "7865",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49971008300781,
-      "lon": 19.08318519592285,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-22T15:03:24.869687+02:00",
       "kulcs": "T9137",
@@ -260000,6 +259961,45 @@
       "lon": 19.04206085205078,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-23T01:50:45.191472+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.488338470458984,
+      "lon": 19.060047149658203,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-23T01:50:45.194884+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48476028442383,
+      "lon": 19.072965621948242,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-23T01:50:45.195601+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54198455810547,
+      "lon": 19.15144157409668,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota"
     }
   ]
 }
