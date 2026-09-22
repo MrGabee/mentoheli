@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-22T02:56:53.910106+02:00",
+  "frissitve": "2026-09-22T02:57:35.487647+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:08:34.200241+02:00",
-      "kulcs": "V2108",
-      "rendszam": "V2108",
-      "vehicle_id": "5836",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54875564575195,
-      "lon": 19.029420852661133,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.200442+02:00",
-      "kulcs": "V2222",
-      "rendszam": "V2222",
-      "vehicle_id": "5862",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42938995361328,
-      "lon": 19.217479705810547,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-21T15:08:34.201587+02:00",
-      "kulcs": "MUT893",
-      "rendszam": "MUT893",
-      "vehicle_id": "5946",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.416622161865234,
-      "lon": 19.131023406982422,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
     {
       "idopont": "2026-09-21T15:08:34.202412+02:00",
       "kulcs": "T8002",
@@ -260000,6 +259961,45 @@
       "lon": 19.046831130981445,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-22T02:57:35.399039+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59783172607422,
+      "lon": 19.053861618041992,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-22T02:57:35.401351+02:00",
+      "kulcs": "PKD003",
+      "rendszam": "PKD003",
+      "vehicle_id": "5813",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.464637756347656,
+      "lon": 19.02297019958496,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-22T02:57:35.401933+02:00",
+      "kulcs": "AOGF780",
+      "rendszam": "AOGF780",
+      "vehicle_id": "860",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.5325813293457,
+      "lon": 19.08135414123535,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
     }
   ]
 }
