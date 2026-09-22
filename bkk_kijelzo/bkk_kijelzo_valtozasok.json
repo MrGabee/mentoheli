@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-22T03:37:50.647117+02:00",
+  "frissitve": "2026-09-22T03:38:25.789693+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-21T15:12:47.631267+02:00",
-      "kulcs": "AADI636",
-      "rendszam": "AADI636",
-      "vehicle_id": "134",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46908187866211,
-      "lon": 19.2945499420166,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-21T15:12:47.631335+02:00",
-      "kulcs": "AADI646",
-      "rendszam": "AADI646",
-      "vehicle_id": "145",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.547096252441406,
-      "lon": 19.142024993896484,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-09-21T15:12:47.631457+02:00",
-      "kulcs": "SKN829",
-      "rendszam": "SKN829",
-      "vehicle_id": "162",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.50140380859375,
-      "lon": 19.136205673217773,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-21T15:12:47.631527+02:00",
       "kulcs": "AADR706",
@@ -259999,6 +259960,45 @@
       "lat": 47.46194076538086,
       "lon": 21.486539840698242,
       "elozo_szoveg": null,
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-22T03:38:25.691934+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48384475708008,
+      "lon": 19.12611961364746,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-22T03:38:25.692092+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47715759277344,
+      "lon": 19.049585342407227,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-09-22T03:38:25.692823+02:00",
+      "kulcs": "415 118",
+      "rendszam": "415 118",
+      "vehicle_id": "945514151188",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.34577941894531,
+      "lon": 20.04401969909668,
+      "elozo_szoveg": "Szeged",
       "uj_szoveg": "Budapest-Nyugati"
     }
   ]
