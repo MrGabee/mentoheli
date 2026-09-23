@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:51:14.119804+02:00",
+  "frissitve": "2026-09-23T03:51:46.162784+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:16:04.787651+02:00",
-      "kulcs": "MOS257",
-      "rendszam": "MOS257",
-      "vehicle_id": "5710",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.380924224853516,
-      "lon": 19.230260848999023,
-      "elozo_szoveg": "Vecsési út ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-22T15:16:04.787693+02:00",
-      "kulcs": "MOS266",
-      "rendszam": "MOS266",
-      "vehicle_id": "5719",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.386844635009766,
-      "lon": 19.233116149902344,
-      "elozo_szoveg": "Deák Ferenc utca ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-22T15:16:04.787751+02:00",
-      "kulcs": "MOS287",
-      "rendszam": "MOS287",
-      "vehicle_id": "5740",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "278",
-      "route_id": "2780",
-      "lat": 47.36075210571289,
-      "lon": 19.02766990661621,
-      "elozo_szoveg": "Lakihegy, Cseresznyés u.",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-09-22T15:16:04.787773+02:00",
       "kulcs": "MOS295",
@@ -260000,6 +259961,45 @@
       "lon": 19.042072296142578,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-23T03:51:46.077822+02:00",
+      "kulcs": "MOS271",
+      "rendszam": "MOS271",
+      "vehicle_id": "5724",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.387088775634766,
+      "lon": 19.214599609375,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Vecsési út ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-23T03:51:46.078618+02:00",
+      "kulcs": "901-651-902-903-652-904",
+      "rendszam": "901-651-902-903-652-904",
+      "vehicle_id": "905516569019-905536466519-905516569027-905516569035-905536466527-905516569043",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.5193977355957,
+      "lon": 19.217077255249023,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Gödöllő"
+    },
+    {
+      "idopont": "2026-09-23T03:51:46.079066+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.512535095214844,
+      "lon": 19.100526809692383,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
