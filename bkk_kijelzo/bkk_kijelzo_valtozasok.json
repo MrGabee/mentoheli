@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T01:02:40.541395+02:00",
+  "frissitve": "2026-09-24T01:03:17.076941+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:00:14.966425+02:00",
-      "kulcs": "STZ848",
-      "rendszam": "STZ848",
-      "vehicle_id": "7803",
-      "vehicle_label": "Budakeszi, Tesco áruház",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.507450103759766,
-      "lon": 19.025596618652344,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Tesco áruház"
-    },
-    {
-      "idopont": "2026-09-23T15:00:14.966500+02:00",
-      "kulcs": "STZ861",
-      "rendszam": "STZ861",
-      "vehicle_id": "7816",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "240",
-      "route_id": "2400",
-      "lat": 47.47798538208008,
-      "lon": 19.04598617553711,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-09-23T15:00:14.966708+02:00",
-      "kulcs": "T9124",
-      "rendszam": "T9124",
-      "vehicle_id": "7863",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.499813079833984,
-      "lon": 19.08327293395996,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-23T15:00:14.966738+02:00",
       "kulcs": "T9130",
@@ -260000,6 +259961,45 @@
       "lon": 19.09723472595215,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-24T01:03:16.995396+02:00",
+      "kulcs": "AADI652",
+      "rendszam": "AADI652",
+      "vehicle_id": "151",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464637756347656,
+      "lon": 19.022981643676758,
+      "elozo_szoveg": "Albertfalva vasútállomás",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-24T01:03:16.999309+02:00",
+      "kulcs": "FLR717",
+      "rendszam": "FLR717",
+      "vehicle_id": "3131",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44169616699219,
+      "lon": 19.185903549194336,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-24T01:03:16.999781+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519290924072266,
+      "lon": 19.038227081298828,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
