@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T01:23:00.856125+02:00",
+  "frissitve": "2026-09-24T01:23:31.923453+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:02:40.505181+02:00",
-      "kulcs": "AAMH603",
-      "rendszam": "AAMH603",
-      "vehicle_id": "446",
-      "vehicle_label": "Árpádföld",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.50471496582031,
-      "lon": 19.136720657348633,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Árpádföld"
-    },
-    {
-      "idopont": "2026-09-23T15:02:40.505377+02:00",
-      "kulcs": "V1444",
-      "rendszam": "V1444",
-      "vehicle_id": "4514",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.467777252197266,
-      "lon": 19.07571029663086,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-23T15:02:40.507972+02:00",
-      "kulcs": "V4326",
-      "rendszam": "V4326",
-      "vehicle_id": "4985",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.5398063659668,
-      "lon": 18.96595573425293,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
     {
       "idopont": "2026-09-23T15:02:40.508175+02:00",
       "kulcs": "MFW522",
@@ -260000,6 +259961,45 @@
       "lon": 19.13672637939453,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-24T01:23:31.832066+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46483612060547,
+      "lon": 19.022911071777344,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-24T01:23:31.832220+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47073745727539,
+      "lon": 19.238752365112305,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-09-24T01:23:31.836514+02:00",
+      "kulcs": "SKR805",
+      "rendszam": "SKR805",
+      "vehicle_id": "7691",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.467979431152344,
+      "lon": 19.075796127319336,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
