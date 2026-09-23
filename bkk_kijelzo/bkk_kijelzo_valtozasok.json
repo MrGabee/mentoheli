@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-24T00:54:21.078102+02:00",
+  "frissitve": "2026-09-24T00:54:49.735727+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T14:59:10.768841+02:00",
-      "kulcs": "480 010",
-      "rendszam": "480 010",
-      "vehicle_id": "915504800102",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.51041030883789,
-      "lon": 19.10243034362793,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
-    {
-      "idopont": "2026-09-23T14:59:10.768972+02:00",
-      "kulcs": "918071936283",
-      "rendszam": "918071936283",
-      "vehicle_id": "918071936283",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.25938034057617,
-      "lon": 16.931089401245117,
-      "elozo_szoveg": "Szombathely",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-23T14:59:10.769097+02:00",
-      "kulcs": "AOIM004",
-      "rendszam": "AOIM004",
-      "vehicle_id": "921",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.4547233581543,
-      "lon": 19.181764602661133,
-      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-09-23T14:59:10.769580+02:00",
-      "kulcs": "415 069",
-      "rendszam": "415 069",
-      "vehicle_id": "945514150693",
-      "vehicle_label": "Rákos",
-      "vonal_szam": "S76",
-      "route_id": "S76",
-      "lat": 47.605438232421875,
-      "lon": 18.919750213623047,
-      "elozo_szoveg": "Pilisvörösvár",
-      "uj_szoveg": "Rákos"
-    },
     {
       "idopont": "2026-09-23T14:59:10.769706+02:00",
       "kulcs": "415 090",
@@ -260000,6 +259948,58 @@
       "lon": 19.054767608642578,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-24T00:54:49.666616+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49876022338867,
+      "lon": 19.049591064453125,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-24T00:54:49.666855+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48534393310547,
+      "lon": 19.07134246826172,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-24T00:54:49.666930+02:00",
+      "kulcs": "MUT885",
+      "rendszam": "MUT885",
+      "vehicle_id": "5938",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.462066650390625,
+      "lon": 19.134157180786133,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-24T00:54:49.667337+02:00",
+      "kulcs": "SKR829",
+      "rendszam": "SKR829",
+      "vehicle_id": "7715",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.4986457824707,
+      "lon": 19.04876136779785,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
     }
   ]
 }
