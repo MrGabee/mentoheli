@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T00:27:47.997047+02:00",
+  "frissitve": "2026-09-24T00:28:19.451466+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T14:57:45.742523+02:00",
-      "kulcs": "V2223",
-      "rendszam": "V2223",
-      "vehicle_id": "5863",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.4296989440918,
-      "lon": 19.21676254272461,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-23T14:57:45.742540+02:00",
-      "kulcs": "V2224",
-      "rendszam": "V2224",
-      "vehicle_id": "5864",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.443763732910156,
-      "lon": 19.096797943115234,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-23T14:57:45.742676+02:00",
-      "kulcs": "MXJ013",
-      "rendszam": "MXJ013",
-      "vehicle_id": "5889",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50774383544922,
-      "lon": 19.024354934692383,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
     {
       "idopont": "2026-09-23T14:57:45.742896+02:00",
       "kulcs": "NBW005",
@@ -260000,6 +259961,45 @@
       "lon": 19.053871154785156,
       "elozo_szoveg": "Solymári elágazás",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-24T00:28:19.359199+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.4266242980957,
+      "lon": 19.161081314086914,
+      "elozo_szoveg": "Pestszentimre, Benjámin utca",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-24T00:28:19.359397+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.455745697021484,
+      "lon": 18.94098663330078,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-24T00:28:19.360302+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464664459228516,
+      "lon": 19.022729873657227,
+      "elozo_szoveg": "Apor Vilmos tér",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
