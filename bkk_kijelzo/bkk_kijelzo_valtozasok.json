@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T01:53:02.364932+02:00",
+  "frissitve": "2026-09-24T01:53:30.841614+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:05:33.257627+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Fény utcai piac",
-      "vonal_szam": "116",
-      "route_id": "1160",
-      "lat": 47.49993133544922,
-      "lon": 19.034996032714844,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Fény utcai piac"
-    },
-    {
-      "idopont": "2026-09-23T15:05:33.257690+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Csillaghegy H",
-      "vonal_szam": "219",
-      "route_id": "2190",
-      "lat": 47.5826416015625,
-      "lon": 19.01535987854004,
-      "elozo_szoveg": "Aranyhegy",
-      "uj_szoveg": "Csillaghegy H"
-    },
-    {
-      "idopont": "2026-09-23T15:05:33.258159+02:00",
-      "kulcs": "NTM430",
-      "rendszam": "NTM430",
-      "vehicle_id": "6498",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.52328109741211,
-      "lon": 19.00235366821289,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-23T15:05:33.258250+02:00",
       "kulcs": "NTP540",
@@ -260000,6 +259961,45 @@
       "lon": 19.136770248413086,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-24T01:53:30.758376+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.4472770690918,
+      "lon": 18.90908432006836,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-24T01:53:30.758551+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57969284057617,
+      "lon": 19.088823318481445,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-24T01:53:30.759344+02:00",
+      "kulcs": "AADI596",
+      "rendszam": "AADI596",
+      "vehicle_id": "92",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47602462768555,
+      "lon": 19.047128677368164,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
     }
   ]
 }
