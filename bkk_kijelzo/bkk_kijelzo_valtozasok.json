@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:12:26.026546+02:00",
+  "frissitve": "2026-09-23T03:12:54.940579+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:11:53.525893+02:00",
-      "kulcs": "T9014",
-      "rendszam": "T9014",
-      "vehicle_id": "6153",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.503761291503906,
-      "lon": 19.137134552001953,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-22T15:11:53.526011+02:00",
-      "kulcs": "NGC149",
-      "rendszam": "NGC149",
-      "vehicle_id": "6200",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.53996658325195,
-      "lon": 19.046728134155273,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-22T15:11:53.527216+02:00",
-      "kulcs": "NGC160",
-      "rendszam": "NGC160",
-      "vehicle_id": "6210",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.598487854003906,
-      "lon": 19.05426025390625,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
-    {
-      "idopont": "2026-09-22T15:11:53.527230+02:00",
-      "kulcs": "NGC164",
-      "rendszam": "NGC164",
-      "vehicle_id": "6213",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.54543685913086,
-      "lon": 19.03372573852539,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-22T15:11:53.527430+02:00",
-      "kulcs": "NGC021",
-      "rendszam": "NGC021",
-      "vehicle_id": "6320",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.39793395996094,
-      "lon": 18.972970962524414,
-      "elozo_szoveg": "Nagytétény-Diósd vasútállomás",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-09-22T15:11:53.527534+02:00",
       "kulcs": "NLE848",
@@ -260000,6 +259935,71 @@
       "lon": 19.12261962890625,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
       "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-23T03:12:54.851089+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52775573730469,
+      "lon": 19.036663055419922,
+      "elozo_szoveg": "Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-23T03:12:54.853304+02:00",
+      "kulcs": "AAMH637",
+      "rendszam": "AAMH637",
+      "vehicle_id": "480",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699401855469,
+      "lon": 19.055744171142578,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-23T03:12:54.853345+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51254653930664,
+      "lon": 19.05727767944336,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-23T03:12:54.853846+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.4976806640625,
+      "lon": 18.96379280090332,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Csillebérc"
+    },
+    {
+      "idopont": "2026-09-23T03:12:54.853864+02:00",
+      "kulcs": "SKR806",
+      "rendszam": "SKR806",
+      "vehicle_id": "7692",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47975540161133,
+      "lon": 19.255531311035156,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
     }
   ]
 }
