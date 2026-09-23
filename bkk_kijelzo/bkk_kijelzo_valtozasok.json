@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:38:50.502813+02:00",
+  "frissitve": "2026-09-23T03:39:27.198874+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:14:42.205855+02:00",
-      "kulcs": "MUT893",
-      "rendszam": "MUT893",
-      "vehicle_id": "5946",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.47587966918945,
-      "lon": 19.10051918029785,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-22T15:14:42.206004+02:00",
-      "kulcs": "NBW014",
-      "rendszam": "NBW014",
-      "vehicle_id": "5984",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.46976852416992,
-      "lon": 19.29510498046875,
-      "elozo_szoveg": "Kucorgó tér ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-22T15:14:42.206314+02:00",
-      "kulcs": "T9013",
-      "rendszam": "T9013",
-      "vehicle_id": "6152",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48890686035156,
-      "lon": 19.08514404296875,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-09-22T15:14:42.206585+02:00",
       "kulcs": "NCV292",
@@ -260000,6 +259961,45 @@
       "lon": 19.082366943359375,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-23T03:39:27.130385+02:00",
+      "kulcs": "AELD559",
+      "rendszam": "AELD559",
+      "vehicle_id": "633",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42274475097656,
+      "lon": 19.07748031616211,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-23T03:39:27.130773+02:00",
+      "kulcs": "T8116",
+      "rendszam": "T8116",
+      "vehicle_id": "7895",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50095748901367,
+      "lon": 19.1138916015625,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-23T03:39:27.130994+02:00",
+      "kulcs": "415 105",
+      "rendszam": "415 105",
+      "vehicle_id": "945514151055",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.7724494934082,
+      "lon": 19.150630950927734,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
