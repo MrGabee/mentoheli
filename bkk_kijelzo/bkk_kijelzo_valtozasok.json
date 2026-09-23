@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:02:30.995959+02:00",
+  "frissitve": "2026-09-23T03:03:03.471783+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:10:15.916523+02:00",
-      "kulcs": "T9140",
-      "rendszam": "T9140",
-      "vehicle_id": "7879",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.505611419677734,
-      "lon": 19.13631820678711,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-22T15:10:15.916630+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Madárhegy",
-      "vonal_szam": "253",
-      "route_id": "2530",
-      "lat": 47.46470642089844,
-      "lon": 19.018478393554688,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Madárhegy"
-    },
-    {
-      "idopont": "2026-09-22T15:10:15.916679+02:00",
-      "kulcs": "T8119",
-      "rendszam": "T8119",
-      "vehicle_id": "7898",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.524879455566406,
-      "lon": 19.063434600830078,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-22T15:10:15.916855+02:00",
       "kulcs": "AOFL226",
@@ -260000,6 +259961,45 @@
       "lon": 19.025671005249023,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-23T03:03:03.383944+02:00",
+      "kulcs": "AAGL287",
+      "rendszam": "AAGL287",
+      "vehicle_id": "309",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.452884674072266,
+      "lon": 18.907695770263672,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-23T03:03:03.385344+02:00",
+      "kulcs": "PKN602",
+      "rendszam": "PKN602",
+      "vehicle_id": "7191",
+      "vehicle_label": "Dayka Gábor utca",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499290466308594,
+      "lon": 19.2867431640625,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-23T03:03:03.385818+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54707717895508,
+      "lon": 19.142044067382812,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
