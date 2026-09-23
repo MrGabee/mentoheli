@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T02:12:24.800306+02:00",
+  "frissitve": "2026-09-23T02:12:57.195761+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:06:03.417575+02:00",
-      "kulcs": "MXJ015",
-      "rendszam": "MXJ015",
-      "vehicle_id": "5891",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.405757904052734,
-      "lon": 19.014163970947266,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
-    {
-      "idopont": "2026-09-22T15:06:03.417587+02:00",
-      "kulcs": "MXJ017",
-      "rendszam": "MXJ017",
-      "vehicle_id": "5893",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50771713256836,
-      "lon": 19.024368286132812,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
-    {
-      "idopont": "2026-09-22T15:06:03.417972+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.487091064453125,
-      "lon": 19.057573318481445,
-      "elozo_szoveg": "Fővám tér M",
-      "uj_szoveg": "Népliget M"
-    },
     {
       "idopont": "2026-09-22T15:06:03.418077+02:00",
       "kulcs": "T9012",
@@ -260000,6 +259961,45 @@
       "lon": 19.152990341186523,
       "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-23T02:12:57.104333+02:00",
+      "kulcs": "PKN602",
+      "rendszam": "PKN602",
+      "vehicle_id": "7191",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.501338958740234,
+      "lon": 19.119892120361328,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-23T02:12:57.104449+02:00",
+      "kulcs": "RVY701",
+      "rendszam": "RVY701",
+      "vehicle_id": "7450",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.4327392578125,
+      "lon": 19.261571884155273,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-23T02:12:57.104577+02:00",
+      "kulcs": "SGY818",
+      "rendszam": "SGY818",
+      "vehicle_id": "7736",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.42317581176758,
+      "lon": 19.028179168701172,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
     }
   ]
 }
