@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-24T01:32:06.549551+02:00",
+  "frissitve": "2026-09-24T01:32:42.827714+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:04:12.803506+02:00",
-      "kulcs": "AAHY817",
-      "rendszam": "AAHY817",
-      "vehicle_id": "378",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.59012985229492,
-      "lon": 19.12247085571289,
-      "elozo_szoveg": "Rákospalota, Csömöri-p.",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-23T15:04:12.803561+02:00",
-      "kulcs": "AAHY826",
-      "rendszam": "AAHY826",
-      "vehicle_id": "387",
-      "vehicle_label": "Rákospalota, Bogáncs u.",
-      "vonal_szam": "124",
-      "route_id": "1240",
-      "lat": 47.519351959228516,
-      "lon": 19.112741470336914,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Rákospalota, Bogáncs utca"
-    },
-    {
-      "idopont": "2026-09-23T15:04:12.803616+02:00",
-      "kulcs": "AAHY831",
-      "rendszam": "AAHY831",
-      "vehicle_id": "392",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.60647201538086,
-      "lon": 19.06098175048828,
-      "elozo_szoveg": "Budakalász, Auchan áruház ► Rákospalota, Kossuth utca",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-23T15:04:12.803673+02:00",
-      "kulcs": "AADI561",
-      "rendszam": "AADI561",
-      "vehicle_id": "40",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.53229904174805,
-      "lon": 18.99547004699707,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
     {
       "idopont": "2026-09-23T15:04:12.804642+02:00",
       "kulcs": "AAHY867",
@@ -260000,6 +259948,58 @@
       "lon": 19.106769561767578,
       "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-24T01:32:42.731685+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.5177116394043,
+      "lon": 19.03868865966797,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-24T01:32:42.735489+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5074577331543,
+      "lon": 19.025394439697266,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-24T01:32:42.735643+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.50163650512695,
+      "lon": 19.122650146484375,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-09-24T01:32:42.735720+02:00",
+      "kulcs": "NBW010",
+      "rendszam": "NBW010",
+      "vehicle_id": "5980",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51335525512695,
+      "lon": 19.098983764648438,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
     }
   ]
 }
