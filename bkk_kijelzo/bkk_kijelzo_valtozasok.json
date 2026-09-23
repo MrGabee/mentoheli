@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:28:10.704401+02:00",
+  "frissitve": "2026-09-23T03:28:47.063753+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:13:09.231999+02:00",
-      "kulcs": "PMP911",
-      "rendszam": "PMP911",
-      "vehicle_id": "7228",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.50046920776367,
-      "lon": 19.081424713134766,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Kelenföld vasútállomás M ► Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-09-22T15:13:09.232157+02:00",
-      "kulcs": "RCT269",
-      "rendszam": "RCT269",
-      "vehicle_id": "7320",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.491092681884766,
-      "lon": 19.30634880065918,
-      "elozo_szoveg": "Színes utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-09-22T15:13:09.232362+02:00",
-      "kulcs": "T9103",
-      "rendszam": "T9103",
-      "vehicle_id": "7350",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.52144241333008,
-      "lon": 19.100831985473633,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-09-22T15:13:09.232405+02:00",
       "kulcs": "T9109",
@@ -260000,6 +259961,45 @@
       "lon": 19.498329162597656,
       "elozo_szoveg": "Lajosmizse",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-23T03:28:46.979598+02:00",
+      "kulcs": "PDB380",
+      "rendszam": "PDB380",
+      "vehicle_id": "7062",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.547027587890625,
+      "lon": 19.142780303955078,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Cinkotai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-23T03:28:46.979740+02:00",
+      "kulcs": "RVY605",
+      "rendszam": "RVY605",
+      "vehicle_id": "7434",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.4266357421875,
+      "lon": 19.16107749938965,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-23T03:28:46.979850+02:00",
+      "kulcs": "SKR814",
+      "rendszam": "SKR814",
+      "vehicle_id": "7700",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52644348144531,
+      "lon": 19.038192749023438,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
