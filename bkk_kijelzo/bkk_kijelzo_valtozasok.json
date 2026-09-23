@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T00:14:32.320739+02:00",
+  "frissitve": "2026-09-24T00:15:13.486414+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T14:56:16.999099+02:00",
-      "kulcs": "SKR817",
-      "rendszam": "SKR817",
-      "vehicle_id": "7702",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.516536712646484,
-      "lon": 18.97675895690918,
-      "elozo_szoveg": "Zugliget, Libegő",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.999361+02:00",
-      "kulcs": "SIF014",
-      "rendszam": "SIF014",
-      "vehicle_id": "7749",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.41718673706055,
-      "lon": 19.130704879760742,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.999515+02:00",
-      "kulcs": "AADI575",
-      "rendszam": "AADI575",
-      "vehicle_id": "78",
-      "vehicle_label": "Óbudai autóbuszgarázs",
-      "vonal_szam": "118",
-      "route_id": "1180",
-      "lat": 47.53990173339844,
-      "lon": 19.04587173461914,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Óbudai autóbuszgarázs"
-    },
     {
       "idopont": "2026-09-23T14:56:16.999656+02:00",
       "kulcs": "STZ866",
@@ -260000,6 +259961,45 @@
       "lon": 19.200300216674805,
       "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
       "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-09-24T00:15:13.419875+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.541622161865234,
+      "lon": 19.15133285522461,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-24T00:15:13.420253+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51633834838867,
+      "lon": 19.029512405395508,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-24T00:15:13.420367+02:00",
+      "kulcs": "RVY707",
+      "rendszam": "RVY707",
+      "vehicle_id": "7456",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.463470458984375,
+      "lon": 19.14820098876953,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
     }
   ]
 }
