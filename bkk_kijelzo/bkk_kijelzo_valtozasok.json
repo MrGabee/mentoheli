@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T00:04:28.440706+02:00",
+  "frissitve": "2026-09-24T00:05:12.251305+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T14:56:16.994281+02:00",
-      "kulcs": "V2289",
-      "rendszam": "V2289",
-      "vehicle_id": "587",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.43599319458008,
-      "lon": 19.041662216186523,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.994332+02:00",
-      "kulcs": "V2290",
-      "rendszam": "V2290",
-      "vehicle_id": "588",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.519386291503906,
-      "lon": 19.066497802734375,
-      "elozo_szoveg": "Lehel tér M",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.994487+02:00",
-      "kulcs": "MUT888",
-      "rendszam": "MUT888",
-      "vehicle_id": "5941",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.46324157714844,
-      "lon": 19.148040771484375,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Havanna-lakótelep"
-    },
     {
       "idopont": "2026-09-23T14:56:16.994894+02:00",
       "kulcs": "T9002",
@@ -260000,6 +259961,45 @@
       "lon": 19.234880447387695,
       "elozo_szoveg": "Kőbánya-Kispest M",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-24T00:05:12.183364+02:00",
+      "kulcs": "MXJ016",
+      "rendszam": "MXJ016",
+      "vehicle_id": "5892",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.41099166870117,
+      "lon": 19.023075103759766,
+      "elozo_szoveg": "Csillebérc, KFKI",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-24T00:05:12.183851+02:00",
+      "kulcs": "AADI596",
+      "rendszam": "AADI596",
+      "vehicle_id": "92",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.50187301635742,
+      "lon": 19.0848331451416,
+      "elozo_szoveg": "Csillebérc, KFKI",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-24T00:05:12.183972+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54707717895508,
+      "lon": 19.142019271850586,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
