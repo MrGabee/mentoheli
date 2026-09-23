@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:40:36.857526+02:00",
+  "frissitve": "2026-09-23T03:41:04.959677+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:14:42.208901+02:00",
-      "kulcs": "RCT320",
-      "rendszam": "RCT320",
-      "vehicle_id": "7334",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.47983169555664,
-      "lon": 19.066492080688477,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-22T15:14:42.208989+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.50043869018555,
-      "lon": 19.054683685302734,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-09-22T15:14:42.209198+02:00",
-      "kulcs": "V2249",
-      "rendszam": "V2249",
-      "vehicle_id": "7381",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51718521118164,
-      "lon": 19.03646469116211,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-22T15:14:42.209315+02:00",
-      "kulcs": "RVY601",
-      "rendszam": "RVY601",
-      "vehicle_id": "7430",
-      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.423892974853516,
-      "lon": 19.23457908630371,
-      "elozo_szoveg": "Ganztelep, Mednyánszky utca",
-      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
-    },
-    {
-      "idopont": "2026-09-22T15:14:42.209375+02:00",
-      "kulcs": "RVY609",
-      "rendszam": "RVY609",
-      "vehicle_id": "7438",
-      "vehicle_label": "Szent Lőrinc-telep",
-      "vonal_szam": "132E",
-      "route_id": "1325",
-      "lat": 47.435665130615234,
-      "lon": 19.174184799194336,
-      "elozo_szoveg": "Havanna-lakótelep ► Szent Lőrinc-telep",
-      "uj_szoveg": "Szent Lőrinc-telep"
-    },
     {
       "idopont": "2026-09-22T15:14:42.209417+02:00",
       "kulcs": "RVY613",
@@ -260000,6 +259935,71 @@
       "lon": 19.055341720581055,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-23T03:41:04.872719+02:00",
+      "kulcs": "AOJM881",
+      "rendszam": "AOJM881",
+      "vehicle_id": "1007",
+      "vehicle_label": "Szent László utcai ltp.",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.43080520629883,
+      "lon": 19.070819854736328,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Szent László utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-23T03:41:04.875431+02:00",
+      "kulcs": "NBW015",
+      "rendszam": "NBW015",
+      "vehicle_id": "5985",
+      "vehicle_label": "Rákoscsaba vasútállomás",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.49148178100586,
+      "lon": 19.26498794555664,
+      "elozo_szoveg": "XVIII. utca",
+      "uj_szoveg": "Rákoscsaba vasútállomás"
+    },
+    {
+      "idopont": "2026-09-23T03:41:04.875554+02:00",
+      "kulcs": "NTP543",
+      "rendszam": "NTP543",
+      "vehicle_id": "6519",
+      "vehicle_label": "Városház tér",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.519744873046875,
+      "lon": 19.148178100585938,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Városház tér"
+    },
+    {
+      "idopont": "2026-09-23T03:41:04.875641+02:00",
+      "kulcs": "PHG630",
+      "rendszam": "PHG630",
+      "vehicle_id": "7154",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.4796142578125,
+      "lon": 19.255468368530273,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-23T03:41:04.876171+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54706954956055,
+      "lon": 19.142032623291016,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
