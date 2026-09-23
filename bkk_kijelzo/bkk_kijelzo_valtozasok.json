@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-24T00:00:06.693195+02:00",
+  "frissitve": "2026-09-24T00:00:40.342520+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T14:56:16.989577+02:00",
-      "kulcs": "T0612",
-      "rendszam": "T0612",
-      "vehicle_id": "4296",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50620651245117,
-      "lon": 19.0507869720459,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.989723+02:00",
-      "kulcs": "AAHY880",
-      "rendszam": "AAHY880",
-      "vehicle_id": "442",
-      "vehicle_label": "Dunakeszi, Auchan áruház",
-      "vonal_szam": "104",
-      "route_id": "1040",
-      "lat": 47.56856155395508,
-      "lon": 19.12554168701172,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Dunakeszi, Auchan áruház"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.989811+02:00",
-      "kulcs": "V1330",
-      "rendszam": "V1330",
-      "vehicle_id": "4433",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.422271728515625,
-      "lon": 19.122602462768555,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.990344+02:00",
-      "kulcs": "V1551",
-      "rendszam": "V1551",
-      "vehicle_id": "4603",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.47998046875,
-      "lon": 19.1259765625,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-09-23T14:56:16.990571+02:00",
-      "kulcs": "V4013",
-      "rendszam": "V4013",
-      "vehicle_id": "4702",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.48448181152344,
-      "lon": 19.026248931884766,
-      "elozo_szoveg": "Alkotás utca ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-23T14:56:16.990904+02:00",
       "kulcs": "V4124",
@@ -260000,6 +259935,71 @@
       "lon": 19.135225296020508,
       "elozo_szoveg": "Pesti út",
       "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-24T00:00:40.245903+02:00",
+      "kulcs": "AADI609",
+      "rendszam": "AADI609",
+      "vehicle_id": "106",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49760818481445,
+      "lon": 18.963726043701172,
+      "elozo_szoveg": "Normafa",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-24T00:00:40.245986+02:00",
+      "kulcs": "V2017",
+      "rendszam": "V2017",
+      "vehicle_id": "2017",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47747802734375,
+      "lon": 19.0489444732666,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-24T00:00:40.246048+02:00",
+      "kulcs": "FKU950",
+      "rendszam": "FKU950",
+      "vehicle_id": "3106",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46357345581055,
+      "lon": 19.1470947265625,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-24T00:00:40.246093+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45595932006836,
+      "lon": 18.940399169921875,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-24T00:00:40.246454+02:00",
+      "kulcs": "AADI573",
+      "rendszam": "AADI573",
+      "vehicle_id": "64",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59782791137695,
+      "lon": 19.053842544555664,
+      "elozo_szoveg": "Nagybányai út",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
