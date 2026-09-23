@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-23T02:12:57.195761+02:00",
+  "frissitve": "2026-09-23T02:13:32.993513+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:06:03.418077+02:00",
-      "kulcs": "T9012",
-      "rendszam": "T9012",
-      "vehicle_id": "6151",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50392150878906,
-      "lon": 19.13681983947754,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-22T15:06:03.418158+02:00",
-      "kulcs": "NGC152",
-      "rendszam": "NGC152",
-      "vehicle_id": "6198",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.543338775634766,
-      "lon": 19.03049659729004,
-      "elozo_szoveg": "Szent Margit Kórház ► Harsánylejtő",
-      "uj_szoveg": "Harsánylejtő"
-    },
-    {
-      "idopont": "2026-09-22T15:06:03.418308+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Csillaghegy H",
-      "vonal_szam": "219",
-      "route_id": "2190",
-      "lat": 47.58263397216797,
-      "lon": 19.01534652709961,
-      "elozo_szoveg": "Aranyhegy",
-      "uj_szoveg": "Csillaghegy H"
-    },
-    {
-      "idopont": "2026-09-22T15:06:03.418752+02:00",
-      "kulcs": "NTM425",
-      "rendszam": "NTM425",
-      "vehicle_id": "6493",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "250",
-      "route_id": "2500",
-      "lat": 47.43033981323242,
-      "lon": 19.0161075592041,
-      "elozo_szoveg": "Regényes utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
     {
       "idopont": "2026-09-22T15:06:03.418821+02:00",
       "kulcs": "NTM435",
@@ -260000,6 +259948,58 @@
       "lon": 19.028179168701172,
       "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
       "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-23T02:13:32.905052+02:00",
+      "kulcs": "MOS281",
+      "rendszam": "MOS281",
+      "vehicle_id": "5734",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49703598022461,
+      "lon": 19.055686950683594,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-23T02:13:32.905262+02:00",
+      "kulcs": "PDB709",
+      "rendszam": "PDB709",
+      "vehicle_id": "7035",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46205139160156,
+      "lon": 19.13416290283203,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-23T02:13:32.905291+02:00",
+      "kulcs": "PDB388",
+      "rendszam": "PDB388",
+      "vehicle_id": "7070",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175094604492,
+      "lon": 19.13558006286621,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-23T02:13:32.905608+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.4975700378418,
+      "lon": 18.963733673095703,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
     }
   ]
 }
