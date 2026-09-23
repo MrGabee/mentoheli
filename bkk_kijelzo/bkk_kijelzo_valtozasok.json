@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-23T02:44:45.996375+02:00",
+  "frissitve": "2026-09-23T02:45:14.513619+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:08:48.754298+02:00",
-      "kulcs": "NLE854",
-      "rendszam": "NLE854",
-      "vehicle_id": "6406",
-      "vehicle_label": "Fény utcai piac",
-      "vonal_szam": "116",
-      "route_id": "1160",
-      "lat": 47.50092315673828,
-      "lon": 19.034069061279297,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Fény utcai piac"
-    },
-    {
-      "idopont": "2026-09-22T15:08:48.754371+02:00",
-      "kulcs": "V2232",
-      "rendszam": "V2232",
-      "vehicle_id": "6443",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.481590270996094,
-      "lon": 19.06902503967285,
-      "elozo_szoveg": "Mester utca / Ferenc körút",
-      "uj_szoveg": "Koppány utca"
-    },
     {
       "idopont": "2026-09-22T15:08:48.754551+02:00",
       "kulcs": "NTM428",
@@ -260000,6 +259974,32 @@
       "lon": 19.148128509521484,
       "elozo_szoveg": "Rákosszentmihály vasútállomás",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-23T02:45:14.429838+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48480224609375,
+      "lon": 19.02202606201172,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-23T02:45:14.430092+02:00",
+      "kulcs": "873-637-874",
+      "rendszam": "873-637-874",
+      "vehicle_id": "905516568730-905536466378-905516568748",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.17446517944336,
+      "lon": 18.941823959350586,
+      "elozo_szoveg": "Ráckeve",
+      "uj_szoveg": "Közvágóhíd"
     }
   ]
 }
