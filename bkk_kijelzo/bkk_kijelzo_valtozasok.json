@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:25:15.182074+02:00",
+  "frissitve": "2026-09-23T03:25:46.637086+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:13:09.226657+02:00",
-      "kulcs": "MOS257",
-      "rendszam": "MOS257",
-      "vehicle_id": "5710",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.388458251953125,
-      "lon": 19.220338821411133,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-22T15:13:09.226714+02:00",
-      "kulcs": "MOS266",
-      "rendszam": "MOS266",
-      "vehicle_id": "5719",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.39316940307617,
-      "lon": 19.22330093383789,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-22T15:13:09.226765+02:00",
-      "kulcs": "V2275",
-      "rendszam": "V2275",
-      "vehicle_id": "573",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.53923034667969,
-      "lon": 18.97123908996582,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
     {
       "idopont": "2026-09-22T15:13:09.227275+02:00",
       "kulcs": "V2284",
@@ -260000,6 +259961,45 @@
       "lon": 19.596860885620117,
       "elozo_szoveg": "Gödöllő",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-23T03:25:46.552178+02:00",
+      "kulcs": "AAMH638",
+      "rendszam": "AAMH638",
+      "vehicle_id": "481",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49641036987305,
+      "lon": 19.0572509765625,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-23T03:25:46.552608+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5035285949707,
+      "lon": 19.02568244934082,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-23T03:25:46.553130+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51316833496094,
+      "lon": 19.101533889770508,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
