@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-23T03:57:50.363611+02:00",
+  "frissitve": "2026-09-23T03:58:30.788318+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:16:04.793735+02:00",
-      "kulcs": "AOFL203",
-      "rendszam": "AOFL203",
-      "vehicle_id": "787",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.49015808105469,
-      "lon": 19.060792922973633,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-09-22T15:16:04.793826+02:00",
-      "kulcs": "T9144",
-      "rendszam": "T9144",
-      "vehicle_id": "7883",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48928451538086,
-      "lon": 19.09005355834961,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-22T15:16:04.794128+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53541564941406,
-      "lon": 19.02725601196289,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-22T15:16:04.794463+02:00",
-      "kulcs": "AOIB821",
-      "rendszam": "AOIB821",
-      "vehicle_id": "884",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.47673416137695,
-      "lon": 18.98741340637207,
-      "elozo_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-22T15:16:04.794507+02:00",
       "kulcs": "AOIB826",
@@ -260000,6 +259948,58 @@
       "lon": 19.127328872680664,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-23T03:58:30.702683+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523162841796875,
+      "lon": 19.171703338623047,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-23T03:58:30.702909+02:00",
+      "kulcs": "SKR733",
+      "rendszam": "SKR733",
+      "vehicle_id": "7682",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.43277359008789,
+      "lon": 19.261560440063477,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-23T03:58:30.703290+02:00",
+      "kulcs": "480 001",
+      "rendszam": "480 001",
+      "vehicle_id": "915504800011",
+      "vehicle_label": "Pusztaszabolcs",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 47.46356964111328,
+      "lon": 19.020849227905273,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Pusztaszabolcs"
+    },
+    {
+      "idopont": "2026-09-23T03:58:30.703649+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47591018676758,
+      "lon": 19.047117233276367,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
