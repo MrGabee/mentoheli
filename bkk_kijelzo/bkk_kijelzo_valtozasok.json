@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-23T02:05:09.570652+02:00",
+  "frissitve": "2026-09-23T02:05:39.680925+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-22T15:04:34.073684+02:00",
-      "kulcs": "T8110",
-      "rendszam": "T8110",
-      "vehicle_id": "7889",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.536415100097656,
-      "lon": 19.06505012512207,
-      "elozo_szoveg": "Dagály utcai lakótelep",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-22T15:04:34.073800+02:00",
-      "kulcs": "AOFL208",
-      "rendszam": "AOFL208",
-      "vehicle_id": "794",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.54933166503906,
-      "lon": 19.073671340942383,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-09-22T15:04:34.073894+02:00",
-      "kulcs": "AADI581",
-      "rendszam": "AADI581",
-      "vehicle_id": "81",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.428504943847656,
-      "lon": 19.008058547973633,
-      "elozo_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-22T15:04:34.073916+02:00",
       "kulcs": "AOFL224",
@@ -260000,6 +259961,45 @@
       "lon": 19.16080665588379,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-23T02:05:39.609141+02:00",
+      "kulcs": "FLR728",
+      "rendszam": "FLR728",
+      "vehicle_id": "3142",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.567256927490234,
+      "lon": 19.12462615966797,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-23T02:05:39.609407+02:00",
+      "kulcs": "NBW008",
+      "rendszam": "NBW008",
+      "vehicle_id": "5978",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51738739013672,
+      "lon": 19.077606201171875,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-23T02:05:39.609462+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54267883300781,
+      "lon": 18.964811325073242,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota, MEDIMPEX"
     }
   ]
 }
