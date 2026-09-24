@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:44:07.272028+02:00",
+  "frissitve": "2026-09-25T01:44:37.647283+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:01:05.447158+02:00",
-      "kulcs": "V4130",
-      "rendszam": "V4130",
-      "vehicle_id": "4818",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "1A",
-      "route_id": "3011",
-      "lat": 47.54817581176758,
-      "lon": 19.03055763244629,
-      "elozo_szoveg": "KOCSISZÍNBE  Lehel utca / Róbert Károly körút",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-09-24T15:01:05.447174+02:00",
-      "kulcs": "V4131",
-      "rendszam": "V4131",
-      "vehicle_id": "4819",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.491764068603516,
-      "lon": 19.043384552001953,
-      "elozo_szoveg": "Krisztina körút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-24T15:01:05.447380+02:00",
-      "kulcs": "V4240",
-      "rendszam": "V4240",
-      "vehicle_id": "4899",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.518280029296875,
-      "lon": 19.064395904541016,
-      "elozo_szoveg": "KOCSISZÍNBE  Lehel utca / Róbert Károly körút",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
     {
       "idopont": "2026-09-24T15:01:05.447539+02:00",
       "kulcs": "V4283",
@@ -260000,6 +259961,45 @@
       "lon": 18.964799880981445,
       "elozo_szoveg": "Hűvösvölgy",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-25T01:44:37.580087+02:00",
+      "kulcs": "AAGL284",
+      "rendszam": "AAGL284",
+      "vehicle_id": "308",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46249771118164,
+      "lon": 19.005342483520508,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-09-25T01:44:37.580135+02:00",
+      "kulcs": "FLR728",
+      "rendszam": "FLR728",
+      "vehicle_id": "3142",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46375274658203,
+      "lon": 19.130130767822266,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-25T01:44:37.581160+02:00",
+      "kulcs": "AADI573",
+      "rendszam": "AADI573",
+      "vehicle_id": "64",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56767654418945,
+      "lon": 19.127212524414062,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
