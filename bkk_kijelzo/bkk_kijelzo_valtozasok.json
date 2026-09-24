@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:56:25.704057+02:00",
+  "frissitve": "2026-09-25T01:56:55.744837+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:01:05.460841+02:00",
-      "kulcs": "1107-754-1108-1109-755-1110",
-      "rendszam": "1107-754-1108-1109-755-1110",
-      "vehicle_id": "905516561073-905536467541-905516561081-905516561099-905536467558-905516561107",
-      "vehicle_label": "Békásmegyer",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.507171630859375,
-      "lon": 19.039480209350586,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Békásmegyer"
-    },
-    {
-      "idopont": "2026-09-24T15:01:05.461627+02:00",
-      "kulcs": "918071936580",
-      "rendszam": "918071936580",
-      "vehicle_id": "918071936580",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.25933837890625,
-      "lon": 16.93071937561035,
-      "elozo_szoveg": "Szombathely",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-24T15:01:05.461958+02:00",
-      "kulcs": "415 001",
-      "rendszam": "415 001",
-      "vehicle_id": "945514150016",
-      "vehicle_label": "Tárnok",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.43587875366211,
-      "lon": 19.037200927734375,
-      "elozo_szoveg": "Budapest-Kelenföld",
-      "uj_szoveg": "Tárnok"
-    },
     {
       "idopont": "2026-09-24T15:01:05.462055+02:00",
       "kulcs": "415 023",
@@ -260000,6 +259961,45 @@
       "lon": 19.046710968017578,
       "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-25T01:56:55.655565+02:00",
+      "kulcs": "AAGL293",
+      "rendszam": "AAGL293",
+      "vehicle_id": "326",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507057189941406,
+      "lon": 18.921480178833008,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-25T01:56:55.656894+02:00",
+      "kulcs": "SKR828",
+      "rendszam": "SKR828",
+      "vehicle_id": "7714",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.5986442565918,
+      "lon": 19.054279327392578,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-25T01:56:55.657184+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47496795654297,
+      "lon": 19.046815872192383,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
