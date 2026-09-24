@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T03:12:33.587540+02:00",
+  "frissitve": "2026-09-24T03:13:09.839852+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:13:48.329498+02:00",
-      "kulcs": "T9109",
-      "rendszam": "T9109",
-      "vehicle_id": "7356",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48942184448242,
-      "lon": 19.090059280395508,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.329659+02:00",
-      "kulcs": "V2249",
-      "rendszam": "V2249",
-      "vehicle_id": "7381",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42710876464844,
-      "lon": 19.039165496826172,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.329684+02:00",
-      "kulcs": "V2252",
-      "rendszam": "V2252",
-      "vehicle_id": "7384",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54850387573242,
-      "lon": 19.028900146484375,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-23T15:13:48.329962+02:00",
       "kulcs": "RVY709",
@@ -260000,6 +259961,45 @@
       "lon": 19.03872299194336,
       "elozo_szoveg": "Astoria M ► Pesterzsébet",
       "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-24T03:13:09.746334+02:00",
+      "kulcs": "AADI649",
+      "rendszam": "AADI649",
+      "vehicle_id": "148",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51150894165039,
+      "lon": 19.098892211914062,
+      "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-24T03:13:09.749058+02:00",
+      "kulcs": "PKN602",
+      "rendszam": "PKN602",
+      "vehicle_id": "7191",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.501670837402344,
+      "lon": 19.122760772705078,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-24T03:13:09.749167+02:00",
+      "kulcs": "RVY618",
+      "rendszam": "RVY618",
+      "vehicle_id": "7447",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48659896850586,
+      "lon": 19.06805992126465,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
