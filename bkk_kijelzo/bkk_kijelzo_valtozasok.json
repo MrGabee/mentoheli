@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:24:32.373495+02:00",
+  "frissitve": "2026-09-24T02:25:03.252968+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:08:17.221779+02:00",
-      "kulcs": "T9134",
-      "rendszam": "T9134",
-      "vehicle_id": "7873",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48927688598633,
-      "lon": 19.090063095092773,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-23T15:08:17.222136+02:00",
-      "kulcs": "AOFL207",
-      "rendszam": "AOFL207",
-      "vehicle_id": "793",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.47787094116211,
-      "lon": 19.04554557800293,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Citadella ► Sánc utca"
-    },
-    {
-      "idopont": "2026-09-23T15:08:17.222236+02:00",
-      "kulcs": "AOFL216",
-      "rendszam": "AOFL216",
-      "vehicle_id": "803",
-      "vehicle_label": "Kissvábhegy",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50590515136719,
-      "lon": 19.038700103759766,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
     {
       "idopont": "2026-09-23T15:08:17.222257+02:00",
       "kulcs": "AOFL218",
@@ -260000,6 +259961,45 @@
       "lon": 19.024179458618164,
       "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-24T02:25:03.161297+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.47740173339844,
+      "lon": 19.342954635620117,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-24T02:25:03.161393+02:00",
+      "kulcs": "NGC149",
+      "rendszam": "NGC149",
+      "vehicle_id": "6200",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51033401489258,
+      "lon": 19.097431182861328,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-24T02:25:03.161586+02:00",
+      "kulcs": "PKN606",
+      "rendszam": "PKN606",
+      "vehicle_id": "7195",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50801086425781,
+      "lon": 19.02823829650879,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
     }
   ]
 }
