@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:51:25.727323+02:00",
+  "frissitve": "2026-09-25T01:52:03.111078+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:01:05.456202+02:00",
-      "kulcs": "RCT320",
-      "rendszam": "RCT320",
-      "vehicle_id": "7334",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.412757873535156,
-      "lon": 19.160932540893555,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-24T15:01:05.456393+02:00",
-      "kulcs": "T9102",
-      "rendszam": "T9102",
-      "vehicle_id": "7349",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51072692871094,
-      "lon": 19.09720230102539,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-09-24T15:01:05.456439+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49421691894531,
-      "lon": 19.060312271118164,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-09-24T15:01:05.456498+02:00",
       "kulcs": "T9108",
@@ -260000,6 +259961,45 @@
       "lon": 19.00727653503418,
       "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
       "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-25T01:52:03.026466+02:00",
+      "kulcs": "AADI621",
+      "rendszam": "AADI621",
+      "vehicle_id": "117",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.404510498046875,
+      "lon": 19.18589210510254,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-25T01:52:03.029001+02:00",
+      "kulcs": "NBW015",
+      "rendszam": "NBW015",
+      "vehicle_id": "5985",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55028533935547,
+      "lon": 19.042037963867188,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-25T01:52:03.029466+02:00",
+      "kulcs": "SGY805",
+      "rendszam": "SGY805",
+      "vehicle_id": "7723",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.412296295166016,
+      "lon": 19.06743049621582,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
