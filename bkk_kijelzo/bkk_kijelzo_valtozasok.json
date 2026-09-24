@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:10:46.764556+02:00",
+  "frissitve": "2026-09-24T02:11:17.887475+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:07:04.622449+02:00",
-      "kulcs": "SGY818",
-      "rendszam": "SGY818",
-      "vehicle_id": "7736",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.40516662597656,
-      "lon": 18.999980926513672,
-      "elozo_szoveg": "Baross Gábor-telep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-23T15:07:04.622602+02:00",
-      "kulcs": "AOFL192",
-      "rendszam": "AOFL192",
-      "vehicle_id": "776",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.426395416259766,
-      "lon": 19.039968490600586,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-23T15:07:04.622662+02:00",
-      "kulcs": "AOFL194",
-      "rendszam": "AOFL194",
-      "vehicle_id": "778",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.46441650390625,
-      "lon": 19.018754959106445,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-23T15:07:04.622792+02:00",
-      "kulcs": "STZ843",
-      "rendszam": "STZ843",
-      "vehicle_id": "7798",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.500274658203125,
-      "lon": 18.91680335998535,
-      "elozo_szoveg": "Budakeszi, Tesco áruház",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-23T15:07:04.623055+02:00",
-      "kulcs": "STZ868",
-      "rendszam": "STZ868",
-      "vehicle_id": "7823",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.51776123046875,
-      "lon": 18.923837661743164,
-      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-23T15:07:04.623396+02:00",
       "kulcs": "T9126",
@@ -260000,6 +259935,71 @@
       "lon": 19.046323776245117,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-24T02:11:17.801400+02:00",
+      "kulcs": "FKU950",
+      "rendszam": "FKU950",
+      "vehicle_id": "3106",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.5672492980957,
+      "lon": 19.1246280670166,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-24T02:11:17.802082+02:00",
+      "kulcs": "PDB727",
+      "rendszam": "PDB727",
+      "vehicle_id": "7053",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56767654418945,
+      "lon": 19.127201080322266,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-24T02:11:17.802208+02:00",
+      "kulcs": "RVY603",
+      "rendszam": "RVY603",
+      "vehicle_id": "7432",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.47102737426758,
+      "lon": 19.073322296142578,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
+      "uj_szoveg": "Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-09-24T02:11:17.802347+02:00",
+      "kulcs": "RVY717",
+      "rendszam": "RVY717",
+      "vehicle_id": "7466",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57960510253906,
+      "lon": 19.10955047607422,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-24T02:11:17.802517+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.405616760253906,
+      "lon": 19.013769149780273,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
     }
   ]
 }
