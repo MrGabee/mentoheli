@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T03:14:46.226788+02:00",
+  "frissitve": "2026-09-24T03:15:19.609464+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:13:48.330817+02:00",
-      "kulcs": "SKR830",
-      "rendszam": "SKR830",
-      "vehicle_id": "7716",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "284E",
-      "route_id": "2845",
-      "lat": 47.46287536621094,
-      "lon": 19.149539947509766,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.330840+02:00",
-      "kulcs": "SGY802",
-      "rendszam": "SGY802",
-      "vehicle_id": "7720",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "282E",
-      "route_id": "2825",
-      "lat": 47.4131965637207,
-      "lon": 19.201440811157227,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.331095+02:00",
-      "kulcs": "STZ836",
-      "rendszam": "STZ836",
-      "vehicle_id": "7791",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.464881896972656,
-      "lon": 19.018253326416016,
-      "elozo_szoveg": "Budakeszi, Honfoglalás s.",
-      "uj_szoveg": "Budakeszi, Honfoglalás sétány"
-    },
     {
       "idopont": "2026-09-23T15:13:48.331219+02:00",
       "kulcs": "STZ853",
@@ -260000,6 +259961,45 @@
       "lon": 19.12146759033203,
       "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-24T03:15:19.529413+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.4625358581543,
+      "lon": 19.005475997924805,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-24T03:15:19.530671+02:00",
+      "kulcs": "PDB716",
+      "rendszam": "PDB716",
+      "vehicle_id": "7042",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46249771118164,
+      "lon": 19.133094787597656,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-24T03:15:19.530717+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51554489135742,
+      "lon": 19.03173828125,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
     }
   ]
 }
