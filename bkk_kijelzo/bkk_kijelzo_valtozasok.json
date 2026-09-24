@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T03:13:09.839852+02:00",
+  "frissitve": "2026-09-24T03:13:38.812863+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:13:48.329962+02:00",
-      "kulcs": "RVY709",
-      "rendszam": "RVY709",
-      "vehicle_id": "7458",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.46303939819336,
-      "lon": 19.14867401123047,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.330114+02:00",
-      "kulcs": "AOGF673",
-      "rendszam": "AOGF673",
-      "vehicle_id": "756",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.416259765625,
-      "lon": 19.0931453704834,
-      "elozo_szoveg": "Csepel, Határ utca",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.330229+02:00",
-      "kulcs": "RVY730",
-      "rendszam": "RVY730",
-      "vehicle_id": "7628",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.501285552978516,
-      "lon": 19.135578155517578,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-09-23T15:13:48.330279+02:00",
       "kulcs": "RVY735",
@@ -260000,6 +259961,45 @@
       "lon": 19.06805992126465,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-24T03:13:38.728765+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.43085479736328,
+      "lon": 18.92836570739746,
+      "elozo_szoveg": "Márta utca ► Budaörsi lakótelep",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-24T03:13:38.728961+02:00",
+      "kulcs": "MOS281",
+      "rendszam": "MOS281",
+      "vehicle_id": "5734",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "169E",
+      "route_id": "1695",
+      "lat": 47.477577209472656,
+      "lon": 19.343149185180664,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-24T03:13:38.729362+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49767303466797,
+      "lon": 18.96375274658203,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Csillebérc"
     }
   ]
 }
