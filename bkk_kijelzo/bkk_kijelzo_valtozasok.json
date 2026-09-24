@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-24T03:12:00.311688+02:00",
+  "frissitve": "2026-09-24T03:12:33.587540+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:13:48.329238+02:00",
-      "kulcs": "RCT269",
-      "rendszam": "RCT269",
-      "vehicle_id": "7320",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.49103546142578,
-      "lon": 19.306354522705078,
-      "elozo_szoveg": "Színes utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.329340+02:00",
-      "kulcs": "T8102",
-      "rendszam": "T8102",
-      "vehicle_id": "7339",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.506343841552734,
-      "lon": 19.05088233947754,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.329390+02:00",
-      "kulcs": "T8105",
-      "rendszam": "T8105",
-      "vehicle_id": "7342",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.518699645996094,
-      "lon": 19.08537483215332,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.329460+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52229309082031,
-      "lon": 19.130962371826172,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-09-23T15:13:48.329498+02:00",
       "kulcs": "T9109",
@@ -260000,6 +259948,58 @@
       "lon": 20.0966796875,
       "elozo_szoveg": "Szolnok",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-24T03:12:33.520686+02:00",
+      "kulcs": "AADI652",
+      "rendszam": "AADI652",
+      "vehicle_id": "151",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47626876831055,
+      "lon": 19.043136596679688,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-24T03:12:33.522819+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Dayka Gábor utca",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499393463134766,
+      "lon": 19.286710739135742,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Dayka Gábor utca"
+    },
+    {
+      "idopont": "2026-09-24T03:12:33.522839+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175857543945,
+      "lon": 19.135578155517578,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-24T03:12:33.522878+02:00",
+      "kulcs": "RVY605",
+      "rendszam": "RVY605",
+      "vehicle_id": "7434",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.517601013183594,
+      "lon": 19.03872299194336,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
