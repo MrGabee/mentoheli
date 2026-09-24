@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:58:45.215574+02:00",
+  "frissitve": "2026-09-24T02:59:17.343219+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:11:59.614924+02:00",
-      "kulcs": "SKN826",
-      "rendszam": "SKN826",
-      "vehicle_id": "7858",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44157409667969,
-      "lon": 19.034717559814453,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-23T15:11:59.615368+02:00",
-      "kulcs": "T8113",
-      "rendszam": "T8113",
-      "vehicle_id": "7892",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51941680908203,
-      "lon": 19.096885681152344,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
     {
       "idopont": "2026-09-23T15:11:59.615456+02:00",
       "kulcs": "T8119",
@@ -260000,6 +259974,32 @@
       "lon": 19.161048889160156,
       "elozo_szoveg": "Ady Endre tér",
       "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-24T02:59:17.268286+02:00",
+      "kulcs": "MUT885",
+      "rendszam": "MUT885",
+      "vehicle_id": "5938",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48554992675781,
+      "lon": 19.071369171142578,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-24T02:59:17.268760+02:00",
+      "kulcs": "630 038",
+      "rendszam": "630 038",
+      "vehicle_id": "915506300382",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.462188720703125,
+      "lon": 21.48716926574707,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
