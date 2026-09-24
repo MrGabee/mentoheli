@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-25T00:45:43.428818+02:00",
+  "frissitve": "2026-09-25T00:46:15.642958+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T14:55:21.751077+02:00",
-      "kulcs": "PDN606",
-      "rendszam": "PDN606",
-      "vehicle_id": "7078",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41694259643555,
-      "lon": 19.131296157836914,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-09-24T14:55:21.751167+02:00",
-      "kulcs": "PDN615",
-      "rendszam": "PDN615",
-      "vehicle_id": "7086",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41048812866211,
-      "lon": 19.060575485229492,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-09-24T14:55:21.751231+02:00",
       "kulcs": "PDN621",
@@ -260000,6 +259974,32 @@
       "lon": 19.10201072692871,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-09-25T00:46:15.574911+02:00",
+      "kulcs": "AADI621",
+      "rendszam": "AADI621",
+      "vehicle_id": "117",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54159164428711,
+      "lon": 19.070465087890625,
+      "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-25T00:46:15.576833+02:00",
+      "kulcs": "SGY805",
+      "rendszam": "SGY805",
+      "vehicle_id": "7723",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.4868049621582,
+      "lon": 19.0677490234375,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
