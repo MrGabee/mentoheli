@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:00:08.065260+02:00",
+  "frissitve": "2026-09-25T01:00:38.297143+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T14:56:33.880719+02:00",
-      "kulcs": "MOS258",
-      "rendszam": "MOS258",
-      "vehicle_id": "5711",
-      "vehicle_label": "Szigetszentmiklós",
-      "vonal_szam": "38",
-      "route_id": "0380",
-      "lat": 47.35745620727539,
-      "lon": 19.032543182373047,
-      "elozo_szoveg": "Szigetszentmiklós, városháza",
-      "uj_szoveg": "Szigetszentmiklós"
-    },
-    {
-      "idopont": "2026-09-24T14:56:33.880944+02:00",
-      "kulcs": "V2111",
-      "rendszam": "V2111",
-      "vehicle_id": "5839",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54594421386719,
-      "lon": 19.033369064331055,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-24T14:56:33.880996+02:00",
-      "kulcs": "V2210",
-      "rendszam": "V2210",
-      "vehicle_id": "5850",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51888656616211,
-      "lon": 19.091533660888672,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
     {
       "idopont": "2026-09-24T14:56:33.881317+02:00",
       "kulcs": "V2217",
@@ -260000,6 +259961,45 @@
       "lon": 19.058025360107422,
       "elozo_szoveg": "Astoria M ► Békásmegyer",
       "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-25T01:00:38.240883+02:00",
+      "kulcs": "NBW003",
+      "rendszam": "NBW003",
+      "vehicle_id": "5973",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.514625549316406,
+      "lon": 19.036590576171875,
+      "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
+      "uj_szoveg": "Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-25T01:00:38.240953+02:00",
+      "kulcs": "NGC164",
+      "rendszam": "NGC164",
+      "vehicle_id": "6213",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44314193725586,
+      "lon": 19.093046188354492,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-25T01:00:38.241081+02:00",
+      "kulcs": "AADI586",
+      "rendszam": "AADI586",
+      "vehicle_id": "72",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51075744628906,
+      "lon": 19.0971736907959,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
     }
   ]
 }
