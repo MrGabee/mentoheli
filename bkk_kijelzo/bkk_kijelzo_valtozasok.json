@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:01:53.625848+02:00",
+  "frissitve": "2026-09-25T01:02:28.964092+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T14:56:33.882060+02:00",
-      "kulcs": "NGC151",
-      "rendszam": "NGC151",
-      "vehicle_id": "6193",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.57425308227539,
-      "lon": 19.01296615600586,
-      "elozo_szoveg": "Harsánylejtő",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
-    {
-      "idopont": "2026-09-24T14:56:33.882231+02:00",
-      "kulcs": "NGC142",
-      "rendszam": "NGC142",
-      "vehicle_id": "6217",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.54338836669922,
-      "lon": 19.030921936035156,
-      "elozo_szoveg": "Szent Margit Kórház ► Békásmegyer H",
-      "uj_szoveg": "Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-24T14:56:33.882296+02:00",
-      "kulcs": "NCV285",
-      "rendszam": "NCV285",
-      "vehicle_id": "6250",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50060272216797,
-      "lon": 19.03427505493164,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-24T14:56:33.882307+02:00",
       "kulcs": "NCV290",
@@ -260000,6 +259961,45 @@
       "lon": 18.990461349487305,
       "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-25T01:02:28.883263+02:00",
+      "kulcs": "V2017",
+      "rendszam": "V2017",
+      "vehicle_id": "2017",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47764587402344,
+      "lon": 19.048553466796875,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-25T01:02:28.885146+02:00",
+      "kulcs": "NGC143",
+      "rendszam": "NGC143",
+      "vehicle_id": "6215",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50763702392578,
+      "lon": 19.02579689025879,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-25T01:02:28.886655+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51024627685547,
+      "lon": 19.097291946411133,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
