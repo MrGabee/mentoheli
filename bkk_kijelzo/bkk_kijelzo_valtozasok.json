@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:59:17.343219+02:00",
+  "frissitve": "2026-09-24T02:59:51.461764+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:11:59.615456+02:00",
-      "kulcs": "T8119",
-      "rendszam": "T8119",
-      "vehicle_id": "7898",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52552795410156,
-      "lon": 19.12428092956543,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-23T15:11:59.615692+02:00",
-      "kulcs": "AOFL223",
-      "rendszam": "AOFL223",
-      "vehicle_id": "810",
-      "vehicle_label": "Kurucles",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.50769805908203,
-      "lon": 19.024635314941406,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Kurucles"
-    },
-    {
-      "idopont": "2026-09-23T15:11:59.615782+02:00",
-      "kulcs": "AOFL232",
-      "rendszam": "AOFL232",
-      "vehicle_id": "820",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52582931518555,
-      "lon": 18.98441505432129,
-      "elozo_szoveg": "Kurucles",
-      "uj_szoveg": "Kurucles ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-23T15:11:59.616104+02:00",
       "kulcs": "AOIA477",
@@ -260000,6 +259961,45 @@
       "lon": 21.48716926574707,
       "elozo_szoveg": null,
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-24T02:59:51.375900+02:00",
+      "kulcs": "PKN623",
+      "rendszam": "PKN623",
+      "vehicle_id": "7212",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51462173461914,
+      "lon": 19.03646469116211,
+      "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
+      "uj_szoveg": "Pasaréti tér"
+    },
+    {
+      "idopont": "2026-09-24T02:59:51.376061+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49976348876953,
+      "lon": 19.00835609436035,
+      "elozo_szoveg": "Svábhegy ► Csillebérc",
+      "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-09-24T02:59:51.376127+02:00",
+      "kulcs": "SKR828",
+      "rendszam": "SKR828",
+      "vehicle_id": "7714",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.443355560302734,
+      "lon": 19.0930233001709,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
