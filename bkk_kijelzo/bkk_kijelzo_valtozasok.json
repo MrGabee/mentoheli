@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:57:40.736761+02:00",
+  "frissitve": "2026-09-24T02:58:12.279686+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:11:59.611173+02:00",
-      "kulcs": "PDN640",
-      "rendszam": "PDN640",
-      "vehicle_id": "7111",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.410133361816406,
-      "lon": 19.060375213623047,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-23T15:11:59.611218+02:00",
-      "kulcs": "PDN646",
-      "rendszam": "PDN646",
-      "vehicle_id": "7117",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.405818939208984,
-      "lon": 19.014240264892578,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-23T15:11:59.612782+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.504329681396484,
-      "lon": 19.136661529541016,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-09-23T15:11:59.613838+02:00",
       "kulcs": "SKR728",
@@ -260000,6 +259961,45 @@
       "lon": 19.057954788208008,
       "elozo_szoveg": "Astoria M ► Békásmegyer",
       "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-09-24T02:58:12.226225+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.501373291015625,
+      "lon": 19.120197296142578,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-24T02:58:12.226314+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.524993896484375,
+      "lon": 19.037914276123047,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-24T02:58:12.226674+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47585678100586,
+      "lon": 19.04708480834961,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
