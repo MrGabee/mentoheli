@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:17:03.904216+02:00",
+  "frissitve": "2026-09-25T01:17:31.396189+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T14:58:05.593482+02:00",
-      "kulcs": "AAMH662",
-      "rendszam": "AAMH662",
-      "vehicle_id": "505",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30A",
-      "route_id": "0301",
-      "lat": 47.58310317993164,
-      "lon": 19.091354370117188,
-      "elozo_szoveg": "Megyer, Szondi utca",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-24T14:58:05.594939+02:00",
-      "kulcs": "MFW534",
-      "rendszam": "MFW534",
-      "vehicle_id": "5091",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.50122833251953,
-      "lon": 19.136009216308594,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Madárdomb"
-    },
-    {
-      "idopont": "2026-09-24T14:58:05.595502+02:00",
-      "kulcs": "MPW612",
-      "rendszam": "MPW612",
-      "vehicle_id": "5599",
-      "vehicle_label": "Market Central Ferihegy",
-      "vonal_szam": "236",
-      "route_id": "2360",
-      "lat": 47.43335723876953,
-      "lon": 19.220659255981445,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Vecsés, Market Central Ferihegy",
-      "uj_szoveg": "Vecsés, Market Central Ferihegy"
-    },
     {
       "idopont": "2026-09-24T14:58:05.595801+02:00",
       "kulcs": "MOS258",
@@ -260000,6 +259961,45 @@
       "lon": 19.04534339904785,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-09-25T01:17:31.307991+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542667388916016,
+      "lon": 18.96480369567871,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-25T01:17:31.308475+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.504024505615234,
+      "lon": 19.13671112060547,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-25T01:17:31.308534+02:00",
+      "kulcs": "SKR820",
+      "rendszam": "SKR820",
+      "vehicle_id": "7706",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5003662109375,
+      "lon": 19.110607147216797,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
