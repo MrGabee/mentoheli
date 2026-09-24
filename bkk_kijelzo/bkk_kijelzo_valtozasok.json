@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T03:07:51.063532+02:00",
+  "frissitve": "2026-09-24T03:08:21.887246+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:13:48.323515+02:00",
-      "kulcs": "MOS258",
-      "rendszam": "MOS258",
-      "vehicle_id": "5711",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "38",
-      "route_id": "0380",
-      "lat": 47.338050842285156,
-      "lon": 19.037925720214844,
-      "elozo_szoveg": "Szigetszentmiklós",
-      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.323579+02:00",
-      "kulcs": "MOS273",
-      "rendszam": "MOS273",
-      "vehicle_id": "5726",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.3931770324707,
-      "lon": 19.223224639892578,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-23T15:13:48.323685+02:00",
-      "kulcs": "MXJ001",
-      "rendszam": "MXJ001",
-      "vehicle_id": "5826",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "275",
-      "route_id": "2750",
-      "lat": 47.501007080078125,
-      "lon": 19.258167266845703,
-      "elozo_szoveg": "Piski utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-09-23T15:13:48.323718+02:00",
       "kulcs": "V2103",
@@ -260000,6 +259961,45 @@
       "lon": 19.027870178222656,
       "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
       "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-24T03:08:21.803322+02:00",
+      "kulcs": "NTM435",
+      "rendszam": "NTM435",
+      "vehicle_id": "6503",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47780990600586,
+      "lon": 19.046371459960938,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-24T03:08:21.803475+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51628875732422,
+      "lon": 19.004077911376953,
+      "elozo_szoveg": "Rózsadomb ► Árpádföld",
+      "uj_szoveg": "Nyugati pályaudvar M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-24T03:08:21.803781+02:00",
+      "kulcs": "T8118",
+      "rendszam": "T8118",
+      "vehicle_id": "7897",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.501914978027344,
+      "lon": 19.115840911865234,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
