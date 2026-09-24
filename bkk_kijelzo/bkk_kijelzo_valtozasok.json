@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-24T04:01:41.399448+02:00",
+  "frissitve": "2026-09-24T04:02:14.776474+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:19:00.729386+02:00",
-      "kulcs": "V1604",
-      "rendszam": "V1604",
-      "vehicle_id": "5278",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.518245697021484,
-      "lon": 19.092430114746094,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
-    {
-      "idopont": "2026-09-23T15:19:00.731533+02:00",
-      "kulcs": "T9015",
-      "rendszam": "T9015",
-      "vehicle_id": "6154",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50400924682617,
-      "lon": 19.13677978515625,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-23T15:19:00.731708+02:00",
-      "kulcs": "NGC156",
-      "rendszam": "NGC156",
-      "vehicle_id": "6205",
-      "vehicle_label": "Budaliget, Géza f. útja",
-      "vonal_szam": "157A",
-      "route_id": "1571",
-      "lat": 47.54299545288086,
-      "lon": 18.96416664123535,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Budaliget, Géza fejedelem útja"
-    },
-    {
-      "idopont": "2026-09-23T15:19:00.731926+02:00",
-      "kulcs": "V2202",
-      "rendszam": "V2202",
-      "vehicle_id": "6219",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.430015563964844,
-      "lon": 19.21582794189453,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-23T15:19:00.732319+02:00",
-      "kulcs": "NGC033",
-      "rendszam": "NGC033",
-      "vehicle_id": "6332",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.486820220947266,
-      "lon": 18.95492172241211,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-23T15:19:00.732581+02:00",
       "kulcs": "NNE055",
@@ -260000,6 +259935,71 @@
       "lon": 19.135337829589844,
       "elozo_szoveg": "Csáktornya park",
       "uj_szoveg": "Bosnyák tér"
+    },
+    {
+      "idopont": "2026-09-24T04:02:14.687654+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44196701049805,
+      "lon": 19.093305587768555,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-24T04:02:14.687751+02:00",
+      "kulcs": "V2002",
+      "rendszam": "V2002",
+      "vehicle_id": "2002",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50728225708008,
+      "lon": 19.0250301361084,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-24T04:02:14.690134+02:00",
+      "kulcs": "V2226",
+      "rendszam": "V2226",
+      "vehicle_id": "6437",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "19",
+      "route_id": "3190",
+      "lat": 47.548892974853516,
+      "lon": 19.029733657836914,
+      "elozo_szoveg": "Gubacsi út / Határ út",
+      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-24T04:02:14.690224+02:00",
+      "kulcs": "PDB727",
+      "rendszam": "PDB727",
+      "vehicle_id": "7053",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507469177246094,
+      "lon": 19.02509307861328,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-24T04:02:14.690398+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "194",
+      "route_id": "1940",
+      "lat": 47.427085876464844,
+      "lon": 19.172258377075195,
+      "elozo_szoveg": "Ganztelep, Mednyánszky utca",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
