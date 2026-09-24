@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:27:34.131569+02:00",
+  "frissitve": "2026-09-25T01:28:03.696305+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T14:59:31.247474+02:00",
-      "kulcs": "T0237",
-      "rendszam": "T0237",
-      "vehicle_id": "4219",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.504058837890625,
-      "lon": 19.136789321899414,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-24T14:59:31.247822+02:00",
-      "kulcs": "V1343",
-      "rendszam": "V1343",
-      "vehicle_id": "4446",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.423099517822266,
-      "lon": 19.124122619628906,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-24T14:59:31.247902+02:00",
-      "kulcs": "V1360",
-      "rendszam": "V1360",
-      "vehicle_id": "4461",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.497222900390625,
-      "lon": 19.055795669555664,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
     {
       "idopont": "2026-09-24T14:59:31.248064+02:00",
       "kulcs": "V1451",
@@ -260000,6 +259961,45 @@
       "lon": 19.047000885009766,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-25T01:28:03.639925+02:00",
+      "kulcs": "V2011",
+      "rendszam": "V2011",
+      "vehicle_id": "2011",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50728988647461,
+      "lon": 19.02494239807129,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-25T01:28:03.641393+02:00",
+      "kulcs": "NTP542",
+      "rendszam": "NTP542",
+      "vehicle_id": "6518",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.50012969970703,
+      "lon": 19.024166107177734,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-25T01:28:03.641494+02:00",
+      "kulcs": "PKN616",
+      "rendszam": "PKN616",
+      "vehicle_id": "7205",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48698043823242,
+      "lon": 19.023216247558594,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
     }
   ]
 }
