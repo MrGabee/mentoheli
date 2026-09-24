@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-25T00:24:59.645543+02:00",
+  "frissitve": "2026-09-25T00:25:33.569280+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T14:53:46.367109+02:00",
-      "kulcs": "RCT269",
-      "rendszam": "RCT269",
-      "vehicle_id": "7320",
-      "vehicle_label": "Színes utca",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.4909553527832,
-      "lon": 19.282896041870117,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Színes utca"
-    },
-    {
-      "idopont": "2026-09-24T14:53:46.367368+02:00",
-      "kulcs": "T8107",
-      "rendszam": "T8107",
-      "vehicle_id": "7344",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.4813346862793,
-      "lon": 19.136629104614258,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-24T14:53:46.367466+02:00",
       "kulcs": "T9103",
@@ -260000,6 +259974,32 @@
       "lon": 19.022977828979492,
       "elozo_szoveg": "Baross Gábor-telep",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-25T00:25:33.473573+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.507083892822266,
+      "lon": 18.9215030670166,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-25T00:25:33.476117+02:00",
+      "kulcs": "NBW008",
+      "rendszam": "NBW008",
+      "vehicle_id": "5978",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48744201660156,
+      "lon": 19.023836135864258,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
     }
   ]
 }
