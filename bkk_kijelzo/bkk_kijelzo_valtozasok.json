@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-24T03:38:29.722308+02:00",
+  "frissitve": "2026-09-24T03:39:03.362595+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:16:26.519689+02:00",
-      "kulcs": "V2005",
-      "rendszam": "V2005",
-      "vehicle_id": "2005",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.477420806884766,
-      "lon": 19.048765182495117,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-23T15:16:26.519710+02:00",
-      "kulcs": "V2007",
-      "rendszam": "V2007",
-      "vehicle_id": "2007",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.508941650390625,
-      "lon": 19.027725219726562,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-09-23T15:16:26.519960+02:00",
       "kulcs": "V2040",
@@ -260000,6 +259974,32 @@
       "lon": 19.04132652282715,
       "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
       "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-24T03:39:03.281267+02:00",
+      "kulcs": "MUT890",
+      "rendszam": "MUT890",
+      "vehicle_id": "5943",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53424072265625,
+      "lon": 19.08265495300293,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-24T03:39:03.281706+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49891662597656,
+      "lon": 19.051006317138672,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
