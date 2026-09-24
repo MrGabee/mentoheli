@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:56:09.274694+02:00",
+  "frissitve": "2026-09-24T02:56:38.999890+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:11:59.608504+02:00",
-      "kulcs": "T8016",
-      "rendszam": "T8016",
-      "vehicle_id": "6136",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50187683105469,
-      "lon": 19.082000732421875,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-09-23T15:11:59.609107+02:00",
-      "kulcs": "T9004",
-      "rendszam": "T9004",
-      "vehicle_id": "6143",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50383758544922,
-      "lon": 19.137020111083984,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-23T15:11:59.609222+02:00",
-      "kulcs": "AELD565",
-      "rendszam": "AELD565",
-      "vehicle_id": "618",
-      "vehicle_label": "Péterimajor, Víztorony tér",
-      "vonal_szam": "54",
-      "route_id": "0540",
-      "lat": 47.47999572753906,
-      "lon": 19.067424774169922,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Péterimajor, Víztorony tér"
-    },
     {
       "idopont": "2026-09-23T15:11:59.609729+02:00",
       "kulcs": "NLE854",
@@ -260000,6 +259961,45 @@
       "lon": 19.024742126464844,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-24T02:56:38.915570+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51249313354492,
+      "lon": 19.057235717773438,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-24T02:56:38.916675+02:00",
+      "kulcs": "PDB727",
+      "rendszam": "PDB727",
+      "vehicle_id": "7053",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.50440979003906,
+      "lon": 19.02498435974121,
+      "elozo_szoveg": "Széll Kálmán tér M ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-09-24T02:56:38.917262+02:00",
+      "kulcs": "AOIM044",
+      "rendszam": "AOIM044",
+      "vehicle_id": "965",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.388919830322266,
+      "lon": 18.958505630493164,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
