@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:28:04.514330+02:00",
+  "frissitve": "2026-09-24T02:28:37.565430+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:09:24.048650+02:00",
-      "kulcs": "AADR715",
-      "rendszam": "AADR715",
-      "vehicle_id": "183",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.532161712646484,
-      "lon": 19.067842483520508,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-23T15:09:24.048693+02:00",
-      "kulcs": "AADR721",
-      "rendszam": "AADR721",
-      "vehicle_id": "190",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49764633178711,
-      "lon": 19.05304718017578,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-23T15:09:24.048735+02:00",
-      "kulcs": "MOS289",
-      "rendszam": "MOS289",
-      "vehicle_id": "196",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.47760772705078,
-      "lon": 19.343101501464844,
-      "elozo_szoveg": "Pécel, Kun József utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-23T15:09:24.048817+02:00",
-      "kulcs": "V2008",
-      "rendszam": "V2008",
-      "vehicle_id": "2008",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.47407531738281,
-      "lon": 19.047374725341797,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-23T15:09:24.048896+02:00",
       "kulcs": "V2019",
@@ -260000,6 +259948,58 @@
       "lon": 19.047286987304688,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-24T02:28:37.457252+02:00",
+      "kulcs": "V2002",
+      "rendszam": "V2002",
+      "vehicle_id": "2002",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507301330566406,
+      "lon": 19.02518653869629,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-24T02:28:37.460267+02:00",
+      "kulcs": "MOS281",
+      "rendszam": "MOS281",
+      "vehicle_id": "5734",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.50162887573242,
+      "lon": 19.1226806640625,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-09-24T02:28:37.460643+02:00",
+      "kulcs": "RVY601",
+      "rendszam": "RVY601",
+      "vehicle_id": "7430",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44267272949219,
+      "lon": 19.093156814575195,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-24T02:28:37.460829+02:00",
+      "kulcs": "T8110",
+      "rendszam": "T8110",
+      "vehicle_id": "7889",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50039291381836,
+      "lon": 19.054792404174805,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
