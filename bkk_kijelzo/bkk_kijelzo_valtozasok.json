@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-24T02:03:52.561620+02:00",
+  "frissitve": "2026-09-24T02:04:24.980492+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-23T15:07:04.612069+02:00",
-      "kulcs": "V1461",
-      "rendszam": "V1461",
-      "vehicle_id": "4531",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49753189086914,
-      "lon": 19.055248260498047,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-23T15:07:04.613012+02:00",
-      "kulcs": "V1576",
-      "rendszam": "V1576",
-      "vehicle_id": "4628",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.49751281738281,
-      "lon": 19.082685470581055,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-09-23T15:07:04.613117+02:00",
-      "kulcs": "V4005",
-      "rendszam": "V4005",
-      "vehicle_id": "4694",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47572326660156,
-      "lon": 19.047056198120117,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-09-23T15:07:04.613631+02:00",
       "kulcs": "V4210",
@@ -260000,6 +259961,45 @@
       "lon": 19.18340301513672,
       "elozo_szoveg": "Pestszentimre vasútállomás",
       "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-09-24T02:04:24.891017+02:00",
+      "kulcs": "AADI652",
+      "rendszam": "AADI652",
+      "vehicle_id": "151",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509620666503906,
+      "lon": 19.128738403320312,
+      "elozo_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-24T02:04:24.891261+02:00",
+      "kulcs": "AAGL256",
+      "rendszam": "AAGL256",
+      "vehicle_id": "256",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.456443786621094,
+      "lon": 18.9057559967041,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-24T02:04:24.894869+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.432212829589844,
+      "lon": 19.261144638061523,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
     }
   ]
 }
