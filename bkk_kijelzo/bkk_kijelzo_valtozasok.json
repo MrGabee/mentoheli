@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:28:46.961774+02:00",
+  "frissitve": "2026-09-25T03:29:25.721942+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:10:58.259180+02:00",
-      "kulcs": "V4045",
-      "rendszam": "V4045",
-      "vehicle_id": "4734",
-      "vehicle_label": "Lehel u. / Róbert K. krt.",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.533782958984375,
-      "lon": 19.06511688232422,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Lehel utca / Róbert Károly körút"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.259217+02:00",
-      "kulcs": "V4060",
-      "rendszam": "V4060",
-      "vehicle_id": "4749",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.51530075073242,
-      "lon": 19.00031089782715,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Márton Áron tér"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.260436+02:00",
-      "kulcs": "V4160",
-      "rendszam": "V4160",
-      "vehicle_id": "4848",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.492210388183594,
-      "lon": 19.140796661376953,
-      "elozo_szoveg": "Salgótarjáni utca ► Blaha Lujza tér M",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-09-24T15:10:58.260518+02:00",
       "kulcs": "AAMH646",
@@ -260000,6 +259961,45 @@
       "lon": 19.159496307373047,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-25T03:29:25.637663+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.4974479675293,
+      "lon": 19.055683135986328,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Deák F. tér (City centre)"
+    },
+    {
+      "idopont": "2026-09-25T03:29:25.638162+02:00",
+      "kulcs": "RVY712",
+      "rendszam": "RVY712",
+      "vehicle_id": "7461",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.4327507019043,
+      "lon": 19.261573791503906,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-25T03:29:25.638215+02:00",
+      "kulcs": "SKR730",
+      "rendszam": "SKR730",
+      "vehicle_id": "7679",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46507263183594,
+      "lon": 19.127323150634766,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
     }
   ]
 }
