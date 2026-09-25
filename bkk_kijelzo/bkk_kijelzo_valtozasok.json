@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-25T02:18:01.746767+02:00",
+  "frissitve": "2026-09-25T02:18:42.182387+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:03:52.152836+02:00",
-      "kulcs": "V2201",
-      "rendszam": "V2201",
-      "vehicle_id": "6218",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.465824127197266,
-      "lon": 19.021995544433594,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-24T15:03:52.153539+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50230026245117,
-      "lon": 19.03531265258789,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-24T15:03:52.154441+02:00",
-      "kulcs": "NTM428",
-      "rendszam": "NTM428",
-      "vehicle_id": "6496",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250",
-      "route_id": "2500",
-      "lat": 47.42978286743164,
-      "lon": 19.02182388305664,
-      "elozo_szoveg": "Regényes utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-24T15:03:52.154477+02:00",
-      "kulcs": "NTM430",
-      "rendszam": "NTM430",
-      "vehicle_id": "6498",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.436607360839844,
-      "lon": 19.039552688598633,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-09-24T15:03:52.154638+02:00",
-      "kulcs": "NWB352",
-      "rendszam": "NWB352",
-      "vehicle_id": "6532",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.46291732788086,
-      "lon": 19.14923095703125,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-09-24T15:03:52.154658+02:00",
       "kulcs": "NWB353",
@@ -260000,6 +259935,71 @@
       "lon": 19.05401039123535,
       "elozo_szoveg": "Békásmegyer H",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-25T02:18:42.112730+02:00",
+      "kulcs": "V2009",
+      "rendszam": "V2009",
+      "vehicle_id": "2009",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50840377807617,
+      "lon": 19.027135848999023,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-25T02:18:42.112763+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.477294921875,
+      "lon": 19.04839324951172,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-25T02:18:42.115034+02:00",
+      "kulcs": "AADI577",
+      "rendszam": "AADI577",
+      "vehicle_id": "68",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.546241760253906,
+      "lon": 19.02941131591797,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-25T02:18:42.115305+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.501285552978516,
+      "lon": 19.107778549194336,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-09-25T02:18:42.115329+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51071548461914,
+      "lon": 19.097259521484375,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
     }
   ]
 }
