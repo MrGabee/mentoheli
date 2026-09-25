@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:22:38.689810+02:00",
+  "frissitve": "2026-09-25T03:23:12.434102+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:09:33.932233+02:00",
-      "kulcs": "AOFL194",
-      "rendszam": "AOFL194",
-      "vehicle_id": "778",
-      "vehicle_label": "Madárhegy",
-      "vonal_szam": "253",
-      "route_id": "2530",
-      "lat": 47.46428298950195,
-      "lon": 19.018566131591797,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Madárhegy"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.932277+02:00",
-      "kulcs": "SKN821",
-      "rendszam": "SKN821",
-      "vehicle_id": "7789",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.533729553222656,
-      "lon": 18.993370056152344,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.932575+02:00",
-      "kulcs": "STZ866",
-      "rendszam": "STZ866",
-      "vehicle_id": "7821",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "287",
-      "route_id": "2870",
-      "lat": 47.40573501586914,
-      "lon": 19.013816833496094,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.932776+02:00",
-      "kulcs": "SXE203",
-      "rendszam": "SXE203",
-      "vehicle_id": "7840",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "255E",
-      "route_id": "2555",
-      "lat": 47.41322326660156,
-      "lon": 19.201112747192383,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.933067+02:00",
-      "kulcs": "T9134",
-      "rendszam": "T9134",
-      "vehicle_id": "7873",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.4969367980957,
-      "lon": 19.056642532348633,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-09-24T15:09:33.933156+02:00",
       "kulcs": "T9141",
@@ -260000,6 +259935,71 @@
       "lon": 19.151098251342773,
       "elozo_szoveg": "Újpalota",
       "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-25T03:23:12.332402+02:00",
+      "kulcs": "AAGL254",
+      "rendszam": "AAGL254",
+      "vehicle_id": "254",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50705337524414,
+      "lon": 18.921512603759766,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-25T03:23:12.334623+02:00",
+      "kulcs": "MUT896",
+      "rendszam": "MUT896",
+      "vehicle_id": "5949",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4515495300293,
+      "lon": 19.1586856842041,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-25T03:23:12.334820+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.550262451171875,
+      "lon": 19.042043685913086,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-25T03:23:12.334847+02:00",
+      "kulcs": "PKN602",
+      "rendszam": "PKN602",
+      "vehicle_id": "7191",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5093879699707,
+      "lon": 19.096145629882812,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-25T03:23:12.335367+02:00",
+      "kulcs": "415 037",
+      "rendszam": "415 037",
+      "vehicle_id": "945514150370",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.181671142578125,
+      "lon": 18.565820693969727,
+      "elozo_szoveg": "Székesfehérvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
