@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:33:37.843540+02:00",
+  "frissitve": "2026-09-25T03:34:05.538140+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:10:58.262743+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49562072753906,
-      "lon": 19.0627498626709,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.262824+02:00",
-      "kulcs": "T9006",
-      "rendszam": "T9006",
-      "vehicle_id": "6145",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50401306152344,
-      "lon": 19.136768341064453,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.262994+02:00",
-      "kulcs": "AELD567",
-      "rendszam": "AELD567",
-      "vehicle_id": "620",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.467926025390625,
-      "lon": 19.075775146484375,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-09-24T15:10:58.263157+02:00",
       "kulcs": "NGC143",
@@ -260000,6 +259961,45 @@
       "lon": 19.014129638671875,
       "elozo_szoveg": "Budatétény",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-25T03:34:05.485947+02:00",
+      "kulcs": "V2271",
+      "rendszam": "V2271",
+      "vehicle_id": "569",
+      "vehicle_label": "Mexikói út M",
+      "vonal_szam": "3",
+      "route_id": "3030",
+      "lat": 47.456573486328125,
+      "lon": 19.113780975341797,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Mexikói út M"
+    },
+    {
+      "idopont": "2026-09-25T03:34:05.486316+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.462730407714844,
+      "lon": 19.005943298339844,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-25T03:34:05.486598+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59874725341797,
+      "lon": 19.121601104736328,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Kőbánya-Kispest M"
     }
   ]
 }
