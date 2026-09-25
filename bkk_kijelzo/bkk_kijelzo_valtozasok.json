@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:53:34.576867+02:00",
+  "frissitve": "2026-09-25T03:54:02.098435+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:12:20.337989+02:00",
-      "kulcs": "861-631-862",
-      "rendszam": "861-631-862",
-      "vehicle_id": "905516568615-905536466311-905516568623",
-      "vehicle_label": "Tököl",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.46599578857422,
-      "lon": 19.077333450317383,
-      "elozo_szoveg": "Közvágóhíd",
-      "uj_szoveg": "Tököl"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.338657+02:00",
-      "kulcs": "918061937234",
-      "rendszam": "918061937234",
-      "vehicle_id": "918061937234",
-      "vehicle_label": "Zalaegerszeg",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.46363830566406,
-      "lon": 19.021099090576172,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Zalaegerszeg"
-    },
     {
       "idopont": "2026-09-24T15:12:20.339420+02:00",
       "kulcs": "415 061",
@@ -260000,6 +259974,32 @@
       "lon": 19.094194412231445,
       "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
       "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-09-25T03:54:02.011549+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50406265258789,
+      "lon": 19.136730194091797,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-25T03:54:02.011654+02:00",
+      "kulcs": "AAGL254",
+      "rendszam": "AAGL254",
+      "vehicle_id": "254",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.49892044067383,
+      "lon": 19.05070686340332,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
     }
   ]
 }
