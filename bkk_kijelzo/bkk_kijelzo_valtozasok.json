@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-25T02:14:22.547815+02:00",
+  "frissitve": "2026-09-25T02:14:56.547215+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:03:52.147379+02:00",
-      "kulcs": "FKU912",
-      "rendszam": "FKU912",
-      "vehicle_id": "3068",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.51502990722656,
-      "lon": 19.18482208251953,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Rákosi út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-24T15:03:52.147650+02:00",
-      "kulcs": "FLR739",
-      "rendszam": "FLR739",
-      "vehicle_id": "3153",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.50259017944336,
-      "lon": 19.136228561401367,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-24T15:03:52.147971+02:00",
-      "kulcs": "LOV864",
-      "rendszam": "LOV864",
-      "vehicle_id": "3656",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46452713012695,
-      "lon": 19.126689910888672,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-09-24T15:03:52.148109+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57769775390625,
-      "lon": 19.10665512084961,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
     {
       "idopont": "2026-09-24T15:03:52.148302+02:00",
       "kulcs": "AAHY847",
@@ -260000,6 +259948,58 @@
       "lon": 19.059749603271484,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-25T02:14:56.483934+02:00",
+      "kulcs": "AAMH631",
+      "rendszam": "AAMH631",
+      "vehicle_id": "474",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497798919677734,
+      "lon": 19.05477523803711,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-25T02:14:56.484078+02:00",
+      "kulcs": "MUT896",
+      "rendszam": "MUT896",
+      "vehicle_id": "5949",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.5984992980957,
+      "lon": 19.12129020690918,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-25T02:14:56.484243+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.463741302490234,
+      "lon": 19.130117416381836,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-25T02:14:56.484608+02:00",
+      "kulcs": "AOFL243",
+      "rendszam": "AOFL243",
+      "vehicle_id": "831",
+      "vehicle_label": "Szarvas csárda tér",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.439208984375,
+      "lon": 19.188369750976562,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Pestszentimre"
     }
   ]
 }
