@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:43:24.213406+02:00",
+  "frissitve": "2026-09-25T03:43:58.092336+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:12:20.323676+02:00",
-      "kulcs": "V4072",
-      "rendszam": "V4072",
-      "vehicle_id": "4761",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.46607208251953,
-      "lon": 19.02193832397461,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.323709+02:00",
-      "kulcs": "V4086",
-      "rendszam": "V4086",
-      "vehicle_id": "4775",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.500938415527344,
-      "lon": 19.108095169067383,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.323812+02:00",
-      "kulcs": "AADI589",
-      "rendszam": "AADI589",
-      "vehicle_id": "48",
-      "vehicle_label": "Fácános tér",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.507476806640625,
-      "lon": 19.024948120117188,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fácános tér"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.323902+02:00",
-      "kulcs": "V4130",
-      "rendszam": "V4130",
-      "vehicle_id": "4818",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "1A",
-      "route_id": "3011",
-      "lat": 47.54818344116211,
-      "lon": 19.030607223510742,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Lehel utca / Róbert Károly körút"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.324216+02:00",
-      "kulcs": "AAMH651",
-      "rendszam": "AAMH651",
-      "vehicle_id": "494",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49747085571289,
-      "lon": 19.05568504333496,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Deák F. tér (City centre)"
-    },
     {
       "idopont": "2026-09-24T15:12:20.324250+02:00",
       "kulcs": "AAMH652",
@@ -260000,6 +259935,71 @@
       "lon": 19.15318489074707,
       "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-25T03:43:58.000904+02:00",
+      "kulcs": "AADI562",
+      "rendszam": "AADI562",
+      "vehicle_id": "41",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.501773834228516,
+      "lon": 19.135562896728516,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-25T03:43:58.000951+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "20E",
+      "route_id": "0205",
+      "lat": 47.577816009521484,
+      "lon": 19.114768981933594,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-09-25T03:43:58.002098+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60264205932617,
+      "lon": 19.066064834594727,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-09-25T03:43:58.002571+02:00",
+      "kulcs": "415 031",
+      "rendszam": "415 031",
+      "vehicle_id": "945514150313",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.73558044433594,
+      "lon": 18.178730010986328,
+      "elozo_szoveg": "Komárom",
+      "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-09-25T03:43:58.002609+02:00",
+      "kulcs": "415 056",
+      "rendszam": "415 056",
+      "vehicle_id": "945514150560",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G40",
+      "route_id": "G40",
+      "lat": 46.416351318359375,
+      "lon": 18.25312042236328,
+      "elozo_szoveg": "Dombóvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
