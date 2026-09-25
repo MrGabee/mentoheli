@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-26T00:12:42.831311+02:00",
+  "frissitve": "2026-09-26T00:13:14.962599+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T14:52:00.278368+02:00",
-      "kulcs": "415 033",
-      "rendszam": "415 033",
-      "vehicle_id": "945514150339",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S12",
-      "route_id": "S12",
-      "lat": 47.52711868286133,
-      "lon": 18.320240020751953,
-      "elozo_szoveg": "Oroszlány",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-25T14:52:00.278832+02:00",
-      "kulcs": "815 007",
-      "rendszam": "815 007",
-      "vehicle_id": "945518150079",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.52608871459961,
-      "lon": 19.090070724487305,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
-    {
-      "idopont": "2026-09-25T14:52:00.279448+02:00",
-      "kulcs": "AOJM860",
-      "rendszam": "AOJM860",
-      "vehicle_id": "983",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.46807098388672,
-      "lon": 19.07564353942871,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-25T14:52:00.279541+02:00",
-      "kulcs": "AOJM868",
-      "rendszam": "AOJM868",
-      "vehicle_id": "991",
-      "vehicle_label": "Csepel, Határ utca",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.48394012451172,
-      "lon": 19.127498626708984,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Csepel, Határ utca"
-    },
-    {
-      "idopont": "2026-09-25T14:53:21.439400+02:00",
-      "kulcs": "AADR704",
-      "rendszam": "AADR704",
-      "vehicle_id": "172",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "282E",
-      "route_id": "2825",
-      "lat": 47.46299362182617,
-      "lon": 19.14873695373535,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
     {
       "idopont": "2026-09-25T14:53:21.439460+02:00",
       "kulcs": "AADR707",
@@ -260000,6 +259935,71 @@
       "lon": 19.1414852142334,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-26T00:13:14.863394+02:00",
+      "kulcs": "V2040",
+      "rendszam": "V2040",
+      "vehicle_id": "2040",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.50739288330078,
+      "lon": 19.024038314819336,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-26T00:13:14.870384+02:00",
+      "kulcs": "FLR713",
+      "rendszam": "FLR713",
+      "vehicle_id": "3127",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49921798706055,
+      "lon": 19.23693084716797,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-09-26T00:13:14.870598+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49881362915039,
+      "lon": 19.050127029418945,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-26T00:13:14.870634+02:00",
+      "kulcs": "PDB703",
+      "rendszam": "PDB703",
+      "vehicle_id": "7029",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56768798828125,
+      "lon": 19.12721824645996,
+      "elozo_szoveg": "Göncz Árpád városközpont M",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-26T00:13:14.870756+02:00",
+      "kulcs": "SGY986",
+      "rendszam": "SGY986",
+      "vehicle_id": "7666",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47541809082031,
+      "lon": 19.0407657623291,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
