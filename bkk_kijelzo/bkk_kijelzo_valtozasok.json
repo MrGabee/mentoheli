@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:25:31.647504+02:00",
+  "frissitve": "2026-09-25T03:26:13.685574+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:10:58.255450+02:00",
-      "kulcs": "V2029",
-      "rendszam": "V2029",
-      "vehicle_id": "2029",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.507301330566406,
-      "lon": 19.02535629272461,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.255521+02:00",
-      "kulcs": "V2039",
-      "rendszam": "V2039",
-      "vehicle_id": "2039",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4",
-      "route_id": "3040",
-      "lat": 47.47405242919922,
-      "lon": 19.047264099121094,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.255577+02:00",
-      "kulcs": "AADR760",
-      "rendszam": "AADR760",
-      "vehicle_id": "209",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.511566162109375,
-      "lon": 19.056537628173828,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Margitsziget ► Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-09-24T15:10:58.255883+02:00",
       "kulcs": "FKU909",
@@ -260000,6 +259961,45 @@
       "lon": 19.59235954284668,
       "elozo_szoveg": "Gödöllő",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-25T03:26:13.613470+02:00",
+      "kulcs": "NWB355",
+      "rendszam": "NWB355",
+      "vehicle_id": "6535",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.508052825927734,
+      "lon": 19.027545928955078,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-25T03:26:13.613820+02:00",
+      "kulcs": "SKR824",
+      "rendszam": "SKR824",
+      "vehicle_id": "7710",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59784698486328,
+      "lon": 19.053876876831055,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-25T03:26:13.614179+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51428985595703,
+      "lon": 19.10338592529297,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
