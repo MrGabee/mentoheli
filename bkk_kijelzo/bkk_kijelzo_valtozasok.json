@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:54:02.098435+02:00",
+  "frissitve": "2026-09-25T03:54:33.972475+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:12:20.339420+02:00",
-      "kulcs": "415 061",
-      "rendszam": "415 061",
-      "vehicle_id": "945514150610",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.3708381652832,
-      "lon": 19.38932991027832,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.339635+02:00",
-      "kulcs": "415 116",
-      "rendszam": "415 116",
-      "vehicle_id": "945514151162",
-      "vehicle_label": "Monor",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.51084899902344,
-      "lon": 19.101850509643555,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Monor"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.339958+02:00",
-      "kulcs": "AADI598",
-      "rendszam": "AADI598",
-      "vehicle_id": "95",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.430355072021484,
-      "lon": 19.03636360168457,
-      "elozo_szoveg": "Savoyai Jenő tér (Törley tér)",
-      "uj_szoveg": "Regényes utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-24T15:12:20.340372+02:00",
       "kulcs": "AOJM864",
@@ -260000,6 +259961,45 @@
       "lon": 19.05070686340332,
       "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-25T03:54:33.887880+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Göncz Árpád városkp. M",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.467952728271484,
+      "lon": 19.075777053833008,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Göncz Árpád városközpont M"
+    },
+    {
+      "idopont": "2026-09-25T03:54:33.888047+02:00",
+      "kulcs": "SKN821",
+      "rendszam": "SKN821",
+      "vehicle_id": "7789",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.53643798828125,
+      "lon": 19.10719871520996,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-25T03:54:33.888137+02:00",
+      "kulcs": "1109-755-1110-1107-754-1108",
+      "rendszam": "1109-755-1110-1107-754-1108",
+      "vehicle_id": "905516561099-905536467558-905516561107-905516561073-905536467541-905516561081",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.660377502441406,
+      "lon": 19.074777603149414,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
     }
   ]
 }
