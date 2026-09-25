@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T04:18:56.129081+02:00",
+  "frissitve": "2026-09-25T04:19:32.762977+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:17:41.113147+02:00",
-      "kulcs": "RTA297",
-      "rendszam": "RTA297",
-      "vehicle_id": "7413",
-      "vehicle_label": "Máriaremete",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.54441833496094,
-      "lon": 18.96351432800293,
-      "elozo_szoveg": "Máriaremete",
-      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-24T15:17:41.113423+02:00",
-      "kulcs": "RVY709",
-      "rendszam": "RVY709",
-      "vehicle_id": "7458",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41693878173828,
-      "lon": 19.13129997253418,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-24T15:17:41.113833+02:00",
-      "kulcs": "RVY735",
-      "rendszam": "RVY735",
-      "vehicle_id": "7633",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.38238525390625,
-      "lon": 19.22977638244629,
-      "elozo_szoveg": "Vecsési út ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-09-24T15:17:41.113896+02:00",
       "kulcs": "RVY742",
@@ -260000,6 +259961,45 @@
       "lon": 19.102724075317383,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-25T04:19:32.620032+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "284E",
+      "route_id": "2845",
+      "lat": 47.399139404296875,
+      "lon": 19.205610275268555,
+      "elozo_szoveg": "Pestszentimre, Benjámin utca",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-25T04:19:32.622137+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.598506927490234,
+      "lon": 19.054298400878906,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-25T04:19:32.623041+02:00",
+      "kulcs": "PDN602",
+      "rendszam": "PDN602",
+      "vehicle_id": "7074",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "152",
+      "route_id": "1520",
+      "lat": 47.38896560668945,
+      "lon": 19.100767135620117,
+      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
+      "uj_szoveg": "Csepel, Szent Imre tér"
     }
   ]
 }
