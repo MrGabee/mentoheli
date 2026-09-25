@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-26T00:39:04.789244+02:00",
+  "frissitve": "2026-09-26T00:39:37.768928+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T14:54:51.085240+02:00",
-      "kulcs": "NBW013",
-      "rendszam": "NBW013",
-      "vehicle_id": "5983",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.463069915771484,
-      "lon": 19.148778915405273,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-09-25T14:54:51.085385+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50197219848633,
-      "lon": 19.081960678100586,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-09-25T14:54:51.085406+02:00",
-      "kulcs": "T9001",
-      "rendszam": "T9001",
-      "vehicle_id": "6140",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50389862060547,
-      "lon": 19.136859893798828,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-25T14:54:51.085433+02:00",
-      "kulcs": "T9005",
-      "rendszam": "T9005",
-      "vehicle_id": "6144",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.500186920166016,
-      "lon": 19.107667922973633,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-09-25T14:54:51.085668+02:00",
-      "kulcs": "NGC158",
-      "rendszam": "NGC158",
-      "vehicle_id": "6208",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.598487854003906,
-      "lon": 19.054241180419922,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
     {
       "idopont": "2026-09-25T14:54:51.086224+02:00",
       "kulcs": "NGC020",
@@ -260000,6 +259935,71 @@
       "lon": 19.160959243774414,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-26T00:39:37.675500+02:00",
+      "kulcs": "AADR712",
+      "rendszam": "AADR712",
+      "vehicle_id": "180",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42265319824219,
+      "lon": 19.079160690307617,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-26T00:39:37.682565+02:00",
+      "kulcs": "FKU932",
+      "rendszam": "FKU932",
+      "vehicle_id": "3088",
+      "vehicle_label": "Centenáriumi lakótelep",
+      "vonal_szam": "44",
+      "route_id": "0440",
+      "lat": 47.503700256347656,
+      "lon": 19.14093589782715,
+      "elozo_szoveg": "Veres Péter út ► Centenáriumi lakótelep",
+      "uj_szoveg": "Centenáriumi lakótelep"
+    },
+    {
+      "idopont": "2026-09-26T00:39:37.682634+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.560401916503906,
+      "lon": 19.090866088867188,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-26T00:39:37.682665+02:00",
+      "kulcs": "FLR747",
+      "rendszam": "FLR747",
+      "vehicle_id": "3161",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.49960708618164,
+      "lon": 19.08514976501465,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-26T00:39:37.682836+02:00",
+      "kulcs": "NNE055",
+      "rendszam": "NNE055",
+      "vehicle_id": "6451",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43888473510742,
+      "lon": 19.103206634521484,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
     }
   ]
 }
