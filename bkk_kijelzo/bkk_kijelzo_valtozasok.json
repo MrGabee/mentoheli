@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-25T04:16:38.395749+02:00",
+  "frissitve": "2026-09-25T04:17:17.443586+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:17:41.107843+02:00",
-      "kulcs": "V4253",
-      "rendszam": "V4253",
-      "vehicle_id": "4912",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.59342956542969,
-      "lon": 19.120525360107422,
-      "elozo_szoveg": "Káp.megyer, Megyeri út",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-09-24T15:17:41.107967+02:00",
-      "kulcs": "V4310",
-      "rendszam": "V4310",
-      "vehicle_id": "4969",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.476566314697266,
-      "lon": 19.047170639038086,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-24T15:17:41.108211+02:00",
-      "kulcs": "V1601",
-      "rendszam": "V1601",
-      "vehicle_id": "5095",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49576950073242,
-      "lon": 19.072811126708984,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-09-24T15:17:41.108902+02:00",
-      "kulcs": "MPW614",
-      "rendszam": "MPW614",
-      "vehicle_id": "5601",
-      "vehicle_label": "Soroksár, közp. raktárak",
-      "vonal_szam": "66",
-      "route_id": "0660",
-      "lat": 47.465328216552734,
-      "lon": 19.126474380493164,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Soroksár, központi raktárak"
-    },
-    {
-      "idopont": "2026-09-24T15:17:41.109063+02:00",
-      "kulcs": "MOS273",
-      "rendszam": "MOS273",
-      "vehicle_id": "5726",
-      "vehicle_label": "Gyál, Deák Ferenc utca",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.46428298950195,
-      "lon": 19.12693214416504,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Deák Ferenc utca"
-    },
     {
       "idopont": "2026-09-24T15:17:41.109465+02:00",
       "kulcs": "MXJ011",
@@ -260000,6 +259935,71 @@
       "lon": 19.077499389648438,
       "elozo_szoveg": "Közvágóhíd",
       "uj_szoveg": "Ráckeve"
+    },
+    {
+      "idopont": "2026-09-25T04:17:17.351165+02:00",
+      "kulcs": "AAHY849",
+      "rendszam": "AAHY849",
+      "vehicle_id": "410",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "231",
+      "route_id": "2310",
+      "lat": 47.55388641357422,
+      "lon": 19.131656646728516,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-25T04:17:17.351776+02:00",
+      "kulcs": "V2108",
+      "rendszam": "V2108",
+      "vehicle_id": "5836",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.5474739074707,
+      "lon": 19.03123664855957,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-25T04:17:17.352057+02:00",
+      "kulcs": "NWB351",
+      "rendszam": "NWB351",
+      "vehicle_id": "6531",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "98E",
+      "route_id": "0985",
+      "lat": 47.46839141845703,
+      "lon": 19.245159149169922,
+      "elozo_szoveg": "Pesti út",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-25T04:17:17.352151+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598514556884766,
+      "lon": 19.121313095092773,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-09-25T04:17:17.353292+02:00",
+      "kulcs": "AOIM024",
+      "rendszam": "AOIM024",
+      "vehicle_id": "944",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.479644775390625,
+      "lon": 19.05116844177246,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
