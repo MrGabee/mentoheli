@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:35:54.471992+02:00",
+  "frissitve": "2026-09-25T03:36:25.207900+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:10:58.264849+02:00",
-      "kulcs": "T0621",
-      "rendszam": "T0621",
-      "vehicle_id": "713",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50607681274414,
-      "lon": 19.050901412963867,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.265033+02:00",
-      "kulcs": "PHG651",
-      "rendszam": "PHG651",
-      "vehicle_id": "7175",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.5196533203125,
-      "lon": 19.148244857788086,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
-    {
-      "idopont": "2026-09-24T15:10:58.265212+02:00",
-      "kulcs": "PKN619",
-      "rendszam": "PKN619",
-      "vehicle_id": "7208",
-      "vehicle_label": "Felsőcsatári köz",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.49989318847656,
-      "lon": 19.104875564575195,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Felsőcsatári köz"
-    },
     {
       "idopont": "2026-09-24T15:10:58.265459+02:00",
       "kulcs": "RCT316",
@@ -260000,6 +259961,45 @@
       "lon": 19.079256057739258,
       "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
       "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-09-25T03:36:25.122804+02:00",
+      "kulcs": "AADI659",
+      "rendszam": "AADI659",
+      "vehicle_id": "158",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47489929199219,
+      "lon": 19.038890838623047,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-25T03:36:25.125952+02:00",
+      "kulcs": "415 100",
+      "rendszam": "415 100",
+      "vehicle_id": "945514151006",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.43206024169922,
+      "lon": 19.680389404296875,
+      "elozo_szoveg": "Nagykáta",
+      "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-25T03:36:25.126013+02:00",
+      "kulcs": "815 023",
+      "rendszam": "815 023",
+      "vehicle_id": "945518150236",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.8159294128418,
+      "lon": 18.874170303344727,
+      "elozo_szoveg": "Szob",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
