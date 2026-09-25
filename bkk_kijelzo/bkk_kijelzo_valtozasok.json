@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-26T01:56:38.390049+02:00",
+  "frissitve": "2026-09-26T01:57:07.806782+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:03:11.287015+02:00",
-      "kulcs": "AAHY863",
-      "rendszam": "AAHY863",
-      "vehicle_id": "425",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.51998519897461,
-      "lon": 19.09126091003418,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-25T15:03:11.287105+02:00",
-      "kulcs": "T0611",
-      "rendszam": "T0611",
-      "vehicle_id": "4295",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50630569458008,
-      "lon": 19.050695419311523,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-09-25T15:03:11.287615+02:00",
-      "kulcs": "V1400",
-      "rendszam": "V1400",
-      "vehicle_id": "4472",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49751281738281,
-      "lon": 19.055164337158203,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-09-25T15:03:11.287680+02:00",
-      "kulcs": "AAMH607",
-      "rendszam": "AAMH607",
-      "vehicle_id": "450",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.541725158691406,
-      "lon": 19.151084899902344,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
     {
       "idopont": "2026-09-25T15:03:11.287800+02:00",
       "kulcs": "AAMH610",
@@ -260000,6 +259948,58 @@
       "lon": 19.046537399291992,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-26T01:57:07.722233+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.404258728027344,
+      "lon": 19.186546325683594,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vá."
+    },
+    {
+      "idopont": "2026-09-26T01:57:07.722842+02:00",
+      "kulcs": "NNE064",
+      "rendszam": "NNE064",
+      "vehicle_id": "6460",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52528381347656,
+      "lon": 19.037952423095703,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-26T01:57:07.722873+02:00",
+      "kulcs": "PDB701",
+      "rendszam": "PDB701",
+      "vehicle_id": "7027",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59529113769531,
+      "lon": 19.120866775512695,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-26T01:57:07.723341+02:00",
+      "kulcs": "AOIM027",
+      "rendszam": "AOIM027",
+      "vehicle_id": "947",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.40541458129883,
+      "lon": 19.014135360717773,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
