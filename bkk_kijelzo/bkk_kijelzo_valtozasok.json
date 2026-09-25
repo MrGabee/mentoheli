@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:12:20.379064+02:00",
+  "frissitve": "2026-09-25T03:12:53.095536+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:09:33.918618+02:00",
-      "kulcs": "FLR701",
-      "rendszam": "FLR701",
-      "vehicle_id": "3115",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.496891021728516,
-      "lon": 19.069093704223633,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.919903+02:00",
-      "kulcs": "AAHY840",
-      "rendszam": "AAHY840",
-      "vehicle_id": "401",
-      "vehicle_label": "Rákospalota, MEDIMPEX",
-      "vonal_szam": "125",
-      "route_id": "1250",
-      "lat": 47.51932144165039,
-      "lon": 19.112812042236328,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Rákospalota, MEDIMPEX"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.919920+02:00",
-      "kulcs": "AAHY841",
-      "rendszam": "AAHY841",
-      "vehicle_id": "402",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "125",
-      "route_id": "1250",
-      "lat": 47.586830139160156,
-      "lon": 19.133209228515625,
-      "elozo_szoveg": "Rákospalota, MEDIMPEX",
-      "uj_szoveg": "Bosnyák tér"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.920104+02:00",
-      "kulcs": "T0239",
-      "rendszam": "T0239",
-      "vehicle_id": "4221",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51417922973633,
-      "lon": 19.049419403076172,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-24T15:09:33.920290+02:00",
-      "kulcs": "T0616",
-      "rendszam": "T0616",
-      "vehicle_id": "4300",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53650665283203,
-      "lon": 19.10716438293457,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-09-24T15:09:33.920317+02:00",
       "kulcs": "AAHY870",
@@ -260000,6 +259935,71 @@
       "lon": 20.094520568847656,
       "elozo_szoveg": "Szolnok",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-09-25T03:12:53.003714+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50800323486328,
+      "lon": 19.02883529663086,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-09-25T03:12:53.005443+02:00",
+      "kulcs": "MXJ012",
+      "rendszam": "MXJ012",
+      "vehicle_id": "5888",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.405418395996094,
+      "lon": 19.01414680480957,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-25T03:12:53.005504+02:00",
+      "kulcs": "NBW015",
+      "rendszam": "NBW015",
+      "vehicle_id": "5985",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50178146362305,
+      "lon": 19.135581970214844,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-25T03:12:53.005560+02:00",
+      "kulcs": "AELD559",
+      "rendszam": "AELD559",
+      "vehicle_id": "633",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.46144104003906,
+      "lon": 19.130443572998047,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-25T03:12:53.005967+02:00",
+      "kulcs": "SXE203",
+      "rendszam": "SXE203",
+      "vehicle_id": "7840",
+      "vehicle_label": "VÉGÁLLOMÁS Kérjük, ne szálljon fel!",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59879684448242,
+      "lon": 19.121416091918945,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer"
     }
   ]
 }
