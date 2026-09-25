@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-26T01:09:22.922190+02:00",
+  "frissitve": "2026-09-26T01:09:57.564820+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T14:57:44.041177+02:00",
-      "kulcs": "AAGL286",
-      "rendszam": "AAGL286",
-      "vehicle_id": "320",
-      "vehicle_label": "Solymár, Templom tér",
-      "vonal_szam": "64A",
-      "route_id": "0641",
-      "lat": 47.54277801513672,
-      "lon": 18.964218139648438,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Solymár, Templom tér"
-    },
-    {
-      "idopont": "2026-09-25T14:57:44.041267+02:00",
-      "kulcs": "AAGL298",
-      "rendszam": "AAGL298",
-      "vehicle_id": "330",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "63",
-      "route_id": "0630",
-      "lat": 47.57573318481445,
-      "lon": 18.87957763671875,
-      "elozo_szoveg": "Nagykovácsi, Tisza István tér",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-25T14:57:44.041698+02:00",
-      "kulcs": "AAHY827",
-      "rendszam": "AAHY827",
-      "vehicle_id": "388",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.603431701660156,
-      "lon": 19.066919326782227,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
     {
       "idopont": "2026-09-25T14:57:44.041895+02:00",
       "kulcs": "AAHY849",
@@ -260000,6 +259961,45 @@
       "lon": 19.135560989379883,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-26T01:09:57.476403+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.485572814941406,
+      "lon": 19.07098960876465,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-26T01:09:57.477084+02:00",
+      "kulcs": "T9137",
+      "rendszam": "T9137",
+      "vehicle_id": "7876",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "80",
+      "route_id": "4800",
+      "lat": 47.499813079833984,
+      "lon": 19.083328247070312,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-26T01:09:57.477383+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50874328613281,
+      "lon": 19.095369338989258,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
