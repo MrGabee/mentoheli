@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:03:10.924525+02:00",
+  "frissitve": "2026-09-25T03:03:41.541908+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:08:10.188332+02:00",
-      "kulcs": "NTP545",
-      "rendszam": "NTP545",
-      "vehicle_id": "6521",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50075149536133,
-      "lon": 18.96592140197754,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-24T15:08:10.188414+02:00",
-      "kulcs": "NWB364",
-      "rendszam": "NWB364",
-      "vehicle_id": "6544",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.501365661621094,
-      "lon": 19.136003494262695,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Madárdomb"
-    },
-    {
-      "idopont": "2026-09-24T15:08:10.189023+02:00",
-      "kulcs": "PDN620",
-      "rendszam": "PDN620",
-      "vehicle_id": "7091",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46323013305664,
-      "lon": 19.148269653320312,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
     {
       "idopont": "2026-09-24T15:08:10.189139+02:00",
       "kulcs": "VTA641",
@@ -260000,6 +259961,45 @@
       "lon": 19.056406021118164,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-25T03:03:41.462222+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51472473144531,
+      "lon": 19.09711265563965,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-25T03:03:41.462467+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52351760864258,
+      "lon": 18.992950439453125,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-25T03:03:41.463040+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50876235961914,
+      "lon": 19.09534454345703,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
