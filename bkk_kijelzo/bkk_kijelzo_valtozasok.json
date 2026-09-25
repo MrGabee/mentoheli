@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-25T02:49:14.682075+02:00",
+  "frissitve": "2026-09-25T02:49:43.267438+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:06:46.984644+02:00",
-      "kulcs": "PDZ836",
-      "rendszam": "PDZ836",
-      "vehicle_id": "7299",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.52366256713867,
-      "lon": 18.994077682495117,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-24T15:06:46.985245+02:00",
-      "kulcs": "V2253",
-      "rendszam": "V2253",
-      "vehicle_id": "7385",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42678451538086,
-      "lon": 19.039363861083984,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-09-24T15:06:46.985322+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Árpádföld, Bekecs utca",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.52054977416992,
-      "lon": 19.218862533569336,
-      "elozo_szoveg": "Biztató út / Szakács utca",
-      "uj_szoveg": "Malomdomb (áruház)"
-    },
     {
       "idopont": "2026-09-24T15:06:46.985365+02:00",
       "kulcs": "RTA297",
@@ -260000,6 +259961,45 @@
       "lon": 19.05109977722168,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-25T02:49:43.179441+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.503631591796875,
+      "lon": 19.075965881347656,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-25T02:49:43.180148+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48545455932617,
+      "lon": 19.070964813232422,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-25T02:49:43.181781+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.47987365722656,
+      "lon": 19.14143943786621,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
