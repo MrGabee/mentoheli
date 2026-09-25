@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-25T03:42:05.672812+02:00",
+  "frissitve": "2026-09-25T03:42:42.140129+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:12:20.321926+02:00",
-      "kulcs": "AAHY811",
-      "rendszam": "AAHY811",
-      "vehicle_id": "371",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.540008544921875,
-      "lon": 19.04482078552246,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.321943+02:00",
-      "kulcs": "AAHY812",
-      "rendszam": "AAHY812",
-      "vehicle_id": "372",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.60289764404297,
-      "lon": 19.066720962524414,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.321989+02:00",
-      "kulcs": "AAHY819",
-      "rendszam": "AAHY819",
-      "vehicle_id": "380",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.6026611328125,
-      "lon": 19.065990447998047,
-      "elozo_szoveg": "B.megyer, Újmegyeri tér",
-      "uj_szoveg": "Budakalász, Auchan áruház ► Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-09-24T15:12:20.322377+02:00",
-      "kulcs": "AAHY862",
-      "rendszam": "AAHY862",
-      "vehicle_id": "424",
-      "vehicle_label": "Kisszentmihály, Baross u.",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.504764556884766,
-      "lon": 19.136478424072266,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kisszentmihály, Baross utca"
-    },
     {
       "idopont": "2026-09-24T15:12:20.322744+02:00",
       "kulcs": "V1342",
@@ -260000,6 +259948,58 @@
       "lon": 20.043949127197266,
       "elozo_szoveg": "Szeged",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-09-25T03:42:42.049828+02:00",
+      "kulcs": "AOJM881",
+      "rendszam": "AOJM881",
+      "vehicle_id": "1007",
+      "vehicle_label": "Szent László utcai ltp.",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.430809020996094,
+      "lon": 19.0705623626709,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Szent László utcai lakótelep"
+    },
+    {
+      "idopont": "2026-09-25T03:42:42.051564+02:00",
+      "kulcs": "MOS265",
+      "rendszam": "MOS265",
+      "vehicle_id": "5718",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.38761901855469,
+      "lon": 19.2153377532959,
+      "elozo_szoveg": "Gyál, Vecsési út",
+      "uj_szoveg": "Vecsési út ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-25T03:42:42.052807+02:00",
+      "kulcs": "875-638-876",
+      "rendszam": "875-638-876",
+      "vehicle_id": "905516568755-905536466386-905516568763",
+      "vehicle_label": "Ráckeve",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.36121368408203,
+      "lon": 19.087068557739258,
+      "elozo_szoveg": "Közvágóhíd",
+      "uj_szoveg": "Ráckeve"
+    },
+    {
+      "idopont": "2026-09-25T03:42:42.053241+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.52008819580078,
+      "lon": 19.113161087036133,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
