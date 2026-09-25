@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-25T23:50:33.007395+02:00",
+  "frissitve": "2026-09-25T23:51:11.037900+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T14:49:46.367924+02:00",
-      "kulcs": "909-655-910",
-      "rendszam": "909-655-910",
-      "vehicle_id": "905516569092-905536466550-905516569100",
-      "vehicle_label": "Örs vezér tere",
-      "vonal_szam": "H9",
-      "route_id": "H9",
-      "lat": 47.54501724243164,
-      "lon": 19.225370407104492,
-      "elozo_szoveg": "Csömör",
-      "uj_szoveg": "Örs vezér tere"
-    },
-    {
-      "idopont": "2026-09-25T14:49:46.368001+02:00",
-      "kulcs": "957-679-958-959-680-960",
-      "rendszam": "957-679-958-959-680-960",
-      "vehicle_id": "905516569571-905536466790-905516569589-905516569597-905536466808-905516569605",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.47896957397461,
-      "lon": 19.066715240478516,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-09-25T14:49:46.368134+02:00",
-      "kulcs": "AOGL321",
-      "rendszam": "AOGL321",
-      "vehicle_id": "912",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "214",
-      "route_id": "2140",
-      "lat": 47.476539611816406,
-      "lon": 19.043731689453125,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Baross Gábor-telep, Ispiláng utca"
-    },
-    {
-      "idopont": "2026-09-25T14:49:46.368593+02:00",
-      "kulcs": "AOIM021",
-      "rendszam": "AOIM021",
-      "vehicle_id": "941",
-      "vehicle_label": "Csepel, Soroksári rév",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.4621696472168,
-      "lon": 19.148176193237305,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Csepel, Soroksári rév"
-    },
-    {
-      "idopont": "2026-09-25T14:49:46.368624+02:00",
-      "kulcs": "415 008",
-      "rendszam": "415 008",
-      "vehicle_id": "945514150081",
-      "vehicle_label": "Martonvásár",
-      "vonal_szam": "Z30",
-      "route_id": "Z30",
-      "lat": 47.4635009765625,
-      "lon": 19.020830154418945,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Martonvásár"
-    },
     {
       "idopont": "2026-09-25T14:49:46.368680+02:00",
       "kulcs": "415 023",
@@ -260000,6 +259935,71 @@
       "lon": 19.02528953552246,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
+    },
+    {
+      "idopont": "2026-09-25T23:51:10.945194+02:00",
+      "kulcs": "AONW962",
+      "rendszam": "AONW962",
+      "vehicle_id": "1030",
+      "vehicle_label": "Thomán István utca",
+      "vonal_szam": "112",
+      "route_id": "1120",
+      "lat": 47.501163482666016,
+      "lon": 19.08272933959961,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Thomán István utca"
+    },
+    {
+      "idopont": "2026-09-25T23:51:10.946144+02:00",
+      "kulcs": "V4201",
+      "rendszam": "V4201",
+      "vehicle_id": "4861",
+      "vehicle_label": "Budagyöngye",
+      "vonal_szam": "59",
+      "route_id": "3590",
+      "lat": 47.48173141479492,
+      "lon": 18.999120712280273,
+      "elozo_szoveg": "Márton Áron tér",
+      "uj_szoveg": "Szent János Kórház ► Budagyöngye"
+    },
+    {
+      "idopont": "2026-09-25T23:51:10.948026+02:00",
+      "kulcs": "NCV297",
+      "rendszam": "NCV297",
+      "vehicle_id": "6262",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "16",
+      "route_id": "0160",
+      "lat": 47.50262451171875,
+      "lon": 19.035640716552734,
+      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-25T23:51:10.949547+02:00",
+      "kulcs": "RCT314",
+      "rendszam": "RCT314",
+      "vehicle_id": "7328",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48692321777344,
+      "lon": 19.057392120361328,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-25T23:51:10.950074+02:00",
+      "kulcs": "T9147",
+      "rendszam": "T9147",
+      "vehicle_id": "7886",
+      "vehicle_label": "Mexikói út M",
+      "vonal_szam": "82",
+      "route_id": "4820",
+      "lat": 47.51724624633789,
+      "lon": 19.107370376586914,
+      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
+      "uj_szoveg": "Mexikói út M"
     }
   ]
 }
