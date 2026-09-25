@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-26T01:44:08.087696+02:00",
+  "frissitve": "2026-09-26T01:44:43.948170+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:00:15.706526+02:00",
-      "kulcs": "AOIB801",
-      "rendszam": "AOIB801",
-      "vehicle_id": "872",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.50053405761719,
-      "lon": 18.96909523010254,
-      "elozo_szoveg": "Svábhegy",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-25T15:00:15.706926+02:00",
-      "kulcs": "1143-772-1144-967-684-968",
-      "rendszam": "1143-772-1144-967-684-968",
-      "vehicle_id": "905516561438-905536467723-905516561446-905516569670-905536466840-905516569688",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.47896194458008,
-      "lon": 19.066688537597656,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-09-25T15:00:15.707662+02:00",
-      "kulcs": "918071936713",
-      "rendszam": "918071936713",
-      "vehicle_id": "918071936713",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.25944900512695,
-      "lon": 16.93170928955078,
-      "elozo_szoveg": "Szombathely",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-25T15:00:15.707913+02:00",
-      "kulcs": "AOIM010",
-      "rendszam": "AOIM010",
-      "vehicle_id": "928",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.416236877441406,
-      "lon": 19.093172073364258,
-      "elozo_szoveg": "Csepel, Határ utca",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-09-25T15:00:15.708036+02:00",
-      "kulcs": "AOIM016",
-      "rendszam": "AOIM016",
-      "vehicle_id": "936",
-      "vehicle_label": "Soroksár, közp. raktárak",
-      "vonal_szam": "66",
-      "route_id": "0660",
-      "lat": 47.46458053588867,
-      "lon": 19.127267837524414,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Soroksár, központi raktárak"
-    },
     {
       "idopont": "2026-09-25T15:00:15.708613+02:00",
       "kulcs": "415 090",
@@ -260000,6 +259935,71 @@
       "lon": 19.133563995361328,
       "elozo_szoveg": "Astoria M ► Újpalota",
       "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-26T01:44:43.859860+02:00",
+      "kulcs": "FKU950",
+      "rendszam": "FKU950",
+      "vehicle_id": "3106",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.479488372802734,
+      "lon": 19.256969451904297,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-26T01:44:43.859904+02:00",
+      "kulcs": "FLR705",
+      "rendszam": "FLR705",
+      "vehicle_id": "3119",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.5252685546875,
+      "lon": 19.06374168395996,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-09-26T01:44:43.859963+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.56039810180664,
+      "lon": 19.090856552124023,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-26T01:44:43.860441+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50177764892578,
+      "lon": 19.13556671142578,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-26T01:44:43.860769+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Csepel, Soroksári rév",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.4013786315918,
+      "lon": 19.103065490722656,
+      "elozo_szoveg": "Csepel, Soroksári rév",
+      "uj_szoveg": "Csepel, Szent Imre tér"
     }
   ]
 }
