@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-25T01:59:32.159821+02:00",
+  "frissitve": "2026-09-25T02:00:03.274037+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-24T15:02:31.970381+02:00",
-      "kulcs": "V1329",
-      "rendszam": "V1329",
-      "vehicle_id": "4432",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.508888244628906,
-      "lon": 19.04669189453125,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-24T15:02:31.970411+02:00",
-      "kulcs": "V1332",
-      "rendszam": "V1332",
-      "vehicle_id": "4435",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49905776977539,
-      "lon": 19.08267593383789,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-09-24T15:02:31.970460+02:00",
       "kulcs": "V1340",
@@ -260000,6 +259974,32 @@
       "lon": 19.120710372924805,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-25T02:00:03.212895+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50937271118164,
+      "lon": 19.09612274169922,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-25T02:00:03.213096+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50743865966797,
+      "lon": 19.025192260742188,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
