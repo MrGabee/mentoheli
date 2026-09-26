@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T01:15:28.551770+02:00",
+  "frissitve": "2026-09-27T01:16:04.007074+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:43:44.671013+02:00",
-      "kulcs": "AADI657",
-      "rendszam": "AADI657",
-      "vehicle_id": "156",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.493385314941406,
-      "lon": 19.04323959350586,
-      "elozo_szoveg": "Döbrentei tér",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-26T11:43:44.671170+02:00",
-      "kulcs": "AADR715",
-      "rendszam": "AADR715",
-      "vehicle_id": "183",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.507667541503906,
-      "lon": 19.024946212768555,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-26T11:43:44.671205+02:00",
-      "kulcs": "AADR722",
-      "rendszam": "AADR722",
-      "vehicle_id": "191",
-      "vehicle_label": "Óbudai-sziget",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.51061248779297,
-      "lon": 19.056297302246094,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Margitsziget ► Óbudai-sziget"
-    },
     {
       "idopont": "2026-09-26T11:43:44.671257+02:00",
       "kulcs": "V2009",
@@ -260000,6 +259961,45 @@
       "lon": 19.142011642456055,
       "elozo_szoveg": "Gazdagréti tér",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-09-27T01:16:03.909360+02:00",
+      "kulcs": "V2040",
+      "rendszam": "V2040",
+      "vehicle_id": "2040",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507293701171875,
+      "lon": 19.024986267089844,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-27T01:16:03.912131+02:00",
+      "kulcs": "SKR802",
+      "rendszam": "SKR802",
+      "vehicle_id": "7688",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49774932861328,
+      "lon": 18.96402359008789,
+      "elozo_szoveg": "Csillebérc",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T01:16:03.912284+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.477779388427734,
+      "lon": 19.046405792236328,
+      "elozo_szoveg": "Csillebérc, KFKI",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
