@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-27T01:11:50.347298+02:00",
+  "frissitve": "2026-09-27T01:12:22.360546+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:41:58.712144+02:00",
-      "kulcs": "RVY702",
-      "rendszam": "RVY702",
-      "vehicle_id": "7451",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.50014877319336,
-      "lon": 19.13563346862793,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-09-26T11:41:58.712177+02:00",
-      "kulcs": "RVY708",
-      "rendszam": "RVY708",
-      "vehicle_id": "7457",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46291732788086,
-      "lon": 19.148426055908203,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-09-26T11:41:58.712355+02:00",
-      "kulcs": "RVY742",
-      "rendszam": "RVY742",
-      "vehicle_id": "7640",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.391849517822266,
-      "lon": 19.225324630737305,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-09-26T11:41:58.712563+02:00",
-      "kulcs": "SKR812",
-      "rendszam": "SKR812",
-      "vehicle_id": "7698",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.5544319152832,
-      "lon": 19.057809829711914,
-      "elozo_szoveg": "Óbudai-sziget",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-26T11:41:58.712574+02:00",
       "kulcs": "SKR813",
@@ -260000,6 +259948,58 @@
       "lon": 19.040117263793945,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-27T01:12:22.295480+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49705123901367,
+      "lon": 19.0556640625,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-27T01:12:22.295704+02:00",
+      "kulcs": "PDB716",
+      "rendszam": "PDB716",
+      "vehicle_id": "7042",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55044937133789,
+      "lon": 19.042055130004883,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-09-27T01:12:22.295770+02:00",
+      "kulcs": "PKN622",
+      "rendszam": "PKN622",
+      "vehicle_id": "7211",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49892807006836,
+      "lon": 19.05118751525879,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-27T01:12:22.295936+02:00",
+      "kulcs": "SGY983",
+      "rendszam": "SGY983",
+      "vehicle_id": "7663",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.503231048583984,
+      "lon": 19.13753890991211,
+      "elozo_szoveg": "Albertfalva vasútállomás",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
     }
   ]
 }
