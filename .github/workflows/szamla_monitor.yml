@@ -43,6 +43,11 @@ on:
         required: false
         default: false
         type: boolean
+      nav_emlekezteto_adoszamok:
+        description: "NAV-panel 'Emlékeztető küldése': vesszővel elválasztott adószám-lista, akiknek a dashboard 'Emlékeztető küldése' gombjával kiválasztott, hiányzó-számla-emlékeztetőt kell küldeni - a dashboard tölti ki, kézzel üresen hagyható"
+        required: false
+        default: ""
+        type: string
   schedule:
     # 20 percenként fut. Korábban 10 percenkénti volt, de ez torlódást
     # okozott: a "concurrency" beállítás miatt (ld. lentebb) csak egy
@@ -153,6 +158,10 @@ jobs:
           SZAMLA_TULAJDONOS_OSSZESITO_MOST: ${{ (github.event_name == 'workflow_dispatch' && inputs.tulajdonos_osszesito) && '1' || '' }}
           SZAMLA_KONYVELO_EMLEKEZTETO_MOST: ${{ (github.event_name == 'workflow_dispatch' && inputs.konyvelo_emlekezteto) && '1' || '' }}
           SZAMLA_PDF_CSATOLAS_MANUALIS: ${{ (github.event_name == 'workflow_dispatch' && inputs.pdf_csatolas_manualis) && '1' || '' }}
+          # NAV-panel "Emlékeztető küldése" gomb (ld. szamla_figyelo.py "NAV-ON
+          # TALÁLT, HIÁNYZÓ SZÁMLÁK EMLÉKEZTETŐJE" szekció) - csak
+          # workflow_dispatch-nál kaphat tartalmat, ütemezett futásnál mindig üres.
+          SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK: ${{ (github.event_name == 'workflow_dispatch' && inputs.nav_emlekezteto_adoszamok) || '' }}
         run: python szamlak/szamla_figyelo.py
 
       - name: 💾 Állapot commitolása (önjavító)
