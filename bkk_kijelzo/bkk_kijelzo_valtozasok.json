@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-26T02:10:39.021216+02:00",
+  "frissitve": "2026-09-26T02:11:14.459386+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:04:41.156447+02:00",
-      "kulcs": "V1586",
-      "rendszam": "V1586",
-      "vehicle_id": "4638",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.47087860107422,
-      "lon": 19.07341194152832,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-25T15:04:41.156883+02:00",
-      "kulcs": "V4109",
-      "rendszam": "V4109",
-      "vehicle_id": "4798",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.53882598876953,
-      "lon": 18.967370986938477,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
-    {
-      "idopont": "2026-09-25T15:04:41.157017+02:00",
-      "kulcs": "V4136",
-      "rendszam": "V4136",
-      "vehicle_id": "4824",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.48171615600586,
-      "lon": 18.999013900756836,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
     {
       "idopont": "2026-09-25T15:04:41.157094+02:00",
       "kulcs": "V4156",
@@ -260000,6 +259961,45 @@
       "lon": 19.025686264038086,
       "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
       "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-09-26T02:11:14.364246+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.48489761352539,
+      "lon": 19.07259750366211,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-26T02:11:14.364610+02:00",
+      "kulcs": "PKN619",
+      "rendszam": "PKN619",
+      "vehicle_id": "7208",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52357482910156,
+      "lon": 19.020673751831055,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-09-26T02:11:14.364999+02:00",
+      "kulcs": "AOIM020",
+      "rendszam": "AOIM020",
+      "vehicle_id": "940",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.56033706665039,
+      "lon": 19.0909366607666,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
     }
   ]
 }
