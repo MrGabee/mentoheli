@@ -188,7 +188,7 @@
     <div class="alcim">Vízművek · MVM · Díjnet</div>
 
     <div class="nezet-gombok" id="fomenu-fulek">
-      <button type="button" class="nezet-gomb aktiv" data-fomenu="lakossagi"><span class="ikon">🏠</span>Lakossági számlák</button>
+      <button type="button" class="nezet-gomb aktiv" data-fomenu="lakossagi"><span class="ikon">🏠</span>Közüzemi számlák</button>
       <button type="button" class="nezet-gomb" data-fomenu="ceges"><span class="ikon">🏢</span>Céges számlák</button>
     </div>
 
@@ -364,6 +364,8 @@
 
     <div id="ceges-tartalom" style="display:none;">
       <p class="panel-info">Ide kerülnek azok a számlák, amiket a cég nevében történő vásárláskor kérsz el emailben az eladótól, a dedikált céges email-címre. A postafiókot a script rendszeresen ellenőrzi: minden PDF-csatolmányos levelet feltölt a Google Drive-ra ("Céges számlák" mappa, eladónkénti almappákkal), majd - hogy ne fogyjon a postafiók tárhelye - a levelet onnan véglegesen törli. Emiatt itt lent NEM egy letöltés-gomb van, hanem egy "Megnyitás Drive-on" link.</p>
+
+      <div id="ceges-bejelentkezes-statusz"></div>
 
       <div class="kartyak" id="ceges-kartyak"></div>
 
@@ -619,6 +621,38 @@
   // készül) - a táblázatban ETTŐL FÜGGETLENÜL már megjelenik egy oszlop
   // nekik, hogy majd (kódmódosítás nélkül, csak adat-kitöltéssel) éles
   // legyen.
+  // A "ceges_allapot" mező (ld. szamla_figyelo.py ceges_szamlak_feldolgozasa()
+  // "_allapot_rogzitese()" belső függvénye) minden éles (nem dry-run) futás
+  // után frissül - itt jelenítjük meg, hogy sikerült-e legutóbb bejelentkezni
+  // a dedikált céges email-postafiókba, mielőtt bármi mást (a listát/
+  // kártyákat) mutatnánk - így azonnal látszik, ha a postafiók-beállítást
+  // (CEGES_IMAP_*) ellenőrizni kellene.
+  function cegesAllapotRenderelese(cegesAllapot) {
+    const hely = document.getElementById("ceges-bejelentkezes-statusz");
+    const a = cegesAllapot || {};
+    const idopont = a.utolso_probalkozas ? new Date(a.utolso_probalkozas).toLocaleString("hu-HU") : "ismeretlen";
+    let hatterSzin, szoveg;
+    if (!a.beallitva) {
+      hatterSzin = "#f3f4f6";
+      szoveg = `<span style="color:var(--muted);">ℹ️ A céges email-postafiók még nincs beállítva (a CEGES_IMAP_* GitHub Secretek hiányoznak).</span>`;
+    } else if (a.sikeres_bejelentkezes) {
+      hatterSzin = "#dcfce7";
+      szoveg = `<span style="color:var(--green);">✅ Sikeres bejelentkezés a postafiókba (utoljára: ${idopont})</span>`;
+      if (typeof a.utolso_futas_feltoltve_db === "number") {
+        szoveg += `<br><span style="color:var(--muted);font-weight:400;">Legutóbbi futás: ${a.utolso_futas_feltoltve_db} db számla feldolgozva`
+          + (a.utolso_futas_hiba_db ? `, ${a.utolso_futas_hiba_db} db a postafiókban maradt (hiba, vagy nincs PDF-csatolmány)` : "")
+          + `.</span>`;
+      }
+    } else {
+      hatterSzin = "#fee2e2";
+      szoveg = `<span style="color:var(--red);">❌ Sikertelen bejelentkezés a postafiókba (utoljára próbálva: ${idopont})</span>`;
+      if (a.hiba) {
+        szoveg += `<br><span style="color:var(--muted);font-weight:400;">${escHtml(a.hiba)}</span>`;
+      }
+    }
+    hely.innerHTML = `<div style="background:${hatterSzin};border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:13px;font-weight:600;">${szoveg}</div>`;
+  }
+
   function cegesKartyakRenderelese(lista) {
     const honapEleje = new Date(); honapEleje.setDate(1); honapEleje.setHours(0, 0, 0, 0);
     const ebbenAHonapban = lista.filter(r => r.erkezett && new Date(r.erkezett) >= honapEleje);
@@ -950,7 +984,7 @@
     ismeretlenekRenderelese(Object.values(adat.ismeretlen_dokumentumok || {}).filter(r => nezetSzuro(r, aktivNezet)));
   }
 
-  // ── Fő-menü fülek ("🏠 Lakossági számlák" / "🏢 Céges számlák") - ld.
+  // ── Fő-menü fülek ("🏠 Közüzemi számlák" / "🏢 Céges számlák") - ld.
   // "Céges számlák" fül HTML/CSS kommentjét. Teljesen független a fenti
   // "forras-nezet-szurok"-tól (ami a lakossági táblán BELÜLI Vízművek/
   // Díjnet szűrés) - ez itt a KÉT, egymástól teljesen külön menüpont
@@ -1948,6 +1982,7 @@
       pdfTar = adat.pdf_adatok || {};
       cegesSzamlak = Object.entries(adat.ceges_szamlak || {})
         .map(([id, r]) => Object.assign({ id }, r));
+      cegesAllapotRenderelese(adat.ceges_allapot);
       cegesKartyakRenderelese(cegesSzamlak);
       cegesTablaRenderelese(cegesSzamlak);
       aktivAllapotSzuro = "mind";
