@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T01:41:18.675141+02:00",
+  "frissitve": "2026-09-27T01:41:52.184656+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:46:08.048884+02:00",
-      "kulcs": "T9132",
-      "rendszam": "T9132",
-      "vehicle_id": "7871",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.5140495300293,
-      "lon": 19.049306869506836,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-09-26T11:46:08.048995+02:00",
-      "kulcs": "T9143",
-      "rendszam": "T9143",
-      "vehicle_id": "7882",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.505733489990234,
-      "lon": 19.136659622192383,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
-    {
-      "idopont": "2026-09-26T11:46:08.049588+02:00",
-      "kulcs": "AOFL250",
-      "rendszam": "AOFL250",
-      "vehicle_id": "838",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.469261169433594,
-      "lon": 19.107885360717773,
-      "elozo_szoveg": "Ecseri út M ► Aszódi utca",
-      "uj_szoveg": "Aszódi utca"
-    },
     {
       "idopont": "2026-09-26T11:46:08.049618+02:00",
       "kulcs": "AOFL252",
@@ -260000,6 +259961,45 @@
       "lon": 19.073293685913086,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-27T01:41:52.078570+02:00",
+      "kulcs": "AAMH617",
+      "rendszam": "AAMH617",
+      "vehicle_id": "460",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54154968261719,
+      "lon": 19.151344299316406,
+      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-09-27T01:41:52.078995+02:00",
+      "kulcs": "RCT314",
+      "rendszam": "RCT314",
+      "vehicle_id": "7328",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48679733276367,
+      "lon": 19.06772232055664,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-27T01:41:52.079087+02:00",
+      "kulcs": "RVY714",
+      "rendszam": "RVY714",
+      "vehicle_id": "7463",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49781799316406,
+      "lon": 19.054874420166016,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
