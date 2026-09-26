@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T01:05:49.406750+02:00",
+  "frissitve": "2026-09-27T01:06:23.198590+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:41:58.706686+02:00",
-      "kulcs": "AAHY826",
-      "rendszam": "AAHY826",
-      "vehicle_id": "387",
-      "vehicle_label": "Árpádföld",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.50447082519531,
-      "lon": 19.136566162109375,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Árpádföld"
-    },
-    {
-      "idopont": "2026-09-26T11:41:58.707153+02:00",
-      "kulcs": "AADI566",
-      "rendszam": "AADI566",
-      "vehicle_id": "42",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.533721923828125,
-      "lon": 18.99336814880371,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-09-26T11:41:58.707850+02:00",
-      "kulcs": "AAMH602",
-      "rendszam": "AAMH602",
-      "vehicle_id": "445",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "196",
-      "route_id": "1960",
-      "lat": 47.54001235961914,
-      "lon": 19.147785186767578,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-09-26T11:41:58.708072+02:00",
       "kulcs": "AAMH610",
@@ -259976,30 +259937,69 @@
       "uj_szoveg": "Astoria M ► Budatétény"
     },
     {
-      "idopont": "2026-09-27T01:05:49.315726+02:00",
+      "idopont": "2026-09-27T01:06:23.105346+02:00",
+      "kulcs": "V2034",
+      "rendszam": "V2034",
+      "vehicle_id": "2034",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.477394104003906,
+      "lon": 19.048728942871094,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-27T01:06:23.105506+02:00",
       "kulcs": "FLR717",
       "rendszam": "FLR717",
       "vehicle_id": "3131",
       "vehicle_label": "Rákoskert sugárút",
       "vonal_szam": "997",
       "route_id": "9970",
-      "lat": 47.502540588378906,
-      "lon": 19.136293411254883,
+      "lat": 47.50208282470703,
+      "lon": 19.136491775512695,
       "elozo_szoveg": "Keleti pályaudvar M",
       "uj_szoveg": "Rákoskert sugárút"
     },
     {
-      "idopont": "2026-09-27T01:05:49.318463+02:00",
+      "idopont": "2026-09-27T01:06:23.105600+02:00",
+      "kulcs": "FLR743",
+      "rendszam": "FLR743",
+      "vehicle_id": "3157",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46244430541992,
+      "lon": 19.133207321166992,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-27T01:06:23.108193+02:00",
       "kulcs": "SKN821",
       "rendszam": "SKN821",
       "vehicle_id": "7789",
       "vehicle_label": "Mártonhegy",
       "vonal_szam": "912",
       "route_id": "9120",
-      "lat": 47.51569747924805,
-      "lon": 19.07752799987793,
+      "lat": 47.5150032043457,
+      "lon": 19.076446533203125,
       "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
       "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-27T01:06:23.108430+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.50518798828125,
+      "lon": 19.098791122436523,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
     }
   ]
 }
