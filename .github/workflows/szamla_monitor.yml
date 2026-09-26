@@ -23,10 +23,35 @@ on:
         required: false
         default: ""
         type: string
+      berlo_osszesito_kor:
+        description: "Bérlő 'Küldés most': melyik bérlői kör kapja azonnal a fizetendő-összesítőt - '', 'kor_a', 'kor_b' vagy 'mind' - a dashboard tölti ki, kézzel üresen hagyható"
+        required: false
+        default: ""
+        type: string
+      tulajdonos_osszesito:
+        description: "Tulajdonos 'Küldés most': azonnal küldje el az ÖSSZES (minden kör) fizetetlen számla összesítőjét a tulajdonosnak"
+        required: false
+        default: false
+        type: boolean
+      konyvelo_emlekezteto:
+        description: "Könyvelő 'Küldés most': azonnal küldje el a havi Drive-emlékeztetőt a könyvelőnek"
+        required: false
+        default: false
+        type: boolean
+      pdf_csatolas_manualis:
+        description: "A fenti bérlő/tulajdonos 'Küldés most' azonnali küldésekhez csatolja-e a PDF-eket (a dashboard 'PDF-ek csatolása' jelölőnégyzete)"
+        required: false
+        default: false
+        type: boolean
   schedule:
-    # Naponta 3x - kb. 08:00, 14:00, 20:00 magyar idő (nyáridőben; télen
-    # ez UTC+1 miatt 1 órával eltolódik, ez nem gond ennél a feladatnál).
-    - cron: '0 6,12,18 * * *'
+    # 10 percenként fut. FONTOS - KOCKÁZAT: a dijnet.hu / ugyfelszolgalat.
+    # vizmuvek.hu portálokra ilyen gyakori (10 percenkénti) bejelentkezés
+    # némi kockázatot hordoz, hogy a portál BOT-SZERŰ forgalomnak minősíti
+    # és blokkolja/korlátozza (rate-limit, CAPTCHA, ideiglenes tiltás) - ha
+    # a Díjnet/Vízművek-lekérdezés a jövőben rendszeresen hibázna/kiesne,
+    # ELSŐKÉNT ezt az ütemezést kell visszavenni (pl. óránkéntire vagy a
+    # korábbi napi 3x-ra), mielőtt bármi mást keresnénk a hiba okaként.
+    - cron: '*/10 * * * *'
 
 concurrency:
   group: szamla-figyelo
@@ -85,6 +110,15 @@ jobs:
           SZAMLA_DATUMTOL: ${{ (github.event_name == 'workflow_dispatch' && inputs.datumtol) || '' }}
           SZAMLA_DATUMIG: ${{ (github.event_name == 'workflow_dispatch' && inputs.datumig) || '' }}
           SZAMLA_CEL_EMAIL: ${{ (github.event_name == 'workflow_dispatch' && inputs.cel_email) || '' }}
+          # 3 CÍMZETTI KÖR - manuális, azonnali "Küldés most" gombok a
+          # dashboardról (ld. szamlak.html "Címzettek és azonnali küldés"
+          # panelje) - ugyanaz a minta, mint a fenti dátum-intervallumos
+          # küldésnél: mindegyik üres/false egy ütemezett futásnál, csak
+          # workflow_dispatch-nál kaphat tartalmat.
+          SZAMLA_BERLO_OSSZESITO_KOR: ${{ (github.event_name == 'workflow_dispatch' && inputs.berlo_osszesito_kor) || '' }}
+          SZAMLA_TULAJDONOS_OSSZESITO_MOST: ${{ (github.event_name == 'workflow_dispatch' && inputs.tulajdonos_osszesito) && '1' || '' }}
+          SZAMLA_KONYVELO_EMLEKEZTETO_MOST: ${{ (github.event_name == 'workflow_dispatch' && inputs.konyvelo_emlekezteto) && '1' || '' }}
+          SZAMLA_PDF_CSATOLAS_MANUALIS: ${{ (github.event_name == 'workflow_dispatch' && inputs.pdf_csatolas_manualis) && '1' || '' }}
         run: python szamlak/szamla_figyelo.py
 
       - name: 💾 Állapot commitolása (önjavító)
