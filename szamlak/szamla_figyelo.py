@@ -2693,17 +2693,37 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
     (SZAMLA_DRIVE_WEBAPP_URL/TOKEN) hiányzik - ez utóbbi SZÁNDÉKOS: a
     levél törlése csak egy IGAZOLTAN sikeres Drive-mentés után
     történhet, Drive nélkül nem tudnánk biztonságosan (adatvesztés
-    kockázata nélkül) feldolgozni ezt a postafiókot."""
+    kockázata nélkül) feldolgozni ezt a postafiókot.
+
+    A "ceges_allapot" mező (a fő "ceges_szamlak" listától külön) MINDIG
+    frissül (a "nincs beállítva" ág kivételével), hogy a dashboard
+    "Céges számlák" fülén megjelenhessen egy visszajelzés arról, sikerült-e
+    az utolsó futáskor bejelentkezni a postafiókba - a felhasználó
+    kifejezett kérése, hogy ez látható legyen, ne csak az Actions naplóban."""
+    ceges_allapot = allapot.setdefault("ceges_allapot", {})
+
+    def _allapot_rogzitese(sikeres: bool, hiba=None):
+        ceges_allapot["utolso_probalkozas"] = magyar_ido().isoformat()
+        ceges_allapot["sikeres_bejelentkezes"] = sikeres
+        ceges_allapot["hiba"] = hiba
+
     if not (CEGES_IMAP_HOST and CEGES_IMAP_USER and CEGES_IMAP_JELSZO):
+        ceges_allapot["beallitva"] = False
         print("  ℹ️  Céges számlák: CEGES_IMAP_HOST / CEGES_IMAP_USER / CEGES_IMAP_JELSZO "
               "nincs (teljesen) beállítva - a modul kihagyva.")
         return
+    ceges_allapot["beallitva"] = True
     if not (SZAMLA_DRIVE_WEBAPP_URL and SZAMLA_DRIVE_WEBAPP_TOKEN):
+        _allapot_rogzitese(False, "A Drive-feltöltés nincs beállítva (SZAMLA_DRIVE_WEBAPP_URL/"
+                                   "TOKEN hiányzik) - emiatt a postafiók-bejelentkezés ki van hagyva.")
         print("  ℹ️  Céges számlák: Drive-feltöltés nélkül (SZAMLA_DRIVE_WEBAPP_URL/TOKEN "
               "hiányzik) nem dolgozható fel biztonságosan ez a postafiók (a levelek törlése "
               "csak SIKERES Drive-mentés után történhetne) - a modul kihagyva.")
         return
     if DRY_RUN:
+        # DRY_RUN alatt SZÁNDÉKOSAN nem írjuk felül a korábbi (valódi
+        # futásból származó) állapotot - a dashboard így a legutóbbi ÉLES
+        # futás eredményét mutatja, nem egy teszt-futásét.
         print("  🧪 [DRY RUN] Céges számlák feldolgozása kihagyva (Drive-feltöltés + "
               "email-törlés tényleges mellékhatás, ugyanúgy mint a Drive-feltöltésnél/"
               "email-küldésnél fentebb).")
@@ -2714,8 +2734,10 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
     try:
         conn = imap_kapcsolat(CEGES_IMAP_HOST, CEGES_IMAP_PORT, CEGES_IMAP_USER, CEGES_IMAP_JELSZO, CEGES_IMAP_MAPPA)
     except Exception as e:
+        _allapot_rogzitese(False, str(e))
         print(f"  ❌ Céges számlák: IMAP-bejelentkezés sikertelen: {e}")
         return
+    _allapot_rogzitese(True, None)
 
     feltoltve_db = 0
     hiba_db = 0
@@ -2799,6 +2821,8 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
         except Exception:
             pass
 
+    ceges_allapot["utolso_futas_feltoltve_db"] = feltoltve_db
+    ceges_allapot["utolso_futas_hiba_db"] = hiba_db
     print(f"  🏢 Céges számlák: {feltoltve_db} db feldolgozva és véglegesen törölve a "
           f"postafiókból, {hiba_db} db maradt/hibázott (a postafiókban marad, a következő "
           f"futás újra megpróbálja).")
