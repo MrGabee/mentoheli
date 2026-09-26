@@ -117,6 +117,15 @@ Szükséges GitHub Secretek:
   CEGES_IMAP_MAPPA        (opcionális, alapértelmezett: INBOX)
   Mind az öt CÉGES_* opcionális - ha valamelyik hiányzik, a "Céges számlák" modul egyszerűen
   kimarad, minden más (a fő számla-figyelés) változatlanul működik.
+  NAV_TECHNIKAI_LOGIN     a NAV Online Számla technikai felhasználó bejelentkezési neve
+                          (a NAV honlapján, "Technikai felhasználó létrehozása" menüben kapod)
+  NAV_TECHNIKAI_JELSZO    a fenti technikai felhasználó jelszava
+  NAV_ALAIRO_KULCS        a technikai felhasználóhoz tartozó "Aláíró kulcs" (signing key) -
+                          EZ NEM a cserekulcs, azt itt nem is használjuk, ld. "NAV ONLINE
+                          SZÁMLA" szekció kommentje
+  NAV_ADOSZAM             a céged 8 jegyű adószáma (a "-" előtti rész, kötőjelek nélkül)
+  Mind a négy NAV_* opcionális - ha valamelyik hiányzik, a NAV-összekötés/párosítás egyszerűen
+  kimarad (a "Céges számlák" email-alapú begyűjtése ettől függetlenül változatlanul működik).
 """
 
 import os
@@ -126,6 +135,7 @@ import json
 import time
 import base64
 import hashlib
+import uuid
 import calendar
 import imaplib
 import smtplib
@@ -137,6 +147,8 @@ from email.mime.application import MIMEApplication
 from email.utils import parsedate_to_datetime
 from datetime import date, datetime, timedelta, timezone
 from html import escape as _esc
+import xml.etree.ElementTree as ET
+from xml.sax.saxutils import escape as _xml_esc
 
 import requests
 from bs4 import BeautifulSoup
@@ -301,6 +313,44 @@ CEGES_IMAP_MAPPA = os.environ.get("CEGES_IMAP_MAPPA") or "INBOX"
 # levelek egyszerűen a postafiókban maradnak, a KÖVETKEZŐ futás dolgozza
 # fel őket (nem vesznek el, csak később kerülnek sorra).
 CEGES_MAX_FELDOLGOZAS_FUTASONKENT = 20
+
+# ── NAV Online Számla - bejövő számlák lekérdezése/párosítás (opcionális) ──
+# Ld. lentebb a "NAV ONLINE SZÁMLA" szekciót a pontos működésért. Mind a
+# négy alábbi env-változó opcionális - ha valamelyik hiányzik, a modul
+# egyszerűen kimarad (a "Céges számlák" email-alapú begyűjtése ettől
+# függetlenül változatlanul működik, csak a NAV-párosítás oszlop marad
+# üresen a dashboardon).
+#
+# FONTOS - CSERE-KULCS ("exchangeKey") NEM KELL: a NAV API v3-ban a
+# "tokenExchange" hívás (és az ahhoz tartozó cserekulcsos AES-dekódolás)
+# KIZÁRÓLAG a számla-FELTÖLTÉSHEZ (manageInvoice) szükséges - mi itt csak
+# OLVASUNK (queryInvoiceDigest), ami közvetlenül, a login/passwordHash/
+# requestSignature hármassal hitelesít, tokenExchange nélkül. Emiatt
+# SZÁNDÉKOSAN nincs itt "NAV_CSEREKULCS" env-változó.
+NAV_TECHNIKAI_LOGIN = os.environ.get("NAV_TECHNIKAI_LOGIN") or ""
+NAV_TECHNIKAI_JELSZO = os.environ.get("NAV_TECHNIKAI_JELSZO") or ""
+NAV_ALAIRO_KULCS = os.environ.get("NAV_ALAIRO_KULCS") or ""
+NAV_ADOSZAM = os.environ.get("NAV_ADOSZAM") or ""
+
+# A felhasználó kifejezett kérése szerint az ÉLES (nem teszt) NAV-környezet
+# van itt beállítva - a valódi céges bejövő számlákat kérdezzük le.
+NAV_API_BASE_URL = "https://api.onlineszamla.nav.gov.hu/invoiceService/v3"
+
+# A NAV előírja, hogy minden integráló szoftvernek legyen egy 18
+# karakteres, csak betűket/számokat tartalmazó azonosítója - ez NEM
+# titkos adat (nem kell Secretbe tenni), csak egy fix szoftver-azonosító.
+NAV_SOFTWARE_ID = "SZAMLAFIGYELOBOT01"
+NAV_SOFTWARE_NEV = "Szamla Figyelo"
+NAV_SOFTWARE_FEJLESZTO_NEV = "Balogh Gabor Jozsef"
+NAV_SOFTWARE_FEJLESZTO_EMAIL = "baloghgabee@gmail.com"
+
+# Hány napra visszamenőleg kérdezze le a NAV-tól a bejövő számlákat minden
+# futáskor - ugyanaz a "mozgó ablak" elv, mint a Díjnetnél/Vízműveknél
+# (DIJNET_LEKERDEZES_NAPOK_VISSZA kommentje). A NAV EGY lekérdezésen belül
+# legfeljebb 35 napos intervallumot enged (ld. lentebb _nav_datum_szeletek()) -
+# ha ennél nagyobb a visszatekintés, a lekérdezés automatikusan több,
+# egymást követő <=30 napos "szeletre" bontva fut le.
+NAV_LEKERDEZES_NAPOK_VISSZA = 90
 
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, HÁNY NAPPAL A HATÁRIDŐ ELŐTT MENJEN AZ ÖSSZESÍTŐ ⬇️⬇️⬇️
 SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
@@ -535,6 +585,32 @@ MEROALLAS_ERTEK_MINTA = re.compile(
     r"(?:mérőállás|óraállás)\D{0,10}(\d[\d\s]{0,9})\s*(m3|m³|kwh)?",
     re.IGNORECASE,
 )
+
+# Általános (best-effort) számlaszám-minta - a "Céges számlák" postafiókba
+# TETSZŐLEGES, ismeretlen formátumú eladótól jöhet PDF (nincs itt "ismert
+# szolgáltató" szűrés/struktúra, mint a Díjnetnél/Vízműveknél), ezért csak
+# egy általános, "számlaszám/sorszám"-címke utáni alfanumerikus kódot
+# keresünk - ez a NAV-párosításhoz (ld. "NAV ONLINE SZÁMLA" szekció) egy
+# TOVÁBBI (nem kizárólagos) egyező-jel, az összeg+dátum-egyezés mellett -
+# ha nem talál semmit, a párosítás egyszerűen csak az összegre/dátumra
+# hagyatkozik.
+SZAMLASZAM_MINTA_ALTALANOS = re.compile(
+    r"(?:számla\s*sorszáma|számlaszám|sorszám|számla\s*száma|invoice\s*(?:number|no))"
+    r"\s*[:\-]?\s*"
+    r"([A-Z0-9][A-Z0-9/\-]{3,24})",
+    re.IGNORECASE,
+)
+
+
+def szamlaszam_kinyerese_altalanos(szoveg: str):
+    """Ld. a fenti SZAMLASZAM_MINTA_ALTALANOS kommentjét - best-effort,
+    None-t ad vissza, ha nem talált semmit (ez NEM hiba, csak azt jelenti,
+    hogy a párosítás nem tud számlaszám-egyezésre hagyatkozni ennél a
+    tételnél)."""
+    talalat = SZAMLASZAM_MINTA_ALTALANOS.search(szoveg or "")
+    if not talalat:
+        return None
+    return talalat.group(1).strip().upper() or None
 
 
 # Negáció-őr: a FIZETVE_MINTA önmagában illeszkedne olyan mondatokra is,
@@ -2782,6 +2858,15 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 hiba_db += 1
                 continue
 
+            # A NAV-párosításhoz (ld. "NAV ONLINE SZÁMLA" szekció lentebb)
+            # best-effort kinyerjük a PDF szövegéből az összeget és egy
+            # esetleges számlaszámot - a PDF-et magát ETTŐL FÜGGETLENÜL
+            # NEM tároljuk (ld. a szekció elején lévő komment), csak ezt a
+            # néhány kinyert szöveges mezőt, ami elenyésző helyet foglal.
+            ceges_pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
+            kinyert_osszeg = osszeg_kinyerese(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
+            kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
+
             ceges_szamlak[cid] = {
                 "kuldo_nev": kuldo_nev,
                 "feladó_email": feladó_email,
@@ -2791,13 +2876,19 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 "drive_url": drive_url,
                 "drive_fajlnev": fajlnev,
                 "rogzitve": magyar_ido().isoformat(),
-                # NAV Online Számla összekötés/párosítás - EZ MÉG NEM
-                # KÉSZ (külön kör, a felhasználóval megbeszélt ütemezés
-                # szerint) - a mezők helye már itt van, hogy a jövőbeli
-                # párosító funkció ne kelljen a meglévő rekordokat
-                # migrálni, csak kitölteni.
+                # Best-effort, a PDF szövegéből kinyert mezők (ld. fent) -
+                # kizárólag a NAV-párosításhoz kellenek, None is lehet.
+                "kinyert_osszeg": kinyert_osszeg,
+                "kinyert_szamlaszam": kinyert_szamlaszam,
+                # NAV Online Számla összekötés/párosítás - ld. "NAV ONLINE
+                # SZÁMLA" szekció lentebb (nav_ceges_parositas()) - itt
+                # kezdetben mindig üres, a párosító funkció (a fő
+                # feldolgozás UTÁN, a main()-ben) tölti ki.
                 "nav_szamla_azonosito": None,
                 "nav_parositva": False,
+                "nav_szallito_nev": None,
+                "nav_osszeg": None,
+                "nav_datum": None,
             }
             feltoltve_db += 1
             torlendo_uidok.append(uid)
@@ -2826,6 +2917,401 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
     print(f"  🏢 Céges számlák: {feltoltve_db} db feldolgozva és véglegesen törölve a "
           f"postafiókból, {hiba_db} db maradt/hibázott (a postafiókban marad, a következő "
           f"futás újra megpróbálja).")
+
+
+# ════════════════════════════════════════════
+#  🏛️  NAV ONLINE SZÁMLA - BEJÖVŐ SZÁMLÁK LEKÉRDEZÉSE/PÁROSÍTÁS
+# ════════════════════════════════════════════
+# A felhasználó kérése: a fenti "Céges számlák" postafiókból email-ben
+# begyűjtött számlákat vesse össze a NAV Online Számla rendszerben
+# nyilvántartott, a cég adószámára befutott BEJÖVŐ (INBOUND) számlákkal -
+# ez egy VALÓDI kereszt-ellenőrzés (ha egy eladó NAV-ra beküldött egy
+# számlát, de az soha nem érkezett meg emailben, itt kiderül).
+#
+# HITELESÍTÉS - CSERE-KULCS ("exchangeKey"/"cserekulcs") SZÁNDÉKOSAN NEM
+# HASZNÁLT: a NAV API v3-ban a "tokenExchange" hívás (és az ehhez tartozó,
+# AES-128/ECB/PKCS5-del dekódolt token) KIZÁRÓLAG a számla-FELTÖLTÉSHEZ
+# (manageInvoice/manageAnnulment) szükséges. Az OLVASÓ (query-) hívások -
+# köztük a lentebb használt queryInvoiceDigest - közvetlenül, a
+# BasicOnlineInvoiceRequestType login/passwordHash/requestSignature
+# hármasával hitelesítenek, tokenExchange NÉLKÜL. Mivel itt csak
+# OLVASUNK, a cserekulcsra egyáltalán nincs szükség - ezért nincs
+# "NAV_CSEREKULCS" env-változó (ld. a modul-docstring NAV_* részét is).
+#
+# ALÁÍRÁS/HASH SZABÁLYOK (a NAV nyilvános specifikációja + a nav-gov-hu/
+# Online-Invoice és pzs/nav-online-invoice nyilvános referencia-
+# implementációk alapján):
+#   passwordHash     = SHA-512(jelszó), nagybetűs hex, cryptoType="SHA-512"
+#   requestSignature = SHA3-512(requestId + időbélyeg["yyyyMMddHHmmss", UTC,
+#                       elválasztók/ezredmásodperc NÉLKÜL] + aláíró_kulcs),
+#                       nagybetűs hex, cryptoType="SHA3-512" - EZ az
+#                       egyszerű forma csak LEKÉRDEZÉS-típusú hívásoknál
+#                       helyes (queryInvoiceDigest stb.); számla-
+#                       feltöltésnél további, tételenkénti hash-eket is
+#                       bele kellene fűzni, de az itt nem kell.
+#
+# LEKÉRDEZÉSI KORLÁT: a NAV egyetlen queryInvoiceDigest-hívásban legfeljebb
+# 35 napos (dateFrom-dateTo) intervallumot enged ("Túl nagy lekérdezési
+# intervallum" hiba felette) - ld. _nav_datum_szeletek() lentebb, ami ezt
+# <=30 napos szeletekre bontja, biztonsági ráhagyással a 35 alatt.
+#
+# FONTOS - EZ A KÓD NEM TESZTELT ÉLES NAV-HITELESÍTÉSSEL: mivel a
+# munkamenet nem fér hozzá valódi NAV technikai felhasználói adatokhoz, az
+# aláírás-/hash-számítás helyességét NEM tudtuk élesben leellenőrizni - a
+# fenti szabályok a NAV nyilvános dokumentációja és több, éles integrációk
+# által használt nyílt forráskódú referencia-implementáció (php-s
+# pzs/nav-online-invoice, ill. a NAV saját nav-gov-hu/Online-Invoice minta-
+# fájljai) alapján készültek, de az ELSŐ éles futás naplóját (ld. lentebb a
+# nav_allapot "hiba" mezőjét a dashboardon) érdemes ellenőrizni - ha a NAV
+# "INVALID_REQUEST_SIGNATURE" vagy hasonló hibát ad, az aláírás-számítás
+# igényelhet finomhangolást.
+NAV_XML_NEVTEREK = {
+    "a": "http://schemas.nav.gov.hu/OSA/3.0/api",
+    "c": "http://schemas.nav.gov.hu/NTCA/1.0/common",
+}
+
+
+def _nav_sha512_hex(szoveg: str) -> str:
+    return hashlib.sha512(szoveg.encode("utf-8")).hexdigest().upper()
+
+
+def _nav_sha3_512_hex(szoveg: str) -> str:
+    return hashlib.sha3_512(szoveg.encode("utf-8")).hexdigest().upper()
+
+
+def _nav_uj_request_id() -> str:
+    """A NAV előírja: max 30 karakter, csak betű/szám, és MINDEN kérésnek
+    egyedinek kell lennie (egy már - akár hibásan - felhasznált requestId
+    újbóli beküldése "REQUEST_ID_NOT_UNIQUE" hibát ad, még ha az előző
+    kérés el is lett utasítva)."""
+    return "SF" + magyar_ido().strftime("%Y%m%d%H%M%S") + uuid.uuid4().hex[:8].upper()
+
+
+def _nav_idobelyegek():
+    """(iso_idobelyeg, tomor_idobelyeg) - MINDKETTŐ UTC-ben. Az XML
+    fejlécbe az ISO-forma kerül (pl. "2026-09-26T20:15:30.123Z"), a
+    requestSignature-höz viszont a tömör, elválasztók nélküli forma
+    (pl. "20260926201530") - ld. a szekció elején lévő komment."""
+    most = datetime.now(timezone.utc)
+    iso = most.strftime("%Y-%m-%dT%H:%M:%S.") + f"{most.microsecond // 1000:03d}Z"
+    tomor = most.strftime("%Y%m%d%H%M%S")
+    return iso, tomor
+
+
+def _nav_alairas(request_id: str, tomor_idobelyeg: str) -> str:
+    return _nav_sha3_512_hex(f"{request_id}{tomor_idobelyeg}{NAV_ALAIRO_KULCS}")
+
+
+def _nav_query_invoice_digest_keres_xml(page: int, datum_tol: str, datum_ig: str) -> str:
+    """Egy queryInvoiceDigest kérés XML-je - INBOUND (bejövő) irányra és a
+    megadott [datum_tol, datum_ig] (kiállítási dátum) intervallumra szűrve.
+    Az elemsorrendet/névtereket a NAV nyilvános mintafájljai alapján
+    állítottuk össze (ld. szekció-komment)."""
+    request_id = _nav_uj_request_id()
+    iso_idobelyeg, tomor_idobelyeg = _nav_idobelyegek()
+    alairas = _nav_alairas(request_id, tomor_idobelyeg)
+    jelszo_hash = _nav_sha512_hex(NAV_TECHNIKAI_JELSZO)
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<QueryInvoiceDigestRequest xmlns:common="http://schemas.nav.gov.hu/NTCA/1.0/common" xmlns="http://schemas.nav.gov.hu/OSA/3.0/api">
+  <common:header>
+    <common:requestId>{_xml_esc(request_id)}</common:requestId>
+    <common:timestamp>{_xml_esc(iso_idobelyeg)}</common:timestamp>
+    <common:requestVersion>3.0</common:requestVersion>
+    <common:headerVersion>1.0</common:headerVersion>
+  </common:header>
+  <common:user>
+    <common:login>{_xml_esc(NAV_TECHNIKAI_LOGIN)}</common:login>
+    <common:passwordHash cryptoType="SHA-512">{jelszo_hash}</common:passwordHash>
+    <common:taxNumber>{_xml_esc(NAV_ADOSZAM)}</common:taxNumber>
+    <common:requestSignature cryptoType="SHA3-512">{alairas}</common:requestSignature>
+  </common:user>
+  <software>
+    <softwareId>{_xml_esc(NAV_SOFTWARE_ID)}</softwareId>
+    <softwareName>{_xml_esc(NAV_SOFTWARE_NEV)}</softwareName>
+    <softwareOperation>LOCAL_SOFTWARE</softwareOperation>
+    <softwareMainVersion>1.0</softwareMainVersion>
+    <softwareDevName>{_xml_esc(NAV_SOFTWARE_FEJLESZTO_NEV)}</softwareDevName>
+    <softwareDevContact>{_xml_esc(NAV_SOFTWARE_FEJLESZTO_EMAIL)}</softwareDevContact>
+    <softwareDevCountryCode>HU</softwareDevCountryCode>
+    <softwareDevTaxNumber>{_xml_esc(NAV_ADOSZAM)}</softwareDevTaxNumber>
+  </software>
+  <page>{page}</page>
+  <invoiceDirection>INBOUND</invoiceDirection>
+  <invoiceQueryParams>
+    <mandatoryQueryParams>
+      <invoiceIssueDate>
+        <dateFrom>{_xml_esc(datum_tol)}</dateFrom>
+        <dateTo>{_xml_esc(datum_ig)}</dateTo>
+      </invoiceIssueDate>
+    </mandatoryQueryParams>
+  </invoiceQueryParams>
+</QueryInvoiceDigestRequest>"""
+
+
+def _nav_xml_elem(gyoker, utvonal):
+    """Segédfüggvény a névtér-prefixes ('a:invoiceDigestResult' formátumú)
+    útvonalak kereséséhez - a beépített ElementTree find()/findall() a
+    NAV_XML_NEVTEREK szótárral pontosan ezt a formát várja."""
+    return gyoker.find(utvonal, NAV_XML_NEVTEREK)
+
+
+def _nav_query_invoice_digest_lap(page: int, datum_tol: str, datum_ig: str):
+    """Egyetlen HTTP-hívás (egyetlen lap) - a hívó (nav_bejovo_szamlak_lekerese())
+    lapozva hívja, amíg jelenlegi_lap < elerheto_lapok. "ok"=False esetén a
+    "hiba" mezőben a NAV hibaüzenete (vagy egy hálózati/XML-hiba szövege)."""
+    kerest_xml = _nav_query_invoice_digest_keres_xml(page, datum_tol, datum_ig)
+    try:
+        valasz = requests.post(
+            f"{NAV_API_BASE_URL}/queryInvoiceDigest",
+            data=kerest_xml.encode("utf-8"),
+            headers={"Content-Type": "application/xml", "Accept": "application/xml"},
+            timeout=30,
+        )
+    except Exception as e:
+        return {"ok": False, "hiba": f"Hálózati hiba: {e}"}
+
+    try:
+        gyoker = ET.fromstring(valasz.content)
+    except ET.ParseError as e:
+        return {"ok": False, "hiba": f"A NAV válasza nem valid XML (HTTP {valasz.status_code}): {e}"}
+
+    # Hibás kérésnél (pl. rossz aláírás, túl nagy intervallum, lejárt
+    # jelszó) a NAV egy "GeneralExceptionResponse" gyökérelemmel válaszol,
+    # EGYÁLTALÁN NEM "QueryInvoiceDigestResponse"-szal - ezt itt külön
+    # kezelni kell, különben a lenti keresések csendben None-t adnának.
+    gyoker_nev = gyoker.tag.split("}")[-1]
+    if gyoker_nev != "QueryInvoiceDigestResponse":
+        hiba_kod = _nav_xml_elem(gyoker, "c:errorCode")
+        hiba_uzenet = _nav_xml_elem(gyoker, "c:message")
+        return {
+            "ok": False,
+            "hiba": gyoker_nev
+                    + (f" ({hiba_kod.text})" if hiba_kod is not None else "")
+                    + (f": {hiba_uzenet.text}" if hiba_uzenet is not None else f" (HTTP {valasz.status_code})"),
+        }
+
+    eredmeny_elem = _nav_xml_elem(gyoker, "c:result")
+    func_kod = _nav_xml_elem(eredmeny_elem, "c:funcCode") if eredmeny_elem is not None else None
+    if func_kod is not None and func_kod.text != "OK":
+        hiba_kod = _nav_xml_elem(eredmeny_elem, "c:errorCode")
+        hiba_uzenet = _nav_xml_elem(eredmeny_elem, "c:message")
+        return {
+            "ok": False,
+            "hiba": (hiba_kod.text if hiba_kod is not None else func_kod.text)
+                    + (f": {hiba_uzenet.text}" if hiba_uzenet is not None else ""),
+        }
+
+    digest_eredmeny = _nav_xml_elem(gyoker, "a:invoiceDigestResult")
+    if digest_eredmeny is None:
+        return {"ok": True, "jelenlegi_lap": page, "elerheto_lapok": page, "tetelek": []}
+
+    jelenlegi_lap = _nav_xml_elem(digest_eredmeny, "a:currentPage")
+    elerheto_lapok = _nav_xml_elem(digest_eredmeny, "a:availablePage")
+
+    tetelek = []
+    for digest in digest_eredmeny.findall("a:invoiceDigest", NAV_XML_NEVTEREK):
+        def _szoveg(nev):
+            el = digest.find(f"a:{nev}", NAV_XML_NEVTEREK)
+            return el.text.strip() if el is not None and el.text else None
+
+        tetelek.append({
+            "szamlaszam": _szoveg("invoiceNumber"),
+            "kiallitas_datum": _szoveg("invoiceIssueDate"),
+            "szallito_adoszam": _szoveg("supplierTaxNumber"),
+            "szallito_nev": _szoveg("supplierName"),
+            "vevo_adoszam": _szoveg("customerTaxNumber"),
+            "netto_osszeg": _szoveg("invoiceNetAmount"),
+            "netto_osszeg_huf": _szoveg("invoiceNetAmountHUF"),
+            "afa_osszeg": _szoveg("invoiceVatAmount"),
+            "afa_osszeg_huf": _szoveg("invoiceVatAmountHUF"),
+            "penznem": _szoveg("currency"),
+            "muvelet": _szoveg("invoiceOperation"),
+        })
+
+    return {
+        "ok": True,
+        "jelenlegi_lap": int(jelenlegi_lap.text) if jelenlegi_lap is not None else page,
+        "elerheto_lapok": int(elerheto_lapok.text) if elerheto_lapok is not None else page,
+        "tetelek": tetelek,
+    }
+
+
+def _nav_datum_szeletek(napok_visszamenoleg: int):
+    """A NAV egyetlen hívásban legfeljebb 35 napos intervallumot enged -
+    ha a kívánt visszatekintés ennél nagyobb, <=30 napos (biztonsági
+    ráhagyással a 35 alatt) szeletekre bontjuk. A legfrissebb szeletet adja
+    először, hogy egy esetleges hiba/megszakítás a friss adatokat érje el
+    elsőként."""
+    ma = magyar_ma()
+    kezdet = ma - timedelta(days=napok_visszamenoleg)
+    szeletek = []
+    szelet_vege = ma
+    while szelet_vege > kezdet:
+        szelet_kezdet = max(kezdet, szelet_vege - timedelta(days=30))
+        szeletek.append((szelet_kezdet.isoformat(), szelet_vege.isoformat()))
+        szelet_vege = szelet_kezdet - timedelta(days=1)
+    return szeletek
+
+
+def nav_bejovo_szamlak_lekerese(allapot: dict):
+    """Lekérdezi a NAV-tól az ÖSSZES bejövő (INBOUND) számla-tételt az
+    utolsó NAV_LEKERDEZES_NAPOK_VISSZA napból (több, <=30 napos szeletben
+    és lapozva, ld. fent) - az "allapot"-ba csak a "nav_allapot" login/
+    hiba-visszajelzést írja (ugyanaz a minta, mint a "ceges_allapot"-nál a
+    Céges számlák szekcióban) - a tényleges tételeket egyszerűen
+    VISSZAADJA, a hívó (nav_ceges_parositas()) dolga eldönteni, mit tesz
+    velük. None-t ad vissza, ha a modul nincs beállítva, DRY_RUN alatt fut,
+    vagy MINDEN szelet/lap hibázott (ld. nav_allapot["hiba"])."""
+    nav_allapot = allapot.setdefault("nav_allapot", {})
+
+    def _allapot_rogzitese(sikeres: bool, hiba=None, talalt_db=None):
+        nav_allapot["utolso_probalkozas"] = magyar_ido().isoformat()
+        nav_allapot["sikeres_lekerdezes"] = sikeres
+        nav_allapot["hiba"] = hiba
+        if talalt_db is not None:
+            nav_allapot["utolso_futas_talalt_db"] = talalt_db
+
+    if not (NAV_TECHNIKAI_LOGIN and NAV_TECHNIKAI_JELSZO and NAV_ALAIRO_KULCS and NAV_ADOSZAM):
+        nav_allapot["beallitva"] = False
+        print("  ℹ️  NAV Online Számla: NAV_TECHNIKAI_LOGIN / NAV_TECHNIKAI_JELSZO / "
+              "NAV_ALAIRO_KULCS / NAV_ADOSZAM nincs (teljesen) beállítva - a modul kihagyva.")
+        return None
+    nav_allapot["beallitva"] = True
+
+    if DRY_RUN:
+        print("  🧪 [DRY RUN] NAV Online Számla lekérdezés kihagyva.")
+        return None
+
+    osszes_tetel = []
+    for datum_tol, datum_ig in _nav_datum_szeletek(NAV_LEKERDEZES_NAPOK_VISSZA):
+        page = 1
+        while True:
+            eredmeny = _nav_query_invoice_digest_lap(page, datum_tol, datum_ig)
+            if not eredmeny["ok"]:
+                _allapot_rogzitese(False, eredmeny["hiba"])
+                print(f"  ❌ NAV Online Számla lekérdezés sikertelen "
+                      f"({datum_tol}–{datum_ig}, {page}. lap): {eredmeny['hiba']}")
+                return osszes_tetel or None
+            osszes_tetel.extend(eredmeny["tetelek"])
+            if eredmeny["jelenlegi_lap"] >= eredmeny["elerheto_lapok"] or not eredmeny["tetelek"]:
+                break
+            page += 1
+            if page > 50:  # védőháló - nem várt sok lap esetén ne fusson a végtelenségig
+                break
+
+    _allapot_rogzitese(True, None, len(osszes_tetel))
+    print(f"  🏛️  NAV Online Számla: {len(osszes_tetel)} db bejövő számla-tétel lekérve "
+          f"az elmúlt {NAV_LEKERDEZES_NAPOK_VISSZA} napból.")
+    return osszes_tetel
+
+
+def _nav_osszeg_egyezik(a, b, tolerancia=1.0) -> bool:
+    if a is None or b is None:
+        return False
+    try:
+        return abs(float(a) - float(b)) <= tolerancia
+    except (TypeError, ValueError):
+        return False
+
+
+def nav_ceges_parositas(allapot: dict):
+    """Összeveti a nav_bejovo_szamlak_lekerese()-vel lekért NAV-tételeket a
+    "Céges számlák" fülön (email-ből) begyűjtött rekordokkal
+    (allapot["ceges_szamlak"]) - ld. a fenti szekció-komment "ALÁÍRÁS/HASH
+    SZABÁLYOK" utáni részét az elvért.
+
+    FONTOS - EZ CSAK BEST-EFFORT: a PDF-ekből kinyert számlaszám/összeg
+    (ld. ceges_szamlak_feldolgozasa() vége) gyakran hiányos (ismeretlen
+    formátumú eladóktól jön a PDF), ezért a párosítás ELSŐDLEGESEN a
+    számlaszám EGYEZÉSÉRE hagyatkozik, MÁSODLAGOSAN (ha számlaszám nincs
+    vagy nem egyezik semelyik NAV-tétellel) az összeg (±1 Ft) + a
+    kiállítási dátum és az email-érkezés dátuma közti ±7 napos közelségre.
+    Ha egyik sem talál, a rekord egyszerűen párosítatlan marad
+    (nav_parositva=False marad) - ez NEM hiba, csak azt jelenti, hogy a
+    felhasználónak kézzel kell ellenőriznie.
+
+    A NAV-on megtalált, de az email-begyűjtésben SEHOL nem szereplő
+    tételeket az allapot["nav_csak_navban"] listába mentjük - ez a
+    tényleges "hiányzik egy számla" riasztás, amiért a felhasználó a NAV-
+    összekötést kérte."""
+    ceges_szamlak = allapot.get("ceges_szamlak", {})
+    nav_tetelek = nav_bejovo_szamlak_lekerese(allapot)
+    if nav_tetelek is None:
+        return  # nincs beállítva, DRY_RUN, vagy hiba - ld. nav_allapot a dashboardon
+
+    def _nav_tetel_kulcs(tetel):
+        return f"{tetel.get('szallito_adoszam')}|{tetel.get('szamlaszam')}"
+
+    parositando_ceges = [
+        (cid, rekord) for cid, rekord in ceges_szamlak.items() if not rekord.get("nav_parositva")
+    ]
+    parositott_nav_kulcsok = set()
+
+    # 1. kör - számlaszám EGYEZÉS (a legmegbízhatóbb jel, ha van).
+    for cid, rekord in parositando_ceges:
+        kinyert_szamlaszam = (rekord.get("kinyert_szamlaszam") or "").strip().upper()
+        if not kinyert_szamlaszam:
+            continue
+        for tetel in nav_tetelek:
+            nav_szamlaszam = (tetel.get("szamlaszam") or "").strip().upper()
+            if not nav_szamlaszam or nav_szamlaszam != kinyert_szamlaszam:
+                continue
+            kulcs = _nav_tetel_kulcs(tetel)
+            if kulcs in parositott_nav_kulcsok:
+                continue
+            rekord["nav_parositva"] = True
+            rekord["nav_szamla_azonosito"] = kulcs
+            rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
+            rekord["nav_osszeg"] = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
+            rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            parositott_nav_kulcsok.add(kulcs)
+            break
+
+    # 2. kör - összeg (±1 Ft) + dátum (±7 nap) egyezés azoknál, amik az 1.
+    # körben (számlaszám hiánya/eltérése miatt) még párosítatlanok.
+    for cid, rekord in parositando_ceges:
+        if rekord.get("nav_parositva"):
+            continue
+        kinyert_osszeg = rekord.get("kinyert_osszeg")
+        if kinyert_osszeg is None:
+            continue
+        erkezett = (rekord.get("erkezett") or "")[:10]
+        try:
+            erkezett_datum = date.fromisoformat(erkezett) if erkezett else None
+        except ValueError:
+            erkezett_datum = None
+
+        for tetel in nav_tetelek:
+            kulcs = _nav_tetel_kulcs(tetel)
+            if kulcs in parositott_nav_kulcsok:
+                continue
+            nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
+            if not _nav_osszeg_egyezik(kinyert_osszeg, nav_osszeg):
+                continue
+            if erkezett_datum is not None and tetel.get("kiallitas_datum"):
+                try:
+                    nav_datum = date.fromisoformat(tetel["kiallitas_datum"][:10])
+                    if abs((erkezett_datum - nav_datum).days) > 7:
+                        continue
+                except ValueError:
+                    pass
+            rekord["nav_parositva"] = True
+            rekord["nav_szamla_azonosito"] = kulcs
+            rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
+            rekord["nav_osszeg"] = nav_osszeg
+            rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            parositott_nav_kulcsok.add(kulcs)
+            break
+
+    csak_navban = [
+        tetel for tetel in nav_tetelek if _nav_tetel_kulcs(tetel) not in parositott_nav_kulcsok
+    ]
+    allapot["nav_csak_navban"] = csak_navban
+
+    parositott_db = sum(1 for _, r in parositando_ceges if r.get("nav_parositva"))
+    print(f"  🔗 NAV-párosítás: {parositott_db} db email-számla párosítva a NAV-adatokkal, "
+          f"{len(csak_navban)} db NAV-tétel maradt párosítatlanul (lehet, hogy még nem "
+          f"érkezett meg emailben, vagy nem a dedikált céges postafiókba jött).")
 
 
 # ════════════════════════════════════════════
@@ -3647,6 +4133,12 @@ def main():
     # ELŐTT, hogy az ebben a futásban feldolgozott/törölt céges számlák
     # metaadata is bekerüljön a lentebbi mentésbe.
     ceges_szamlak_feldolgozasa(allapot)
+
+    # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás
+    # (ld. "NAV ONLINE SZÁMLA" szekció) - SZÁNDÉKOSAN a Céges számlák
+    # feldolgozása UTÁN (hogy a legfrissebb email-számlákat is lássa a
+    # párosítás), a titkosított állapot mentése ELŐTT.
+    nav_ceges_parositas(allapot)
 
     # ---- 3. Állapot mentése (titkosítva) ----
     # FONTOS: a feldolgozott_uidok egy set volt, aminek a sorrendje NEM
