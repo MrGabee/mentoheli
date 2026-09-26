@@ -7,6 +7,14 @@
 <title>Számla áttekintő</title>
 <style>
   :root {
+    /* A böngésző/OS sötét módja NÉLKÜL is mindig világos native-vezérlő
+       (gomb/select/checkbox) stílust kényszerít ki - enélkül egyes
+       böngészők sötét módban a nem explicit módon színezett natív
+       elemeket (pl. egy csak border+background-ot megadó <button>-t)
+       automatikusan sötét háttér+világos szöveg helyett VILÁGOS
+       háttér+VILÁGOS (láthatatlan) szöveggel rajzolhatják ki - ez okozta
+       az "üres téglalapnak látszó gomb" jelenséget. */
+    color-scheme: light;
     --bg: #f7f8fa;
     --card: #ffffff;
     --border: #e5e7eb;
@@ -131,7 +139,12 @@
   .kor-sor .kor-gombok { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
   .kor-sor button {
     padding: 5px 10px; border: 1px solid var(--border); border-radius: 6px;
-    background: var(--card); cursor: pointer; font-size: 12px;
+    background: var(--card); color: var(--text); cursor: pointer; font-size: 12px;
+  }
+  .kor-sor button:disabled { opacity: 0.6; cursor: default; }
+  .kor-sor select {
+    padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--card); color: var(--text); font-size: 12px; font-family: inherit;
   }
   .kor-sor button.kor-aktiv-a { background: #eff6ff; border-color: var(--blue); color: var(--blue); }
   .kor-sor button.kor-aktiv-b { background: #fdf4ff; border-color: #a21caf; color: #a21caf; }
@@ -943,19 +956,23 @@
       }
       const cel = b.cel === "ceges" ? "ceges" : "kozuzemi";
       return `
-        <div class="kor-sor" data-id="${escHtml(id)}">
+        <div class="kor-sor" data-id="${escHtml(id)}" style="align-items:flex-start;">
           <div>
             <div class="kor-cim">${escHtml(b.cimke) || "Ismeretlen postafiók"} <span style="color:var(--muted);font-weight:400;">(${escHtml(b.user) || ""})</span></div>
             <div style="background:${hatterSzin};display:inline-block;padding:2px 8px;border-radius:6px;margin-top:4px;font-size:12px;">${statuszSzoveg}</div>
           </div>
-          <div class="kor-gombok">
-            <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;">Cél:
-              <select class="postafiok-cel-select" data-id="${escHtml(id)}">
-                <option value="kozuzemi" ${cel === "kozuzemi" ? "selected" : ""}>Közüzemi</option>
-                <option value="ceges" ${cel === "ceges" ? "selected" : ""}>Céges</option>
-              </select>
-            </label>
-            <button type="button" class="postafiok-aktiv-valto-gomb" data-id="${escHtml(id)}">${b.aktiv === false ? "Visszaállítás" : "Szüneteltetés"}</button>
+          <div class="kor-gombok" style="flex-direction:column;align-items:flex-end;gap:6px;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;margin:0;">Cél:
+                <select class="postafiok-cel-select" data-id="${escHtml(id)}">
+                  <option value="kozuzemi" ${cel === "kozuzemi" ? "selected" : ""}>Közüzemi</option>
+                  <option value="ceges" ${cel === "ceges" ? "selected" : ""}>Céges</option>
+                </select>
+              </label>
+              <button type="button" class="postafiok-cel-mentes-gomb" data-id="${escHtml(id)}" title="A fenti Cél elmentése">💾 Mentés</button>
+            </div>
+            <div class="postafiok-cel-statusz" data-statusz-id="${escHtml(id)}" style="font-size:11px;color:var(--muted);min-height:14px;"></div>
+            <button type="button" class="postafiok-aktiv-valto-gomb" data-id="${escHtml(id)}" title="${b.aktiv === false ? "Postafiók újraindítása - a script mostantól ismét figyeli" : "Postafiók szüneteltetése - a script kihagyja, amíg vissza nem állítod (a jelszó megmarad)"}">${b.aktiv === false ? "▶️ Visszaállítás" : "⏸️ Szüneteltetés"}</button>
           </div>
         </div>
       `;
@@ -967,13 +984,32 @@
         btn.disabled = false;
       });
     });
-    hely.querySelectorAll(".postafiok-cel-select").forEach(sel => {
-      const eredetiErtek = sel.value;
-      sel.addEventListener("change", async () => {
+    // A Cél-t (Közüzemi/Céges) SZÁNDÉKOSAN NEM menti automatikusan a
+    // select "change" eseménye - a felhasználó kifejezett kérése egy
+    // KÜLÖN, egyértelműen látható "💾 Mentés" gomb, hogy ne legyen
+    // kétséges, hogy a módosítás ténylegesen el lett-e mentve.
+    hely.querySelectorAll(".postafiok-cel-mentes-gomb").forEach(gomb => {
+      gomb.addEventListener("click", async () => {
+        const id = gomb.dataset.id;
+        const sel = hely.querySelector(`.postafiok-cel-select[data-id="${CSS.escape(id)}"]`);
+        const statuszEl = hely.querySelector(`.postafiok-cel-statusz[data-statusz-id="${CSS.escape(id)}"]`);
+        if (!sel) return;
+        gomb.disabled = true;
         sel.disabled = true;
-        const siker = await tovabbiPostafiokCelValtas(sel.dataset.id, sel.value);
-        sel.disabled = false;
-        if (!siker) sel.value = eredetiErtek;
+        if (statuszEl) { statuszEl.textContent = "Mentés..."; statuszEl.style.color = "var(--muted)"; }
+        const siker = await tovabbiPostafiokCelValtas(id, sel.value);
+        // Ld. tovabbiPostafiokCelValtas() - sikeres mentés után úgyis
+        // teljesen újrarendereli a listát (postafiokListaRenderelese),
+        // ezért a "✅ Elmentve" jelzés csak sikertelen esetben marad
+        // ténylegesen látható (sikeresnél a friss render már úgyis a
+        // MENTETT értéket mutatja a select-en) - hibánál viszont a
+        // gomb.disabled/sel.disabled visszaállítása és a hibaszöveg is
+        // fontos, hogy tudja a felhasználó, hogy ÚJRA meg kell nyomnia.
+        if (!siker) {
+          gomb.disabled = false;
+          sel.disabled = false;
+          if (statuszEl) { statuszEl.textContent = "❌ Sikertelen mentés - próbáld újra."; statuszEl.style.color = "var(--red)"; }
+        }
       });
     });
   }
