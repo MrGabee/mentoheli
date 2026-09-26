@@ -2965,11 +2965,90 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
 #
 # EREDETI PDF: a Drive-ra/tartós tárolásra MINDIG az eredeti, változatlan
 # PDF-bájtok kerülnek (pdf_tarolas() + a meglévő generikus
-# drive_pdf_feltoltesek() útján) - a pdfplumber-es szövegkinyerés
-# (pdf_szoveg_kinyerese()) KIZÁRÓLAG a tartalom felismeréséhez kell, a
-# kinyert szöveg SOHA nem kerül tárolásra/feltöltésre a PDF helyett.
+# drive_pdf_feltoltesek() útján, VAGY - "cel": "ceges" postafióknál -
+# közvetlenül a _ceges_drive_feltoltes()-en át) - a pdfplumber-es
+# szövegkinyerés (pdf_szoveg_kinyerese()) KIZÁRÓLAG a tartalom
+# felismeréséhez kell, a kinyert szöveg SOHA nem kerül tárolásra/
+# feltöltésre a PDF helyett.
+#
+# "cel" mező (opcionális, "kozuzemi" vagy "ceges", alapértelmezett
+# "kozuzemi") - a felhasználó postafiókonként eldöntheti, hogy az onnan
+# felismert számlák a fenti (szamlak/Közüzemi) listába kerüljenek-e
+# (ez a régi, alapértelmezett viselkedés), VAGY a "ceges_szamlak"
+# (Céges számlák fül) listába - utóbbi akkor hasznos, ha a postafiók
+# valójában céges beszerzési számlákat gyűjt (ugyanaz a kategória, mint
+# a dedikált CEGES_IMAP_* postafiók), csak épp egy MÁSIK email-címre
+# érkeznek. "cel": "ceges" esetén a PDF-et - a dedikált céges postafiók
+# elvével megegyezően - NEM tároljuk tartósan az állapotban, csak a
+# Drive-linket (ld. _ceges_drive_feltoltes()).
+def tovabbi_postafiok_ceges_athelyezes(allapot: dict, postafiok_id: str, cimke: str):
+    """Ha a felhasználó UTÓLAG állította "ceges"-re egy postafiók célját
+    (a "cel" mező bevezetése előtt, vagy egyszerűen később meggondolta
+    magát), a KORÁBBAN már a fő "szamlak" listába felvett rekordjai ott
+    maradnának örökre - ez a függvény (minden futáskor meghívva, de csak
+    akkor csinál bármit, ha talál ilyen árva rekordot) egyszeri jelleggel
+    átköltözteti ezeket a "ceges_szamlak" listába: újra feltölti a PDF-et
+    a Drive "Céges számlák" mappaszerkezetébe (mert a generikus
+    drive_pdf_feltoltesek() nem tárolja el a visszakapott URL-t, csak egy
+    sikeres/sikertelen jelzőt - a Céges fülön viszont MINDENKÉPP kell egy
+    "Megnyitás Drive-on" link), majd törli az eredeti "szamlak"/
+    "pdf_adatok" bejegyzést. Sikertelen Drive-feltöltésnél a rekord
+    ÉRINTETLENÜL marad a "szamlak"-ban - a következő futás újra
+    megpróbálja, nem vész el semmi."""
+    szamlak = allapot.get("szamlak", {})
+    pdf_adatok = allapot.get("pdf_adatok", {})
+    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+    szolgaltato_kulcs = f"postafiok_{postafiok_id}"
+    athelyezendo_id_k = [rid for rid, r in szamlak.items() if r.get("szolgaltato") == szolgaltato_kulcs]
+    if not athelyezendo_id_k:
+        return
+    athelyezett_db = 0
+    for rid in athelyezendo_id_k:
+        rekord = szamlak[rid]
+        pdf_b64 = pdf_adatok.get(rid)
+        if not pdf_b64:
+            # Nincs (már/még) tárolt PDF ehhez - Drive-link nélkül nem
+            # tudnánk értelmesen megjeleníteni a Céges fülön (ott a PDF
+            # megtekintése KIZÁRÓLAG a Drive-linken át működik) - inkább a
+            # régi helyén hagyjuk, mint hogy hozzáférés nélkül maradjon.
+            continue
+        kuldo_nev = rekord.get("szolgaltato_nev") or cimke
+        fajlnev = _ceges_fajlnev(rid, kuldo_nev, rekord.get("targy"))
+        drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
+        if not drive_url:
+            print(f"      ⚠️  '{cimke}' Céges-listába áthelyezése: Drive-feltöltés sikertelen "
+                  f"ehhez: {(rekord.get('targy') or '')[:60]} - újra próbáljuk a következő futáskor.")
+            continue
+        ceges_szamlak[rid] = {
+            "kuldo_nev": kuldo_nev,
+            "feladó_email": None,
+            "targy": rekord.get("targy"),
+            "erkezett": rekord.get("erkezett"),
+            "erkezett_fejlec": rekord.get("erkezett_fejlec"),
+            "drive_url": drive_url,
+            "drive_fajlnev": fajlnev,
+            "rogzitve": magyar_ido().isoformat(),
+            "kinyert_osszeg": rekord.get("osszeg"),
+            "kinyert_szamlaszam": rekord.get("szamlaszam"),
+            "nav_szamla_azonosito": rekord.get("nav_szamla_azonosito"),
+            "nav_parositva": rekord.get("nav_parositva", False),
+            "nav_szallito_nev": rekord.get("nav_szallito_nev"),
+            "nav_osszeg": rekord.get("nav_osszeg"),
+            "nav_datum": rekord.get("nav_datum"),
+        }
+        del szamlak[rid]
+        pdf_adatok.pop(rid, None)
+        feltoltottek = allapot.get("drive_feltoltott_id_k")
+        if isinstance(feltoltottek, list) and rid in feltoltottek:
+            feltoltottek.remove(rid)
+        athelyezett_db += 1
+    if athelyezett_db:
+        print(f"  🔀 '{cimke}': {athelyezett_db} db korábban felvett számla áthelyezve a Céges listába.")
+
+
 def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id_szet: set):
     szamlak = allapot.setdefault("szamlak", {})
+    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
     tovabbi_postafiokok = allapot.setdefault("tovabbi_postafiokok", {})
     if not tovabbi_postafiokok:
         return
@@ -2978,12 +3057,22 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
         if not bejegyzes.get("aktiv", True):
             continue
         cimke = bejegyzes.get("cimke") or "Ismeretlen postafiók"
+        cel = str(bejegyzes.get("cel") or "kozuzemi").strip().lower()
+        if cel not in ("kozuzemi", "ceges"):
+            cel = "kozuzemi"
         szolgaltato_kulcs = f"postafiok_{postafiok_id}"
         host = bejegyzes.get("host") or ""
         port = int(bejegyzes.get("port") or 993)
         felhasznalo = bejegyzes.get("user") or ""
         jelszo = bejegyzes.get("jelszo") or ""
         mappa = bejegyzes.get("mappa") or "INBOX"
+
+        if cel == "ceges":
+            # Ld. tovabbi_postafiok_ceges_athelyezes() kommentje - ez a
+            # bejelentkezéstől FÜGGETLENÜL lefut (a korábban felvett
+            # rekordok áthelyezéséhez nem kell IMAP, csak a Drive-webapp).
+            tovabbi_postafiok_ceges_athelyezes(allapot, postafiok_id, cimke)
+
         if not (host and felhasznalo and jelszo):
             print(f"  ⚠️  További postafiók '{cimke}': hiányos bejelentkezési adatok - kihagyva.")
             continue
@@ -3004,99 +3093,178 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
             uj_uidok = uj_uidok_lekerese(conn, mar_feldolgozott)
             for uid in uj_uidok:
                 uid_str = uid.decode()
-                mar_feldolgozott.add(uid_str)
-                msg = uid_letoltese(conn, uid)
-                if msg is None:
-                    continue
+                # "kesz" - alapból True (a levelet ETTŐL a futástól ne
+                # nézzük meg újra) - EGYETLEN eset állítja False-ra: ha
+                # "cel"=="ceges" ÉS a Drive-feltöltés sikertelen (ld.
+                # lentebb) - ilyenkor a levelet a KÖVETKEZŐ futás újra
+                # megkapja a uj_uidok_lekerese()-től, ahogy a dedikált
+                # Céges postafióknál is (ott maga a postafiók a "még
+                # feldolgozandó" sor, ld. a szekció-komment "1." pontját).
+                kesz = True
+                try:
+                    msg = uid_letoltese(conn, uid)
+                    if msg is None:
+                        continue
 
-                pdf_nev, pdf_bytes = pdf_csatolmany(msg)
-                if not pdf_bytes:
-                    # Ld. a szekció-komment "SZŰRÉS" része - PDF nélküli
-                    # levelet ennél a forrásnál egyáltalán nem nézünk meg.
-                    continue
+                    pdf_nev, pdf_bytes = pdf_csatolmany(msg)
+                    if not pdf_bytes:
+                        # Ld. a szekció-komment "SZŰRÉS" része - PDF
+                        # nélküli levelet ennél a forrásnál egyáltalán nem
+                        # nézünk meg.
+                        continue
 
-                targy = _fejlec_dekodolas(msg.get("Subject", ""))
-                erkezett_fejlec = msg.get("Date", "")
-                szoveg = email_szoveg_kinyerese(msg)
-                pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
-                teljes_szoveg = f"{szoveg}\n{pdf_szoveg}"
+                    targy = _fejlec_dekodolas(msg.get("Subject", ""))
+                    erkezett_fejlec = msg.get("Date", "")
+                    szoveg = email_szoveg_kinyerese(msg)
+                    pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
+                    teljes_szoveg = f"{szoveg}\n{pdf_szoveg}"
 
-                tipus = tartalom_tipus_azonositas(targy, teljes_szoveg)
-                statisztika["email_osszesen"] += 1
+                    tipus = tartalom_tipus_azonositas(targy, teljes_szoveg)
+                    statisztika["email_osszesen"] += 1
 
-                if tipus == "fizetve":
-                    statisztika["fizetve"] += 1
-                    fizetett_osszeg = osszeg_kinyerese(teljes_szoveg)
-                    jeloltek = [
-                        (rid, r) for rid, r in szamlak.items()
-                        if r.get("szolgaltato") == szolgaltato_kulcs and not r["fizetve"]
-                    ]
-                    talalat = None
-                    if fizetett_osszeg is not None:
-                        for rid, r in jeloltek:
-                            if r.get("osszeg") is not None and abs(r["osszeg"] - fizetett_osszeg) < 1:
-                                talalat = rid
-                                break
-                    if not talalat and len(jeloltek) == 1:
-                        talalat = jeloltek[0][0]
-                    if talalat:
-                        szamlak[talalat]["fizetve"] = True
-                        szamlak[talalat]["fizetve_datum"] = magyar_ido().isoformat()
-                        print(f"      ✅ Fizetettre állítva ({cimke}): {szamlak[talalat]['targy'][:50]}")
-                    continue
+                    if tipus == "fizetve":
+                        statisztika["fizetve"] += 1
+                        # A "ceges_szamlak" listának nincs fizetve-fogalma
+                        # (ld. dedikált Céges postafiók) - ott ez a
+                        # jeloltek-keresés mindig üres lenne, ezért csak
+                        # "kozuzemi" célnál van értelme lefuttatni.
+                        if cel == "kozuzemi":
+                            fizetett_osszeg = osszeg_kinyerese(teljes_szoveg)
+                            jeloltek = [
+                                (rid, r) for rid, r in szamlak.items()
+                                if r.get("szolgaltato") == szolgaltato_kulcs and not r["fizetve"]
+                            ]
+                            talalat = None
+                            if fizetett_osszeg is not None:
+                                for rid, r in jeloltek:
+                                    if r.get("osszeg") is not None and abs(r["osszeg"] - fizetett_osszeg) < 1:
+                                        talalat = rid
+                                        break
+                            if not talalat and len(jeloltek) == 1:
+                                talalat = jeloltek[0][0]
+                            if talalat:
+                                szamlak[talalat]["fizetve"] = True
+                                szamlak[talalat]["fizetve_datum"] = magyar_ido().isoformat()
+                                print(f"      ✅ Fizetettre állítva ({cimke}): {szamlak[talalat]['targy'][:50]}")
+                        continue
 
-                if tipus != "uj_szamla":
-                    # meroallas/fizetesi_emlekezteto/ismeretlen - itt
-                    # szándékosan kihagyva (ez a modul csak a "van-e új
-                    # számlám" kérdésre koncentrál, ugyanúgy, mint a
-                    # Céges számlák postafiók).
-                    continue
+                    if tipus != "uj_szamla":
+                        # meroallas/fizetesi_emlekezteto/ismeretlen - itt
+                        # szándékosan kihagyva (ez a modul csak a "van-e
+                        # új számlám" kérdésre koncentrál, ugyanúgy, mint
+                        # a Céges számlák postafiók).
+                        continue
 
-                rid = hashlib.md5(f"{felhasznalo}|{uid_str}|tovabbi_postafiok".encode("utf-8")).hexdigest()[:16]
-                if rid in szamlak or rid in torolt_id_szet:
-                    continue
+                    kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(teljes_szoveg)
 
-                osszeg = osszeg_kinyerese(teljes_szoveg)
-                hatarido = hatarido_kinyerese(teljes_szoveg)
-                kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(teljes_szoveg)
+                    if cel == "ceges":
+                        cid = hashlib.md5(
+                            f"{felhasznalo}|{uid_str}|tovabbi_postafiok_ceges".encode("utf-8")
+                        ).hexdigest()[:16]
+                        if cid in ceges_szamlak or cid in torolt_id_szet:
+                            continue
+                        kuldo_nev = _ceges_kuldo_nev_kinyerese(msg)
+                        feladó_email = _feladó_cim(msg)
+                        kinyert_osszeg = osszeg_kinyerese(teljes_szoveg)
+                        fajlnev = _ceges_fajlnev(cid, kuldo_nev, pdf_nev)
+                        pdf_b64 = base64.b64encode(pdf_bytes).decode("ascii")
+                        drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
+                        if not drive_url:
+                            kesz = False
+                            print(f"      ⚠️  '{cimke}' (céges cél): Drive-feltöltés sikertelen, "
+                                  f"újra próbáljuk a következő futáskor: {targy[:60]}")
+                            continue
+                        uj_erkezett = _email_datum_iso(erkezett_fejlec)
+                        ceges_szamlak[cid] = {
+                            "kuldo_nev": kuldo_nev,
+                            "feladó_email": feladó_email,
+                            "targy": targy,
+                            "erkezett": uj_erkezett,
+                            "erkezett_fejlec": erkezett_fejlec,
+                            "drive_url": drive_url,
+                            "drive_fajlnev": fajlnev,
+                            "rogzitve": magyar_ido().isoformat(),
+                            "kinyert_osszeg": kinyert_osszeg,
+                            "kinyert_szamlaszam": kinyert_szamlaszam,
+                            "nav_szamla_azonosito": None,
+                            "nav_parositva": False,
+                            "nav_szallito_nev": None,
+                            "nav_osszeg": None,
+                            "nav_datum": None,
+                        }
+                        uj_db += 1
+                        statisztika["uj_szamla"] += 1
+                        print(f"      🆕 Új céges számla ({cimke}): {kuldo_nev} – {targy[:50]}")
 
-                rekord = {
-                    "szolgaltato": szolgaltato_kulcs,
-                    "szolgaltato_nev": cimke,
-                    "targy": targy,
-                    "erkezett": _email_datum_iso(erkezett_fejlec),
-                    "erkezett_fejlec": erkezett_fejlec,
-                    "osszeg": osszeg,
-                    "hatarido": hatarido,
-                    "fizetve": False,
-                    "fizetve_datum": None,
-                    "uid": uid_str,
-                    # Best-effort - ld. a fenti SZAMLASZAM_MINTA_ALTALANOS
-                    # komment - kizárólag a NAV-párosításhoz kell (ld.
-                    # "NAV ONLINE SZÁMLA" szekció lentebb), None is lehet.
-                    "szamlaszam": kinyert_szamlaszam,
-                }
-                szamlak[rid] = rekord
-                pdf_tarolas(allapot, rid, pdf_bytes)
-                uj_db += 1
-                statisztika["uj_szamla"] += 1
-                print(f"      🆕 Új számla ({cimke}): {forint(osszeg)} – határidő: {hatarido}")
+                        statisztika["email_ertesitesek"] += 1
+                        email_rekord = {
+                            "szolgaltato_nev": cimke, "targy": targy,
+                            "osszeg": kinyert_osszeg, "hatarido": None, "erkezett": uj_erkezett,
+                        }
+                        email_kuldes(
+                            f"📄 Új céges számla – {cimke}",
+                            uj_szamla_email_html(email_rekord),
+                            [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
+                        )
+                        tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+                        if tulajdonos_cimzett:
+                            statisztika["email_ertesitesek"] += 1
+                            email_kuldes(
+                                f"📄 Új céges számla – {cimke}",
+                                uj_szamla_email_html(email_rekord),
+                                [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
+                                cimzett=tulajdonos_cimzett,
+                            )
+                        continue
 
-                statisztika["email_ertesitesek"] += 1
-                email_kuldes(
-                    f"📄 Új számla – {cimke}",
-                    uj_szamla_email_html(rekord),
-                    [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                )
-                tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
-                if tulajdonos_cimzett:
+                    # cel == "kozuzemi" (alapértelmezett) - a régi, változatlan ág.
+                    rid = hashlib.md5(f"{felhasznalo}|{uid_str}|tovabbi_postafiok".encode("utf-8")).hexdigest()[:16]
+                    if rid in szamlak or rid in torolt_id_szet:
+                        continue
+
+                    osszeg = osszeg_kinyerese(teljes_szoveg)
+                    hatarido = hatarido_kinyerese(teljes_szoveg)
+
+                    rekord = {
+                        "szolgaltato": szolgaltato_kulcs,
+                        "szolgaltato_nev": cimke,
+                        "targy": targy,
+                        "erkezett": _email_datum_iso(erkezett_fejlec),
+                        "erkezett_fejlec": erkezett_fejlec,
+                        "osszeg": osszeg,
+                        "hatarido": hatarido,
+                        "fizetve": False,
+                        "fizetve_datum": None,
+                        "uid": uid_str,
+                        # Best-effort - ld. a fenti SZAMLASZAM_MINTA_ALTALANOS
+                        # komment - kizárólag a NAV-párosításhoz kell (ld.
+                        # "NAV ONLINE SZÁMLA" szekció lentebb), None is lehet.
+                        "szamlaszam": kinyert_szamlaszam,
+                    }
+                    szamlak[rid] = rekord
+                    pdf_tarolas(allapot, rid, pdf_bytes)
+                    uj_db += 1
+                    statisztika["uj_szamla"] += 1
+                    print(f"      🆕 Új számla ({cimke}): {forint(osszeg)} – határidő: {hatarido}")
+
                     statisztika["email_ertesitesek"] += 1
                     email_kuldes(
                         f"📄 Új számla – {cimke}",
                         uj_szamla_email_html(rekord),
                         [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                        cimzett=tulajdonos_cimzett,
                     )
+                    tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+                    if tulajdonos_cimzett:
+                        statisztika["email_ertesitesek"] += 1
+                        email_kuldes(
+                            f"📄 Új számla – {cimke}",
+                            uj_szamla_email_html(rekord),
+                            [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
+                            cimzett=tulajdonos_cimzett,
+                        )
+                finally:
+                    if kesz:
+                        mar_feldolgozott.add(uid_str)
         except Exception as e:
             print(f"  ⚠️  További postafiók '{cimke}' feldolgozása közben hiba: {e}")
         finally:
