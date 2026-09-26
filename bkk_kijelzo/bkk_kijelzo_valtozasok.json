@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-27T01:46:41.096558+02:00",
+  "frissitve": "2026-09-27T01:47:46.557020+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:47:11.012781+02:00",
-      "kulcs": "NCV296",
-      "rendszam": "NCV296",
-      "vehicle_id": "6261",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50227737426758,
-      "lon": 19.035327911376953,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-26T11:47:11.013436+02:00",
-      "kulcs": "PDB704",
-      "rendszam": "PDB704",
-      "vehicle_id": "7030",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.48370361328125,
-      "lon": 19.12787628173828,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-09-26T11:47:11.013506+02:00",
-      "kulcs": "PDB716",
-      "rendszam": "PDB716",
-      "vehicle_id": "7042",
-      "vehicle_label": "Döbrentei tér",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.54845428466797,
-      "lon": 19.029571533203125,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Döbrentei tér"
-    },
-    {
-      "idopont": "2026-09-26T11:47:11.013581+02:00",
-      "kulcs": "PDB725",
-      "rendszam": "PDB725",
-      "vehicle_id": "7051",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.60303497314453,
-      "lon": 19.067039489746094,
-      "elozo_szoveg": "B.megyer, Újmegyeri tér",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
     {
       "idopont": "2026-09-26T11:47:11.013595+02:00",
       "kulcs": "PDB727",
@@ -260000,6 +259948,58 @@
       "lon": 19.01414680480957,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-09-27T01:47:46.468130+02:00",
+      "kulcs": "SKN831",
+      "rendszam": "SKN831",
+      "vehicle_id": "164",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.53817367553711,
+      "lon": 19.069002151489258,
+      "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T01:47:46.470137+02:00",
+      "kulcs": "MUT888",
+      "rendszam": "MUT888",
+      "vehicle_id": "5941",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.561275482177734,
+      "lon": 19.09030532836914,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-09-27T01:47:46.470169+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486785888671875,
+      "lon": 19.057167053222656,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-27T01:47:46.470506+02:00",
+      "kulcs": "RVY714",
+      "rendszam": "RVY714",
+      "vehicle_id": "7463",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48680114746094,
+      "lon": 19.067825317382812,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
