@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-26T02:59:46.212744+02:00",
+  "frissitve": "2026-09-26T03:00:18.591963+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:09:23.984933+02:00",
-      "kulcs": "RVY718",
-      "rendszam": "RVY718",
-      "vehicle_id": "7467",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.429237365722656,
-      "lon": 19.175811767578125,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-25T15:09:23.985426+02:00",
-      "kulcs": "SCD596",
-      "rendszam": "SCD596",
-      "vehicle_id": "7658",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.40446853637695,
-      "lon": 19.1859188079834,
-      "elozo_szoveg": "Ferihegy vá.-Pszt.imre vá.",
-      "uj_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca"
-    },
-    {
-      "idopont": "2026-09-25T15:09:23.985960+02:00",
-      "kulcs": "SKR807",
-      "rendszam": "SKR807",
-      "vehicle_id": "7693",
-      "vehicle_label": "Szemlőhegy",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.51079559326172,
-      "lon": 19.056337356567383,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Szemlőhegy"
-    },
-    {
-      "idopont": "2026-09-25T15:09:23.986098+02:00",
-      "kulcs": "SKR824",
-      "rendszam": "SKR824",
-      "vehicle_id": "7710",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "284E",
-      "route_id": "2845",
-      "lat": 47.46284103393555,
-      "lon": 19.148359298706055,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-09-25T15:09:23.986262+02:00",
-      "kulcs": "SGY817",
-      "rendszam": "SGY817",
-      "vehicle_id": "7735",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.40578079223633,
-      "lon": 19.013690948486328,
-      "elozo_szoveg": "Budatétény vasútáll. (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-09-25T15:09:23.986315+02:00",
       "kulcs": "SGY821",
@@ -260000,6 +259935,71 @@
       "lon": 19.109743118286133,
       "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-26T03:00:18.525228+02:00",
+      "kulcs": "AAGL301",
+      "rendszam": "AAGL301",
+      "vehicle_id": "281",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45570373535156,
+      "lon": 18.940895080566406,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-09-26T03:00:18.525290+02:00",
+      "kulcs": "AAGL284",
+      "rendszam": "AAGL284",
+      "vehicle_id": "308",
+      "vehicle_label": "Páty - Telki - Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.524078369140625,
+      "lon": 18.944028854370117,
+      "elozo_szoveg": "Budakeszi ► Páty ► Telki ► Zsámbék",
+      "uj_szoveg": "Páty ► Telki ► Zsámbék"
+    },
+    {
+      "idopont": "2026-09-26T03:00:18.525354+02:00",
+      "kulcs": "FLR710",
+      "rendszam": "FLR710",
+      "vehicle_id": "3124",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507469177246094,
+      "lon": 19.025123596191406,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-26T03:00:18.526251+02:00",
+      "kulcs": "MUT888",
+      "rendszam": "MUT888",
+      "vehicle_id": "5941",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59785461425781,
+      "lon": 19.053878784179688,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-26T03:00:18.526269+02:00",
+      "kulcs": "MUT894",
+      "rendszam": "MUT894",
+      "vehicle_id": "5947",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42835998535156,
+      "lon": 19.155757904052734,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
