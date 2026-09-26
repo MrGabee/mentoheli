@@ -361,12 +361,18 @@
     <div class="panel" id="postafiok-panel">
       <button type="button" class="panel-toggle" id="postafiok-toggle">📬 Új postafiók hozzáadása ▾</button>
       <div class="panel-tartalom" id="postafiok-tartalom" style="display:none;">
-        <p class="panel-info">Itt adhatsz hozzá TETSZŐLEGES SZÁMÚ, a fenti fő postafiókodtól FÜGGETLEN email-fiókot, amit a script mostantól FOLYAMATOSAN (minden futásnál) figyel: minden PDF-csatolmányos levelet megvizsgál, hogy az valóban számla-e (a levél/PDF TARTALMA alapján, nem a feladó címe alapján), és a felismert számlák ide, a Közüzemi listába kerülnek be, a lent megadott "címke" alatt (pl. "Csatornázási Művek"). A megadott jelszó mentés előtt TITKOSÍTVA kerül a GitHub-ra, ugyanúgy, mint minden más adat itt.</p>
+        <p class="panel-info">Itt adhatsz hozzá TETSZŐLEGES SZÁMÚ, a fenti fő postafiókodtól FÜGGETLEN email-fiókot, amit a script mostantól FOLYAMATOSAN (minden futásnál) figyel: minden PDF-csatolmányos levelet megvizsgál, hogy az valóban számla-e (a levél/PDF TARTALMA alapján, nem a feladó címe alapján). A "Cél" választja el, hogy a felismert számlák a Közüzemi listába kerüljenek-e (a lent megadott "címke" alatt, pl. "Csatornázási Művek"), VAGY a Céges számlák fülre (mintha a dedikált céges postafiókból jöttek volna) - utóbbit akkor válaszd, ha ez a postafiók ténylegesen céges beszerzési számlákat gyűjt. A megadott jelszó mentés előtt TITKOSÍTVA kerül a GitHub-ra, ugyanúgy, mint minden más adat itt.</p>
 
         <div id="postafiok-lista-hely"></div>
 
         <p style="font-weight:600;margin-top:18px;">➕ cPanel / egyéb IMAP-postafiók hozzáadása</p>
         <label>Címke (ez jelenik meg a listában, pl. "Csatornázási Művek") <input type="text" id="pf-cpanel-cimke" placeholder="Csatornázási Művek"></label>
+        <label>Cél
+          <select id="pf-cpanel-cel">
+            <option value="kozuzemi" selected>Közüzemi számlák (fő lista)</option>
+            <option value="ceges">Céges számlák (Céges fül)</option>
+          </select>
+        </label>
         <label>IMAP-szerver <input type="text" id="pf-cpanel-host" placeholder="mail.sajatdomain.hu"></label>
         <label>Port (üresen hagyva: 993) <input type="number" id="pf-cpanel-port" placeholder="993"></label>
         <label>Email-cím <input type="email" id="pf-cpanel-email"></label>
@@ -377,6 +383,12 @@
         <p style="font-weight:600;margin-top:22px;">➕ Gmail-postafiók hozzáadása (App Password)</p>
         <p class="panel-info">A Gmail-fiókodon be kell kapcsolnod a kétlépéses azonosítást (Google-fiók → Biztonság), utána a Biztonság → Alkalmazásjelszavak menüben tudsz generálni egy 16 karakteres kódot ("Mail" típusra) - NE a sima Gmail-jelszavadat add meg alább, csak ezt a kódot.</p>
         <label>Címke <input type="text" id="pf-gmail-cimke" placeholder="pl. Régi postafiók"></label>
+        <label>Cél
+          <select id="pf-gmail-cel">
+            <option value="kozuzemi" selected>Közüzemi számlák (fő lista)</option>
+            <option value="ceges">Céges számlák (Céges fül)</option>
+          </select>
+        </label>
         <label>Gmail-cím <input type="email" id="pf-gmail-email"></label>
         <label>Alkalmazásjelszó (App Password) <input type="password" id="pf-gmail-jelszo" autocomplete="off" placeholder="16 karakteres kód"></label>
         <button type="button" id="pf-gmail-gomb">Postafiók hozzáadása</button>
@@ -697,6 +709,16 @@
     `;
   }
 
+  // A "Cégnév" / "Számlaszám" / "Összeg" mezők SZERKESZTHETŐK - ha a
+  // script (a PDF/levél szövegéből, best-effort) nem tudta automatikusan
+  // felismerni ezeket (vagy rosszul ismerte fel), a felhasználó kézzel
+  // beírhatja/javíthatja - elhagyáskor (blur) azonnal, önállóan menti
+  // (ugyanaz az "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" minta,
+  // mint korFelulbiralasMentese()-nél, ld. cegesMezoMentese() lentebb).
+  // A Számlaszám/Összeg emiatt a KÖVETKEZŐ script-futástól a NAV-
+  // párosításban is részt vesz (ld. _nav_parosithato_rekordok() a
+  // Python-oldalon), tehát egy kézzel kijavított mező ténylegesen javítja
+  // a párosítás esélyét is, nem csak megjelenítési célú.
   function cegesTablaRenderelese(lista) {
     const hely = document.getElementById("ceges-tabla-hely");
     if (!lista.length) {
@@ -704,11 +726,14 @@
       return;
     }
     const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const mezoInputStyle = "width:100%;min-width:90px;box-sizing:border-box;border:1px solid var(--border);border-radius:6px;padding:4px 6px;font-size:13px;font-family:inherit;";
     const sorok = rendezett.map(r => `
       <tr>
-        <td>${escHtml(r.kuldo_nev)}</td>
+        <td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kuldo_nev" value="${escHtml(r.kuldo_nev)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>
         <td>${escHtml(r.targy) || "—"}</td>
         <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
+        <td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_szamlaszam" value="${escHtml(r.kinyert_szamlaszam)}" placeholder="pl. AB-2026-123" style="${mezoInputStyle}"></td>
+        <td><input type="number" step="0.01" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_osszeg" value="${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "" : r.kinyert_osszeg}" placeholder="Ft" style="${mezoInputStyle}"></td>
         <td>${r.drive_url ? `<a href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">📁 Megnyitás Drive-on ↗</a>` : "—"}</td>
         <td>${r.nav_parositva
           ? `<span style="color:var(--green);">✅ Párosítva</span>`
@@ -717,13 +742,37 @@
       </tr>
     `).join("");
     hely.innerHTML = `
+      <p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti.</p>
       <table>
         <thead>
-          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számla (Drive)</th><th>NAV-párosítás</th></tr>
+          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Számla (Drive)</th><th>NAV-párosítás</th></tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
     `;
+    hely.querySelectorAll(".ceges-mezo-input").forEach(input => {
+      const eredetiErtek = input.value;
+      input.addEventListener("blur", async () => {
+        const nyersErtek = input.value.trim();
+        if (nyersErtek === eredetiErtek) return;
+        const mezo = input.dataset.mezo;
+        let ujErtek;
+        if (mezo === "kinyert_osszeg") {
+          if (nyersErtek === "") {
+            ujErtek = null;
+          } else {
+            ujErtek = Number(nyersErtek.replace(",", "."));
+            if (isNaN(ujErtek)) { alert("Az összeg csak szám lehet."); input.value = eredetiErtek; return; }
+          }
+        } else {
+          ujErtek = nyersErtek || null;
+        }
+        input.disabled = true;
+        const siker = await cegesMezoMentese(input.dataset.id, mezo, ujErtek);
+        input.disabled = false;
+        if (!siker) input.value = eredetiErtek;
+      });
+    });
   }
 
   // ── NAV Online Számla összekötés - renderelés ── Ugyanaz a "mindig
@@ -892,6 +941,7 @@
         hatterSzin = "#f3f4f6";
         statuszSzoveg = `<span style="color:var(--muted);">⏳ Még nem futott le - a következő script-futáskor kezdi figyelni.</span>`;
       }
+      const cel = b.cel === "ceges" ? "ceges" : "kozuzemi";
       return `
         <div class="kor-sor" data-id="${escHtml(id)}">
           <div>
@@ -899,6 +949,12 @@
             <div style="background:${hatterSzin};display:inline-block;padding:2px 8px;border-radius:6px;margin-top:4px;font-size:12px;">${statuszSzoveg}</div>
           </div>
           <div class="kor-gombok">
+            <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;">Cél:
+              <select class="postafiok-cel-select" data-id="${escHtml(id)}">
+                <option value="kozuzemi" ${cel === "kozuzemi" ? "selected" : ""}>Közüzemi</option>
+                <option value="ceges" ${cel === "ceges" ? "selected" : ""}>Céges</option>
+              </select>
+            </label>
             <button type="button" class="postafiok-aktiv-valto-gomb" data-id="${escHtml(id)}">${b.aktiv === false ? "Visszaállítás" : "Szüneteltetés"}</button>
           </div>
         </div>
@@ -909,6 +965,15 @@
         btn.disabled = true;
         await tovabbiPostafiokAktivValtas(btn.dataset.id);
         btn.disabled = false;
+      });
+    });
+    hely.querySelectorAll(".postafiok-cel-select").forEach(sel => {
+      const eredetiErtek = sel.value;
+      sel.addEventListener("change", async () => {
+        sel.disabled = true;
+        const siker = await tovabbiPostafiokCelValtas(sel.dataset.id, sel.value);
+        sel.disabled = false;
+        if (!siker) sel.value = eredetiErtek;
       });
     });
   }
@@ -2107,6 +2172,35 @@
     }
   }
 
+  // ── Céges számla mezőinek kézi javítása ("Céges számlák" fül táblázata,
+  // ld. cegesTablaRenderelese() fent) - ugyanaz a minta, mint
+  // navSzallitoEmailMentese()/korFelulbiralasMentese() fent, csak az
+  // adat.ceges_szamlak[id][mezo] mezőt módosítja (kuldo_nev/
+  // kinyert_szamlaszam/kinyert_osszeg lehet). Mentés után a teljes Céges
+  // táblázatot újrarendereljük a friss adatból, hogy más eszközön/fülön
+  // közben történt változás is látszódjon.
+  async function cegesMezoMentese(id, mezo, ujErtek) {
+    const pat = aktualisPat();
+    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez."); return false; }
+    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
+    patMentese();
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.ceges_szamlak = adat.ceges_szamlak || {};
+        const rekord = adat.ceges_szamlak[id];
+        if (rekord) rekord[mezo] = ujErtek;
+      });
+      legutobbiAdat = friss;
+      cegesSzamlak = Object.entries(friss.ceges_szamlak || {}).map(([rid, r]) => Object.assign({ id: rid }, r));
+      cegesKartyakRenderelese(cegesSzamlak);
+      cegesTablaRenderelese(cegesSzamlak);
+      return true;
+    } catch (e) {
+      alert("A mentés sikertelen: " + e.message);
+      return false;
+    }
+  }
+
   // ── "Új postafiók hozzáadása" panel - postafiók-bejegyzés hozzáadása/
   // szüneteltetése ──────────────────────────────────────────────────
   // Ugyanaz a "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" minta,
@@ -2162,6 +2256,33 @@
     }
   }
 
+  // A postafiók "cél"-jának (Közüzemi/Céges) módosítása - ld. a "Cél"
+  // select-et postafiokListaRenderelese()-ben, és a Python-oldali
+  // tovabbi_postafiok_ceges_athelyezes() kommentjét: "ceges"-re állítás
+  // UTÁN a KÖVETKEZŐ script-futás automatikusan áthelyezi a postafiók
+  // korábban már felvett (a fő listában rekedt) számláit is a Céges
+  // fülre - itt a dashboardon nem kell (és nem is lehet, hisz Drive-
+  // feltöltést igényel) semmi mást tenni ehhez.
+  async function tovabbiPostafiokCelValtas(id, ujCel) {
+    const pat = aktualisPat();
+    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a módosításhoz."); return false; }
+    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
+    patMentese();
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.tovabbi_postafiokok = adat.tovabbi_postafiokok || {};
+        const b = adat.tovabbi_postafiokok[id];
+        if (b) b.cel = ujCel === "ceges" ? "ceges" : "kozuzemi";
+      });
+      legutobbiAdat = friss;
+      postafiokListaRenderelese(friss.tovabbi_postafiokok);
+      return true;
+    } catch (e) {
+      alert("A postafiók céljának módosítása sikertelen: " + e.message);
+      return false;
+    }
+  }
+
   document.getElementById("pf-cpanel-gomb").addEventListener("click", async () => {
     const gomb = document.getElementById("pf-cpanel-gomb");
     const cimke = document.getElementById("pf-cpanel-cimke").value.trim();
@@ -2169,6 +2290,7 @@
     const portNyers = document.getElementById("pf-cpanel-port").value.trim();
     const user = document.getElementById("pf-cpanel-email").value.trim();
     const jelszo = document.getElementById("pf-cpanel-jelszo").value;
+    const cel = document.getElementById("pf-cpanel-cel").value === "ceges" ? "ceges" : "kozuzemi";
     if (!cimke || !host || !user || !jelszo) {
       beStatuszMutat("pf-cpanel-statusz", "Töltsd ki a címkét, az IMAP-szervert, az email-címet és a jelszót.", "hiba");
       return;
@@ -2179,7 +2301,7 @@
       return;
     }
     gomb.disabled = true;
-    const siker = await postafiokHozzaadasa({ cimke, tipus: "cpanel", host, port, user, jelszo, mappa: "INBOX" }, "pf-cpanel-statusz");
+    const siker = await postafiokHozzaadasa({ cimke, tipus: "cpanel", host, port, user, jelszo, mappa: "INBOX", cel }, "pf-cpanel-statusz");
     gomb.disabled = false;
     if (siker) {
       document.getElementById("pf-cpanel-cimke").value = "";
@@ -2187,6 +2309,7 @@
       document.getElementById("pf-cpanel-port").value = "";
       document.getElementById("pf-cpanel-email").value = "";
       document.getElementById("pf-cpanel-jelszo").value = "";
+      document.getElementById("pf-cpanel-cel").value = "kozuzemi";
     }
   });
 
@@ -2195,17 +2318,19 @@
     const cimke = document.getElementById("pf-gmail-cimke").value.trim();
     const user = document.getElementById("pf-gmail-email").value.trim();
     const jelszo = document.getElementById("pf-gmail-jelszo").value.trim();
+    const cel = document.getElementById("pf-gmail-cel").value === "ceges" ? "ceges" : "kozuzemi";
     if (!cimke || !user || !jelszo) {
       beStatuszMutat("pf-gmail-statusz", "Töltsd ki a címkét, a Gmail-címet és az alkalmazásjelszót.", "hiba");
       return;
     }
     gomb.disabled = true;
-    const siker = await postafiokHozzaadasa({ cimke, tipus: "gmail", host: "imap.gmail.com", port: 993, user, jelszo, mappa: "INBOX" }, "pf-gmail-statusz");
+    const siker = await postafiokHozzaadasa({ cimke, tipus: "gmail", host: "imap.gmail.com", port: 993, user, jelszo, mappa: "INBOX", cel }, "pf-gmail-statusz");
     gomb.disabled = false;
     if (siker) {
       document.getElementById("pf-gmail-cimke").value = "";
       document.getElementById("pf-gmail-email").value = "";
       document.getElementById("pf-gmail-jelszo").value = "";
+      document.getElementById("pf-gmail-cel").value = "kozuzemi";
     }
   });
 
