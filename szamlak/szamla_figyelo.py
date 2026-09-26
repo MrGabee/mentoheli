@@ -414,6 +414,13 @@ SZAMLA_BERLO_OSSZESITO_KOR = os.environ.get("SZAMLA_BERLO_OSSZESITO_KOR", "").st
 SZAMLA_TULAJDONOS_OSSZESITO_MOST = os.environ.get("SZAMLA_TULAJDONOS_OSSZESITO_MOST") == "1"
 SZAMLA_KONYVELO_EMLEKEZTETO_MOST = os.environ.get("SZAMLA_KONYVELO_EMLEKEZTETO_MOST") == "1"
 SZAMLA_PDF_CSATOLAS_MANUALIS = os.environ.get("SZAMLA_PDF_CSATOLAS_MANUALIS") == "1"
+# A dashboard "NAV Online Számla összekötés" paneljének "Emlékeztető
+# küldése a kijelölteknek" gombja - vesszővel elválasztott adószám-lista
+# (a felhasználó által kijelölt, NAV-on megtalált, de emailben meg nem
+# érkezett számlák szállítóinak adószáma) - ld. "NAV-ON TALÁLT, HIÁNYZÓ
+# SZÁMLÁK EMLÉKEZTETŐJE" szekció lentebb. Csak workflow_dispatch-nál
+# kaphat tartalmat, ütemezett futásnál mindig üres.
+SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK = os.environ.get("SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK", "").strip()
 
 # A hónap utolsó hány napjában menjen ki a könyvelői havi emlékeztető (ld.
 # "KÖNYVELŐI KÖR" szekció) - egy kis "ablak", nem egyetlen fix nap, mert a
@@ -2526,6 +2533,14 @@ def _drive_forras_meghatarozasa(rekord: dict) -> str:
         return "Vízművek"
     if rekord.get("szolgaltato") == "mvm":
         return "MVM"
+    # "További postafiókok" (ld. "TOVÁBBI POSTAFIÓKOK" szekció lentebb) -
+    # a felhasználó által a dashboardon adott "cimke" (pl. "Csatornázási
+    # Művek") lesz a Drive-on a SAJÁT, top-szintű almappa neve - ugyanaz
+    # az elv, mint a Vízművek/MVM/Díjnet fix mappáinál, csak dinamikusan
+    # névre szabva, hogy minden hozzáadott postafióknak külön mappája
+    # legyen, ne mind az "Egyéb"-be keveredjen.
+    if str(rekord.get("szolgaltato") or "").startswith("postafiok_") and rekord.get("szolgaltato_nev"):
+        return rekord["szolgaltato_nev"]
     return "Egyéb"
 
 
@@ -2920,6 +2935,182 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
 
 
 # ════════════════════════════════════════════
+#  📬  TOVÁBBI POSTAFIÓKOK (dashboardról hozzáadott, folyamatosan figyelt)
+# ════════════════════════════════════════════
+# A felhasználó kérésére a dashboardon (Közüzemi számlák fül, "➕ Új
+# postafiók hozzáadása" panel) TETSZŐLEGES SZÁMÚ, tetszőleges (cPanel-es
+# IMAP vagy Gmail App Password-ös) postafiók adható hozzá, ami mostantól
+# FOLYAMATOSAN (minden ütemezett futásnál) figyelve lesz - ld. a panel
+# HTML-kommentjét (szamlak.html) a pontos felhasználói folyamatért
+# (titkosított mentés a meglévő allapotFrissitesEsMentese() mintával).
+#
+# EZ SZÁNDÉKOSAN A FŐ ("szamlak") LISTÁBA KERÜL, NEM egy külön fülbe -
+# a felhasználó kifejezett kérése ("kösd össze a másik füllel"), mert
+# ezek is jellemzően a cég nevére jövő, közüzemi jellegű számlák (pl.
+# Csatornázási Művek), csak épp egy MÁSIK postafiókba érkeznek, mint a
+# fő SZAMLA_IMAP_*. Minden ilyen postafiók egy szintetikus "szolgaltato"
+# kulcsot kap ("postafiok_<id>") és a felhasználó által megadott "cimke"
+# lesz a "szolgaltato_nev" - így a meglévő tábla/szűrő/fizetve-párosítás
+# logika (ami a "szolgaltato" mezőre épül) VÁLTOZTATÁS NÉLKÜL működik
+# ezekre a rekordokra is.
+#
+# SZŰRÉS - FONTOS KÜLÖNBSÉG a fő postafiókhoz képest: itt NINCS "ismert
+# feladó" szűrés (szolgaltato_azonositasa) - a felhasználó kifejezett
+# kérése szerint MINDEN, PDF-CSATOLMÁNYOS levelet megvizsgálunk (PDF
+# NÉLKÜLI levelet EGYÁLTALÁN NEM nézünk meg itt), és a MEGLÉVŐ,
+# tartalom-alapú tartalom_tipus_azonositas()-t használjuk annak
+# eldöntésére, hogy az adott levél ténylegesen számla (vagy fizetés-
+# visszaigazolás/mérőállás/egyéb)-e - ugyanazzal a mintafelismeréssel,
+# mint a fő postafióknál, csak feladó-szűrés nélkül.
+#
+# EREDETI PDF: a Drive-ra/tartós tárolásra MINDIG az eredeti, változatlan
+# PDF-bájtok kerülnek (pdf_tarolas() + a meglévő generikus
+# drive_pdf_feltoltesek() útján) - a pdfplumber-es szövegkinyerés
+# (pdf_szoveg_kinyerese()) KIZÁRÓLAG a tartalom felismeréséhez kell, a
+# kinyert szöveg SOHA nem kerül tárolásra/feltöltésre a PDF helyett.
+def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id_szet: set):
+    szamlak = allapot.setdefault("szamlak", {})
+    tovabbi_postafiokok = allapot.setdefault("tovabbi_postafiokok", {})
+    if not tovabbi_postafiokok:
+        return
+
+    for postafiok_id, bejegyzes in tovabbi_postafiokok.items():
+        if not bejegyzes.get("aktiv", True):
+            continue
+        cimke = bejegyzes.get("cimke") or "Ismeretlen postafiók"
+        szolgaltato_kulcs = f"postafiok_{postafiok_id}"
+        host = bejegyzes.get("host") or ""
+        port = int(bejegyzes.get("port") or 993)
+        felhasznalo = bejegyzes.get("user") or ""
+        jelszo = bejegyzes.get("jelszo") or ""
+        mappa = bejegyzes.get("mappa") or "INBOX"
+        if not (host and felhasznalo and jelszo):
+            print(f"  ⚠️  További postafiók '{cimke}': hiányos bejelentkezési adatok - kihagyva.")
+            continue
+
+        mar_feldolgozott = set(bejegyzes.setdefault("feldolgozott_uidok", []))
+        try:
+            conn = imap_kapcsolat(host, port, felhasznalo, jelszo, mappa)
+        except Exception as e:
+            bejegyzes["utolso_hiba"] = str(e)
+            bejegyzes["utolso_probalkozas"] = magyar_ido().isoformat()
+            print(f"  ❌ További postafiók '{cimke}': IMAP-bejelentkezés sikertelen: {e}")
+            continue
+        bejegyzes["utolso_hiba"] = None
+        bejegyzes["utolso_probalkozas"] = magyar_ido().isoformat()
+
+        uj_db = 0
+        try:
+            uj_uidok = uj_uidok_lekerese(conn, mar_feldolgozott)
+            for uid in uj_uidok:
+                uid_str = uid.decode()
+                mar_feldolgozott.add(uid_str)
+                msg = uid_letoltese(conn, uid)
+                if msg is None:
+                    continue
+
+                pdf_nev, pdf_bytes = pdf_csatolmany(msg)
+                if not pdf_bytes:
+                    # Ld. a szekció-komment "SZŰRÉS" része - PDF nélküli
+                    # levelet ennél a forrásnál egyáltalán nem nézünk meg.
+                    continue
+
+                targy = _fejlec_dekodolas(msg.get("Subject", ""))
+                erkezett_fejlec = msg.get("Date", "")
+                szoveg = email_szoveg_kinyerese(msg)
+                pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
+                teljes_szoveg = f"{szoveg}\n{pdf_szoveg}"
+
+                tipus = tartalom_tipus_azonositas(targy, teljes_szoveg)
+                statisztika["email_osszesen"] += 1
+
+                if tipus == "fizetve":
+                    statisztika["fizetve"] += 1
+                    fizetett_osszeg = osszeg_kinyerese(teljes_szoveg)
+                    jeloltek = [
+                        (rid, r) for rid, r in szamlak.items()
+                        if r.get("szolgaltato") == szolgaltato_kulcs and not r["fizetve"]
+                    ]
+                    talalat = None
+                    if fizetett_osszeg is not None:
+                        for rid, r in jeloltek:
+                            if r.get("osszeg") is not None and abs(r["osszeg"] - fizetett_osszeg) < 1:
+                                talalat = rid
+                                break
+                    if not talalat and len(jeloltek) == 1:
+                        talalat = jeloltek[0][0]
+                    if talalat:
+                        szamlak[talalat]["fizetve"] = True
+                        szamlak[talalat]["fizetve_datum"] = magyar_ido().isoformat()
+                        print(f"      ✅ Fizetettre állítva ({cimke}): {szamlak[talalat]['targy'][:50]}")
+                    continue
+
+                if tipus != "uj_szamla":
+                    # meroallas/fizetesi_emlekezteto/ismeretlen - itt
+                    # szándékosan kihagyva (ez a modul csak a "van-e új
+                    # számlám" kérdésre koncentrál, ugyanúgy, mint a
+                    # Céges számlák postafiók).
+                    continue
+
+                rid = hashlib.md5(f"{felhasznalo}|{uid_str}|tovabbi_postafiok".encode("utf-8")).hexdigest()[:16]
+                if rid in szamlak or rid in torolt_id_szet:
+                    continue
+
+                osszeg = osszeg_kinyerese(teljes_szoveg)
+                hatarido = hatarido_kinyerese(teljes_szoveg)
+                kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(teljes_szoveg)
+
+                rekord = {
+                    "szolgaltato": szolgaltato_kulcs,
+                    "szolgaltato_nev": cimke,
+                    "targy": targy,
+                    "erkezett": _email_datum_iso(erkezett_fejlec),
+                    "erkezett_fejlec": erkezett_fejlec,
+                    "osszeg": osszeg,
+                    "hatarido": hatarido,
+                    "fizetve": False,
+                    "fizetve_datum": None,
+                    "uid": uid_str,
+                    # Best-effort - ld. a fenti SZAMLASZAM_MINTA_ALTALANOS
+                    # komment - kizárólag a NAV-párosításhoz kell (ld.
+                    # "NAV ONLINE SZÁMLA" szekció lentebb), None is lehet.
+                    "szamlaszam": kinyert_szamlaszam,
+                }
+                szamlak[rid] = rekord
+                pdf_tarolas(allapot, rid, pdf_bytes)
+                uj_db += 1
+                statisztika["uj_szamla"] += 1
+                print(f"      🆕 Új számla ({cimke}): {forint(osszeg)} – határidő: {hatarido}")
+
+                statisztika["email_ertesitesek"] += 1
+                email_kuldes(
+                    f"📄 Új számla – {cimke}",
+                    uj_szamla_email_html(rekord),
+                    [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
+                )
+                tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+                if tulajdonos_cimzett:
+                    statisztika["email_ertesitesek"] += 1
+                    email_kuldes(
+                        f"📄 Új számla – {cimke}",
+                        uj_szamla_email_html(rekord),
+                        [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
+                        cimzett=tulajdonos_cimzett,
+                    )
+        except Exception as e:
+            print(f"  ⚠️  További postafiók '{cimke}' feldolgozása közben hiba: {e}")
+        finally:
+            try:
+                conn.logout()
+            except Exception:
+                pass
+            bejegyzes["feldolgozott_uidok"] = sorted(mar_feldolgozott)[-2000:]
+
+        if uj_db:
+            print(f"  📬 További postafiók '{cimke}': {uj_db} db új számla feldolgozva.")
+
+
+# ════════════════════════════════════════════
 #  🏛️  NAV ONLINE SZÁMLA - BEJÖVŐ SZÁMLÁK LEKÉRDEZÉSE/PÁROSÍTÁS
 # ════════════════════════════════════════════
 # A felhasználó kérése: a fenti "Céges számlák" postafiókból email-ben
@@ -3214,27 +3405,56 @@ def _nav_osszeg_egyezik(a, b, tolerancia=1.0) -> bool:
         return False
 
 
-def nav_ceges_parositas(allapot: dict):
-    """Összeveti a nav_bejovo_szamlak_lekerese()-vel lekért NAV-tételeket a
-    "Céges számlák" fülön (email-ből) begyűjtött rekordokkal
-    (allapot["ceges_szamlak"]) - ld. a fenti szekció-komment "ALÁÍRÁS/HASH
-    SZABÁLYOK" utáni részét az elvért.
+def _nav_parosithato_rekordok(allapot: dict):
+    """Egységesített (szamlaszam, osszeg) nézetet ad a KÉT különböző
+    forrás fölé, amit a NAV-párosítás megpróbálhat összevetni - ld.
+    nav_szamla_parositas() docstring-jét:
+      - allapot["szamlak"] (Közüzemi/fő lista: Díjnet/Vízművek/MVM/
+        "további postafiókok") - itt a mező neve "szamlaszam"/"osszeg"
+        (Díjnetnél/Vízműveknél valódi, portálról kiolvasott adat; a
+        "további postafiókok"-nál és MVM-nél best-effort/hiányozhat).
+      - allapot["ceges_szamlak"] (Céges fül) - itt "kinyert_szamlaszam"/
+        "kinyert_osszeg" a mező neve (ld. ceges_szamlak_feldolgozasa()).
+    Minden elemre (rekord, szamlaszam, osszeg) hármast ad vissza - a
+    "rekord" maga a MUTÁLHATÓ dict-referencia (ugyanaz az objektum, ami
+    az allapot["szamlak"]/["ceges_szamlak"] dict-ben is van), hogy a
+    hívó közvetlenül ráírhassa a "nav_*" mezőket."""
+    eredmeny = []
+    for rekord in allapot.get("szamlak", {}).values():
+        if rekord.get("nav_parositva"):
+            continue
+        eredmeny.append((rekord, rekord.get("szamlaszam"), rekord.get("osszeg")))
+    for rekord in allapot.get("ceges_szamlak", {}).values():
+        if rekord.get("nav_parositva"):
+            continue
+        eredmeny.append((rekord, rekord.get("kinyert_szamlaszam"), rekord.get("kinyert_osszeg")))
+    return eredmeny
 
-    FONTOS - EZ CSAK BEST-EFFORT: a PDF-ekből kinyert számlaszám/összeg
-    (ld. ceges_szamlak_feldolgozasa() vége) gyakran hiányos (ismeretlen
-    formátumú eladóktól jön a PDF), ezért a párosítás ELSŐDLEGESEN a
-    számlaszám EGYEZÉSÉRE hagyatkozik, MÁSODLAGOSAN (ha számlaszám nincs
-    vagy nem egyezik semelyik NAV-tétellel) az összeg (±1 Ft) + a
-    kiállítási dátum és az email-érkezés dátuma közti ±7 napos közelségre.
-    Ha egyik sem talál, a rekord egyszerűen párosítatlan marad
-    (nav_parositva=False marad) - ez NEM hiba, csak azt jelenti, hogy a
+
+def nav_szamla_parositas(allapot: dict):
+    """Összeveti a nav_bejovo_szamlak_lekerese()-vel lekért NAV-tételeket
+    MINDKÉT hellyel begyűjtött számla-rekorddal: a "Céges számlák" fülön
+    (email-ből, allapot["ceges_szamlak"]) ÉS a Közüzemi/fő listával
+    (allapot["szamlak"] - Díjnet/Vízművek/MVM/"további postafiókok") - a
+    felhasználó kifejezett kérésére ("a másik fülben lévő számlák is a
+    cégnevére jönnek nagyrészt, hasonlítsa össze"), mert ez utóbbiak is
+    jellemzően a cég adószámára befutó, NAV-nál nyilvántartott számlák.
+    Ld. a fenti szekció-komment "ALÁÍRÁS/HASH SZABÁLYOK" utáni részét az
+    általános elvért.
+
+    FONTOS - EZ CSAK BEST-EFFORT: a párosítás ELSŐDLEGESEN a számlaszám
+    EGYEZÉSÉRE hagyatkozik (ahol van - a Díjnet/Vízművek-rekordoknál ez
+    valódi, portálról kiolvasott adat, a többinél PDF-ből/szövegből
+    best-effort kinyert), MÁSODLAGOSAN (ha számlaszám nincs vagy nem
+    egyezik semelyik NAV-tétellel) az összeg (±1 Ft) + a kiállítási
+    dátum és az email-érkezés dátuma közti ±7 napos közelségre. Ha egyik
+    sem talál, a rekord egyszerűen párosítatlan marad (nav_parositva
+    marad False/hiányzik) - ez NEM hiba, csak azt jelenti, hogy a
     felhasználónak kézzel kell ellenőriznie.
 
-    A NAV-on megtalált, de az email-begyűjtésben SEHOL nem szereplő
-    tételeket az allapot["nav_csak_navban"] listába mentjük - ez a
-    tényleges "hiányzik egy számla" riasztás, amiért a felhasználó a NAV-
-    összekötést kérte."""
-    ceges_szamlak = allapot.get("ceges_szamlak", {})
+    A NAV-on megtalált, de EGYIK forrásban sem szereplő tételeket az
+    allapot["nav_csak_navban"] listába mentjük - ez a tényleges "hiányzik
+    egy számla" riasztás, amiért a felhasználó a NAV-összekötést kérte."""
     nav_tetelek = nav_bejovo_szamlak_lekerese(allapot)
     if nav_tetelek is None:
         return  # nincs beállítva, DRY_RUN, vagy hiba - ld. nav_allapot a dashboardon
@@ -3242,19 +3462,17 @@ def nav_ceges_parositas(allapot: dict):
     def _nav_tetel_kulcs(tetel):
         return f"{tetel.get('szallito_adoszam')}|{tetel.get('szamlaszam')}"
 
-    parositando_ceges = [
-        (cid, rekord) for cid, rekord in ceges_szamlak.items() if not rekord.get("nav_parositva")
-    ]
+    parositando = _nav_parosithato_rekordok(allapot)
     parositott_nav_kulcsok = set()
 
     # 1. kör - számlaszám EGYEZÉS (a legmegbízhatóbb jel, ha van).
-    for cid, rekord in parositando_ceges:
-        kinyert_szamlaszam = (rekord.get("kinyert_szamlaszam") or "").strip().upper()
-        if not kinyert_szamlaszam:
+    for rekord, szamlaszam, _osszeg in parositando:
+        sajat_szamlaszam = (szamlaszam or "").strip().upper()
+        if not sajat_szamlaszam:
             continue
         for tetel in nav_tetelek:
             nav_szamlaszam = (tetel.get("szamlaszam") or "").strip().upper()
-            if not nav_szamlaszam or nav_szamlaszam != kinyert_szamlaszam:
+            if not nav_szamlaszam or nav_szamlaszam != sajat_szamlaszam:
                 continue
             kulcs = _nav_tetel_kulcs(tetel)
             if kulcs in parositott_nav_kulcsok:
@@ -3269,11 +3487,10 @@ def nav_ceges_parositas(allapot: dict):
 
     # 2. kör - összeg (±1 Ft) + dátum (±7 nap) egyezés azoknál, amik az 1.
     # körben (számlaszám hiánya/eltérése miatt) még párosítatlanok.
-    for cid, rekord in parositando_ceges:
+    for rekord, _szamlaszam, sajat_osszeg in parositando:
         if rekord.get("nav_parositva"):
             continue
-        kinyert_osszeg = rekord.get("kinyert_osszeg")
-        if kinyert_osszeg is None:
+        if sajat_osszeg is None:
             continue
         erkezett = (rekord.get("erkezett") or "")[:10]
         try:
@@ -3286,7 +3503,7 @@ def nav_ceges_parositas(allapot: dict):
             if kulcs in parositott_nav_kulcsok:
                 continue
             nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
-            if not _nav_osszeg_egyezik(kinyert_osszeg, nav_osszeg):
+            if not _nav_osszeg_egyezik(sajat_osszeg, nav_osszeg):
                 continue
             if erkezett_datum is not None and tetel.get("kiallitas_datum"):
                 try:
@@ -3308,10 +3525,87 @@ def nav_ceges_parositas(allapot: dict):
     ]
     allapot["nav_csak_navban"] = csak_navban
 
-    parositott_db = sum(1 for _, r in parositando_ceges if r.get("nav_parositva"))
-    print(f"  🔗 NAV-párosítás: {parositott_db} db email-számla párosítva a NAV-adatokkal, "
-          f"{len(csak_navban)} db NAV-tétel maradt párosítatlanul (lehet, hogy még nem "
-          f"érkezett meg emailben, vagy nem a dedikált céges postafiókba jött).")
+    parositott_db = sum(1 for rekord, _s, _o in parositando if rekord.get("nav_parositva"))
+    print(f"  🔗 NAV-párosítás: {parositott_db} db számla párosítva a NAV-adatokkal (Közüzemi + "
+          f"Céges összesen), {len(csak_navban)} db NAV-tétel maradt párosítatlanul (lehet, hogy "
+          f"még nem érkezett meg emailben, vagy nem egy figyelt postafiókba jött).")
+
+
+# ════════════════════════════════════════════
+#  ✉️  NAV-ON TALÁLT, HIÁNYZÓ SZÁMLÁK EMLÉKEZTETŐJE
+# ════════════════════════════════════════════
+# A fenti nav_szamla_parositas() "nav_csak_navban" listája (NAV-on
+# nyilvántartott, de emailben SOHA meg nem érkezett számlák) mellé a
+# felhasználó kérésére a dashboardon (Céges számlák fül, NAV-panel) egy
+# szállítónkénti email-cím rögzíthető (allapot["nav_szallito_emailek"] -
+# {adószám: email}, a dashboard a MEGLÉVŐ allapotFrissitesEsMentese()
+# mintával menti, ugyanolyan titkosítva, mint minden más adat), és a
+# felhasználó kijelölheti, mely szállítóknak menjen ki egy udvarias,
+# sablon-szövegű kérés a hiányzó számla(k) másolatáért - ez a
+# SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK workflow_dispatch inputtal (vesszővel
+# elválasztott adószám-lista) érkezik ide.
+def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list) -> str:
+    sorok = "".join(
+        f"<li>{_esc(t.get('szamlaszam') or 'ismeretlen számlaszám')} – "
+        f"{_esc((t.get('kiallitas_datum') or '')[:10] or 'ismeretlen dátum')} – "
+        f"{forint(float(t['netto_osszeg_huf'] or t['netto_osszeg'])) if (t.get('netto_osszeg_huf') or t.get('netto_osszeg')) else 'ismeretlen összeg'}</li>"
+        for t in tetelek
+    )
+    cel_cim = CEGES_IMAP_USER or EMAIL_CIMZETT or "(kérjük, válaszoljon erre az e-mailre)"
+    return f"""
+    <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
+      <p>Tisztelt {_esc(szallito_nev)}!</p>
+      <p>Nyilvántartásunk (a NAV Online Számla rendszer adatai) szerint az
+      alábbi, Önök által kiállított számlá(k)nak nincs meg nálunk az
+      elektronikus (email-es) másolata:</p>
+      <ul>{sorok}</ul>
+      <p>Kérjük, legyenek szívesek elküldeni ezek másolatát a
+      <strong>{_esc(cel_cim)}</strong> email-címre.</p>
+      <p>Segítségüket előre is köszönjük!</p>
+    </div>
+    """
+
+
+def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
+    """Ld. a szekció elején lévő komment - teljesen no-op, ha a
+    SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK env-változó üres (ez a NORMÁL eset -
+    ütemezett futásnál MINDIG üres, csak a dashboard gombjával indított
+    workflow_dispatch-nál kaphat tartalmat, ld. modul-docstring eleje)."""
+    if not SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK:
+        return
+
+    kijelolt_adoszamok = {a.strip() for a in SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK.split(",") if a.strip()}
+    if not kijelolt_adoszamok:
+        return
+
+    szallito_emailek = allapot.get("nav_szallito_emailek", {})
+    csak_navban = allapot.get("nav_csak_navban", [])
+
+    kuldott_db = 0
+    for adoszam in kijelolt_adoszamok:
+        email_cim = (szallito_emailek.get(adoszam) or "").strip()
+        if not email_cim:
+            print(f"  ⚠️  NAV-emlékeztető: nincs elmentett email-cím a {adoszam} adószámú "
+                  f"szállítóhoz - kihagyva.")
+            continue
+        sajat_tetelek = [t for t in csak_navban if t.get("szallito_adoszam") == adoszam]
+        if not sajat_tetelek:
+            print(f"  ℹ️  NAV-emlékeztető: a {adoszam} adószámhoz jelenleg nincs párosítatlan "
+                  f"NAV-tétel (talán már időközben megérkezett/párosult) - kihagyva.")
+            continue
+        szallito_nev = sajat_tetelek[0].get("szallito_nev") or adoszam
+        sikeres = email_kuldes(
+            f"📄 Hiányzó számla-másolat kérése – {szallito_nev}",
+            _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek),
+            cimzett=email_cim,
+        )
+        if sikeres:
+            kuldott_db += 1
+            print(f"  ✉️  NAV-emlékeztető elküldve: {szallito_nev} ({email_cim}), "
+                  f"{len(sajat_tetelek)} db hiányzó számláról.")
+
+    print(f"  ✉️  NAV-emlékeztető: összesen {kuldott_db} db email elküldve "
+          f"{len(kijelolt_adoszamok)} kijelölt szállítóból.")
 
 
 # ════════════════════════════════════════════
@@ -3598,6 +3892,13 @@ def main():
             conn.logout()
         except Exception:
             pass
+
+    # ---- 1a2. További postafiókok (ld. "TOVÁBBI POSTAFIÓKOK" szekció) -
+    # SZÁNDÉKOSAN a fő postafiók feldolgozása UTÁN, de a Díjnet/Vízművek
+    # portál-lekérdezés ELŐTT, hogy a "szamlak" dict már tartalmazza a fő
+    # postafiók ebbeni futásban felismert számláit is (bár a kettő
+    # egymástól ténylegesen független).
+    tovabbi_postafiokok_feldolgozasa(allapot, statisztika, torolt_id_szet)
 
     # ---- 1b. Díjnet - közvetlen portál-lekérdezés (nem email-alapú) ----
     if DIJNET_USER and DIJNET_JELSZO:
@@ -4135,10 +4436,19 @@ def main():
     ceges_szamlak_feldolgozasa(allapot)
 
     # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás
-    # (ld. "NAV ONLINE SZÁMLA" szekció) - SZÁNDÉKOSAN a Céges számlák
-    # feldolgozása UTÁN (hogy a legfrissebb email-számlákat is lássa a
-    # párosítás), a titkosított állapot mentése ELŐTT.
-    nav_ceges_parositas(allapot)
+    # (ld. "NAV ONLINE SZÁMLA" szekció) - SZÁNDÉKOSAN a Céges számlák ÉS a
+    # további postafiókok feldolgozása UTÁN (hogy a legfrissebb
+    # email-számlákat is lássa a párosítás mindkét forrásban), a
+    # titkosított állapot mentése ELŐTT. MINDKÉT listát (szamlak +
+    # ceges_szamlak) egyszerre párosítja, ld. nav_szamla_parositas().
+    nav_szamla_parositas(allapot)
+
+    # ---- 2h. NAV-on talált, de emailben meg nem érkezett számlák
+    # szállítóihoz sablon-emlékeztető küldése (ld. "NAV-ON TALÁLT,
+    # HIÁNYZÓ SZÁMLÁK EMLÉKEZTETŐJE" szekció) - csak akkor csinál
+    # bármit, ha a dashboardról egy "Emlékeztető küldése" gombnyomás
+    # workflow_dispatch inputként adószám(oka)t adott át.
+    nav_hianyzo_szamla_emlekezteto_kuldese(allapot)
 
     # ---- 3. Állapot mentése (titkosítva) ----
     # FONTOS: a feldolgozott_uidok egy set volt, aminek a sorrendje NEM
