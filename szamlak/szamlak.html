@@ -221,7 +221,7 @@
         <p class="panel-info">A Díjneten/Vízműveken érkező számlákat két bérlői körhöz sorolhatod - mindkettő saját email-címre kap "új számla" értesítőt (PDF-fel) és havi összesítőt. A besorolás a titkosított adatban tárolódik (nem publikus), ehhez is a fenti GitHub token + a megnyitáshoz használt jelszó kell (ez utóbbi csak a böngésződben marad).</p>
         <label>1. kör neve <input type="text" id="kor-a-nev-input" placeholder="pl. Nagy Kft. bérlemény" style="max-width:320px;"></label>
         <label>2. kör neve <input type="text" id="kor-b-nev-input" placeholder="pl. Kis Kft. bérlemény" style="max-width:320px;"></label>
-        <p class="panel-info" style="margin-top:2px;">A két email-cím GitHub Secretként van beállítva (SZAMLA_KOR_A_EMAIL / SZAMLA_KOR_B_EMAIL) - ezt a GitHub repó Settings → Secrets felületén tudod megadni/módosítani, itt csak a besorolást és a köröknevet kezeled.</p>
+        <p class="panel-info" style="margin-top:2px;">A bérlői körök (és a tulajdonos/könyvelő) email-CÍMLISTÁIT és az azonnali "Küldés most" gombokat lentebb, a "📮 Címzettek és azonnali küldés" panelben találod. A régi, egy-cím-es GitHub Secretek (SZAMLA_KOR_A_EMAIL / SZAMLA_KOR_B_EMAIL) - ha még be vannak állítva - továbbra is UNIÓBAN kapnak emailt az itt/lent megadott listával.</p>
 
         <label>Vízművek-számlák köre <em>(a teljes fiók egyben tartozik ide)</em>
           <select id="kor-vizmuvek-select" style="display:block;width:100%;max-width:320px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;">
@@ -244,6 +244,45 @@
 
         <button type="button" id="kor-mentes-gomb" style="margin-top:10px;">Bérlői körök mentése</button>
         <div class="panel-statusz" id="kor-statusz"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="cimzettek-panel">
+      <button type="button" class="panel-toggle" id="cimzettek-toggle">📮 Címzettek és azonnali küldés (könyvelő / bérlők / tulajdonos) ▾</button>
+      <div class="panel-tartalom" id="cimzettek-tartalom" style="display:none;">
+        <p class="panel-info">Három, egymástól független email-kör: a <strong>könyvelő</strong> SOSEM kap innen számla-adatot/csatolmányt - a tulajdonos azt egy külön, kézzel megosztott Google Drive mappán keresztül adja át neki, ő csak egy havi, hónap-végi emlékeztetőt kap. A <strong>bérlő</strong> (1./2. kör) a jelenleg fizetetlen számláinak időszakos/kézi összesítőjét kapja - NEM azonnali, számlánkénti értesítőt. A <strong>tulajdonos</strong> minden új számláról azonnali értesítést kap, és minden bérlői-összesítő másolatát is megkapja. Soronként egy email-cím - a mentéshez/küldéshez a fenti GitHub token kell.</p>
+
+        <h3 style="font-size:14px;margin:6px 0 6px;">📁 Könyvelő</h3>
+        <label>Email-cím(ek), soronként egy
+          <textarea id="cim-konyvelo-emailek" rows="2" style="display:block;width:100%;max-width:420px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;"></textarea>
+        </label>
+        <button type="button" id="konyvelo-kuldes-most-gomb" style="margin-top:2px;">Havi emlékeztető küldése most</button>
+
+        <h3 style="font-size:14px;margin:18px 0 6px;">👥 Bérlő – 1. kör</h3>
+        <label>Email-cím(ek), soronként egy
+          <textarea id="cim-kor-a-emailek" rows="2" style="display:block;width:100%;max-width:420px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;"></textarea>
+        </label>
+        <button type="button" class="kor-osszesito-most-gomb" data-kor="kor_a" style="margin-top:2px;">Fizetendő-összesítő küldése most (1. kör)</button>
+
+        <h3 style="font-size:14px;margin:18px 0 6px;">👥 Bérlő – 2. kör</h3>
+        <label>Email-cím(ek), soronként egy
+          <textarea id="cim-kor-b-emailek" rows="2" style="display:block;width:100%;max-width:420px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;"></textarea>
+        </label>
+        <button type="button" class="kor-osszesito-most-gomb" data-kor="kor_b" style="margin-top:2px;">Fizetendő-összesítő küldése most (2. kör)</button>
+
+        <h3 style="font-size:14px;margin:18px 0 6px;">🏠 Tulajdonos</h3>
+        <label>Email-cím(ek), soronként egy
+          <textarea id="cim-tulajdonos-emailek" rows="2" style="display:block;width:100%;max-width:420px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;"></textarea>
+        </label>
+        <button type="button" id="tulajdonos-kuldes-most-gomb" style="margin-top:2px;">Mindent-összesítő küldése most (minden kör)</button>
+
+        <label class="kor-jeloles" style="display:flex;max-width:420px;margin-top:18px;">
+          <input type="checkbox" id="cim-pdf-csatolas">
+          PDF-ek csatolása a fenti AZONNALI (bérlő/tulajdonos) küldésekhez
+        </label>
+
+        <button type="button" id="cim-mentes-gomb" style="margin-top:14px;">Email-listák mentése</button>
+        <div class="panel-statusz" id="cim-statusz"></div>
       </div>
     </div>
 
@@ -480,20 +519,37 @@
     // fejléc-listák végéhez.
     if (nezet === "vizmuvek") {
       return {
-        fejlecek: ["Tárgy", "Kelte", "Összeg", "Határidő", "Állapot", "Számla"],
+        fejlecek: ["Tárgy", "Kelte", "Összeg", "Határidő", "Állapot", "Kör", "Számla"],
         szolgaltatoOszlop: false, szamlaszamOszlop: false, kelteOszlop: true, kibocsatoOszlop: false,
       };
     }
     if (nezet === "dijnet") {
       return {
-        fejlecek: ["Szolgáltató", "Számlaszám", "Kibocsátó azonosító", "Összeg", "Határidő", "Állapot", "Számla"],
+        fejlecek: ["Szolgáltató", "Számlaszám", "Kibocsátó azonosító", "Összeg", "Határidő", "Állapot", "Kör", "Számla"],
         szolgaltatoOszlop: true, szamlaszamOszlop: true, kelteOszlop: false, kibocsatoOszlop: true,
       };
     }
     return {
-      fejlecek: ["Szolgáltató", "Tárgy", "Összeg", "Határidő", "Állapot", "Számla"],
+      fejlecek: ["Szolgáltató", "Tárgy", "Összeg", "Határidő", "Állapot", "Kör", "Számla"],
       szolgaltatoOszlop: true, szamlaszamOszlop: false, kelteOszlop: false, kibocsatoOszlop: false,
     };
+  }
+
+  // Per-számla kör-felülbírálás <select>-jét építi fel egy sorhoz (ld.
+  // "BÉRLŐI KÖRÖK" / MOHU-probléma komment a szamla_figyelo.py-ban) - az
+  // "Automata" opció felirata a JELENLEGI (automatikusan kiszámolt) "kor"
+  // mezőt mutatja, hogy látszódjon, mi lenne felülbírálás NÉLKÜL.
+  function korFelulbiralasSelectHtml(r) {
+    const felulbiralasok = (legutobbiAdat && legutobbiAdat.szamla_kor_felulbiralas) || {};
+    const jelenlegi = felulbiralasok[r.id] || "";
+    const automataFelirat = r.kor === "kor_a" ? "1. kör" : r.kor === "kor_b" ? "2. kör" : "függőben";
+    return `
+      <select class="kor-felulbiralas-select" data-id="${escHtml(r.id)}" title="Kör-felülbírálás - csak akkor állítsd be, ha a rendszer ezt a KONKRÉT számlát rossz bérlőnek sorolná be automatikusan (pl. MOHU-számláknál előfordulhat, ld. a Kibocsátó-oszlop alatti kis szöveget).">
+        <option value="" ${jelenlegi === "" ? "selected" : ""}>Automata (${automataFelirat})</option>
+        <option value="kor_a" ${jelenlegi === "kor_a" ? "selected" : ""}>1. kör</option>
+        <option value="kor_b" ${jelenlegi === "kor_b" ? "selected" : ""}>2. kör</option>
+      </select>
+    `;
   }
 
   function tablaRenderelese(lista, nezet) {
@@ -523,10 +579,21 @@
         ? `<td>${escHtml(r.szamlaszam) || "ismeretlen"}</td>`
         : `<td>${escHtml(r.targy)}</td>`);
       if (kelteOszlop) cellak.push(`<td>${escHtml(r.erkezett) || "ismeretlen"}</td>`);
-      if (kibocsatoOszlop) cellak.push(`<td>${escHtml(r.kibocsato_azonosito) || "—"}</td>`);
+      if (kibocsatoOszlop) {
+        // A "dijnet_extra_oszlop" a Díjnet portál eddig figyelmen kívül
+        // hagyott oszlopának nyers tartalma (ld. szamla_figyelo.py
+        // dijnet_szamlak_lekerdezese() kommentje) - lehet szerződésszám,
+        // lehet valami más, NEM biztos - csak megjelenítjük, a
+        // felhasználó dönt a mellette lévő kör-select-tel (MOHU-probléma).
+        const extraSor = r.dijnet_extra_oszlop
+          ? `<div style="color:var(--muted);font-size:11px;margin-top:2px;" title="A Díjnet portál 'extra' oszlopának nyers tartalma - lehet szerződésszám, de nem biztos, csak tájékoztató jellegű.">${escHtml(r.dijnet_extra_oszlop)}</div>`
+          : "";
+        cellak.push(`<td>${escHtml(r.kibocsato_azonosito) || "—"}${extraSor}</td>`);
+      }
       cellak.push(`<td class="osszeg">${forint(r.osszeg)}</td>`);
       cellak.push(`<td>${escHtml(r.hatarido) || "ismeretlen"}</td>`);
       cellak.push(`<td>${allapotBadge(r)}</td>`);
+      cellak.push(`<td>${korFelulbiralasSelectHtml(r)}</td>`);
       cellak.push(`<td>${letoltesGomb}</td>`);
       // Az X gomb minden nézetben az utolsó oszlop - a rekordot a saját
       // "id" mezője (nem a DOM-index) azonosítja, ld. torlesVegrehajtasa().
@@ -552,6 +619,25 @@
     });
     hely.querySelectorAll(".torles-gomb").forEach(btn => {
       btn.addEventListener("click", () => torlesVegrehajtasa(btn.dataset.id));
+    });
+    // Kör-felülbírálás select - minden váltásnál azonnal, önállóan ment
+    // (ld. korFelulbiralasMentese() lentebb) - sikertelen mentésnél
+    // visszaállítja a select-et a mentés ELŐTTI értékre, hogy a UI ne
+    // mutasson egy valójában el nem mentett állapotot.
+    hely.querySelectorAll(".kor-felulbiralas-select").forEach(sel => {
+      const eredetiErtek = sel.value;
+      sel.addEventListener("change", async () => {
+        const id = sel.dataset.id;
+        const ujErtek = sel.value || null;
+        sel.disabled = true;
+        const siker = await korFelulbiralasMentese(id, ujErtek);
+        sel.disabled = false;
+        if (siker) {
+          sel.title = "Elmentve - a lista 'Kör' oszlopa a következő script-futás után frissül a friss besorolásra.";
+        } else {
+          sel.value = eredetiErtek;
+        }
+      });
     });
   }
 
@@ -1000,7 +1086,7 @@
   }
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["korok-toggle", "korok-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -1126,6 +1212,149 @@
       gomb.disabled = false;
     }
   });
+
+  // ── "Címzettek és azonnali küldés" panel (könyvelő/bérlő/tulajdonos) ──
+  // Első megnyitáskor frissen betöltjük+visszafejtjük a NAGY állapotfájlt
+  // (ugyanaz a minta, mint a "Bérlői körök" panelnél - ld. "korok-toggle"
+  // fenti kommentjét), és feltöltjük a három email-lista textarea-t.
+  document.getElementById("cimzettek-toggle").addEventListener("click", async () => {
+    if (!aktualisJelszo) return; // a panel csak a jelszavas megnyitás UTÁN érhető el ténylegesen
+    beStatuszMutat("cim-statusz", "Betöltés...", "");
+    try {
+      const { adat } = await allapotFrissFrissFeltoltese(aktualisJelszo);
+      document.getElementById("cim-konyvelo-emailek").value = (adat.konyvelo_emailek || []).join("\n");
+      document.getElementById("cim-kor-a-emailek").value = ((adat.kor_emailek && adat.kor_emailek.kor_a) || []).join("\n");
+      document.getElementById("cim-kor-b-emailek").value = ((adat.kor_emailek && adat.kor_emailek.kor_b) || []).join("\n");
+      document.getElementById("cim-tulajdonos-emailek").value = (adat.tulajdonos_emailek || []).join("\n");
+      beStatuszMutat("cim-statusz", "", "");
+    } catch (e) {
+      beStatuszMutat("cim-statusz", "Nem sikerült betölteni a jelenlegi email-listákat (" + e.message + ") - az alábbi mezők üresek/elavultak lehetnek.", "hiba");
+    }
+  }, { once: true });
+
+  // Soronkénti email-lista feldolgozása - laza validáció (csak "@" kell),
+  // mert ez egy magánhasználatú dashboard, nem egy nyilvános regisztrációs
+  // űrlap - a cél a kényelmes bevitel, nem a szigorú email-formátum-ellenőrzés.
+  function emailListaParszolasa(elemId) {
+    return document.getElementById(elemId).value
+      .split("\n")
+      .map(s => s.trim())
+      .filter(s => s.includes("@"));
+  }
+
+  document.getElementById("cim-mentes-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("cim-mentes-gomb");
+    const pat = aktualisPat();
+    if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return; }
+    if (!aktualisJelszo) { beStatuszMutat("cim-statusz", "Előbb nyisd meg a dashboardot a jelszavaddal.", "hiba"); return; }
+    patMentese();
+
+    const ujKonyvelo = emailListaParszolasa("cim-konyvelo-emailek");
+    const ujKorA = emailListaParszolasa("cim-kor-a-emailek");
+    const ujKorB = emailListaParszolasa("cim-kor-b-emailek");
+    const ujTulajdonos = emailListaParszolasa("cim-tulajdonos-emailek");
+
+    gomb.disabled = true;
+    beStatuszMutat("cim-statusz", "Mentés...", "");
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.kor_emailek = { kor_a: ujKorA, kor_b: ujKorB };
+        adat.tulajdonos_emailek = ujTulajdonos;
+        adat.konyvelo_emailek = ujKonyvelo;
+      });
+      legutobbiAdat = friss;
+      osszesSzamla = Object.entries(friss.szamlak || {})
+        .filter(([id]) => !helyilegTorolt.has(id))
+        .map(([id, r]) => Object.assign({ id }, r));
+      pdfTar = friss.pdf_adatok || {};
+      szuresAlkalmazasa();
+      beStatuszMutat("cim-statusz", "✅ Email-listák elmentve.", "siker");
+    } catch (e) {
+      beStatuszMutat("cim-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
+  // Azonnali küldés-gombok - mindegyik egy workflow_dispatch hívást indít
+  // (ld. .github/workflows/szamla_monitor.yml új inputjai) - a tényleges
+  // küldést/összesítést a Python-script végzi el, ez csak elindítja.
+  document.getElementById("konyvelo-kuldes-most-gomb").addEventListener("click", async () => {
+    const pat = aktualisPat();
+    if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent) a küldéshez.", "hiba"); return; }
+    patMentese();
+    beStatuszMutat("cim-statusz", "Indítás...", "");
+    try {
+      await ghWorkflowInditasa(pat, { konyvelo_emlekezteto: "true" });
+      beStatuszMutat("cim-statusz", "✅ Elindítva - néhány percen belül megérkezik a könyvelői havi emlékeztető.", "siker");
+    } catch (e) {
+      beStatuszMutat("cim-statusz", "❌ " + e.message, "hiba");
+    }
+  });
+
+  document.querySelectorAll(".kor-osszesito-most-gomb").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const pat = aktualisPat();
+      if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent) a küldéshez.", "hiba"); return; }
+      patMentese();
+      const pdfCsatolas = document.getElementById("cim-pdf-csatolas").checked;
+      beStatuszMutat("cim-statusz", "Indítás...", "");
+      try {
+        await ghWorkflowInditasa(pat, { berlo_osszesito_kor: btn.dataset.kor, pdf_csatolas_manualis: pdfCsatolas ? "true" : "false" });
+        beStatuszMutat("cim-statusz", "✅ Elindítva - néhány percen belül megérkezik a kör fizetendő-összesítője.", "siker");
+      } catch (e) {
+        beStatuszMutat("cim-statusz", "❌ " + e.message, "hiba");
+      }
+    });
+  });
+
+  document.getElementById("tulajdonos-kuldes-most-gomb").addEventListener("click", async () => {
+    const pat = aktualisPat();
+    if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent) a küldéshez.", "hiba"); return; }
+    patMentese();
+    const pdfCsatolas = document.getElementById("cim-pdf-csatolas").checked;
+    beStatuszMutat("cim-statusz", "Indítás...", "");
+    try {
+      await ghWorkflowInditasa(pat, { tulajdonos_osszesito: "true", pdf_csatolas_manualis: pdfCsatolas ? "true" : "false" });
+      beStatuszMutat("cim-statusz", "✅ Elindítva - néhány percen belül megérkezik az összes fizetetlen számla összesítője.", "siker");
+    } catch (e) {
+      beStatuszMutat("cim-statusz", "❌ " + e.message, "hiba");
+    }
+  });
+
+  // ── Per-számla kör-felülbírálás (MOHU-probléma, ld. szamla_figyelo.py
+  // "szamla_kor_felulbiralas" kommentje) ──────────────────────────────
+  // Minden select-váltásnál AZONNAL, önállóan menti a felülbírálást -
+  // ugyanazt a "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" mintát
+  // követve, mint a "Bérlői körök" panel (ld. allapotFrissitesEsMentese())
+  // - nem gyűjti pending állapotba, mert egy per-sor apró döntésnél ez
+  // egyszerűbb/biztonságosabb, mint egy külön "mentsd az összes
+  // felülbírálást" gombot fenntartani.
+  async function korFelulbiralasMentese(id, ujErtek) {
+    const pat = aktualisPat();
+    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a kör-felülbírálás mentéséhez."); return false; }
+    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
+    patMentese();
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.szamla_kor_felulbiralas = adat.szamla_kor_felulbiralas || {};
+        if (ujErtek) {
+          adat.szamla_kor_felulbiralas[id] = ujErtek;
+        } else {
+          delete adat.szamla_kor_felulbiralas[id];
+        }
+      });
+      legutobbiAdat = friss;
+      osszesSzamla = Object.entries(friss.szamlak || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
+      pdfTar = friss.pdf_adatok || {};
+      return true;
+    } catch (e) {
+      alert("A kör-felülbírálás mentése sikertelen: " + e.message);
+      return false;
+    }
+  }
 
   document.getElementById("be-mentes-gomb").addEventListener("click", async () => {
     const gomb = document.getElementById("be-mentes-gomb");
