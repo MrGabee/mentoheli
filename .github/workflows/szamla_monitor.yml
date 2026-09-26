@@ -94,6 +94,11 @@ jobs:
           SZAMLA_DIJNET_JELSZO: ${{ secrets.SZAMLA_DIJNET_JELSZO }}
           SZAMLA_VIZMUVEK_USER: ${{ secrets.SZAMLA_VIZMUVEK_USER }}
           SZAMLA_VIZMUVEK_JELSZO: ${{ secrets.SZAMLA_VIZMUVEK_JELSZO }}
+          # Google Drive - PDF-feltöltés (opcionális) - ha egyik/mindkettő
+          # hiányzik, a script egyszerűen kihagyja a Drive-feltöltést,
+          # minden más változatlanul működik.
+          SZAMLA_DRIVE_WEBAPP_URL: ${{ secrets.SZAMLA_DRIVE_WEBAPP_URL }}
+          SZAMLA_DRIVE_WEBAPP_TOKEN: ${{ secrets.SZAMLA_DRIVE_WEBAPP_TOKEN }}
           # Bérlői körök - a dashboardon besorolt Díjnet/Vízművek-számlák
           # ide mennek (értesítő + havi összesítő) - ha valamelyik nincs
           # beállítva, az adott kör számláiról egyszerűen nem megy ki email
