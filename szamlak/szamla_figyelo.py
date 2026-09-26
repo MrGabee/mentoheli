@@ -391,6 +391,27 @@ def _imap_kezdo_nap():
     gorgo_ablak = ma - timedelta(days=IMAP_LEKERDEZES_NAPOK)
     return min(ev_eleje, gorgo_ablak)
 
+
+# Hány ÚJ (még feldolgozatlan) levelet nézzen meg legfeljebb EGY postafiókból
+# EGY futás alatt (ld. uj_uidok_lekerese() lentebb) - a dedikált Céges-
+# postafióknál (ceges_osszes_uid_lekerese()) már korábban is volt egy ilyen
+# limit (CEGES_MAX_FELDOLGOZAS_FUTASONKENT = 20), most ugyanezt vezetjük be
+# a fő postafióknál ÉS minden "további postafióknál" is (korábban ott 60 volt
+# a limit) - FONTOS INDOK: minden újonnan talált levélhez tartozik legalább
+# egy Drive-feltöltés (hálózati hívás) és 1-2 email-küldés (SMTP, ugyancsak
+# hálózati) - ha egyszerre sok ÚJ levél kerül elő (pl. az _imap_kezdo_nap()
+# "egész évig visszamenő" ablaka miatt egy most bekapcsolt postafióknál),
+# ez a futást sokáig nyújthatja, ami két problémát okoz: (1) könnyen
+# összeütközik a "timeout-minutes" korlátba, (2) minél tovább tart a futás,
+# annál nagyobb az esélye, hogy a dashboardról épp ekkor mentő felhasználó a
+# git-commit ütközésbe (HTTP 409) fut - ld. allapotFrissitesEsMentese()
+# kommentje a szamlak.html-ben. Egy kisebb, egyenletesebb "adag" (20 db)
+# minden 20 perces futásnál rövidebb, kiszámíthatóbb futásidőt ad - egy
+# nagyobb visszamenő backfill (pl. az egész éves ablak miatt felszínre
+# kerülő régi levelek) emiatt több futáson keresztül, fokozatosan zajlik le,
+# nem egyszerre - ez VÁRT és RENDBEN VAN, nem hiba.
+IMAP_MAX_FELDOLGOZAS_FUTASONKENT = 20
+
 # Teszt-mód: ha "1"-re állítod (SZAMLA_DRY_RUN=1 secret/env), a script
 # mindent ugyanúgy lekérdez és felismer, de TÉNYLEGESEN NEM küld emailt
 # és NEM menti/pusholja el az állapotfájlt - csak naplózza, mit tenne.
@@ -579,6 +600,27 @@ FIZETENDO_OSSZEG_MINTA = re.compile(
     r"(?:fizetendő\s*összeg|fizetendő|bruttó\s*összeg|bruttó|mindösszesen|összesen)"
     r"\D{0,30}"
     r"(\d{1,3}(?:[.\s]\d{3})*(?:,\d{1,2})?)\s*(Ft|HUF)",
+    re.IGNORECASE,
+)
+# EUR-megfelelője a fenti két Ft/HUF-mintának - a felhasználó kifejezett
+# kérésére ("van olyan számlám, ami nem forint, hanem EUR, kérlek a
+# forintot és az eurót is jelöld"), mert a rendszer eddig KIZÁRÓLAG "Ft"/
+# "HUF" jelölésű összeget ismert fel (ld. OSSZEG_MINTA/FIZETENDO_OSSZEG_
+# MINTA fent) - egy EUR-számlánál ez korábban egyszerűen None-t adott
+# (nem hibásan Ft-ként jelölve, csak "nem ismerte fel" - a felhasználó
+# kézzel be tudta írni a dashboardon, de a mező mindig "Ft"-ként jelent
+# meg). A "€" szimbólum ELŐL és HÁTUL is állhat ("€150" vagy "150 €"),
+# ezért két alternatívát engedünk a mintában.
+EUR_OSSZEG_MINTA = re.compile(
+    r"(?:(?:€|EUR)\s*(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{1,2})?))"
+    r"|(?:(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{1,2})?)\s*(?:€|EUR))",
+    re.IGNORECASE,
+)
+FIZETENDO_EUR_OSSZEG_MINTA = re.compile(
+    r"(?:fizetendő\s*összeg|fizetendő|total|amount\s*due|due)"
+    r"\D{0,30}"
+    r"(?:(?:€|EUR)\s*(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{1,2})?)"
+    r"|(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{1,2})?)\s*(?:€|EUR))",
     re.IGNORECASE,
 )
 # Határidő-minták - EGY formátumra (2026.09.15) hagyatkozni túl szigorú
@@ -1035,7 +1077,7 @@ def _email_datum_iso(erkezett_fejlec: str) -> str:
     return magyar_ido().isoformat()
 
 
-def uj_uidok_lekerese(conn, mar_feldolgozott: set, max_uj=60):
+def uj_uidok_lekerese(conn, mar_feldolgozott: set, max_uj=IMAP_MAX_FELDOLGOZAS_FUTASONKENT):
     """A postafiók emailjei közül visszaadja azokat az UID-kat, amiket még
     nem dolgoztunk fel - a keresés kezdő dátumát ld. _imap_kezdo_nap()
     (MINDIG legalább az aktuális év január 1-jéig visszamegy). Nem jelöli
@@ -1207,6 +1249,66 @@ def osszeg_kinyerese(szoveg: str):
     return _forint_szoveg_szamma(talalat.group(1))
 
 
+def _szamla_osszeg_szamma(nyers: str):
+    """_forint_szoveg_szamma() ÁLTALÁNOSABB változata, EUR-összegekhez -
+    a magyar (Ft) számlák MINDIG "." ezres-/","-tizedes-elválasztót
+    használnak, egy EUR-számla viszont (a kiállító nemzetiségétől függően)
+    lehet FORDÍTOTT (angolszász: "," ezres/"." tizedes) konvenciójú is -
+    ezért itt nem hagyatkozunk egy fix konvencióra: a KÉT elválasztó közül
+    azt tekintjük TIZEDES-elválasztónak, amelyik UTOLJÁRA szerepel a
+    számban (ha csak egyik fajta van, ezres-elválasztónak vesszük - egy
+    számlaösszegben 3 tizedesjegy rendkívül ritka). Best-effort, mint a
+    többi kinyerő függvény - a dashboardon mindig kézzel javítható, ha
+    rosszul sikerülne."""
+    szam = nyers.replace(" ", "").replace("\xa0", "")
+    utolso_pont = szam.rfind(".")
+    utolso_vesszo = szam.rfind(",")
+    if utolso_pont == -1 and utolso_vesszo == -1:
+        pass
+    elif utolso_pont > utolso_vesszo:
+        szam = szam.replace(",", "")
+    else:
+        szam = szam.replace(".", "").replace(",", ".")
+    try:
+        return float(szam)
+    except ValueError:
+        return None
+
+
+def osszeg_es_penznem_kinyerese(szoveg: str):
+    """osszeg_kinyerese() KIBŐVÍTETT változata, ami a pénznemet IS
+    visszaadja - (osszeg, penznem) párost ad, "penznem" mindig "HUF" vagy
+    "EUR" (a felhasználó kifejezett kérésére: "van olyan számlám, ami nem
+    forint, hanem EUR - kérlek a forintot és az eurót is jelöld"). ELŐSZÖR
+    a forint-mintákat próbálja (ld. osszeg_kinyerese() fent) - ha ott
+    talál, "HUF"-ot ad vissza. Csak ha a szövegben SEHOL nincs Ft/HUF-os
+    összeg, próbálkozik az EUR-mintákkal (EUR_OSSZEG_MINTA/FIZETENDO_EUR_
+    OSSZEG_MINTA) is - ez a sorrend szándékos: egy magyar nyelvű
+    számlalevélben elvétve előfordulhat egy "€" jel (pl. egy árfolyam-
+    tájékoztatóban), miközben a TÉNYLEGES fizetendő összeg valójában
+    forint - a forint-minta elsőbbsége ez ellen véd. Ha semelyik minta nem
+    talál semmit, (None, "HUF")-ot ad vissza - a "HUF" itt csak egy
+    alapérték (a felhasználó a dashboard "Pénznem" mezőjén kézzel
+    átállíthatja EUR-ra, ha kézzel írja be az összeget egy fel nem
+    ismert EUR-számlánál)."""
+    huf_osszeg = osszeg_kinyerese(szoveg)
+    if huf_osszeg is not None:
+        return huf_osszeg, "HUF"
+    cimkezett = FIZETENDO_EUR_OSSZEG_MINTA.search(szoveg)
+    if cimkezett:
+        nyers = cimkezett.group(1) or cimkezett.group(2)
+        eur_osszeg = _szamla_osszeg_szamma(nyers)
+        if eur_osszeg is not None:
+            return eur_osszeg, "EUR"
+    talalat = EUR_OSSZEG_MINTA.search(szoveg)
+    if talalat:
+        nyers = talalat.group(1) or talalat.group(2)
+        eur_osszeg = _szamla_osszeg_szamma(nyers)
+        if eur_osszeg is not None:
+            return eur_osszeg, "EUR"
+    return None, "HUF"
+
+
 def hatarido_kinyerese(szoveg: str):
     """Sorban próbálja a három ismert formátumot - lásd a minták fenti
     kommentjét. Az első sikeres illeszkedést adja vissza."""
@@ -1301,6 +1403,19 @@ def forint(osszeg):
     return f"{osszeg:,.0f} Ft".replace(",", " ")
 
 
+def osszeg_szoveg(osszeg, penznem=None):
+    """forint() pénznem-tudatos változata - naplózáshoz/emailhez, ahol egy
+    EUR-számla összegét NE "Ft"-ként írjuk ki (ld. a felhasználó kérése a
+    forint()-nál/osszeg_es_penznem_kinyerese()-nél). "penznem" hiányában
+    (pl. régi, e mező előtti rekordoknál) HUF-ot tételez fel - ez a
+    korábbi, kizárólag-forint viselkedéssel egyező alapérték."""
+    if osszeg is None:
+        return "ismeretlen összeg"
+    if (penznem or "HUF").strip().upper() == "EUR":
+        return f"{osszeg:,.2f} EUR".replace(",", " ")
+    return forint(osszeg)
+
+
 def uj_szamla_email_html(rekord):
     ismeretlen_jelzes = ""
     if rekord["osszeg"] is None or rekord["hatarido"] is None:
@@ -1317,7 +1432,7 @@ def uj_szamla_email_html(rekord):
         <tr><td style="padding:6px 0;color:#555;">Tárgy</td>
             <td style="padding:6px 0;"><strong>{_esc(rekord['targy'])}</strong></td></tr>
         <tr><td style="padding:6px 0;color:#555;">Összeg</td>
-            <td style="padding:6px 0;"><strong>{forint(rekord['osszeg'])}</strong></td></tr>
+            <td style="padding:6px 0;"><strong>{osszeg_szoveg(rekord['osszeg'], rekord.get('penznem'))}</strong></td></tr>
         <tr><td style="padding:6px 0;color:#555;">Fizetési határidő</td>
             <td style="padding:6px 0;"><strong>{rekord['hatarido'] or 'ismeretlen'}</strong></td></tr>
         <tr><td style="padding:6px 0;color:#555;">Érkezett</td>
@@ -2903,7 +3018,10 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
             # NEM tároljuk (ld. a szekció elején lévő komment), csak ezt a
             # néhány kinyert szöveges mezőt, ami elenyésző helyet foglal.
             ceges_pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
-            kinyert_osszeg = osszeg_kinyerese(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
+            if ceges_pdf_szoveg:
+                kinyert_osszeg, kinyert_penznem = osszeg_es_penznem_kinyerese(ceges_pdf_szoveg)
+            else:
+                kinyert_osszeg, kinyert_penznem = None, "HUF"
             kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
 
             ceges_szamlak[cid] = {
@@ -2916,8 +3034,13 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 "drive_fajlnev": fajlnev,
                 "rogzitve": magyar_ido().isoformat(),
                 # Best-effort, a PDF szövegéből kinyert mezők (ld. fent) -
-                # kizárólag a NAV-párosításhoz kellenek, None is lehet.
+                # kizárólag a NAV-párosításhoz kellenek, None is lehet. A
+                # "penznem" ("HUF" vagy "EUR", ld. osszeg_es_penznem_
+                # kinyerese() kommentje) - a felhasználó a dashboardon
+                # (cegesTablaRenderelese() "Pénznem" mezője) kézzel
+                # átállíthatja, ha a felismerés rosszul sikerülne.
                 "kinyert_osszeg": kinyert_osszeg,
+                "penznem": kinyert_penznem,
                 "kinyert_szamlaszam": kinyert_szamlaszam,
                 # A script SOHA nem tölti ki automatikusan - a dashboard
                 # "Adószám" mezője (ld. cegesMezoMentese()) írja, ha a
@@ -3059,6 +3182,10 @@ def _szamla_athelyezese_cegesbe(allapot: dict, rid: str, forras_cimke: str = Non
         "drive_fajlnev": fajlnev,
         "rogzitve": magyar_ido().isoformat(),
         "kinyert_osszeg": rekord.get("osszeg"),
+        # A forrás-rekordon esetleg már meglévő pénznemet megőrizzük -
+        # ha ott nem volt (régebbi, e mező előtti rekord), "HUF"-ra esünk
+        # vissza (ld. osszeg_es_penznem_kinyerese() kommentje).
+        "penznem": rekord.get("penznem") or "HUF",
         "kinyert_szamlaszam": rekord.get("szamlaszam"),
         # Ld. a dashboard "Adószám" mezőjének kommentjét (szamlak.html) -
         # ha a fő listán már be volt írva kézzel, áthelyezésnél megőrizzük.
@@ -3267,7 +3394,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             continue
                         kuldo_nev = _ceges_kuldo_nev_kinyerese(msg)
                         feladó_email = _feladó_cim(msg)
-                        kinyert_osszeg = osszeg_kinyerese(teljes_szoveg)
+                        kinyert_osszeg, kinyert_penznem = osszeg_es_penznem_kinyerese(teljes_szoveg)
                         fajlnev = _ceges_fajlnev(cid, kuldo_nev, pdf_nev)
                         pdf_b64 = base64.b64encode(pdf_bytes).decode("ascii")
                         drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
@@ -3287,6 +3414,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             "drive_fajlnev": fajlnev,
                             "rogzitve": magyar_ido().isoformat(),
                             "kinyert_osszeg": kinyert_osszeg,
+                            "penznem": kinyert_penznem,
                             "kinyert_szamlaszam": kinyert_szamlaszam,
                             "adoszam": None,
                             "nav_szamla_azonosito": None,
@@ -3302,7 +3430,8 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                         statisztika["email_ertesitesek"] += 1
                         email_rekord = {
                             "szolgaltato_nev": cimke, "targy": targy,
-                            "osszeg": kinyert_osszeg, "hatarido": None, "erkezett": uj_erkezett,
+                            "osszeg": kinyert_osszeg, "penznem": kinyert_penznem,
+                            "hatarido": None, "erkezett": uj_erkezett,
                         }
                         email_kuldes(
                             f"📄 Új céges számla – {cimke}",
@@ -3325,7 +3454,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                     if rid in szamlak or rid in torolt_id_szet:
                         continue
 
-                    osszeg = osszeg_kinyerese(teljes_szoveg)
+                    osszeg, penznem = osszeg_es_penznem_kinyerese(teljes_szoveg)
                     hatarido = hatarido_kinyerese(teljes_szoveg)
 
                     rekord = {
@@ -3335,6 +3464,10 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                         "erkezett": _email_datum_iso(erkezett_fejlec),
                         "erkezett_fejlec": erkezett_fejlec,
                         "osszeg": osszeg,
+                        # "HUF" vagy "EUR" - ld. osszeg_es_penznem_kinyerese()
+                        # kommentje (a felhasználó kérésére: "van olyan
+                        # számlám, ami nem forint, hanem EUR").
+                        "penznem": penznem,
                         "hatarido": hatarido,
                         "fizetve": False,
                         "fizetve_datum": None,
@@ -3348,7 +3481,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                     pdf_tarolas(allapot, rid, pdf_bytes)
                     uj_db += 1
                     statisztika["uj_szamla"] += 1
-                    print(f"      🆕 Új számla ({cimke}): {forint(osszeg)} – határidő: {hatarido}")
+                    print(f"      🆕 Új számla ({cimke}): {osszeg_szoveg(osszeg, penznem)} – határidő: {hatarido}")
 
                     statisztika["email_ertesitesek"] += 1
                     email_kuldes(
