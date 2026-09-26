@@ -145,6 +145,22 @@
     border-radius: 6px; width: 26px; height: 26px; line-height: 1; cursor: pointer; font-size: 14px;
   }
   .torles-gomb:hover { background: #fee2e2; border-color: var(--red); color: var(--red); }
+
+  /* ── "user" (korlátozott) szerepkör - admin-csak szekciók elrejtése ──
+     Egyetlen forrás-igazság: a JS a body-ra teszi/veszi ezt a class-t a
+     jelszavas megnyitáskor (ld. szerepkor / betoltesJelszoval a JS-kódban),
+     innentől CSS-sel rejtjük el az admin-csak paneleket - így nem kell
+     minden render-függvényben külön if-eket szórni. A táblázat "Kör" és "✕"
+     oszlopát (fejléc+cellák) NEM CSS rejti el, mert azok magát a HTML-t
+     (oszlopszámot) is módosítanák - azt közvetlenül a tablaRenderelese()
+     dönti el a "szerepkor" alapján. */
+  body.szerepkor-user #beallitasok-panel,
+  body.szerepkor-user #korok-panel,
+  body.szerepkor-user #cimzettek-panel,
+  body.szerepkor-user #kuldes-panel,
+  body.szerepkor-user #felhasznaloi-jelszo-panel {
+    display: none;
+  }
 </style>
 </head>
 <body>
@@ -212,6 +228,19 @@
         <div id="be-kiv-lista" style="display:none;"></div>
         <button type="button" id="be-mentes-gomb">Beállítások mentése</button>
         <div class="panel-statusz" id="be-statusz"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="felhasznaloi-jelszo-panel">
+      <button type="button" class="panel-toggle" id="felhasznaloi-jelszo-toggle">🔑 Felhasználói (korlátozott) jelszó ▾</button>
+      <div class="panel-tartalom" id="felhasznaloi-jelszo-tartalom" style="display:none;">
+        <p class="panel-info">Itt állíthatsz be egy MÁSODIK, rövidebb jelszót valakinek, aki csak megnézni szeretné a számlákat. Ez technikailag NEM egy külön, "megszűrt" adatállapot (az adatok titkosítási módja nem változik) - a te (admin) jelszavad kerül becsomagolva, ÚJRA titkosítva ezzel a felhasználói jelszóval eltárolásra, hogy a felhasználói jelszóval megnyitva a böngésző ki tudja csomagolni és onnantól ugyanúgy hozzáférjen a (visszafejtett) adathoz, mint te - a felület viszont "user" szerepkörben elrejti előle az admin-csak szekciókat (Beállítások, Bérlői körök, Címzettek és azonnali küldés, dátum szerinti küldés, a táblázat "Kör" oszlopa és a "✕" végleges-elrejtés gomb).</p>
+        <label>Új felhasználói jelszó
+          <input type="password" id="fj-jelszo-input" autocomplete="off" placeholder="pl. egy rövidebb, egyszerűbb jelszó">
+        </label>
+        <button type="button" id="fj-mentes-gomb">Felhasználói jelszó mentése</button>
+        <button type="button" id="fj-torles-gomb" style="background:var(--red);margin-left:8px;">Felhasználói jelszó törlése</button>
+        <div class="panel-statusz" id="fj-statusz"></div>
       </div>
     </div>
 
@@ -312,6 +341,15 @@
   let pdfTar = {};           // invoice-id -> base64 PDF (a titkosított csomagból)
   let legutobbiAdat = null;  // a legutóbb visszafejtett teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
   let aktualisJelszo = null; // a sikeres megnyitáskor megadott titkosítási jelszó - KIZÁRÓLAG a "Bérlői körök" panel újra-titkosításhoz használja, sehova nem küldjük el
+  // "admin" vagy "user" - a jelszavas megnyitáskor derül ki (ld.
+  // betoltesJelszoval): ha a beírt jelszó a "felhasznaloi_csomag"-ot
+  // csomagolja ki, "user" lesz, egyébként (a hagyományos ág) "admin".
+  // FONTOS: "user" szerepkörnél is a VALÓDI admin-jelszó kerül
+  // "aktualisJelszo"-ba (ld. lentebb) - a szerepkör KIZÁRÓLAG a felületet
+  // korlátozza (mely panelek/oszlopok látszanak), nem az adathoz való
+  // hozzáférést (ld. a feladat-leírás "egyszerűbb, nem adat-szintű
+  // korlátozás" döntése).
+  let szerepkor = "admin";
   let helyilegTorolt = new Set(); // ebben a böngésző-munkamenetben, az X gombbal épp most elrejtett (de a GitHub-mentés még folyamatban lévő/már megtörtént) számla-id-k - azonnali UI-visszajelzéshez
   // A "Bérlői körök" panelben, mentés ELŐTT, memóriában tartott
   // szerkesztési állapot: kibocsato_azonosito -> {kor: null|"kor_a"|"kor_b", ertesites: bool}.
@@ -406,7 +444,13 @@
     );
   }
 
-  async function visszafejtes(csomag, jelszo) {
+  // Alacsony szintű, "formátum-független" visszafejtés: bármilyen
+  // {salt,nonce,adat,iterations} alakú csomagot tud kibontani, NYERS
+  // (JSON.parse NÉLKÜLI) szöveget adva vissza - mind a nagy adatblokk
+  // (JSON), mind a "felhasznaloi_csomag" kis csomagja (egy sima jelszó-
+  // string, nem JSON) ugyanígy van felépítve, ezért ide van kiszervezve a
+  // közös PBKDF2+AES-GCM logika (ne duplázzuk el két helyen).
+  async function nyersVisszafejtes(csomag, jelszo) {
     const salt = b64ToBytes(csomag.salt);
     const nonce = b64ToBytes(csomag.nonce);
     const titkositott = b64ToBytes(csomag.adat);
@@ -414,8 +458,33 @@
     const nyersBuffer = await crypto.subtle.decrypt(
       { name: "AES-GCM", iv: nonce }, kulcs, titkositott
     );
-    const dekoder = new TextDecoder();
-    return JSON.parse(dekoder.decode(nyersBuffer));
+    return new TextDecoder().decode(nyersBuffer);
+  }
+
+  async function visszafejtes(csomag, jelszo) {
+    return JSON.parse(await nyersVisszafejtes(csomag, jelszo));
+  }
+
+  // Alacsony szintű, "formátum-független" titkosítás: egy NYERS
+  // szöveget csomagol AES-GCM-be, friss saltot/noncet generálva, és a
+  // {iterations,salt,nonce,adat} alap-alakot adja vissza - a nagy
+  // adatblokkot író titkositas() ezt hívja (rátéve a verzio/kdf/
+  // frissitve mezőket), és a "felhasznaloi_csomag"-ot író
+  // felhasznaloiCsomagTitkositasa() is (ld. lentebb) - ugyanazt a
+  // PBKDF2+AES-GCM logikát használva, duplázás nélkül.
+  async function nyersTitkositas(nyersSzoveg, jelszo, iteraciok) {
+    const iters = iteraciok || ALAPERTELMEZETT_ITERACIOSZAM;
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const nonce = crypto.getRandomValues(new Uint8Array(12));
+    const kulcs = await kulcsSzarmaztatas(jelszo, salt, iters, ["encrypt"]);
+    const nyersBytes = new TextEncoder().encode(nyersSzoveg);
+    const titkositottBuffer = await crypto.subtle.encrypt({ name: "AES-GCM", iv: nonce }, kulcs, nyersBytes);
+    return {
+      iterations: iters,
+      salt: bytesToB64(salt),
+      nonce: bytesToB64(nonce),
+      adat: bytesToB64(new Uint8Array(titkositottBuffer)),
+    };
   }
 
   // Titkosítás - a Python-oldali titkosit_es_ment() TÖKÉLETES tükörképe
@@ -426,21 +495,30 @@
   // allapotFrissitesEsMentese()), hogy ne írjuk felül véletlenül egy
   // időközbeni (pl. ütemezett) script-futás eredményét.
   async function titkositas(adatObj, jelszo, iteraciok) {
-    const iters = iteraciok || ALAPERTELMEZETT_ITERACIOSZAM;
-    const salt = crypto.getRandomValues(new Uint8Array(16));
-    const nonce = crypto.getRandomValues(new Uint8Array(12));
-    const kulcs = await kulcsSzarmaztatas(jelszo, salt, iters, ["encrypt"]);
-    const nyersBytes = new TextEncoder().encode(JSON.stringify(adatObj));
-    const titkositottBuffer = await crypto.subtle.encrypt({ name: "AES-GCM", iv: nonce }, kulcs, nyersBytes);
-    return {
-      verzio: 3,
-      kdf: "PBKDF2-SHA256",
-      iterations: iters,
-      salt: bytesToB64(salt),
-      nonce: bytesToB64(nonce),
-      adat: bytesToB64(new Uint8Array(titkositottBuffer)),
-      frissitve: new Date().toISOString(),
-    };
+    const csomag = await nyersTitkositas(JSON.stringify(adatObj), jelszo, iteraciok);
+    csomag.verzio = 3;
+    csomag.kdf = "PBKDF2-SHA256";
+    csomag.frissitve = new Date().toISOString();
+    return csomag;
+  }
+
+  // ── "felhasznaloi_csomag" - kulcs-csomagolás a "user" (korlátozott)
+  // szerepkörhöz ── A dashboard tulajdonosa (admin) explicit módon egy
+  // EGYSZERŰBB megoldást választott, ahelyett hogy a teljes adatot külön,
+  // "megszűrt" formában is titkosítanánk (az sokkal bonyolultabb backend-
+  // et igényelne): a felhasználói jelszóval NEM a számla-adatokat
+  // titkosítjuk újra, hanem magát a VALÓDI ADMIN-JELSZÓ szöveget - így a
+  // felhasználói jelszóval megnyitva a böngésző előbb ezt csomagolja ki,
+  // majd a kicsomagolt admin-jelszóval fejti vissza a (VÁLTOZATLANUL,
+  // egyetlen admin-kulccsal titkosított) fő adatblokkot - ld.
+  // betoltesJelszoval() lentebb. A "felhasznaloi_csomag" ezért a fő
+  // adatblokknál kisebb alakú (nincs verzio/kdf/frissitve mezője, nincs
+  // rá szükség, mindig a legfrissebb formátumot használjuk).
+  async function felhasznaloiCsomagTitkositasa(adminJelszo, felhasznaloiJelszo) {
+    return nyersTitkositas(adminJelszo, felhasznaloiJelszo, ALAPERTELMEZETT_ITERACIOSZAM);
+  }
+  async function felhasznaloiCsomagVisszafejtese(felhasznaloiCsomag, felhasznaloiJelszo) {
+    return nyersVisszafejtes(felhasznaloiCsomag, felhasznaloiJelszo); // -> a kicsomagolt, valódi admin-jelszó szövege
   }
 
   function forint(osszeg) {
@@ -564,6 +642,11 @@
       rendezett = [...lista].sort((a, b) => osszegRendezesIrany * ((a.osszeg || 0) - (b.osszeg || 0)));
     }
     const { fejlecek, szolgaltatoOszlop, szamlaszamOszlop, kelteOszlop, kibocsatoOszlop } = tablaOszlopokDefinialasa(nezet);
+    // A "Kör" oszlop (kör-felülbírálás) admin-csak - "user" szerepkörnél a
+    // fejléc-listából is kivesszük (nem csak CSS-sel rejtjük, mert az a
+    // sorok cellaszámával is illeszkedjen - ld. lentebb az "adminOszlop"
+    // ellenőrzéseket a kör-select és a "✕" gombnál).
+    const megjelenoFejlecek = szerepkor === "admin" ? fejlecek : fejlecek.filter(f => f !== "Kör");
     const sorok = rendezett.map(r => {
       const vanPdf = !!pdfTar[r.id];
       // FONTOS: szándékosan NEM inline onclick-attribútumot használunk (azzal
@@ -585,7 +668,9 @@
         // dijnet_szamlak_lekerdezese() kommentje) - lehet szerződésszám,
         // lehet valami más, NEM biztos - csak megjelenítjük, a
         // felhasználó dönt a mellette lévő kör-select-tel (MOHU-probléma).
-        const extraSor = r.dijnet_extra_oszlop
+        // "user" szerepkörnél ennek nincs értelme (a kör-select is admin-
+        // csak), ezért az extra sort is elhagyjuk.
+        const extraSor = (szerepkor === "admin" && r.dijnet_extra_oszlop)
           ? `<div style="color:var(--muted);font-size:11px;margin-top:2px;" title="A Díjnet portál 'extra' oszlopának nyers tartalma - lehet szerződésszám, de nem biztos, csak tájékoztató jellegű.">${escHtml(r.dijnet_extra_oszlop)}</div>`
           : "";
         cellak.push(`<td>${escHtml(r.kibocsato_azonosito) || "—"}${extraSor}</td>`);
@@ -593,18 +678,24 @@
       cellak.push(`<td class="osszeg">${forint(r.osszeg)}</td>`);
       cellak.push(`<td>${escHtml(r.hatarido) || "ismeretlen"}</td>`);
       cellak.push(`<td>${allapotBadge(r)}</td>`);
-      cellak.push(`<td>${korFelulbiralasSelectHtml(r)}</td>`);
+      // A kör-felülbírálás (ld. korFelulbiralasSelectHtml) és a "✕" végleges-
+      // elrejtés gomb admin-csak művelet - "user" szerepkörnél egyik cellát
+      // sem tesszük ki (ld. "megjelenoFejlecek" fent, ami a fejlécből is
+      // kiveszi a "Kör" oszlopot, hogy a cellaszám illeszkedjen).
+      if (szerepkor === "admin") cellak.push(`<td>${korFelulbiralasSelectHtml(r)}</td>`);
       cellak.push(`<td>${letoltesGomb}</td>`);
-      // Az X gomb minden nézetben az utolsó oszlop - a rekordot a saját
-      // "id" mezője (nem a DOM-index) azonosítja, ld. torlesVegrehajtasa().
-      cellak.push(`<td><button type="button" class="torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
+      if (szerepkor === "admin") {
+        // Az X gomb minden nézetben az utolsó oszlop - a rekordot a saját
+        // "id" mezője (nem a DOM-index) azonosítja, ld. torlesVegrehajtasa().
+        cellak.push(`<td><button type="button" class="torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
+      }
       return `<tr>${cellak.join("")}</tr>`;
     }).join("");
 
     hely.innerHTML = `
       <table>
         <thead>
-          <tr>${fejlecek.map(f => `<th>${escHtml(f)}</th>`).join("")}<th></th></tr>
+          <tr>${megjelenoFejlecek.map(f => `<th>${escHtml(f)}</th>`).join("")}${szerepkor === "admin" ? "<th></th>" : ""}</tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -990,6 +1081,111 @@
     );
   }
 
+  // ── "felhasznaloi_csomag" mentése/törlése ("Felhasználói jelszó" panel) ──
+  // Ez a mentés SOSEM nyúl a nagy, titkosított "adat" blokkhoz (nem is kell
+  // hozzá dekódolni azt) - csak a KÜLSŐ JSON objektum "felhasznaloi_csomag"
+  // mellék-mezőjét írja/veszi ki, a verzio/kdf/iterations/salt/nonce/adat/
+  // frissitve mezőket ÉRINTETLENÜL hagyva (ld. a fájl elején lévő
+  // "felhasznaloi_csomag" komment). Ugyanazt a "mindig FRISSEN letöltött
+  // állapotra épülő + 409-ütközésnél újrapróbálkozó" mintát követi, mint az
+  // allapotFrissitesEsMentese() fent (ghAllapotSha + PUT + retry) - itt nem
+  // a Contents API "content" mezőjéből, hanem (a nagy fájl miatt, ld. az
+  // ghAllapotSha() feletti komment) a publikus ADAT_URL-ről olvassuk a
+  // friss JSON-t, a "sha"-t pedig külön kérjük le a PUT-hoz.
+  async function felhasznaloiCsomagFrissitesEsMentese(pat, ujFelhasznaloiCsomagVagyNull, probalkozasok) {
+    probalkozasok = probalkozasok || 5;
+    let utolsoHiba = null;
+    for (let i = 0; i < probalkozasok; i++) {
+      if (i > 0) {
+        await new Promise(r => setTimeout(r, 400 + Math.random() * 900));
+      }
+      try {
+        const resp = await fetch(ADAT_URL, { cache: "no-store" });
+        if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
+        const csomag = await resp.json();
+        if (ujFelhasznaloiCsomagVagyNull) {
+          csomag.felhasznaloi_csomag = ujFelhasznaloiCsomagVagyNull;
+        } else {
+          delete csomag.felhasznaloi_csomag; // "Felhasználói jelszó törlése" - visszavonja a hozzáférést
+        }
+        const sha = await ghAllapotSha(pat);
+        const body = {
+          message: "Felhasználói jelszó frissítve a dashboardról",
+          content: utf8ToB64(JSON.stringify(csomag, null, 2)),
+          branch: GH_BRANCH,
+          sha,
+        };
+        const resp2 = await fetch(
+          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
+          { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
+        );
+        if (!resp2.ok) {
+          const szoveg = await resp2.text().catch(() => "");
+          if (resp2.status === 409) {
+            // Ugyanaz az ütközés-eset, mint allapotFrissitesEsMentese()-nél -
+            // valaki/valami (pl. egy Action-futás) közben mentett, próbáljuk
+            // újra a ciklus elejétől, friss letöltéssel.
+            utolsoHiba = new Error("Ütközés (HTTP 409) - valaki/valami közben mentett - újrapróbálkozás...");
+            continue;
+          }
+          throw new Error("Mentés sikertelen (HTTP " + resp2.status + "): " + szoveg.slice(0, 200));
+        }
+        return;
+      } catch (e) {
+        utolsoHiba = e;
+        if (!/409/.test(e.message || "")) throw e;
+      }
+    }
+    throw new Error(
+      (probalkozasok) + " próbálkozás után is ütközött a mentés - próbáld meg pár másodperc múlva újra. (" + (utolsoHiba ? utolsoHiba.message : "") + ")"
+    );
+  }
+
+  document.getElementById("fj-mentes-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("fj-mentes-gomb");
+    const pat = aktualisPat();
+    const ujFelhasznaloiJelszo = document.getElementById("fj-jelszo-input").value;
+    if (!pat) { beStatuszMutat("fj-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return; }
+    if (!aktualisJelszo) { beStatuszMutat("fj-statusz", "Előbb nyisd meg a dashboardot a (admin) jelszavaddal.", "hiba"); return; }
+    if (!ujFelhasznaloiJelszo || ujFelhasznaloiJelszo.length < 4) { beStatuszMutat("fj-statusz", "Adj meg egy legalább 4 karakteres felhasználói jelszót.", "hiba"); return; }
+    patMentese();
+    gomb.disabled = true;
+    beStatuszMutat("fj-statusz", "Mentés...", "");
+    try {
+      // "aktualisJelszo" mindig a VALÓDI admin-jelszó (akkor is, ha a
+      // mostani megnyitás egy korábbi felhasznaloi_csomag-on keresztül,
+      // egy user-jelszóval történt - ld. betoltesJelszoval) - ezt
+      // csomagoljuk be az ÚJ felhasználói jelszóval, hogy a user-jelszó
+      // mindig a jelenleg érvényes admin-jelszót tudja kicsomagolni.
+      const ujCsomag = await felhasznaloiCsomagTitkositasa(aktualisJelszo, ujFelhasznaloiJelszo);
+      await felhasznaloiCsomagFrissitesEsMentese(pat, ujCsomag);
+      beStatuszMutat("fj-statusz", "✅ Felhasználói jelszó elmentve.", "siker");
+      document.getElementById("fj-jelszo-input").value = "";
+    } catch (e) {
+      beStatuszMutat("fj-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
+  document.getElementById("fj-torles-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("fj-torles-gomb");
+    const pat = aktualisPat();
+    if (!pat) { beStatuszMutat("fj-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a törléshez.", "hiba"); return; }
+    if (!window.confirm("Biztosan törlöd a felhasználói jelszót? Aki eddig ezzel nyitotta meg a dashboardot, többé nem fog tudni bejelentkezni.")) return;
+    patMentese();
+    gomb.disabled = true;
+    beStatuszMutat("fj-statusz", "Törlés...", "");
+    try {
+      await felhasznaloiCsomagFrissitesEsMentese(pat, null);
+      beStatuszMutat("fj-statusz", "✅ Felhasználói jelszó törölve.", "siker");
+    } catch (e) {
+      beStatuszMutat("fj-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
   function aktualisPat() {
     return document.getElementById("gh-pat-input").value.trim();
   }
@@ -1126,7 +1322,7 @@
   }
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -1465,21 +1661,51 @@
     if (mentettPat) document.getElementById("gh-pat-input").value = mentettPat;
   } catch (e) { /* ignorálható */ }
 
-  async function betoltesJelszoval(jelszo) {
+  async function betoltesJelszoval(beirtJelszo) {
     const hibaEl = document.getElementById("jelszo-hiba");
     hibaEl.textContent = "";
     try {
       const resp = await fetch(ADAT_URL, { cache: "no-store" });
       if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
       const csomag = await resp.json();
-      const adat = await visszafejtes(csomag, jelszo);
+
+      // Két belépési ág van (ld. a "felhasznaloi_csomag" komment a fájl
+      // elején): 1) ha VAN felhasznaloi_csomag, előbb megpróbáljuk a
+      // beírt jelszót FELHASZNÁLÓI jelszóként kicsomagolni (ez adja vissza
+      // a VALÓDI admin-jelszót) - 2) ha ez nem sikerül (rossz jelszó, vagy
+      // nincs is felhasznaloi_csomag), visszaesünk a hagyományos ágra: a
+      // beírt jelszót közvetlenül próbáljuk a fő adatblokkon. A fő
+      // adatblokk visszafejtése MINDIG ugyanaz marad (ld. visszafejtes())
+      // - csak azt kell előtte kitalálni, MELYIK jelszóval próbálkozzunk.
+      let valodiJelszo = beirtJelszo;
+      let ujSzerepkor = "admin";
+      if (csomag.felhasznaloi_csomag) {
+        try {
+          valodiJelszo = await felhasznaloiCsomagVisszafejtese(csomag.felhasznaloi_csomag, beirtJelszo);
+          ujSzerepkor = "user";
+        } catch (e) {
+          // Nem a felhasználói jelszó volt - a hagyományos (admin) ágra
+          // esünk vissza, a beírt jelszóval próbálkozva lentebb.
+          valodiJelszo = beirtJelszo;
+          ujSzerepkor = "admin";
+        }
+      }
+      const adat = await visszafejtes(csomag, valodiJelszo);
+      szerepkor = ujSzerepkor;
+      document.body.classList.toggle("szerepkor-user", szerepkor === "user");
 
       // Object.values() elveszítené a kulcsokat (a számla egyedi
       // azonosítóját) - a letöltés-gombhoz és a jövőbeli "kiválasztás az
       // összesítőhöz" funkcióhoz is szükség van rá, ezért Object.entries()-
       // szel minden rekordba visszatesszük "id" mezőként.
       legutobbiAdat = adat;
-      aktualisJelszo = jelszo;
+      // FONTOS: mindig a VALÓDI admin-jelszót tartjuk memóriában (nem a
+      // beírtat) - "user" belépésnél ez a felhasznaloi_csomag-ból most
+      // kicsomagolt admin-jelszó, "admin" belépésnél maga a beírt jelszó
+      // (ilyenkor a kettő ugyanaz). Ez teszi lehetővé, hogy a további
+      // (admin-csak felületen elérhető) mentések ugyanúgy működjenek, mint
+      // eddig, akármelyik ágon jött is létre a sikeres megnyitás.
+      aktualisJelszo = valodiJelszo;
       osszesSzamla = Object.entries(adat.szamlak || {})
         .filter(([id]) => !helyilegTorolt.has(id))
         .map(([id, r]) => Object.assign({ id }, r));
@@ -1502,7 +1728,11 @@
 
       document.getElementById("jelszo-kepernyo").style.display = "none";
       document.getElementById("tartalom").style.display = "block";
-      try { sessionStorage.setItem("szamla_jelszo", jelszo); } catch (e) { /* ignorálható */ }
+      // Szándékosan a BEÍRT jelszót (nem a kicsomagolt admin-jelszót)
+      // gyorsítótárazzuk - így ha legközelebb (ugyanabban a fülben) ez
+      // automatikusan visszatöltődik, a szerepkör-meghatározás (fent) újra
+      // lefut rá, és helyesen "user"-t ad vissza egy user-jelszóra is.
+      try { sessionStorage.setItem("szamla_jelszo", beirtJelszo); } catch (e) { /* ignorálható */ }
     } catch (e) {
       hibaEl.textContent = "Hibás jelszó, vagy az adatfájl még nem létezik.";
     }
