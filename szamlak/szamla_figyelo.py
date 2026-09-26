@@ -2895,6 +2895,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # kizárólag a NAV-párosításhoz kellenek, None is lehet.
                 "kinyert_osszeg": kinyert_osszeg,
                 "kinyert_szamlaszam": kinyert_szamlaszam,
+                # A script SOHA nem tölti ki automatikusan - a dashboard
+                # "Adószám" mezője (ld. cegesMezoMentese()) írja, ha a
+                # felhasználó kézzel megadja (jellemzően akkor, ha a
+                # számlaszám/összeg alapján nem sikerült a NAV-párosítás) -
+                # ld. nav_szamla_parositas() "1.5 kör" kommentje.
+                "adoszam": None,
                 # NAV Online Számla összekötés/párosítás - ld. "NAV ONLINE
                 # SZÁMLA" szekció lentebb (nav_ceges_parositas()) - itt
                 # kezdetben mindig üres, a párosító funkció (a fő
@@ -2981,69 +2987,132 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
 # érkeznek. "cel": "ceges" esetén a PDF-et - a dedikált céges postafiók
 # elvével megegyezően - NEM tároljuk tartósan az állapotban, csak a
 # Drive-linket (ld. _ceges_drive_feltoltes()).
+def _szamla_athelyezese_cegesbe(allapot: dict, rid: str, forras_cimke: str = None) -> bool:
+    """Egyetlen, még a fő "szamlak" listában lévő rekordot helyez át a
+    "ceges_szamlak" listába: újra feltölti a tárolt PDF-et a Drive
+    "Céges számlák" mappaszerkezetébe (_ceges_drive_feltoltes() - a
+    generikus drive_pdf_feltoltesek() ugyanis nem tárolja el a
+    visszakapott URL-t, csak egy sikeres/sikertelen jelzőt, a Céges fülön
+    viszont MINDENKÉPP kell egy "Megnyitás Drive-on" link), majd -
+    KIZÁRÓLAG sikeres feltöltés esetén - törli az eredeti "szamlak"/
+    "pdf_adatok" bejegyzést és a "drive_feltoltott_id_k" listából is.
+    True-t ad vissza sikeres áthelyezésnél; False-t, ha nincs (már/még)
+    ilyen "rid" a "szamlak"-ban, nincs hozzá tárolt PDF, VAGY a
+    Drive-feltöltés sikertelen volt - ez utóbbi két esetben a rekord
+    ÉRINTETLENÜL marad a "szamlak"-ban, a hívó dolga eldönteni, mikor
+    próbálja újra (nem vész el semmi).
+
+    Ezt a közös logikát használja MIND a postafiókonkénti tömeges
+    áthelyezés (ld. tovabbi_postafiok_ceges_athelyezes() lentebb), MIND a
+    dashboardról, EGYEDI számlánként kért áthelyezés (ld.
+    kezi_ceges_athelyezesek_feldolgozasa() lentebb - a "→ Céges" gomb a
+    Közüzemi táblázat egy-egy során)."""
+    szamlak = allapot.get("szamlak", {})
+    pdf_adatok = allapot.get("pdf_adatok", {})
+    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+    rekord = szamlak.get(rid)
+    if rekord is None:
+        return False
+    pdf_b64 = pdf_adatok.get(rid)
+    if not pdf_b64:
+        # Nincs (már/még) tárolt PDF ehhez - Drive-link nélkül nem
+        # tudnánk értelmesen megjeleníteni a Céges fülön (ott a PDF
+        # megtekintése KIZÁRÓLAG a Drive-linken át működik) - inkább a
+        # régi helyén hagyjuk, mint hogy hozzáférés nélkül maradjon.
+        return False
+    kuldo_nev = forras_cimke or rekord.get("szolgaltato_nev") or "Ismeretlen"
+    fajlnev = _ceges_fajlnev(rid, kuldo_nev, rekord.get("targy"))
+    drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
+    if not drive_url:
+        return False
+    ceges_szamlak[rid] = {
+        "kuldo_nev": kuldo_nev,
+        "feladó_email": None,
+        "targy": rekord.get("targy"),
+        "erkezett": rekord.get("erkezett"),
+        "erkezett_fejlec": rekord.get("erkezett_fejlec"),
+        "drive_url": drive_url,
+        "drive_fajlnev": fajlnev,
+        "rogzitve": magyar_ido().isoformat(),
+        "kinyert_osszeg": rekord.get("osszeg"),
+        "kinyert_szamlaszam": rekord.get("szamlaszam"),
+        # Ld. a dashboard "Adószám" mezőjének kommentjét (szamlak.html) -
+        # ha a fő listán már be volt írva kézzel, áthelyezésnél megőrizzük.
+        "adoszam": rekord.get("adoszam"),
+        "nav_szamla_azonosito": rekord.get("nav_szamla_azonosito"),
+        "nav_parositva": rekord.get("nav_parositva", False),
+        "nav_szallito_nev": rekord.get("nav_szallito_nev"),
+        "nav_osszeg": rekord.get("nav_osszeg"),
+        "nav_datum": rekord.get("nav_datum"),
+    }
+    del szamlak[rid]
+    pdf_adatok.pop(rid, None)
+    feltoltottek = allapot.get("drive_feltoltott_id_k")
+    if isinstance(feltoltottek, list) and rid in feltoltottek:
+        feltoltottek.remove(rid)
+    return True
+
+
 def tovabbi_postafiok_ceges_athelyezes(allapot: dict, postafiok_id: str, cimke: str):
     """Ha a felhasználó UTÓLAG állította "ceges"-re egy postafiók célját
     (a "cel" mező bevezetése előtt, vagy egyszerűen később meggondolta
     magát), a KORÁBBAN már a fő "szamlak" listába felvett rekordjai ott
     maradnának örökre - ez a függvény (minden futáskor meghívva, de csak
     akkor csinál bármit, ha talál ilyen árva rekordot) egyszeri jelleggel
-    átköltözteti ezeket a "ceges_szamlak" listába: újra feltölti a PDF-et
-    a Drive "Céges számlák" mappaszerkezetébe (mert a generikus
-    drive_pdf_feltoltesek() nem tárolja el a visszakapott URL-t, csak egy
-    sikeres/sikertelen jelzőt - a Céges fülön viszont MINDENKÉPP kell egy
-    "Megnyitás Drive-on" link), majd törli az eredeti "szamlak"/
-    "pdf_adatok" bejegyzést. Sikertelen Drive-feltöltésnél a rekord
-    ÉRINTETLENÜL marad a "szamlak"-ban - a következő futás újra
-    megpróbálja, nem vész el semmi."""
+    átköltözteti ezeket a "ceges_szamlak" listába (ld.
+    _szamla_athelyezese_cegesbe() fent a tényleges logikáért)."""
     szamlak = allapot.get("szamlak", {})
     pdf_adatok = allapot.get("pdf_adatok", {})
-    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
     szolgaltato_kulcs = f"postafiok_{postafiok_id}"
     athelyezendo_id_k = [rid for rid, r in szamlak.items() if r.get("szolgaltato") == szolgaltato_kulcs]
     if not athelyezendo_id_k:
         return
     athelyezett_db = 0
     for rid in athelyezendo_id_k:
-        rekord = szamlak[rid]
-        pdf_b64 = pdf_adatok.get(rid)
-        if not pdf_b64:
-            # Nincs (már/még) tárolt PDF ehhez - Drive-link nélkül nem
-            # tudnánk értelmesen megjeleníteni a Céges fülön (ott a PDF
-            # megtekintése KIZÁRÓLAG a Drive-linken át működik) - inkább a
-            # régi helyén hagyjuk, mint hogy hozzáférés nélkül maradjon.
-            continue
-        kuldo_nev = rekord.get("szolgaltato_nev") or cimke
-        fajlnev = _ceges_fajlnev(rid, kuldo_nev, rekord.get("targy"))
-        drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
-        if not drive_url:
+        targy_log = (szamlak.get(rid, {}).get("targy") or "")[:60]
+        volt_pdf = rid in pdf_adatok
+        if _szamla_athelyezese_cegesbe(allapot, rid, cimke):
+            athelyezett_db += 1
+        elif volt_pdf:
+            # Csak akkor logolunk figyelmeztetést, ha VOLT tárolt PDF, de
+            # a Drive-feltöltés hibázott - ha eleve nem volt PDF, nincs
+            # mit tenni, az nem hiba (ld. _szamla_athelyezese_cegesbe()).
             print(f"      ⚠️  '{cimke}' Céges-listába áthelyezése: Drive-feltöltés sikertelen "
-                  f"ehhez: {(rekord.get('targy') or '')[:60]} - újra próbáljuk a következő futáskor.")
-            continue
-        ceges_szamlak[rid] = {
-            "kuldo_nev": kuldo_nev,
-            "feladó_email": None,
-            "targy": rekord.get("targy"),
-            "erkezett": rekord.get("erkezett"),
-            "erkezett_fejlec": rekord.get("erkezett_fejlec"),
-            "drive_url": drive_url,
-            "drive_fajlnev": fajlnev,
-            "rogzitve": magyar_ido().isoformat(),
-            "kinyert_osszeg": rekord.get("osszeg"),
-            "kinyert_szamlaszam": rekord.get("szamlaszam"),
-            "nav_szamla_azonosito": rekord.get("nav_szamla_azonosito"),
-            "nav_parositva": rekord.get("nav_parositva", False),
-            "nav_szallito_nev": rekord.get("nav_szallito_nev"),
-            "nav_osszeg": rekord.get("nav_osszeg"),
-            "nav_datum": rekord.get("nav_datum"),
-        }
-        del szamlak[rid]
-        pdf_adatok.pop(rid, None)
-        feltoltottek = allapot.get("drive_feltoltott_id_k")
-        if isinstance(feltoltottek, list) and rid in feltoltottek:
-            feltoltottek.remove(rid)
-        athelyezett_db += 1
+                  f"ehhez: {targy_log} - újra próbáljuk a következő futáskor.")
     if athelyezett_db:
         print(f"  🔀 '{cimke}': {athelyezett_db} db korábban felvett számla áthelyezve a Céges listába.")
+
+
+def kezi_ceges_athelyezesek_feldolgozasa(allapot: dict):
+    """A dashboardon, a Közüzemi táblázat egy-egy során levő "→ Céges"
+    gombbal (ld. szamlak.html cegesAthelyezesKerelme()) kért, EGYEDI
+    (nem postafiók-szintű) áthelyezéseket dolgozza fel - a dashboard ott
+    csak a számla id-ját írja be az "ceges_athelyezes_kerelem" listába (a
+    titkosított állapot egy read-modify-write mentésével, ugyanazzal a
+    mintával, mint minden más dashboard-mentés), mert a TÉNYLEGES
+    áthelyezéshez (Drive-webapp hívás) a SZAMLA_DRIVE_WEBAPP_TOKEN kell,
+    ami csak itt, a Python-oldalon (GitHub Secret) érhető el - a
+    böngészőben soha. Sikertelen (pl. hálózati hiba miatti) feltöltésnél
+    a kérés a listában marad, a következő futás újra megpróbálja; ha a
+    kért "rid" időközben már nincs a "szamlak"-ban (törölve/már
+    áthelyezve), a kérés egyszerűen eldobásra kerül (nincs mit tenni)."""
+    kerelmek = allapot.get("ceges_athelyezes_kerelem")
+    if not kerelmek:
+        return
+    szamlak = allapot.get("szamlak", {})
+    ceges_szamlak = allapot.get("ceges_szamlak", {})
+    meg_fuggoben = []
+    athelyezett_db = 0
+    for rid in kerelmek:
+        if rid in ceges_szamlak or rid not in szamlak:
+            continue  # már megtörtént, vagy időközben eltűnt - a kérés törölhető
+        if _szamla_athelyezese_cegesbe(allapot, rid):
+            athelyezett_db += 1
+        else:
+            meg_fuggoben.append(rid)  # Drive-feltöltés (vagy hiányzó PDF) - újra próbáljuk
+    allapot["ceges_athelyezes_kerelem"] = meg_fuggoben
+    if athelyezett_db:
+        print(f"  🔀 Dashboardról kért, egyedi Céges-áthelyezés: {athelyezett_db} db számla áthelyezve.")
 
 
 def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id_szet: set):
@@ -3195,6 +3264,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             "rogzitve": magyar_ido().isoformat(),
                             "kinyert_osszeg": kinyert_osszeg,
                             "kinyert_szamlaszam": kinyert_szamlaszam,
+                            "adoszam": None,
                             "nav_szamla_azonosito": None,
                             "nav_parositva": False,
                             "nav_szallito_nev": None,
@@ -3592,19 +3662,24 @@ def _nav_parosithato_rekordok(allapot: dict):
         "további postafiókok"-nál és MVM-nél best-effort/hiányozhat).
       - allapot["ceges_szamlak"] (Céges fül) - itt "kinyert_szamlaszam"/
         "kinyert_osszeg" a mező neve (ld. ceges_szamlak_feldolgozasa()).
-    Minden elemre (rekord, szamlaszam, osszeg) hármast ad vissza - a
-    "rekord" maga a MUTÁLHATÓ dict-referencia (ugyanaz az objektum, ami
-    az allapot["szamlak"]/["ceges_szamlak"] dict-ben is van), hogy a
-    hívó közvetlenül ráírhassa a "nav_*" mezőket."""
+    Minden elemre (rekord, szamlaszam, osszeg, adoszam) négyest ad vissza
+    - az "adoszam" a dashboardon (Céges fül, "Adószám" mező, ld.
+    szamlak.html cegesMezoMentese()) kézzel megadható, KÉZI mező (a
+    script sehonnan nem tölti ki automatikusan) - amikor ki van töltve,
+    a nav_szamla_parositas() ezt is felhasználja egy erősebb, célzottabb
+    párosítási körben (ld. ott az "1.5 kör" kommentjét). A "rekord" maga
+    a MUTÁLHATÓ dict-referencia (ugyanaz az objektum, ami az
+    allapot["szamlak"]/["ceges_szamlak"] dict-ben is van), hogy a hívó
+    közvetlenül ráírhassa a "nav_*" mezőket."""
     eredmeny = []
     for rekord in allapot.get("szamlak", {}).values():
         if rekord.get("nav_parositva"):
             continue
-        eredmeny.append((rekord, rekord.get("szamlaszam"), rekord.get("osszeg")))
+        eredmeny.append((rekord, rekord.get("szamlaszam"), rekord.get("osszeg"), rekord.get("adoszam")))
     for rekord in allapot.get("ceges_szamlak", {}).values():
         if rekord.get("nav_parositva"):
             continue
-        eredmeny.append((rekord, rekord.get("kinyert_szamlaszam"), rekord.get("kinyert_osszeg")))
+        eredmeny.append((rekord, rekord.get("kinyert_szamlaszam"), rekord.get("kinyert_osszeg"), rekord.get("adoszam")))
     return eredmeny
 
 
@@ -3643,7 +3718,7 @@ def nav_szamla_parositas(allapot: dict):
     parositott_nav_kulcsok = set()
 
     # 1. kör - számlaszám EGYEZÉS (a legmegbízhatóbb jel, ha van).
-    for rekord, szamlaszam, _osszeg in parositando:
+    for rekord, szamlaszam, _osszeg, _adoszam in parositando:
         sajat_szamlaszam = (szamlaszam or "").strip().upper()
         if not sajat_szamlaszam:
             continue
@@ -3662,9 +3737,40 @@ def nav_szamla_parositas(allapot: dict):
             parositott_nav_kulcsok.add(kulcs)
             break
 
-    # 2. kör - összeg (±1 Ft) + dátum (±7 nap) egyezés azoknál, amik az 1.
-    # körben (számlaszám hiánya/eltérése miatt) még párosítatlanok.
-    for rekord, _szamlaszam, sajat_osszeg in parositando:
+    # 1.5 kör - ha a felhasználó KÉZZEL megadott egy adószámot a
+    # rekordhoz (Céges fül, "Adószám" mező - ld. _nav_parosithato_rekordok()
+    # kommentje), az egy ERŐS, SPECIFIKUS jel: csak az ADOTT adószámú
+    # NAV-szállító tételei közül keresünk, köztük is csak az összeg (±1 Ft)
+    # alapján - dátum-egyezést itt NEM követelünk meg, mert az adószám
+    # önmagában elég specifikus (egy szállítónak jellemzően nem lesz két
+    #, egymáshoz ±1 Ft-ra eső bejövő számlája egyszerre).
+    for rekord, _szamlaszam, sajat_osszeg, sajat_adoszam in parositando:
+        if rekord.get("nav_parositva"):
+            continue
+        adoszam_tiszta = (sajat_adoszam or "").strip()
+        if not adoszam_tiszta or sajat_osszeg is None:
+            continue
+        for tetel in nav_tetelek:
+            if (tetel.get("szallito_adoszam") or "").strip() != adoszam_tiszta:
+                continue
+            kulcs = _nav_tetel_kulcs(tetel)
+            if kulcs in parositott_nav_kulcsok:
+                continue
+            nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
+            if not _nav_osszeg_egyezik(sajat_osszeg, nav_osszeg):
+                continue
+            rekord["nav_parositva"] = True
+            rekord["nav_szamla_azonosito"] = kulcs
+            rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
+            rekord["nav_osszeg"] = nav_osszeg
+            rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            parositott_nav_kulcsok.add(kulcs)
+            break
+
+    # 2. kör - összeg (±1 Ft) + dátum (±7 nap) egyezés azoknál, amik az
+    # eddigi köröknél (számlaszám/adószám hiánya vagy egyezés-hiánya
+    # miatt) még párosítatlanok.
+    for rekord, _szamlaszam, sajat_osszeg, _adoszam in parositando:
         if rekord.get("nav_parositva"):
             continue
         if sajat_osszeg is None:
@@ -3702,7 +3808,7 @@ def nav_szamla_parositas(allapot: dict):
     ]
     allapot["nav_csak_navban"] = csak_navban
 
-    parositott_db = sum(1 for rekord, _s, _o in parositando if rekord.get("nav_parositva"))
+    parositott_db = sum(1 for rekord, _s, _o, _a in parositando if rekord.get("nav_parositva"))
     print(f"  🔗 NAV-párosítás: {parositott_db} db számla párosítva a NAV-adatokkal (Közüzemi + "
           f"Céges összesen), {len(csak_navban)} db NAV-tétel maradt párosítatlanul (lehet, hogy "
           f"még nem érkezett meg emailben, vagy nem egy figyelt postafiókba jött).")
@@ -3827,10 +3933,18 @@ def main():
     torolt_id_szet = set(torolt_id_k)  # gyors "benne van-e" ellenőrzéshez a lenti feldolgozó-ágakban
     if torolt_id_k:
         pdf_adatok = allapot.setdefault("pdf_adatok", {})
+        # A "Céges számlák" fülnek is van saját "✕" elrejtés-gombja a
+        # dashboardon (ld. szamlak.html torlesVegrehajtasaCeges()) -
+        # ugyanabba a "torolt_szamla_id_k" listába ír, ezért itt is
+        # töröljük a "ceges_szamlak"-ból, nemcsak a fő "szamlak"-ból.
+        ceges_szamlak_torleshez = allapot.setdefault("ceges_szamlak", {})
         torolve_db = 0
         for tid in torolt_id_k:
             if tid in szamlak:
                 del szamlak[tid]
+                torolve_db += 1
+            if tid in ceges_szamlak_torleshez:
+                del ceges_szamlak_torleshez[tid]
                 torolve_db += 1
             pdf_adatok.pop(tid, None)
         if torolve_db:
@@ -4076,6 +4190,12 @@ def main():
     # postafiók ebbeni futásban felismert számláit is (bár a kettő
     # egymástól ténylegesen független).
     tovabbi_postafiokok_feldolgozasa(allapot, statisztika, torolt_id_szet)
+
+    # ---- 1a3. Dashboardról kért, EGYEDI (nem postafiók-szintű) Céges-
+    # áthelyezések (ld. "→ Céges" gomb a Közüzemi táblázat sorain,
+    # szamlak.html cegesAthelyezesKerelme()) - ld. kezi_ceges_athelyezesek_
+    # feldolgozasa() kommentje a "TOVÁBBI POSTAFIÓKOK" szekció végén.
+    kezi_ceges_athelyezesek_feldolgozasa(allapot)
 
     # ---- 1b. Díjnet - közvetlen portál-lekérdezés (nem email-alapú) ----
     if DIJNET_USER and DIJNET_JELSZO:
