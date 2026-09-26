@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-26T02:48:43.124337+02:00",
+  "frissitve": "2026-09-26T02:49:11.067298+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:09:23.973313+02:00",
-      "kulcs": "FJX187",
-      "rendszam": "FJX187",
-      "vehicle_id": "3007",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.49686813354492,
-      "lon": 19.069101333618164,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-25T15:09:23.973381+02:00",
-      "kulcs": "FJX210",
-      "rendszam": "FJX210",
-      "vehicle_id": "3030",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.49024963378906,
-      "lon": 19.243528366088867,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-25T15:09:23.973466+02:00",
-      "kulcs": "FJX234",
-      "rendszam": "FJX234",
-      "vehicle_id": "3054",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.50455093383789,
-      "lon": 19.13693618774414,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákosi út ► Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-09-25T15:09:23.974630+02:00",
-      "kulcs": "AAGL306",
-      "rendszam": "AAGL306",
-      "vehicle_id": "336",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.51045608520508,
-      "lon": 18.9290828704834,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-25T15:09:23.974694+02:00",
       "kulcs": "AAGL314",
@@ -260000,6 +259948,58 @@
       "lon": 19.148300170898438,
       "elozo_szoveg": "Rákosszentmihály vá.",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-09-26T02:49:10.965096+02:00",
+      "kulcs": "FJX226",
+      "rendszam": "FJX226",
+      "vehicle_id": "3046",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48313903808594,
+      "lon": 19.130826950073242,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-09-26T02:49:10.965140+02:00",
+      "kulcs": "FKU903",
+      "rendszam": "FKU903",
+      "vehicle_id": "3059",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48382568359375,
+      "lon": 19.022558212280273,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-09-26T02:49:10.966172+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.47981262207031,
+      "lon": 19.14121437072754,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-26T02:49:10.966565+02:00",
+      "kulcs": "RVY603",
+      "rendszam": "RVY603",
+      "vehicle_id": "7432",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54768753051758,
+      "lon": 19.14100456237793,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
