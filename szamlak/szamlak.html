@@ -374,7 +374,9 @@
       <div class="panel" id="ceges-nav-panel">
         <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
         <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
-          <p class="panel-info">Ez a rész még nincs kész - egy KÜLÖN körben készül el, amikor a NAV Online Számla technikai felhasználó adatai (aláíró- és cserekulcs) integrálásra kerülnek a GitHub Actions futásba. Utána itt fog megjelenni, mely fent listázott (email-ből begyűjtött) számla melyik NAV-beli bejövő számlának felel meg, és lehetőség lesz a visszamenőleges (más postafiókokból történő) begyűjtésre is.</p>
+          <p class="panel-info">A fent listázott (email-ből begyűjtött) számlákat a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez alább, a "NAV-párosítás" oszlopban látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg a dedikált postafiókba, az itt lent, egy külön listában jelenik meg - ezt érdemes kézzel utánanézni (pl. újra kérni az eladótól emailben).</p>
+          <div id="nav-bejelentkezes-statusz"></div>
+          <div id="nav-csak-navban-hely"></div>
         </div>
       </div>
 
@@ -616,11 +618,11 @@
   // állapotban van (ld. szamla_figyelo.py "CÉGES SZÁMLÁK" szekció
   // kommentje), csak a metaadat + a Drive-link - ezért nincs itt
   // letöltés-gomb, hanem egy "Megnyitás Drive-on" hivatkozás. A
-  // "nav_parositva"/"nav_szamla_azonosito" mezők jelenleg mindig
-  // üresek/false-ok (a NAV Online Számla összekötés külön körben
-  // készül) - a táblázatban ETTŐL FÜGGETLENÜL már megjelenik egy oszlop
-  // nekik, hogy majd (kódmódosítás nélkül, csak adat-kitöltéssel) éles
-  // legyen.
+  // "nav_parositva"/"nav_szamla_azonosito"/"nav_szallito_nev"/"nav_osszeg"/
+  // "nav_datum" mezőket a szamla_figyelo.py "NAV ONLINE SZÁMLA" szekciója
+  // (nav_ceges_parositas()) tölti ki minden éles futás után - best-effort
+  // számlaszám-, ill. összeg+dátum-egyezés alapján (ld. az ottani komment
+  // pontos leírását), ezért NEM minden email-számla lesz párosítva.
   // A "ceges_allapot" mező (ld. szamla_figyelo.py ceges_szamlak_feldolgozasa()
   // "_allapot_rogzitese()" belső függvénye) minden éles (nem dry-run) futás
   // után frissül - itt jelenítjük meg, hogy sikerült-e legutóbb bejelentkezni
@@ -681,7 +683,10 @@
         <td>${escHtml(r.targy) || "—"}</td>
         <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
         <td>${r.drive_url ? `<a href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">📁 Megnyitás Drive-on ↗</a>` : "—"}</td>
-        <td>${r.nav_parositva ? "✅ Párosítva" : '<span style="color:var(--muted);font-size:12px;">még nincs (NAV-összekötés hamarosan)</span>'}</td>
+        <td>${r.nav_parositva
+          ? `<span style="color:var(--green);">✅ Párosítva</span>`
+            + (r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : "")
+          : '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'}</td>
       </tr>
     `).join("");
     hely.innerHTML = `
@@ -689,6 +694,64 @@
         <thead>
           <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számla (Drive)</th><th>NAV-párosítás</th></tr>
         </thead>
+        <tbody>${sorok}</tbody>
+      </table>
+    `;
+  }
+
+  // ── NAV Online Számla összekötés - renderelés ── Ugyanaz a "mindig
+  // frissülő login/hiba-visszajelzés" minta, mint a fenti
+  // cegesAllapotRenderelese()-nél (ld. szamla_figyelo.py
+  // nav_bejovo_szamlak_lekerese() "_allapot_rogzitese()" belső
+  // függvénye) - itt a NAV-lekérdezés sikerességéről/hibájáról ad
+  // visszajelzést, a postafiók-bejelentkezéstől FÜGGETLENÜL.
+  function navAllapotRenderelese(navAllapot) {
+    const hely = document.getElementById("nav-bejelentkezes-statusz");
+    if (!hely) return;
+    const a = navAllapot || {};
+    const idopont = a.utolso_probalkozas ? new Date(a.utolso_probalkozas).toLocaleString("hu-HU") : "ismeretlen";
+    let hatterSzin, szoveg;
+    if (!a.beallitva) {
+      hatterSzin = "#f3f4f6";
+      szoveg = `<span style="color:var(--muted);">ℹ️ A NAV-összekötés még nincs beállítva (a NAV_TECHNIKAI_LOGIN / NAV_TECHNIKAI_JELSZO / NAV_ALAIRO_KULCS / NAV_ADOSZAM GitHub Secretek hiányoznak).</span>`;
+    } else if (a.sikeres_lekerdezes) {
+      hatterSzin = "#dcfce7";
+      szoveg = `<span style="color:var(--green);">✅ Sikeres NAV-lekérdezés (utoljára: ${idopont})</span>`;
+      if (typeof a.utolso_futas_talalt_db === "number") {
+        szoveg += `<br><span style="color:var(--muted);font-weight:400;">${a.utolso_futas_talalt_db} db bejövő számla-tétel lekérve a NAV-tól.</span>`;
+      }
+    } else {
+      hatterSzin = "#fee2e2";
+      szoveg = `<span style="color:var(--red);">❌ Sikertelen NAV-lekérdezés (utoljára próbálva: ${idopont})</span>`;
+      if (a.hiba) {
+        szoveg += `<br><span style="color:var(--muted);font-weight:400;">${escHtml(a.hiba)}</span>`;
+      }
+    }
+    hely.innerHTML = `<div style="background:${hatterSzin};border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:13px;font-weight:600;">${szoveg}</div>`;
+  }
+
+  // A NAV-on megtalált, de az email-begyűjtésben SEHOL nem szereplő
+  // tételek (ld. szamla_figyelo.py nav_ceges_parositas() "nav_csak_navban"
+  // mezőjének kommentje) - ez a tényleges "hiányzik egy számla" riasztás.
+  function navCsakNavbanRenderelese(lista) {
+    const hely = document.getElementById("nav-csak-navban-hely");
+    if (!hely) return;
+    if (!lista || !lista.length) {
+      hely.innerHTML = '<div class="ures">Minden NAV-on talált bejövő számlához van párosított email-számla (vagy még nem futott/nincs beállítva a NAV-lekérdezés).</div>';
+      return;
+    }
+    const sorok = lista.map(t => `
+      <tr>
+        <td>${escHtml(t.szallito_nev) || "ismeretlen"}</td>
+        <td>${escHtml(t.szamlaszam) || "—"}</td>
+        <td>${escHtml((t.kiallitas_datum || "").slice(0, 10)) || "—"}</td>
+        <td>${(t.netto_osszeg_huf || t.netto_osszeg) ? forint(Number(t.netto_osszeg_huf || t.netto_osszeg)) : "—"}</td>
+      </tr>
+    `).join("");
+    hely.innerHTML = `
+      <p style="font-weight:600;color:var(--red);margin-top:16px;">⚠️ ${lista.length} db, a NAV-on megtalált bejövő számla nincs párosítva egy email-begyűjtött számlával sem:</p>
+      <table>
+        <thead><tr><th>Eladó</th><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th></tr></thead>
         <tbody>${sorok}</tbody>
       </table>
     `;
@@ -1985,6 +2048,8 @@
       cegesAllapotRenderelese(adat.ceges_allapot);
       cegesKartyakRenderelese(cegesSzamlak);
       cegesTablaRenderelese(cegesSzamlak);
+      navAllapotRenderelese(adat.nav_allapot);
+      navCsakNavbanRenderelese(adat.nav_csak_navban);
       aktivAllapotSzuro = "mind";
       aktivSzolgaltatoSzuro = "mind";
       aktivNezet = "mind";
