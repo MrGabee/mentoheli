@@ -104,6 +104,11 @@ Szükséges GitHub Secretek:
                           lekérdezése egyszerűen kimarad; ld. lentebb a "VÍZMŰVEK -
                           KÖZVETLEN PORTÁL-LEKÉRDEZÉS" szekciót)
   SZAMLA_VIZMUVEK_JELSZO  a ugyfelszolgalat.vizmuvek.hu jelszavad (opcionális, ld. fent)
+  SZAMLA_DRIVE_WEBAPP_URL   egy már telepített Google Apps Script Web App URL-je, ami a
+                            számla-PDF-eket Drive-mappákba menti (opcionális - ha kihagyod,
+                            a Drive-feltöltés egyszerűen kimarad, ld. "GOOGLE DRIVE - PDF-
+                            FELTÖLTÉS" szekció)
+  SZAMLA_DRIVE_WEBAPP_TOKEN a fenti Web App-on beállított hitelesítő token (opcionális, ld. fent)
 """
 
 import os
@@ -242,6 +247,27 @@ VIZMUVEK_PDF_POTLAS_MAX_FUTASONKENT = 20
 # (email-figyelés, Díjnet) változatlanul működik.
 VIZMUVEK_USER = os.environ.get("SZAMLA_VIZMUVEK_USER") or ""
 VIZMUVEK_JELSZO = os.environ.get("SZAMLA_VIZMUVEK_JELSZO") or ""
+
+# ── Google Drive - PDF-feltöltés (opcionális) ──
+# EGY KÜLÖN, a felhasználó által már telepített és üzemeltetett Google
+# Apps Script Web App-ra épül (ld. lentebb a "GOOGLE DRIVE - PDF-
+# FELTÖLTÉS" szekciót a pontos szerződésért) - ezt a script NEM hozza
+# létre/kezeli, csak HÍVJA. Ha ezt a kettőt (URL + token) nem állítod
+# be, a teljes funkció egyszerűen kimarad, ugyanaz az elv, mint a
+# Díjnet/Vízművek portál-integrációknál fent - minden más változatlanul
+# működik.
+SZAMLA_DRIVE_WEBAPP_URL = os.environ.get("SZAMLA_DRIVE_WEBAPP_URL") or ""
+SZAMLA_DRIVE_WEBAPP_TOKEN = os.environ.get("SZAMLA_DRIVE_WEBAPP_TOKEN") or ""
+
+# Egy futáson belül legfeljebb ennyi PDF-et próbál feltölteni a Drive-ra -
+# ugyanaz az indoklás, mint DIJNET_MAX_PDF_LETOLTES_FUTASONKENT-nél fent:
+# ez védi ki, hogy egy első/bulk feltöltés (amikor sok, még fel nem
+# töltött számla gyűlik össze egyszerre, pl. a funkció bekapcsolásának
+# napján) ne fusson percekig egyetlen futás alatt. A sapkán túli számlák
+# egyszerűen a KÖVETKEZŐ futáskor kerülnek sorra - ez a workflow mostani,
+# 10 percenkénti ütemezése mellett különösen gyorsan megy, egy esetleges
+# lemaradás (backlog) néhány futás alatt lecsökken.
+DRIVE_FELTOLTES_MAX_FUTASONKENT = 15
 
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, HÁNY NAPPAL A HATÁRIDŐ ELŐTT MENJEN AZ ÖSSZESÍTŐ ⬇️⬇️⬇️
 SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
@@ -676,6 +702,19 @@ def visszafejt(jelszo: str, fajl: str) -> dict:
         # megoldás mindig előnyösebb egy TALÁLT (és esetleg hibás)
         # automatikusnál.
         "szamla_kor_felulbiralas": {},
+        # drive_feltoltott_id_k: azon számla-id-k listája, amik MÁR
+        # sikeresen felkerültek a Google Drive-ra (ld. "GOOGLE DRIVE -
+        # PDF-FELTÖLTÉS" szekció lentebb). Ez egy append-only "kész"-
+        # jelző-halmaz - a cél csak az, hogy egy újrafutás (a workflow
+        # mostantól 10 percenként fut) NE töltse fel ismét ugyanazt a
+        # PDF-et minden alkalommal (a Web App-nak van saját, "mar_letezett"
+        # nevű dedup-ja is, ez itt a MÁSODIK, a python-oldali védelmi
+        # vonal - ld. drive_pdf_feltoltesek() kommentjét). LISTÁT
+        # választottunk (nem pl. a "kibocsato_csoportok"-hoz hasonló
+        # dict-et), mert itt nincs szükség kulcs->érték társításra (pl.
+        # dátumra vagy kör-azonosítóra) - csak egy "tagja-e a halmaznak"
+        # kérdésre, amihez egy egyszerű, append-only lista is elég.
+        "drive_feltoltott_id_k": [],
     }
     if not os.path.exists(fajl):
         return alap
@@ -2296,6 +2335,170 @@ def _honap_utolso_napja(datum: date) -> int:
 
 
 # ════════════════════════════════════════════
+#  ☁️  GOOGLE DRIVE - PDF-FELTÖLTÉS (opcionális)
+# ════════════════════════════════════════════
+# Minden számla PDF-jét feltölti egy KÜLÖN (a felhasználó által már
+# telepített és üzemeltetett) Google Apps Script Web App-ra, hogy a
+# könyvelő/tulajdonos közvetlenül a Drive-on is elérje őket, email
+# nélkül is. Ez a script NEM hozza létre/kezeli a Web App-ot, csak HÍVJA,
+# a vele megállapodott szerződés szerint:
+#
+#   POST <SZAMLA_DRIVE_WEBAPP_URL>
+#   {"token": <SZAMLA_DRIVE_WEBAPP_TOKEN>, "forras": "Vízművek"/"Díjnet"/
+#    "MVM"/egyéb, "szolgaltato_nev": <csak Díjnetnél számít - al-mappát
+#    hoz létre szolgáltatónként>, "fajlnev": <kívánt fájlnév>,
+#    "pdf_base64": <a PDF base64-kódolva>}
+#   ->  {"ok": true, "mar_letezett": bool, "file_id": ..., "url": ...}
+#       VAGY {"ok": false, "hiba": ...}
+#
+# A "mar_letezett" mező a Web App SAJÁT (második vonalbeli) dedup-jelzése
+# - ettől függetlenül itt, a python-oldalon is nyilvántartjuk, mit
+# töltöttünk már fel (ld. "drive_feltoltott_id_k" az állapotban), hogy ne
+# kelljen minden 10 perces futásnál újra elküldeni ugyanazt a PDF-et a
+# Web App-nak.
+
+
+def _drive_forras_meghatarozasa(rekord: dict) -> str:
+    """A számla-rekord "forras"/"szolgaltato" mezői alapján visszaadja,
+    MELYIK Drive-al-mappába kell feltölteni ("Vízművek"/"Díjnet"/"MVM"/
+    "Egyéb") - ld. a szekció elején a Web App szerződését. Ezt a
+    leképezést SZÁNDÉKOSAN egy külön, jól kommentelt függvénybe
+    szerveztük ki (ahelyett hogy a hívás helyén találgatnánk), mert a
+    "forras"/"szolgaltato" mezők eltérően vannak kitöltve a három forrás
+    szerint (ld. a beolvasó ágakat fentebb a fájlban):
+      - IMAP-email (Vízművek/MVM): "szolgaltato" = "vizmuvek"/"mvm",
+        "forras" mező EGYÁLTALÁN NINCS a rekordban.
+      - Díjnet portál: "szolgaltato" = "dijnet", "forras" = "dijnet_portal".
+      - Vízművek portál: "szolgaltato" = "vizmuvek", "forras" =
+        "vizmuvek_portal".
+    Egy ide nem illő/jövőbeli forrás esetén SZÁNDÉKOSAN "Egyéb"-et adunk
+    vissza, nem hibázunk/hagyjuk ki - egy fel nem ismert forrás PDF-je is
+    kerüljön fel valahova, csak legyen jól látható, hogy nem illeszkedett
+    a három ismert kategóriába."""
+    if rekord.get("forras") == "dijnet_portal" or rekord.get("szolgaltato") == "dijnet":
+        return "Díjnet"
+    if rekord.get("forras") == "vizmuvek_portal" or rekord.get("szolgaltato") == "vizmuvek":
+        return "Vízművek"
+    if rekord.get("szolgaltato") == "mvm":
+        return "MVM"
+    return "Egyéb"
+
+
+def _drive_fajlnev(invoice_id: str, rekord: dict) -> str:
+    """Biztonságos (ékezet- és speciális karakter nélküli), ÜTKÖZÉS-
+    MENTES fájlnevet készít egy adott számlához a Drive-feltöltéshez - a
+    szellemisége megegyezik a dashboard (szamlak.html)
+    fajlnevBiztonsagos() függvényével, csak ennek a Python-oldali
+    megfelelője. Az invoice_id (a számla saját, belső, amúgy is egyedi
+    azonosítója) MINDIG a fájlnév része - ez garantálja, hogy két
+    különböző számla SOHA ne kapja ugyanazt a fájlnevet, még akkor sem,
+    ha a szamlaszam/targy mező hiányzik vagy véletlenül megegyezik."""
+    import unicodedata
+
+    azonosito_resz = rekord.get("szamlaszam") or rekord.get("targy") or "szamla"
+    nyers = f"{rekord.get('szolgaltato_nev') or ''}_{azonosito_resz}_{invoice_id}"
+    ekezet_nelkul = "".join(
+        ch for ch in unicodedata.normalize("NFD", nyers) if not unicodedata.combining(ch)
+    )
+    biztonsagos = re.sub(r"[^a-zA-Z0-9._-]+", "_", ekezet_nelkul)
+    biztonsagos = re.sub(r"^_+|_+$", "", biztonsagos) or "szamla"
+    return biztonsagos[:100] + ".pdf"
+
+
+def _drive_feltoltes_probalkozas(invoice_id: str, rekord: dict, pdf_b64: str) -> bool:
+    """Egyetlen feltöltési kísérlet a Drive Web App-ra - best-effort,
+    ugyanúgy, mint pl. dijnet_pdf_letoltese()/vizmuvek_pdf_letoltese():
+    bármilyen hiba (hálózati, időtúllépés, HTTP, JSON-parse) esetén
+    csendben, csak szerkezeti naplózással (a számlaszám/id KIVÉTELÉVEL
+    semmilyen tartalom, válasz-szöveg vagy URL nélkül) False-t ad vissza
+    - egyetlen számla feltöltési hibája nem szabad, hogy megállítsa a
+    teljes futást.
+
+    A visszatérési érték True, ha a Web App "ok": true választ adott -
+    FÜGGETLENÜL attól, hogy "mar_letezett" true vagy false volt, mert
+    mindkét eset azt jelenti, hogy a PDF ETTŐL KEZDVE elérhető a
+    Drive-on (a "mar_letezett" csak a Web App saját, második védelmi
+    vonalbeli dedup-jelzése, ld. a szekció elején lévő kommentet)."""
+    azonosito_log = rekord.get("szamlaszam") or invoice_id
+    try:
+        valasz = requests.post(
+            SZAMLA_DRIVE_WEBAPP_URL,
+            json={
+                "token": SZAMLA_DRIVE_WEBAPP_TOKEN,
+                "forras": _drive_forras_meghatarozasa(rekord),
+                "szolgaltato_nev": rekord.get("szolgaltato_nev") or "",
+                "fajlnev": _drive_fajlnev(invoice_id, rekord),
+                "pdf_base64": pdf_b64,
+            },
+            timeout=20,
+        )
+        eredmeny = valasz.json()
+    except Exception:
+        # SZÁNDÉKOSAN NINCS itt a kivétel szövege kiírva - egy hálózati
+        # hibaüzenet elméletben tartalmazhatja a kérés URL-jét (a Web App
+        # URL-je), amit a nyilvános Actions naplóba nem szabad
+        # bekerülnie.
+        print(f"  ⚠️  Drive-feltöltés sikertelen (hálózati hiba): {azonosito_log}")
+        return False
+    if not isinstance(eredmeny, dict) or not eredmeny.get("ok"):
+        print(f"  ⚠️  Drive-feltöltés sikertelen (a Web App hibát jelzett): {azonosito_log}")
+        return False
+    return True
+
+
+def drive_pdf_feltoltesek(allapot: dict):
+    """Minden olyan számla PDF-jét feltölti a Drive-ra, amihez már van
+    tárolt PDF (allapot["pdf_adatok"]), de MÉG NINCS a
+    "drive_feltoltott_id_k" listában (ld. visszafejt() kommentjét).
+
+    Teljesen no-op (ugyanaz az elv, mint a Díjnet/Vízművek
+    portál-integrációknál), ha a két kötelező env-változó (URL+token)
+    nincs beállítva. Teljesen no-op akkor is, ha DRY_RUN aktív - a
+    feltöltés egy TÉNYLEGES mellékhatás (a Web App valóban ír a
+    Drive-ba), pont úgy, mint az email-küldés (ld. email_kuldes() DRY_RUN
+    ágát), ezért DRY_RUN alatt nem szabad megtörténnie."""
+    if not (SZAMLA_DRIVE_WEBAPP_URL and SZAMLA_DRIVE_WEBAPP_TOKEN):
+        print("  ℹ️  Drive-feltöltés: SZAMLA_DRIVE_WEBAPP_URL / SZAMLA_DRIVE_WEBAPP_TOKEN "
+              "nincs beállítva - kihagyva.")
+        return
+    if DRY_RUN:
+        print("  🧪 [DRY RUN] Drive-feltöltés kihagyva (ez egy tényleges mellékhatás, "
+              "ugyanúgy mint az email-küldés).")
+        return
+
+    szamlak = allapot.get("szamlak", {})
+    pdf_adatok = allapot.get("pdf_adatok", {})
+    mar_feltoltott = allapot.setdefault("drive_feltoltott_id_k", [])
+    mar_feltoltott_szet = set(mar_feltoltott)
+
+    jelolt_id_k = [
+        rid for rid in szamlak
+        if rid in pdf_adatok and rid not in mar_feltoltott_szet
+    ]
+
+    feltoltve_db = 0
+    hiba_db = 0
+    # DRIVE_FELTOLTES_MAX_FUTASONKENT-es sapka - ld. a konstans fenti
+    # kommentjét: a sapkán túli, még feltöltendő számlák egyszerűen a
+    # KÖVETKEZŐ futásra maradnak, nem vesznek el.
+    for rid in jelolt_id_k[:DRIVE_FELTOLTES_MAX_FUTASONKENT]:
+        sikeres = _drive_feltoltes_probalkozas(rid, szamlak[rid], pdf_adatok[rid])
+        if sikeres:
+            mar_feltoltott.append(rid)
+            feltoltve_db += 1
+        else:
+            hiba_db += 1
+
+    hatralevo_db = len(jelolt_id_k) - feltoltve_db - hiba_db
+    # Szerkezeti (csak darabszám) összefoglaló - ugyanaz a stílus, mint a
+    # Díjnet/Vízművek "nincs (még) tárolt PDF-je" logok fentebb ebben a
+    # fájlban.
+    print(f"  ☁️  Drive-feltöltés: {feltoltve_db} db feltöltve, {hiba_db} db sikertelen, "
+          f"{hatralevo_db} db a következő futásra marad ebben a körben "
+          f"(sapka: {DRIVE_FELTOLTES_MAX_FUTASONKENT}/futás).")
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
 # ════════════════════════════════════════════
 def main():
@@ -3099,6 +3302,14 @@ def main():
         else:
             print("  ⚠️  Könyvelői emlékeztető lett kérve a dashboardról, de nincs beállítva "
                   "könyvelő email-cím.")
+
+    # ---- 2e. Google Drive - PDF-feltöltés (ld. "GOOGLE DRIVE - PDF-
+    # FELTÖLTÉS" szekció) - SZÁNDÉKOSAN az összes IMAP/Díjnet/Vízművek
+    # ingestion ÉS a három-tiers email-küldés UTÁN, de a titkosított
+    # állapot mentése ELŐTT fut, hogy az ebben a futásban felismert ÖSSZES
+    # (friss) PDF-et is elkapja, és a "drive_feltoltott_id_k" frissítése
+    # bekerüljön a lentebbi mentésbe.
+    drive_pdf_feltoltesek(allapot)
 
     # ---- 3. Állapot mentése (titkosítva) ----
     # FONTOS: a feldolgozott_uidok egy set volt, aminek a sorrendje NEM
