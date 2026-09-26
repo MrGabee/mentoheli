@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-26T02:24:28.541014+02:00",
+  "frissitve": "2026-09-26T02:24:59.859251+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:05:54.137146+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.561134338378906,
-      "lon": 19.0900936126709,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-09-25T15:05:54.137160+02:00",
-      "kulcs": "AAHY823",
-      "rendszam": "AAHY823",
-      "vehicle_id": "384",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.578277587890625,
-      "lon": 19.104698181152344,
-      "elozo_szoveg": "Izzó utcai lakótelep ► Újpest-központ M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-09-25T15:05:54.137330+02:00",
-      "kulcs": "AAHY845",
-      "rendszam": "AAHY845",
-      "vehicle_id": "406",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56047058105469,
-      "lon": 19.090373992919922,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
     {
       "idopont": "2026-09-25T15:05:54.137533+02:00",
       "kulcs": "AAHY864",
@@ -260000,6 +259961,45 @@
       "lon": 19.082216262817383,
       "elozo_szoveg": "Astoria M ► Határ út M",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-09-26T02:24:59.799424+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.41455841064453,
+      "lon": 18.997488021850586,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-26T02:24:59.800985+02:00",
+      "kulcs": "PDB703",
+      "rendszam": "PDB703",
+      "vehicle_id": "7029",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5094108581543,
+      "lon": 19.096200942993164,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-26T02:24:59.801074+02:00",
+      "kulcs": "PDB388",
+      "rendszam": "PDB388",
+      "vehicle_id": "7070",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47090148925781,
+      "lon": 19.236743927001953,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
     }
   ]
 }
