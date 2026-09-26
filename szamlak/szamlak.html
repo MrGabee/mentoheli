@@ -644,6 +644,21 @@
     return Math.round(osszeg).toLocaleString("hu-HU") + " Ft";
   }
 
+  // forint() pénznem-tudatos változata - a felhasználó kifejezett
+  // kérésére ("van olyan számlám, ami nem forint, hanem EUR, kérlek a
+  // forintot és az eurót is jelöld"). "penznem" hiányában (a legtöbb, régi
+  // vagy Díjnet/Vízművek/MVM-eredetű rekordnál, ahol ez a mező sosem
+  // létezett) HUF-ot tételez fel - ez pontosan a korábbi, kizárólag-
+  // forintos viselkedéssel egyezik, tehát a meglévő számláknál semmi nem
+  // változik a kijelzésben.
+  function osszegFormazva(osszeg, penznem) {
+    if (osszeg === null || osszeg === undefined) return "ismeretlen";
+    if ((penznem || "HUF").toUpperCase() === "EUR") {
+      return osszeg.toLocaleString("hu-HU", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+    }
+    return forint(osszeg);
+  }
+
   function maiNap() {
     const d = new Date();
     return d.toISOString().slice(0, 10);
@@ -659,8 +674,23 @@
 
   function kartyakRenderelese(lista) {
     const fizetetlenek = lista.filter(r => !r.fizetve);
-    const vegosszeg = fizetetlenek.reduce((s, r) => s + (r.osszeg || 0), 0);
+    // FONTOS: a HUF- és EUR-összegeket KÜLÖN összesítjük, sosem egy
+    // közös számba adva (egy EUR-számlát Ft-ként hozzáadni az összeghez
+    // félrevezető lenne) - ld. osszegFormazva() kommentje. A legtöbb
+    // rekordnak nincs "penznem" mezője (a Díjnet/Vízművek/MVM-eredetűek
+    // sosem kapnak ilyet) - ezeket HUF-nak tekintjük, a korábbi
+    // viselkedéssel egyezően.
+    const hufTetelek = fizetetlenek.filter(r => (r.penznem || "HUF").toUpperCase() !== "EUR");
+    const eurTetelek = fizetetlenek.filter(r => (r.penznem || "HUF").toUpperCase() === "EUR");
+    const hufOsszeg = hufTetelek.reduce((s, r) => s + (r.osszeg || 0), 0);
+    const eurOsszeg = eurTetelek.reduce((s, r) => s + (r.osszeg || 0), 0);
     const lejartak = fizetetlenek.filter(r => r.hatarido && r.hatarido < maiNap());
+
+    const eurKartya = eurTetelek.length ? `
+      <div class="kartya">
+        <div class="cimke">Fizetetlen összeg (EUR)</div>
+        <div class="ertek">${osszegFormazva(eurOsszeg, "EUR")}</div>
+      </div>` : "";
 
     document.getElementById("kartyak").innerHTML = `
       <div class="kartya">
@@ -668,9 +698,10 @@
         <div class="ertek">${fizetetlenek.length} db</div>
       </div>
       <div class="kartya">
-        <div class="cimke">Fizetetlen összeg</div>
-        <div class="ertek">${forint(vegosszeg)}</div>
+        <div class="cimke">Fizetetlen összeg${eurTetelek.length ? " (Ft)" : ""}</div>
+        <div class="ertek">${forint(hufOsszeg)}</div>
       </div>
+      ${eurKartya}
       <div class="kartya">
         <div class="cimke">Lejárt határidejű</div>
         <div class="ertek" style="color:${lejartak.length ? '#dc2626' : 'inherit'}">${lejartak.length} db</div>
@@ -764,7 +795,13 @@
         <td>${escHtml(r.targy) || "—"}</td>
         <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
         <td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_szamlaszam" value="${escHtml(r.kinyert_szamlaszam)}" placeholder="pl. AB-2026-123" style="${mezoInputStyle}"></td>
-        <td><input type="number" step="0.01" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_osszeg" value="${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "" : r.kinyert_osszeg}" placeholder="Ft" style="${mezoInputStyle}"></td>
+        <td><input type="number" step="0.01" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_osszeg" value="${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "" : r.kinyert_osszeg}" placeholder="Összeg" style="${mezoInputStyle}"></td>
+        <td>
+          <select class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="penznem" title="Pénznem - a script best-effort felismeri (EUR-jel/'EUR' szó a szövegben), de itt kézzel is átállítható." style="${mezoInputStyle}">
+            <option value="HUF" ${(r.penznem || "HUF").toUpperCase() === "HUF" ? "selected" : ""}>Ft (HUF)</option>
+            <option value="EUR" ${(r.penznem || "HUF").toUpperCase() === "EUR" ? "selected" : ""}>€ (EUR)</option>
+          </select>
+        </td>
         <td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="adoszam" value="${escHtml(r.adoszam)}" placeholder="12345678-1-42" style="${mezoInputStyle}"></td>
         <td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>
         <td>${r.nav_parositva
@@ -782,10 +819,10 @@
       </tr>
     `).join("");
     hely.innerHTML = `
-      <p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>
+      <p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>
       <table>
         <thead>
-          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th></th><th></th></tr>
+          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th></th><th></th></tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -1165,7 +1202,7 @@
           : "";
         cellak.push(`<td>${escHtml(r.kibocsato_azonosito) || "—"}${extraSor}</td>`);
       }
-      cellak.push(`<td class="osszeg">${forint(r.osszeg)}</td>`);
+      cellak.push(`<td class="osszeg">${osszegFormazva(r.osszeg, r.penznem)}</td>`);
       cellak.push(`<td>${escHtml(r.hatarido) || "ismeretlen"}</td>`);
       cellak.push(`<td>${allapotBadge(r)}</td>`);
       // A kör-felülbírálás (ld. korFelulbiralasSelectHtml) és a "✕" végleges-
