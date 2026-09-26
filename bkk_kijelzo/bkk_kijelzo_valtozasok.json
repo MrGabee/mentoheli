@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-26T03:15:21.518439+02:00",
+  "frissitve": "2026-09-26T03:16:02.895859+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:10:54.566635+02:00",
-      "kulcs": "AOIM019",
-      "rendszam": "AOIM019",
-      "vehicle_id": "939",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.410484313964844,
-      "lon": 19.060630798339844,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-09-25T15:10:54.566855+02:00",
-      "kulcs": "415 051",
-      "rendszam": "415 051",
-      "vehicle_id": "945514150511",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.377079010009766,
-      "lon": 18.90142059326172,
-      "elozo_szoveg": "Százhalombatta",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-09-25T15:10:54.567184+02:00",
-      "kulcs": "AOIM029",
-      "rendszam": "AOIM029",
-      "vehicle_id": "949",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.47393798828125,
-      "lon": 18.995798110961914,
-      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-09-25T15:10:54.567201+02:00",
       "kulcs": "AADI598",
@@ -260000,6 +259961,45 @@
       "lon": 18.964792251586914,
       "elozo_szoveg": "Hűvösvölgy",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-09-26T03:16:02.800750+02:00",
+      "kulcs": "AADR755",
+      "rendszam": "AADR755",
+      "vehicle_id": "204",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48721694946289,
+      "lon": 19.066987991333008,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-09-26T03:16:02.800848+02:00",
+      "kulcs": "AAGL257",
+      "rendszam": "AAGL257",
+      "vehicle_id": "257",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50715255737305,
+      "lon": 18.921432495117188,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-09-26T03:16:02.803038+02:00",
+      "kulcs": "SKR819",
+      "rendszam": "SKR819",
+      "vehicle_id": "7705",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49774932861328,
+      "lon": 18.964038848876953,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
     }
   ]
 }
