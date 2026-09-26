@@ -928,26 +928,66 @@
   // rekordokon az ertesites_szukseges jelzőt). A függvény visszatér a
   // mentés utáni, teljes friss "adat"-tal, hogy a hívó ez alapján tudja
   // frissíteni a képernyőt.
-  async function allapotFrissitesEsMentese(pat, jelszo, modositoFn) {
-    const { adat, iterations } = await allapotFrissFrissFeltoltese(jelszo);
-    modositoFn(adat);
-    const ujCsomag = await titkositas(adat, jelszo, iterations);
-    const sha = await ghAllapotSha(pat);
-    const body = {
-      message: "Bérlői körök / számla-elrejtés frissítve a dashboardról",
-      content: utf8ToB64(JSON.stringify(ujCsomag, null, 2)),
-      branch: GH_BRANCH,
-      sha,
-    };
-    const resp = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
-      { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
-    );
-    if (!resp.ok) {
-      const szoveg = await resp.text().catch(() => "");
-      throw new Error("Mentés sikertelen (HTTP " + resp.status + "): " + szoveg.slice(0, 200));
+  // ÚTKÖZÉS-ÚJRAPRÓBÁLKOZÁS: mióta a script 10 percenként fut (és minden
+  // futás végén, ha változott valami, commitol egy friss állapotfájlt),
+  // jóval nagyobb az esélye, hogy pont akkor fut le egy ütemezett
+  // GitHub Actions-mentés, amikor Te a dashboardon mentesz - ilyenkor a
+  // fent lekérdezett "sha" mire a PUT megérkezik, már elavult, és a
+  // GitHub HTTP 409-cel ("...does not match <sha>") utasítja el a
+  // kérést. Ez NEM hiba a kódban, hanem pontosan az ütközés-védelem
+  // működik (nem hagyja, hogy véletlenül felülírjunk egy közben
+  // mentett, frissebb állapotot) - a helyes válasz rá az, hogy ÚJRA
+  // letöltjük a friss állapotot, ÚJRA alkalmazzuk a módosítást (a
+  // modositoFn-ek szándékosan idempotensek - egy értéket BEÁLLÍTANAK,
+  // nem pl. egyesével növelnek -, ezért ez biztonságosan
+  // megismételhető), és újra próbáljuk menteni. Néhány próbálkozás
+  // után (nem a végtelenségig) feladjuk, hogy ne fagyjon be a gomb, ha
+  // valami tartósan (nem csak egy pillanatnyi ütközés miatt) hibázik.
+  async function allapotFrissitesEsMentese(pat, jelszo, modositoFn, probalkozasok) {
+    probalkozasok = probalkozasok || 5;
+    let utolsoHiba = null;
+    for (let i = 0; i < probalkozasok; i++) {
+      if (i > 0) {
+        // Rövid, véletlenszerű várakozás két próbálkozás között - ha két
+        // dashboard-mentés (vagy a dashboard és egy épp futó Action)
+        // pont egyszerre ütközne, ne essenek ugyanabba a ritmusba.
+        await new Promise(r => setTimeout(r, 400 + Math.random() * 900));
+      }
+      try {
+        const { adat, iterations } = await allapotFrissFrissFeltoltese(jelszo);
+        modositoFn(adat);
+        const ujCsomag = await titkositas(adat, jelszo, iterations);
+        const sha = await ghAllapotSha(pat);
+        const body = {
+          message: "Bérlői körök / számla-elrejtés frissítve a dashboardról",
+          content: utf8ToB64(JSON.stringify(ujCsomag, null, 2)),
+          branch: GH_BRANCH,
+          sha,
+        };
+        const resp = await fetch(
+          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
+          { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
+        );
+        if (!resp.ok) {
+          const szoveg = await resp.text().catch(() => "");
+          if (resp.status === 409) {
+            // Pont ez az ütközés-eset - próbáljuk újra a ciklus elejétől
+            // (friss letöltéssel), ne dobjunk hibát azonnal.
+            utolsoHiba = new Error("Ütközés (HTTP 409) - valaki/valami (valószínűleg egy Action-futás) közben mentett - újrapróbálkozás...");
+            continue;
+          }
+          throw new Error("Mentés sikertelen (HTTP " + resp.status + "): " + szoveg.slice(0, 200));
+        }
+        return adat;
+      } catch (e) {
+        utolsoHiba = e;
+        if (!/409/.test(e.message || "")) throw e; // nem ütközés-jellegű hiba - ne próbálkozzunk tovább feleslegesen
+      }
     }
-    return adat;
+    throw new Error(
+      (probalkozasok) + " próbálkozás után is ütközött a mentés - valószínűleg túl gyakran fut egyszerre az Action. " +
+      "Próbáld meg pár másodperc múlva újra. (" + (utolsoHiba ? utolsoHiba.message : "") + ")"
+    );
   }
 
   function aktualisPat() {
