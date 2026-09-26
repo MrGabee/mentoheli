@@ -1267,44 +1267,110 @@
     });
   }
 
-  // A "✕" gombra kattintva egy számlát VÉGLEGESEN elrejt. FONTOS: ez NEM
-  // törli magát a rekordot a titkosított állapotból (a script legközelebbi
-  // futásakor a forrás-portál/email újra "látná" és visszahozná), hanem a
-  // kis, titkosítatlan beállítás-fájlban ("torolt_szamla_id_k" lista)
-  // jegyzi meg az id-ját - a Python-oldal ez alapján dobja el minden
-  // futáskor (ld. szamla_figyelo.py main() - "torolt_id_szet" ellenőrzés).
-  // A dashboardon azonnal, optimistán eltüntetjük (helyilegTorolt +
-  // osszesSzamla szűrése), a GitHub-mentés a háttérben fut - a
-  // ghBeallitasokBetoltese/ghBeallitasokMentese függvények lentebb vannak
-  // definiálva, de function-deklarációként hoisztolva vannak, tehát itt is
-  // hívhatók (a tényleges hívás úgyis csak kattintáskor történik).
-  async function torlesVegrehajtasa(id) {
-    if (!id) return;
-    if (!window.confirm("Biztosan véglegesen elrejted ezt a számlát? Ez nem vonható vissza - a jövőben, akár a forrás-portálon is meglévő azonos számla esetén sem jelenik meg többé.")) return;
+  // ══════════════════════════════════════════════════════════════════
+  //  🗄️  EGYSÉGES "ADATBÁZIS"-RÉTEG a rekord-kollekciókra (jelenleg:
+  //  "szamlak" = Közüzemi fül, "ceges_szamlak" = Céges fül) - a
+  //  felhasználó kifejezett kérésére ("csinálj belőle valami adatbázist,
+  //  és adatbázis rekordokat lehet menteni (update), és törlés (delete)").
+  //
+  //  A TÁROLÁS maga NEM változott (marad a titkosított JSON a GitHub-on,
+  //  ld. a fájl elején lévő komment) - ez a réteg a KÉT alapműveletet
+  //  (UPDATE/DELETE) egységesíti egy-egy közös függvénybe, amit MINDKÉT
+  //  kollekció (és bármely jövőbeli, hasonló szerkezetű kollekció) ugyanúgy
+  //  használ, a korábbi, kollekciónként külön megírt duplikátumok
+  //  (cegesMezoMentese/cegesSorMezoinekMentese/torlesVegrehajtasa/
+  //  torlesVegrehajtasaCeges) helyett - azok MOST már csak vékony,
+  //  visszafelé kompatibilis "wrapper" függvények (ld. lentebb), hogy a
+  //  meglévő hívási helyeken (blur-listenerek stb.) semmit ne kelljen
+  //  átírni.
+  // ══════════════════════════════════════════════════════════════════
+
+  // UPDATE - egy rekord egy vagy több mezőjét frissíti (Object.assign-nal
+  // EGYESÍTVE, nem teljes felülírással) egy adott kollekcióban - a
+  // "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" mintát követi
+  // (ld. allapotFrissitesEsMentese() fent), EGYETLEN GitHub-mentés-körben,
+  // függetlenül attól, hány mezőt módosítunk egyszerre.
+  //   kollekcio: "szamlak" | "ceges_szamlak"
+  //   id:        a rekord egyedi azonosítója (kulcs a kollekció dict-jében)
+  //   mezok:     {mezonev: ujertek, ...} - csak ezek a kulcsok módosulnak
+  // Visszaadja a friss, teljes "adat" objektumot sikeres mentésnél, null-t
+  // hibánál (a hibát alert-tel is jelezve).
+  async function rekordFrissitese(kollekcio, id, mezok) {
+    const pat = aktualisPat();
+    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez."); return null; }
+    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return null; }
+    patMentese();
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat[kollekcio] = adat[kollekcio] || {};
+        const rekord = adat[kollekcio][id];
+        if (rekord) Object.assign(rekord, mezok);
+      });
+      legutobbiAdat = friss;
+      return friss;
+    } catch (e) {
+      alert("A mentés sikertelen: " + e.message);
+      return null;
+    }
+  }
+
+  // DELETE - egy rekord VÉGLEGES elrejtése. FONTOS: ez NEM törli magát a
+  // rekordot a titkosított állapotból (a script legközelebbi futásakor a
+  // forrás-portál/email újra "látná" és visszahozná), hanem a kis,
+  // titkosítatlan beállítás-fájlban ("torolt_szamla_id_k" lista) jegyzi
+  // meg az id-ját - a Python-oldal ez alapján dobja el MINDKÉT
+  // kollekcióból minden futáskor (ld. szamla_figyelo.py main()
+  // "torolt_id_szet" ellenőrzése, ami a "szamlak" ÉS a "ceges_szamlak"
+  // dict-et is végignézi). A dashboardon azonnal, optimistán eltüntetjük
+  // (helyilegTorolt + a kollekciónak megfelelő lista/renderelő-függvény
+  // hívása), a GitHub-mentés a háttérben fut.
+  //   kollekcio: "szamlak" | "ceges_szamlak" (csak a helyi, optimista
+  //              törléshez kell tudni, melyik listát/renderelőt hívjuk)
+  //   id:        a törlendő rekord azonosítója
+  // Visszaadja true/false-ként, hogy a GitHub-mentés is sikeres volt.
+  async function rekordTorlese(kollekcio, id) {
+    if (!id) return false;
     const pat = aktualisPat();
     if (!pat) {
       alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a végleges elrejtéshez.");
-      return;
+      return false;
     }
     patMentese();
 
     // Azonnali, optimista UI-frissítés - nem várunk a hálózati mentésre.
     helyilegTorolt.add(id);
-    osszesSzamla = osszesSzamla.filter(r => r.id !== id);
-    szuresAlkalmazasa();
+    if (kollekcio === "ceges_szamlak") {
+      cegesSzamlak = cegesSzamlak.filter(r => r.id !== id);
+      cegesKartyakRenderelese(cegesSzamlak);
+      cegesTablaRenderelese(cegesSzamlak);
+    } else {
+      osszesSzamla = osszesSzamla.filter(r => r.id !== id);
+      szuresAlkalmazasa();
+    }
 
     try {
       const { ertekek } = await ghBeallitasokBetoltese(pat);
       const lista = Array.isArray(ertekek.torolt_szamla_id_k) ? ertekek.torolt_szamla_id_k.slice() : [];
       if (!lista.includes(id)) lista.push(id);
       await ghBeallitasokMentese(pat, { torolt_szamla_id_k: lista });
+      return true;
     } catch (e) {
       // A helyi elrejtés megmarad (a felhasználó ezt már nem akarja
       // visszalátni), de figyelmeztetjük, hogy a GitHub-mentés sikertelen
-      // volt - frissítés/új megnyitás után a számla visszatérhet, amíg ez
+      // volt - frissítés/új megnyitás után a rekord visszatérhet, amíg ez
       // nem sikerül (pl. újrapróbálkozással).
       alert("A számla a képernyőn elrejtve, de a mentés a GitHub-ra sikertelen volt (" + e.message + ") - frissítés után újra megjelenhet, próbáld meg újra.");
+      return false;
     }
+  }
+
+  // A "✕" gombra kattintva egy KÖZÜZEMI számlát véglegesen elrejt - vékony
+  // wrapper a rekordTorlese() fölött (ld. a fenti "EGYSÉGES ADATBÁZIS-
+  // RÉTEG" komment), csak a megerősítő szöveg kollekció-specifikus.
+  async function torlesVegrehajtasa(id) {
+    if (!id) return;
+    if (!window.confirm("Biztosan véglegesen elrejted ezt a számlát? Ez nem vonható vissza - a jövőben, akár a forrás-portálon is meglévő azonos számla esetén sem jelenik meg többé.")) return;
+    await rekordTorlese("szamlak", id);
   }
 
   // ── Egyedi (nem postafiók-szintű) Közüzemi → Céges áthelyezés kérése
@@ -2347,69 +2413,42 @@
   }
 
   // ── Céges számla mezőinek kézi javítása ("Céges számlák" fül táblázata,
-  // ld. cegesTablaRenderelese() fent) - ugyanaz a minta, mint
-  // navSzallitoEmailMentese()/korFelulbiralasMentese() fent, csak az
-  // adat.ceges_szamlak[id][mezo] mezőt módosítja (kuldo_nev/
-  // kinyert_szamlaszam/kinyert_osszeg lehet). Mentés után a teljes Céges
-  // táblázatot újrarendereljük a friss adatból, hogy más eszközön/fülön
-  // közben történt változás is látszódjon.
+  // ld. cegesTablaRenderelese() fent) - vékony wrapper a rekordFrissitese()
+  // fölött (ld. a fenti "EGYSÉGES ADATBÁZIS-RÉTEG" komment): a
+  // "ceges_szamlak" kollekció EGY mezőjét (kuldo_nev/kinyert_szamlaszam/
+  // kinyert_osszeg/penznem/adoszam lehet) frissíti, majd a teljes Céges
+  // táblázatot újrarendereli a friss adatból, hogy más eszközön/fülön
+  // közben történt változás is látszódjon. A "!helyilegTorolt.has(rid)"
+  // szűrés azért kell (nem csak a lap-betöltésnél), mert ha a felhasználó
+  // egy MÁSIK céges számlát az imént "✕"-szel elrejtett (ld.
+  // torlesVegrehajtasaCeges() lentebb), az még ITT VAN a frissen
+  // letöltött "friss.ceges_szamlak"-ban (a Python-purge csak a következő
+  // script-futáskor törli) - nélküle a törölt rekord egy MÁSIK mező
+  // mentésekor visszaugrana a táblába.
   async function cegesMezoMentese(id, mezo, ujErtek) {
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez."); return false; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
-    patMentese();
-    try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
-        adat.ceges_szamlak = adat.ceges_szamlak || {};
-        const rekord = adat.ceges_szamlak[id];
-        if (rekord) rekord[mezo] = ujErtek;
-      });
-      legutobbiAdat = friss;
-      // FONTOS: a "!helyilegTorolt.has(rid)" szűrés azért kell itt is (nem
-      // csak a lap-betöltésnél), mert ha a felhasználó egy MÁSIK céges
-      // számlát az imént "✕"-szel elrejtett (ld. torlesVegrehajtasaCeges()
-      // lentebb), az még ITT VAN a frissen letöltött "friss.ceges_szamlak"-
-      // ban (a Python-purge csak a következő script-futáskor törli) -
-      // nélküle a törölt rekord egy MÁSIK mező mentésekor visszaugrana a
-      // táblába.
-      cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
-        .filter(([rid]) => !helyilegTorolt.has(rid))
-        .map(([rid, r]) => Object.assign({ id: rid }, r));
-      cegesKartyakRenderelese(cegesSzamlak);
-      cegesTablaRenderelese(cegesSzamlak);
-      return true;
-    } catch (e) {
-      alert("A mentés sikertelen: " + e.message);
-      return false;
-    }
+    const friss = await rekordFrissitese("ceges_szamlak", id, { [mezo]: ujErtek });
+    if (!friss) return false;
+    cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
+      .filter(([rid]) => !helyilegTorolt.has(rid))
+      .map(([rid, r]) => Object.assign({ id: rid }, r));
+    cegesKartyakRenderelese(cegesSzamlak);
+    cegesTablaRenderelese(cegesSzamlak);
+    return true;
   }
 
   // ── Céges sor TÖBB mezőjének EGYSZERRE mentése ("💾 Mentés" gomb, ld.
-  // cegesTablaRenderelese() fent) - ugyanaz a minta, mint cegesMezoMentese()
-  // fent, csak egyetlen GitHub-mentés-körben (nem mezőnként külön) írja rá
-  // a "mezok" objektum összes kulcsát a rekordra, hogy egy gombnyomásra
-  // több (esetleg mind a négy) mező egyszerre mentődjön el.
+  // cegesTablaRenderelese() fent) - ugyanaz a wrapper-minta, mint
+  // cegesMezoMentese() fent, csak egyszerre több mezőt (a "mezok" objektum
+  // összes kulcsát) ír rá a rekordra EGYETLEN GitHub-mentés-körben, hogy
+  // egy gombnyomásra mind egyszerre mentődjön el.
   async function cegesSorMezoinekMentese(id, mezok) {
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez."); return null; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return null; }
-    patMentese();
-    try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
-        adat.ceges_szamlak = adat.ceges_szamlak || {};
-        const rekord = adat.ceges_szamlak[id];
-        if (rekord) Object.assign(rekord, mezok);
-      });
-      legutobbiAdat = friss;
-      // Ld. a cegesMezoMentese()-beli komment a helyilegTorolt szűrésről.
-      cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
-        .filter(([rid]) => !helyilegTorolt.has(rid))
-        .map(([rid, r]) => Object.assign({ id: rid }, r));
-      return friss;
-    } catch (e) {
-      alert("A mentés sikertelen: " + e.message);
-      return null;
-    }
+    const friss = await rekordFrissitese("ceges_szamlak", id, mezok);
+    if (!friss) return null;
+    // Ld. a cegesMezoMentese()-beli komment a helyilegTorolt szűrésről.
+    cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
+      .filter(([rid]) => !helyilegTorolt.has(rid))
+      .map(([rid, r]) => Object.assign({ id: rid }, r));
+    return friss;
   }
 
   // A Python nav_szamla_parositas() 1./1.5. körének KLIENS-oldali,
@@ -2553,44 +2592,13 @@
     }
   }
 
-  // A "✕" gomb Céges-fül megfelelője (ld. torlesVegrehajtasa() lentebb a
-  // Közüzemi táblához - ugyanaz a "titkosítatlan beállítás-fájlba írt
-  // torolt_szamla_id_k lista" minta, ld. ott a részletes kommentet). Itt a
-  // "cegesSzamlak" tömböt szűrjük (nem "osszesSzamla"-t), és a Céges-fül
-  // saját renderelő-függvényeit hívjuk az optimista UI-frissítéshez - a
-  // Python-oldali purge-ciklus (main() "torolt_id_szet" ellenőrzés) MOST
-  // MÁR mindkét dict-et (szamlak ÉS ceges_szamlak) végignézi, tehát ugyanaz
-  // a lista biztonságosan használható innen is.
+  // A "✕" gomb Céges-fül megfelelője - vékony wrapper a rekordTorlese()
+  // fölött (ld. a fenti "EGYSÉGES ADATBÁZIS-RÉTEG" komment torlesVegrehajtasa()
+  // előtt), csak a megerősítő szöveg kollekció-specifikus.
   async function torlesVegrehajtasaCeges(id) {
     if (!id) return;
     if (!window.confirm("Biztosan véglegesen elrejted ezt a céges számlát? Ez nem vonható vissza - a jövőben sem jelenik meg többé.")) return;
-    const pat = aktualisPat();
-    if (!pat) {
-      alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a végleges elrejtéshez.");
-      return;
-    }
-    patMentese();
-
-    // Azonnali, optimista UI-frissítés - ld. torlesVegrehajtasa() fenti
-    // kommentje: a "helyilegTorolt" jelölés (nem csak a "cegesSzamlak"
-    // tömb szűrése) azért kell, hogy egy KÖVETKEZŐ, ugyanebben a
-    // munkamenetben történő mentés (cegesMezoMentese()/
-    // cegesSorMezoinekMentese() - más sor mezőjének mentése) ne hozza
-    // vissza ezt a rekordot a friss GitHub-állapotból (ami a Python-purge
-    // következő futásáig még tartalmazza).
-    helyilegTorolt.add(id);
-    cegesSzamlak = cegesSzamlak.filter(r => r.id !== id);
-    cegesKartyakRenderelese(cegesSzamlak);
-    cegesTablaRenderelese(cegesSzamlak);
-
-    try {
-      const { ertekek } = await ghBeallitasokBetoltese(pat);
-      const lista = Array.isArray(ertekek.torolt_szamla_id_k) ? ertekek.torolt_szamla_id_k.slice() : [];
-      if (!lista.includes(id)) lista.push(id);
-      await ghBeallitasokMentese(pat, { torolt_szamla_id_k: lista });
-    } catch (e) {
-      alert("A számla a képernyőn elrejtve, de a mentés a GitHub-ra sikertelen volt (" + e.message + ") - frissítés után újra megjelenhet, próbáld meg újra.");
-    }
+    await rekordTorlese("ceges_szamlak", id);
   }
 
   // ── "Új postafiók hozzáadása" panel - postafiók-bejegyzés hozzáadása/
