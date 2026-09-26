@@ -161,6 +161,15 @@
   body.szerepkor-user #felhasznaloi-jelszo-panel {
     display: none;
   }
+
+  /* A "Céges számlák" fül (és tartalma) admin-csak - a "user" szerepkör
+     ezt sose látja, se a fül-váltó gombot, se a tartalmat (ez utóbbi
+     "!important"-tal, védekezésképp, hogy a JS tab-váltó logikája se
+     tudja véletlenül visszakapcsolni). */
+  body.szerepkor-user #fomenu-fulek,
+  body.szerepkor-user #ceges-tartalom {
+    display: none !important;
+  }
 </style>
 </head>
 <body>
@@ -177,6 +186,13 @@
   <div id="tartalom">
     <h1>💰 Számla áttekintő</h1>
     <div class="alcim">Vízművek · MVM · Díjnet</div>
+
+    <div class="nezet-gombok" id="fomenu-fulek">
+      <button type="button" class="nezet-gomb aktiv" data-fomenu="lakossagi"><span class="ikon">🏠</span>Lakossági számlák</button>
+      <button type="button" class="nezet-gomb" data-fomenu="ceges"><span class="ikon">🏢</span>Céges számlák</button>
+    </div>
+
+    <div id="lakossagi-tartalom">
 
     <div class="kartyak" id="kartyak"></div>
 
@@ -343,6 +359,24 @@
     </div>
 
     <div class="frissitve" id="frissitve"></div>
+
+    </div><!-- /lakossagi-tartalom -->
+
+    <div id="ceges-tartalom" style="display:none;">
+      <p class="panel-info">Ide kerülnek azok a számlák, amiket a cég nevében történő vásárláskor kérsz el emailben az eladótól, a dedikált céges email-címre. A postafiókot a script rendszeresen ellenőrzi: minden PDF-csatolmányos levelet feltölt a Google Drive-ra ("Céges számlák" mappa, eladónkénti almappákkal), majd - hogy ne fogyjon a postafiók tárhelye - a levelet onnan véglegesen törli. Emiatt itt lent NEM egy letöltés-gomb van, hanem egy "Megnyitás Drive-on" link.</p>
+
+      <div class="kartyak" id="ceges-kartyak"></div>
+
+      <div id="ceges-tabla-hely"></div>
+
+      <div class="panel" id="ceges-nav-panel">
+        <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
+        <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
+          <p class="panel-info">Ez a rész még nincs kész - egy KÜLÖN körben készül el, amikor a NAV Online Számla technikai felhasználó adatai (aláíró- és cserekulcs) integrálásra kerülnek a GitHub Actions futásba. Utána itt fog megjelenni, mely fent listázott (email-ből begyűjtött) számla melyik NAV-beli bejövő számlának felel meg, és lehetőség lesz a visszamenőleges (más postafiókokból történő) begyűjtésre is.</p>
+        </div>
+      </div>
+
+    </div><!-- /ceges-tartalom -->
   </div>
 
 </div>
@@ -353,6 +387,7 @@
 
   const ADAT_URL = "szamla_allapot.enc.json";
   let osszesSzamla = [];
+  let cegesSzamlak = []; // a dedikált céges-postafiókból begyűjtött, Drive-ra feltöltött számlák metaadata (ld. "Céges számlák" fül) - a PDF itt NEM tárolt, csak a "drive_url"
   let pdfTar = {};           // invoice-id -> base64 PDF (a titkosított csomagból)
   let legutobbiAdat = null;  // a legutóbb visszafejtett teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
   let aktualisJelszo = null; // a sikeres megnyitáskor megadott titkosítási jelszó - KIZÁRÓLAG a "Bérlői körök" panel újra-titkosításhoz használja, sehova nem küldjük el
@@ -572,6 +607,56 @@
         <div class="cimke">Lejárt határidejű</div>
         <div class="ertek" style="color:${lejartak.length ? '#dc2626' : 'inherit'}">${lejartak.length} db</div>
       </div>
+    `;
+  }
+
+  // ── "Céges számlák" fül - renderelés ── A PDF itt NEM a titkosított
+  // állapotban van (ld. szamla_figyelo.py "CÉGES SZÁMLÁK" szekció
+  // kommentje), csak a metaadat + a Drive-link - ezért nincs itt
+  // letöltés-gomb, hanem egy "Megnyitás Drive-on" hivatkozás. A
+  // "nav_parositva"/"nav_szamla_azonosito" mezők jelenleg mindig
+  // üresek/false-ok (a NAV Online Számla összekötés külön körben
+  // készül) - a táblázatban ETTŐL FÜGGETLENÜL már megjelenik egy oszlop
+  // nekik, hogy majd (kódmódosítás nélkül, csak adat-kitöltéssel) éles
+  // legyen.
+  function cegesKartyakRenderelese(lista) {
+    const honapEleje = new Date(); honapEleje.setDate(1); honapEleje.setHours(0, 0, 0, 0);
+    const ebbenAHonapban = lista.filter(r => r.erkezett && new Date(r.erkezett) >= honapEleje);
+    document.getElementById("ceges-kartyak").innerHTML = `
+      <div class="kartya">
+        <div class="cimke">Összes céges számla</div>
+        <div class="ertek">${lista.length} db</div>
+      </div>
+      <div class="kartya">
+        <div class="cimke">Ebben a hónapban</div>
+        <div class="ertek">${ebbenAHonapban.length} db</div>
+      </div>
+    `;
+  }
+
+  function cegesTablaRenderelese(lista) {
+    const hely = document.getElementById("ceges-tabla-hely");
+    if (!lista.length) {
+      hely.innerHTML = '<div class="ures">Még nincs begyűjtött céges számla - küldd el az eladóknak a dedikált email-címet, és a script automatikusan felszedi, amint megérkezik.</div>';
+      return;
+    }
+    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const sorok = rendezett.map(r => `
+      <tr>
+        <td>${escHtml(r.kuldo_nev)}</td>
+        <td>${escHtml(r.targy) || "—"}</td>
+        <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
+        <td>${r.drive_url ? `<a href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">📁 Megnyitás Drive-on ↗</a>` : "—"}</td>
+        <td>${r.nav_parositva ? "✅ Párosítva" : '<span style="color:var(--muted);font-size:12px;">még nincs (NAV-összekötés hamarosan)</span>'}</td>
+      </tr>
+    `).join("");
+    hely.innerHTML = `
+      <table>
+        <thead>
+          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számla (Drive)</th><th>NAV-párosítás</th></tr>
+        </thead>
+        <tbody>${sorok}</tbody>
+      </table>
     `;
   }
 
@@ -864,6 +949,22 @@
     meroallasokRenderelese(Object.values(adat.meroallasok || {}).filter(r => nezetSzuro(r, aktivNezet)));
     ismeretlenekRenderelese(Object.values(adat.ismeretlen_dokumentumok || {}).filter(r => nezetSzuro(r, aktivNezet)));
   }
+
+  // ── Fő-menü fülek ("🏠 Lakossági számlák" / "🏢 Céges számlák") - ld.
+  // "Céges számlák" fül HTML/CSS kommentjét. Teljesen független a fenti
+  // "forras-nezet-szurok"-tól (ami a lakossági táblán BELÜLI Vízművek/
+  // Díjnet szűrés) - ez itt a KÉT, egymástól teljesen külön menüpont
+  // közötti váltás, ahogy a felhasználó kérte ("teljesen külön
+  // menüpont legyen").
+  document.querySelectorAll("#fomenu-fulek button[data-fomenu]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#fomenu-fulek button[data-fomenu]").forEach(b => b.classList.remove("aktiv"));
+      btn.classList.add("aktiv");
+      const cegesE = btn.dataset.fomenu === "ceges";
+      document.getElementById("lakossagi-tartalom").style.display = cegesE ? "none" : "block";
+      document.getElementById("ceges-tartalom").style.display = cegesE ? "block" : "none";
+    });
+  });
 
   document.querySelectorAll("#forras-nezet-szurok button[data-nezet]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -1457,7 +1558,7 @@
   }
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -1845,6 +1946,10 @@
         .filter(([id]) => !helyilegTorolt.has(id))
         .map(([id, r]) => Object.assign({ id }, r));
       pdfTar = adat.pdf_adatok || {};
+      cegesSzamlak = Object.entries(adat.ceges_szamlak || {})
+        .map(([id, r]) => Object.assign({ id }, r));
+      cegesKartyakRenderelese(cegesSzamlak);
+      cegesTablaRenderelese(cegesSzamlak);
       aktivAllapotSzuro = "mind";
       aktivSzolgaltatoSzuro = "mind";
       aktivNezet = "mind";
