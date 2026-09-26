@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-27T01:22:57.556625+02:00",
+  "frissitve": "2026-09-27T01:23:32.049543+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:43:44.676871+02:00",
-      "kulcs": "PDB378",
-      "rendszam": "PDB378",
-      "vehicle_id": "7060",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.46309280395508,
-      "lon": 19.148717880249023,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-09-26T11:43:44.677013+02:00",
-      "kulcs": "PDN606",
-      "rendszam": "PDN606",
-      "vehicle_id": "7078",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41600799560547,
-      "lon": 19.134336471557617,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-09-26T11:43:44.677182+02:00",
-      "kulcs": "PDN633",
-      "rendszam": "PDN633",
-      "vehicle_id": "7104",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.388126373291016,
-      "lon": 19.1025447845459,
-      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-09-26T11:43:44.677328+02:00",
-      "kulcs": "PHG641",
-      "rendszam": "PHG641",
-      "vehicle_id": "7165",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.539329528808594,
-      "lon": 19.250680923461914,
-      "elozo_szoveg": "Auchan Liget ► Rákosszentmihály vá.",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
     {
       "idopont": "2026-09-26T11:43:44.677350+02:00",
       "kulcs": "PHG644",
@@ -260000,6 +259948,58 @@
       "lon": 19.161027908325195,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-27T01:23:31.985551+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46236038208008,
+      "lon": 19.005002975463867,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T01:23:31.985706+02:00",
+      "kulcs": "FLR749",
+      "rendszam": "FLR749",
+      "vehicle_id": "3163",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.560245513916016,
+      "lon": 19.0906982421875,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-27T01:23:31.987824+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51393127441406,
+      "lon": 19.11875343322754,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T01:23:31.987925+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.47637176513672,
+      "lon": 19.04711151123047,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
