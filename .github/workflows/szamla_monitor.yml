@@ -44,14 +44,22 @@ on:
         default: false
         type: boolean
   schedule:
-    # 10 percenként fut. FONTOS - KOCKÁZAT: a dijnet.hu / ugyfelszolgalat.
-    # vizmuvek.hu portálokra ilyen gyakori (10 percenkénti) bejelentkezés
-    # némi kockázatot hordoz, hogy a portál BOT-SZERŰ forgalomnak minősíti
-    # és blokkolja/korlátozza (rate-limit, CAPTCHA, ideiglenes tiltás) - ha
-    # a Díjnet/Vízművek-lekérdezés a jövőben rendszeresen hibázna/kiesne,
-    # ELSŐKÉNT ezt az ütemezést kell visszavenni (pl. óránkéntire vagy a
-    # korábbi napi 3x-ra), mielőtt bármi mást keresnénk a hiba okaként.
-    - cron: '*/10 * * * *'
+    # 20 percenként fut. Korábban 10 percenkénti volt, de ez torlódást
+    # okozott: a "concurrency" beállítás miatt (ld. lentebb) csak egy
+    # futás mehet egyszerre, és egy-egy Díjnet+Vízművek bejelentkezés
+    # akár 1-2 percig is eltarthat - emiatt a kézi "Küldés most"
+    # gombokkal indított futások rendszeresen csak sokára jutottak
+    # sorra, és a dashboard mentései is gyakrabban ütköztek egy épp
+    # futó Action-nel (HTTP 409). 20 perc ezt jelentősen csökkenti,
+    # miközben még mindig elég gyakori az időben érkező értesítésekhez.
+    # FONTOS - KOCKÁZAT: a dijnet.hu / ugyfelszolgalat.vizmuvek.hu
+    # portálokra gyakori bejelentkezés némi kockázatot hordoz, hogy a
+    # portál BOT-SZERŰ forgalomnak minősíti és blokkolja/korlátozza
+    # (rate-limit, CAPTCHA, ideiglenes tiltás) - ha a Díjnet/Vízművek-
+    # lekérdezés a jövőben rendszeresen hibázna/kiesne, ELSŐKÉNT ezt az
+    # ütemezést kell tovább visszavenni (pl. óránkéntire vagy a korábbi
+    # napi 3x-ra), mielőtt bármi mást keresnénk a hiba okaként.
+    - cron: '*/20 * * * *'
 
 concurrency:
   group: szamla-figyelo
