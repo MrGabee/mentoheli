@@ -158,7 +158,8 @@
   body.szerepkor-user #korok-panel,
   body.szerepkor-user #cimzettek-panel,
   body.szerepkor-user #kuldes-panel,
-  body.szerepkor-user #felhasznaloi-jelszo-panel {
+  body.szerepkor-user #felhasznaloi-jelszo-panel,
+  body.szerepkor-user #admin-jelszo-panel {
     display: none;
   }
 </style>
@@ -241,6 +242,24 @@
         <button type="button" id="fj-mentes-gomb">Felhasználói jelszó mentése</button>
         <button type="button" id="fj-torles-gomb" style="background:var(--red);margin-left:8px;">Felhasználói jelszó törlése</button>
         <div class="panel-statusz" id="fj-statusz"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="admin-jelszo-panel">
+      <button type="button" class="panel-toggle" id="admin-jelszo-toggle">🔐 Admin jelszó módosítása ▾</button>
+      <div class="panel-tartalom" id="admin-jelszo-tartalom" style="display:none;">
+        <p class="panel-info">Ez a saját (admin) jelszavad - ez titkosítja/fejti vissza a teljes számla-adatot. Módosítás után az ÖSSZES jelenlegi adatot újratitkosítjuk az új jelszóval (semmi nem törlődik) - DE ezután a GitHub repo <code>SZAMLA_TITKOSITAS_JELSZO</code> Secretjét (Settings → Secrets and variables → Actions) is UGYANERRE az új jelszóra kell írnod, különben a legközelebbi automatikus (Action) futás nem fogja tudni visszafejteni az adatot, és hibával fog leállni.</p>
+        <label>Új admin jelszó
+          <input type="password" id="aj-uj-jelszo-input" autocomplete="new-password" placeholder="legalább 8 karakter ajánlott">
+        </label>
+        <label>Új admin jelszó megerősítése
+          <input type="password" id="aj-megerosites-input" autocomplete="new-password" placeholder="ugyanaz még egyszer">
+        </label>
+        <label>Jelenlegi felhasználói (korlátozott) jelszó - csak ha korábban beállítottál ilyet, és azt szeretnéd, hogy módosítás után is (ugyanazzal a jelszóval) tovább működjön
+          <input type="password" id="aj-felhasznaloi-jelszo-input" autocomplete="off" placeholder="ha nincs ilyen beállítva, hagyd üresen">
+        </label>
+        <button type="button" id="aj-mentes-gomb">Admin jelszó módosítása</button>
+        <div class="panel-statusz" id="aj-statusz"></div>
       </div>
     </div>
 
@@ -1186,6 +1205,126 @@
     }
   });
 
+  // ── Admin jelszó módosítása ("🔐 Admin jelszó módosítása" panel) ──
+  // A régi jelszót SOSEM kérjük vissza beírásra - az "aktualisJelszo"
+  // változó (ld. betoltesJelszoval) mindig a helyes, épp aktív admin-
+  // jelszót tartalmazza, hiszen csak azzal lehetett idáig eljutni
+  // (a panel maga is admin-csak, ld. CSS "szerepkor-user" szabály). A
+  // teljes "adat" blokkot visszafejtjük a régivel, majd újratitkosítjuk
+  // az újjal - ugyanazzal a "mindig FRISSEN letöltött állapotra épülő +
+  // 409-ütközésnél újrapróbálkozó" mintával, mint a többi mentés-
+  // függvény fent, EGYETLEN commitba összefogva a fő adatblokkot ÉS
+  // (ha van) a "felhasznaloi_csomag" újracsomagolását is - két külön
+  // mentés esetén ugyanis egy közbeeső hiba/ütközés inkonzisztens
+  // állapotot hagyhatna hátra (pl. az adat már az új jelszóval, a
+  // felhasznaloi_csomag még a régivel).
+  async function adminJelszoModositasaEsMentese(pat, regiJelszo, ujJelszo, jelenlegiFelhasznaloiJelszo, probalkozasok) {
+    probalkozasok = probalkozasok || 5;
+    let utolsoHiba = null;
+    for (let i = 0; i < probalkozasok; i++) {
+      if (i > 0) {
+        await new Promise(r => setTimeout(r, 400 + Math.random() * 900));
+      }
+      try {
+        const resp = await fetch(ADAT_URL, { cache: "no-store" });
+        if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
+        const csomag = await resp.json();
+
+        // Ha ez a régi jelszóval nem sikerül, valami komolyabb baj van
+        // (pl. közben már más jelszóra váltott valaki más admin-fülben) -
+        // ilyenkor NEM próbálkozunk újra, azonnal hibát dobunk.
+        const adat = await visszafejtes(csomag, regiJelszo);
+
+        // A "felhasznaloi_csomag" (ha van) a RÉGI admin-jelszót csomagolja
+        // be a felhasználói jelszóval - ha a felhasználó megadta a
+        // jelenlegi felhasználói jelszót, ellenőrizzük (a régi admin-
+        // jelszót kell visszaadnia) és újracsomagoljuk az ÚJ admin-
+        // jelszóval, hogy a felhasználói jelszó módosítás nélkül tovább
+        // működjön. Ha nem adta meg (pedig van beállítva felhasznaloi_
+        // csomag), azt VÁLTOZATLANUL hagyjuk (nem töröljük) - ilyenkor a
+        // hívó felelőssége jelezni, hogy az elavult, és újra be kell
+        // állítani a "Felhasználói jelszó" panelben.
+        let ujFelhasznaloiCsomag; // undefined = "hagyd békén, ne nyúlj hozzá"
+        if (csomag.felhasznaloi_csomag && jelenlegiFelhasznaloiJelszo) {
+          const kibontottRegiAdminJelszo = await felhasznaloiCsomagVisszafejtese(csomag.felhasznaloi_csomag, jelenlegiFelhasznaloiJelszo);
+          if (kibontottRegiAdminJelszo !== regiJelszo) {
+            throw new Error("A megadott jelenlegi felhasználói jelszó nem egyezik a beállítottal - admin jelszó módosítása megszakítva, semmi nem változott.");
+          }
+          ujFelhasznaloiCsomag = await felhasznaloiCsomagTitkositasa(ujJelszo, jelenlegiFelhasznaloiJelszo);
+        }
+
+        const ujCsomag = await titkositas(adat, ujJelszo, csomag.iterations);
+        if (csomag.felhasznaloi_csomag) {
+          ujCsomag.felhasznaloi_csomag = (ujFelhasznaloiCsomag !== undefined) ? ujFelhasznaloiCsomag : csomag.felhasznaloi_csomag;
+        }
+
+        const sha = await ghAllapotSha(pat);
+        const body = {
+          message: "Admin jelszó módosítva a dashboardról",
+          content: utf8ToB64(JSON.stringify(ujCsomag, null, 2)),
+          branch: GH_BRANCH,
+          sha,
+        };
+        const resp2 = await fetch(
+          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
+          { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
+        );
+        if (!resp2.ok) {
+          const szoveg = await resp2.text().catch(() => "");
+          if (resp2.status === 409) {
+            utolsoHiba = new Error("Ütközés (HTTP 409) - valaki/valami közben mentett - újrapróbálkozás...");
+            continue;
+          }
+          throw new Error("Mentés sikertelen (HTTP " + resp2.status + "): " + szoveg.slice(0, 200));
+        }
+        return { volt_felhasznaloi_csomag: !!csomag.felhasznaloi_csomag, felhasznaloi_csomag_ujracsomagolva: ujFelhasznaloiCsomag !== undefined };
+      } catch (e) {
+        utolsoHiba = e;
+        if (!/409/.test(e.message || "")) throw e;
+      }
+    }
+    throw new Error(
+      (probalkozasok) + " próbálkozás után is ütközött a mentés - próbáld meg pár másodperc múlva újra. (" + (utolsoHiba ? utolsoHiba.message : "") + ")"
+    );
+  }
+
+  document.getElementById("aj-mentes-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("aj-mentes-gomb");
+    const pat = aktualisPat();
+    const ujJelszo = document.getElementById("aj-uj-jelszo-input").value;
+    const megerosites = document.getElementById("aj-megerosites-input").value;
+    const jelenlegiFelhasznaloiJelszo = document.getElementById("aj-felhasznaloi-jelszo-input").value;
+    if (!pat) { beStatuszMutat("aj-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return; }
+    if (!aktualisJelszo) { beStatuszMutat("aj-statusz", "Előbb nyisd meg a dashboardot a jelenlegi admin jelszavaddal.", "hiba"); return; }
+    if (!ujJelszo || ujJelszo.length < 8) { beStatuszMutat("aj-statusz", "Adj meg egy legalább 8 karakteres új admin jelszót.", "hiba"); return; }
+    if (ujJelszo !== megerosites) { beStatuszMutat("aj-statusz", "A két jelszó-mező nem egyezik.", "hiba"); return; }
+    if (!window.confirm("Biztosan módosítod az admin jelszót? Ne feledd: utána a GitHub repo SZAMLA_TITKOSITAS_JELSZO Secretjét is frissítened kell ugyanerre, különben az Action nem fog tudni visszafejteni az adatot.")) return;
+    patMentese();
+    gomb.disabled = true;
+    beStatuszMutat("aj-statusz", "Mentés...", "");
+    try {
+      const eredmeny = await adminJelszoModositasaEsMentese(pat, aktualisJelszo, ujJelszo, jelenlegiFelhasznaloiJelszo || null);
+      // A most aktív session-t is átállítjuk az új jelszóra, hogy a
+      // további (admin-csak) mentések ugyanebben a fülben zökkenőmentesen
+      // működjenek tovább, és egy F5 után is az új jelszó töltődjön
+      // vissza (ld. a session-tárolós "kényelmi funkció" a fájl végén).
+      aktualisJelszo = ujJelszo;
+      try { sessionStorage.setItem("szamla_jelszo", ujJelszo); } catch (e) { /* ignorálható */ }
+      document.getElementById("aj-uj-jelszo-input").value = "";
+      document.getElementById("aj-megerosites-input").value = "";
+      document.getElementById("aj-felhasznaloi-jelszo-input").value = "";
+      let uzenet = "✅ Admin jelszó módosítva. NE FELEDD: a GitHub repo SZAMLA_TITKOSITAS_JELSZO Secretjét is írd át erre az új jelszóra.";
+      if (eredmeny.volt_felhasznaloi_csomag && !eredmeny.felhasznaloi_csomag_ujracsomagolva) {
+        uzenet += " Figyelem: van beállított felhasználói (korlátozott) jelszó, de ez most NEM lett újracsomagolva (nem adtad meg) - az addig működött felhasználói jelszó mostantól NEM fog bejelentkezni, amíg a 'Felhasználói jelszó' panelben újra be nem állítod.";
+      }
+      beStatuszMutat("aj-statusz", uzenet, "siker");
+    } catch (e) {
+      beStatuszMutat("aj-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
   function aktualisPat() {
     return document.getElementById("gh-pat-input").value.trim();
   }
@@ -1322,7 +1461,7 @@
   }
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["admin-jelszo-toggle", "admin-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
