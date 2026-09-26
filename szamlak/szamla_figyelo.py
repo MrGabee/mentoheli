@@ -360,12 +360,36 @@ SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
 MEROALLAS_ERTESITES_EMAIL = True   # küldjön-e emailt új mérőállás-eseménynél
 ISMERETLEN_ERTESITES_EMAIL = True  # küldjön-e emailt fel nem ismert levélnél
 
-# Hány napra visszamenőleg nézze át a postafiókot minden futáskor. 30 nap
-# kockázatos, ha a workflow valamiért 30+ napig nem futna (pl. GitHub-
-# leállás, secret lejár stb.) - egy ennél régebbi, még feldolgozatlan
-# levél örökre kimaradna. 90 nap bőven elég puffer, és az IMAP SINCE
-# keresés sebességét/terhelését gyakorlatilag nem érinti.
+# Hány napra visszamenőleg nézze át a postafiókot minden futáskor (ez a
+# MINIMÁLIS visszatekintés - a TÉNYLEGES SINCE-dátumot ld. _imap_kezdo_nap()
+# lentebb, ami ezt az ablakot MINDIG kiterjeszti az aktuális év január
+# 1-jéig is, a felhasználó kifejezett kérésére: "nekem az egész aktuális
+# év kell"). 30 nap kockázatos, ha a workflow valamiért 30+ napig nem
+# futna (pl. GitHub-leállás, secret lejár stb.) - egy ennél régebbi, még
+# feldolgozatlan levél örökre kimaradna. 90 nap bőven elég puffer, és az
+# IMAP SINCE keresés sebességét/terhelését gyakorlatilag nem érinti.
 IMAP_LEKERDEZES_NAPOK = 90
+
+
+def _imap_kezdo_nap():
+    """A uj_uidok_lekerese() SINCE-keresésének kezdő dátuma - MINDIG
+    legalább az AKTUÁLIS ÉV JANUÁR 1-jéig visszamegy (a felhasználó
+    kérésére: "nekem az egész aktuális év kell" - korábban ez egy sima,
+    mindig csak IMAP_LEKERDEZES_NAPOK (90) napos "mozgó ablak" volt, ami
+    miatt a január elejétől érkezett, de csak most (pl. szeptemberben)
+    bekapcsolt postafiókok/kategóriák - ld. a "further postafiokok" →
+    Céges áthelyezés esetét - sosem látták a 90 napnál régebbi leveleket,
+    hiába voltak még ott a postafiókban). Emellett a szokásos
+    IMAP_LEKERDEZES_NAPOK-os mozgó ablakot IS megtartjuk (a kettő közül a
+    KORÁBBI, azaz messzebb visszamenő dátumot használjuk) - ez január-
+    március környékén ad egy kis extra puffert az évforduló körül (ld. az
+    IMAP_LEKERDEZES_NAPOK kommentjét a workflow-kiesés elleni védelemről),
+    az év további részében pedig január 1-je lesz a meghatározó (mert az
+    messzebb van vissza, mint "ma - 90 nap")."""
+    ma = magyar_ma()
+    ev_eleje = ma.replace(month=1, day=1)
+    gorgo_ablak = ma - timedelta(days=IMAP_LEKERDEZES_NAPOK)
+    return min(ev_eleje, gorgo_ablak)
 
 # Teszt-mód: ha "1"-re állítod (SZAMLA_DRY_RUN=1 secret/env), a script
 # mindent ugyanúgy lekérdez és felismer, de TÉNYLEGESEN NEM küld emailt
@@ -1012,8 +1036,9 @@ def _email_datum_iso(erkezett_fejlec: str) -> str:
 
 
 def uj_uidok_lekerese(conn, mar_feldolgozott: set, max_uj=60):
-    """Az utolsó IMAP_LEKERDEZES_NAPOK nap emailjei közül visszaadja
-    azokat az UID-kat, amiket még nem dolgoztunk fel. Nem jelöli
+    """A postafiók emailjei közül visszaadja azokat az UID-kat, amiket még
+    nem dolgoztunk fel - a keresés kezdő dátumát ld. _imap_kezdo_nap()
+    (MINDIG legalább az aktuális év január 1-jéig visszamegy). Nem jelöli
     olvasottnak a postafiókban lévő eredeti leveleket (nem piszkáljuk a
     te postaládád állapotát).
 
@@ -1023,9 +1048,8 @@ def uj_uidok_lekerese(conn, mar_feldolgozott: set, max_uj=60):
     biztonságosan megkülönböztetni a "már láttam" és "még nem láttam"
     UID-kat - ez egy ritka, de elméletben lehetséges eset. Egy teljesen
     robusztus megoldás az IMAP UIDVALIDITY expliciten kezelné; erre most
-    nem került sor, a gyakorlati kockázatot a hosszabb (90 napos) ablak
-    csökkenti."""
-    kezdo_nap = (magyar_ma() - timedelta(days=IMAP_LEKERDEZES_NAPOK)).strftime("%d-%b-%Y")
+    nem került sor, a gyakorlati kockázatot az "egész év" ablak csökkenti."""
+    kezdo_nap = _imap_kezdo_nap().strftime("%d-%b-%Y")
     tipus, adat = conn.uid("search", None, f'(SINCE "{kezdo_nap}")')
     if tipus != "OK" or not adat or not adat[0]:
         return []
