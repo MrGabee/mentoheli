@@ -109,6 +109,14 @@ Szükséges GitHub Secretek:
                             a Drive-feltöltés egyszerűen kimarad, ld. "GOOGLE DRIVE - PDF-
                             FELTÖLTÉS" szekció)
   SZAMLA_DRIVE_WEBAPP_TOKEN a fenti Web App-on beállított hitelesítő token (opcionális, ld. fent)
+  CEGES_IMAP_HOST         a céges számlákra dedikált postafiók IMAP-szervere (pl. mail.sajatdomain.hu -
+                          nincs alapérték, mert ez NEM feltétlenül Gmail, ld. "CÉGES SZÁMLÁK" szekció)
+  CEGES_IMAP_PORT         (opcionális, alapértelmezett: 993)
+  CEGES_IMAP_USER         a céges számlákra dedikált postafiók email-címe
+  CEGES_IMAP_JELSZO       a fenti postafiók jelszava (vagy app-jelszava)
+  CEGES_IMAP_MAPPA        (opcionális, alapértelmezett: INBOX)
+  Mind az öt CÉGES_* opcionális - ha valamelyik hiányzik, a "Céges számlák" modul egyszerűen
+  kimarad, minden más (a fő számla-figyelés) változatlanul működik.
 """
 
 import os
@@ -268,6 +276,31 @@ SZAMLA_DRIVE_WEBAPP_TOKEN = os.environ.get("SZAMLA_DRIVE_WEBAPP_TOKEN") or ""
 # 10 percenkénti ütemezése mellett különösen gyorsan megy, egy esetleges
 # lemaradás (backlog) néhány futás alatt lecsökken.
 DRIVE_FELTOLTES_MAX_FUTASONKENT = 15
+
+# ── Céges számlák - dedikált postafiók (opcionális) ──
+# EGY ÚJ, KÜLÖN, kizárólag céges (a cég nevében vásárolt) számlák
+# begyűjtésére szánt email-postafiók figyelése - ld. lentebb a "CÉGES
+# SZÁMLÁK" szekciót a pontos működésért. Ez SZÁNDÉKOSAN teljesen
+# FÜGGETLEN a fenti (SZAMLA_IMAP_*) fő postafióktól - más cél, más
+# feldolgozási logika (nincs itt "ismert szolgáltató" szűrés, MINDEN
+# email számla-jelöltnek számít), és más a tárolási/törlési szabály is
+# (ld. lentebb). Nincs alapértelmezett host (pl. imap.gmail.com), mert ez
+# a postafiók a felhasználó saját döntése szerint bármilyen szolgáltatónál
+# lehet (jelen esetben egy saját domain-es webhosting-postafiók) - ha a
+# host nincs megadva, a modul egyszerűen kimarad (ld. lentebb
+# ceges_szamlak_feldolgozasa()).
+CEGES_IMAP_HOST = os.environ.get("CEGES_IMAP_HOST") or ""
+CEGES_IMAP_PORT = int(os.environ.get("CEGES_IMAP_PORT") or "993")
+CEGES_IMAP_USER = os.environ.get("CEGES_IMAP_USER") or ""
+CEGES_IMAP_JELSZO = os.environ.get("CEGES_IMAP_JELSZO") or ""
+CEGES_IMAP_MAPPA = os.environ.get("CEGES_IMAP_MAPPA") or "INBOX"
+
+# Egy futáson belül legfeljebb ennyi céges számla-emailt dolgoz fel (a
+# Drive-feltöltés + email-törlés miatt ez itt is védendő, ugyanaz az elv,
+# mint DIJNET_MAX_PDF_LETOLTES_FUTASONKENT-nél fent) - a sapkán túli
+# levelek egyszerűen a postafiókban maradnak, a KÖVETKEZŐ futás dolgozza
+# fel őket (nem vesznek el, csak később kerülnek sorra).
+CEGES_MAX_FELDOLGOZAS_FUTASONKENT = 20
 
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, HÁNY NAPPAL A HATÁRIDŐ ELŐTT MENJEN AZ ÖSSZESÍTŐ ⬇️⬇️⬇️
 SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
@@ -856,10 +889,15 @@ def beallitasok_betoltese() -> dict:
 # ════════════════════════════════════════════
 #  📥  IMAP - EMAILEK BEOLVASÁSA
 # ════════════════════════════════════════════
-def imap_kapcsolat():
-    conn = imaplib.IMAP4_SSL(IMAP_HOST, IMAP_PORT)
-    conn.login(IMAP_USER, IMAP_JELSZO)
-    conn.select(IMAP_MAPPA)
+def imap_kapcsolat(host=None, port=None, user=None, jelszo=None, mappa=None):
+    """Paraméterezhető - a fő (SZAMLA_IMAP_*) postafiókhoz simán
+    argumentum nélkül hívható (a globális alapértékeket használja,
+    változatlan viselkedéssel), a "Céges számlák" modul (ld. lentebb)
+    viszont egy MÁSIK, teljesen független postafiókhoz saját
+    (CEGES_IMAP_*) adatokkal hívja."""
+    conn = imaplib.IMAP4_SSL(host or IMAP_HOST, port or IMAP_PORT)
+    conn.login(user or IMAP_USER, jelszo or IMAP_JELSZO)
+    conn.select(mappa or IMAP_MAPPA)
     return conn
 
 
@@ -2530,6 +2568,243 @@ def drive_pdf_feltoltesek(allapot: dict):
 
 
 # ════════════════════════════════════════════
+#  🏢  CÉGES SZÁMLÁK - dedikált postafiók (opcionális, ld. CEGES_IMAP_*)
+# ════════════════════════════════════════════
+# TELJESEN KÜLÖN, önálló modul - a felhasználó egy MÁSIK célra, egy
+# ÚJ, kizárólag céges (a cég nevében vásárolt) beszerzésekhez kapcsolódó
+# számlák begyűjtésére szánt email-postafiókot hoz létre, és minden ide
+# beérkező levelet (amit maga kér el az eladóktól emailben) számla-
+# jelöltnek tekintünk - NINCS itt "ismert szolgáltató" szűrés
+# (szolgaltato_azonositasa()), mint a fenti fő IMAP-ágnál, mert ez a
+# postafiók kizárólag erre a célra van, és bárkitől jöhet számla.
+#
+# KÉT LÉNYEGES ELTÉRÉS A FENTIEKHEZ KÉPEST (a felhasználó kifejezett,
+# tudatos döntése alapján - ld. a dashboard-beszélgetés "tárhely kevés"
+# indoklását):
+#   1. A PDF-et NEM tároljuk tartósan a titkosított állapotban (nem
+#      hívjuk a pdf_tarolas()-t) - KIZÁRÓLAG a Google Drive-on marad meg
+#      (ld. _ceges_drive_feltoltes()), az állapotban csak a metaadat +
+#      a Drive-link kerül el (ceges_szamlak dict) - ez jelentősen
+#      kisebb állapotfájlt eredményez, mint ha PDF-eket is base64-ben
+#      tárolnánk itt.
+#   2. Sikeres Drive-feltöltés UTÁN a forrás email-t AZONNAL, VÉGLEGESEN
+#      töröljük a postafiókból (nincs Kuka-időzár - a felhasználó ezt a
+#      lehetőséget SZÁNDÉKOSAN nem választotta, mert a cél a
+#      tárhely-felszabadítás). Ha a Drive-feltöltés sikertelen, a levél
+#      ÉRINTETLENÜL marad a postafiókban - a KÖVETKEZŐ futás újra
+#      megpróbálja. Emiatt NINCS itt "feldolgozott UID"-lista sem: a
+#      postafiók MAGA a "még feldolgozandó" sor - egy sikeresen
+#      feltöltött és törölt levél sosem térhet vissza, egy sikertelen
+#      pedig automatikusan újra esélyt kap a következő futáskor.
+def _ceges_kuldo_nev_kinyerese(msg) -> str:
+    """A feladó megjelenítendő neve (a From fejléc "név" része, pl. "Kis
+    Kft. Számlázás") - ha ez hiányzik (csak egy csupasz email-cím van),
+    a domain-részt adjuk vissza tájékoztató jelleggel (pl. "cegneve.hu"),
+    hogy a Drive-almappa és a dashboard-lista sose kapjon üres nevet."""
+    from email.utils import parseaddr
+
+    nev_nyers, cim = parseaddr(msg.get("From", ""))
+    nev = _fejlec_dekodolas(nev_nyers).strip()
+    if nev:
+        return nev[:80]
+    domain = cim.split("@")[-1] if cim and "@" in cim else ""
+    return domain or "ismeretlen feladó"
+
+
+def ceges_osszes_uid_lekerese(conn, max_db=40):
+    """A fő postafiók uj_uidok_lekerese()-jével ellentétben itt NINCS
+    dátum-szűrés (SINCE) és nincs "már feldolgozott" halmaz sem - ld. a
+    szekció elején lévő kommentet: ez a postafiók MAGA a feldolgozandó
+    sor (a sikeresen feldolgozott levelek törlődnek), ezért egyszerűen
+    MINDENT lekérünk, ami a mappában (jellemzően INBOX) éppen ott van."""
+    tipus, adat = conn.uid("search", None, "ALL")
+    if tipus != "OK" or not adat or not adat[0]:
+        return []
+    return adat[0].split()[:max_db]
+
+
+def _ceges_fajlnev(cid: str, kuldo_nev: str, eredeti_fajlnev: str) -> str:
+    """Ugyanaz az elv, mint a _drive_fajlnev()-nél: ékezet- és speciális
+    karakter nélküli, ÜTKÖZÉS-MENTES fájlnév - a "cid" (ez a levél saját,
+    egyedi azonosítója) MINDIG a fájlnév része, hogy két külön levél SOHA
+    ne kapja ugyanazt a nevet, ÉS hogy egy esetlegesen kétszer feldolgozott
+    (pl. törlés/expunge közben megszakadt futás miatt még a postafiókban
+    maradt) levél a Web App saját dedup-ellenőrzésén (azonos fájlnév a
+    célmappában) NE hozzon létre duplikátumot a Drive-on."""
+    import unicodedata
+
+    alap = eredeti_fajlnev or "szamla.pdf"
+    if alap.lower().endswith(".pdf"):
+        alap = alap[:-4]
+    nyers = f"{kuldo_nev}_{alap}_{cid}"
+    ekezet_nelkul = "".join(
+        ch for ch in unicodedata.normalize("NFD", nyers) if not unicodedata.combining(ch)
+    )
+    biztonsagos = re.sub(r"[^a-zA-Z0-9._-]+", "_", ekezet_nelkul)
+    biztonsagos = re.sub(r"^_+|_+$", "", biztonsagos) or "szamla"
+    return biztonsagos[:100] + ".pdf"
+
+
+def _ceges_drive_feltoltes(fajlnev: str, kuldo_nev: str, pdf_b64: str):
+    """Egyetlen feltöltési kísérlet a Drive Web App-ra - ugyanaz a
+    szerződés, mint _drive_feltoltes_probalkozas()-nál, DE itt (bool
+    helyett) a Web App által adott Drive-URL-t adjuk vissza (vagy None-t
+    hiba esetén), mert a dashboardnak ez kell a "Megnyitás Drive-on"
+    linkhez - a fenti szekció-komment szerint itt NEM tárolunk PDF-et
+    tartósan az állapotban, csak ezt a linket.
+
+    A "forras" mezőt SZÁNDÉKOSAN "Céges számlák"-nak küldjük (nem
+    "dijnet"/"vizmuvek"/"mvm", mint a többi ág) - a Web App
+    (drive-feltoltes-webapp/Code.gs) ebből képezi a felső szintű
+    Drive-almappa nevét, és - a "kuldo_nev" (eladó/cég neve) miatt - egy
+    második szintű, eladónkénti almappát is létrehoz, ugyanúgy, mint a
+    Díjnetnél a szolgáltató szerint (ld. Code.gs almappaBiztositasa_()
+    hívások)."""
+    try:
+        valasz = requests.post(
+            SZAMLA_DRIVE_WEBAPP_URL,
+            json={
+                "token": SZAMLA_DRIVE_WEBAPP_TOKEN,
+                "forras": "Céges számlák",
+                "szolgaltato_nev": kuldo_nev,
+                "fajlnev": fajlnev,
+                "pdf_base64": pdf_b64,
+            },
+            timeout=20,
+        )
+        eredmeny = valasz.json()
+    except Exception:
+        # SZÁNDÉKOSAN NINCS itt a kivétel szövege kiírva - ld.
+        # _drive_feltoltes_probalkozas() hasonló kommentje fentebb.
+        print(f"      ⚠️  Céges számla Drive-feltöltése sikertelen (hálózati hiba): {fajlnev}")
+        return None
+    if not isinstance(eredmeny, dict) or not eredmeny.get("ok"):
+        print(f"      ⚠️  Céges számla Drive-feltöltése sikertelen (a Web App hibát jelzett): {fajlnev}")
+        return None
+    return eredmeny.get("url")
+
+
+def ceges_szamlak_feldolgozasa(allapot: dict):
+    """A dedikált céges-számla postafiók feldolgozása - ld. a szekció
+    elején lévő kommentet a két lényeges eltérésről (nincs tartós
+    PDF-tárolás, azonnali végleges email-törlés sikeres Drive-feltöltés
+    után). Teljesen no-op, ha az öt CEGES_IMAP_* env-változó bármelyike
+    hiányzik, VAGY ha a Drive-feltöltéshez szükséges két env-változó
+    (SZAMLA_DRIVE_WEBAPP_URL/TOKEN) hiányzik - ez utóbbi SZÁNDÉKOS: a
+    levél törlése csak egy IGAZOLTAN sikeres Drive-mentés után
+    történhet, Drive nélkül nem tudnánk biztonságosan (adatvesztés
+    kockázata nélkül) feldolgozni ezt a postafiókot."""
+    if not (CEGES_IMAP_HOST and CEGES_IMAP_USER and CEGES_IMAP_JELSZO):
+        print("  ℹ️  Céges számlák: CEGES_IMAP_HOST / CEGES_IMAP_USER / CEGES_IMAP_JELSZO "
+              "nincs (teljesen) beállítva - a modul kihagyva.")
+        return
+    if not (SZAMLA_DRIVE_WEBAPP_URL and SZAMLA_DRIVE_WEBAPP_TOKEN):
+        print("  ℹ️  Céges számlák: Drive-feltöltés nélkül (SZAMLA_DRIVE_WEBAPP_URL/TOKEN "
+              "hiányzik) nem dolgozható fel biztonságosan ez a postafiók (a levelek törlése "
+              "csak SIKERES Drive-mentés után történhetne) - a modul kihagyva.")
+        return
+    if DRY_RUN:
+        print("  🧪 [DRY RUN] Céges számlák feldolgozása kihagyva (Drive-feltöltés + "
+              "email-törlés tényleges mellékhatás, ugyanúgy mint a Drive-feltöltésnél/"
+              "email-küldésnél fentebb).")
+        return
+
+    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+
+    try:
+        conn = imap_kapcsolat(CEGES_IMAP_HOST, CEGES_IMAP_PORT, CEGES_IMAP_USER, CEGES_IMAP_JELSZO, CEGES_IMAP_MAPPA)
+    except Exception as e:
+        print(f"  ❌ Céges számlák: IMAP-bejelentkezés sikertelen: {e}")
+        return
+
+    feltoltve_db = 0
+    hiba_db = 0
+    torlendo_uidok = []
+    try:
+        uidok = ceges_osszes_uid_lekerese(conn, CEGES_MAX_FELDOLGOZAS_FUTASONKENT)
+        print(f"  🏢 Céges számlák postafiók: {len(uidok)} feldolgozandó levél (sapka: "
+              f"{CEGES_MAX_FELDOLGOZAS_FUTASONKENT}/futás).")
+
+        for uid in uidok:
+            uid_str = uid.decode()
+            msg = uid_letoltese(conn, uid)
+            if msg is None:
+                continue
+
+            targy = _fejlec_dekodolas(msg.get("Subject", ""))
+            erkezett_fejlec = msg.get("Date", "")
+            feladó_email = _feladó_cim(msg)
+            kuldo_nev = _ceges_kuldo_nev_kinyerese(msg)
+            pdf_nev, pdf_bytes = pdf_csatolmany(msg)
+
+            if not pdf_bytes:
+                # Nincs PDF-csatolmány (pl. az eladó csak egy sima
+                # visszaigazolást küldött, PDF nélkül) - ezt a levelet
+                # SZÁNDÉKOSAN NEM töröljük (nincs mit visszakeresni, ha
+                # törölnénk) - a postafiókban marad, kézi ellenőrzést
+                # igényel (pl. újra megkérni az eladót a PDF-re).
+                print(f"      ⚠️  Nincs PDF-csatolmány, a levél a postafiókban marad "
+                      f"(kézi ellenőrzést igényel): {kuldo_nev} – {targy[:60]}")
+                hiba_db += 1
+                continue
+
+            cid = hashlib.md5(f"{CEGES_IMAP_USER}|{uid_str}|ceges".encode("utf-8")).hexdigest()[:16]
+            fajlnev = _ceges_fajlnev(cid, kuldo_nev, pdf_nev)
+            pdf_b64 = base64.b64encode(pdf_bytes).decode("ascii")
+            drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
+            if not drive_url:
+                # A Drive-feltöltés sikertelen - a levél ÉRINTETLENÜL
+                # marad a postafiókban (ld. a szekció elején lévő
+                # komment), a következő futás automatikusan újra
+                # megpróbálja.
+                hiba_db += 1
+                continue
+
+            ceges_szamlak[cid] = {
+                "kuldo_nev": kuldo_nev,
+                "feladó_email": feladó_email,
+                "targy": targy,
+                "erkezett": _email_datum_iso(erkezett_fejlec),
+                "erkezett_fejlec": erkezett_fejlec,
+                "drive_url": drive_url,
+                "drive_fajlnev": fajlnev,
+                "rogzitve": magyar_ido().isoformat(),
+                # NAV Online Számla összekötés/párosítás - EZ MÉG NEM
+                # KÉSZ (külön kör, a felhasználóval megbeszélt ütemezés
+                # szerint) - a mezők helye már itt van, hogy a jövőbeli
+                # párosító funkció ne kelljen a meglévő rekordokat
+                # migrálni, csak kitölteni.
+                "nav_szamla_azonosito": None,
+                "nav_parositva": False,
+            }
+            feltoltve_db += 1
+            torlendo_uidok.append(uid)
+            print(f"      ✅ Céges számla mentve (Drive-ra feltöltve, email törlésre "
+                  f"jelölve): {kuldo_nev} – {targy[:60]}")
+
+        for uid in torlendo_uidok:
+            try:
+                conn.uid("store", uid, "+FLAGS", "(\\Deleted)")
+            except Exception as e:
+                print(f"      ⚠️  Egy feldolgozott céges számla email törlése (jelölése) "
+                      f"sikertelen (a Drive-mentés megvolt, csak a postafiókban marad): {e}")
+        if torlendo_uidok:
+            try:
+                conn.expunge()
+            except Exception as e:
+                print(f"  ⚠️  Céges számlák postafiók végleges törlése (expunge) sikertelen: {e}")
+    finally:
+        try:
+            conn.logout()
+        except Exception:
+            pass
+
+    print(f"  🏢 Céges számlák: {feltoltve_db} db feldolgozva és véglegesen törölve a "
+          f"postafiókból, {hiba_db} db maradt/hibázott (a postafiókban marad, a következő "
+          f"futás újra megpróbálja).")
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
 # ════════════════════════════════════════════
 def main():
@@ -3341,6 +3616,13 @@ def main():
     # (friss) PDF-et is elkapja, és a "drive_feltoltott_id_k" frissítése
     # bekerüljön a lentebbi mentésbe.
     drive_pdf_feltoltesek(allapot)
+
+    # ---- 2f. Céges számlák - dedikált postafiók feldolgozása (ld. "CÉGES
+    # SZÁMLÁK" szekció) - SZÁNDÉKOSAN a fenti Drive-feltöltés UTÁN (bár a
+    # kettő egymástól teljesen független), a titkosított állapot mentése
+    # ELŐTT, hogy az ebben a futásban feldolgozott/törölt céges számlák
+    # metaadata is bekerüljön a lentebbi mentésbe.
+    ceges_szamlak_feldolgozasa(allapot)
 
     # ---- 3. Állapot mentése (titkosítva) ----
     # FONTOS: a feldolgozott_uidok egy set volt, aminek a sorrendje NEM
