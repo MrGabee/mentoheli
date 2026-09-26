@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-27T01:53:12.697628+02:00",
+  "frissitve": "2026-09-27T01:53:45.937244+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:48:19.281335+02:00",
-      "kulcs": "NGC144",
-      "rendszam": "NGC144",
-      "vehicle_id": "6214",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50773239135742,
-      "lon": 19.02436065673828,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
-    {
-      "idopont": "2026-09-26T11:48:19.281369+02:00",
-      "kulcs": "AELD569",
-      "rendszam": "AELD569",
-      "vehicle_id": "622",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.41722869873047,
-      "lon": 19.13072395324707,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-09-26T11:48:19.281466+02:00",
-      "kulcs": "NCV290",
-      "rendszam": "NCV290",
-      "vehicle_id": "6255",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.49987030029297,
-      "lon": 19.03513526916504,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-26T11:48:19.282321+02:00",
-      "kulcs": "AOCT662",
-      "rendszam": "AOCT662",
-      "vehicle_id": "692",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.46477127075195,
-      "lon": 19.017757415771484,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-09-26T11:48:19.282361+02:00",
-      "kulcs": "AOCT670",
-      "rendszam": "AOCT670",
-      "vehicle_id": "701",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.52474594116211,
-      "lon": 19.116912841796875,
-      "elozo_szoveg": "Rákospatak u./Csömöri út",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
     {
       "idopont": "2026-09-26T11:48:19.283706+02:00",
       "kulcs": "PKN614",
@@ -260000,6 +259935,71 @@
       "lon": 19.037609100341797,
       "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T01:53:45.844921+02:00",
+      "kulcs": "FLR717",
+      "rendszam": "FLR717",
+      "vehicle_id": "3131",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47975158691406,
+      "lon": 19.25551414489746,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-27T01:53:45.846218+02:00",
+      "kulcs": "915504900068",
+      "rendszam": "915504900068",
+      "vehicle_id": "915504900068",
+      "vehicle_label": "Székesfehérvár",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.17087173461914,
+      "lon": 18.467819213867188,
+      "elozo_szoveg": "Szentlőrinc",
+      "uj_szoveg": "Székesfehérvár"
+    },
+    {
+      "idopont": "2026-09-27T01:53:45.846305+02:00",
+      "kulcs": "415 007",
+      "rendszam": "415 007",
+      "vehicle_id": "945514150073",
+      "vehicle_label": "Komárom",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.63758850097656,
+      "lon": 18.35218048095703,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Komárom"
+    },
+    {
+      "idopont": "2026-09-27T01:53:45.846328+02:00",
+      "kulcs": "415 122",
+      "rendszam": "415 122",
+      "vehicle_id": "945514151220",
+      "vehicle_label": "Esztergom",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.702850341796875,
+      "lon": 18.75448989868164,
+      "elozo_szoveg": "Óbuda",
+      "uj_szoveg": "Esztergom"
+    },
+    {
+      "idopont": "2026-09-27T01:53:45.846376+02:00",
+      "kulcs": "416 033",
+      "rendszam": "416 033",
+      "vehicle_id": "955514160337",
+      "vehicle_label": "Dabas",
+      "vonal_szam": "S21",
+      "route_id": "S21",
+      "lat": 47.328121185302734,
+      "lon": 19.22930908203125,
+      "elozo_szoveg": "Lajosmizse",
+      "uj_szoveg": "Dabas"
     }
   ]
 }
