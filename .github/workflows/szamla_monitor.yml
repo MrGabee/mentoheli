@@ -117,6 +117,17 @@ jobs:
           CEGES_IMAP_USER: ${{ secrets.CEGES_IMAP_USER }}
           CEGES_IMAP_JELSZO: ${{ secrets.CEGES_IMAP_JELSZO }}
           CEGES_IMAP_MAPPA: ${{ secrets.CEGES_IMAP_MAPPA }}
+          # NAV Online Számla - bejövő számlák lekérdezése/párosítás a
+          # fenti "Céges számlák" postafiókból begyűjtött számlákkal (ld.
+          # szamla_figyelo.py "NAV ONLINE SZÁMLA" szekció) - mind a négy
+          # opcionális, ha valamelyik hiányzik, a modul egyszerűen kimarad.
+          # FONTOS: itt SZÁNDÉKOSAN nincs "cserekulcs" - az itt csak
+          # OLVASÓ (queryInvoiceDigest) hívásokhoz nem kell, ld. a fenti
+          # szekció-komment indoklását.
+          NAV_TECHNIKAI_LOGIN: ${{ secrets.NAV_TECHNIKAI_LOGIN }}
+          NAV_TECHNIKAI_JELSZO: ${{ secrets.NAV_TECHNIKAI_JELSZO }}
+          NAV_ALAIRO_KULCS: ${{ secrets.NAV_ALAIRO_KULCS }}
+          NAV_ADOSZAM: ${{ secrets.NAV_ADOSZAM }}
           # Bérlői körök - a dashboardon besorolt Díjnet/Vízművek-számlák
           # ide mennek (értesítő + havi összesítő) - ha valamelyik nincs
           # beállítva, az adott kör számláiról egyszerűen nem megy ki email
