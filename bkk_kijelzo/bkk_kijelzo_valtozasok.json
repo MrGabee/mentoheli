@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-26T02:42:50.293247+02:00",
+  "frissitve": "2026-09-26T02:43:19.085957+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:07:33.682956+02:00",
-      "kulcs": "RCT312",
-      "rendszam": "RCT312",
-      "vehicle_id": "7326",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41697692871094,
-      "lon": 19.131319046020508,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-25T15:07:33.683012+02:00",
-      "kulcs": "RCT317",
-      "rendszam": "RCT317",
-      "vehicle_id": "7331",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224E",
-      "route_id": "2245",
-      "lat": 47.47980880737305,
-      "lon": 19.06648063659668,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-09-25T15:07:33.683038+02:00",
-      "kulcs": "T8100",
-      "rendszam": "T8100",
-      "vehicle_id": "7337",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.525203704833984,
-      "lon": 19.063188552856445,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-25T15:07:33.683102+02:00",
-      "kulcs": "T8106",
-      "rendszam": "T8106",
-      "vehicle_id": "7343",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.531375885009766,
-      "lon": 19.104257583618164,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-25T15:07:33.683350+02:00",
-      "kulcs": "V2247",
-      "rendszam": "V2247",
-      "vehicle_id": "7379",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.435829162597656,
-      "lon": 19.042516708374023,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-09-25T15:07:33.683406+02:00",
       "kulcs": "V2252",
@@ -260000,6 +259935,71 @@
       "lon": 19.045936584472656,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-26T02:43:18.992212+02:00",
+      "kulcs": "AADR760",
+      "rendszam": "AADR760",
+      "vehicle_id": "209",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59885025024414,
+      "lon": 19.12120819091797,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-09-26T02:43:18.993574+02:00",
+      "kulcs": "FKU901",
+      "rendszam": "FKU901",
+      "vehicle_id": "3057",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.472591400146484,
+      "lon": 19.277423858642578,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-26T02:43:18.993649+02:00",
+      "kulcs": "FKU950",
+      "rendszam": "FKU950",
+      "vehicle_id": "3106",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49721908569336,
+      "lon": 19.055320739746094,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-09-26T02:43:18.994881+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42387390136719,
+      "lon": 19.040050506591797,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-26T02:43:18.994993+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47515869140625,
+      "lon": 19.040218353271484,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
