@@ -1431,6 +1431,21 @@
   // hívjuk (ez a mező MÉRETTŐL FÜGGETLENÜL mindig szerepel a válaszban) -
   // ez a "sha" kell a PUT-hoz, hogy a GitHub tudja, melyik verziót
   // frissítjük (ütközés-védelem).
+  // Ütközés (HTTP 409) utáni várakozási idő egy adott próbálkozás-
+  // sorszámhoz - EXPONENCIÁLISAN növekvő (nem csak egy fix, kis
+  // véletlenszerű tartomány), mert egy teljes Action-futás (több
+  // postafiók IMAP-ja + Díjnet/Vízművek portál + Drive-feltöltés +
+  // NAV-lekérdezés) akár fél-egy percig is eltarthat, mire a VÉGÉN
+  // commitol - egy pár másodperces, fix retry-ablak könnyen kevés ehhez.
+  // ~8 másodpercre sapkázva próbálkozásonként, hogy egyetlen várakozás
+  // se nyúljon el ésszerűtlenül hosszúra, de a próbálkozások ÖSSZESEN
+  // (ld. a hívóknál megemelt "probalkozasok" számot) akár 1-2 percig is
+  // kitartsanak egy hosszú, épp futó Action mellett.
+  function _utkozesVarakozasMs(probalkozasSorszam) {
+    const alap = Math.min(8000, 500 * Math.pow(1.8, probalkozasSorszam));
+    return alap + Math.random() * alap * 0.5;
+  }
+
   async function ghAllapotSha(pat) {
     const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}?ref=${GH_BRANCH}`;
     const resp = await fetch(url, { headers: ghFejlecek(pat) });
@@ -1453,30 +1468,33 @@
   // rekordokon az ertesites_szukseges jelzőt). A függvény visszatér a
   // mentés utáni, teljes friss "adat"-tal, hogy a hívó ez alapján tudja
   // frissíteni a képernyőt.
-  // ÚTKÖZÉS-ÚJRAPRÓBÁLKOZÁS: mióta a script 10 percenként fut (és minden
-  // futás végén, ha változott valami, commitol egy friss állapotfájlt),
-  // jóval nagyobb az esélye, hogy pont akkor fut le egy ütemezett
-  // GitHub Actions-mentés, amikor Te a dashboardon mentesz - ilyenkor a
-  // fent lekérdezett "sha" mire a PUT megérkezik, már elavult, és a
-  // GitHub HTTP 409-cel ("...does not match <sha>") utasítja el a
-  // kérést. Ez NEM hiba a kódban, hanem pontosan az ütközés-védelem
-  // működik (nem hagyja, hogy véletlenül felülírjunk egy közben
-  // mentett, frissebb állapotot) - a helyes válasz rá az, hogy ÚJRA
-  // letöltjük a friss állapotot, ÚJRA alkalmazzuk a módosítást (a
-  // modositoFn-ek szándékosan idempotensek - egy értéket BEÁLLÍTANAK,
-  // nem pl. egyesével növelnek -, ezért ez biztonságosan
-  // megismételhető), és újra próbáljuk menteni. Néhány próbálkozás
-  // után (nem a végtelenségig) feladjuk, hogy ne fagyjon be a gomb, ha
-  // valami tartósan (nem csak egy pillanatnyi ütközés miatt) hibázik.
+  // ÚTKÖZÉS-ÚJRAPRÓBÁLKOZÁS: a script 20 percenként fut ütemezve (és minden
+  // futás végén, ha változott valami, commitol egy friss állapotfájlt) -
+  // ha épp akkor mentesz a dashboardon, amikor egy Action-futás dolgozik
+  // (ami - több postafiók IMAP-ja + Díjnet/Vízművek portál + Drive-
+  // feltöltés + NAV-lekérdezés miatt - akár fél-egy percig is tarthat,
+  // mire a VÉGÉN commitol), a fent lekérdezett "sha" mire a PUT
+  // megérkezik, már elavult lehet, és a GitHub HTTP 409-cel ("...does not
+  // match <sha>") utasítja el a kérést. Ez NEM hiba a kódban, hanem
+  // pontosan az ütközés-védelem működik (nem hagyja, hogy véletlenül
+  // felülírjunk egy közben mentett, frissebb állapotot) - a helyes válasz
+  // rá az, hogy ÚJRA letöltjük a friss állapotot, ÚJRA alkalmazzuk a
+  // módosítást (a modositoFn-ek szándékosan idempotensek - egy értéket
+  // BEÁLLÍTANAK, nem pl. egyesével növelnek -, ezért ez biztonságosan
+  // megismételhető), és újra próbáljuk menteni - EXPONENCIÁLISAN növekvő
+  // várakozással (ld. _utkozesVarakozasMs() fent), hogy egy hosszú,
+  // épp futó Action-t is jó eséllyel kivárjunk. Néhány próbálkozás után
+  // (nem a végtelenségig) feladjuk, hogy ne fagyjon be a gomb, ha valami
+  // tartósan (nem csak egy pillanatnyi ütközés miatt) hibázik.
   async function allapotFrissitesEsMentese(pat, jelszo, modositoFn, probalkozasok) {
-    probalkozasok = probalkozasok || 5;
+    probalkozasok = probalkozasok || 10;
     let utolsoHiba = null;
     for (let i = 0; i < probalkozasok; i++) {
       if (i > 0) {
         // Rövid, véletlenszerű várakozás két próbálkozás között - ha két
         // dashboard-mentés (vagy a dashboard és egy épp futó Action)
         // pont egyszerre ütközne, ne essenek ugyanabba a ritmusba.
-        await new Promise(r => setTimeout(r, 400 + Math.random() * 900));
+        await new Promise(r => setTimeout(r, _utkozesVarakozasMs(i)));
       }
       try {
         const { adat, iterations } = await allapotFrissFrissFeltoltese(jelszo);
@@ -1527,11 +1545,11 @@
   // ghAllapotSha() feletti komment) a publikus ADAT_URL-ről olvassuk a
   // friss JSON-t, a "sha"-t pedig külön kérjük le a PUT-hoz.
   async function felhasznaloiCsomagFrissitesEsMentese(pat, ujFelhasznaloiCsomagVagyNull, probalkozasok) {
-    probalkozasok = probalkozasok || 5;
+    probalkozasok = probalkozasok || 10;
     let utolsoHiba = null;
     for (let i = 0; i < probalkozasok; i++) {
       if (i > 0) {
-        await new Promise(r => setTimeout(r, 400 + Math.random() * 900));
+        await new Promise(r => setTimeout(r, _utkozesVarakozasMs(i)));
       }
       try {
         const resp = await fetch(ADAT_URL, { cache: "no-store" });
@@ -1634,11 +1652,11 @@
   // állapotot hagyhatna hátra (pl. az adat már az új jelszóval, a
   // felhasznaloi_csomag még a régivel).
   async function adminJelszoModositasaEsMentese(pat, regiJelszo, ujJelszo, jelenlegiFelhasznaloiJelszo, probalkozasok) {
-    probalkozasok = probalkozasok || 5;
+    probalkozasok = probalkozasok || 10;
     let utolsoHiba = null;
     for (let i = 0; i < probalkozasok; i++) {
       if (i > 0) {
-        await new Promise(r => setTimeout(r, 400 + Math.random() * 900));
+        await new Promise(r => setTimeout(r, _utkozesVarakozasMs(i)));
       }
       try {
         const resp = await fetch(ADAT_URL, { cache: "no-store" });
