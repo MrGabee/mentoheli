@@ -607,6 +607,37 @@ def titkosit_es_ment(adat: dict, jelszo: str, fajl: str):
         "adat": base64.b64encode(titkositott).decode("ascii"),
         "frissitve": magyar_ido().isoformat(),
     }
+
+    # A "felhasznaloi_csomag" egy OPCIONÁLIS, ettől a függvénytől teljesen
+    # független mellék-mező a fájl legkülső JSON-objektumában (a dashboard
+    # "Felhasználói (korlátozott) jelszó" panelje írja/törli, ld.
+    # szamlak.html) - egy MÁSIK, korlátozott ("user") jelszóval becsomagolt
+    # valódi admin-jelszót tartalmaz, hogy a dashboard egy második
+    # jelszóval is megnyitható legyen, admin-csak funkciók nélkül.
+    # Mivel ez a függvény MINDEN futáskor (naponta többször, ütemezetten)
+    # a teljes fájlt friss "csomag" dict-ként ÍRJA ÚJRA, ha itt simán
+    # figyelmen kívül hagynánk a korábbi tartalmat, a legközelebbi
+    # ütemezett futás CSENDBEN KITÖRÖLNÉ a felhasznaloi_csomag mezőt - a
+    # felhasználói jelszó a következő pillanattól nem működne, anélkül,
+    # hogy bárki bármit is "törölt" volna. Ezért: ha a célfájl már
+    # létezik, beolvassuk a jelenlegi (akár egy régebbi Python-futásból,
+    # akár a dashboardról frissen mentett) tartalmát, és ha van benne
+    # felhasznaloi_csomag, azt VÁLTOZATLANUL átemeljük az újonnan írt
+    # csomagba - a fő adatblokk (adat/salt/nonce/stb.) titkosítási
+    # logikáját ez nem érinti, csak ezt a mellék-mezőt őrzi meg.
+    if os.path.exists(fajl):
+        try:
+            with open(fajl, "r", encoding="utf-8") as f:
+                regi_csomag = json.load(f)
+            if isinstance(regi_csomag, dict) and "felhasznaloi_csomag" in regi_csomag:
+                csomag["felhasznaloi_csomag"] = regi_csomag["felhasznaloi_csomag"]
+        except (OSError, ValueError):
+            # Egy sérült/olvashatatlan régi fájl nem akadályozhatja meg az
+            # új állapot mentését - ilyenkor legfeljebb a felhasznaloi_csomag
+            # marad ki (mintha sose lett volna beállítva), a fő adat mentése
+            # attól függetlenül sikeresen lefut.
+            pass
+
     os.makedirs(os.path.dirname(fajl), exist_ok=True)
     with open(fajl, "w", encoding="utf-8") as f:
         json.dump(csomag, f, ensure_ascii=False, indent=2)
