@@ -158,8 +158,7 @@
   body.szerepkor-user #korok-panel,
   body.szerepkor-user #cimzettek-panel,
   body.szerepkor-user #kuldes-panel,
-  body.szerepkor-user #felhasznaloi-jelszo-panel,
-  body.szerepkor-user #admin-jelszo-panel {
+  body.szerepkor-user #felhasznaloi-jelszo-panel {
     display: none;
   }
 </style>
@@ -242,12 +241,9 @@
         <button type="button" id="fj-mentes-gomb">Felhasználói jelszó mentése</button>
         <button type="button" id="fj-torles-gomb" style="background:var(--red);margin-left:8px;">Felhasználói jelszó törlése</button>
         <div class="panel-statusz" id="fj-statusz"></div>
-      </div>
-    </div>
 
-    <div class="panel" id="admin-jelszo-panel">
-      <button type="button" class="panel-toggle" id="admin-jelszo-toggle">🔐 Admin jelszó módosítása ▾</button>
-      <div class="panel-tartalom" id="admin-jelszo-tartalom" style="display:none;">
+        <hr style="margin:20px 0;border:none;border-top:1px solid var(--border);">
+        <p style="font-weight:600;margin-bottom:6px;">🔐 Admin jelszó módosítása</p>
         <p class="panel-info">Ez a saját (admin) jelszavad - ez titkosítja/fejti vissza a teljes számla-adatot. Módosítás után az ÖSSZES jelenlegi adatot újratitkosítjuk az új jelszóval (semmi nem törlődik) - DE ezután a GitHub repo <code>SZAMLA_TITKOSITAS_JELSZO</code> Secretjét (Settings → Secrets and variables → Actions) is UGYANERRE az új jelszóra kell írnod, különben a legközelebbi automatikus (Action) futás nem fogja tudni visszafejteni az adatot, és hibával fog leállni.</p>
         <label>Új admin jelszó
           <input type="password" id="aj-uj-jelszo-input" autocomplete="new-password" placeholder="legalább 8 karakter ajánlott">
@@ -255,7 +251,7 @@
         <label>Új admin jelszó megerősítése
           <input type="password" id="aj-megerosites-input" autocomplete="new-password" placeholder="ugyanaz még egyszer">
         </label>
-        <label>Jelenlegi felhasználói (korlátozott) jelszó - csak ha korábban beállítottál ilyet, és azt szeretnéd, hogy módosítás után is (ugyanazzal a jelszóval) tovább működjön
+        <label>Jelenlegi felhasználói (korlátozott) jelszó - csak ha fent van beállítva, és azt szeretnéd, hogy módosítás után is (ugyanazzal a jelszóval) tovább működjön
           <input type="password" id="aj-felhasznaloi-jelszo-input" autocomplete="off" placeholder="ha nincs ilyen beállítva, hagyd üresen">
         </label>
         <button type="button" id="aj-mentes-gomb">Admin jelszó módosítása</button>
@@ -1461,7 +1457,7 @@
   }
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["admin-jelszo-toggle", "admin-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
