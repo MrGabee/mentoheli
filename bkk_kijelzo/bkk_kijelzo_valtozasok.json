@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-26T03:10:02.925627+02:00",
+  "frissitve": "2026-09-26T03:10:33.613627+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:10:54.558340+02:00",
-      "kulcs": "T9002",
-      "rendszam": "T9002",
-      "vehicle_id": "6141",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49982833862305,
-      "lon": 19.08318328857422,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-25T15:10:54.558409+02:00",
-      "kulcs": "T9011",
-      "rendszam": "T9011",
-      "vehicle_id": "6150",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51401138305664,
-      "lon": 19.04934310913086,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-25T15:10:54.559839+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.499420166015625,
-      "lon": 19.036865234375,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-25T15:10:54.560104+02:00",
-      "kulcs": "NLE848",
-      "rendszam": "NLE848",
-      "vehicle_id": "6400",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "156",
-      "route_id": "1560",
-      "lat": 47.51214599609375,
-      "lon": 18.996122360229492,
-      "elozo_szoveg": "Dániel út",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-09-25T15:10:54.560132+02:00",
       "kulcs": "NLE852",
@@ -260000,6 +259948,58 @@
       "lon": 19.05573272705078,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-09-26T03:10:33.522561+02:00",
+      "kulcs": "PDB712",
+      "rendszam": "PDB712",
+      "vehicle_id": "7038",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.438926696777344,
+      "lon": 19.103235244750977,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-26T03:10:33.522727+02:00",
+      "kulcs": "RVY615",
+      "rendszam": "RVY615",
+      "vehicle_id": "7444",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.45851516723633,
+      "lon": 19.13457679748535,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-26T03:10:33.522933+02:00",
+      "kulcs": "SIF015",
+      "rendszam": "SIF015",
+      "vehicle_id": "7750",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59852981567383,
+      "lon": 19.121383666992188,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-26T03:10:33.523000+02:00",
+      "kulcs": "AOGL318",
+      "rendszam": "AOGL318",
+      "vehicle_id": "909",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.4239616394043,
+      "lon": 19.02393341064453,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
     }
   ]
 }
