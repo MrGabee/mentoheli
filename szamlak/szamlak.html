@@ -771,15 +771,18 @@
           ? `<span style="color:var(--green);">✅ Párosítva</span>`
             + (r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : "")
           : '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'}</td>
-        <td style="min-width:150px;">
-          <button type="button" class="ceges-mentes-gomb" data-id="${escHtml(r.id)}" title="Elmenti a fenti mezőket (ha kézzel változtattál rajtuk), majd megnézi, van-e egyező, még párosítatlan NAV-tétel a legutóbbi NAV-lekérdezésből.">🔍 Mentés és egyeztetés</button>
+        <td style="min-width:170px;">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button type="button" class="ceges-mentes-gomb" data-id="${escHtml(r.id)}" title="Elmenti a fenti mezőket, ha kézzel változtattál rajtuk.">💾 Mentés</button>
+            <button type="button" class="ceges-egyeztetes-gomb" data-id="${escHtml(r.id)}" title="Mentés NÉLKÜL megnézi, van-e egyező, még párosítatlan NAV-tétel a legutóbbi NAV-lekérdezésből, a mezőkben jelenleg látható értékek alapján.">🔍 Egyeztetés</button>
+          </div>
           <div class="ceges-egyeztetes-statusz" data-id="${escHtml(r.id)}" style="font-size:11px;margin-top:4px;"></div>
         </td>
         <td><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>
       </tr>
     `).join("");
     hely.innerHTML = `
-      <p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Mentés és egyeztetés" gomb egyben menti a sor mezőit ÉS azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e hozzá egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>
+      <p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>
       <table>
         <thead>
           <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th></th><th></th></tr>
@@ -811,7 +814,10 @@
       });
     });
     hely.querySelectorAll(".ceges-mentes-gomb").forEach(btn => {
-      btn.addEventListener("click", () => cegesSorMentesEsEgyeztetese(btn.dataset.id));
+      btn.addEventListener("click", () => cegesSorMentese(btn.dataset.id));
+    });
+    hely.querySelectorAll(".ceges-egyeztetes-gomb").forEach(btn => {
+      btn.addEventListener("click", () => cegesSorEgyeztetese(btn.dataset.id));
     });
     hely.querySelectorAll(".ceges-torles-gomb").forEach(btn => {
       btn.addEventListener("click", () => torlesVegrehajtasaCeges(btn.dataset.id));
@@ -2322,7 +2328,16 @@
         if (rekord) rekord[mezo] = ujErtek;
       });
       legutobbiAdat = friss;
-      cegesSzamlak = Object.entries(friss.ceges_szamlak || {}).map(([rid, r]) => Object.assign({ id: rid }, r));
+      // FONTOS: a "!helyilegTorolt.has(rid)" szűrés azért kell itt is (nem
+      // csak a lap-betöltésnél), mert ha a felhasználó egy MÁSIK céges
+      // számlát az imént "✕"-szel elrejtett (ld. torlesVegrehajtasaCeges()
+      // lentebb), az még ITT VAN a frissen letöltött "friss.ceges_szamlak"-
+      // ban (a Python-purge csak a következő script-futáskor törli) -
+      // nélküle a törölt rekord egy MÁSIK mező mentésekor visszaugrana a
+      // táblába.
+      cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
       cegesKartyakRenderelese(cegesSzamlak);
       cegesTablaRenderelese(cegesSzamlak);
       return true;
@@ -2332,12 +2347,11 @@
     }
   }
 
-  // ── Céges sor TÖBB mezőjének EGYSZERRE mentése ("🔍 Mentés és
-  // egyeztetés" gomb, ld. cegesTablaRenderelese() fent) - ugyanaz a minta,
-  // mint cegesMezoMentese() fent, csak egyetlen GitHub-mentés-körben (nem
-  // mezőnként külön) írja rá a "mezok" objektum összes kulcsát a
-  // rekordra, hogy egy gombnyomásra több (esetleg mind a négy) mező
-  // egyszerre mentődjön el.
+  // ── Céges sor TÖBB mezőjének EGYSZERRE mentése ("💾 Mentés" gomb, ld.
+  // cegesTablaRenderelese() fent) - ugyanaz a minta, mint cegesMezoMentese()
+  // fent, csak egyetlen GitHub-mentés-körben (nem mezőnként külön) írja rá
+  // a "mezok" objektum összes kulcsát a rekordra, hogy egy gombnyomásra
+  // több (esetleg mind a négy) mező egyszerre mentődjön el.
   async function cegesSorMezoinekMentese(id, mezok) {
     const pat = aktualisPat();
     if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez."); return null; }
@@ -2350,7 +2364,10 @@
         if (rekord) Object.assign(rekord, mezok);
       });
       legutobbiAdat = friss;
-      cegesSzamlak = Object.entries(friss.ceges_szamlak || {}).map(([rid, r]) => Object.assign({ id: rid }, r));
+      // Ld. a cegesMezoMentese()-beli komment a helyilegTorolt szűrésről.
+      cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
       return friss;
     } catch (e) {
       alert("A mentés sikertelen: " + e.message);
@@ -2363,10 +2380,10 @@
   // "legutobbiAdat.nav_csak_navban" (a legutóbbi script-futás óta még
   // párosítatlan NAV-tételek listája) fölött futtatva megnézi, van-e
   // egyező tétel. FONTOS: ez SOSEM ír semmit a "nav_parositva" mezőbe -
-  // csak visszaad egy találatot (vagy null-t) a "🔍 Mentés és egyeztetés"
-  // gomb visszajelzéséhez; a tényleges, végleges párosítást mindig a
-  // Python-script végzi a következő futáskor (más NAV-tételek is
-  // közbejöhetnek, amiket ez a lista még nem tartalmaz).
+  // csak visszaad egy találatot (vagy null-t) a "🔍 Egyeztetés" gomb
+  // visszajelzéséhez; a tényleges, végleges párosítást mindig a Python-
+  // script végzi a következő futáskor (más NAV-tételek is közbejöhetnek,
+  // amiket ez a lista még nem tartalmaz).
   function _navOsszegEgyezikJs(a, b, tolerancia) {
     tolerancia = tolerancia === undefined ? 1.0 : tolerancia;
     if (a === null || a === undefined || b === null || b === undefined) return false;
@@ -2390,9 +2407,14 @@
     return null;
   }
 
-  async function cegesSorMentesEsEgyeztetese(id) {
-    const gombKezdeti = document.querySelector(`.ceges-mentes-gomb[data-id="${CSS.escape(id)}"]`);
-    const tr = gombKezdeti ? gombKezdeti.closest("tr") : null;
+  // ── "💾 Mentés" gomb (Céges fül) - KIZÁRÓLAG menti a sor mezőit (a
+  // felhasználó kifejezett kérésére: "a mentést és az egyeztetést rakd
+  // külön" - korábban egy gomb csinálta mindkettőt, ez most kettéválik).
+  // Nem futtat NAV-egyeztetést - arra a "🔍 Egyeztetés" gomb való
+  // (cegesSorEgyeztetese() lentebb).
+  async function cegesSorMentese(id) {
+    const gomb = document.querySelector(`.ceges-mentes-gomb[data-id="${CSS.escape(id)}"]`);
+    const tr = gomb ? gomb.closest("tr") : null;
     if (!tr) return;
     const eredetiRekord = cegesSzamlak.find(r => String(r.id) === String(id)) || {};
     const mezok = {};
@@ -2416,49 +2438,82 @@
     });
     if (hibasSzam) { alert("Az összeg csak szám lehet."); return; }
 
-    gombKezdeti.disabled = true;
-    const statuszKezdeti = document.querySelector(`.ceges-egyeztetes-statusz[data-id="${CSS.escape(id)}"]`);
-    if (statuszKezdeti) statuszKezdeti.innerHTML = '<span style="color:var(--muted);">Mentés...</span>';
-
-    let friss = legutobbiAdat;
-    if (Object.keys(mezok).length) {
-      friss = await cegesSorMezoinekMentese(id, mezok);
-      if (!friss) {
-        // A hibaüzenetet a cegesSorMezoinekMentese már megjelenítette
-        // (alert) - a gombot/sort a jelenlegi (nem elmentett) állapotban
-        // hagyjuk, nem rendereljük újra.
-        gombKezdeti.disabled = false;
-        if (statuszKezdeti) statuszKezdeti.innerHTML = "";
-        return;
-      }
-      // A mentés sikeres volt - a teljes táblát újrarendereljük (más
-      // eszközön/fülön közben történt változás is látszódjon, ugyanúgy,
-      // mint cegesMezoMentese()-nél), ami a gomb/státusz DOM-elemeket is
-      // lecseréli, ezért az üzenetet a RENDERELÉS UTÁN, újra lekérdezett
-      // elemekre írjuk (ld. lentebb).
-      cegesKartyakRenderelese(cegesSzamlak);
-      cegesTablaRenderelese(cegesSzamlak);
+    const statuszHely = document.querySelector(`.ceges-egyeztetes-statusz[data-id="${CSS.escape(id)}"]`);
+    if (!Object.keys(mezok).length) {
+      if (statuszHely) statuszHely.innerHTML = '<span style="color:var(--muted);">Nincs változás, nincs mit menteni.</span>';
+      return;
     }
 
-    const frissRekord = Object.assign({}, eredetiRekord, mezok);
-    const ujGomb = document.querySelector(`.ceges-mentes-gomb[data-id="${CSS.escape(id)}"]`);
+    gomb.disabled = true;
+    if (statuszHely) statuszHely.innerHTML = '<span style="color:var(--muted);">Mentés...</span>';
+    const friss = await cegesSorMezoinekMentese(id, mezok);
+    if (!friss) {
+      // A hibaüzenetet a cegesSorMezoinekMentese már megjelenítette
+      // (alert) - a sort a jelenlegi (nem elmentett) állapotban hagyjuk.
+      gomb.disabled = false;
+      if (statuszHely) statuszHely.innerHTML = "";
+      return;
+    }
+    // A mentés sikeres volt - a teljes táblát újrarendereljük (más
+    // eszközön/fülön közben történt változás is látszódjon, ugyanúgy, mint
+    // cegesMezoMentese()-nél), ami a gomb/státusz DOM-elemeket is
+    // lecseréli, ezért az üzenetet a RENDERELÉS UTÁN, újra lekérdezett
+    // elemre írjuk.
+    cegesKartyakRenderelese(cegesSzamlak);
+    cegesTablaRenderelese(cegesSzamlak);
     const ujStatusz = document.querySelector(`.ceges-egyeztetes-statusz[data-id="${CSS.escape(id)}"]`);
-    if (frissRekord.nav_parositva) {
-      if (ujStatusz) ujStatusz.innerHTML = '<span style="color:var(--green);">✅ Ez a számla már párosítva van a NAV-bal.</span>';
-    } else {
-      const navLista = ((friss || legutobbiAdat || {}).nav_csak_navban) || [];
-      const talalat = _navEgyeztetesEllenorzeseJs(frissRekord.kinyert_szamlaszam, frissRekord.kinyert_osszeg, frissRekord.adoszam, navLista);
-      if (talalat) {
-        const navOsszeg = talalat.netto_osszeg_huf || talalat.netto_osszeg;
-        if (ujStatusz) ujStatusz.innerHTML = `<span style="color:var(--green);">✅ Egyező, párosítatlan NAV-tétel: ${escHtml(talalat.szallito_nev) || "ismeretlen szállító"}`
-          + (navOsszeg ? `, ${forint(Number(navOsszeg))}` : "")
-          + (talalat.kiallitas_datum ? `, ${escHtml(talalat.kiallitas_datum.slice(0, 10))}` : "")
-          + ` - a következő script-futásnál automatikusan párosul.</span>`;
+    if (ujStatusz) ujStatusz.innerHTML = '<span style="color:var(--green);">💾 Elmentve.</span>';
+  }
+
+  // ── "🔍 Egyeztetés" gomb (Céges fül) - KIZÁRÓLAG a NAV-egyezés
+  // előzetes, tájékoztató jellegű ellenőrzését futtatja, MENTÉS NÉLKÜL - a
+  // sorban jelenleg (akár még el nem mentett formában) látható mezőértékek
+  // alapján. Ha ezekhez képest bármelyik mező még nincs elmentve, erre is
+  // figyelmeztet, hogy a felhasználó tudja: a "🔍 Egyeztetés" eredménye
+  // csak akkor érvényesül a következő script-futásnál is, ha előtte (vagy
+  // utána) a "💾 Mentés" gombbal - vagy a mezőből kikattintva - el is
+  // menti a mezőket.
+  function cegesSorEgyeztetese(id) {
+    const gomb = document.querySelector(`.ceges-egyeztetes-gomb[data-id="${CSS.escape(id)}"]`);
+    const tr = gomb ? gomb.closest("tr") : null;
+    if (!tr) return;
+    const eredetiRekord = cegesSzamlak.find(r => String(r.id) === String(id)) || {};
+    const ertekek = {};
+    let vanNemMentettMezo = false;
+    tr.querySelectorAll(".ceges-mezo-input").forEach(input => {
+      const mezo = input.dataset.mezo;
+      const nyersErtek = input.value.trim();
+      let ujErtek;
+      if (mezo === "kinyert_osszeg") {
+        ujErtek = nyersErtek === "" ? null : Number(nyersErtek.replace(",", "."));
       } else {
-        if (ujStatusz) ujStatusz.innerHTML = '<span style="color:var(--red);">❌ Nincs egyező, párosítatlan NAV-tétel (a legutóbbi NAV-lekérdezés szerint) - ellenőrizd a Számlaszámot/Adószámot/Összeget, vagy még nem érkezett meg a NAV-hoz.</span>';
+        ujErtek = nyersErtek || null;
       }
+      ertekek[mezo] = ujErtek;
+      const regiErtek = eredetiRekord[mezo] === undefined ? null : eredetiRekord[mezo];
+      if (ujErtek !== regiErtek) vanNemMentettMezo = true;
+    });
+
+    const statuszHely = document.querySelector(`.ceges-egyeztetes-statusz[data-id="${CSS.escape(id)}"]`);
+    if (!statuszHely) return;
+    const figyelmeztetes = vanNemMentettMezo
+      ? '<br><span style="color:var(--muted);">⚠️ Ez a mezők jelenlegi, MÉG EL NEM MENTETT értékei alapján készült - kattints a "💾 Mentés" gombra is, hogy ez tényleg érvényesüljön a következő script-futásnál.</span>'
+      : "";
+    if (eredetiRekord.nav_parositva) {
+      statuszHely.innerHTML = '<span style="color:var(--green);">✅ Ez a számla már párosítva van a NAV-bal.</span>' + figyelmeztetes;
+      return;
     }
-    if (ujGomb) ujGomb.disabled = false;
+    const navLista = ((legutobbiAdat || {}).nav_csak_navban) || [];
+    const talalat = _navEgyeztetesEllenorzeseJs(ertekek.kinyert_szamlaszam, ertekek.kinyert_osszeg, ertekek.adoszam, navLista);
+    if (talalat) {
+      const navOsszeg = talalat.netto_osszeg_huf || talalat.netto_osszeg;
+      statuszHely.innerHTML = `<span style="color:var(--green);">✅ Egyező, párosítatlan NAV-tétel: ${escHtml(talalat.szallito_nev) || "ismeretlen szállító"}`
+        + (navOsszeg ? `, ${forint(Number(navOsszeg))}` : "")
+        + (talalat.kiallitas_datum ? `, ${escHtml(talalat.kiallitas_datum.slice(0, 10))}` : "")
+        + ` - a következő script-futásnál automatikusan párosul.</span>` + figyelmeztetes;
+    } else {
+      statuszHely.innerHTML = '<span style="color:var(--red);">❌ Nincs egyező, párosítatlan NAV-tétel (a legutóbbi NAV-lekérdezés szerint) - ellenőrizd a Számlaszámot/Adószámot/Összeget, vagy még nem érkezett meg a NAV-hoz.</span>' + figyelmeztetes;
+    }
   }
 
   // A "✕" gomb Céges-fül megfelelője (ld. torlesVegrehajtasa() lentebb a
@@ -2479,6 +2534,14 @@
     }
     patMentese();
 
+    // Azonnali, optimista UI-frissítés - ld. torlesVegrehajtasa() fenti
+    // kommentje: a "helyilegTorolt" jelölés (nem csak a "cegesSzamlak"
+    // tömb szűrése) azért kell, hogy egy KÖVETKEZŐ, ugyanebben a
+    // munkamenetben történő mentés (cegesMezoMentese()/
+    // cegesSorMezoinekMentese() - más sor mezőjének mentése) ne hozza
+    // vissza ezt a rekordot a friss GitHub-állapotból (ami a Python-purge
+    // következő futásáig még tartalmazza).
+    helyilegTorolt.add(id);
     cegesSzamlak = cegesSzamlak.filter(r => r.id !== id);
     cegesKartyakRenderelese(cegesSzamlak);
     cegesTablaRenderelese(cegesSzamlak);
@@ -2740,11 +2803,36 @@
       // (admin-csak felületen elérhető) mentések ugyanúgy működjenek, mint
       // eddig, akármelyik ágon jött is létre a sikeres megnyitás.
       aktualisJelszo = valodiJelszo;
+
+      // FONTOS - ez a "törlés gombbal eltűnik, de frissítéskor visszajön"
+      // hiba javítása: a "helyilegTorolt" Set csak az AKTUÁLIS lapbetöltés
+      // (böngésző-fül) memóriájában él - egy F5/újratöltés után üres, tehát
+      // önmagában NEM elég a korábban "✕"-szel elrejtett számlák kiszűrésére.
+      // A TARTÓS jelölés a titkosítatlan beállítás-fájlban ("torolt_szamla_
+      // id_k", ld. torlesVegrehajtasa()/torlesVegrehajtasaCeges() fent) van
+      // - ezt viszont a Python-script csak a KÖVETKEZŐ futásakor törli
+      // tényleg a titkosított állapotból (max ~20 percen belül, ld. a
+      // GitHub Actions cron-ját). Eddig a lapbetöltés ezt a listát soha
+      // nem nézte meg, ezért egy törölt számla egy F5-re visszatérhetett,
+      // ha a script még nem futott le közben. Itt (nem-authentikált GET is
+      // működik, ha még nincs PAT megadva - a beállítás-fájl publikus repón
+      // van) lekérjük a listát, és MINDKÉT (Közüzemi + Céges) listát ez
+      // ellen is szűrjük, a helyilegTorolt-tal együtt.
+      let tartosanTorolt = new Set();
+      try {
+        const { ertekek } = await ghBeallitasokBetoltese(aktualisPat());
+        if (Array.isArray(ertekek.torolt_szamla_id_k)) tartosanTorolt = new Set(ertekek.torolt_szamla_id_k);
+      } catch (e) {
+        // Nem kritikus - ha ez sikertelen (pl. API rate-limit PAT nélkül),
+        // egyszerűen nem szűrünk vele (ugyanaz, mint a korábbi viselkedés).
+      }
+
       osszesSzamla = Object.entries(adat.szamlak || {})
-        .filter(([id]) => !helyilegTorolt.has(id))
+        .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
         .map(([id, r]) => Object.assign({ id }, r));
       pdfTar = adat.pdf_adatok || {};
       cegesSzamlak = Object.entries(adat.ceges_szamlak || {})
+        .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
         .map(([id, r]) => Object.assign({ id }, r));
       cegesAllapotRenderelese(adat.ceges_allapot);
       cegesKartyakRenderelese(cegesSzamlak);
