@@ -358,6 +358,32 @@
       </div>
     </div>
 
+    <div class="panel" id="postafiok-panel">
+      <button type="button" class="panel-toggle" id="postafiok-toggle">📬 Új postafiók hozzáadása ▾</button>
+      <div class="panel-tartalom" id="postafiok-tartalom" style="display:none;">
+        <p class="panel-info">Itt adhatsz hozzá TETSZŐLEGES SZÁMÚ, a fenti fő postafiókodtól FÜGGETLEN email-fiókot, amit a script mostantól FOLYAMATOSAN (minden futásnál) figyel: minden PDF-csatolmányos levelet megvizsgál, hogy az valóban számla-e (a levél/PDF TARTALMA alapján, nem a feladó címe alapján), és a felismert számlák ide, a Közüzemi listába kerülnek be, a lent megadott "címke" alatt (pl. "Csatornázási Művek"). A megadott jelszó mentés előtt TITKOSÍTVA kerül a GitHub-ra, ugyanúgy, mint minden más adat itt.</p>
+
+        <div id="postafiok-lista-hely"></div>
+
+        <p style="font-weight:600;margin-top:18px;">➕ cPanel / egyéb IMAP-postafiók hozzáadása</p>
+        <label>Címke (ez jelenik meg a listában, pl. "Csatornázási Művek") <input type="text" id="pf-cpanel-cimke" placeholder="Csatornázási Művek"></label>
+        <label>IMAP-szerver <input type="text" id="pf-cpanel-host" placeholder="mail.sajatdomain.hu"></label>
+        <label>Port (üresen hagyva: 993) <input type="number" id="pf-cpanel-port" placeholder="993"></label>
+        <label>Email-cím <input type="email" id="pf-cpanel-email"></label>
+        <label>Jelszó <input type="password" id="pf-cpanel-jelszo" autocomplete="off"></label>
+        <button type="button" id="pf-cpanel-gomb">Postafiók hozzáadása</button>
+        <div class="panel-statusz" id="pf-cpanel-statusz"></div>
+
+        <p style="font-weight:600;margin-top:22px;">➕ Gmail-postafiók hozzáadása (App Password)</p>
+        <p class="panel-info">A Gmail-fiókodon be kell kapcsolnod a kétlépéses azonosítást (Google-fiók → Biztonság), utána a Biztonság → Alkalmazásjelszavak menüben tudsz generálni egy 16 karakteres kódot ("Mail" típusra) - NE a sima Gmail-jelszavadat add meg alább, csak ezt a kódot.</p>
+        <label>Címke <input type="text" id="pf-gmail-cimke" placeholder="pl. Régi postafiók"></label>
+        <label>Gmail-cím <input type="email" id="pf-gmail-email"></label>
+        <label>Alkalmazásjelszó (App Password) <input type="password" id="pf-gmail-jelszo" autocomplete="off" placeholder="16 karakteres kód"></label>
+        <button type="button" id="pf-gmail-gomb">Postafiók hozzáadása</button>
+        <div class="panel-statusz" id="pf-gmail-statusz"></div>
+      </div>
+    </div>
+
     <div class="frissitve" id="frissitve"></div>
 
     </div><!-- /lakossagi-tartalom -->
@@ -374,9 +400,10 @@
       <div class="panel" id="ceges-nav-panel">
         <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
         <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
-          <p class="panel-info">A fent listázott (email-ből begyűjtött) számlákat a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez alább, a "NAV-párosítás" oszlopban látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg a dedikált postafiókba, az itt lent, egy külön listában jelenik meg - ezt érdemes kézzel utánanézni (pl. újra kérni az eladótól emailben).</p>
+          <p class="panel-info">A fent listázott (email-ből begyűjtött), ILLETVE a Közüzemi fülön lévő számlákat is a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez a Céges táblázat "NAV-párosítás" oszlopában látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg egyik figyelt postafiókba sem, az itt lent, egy külön listában jelenik meg szállítónként csoportosítva - itt email-címet adhatsz meg a szállítóhoz, kijelölheted, majd egy sablon-szövegű emlékeztetőt küldhetsz neki, amiben megkéred, küldje el a számla másolatát.</p>
           <div id="nav-bejelentkezes-statusz"></div>
           <div id="nav-csak-navban-hely"></div>
+          <div id="nav-emlekezteto-gomb-hely"></div>
         </div>
       </div>
 
@@ -731,30 +758,159 @@
   }
 
   // A NAV-on megtalált, de az email-begyűjtésben SEHOL nem szereplő
-  // tételek (ld. szamla_figyelo.py nav_ceges_parositas() "nav_csak_navban"
+  // tételek (ld. szamla_figyelo.py nav_szamla_parositas() "nav_csak_navban"
   // mezőjének kommentje) - ez a tényleges "hiányzik egy számla" riasztás.
-  function navCsakNavbanRenderelese(lista) {
+  // Szállítónkénti kártyákba csoportosítva jelenítjük meg, mindegyikhez egy
+  // email-cím beviteli mezővel (a mentett "nav_szallito_emailek"-ből
+  // előretöltve, ld. navSzallitoEmailMentese() lentebb) és egy kijelölő
+  // checkbox-szal - ezekből épül fel a lenti "Emlékeztető küldése a
+  // kijelölteknek" gomb (ami a nav_emlekezteto_adoszamok workflow_dispatch
+  // inputot indítja el, ld. szamla_figyelo.py nav_hianyzo_szamla_emlekezteto_kuldese()).
+  function navCsakNavbanRenderelese(lista, szallitoEmailek) {
     const hely = document.getElementById("nav-csak-navban-hely");
+    const gombHely = document.getElementById("nav-emlekezteto-gomb-hely");
     if (!hely) return;
+    szallitoEmailek = szallitoEmailek || {};
     if (!lista || !lista.length) {
       hely.innerHTML = '<div class="ures">Minden NAV-on talált bejövő számlához van párosított email-számla (vagy még nem futott/nincs beállítva a NAV-lekérdezés).</div>';
+      if (gombHely) gombHely.innerHTML = "";
       return;
     }
-    const sorok = lista.map(t => `
-      <tr>
-        <td>${escHtml(t.szallito_nev) || "ismeretlen"}</td>
-        <td>${escHtml(t.szamlaszam) || "—"}</td>
-        <td>${escHtml((t.kiallitas_datum || "").slice(0, 10)) || "—"}</td>
-        <td>${(t.netto_osszeg_huf || t.netto_osszeg) ? forint(Number(t.netto_osszeg_huf || t.netto_osszeg)) : "—"}</td>
-      </tr>
-    `).join("");
+    const csoportok = {};
+    lista.forEach(t => {
+      const adoszam = t.szallito_adoszam || t.szallito_nev || "ismeretlen";
+      if (!csoportok[adoszam]) csoportok[adoszam] = { nev: t.szallito_nev || adoszam, tetelek: [] };
+      csoportok[adoszam].tetelek.push(t);
+    });
+    const adoszamok = Object.keys(csoportok).sort((a, b) => csoportok[a].nev.localeCompare(csoportok[b].nev, "hu"));
+    const kartyak = adoszamok.map(adoszam => {
+      const cs = csoportok[adoszam];
+      const email = szallitoEmailek[adoszam] || "";
+      const sorok = cs.tetelek.map(t => `
+        <tr>
+          <td>${escHtml(t.szamlaszam) || "—"}</td>
+          <td>${escHtml((t.kiallitas_datum || "").slice(0, 10)) || "—"}</td>
+          <td>${(t.netto_osszeg_huf || t.netto_osszeg) ? forint(Number(t.netto_osszeg_huf || t.netto_osszeg)) : "—"}</td>
+        </tr>
+      `).join("");
+      return `
+        <div class="kor-sor" data-adoszam="${escHtml(adoszam)}" style="flex-direction:column;align-items:stretch;gap:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;">
+            <div>
+              <div class="kor-cim">${escHtml(cs.nev)} <span style="color:var(--muted);font-weight:400;">(adószám: ${escHtml(adoszam)})</span></div>
+              <div class="kor-info">${cs.tetelek.length} db párosítatlan NAV-tétel</div>
+            </div>
+            <label class="kor-jeloles" style="white-space:nowrap;"><input type="checkbox" class="nav-emlekezteto-jelolo" data-adoszam="${escHtml(adoszam)}"> kijelölve emlékeztetőhöz</label>
+          </div>
+          <table>
+            <thead><tr><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th></tr></thead>
+            <tbody>${sorok}</tbody>
+          </table>
+          <label style="max-width:420px;">Szállító email-címe (ide megy az emlékeztető, ha kijelölöd fent)
+            <input type="email" class="nav-szallito-email-input" data-adoszam="${escHtml(adoszam)}" value="${escHtml(email)}" placeholder="szallito@ceg.hu" style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;">
+          </label>
+        </div>
+      `;
+    }).join("");
     hely.innerHTML = `
-      <p style="font-weight:600;color:var(--red);margin-top:16px;">⚠️ ${lista.length} db, a NAV-on megtalált bejövő számla nincs párosítva egy email-begyűjtött számlával sem:</p>
-      <table>
-        <thead><tr><th>Eladó</th><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th></tr></thead>
-        <tbody>${sorok}</tbody>
-      </table>
+      <p style="font-weight:600;color:var(--red);margin-top:16px;">⚠️ ${lista.length} db, a NAV-on megtalált bejövő számla nincs párosítva egy email-begyűjtött számlával sem (${adoszamok.length} db szállítótól):</p>
+      ${kartyak}
     `;
+    // Email-cím mentése csak elhagyáskor (blur), nem minden billentyűre -
+    // így gépelés közben nem indul el egy csomó felesleges GitHub-mentés.
+    hely.querySelectorAll(".nav-szallito-email-input").forEach(input => {
+      const eredetiErtek = input.value;
+      input.addEventListener("blur", async () => {
+        const ujErtek = input.value.trim();
+        if (ujErtek === eredetiErtek) return;
+        input.disabled = true;
+        const siker = await navSzallitoEmailMentese(input.dataset.adoszam, ujErtek || null);
+        input.disabled = false;
+        if (!siker) input.value = eredetiErtek;
+      });
+    });
+    if (gombHely) {
+      gombHely.innerHTML = `
+        <button type="button" id="nav-emlekezteto-gomb" style="margin-top:14px;">✉️ Emlékeztető küldése a kijelölteknek</button>
+        <div class="panel-statusz" id="nav-emlekezteto-statusz"></div>
+      `;
+      document.getElementById("nav-emlekezteto-gomb").addEventListener("click", async () => {
+        const gomb = document.getElementById("nav-emlekezteto-gomb");
+        const pat = aktualisPat();
+        if (!pat) { beStatuszMutat("nav-emlekezteto-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a küldéshez.", "hiba"); return; }
+        const kijelolt = Array.from(hely.querySelectorAll(".nav-emlekezteto-jelolo:checked")).map(cb => cb.dataset.adoszam);
+        if (!kijelolt.length) { beStatuszMutat("nav-emlekezteto-statusz", "Jelölj ki legalább egy szállítót.", "hiba"); return; }
+        const hianyzoEmail = kijelolt.filter(adoszam => {
+          const input = hely.querySelector(`.nav-szallito-email-input[data-adoszam="${CSS.escape(adoszam)}"]`);
+          return !(input && input.value.trim());
+        });
+        if (hianyzoEmail.length) { beStatuszMutat("nav-emlekezteto-statusz", "Adj meg email-címet minden kijelölt szállítóhoz (mentsd el a mezőből kilépve, majd jelöld ki újra).", "hiba"); return; }
+        patMentese();
+        gomb.disabled = true;
+        beStatuszMutat("nav-emlekezteto-statusz", "Indítás...", "");
+        try {
+          await ghWorkflowInditasa(pat, { nav_emlekezteto_adoszamok: kijelolt.join(",") });
+          beStatuszMutat("nav-emlekezteto-statusz", "✅ Elindítva - a kijelölt " + kijelolt.length + " szállítónak néhány percen belül kimegy az emlékeztető.", "siker");
+        } catch (e) {
+          beStatuszMutat("nav-emlekezteto-statusz", "❌ " + e.message, "hiba");
+        } finally {
+          gomb.disabled = false;
+        }
+      });
+    }
+  }
+
+  // "Új postafiók hozzáadása" panel - a jelenleg mentett bejegyzések
+  // listája, státusz-visszajelzéssel (utolsó próbálkozás/hiba, ld.
+  // szamla_figyelo.py tovabbi_postafiokok_feldolgozasa()) és egy
+  // szüneteltetés/visszaállítás-gombbal. A "Szüneteltetés" NEM törli a
+  // bejegyzést (a jelszó/host stb. megmarad titkosítva) - csak az "aktiv"
+  // jelzőt kapcsolja ki, így a script kihagyja a következő futásoktól,
+  // de egy gombnyomással újra bekapcsolható, anélkül hogy újra be kellene
+  // gépelni a jelszót.
+  function postafiokListaRenderelese(tovabbiPostafiokok) {
+    const hely = document.getElementById("postafiok-lista-hely");
+    if (!hely) return;
+    const bejegyzesek = Object.entries(tovabbiPostafiokok || {});
+    if (!bejegyzesek.length) {
+      hely.innerHTML = '<div class="ures">Még nincs hozzáadott további postafiók.</div>';
+      return;
+    }
+    hely.innerHTML = bejegyzesek.map(([id, b]) => {
+      const idopont = b.utolso_probalkozas ? new Date(b.utolso_probalkozas).toLocaleString("hu-HU") : null;
+      let hatterSzin, statuszSzoveg;
+      if (b.aktiv === false) {
+        hatterSzin = "#f3f4f6";
+        statuszSzoveg = `<span style="color:var(--muted);">⏸️ Szüneteltetve</span>`;
+      } else if (b.utolso_hiba) {
+        hatterSzin = "#fee2e2";
+        statuszSzoveg = `<span style="color:var(--red);">❌ Hiba (${idopont || "ismeretlen"}): ${escHtml(b.utolso_hiba)}</span>`;
+      } else if (idopont) {
+        hatterSzin = "#dcfce7";
+        statuszSzoveg = `<span style="color:var(--green);">✅ Rendben (utoljára: ${idopont})</span>`;
+      } else {
+        hatterSzin = "#f3f4f6";
+        statuszSzoveg = `<span style="color:var(--muted);">⏳ Még nem futott le - a következő script-futáskor kezdi figyelni.</span>`;
+      }
+      return `
+        <div class="kor-sor" data-id="${escHtml(id)}">
+          <div>
+            <div class="kor-cim">${escHtml(b.cimke) || "Ismeretlen postafiók"} <span style="color:var(--muted);font-weight:400;">(${escHtml(b.user) || ""})</span></div>
+            <div style="background:${hatterSzin};display:inline-block;padding:2px 8px;border-radius:6px;margin-top:4px;font-size:12px;">${statuszSzoveg}</div>
+          </div>
+          <div class="kor-gombok">
+            <button type="button" class="postafiok-aktiv-valto-gomb" data-id="${escHtml(id)}">${b.aktiv === false ? "Visszaállítás" : "Szüneteltetés"}</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+    hely.querySelectorAll(".postafiok-aktiv-valto-gomb").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        await tovabbiPostafiokAktivValtas(btn.dataset.id);
+        btn.disabled = false;
+      });
+    });
   }
 
   // Egy letölthető fájlnévhez alkalmas, "biztonságos" szöveget készít
@@ -1655,7 +1811,7 @@
   }
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -1925,6 +2081,134 @@
     }
   }
 
+  // ── NAV-on-csak-talált szállítók email-cíimének mentése ("NAV Online
+  // Számla" panel, ld. navCsakNavbanRenderelese() fentebb) - ugyanaz a
+  // minta, mint korFelulbiralasMentese() fent, csak egy másik mezőt
+  // (adat.nav_szallito_emailek[adoszam]) módosít.
+  async function navSzallitoEmailMentese(adoszam, ujEmail) {
+    const pat = aktualisPat();
+    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a szállító email-címének mentéséhez."); return false; }
+    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
+    patMentese();
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.nav_szallito_emailek = adat.nav_szallito_emailek || {};
+        if (ujEmail) {
+          adat.nav_szallito_emailek[adoszam] = ujEmail;
+        } else {
+          delete adat.nav_szallito_emailek[adoszam];
+        }
+      });
+      legutobbiAdat = friss;
+      return true;
+    } catch (e) {
+      alert("A szállító email-címének mentése sikertelen: " + e.message);
+      return false;
+    }
+  }
+
+  // ── "Új postafiók hozzáadása" panel - postafiók-bejegyzés hozzáadása/
+  // szüneteltetése ──────────────────────────────────────────────────
+  // Ugyanaz a "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" minta,
+  // mint korFelulbiralasMentese()/navSzallitoEmailMentese() fent - a
+  // jelszó (és a host/user is) IDE, a nagy titkosított állapotfájlba
+  // kerül, NEM egy GitHub Secret-be és NEM egy workflow_dispatch-inputba
+  // (ami plain textben látszódna az Actions-előzményekben) - ld. a
+  // fenti panel-info szövegét is.
+  function postafiokAzonositoKeszitese() {
+    try { return crypto.randomUUID().replace(/-/g, "").slice(0, 16); }
+    catch (e) { return "pf" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+  }
+
+  async function postafiokHozzaadasa(bejegyzes, statuszElemId) {
+    const pat = aktualisPat();
+    if (!pat) { beStatuszMutat(statuszElemId, "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return false; }
+    if (!aktualisJelszo) { beStatuszMutat(statuszElemId, "Előbb nyisd meg a dashboardot a jelszavaddal.", "hiba"); return false; }
+    patMentese();
+    const id = postafiokAzonositoKeszitese();
+    beStatuszMutat(statuszElemId, "Mentés...", "");
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.tovabbi_postafiokok = adat.tovabbi_postafiokok || {};
+        adat.tovabbi_postafiokok[id] = Object.assign({ aktiv: true, hozzaadva: new Date().toISOString() }, bejegyzes);
+      });
+      legutobbiAdat = friss;
+      postafiokListaRenderelese(friss.tovabbi_postafiokok);
+      beStatuszMutat(statuszElemId, "✅ Postafiók hozzáadva - a következő script-futástól folyamatosan figyeli.", "siker");
+      return true;
+    } catch (e) {
+      beStatuszMutat(statuszElemId, "❌ " + e.message, "hiba");
+      return false;
+    }
+  }
+
+  async function tovabbiPostafiokAktivValtas(id) {
+    const pat = aktualisPat();
+    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a módosításhoz."); return false; }
+    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
+    patMentese();
+    try {
+      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+        adat.tovabbi_postafiokok = adat.tovabbi_postafiokok || {};
+        const b = adat.tovabbi_postafiokok[id];
+        if (b) b.aktiv = !(b.aktiv !== false);
+      });
+      legutobbiAdat = friss;
+      postafiokListaRenderelese(friss.tovabbi_postafiokok);
+      return true;
+    } catch (e) {
+      alert("A postafiók állapotának módosítása sikertelen: " + e.message);
+      return false;
+    }
+  }
+
+  document.getElementById("pf-cpanel-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("pf-cpanel-gomb");
+    const cimke = document.getElementById("pf-cpanel-cimke").value.trim();
+    const host = document.getElementById("pf-cpanel-host").value.trim();
+    const portNyers = document.getElementById("pf-cpanel-port").value.trim();
+    const user = document.getElementById("pf-cpanel-email").value.trim();
+    const jelszo = document.getElementById("pf-cpanel-jelszo").value;
+    if (!cimke || !host || !user || !jelszo) {
+      beStatuszMutat("pf-cpanel-statusz", "Töltsd ki a címkét, az IMAP-szervert, az email-címet és a jelszót.", "hiba");
+      return;
+    }
+    const port = portNyers ? parseInt(portNyers, 10) : 993;
+    if (isNaN(port) || port < 1 || port > 65535) {
+      beStatuszMutat("pf-cpanel-statusz", "Érvénytelen port.", "hiba");
+      return;
+    }
+    gomb.disabled = true;
+    const siker = await postafiokHozzaadasa({ cimke, tipus: "cpanel", host, port, user, jelszo, mappa: "INBOX" }, "pf-cpanel-statusz");
+    gomb.disabled = false;
+    if (siker) {
+      document.getElementById("pf-cpanel-cimke").value = "";
+      document.getElementById("pf-cpanel-host").value = "";
+      document.getElementById("pf-cpanel-port").value = "";
+      document.getElementById("pf-cpanel-email").value = "";
+      document.getElementById("pf-cpanel-jelszo").value = "";
+    }
+  });
+
+  document.getElementById("pf-gmail-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("pf-gmail-gomb");
+    const cimke = document.getElementById("pf-gmail-cimke").value.trim();
+    const user = document.getElementById("pf-gmail-email").value.trim();
+    const jelszo = document.getElementById("pf-gmail-jelszo").value.trim();
+    if (!cimke || !user || !jelszo) {
+      beStatuszMutat("pf-gmail-statusz", "Töltsd ki a címkét, a Gmail-címet és az alkalmazásjelszót.", "hiba");
+      return;
+    }
+    gomb.disabled = true;
+    const siker = await postafiokHozzaadasa({ cimke, tipus: "gmail", host: "imap.gmail.com", port: 993, user, jelszo, mappa: "INBOX" }, "pf-gmail-statusz");
+    gomb.disabled = false;
+    if (siker) {
+      document.getElementById("pf-gmail-cimke").value = "";
+      document.getElementById("pf-gmail-email").value = "";
+      document.getElementById("pf-gmail-jelszo").value = "";
+    }
+  });
+
   document.getElementById("be-mentes-gomb").addEventListener("click", async () => {
     const gomb = document.getElementById("be-mentes-gomb");
     const pat = aktualisPat();
@@ -2049,7 +2333,8 @@
       cegesKartyakRenderelese(cegesSzamlak);
       cegesTablaRenderelese(cegesSzamlak);
       navAllapotRenderelese(adat.nav_allapot);
-      navCsakNavbanRenderelese(adat.nav_csak_navban);
+      navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek);
+      postafiokListaRenderelese(adat.tovabbi_postafiokok);
       aktivAllapotSzuro = "mind";
       aktivSzolgaltatoSzuro = "mind";
       aktivNezet = "mind";
