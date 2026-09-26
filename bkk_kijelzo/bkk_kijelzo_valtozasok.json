@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-26T03:39:05.755489+02:00",
+  "frissitve": "2026-09-26T03:39:34.615858+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-25T15:13:56.452781+02:00",
-      "kulcs": "NGC027",
-      "rendszam": "NGC027",
-      "vehicle_id": "6326",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.43608093261719,
-      "lon": 19.019977569580078,
-      "elozo_szoveg": "Lomnici utca ► Újbuda-központ M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-09-25T15:13:56.453130+02:00",
-      "kulcs": "NTM421",
-      "rendszam": "NTM421",
-      "vehicle_id": "6489",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.506622314453125,
-      "lon": 19.023839950561523,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
     {
       "idopont": "2026-09-25T15:13:56.453212+02:00",
       "kulcs": "NTM437",
@@ -260000,6 +259974,32 @@
       "lon": 19.051227569580078,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-26T03:39:34.524544+02:00",
+      "kulcs": "FLR747",
+      "rendszam": "FLR747",
+      "vehicle_id": "3161",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.49962615966797,
+      "lon": 19.08522605895996,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-09-26T03:39:34.525797+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.485595703125,
+      "lon": 19.124794006347656,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
