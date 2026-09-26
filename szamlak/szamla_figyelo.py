@@ -3054,24 +3054,33 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
         return
 
     for postafiok_id, bejegyzes in tovabbi_postafiokok.items():
-        if not bejegyzes.get("aktiv", True):
-            continue
         cimke = bejegyzes.get("cimke") or "Ismeretlen postafiók"
         cel = str(bejegyzes.get("cel") or "kozuzemi").strip().lower()
         if cel not in ("kozuzemi", "ceges"):
             cel = "kozuzemi"
+
+        if cel == "ceges":
+            # Ld. tovabbi_postafiok_ceges_athelyezes() kommentje - ezt
+            # SZÁNDÉKOSAN a "szüneteltetve" (aktiv=False) ÉS a hiányos
+            # bejelentkezési adatok ELLENŐRZÉSE ELŐTT futtatjuk (ne a
+            # lenti "continue"-k mögé essen): a "szüneteltetés" csak az
+            # ÚJ levelek figyelését állítja meg, a MÁR korábban felvett
+            # számlák Céges-listába áthelyezését nem szabad emiatt
+            # visszatartani - ehhez ráadásul nem is kell IMAP-
+            # bejelentkezés, csak a Drive-webapp (ld. a függvény
+            # kommentjét), tehát hiányos/rossz IMAP-adatoknál is
+            # lefuthat.
+            tovabbi_postafiok_ceges_athelyezes(allapot, postafiok_id, cimke)
+
+        if not bejegyzes.get("aktiv", True):
+            continue
+
         szolgaltato_kulcs = f"postafiok_{postafiok_id}"
         host = bejegyzes.get("host") or ""
         port = int(bejegyzes.get("port") or 993)
         felhasznalo = bejegyzes.get("user") or ""
         jelszo = bejegyzes.get("jelszo") or ""
         mappa = bejegyzes.get("mappa") or "INBOX"
-
-        if cel == "ceges":
-            # Ld. tovabbi_postafiok_ceges_athelyezes() kommentje - ez a
-            # bejelentkezéstől FÜGGETLENÜL lefut (a korábban felvett
-            # rekordok áthelyezéséhez nem kell IMAP, csak a Drive-webapp).
-            tovabbi_postafiok_ceges_athelyezes(allapot, postafiok_id, cimke)
 
         if not (host and felhasznalo and jelszo):
             print(f"  ⚠️  További postafiók '{cimke}': hiányos bejelentkezési adatok - kihagyva.")
