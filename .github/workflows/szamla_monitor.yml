@@ -107,6 +107,16 @@ jobs:
           # minden más változatlanul működik.
           SZAMLA_DRIVE_WEBAPP_URL: ${{ secrets.SZAMLA_DRIVE_WEBAPP_URL }}
           SZAMLA_DRIVE_WEBAPP_TOKEN: ${{ secrets.SZAMLA_DRIVE_WEBAPP_TOKEN }}
+          # Céges számlák - egy ÚJ, dedikált (a fő SZAMLA_IMAP_*-tól teljesen
+          # független) postafiók, kizárólag a cég nevében vásárolt, emailben
+          # kért számlákhoz (ld. szamla_figyelo.py "CÉGES SZÁMLÁK" szekció) -
+          # mind az öt opcionális, ha valamelyik hiányzik, a modul egyszerűen
+          # kimarad, minden más változatlanul működik.
+          CEGES_IMAP_HOST: ${{ secrets.CEGES_IMAP_HOST }}
+          CEGES_IMAP_PORT: ${{ secrets.CEGES_IMAP_PORT }}
+          CEGES_IMAP_USER: ${{ secrets.CEGES_IMAP_USER }}
+          CEGES_IMAP_JELSZO: ${{ secrets.CEGES_IMAP_JELSZO }}
+          CEGES_IMAP_MAPPA: ${{ secrets.CEGES_IMAP_MAPPA }}
           # Bérlői körök - a dashboardon besorolt Díjnet/Vízművek-számlák
           # ide mennek (értesítő + havi összesítő) - ha valamelyik nincs
           # beállítva, az adott kör számláiról egyszerűen nem megy ki email
