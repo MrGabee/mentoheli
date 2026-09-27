@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T03:05:07.477863+02:00",
+  "frissitve": "2026-09-27T03:05:44.801667+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T12:00:46.128525+02:00",
-      "kulcs": "AOCT671",
-      "rendszam": "AOCT671",
-      "vehicle_id": "702",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.524871826171875,
-      "lon": 19.11672019958496,
-      "elozo_szoveg": "Rákospatak u./Csömöri út",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
-    {
-      "idopont": "2026-09-26T12:00:46.128647+02:00",
-      "kulcs": "PDB722",
-      "rendszam": "PDB722",
-      "vehicle_id": "7048",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53215026855469,
-      "lon": 19.0678768157959,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-26T12:00:46.128755+02:00",
-      "kulcs": "PDB379",
-      "rendszam": "PDB379",
-      "vehicle_id": "7061",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.49934768676758,
-      "lon": 19.2867374420166,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Rákoscsaba-Újtelep"
-    },
     {
       "idopont": "2026-09-26T12:00:46.128849+02:00",
       "kulcs": "PDN601",
@@ -260000,6 +259961,45 @@
       "lon": 18.904184341430664,
       "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
       "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-27T03:05:44.715513+02:00",
+      "kulcs": "V2040",
+      "rendszam": "V2040",
+      "vehicle_id": "2040",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.4775276184082,
+      "lon": 19.048416137695312,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-27T03:05:44.715632+02:00",
+      "kulcs": "FLR714",
+      "rendszam": "FLR714",
+      "vehicle_id": "3128",
+      "vehicle_label": "Dayka Gábor utca",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49976348876953,
+      "lon": 19.287172317504883,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Dayka Gábor utca"
+    },
+    {
+      "idopont": "2026-09-27T03:05:44.718074+02:00",
+      "kulcs": "SIF015",
+      "rendszam": "SIF015",
+      "vehicle_id": "7750",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59852600097656,
+      "lon": 19.121389389038086,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
