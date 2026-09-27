@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T02:32:04.710110+02:00",
+  "frissitve": "2026-09-27T02:32:35.906986+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:54:55.668866+02:00",
-      "kulcs": "NCV285",
-      "rendszam": "NCV285",
-      "vehicle_id": "6250",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.501338958740234,
-      "lon": 19.033884048461914,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-26T11:54:55.668898+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50656509399414,
-      "lon": 19.02393341064453,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-09-26T11:54:55.669595+02:00",
-      "kulcs": "AOCT670",
-      "rendszam": "AOCT670",
-      "vehicle_id": "701",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.524322509765625,
-      "lon": 19.117794036865234,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
     {
       "idopont": "2026-09-26T11:54:55.669888+02:00",
       "kulcs": "PDB388",
@@ -260000,6 +259961,45 @@
       "lon": 19.09677505493164,
       "elozo_szoveg": "Astoria M ► Máriaremete",
       "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-09-27T02:32:35.817879+02:00",
+      "kulcs": "AADR753",
+      "rendszam": "AADR753",
+      "vehicle_id": "202",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59846878051758,
+      "lon": 19.12128257751465,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T02:32:35.820059+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51934814453125,
+      "lon": 19.038188934326172,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-27T02:32:35.820277+02:00",
+      "kulcs": "SKR723",
+      "rendszam": "SKR723",
+      "vehicle_id": "7672",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.533653259277344,
+      "lon": 19.081972122192383,
+      "elozo_szoveg": "Astoria M ► Határ út M",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
