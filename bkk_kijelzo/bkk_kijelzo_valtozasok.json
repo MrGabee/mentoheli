@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T04:16:38.108030+02:00",
+  "frissitve": "2026-09-27T04:17:15.900594+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T12:13:56.727622+02:00",
-      "kulcs": "AADR706",
-      "rendszam": "AADR706",
-      "vehicle_id": "174",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.4959602355957,
-      "lon": 19.071937561035156,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-09-26T12:13:56.727700+02:00",
-      "kulcs": "AADR722",
-      "rendszam": "AADR722",
-      "vehicle_id": "191",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "226",
-      "route_id": "2260",
-      "lat": 47.554466247558594,
-      "lon": 19.05782127380371,
-      "elozo_szoveg": "Óbudai-sziget",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-26T12:13:56.727936+02:00",
-      "kulcs": "AAGL250",
-      "rendszam": "AAGL250",
-      "vehicle_id": "250",
-      "vehicle_label": "Pilisborosjenő",
-      "vonal_szam": "218",
-      "route_id": "2180",
-      "lat": 47.59090042114258,
-      "lon": 19.010162353515625,
-      "elozo_szoveg": "Üröm ► Pilisborosjenő",
-      "uj_szoveg": "Pilisborosjenő"
-    },
     {
       "idopont": "2026-09-26T12:13:56.727961+02:00",
       "kulcs": "AAGL255",
@@ -260000,6 +259961,45 @@
       "lon": 19.13275909423828,
       "elozo_szoveg": "Budapest-Keleti",
       "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-09-27T04:17:15.807695+02:00",
+      "kulcs": "V1361",
+      "rendszam": "V1361",
+      "vehicle_id": "4462",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "49",
+      "route_id": "3490",
+      "lat": 47.46656036376953,
+      "lon": 19.022079467773438,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-09-27T04:17:15.808761+02:00",
+      "kulcs": "T9105",
+      "rendszam": "T9105",
+      "vehicle_id": "7352",
+      "vehicle_label": "Orczy tér",
+      "vonal_szam": "72",
+      "route_id": "4720",
+      "lat": 47.51068115234375,
+      "lon": 19.09747314453125,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
+    },
+    {
+      "idopont": "2026-09-27T04:17:15.809051+02:00",
+      "kulcs": "SGY809",
+      "rendszam": "SGY809",
+      "vehicle_id": "7727",
+      "vehicle_label": "Budatétény vá. (Campona)",
+      "vonal_szam": "150",
+      "route_id": "1500",
+      "lat": 47.430118560791016,
+      "lon": 19.00369644165039,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
