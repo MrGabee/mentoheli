@@ -180,6 +180,7 @@
      (oszlopszámot) is módosítanák - azt közvetlenül a tablaRenderelese()
      dönti el a "szerepkor" alapján. */
   body.szerepkor-user #beallitasok-panel,
+  body.szerepkor-user #felhasznalok-panel,
   body.szerepkor-user #korok-panel,
   body.szerepkor-user #cimzettek-panel,
   body.szerepkor-user #kuldes-panel {
@@ -201,13 +202,10 @@
 
   <div id="jelszo-kepernyo">
     <h1>🔒 Számla áttekintő</h1>
-    <p id="jelszo-info">Add meg a titkos API-kulcsot a megtekintéshez (ld. api_config.php a szerveren). A kulcs csak a böngésződben marad, sehova nem kerül elküldésre az api.php-n kívül.</p>
-    <input type="password" id="jelszo-input" placeholder="API-kulcs" autocomplete="off">
-    <label style="display:flex;align-items:center;gap:8px;justify-content:center;margin:10px 0;font-size:14px;color:var(--muted);font-weight:400;">
-      <input type="checkbox" id="jelszo-korlatozott" style="width:auto;">
-      Korlátozott nézet (kevesebb gomb/oszlop - pl. ha valakinek csak megtekintésre adod oda a kulcsot)
-    </label>
-    <button id="jelszo-gomb">Megnyitás</button>
+    <p id="jelszo-info">Jelentkezz be a felhasználóneveddel és jelszavaddal. (Az admin a "Felhasználók kezelése" panelen tud új belépést létrehozni.)</p>
+    <input type="text" id="jelszo-felhasznalonev" placeholder="Felhasználónév" autocomplete="username">
+    <input type="password" id="jelszo-jelszo" placeholder="Jelszó" autocomplete="current-password">
+    <button id="jelszo-gomb">Bejelentkezés</button>
     <div id="jelszo-hiba"></div>
   </div>
 
@@ -272,6 +270,25 @@
         <div id="be-kiv-lista" style="display:none;"></div>
         <button type="button" id="be-mentes-gomb">Beállítások mentése</button>
         <div class="panel-statusz" id="be-statusz"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="felhasznalok-panel">
+      <button type="button" class="panel-toggle" id="felhasznalok-toggle">👤 Felhasználók kezelése ▾</button>
+      <div class="panel-tartalom" id="felhasznalok-tartalom" style="display:none;">
+        <p class="panel-info">Itt hozhatsz létre új bejelentkezést (pl. valakinek, akinek csak megtekintésre adsz hozzáférést), vagy módosíthatod/törölheted a meglévőket. FONTOS: a "szerepkör" itt is csak a FELÜLETET szűkíti (user = kevesebb gomb/oszlop) - mindenki, akinek van bejelentkezése, ugyanahhoz az adathoz fér hozzá.</p>
+        <div id="felhasznalok-lista" style="margin-bottom:14px;"></div>
+        <h3 style="font-size:14px;margin:18px 0 6px;">➕ Új felhasználó / meglévő módosítása</h3>
+        <label>Felhasználónév <input type="text" id="fh-uj-nev-input" placeholder="pl. anna" style="max-width:260px;" autocomplete="off"></label>
+        <label>Jelszó <input type="password" id="fh-uj-jelszo-input" placeholder="legalább 6 karakter" style="max-width:260px;" autocomplete="new-password"></label>
+        <label>Szerepkör
+          <select id="fh-uj-szerepkor-select" style="display:block;width:100%;max-width:260px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;">
+            <option value="user" selected>Korlátozott (user)</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+        <button type="button" id="fh-mentes-gomb" style="margin-top:10px;">Mentés</button>
+        <div class="panel-statusz" id="fh-statusz"></div>
       </div>
     </div>
 
@@ -432,19 +449,22 @@
   // elérési útra (ld. szamlak/mysql/ telepítési útmutató). Nincs
   // titkosítás - az adatokat a tárhely hozzáférés-védelme + az
   // "aktualisApiKulcs" (ld. lentebb) védi.
-  const API_URL = "https://reilviolin.hu/billing/api.php";
+  const API_URL = "https://ide-irod-a-sajat-domained.hu/szamlak/mysql/api.php";
   let osszesSzamla = [];
   let cegesSzamlak = []; // a dedikált céges-postafiókból begyűjtött, Drive-ra feltöltött számlák metaadata (ld. "Céges számlák" fül) - a PDF itt NEM tárolt, csak a "drive_url"
   let pdfTar = {};           // invoice-id -> base64 PDF (az api.php "get_all_pdfs" hívásából)
   let legutobbiAdat = null;  // a legutóbb betöltött teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
-  let aktualisApiKulcs = null; // a bejelentkező képernyőn megadott titkos API-kulcs (ld. api_config.php) - MINDEN adat-hívás ezt küldi, sehova máshova nem kerül, csak a böngésző sessionStorage-ába
-  // "admin" vagy "user" - a bejelentkező képernyő "Korlátozott nézet"
-  // jelölőnégyzetétől függ (ld. bejelentkezes()). Nincs többé külön
-  // jelszó/kulcs a két szerepkörhöz (a korábbi "felhasznaloi_csomag"
-  // crypto-trükk megszűnt, ld. git-történet) - a szerepkör KIZÁRÓLAG a
-  // felületet korlátozza (mely panelek/oszlopok látszanak), sosem az
-  // adathoz való hozzáférést, ugyanúgy, mint korábban (a régi rendszerben
-  // is mindkét jelszó ugyanazt az adatot fejtette vissza).
+  let aktualisApiKulcs = null; // a "login" action válaszából megkapott közös, titkos adat-API-kulcs (ld. api_config.php) - MINDEN adat-hívás ezt küldi, sehova máshova nem kerül, csak a böngésző sessionStorage-ába. A felhasználó ezt sosem írja be közvetlenül - csak a felhasználónevét/jelszavát, ld. bejelentkezes().
+  let aktualisFelhasznalonev = null; // csak megjelenítéshez (pl. "bejelentkezve: X néven") - hívásokhoz nem kell
+  // "admin" vagy "user" - a "login" action válaszából kapott érték (a
+  // "felhasznalok" MySQL-tábla oszlopa, ld. szamlak/mysql/api.php), NEM
+  // egy checkbox dönt róla. Nincs többé közös jelszó/kulcs a két
+  // szerepkörhöz (a korábbi "felhasznaloi_csomag" crypto-trükk, majd a
+  // "Korlátozott nézet" checkbox is megszűnt, ld. git-történet) - a
+  // szerepkör KIZÁRÓLAG a felületet korlátozza (mely panelek/oszlopok
+  // látszanak), sosem az adathoz való hozzáférést: a "login" mindenkinek
+  // (admin és user szerepkörnek is) UGYANAZT a közös adat-API-kulcsot
+  // adja vissza, ugyanúgy, mint korábban (ld. api.php "login" komment).
   let szerepkor = "admin";
   let helyilegTorolt = new Set(); // ebben a böngésző-munkamenetben, az X gombbal épp most elrejtett (de a GitHub-mentés még folyamatban lévő/már megtörtént) számla-id-k - azonnali UI-visszajelzéshez
   // A "Bérlői körök" panelben, mentés ELŐTT, memóriában tartott
@@ -1706,8 +1726,79 @@
     korokListakRenderelese();
   }
 
+  // ── "Felhasználók kezelése" panel (admin-csak, ld. CSS a fájl elején) ──
+  // Az api.php "list_users"/"add_user"/"delete_user" action-jeit hívja -
+  // mindhárom ugyanazt a közös api_kulcs-ot igényli, mint minden más
+  // adathívás (ld. aktualisApiKulcs), NEM egy külön admin-jelszót.
+  function felhasznalokSorHtml(fh) {
+    const letrehozva = fh.letrehozva ? new Date(fh.letrehozva.replace(" ", "T") + "Z").toLocaleDateString("hu-HU") : "";
+    const szerepkorSzoveg = fh.szerepkor === "admin" ? "Admin" : "Korlátozott";
+    return '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">'
+      + '<span style="flex:1;font-weight:600;">' + fh.felhasznalonev + '</span>'
+      + '<span style="color:var(--muted);font-size:13px;">' + szerepkorSzoveg + (letrehozva ? " · " + letrehozva : "") + '</span>'
+      + '<button type="button" class="fh-torles-gomb" data-nev="' + fh.felhasznalonev + '" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:4px 10px;font-size:13px;cursor:pointer;">Törlés</button>'
+      + '</div>';
+  }
+
+  async function felhasznalokListaFrissitese() {
+    if (!aktualisApiKulcs) return;
+    const hely = document.getElementById("felhasznalok-lista");
+    try {
+      const { felhasznalok } = await apiHivas("list_users");
+      const lista = Array.isArray(felhasznalok) ? felhasznalok : [];
+      hely.innerHTML = lista.length
+        ? lista.map(felhasznalokSorHtml).join("")
+        : '<p class="panel-info">Még nincs felhasználó (ez váratlan, hiszen ezzel be tudtál lépni - lehet, hogy a "login" bootstrap-hívással jött létre, ld. TELEPITES.md).</p>';
+      hely.querySelectorAll(".fh-torles-gomb").forEach(gomb => {
+        gomb.addEventListener("click", async () => {
+          const nev = gomb.dataset.nev;
+          if (nev === aktualisFelhasznalonev) {
+            alert("A saját, jelenleg bejelentkezett felhasználódat nem törölheted itt - lépj be egy másik admin-fiókkal, ha ezt mégis szeretnéd.");
+            return;
+          }
+          if (!confirm('Biztosan törlöd a "' + nev + '" felhasználót?')) return;
+          try {
+            await apiHivas("delete_user", { felhasznalonev: nev });
+            beStatuszMutat("fh-statusz", "✅ Törölve: " + nev, "siker");
+            felhasznalokListaFrissitese();
+          } catch (e) {
+            beStatuszMutat("fh-statusz", "❌ Törlés sikertelen: " + e.message, "hiba");
+          }
+        });
+      });
+    } catch (e) {
+      hely.innerHTML = "";
+      beStatuszMutat("fh-statusz", "❌ Lista betöltése sikertelen: " + e.message, "hiba");
+    }
+  }
+
+  document.getElementById("felhasznalok-toggle").addEventListener("click", () => {
+    if (!aktualisApiKulcs) return; // a panel csak bejelentkezés UTÁN érhető el ténylegesen
+    felhasznalokListaFrissitese();
+  });
+
+  document.getElementById("fh-mentes-gomb").addEventListener("click", async () => {
+    if (!aktualisApiKulcs) { beStatuszMutat("fh-statusz", "Előbb jelentkezz be.", "hiba"); return; }
+    const nev = document.getElementById("fh-uj-nev-input").value.trim();
+    const jelszo = document.getElementById("fh-uj-jelszo-input").value;
+    const szerepkorUj = document.getElementById("fh-uj-szerepkor-select").value;
+    if (!nev || !jelszo) { beStatuszMutat("fh-statusz", "Add meg a felhasználónevet és a jelszót.", "hiba"); return; }
+    if (jelszo.length < 6) { beStatuszMutat("fh-statusz", "A jelszó legyen legalább 6 karakter.", "hiba"); return; }
+    beStatuszMutat("fh-statusz", "Mentés...", "");
+    try {
+      await apiHivas("add_user", { felhasznalonev: nev, jelszo, szerepkor: szerepkorUj });
+      beStatuszMutat("fh-statusz", "✅ Mentve: " + nev, "siker");
+      document.getElementById("fh-uj-nev-input").value = "";
+      document.getElementById("fh-uj-jelszo-input").value = "";
+      document.getElementById("fh-uj-szerepkor-select").value = "user";
+      felhasznalokListaFrissitese();
+    } catch (e) {
+      beStatuszMutat("fh-statusz", "❌ Mentés sikertelen: " + e.message, "hiba");
+    }
+  });
+
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -2373,92 +2464,147 @@
     if (mentettPat) document.getElementById("gh-pat-input").value = mentettPat;
   } catch (e) { /* ignorálható */ }
 
-  // A bejelentkezés mostantól nem jelszó-visszafejtés, csak egyszerűen az
-  // API-kulcsot próbáljuk ki egy get_all hívással - ha az api.php elfogadja
-  // (helyes kulcs), megjön az adat, ha nem, 401-et kapunk (ld. apiHivas()).
-  async function bejelentkezes(beirtApiKulcs, korlatozottNezet) {
+  // A "login" action (ld. api.php) ellenőrzi a felhasználónevet/jelszót a
+  // "felhasznalok" táblában, és sikeres esetben visszaadja a közös
+  // adat-API-kulcsot + a szerepkört - ez NEM az apiHivas()-on megy, mert
+  // az mindig elküldi az aktualisApiKulcs-ot, amit login ELŐTT még nem
+  // ismerünk.
+  async function loginHivas(felhasznalonev, jelszo) {
+    let resp;
+    try {
+      resp = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "login", felhasznalonev, jelszo }),
+      });
+    } catch (e) {
+      throw new Error("Nem sikerült elérni az adatbázis API-t (" + API_URL + "): " + e.message);
+    }
+    let valasz;
+    try {
+      valasz = await resp.json();
+    } catch (e) {
+      throw new Error("Az adatbázis API nem JSON választ adott (HTTP " + resp.status + ") - ellenőrizd az API_URL-t.");
+    }
+    if (!resp.ok || !valasz.ok) {
+      throw new Error(valasz.hiba || ("HTTP " + resp.status));
+    }
+    return valasz; // { ok:true, szerepkor, api_kulcs }
+  }
+
+  // A teljes adat betöltése + a képernyő felépítése - ez FELTÉTELEZI, hogy
+  // aktualisApiKulcs és szerepkor MÁR be van állítva (ld. bejelentkezes()
+  // és ujraBelepesMentettAdatokkal() lentebb). Dob, ha bármi hibázik - a
+  // hívó felel a hibakezelésért/visszaállításért.
+  async function adatBetoltesEsMegjelenites() {
+    const adat = await apiTeljesAllapotLekerese();
+    const pdfValasz = await apiHivas("get_all_pdfs");
+
+    document.body.classList.toggle("szerepkor-user", szerepkor === "user");
+    legutobbiAdat = adat;
+
+    // A "✕" gombbal véglegesen elrejtett számlák (ld. rekordTorlese())
+    // az adatbázisban is megvannak MÉG (a Python-purge csak a következő
+    // futáskor törli ténylegesen), ezért itt is, a "helyilegTorolt"
+    // (csak ebben a böngésző-fülben élő) Set-tel EGYÜTT kiszűrjük őket a
+    // "torolt_szamla_id_k" meta-lista alapján is - így egy F5/újratöltés
+    // után sem térnek vissza egy még le nem futott script-futásig.
+    const tartosanTorolt = new Set(Array.isArray(adat.torolt_szamla_id_k) ? adat.torolt_szamla_id_k : []);
+
+    osszesSzamla = Object.entries(adat.szamlak || {})
+      .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
+      .map(([id, r]) => Object.assign({ id }, r));
+    pdfTar = pdfValasz.pdf_adatok || {};
+    cegesSzamlak = Object.entries(adat.ceges_szamlak || {})
+      .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
+      .map(([id, r]) => Object.assign({ id }, r));
+    cegesAllapotRenderelese(adat.ceges_allapot);
+    cegesKartyakRenderelese(cegesSzamlak);
+    cegesTablaRenderelese(cegesSzamlak);
+    navAllapotRenderelese(adat.nav_allapot);
+    navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek);
+    postafiokListaRenderelese(adat.tovabbi_postafiokok);
+    aktivAllapotSzuro = "mind";
+    aktivSzolgaltatoSzuro = "mind";
+    aktivNezet = "mind";
+    osszegRendezesIrany = 0;
+    document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(b => b.classList.toggle("aktiv", b.dataset.szuro === "mind"));
+    document.querySelectorAll("#forras-nezet-szurok button[data-nezet]").forEach(b => b.classList.toggle("aktiv", b.dataset.nezet === "mind"));
+    const rendezoGomb = document.getElementById("osszeg-rendezo");
+    rendezoGomb.classList.remove("aktiv");
+    rendezoGomb.textContent = "Összeg ⇅";
+
+    szolgaltatoSzurokEpitese(osszesSzamla);
+    mellekletekUjrarenderelese();
+    szuresAlkalmazasa();
+    document.getElementById("frissitve").textContent = "Frissítve: " + new Date().toLocaleString("hu-HU");
+
+    document.getElementById("jelszo-kepernyo").style.display = "none";
+    document.getElementById("tartalom").style.display = "block";
+
+    if (szerepkor === "admin") {
+      felhasznalokListaFrissitese();
+    }
+  }
+
+  async function bejelentkezes(felhasznalonev, jelszo) {
     const hibaEl = document.getElementById("jelszo-hiba");
     hibaEl.textContent = "";
-    aktualisApiKulcs = beirtApiKulcs;
     try {
-      const adat = await apiTeljesAllapotLekerese();
-      const pdfValasz = await apiHivas("get_all_pdfs");
-
-      // Nincs többé "melyik jelszó melyik szerepkört adja" trükk (ld. a
-      // fájl elején lévő komment) - a szerepkör egyszerűen a bejelentkező
-      // képernyő jelölőnégyzetétől függ, önállóan az API-kulcstól (mindenki
-      // ugyanazzal a kulccsal ugyanahhoz az adathoz fér hozzá - a
-      // "korlátozott nézet" KIZÁRÓLAG a felületet szűkíti, nem az adatot).
-      szerepkor = korlatozottNezet ? "user" : "admin";
-      document.body.classList.toggle("szerepkor-user", szerepkor === "user");
-
-      legutobbiAdat = adat;
-
-      // A "✕" gombbal véglegesen elrejtett számlák (ld. rekordTorlese())
-      // az adatbázisban is megvannak MÉG (a Python-purge csak a következő
-      // futáskor törli ténylegesen), ezért itt is, a "helyilegTorolt"
-      // (csak ebben a böngésző-fülben élő) Set-tel EGYÜTT kiszűrjük őket a
-      // "torolt_szamla_id_k" meta-lista alapján is - így egy F5/újratöltés
-      // után sem térnek vissza egy még le nem futott script-futásig.
-      const tartosanTorolt = new Set(Array.isArray(adat.torolt_szamla_id_k) ? adat.torolt_szamla_id_k : []);
-
-      osszesSzamla = Object.entries(adat.szamlak || {})
-        .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
-        .map(([id, r]) => Object.assign({ id }, r));
-      pdfTar = pdfValasz.pdf_adatok || {};
-      cegesSzamlak = Object.entries(adat.ceges_szamlak || {})
-        .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
-        .map(([id, r]) => Object.assign({ id }, r));
-      cegesAllapotRenderelese(adat.ceges_allapot);
-      cegesKartyakRenderelese(cegesSzamlak);
-      cegesTablaRenderelese(cegesSzamlak);
-      navAllapotRenderelese(adat.nav_allapot);
-      navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek);
-      postafiokListaRenderelese(adat.tovabbi_postafiokok);
-      aktivAllapotSzuro = "mind";
-      aktivSzolgaltatoSzuro = "mind";
-      aktivNezet = "mind";
-      osszegRendezesIrany = 0;
-      document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(b => b.classList.toggle("aktiv", b.dataset.szuro === "mind"));
-      document.querySelectorAll("#forras-nezet-szurok button[data-nezet]").forEach(b => b.classList.toggle("aktiv", b.dataset.nezet === "mind"));
-      const rendezoGomb = document.getElementById("osszeg-rendezo");
-      rendezoGomb.classList.remove("aktiv");
-      rendezoGomb.textContent = "Összeg ⇅";
-
-      szolgaltatoSzurokEpitese(osszesSzamla);
-      mellekletekUjrarenderelese();
-      szuresAlkalmazasa();
-      document.getElementById("frissitve").textContent = "Frissítve: " + new Date().toLocaleString("hu-HU");
-
-      document.getElementById("jelszo-kepernyo").style.display = "none";
-      document.getElementById("tartalom").style.display = "block";
+      const belepes = await loginHivas(felhasznalonev, jelszo);
+      aktualisApiKulcs = belepes.api_kulcs;
+      aktualisFelhasznalonev = felhasznalonev;
+      szerepkor = belepes.szerepkor === "admin" ? "admin" : "user";
+      await adatBetoltesEsMegjelenites();
       try {
-        sessionStorage.setItem("szamla_api_kulcs", beirtApiKulcs);
-        sessionStorage.setItem("szamla_korlatozott_nezet", korlatozottNezet ? "1" : "0");
+        sessionStorage.setItem("szamla_api_kulcs", aktualisApiKulcs);
+        sessionStorage.setItem("szamla_szerepkor", szerepkor);
+        sessionStorage.setItem("szamla_felhasznalonev", felhasznalonev);
       } catch (e) { /* ignorálható */ }
     } catch (e) {
       aktualisApiKulcs = null;
-      hibaEl.textContent = "Hibás API-kulcs, vagy az adatbázis API nem érhető el (" + e.message + ").";
+      hibaEl.textContent = "Hibás felhasználónév/jelszó, vagy az adatbázis API nem érhető el (" + e.message + ").";
     }
   }
 
   document.getElementById("jelszo-gomb").addEventListener("click", () => {
-    bejelentkezes(document.getElementById("jelszo-input").value.trim(), document.getElementById("jelszo-korlatozott").checked);
+    bejelentkezes(document.getElementById("jelszo-felhasznalonev").value.trim(), document.getElementById("jelszo-jelszo").value);
   });
-  document.getElementById("jelszo-input").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") bejelentkezes(document.getElementById("jelszo-input").value.trim(), document.getElementById("jelszo-korlatozott").checked);
+  ["jelszo-felhasznalonev", "jelszo-jelszo"].forEach((elemId) => {
+    document.getElementById(elemId).addEventListener("keydown", (e) => {
+      if (e.key === "Enter") bejelentkezes(document.getElementById("jelszo-felhasznalonev").value.trim(), document.getElementById("jelszo-jelszo").value);
+    });
   });
 
   // Kényelmi funkció: ugyanabban a böngésző-fülben (session alatt) nem
-  // kell újra beírni az API-kulcsot - de új fül/böngésző-indítás után igen.
-  try {
-    const mentettKulcs = sessionStorage.getItem("szamla_api_kulcs");
-    if (mentettKulcs) {
-      const mentettNezet = sessionStorage.getItem("szamla_korlatozott_nezet") === "1";
-      document.getElementById("jelszo-korlatozott").checked = mentettNezet;
-      bejelentkezes(mentettKulcs, mentettNezet);
+  // kell újra bejelentkezni - de új fül/böngésző-indítás után igen. Csak
+  // a login EREDMÉNYÉT (a kapott közös api-kulcsot + szerepkört) tesszük
+  // el, a jelszót SOHA - ezért itt nem hívjuk újra a "login" action-t,
+  // csak közvetlenül betöltjük az adatot a mentett kulccsal.
+  (async function ujraBelepesMentettAdatokkal() {
+    let mentettKulcs, mentettSzerepkor, mentettNev;
+    try {
+      mentettKulcs = sessionStorage.getItem("szamla_api_kulcs");
+      mentettSzerepkor = sessionStorage.getItem("szamla_szerepkor");
+      mentettNev = sessionStorage.getItem("szamla_felhasznalonev");
+    } catch (e) { return; }
+    if (!mentettKulcs) return;
+    aktualisApiKulcs = mentettKulcs;
+    aktualisFelhasznalonev = mentettNev || null;
+    szerepkor = mentettSzerepkor === "admin" ? "admin" : "user";
+    try {
+      await adatBetoltesEsMegjelenites();
+    } catch (e) {
+      aktualisApiKulcs = null;
+      try {
+        sessionStorage.removeItem("szamla_api_kulcs");
+        sessionStorage.removeItem("szamla_szerepkor");
+        sessionStorage.removeItem("szamla_felhasznalonev");
+      } catch (e2) { /* ignorálható */ }
+      // A bejelentkező képernyő így is látszik marad - nem írunk hibát
+      // bele, mert a felhasználó nem is próbált most éppen belépni.
     }
-  } catch (e) { /* ignorálható */ }
+  })();
 })();
 </script>
 </body>
