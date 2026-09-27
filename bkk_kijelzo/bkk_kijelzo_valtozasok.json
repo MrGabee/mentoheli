@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-27T02:28:23.545474+02:00",
+  "frissitve": "2026-09-27T02:28:55.224167+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:53:44.344645+02:00",
-      "kulcs": "415 115",
-      "rendszam": "415 115",
-      "vehicle_id": "945514151154",
-      "vehicle_label": "Budapest-Keleti",
-      "vonal_szam": "S80",
-      "route_id": "S80",
-      "lat": 47.56193923950195,
-      "lon": 19.37721061706543,
-      "elozo_szoveg": "Gödöllő",
-      "uj_szoveg": "Budapest-Keleti"
-    },
-    {
-      "idopont": "2026-09-26T11:53:44.344990+02:00",
-      "kulcs": "AOJM863",
-      "rendszam": "AOJM863",
-      "vehicle_id": "986",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.4891242980957,
-      "lon": 19.06138038635254,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-09-26T11:54:55.665030+02:00",
-      "kulcs": "AADI620",
-      "rendszam": "AADI620",
-      "vehicle_id": "115",
-      "vehicle_label": "Albertfalva vasútállomás",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.547210693359375,
-      "lon": 19.141807556152344,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Albertfalva vasútállomás"
-    },
-    {
-      "idopont": "2026-09-26T11:54:55.665265+02:00",
-      "kulcs": "AADI650",
-      "rendszam": "AADI650",
-      "vehicle_id": "149",
-      "vehicle_label": "Döbrentei tér",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.54844665527344,
-      "lon": 19.029556274414062,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Döbrentei tér"
-    },
-    {
-      "idopont": "2026-09-26T11:54:55.665406+02:00",
-      "kulcs": "AADR705",
-      "rendszam": "AADR705",
-      "vehicle_id": "173",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.463199615478516,
-      "lon": 19.149211883544922,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
     {
       "idopont": "2026-09-26T11:54:55.666233+02:00",
       "kulcs": "AAHY801",
@@ -260000,6 +259935,71 @@
       "lon": 19.025102615356445,
       "elozo_szoveg": "Mártonhegy",
       "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-09-27T02:28:55.141062+02:00",
+      "kulcs": "AADR758",
+      "rendszam": "AADR758",
+      "vehicle_id": "207",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.4670524597168,
+      "lon": 19.076793670654297,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-27T02:28:55.143209+02:00",
+      "kulcs": "PKN613",
+      "rendszam": "PKN613",
+      "vehicle_id": "7202",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.42661666870117,
+      "lon": 19.161069869995117,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-27T02:28:55.143265+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50764846801758,
+      "lon": 19.02507781982422,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-09-27T02:28:55.143470+02:00",
+      "kulcs": "SXE201",
+      "rendszam": "SXE201",
+      "vehicle_id": "7838",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44319534301758,
+      "lon": 19.09305763244629,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-27T02:28:55.143506+02:00",
+      "kulcs": "AOFL204",
+      "rendszam": "AOFL204",
+      "vehicle_id": "788",
+      "vehicle_label": "Fácános tér",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.5074577331543,
+      "lon": 19.025779724121094,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Fácános tér"
     }
   ]
 }
