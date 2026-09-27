@@ -138,6 +138,9 @@ Szükséges GitHub Secretek:
   NAV_ADOSZAM             a céged 8 jegyű adószáma (a "-" előtti rész, kötőjelek nélkül)
   Mind a négy NAV_* opcionális - ha valamelyik hiányzik, a NAV-összekötés/párosítás egyszerűen
   kimarad (a "Céges számlák" email-alapú begyűjtése ettől függetlenül változatlanul működik).
+  CEG_NEV                 (opcionális) a céged neve, ahogy a NAV-emlékeztető emailben a
+                          szállítóknak megjelenjen ("kinek a nevében" küldjük) - ha üres,
+                          a levél cégnév-említés nélkül, semleges fogalmazással megy ki.
 """
 
 import os
@@ -358,6 +361,11 @@ NAV_TECHNIKAI_LOGIN = os.environ.get("NAV_TECHNIKAI_LOGIN") or ""
 NAV_TECHNIKAI_JELSZO = os.environ.get("NAV_TECHNIKAI_JELSZO") or ""
 NAV_ALAIRO_KULCS = os.environ.get("NAV_ALAIRO_KULCS") or ""
 NAV_ADOSZAM = os.environ.get("NAV_ADOSZAM") or ""
+
+# A céged neve - jelenleg KIZÁRÓLAG a NAV-emlékeztető email szövegében
+# használjuk (ld. _nav_emlekezteto_email_html), hogy a szállító lássa,
+# kinek a nevében kérjük a hiányzó számla-másolatot.
+CEG_NEV = os.environ.get("CEG_NEV") or ""
 
 # A felhasználó kifejezett kérése szerint az ÉLES (nem teszt) NAV-környezet
 # van itt beállítva - a valódi céges bejövő számlákat kérdezzük le.
@@ -4007,16 +4015,25 @@ def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list) -> str:
         for t in tetelek
     )
     cel_cim = CEGES_IMAP_USER or EMAIL_CIMZETT or "(kérjük, válaszoljon erre az e-mailre)"
+    # Ha a CEG_NEV nincs beállítva, a mondat "nyilvántartásunk szerint"
+    # semleges (cégnév-említés nélküli) formában marad - a levél így is
+    # értelmes, csak nem derül ki belőle, KI kéri a másolatot.
+    nyilvantartas_mondat = (
+        f"A <strong>{_esc(CEG_NEV)}</strong> nyilvántartása"
+        if CEG_NEV else "Nyilvántartásunk"
+    )
+    alairas = f'<p style="color:#555;">Üdvözlettel,<br>{_esc(CEG_NEV)}</p>' if CEG_NEV else ""
     return f"""
     <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
       <p>Tisztelt {_esc(szallito_nev)}!</p>
-      <p>Nyilvántartásunk (a NAV Online Számla rendszer adatai) szerint az
+      <p>{nyilvantartas_mondat} (a NAV Online Számla rendszer adatai) szerint az
       alábbi, Önök által kiállított számlá(k)nak nincs meg nálunk az
       elektronikus (email-es) másolata:</p>
       <ul>{sorok}</ul>
       <p>Kérjük, legyenek szívesek elküldeni ezek másolatát a
       <strong>{_esc(cel_cim)}</strong> email-címre.</p>
       <p>Segítségüket előre is köszönjük!</p>
+      {alairas}
     </div>
     """
 
