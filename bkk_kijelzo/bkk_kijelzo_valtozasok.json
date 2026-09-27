@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T03:31:57.424106+02:00",
+  "frissitve": "2026-09-27T03:32:37.179237+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T12:04:08.039673+02:00",
-      "kulcs": "AOFL195",
-      "rendszam": "AOFL195",
-      "vehicle_id": "779",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.478065490722656,
-      "lon": 19.04566764831543,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Citadella ► Sánc utca"
-    },
-    {
-      "idopont": "2026-09-26T12:04:08.040448+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.518836975097656,
-      "lon": 19.08517074584961,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-26T12:04:08.040484+02:00",
-      "kulcs": "T8118",
-      "rendszam": "T8118",
-      "vehicle_id": "7897",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517616271972656,
-      "lon": 19.094099044799805,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
     {
       "idopont": "2026-09-26T12:04:08.040583+02:00",
       "kulcs": "AOFL213",
@@ -260000,6 +259961,45 @@
       "lon": 19.064651489257812,
       "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
       "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-09-27T03:32:37.112012+02:00",
+      "kulcs": "FLR737",
+      "rendszam": "FLR737",
+      "vehicle_id": "3151",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51766586303711,
+      "lon": 19.0386962890625,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-27T03:32:37.113555+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45602035522461,
+      "lon": 18.94068145751953,
+      "elozo_szoveg": "Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-27T03:32:37.113859+02:00",
+      "kulcs": "PDB731",
+      "rendszam": "PDB731",
+      "vehicle_id": "7057",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507469177246094,
+      "lon": 19.025060653686523,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
