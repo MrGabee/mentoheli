@@ -54,10 +54,12 @@ on:
     # futás mehet egyszerre, és egy-egy Díjnet+Vízművek bejelentkezés
     # akár 1-2 percig is eltarthat - emiatt a kézi "Küldés most"
     # gombokkal indított futások rendszeresen csak sokára jutottak
-    # sorra, és a dashboard mentései is gyakrabban ütköztek egy épp
-    # futó Action-nel (HTTP 409). 20 perc ezt jelentősen csökkenti,
-    # miközben még mindig elég gyakori az időben érkező értesítésekhez.
-    # FONTOS - KOCKÁZAT: a dijnet.hu / ugyfelszolgalat.vizmuvek.hu
+    # sorra. (A dashboard-mentések és a futó Action közötti HTTP 409-
+    # ütközés, ami korábban itt is szerepelt indokként, a MySQL-alapú
+    # tárolásra állás óta strukturálisan nem tud előfordulni - ld.
+    # szamlak/mysql/api.php -, de a 20 perces ütemezést emiatt nem
+    # indokolt visszavenni, a "Küldés most" gombok soron kívüliségének
+    # kedvéért.) FONTOS - KOCKÁZAT: a dijnet.hu / ugyfelszolgalat.vizmuvek.hu
     # portálokra gyakori bejelentkezés némi kockázatot hordoz, hogy a
     # portál BOT-SZERŰ forgalomnak minősíti és blokkolja/korlátozza
     # (rate-limit, CAPTCHA, ideiglenes tiltás) - ha a Díjnet/Vízművek-
@@ -75,13 +77,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: 📥 Kód letöltése
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
 
       - name: 🐍 Python beállítása
         uses: actions/setup-python@v5
@@ -102,7 +102,8 @@ jobs:
           EMAIL_KULDO_SZAMLA: ${{ secrets.EMAIL_KULDO_SZAMLA }}
           EMAIL_JELSZO_SZAMLA: ${{ secrets.EMAIL_JELSZO_SZAMLA }}
           EMAIL_CIMZETT_SZAMLA: ${{ secrets.EMAIL_CIMZETT_SZAMLA }}
-          SZAMLA_TITKOSITAS_JELSZO: ${{ secrets.SZAMLA_TITKOSITAS_JELSZO }}
+          SZAMLA_API_URL: ${{ secrets.SZAMLA_API_URL }}
+          SZAMLA_API_KULCS: ${{ secrets.SZAMLA_API_KULCS }}
           SZAMLA_DIJNET_USER: ${{ secrets.SZAMLA_DIJNET_USER }}
           SZAMLA_DIJNET_JELSZO: ${{ secrets.SZAMLA_DIJNET_JELSZO }}
           SZAMLA_VIZMUVEK_USER: ${{ secrets.SZAMLA_VIZMUVEK_USER }}
@@ -164,45 +165,8 @@ jobs:
           SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK: ${{ (github.event_name == 'workflow_dispatch' && inputs.nav_emlekezteto_adoszamok) || '' }}
         run: python szamlak/szamla_figyelo.py
 
-      - name: 💾 Állapot commitolása (önjavító)
-        if: always()
-        continue-on-error: true
-        run: |
-          set +e
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          DATA_FILE="szamlak/szamla_allapot.enc.json"
-          if [ ! -f "$DATA_FILE" ]; then
-            echo "Nincs adatfájl, nincs mit commitolni."
-            exit 0
-          fi
-          TMP_COPY="/tmp/szamla_allapot_backup_$$.json"
-          cp "$DATA_FILE" "$TMP_COPY"
-
-          SIKERULT=0
-          for i in 1 2 3 4 5 6; do
-            echo "Push kísérlet $i/6..."
-            git fetch origin main
-            git reset --hard origin/main
-            mkdir -p "$(dirname "$DATA_FILE")"
-            cp "$TMP_COPY" "$DATA_FILE"
-            git add "$DATA_FILE"
-            if git diff --staged --quiet; then
-              echo "Nincs változás, kész."
-              SIKERULT=1
-              break
-            fi
-            git commit -m "számla állapot frissítve (titkosítva) [skip ci]"
-            if git push origin HEAD:main; then
-              echo "Push sikeres."
-              SIKERULT=1
-              break
-            else
-              echo "Push ütközött, újrapróbálkozás..."
-              sleep $((RANDOM % 6 + 2))
-            fi
-          done
-          if [ "$SIKERULT" != "1" ]; then
-            echo "⚠️ 6 próbálkozás után sem sikerült a push."
-          fi
+      # A korábbi "Állapot commitolása (önjavító)" lépés megszűnt - az
+      # állapot mostantól egy MySQL adatbázisban van (ld. szamlak/mysql/
+      # api.php), amit a szamla_figyelo.py futás közben, közvetlenül a
+      # PHP API-n keresztül ír - nincs többé git commit/push, tehát nincs
+      # is 409-ütközés/verseny a dashboard mentéseivel.
