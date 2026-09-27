@@ -182,8 +182,7 @@
   body.szerepkor-user #beallitasok-panel,
   body.szerepkor-user #korok-panel,
   body.szerepkor-user #cimzettek-panel,
-  body.szerepkor-user #kuldes-panel,
-  body.szerepkor-user #felhasznaloi-jelszo-panel {
+  body.szerepkor-user #kuldes-panel {
     display: none;
   }
 
@@ -202,8 +201,12 @@
 
   <div id="jelszo-kepernyo">
     <h1>🔒 Számla áttekintő</h1>
-    <p id="jelszo-info">Az adatok titkosítva vannak tárolva - add meg a jelszót a megtekintéshez. A jelszó csak a böngésződben marad, sehova nem kerül elküldésre.</p>
-    <input type="password" id="jelszo-input" placeholder="Jelszó" autocomplete="off">
+    <p id="jelszo-info">Add meg a titkos API-kulcsot a megtekintéshez (ld. api_config.php a szerveren). A kulcs csak a böngésződben marad, sehova nem kerül elküldésre az api.php-n kívül.</p>
+    <input type="password" id="jelszo-input" placeholder="API-kulcs" autocomplete="off">
+    <label style="display:flex;align-items:center;gap:8px;justify-content:center;margin:10px 0;font-size:14px;color:var(--muted);font-weight:400;">
+      <input type="checkbox" id="jelszo-korlatozott" style="width:auto;">
+      Korlátozott nézet (kevesebb gomb/oszlop - pl. ha valakinek csak megtekintésre adod oda a kulcsot)
+    </label>
     <button id="jelszo-gomb">Megnyitás</button>
     <div id="jelszo-hiba"></div>
   </div>
@@ -248,7 +251,7 @@
     <div class="panel" id="beallitasok-panel">
       <button type="button" class="panel-toggle" id="beallitasok-toggle">⚙️ Beállítások (emlékeztető, összesítő-ütemezés) ▾</button>
       <div class="panel-tartalom" id="beallitasok-tartalom" style="display:none;">
-        <p class="panel-info">A mentéshez egy GitHub Personal Access Token szükséges (a repóhoz írási joggal) - ez csak a böngésződben marad (a jelszóhoz hasonlóan, session-tárolóban), a mentés közvetlenül innen, a böngésződből megy a GitHub API-nak, sehova máshova nem kerül.</p>
+        <p class="panel-info">Ezen a panelen (és a többi, adatot mentő panelen) a bejelentkezéskor megadott API-kulcs elég a mentéshez - a lenti GitHub token KIZÁRÓLAG a "Küldés MOST"-jellegű gombokhoz kell (azok egy GitHub Actions futást indítanak el), és csak a böngésződben marad (session-tárolóban), sehova máshova nem kerül.</p>
         <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
           <input type="checkbox" id="be-email-engedelyezve" style="width:auto;flex:none;">
           <span>📧 Email-küldés engedélyezve — ha nincs bepipálva, egyetlen értesítő/emlékeztető/összesítő email sem megy ki (a dashboard adatai ettől függetlenül frissülnek). Amíg ezt nem mented bepipálva, alapból NINCS email-küldés.</span>
@@ -272,38 +275,10 @@
       </div>
     </div>
 
-    <div class="panel" id="felhasznaloi-jelszo-panel">
-      <button type="button" class="panel-toggle" id="felhasznaloi-jelszo-toggle">🔑 Felhasználói (korlátozott) jelszó ▾</button>
-      <div class="panel-tartalom" id="felhasznaloi-jelszo-tartalom" style="display:none;">
-        <p class="panel-info">Itt állíthatsz be egy MÁSODIK, rövidebb jelszót valakinek, aki csak megnézni szeretné a számlákat. Ez technikailag NEM egy külön, "megszűrt" adatállapot (az adatok titkosítási módja nem változik) - a te (admin) jelszavad kerül becsomagolva, ÚJRA titkosítva ezzel a felhasználói jelszóval eltárolásra, hogy a felhasználói jelszóval megnyitva a böngésző ki tudja csomagolni és onnantól ugyanúgy hozzáférjen a (visszafejtett) adathoz, mint te - a felület viszont "user" szerepkörben elrejti előle az admin-csak szekciókat (Beállítások, Bérlői körök, Címzettek és azonnali küldés, dátum szerinti küldés, a táblázat "Kör" oszlopa és a "✕" végleges-elrejtés gomb).</p>
-        <label>Új felhasználói jelszó
-          <input type="password" id="fj-jelszo-input" autocomplete="off" placeholder="pl. egy rövidebb, egyszerűbb jelszó">
-        </label>
-        <button type="button" id="fj-mentes-gomb">Felhasználói jelszó mentése</button>
-        <button type="button" id="fj-torles-gomb" style="background:var(--red);margin-left:8px;">Felhasználói jelszó törlése</button>
-        <div class="panel-statusz" id="fj-statusz"></div>
-
-        <hr style="margin:20px 0;border:none;border-top:1px solid var(--border);">
-        <p style="font-weight:600;margin-bottom:6px;">🔐 Admin jelszó módosítása</p>
-        <p class="panel-info">Ez a saját (admin) jelszavad - ez titkosítja/fejti vissza a teljes számla-adatot. Módosítás után az ÖSSZES jelenlegi adatot újratitkosítjuk az új jelszóval (semmi nem törlődik) - DE ezután a GitHub repo <code>SZAMLA_TITKOSITAS_JELSZO</code> Secretjét (Settings → Secrets and variables → Actions) is UGYANERRE az új jelszóra kell írnod, különben a legközelebbi automatikus (Action) futás nem fogja tudni visszafejteni az adatot, és hibával fog leállni.</p>
-        <label>Új admin jelszó
-          <input type="password" id="aj-uj-jelszo-input" autocomplete="new-password" placeholder="legalább 8 karakter ajánlott">
-        </label>
-        <label>Új admin jelszó megerősítése
-          <input type="password" id="aj-megerosites-input" autocomplete="new-password" placeholder="ugyanaz még egyszer">
-        </label>
-        <label>Jelenlegi felhasználói (korlátozott) jelszó - csak ha fent van beállítva, és azt szeretnéd, hogy módosítás után is (ugyanazzal a jelszóval) tovább működjön
-          <input type="password" id="aj-felhasznaloi-jelszo-input" autocomplete="off" placeholder="ha nincs ilyen beállítva, hagyd üresen">
-        </label>
-        <button type="button" id="aj-mentes-gomb">Admin jelszó módosítása</button>
-        <div class="panel-statusz" id="aj-statusz"></div>
-      </div>
-    </div>
-
     <div class="panel" id="korok-panel">
       <button type="button" class="panel-toggle" id="korok-toggle">👥 Bérlői körök kezelése ▾</button>
       <div class="panel-tartalom" id="korok-tartalom" style="display:none;">
-        <p class="panel-info">A Díjneten/Vízműveken érkező számlákat két bérlői körhöz sorolhatod - mindkettő saját email-címre kap "új számla" értesítőt (PDF-fel) és havi összesítőt. A besorolás a titkosított adatban tárolódik (nem publikus), ehhez is a fenti GitHub token + a megnyitáshoz használt jelszó kell (ez utóbbi csak a böngésződben marad).</p>
+        <p class="panel-info">A Díjneten/Vízműveken érkező számlákat két bérlői körhöz sorolhatod - mindkettő saját email-címre kap "új számla" értesítőt (PDF-fel) és havi összesítőt. A besorolás az adatbázisban tárolódik - a mentéshez a bejelentkezéskor megadott API-kulcs elég, nem kell hozzá a lenti GitHub token.</p>
         <label>1. kör neve <input type="text" id="kor-a-nev-input" placeholder="pl. Nagy Kft. bérlemény" style="max-width:320px;"></label>
         <label>2. kör neve <input type="text" id="kor-b-nev-input" placeholder="pl. Kis Kft. bérlemény" style="max-width:320px;"></label>
         <p class="panel-info" style="margin-top:2px;">A bérlői körök (és a tulajdonos/könyvelő) email-CÍMLISTÁIT és az azonnali "Küldés most" gombokat lentebb, a "📮 Címzettek és azonnali küldés" panelben találod. A régi, egy-cím-es GitHub Secretek (SZAMLA_KOR_A_EMAIL / SZAMLA_KOR_B_EMAIL) - ha még be vannak állítva - továbbra is UNIÓBAN kapnak emailt az itt/lent megadott listával.</p>
@@ -335,7 +310,7 @@
     <div class="panel" id="cimzettek-panel">
       <button type="button" class="panel-toggle" id="cimzettek-toggle">📮 Címzettek és azonnali küldés (könyvelő / bérlők / tulajdonos) ▾</button>
       <div class="panel-tartalom" id="cimzettek-tartalom" style="display:none;">
-        <p class="panel-info">Három, egymástól független email-kör: a <strong>könyvelő</strong> SOSEM kap innen számla-adatot/csatolmányt - a tulajdonos azt egy külön, kézzel megosztott Google Drive mappán keresztül adja át neki, ő csak egy havi, hónap-végi emlékeztetőt kap. A <strong>bérlő</strong> (1./2. kör) a jelenleg fizetetlen számláinak időszakos/kézi összesítőjét kapja - NEM azonnali, számlánkénti értesítőt. A <strong>tulajdonos</strong> minden új számláról azonnali értesítést kap, és minden bérlői-összesítő másolatát is megkapja. Soronként egy email-cím - a mentéshez/küldéshez a fenti GitHub token kell.</p>
+        <p class="panel-info">Három, egymástól független email-kör: a <strong>könyvelő</strong> SOSEM kap innen számla-adatot/csatolmányt - a tulajdonos azt egy külön, kézzel megosztott Google Drive mappán keresztül adja át neki, ő csak egy havi, hónap-végi emlékeztetőt kap. A <strong>bérlő</strong> (1./2. kör) a jelenleg fizetetlen számláinak időszakos/kézi összesítőjét kapja - NEM azonnali, számlánkénti értesítőt. A <strong>tulajdonos</strong> minden új számláról azonnali értesítést kap, és minden bérlői-összesítő másolatát is megkapja. Soronként egy email-cím - a listák MENTÉSÉHEZ a bejelentkezéskor megadott API-kulcs elég, a "Küldés MOST" gombokhoz kell a lenti GitHub token.</p>
 
         <h3 style="font-size:14px;margin:6px 0 6px;">📁 Könyvelő</h3>
         <label>Email-cím(ek), soronként egy
@@ -386,7 +361,7 @@
     <div class="panel" id="postafiok-panel">
       <button type="button" class="panel-toggle" id="postafiok-toggle">📬 Új postafiók hozzáadása ▾</button>
       <div class="panel-tartalom" id="postafiok-tartalom" style="display:none;">
-        <p class="panel-info">Itt adhatsz hozzá TETSZŐLEGES SZÁMÚ, a fenti fő postafiókodtól FÜGGETLEN email-fiókot, amit a script mostantól FOLYAMATOSAN (minden futásnál) figyel: minden PDF-csatolmányos levelet megvizsgál, hogy az valóban számla-e (a levél/PDF TARTALMA alapján, nem a feladó címe alapján). A "Cél" választja el, hogy a felismert számlák a Közüzemi listába kerüljenek-e (a lent megadott "címke" alatt, pl. "Csatornázási Művek"), VAGY a Céges számlák fülre (mintha a dedikált céges postafiókból jöttek volna) - utóbbit akkor válaszd, ha ez a postafiók ténylegesen céges beszerzési számlákat gyűjt. A megadott jelszó mentés előtt TITKOSÍTVA kerül a GitHub-ra, ugyanúgy, mint minden más adat itt.</p>
+        <p class="panel-info">Itt adhatsz hozzá TETSZŐLEGES SZÁMÚ, a fenti fő postafiókodtól FÜGGETLEN email-fiókot, amit a script mostantól FOLYAMATOSAN (minden futásnál) figyel: minden PDF-csatolmányos levelet megvizsgál, hogy az valóban számla-e (a levél/PDF TARTALMA alapján, nem a feladó címe alapján). A "Cél" választja el, hogy a felismert számlák a Közüzemi listába kerüljenek-e (a lent megadott "címke" alatt, pl. "Csatornázási Művek"), VAGY a Céges számlák fülre (mintha a dedikált céges postafiókból jöttek volna) - utóbbit akkor válaszd, ha ez a postafiók ténylegesen céges beszerzési számlákat gyűjt. A megadott jelszó az adatbázisba kerül mentésre (ugyanúgy, mint minden más adat itt) - a tárhely hozzáférés-védelme és az API-kulcs védi.</p>
 
         <div id="postafiok-lista-hely"></div>
 
@@ -453,20 +428,23 @@
 (function () {
   "use strict";
 
-  const ADAT_URL = "szamla_allapot.enc.json";
+  // Az api.php teljes URL-je - ezt írd át a saját tárhelyeden feltöltött
+  // elérési útra (ld. szamlak/mysql/ telepítési útmutató). Nincs
+  // titkosítás - az adatokat a tárhely hozzáférés-védelme + az
+  // "aktualisApiKulcs" (ld. lentebb) védi.
+  const API_URL = "https://ide-irod-a-sajat-domained.hu/szamlak/mysql/api.php";
   let osszesSzamla = [];
   let cegesSzamlak = []; // a dedikált céges-postafiókból begyűjtött, Drive-ra feltöltött számlák metaadata (ld. "Céges számlák" fül) - a PDF itt NEM tárolt, csak a "drive_url"
-  let pdfTar = {};           // invoice-id -> base64 PDF (a titkosított csomagból)
-  let legutobbiAdat = null;  // a legutóbb visszafejtett teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
-  let aktualisJelszo = null; // a sikeres megnyitáskor megadott titkosítási jelszó - KIZÁRÓLAG a "Bérlői körök" panel újra-titkosításhoz használja, sehova nem küldjük el
-  // "admin" vagy "user" - a jelszavas megnyitáskor derül ki (ld.
-  // betoltesJelszoval): ha a beírt jelszó a "felhasznaloi_csomag"-ot
-  // csomagolja ki, "user" lesz, egyébként (a hagyományos ág) "admin".
-  // FONTOS: "user" szerepkörnél is a VALÓDI admin-jelszó kerül
-  // "aktualisJelszo"-ba (ld. lentebb) - a szerepkör KIZÁRÓLAG a felületet
-  // korlátozza (mely panelek/oszlopok látszanak), nem az adathoz való
-  // hozzáférést (ld. a feladat-leírás "egyszerűbb, nem adat-szintű
-  // korlátozás" döntése).
+  let pdfTar = {};           // invoice-id -> base64 PDF (az api.php "get_all_pdfs" hívásából)
+  let legutobbiAdat = null;  // a legutóbb betöltött teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
+  let aktualisApiKulcs = null; // a bejelentkező képernyőn megadott titkos API-kulcs (ld. api_config.php) - MINDEN adat-hívás ezt küldi, sehova máshova nem kerül, csak a böngésző sessionStorage-ába
+  // "admin" vagy "user" - a bejelentkező képernyő "Korlátozott nézet"
+  // jelölőnégyzetétől függ (ld. bejelentkezes()). Nincs többé külön
+  // jelszó/kulcs a két szerepkörhöz (a korábbi "felhasznaloi_csomag"
+  // crypto-trükk megszűnt, ld. git-történet) - a szerepkör KIZÁRÓLAG a
+  // felületet korlátozza (mely panelek/oszlopok látszanak), sosem az
+  // adathoz való hozzáférést, ugyanúgy, mint korábban (a régi rendszerben
+  // is mindkét jelszó ugyanazt az adatot fejtette vissza).
   let szerepkor = "admin";
   let helyilegTorolt = new Set(); // ebben a böngésző-munkamenetben, az X gombbal épp most elrejtett (de a GitHub-mentés még folyamatban lévő/már megtörtént) számla-id-k - azonnali UI-visszajelzéshez
   // A "Bérlői körök" panelben, mentés ELŐTT, memóriában tartott
@@ -539,106 +517,6 @@
     return arr;
   }
 
-  // Az iterációszámot NEM égetjük be fixen - a Python-oldal (szamla_figyelo.py)
-  // a titkosított csomagba is beleírja ("iterations" mező), így ha ott
-  // valaha erősítünk rajta (vagy egy régebbi, korábbi iterációszámmal
-  // mentett fájlt kell visszafejteni), itt is a fájlból olvasott érték
-  // számít, nem egy fixen ide írt szám. Régebbi (verzió<3) fájloknál
-  // nincs "iterations" mező - akkor esünk vissza erre az alapértékre
-  // (ez volt a korábbi, mindig fixen beégetett érték is).
-  const ALAPERTELMEZETT_ITERACIOSZAM = 200000;
-
-  async function kulcsSzarmaztatas(jelszo, saltBytes, iteraciok, hasznalat) {
-    const enc = new TextEncoder();
-    const alapKulcs = await crypto.subtle.importKey(
-      "raw", enc.encode(jelszo), { name: "PBKDF2" }, false, ["deriveKey"]
-    );
-    return crypto.subtle.deriveKey(
-      { name: "PBKDF2", salt: saltBytes, iterations: iteraciok || ALAPERTELMEZETT_ITERACIOSZAM, hash: "SHA-256" },
-      alapKulcs,
-      { name: "AES-GCM", length: 256 },
-      false,
-      hasznalat || ["decrypt"]
-    );
-  }
-
-  // Alacsony szintű, "formátum-független" visszafejtés: bármilyen
-  // {salt,nonce,adat,iterations} alakú csomagot tud kibontani, NYERS
-  // (JSON.parse NÉLKÜLI) szöveget adva vissza - mind a nagy adatblokk
-  // (JSON), mind a "felhasznaloi_csomag" kis csomagja (egy sima jelszó-
-  // string, nem JSON) ugyanígy van felépítve, ezért ide van kiszervezve a
-  // közös PBKDF2+AES-GCM logika (ne duplázzuk el két helyen).
-  async function nyersVisszafejtes(csomag, jelszo) {
-    const salt = b64ToBytes(csomag.salt);
-    const nonce = b64ToBytes(csomag.nonce);
-    const titkositott = b64ToBytes(csomag.adat);
-    const kulcs = await kulcsSzarmaztatas(jelszo, salt, csomag.iterations, ["decrypt"]);
-    const nyersBuffer = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: nonce }, kulcs, titkositott
-    );
-    return new TextDecoder().decode(nyersBuffer);
-  }
-
-  async function visszafejtes(csomag, jelszo) {
-    return JSON.parse(await nyersVisszafejtes(csomag, jelszo));
-  }
-
-  // Alacsony szintű, "formátum-független" titkosítás: egy NYERS
-  // szöveget csomagol AES-GCM-be, friss saltot/noncet generálva, és a
-  // {iterations,salt,nonce,adat} alap-alakot adja vissza - a nagy
-  // adatblokkot író titkositas() ezt hívja (rátéve a verzio/kdf/
-  // frissitve mezőket), és a "felhasznaloi_csomag"-ot író
-  // felhasznaloiCsomagTitkositasa() is (ld. lentebb) - ugyanazt a
-  // PBKDF2+AES-GCM logikát használva, duplázás nélkül.
-  async function nyersTitkositas(nyersSzoveg, jelszo, iteraciok) {
-    const iters = iteraciok || ALAPERTELMEZETT_ITERACIOSZAM;
-    const salt = crypto.getRandomValues(new Uint8Array(16));
-    const nonce = crypto.getRandomValues(new Uint8Array(12));
-    const kulcs = await kulcsSzarmaztatas(jelszo, salt, iters, ["encrypt"]);
-    const nyersBytes = new TextEncoder().encode(nyersSzoveg);
-    const titkositottBuffer = await crypto.subtle.encrypt({ name: "AES-GCM", iv: nonce }, kulcs, nyersBytes);
-    return {
-      iterations: iters,
-      salt: bytesToB64(salt),
-      nonce: bytesToB64(nonce),
-      adat: bytesToB64(new Uint8Array(titkositottBuffer)),
-    };
-  }
-
-  // Titkosítás - a Python-oldali titkosit_es_ment() TÖKÉLETES tükörképe
-  // (ugyanaz a formátum: verzio/kdf/iterations/salt/nonce/adat/frissitve),
-  // hogy a Python-oldal változtatás nélkül vissza tudja fejteni, amit innen
-  // mentünk. KIZÁRÓLAG a "Bérlői körök" panel és a sor-törlés használja -
-  // mindig FRISSEN letöltött+visszafejtett állapotra épül (ld.
-  // allapotFrissitesEsMentese()), hogy ne írjuk felül véletlenül egy
-  // időközbeni (pl. ütemezett) script-futás eredményét.
-  async function titkositas(adatObj, jelszo, iteraciok) {
-    const csomag = await nyersTitkositas(JSON.stringify(adatObj), jelszo, iteraciok);
-    csomag.verzio = 3;
-    csomag.kdf = "PBKDF2-SHA256";
-    csomag.frissitve = new Date().toISOString();
-    return csomag;
-  }
-
-  // ── "felhasznaloi_csomag" - kulcs-csomagolás a "user" (korlátozott)
-  // szerepkörhöz ── A dashboard tulajdonosa (admin) explicit módon egy
-  // EGYSZERŰBB megoldást választott, ahelyett hogy a teljes adatot külön,
-  // "megszűrt" formában is titkosítanánk (az sokkal bonyolultabb backend-
-  // et igényelne): a felhasználói jelszóval NEM a számla-adatokat
-  // titkosítjuk újra, hanem magát a VALÓDI ADMIN-JELSZÓ szöveget - így a
-  // felhasználói jelszóval megnyitva a böngésző előbb ezt csomagolja ki,
-  // majd a kicsomagolt admin-jelszóval fejti vissza a (VÁLTOZATLANUL,
-  // egyetlen admin-kulccsal titkosított) fő adatblokkot - ld.
-  // betoltesJelszoval() lentebb. A "felhasznaloi_csomag" ezért a fő
-  // adatblokknál kisebb alakú (nincs verzio/kdf/frissitve mezője, nincs
-  // rá szükség, mindig a legfrissebb formátumot használjuk).
-  async function felhasznaloiCsomagTitkositasa(adminJelszo, felhasznaloiJelszo) {
-    return nyersTitkositas(adminJelszo, felhasznaloiJelszo, ALAPERTELMEZETT_ITERACIOSZAM);
-  }
-  async function felhasznaloiCsomagVisszafejtese(felhasznaloiCsomag, felhasznaloiJelszo) {
-    return nyersVisszafejtes(felhasznaloiCsomag, felhasznaloiJelszo); // -> a kicsomagolt, valódi admin-jelszó szövege
-  }
-
   function forint(osszeg) {
     if (osszeg === null || osszeg === undefined) return "ismeretlen";
     return Math.round(osszeg).toLocaleString("hu-HU") + " Ft";
@@ -709,8 +587,8 @@
     `;
   }
 
-  // ── "Céges számlák" fül - renderelés ── A PDF itt NEM a titkosított
-  // állapotban van (ld. szamla_figyelo.py "CÉGES SZÁMLÁK" szekció
+  // ── "Céges számlák" fül - renderelés ── A PDF itt NEM az adatbázisban
+  // van tárolva (ld. szamla_figyelo.py "CÉGES SZÁMLÁK" szekció
   // kommentje), csak a metaadat + a Drive-link - ezért nincs itt
   // letöltés-gomb, hanem egy "Megnyitás Drive-on" hivatkozás. A
   // "nav_parositva"/"nav_szamla_azonosito"/"nav_szallito_nev"/"nav_osszeg"/
@@ -775,7 +653,7 @@
   // script (a PDF/levél szövegéből, best-effort) nem tudta automatikusan
   // felismerni ezeket (vagy rosszul ismerte fel), a felhasználó kézzel
   // beírhatja/javíthatja - elhagyáskor (blur) azonnal, önállóan menti
-  // (ugyanaz az "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" minta,
+  // (ugyanaz a mező-szintű, api.php "update_fields" hívást használó minta,
   // mint korFelulbiralasMentese()-nél, ld. cegesMezoMentese() lentebb).
   // A Számlaszám/Összeg emiatt a KÖVETKEZŐ script-futástól a NAV-
   // párosításban is részt vesz (ld. _nav_parosithato_rekordok() a
@@ -999,7 +877,7 @@
   // listája, státusz-visszajelzéssel (utolsó próbálkozás/hiba, ld.
   // szamla_figyelo.py tovabbi_postafiokok_feldolgozasa()) és egy
   // szüneteltetés/visszaállítás-gombbal. A "Szüneteltetés" NEM törli a
-  // bejegyzést (a jelszó/host stb. megmarad titkosítva) - csak az "aktiv"
+  // bejegyzést (a jelszó/host stb. megmarad az adatbázisban) - csak az "aktiv"
   // jelzőt kapcsolja ki, így a script kihagyja a következő futásoktól,
   // de egy gombnyomással újra bekapcsolható, anélkül hogy újra be kellene
   // gépelni a jelszót.
@@ -1273,8 +1151,8 @@
   //  felhasználó kifejezett kérésére ("csinálj belőle valami adatbázist,
   //  és adatbázis rekordokat lehet menteni (update), és törlés (delete)").
   //
-  //  A TÁROLÁS maga NEM változott (marad a titkosított JSON a GitHub-on,
-  //  ld. a fájl elején lévő komment) - ez a réteg a KÉT alapműveletet
+  //  A TÁROLÁS az adatbázisban van (ld. a fájl elején lévő "ADATBÁZIS API"
+  //  komment) - ez a réteg a KÉT alapműveletet
   //  (UPDATE/DELETE) egységesíti egy-egy közös függvénybe, amit MINDKÉT
   //  kollekció (és bármely jövőbeli, hasonló szerkezetű kollekció) ugyanúgy
   //  használ, a korábbi, kollekciónként külön megírt duplikátumok
@@ -1287,8 +1165,8 @@
 
   // UPDATE - egy rekord egy vagy több mezőjét frissíti (Object.assign-nal
   // EGYESÍTVE, nem teljes felülírással) egy adott kollekcióban - a
-  // "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" mintát követi
-  // (ld. allapotFrissitesEsMentese() fent), EGYETLEN GitHub-mentés-körben,
+  // api.php "update_fields" action-jét használja (ld. rekordFrissitese()
+  // fent), EGYETLEN adatbázis-hívásban,
   // függetlenül attól, hány mezőt módosítunk egyszerre.
   //   kollekcio: "szamlak" | "ceges_szamlak"
   //   id:        a rekord egyedi azonosítója (kulcs a kollekció dict-jében)
@@ -1296,18 +1174,19 @@
   // Visszaadja a friss, teljes "adat" objektumot sikeres mentésnél, null-t
   // hibánál (a hibát alert-tel is jelezve).
   async function rekordFrissitese(kollekcio, id, mezok) {
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez."); return null; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return null; }
-    patMentese();
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return null; }
+    // Egy mező-mentés NEM igényli a teljes állapot letöltését/diffelését -
+    // az api.php "update_fields" action-je szerver oldalon, EGY
+    // tranzakcióban végzi a beolvasás+egyesítés+írás lépést (ld. api.php),
+    // és a friss, teljes rekordot is visszaadja - ezért itt egyenesen ezt
+    // hívjuk, nem az allapotFrissitesEsMentese()-t (nincs szükség a teljes
+    // állapot újra letöltésére egyetlen mező mentéséhez).
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
-        adat[kollekcio] = adat[kollekcio] || {};
-        const rekord = adat[kollekcio][id];
-        if (rekord) Object.assign(rekord, mezok);
-      });
-      legutobbiAdat = friss;
-      return friss;
+      const valasz = await apiHivas("update_fields", { collection: kollekcio, id, mezok });
+      legutobbiAdat = legutobbiAdat || {};
+      legutobbiAdat[kollekcio] = legutobbiAdat[kollekcio] || {};
+      legutobbiAdat[kollekcio][id] = valasz.adat;
+      return legutobbiAdat;
     } catch (e) {
       alert("A mentés sikertelen: " + e.message);
       return null;
@@ -1315,9 +1194,9 @@
   }
 
   // DELETE - egy rekord VÉGLEGES elrejtése. FONTOS: ez NEM törli magát a
-  // rekordot a titkosított állapotból (a script legközelebbi futásakor a
-  // forrás-portál/email újra "látná" és visszahozná), hanem a kis,
-  // titkosítatlan beállítás-fájlban ("torolt_szamla_id_k" lista) jegyzi
+  // rekordot az adatbázisból (a script legközelebbi futásakor a
+  // forrás-portál/email újra "látná" és visszahozná), hanem az
+  // adatbázisban, egy "torolt_szamla_id_k" nevű meta-kulcs alatt jegyzi
   // meg az id-ját - a Python-oldal ez alapján dobja el MINDKÉT
   // kollekcióból minden futáskor (ld. szamla_figyelo.py main()
   // "torolt_id_szet" ellenőrzése, ami a "szamlak" ÉS a "ceges_szamlak"
@@ -1330,12 +1209,10 @@
   // Visszaadja true/false-ként, hogy a GitHub-mentés is sikeres volt.
   async function rekordTorlese(kollekcio, id) {
     if (!id) return false;
-    const pat = aktualisPat();
-    if (!pat) {
-      alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a végleges elrejtéshez.");
+    if (!aktualisApiKulcs) {
+      alert("Add meg az API-kulcsot (a bejelentkező képernyőn) a végleges elrejtéshez.");
       return false;
     }
-    patMentese();
 
     // Azonnali, optimista UI-frissítés - nem várunk a hálózati mentésre.
     helyilegTorolt.add(id);
@@ -1349,17 +1226,17 @@
     }
 
     try {
-      const { ertekek } = await ghBeallitasokBetoltese(pat);
-      const lista = Array.isArray(ertekek.torolt_szamla_id_k) ? ertekek.torolt_szamla_id_k.slice() : [];
+      const { ertek } = await apiHivas("get_meta", { kulcs: "torolt_szamla_id_k" });
+      const lista = Array.isArray(ertek) ? ertek.slice() : [];
       if (!lista.includes(id)) lista.push(id);
-      await ghBeallitasokMentese(pat, { torolt_szamla_id_k: lista });
+      await apiHivas("set_meta", { kulcs: "torolt_szamla_id_k", ertek: lista });
       return true;
     } catch (e) {
       // A helyi elrejtés megmarad (a felhasználó ezt már nem akarja
-      // visszalátni), de figyelmeztetjük, hogy a GitHub-mentés sikertelen
-      // volt - frissítés/új megnyitás után a rekord visszatérhet, amíg ez
-      // nem sikerül (pl. újrapróbálkozással).
-      alert("A számla a képernyőn elrejtve, de a mentés a GitHub-ra sikertelen volt (" + e.message + ") - frissítés után újra megjelenhet, próbáld meg újra.");
+      // visszalátni), de figyelmeztetjük, hogy az adatbázis-mentés
+      // sikertelen volt - frissítés/új megnyitás után a rekord
+      // visszatérhet, amíg ez nem sikerül (pl. újrapróbálkozással).
+      alert("A számla a képernyőn elrejtve, de a mentés az adatbázisba sikertelen volt (" + e.message + ") - frissítés után újra megjelenhet, próbáld meg újra.");
       return false;
     }
   }
@@ -1391,14 +1268,11 @@
   async function cegesAthelyezesKerelme(id) {
     if (!id) return;
     if (!window.confirm("Biztosan áthelyezed ezt a számlát a Céges fülre? A tényleges áthelyezés a legközelebbi script-futáskor (max ~20 percen belül) történik meg - addig még itt, a Közüzemi listában látod.")) return;
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) az áthelyezés kéréséhez."); return; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return; }
-    patMentese();
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return; }
     const gomb = document.querySelector(`.ceges-athelyezes-gomb[data-id="${CSS.escape(id)}"]`);
     if (gomb) gomb.disabled = true;
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         const lista = Array.isArray(adat.ceges_athelyezes_kerelem) ? adat.ceges_athelyezes_kerelem.slice() : [];
         if (!lista.includes(id)) lista.push(id);
         adat.ceges_athelyezes_kerelem = lista;
@@ -1563,64 +1437,22 @@
     });
   }
 
-  // ── GitHub API-alapú mentés (Beállítások) és futtatás-indítás (dátum-
-  // intervallumos küldés) ── A repó nyilvános, ezért OLVASÁSHOZ (GET
-  // /contents) nem feltétlenül kell token, de íráshoz (PUT /contents) és a
-  // workflow_dispatch indításához mindenképp kell egy, a felhasználó saját
-  // GitHub tokenje (repo-írási joggal) - ezt a felhasználó adja meg, a
+  // ── GitHub API - MOSTANTÓL KIZÁRÓLAG a futtatás (workflow_dispatch)
+  // manuális indításához kell (pl. "NAV emlékeztető küldése MOST", "Küldés
+  // MOST" gombok) - az adatok írása/olvasása NEM ezen megy (ld. lentebb az
+  // "ADATBÁZIS API" szekciót). Ehhez a felhasználó saját GitHub tokenje
+  // (repo-írási joggal) szükséges - ezt a felhasználó adja meg, a
   // böngészőjéből közvetlenül a GitHub API-nak küldjük, a szerverünk/
   // Actions-ünk sosem látja, és nem kerül git-be.
   const GH_OWNER = "MrGabee";
   const GH_REPO = "mentoheli";
   const GH_BRANCH = "main";
-  const GH_BEALLITASOK_PATH = "szamlak/szamla_beallitasok.json";
-  const GH_ALLAPOT_PATH = "szamlak/szamla_allapot.enc.json";
   const GH_WORKFLOW_FAJL = "szamla_monitor.yml";
-
-  function bytesToB64(bytes) {
-    let bin = "";
-    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-    return btoa(bin);
-  }
-  function utf8ToB64(str) {
-    return bytesToB64(new TextEncoder().encode(str));
-  }
-  function b64ToUtf8(b64) {
-    return new TextDecoder().decode(b64ToBytes(String(b64).replace(/\n/g, "")));
-  }
 
   function ghFejlecek(pat) {
     const h = { "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" };
     if (pat) h["Authorization"] = "Bearer " + pat;
     return h;
-  }
-
-  async function ghBeallitasokBetoltese(pat) {
-    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_BEALLITASOK_PATH}?ref=${GH_BRANCH}`;
-    const resp = await fetch(url, { headers: ghFejlecek(pat) });
-    if (resp.status === 404) return { ertekek: {}, sha: null };
-    if (!resp.ok) throw new Error("Beállítások betöltése sikertelen (HTTP " + resp.status + ")");
-    const adat = await resp.json();
-    return { ertekek: JSON.parse(b64ToUtf8(adat.content)), sha: adat.sha };
-  }
-
-  async function ghBeallitasokMentese(pat, ujMezok) {
-    const { ertekek, sha } = await ghBeallitasokBetoltese(pat);
-    const egyesitett = Object.assign({}, ertekek, ujMezok);
-    const body = {
-      message: "Beállítások frissítve a dashboardról",
-      content: utf8ToB64(JSON.stringify(egyesitett, null, 2)),
-      branch: GH_BRANCH,
-    };
-    if (sha) body.sha = sha;
-    const resp = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_BEALLITASOK_PATH}`,
-      { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
-    );
-    if (!resp.ok) {
-      const szoveg = await resp.text().catch(() => "");
-      throw new Error("Mentés sikertelen (HTTP " + resp.status + "): " + szoveg.slice(0, 200));
-    }
   }
 
   async function ghWorkflowInditasa(pat, inputs) {
@@ -1634,351 +1466,110 @@
     }
   }
 
-  // ── A NAGY, titkosított állapotfájl (szamla_allapot.enc.json) írása ──
-  // Ezt KIZÁRÓLAG a "Bérlői körök" panel használja (kör-besorolás mentése).
-  // FONTOS: a fájl a Python-script MINDEN futásakor (naponta 3x) frissül -
-  // ezért SOSE a lapbetöltéskor már memóriában lévő ("legutobbiAdat")
-  // állapotot titkosítjuk újra és küldjük vissza (az egy időközbeni
-  // script-futás eredményét felülírná / eldobná), hanem MINDIG frissen
-  // letöltjük+visszafejtjük a GitHub-on JELENLEG lévő állapotot közvetlenül
-  // mentés előtt, arra alkalmazzuk a módosítást, és AZT titkosítjuk +
-  // küldjük vissza - ez minimálisra csökkenti (bár nem tünteti el teljesen)
-  // az ütközés esélyét egy épp futó Actions-workflow-val.
-  //
-  // A GitHub Contents API GET-je 1 MB fölötti fájloknál nem adja vissza a
-  // "content" (base64) mezőt a JSON-válaszban - ez nálunk (a PDF-eket is
-  // tartalmazó, több MB-os fájlnál) rendszeresen előfordulna. EZÉRT a
-  // fájl TARTALMÁT a publikus GitHub Pages URL-ről (ADAT_URL, cache
-  // megkerülésével) töltjük le, a Contents API-t csak a "sha" mezőért
-  // hívjuk (ez a mező MÉRETTŐL FÜGGETLENÜL mindig szerepel a válaszban) -
-  // ez a "sha" kell a PUT-hoz, hogy a GitHub tudja, melyik verziót
-  // frissítjük (ütközés-védelem).
-  // Ütközés (HTTP 409) utáni várakozási idő egy adott próbálkozás-
-  // sorszámhoz - EXPONENCIÁLISAN növekvő (nem csak egy fix, kis
-  // véletlenszerű tartomány), mert egy teljes Action-futás (több
-  // postafiók IMAP-ja + Díjnet/Vízművek portál + Drive-feltöltés +
-  // NAV-lekérdezés) akár fél-egy percig is eltarthat, mire a VÉGÉN
-  // commitol - egy pár másodperces, fix retry-ablak könnyen kevés ehhez.
-  // ~8 másodpercre sapkázva próbálkozásonként, hogy egyetlen várakozás
-  // se nyúljon el ésszerűtlenül hosszúra, de a próbálkozások ÖSSZESEN
-  // (ld. a hívóknál megemelt "probalkozasok" számot) akár 1-2 percig is
-  // kitartsanak egy hosszú, épp futó Action mellett.
-  function _utkozesVarakozasMs(probalkozasSorszam) {
-    const alap = Math.min(8000, 500 * Math.pow(1.8, probalkozasSorszam));
-    return alap + Math.random() * alap * 0.5;
+  // ════════════════════════════════════════════
+  //  🗄️  ADATBÁZIS API (api.php) - a MySQL-alapú tárolás kliense
+  // ════════════════════════════════════════════
+  // Ez váltja le a korábbi, GitHub Contents API-n keresztüli, titkosított-
+  // fájl-alapú mentést. MINDEN kérés egy POST az api.php-hoz, a titkos
+  // API-kulccsal (ld. aktualisApiKulcs fent, és szamlak/mysql/
+  // api_config.example.php a szerver oldali telepítéshez).
+  async function apiHivas(action, parameterek) {
+    if (!aktualisApiKulcs) {
+      throw new Error("Nincs megadva API-kulcs - nyisd meg újra a dashboardot a bejelentkező képernyőn.");
+    }
+    const torzs = Object.assign({ action, api_kulcs: aktualisApiKulcs }, parameterek || {});
+    let resp;
+    try {
+      resp = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(torzs),
+      });
+    } catch (e) {
+      throw new Error("Nem sikerült elérni az adatbázis API-t (" + API_URL + "): " + e.message);
+    }
+    let valasz;
+    try {
+      valasz = await resp.json();
+    } catch (e) {
+      throw new Error("Az adatbázis API nem JSON választ adott (HTTP " + resp.status + ") - ellenőrizd az API_URL-t.");
+    }
+    if (!resp.ok || !valasz.ok) {
+      throw new Error("Az adatbázis API hibát adott '" + action + "' műveletre: " + (valasz.hiba || ("HTTP " + resp.status)));
+    }
+    return valasz;
   }
 
-  async function ghAllapotSha(pat) {
-    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}?ref=${GH_BRANCH}`;
-    const resp = await fetch(url, { headers: ghFejlecek(pat) });
-    if (!resp.ok) throw new Error("Az állapotfájl sha-jának lekérdezése sikertelen (HTTP " + resp.status + ")");
-    const meta = await resp.json();
-    return meta.sha;
+  // A teljes állapot letöltése - a visszaadott alak SZÁNDÉKOSAN megegyezik
+  // a korábbi, titkosított fájlból visszafejtett "adat" objektum alakjával
+  // (szamlak/ceges_szamlak/tovabbi_postafiokok + az összes egyéb mező
+  // (szamla_kor_felulbiralas, nav_csak_navban, stb.) egyenesen a gyökéren) -
+  // ezért a hívó kód (a modositoFn-ek, betoltesJelszoval, stb.) NEM
+  // változott, csak az adatforrás.
+  async function apiTeljesAllapotLekerese() {
+    const valasz = await apiHivas("get_all");
+    const adat = Object.assign({}, valasz.meta || {});
+    adat.szamlak = valasz.szamlak || {};
+    adat.ceges_szamlak = valasz.ceges_szamlak || {};
+    adat.tovabbi_postafiokok = valasz.tovabbi_postafiokok || {};
+    return adat;
   }
 
-  async function allapotFrissFrissFeltoltese(jelszo) {
-    const resp = await fetch(ADAT_URL, { cache: "no-store" });
-    if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
-    const csomag = await resp.json();
-    const adat = await visszafejtes(csomag, jelszo);
-    return { adat, iterations: csomag.iterations };
+  const _ALLAPOT_KULON_KEZELT_KULCSOK = new Set(["szamlak", "ceges_szamlak", "tovabbi_postafiokok", "pdf_adatok"]);
+
+  // Az eredeti (betöltéskori) és a modositoFn által módosított "adat"
+  // összehasonlításából felépíti a batch-hívás művelet-listáját - ld. a
+  // Python-oldali adatbazis_allapot_mentese() TÖKÉLETES tükörképe (ugyanaz
+  // a diff-elv), csak itt szinkron JS objektumokon.
+  function _allapotDiffMuveletek(eredeti, uj) {
+    const muveletek = [];
+    for (const kollekcio of ["szamlak", "ceges_szamlak", "tovabbi_postafiokok"]) {
+      const regi = eredeti[kollekcio] || {};
+      const friss = uj[kollekcio] || {};
+      for (const rid of Object.keys(friss)) {
+        if (JSON.stringify(regi[rid]) !== JSON.stringify(friss[rid])) {
+          muveletek.push({ action: "upsert_record", collection: kollekcio, id: rid, adat: friss[rid] });
+        }
+      }
+      for (const rid of Object.keys(regi)) {
+        if (!(rid in friss)) muveletek.push({ action: "delete_record", collection: kollekcio, id: rid });
+      }
+    }
+    for (const kulcs of Object.keys(uj)) {
+      if (_ALLAPOT_KULON_KEZELT_KULCSOK.has(kulcs)) continue;
+      if (JSON.stringify(eredeti[kulcs]) !== JSON.stringify(uj[kulcs])) {
+        muveletek.push({ action: "set_meta", kulcs, ertek: uj[kulcs] === undefined ? null : uj[kulcs] });
+      }
+    }
+    return muveletek;
   }
 
   // modositoFn(adat) - szinkron függvény, ami MÓDOSÍTJA (mutálja) a frissen
-  // letöltött+visszafejtett "adat" objektumot a kívánt módon (pl. beállítja
-  // a kibocsato_csoportok/vizmuvek_kor/kor_nevek mezőket, vagy adott
-  // rekordokon az ertesites_szukseges jelzőt). A függvény visszatér a
-  // mentés utáni, teljes friss "adat"-tal, hogy a hívó ez alapján tudja
-  // frissíteni a képernyőt.
-  // ÚTKÖZÉS-ÚJRAPRÓBÁLKOZÁS: a script 20 percenként fut ütemezve (és minden
-  // futás végén, ha változott valami, commitol egy friss állapotfájlt) -
-  // ha épp akkor mentesz a dashboardon, amikor egy Action-futás dolgozik
-  // (ami - több postafiók IMAP-ja + Díjnet/Vízművek portál + Drive-
-  // feltöltés + NAV-lekérdezés miatt - akár fél-egy percig is tarthat,
-  // mire a VÉGÉN commitol), a fent lekérdezett "sha" mire a PUT
-  // megérkezik, már elavult lehet, és a GitHub HTTP 409-cel ("...does not
-  // match <sha>") utasítja el a kérést. Ez NEM hiba a kódban, hanem
-  // pontosan az ütközés-védelem működik (nem hagyja, hogy véletlenül
-  // felülírjunk egy közben mentett, frissebb állapotot) - a helyes válasz
-  // rá az, hogy ÚJRA letöltjük a friss állapotot, ÚJRA alkalmazzuk a
-  // módosítást (a modositoFn-ek szándékosan idempotensek - egy értéket
-  // BEÁLLÍTANAK, nem pl. egyesével növelnek -, ezért ez biztonságosan
-  // megismételhető), és újra próbáljuk menteni - EXPONENCIÁLISAN növekvő
-  // várakozással (ld. _utkozesVarakozasMs() fent), hogy egy hosszú,
-  // épp futó Action-t is jó eséllyel kivárjunk. Néhány próbálkozás után
-  // (nem a végtelenségig) feladjuk, hogy ne fagyjon be a gomb, ha valami
-  // tartósan (nem csak egy pillanatnyi ütközés miatt) hibázik.
-  async function allapotFrissitesEsMentese(pat, jelszo, modositoFn, probalkozasok) {
-    probalkozasok = probalkozasok || 10;
-    let utolsoHiba = null;
-    for (let i = 0; i < probalkozasok; i++) {
-      if (i > 0) {
-        // Rövid, véletlenszerű várakozás két próbálkozás között - ha két
-        // dashboard-mentés (vagy a dashboard és egy épp futó Action)
-        // pont egyszerre ütközne, ne essenek ugyanabba a ritmusba.
-        await new Promise(r => setTimeout(r, _utkozesVarakozasMs(i)));
-      }
-      try {
-        const { adat, iterations } = await allapotFrissFrissFeltoltese(jelszo);
-        modositoFn(adat);
-        const ujCsomag = await titkositas(adat, jelszo, iterations);
-        const sha = await ghAllapotSha(pat);
-        const body = {
-          message: "Bérlői körök / számla-elrejtés frissítve a dashboardról",
-          content: utf8ToB64(JSON.stringify(ujCsomag, null, 2)),
-          branch: GH_BRANCH,
-          sha,
-        };
-        const resp = await fetch(
-          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
-          { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
-        );
-        if (!resp.ok) {
-          const szoveg = await resp.text().catch(() => "");
-          if (resp.status === 409) {
-            // Pont ez az ütközés-eset - próbáljuk újra a ciklus elejétől
-            // (friss letöltéssel), ne dobjunk hibát azonnal.
-            utolsoHiba = new Error("Ütközés (HTTP 409) - valaki/valami (valószínűleg egy Action-futás) közben mentett - újrapróbálkozás...");
-            continue;
-          }
-          throw new Error("Mentés sikertelen (HTTP " + resp.status + "): " + szoveg.slice(0, 200));
-        }
-        return adat;
-      } catch (e) {
-        utolsoHiba = e;
-        if (!/409/.test(e.message || "")) throw e; // nem ütközés-jellegű hiba - ne próbálkozzunk tovább feleslegesen
-      }
+  // letöltött "adat" objektumot a kívánt módon (pl. beállítja a
+  // kibocsato_csoportok/vizmuvek_kor/kor_nevek mezőket, vagy egy rekordon a
+  // szamla_kor_felulbiralas-t). A függvény visszaadja a mentés utáni,
+  // teljes friss "adat"-ot, hogy a hívó ez alapján tudja frissíteni a
+  // képernyőt - ugyanaz a szerződés, mint korábban, csak a mentés most EGY
+  // MySQL-tranzakción belüli "batch" hívás, nem egy GitHub-commit: nincs
+  // többé sha-ütközés/retry-ciklus, mert nincs a hálózaton át "kikölcsönzött"
+  // írás-ablak (ld. az "ADATBÁZIS API" szekció elején/a Python-oldalon
+  // lévő részletes indoklást).
+  async function allapotFrissitesEsMentese(modositoFn) {
+    const adat = await apiTeljesAllapotLekerese();
+    const eredeti = JSON.parse(JSON.stringify(adat));
+    modositoFn(adat);
+    const muveletek = _allapotDiffMuveletek(eredeti, adat);
+    if (muveletek.length) {
+      await apiHivas("batch", { muveletek });
     }
-    throw new Error(
-      (probalkozasok) + " próbálkozás után is ütközött a mentés - valószínűleg túl gyakran fut egyszerre az Action. " +
-      "Próbáld meg pár másodperc múlva újra. (" + (utolsoHiba ? utolsoHiba.message : "") + ")"
-    );
+    // A PDF-ek külön táblában vannak (ld. api.php) - a modositoFn-ek nem
+    // nyúlnak hozzájuk, ezért a már memóriában lévő pdfTar-t egyszerűen
+    // visszatesszük ide, hogy a "friss.pdf_adatok"-ra hivatkozó hívók (ld.
+    // korFelulbiralasMentese) továbbra is működjenek, extra API-hívás
+    // nélkül.
+    adat.pdf_adatok = pdfTar;
+    return adat;
   }
-
-  // ── "felhasznaloi_csomag" mentése/törlése ("Felhasználói jelszó" panel) ──
-  // Ez a mentés SOSEM nyúl a nagy, titkosított "adat" blokkhoz (nem is kell
-  // hozzá dekódolni azt) - csak a KÜLSŐ JSON objektum "felhasznaloi_csomag"
-  // mellék-mezőjét írja/veszi ki, a verzio/kdf/iterations/salt/nonce/adat/
-  // frissitve mezőket ÉRINTETLENÜL hagyva (ld. a fájl elején lévő
-  // "felhasznaloi_csomag" komment). Ugyanazt a "mindig FRISSEN letöltött
-  // állapotra épülő + 409-ütközésnél újrapróbálkozó" mintát követi, mint az
-  // allapotFrissitesEsMentese() fent (ghAllapotSha + PUT + retry) - itt nem
-  // a Contents API "content" mezőjéből, hanem (a nagy fájl miatt, ld. az
-  // ghAllapotSha() feletti komment) a publikus ADAT_URL-ről olvassuk a
-  // friss JSON-t, a "sha"-t pedig külön kérjük le a PUT-hoz.
-  async function felhasznaloiCsomagFrissitesEsMentese(pat, ujFelhasznaloiCsomagVagyNull, probalkozasok) {
-    probalkozasok = probalkozasok || 10;
-    let utolsoHiba = null;
-    for (let i = 0; i < probalkozasok; i++) {
-      if (i > 0) {
-        await new Promise(r => setTimeout(r, _utkozesVarakozasMs(i)));
-      }
-      try {
-        const resp = await fetch(ADAT_URL, { cache: "no-store" });
-        if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
-        const csomag = await resp.json();
-        if (ujFelhasznaloiCsomagVagyNull) {
-          csomag.felhasznaloi_csomag = ujFelhasznaloiCsomagVagyNull;
-        } else {
-          delete csomag.felhasznaloi_csomag; // "Felhasználói jelszó törlése" - visszavonja a hozzáférést
-        }
-        const sha = await ghAllapotSha(pat);
-        const body = {
-          message: "Felhasználói jelszó frissítve a dashboardról",
-          content: utf8ToB64(JSON.stringify(csomag, null, 2)),
-          branch: GH_BRANCH,
-          sha,
-        };
-        const resp2 = await fetch(
-          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
-          { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
-        );
-        if (!resp2.ok) {
-          const szoveg = await resp2.text().catch(() => "");
-          if (resp2.status === 409) {
-            // Ugyanaz az ütközés-eset, mint allapotFrissitesEsMentese()-nél -
-            // valaki/valami (pl. egy Action-futás) közben mentett, próbáljuk
-            // újra a ciklus elejétől, friss letöltéssel.
-            utolsoHiba = new Error("Ütközés (HTTP 409) - valaki/valami közben mentett - újrapróbálkozás...");
-            continue;
-          }
-          throw new Error("Mentés sikertelen (HTTP " + resp2.status + "): " + szoveg.slice(0, 200));
-        }
-        return;
-      } catch (e) {
-        utolsoHiba = e;
-        if (!/409/.test(e.message || "")) throw e;
-      }
-    }
-    throw new Error(
-      (probalkozasok) + " próbálkozás után is ütközött a mentés - próbáld meg pár másodperc múlva újra. (" + (utolsoHiba ? utolsoHiba.message : "") + ")"
-    );
-  }
-
-  document.getElementById("fj-mentes-gomb").addEventListener("click", async () => {
-    const gomb = document.getElementById("fj-mentes-gomb");
-    const pat = aktualisPat();
-    const ujFelhasznaloiJelszo = document.getElementById("fj-jelszo-input").value;
-    if (!pat) { beStatuszMutat("fj-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return; }
-    if (!aktualisJelszo) { beStatuszMutat("fj-statusz", "Előbb nyisd meg a dashboardot a (admin) jelszavaddal.", "hiba"); return; }
-    if (!ujFelhasznaloiJelszo || ujFelhasznaloiJelszo.length < 4) { beStatuszMutat("fj-statusz", "Adj meg egy legalább 4 karakteres felhasználói jelszót.", "hiba"); return; }
-    patMentese();
-    gomb.disabled = true;
-    beStatuszMutat("fj-statusz", "Mentés...", "");
-    try {
-      // "aktualisJelszo" mindig a VALÓDI admin-jelszó (akkor is, ha a
-      // mostani megnyitás egy korábbi felhasznaloi_csomag-on keresztül,
-      // egy user-jelszóval történt - ld. betoltesJelszoval) - ezt
-      // csomagoljuk be az ÚJ felhasználói jelszóval, hogy a user-jelszó
-      // mindig a jelenleg érvényes admin-jelszót tudja kicsomagolni.
-      const ujCsomag = await felhasznaloiCsomagTitkositasa(aktualisJelszo, ujFelhasznaloiJelszo);
-      await felhasznaloiCsomagFrissitesEsMentese(pat, ujCsomag);
-      beStatuszMutat("fj-statusz", "✅ Felhasználói jelszó elmentve.", "siker");
-      document.getElementById("fj-jelszo-input").value = "";
-    } catch (e) {
-      beStatuszMutat("fj-statusz", "❌ " + e.message, "hiba");
-    } finally {
-      gomb.disabled = false;
-    }
-  });
-
-  document.getElementById("fj-torles-gomb").addEventListener("click", async () => {
-    const gomb = document.getElementById("fj-torles-gomb");
-    const pat = aktualisPat();
-    if (!pat) { beStatuszMutat("fj-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a törléshez.", "hiba"); return; }
-    if (!window.confirm("Biztosan törlöd a felhasználói jelszót? Aki eddig ezzel nyitotta meg a dashboardot, többé nem fog tudni bejelentkezni.")) return;
-    patMentese();
-    gomb.disabled = true;
-    beStatuszMutat("fj-statusz", "Törlés...", "");
-    try {
-      await felhasznaloiCsomagFrissitesEsMentese(pat, null);
-      beStatuszMutat("fj-statusz", "✅ Felhasználói jelszó törölve.", "siker");
-    } catch (e) {
-      beStatuszMutat("fj-statusz", "❌ " + e.message, "hiba");
-    } finally {
-      gomb.disabled = false;
-    }
-  });
-
-  // ── Admin jelszó módosítása ("🔐 Admin jelszó módosítása" panel) ──
-  // A régi jelszót SOSEM kérjük vissza beírásra - az "aktualisJelszo"
-  // változó (ld. betoltesJelszoval) mindig a helyes, épp aktív admin-
-  // jelszót tartalmazza, hiszen csak azzal lehetett idáig eljutni
-  // (a panel maga is admin-csak, ld. CSS "szerepkor-user" szabály). A
-  // teljes "adat" blokkot visszafejtjük a régivel, majd újratitkosítjuk
-  // az újjal - ugyanazzal a "mindig FRISSEN letöltött állapotra épülő +
-  // 409-ütközésnél újrapróbálkozó" mintával, mint a többi mentés-
-  // függvény fent, EGYETLEN commitba összefogva a fő adatblokkot ÉS
-  // (ha van) a "felhasznaloi_csomag" újracsomagolását is - két külön
-  // mentés esetén ugyanis egy közbeeső hiba/ütközés inkonzisztens
-  // állapotot hagyhatna hátra (pl. az adat már az új jelszóval, a
-  // felhasznaloi_csomag még a régivel).
-  async function adminJelszoModositasaEsMentese(pat, regiJelszo, ujJelszo, jelenlegiFelhasznaloiJelszo, probalkozasok) {
-    probalkozasok = probalkozasok || 10;
-    let utolsoHiba = null;
-    for (let i = 0; i < probalkozasok; i++) {
-      if (i > 0) {
-        await new Promise(r => setTimeout(r, _utkozesVarakozasMs(i)));
-      }
-      try {
-        const resp = await fetch(ADAT_URL, { cache: "no-store" });
-        if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
-        const csomag = await resp.json();
-
-        // Ha ez a régi jelszóval nem sikerül, valami komolyabb baj van
-        // (pl. közben már más jelszóra váltott valaki más admin-fülben) -
-        // ilyenkor NEM próbálkozunk újra, azonnal hibát dobunk.
-        const adat = await visszafejtes(csomag, regiJelszo);
-
-        // A "felhasznaloi_csomag" (ha van) a RÉGI admin-jelszót csomagolja
-        // be a felhasználói jelszóval - ha a felhasználó megadta a
-        // jelenlegi felhasználói jelszót, ellenőrizzük (a régi admin-
-        // jelszót kell visszaadnia) és újracsomagoljuk az ÚJ admin-
-        // jelszóval, hogy a felhasználói jelszó módosítás nélkül tovább
-        // működjön. Ha nem adta meg (pedig van beállítva felhasznaloi_
-        // csomag), azt VÁLTOZATLANUL hagyjuk (nem töröljük) - ilyenkor a
-        // hívó felelőssége jelezni, hogy az elavult, és újra be kell
-        // állítani a "Felhasználói jelszó" panelben.
-        let ujFelhasznaloiCsomag; // undefined = "hagyd békén, ne nyúlj hozzá"
-        if (csomag.felhasznaloi_csomag && jelenlegiFelhasznaloiJelszo) {
-          const kibontottRegiAdminJelszo = await felhasznaloiCsomagVisszafejtese(csomag.felhasznaloi_csomag, jelenlegiFelhasznaloiJelszo);
-          if (kibontottRegiAdminJelszo !== regiJelszo) {
-            throw new Error("A megadott jelenlegi felhasználói jelszó nem egyezik a beállítottal - admin jelszó módosítása megszakítva, semmi nem változott.");
-          }
-          ujFelhasznaloiCsomag = await felhasznaloiCsomagTitkositasa(ujJelszo, jelenlegiFelhasznaloiJelszo);
-        }
-
-        const ujCsomag = await titkositas(adat, ujJelszo, csomag.iterations);
-        if (csomag.felhasznaloi_csomag) {
-          ujCsomag.felhasznaloi_csomag = (ujFelhasznaloiCsomag !== undefined) ? ujFelhasznaloiCsomag : csomag.felhasznaloi_csomag;
-        }
-
-        const sha = await ghAllapotSha(pat);
-        const body = {
-          message: "Admin jelszó módosítva a dashboardról",
-          content: utf8ToB64(JSON.stringify(ujCsomag, null, 2)),
-          branch: GH_BRANCH,
-          sha,
-        };
-        const resp2 = await fetch(
-          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_ALLAPOT_PATH}`,
-          { method: "PUT", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify(body) }
-        );
-        if (!resp2.ok) {
-          const szoveg = await resp2.text().catch(() => "");
-          if (resp2.status === 409) {
-            utolsoHiba = new Error("Ütközés (HTTP 409) - valaki/valami közben mentett - újrapróbálkozás...");
-            continue;
-          }
-          throw new Error("Mentés sikertelen (HTTP " + resp2.status + "): " + szoveg.slice(0, 200));
-        }
-        return { volt_felhasznaloi_csomag: !!csomag.felhasznaloi_csomag, felhasznaloi_csomag_ujracsomagolva: ujFelhasznaloiCsomag !== undefined };
-      } catch (e) {
-        utolsoHiba = e;
-        if (!/409/.test(e.message || "")) throw e;
-      }
-    }
-    throw new Error(
-      (probalkozasok) + " próbálkozás után is ütközött a mentés - próbáld meg pár másodperc múlva újra. (" + (utolsoHiba ? utolsoHiba.message : "") + ")"
-    );
-  }
-
-  document.getElementById("aj-mentes-gomb").addEventListener("click", async () => {
-    const gomb = document.getElementById("aj-mentes-gomb");
-    const pat = aktualisPat();
-    const ujJelszo = document.getElementById("aj-uj-jelszo-input").value;
-    const megerosites = document.getElementById("aj-megerosites-input").value;
-    const jelenlegiFelhasznaloiJelszo = document.getElementById("aj-felhasznaloi-jelszo-input").value;
-    if (!pat) { beStatuszMutat("aj-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return; }
-    if (!aktualisJelszo) { beStatuszMutat("aj-statusz", "Előbb nyisd meg a dashboardot a jelenlegi admin jelszavaddal.", "hiba"); return; }
-    if (!ujJelszo || ujJelszo.length < 8) { beStatuszMutat("aj-statusz", "Adj meg egy legalább 8 karakteres új admin jelszót.", "hiba"); return; }
-    if (ujJelszo !== megerosites) { beStatuszMutat("aj-statusz", "A két jelszó-mező nem egyezik.", "hiba"); return; }
-    if (!window.confirm("Biztosan módosítod az admin jelszót? Ne feledd: utána a GitHub repo SZAMLA_TITKOSITAS_JELSZO Secretjét is frissítened kell ugyanerre, különben az Action nem fog tudni visszafejteni az adatot.")) return;
-    patMentese();
-    gomb.disabled = true;
-    beStatuszMutat("aj-statusz", "Mentés...", "");
-    try {
-      const eredmeny = await adminJelszoModositasaEsMentese(pat, aktualisJelszo, ujJelszo, jelenlegiFelhasznaloiJelszo || null);
-      // A most aktív session-t is átállítjuk az új jelszóra, hogy a
-      // további (admin-csak) mentések ugyanebben a fülben zökkenőmentesen
-      // működjenek tovább, és egy F5 után is az új jelszó töltődjön
-      // vissza (ld. a session-tárolós "kényelmi funkció" a fájl végén).
-      aktualisJelszo = ujJelszo;
-      try { sessionStorage.setItem("szamla_jelszo", ujJelszo); } catch (e) { /* ignorálható */ }
-      document.getElementById("aj-uj-jelszo-input").value = "";
-      document.getElementById("aj-megerosites-input").value = "";
-      document.getElementById("aj-felhasznaloi-jelszo-input").value = "";
-      let uzenet = "✅ Admin jelszó módosítva. NE FELEDD: a GitHub repo SZAMLA_TITKOSITAS_JELSZO Secretjét is írd át erre az új jelszóra.";
-      if (eredmeny.volt_felhasznaloi_csomag && !eredmeny.felhasznaloi_csomag_ujracsomagolva) {
-        uzenet += " Figyelem: van beállított felhasználói (korlátozott) jelszó, de ez most NEM lett újracsomagolva (nem adtad meg) - az addig működött felhasználói jelszó mostantól NEM fog bejelentkezni, amíg a 'Felhasználói jelszó' panelben újra be nem állítod.";
-      }
-      beStatuszMutat("aj-statusz", uzenet, "siker");
-    } catch (e) {
-      beStatuszMutat("aj-statusz", "❌ " + e.message, "hiba");
-    } finally {
-      gomb.disabled = false;
-    }
-  });
 
   function aktualisPat() {
     return document.getElementById("gh-pat-input").value.trim();
@@ -2083,7 +1674,7 @@
   }
 
   // A panel TELJES állapotát (kör-nevek, Vízművek-kör, kibocsátó-listák)
-  // felépíti egy frissen betöltött+visszafejtett "adat" alapján - ez a még
+  // felépíti egy frissen az adatbázisból betöltött "adat" alapján - ez a még
   // el nem mentett szerkesztéseket (korValasztasok) is felülírja, ezért
   // ezt csak panel-nyitáskor és sikeres mentés UTÁN hívjuk, nem minden
   // kattintásnál (ld. korokListakRenderelese() fent, ami nem ír felül).
@@ -2116,7 +1707,7 @@
   }
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznaloi-jelszo-toggle", "felhasznaloi-jelszo-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -2132,16 +1723,17 @@
   });
 
   // A Beállítások panel megnyitásakor (első alkalommal utána mindig,
-  // hiszen a GitHub-on lévő állapot időközben máshonnan is változhatott)
-  // frissen betöltjük az aktuális mentett értékeket.
+  // hiszen az adatbázisban lévő állapot időközben máshonnan is
+  // változhatott) frissen betöltjük az aktuális mentett értékeket.
   document.getElementById("beallitasok-toggle").addEventListener("click", async () => {
+    if (!aktualisApiKulcs) return; // a panel csak az API-kulcsos megnyitás UTÁN érhető el ténylegesen
     beStatuszMutat("be-statusz", "Betöltés...", "");
     try {
-      const { ertekek } = await ghBeallitasokBetoltese(aktualisPat());
+      const { meta: ertekek } = await apiHivas("get_meta");
       // email_kikapcsolva === false az EGYETLEN eset, amikor a küldés
       // ténylegesen engedélyezve van - minden más (hiányzó mező, true) a
       // biztonságos, "nincs email" alapállapotot jelenti (ld. Python-oldal
-      // beallitasok_betoltese()).
+      // beallitasok_kinyerese()).
       document.getElementById("be-email-engedelyezve").checked = ertekek.email_kikapcsolva === false;
       document.getElementById("be-napok-elotte").value = ertekek.emlekezteto_napok_elotte ?? "";
       document.getElementById("be-honap-nap").value = ertekek.osszesito_honap_nap ?? "";
@@ -2158,16 +1750,15 @@
   }, { once: true }); // csak első nyitáskor töltjük be automatikusan - utána a mentés-gomb úgyis mindig frisset olvas
 
   // A "Bérlői körök" panel megnyitásakor (első alkalommal) frissen
-  // letöltjük+visszafejtjük a NAGY állapotfájlt (nem a lapbetöltéskori
-  // "legutobbiAdat"-ot használjuk, ami időközben elavulhatott) - ehhez már
-  // nem kell a GitHub token, csak a jelszó (a fájl a publikus Pages
-  // URL-ről jön). A "kor-mentes-gomb" mentéskor úgyis mindig saját maga
-  // tölt be egy újabb, még frissebb másolatot (ld. allapotFrissitesEsMentese).
+  // letöltjük az állapotot az adatbázisból (nem a lapbetöltéskori
+  // "legutobbiAdat"-ot használjuk, ami időközben elavulhatott). A
+  // "kor-mentes-gomb" mentéskor úgyis mindig saját maga tölt be egy
+  // újabb, még frissebb másolatot (ld. allapotFrissitesEsMentese).
   document.getElementById("korok-toggle").addEventListener("click", async () => {
-    if (!aktualisJelszo) return; // a panel csak a jelszavas megnyitás UTÁN érhető el ténylegesen
+    if (!aktualisApiKulcs) return; // a panel csak az API-kulcsos megnyitás UTÁN érhető el ténylegesen
     beStatuszMutat("kor-statusz", "Betöltés...", "");
     try {
-      const { adat } = await allapotFrissFrissFeltoltese(aktualisJelszo);
+      const adat = await apiTeljesAllapotLekerese();
       korokListakEpitese(adat);
       beStatuszMutat("kor-statusz", "", "");
     } catch (e) {
@@ -2177,10 +1768,7 @@
 
   document.getElementById("kor-mentes-gomb").addEventListener("click", async () => {
     const gomb = document.getElementById("kor-mentes-gomb");
-    const pat = aktualisPat();
-    if (!pat) { beStatuszMutat("kor-statusz", "Add meg a GitHub tokent (fent) a mentéshez.", "hiba"); return; }
-    if (!aktualisJelszo) { beStatuszMutat("kor-statusz", "Előbb nyisd meg a dashboardot a jelszavaddal.", "hiba"); return; }
-    patMentese();
+    if (!aktualisApiKulcs) { beStatuszMutat("kor-statusz", "Előbb nyisd meg a dashboardot az API-kulccsal.", "hiba"); return; }
 
     const korANev = document.getElementById("kor-a-nev-input").value.trim() || null;
     const korBNev = document.getElementById("kor-b-nev-input").value.trim() || null;
@@ -2195,7 +1783,7 @@
     gomb.disabled = true;
     beStatuszMutat("kor-statusz", "Mentés...", "");
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         adat.kor_nevek = { kor_a: korANev, kor_b: korBNev };
 
         adat.vizmuvek_kor = ujVizmuvekKor;
@@ -2244,14 +1832,14 @@
   });
 
   // ── "Címzettek és azonnali küldés" panel (könyvelő/bérlő/tulajdonos) ──
-  // Első megnyitáskor frissen betöltjük+visszafejtjük a NAGY állapotfájlt
+  // Első megnyitáskor frissen betöltjük az állapotot az adatbázisból
   // (ugyanaz a minta, mint a "Bérlői körök" panelnél - ld. "korok-toggle"
   // fenti kommentjét), és feltöltjük a három email-lista textarea-t.
   document.getElementById("cimzettek-toggle").addEventListener("click", async () => {
-    if (!aktualisJelszo) return; // a panel csak a jelszavas megnyitás UTÁN érhető el ténylegesen
+    if (!aktualisApiKulcs) return; // a panel csak az API-kulcsos megnyitás UTÁN érhető el ténylegesen
     beStatuszMutat("cim-statusz", "Betöltés...", "");
     try {
-      const { adat } = await allapotFrissFrissFeltoltese(aktualisJelszo);
+      const adat = await apiTeljesAllapotLekerese();
       document.getElementById("cim-konyvelo-emailek").value = (adat.konyvelo_emailek || []).join("\n");
       document.getElementById("cim-kor-a-emailek").value = ((adat.kor_emailek && adat.kor_emailek.kor_a) || []).join("\n");
       document.getElementById("cim-kor-b-emailek").value = ((adat.kor_emailek && adat.kor_emailek.kor_b) || []).join("\n");
@@ -2274,10 +1862,7 @@
 
   document.getElementById("cim-mentes-gomb").addEventListener("click", async () => {
     const gomb = document.getElementById("cim-mentes-gomb");
-    const pat = aktualisPat();
-    if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return; }
-    if (!aktualisJelszo) { beStatuszMutat("cim-statusz", "Előbb nyisd meg a dashboardot a jelszavaddal.", "hiba"); return; }
-    patMentese();
+    if (!aktualisApiKulcs) { beStatuszMutat("cim-statusz", "Előbb nyisd meg a dashboardot az API-kulccsal.", "hiba"); return; }
 
     const ujKonyvelo = emailListaParszolasa("cim-konyvelo-emailek");
     const ujKorA = emailListaParszolasa("cim-kor-a-emailek");
@@ -2287,7 +1872,7 @@
     gomb.disabled = true;
     beStatuszMutat("cim-statusz", "Mentés...", "");
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         adat.kor_emailek = { kor_a: ujKorA, kor_b: ujKorB };
         adat.tulajdonos_emailek = ujTulajdonos;
         adat.konyvelo_emailek = ujKonyvelo;
@@ -2355,18 +1940,15 @@
   // ── Per-számla kör-felülbírálás (MOHU-probléma, ld. szamla_figyelo.py
   // "szamla_kor_felulbiralas" kommentje) ──────────────────────────────
   // Minden select-váltásnál AZONNAL, önállóan menti a felülbírálást -
-  // ugyanazt a "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" mintát
+  // ugyanazt a "frissen letölt+mutál+diff-alapú batch-mentés" mintát
   // követve, mint a "Bérlői körök" panel (ld. allapotFrissitesEsMentese())
   // - nem gyűjti pending állapotba, mert egy per-sor apró döntésnél ez
   // egyszerűbb/biztonságosabb, mint egy külön "mentsd az összes
   // felülbírálást" gombot fenntartani.
   async function korFelulbiralasMentese(id, ujErtek) {
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a kör-felülbírálás mentéséhez."); return false; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
-    patMentese();
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return false; }
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         adat.szamla_kor_felulbiralas = adat.szamla_kor_felulbiralas || {};
         if (ujErtek) {
           adat.szamla_kor_felulbiralas[id] = ujErtek;
@@ -2391,12 +1973,9 @@
   // minta, mint korFelulbiralasMentese() fent, csak egy másik mezőt
   // (adat.nav_szallito_emailek[adoszam]) módosít.
   async function navSzallitoEmailMentese(adoszam, ujEmail) {
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a szállító email-címének mentéséhez."); return false; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
-    patMentese();
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return false; }
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         adat.nav_szallito_emailek = adat.nav_szallito_emailek || {};
         if (ujEmail) {
           adat.nav_szallito_emailek[adoszam] = ujEmail;
@@ -2603,10 +2182,10 @@
 
   // ── "Új postafiók hozzáadása" panel - postafiók-bejegyzés hozzáadása/
   // szüneteltetése ──────────────────────────────────────────────────
-  // Ugyanaz a "frissen letölt+visszafejt+mutál+újra-titkosít+PUT" minta,
+  // Ugyanaz a "frissen letölt+mutál+diff-alapú batch-mentés" minta,
   // mint korFelulbiralasMentese()/navSzallitoEmailMentese() fent - a
-  // jelszó (és a host/user is) IDE, a nagy titkosított állapotfájlba
-  // kerül, NEM egy GitHub Secret-be és NEM egy workflow_dispatch-inputba
+  // jelszó (és a host/user is) IDE, az adatbázisba kerül, NEM egy GitHub
+  // Secret-be és NEM egy workflow_dispatch-inputba
   // (ami plain textben látszódna az Actions-előzményekben) - ld. a
   // fenti panel-info szövegét is.
   function postafiokAzonositoKeszitese() {
@@ -2615,14 +2194,11 @@
   }
 
   async function postafiokHozzaadasa(bejegyzes, statuszElemId) {
-    const pat = aktualisPat();
-    if (!pat) { beStatuszMutat(statuszElemId, "Add meg a GitHub tokent (fent, a Beállítások panelben) a mentéshez.", "hiba"); return false; }
-    if (!aktualisJelszo) { beStatuszMutat(statuszElemId, "Előbb nyisd meg a dashboardot a jelszavaddal.", "hiba"); return false; }
-    patMentese();
+    if (!aktualisApiKulcs) { beStatuszMutat(statuszElemId, "Előbb nyisd meg a dashboardot az API-kulccsal.", "hiba"); return false; }
     const id = postafiokAzonositoKeszitese();
     beStatuszMutat(statuszElemId, "Mentés...", "");
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         adat.tovabbi_postafiokok = adat.tovabbi_postafiokok || {};
         adat.tovabbi_postafiokok[id] = Object.assign({ aktiv: true, hozzaadva: new Date().toISOString() }, bejegyzes);
       });
@@ -2637,12 +2213,9 @@
   }
 
   async function tovabbiPostafiokAktivValtas(id) {
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a módosításhoz."); return false; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
-    patMentese();
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return false; }
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         adat.tovabbi_postafiokok = adat.tovabbi_postafiokok || {};
         const b = adat.tovabbi_postafiokok[id];
         if (b) b.aktiv = !(b.aktiv !== false);
@@ -2664,12 +2237,9 @@
   // fülre - itt a dashboardon nem kell (és nem is lehet, hisz Drive-
   // feltöltést igényel) semmi mást tenni ehhez.
   async function tovabbiPostafiokCelValtas(id, ujCel) {
-    const pat = aktualisPat();
-    if (!pat) { alert("Add meg a GitHub tokent (fent, a Beállítások panelben) a módosításhoz."); return false; }
-    if (!aktualisJelszo) { alert("Előbb nyisd meg a dashboardot a jelszavaddal."); return false; }
-    patMentese();
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return false; }
     try {
-      const friss = await allapotFrissitesEsMentese(pat, aktualisJelszo, (adat) => {
+      const friss = await allapotFrissitesEsMentese((adat) => {
         adat.tovabbi_postafiokok = adat.tovabbi_postafiokok || {};
         const b = adat.tovabbi_postafiokok[id];
         if (b) b.cel = ujCel === "ceges" ? "ceges" : "kozuzemi";
@@ -2736,9 +2306,7 @@
 
   document.getElementById("be-mentes-gomb").addEventListener("click", async () => {
     const gomb = document.getElementById("be-mentes-gomb");
-    const pat = aktualisPat();
-    if (!pat) { beStatuszMutat("be-statusz", "Add meg a GitHub tokent a mentéshez.", "hiba"); return; }
-    patMentese();
+    if (!aktualisApiKulcs) { beStatuszMutat("be-statusz", "Előbb nyisd meg a dashboardot az API-kulccsal.", "hiba"); return; }
 
     const napokNyers = document.getElementById("be-napok-elotte").value.trim();
     const honapNapNyers = document.getElementById("be-honap-nap").value.trim();
@@ -2760,11 +2328,13 @@
     gomb.disabled = true;
     beStatuszMutat("be-statusz", "Mentés...", "");
     try {
-      await ghBeallitasokMentese(pat, {
-        email_kikapcsolva: !document.getElementById("be-email-engedelyezve").checked,
-        emlekezteto_napok_elotte: napok,
-        osszesito_honap_nap: honapNap,
-        kivalasztott_szamlak: kivalasztottSzamlak,
+      await apiHivas("batch", {
+        muveletek: [
+          { action: "set_meta", kulcs: "email_kikapcsolva", ertek: !document.getElementById("be-email-engedelyezve").checked },
+          { action: "set_meta", kulcs: "emlekezteto_napok_elotte", ertek: napok },
+          { action: "set_meta", kulcs: "osszesito_honap_nap", ertek: honapNap },
+          { action: "set_meta", kulcs: "kivalasztott_szamlak", ertek: kivalasztottSzamlak },
+        ],
       });
       beStatuszMutat("be-statusz", "✅ Beállítások elmentve.", "siker");
     } catch (e) {
@@ -2803,79 +2373,39 @@
     if (mentettPat) document.getElementById("gh-pat-input").value = mentettPat;
   } catch (e) { /* ignorálható */ }
 
-  async function betoltesJelszoval(beirtJelszo) {
+  // A bejelentkezés mostantól nem jelszó-visszafejtés, csak egyszerűen az
+  // API-kulcsot próbáljuk ki egy get_all hívással - ha az api.php elfogadja
+  // (helyes kulcs), megjön az adat, ha nem, 401-et kapunk (ld. apiHivas()).
+  async function bejelentkezes(beirtApiKulcs, korlatozottNezet) {
     const hibaEl = document.getElementById("jelszo-hiba");
     hibaEl.textContent = "";
+    aktualisApiKulcs = beirtApiKulcs;
     try {
-      const resp = await fetch(ADAT_URL, { cache: "no-store" });
-      if (!resp.ok) throw new Error("Az adatfájl nem érhető el (" + resp.status + ")");
-      const csomag = await resp.json();
+      const adat = await apiTeljesAllapotLekerese();
+      const pdfValasz = await apiHivas("get_all_pdfs");
 
-      // Két belépési ág van (ld. a "felhasznaloi_csomag" komment a fájl
-      // elején): 1) ha VAN felhasznaloi_csomag, előbb megpróbáljuk a
-      // beírt jelszót FELHASZNÁLÓI jelszóként kicsomagolni (ez adja vissza
-      // a VALÓDI admin-jelszót) - 2) ha ez nem sikerül (rossz jelszó, vagy
-      // nincs is felhasznaloi_csomag), visszaesünk a hagyományos ágra: a
-      // beírt jelszót közvetlenül próbáljuk a fő adatblokkon. A fő
-      // adatblokk visszafejtése MINDIG ugyanaz marad (ld. visszafejtes())
-      // - csak azt kell előtte kitalálni, MELYIK jelszóval próbálkozzunk.
-      let valodiJelszo = beirtJelszo;
-      let ujSzerepkor = "admin";
-      if (csomag.felhasznaloi_csomag) {
-        try {
-          valodiJelszo = await felhasznaloiCsomagVisszafejtese(csomag.felhasznaloi_csomag, beirtJelszo);
-          ujSzerepkor = "user";
-        } catch (e) {
-          // Nem a felhasználói jelszó volt - a hagyományos (admin) ágra
-          // esünk vissza, a beírt jelszóval próbálkozva lentebb.
-          valodiJelszo = beirtJelszo;
-          ujSzerepkor = "admin";
-        }
-      }
-      const adat = await visszafejtes(csomag, valodiJelszo);
-      szerepkor = ujSzerepkor;
+      // Nincs többé "melyik jelszó melyik szerepkört adja" trükk (ld. a
+      // fájl elején lévő komment) - a szerepkör egyszerűen a bejelentkező
+      // képernyő jelölőnégyzetétől függ, önállóan az API-kulcstól (mindenki
+      // ugyanazzal a kulccsal ugyanahhoz az adathoz fér hozzá - a
+      // "korlátozott nézet" KIZÁRÓLAG a felületet szűkíti, nem az adatot).
+      szerepkor = korlatozottNezet ? "user" : "admin";
       document.body.classList.toggle("szerepkor-user", szerepkor === "user");
 
-      // Object.values() elveszítené a kulcsokat (a számla egyedi
-      // azonosítóját) - a letöltés-gombhoz és a jövőbeli "kiválasztás az
-      // összesítőhöz" funkcióhoz is szükség van rá, ezért Object.entries()-
-      // szel minden rekordba visszatesszük "id" mezőként.
       legutobbiAdat = adat;
-      // FONTOS: mindig a VALÓDI admin-jelszót tartjuk memóriában (nem a
-      // beírtat) - "user" belépésnél ez a felhasznaloi_csomag-ból most
-      // kicsomagolt admin-jelszó, "admin" belépésnél maga a beírt jelszó
-      // (ilyenkor a kettő ugyanaz). Ez teszi lehetővé, hogy a további
-      // (admin-csak felületen elérhető) mentések ugyanúgy működjenek, mint
-      // eddig, akármelyik ágon jött is létre a sikeres megnyitás.
-      aktualisJelszo = valodiJelszo;
 
-      // FONTOS - ez a "törlés gombbal eltűnik, de frissítéskor visszajön"
-      // hiba javítása: a "helyilegTorolt" Set csak az AKTUÁLIS lapbetöltés
-      // (böngésző-fül) memóriájában él - egy F5/újratöltés után üres, tehát
-      // önmagában NEM elég a korábban "✕"-szel elrejtett számlák kiszűrésére.
-      // A TARTÓS jelölés a titkosítatlan beállítás-fájlban ("torolt_szamla_
-      // id_k", ld. torlesVegrehajtasa()/torlesVegrehajtasaCeges() fent) van
-      // - ezt viszont a Python-script csak a KÖVETKEZŐ futásakor törli
-      // tényleg a titkosított állapotból (max ~20 percen belül, ld. a
-      // GitHub Actions cron-ját). Eddig a lapbetöltés ezt a listát soha
-      // nem nézte meg, ezért egy törölt számla egy F5-re visszatérhetett,
-      // ha a script még nem futott le közben. Itt (nem-authentikált GET is
-      // működik, ha még nincs PAT megadva - a beállítás-fájl publikus repón
-      // van) lekérjük a listát, és MINDKÉT (Közüzemi + Céges) listát ez
-      // ellen is szűrjük, a helyilegTorolt-tal együtt.
-      let tartosanTorolt = new Set();
-      try {
-        const { ertekek } = await ghBeallitasokBetoltese(aktualisPat());
-        if (Array.isArray(ertekek.torolt_szamla_id_k)) tartosanTorolt = new Set(ertekek.torolt_szamla_id_k);
-      } catch (e) {
-        // Nem kritikus - ha ez sikertelen (pl. API rate-limit PAT nélkül),
-        // egyszerűen nem szűrünk vele (ugyanaz, mint a korábbi viselkedés).
-      }
+      // A "✕" gombbal véglegesen elrejtett számlák (ld. rekordTorlese())
+      // az adatbázisban is megvannak MÉG (a Python-purge csak a következő
+      // futáskor törli ténylegesen), ezért itt is, a "helyilegTorolt"
+      // (csak ebben a böngésző-fülben élő) Set-tel EGYÜTT kiszűrjük őket a
+      // "torolt_szamla_id_k" meta-lista alapján is - így egy F5/újratöltés
+      // után sem térnek vissza egy még le nem futott script-futásig.
+      const tartosanTorolt = new Set(Array.isArray(adat.torolt_szamla_id_k) ? adat.torolt_szamla_id_k : []);
 
       osszesSzamla = Object.entries(adat.szamlak || {})
         .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
         .map(([id, r]) => Object.assign({ id }, r));
-      pdfTar = adat.pdf_adatok || {};
+      pdfTar = pdfValasz.pdf_adatok || {};
       cegesSzamlak = Object.entries(adat.ceges_szamlak || {})
         .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
         .map(([id, r]) => Object.assign({ id }, r));
@@ -2898,33 +2428,36 @@
       szolgaltatoSzurokEpitese(osszesSzamla);
       mellekletekUjrarenderelese();
       szuresAlkalmazasa();
-      document.getElementById("frissitve").textContent =
-        "Frissítve: " + (csomag.frissitve ? new Date(csomag.frissitve).toLocaleString("hu-HU") : "ismeretlen");
+      document.getElementById("frissitve").textContent = "Frissítve: " + new Date().toLocaleString("hu-HU");
 
       document.getElementById("jelszo-kepernyo").style.display = "none";
       document.getElementById("tartalom").style.display = "block";
-      // Szándékosan a BEÍRT jelszót (nem a kicsomagolt admin-jelszót)
-      // gyorsítótárazzuk - így ha legközelebb (ugyanabban a fülben) ez
-      // automatikusan visszatöltődik, a szerepkör-meghatározás (fent) újra
-      // lefut rá, és helyesen "user"-t ad vissza egy user-jelszóra is.
-      try { sessionStorage.setItem("szamla_jelszo", beirtJelszo); } catch (e) { /* ignorálható */ }
+      try {
+        sessionStorage.setItem("szamla_api_kulcs", beirtApiKulcs);
+        sessionStorage.setItem("szamla_korlatozott_nezet", korlatozottNezet ? "1" : "0");
+      } catch (e) { /* ignorálható */ }
     } catch (e) {
-      hibaEl.textContent = "Hibás jelszó, vagy az adatfájl még nem létezik.";
+      aktualisApiKulcs = null;
+      hibaEl.textContent = "Hibás API-kulcs, vagy az adatbázis API nem érhető el (" + e.message + ").";
     }
   }
 
   document.getElementById("jelszo-gomb").addEventListener("click", () => {
-    betoltesJelszoval(document.getElementById("jelszo-input").value);
+    bejelentkezes(document.getElementById("jelszo-input").value.trim(), document.getElementById("jelszo-korlatozott").checked);
   });
   document.getElementById("jelszo-input").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") betoltesJelszoval(document.getElementById("jelszo-input").value);
+    if (e.key === "Enter") bejelentkezes(document.getElementById("jelszo-input").value.trim(), document.getElementById("jelszo-korlatozott").checked);
   });
 
   // Kényelmi funkció: ugyanabban a böngésző-fülben (session alatt) nem
-  // kell újra beírni a jelszót - de új fül/böngésző-indítás után igen.
+  // kell újra beírni az API-kulcsot - de új fül/böngésző-indítás után igen.
   try {
-    const mentettJelszo = sessionStorage.getItem("szamla_jelszo");
-    if (mentettJelszo) betoltesJelszoval(mentettJelszo);
+    const mentettKulcs = sessionStorage.getItem("szamla_api_kulcs");
+    if (mentettKulcs) {
+      const mentettNezet = sessionStorage.getItem("szamla_korlatozott_nezet") === "1";
+      document.getElementById("jelszo-korlatozott").checked = mentettNezet;
+      bejelentkezes(mentettKulcs, mentettNezet);
+    }
   } catch (e) { /* ignorálható */ }
 })();
 </script>
