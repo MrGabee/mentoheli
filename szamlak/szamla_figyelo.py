@@ -66,25 +66,25 @@ MŰKÖDÉS
 
 ADATVÉDELEM - EZ FONTOS
 ------------------------
-Ez a repó GitHub Pages-en fut, ami NYILVÁNOS URL - bárki eléri, aki
-ismeri a linket. Emiatt:
+A számla- és mérőállás-adatok NEM egy nyilvános GitHub-repóba
+commitolt fájlban, hanem egy MySQL adatbázisban élnek, a felhasználó
+SAJÁT webtárhelyén. Ehhez egy kis PHP API-n keresztül fér hozzá mind a
+Python háttérfolyamat (ez a script), mind a böngészőben futó dashboard
+(szamlak.html) - se a böngésző, se a GitHub Actions futó nem
+csatlakozik közvetlenül a MySQL-hez (ld. szamlak/mysql/api.php).
 
-  - A számla- és mérőállás-adatokat egy jelszóval AES-GCM-mel
-    TITKOSÍTOTT fájlba mentjük (szamlak/szamla_allapot.enc.json).
-    Titkosítás nélkül BÁRKI elolvashatná a lakcímedhez köthető
-    adataidat - ez nem kozmetikai "jelszó-képernyő", hanem valódi
-    titkosítás: a fájl tartalma értelmezhetetlen bájtkupac a jelszó
-    (SZAMLA_TITKOSITAS_JELSZO titok) ismerete nélkül.
-  - A PDF-számlák SOHA nem kerülnek be a git-repóba, és semmilyen
-    formában nem kerülnek tartós tárolásra. Egy adott futás során
-    csak átmenetileg, a memóriában léteznek, amíg az emailhez csatolva
-    kimennek - utána a futtató gép (GitHub Actions runner) megszűnik,
-    semmi nem marad utána. A határidő-előtti összesítőhöz a script
-    live, friss IMAP-lekérdezéssel tölti vissza az eredeti leveleket a
-    PDF-csatolmányért - nem egy korábban elmentett másolatból.
-  - A dashboard oldal (szamlak.html) is ugyanezt a titkosított fájlt
-    olvassa be, és a böngészőben, a Web Crypto API-val fejti vissza -
-    a jelszót te írod be minden megnyitáskor, sehol nincs elmentve.
+Ez a felhasználó KIFEJEZETT döntése alapján NINCS titkosítva - az
+adatokat kizárólag (a) a tárhely hozzáférés-védelme (FTP/cPanel
+jelszó), és (b) egy titkos API-kulcs védi, amit az API minden kérésnél
+megkövetel (ld. szamlak/mysql/api_config.example.php). Enélkül az
+api.php egyáltalán nem válaszol semmilyen kérésre.
+
+  - A PDF-számlák a "pdf_adatok" MySQL-táblában tárolódnak (bináris
+    oszlopban) - ugyanúgy csak a tárhely+API-kulcs védi őket, mint a
+    többi adatot.
+  - A dashboard oldal (szamlak.html) az API-kulcsot kéri be (a korábbi
+    GitHub token / titkosítási jelszó helyett) - ezt a böngésző menti
+    el (sessionStorage), sehol máshol nem tárolódik.
 
 Szükséges GitHub Secretek:
   SZAMLA_IMAP_HOST        (opcionális, alapértelmezett: imap.gmail.com)
@@ -94,8 +94,10 @@ Szükséges GitHub Secretek:
   EMAIL_KULDO_SZAMLA      (opcionális, ha nincs, az IMAP-fiók küld SMTP-n is)
   EMAIL_JELSZO_SZAMLA     (opcionális, ha nincs, az IMAP jelszót használja)
   EMAIL_CIMZETT_SZAMLA    ide mennek az értesítők
-  SZAMLA_TITKOSITAS_JELSZO  a titkosításhoz használt jelszó (Te találod ki -
-                            ugyanezt kell majd beírnod a dashboard oldalon is)
+  SZAMLA_API_URL          a feltöltött api.php teljes URL-je (pl.
+                          https://sajatdomain.hu/szamla/api.php)
+  SZAMLA_API_KULCS        az api_config.php-ban beállított titkos API-kulcs
+                          (ugyanezt kell majd beírni a dashboardon is)
   SZAMLA_DIJNET_USER      a dijnet.hu bejelentkezési felhasználóneved (opcionális -
                           ha kihagyod, a Díjnet-lekérdezés egyszerűen kimarad)
   SZAMLA_DIJNET_JELSZO    a dijnet.hu jelszavad (opcionális, ld. fent)
@@ -131,7 +133,7 @@ Szükséges GitHub Secretek:
 import os
 import re
 import io
-import json
+import copy
 import time
 import base64
 import hashlib
@@ -214,7 +216,10 @@ KOR_EMAIL_CIMEK = {
     "kor_b": os.environ.get("SZAMLA_KOR_B_EMAIL", "").strip(),
 }
 
-TITKOSITAS_JELSZO = os.environ.get("SZAMLA_TITKOSITAS_JELSZO", "")
+# A MySQL-alapú tároló PHP API-jának eléréséhez (ld. szamlak/mysql/api.php
+# és a fájl elején lévő "ADATVÉDELEM" szekciót).
+SZAMLA_API_URL = os.environ.get("SZAMLA_API_URL", "").strip()
+SZAMLA_API_KULCS = os.environ.get("SZAMLA_API_KULCS", "").strip()
 
 # Díjnet - közvetlen portál-bejelentkezéshez (nem email-alapú, ld. lentebb).
 # Ha ezt a kettőt nem állítod be, a Díjnet-lekérdezés egyszerűen kimarad,
@@ -476,17 +481,14 @@ SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK = os.environ.get("SZAMLA_NAV_EMLEKEZTETO_ADOSZA
 # gondoskodik arról, hogy egy hónapban CSAK EGYSZER menjen ki.
 KONYVELO_EMLEKEZTETO_UTOLSO_N_NAP = 3
 
-ALLAPOT_FAJL = "szamlak/szamla_allapot.enc.json"  # TITKOSÍTVA, ez kerül git-be
-
-# A dashboardon (szamlak.html) beállítható paraméterek fájlja - a
-# felhasználó a saját GitHub tokenjével közvetlenül a böngészőből írja
-# felül (ld. szamlak.html "Beállítások" panelje). SZÁNDÉKOSAN NEM
-# titkosított: csak számokat (napok száma, hónap napja) és a számlák
-# saját (amúgy is értelmezhetetlen, hash-alapú) belső azonosítóit
-# tartalmazza, ezekből nem olvasható ki személyes/pénzügyi adat - ezért
-# nem indokolt, hogy a Python-oldalnak a titkosítási jelszóra is
-# szüksége legyen csak ennek beolvasásához.
-BEALLITASOK_FAJL = "szamlak/szamla_beallitasok.json"
+# A korábbi "ALLAPOT_FAJL"/"BEALLITASOK_FAJL" (git-be commitolt JSON
+# fájlok) megszűntek - minden adat a MySQL adatbázisban van, az
+# api.php-n keresztül elérve (ld. adatbazis_allapot_betoltese() és
+# adatbazis_allapot_mentese() lentebb). A dashboardon (szamlak.html)
+# beállítható paraméterek (napok száma, hónap napja, törölt
+# számla-id-k) most a "meta_kulcs_ertek" táblában, saját sorokban
+# élnek - ugyanúgy egyetlen get_all hívással érhetők el, mint a
+# számlák, ld. beallitasok_kinyerese() lentebb.
 
 # ── Szolgáltatók - csak a feladó-domain -> megjelenítendő név társítás ──
 # A milyen FAJTA levél érkezett kérdést innentől NEM ez dönti el (ld. a
@@ -745,290 +747,249 @@ def tartalom_tipus_azonositas(targy: str, teljes_szoveg: str) -> str:
 
 
 # ════════════════════════════════════════════
-#  🔐  TITKOSÍTÁS (AES-GCM, jelszó-alapú, PBKDF2)
+#  🗄️  ADATBÁZIS (MySQL, egy PHP API-n keresztül)
 # ════════════════════════════════════════════
-# Az iterációszámot egy helyen tartjuk, ÉS bele is írjuk a titkosított
-# csomagba ("iterations" mező) - így ha egyszer erősítünk rajta (vagy
-# akár más KDF-re váltunk), a régebbi, kisebb iterációszámmal mentett
-# fájlok is visszafejthetők maradnak (a dashboard a fájlból olvassa ki
-# az akkor használt értéket, nem egy fixen beégetett számot).
-PBKDF2_ITERACIOSZAM = 200_000
+# A korábbi "titkosított JSON fájl a publikus GitHub repóba commitolva"
+# megoldást (AES-GCM + PBKDF2, ld. korábbi verziók git-történetét) a
+# felhasználó kifejezett kérésére egy MySQL adatbázis váltja le, a
+# felhasználó SAJÁT webtárhelyén. Sem ez a script (GitHub Actions
+# futóként), sem a böngészőben futó dashboard nem csatlakozik
+# KÖZVETLENÜL a MySQL-hez - mindkettő egy kis PHP API-t hív HTTP-n
+# (ld. szamlak/mysql/api.php), ami az EGYETLEN dolog, ami a DB-t
+# közvetlenül eléri.
+#
+# NINCS titkosítás (a felhasználó kifejezett döntése) - az adatokat
+# kizárólag (a) a tárhely hozzáférés-védelme (FTP/cPanel jelszó), és
+# (b) egy titkos API-kulcs védi (ld. SZAMLA_API_KULCS fent, és
+# szamlak/mysql/api_config.example.php) - enélkül az api.php
+# egyáltalán nem válaszol.
+#
+# MIÉRT EZ OLDJA MEG A KORÁBBI "409-ütközés/lassú mentés" PROBLÉMÁT:
+# a régi modellben MINDEN mentés (Python futás vége, VAGY a dashboard
+# egy mezőjének mentése) a TELJES állapot-fájlt töltötte le, fejtette
+# vissza, módosította, majd töltötte fel ÚJRA, egy git commit-tal - ha
+# ez a több lépéses, több másodperces művelet ÁTFEDETT egy másik
+# íróval, a GitHub Contents API 409-cel (sha-ütközés) elutasította az
+# egészet, és az egész ciklust újra kellett kezdeni. Egy MySQL-soron
+# végzett UPDATE ezzel szemben EGY, tranzakción belüli, ezredmásodperc
+# nagyságrendű művelet - nincs a hálózaton át "kikölcsönzött" write-
+# ablak, amiben egy másik kliens beleírhatna, ezért strukturálisan
+# nem is tud kialakulni ütközés. A dashboard mezőnkénti mentései
+# (ld. szamlak.html rekordFrissitese()) az "update_fields" action-t
+# hívják, ami egy SELECT ... FOR UPDATE + UPDATE-et végez EGY
+# tranzakcióban - ez pontosan azt a beolvasás+módosítás+írás lépést
+# teszi atomivá, ami korábban a hálózaton, a kliens (böngésző) és a
+# GitHub szerver között "szétnyílt", és ütközésre esélyt adott.
+#
+# Ez a script (Python) viszont a futás SORÁN alapvetően a régi módon
+# dolgozik: egyszer beolvassa a teljes állapotot egy nagy dict-be
+# ("allapot"), a futás alatt SOK helyen mutálja, majd a végén menti -
+# ezt a mintát (amire a fájl további ~4000 sora épül) NEM írtuk át,
+# mert ezt igényelné a teljes üzleti logika szétszedése. Ehelyett a
+# MENTÉS lépését tettük "okossá": a betöltéskor készített PILLANATKÉP-
+# hez képest KISZÁMOLJUK, mely rekordok/mezők változtak (adatbazis_
+# allapot_mentese lentebb), és CSAK ezeket a konkrét, megváltozott
+# rekordokat/kulcsokat írjuk vissza - egyetlen "batch" API-hívással,
+# EGY MySQL-tranzakcióban. Így egy Python-futás a végén NEM írja felül
+# vakon azokat a rekordokat, amikhez egyáltalán nem is nyúlt (tehát egy
+# közben érkezett dashboard-mentést nem tud "elgázolni"), és a tényleges
+# írási művelet (a futás VÉGÉN, egyetlen batch hívásban) is
+# ezredmásodperces, nem több-másodperces git-push.
 
 
-def _kulcs_szarmaztatas(jelszo: str, salt: bytes, iteraciok: int = PBKDF2_ITERACIOSZAM) -> bytes:
-    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-    from cryptography.hazmat.primitives import hashes
-
-    kdf = PBKDF2HMAC(
-        algorithm=hashes.SHA256(), length=32, salt=salt, iterations=iteraciok
-    )
-    return kdf.derive(jelszo.encode("utf-8"))
-
-
-def titkosit_es_ment(adat: dict, jelszo: str, fajl: str):
-    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
-
-    if not jelszo:
+def _api_hivas(action: str, parameterek: dict = None, idokorlat: int = 30) -> dict:
+    """Egy hívás az api.php-hoz (ld. szamlak/mysql/api.php). A "action"
+    mellett bármilyen extra kulcsot a parameterek dict-ből egyszerűen
+    bele ágyazunk a JSON-törzsbe (pl. collection/id/adat/mezok/kulcs/
+    ertek - az api.php action-önként más-más kulcsokat vár, ld. ott a
+    fejlécet). Hiba esetén RuntimeError-t dob, világos magyar
+    üzenettel - ugyanúgy, mint korábban a visszafejt()/titkosit_es_
+    ment() a titkosítási hibáknál."""
+    if not SZAMLA_API_URL:
         raise RuntimeError(
-            "Nincs beállítva SZAMLA_TITKOSITAS_JELSZO - számlaadatot "
-            "titkosítás nélkül NEM szabad menteni egy publikus repóba."
+            "Nincs beállítva SZAMLA_API_URL - nem tudom elérni az adatbázis "
+            "API-t (ld. a fájl elején az 'ADATVÉDELEM' szekciót és a "
+            "szamlak/mysql/ mappát a telepítési útmutatóért)."
         )
-    salt = os.urandom(16)
-    nonce = os.urandom(12)
-    kulcs = _kulcs_szarmaztatas(jelszo, salt, PBKDF2_ITERACIOSZAM)
-    aesgcm = AESGCM(kulcs)
-    nyers = json.dumps(adat, ensure_ascii=False).encode("utf-8")
-    titkositott = aesgcm.encrypt(nonce, nyers, None)
+    if not SZAMLA_API_KULCS:
+        raise RuntimeError("Nincs beállítva SZAMLA_API_KULCS - lásd SZAMLA_API_URL kommentjét.")
 
-    csomag = {
-        "verzio": 3,
-        "kdf": "PBKDF2-SHA256",
-        "iterations": PBKDF2_ITERACIOSZAM,
-        "salt": base64.b64encode(salt).decode("ascii"),
-        "nonce": base64.b64encode(nonce).decode("ascii"),
-        "adat": base64.b64encode(titkositott).decode("ascii"),
-        "frissitve": magyar_ido().isoformat(),
-    }
+    torzs = {"action": action, "api_kulcs": SZAMLA_API_KULCS}
+    if parameterek:
+        torzs.update(parameterek)
 
-    # A "felhasznaloi_csomag" egy OPCIONÁLIS, ettől a függvénytől teljesen
-    # független mellék-mező a fájl legkülső JSON-objektumában (a dashboard
-    # "Felhasználói (korlátozott) jelszó" panelje írja/törli, ld.
-    # szamlak.html) - egy MÁSIK, korlátozott ("user") jelszóval becsomagolt
-    # valódi admin-jelszót tartalmaz, hogy a dashboard egy második
-    # jelszóval is megnyitható legyen, admin-csak funkciók nélkül.
-    # Mivel ez a függvény MINDEN futáskor (naponta többször, ütemezetten)
-    # a teljes fájlt friss "csomag" dict-ként ÍRJA ÚJRA, ha itt simán
-    # figyelmen kívül hagynánk a korábbi tartalmat, a legközelebbi
-    # ütemezett futás CSENDBEN KITÖRÖLNÉ a felhasznaloi_csomag mezőt - a
-    # felhasználói jelszó a következő pillanattól nem működne, anélkül,
-    # hogy bárki bármit is "törölt" volna. Ezért: ha a célfájl már
-    # létezik, beolvassuk a jelenlegi (akár egy régebbi Python-futásból,
-    # akár a dashboardról frissen mentett) tartalmát, és ha van benne
-    # felhasznaloi_csomag, azt VÁLTOZATLANUL átemeljük az újonnan írt
-    # csomagba - a fő adatblokk (adat/salt/nonce/stb.) titkosítási
-    # logikáját ez nem érinti, csak ezt a mellék-mezőt őrzi meg.
-    if os.path.exists(fajl):
-        try:
-            with open(fajl, "r", encoding="utf-8") as f:
-                regi_csomag = json.load(f)
-            if isinstance(regi_csomag, dict) and "felhasznaloi_csomag" in regi_csomag:
-                csomag["felhasznaloi_csomag"] = regi_csomag["felhasznaloi_csomag"]
-        except (OSError, ValueError):
-            # Egy sérült/olvashatatlan régi fájl nem akadályozhatja meg az
-            # új állapot mentését - ilyenkor legfeljebb a felhasznaloi_csomag
-            # marad ki (mintha sose lett volna beállítva), a fő adat mentése
-            # attól függetlenül sikeresen lefut.
-            pass
+    try:
+        valasz = requests.post(SZAMLA_API_URL, json=torzs, timeout=idokorlat)
+    except requests.RequestException as e:
+        raise RuntimeError(
+            f"Nem sikerült elérni az adatbázis API-t ({SZAMLA_API_URL}) - "
+            f"'{action}' művelet közben: {e}"
+        ) from None
 
-    os.makedirs(os.path.dirname(fajl), exist_ok=True)
-    with open(fajl, "w", encoding="utf-8") as f:
-        json.dump(csomag, f, ensure_ascii=False, indent=2)
+    try:
+        adat = valasz.json()
+    except ValueError:
+        raise RuntimeError(
+            f"Az adatbázis API ({SZAMLA_API_URL}) nem JSON választ adott '{action}' "
+            f"műveletre (HTTP {valasz.status_code}) - ellenőrizd, hogy az URL "
+            f"valóban az api.php-ra mutat, és hogy a PHP oldalon nincs hiba."
+        ) from None
+
+    if valasz.status_code != 200 or not adat.get("ok"):
+        raise RuntimeError(
+            f"Az adatbázis API hibát adott '{action}' műveletre "
+            f"(HTTP {valasz.status_code}): {adat.get('hiba', '(ismeretlen hiba)')}"
+        )
+    return adat
 
 
-def visszafejt(jelszo: str, fajl: str) -> dict:
-    alap = {
+# A "meta_kulcs_ertek" tábla (ld. szamlak/mysql/schema.sql) tartalmazza
+# az összes olyan mezőt, amit korábban az "allapot" JSON gyökerében,
+# illetve a KÜLÖN szamla_beallitasok.json fájlban tartottunk. Ez a
+# lista adja meg, mely allapot-kulcsok mennek a "szamlak"/
+# "ceges_szamlak"/"tovabbi_postafiokok"/"pdf_adatok" ELKÜLÖNÍTETT
+# táblák helyett a közös meta-táblába.
+_ALLAPOT_KULON_KEZELT_KULCSOK = {"szamlak", "ceges_szamlak", "tovabbi_postafiokok", "pdf_adatok"}
+
+
+def _allapot_alapertekek() -> dict:
+    """Az összes ismert allapot-mező biztonságos alapértéke - EZ a
+    korábbi visszafejt() "alap" dict-jének megfelelője, kiegészítve a
+    korábban csak dinamikusan (allapot.setdefault(...)) létrehozott
+    kulcsokkal is (ceges_szamlak, tovabbi_postafiokok, stb.), hogy egy
+    friss/üres adatbázisból induló első futás is ugyanúgy működjön,
+    mint korábban egy friss/üres titkosított fájlból induló futás."""
+    return {
         "szamlak": {},
+        "ceges_szamlak": {},
+        "tovabbi_postafiokok": {},
         "meroallasok": {},
         "ismeretlen_dokumentumok": {},
         "ismeretlen_fizetesek": {},
         "feldolgozott_uidok": [],
         "utolso_emlekezteto_nap": None,
         "utolso_fix_osszesito_datum": None,
-        # invoice-id -> base64-kódolt PDF bytes. Ez a felhasználó KIFEJEZETT
-        # kérésére/döntésére került be (ld. commit-üzenet) - korábban a
-        # PDF-eket szándékosan SOHA nem tároltuk tartósan, csak átmenetileg,
-        # az emailhez csatolva. Mivel ez az egész "adat" dict egyben megy át
-        # az AES-GCM titkosításon (titkosit_es_ment), a PDF-ek is ugyanazzal
-        # a jelszóval védettek, mint a számla-adatok - nincs szükség külön
-        # titkosítási rétegre.
         "pdf_adatok": {},
-        # ── Bérlői körök (ld. "BÉRLŐI KÖRÖK" szekció lentebb) ──
-        # kibocsato_csoportok: {kibocsato_azonosito: "kor_a"/"kor_b"} - a
-        # Díjnetes számlák "Számlakibocsátói azonosítója" alapján, a
-        # felhasználó a dashboardon állítja be. Ez SZÁNDÉKOSAN a
-        # TITKOSÍTOTT állapotban van (nem a publikus beallitasok-fájlban),
-        # mert a kibocsátó-azonosító (pl. egy cím vagy cégnév-töredék)
-        # önmagában is beazonosító adat lehet - ezt a felhasználó
-        # kifejezetten így kérte (privát maradjon, de a dashboardról
-        # kezelhető legyen).
         "kibocsato_csoportok": {},
-        # vizmuvek_kor: "kor_a"/"kor_b"/None - a Vízművek-fiók (a benne lévő
-        # összes mérő/számla) EGYBEN tartozik az egyik körhöz, NINCS
-        # számlánkénti szétválasztás (a felhasználó kifejezett döntése).
         "vizmuvek_kor": None,
-        # kor_nevek: a két kör (kor_a/kor_b) felhasználó által megadott,
-        # emberi neve - csak megjelenítéshez kell, ha üres/None, a dashboard
-        # egy generikus "1. kör"/"2. kör" feliratra esik vissza.
         "kor_nevek": {"kor_a": None, "kor_b": None},
-        # ── 3 CÍMZETTI KÖR (könyvelő / bérlő / tulajdonos) ──────────────
-        # kor_emailek: {"kor_a": [cím, ...], "kor_b": [cím, ...]} - a
-        # bérlői körök email-CÍM-LISTÁJA (a felhasználó kérésére kör
-        # per email-cím lehet TÖBB is, nem csak egy). Ez SZÁNDÉKOSAN a
-        # TITKOSÍTOTT állapotban van, NEM a publikus szamla_beallitasok.
-        # json-ban (ld. annak fenti kommentjét) - egy email-cím önmagában
-        # is személyes adat. A tényleges küldésnél ez a lista a RÉGI (ld.
-        # KOR_EMAIL_CIMEK fenti kommentje) GitHub Secret-alapú címmel
-        # UNIÓBAN kerül felhasználásra (visszafelé-kompatibilitás), ld.
-        # _kor_cimzettek().
         "kor_emailek": {"kor_a": [], "kor_b": []},
-        # tulajdonos_emailek: a TULAJDONOS (a rendszer üzemeltetője) saját,
-        # egy vagy több email-címe. Ő kap MINDEN "új számla érkezett"
-        # értesítést (forrástól/kör-besorolástól függetlenül, AZONNAL), és
-        # minden bérlői-kör-összesítő EGY MÁSOLATÁT is (ld. "BÉRLŐI KÖRÖK"
-        # szekció lentebb, _uj_szamla_ertesites_kuldese() és
-        # _tulajdonos_osszesito_masolat()).
         "tulajdonos_emailek": [],
-        # konyvelo_emailek: a KÖNYVELŐ email-cím(ei) - ez a kör SZÁNDÉKOSAN
-        # NEM kap semmilyen számla-adatot/csatolmányt ebből a rendszerből
-        # (a tulajdonos ezeket egy KÜLÖN, kézzel megosztott Google Drive
-        # mappán keresztül adja át neki) - az egyetlen dolog, amit itt
-        # kap, egy egyszerű, havi, hónap-végi emlékeztető-email (ld.
-        # konyvelo_emlekezteto_email_html()).
         "konyvelo_emailek": [],
-        # utolso_konyvelo_emlekezteto_honap: "ÉÉÉÉ-HH" - melyik hónapra
-        # ment már ki a könyvelői emlékeztető, hogy a (mostantól 10
-        # percenkénti) ütemezett futás ne küldje el ugyanazt a hónapban
-        # tucatszor - ugyanaz a minta, mint "utolso_fix_osszesito_datum".
         "utolso_konyvelo_emlekezteto_honap": None,
-        # szamla_kor_felulbiralas: {invoice_id: "kor_a"/"kor_b"} - PER
-        # SZÁMLA kézi kör-felülbírálás, a kibocsátó-szintű (Díjnet) / fiók-
-        # szintű (Vízművek) alapértelmezett besorolástól FÜGGETLENÜL.
-        #
-        # MIÉRT KELL EZ (MOHU-probléma): a Díjneten érkező MOHU-számláknál
-        # a "kibocsátói azonosító" oszlop NEM különbözteti meg a
-        # tulajdonos különböző szerződéseit/bérleményeit - emiatt a
-        # kibocsátó-szintű automatikus besorolás egy MOHU-számlát a ROSSZ
-        # bérlő email-címére is küldhetne, ami valódi ADATVÉDELMI
-        # probléma lenne (más bérlő adatai jutnának el egy harmadik
-        # félhez). Mivel jelenleg NINCS elég megbízható MINTA/valós
-        # tapasztalat ahhoz, hogy egy automatikus szöveg-elemzést
-        # (regex a "tárgy" mezőn) biztonságosan felépítsünk, EZ a
-        # rendszer SZÁNDÉKOSAN NEM próbál kitalálni/parse-olni semmit -
-        # helyette a dashboardon a felhasználó SAJÁT SZEMÉVEL nézi meg az
-        # újonnan felfedett "dijnet_extra_oszlop" mezőt (ld. lentebb) és
-        # KÉZZEL választja ki a helyes kört, számlánként. Ez itt, a
-        # kézi felülbírálás mezőben rögzül, és MINDIG ERŐSEBB, mint az
-        # automatikus alapértelmezés (ld. _szamla_kor_override()). Ha a
-        # jövőben elég valós "dijnet_extra_oszlop"-mintát összegyűjt a
-        # felhasználó, ez egy automatikus szabállyal kiegészíthető/
-        # felváltható lesz - de amíg nincs elég adat, a BIZTOS (kézi)
-        # megoldás mindig előnyösebb egy TALÁLT (és esetleg hibás)
-        # automatikusnál.
         "szamla_kor_felulbiralas": {},
-        # drive_feltoltott_id_k: azon számla-id-k listája, amik MÁR
-        # sikeresen felkerültek a Google Drive-ra (ld. "GOOGLE DRIVE -
-        # PDF-FELTÖLTÉS" szekció lentebb). Ez egy append-only "kész"-
-        # jelző-halmaz - a cél csak az, hogy egy újrafutás (a workflow
-        # mostantól 10 percenként fut) NE töltse fel ismét ugyanazt a
-        # PDF-et minden alkalommal (a Web App-nak van saját, "mar_letezett"
-        # nevű dedup-ja is, ez itt a MÁSODIK, a python-oldali védelmi
-        # vonal - ld. drive_pdf_feltoltesek() kommentjét). LISTÁT
-        # választottunk (nem pl. a "kibocsato_csoportok"-hoz hasonló
-        # dict-et), mert itt nincs szükség kulcs->érték társításra (pl.
-        # dátumra vagy kör-azonosítóra) - csak egy "tagja-e a halmaznak"
-        # kérdésre, amihez egy egyszerű, append-only lista is elég.
         "drive_feltoltott_id_k": [],
-    }
-    if not os.path.exists(fajl):
-        return alap
-
-    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
-    from cryptography.exceptions import InvalidTag
-
-    with open(fajl, "r", encoding="utf-8") as f:
-        csomag = json.load(f)
-
-    salt = base64.b64decode(csomag["salt"])
-    nonce = base64.b64decode(csomag["nonce"])
-    titkositott = base64.b64decode(csomag["adat"])
-    # Régebbi (verzio<3) fájloknál nincs "iterations" mező - akkor a
-    # jelenlegi alapértékkel próbálkozunk (ez volt akkoriban is a fix
-    # beégetett érték).
-    iteraciok = csomag.get("iterations", PBKDF2_ITERACIOSZAM)
-    kulcs = _kulcs_szarmaztatas(jelszo, salt, iteraciok)
-    aesgcm = AESGCM(kulcs)
-    try:
-        nyers = aesgcm.decrypt(nonce, titkositott, None)
-    except InvalidTag:
-        # Ez NEM egy váratlan/programozási hiba - az AES-GCM szándékosan
-        # ezt dobja, ha a levezetett kulcs (vagyis a megadott jelszó) NEM
-        # egyezik azzal, amivel a fájlt eredetileg titkosították. Egy
-        # nyers Python-traceback helyett egy világos, magyar, ok-okozatot
-        # is megadó hibaüzenetet adunk - ez a leggyakrabban akkor
-        # jelentkezik, ha valaki megváltoztatja a SZAMLA_TITKOSITAS_JELSZO
-        # secretet, miközben a repóban még a RÉGI jelszóval titkosított
-        # fájl van.
-        raise RuntimeError(
-            f"Nem sikerült visszafejteni a titkosított állapotfájlt ({fajl}) "
-            "a megadott SZAMLA_TITKOSITAS_JELSZO jelszóval. Két gyakori ok: "
-            "1) megváltoztattad a SZAMLA_TITKOSITAS_JELSZO secretet, de a "
-            "meglévő fájl még a RÉGI jelszóval van titkosítva - ha "
-            "szándékosan váltottál jelszót, töröld ezt a fájlt a repóból "
-            "(GitHub webes felületén), hogy a script friss, üres "
-            "állapotból induljon újra az ÚJ jelszóval; 2) elgépelted / "
-            "hibásan másoltad be a secret értékét (pl. felesleges "
-            "szóköz/sortörés került bele)."
-        ) from None
-    betoltott = json.loads(nyers.decode("utf-8"))
-    alap.update(betoltott)
-    return alap
-
-
-def beallitasok_betoltese() -> dict:
-    """A dashboardon beállítható paraméterek beolvasása (ld.
-    BEALLITASOK_FAJL fenti kommentjét - ez NEM titkosított). Ha a fájl
-    nem létezik, vagy egy adott mező hiányzik/érvénytelen belőle, a
-    biztonságos alapérték marad érvényben (visszafelé kompatibilis - a
-    dashboard "Beállítások" panelje nélkül, vagy annak első használata
-    előtt is minden a régi módon működik)."""
-    alap = {
-        "emlekezteto_napok_elotte": None,   # None = a SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE modul-konstans marad érvényben
-        "osszesito_honap_nap": None,        # None = nincs fix-napi tételes összesítő beállítva
-        "kivalasztott_szamlak": None,       # None = a fix-napi összesítő (ha be van kapcsolva) minden fizetetlen számlát tartalmaz
-        "email_kikapcsolva": True,          # True = NINCS email-küldés - ez a biztonságos alapállapot, amíg a dashboardon valaki kifejezetten be nem kapcsolja
-        # A dashboard "X" (végleges elrejtés) gombjával törölt számlák saját,
-        # amúgy is értelmezhetetlen, hash-alapú belső azonosítói (ld. a
-        # BEALLITASOK_FAJL fenti kommentjét - ezért NEM titkosított: ezekből
-        # nem olvasható ki semmilyen személyes/pénzügyi adat). A script
-        # minden futáskor véglegesen eltávolítja ezeket a szamlak/pdf_adatok
-        # közül - ha a forrás-portálon később ismét megjelenne UGYANAZ a
-        # számla (ugyanaz a hash-azonosító adódna ki belőle), azonnal újra
-        # törlődik, tehát tartósan "el van némítva".
+        "nav_csak_navban": [],
+        "nav_szallito_emailek": {},
+        "ceges_athelyezes_kerelem": [],
+        "ceges_allapot": {},
+        "nav_allapot": {},
+        # A korábbi (különálló, nem titkosított) szamla_beallitasok.json
+        # mezői - ld. régi beallitasok_betoltese() kommentjeit, most
+        # beallitasok_kinyerese() validálja ugyanígy, csak innen olvasva.
+        "emlekezteto_napok_elotte": None,
+        "osszesito_honap_nap": None,
+        "kivalasztott_szamlak": None,
+        "email_kikapcsolva": True,
         "torolt_szamla_id_k": [],
     }
-    if not os.path.exists(BEALLITASOK_FAJL):
-        return alap
-    try:
-        with open(BEALLITASOK_FAJL, "r", encoding="utf-8") as f:
-            betoltott = json.load(f)
-    except (json.JSONDecodeError, OSError) as e:
-        print(f"  ⚠️  A beállítások fájl ({BEALLITASOK_FAJL}) nem olvasható be, alapértékekkel "
-              f"folytatjuk: {e}")
-        return alap
 
-    napok = betoltott.get("emlekezteto_napok_elotte")
+
+def adatbazis_allapot_betoltese() -> dict:
+    """A teljes állapot beolvasása az adatbázisból, egyetlen "get_all"
+    hívással (szamlak/ceges_szamlak/tovabbi_postafiokok/meta) + egy
+    második "get_all_pdfs" hívással (a PDF-ek külön táblában vannak,
+    ld. schema.sql). A visszaadott dict alakja SZÁNDÉKOSAN pontosan
+    megegyezik a korábbi, titkosított-fájlból visszafejt() által
+    visszaadott dict alakjával - ezért a hívó kód (main() és minden,
+    amit main() hív) NEM változott, csak ez a betöltő/mentő pár."""
+    valasz = _api_hivas("get_all")
+    allapot = _allapot_alapertekek()
+    allapot.update(valasz.get("meta") or {})
+    allapot["szamlak"] = valasz.get("szamlak") or {}
+    allapot["ceges_szamlak"] = valasz.get("ceges_szamlak") or {}
+    allapot["tovabbi_postafiokok"] = valasz.get("tovabbi_postafiokok") or {}
+
+    pdf_valasz = _api_hivas("get_all_pdfs")
+    allapot["pdf_adatok"] = pdf_valasz.get("pdf_adatok") or {}
+
+    return allapot
+
+
+def adatbazis_allapot_mentese(allapot: dict, eredeti_pillanatkep: dict) -> None:
+    """A futás VÉGI mentés - de NEM írja vissza vakon az egész
+    "allapot" dict-et: az eredeti_pillanatkep-hez (a betöltéskor
+    készített deepcopy-hoz, ld. main()) képest kiszámolja, MELYIK
+    rekordok/kulcsok változtak, és CSAK azokat küldi el, egyetlen
+    "batch" hívásban (egy MySQL-tranzakció - mind sikerül, vagy semmi
+    sem módosul). Ld. a fájl "ADATBÁZIS" szekciójának bevezető
+    kommentjét a MIÉRT-ről (ez oldja meg a korábbi 409-ütközés
+    problémát)."""
+    muveletek = []
+
+    for kollekcio in ("szamlak", "ceges_szamlak", "tovabbi_postafiokok"):
+        regi = eredeti_pillanatkep.get(kollekcio) or {}
+        uj = allapot.get(kollekcio) or {}
+        for rid, rekord in uj.items():
+            if regi.get(rid) != rekord:
+                muveletek.append({"action": "upsert_record", "collection": kollekcio, "id": rid, "adat": rekord})
+        for rid in regi.keys() - uj.keys():
+            muveletek.append({"action": "delete_record", "collection": kollekcio, "id": rid})
+
+    regi_pdf = eredeti_pillanatkep.get("pdf_adatok") or {}
+    uj_pdf = allapot.get("pdf_adatok") or {}
+    for pid, b64 in uj_pdf.items():
+        if regi_pdf.get(pid) != b64:
+            muveletek.append({"action": "set_pdf", "id": pid, "base64": b64})
+    for pid in regi_pdf.keys() - uj_pdf.keys():
+        muveletek.append({"action": "delete_pdf", "id": pid})
+
+    for kulcs, ertek in allapot.items():
+        if kulcs in _ALLAPOT_KULON_KEZELT_KULCSOK:
+            continue
+        if eredeti_pillanatkep.get(kulcs) != ertek:
+            muveletek.append({"action": "set_meta", "kulcs": kulcs, "ertek": ertek})
+
+    if not muveletek:
+        return  # nincs változás - nincs szükség API-hívásra sem (mint egy "nincs változás" git commit)
+
+    _api_hivas("batch", {"muveletek": muveletek}, idokorlat=60)
+
+
+def beallitasok_kinyerese(allapot: dict) -> dict:
+    """A dashboardon beállítható paraméterek kinyerése a már betöltött
+    "allapot" dict-ből (ezek is a meta-táblából jönnek, ugyanazzal a
+    get_all hívással, mint a többi mező - ld. adatbazis_allapot_
+    betoltese()). Ez a korábbi beallitasok_betoltese() megfelelője,
+    UGYANAZZAL a validációs logikával, csak fájl helyett a már
+    memóriában lévő dict-ből olvasva - visszafelé kompatibilis: ha egy
+    adott mező hiányzik/érvénytelen, a biztonságos alapérték marad
+    érvényben."""
+    alap = {
+        "emlekezteto_napok_elotte": None,
+        "osszesito_honap_nap": None,
+        "kivalasztott_szamlak": None,
+        "email_kikapcsolva": True,
+        "torolt_szamla_id_k": [],
+    }
+
+    napok = allapot.get("emlekezteto_napok_elotte")
     if isinstance(napok, int) and 0 < napok <= 90:
         alap["emlekezteto_napok_elotte"] = napok
 
-    honap_nap = betoltott.get("osszesito_honap_nap")
+    honap_nap = allapot.get("osszesito_honap_nap")
     if isinstance(honap_nap, int) and 1 <= honap_nap <= 28:
         alap["osszesito_honap_nap"] = honap_nap
 
-    kivalasztott = betoltott.get("kivalasztott_szamlak")
+    kivalasztott = allapot.get("kivalasztott_szamlak")
     if isinstance(kivalasztott, list) and all(isinstance(x, str) for x in kivalasztott):
         alap["kivalasztott_szamlak"] = kivalasztott
 
-    torolt = betoltott.get("torolt_szamla_id_k")
+    torolt = allapot.get("torolt_szamla_id_k")
     if isinstance(torolt, list) and all(isinstance(x, str) for x in torolt):
         alap["torolt_szamla_id_k"] = torolt
 
-    # FONTOS: itt (a többi mezővel ellentétben) a hiányzó/érvénytelen érték
-    # NEM a "régi működést" jelenti, hanem a biztonságos "nincs email"
-    # alapállapotot (ld. fent az "alap" szótárban) - csak egy explicit
-    # "email_kikapcsolva": false menti felül, azt is csak akkor, ha a
-    # dashboard "Email-küldés engedélyezve" kapcsolóját valaki bepipálva
-    # mentette.
-    email_kikapcsolva = betoltott.get("email_kikapcsolva")
+    email_kikapcsolva = allapot.get("email_kikapcsolva")
     if isinstance(email_kikapcsolva, bool):
         alap["email_kikapcsolva"] = email_kikapcsolva
 
@@ -4054,19 +4015,25 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
 def main():
     print(f"💰 Számla Figyelő – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
 
-    if not TITKOSITAS_JELSZO:
-        print("❌ Nincs beállítva SZAMLA_TITKOSITAS_JELSZO - leállás (adatvédelmi okból "
-              "nem menthetünk számlaadatot titkosítás nélkül).")
+    if not (SZAMLA_API_URL and SZAMLA_API_KULCS):
+        print("❌ Nincs beállítva SZAMLA_API_URL / SZAMLA_API_KULCS - leállás (ezek nélkül "
+              "nem tudom elérni az adatbázis API-t, ld. a fájl elején az 'ADATVÉDELEM' "
+              "szekciót és a szamlak/mysql/ mappát).")
         return
     if not (IMAP_USER and IMAP_JELSZO):
         print("❌ Nincs beállítva SZAMLA_IMAP_USER / SZAMLA_IMAP_JELSZO - leállás.")
         return
 
     try:
-        allapot = visszafejt(TITKOSITAS_JELSZO, ALLAPOT_FAJL)
+        allapot = adatbazis_allapot_betoltese()
     except RuntimeError as e:
         print(f"❌ {e}")
         return
+    # Pillanatkép a betöltés pillanatáról - a mentéskor (ld. lentebb,
+    # 3. lépés) EHHEZ képest számoljuk ki, mely rekordok/kulcsok
+    # változtak a futás alatt, hogy csak a TÉNYLEGES változásokat írjuk
+    # vissza (ld. adatbazis_allapot_mentese() kommentjét).
+    eredeti_allapot_pillanatkep = copy.deepcopy(allapot)
 
     szamlak = allapot.setdefault("szamlak", {})
     meroallasok = allapot.setdefault("meroallasok", {})
@@ -4075,9 +4042,9 @@ def main():
     feldolgozott_uidok = set(allapot.setdefault("feldolgozott_uidok", []))
 
     # A dashboardon (szamlak.html "Beállítások" panel) esetlegesen
-    # felülírt paraméterek - ha nincs beállítás-fájl, minden a régi
-    # (modul-konstans/automatikus) módon működik.
-    beallitasok = beallitasok_betoltese()
+    # felülírt paraméterek - ugyanabból a már betöltött "allapot"
+    # dict-ből (ld. beallitasok_kinyerese() kommentjét).
+    beallitasok = beallitasok_kinyerese(allapot)
     emlekezteto_napok = beallitasok["emlekezteto_napok_elotte"] or SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE
 
     # A dashboard "X" gombjával véglegesen elrejtett számlák törlése - ld.
@@ -4933,12 +4900,14 @@ def main():
 
     if DRY_RUN:
         print("  🧪 [DRY RUN] Állapot MENTÉSE kihagyva - a felismerés/lekérdezés lefutott, "
-              "de semmi nem került titkosítva elmentésre, és git-push sem fog történni "
-              "(a workflow a mostani, változatlan fájlt fogja commitolni, ami valójában "
-              "'nincs változás' lesz).")
+              "de semmi nem került elmentve az adatbázisba.")
     else:
-        titkosit_es_ment(allapot, TITKOSITAS_JELSZO, ALLAPOT_FAJL)
-        print("💾 Állapot mentve (titkosítva).")
+        try:
+            adatbazis_allapot_mentese(allapot, eredeti_allapot_pillanatkep)
+        except RuntimeError as e:
+            print(f"❌ Mentés sikertelen: {e}")
+            return
+        print("💾 Állapot mentve (adatbázis).")
 
     # ---- 4. Futási összesítő ----
     print("📊 Futási összesítő:")
