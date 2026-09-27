@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-09-27T03:44:27.904838+02:00",
+  "frissitve": "2026-09-27T03:45:06.530254+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T12:06:16.880198+02:00",
-      "kulcs": "T9112",
-      "rendszam": "T9112",
-      "vehicle_id": "7753",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489280700683594,
-      "lon": 19.090024948120117,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-09-26T12:06:16.881128+02:00",
-      "kulcs": "T8121",
-      "rendszam": "T8121",
-      "vehicle_id": "7900",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53647232055664,
-      "lon": 19.107200622558594,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-09-26T12:06:16.881351+02:00",
-      "kulcs": "AOFL224",
-      "rendszam": "AOFL224",
-      "vehicle_id": "811",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.545406341552734,
-      "lon": 19.033756256103516,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-09-26T12:06:16.881537+02:00",
-      "kulcs": "AOFL243",
-      "rendszam": "AOFL243",
-      "vehicle_id": "831",
-      "vehicle_label": "Újhegy",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.484039306640625,
-      "lon": 19.12761878967285,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
     {
       "idopont": "2026-09-26T12:06:16.881777+02:00",
       "kulcs": "AOIB795",
@@ -260000,6 +259948,58 @@
       "lon": 19.056903839111328,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-09-27T03:45:06.439785+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.43597412109375,
+      "lon": 18.97855567932129,
+      "elozo_szoveg": "Kamaraerdő",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-09-27T03:45:06.439866+02:00",
+      "kulcs": "AAMH617",
+      "rendszam": "AAMH617",
+      "vehicle_id": "460",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46244430541992,
+      "lon": 19.133235931396484,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-09-27T03:45:06.440093+02:00",
+      "kulcs": "NBW004",
+      "rendszam": "NBW004",
+      "vehicle_id": "5974",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50132369995117,
+      "lon": 19.11969757080078,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-09-27T03:45:06.440460+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37953567504883,
+      "lon": 19.104225158691406,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Boráros tér H"
     }
   ]
 }
