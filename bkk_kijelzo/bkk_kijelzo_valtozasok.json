@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-27T02:09:01.498742+02:00",
+  "frissitve": "2026-09-27T02:09:31.545058+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:51:23.027917+02:00",
-      "kulcs": "AADI596",
-      "rendszam": "AADI596",
-      "vehicle_id": "92",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49936294555664,
-      "lon": 19.0356502532959,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-09-26T11:52:40.372893+02:00",
-      "kulcs": "AADI634",
-      "rendszam": "AADI634",
-      "vehicle_id": "132",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.5157585144043,
-      "lon": 19.19048500061035,
-      "elozo_szoveg": "Veres Péter út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-26T11:52:40.373084+02:00",
-      "kulcs": "AADI655",
-      "rendszam": "AADI655",
-      "vehicle_id": "154",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.48369216918945,
-      "lon": 19.127866744995117,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-09-26T11:52:40.373138+02:00",
-      "kulcs": "AADI659",
-      "rendszam": "AADI659",
-      "vehicle_id": "158",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.49263381958008,
-      "lon": 19.04328727722168,
-      "elozo_szoveg": "Döbrentei tér",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-26T11:52:40.373185+02:00",
-      "kulcs": "AADR702",
-      "rendszam": "AADR702",
-      "vehicle_id": "169",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.434993743896484,
-      "lon": 19.22076988220215,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca",
-      "uj_szoveg": "Ganztelep, Mednyánszky utca"
-    },
     {
       "idopont": "2026-09-26T11:52:40.373284+02:00",
       "kulcs": "AADR715",
@@ -260000,6 +259935,71 @@
       "lon": 19.089401245117188,
       "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-09-27T02:09:31.460866+02:00",
+      "kulcs": "MOS276",
+      "rendszam": "MOS276",
+      "vehicle_id": "5729",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497032165527344,
+      "lon": 19.05567741394043,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-09-27T02:09:31.460915+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.52548599243164,
+      "lon": 19.037342071533203,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-09-27T02:09:31.461146+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.465065002441406,
+      "lon": 19.127338409423828,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-27T02:09:31.461290+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42262268066406,
+      "lon": 19.080110549926758,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-09-27T02:09:31.461533+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.54843521118164,
+      "lon": 19.029582977294922,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
     }
   ]
 }
