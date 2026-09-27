@@ -431,7 +431,17 @@ DRY_RUN = os.environ.get("SZAMLA_DRY_RUN") == "1"
 # email_kuldes()-hívás megtörténne. SZÁNDÉKOSAN True (=letiltva) az
 # alapállapot: amíg a felhasználó a dashboardon kifejezetten be nem
 # kapcsolja (és el nem menti) a küldést, egyetlen email se menjen ki.
+#
+# KÉT FÜGGETLEN kapcsoló van: EMAIL_KIKAPCSOLVA a "közüzemi" (Díjnet/
+# Vízművek/MVM/további postafiókok "kozuzemi" célja) leveleket vezérli,
+# EMAIL_KIKAPCSOLVA_CEGES pedig a "céges" leveleket (dedikált céges
+# postafiók "Új céges számla" értesítője + a NAV-emlékeztető) - ld.
+# email_kuldes() "kategoria" paramétere. Ez azért kell, mert a
+# felhasználó a kettőt egymástól függetlenül szeretné ki/bekapcsolni
+# (pl. amíg a közüzemi oldalon még hangolja az email-küldést, a céges
+# oldalon már szeretné élesben engedélyezni, vagy fordítva).
 EMAIL_KIKAPCSOLVA = True
+EMAIL_KIKAPCSOLVA_CEGES = True
 
 # Dátum-intervallumos, tetszőleges címzettnek szóló küldés (a dashboard
 # "Számlák küldése emailben" panelje indítja egy workflow_dispatch hívással,
@@ -891,6 +901,7 @@ def _allapot_alapertekek() -> dict:
         "osszesito_honap_nap": None,
         "kivalasztott_szamlak": None,
         "email_kikapcsolva": True,
+        "ceges_email_kikapcsolva": True,
         "torolt_szamla_id_k": [],
     }
 
@@ -970,6 +981,7 @@ def beallitasok_kinyerese(allapot: dict) -> dict:
         "osszesito_honap_nap": None,
         "kivalasztott_szamlak": None,
         "email_kikapcsolva": True,
+        "ceges_email_kikapcsolva": True,
         "torolt_szamla_id_k": [],
     }
 
@@ -992,6 +1004,10 @@ def beallitasok_kinyerese(allapot: dict) -> dict:
     email_kikapcsolva = allapot.get("email_kikapcsolva")
     if isinstance(email_kikapcsolva, bool):
         alap["email_kikapcsolva"] = email_kikapcsolva
+
+    ceges_email_kikapcsolva = allapot.get("ceges_email_kikapcsolva")
+    if isinstance(ceges_email_kikapcsolva, bool):
+        alap["ceges_email_kikapcsolva"] = ceges_email_kikapcsolva
 
     return alap
 
@@ -1316,13 +1332,17 @@ def meroallas_ertek_kinyerese(szoveg: str):
 # ════════════════════════════════════════════
 #  📧  EMAIL KÜLDÉS
 # ════════════════════════════════════════════
-def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None):
+def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="kozuzemi"):
     """csatolmanyok: [(fajlnev, bytes), ...] - lehet üres/None.
     cimzett: ha None, az alapértelmezett EMAIL_CIMZETT-re megy (a szokásos
     értesítők) - a dashboard "dátum-intervallumos küldés" funkciója viszont
-    egy tetszőleges, a felhasználó által megadott címre is tud küldeni."""
-    if EMAIL_KIKAPCSOLVA:
-        print(f"  🔕 Email-küldés le van tiltva a dashboard beállításaiban - kihagyva: {targy!r}")
+    egy tetszőleges, a felhasználó által megadott címre is tud küldeni.
+    kategoria: "kozuzemi" (alapértelmezett) vagy "ceges" - ez dönti el,
+    MELYIK dashboard-kapcsoló (EMAIL_KIKAPCSOLVA / EMAIL_KIKAPCSOLVA_CEGES)
+    vezérli ezt a konkrét levelet, ld. a két konstans elején lévő kommentet."""
+    kikapcsolva = EMAIL_KIKAPCSOLVA_CEGES if kategoria == "ceges" else EMAIL_KIKAPCSOLVA
+    if kikapcsolva:
+        print(f"  🔕 Email-küldés le van tiltva a dashboard beállításaiban ({kategoria}) - kihagyva: {targy!r}")
         return False
     cimzett_vegso = cimzett or EMAIL_CIMZETT
     if DRY_RUN:
@@ -3398,6 +3418,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             f"📄 Új céges számla – {cimke}",
                             uj_szamla_email_html(email_rekord),
                             [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
+                            kategoria="ceges",
                         )
                         tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
                         if tulajdonos_cimzett:
@@ -3407,6 +3428,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                 uj_szamla_email_html(email_rekord),
                                 [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
                                 cimzett=tulajdonos_cimzett,
+                                kategoria="ceges",
                             )
                         continue
 
@@ -3999,6 +4021,7 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
             f"📄 Hiányzó számla-másolat kérése – {szallito_nev}",
             _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek),
             cimzett=email_cim,
+            kategoria="ceges",
         )
         if sikeres:
             kuldott_db += 1
@@ -4077,12 +4100,17 @@ def main():
     # Az email-küldés globális ki/bekapcsolása - ezt MINDEN email_kuldes()-
     # hívás előtt be kell állítani, ezért itt, a feldolgozás legelején
     # történik meg.
-    global EMAIL_KIKAPCSOLVA
+    global EMAIL_KIKAPCSOLVA, EMAIL_KIKAPCSOLVA_CEGES
     EMAIL_KIKAPCSOLVA = beallitasok["email_kikapcsolva"]
+    EMAIL_KIKAPCSOLVA_CEGES = beallitasok["ceges_email_kikapcsolva"]
     if EMAIL_KIKAPCSOLVA:
-        print("🔕 Email-küldés jelenleg LE VAN TILTVA a dashboard beállításaiban "
+        print("🔕 Email-küldés (közüzemi) jelenleg LE VAN TILTVA a dashboard beállításaiban "
               "(Beállítások → Email-küldés engedélyezve) - a feldolgozás/adatmentés "
               "változatlanul lezajlik, csak értesítő email nem megy ki.")
+    if EMAIL_KIKAPCSOLVA_CEGES:
+        print("🔕 Email-küldés (céges) jelenleg LE VAN TILTVA a dashboard beállításaiban "
+              "(Céges fül → NAV panel → Céges email-küldés engedélyezve) - a feldolgozás/"
+              "adatmentés változatlanul lezajlik, csak értesítő email nem megy ki.")
 
     # Futási statisztika - a végén egy összefoglaló sorban kiírjuk, ez
     # sokat segít a naplóból gyorsan átlátni, mi történt egy futás alatt.
