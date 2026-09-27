@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-27T04:51:16.842059+02:00",
+  "frissitve": "2026-09-27T04:51:51.361460+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T12:27:22.593207+02:00",
-      "kulcs": "AADI632",
-      "rendszam": "AADI632",
-      "vehicle_id": "130",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.51512145996094,
-      "lon": 19.184532165527344,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Veres Péter út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-09-26T12:27:22.593229+02:00",
-      "kulcs": "AADI634",
-      "rendszam": "AADI634",
-      "vehicle_id": "132",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.503665924072266,
-      "lon": 19.141441345214844,
-      "elozo_szoveg": "Veres Péter út ► Centenáriumi lakótelep",
-      "uj_szoveg": "Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-09-26T12:27:22.593321+02:00",
-      "kulcs": "AADI650",
-      "rendszam": "AADI650",
-      "vehicle_id": "149",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.49379348754883,
-      "lon": 19.04331398010254,
-      "elozo_szoveg": "Döbrentei tér",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-09-26T12:27:22.593598+02:00",
-      "kulcs": "V2016",
-      "rendszam": "V2016",
-      "vehicle_id": "2016",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "6",
-      "route_id": "3060",
-      "lat": 47.50737762451172,
-      "lon": 19.025047302246094,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-09-26T12:27:22.593761+02:00",
-      "kulcs": "AADR761",
-      "rendszam": "AADR761",
-      "vehicle_id": "210",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.537879943847656,
-      "lon": 19.0542049407959,
-      "elozo_szoveg": "Margitsziget ► Nyugati pályaudvar M",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-26T12:27:22.594104+02:00",
       "kulcs": "FLR745",
@@ -260000,6 +259935,71 @@
       "lon": 19.020980834960938,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Tárnok"
+    },
+    {
+      "idopont": "2026-09-27T04:51:51.262831+02:00",
+      "kulcs": "FKU945",
+      "rendszam": "FKU945",
+      "vehicle_id": "3101",
+      "vehicle_label": "Lőrinci út",
+      "vonal_szam": "168E",
+      "route_id": "1685",
+      "lat": 47.50045394897461,
+      "lon": 19.135591506958008,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-27T04:51:51.264895+02:00",
+      "kulcs": "PHG635",
+      "rendszam": "PHG635",
+      "vehicle_id": "7159",
+      "vehicle_label": "Rákoskert",
+      "vonal_szam": "262",
+      "route_id": "2620",
+      "lat": 47.479610443115234,
+      "lon": 19.255449295043945,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákoskert"
+    },
+    {
+      "idopont": "2026-09-27T04:51:51.264995+02:00",
+      "kulcs": "PKN604",
+      "rendszam": "PKN604",
+      "vehicle_id": "7193",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "44",
+      "route_id": "0440",
+      "lat": 47.51738739013672,
+      "lon": 19.19115447998047,
+      "elozo_szoveg": "Veres Péter út ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-27T04:51:51.265011+02:00",
+      "kulcs": "PKN606",
+      "rendszam": "PKN606",
+      "vehicle_id": "7195",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "67",
+      "route_id": "0670",
+      "lat": 47.48213195800781,
+      "lon": 19.233482360839844,
+      "elozo_szoveg": "Rákoshegy",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-09-27T04:51:51.268275+02:00",
+      "kulcs": "AOFL213",
+      "rendszam": "AOFL213",
+      "vehicle_id": "800",
+      "vehicle_label": "Pince köz-Donát utca",
+      "vonal_szam": "243",
+      "route_id": "2430",
+      "lat": 47.59782791137695,
+      "lon": 19.05384635925293,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Pince köz ► Donát utca"
     }
   ]
 }
