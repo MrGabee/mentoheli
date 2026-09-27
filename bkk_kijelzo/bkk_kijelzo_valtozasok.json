@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-09-27T03:09:39.947294+02:00",
+  "frissitve": "2026-09-27T03:10:12.377068+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T12:00:46.133091+02:00",
-      "kulcs": "480 017",
-      "rendszam": "480 017",
-      "vehicle_id": "915504800177",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.347381591796875,
-      "lon": 20.042940139770508,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-09-26T12:00:46.133519+02:00",
-      "kulcs": "415 029",
-      "rendszam": "415 029",
-      "vehicle_id": "945514150297",
-      "vehicle_label": "Pusztaszabolcs",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.46289825439453,
-      "lon": 19.020719528198242,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Pusztaszabolcs"
-    },
     {
       "idopont": "2026-09-26T12:01:59.438335+02:00",
       "kulcs": "AADI621",
@@ -260000,6 +259974,32 @@
       "lon": 19.12799835205078,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-09-27T03:10:12.319075+02:00",
+      "kulcs": "RVY601",
+      "rendszam": "RVY601",
+      "vehicle_id": "7430",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.426612854003906,
+      "lon": 19.161096572875977,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-09-27T03:10:12.319303+02:00",
+      "kulcs": "AOGL323",
+      "rendszam": "AOGL323",
+      "vehicle_id": "914",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.423831939697266,
+      "lon": 19.025053024291992,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
     }
   ]
 }
