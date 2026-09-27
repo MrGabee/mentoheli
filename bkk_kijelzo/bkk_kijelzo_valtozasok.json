@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T02:40:38.774401+02:00",
+  "frissitve": "2026-09-27T02:41:13.917193+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:55:53.269623+02:00",
-      "kulcs": "V1348",
-      "rendszam": "V1348",
-      "vehicle_id": "5309",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.5125617980957,
-      "lon": 19.04787254333496,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-09-26T11:55:53.270410+02:00",
-      "kulcs": "T9003",
-      "rendszam": "T9003",
-      "vehicle_id": "6142",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51386642456055,
-      "lon": 19.04958152770996,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-09-26T11:55:53.272245+02:00",
-      "kulcs": "NWB353",
-      "rendszam": "NWB353",
-      "vehicle_id": "6533",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.48693084716797,
-      "lon": 19.2869815826416,
-      "elozo_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-09-26T11:55:53.272445+02:00",
       "kulcs": "AOCT659",
@@ -260000,6 +259961,45 @@
       "lon": 19.051002502441406,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T02:41:13.829399+02:00",
+      "kulcs": "PDB703",
+      "rendszam": "PDB703",
+      "vehicle_id": "7029",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.439125061035156,
+      "lon": 19.103654861450195,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-09-27T02:41:13.829432+02:00",
+      "kulcs": "PDB706",
+      "rendszam": "PDB706",
+      "vehicle_id": "7032",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.49127197265625,
+      "lon": 19.043638229370117,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-09-27T02:41:13.829985+02:00",
+      "kulcs": "815 008",
+      "rendszam": "815 008",
+      "vehicle_id": "945518150087",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.51136016845703,
+      "lon": 19.101200103759766,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
