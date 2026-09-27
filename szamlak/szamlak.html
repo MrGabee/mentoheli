@@ -183,17 +183,24 @@
   body.szerepkor-user #felhasznalok-panel,
   body.szerepkor-user #korok-panel,
   body.szerepkor-user #cimzettek-panel,
-  body.szerepkor-user #kuldes-panel {
+  body.szerepkor-user #kuldes-panel,
+  body.szerepkor-user #postafiok-panel {
     display: none;
   }
 
-  /* A "Céges számlák" fül (és tartalma) admin-csak - a "user" szerepkör
-     ezt sose látja, se a fül-váltó gombot, se a tartalmat (ez utóbbi
-     "!important"-tal, védekezésképp, hogy a JS tab-váltó logikája se
-     tudja véletlenül visszakapcsolni). */
-  body.szerepkor-user #fomenu-fulek,
-  body.szerepkor-user #ceges-tartalom {
-    display: none !important;
+  /* A "Céges számlák" fület "user" szerepkör is látja (csak olvasásra) -
+     a fül/tábla/NAV-panel MAGA megjelenik, de az írási műveletek (mezők
+     szerkesztése, törlés, email-cím megadása, emlékeztető-küldés, a céges
+     email-küldés ki/bekapcsolása) rejtve maradnak. A táblázat szerkeszthető
+     mezőit/gombjait maga a cegesTablaRenderelese() dönti el "szerepkor"
+     alapján (ugyanaz a minta, mint a lakossági tablaRenderelese()-nél) -
+     itt csak a NAV-panel dinamikusan renderelt írási elemeit rejtjük el
+     CSS-sel (ld. az érintett elemek osztályneveit lentebb). */
+  body.szerepkor-user #ceges-email-admin-sor,
+  body.szerepkor-user .nav-szallito-email-cimke,
+  body.szerepkor-user .nav-emlekezteto-cimke,
+  body.szerepkor-user #nav-emlekezteto-gomb-hely {
+    display: none;
   }
 </style>
 </head>
@@ -238,7 +245,14 @@
 
     <div class="szurok" id="szolgaltato-szurok" style="display:none;"></div>
 
-    <div id="tabla-hely"></div>
+    <h3 id="kor-a-tabla-cim" class="kor-tabla-cim" style="font-size:16px;margin:24px 0 8px;">1. kör</h3>
+    <div id="kor-a-tabla-hely"></div>
+
+    <h3 id="kor-b-tabla-cim" class="kor-tabla-cim" style="font-size:16px;margin:24px 0 8px;">2. kör</h3>
+    <div id="kor-b-tabla-hely"></div>
+
+    <h3 id="fuggoben-tabla-cim" class="kor-tabla-cim" style="font-size:16px;margin:24px 0 8px;">❔ Nincs bérlői körbe sorolva</h3>
+    <div id="fuggoben-tabla-hely"></div>
 
     <h2 id="meroallas-cim" style="font-size:18px;margin:32px 0 10px;display:none;">🔢 Mérőállások / mérő-események</h2>
     <div id="meroallas-hely"></div>
@@ -429,11 +443,13 @@
       <div class="panel" id="ceges-nav-panel">
         <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
         <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
-          <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
-            <input type="checkbox" id="ceges-email-engedelyezve" style="width:auto;flex:none;">
-            <span>📧 Email-küldés engedélyezve (céges) — a "Céges számlák" fülhöz tartozó levelek: az "Új céges számla" értesítő és a lenti NAV-emlékeztető. FÜGGETLEN a közüzemi (Beállítások panel) kapcsolótól - egymástól elkülönítve ki/bekapcsolható. Változtatáskor azonnal mentődik.</span>
-          </label>
-          <div class="panel-statusz" id="ceges-email-statusz"></div>
+          <div id="ceges-email-admin-sor">
+            <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
+              <input type="checkbox" id="ceges-email-engedelyezve" style="width:auto;flex:none;">
+              <span>📧 Email-küldés engedélyezve (céges) — a "Céges számlák" fülhöz tartozó levelek: az "Új céges számla" értesítő és a lenti NAV-emlékeztető. FÜGGETLEN a közüzemi (Beállítások panel) kapcsolótól - egymástól elkülönítve ki/bekapcsolható. Változtatáskor azonnal mentődik.</span>
+            </label>
+            <div class="panel-statusz" id="ceges-email-statusz"></div>
+          </div>
           <p class="panel-info">A fent listázott (email-ből begyűjtött), ILLETVE a Közüzemi fülön lévő számlákat is a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez a Céges táblázat "NAV-párosítás" oszlopában látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg egyik figyelt postafiókba sem, az itt lent, egy külön listában jelenik meg szállítónként csoportosítva - itt email-címet adhatsz meg a szállítóhoz, kijelölheted, majd egy sablon-szövegű emlékeztetőt küldhetsz neki, amiben megkéred, küldje el a számla másolatát.</p>
           <div id="nav-bejelentkezes-statusz"></div>
           <div id="nav-csak-navban-hely"></div>
@@ -454,7 +470,7 @@
   // elérési útra (ld. szamlak/mysql/ telepítési útmutató). Nincs
   // titkosítás - az adatokat a tárhely hozzáférés-védelme + az
   // "aktualisApiKulcs" (ld. lentebb) védi.
-  const API_URL = "https://reilviolin.hu/billing/api.php";
+  const API_URL = "https://ide-irod-a-sajat-domained.hu/szamlak/mysql/api.php";
   let osszesSzamla = [];
   let cegesSzamlak = []; // a dedikált céges-postafiókból begyűjtött, Drive-ra feltöltött számlák metaadata (ld. "Céges számlák" fül) - a PDF itt NEM tárolt, csak a "drive_url"
   let pdfTar = {};           // invoice-id -> base64 PDF (az api.php "get_all_pdfs" hívásából)
@@ -692,40 +708,61 @@
     }
     const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
     const mezoInputStyle = "width:100%;min-width:90px;box-sizing:border-box;border:1px solid var(--border);border-radius:6px;padding:4px 6px;font-size:13px;font-family:inherit;";
-    const sorok = rendezett.map(r => `
-      <tr>
-        <td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kuldo_nev" value="${escHtml(r.kuldo_nev)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>
-        <td>${escHtml(r.targy) || "—"}</td>
-        <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
-        <td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_szamlaszam" value="${escHtml(r.kinyert_szamlaszam)}" placeholder="pl. AB-2026-123" style="${mezoInputStyle}"></td>
-        <td><input type="number" step="0.01" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_osszeg" value="${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "" : r.kinyert_osszeg}" placeholder="Összeg" style="${mezoInputStyle}"></td>
-        <td>
+    // "user" szerepkörnél a tábla CSAK OLVASHATÓ: a szerkeszthető mezők
+    // (input/select) helyett sima szöveg, és a két admin-csak oszlop
+    // (Mentés/Egyeztetés, illetve a "✕" törlés) el sem készül - ugyanaz a
+    // minta, mint a lakossági tablaRenderelese()-nél a "Kör"/"✕" oszlopoknál.
+    const csakOlvas = szerepkor !== "admin";
+    const sorok = rendezett.map(r => {
+      const cellak = [];
+      cellak.push(csakOlvas
+        ? `<td>${escHtml(r.kuldo_nev) || "—"}</td>`
+        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kuldo_nev" value="${escHtml(r.kuldo_nev)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>`);
+      cellak.push(`<td>${escHtml(r.targy) || "—"}</td>`);
+      cellak.push(`<td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>`);
+      cellak.push(csakOlvas
+        ? `<td>${escHtml(r.kinyert_szamlaszam) || "—"}</td>`
+        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_szamlaszam" value="${escHtml(r.kinyert_szamlaszam)}" placeholder="pl. AB-2026-123" style="${mezoInputStyle}"></td>`);
+      cellak.push(csakOlvas
+        ? `<td>${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "—" : r.kinyert_osszeg}</td>`
+        : `<td><input type="number" step="0.01" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_osszeg" value="${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "" : r.kinyert_osszeg}" placeholder="Összeg" style="${mezoInputStyle}"></td>`);
+      cellak.push(csakOlvas
+        ? `<td>${(r.penznem || "HUF").toUpperCase() === "EUR" ? "€ (EUR)" : "Ft (HUF)"}</td>`
+        : `<td>
           <select class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="penznem" title="Pénznem - a script best-effort felismeri (EUR-jel/'EUR' szó a szövegben), de itt kézzel is átállítható." style="${mezoInputStyle}">
             <option value="HUF" ${(r.penznem || "HUF").toUpperCase() === "HUF" ? "selected" : ""}>Ft (HUF)</option>
             <option value="EUR" ${(r.penznem || "HUF").toUpperCase() === "EUR" ? "selected" : ""}>€ (EUR)</option>
           </select>
-        </td>
-        <td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="adoszam" value="${escHtml(r.adoszam)}" placeholder="12345678-1-42" style="${mezoInputStyle}"></td>
-        <td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>
-        <td>${r.nav_parositva
-          ? `<span style="color:var(--green);">✅ Párosítva</span>`
-            + (r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : "")
-          : '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'}</td>
-        <td style="min-width:170px;">
+        </td>`);
+      cellak.push(csakOlvas
+        ? `<td>${escHtml(r.adoszam) || "—"}</td>`
+        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="adoszam" value="${escHtml(r.adoszam)}" placeholder="12345678-1-42" style="${mezoInputStyle}"></td>`);
+      cellak.push(`<td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>`);
+      cellak.push(`<td>${r.nav_parositva
+        ? `<span style="color:var(--green);">✅ Párosítva</span>`
+          + (r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : "")
+        : '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'}</td>`);
+      if (!csakOlvas) {
+        cellak.push(`<td style="min-width:170px;">
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <button type="button" class="ceges-mentes-gomb" data-id="${escHtml(r.id)}" title="Elmenti a fenti mezőket, ha kézzel változtattál rajtuk.">💾 Mentés</button>
             <button type="button" class="ceges-egyeztetes-gomb" data-id="${escHtml(r.id)}" title="Mentés NÉLKÜL megnézi, van-e egyező, még párosítatlan NAV-tétel a legutóbbi NAV-lekérdezésből, a mezőkben jelenleg látható értékek alapján.">🔍 Egyeztetés</button>
           </div>
           <div class="ceges-egyeztetes-statusz" data-id="${escHtml(r.id)}" style="font-size:11px;margin-top:4px;"></div>
-        </td>
-        <td><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>
-      </tr>
-    `).join("");
+        </td>`);
+        cellak.push(`<td><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
+      }
+      return `<tr>${cellak.join("")}</tr>`;
+    }).join("");
+    const megjegyzes = csakOlvas
+      ? '<p class="panel-info">Csak olvasási nézet - a mezők és a törlés admin-jogosultságot igényelnek.</p>'
+      : '<p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>';
+    const fejlecVegek = csakOlvas ? "" : "<th></th><th></th>";
     hely.innerHTML = `
-      <p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>
+      ${megjegyzes}
       <table>
         <thead>
-          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th></th><th></th></tr>
+          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th>${fejlecVegek}</tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -838,15 +875,16 @@
               <div class="kor-cim">${escHtml(cs.nev)} <span style="color:var(--muted);font-weight:400;">(adószám: ${escHtml(adoszam)})</span></div>
               <div class="kor-info">${cs.tetelek.length} db párosítatlan NAV-tétel</div>
             </div>
-            <label class="kor-jeloles" style="white-space:nowrap;"><input type="checkbox" class="nav-emlekezteto-jelolo" data-adoszam="${escHtml(adoszam)}"> kijelölve emlékeztetőhöz</label>
+            <label class="kor-jeloles nav-emlekezteto-cimke" style="white-space:nowrap;"><input type="checkbox" class="nav-emlekezteto-jelolo" data-adoszam="${escHtml(adoszam)}"> kijelölve emlékeztetőhöz</label>
           </div>
           <table>
             <thead><tr><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th></tr></thead>
             <tbody>${sorok}</tbody>
           </table>
-          <label style="max-width:420px;">Szállító email-címe (ide megy az emlékeztető, ha kijelölöd fent)
+          <label class="nav-szallito-email-cimke" style="max-width:420px;">Szállító email-címe (ide megy az emlékeztető, ha kijelölöd fent)
             <input type="email" class="nav-szallito-email-input" data-adoszam="${escHtml(adoszam)}" value="${escHtml(email)}" placeholder="szallito@ceg.hu" style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;">
           </label>
+          ${szerepkor === "user" && email ? `<div style="max-width:420px;color:var(--muted);font-size:13px;">Szállító email-címe: <strong>${escHtml(email)}</strong></div>` : ""}
         </div>
       `;
     }).join("");
@@ -1060,9 +1098,9 @@
     `;
   }
 
-  function tablaRenderelese(lista, nezet) {
+  function tablaRenderelese(lista, nezet, helyId) {
     nezet = nezet || "mind";
-    const hely = document.getElementById("tabla-hely");
+    const hely = document.getElementById(helyId || "tabla-hely");
     if (!lista.length) {
       hely.innerHTML = '<div class="ures">Nincs ide tartozó számla.</div>';
       return;
@@ -1359,6 +1397,28 @@
   // listából épülnek - így nézetváltáskor frissülnek, de a Fizetendő/
   // Fizetve/Lejárt gombok kattintása nem módosítja a kártyák értékét
   // (ez így volt eddig is, csak eddig a kártyák sosem frissültek újra).
+  // A közüzemi számlák a felhasználó kérésére KÜLÖN táblázatban jelennek
+  // meg körönként (1. kör / 2. kör / még be nem sorolt) - a "kor" mező
+  // értéke szerint szétosztva, MINDEN más szűrő (forrás/állapot/kereső)
+  // változatlanul, egységesen alkalmazva mindhárom táblára (ld. lentebb
+  // szuresAlkalmazasa()). A "kor" mező mindig "kor_a" / "kor_b" /
+  // "fuggoben" egyike (ld. szamla_figyelo.py kor_meghatarozasa()), ezért
+  // minden más értéket (hiányzó mező is) a "fuggoben" csoportba teszünk.
+  function korCsoportSzures(lista, korKulcs) {
+    if (korKulcs === "fuggoben") {
+      return lista.filter(r => r.kor !== "kor_a" && r.kor !== "kor_b");
+    }
+    return lista.filter(r => r.kor === korKulcs);
+  }
+
+  function korTablaCimFrissitese(elemId, alapNev, korKulcs, db) {
+    const el = document.getElementById(elemId);
+    if (!el) return;
+    const korNevek = (legutobbiAdat && legutobbiAdat.kor_nevek) || {};
+    const egyediNev = korKulcs && korNevek[korKulcs];
+    el.textContent = (egyediNev ? `${alapNev} – ${egyediNev}` : alapNev) + ` (${db} db)`;
+  }
+
   function szuresAlkalmazasa() {
     const nezetSzerint = osszesSzamla.filter(r => nezetSzuro(r, aktivNezet));
     let szurt = nezetSzerint;
@@ -1367,7 +1427,16 @@
     if (aktivAllapotSzuro === "lejart") szurt = szurt.filter(r => !r.fizetve && r.hatarido && r.hatarido < maiNap());
     if (aktivSzolgaltatoSzuro !== "mind") szurt = szurt.filter(r => (r.szolgaltato_nev || "") === aktivSzolgaltatoSzuro);
     kartyakRenderelese(nezetSzerint);
-    tablaRenderelese(szurt, aktivNezet);
+
+    const korA = korCsoportSzures(szurt, "kor_a");
+    const korB = korCsoportSzures(szurt, "kor_b");
+    const fuggoben = korCsoportSzures(szurt, "fuggoben");
+    korTablaCimFrissitese("kor-a-tabla-cim", "1. kör", "kor_a", korA.length);
+    korTablaCimFrissitese("kor-b-tabla-cim", "2. kör", "kor_b", korB.length);
+    korTablaCimFrissitese("fuggoben-tabla-cim", "❔ Nincs bérlői körbe sorolva", null, fuggoben.length);
+    tablaRenderelese(korA, aktivNezet, "kor-a-tabla-hely");
+    tablaRenderelese(korB, aktivNezet, "kor-b-tabla-hely");
+    tablaRenderelese(fuggoben, aktivNezet, "fuggoben-tabla-hely");
   }
 
   document.querySelectorAll("#allapot-szurok button[data-szuro]").forEach(btn => {
