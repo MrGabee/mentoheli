@@ -123,6 +123,14 @@ jobs:
           CEGES_IMAP_USER: ${{ secrets.CEGES_IMAP_USER }}
           CEGES_IMAP_JELSZO: ${{ secrets.CEGES_IMAP_JELSZO }}
           CEGES_IMAP_MAPPA: ${{ secrets.CEGES_IMAP_MAPPA }}
+          # A céges levelek (Új céges számla értesítő + NAV-emlékeztető) KÜLÖN
+          # feladó-címmel mennek ki, mint a közüzemi levelek - mindhárom
+          # opcionális, ha hiányoznak, a fenti CEGES_IMAP_USER/JELSZO küld
+          # helyettük (ld. szamla_figyelo.py CEGES_EMAIL_KULDO kommentje).
+          CEGES_EMAIL_KULDO_SZAMLA: ${{ secrets.CEGES_EMAIL_KULDO_SZAMLA }}
+          CEGES_EMAIL_JELSZO_SZAMLA: ${{ secrets.CEGES_EMAIL_JELSZO_SZAMLA }}
+          CEGES_SMTP_HOST: ${{ secrets.CEGES_SMTP_HOST }}
+          CEGES_SMTP_PORT: ${{ secrets.CEGES_SMTP_PORT }}
           # NAV Online Számla - bejövő számlák lekérdezése/párosítás a
           # fenti "Céges számlák" postafiókból begyűjtött számlákkal (ld.
           # szamla_figyelo.py "NAV ONLINE SZÁMLA" szekció) - mind a négy
