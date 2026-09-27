@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T02:25:39.694447+02:00",
+  "frissitve": "2026-09-27T02:26:09.217008+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:53:44.340114+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50511169433594,
-      "lon": 19.13640022277832,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-09-26T11:53:44.340165+02:00",
-      "kulcs": "T8108",
-      "rendszam": "T8108",
-      "vehicle_id": "7345",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50978088378906,
-      "lon": 19.05714225769043,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-09-26T11:53:44.340292+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.499900817871094,
-      "lon": 19.083518981933594,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-09-26T11:53:44.340405+02:00",
       "kulcs": "AOGF655",
@@ -260000,6 +259961,45 @@
       "lon": 19.046409606933594,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-09-27T02:26:09.133950+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Budatétény vá. (Campona)",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.47467803955078,
+      "lon": 19.046443939208984,
+      "elozo_szoveg": "Városház tér",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-09-27T02:26:09.135104+02:00",
+      "kulcs": "FLR736",
+      "rendszam": "FLR736",
+      "vehicle_id": "3150",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.487003326416016,
+      "lon": 19.023279190063477,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-27T02:26:09.136289+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.50096130371094,
+      "lon": 19.024324417114258,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
     }
   ]
 }
