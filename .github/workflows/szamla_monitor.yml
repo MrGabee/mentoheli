@@ -142,6 +142,10 @@ jobs:
           NAV_TECHNIKAI_JELSZO: ${{ secrets.NAV_TECHNIKAI_JELSZO }}
           NAV_ALAIRO_KULCS: ${{ secrets.NAV_ALAIRO_KULCS }}
           NAV_ADOSZAM: ${{ secrets.NAV_ADOSZAM }}
+          # A céged neve - jelenleg csak a NAV-emlékeztető email szövegében
+          # ("kinek a nevében" kérjük a hiányzó számla-másolatot) - opcionális,
+          # ha üres, a levél cégnév-említés nélkül, semleges szöveggel megy ki.
+          CEG_NEV: ${{ secrets.CEG_NEV }}
           # Bérlői körök - a dashboardon besorolt Díjnet/Vízművek-számlák
           # ide mennek (értesítő + havi összesítő) - ha valamelyik nincs
           # beállítva, az adott kör számláiról egyszerűen nem megy ki email
