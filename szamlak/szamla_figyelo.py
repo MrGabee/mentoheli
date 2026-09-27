@@ -119,6 +119,16 @@ Szükséges GitHub Secretek:
   CEGES_IMAP_MAPPA        (opcionális, alapértelmezett: INBOX)
   Mind az öt CÉGES_* opcionális - ha valamelyik hiányzik, a "Céges számlák" modul egyszerűen
   kimarad, minden más (a fő számla-figyelés) változatlanul működik.
+  CEGES_EMAIL_KULDO_SZAMLA  (opcionális) - a CÉGES levelek (Új céges számla értesítő +
+                            NAV-emlékeztető) KÜLÖN feladó-címe - ha nincs megadva, a fenti
+                            CEGES_IMAP_USER (a dedikált céges postafiók) küld helyette,
+                            ugyanúgy, mint ahogy a közüzemi oldalon az EMAIL_KULDO_SZAMLA
+                            hiányában a SZAMLA_IMAP_USER küld.
+  CEGES_EMAIL_JELSZO_SZAMLA (opcionális) - a fenti feladó jelszava/app-jelszava - ha nincs
+                            megadva, a CEGES_IMAP_JELSZO-t használja.
+  CEGES_SMTP_HOST/CEGES_SMTP_PORT (opcionális) - csak akkor kell, ha a céges postafiók NEM
+                            Gmail-t használ (a közüzemi SMTP_HOST/SMTP_PORT-tól függetlenül
+                            állítható) - alapértelmezetten a közösével egyezik meg.
   NAV_TECHNIKAI_LOGIN     a NAV Online Számla technikai felhasználó bejelentkezési neve
                           (a NAV honlapján, "Technikai felhasználó létrehozása" menüben kapod)
   NAV_TECHNIKAI_JELSZO    a fenti technikai felhasználó jelszava
@@ -311,6 +321,18 @@ CEGES_IMAP_PORT = int(os.environ.get("CEGES_IMAP_PORT") or "993")
 CEGES_IMAP_USER = os.environ.get("CEGES_IMAP_USER") or ""
 CEGES_IMAP_JELSZO = os.environ.get("CEGES_IMAP_JELSZO") or ""
 CEGES_IMAP_MAPPA = os.environ.get("CEGES_IMAP_MAPPA") or "INBOX"
+
+# A "céges" kategóriájú levelek (Új céges számla értesítő + NAV-
+# emlékeztető, ld. email_kuldes() "kategoria" paramétere) KÜLÖN feladóval
+# mennek ki, mint a közüzemi levelek - alapértelmezetten a fenti, dedikált
+# céges postafiókkal (ugyanaz a minta, mint a közüzemi oldalon az
+# EMAIL_KULDO_SZAMLA hiányában a SZAMLA_IMAP_USER-es visszaesés). Ha a
+# céges postafiók nem Gmail-t használ, a CEGES_SMTP_HOST/CEGES_SMTP_PORT-
+# tal felülírható a közös SMTP_HOST/SMTP_PORT alapértelmezés.
+CEGES_EMAIL_KULDO = os.environ.get("CEGES_EMAIL_KULDO_SZAMLA") or CEGES_IMAP_USER
+CEGES_EMAIL_JELSZO_KULDES = os.environ.get("CEGES_EMAIL_JELSZO_SZAMLA") or CEGES_IMAP_JELSZO
+CEGES_SMTP_HOST = os.environ.get("CEGES_SMTP_HOST") or SMTP_HOST
+CEGES_SMTP_PORT = int(os.environ.get("CEGES_SMTP_PORT") or SMTP_PORT)
 
 # Egy futáson belül legfeljebb ennyi céges számla-emailt dolgoz fel (a
 # Drive-feltöltés + email-törlés miatt ez itt is védendő, ugyanaz az elv,
@@ -1344,19 +1366,29 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
     if kikapcsolva:
         print(f"  🔕 Email-küldés le van tiltva a dashboard beállításaiban ({kategoria}) - kihagyva: {targy!r}")
         return False
+
+    # A feladó (és a hozzá tartozó SMTP-hitelesítés) kategóriánként KÜLÖN
+    # cím - ld. CEGES_EMAIL_KULDO fenti kommentjét a "miért" indoklásáról.
+    if kategoria == "ceges":
+        feladas_cim, feladas_jelszo = CEGES_EMAIL_KULDO, CEGES_EMAIL_JELSZO_KULDES
+        smtp_host, smtp_port = CEGES_SMTP_HOST, CEGES_SMTP_PORT
+    else:
+        feladas_cim, feladas_jelszo = EMAIL_KULDO, EMAIL_JELSZO_KULDES
+        smtp_host, smtp_port = SMTP_HOST, SMTP_PORT
+
     cimzett_vegso = cimzett or EMAIL_CIMZETT
     if DRY_RUN:
         csatolmany_nevek = [fajlnev for fajlnev, _ in (csatolmanyok or [])]
         print(f"  🧪 [DRY RUN] Email KIMENNE (de nem megy ki): {targy!r} -> "
-              f"{cimzett_vegso!r} (csatolmányok: {csatolmany_nevek or 'nincs'})")
+              f"{cimzett_vegso!r} (feladó: {feladas_cim!r}, csatolmányok: {csatolmany_nevek or 'nincs'})")
         return True
-    if not (EMAIL_KULDO and EMAIL_JELSZO_KULDES and cimzett_vegso):
-        print("  ⚠️  Nincs teljesen beállítva az email-küldés - kihagyva.")
+    if not (feladas_cim and feladas_jelszo and cimzett_vegso):
+        print(f"  ⚠️  Nincs teljesen beállítva az email-küldés ({kategoria}) - kihagyva.")
         return False
 
     msg = MIMEMultipart("mixed")
     msg["Subject"] = targy
-    msg["From"] = EMAIL_KULDO
+    msg["From"] = feladas_cim
     msg["To"] = cimzett_vegso
     msg.attach(MIMEText(html_torzs, "html", "utf-8"))
 
@@ -1368,8 +1400,8 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
         msg.attach(resz)
 
     try:
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
-            server.login(EMAIL_KULDO, EMAIL_JELSZO_KULDES)
+        with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
+            server.login(feladas_cim, feladas_jelszo)
             server.send_message(msg)
         print(f"  ✅ Email elküldve: {targy}")
         return True
