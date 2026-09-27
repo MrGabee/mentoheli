@@ -449,7 +449,7 @@
   // elérési útra (ld. szamlak/mysql/ telepítési útmutató). Nincs
   // titkosítás - az adatokat a tárhely hozzáférés-védelme + az
   // "aktualisApiKulcs" (ld. lentebb) védi.
-  const API_URL = "https://ide-irod-a-sajat-domained.hu/szamlak/mysql/api.php";
+  const API_URL = "https://reilviolin.hu/billing/api.php";
   let osszesSzamla = [];
   let cegesSzamlak = []; // a dedikált céges-postafiókból begyűjtött, Drive-ra feltöltött számlák metaadata (ld. "Céges számlák" fül) - a PDF itt NEM tárolt, csak a "drive_url"
   let pdfTar = {};           // invoice-id -> base64 PDF (az api.php "get_all_pdfs" hívásából)
