@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-09-27T02:26:09.217008+02:00",
+  "frissitve": "2026-09-27T02:26:41.467382+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T11:53:44.340405+02:00",
-      "kulcs": "AOGF655",
-      "rendszam": "AOGF655",
-      "vehicle_id": "737",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "66",
-      "route_id": "0660",
-      "lat": 47.3782958984375,
-      "lon": 19.13046646118164,
-      "elozo_szoveg": "Soroksár, központi raktárak",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-09-26T11:53:44.340448+02:00",
-      "kulcs": "V2241",
-      "rendszam": "V2241",
-      "vehicle_id": "7373",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.477630615234375,
-      "lon": 19.04703712463379,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-09-26T11:53:44.340656+02:00",
-      "kulcs": "RVY602",
-      "rendszam": "RVY602",
-      "vehicle_id": "7431",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.41680908203125,
-      "lon": 19.18507957458496,
-      "elozo_szoveg": "Lőrinci temető",
-      "uj_szoveg": "Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-09-26T11:53:44.340824+02:00",
-      "kulcs": "RVY705",
-      "rendszam": "RVY705",
-      "vehicle_id": "7454",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.50174331665039,
-      "lon": 19.135570526123047,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-09-26T11:53:44.341330+02:00",
-      "kulcs": "SKR805",
-      "rendszam": "SKR805",
-      "vehicle_id": "7691",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.51655197143555,
-      "lon": 18.976730346679688,
-      "elozo_szoveg": "Zugliget, Libegő",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-09-26T11:53:44.341707+02:00",
       "kulcs": "SGY821",
@@ -260000,6 +259935,71 @@
       "lon": 19.024324417114258,
       "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-09-27T02:26:41.380497+02:00",
+      "kulcs": "V2010",
+      "rendszam": "V2010",
+      "vehicle_id": "2010",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.47736358642578,
+      "lon": 19.048479080200195,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-09-27T02:26:41.382228+02:00",
+      "kulcs": "AAGL303",
+      "rendszam": "AAGL303",
+      "vehicle_id": "333",
+      "vehicle_label": "Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.487674713134766,
+      "lon": 19.058752059936523,
+      "elozo_szoveg": "Astoria M ► Zsámbék",
+      "uj_szoveg": "Széll Kálmán tér M ► Zsámbék"
+    },
+    {
+      "idopont": "2026-09-27T02:26:41.382336+02:00",
+      "kulcs": "AAMH618",
+      "rendszam": "AAMH618",
+      "vehicle_id": "461",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.540138244628906,
+      "lon": 19.069839477539062,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T02:26:41.382744+02:00",
+      "kulcs": "RVY606",
+      "rendszam": "RVY606",
+      "vehicle_id": "7435",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.487003326416016,
+      "lon": 19.05757713317871,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-09-27T02:26:41.383018+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50809860229492,
+      "lon": 19.026630401611328,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
