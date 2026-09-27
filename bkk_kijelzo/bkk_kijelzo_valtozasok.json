@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-09-27T03:32:37.179237+02:00",
+  "frissitve": "2026-09-27T03:33:15.919187+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-09-26T12:04:08.040583+02:00",
-      "kulcs": "AOFL213",
-      "rendszam": "AOFL213",
-      "vehicle_id": "800",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52202606201172,
-      "lon": 18.989885330200195,
-      "elozo_szoveg": "Kurucles",
-      "uj_szoveg": "Kurucles ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-09-26T12:04:08.040654+02:00",
-      "kulcs": "AOFL218",
-      "rendszam": "AOFL218",
-      "vehicle_id": "805",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53330612182617,
-      "lon": 19.0257511138916,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-09-26T12:04:08.040686+02:00",
-      "kulcs": "AOFL219",
-      "rendszam": "AOFL219",
-      "vehicle_id": "806",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.59849166870117,
-      "lon": 19.05428123474121,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
     {
       "idopont": "2026-09-26T12:04:08.041548+02:00",
       "kulcs": "1121-761-1122",
@@ -260000,6 +259961,45 @@
       "lon": 19.025060653686523,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-09-27T03:33:15.826580+02:00",
+      "kulcs": "V2034",
+      "rendszam": "V2034",
+      "vehicle_id": "2034",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "6",
+      "route_id": "3060",
+      "lat": 47.507232666015625,
+      "lon": 19.02536964416504,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-09-27T03:33:15.826700+02:00",
+      "kulcs": "AAGL254",
+      "rendszam": "AAGL254",
+      "vehicle_id": "254",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.47861099243164,
+      "lon": 19.049463272094727,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-09-27T03:33:15.829214+02:00",
+      "kulcs": "PDB731",
+      "rendszam": "PDB731",
+      "vehicle_id": "7057",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50749969482422,
+      "lon": 19.025836944580078,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
