@@ -252,7 +252,7 @@
         <p class="panel-info">Ezen a panelen (és a többi, adatot mentő panelen) a bejelentkezéskor megadott API-kulcs elég a mentéshez - a lenti GitHub token KIZÁRÓLAG a "Küldés MOST"-jellegű gombokhoz kell (azok egy GitHub Actions futást indítanak el), és csak a böngésződben marad (session-tárolóban), sehova máshova nem kerül.</p>
         <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
           <input type="checkbox" id="be-email-engedelyezve" style="width:auto;flex:none;">
-          <span>📧 Email-küldés engedélyezve — ha nincs bepipálva, egyetlen értesítő/emlékeztető/összesítő email sem megy ki (a dashboard adatai ettől függetlenül frissülnek). Amíg ezt nem mented bepipálva, alapból NINCS email-küldés.</span>
+          <span>📧 Email-küldés engedélyezve (közüzemi) — ha nincs bepipálva, egyetlen közüzemi (Díjnet/Vízművek/MVM) értesítő/emlékeztető/összesítő email sem megy ki (a dashboard adatai ettől függetlenül frissülnek). Amíg ezt nem mented bepipálva, alapból NINCS email-küldés. A céges email-küldést KÜLÖN, a Céges fülön kapcsolhatod be.</span>
         </label>
         <label>GitHub token
           <input type="password" id="gh-pat-input" autocomplete="off" placeholder="ghp_...">
@@ -429,6 +429,11 @@
       <div class="panel" id="ceges-nav-panel">
         <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
         <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
+          <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
+            <input type="checkbox" id="ceges-email-engedelyezve" style="width:auto;flex:none;">
+            <span>📧 Email-küldés engedélyezve (céges) — a "Céges számlák" fülhöz tartozó levelek: az "Új céges számla" értesítő és a lenti NAV-emlékeztető. FÜGGETLEN a közüzemi (Beállítások panel) kapcsolótól - egymástól elkülönítve ki/bekapcsolható. Változtatáskor azonnal mentődik.</span>
+          </label>
+          <div class="panel-statusz" id="ceges-email-statusz"></div>
           <p class="panel-info">A fent listázott (email-ből begyűjtött), ILLETVE a Közüzemi fülön lévő számlákat is a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez a Céges táblázat "NAV-párosítás" oszlopában látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg egyik figyelt postafiókba sem, az itt lent, egy külön listában jelenik meg szállítónként csoportosítva - itt email-címet adhatsz meg a szállítóhoz, kijelölheted, majd egy sablon-szövegű emlékeztetőt küldhetsz neki, amiben megkéred, küldje el a számla másolatát.</p>
           <div id="nav-bejelentkezes-statusz"></div>
           <div id="nav-csak-navban-hely"></div>
@@ -449,7 +454,7 @@
   // elérési útra (ld. szamlak/mysql/ telepítési útmutató). Nincs
   // titkosítás - az adatokat a tárhely hozzáférés-védelme + az
   // "aktualisApiKulcs" (ld. lentebb) védi.
-  const API_URL = "https://reilviolin.hu/billing/api.php";
+  const API_URL = "https://ide-irod-a-sajat-domained.hu/szamlak/mysql/api.php";
   let osszesSzamla = [];
   let cegesSzamlak = []; // a dedikált céges-postafiókból begyűjtött, Drive-ra feltöltött számlák metaadata (ld. "Céges számlák" fül) - a PDF itt NEM tárolt, csak a "drive_url"
   let pdfTar = {};           // invoice-id -> base64 PDF (az api.php "get_all_pdfs" hívásából)
@@ -1772,6 +1777,22 @@
     }
   }
 
+  // A közüzemi kapcsolóval ellentétben ez azonnal (külön "Mentés" gomb
+  // nélkül) elmentődik változáskor - egyetlen mezőről van szó, nem kell
+  // hozzá a Beállítások-panel többi mezőjével közös mentés-blokk.
+  document.getElementById("ceges-email-engedelyezve").addEventListener("change", async (e) => {
+    if (!aktualisApiKulcs) { e.target.checked = !e.target.checked; alert("Előbb jelentkezz be."); return; }
+    const engedelyezve = e.target.checked;
+    beStatuszMutat("ceges-email-statusz", "Mentés...", "");
+    try {
+      await apiHivas("set_meta", { kulcs: "ceges_email_kikapcsolva", ertek: !engedelyezve });
+      beStatuszMutat("ceges-email-statusz", engedelyezve ? "✅ Céges email-küldés bekapcsolva." : "✅ Céges email-küldés kikapcsolva.", "siker");
+    } catch (err) {
+      e.target.checked = !engedelyezve;
+      beStatuszMutat("ceges-email-statusz", "❌ Mentés sikertelen: " + err.message, "hiba");
+    }
+  });
+
   document.getElementById("felhasznalok-toggle").addEventListener("click", () => {
     if (!aktualisApiKulcs) return; // a panel csak bejelentkezés UTÁN érhető el ténylegesen
     felhasznalokListaFrissitese();
@@ -2523,6 +2544,10 @@
     cegesTablaRenderelese(cegesSzamlak);
     navAllapotRenderelese(adat.nav_allapot);
     navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek);
+    // ceges_email_kikapcsolva === false az EGYETLEN eset, amikor a céges
+    // küldés ténylegesen engedélyezve van (ld. be-email-engedelyezve
+    // hasonló mintáját fent) - ez FÜGGETLEN a közüzemi kapcsolótól.
+    document.getElementById("ceges-email-engedelyezve").checked = adat.ceges_email_kikapcsolva === false;
     postafiokListaRenderelese(adat.tovabbi_postafiokok);
     aktivAllapotSzuro = "mind";
     aktivSzolgaltatoSzuro = "mind";
