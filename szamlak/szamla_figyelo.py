@@ -834,13 +834,17 @@ def _szamla_szo_szerepel_e(pdf_szoveg: str) -> bool:
 # szállító nevét is - így a Python-oldal NEM a (string-egyezésen alapuló,
 # elvileg hibázható) nav_szamla_parositas()-ra van utalva ahhoz, hogy
 # ezeket kitöltse, hanem AZONNAL, a rekord létrehozásakor, MEGBÍZHATÓAN
-# beírja őket (ld. lentebb a hívási helyeken). A mezőket ":" választja el -
-# a számlaszám és a szállító neve (az utolsó mező, a sor végéig tart)
-# tartalmazhat szóközt, de ":"-ot NEM (ez praktikusan sosem fordul elő
-# számlaszámban/cégnévben).
+# beírja őket (ld. lentebb a hívási helyeken).
+#
+# FORMÁTUM - "[[NAVKOD|adószám|számlaszám|összeg|dátum|név]]" - a
+# felhasználó kifejezett kérésére ("bárhova illesztem be... megismerje"):
+# a dupla szögletes zárójel ÖNMAGÁT egyértelműen határolja, ezért a kód
+# BÁRHOVA beilleszthető (tárgy elejére/közepére/végére, levél szövegének
+# közepébe, más szöveg elé/mögé ugyanabba a sorba) - nincs szükség rá,
+# hogy önálló sorban/a szöveg végén álljon, a "]]" lezárás egyértelműen
+# jelzi, hol ér véget. A mezőket "|" választja el.
 NAV_KOD_MINTA = re.compile(
-    r"NAVKOD:([0-9A-Za-z\-]{6,30}):([^:\r\n]+):([^:\r\n]*):([^:\r\n]*):(.*)$",
-    re.MULTILINE,
+    r"\[\[NAVKOD\|([^|\]\r\n]+)\|([^|\]\r\n]+)\|([^|\]\r\n]*)\|([^|\]\r\n]*)\|([^\]\r\n]*)\]\]"
 )
 
 
