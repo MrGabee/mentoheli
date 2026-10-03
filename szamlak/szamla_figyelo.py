@@ -1087,6 +1087,23 @@ def adatbazis_allapot_betoltese() -> dict:
     allapot["ceges_szamlak"] = valasz.get("ceges_szamlak") or {}
     allapot["tovabbi_postafiokok"] = valasz.get("tovabbi_postafiokok") or {}
 
+    # VÉDŐHÁLÓ - ld. api.php "OBJEKTUM_TIPUSU_META_KULCSOK" komment: PHP-ban
+    # egy ÜRES asszociatív tömb megkülönböztethetetlen egy üres listától,
+    # ezért ha egy ÚJ, dict-típusú meta-kulcs (pl. "ceges_szamlak_bizonytalan")
+    # még üresen (sosem volt benne egyetlen tétel sem) kerül mentésre, és az
+    # api.php-ban (a feltöltött verzióban) véletlenül lemaradt a dict-típusú
+    # kulcsok listájáról, a válaszban "[]" (lista) érkezhet "{}" (dict)
+    # helyett - ez enélkül egy AttributeError-ral elszállítaná a TELJES
+    # futást (pl. egy ".values()" hívásnál, ld. ceges_szamlak_feldolgozasa()).
+    # Itt minden olyan kulcsnál, aminek az ALAPÉRTÉKE (_allapot_alapertekek())
+    # dict, de a kapott érték ÜRES lista, egyszerűen {}-re cseréljük -
+    # tartalmi különbség nincs (mindkettő "nincs benne semmi"), csak a
+    # Python-oldali kód számára biztonságos típus. Nem helyettesíti az
+    # api.php helyes beállítását (ld. ott a kommentet), csak védőháló.
+    for _kulcs, _alapertek in _allapot_alapertekek().items():
+        if isinstance(_alapertek, dict) and isinstance(allapot.get(_kulcs), list) and not allapot[_kulcs]:
+            allapot[_kulcs] = {}
+
     pdf_valasz = _api_hivas("get_all_pdfs")
     allapot["pdf_adatok"] = pdf_valasz.get("pdf_adatok") or {}
 
