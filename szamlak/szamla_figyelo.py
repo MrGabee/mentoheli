@@ -825,15 +825,31 @@ def _szamla_szo_szerepel_e(pdf_szoveg: str) -> bool:
 # "nav_parositva") a már létező nav_szamla_parositas() végzi el, UGYANABBAN
 # a futásban (ld. main() hívási sorrendje) - nincs szükség semmilyen
 # plusz/duplikált párosító logikára itt.
-NAV_KOD_MINTA = re.compile(r"NAVKOD:([0-9A-Za-z\-]{6,30}):(\S+)")
+#
+# FONTOS - a szamlaszam rész SZÁNDÉKOSAN "a sor végéig" illeszkedik (NEM
+# \S+-szal, ami az ELSŐ szóköznél megállna) - egy számlaszám gyakran
+# TARTALMAZ szóközt (pl. "ASZ / 2026-001643", ahogy ezt egy valódi
+# eladói értesítő tárgysora is tartalmazta - ezzel a korábbi \S+ verzió
+# csonkán, "ASZ"-ra vágva kapta volna el). A kódot a dashboard a "+
+# Hozzáadás" gomb alatt EGY SORBAN (jellemzően a teljes tárgysorként,
+# vagy a levél szövegében egy önálló sorként) adja - ez a mintázat ezt
+# feltételezi: ha a kód UTÁN, UGYANABBAN a sorban még más szöveg is
+# következne (pl. "...NAVKOD:...:AB-123, köszönjük"), az tévesen
+# bekerülne a számlaszámba - ezért a gomb szövege is kéri, hogy a kód
+# álljon önmagában/a sor végén.
+NAV_KOD_MINTA = re.compile(r"NAVKOD:([0-9A-Za-z\-]{6,30}):(.+)$", re.MULTILINE)
 
 
 def _nav_kod_kinyerese(szoveg: str):
     """(adoszam, szamlaszam) páros, vagy None - ld. NAV_KOD_MINTA kommentje.
-    A szamlaszam végéről a gyakori, véletlenül odaragadó írásjeleket (pl. a
-    kódot egy mondat végére illesztő pont/vessző) levágjuk, hogy a
-    számlaszám-egyezés (nav_szamla_parositas() "1. kör") biztosan
-    illeszkedjen a NAV-nál nyilvántartott, írásjel NÉLKÜLI alakra."""
+    A szamlaszam elejéről/végéről a whitespace-t, a végéről pedig a
+    gyakori, véletlenül odaragadó írásjeleket (pl. a kódot egy mondat
+    végére illesztő pont/vessző) levágjuk, hogy a számlaszám-egyezés
+    (nav_szamla_parositas() "1. kör") biztosan illeszkedjen a NAV-nál
+    nyilvántartott alakra - a szamlaszam BELSEJÉBEN lévő szóközöket
+    (ld. a fenti "ASZ / 2026-001643" példát) viszont szándékosan
+    megőrizzük, azokat a nav_szamla_parositas() hasonlítja össze
+    whitespace-érzéketlenül (ld. ott a _szamlaszam_normalizalt() komment)."""
     if not szoveg:
         return None
     talalat = NAV_KOD_MINTA.search(szoveg)
@@ -4471,6 +4487,22 @@ def _nav_osszeg_egyezik(a, b, tolerancia=1.0) -> bool:
         return False
 
 
+def _szamlaszam_normalizalt(szamlaszam) -> str:
+    """A számlaszám-egyezés (1. kör, ld. nav_szamla_parositas()) ÖSSZES
+    whitespace-et (szóköz is) eltávolítva, nagybetűsítve hasonlítja össze
+    a két oldalt - egy valódi esetben kiderült, hogy egy eladói értesítő
+    tárgysora "ASZ / 2026-001643" alakban, szóközökkel körülvett "/"-szel
+    tartalmazta a számlaszámot, miközben elképzelhető, hogy a NAV-nál
+    "ASZ/2026-001643" (szóköz nélkül) szerepel - enélkül egy formailag
+    apró, de valós egyezés is simán "párosítatlan"-ként maradt volna. A
+    TÁROLT érték (amit a felhasználó lát/szerkeszt) ettől függetlenül
+    változatlan marad - ez a függvény KIZÁRÓLAG az összehasonlításhoz
+    kell, nem írja felül a mezőt."""
+    if not szamlaszam:
+        return ""
+    return re.sub(r"\s+", "", str(szamlaszam)).upper()
+
+
 def _nav_parosithato_rekordok(allapot: dict):
     """Egységesített (szamlaszam, osszeg) nézetet ad a KÉT különböző
     forrás fölé, amit a NAV-párosítás megpróbálhat összevetni - ld.
@@ -4544,13 +4576,16 @@ def nav_szamla_parositas(allapot: dict):
     parositando = _nav_parosithato_rekordok(allapot)
     parositott_nav_kulcsok = set()
 
-    # 1. kör - számlaszám EGYEZÉS (a legmegbízhatóbb jel, ha van).
+    # 1. kör - számlaszám EGYEZÉS (a legmegbízhatóbb jel, ha van) - ld.
+    # _szamlaszam_normalizalt() komment: whitespace-érzéketlenül
+    # hasonlítunk, hogy egy pusztán formai (pl. szóköz a "/" körül)
+    # eltérés ne akadályozza meg a valódi egyezést.
     for rekord, szamlaszam, _osszeg, _adoszam in parositando:
-        sajat_szamlaszam = (szamlaszam or "").strip().upper()
+        sajat_szamlaszam = _szamlaszam_normalizalt(szamlaszam)
         if not sajat_szamlaszam:
             continue
         for tetel in nav_tetelek:
-            nav_szamlaszam = (tetel.get("szamlaszam") or "").strip().upper()
+            nav_szamlaszam = _szamlaszam_normalizalt(tetel.get("szamlaszam"))
             if not nav_szamlaszam or nav_szamlaszam != sajat_szamlaszam:
                 continue
             kulcs = _nav_tetel_kulcs(tetel)
