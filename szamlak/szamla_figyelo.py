@@ -826,30 +826,30 @@ def _szamla_szo_szerepel_e(pdf_szoveg: str) -> bool:
 # a futásban (ld. main() hívási sorrendje) - nincs szükség semmilyen
 # plusz/duplikált párosító logikára itt.
 #
-# FONTOS - a szamlaszam rész SZÁNDÉKOSAN "a sor végéig" illeszkedik (NEM
-# \S+-szal, ami az ELSŐ szóköznél megállna) - egy számlaszám gyakran
-# TARTALMAZ szóközt (pl. "ASZ / 2026-001643", ahogy ezt egy valódi
-# eladói értesítő tárgysora is tartalmazta - ezzel a korábbi \S+ verzió
-# csonkán, "ASZ"-ra vágva kapta volna el). A kódot a dashboard a "+
-# Hozzáadás" gomb alatt EGY SORBAN (jellemzően a teljes tárgysorként,
-# vagy a levél szövegében egy önálló sorként) adja - ez a mintázat ezt
-# feltételezi: ha a kód UTÁN, UGYANABBAN a sorban még más szöveg is
-# következne (pl. "...NAVKOD:...:AB-123, köszönjük"), az tévesen
-# bekerülne a számlaszámba - ezért a gomb szövege is kéri, hogy a kód
-# álljon önmagában/a sor végén.
-NAV_KOD_MINTA = re.compile(r"NAVKOD:([0-9A-Za-z\-]{6,30}):(.+)$", re.MULTILINE)
+# A felhasználó kifejezett kérésére ("egyből ismerje meg, és töltse ki a
+# többi adatot is") a kód NEM CSAK az adószámot+számlaszámot hordozza,
+# hanem MINDEN mezőt, amit a dashboard a "+ Hozzáadás" gomb megjelenítésekor
+# ÚGYIS már ismer az adott NAV-tételről (ld. szamlak.html
+# navCsakNavbanRenderelese()): az összeget, a kiállítás dátumát és a
+# szállító nevét is - így a Python-oldal NEM a (string-egyezésen alapuló,
+# elvileg hibázható) nav_szamla_parositas()-ra van utalva ahhoz, hogy
+# ezeket kitöltse, hanem AZONNAL, a rekord létrehozásakor, MEGBÍZHATÓAN
+# beírja őket (ld. lentebb a hívási helyeken). A mezőket ":" választja el -
+# a számlaszám és a szállító neve (az utolsó mező, a sor végéig tart)
+# tartalmazhat szóközt, de ":"-ot NEM (ez praktikusan sosem fordul elő
+# számlaszámban/cégnévben).
+NAV_KOD_MINTA = re.compile(
+    r"NAVKOD:([0-9A-Za-z\-]{6,30}):([^:\r\n]+):([^:\r\n]*):([^:\r\n]*):(.*)$",
+    re.MULTILINE,
+)
 
 
 def _nav_kod_kinyerese(szoveg: str):
-    """(adoszam, szamlaszam) páros, vagy None - ld. NAV_KOD_MINTA kommentje.
-    A szamlaszam elejéről/végéről a whitespace-t, a végéről pedig a
-    gyakori, véletlenül odaragadó írásjeleket (pl. a kódot egy mondat
-    végére illesztő pont/vessző) levágjuk, hogy a számlaszám-egyezés
-    (nav_szamla_parositas() "1. kör") biztosan illeszkedjen a NAV-nál
-    nyilvántartott alakra - a szamlaszam BELSEJÉBEN lévő szóközöket
-    (ld. a fenti "ASZ / 2026-001643" példát) viszont szándékosan
-    megőrizzük, azokat a nav_szamla_parositas() hasonlítja össze
-    whitespace-érzéketlenül (ld. ott a _szamlaszam_normalizalt() komment)."""
+    """dict ({"adoszam", "szamlaszam", "osszeg", "datum", "nev"}) vagy
+    None - ld. NAV_KOD_MINTA kommentje. Az "osszeg"/"datum"/"nev" None
+    lehet, ha a kódból hiányzik/nem értelmezhető (pl. egy régebbi,
+    3-mezős kóddal) - ilyenkor a hívó a szokásos, PDF/NAV-párosítás
+    alapú kitöltésre esik vissza ezekre a mezőkre."""
     if not szoveg:
         return None
     talalat = NAV_KOD_MINTA.search(szoveg)
@@ -859,7 +859,14 @@ def _nav_kod_kinyerese(szoveg: str):
     szamlaszam = talalat.group(2).strip().strip(".,;:)”\"'")
     if not adoszam or not szamlaszam:
         return None
-    return adoszam, szamlaszam
+    osszeg_nyers = talalat.group(3).strip()
+    try:
+        osszeg = float(osszeg_nyers) if osszeg_nyers else None
+    except ValueError:
+        osszeg = None
+    datum = talalat.group(4).strip() or None
+    nev = talalat.group(5).strip().strip(".,;:)”\"'") or None
+    return {"adoszam": adoszam, "szamlaszam": szamlaszam, "osszeg": osszeg, "datum": datum, "nev": nev}
 
 
 # Negáció-őr: a FIZETVE_MINTA önmagában illeszkedne olyan mondatokra is,
@@ -3431,15 +3438,21 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # levél tárgyába/szövegébe, az egyértelműen (a "számla" szó
                 # keresésénél sokkal erősebb jel) azonosítja, melyik
                 # NAV-tételről van szó - ilyenkor felülírjuk a (esetleg
-                # sikertelen/hibás) automatikus számlaszám-felismerést, és
-                # a "Nem biztos" kategóriát is kihagyjuk (biztos_szamla).
-                # A tényleges NAV-összekötést (szállító neve/összeg/dátum,
-                # "nav_parositva") a nav_szamla_parositas() végzi el, a fő
-                # feldolgozás UTÁN, UGYANEBBEN a futásban.
+                # sikertelen/hibás) automatikus felismerést ÉS a NAV-mezőket
+                # (szállító neve/összeg/dátum/párosítva) IS KÖZVETLENÜL,
+                # MEGBÍZHATÓAN kitöltjük MÁR ITT, a rekord létrehozásakor
+                # (nem várva/hagyatkozva a lentebbi, string-egyezésen
+                # alapuló nav_szamla_parositas()-ra - ld. a felhasználó
+                # kifejezett kérését: "egyből ismerje meg, és töltse ki a
+                # többi adatot"). A "Nem biztos" kategóriát is kihagyjuk.
                 nav_kod_talalat = _nav_kod_kinyerese(f"{targy}\n{szoveg}\n{ceges_pdf_szoveg}")
                 if nav_kod_talalat:
-                    nav_kod_adoszam, nav_kod_szamlaszam = nav_kod_talalat
-                    kinyert_szamlaszam = nav_kod_szamlaszam
+                    nav_kod_adoszam = nav_kod_talalat["adoszam"]
+                    kinyert_szamlaszam = nav_kod_talalat["szamlaszam"]
+                    if nav_kod_talalat["osszeg"] is not None:
+                        kinyert_osszeg = nav_kod_talalat["osszeg"]
+                    if nav_kod_talalat["nev"]:
+                        kuldo_nev = nav_kod_talalat["nev"]
                     biztos_szamla = True
                 else:
                     nav_kod_adoszam = None
@@ -3490,6 +3503,18 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                           f"próbáljuk a következő futáskor: {kuldo_nev} – {targy[:60]}")
                     continue
 
+                # ld. a fenti NAV_KOD_MINTA-blokk kommentjét - ha a kódból
+                # jött a rekord, a NAV-mezőket IS egyből, megbízhatóan
+                # kitöltjük (nem a nav_szamla_parositas() utólagos,
+                # string-egyezésen alapuló találgatására hagyatkozva).
+                if nav_kod_talalat:
+                    _nav_kod_kulcs = (
+                        f"{nav_kod_talalat['adoszam']}|"
+                        f"{_szamlaszam_normalizalt(nav_kod_talalat['szamlaszam'])}"
+                    )
+                else:
+                    _nav_kod_kulcs = None
+
                 uj_rekord = {
                     "kuldo_nev": kuldo_nev,
                     "feladó_email": feladó_email,
@@ -3539,11 +3564,11 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     # párosítás a "Nem biztos" kategóriában lévő tételt is
                     # átsorolja a fő listába (ld.
                     # _ceges_bizonytalan_athelyezese_biztosba()).
-                    "nav_szamla_azonosito": None,
-                    "nav_parositva": False,
-                    "nav_szallito_nev": None,
-                    "nav_osszeg": None,
-                    "nav_datum": None,
+                    "nav_szamla_azonosito": _nav_kod_kulcs,
+                    "nav_parositva": bool(nav_kod_talalat),
+                    "nav_szallito_nev": nav_kod_talalat["nev"] if nav_kod_talalat else None,
+                    "nav_osszeg": nav_kod_talalat["osszeg"] if nav_kod_talalat else None,
+                    "nav_datum": nav_kod_talalat["datum"] if nav_kod_talalat else None,
                 }
                 if biztos_szamla:
                     ceges_szamlak[cid] = uj_rekord
@@ -3980,8 +4005,12 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             # postafiókok" ceges-célú ágában is.
                             nav_kod_talalat = _nav_kod_kinyerese(f"{targy}\n{csatolmany_teljes_szoveg}")
                             if nav_kod_talalat:
-                                nav_kod_adoszam, nav_kod_szamlaszam = nav_kod_talalat
-                                kinyert_szamlaszam_cs = nav_kod_szamlaszam
+                                nav_kod_adoszam = nav_kod_talalat["adoszam"]
+                                kinyert_szamlaszam_cs = nav_kod_talalat["szamlaszam"]
+                                if nav_kod_talalat["osszeg"] is not None:
+                                    kinyert_osszeg = nav_kod_talalat["osszeg"]
+                                if nav_kod_talalat["nev"]:
+                                    kuldo_nev = nav_kod_talalat["nev"]
                                 biztos_szamla = True
                             else:
                                 nav_kod_adoszam = None
@@ -4025,6 +4054,17 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                       f"sikertelen, újra próbáljuk a következő futáskor: {targy[:60]}")
                                 continue
                             uj_erkezett = _email_datum_iso(erkezett_fejlec)
+                            # ld. a NAV_KOD_MINTA-blokk kommentjét
+                            # (ceges_szamlak_feldolgozasa() elején) - ha a
+                            # kódból jött a rekord, a NAV-mezőket IS egyből
+                            # kitöltjük.
+                            if nav_kod_talalat:
+                                _nav_kod_kulcs = (
+                                    f"{nav_kod_talalat['adoszam']}|"
+                                    f"{_szamlaszam_normalizalt(nav_kod_talalat['szamlaszam'])}"
+                                )
+                            else:
+                                _nav_kod_kulcs = None
                             uj_rekord = {
                                 "kuldo_nev": kuldo_nev,
                                 "feladó_email": feladó_email,
@@ -4047,11 +4087,11 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                 "kinyert_szamlaszam": kinyert_szamlaszam_cs,
                                 "tartalmi_ujjlenyomat": ceges_ujjlenyomat,
                                 "adoszam": nav_kod_adoszam,
-                                "nav_szamla_azonosito": None,
-                                "nav_parositva": False,
-                                "nav_szallito_nev": None,
-                                "nav_osszeg": None,
-                                "nav_datum": None,
+                                "nav_szamla_azonosito": _nav_kod_kulcs,
+                                "nav_parositva": bool(nav_kod_talalat),
+                                "nav_szallito_nev": nav_kod_talalat["nev"] if nav_kod_talalat else None,
+                                "nav_osszeg": nav_kod_talalat["osszeg"] if nav_kod_talalat else None,
+                                "nav_datum": nav_kod_talalat["datum"] if nav_kod_talalat else None,
                             }
                             if not biztos_szamla:
                                 # "Nem biztos" tételnél NEM küldünk "Új
@@ -4571,10 +4611,22 @@ def nav_szamla_parositas(allapot: dict):
         return  # nincs beállítva, DRY_RUN, vagy hiba - ld. nav_allapot a dashboardon
 
     def _nav_tetel_kulcs(tetel):
-        return f"{tetel.get('szallito_adoszam')}|{tetel.get('szamlaszam')}"
+        return f"{(tetel.get('szallito_adoszam') or '').strip()}|{_szamlaszam_normalizalt(tetel.get('szamlaszam'))}"
 
     parositando = _nav_parosithato_rekordok(allapot)
+    # Előre "kipipáljuk" azokat a NAV-kulcsokat, amik MÁR egy korábbi
+    # (akár egy EGÉSZEN MÁS futásból származó) rekordhoz vannak kötve - ld.
+    # "nav_szamla_azonosito" minden rekordon, ami már párosítva van
+    # (akár a lenti körök valamelyike, akár a NAV_KOD_MINTA/"+ Hozzáadás"
+    # gomb útján, ld. ceges_szamlak_feldolgozasa()). Enélkül egy MÁR
+    # párosított tétel minden egyes futásnál ÚJRA feltűnne a
+    # "nav_csak_navban" (hiányzó számlák) listában, hiszen a lenti körök
+    # csak a MOST frissen párosítottakat jegyeznék fel.
     parositott_nav_kulcsok = set()
+    for _forras_kulcs in ("szamlak", "ceges_szamlak", "ceges_szamlak_bizonytalan"):
+        for _r in allapot.get(_forras_kulcs, {}).values():
+            if _r.get("nav_parositva") and _r.get("nav_szamla_azonosito"):
+                parositott_nav_kulcsok.add(_r["nav_szamla_azonosito"])
 
     # 1. kör - számlaszám EGYEZÉS (a legmegbízhatóbb jel, ha van) - ld.
     # _szamlaszam_normalizalt() komment: whitespace-érzéketlenül
