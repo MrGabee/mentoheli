@@ -1145,6 +1145,17 @@ def _allapot_alapertekek() -> dict:
         # újra) beérkező, tartalmilag ugyanolyan példány ne "támadjon
         # fel" új id-vel.
         "ceges_torolt_ujjlenyomatok": [],
+        # A dashboard "✕" gombjával véglegesen elrejtett számlák TELJES
+        # rekordját ide archiváljuk, MIELŐTT a "szamlak"/"ceges_szamlak"
+        # kollekcióból véglegesen kikerülnének (ld. a "torolt_szamla_id_k"
+        # feldolgozó blokk kommentjét lentebb) - a felhasználó kifejezett
+        # kérésére ("csinálj külön kategóriát a törölt számlához, hogy
+        # vissza tudjam épiteni"), hogy a dashboardon ("🗑️ Törölt számlák"
+        # panel) bármikor visszaállítható legyen, ne csak a tartalmi
+        # ujjlenyomat (duplikátum-védelem) maradjon meg. Kulcs:
+        # "<kollekcio>:<eredeti_id>" (a két kollekció id-tere elméletben
+        # ütközhetne, ezért a kollekció-nevet is a kulcsba tesszük).
+        "torolt_szamlak_archivum": {},
         # A korábbi (különálló, nem titkosított) szamla_beallitasok.json
         # mezői - ld. régi beallitasok_betoltese() kommentjeit, most
         # beallitasok_kinyerese() validálja ugyanígy, csak innen olvasva.
@@ -5487,20 +5498,47 @@ def main():
         # KÖVETKEZŐ futáskor új "cid"-del, "feltámadva" visszakerülne a
         # listába, holott a felhasználó ezt már kifejezetten törölte.
         ceges_torolt_ujjlenyomatok = allapot.setdefault("ceges_torolt_ujjlenyomatok", [])
+        # ld. "torolt_szamlak_archivum" a _allapot_alapertekek()-ben - a
+        # TELJES rekordot (nem csak az ujjlenyomatot) is megőrizzük, hogy a
+        # dashboard "🗑️ Törölt számlák" paneljéről a felhasználó bármikor
+        # visszaállíthassa. Csak az ELSŐ alkalommal írjuk be (amikor a tid
+        # még benne van a "szamlak"/"ceges_szamlak"-ban) - utána, mivel a
+        # "torolt_id_k" TARTÓSAN megmarad (ld. fenti komment), a feltétel
+        # (tid in szamlak / tid in ceges_szamlak_torleshez) már hamis lesz,
+        # tehát nem írjuk felül egy esetleg a felhasználó által már
+        # módosított archívum-bejegyzést.
+        torolt_szamlak_archivum = allapot.setdefault("torolt_szamlak_archivum", {})
         torolve_db = 0
         for tid in torolt_id_k:
             if tid in szamlak:
-                del szamlak[tid]
+                torolt_rekord = szamlak.pop(tid)
+                archivum_kulcs = f"szamlak:{tid}"
+                if archivum_kulcs not in torolt_szamlak_archivum:
+                    torolt_szamlak_archivum[archivum_kulcs] = {
+                        "kollekcio": "szamlak",
+                        "eredeti_id": tid,
+                        "rekord": torolt_rekord,
+                        "torolve_amikor": magyar_ido().isoformat(),
+                    }
                 torolve_db += 1
             if tid in ceges_szamlak_torleshez:
                 torolt_rekord = ceges_szamlak_torleshez.pop(tid)
+                archivum_kulcs = f"ceges_szamlak:{tid}"
+                if archivum_kulcs not in torolt_szamlak_archivum:
+                    torolt_szamlak_archivum[archivum_kulcs] = {
+                        "kollekcio": "ceges_szamlak",
+                        "eredeti_id": tid,
+                        "rekord": torolt_rekord,
+                        "torolve_amikor": magyar_ido().isoformat(),
+                    }
                 ujjlenyomat = torolt_rekord.get("tartalmi_ujjlenyomat")
                 if ujjlenyomat and ujjlenyomat not in ceges_torolt_ujjlenyomatok:
                     ceges_torolt_ujjlenyomatok.append(ujjlenyomat)
                 torolve_db += 1
             pdf_adatok.pop(tid, None)
         if torolve_db:
-            print(f"  🗑️  {torolve_db} db, a dashboardon véglegesen elrejtett számla törölve.")
+            print(f"  🗑️  {torolve_db} db, a dashboardon véglegesen elrejtett számla törölve "
+                  f"(a 'Törölt számlák' archívumba mentve, a dashboardon visszaállítható).")
 
     # Az email-küldés globális ki/bekapcsolása - ezt MINDEN email_kuldes()-
     # hívás előtt be kell állítani, ezért itt, a feldolgozás legelején
