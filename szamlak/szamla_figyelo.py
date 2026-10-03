@@ -1135,9 +1135,15 @@ def uid_letoltese(conn, uid):
     return email_lib.message_from_bytes(nyers)
 
 
-def pdf_csatolmany(msg):
-    """Visszaadja az első PDF-csatolmány (fájlnév, bytes) párost, vagy
-    (None, None)-t, ha nincs PDF csatolva a levélhez."""
+def pdf_csatolmanyok(msg):
+    """Visszaadja a levélhez csatolt ÖSSZES PDF-csatolmányt, (fájlnév,
+    bytes) párok listájaként (üres lista, ha nincs egy sem). A korábbi
+    pdf_csatolmany() csak az ELSŐT adta vissza - ez okozta, hogy egy
+    több PDF-et tartalmazó levélnél a többi csatolmány némán kimaradt.
+    A "Céges számlák" feldolgozás (ceges_szamlak_feldolgozasa()) ezt
+    használja, hogy MINDEGYIK csatolmányt külön rekordként dolgozza
+    fel."""
+    talalatok = []
     for resz in msg.walk():
         content_type = resz.get_content_type()
         fajlnev = resz.get_filename()
@@ -1147,10 +1153,25 @@ def pdf_csatolmany(msg):
             fajlnev and fajlnev.lower().endswith(".pdf")
         ):
             try:
-                return fajlnev or "szamla.pdf", resz.get_payload(decode=True)
+                adat = resz.get_payload(decode=True)
             except Exception:
                 continue
-    return None, None
+            if adat:
+                talalatok.append((fajlnev or f"szamla_{len(talalatok) + 1}.pdf", adat))
+    return talalatok
+
+
+def pdf_csatolmany(msg):
+    """Visszaadja az ELSŐ PDF-csatolmányt (fájlnév, bytes), vagy
+    (None, None)-t, ha nincs PDF csatolva - ld. pdf_csatolmanyok() a
+    TELJES listáért. Ez a régi, egyes-számú függvény a többi,
+    változatlan hívási hely (pl. a közüzemi Vízművek/MVM
+    email-feldolgozás) miatt maradt meg, ahol egy levélhez jellemzően
+    csak egy PDF tartozik - azokat NEM érinti ez a javítás."""
+    talalatok = pdf_csatolmanyok(msg)
+    if not talalatok:
+        return None, None
+    return talalatok[0]
 
 
 def email_szoveg_kinyerese(msg) -> str:
