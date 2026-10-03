@@ -1029,7 +1029,7 @@
         <tr id="${sorId}" class="nav-hozzaadas-kod-sor" style="display:none;">
           <td colspan="4" style="background:#f3f4f6;border-radius:8px;">
             <div style="padding:8px 4px;font-size:13px;">
-              <p style="margin:0 0 6px;">Nincs meg emailben ez a számla? Kérd el az eladótól (vagy keresd elő a saját postafiókodból), és küldd/továbbítsd el a <strong>dedikált céges email-címre</strong> - de előtte illeszd be ezt a kódot a levél <strong>tárgyába VAGY a szövegébe</strong> (bárhova, csak legyen benne szó szerint), hogy a script egyből ehhez a NAV-tételhez tudja kötni, extra kézi munka nélkül:</p>
+              <p style="margin:0 0 6px;">Nincs meg emailben ez a számla? Kérd el az eladótól (vagy keresd elő a saját postafiókodból), és küldd/továbbítsd el a <strong>dedikált céges email-címre</strong> - de előtte illeszd be ezt a kódot a levél <strong>tárgyába VAGY a szövegébe, lehetőleg önálló sorként (ne írj utána ugyanabba a sorba mást)</strong>, hogy a script egyből ehhez a NAV-tételhez tudja kötni, extra kézi munka nélkül:</p>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
                 <code class="nav-hozzaadas-kod-szoveg" style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;user-select:all;">${escHtml(kod)}</code>
                 <button type="button" class="nav-hozzaadas-masolas-gomb" data-kod="${escHtml(kod)}" style="font-size:12px;padding:4px 8px;">📋 Kód másolása</button>
@@ -2456,11 +2456,21 @@
     if (isNaN(an) || isNaN(bn)) return false;
     return Math.abs(an - bn) <= tolerancia;
   }
+  // ld. szamla_figyelo.py _szamlaszam_normalizalt() komment - egy valódi
+  // esetben kiderült, hogy egy eladói értesítő tárgysora szóközökkel
+  // körülvett "/"-szel tartalmazta a számlaszámot (pl. "ASZ / 2026-001643"),
+  // miközben a NAV-nál szóköz nélkül szerepelhet - ezért itt is MINDEN
+  // whitespace-t eltávolítva hasonlítunk, hogy ez a tisztán formai eltérés
+  // ne akadályozza meg az "Egyeztetés" gomb előrejelzését (ugyanúgy, mint a
+  // tényleges, Python-oldali párosítást).
+  function _szamlaszamNormalizaltJs(szamlaszam) {
+    return (szamlaszam || "").replace(/\s+/g, "").toUpperCase();
+  }
   function _navEgyeztetesEllenorzeseJs(szamlaszam, osszeg, adoszam, navLista) {
     navLista = navLista || [];
-    const sajatSzamlaszam = (szamlaszam || "").trim().toUpperCase();
+    const sajatSzamlaszam = _szamlaszamNormalizaltJs(szamlaszam);
     if (sajatSzamlaszam) {
-      const talalt = navLista.find(t => (t.szamlaszam || "").trim().toUpperCase() === sajatSzamlaszam);
+      const talalt = navLista.find(t => _szamlaszamNormalizaltJs(t.szamlaszam) === sajatSzamlaszam);
       if (talalt) return talalt;
     }
     const adoszamTiszta = (adoszam || "").trim();
