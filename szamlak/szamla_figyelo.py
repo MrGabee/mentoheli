@@ -789,6 +789,27 @@ def szallito_nev_kinyerese_pdfbol(pdf_szoveg: str):
     return nev[:80] or None
 
 
+def _szamla_szo_szerepel_e(pdf_szoveg: str) -> bool:
+    """Best-effort "szemét-szűrés" - a felhasználó kifejezett kérésére: a
+    "Céges számlák" postafiókba/"további postafiókok" közé eddig
+    VÁLOGATÁS NÉLKÜL bekerült minden PDF-csatolmányos levél (pl. egy
+    ajánlat, szerződés-tervezet vagy bármilyen más, nem ténylegesen
+    SZÁMLA dokumentum is) - ez a függvény megnézi, szerepel-e a "számla"
+    szó magában a CSATOLÁS (a PDF) szövegében - KIZÁRÓLAG ott, NEM az
+    email törzsében (ld. a felhasználó kifejezett kérését: "keressen rá
+    a 'számla' szóra a csatolásba"). Ékezet nélküli "szamla" változatot
+    is elfogadjuk, mert a PDF-szövegkinyerés (pdfplumber) néha elveszti
+    az ékezeteket beágyazott betűtípusoknál. Ha ez a keresés nem talál
+    semmit, az NEM feltétlenül jelenti, hogy nem számla - csak azt, hogy
+    a hívó a "Nem biztos" kategóriába teszi, ahonnan egy később sikeres
+    NAV-párosítás (ld. nav_szamla_parositas()) még mindig "visszaigazolhatja"
+    számlának, ld. _ceges_bizonytalan_athelyezese_biztosba()."""
+    if not pdf_szoveg:
+        return False
+    also = pdf_szoveg.lower()
+    return "számla" in also or "szamla" in also
+
+
 # Negáció-őr: a FIZETVE_MINTA önmagában illeszkedne olyan mondatokra is,
 # amik valójában TAGADÓ vagy FELSZÓLÍTÓ értelműek, pl. "a számla MÉG NEM
 # került kiegyenlítésre" vagy "KÉRJÜK rendezze a számlát" - ezek éppen az
@@ -3222,6 +3243,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
         return
 
     ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+    # ld. a felhasználó kifejezett kérését ("rengeteg szemét, nem számla
+    # is belekerült a listába") - ide kerül minden olyan PDF-csatolmány,
+    # amiben NEM találtuk meg a "számla" szót (ld. _szamla_szo_szerepel_e())
+    # ÉS egy esetleges későbbi NAV-párosítás sem igazolta vissza - külön
+    # kategória, hogy ne "szennyezze" a fő Céges számlák listát/darabszámot.
+    ceges_szamlak_bizonytalan = allapot.setdefault("ceges_szamlak_bizonytalan", {})
 
     try:
         conn = imap_kapcsolat(CEGES_IMAP_HOST, CEGES_IMAP_PORT, CEGES_IMAP_USER, CEGES_IMAP_JELSZO, CEGES_IMAP_MAPPA)
@@ -3311,14 +3338,26 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # kinyerni semmit.
                 kuldo_nev = szallito_nev_kinyerese_pdfbol(ceges_pdf_szoveg) or kuldo_nev_feladobol
 
+                # ld. a felhasználó kifejezett kérését - best-effort jelző,
+                # hogy ez a csatolmány TÉNYLEG tartalmazza-e a "számla" szót
+                # (ld. _szamla_szo_szerepel_e()) - ha nem, a "Nem biztos"
+                # kategóriába kerül (lentebb), amíg egy későbbi NAV-
+                # párosítás esetleg vissza nem igazolja (ld.
+                # _ceges_bizonytalan_athelyezese_biztosba()).
+                biztos_szamla = _szamla_szo_szerepel_e(ceges_pdf_szoveg)
+
                 # ── CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM ──
                 # Ld. a szekció elején (a függvény docstringje felett)
                 # lévő komment a két esetről, amiért ez (a cid-en/UID-en
-                # TÚL) szükséges.
+                # TÚL) szükséges. A "Nem biztos" kategóriát is bevonjuk a
+                # keresésbe, hogy egy oda már felvett tétel ne kerüljön be
+                # MÉGEGYSZER, ha a levelet valamiért újra feldolgoznánk.
                 ceges_ujjlenyomat = _szamla_tartalmi_ujjlenyomat(kuldo_nev, kinyert_szamlaszam, kinyert_osszeg, pdf_bytes)
                 torolt_ujjlenyomatok = set(allapot.get("ceges_torolt_ujjlenyomatok") or [])
                 letezo_ujjlenyomatok = {
-                    r.get("tartalmi_ujjlenyomat") for r in ceges_szamlak.values() if r.get("tartalmi_ujjlenyomat")
+                    r.get("tartalmi_ujjlenyomat")
+                    for r in list(ceges_szamlak.values()) + list(ceges_szamlak_bizonytalan.values())
+                    if r.get("tartalmi_ujjlenyomat")
                 }
                 if ceges_ujjlenyomat in torolt_ujjlenyomatok:
                     print(f"      🗑️  {csatolmany_jelzo}Tartalmilag megegyezik egy korábban "
@@ -3353,7 +3392,7 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                           f"próbáljuk a következő futáskor: {kuldo_nev} – {targy[:60]}")
                     continue
 
-                ceges_szamlak[cid] = {
+                uj_rekord = {
                     "kuldo_nev": kuldo_nev,
                     "feladó_email": feladó_email,
                     # Melyik figyelt postafiókból érkezett a tétel - ld. a
@@ -3362,6 +3401,10 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     # postafiók CÍME GitHub Secret, azt sosem írjuk ki -
                     # csak egy olvasható, fix címke jelzi a forrást.
                     "forras_postafiok": "Dedikált céges postafiók",
+                    # ld. _szamla_szo_szerepel_e() komment - False esetén
+                    # ez a tétel a "ceges_szamlak_bizonytalan" (Nem biztos)
+                    # kategóriába kerül, NEM a fő listába (ld. lentebb).
+                    "biztos_szamla": biztos_szamla,
                     "targy": targy,
                     "erkezett": _email_datum_iso(erkezett_fejlec),
                     "erkezett_fejlec": erkezett_fejlec,
@@ -3393,16 +3436,27 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     # NAV Online Számla összekötés/párosítás - ld. "NAV
                     # ONLINE SZÁMLA" szekció lentebb (nav_ceges_parositas())
                     # - itt kezdetben mindig üres, a párosító funkció (a fő
-                    # feldolgozás UTÁN, a main()-ben) tölti ki.
+                    # feldolgozás UTÁN, a main()-ben) tölti ki. EGY sikeres
+                    # párosítás a "Nem biztos" kategóriában lévő tételt is
+                    # átsorolja a fő listába (ld.
+                    # _ceges_bizonytalan_athelyezese_biztosba()).
                     "nav_szamla_azonosito": None,
                     "nav_parositva": False,
                     "nav_szallito_nev": None,
                     "nav_osszeg": None,
                     "nav_datum": None,
                 }
+                if biztos_szamla:
+                    ceges_szamlak[cid] = uj_rekord
+                    allapot_szoveg = "Céges számla mentve"
+                    jelzo_ikon = "✅"
+                else:
+                    ceges_szamlak_bizonytalan[cid] = uj_rekord
+                    allapot_szoveg = "PDF mentve, de nem találtunk 'számla' szót - Nem biztos kategória"
+                    jelzo_ikon = "❓"
                 feltoltve_db += 1
-                print(f"      ✅ {csatolmany_jelzo}Céges számla mentve (Drive-ra feltöltve): "
-                      f"{kuldo_nev} – {targy[:60]}")
+                print(f"      {jelzo_ikon} {csatolmany_jelzo}{allapot_szoveg} "
+                      f"(Drive-ra feltöltve): {kuldo_nev} – {targy[:60]}")
 
             if uzenet_osszes_csatolmany_rendben:
                 torlendo_uidok.append(uid)
@@ -3555,6 +3609,12 @@ def _szamla_athelyezese_cegesbe(allapot: dict, rid: str, forras_cimke: str = Non
         "kuldo_nev": kuldo_nev,
         "feladó_email": rekord.get("feladó_email"),
         "forras_postafiok": forras_postafiok,
+        # ld. _szamla_szo_szerepel_e() komment - ÁTHELYEZETT tételnél
+        # mindig True-t teszünk: a felhasználó explicit döntése (a
+        # postafiók célját "ceges"-re állította, vagy a "→ Céges" gombot
+        # nyomta meg) önmagában elég erős jel, nem kell "Nem biztos"
+        # kategóriába tenni csak azért, mert a "számla" szót nem találtuk.
+        "biztos_szamla": True,
         "targy": rekord.get("targy"),
         "erkezett": rekord.get("erkezett"),
         "erkezett_fejlec": rekord.get("erkezett_fejlec"),
@@ -3650,6 +3710,11 @@ def kezi_ceges_athelyezesek_feldolgozasa(allapot: dict):
 def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id_szet: set):
     szamlak = allapot.setdefault("szamlak", {})
     ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+    # ld. _szamla_szo_szerepel_e() komment a ceges_szamlak_feldolgozasa()
+    # elején - ugyanaz a "Nem biztos" kategória, amibe a "további
+    # postafiókok" céges ágából jövő, "számla" szót NEM tartalmazó
+    # csatolmányok is kerülnek.
+    ceges_szamlak_bizonytalan = allapot.setdefault("ceges_szamlak_bizonytalan", {})
     tovabbi_postafiokok = allapot.setdefault("tovabbi_postafiokok", {})
     if not tovabbi_postafiokok:
         return
@@ -3792,7 +3857,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             cid = hashlib.md5(
                                 f"{felhasznalo}|{uid_str}|tovabbi_postafiok_ceges|{pdf_idx}".encode("utf-8")
                             ).hexdigest()[:16]
-                            if cid in ceges_szamlak or cid in torolt_id_szet:
+                            if cid in ceges_szamlak or cid in ceges_szamlak_bizonytalan or cid in torolt_id_szet:
                                 continue
                             feladó_email = _feladó_cim(msg)
                             csatolmany_pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
@@ -3806,6 +3871,10 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                 szallito_nev_kinyerese_pdfbol(csatolmany_pdf_szoveg)
                                 or _ceges_kuldo_nev_kinyerese(msg)
                             )
+                            # ld. _szamla_szo_szerepel_e() komment - ha a
+                            # csatolmány szövegében nincs "számla" szó, a
+                            # "Nem biztos" kategóriába kerül (lentebb).
+                            biztos_szamla = _szamla_szo_szerepel_e(csatolmany_pdf_szoveg)
 
                             # ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM"
                             # szekció a ceges_szamlak_feldolgozasa() elején - EZ
@@ -3819,7 +3888,8 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                 kuldo_nev, kinyert_szamlaszam_cs, kinyert_osszeg, pdf_bytes)
                             torolt_ujjlenyomatok = set(allapot.get("ceges_torolt_ujjlenyomatok") or [])
                             letezo_ujjlenyomatok = {
-                                r.get("tartalmi_ujjlenyomat") for r in ceges_szamlak.values()
+                                r.get("tartalmi_ujjlenyomat")
+                                for r in list(ceges_szamlak.values()) + list(ceges_szamlak_bizonytalan.values())
                                 if r.get("tartalmi_ujjlenyomat")
                             }
                             if ceges_ujjlenyomat in torolt_ujjlenyomatok:
@@ -3845,7 +3915,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                       f"sikertelen, újra próbáljuk a következő futáskor: {targy[:60]}")
                                 continue
                             uj_erkezett = _email_datum_iso(erkezett_fejlec)
-                            ceges_szamlak[cid] = {
+                            uj_rekord = {
                                 "kuldo_nev": kuldo_nev,
                                 "feladó_email": feladó_email,
                                 # Melyik ("további postafiókok" alatt
@@ -3854,6 +3924,8 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                 # forras_postafiok komment a dedikált céges
                                 # postafiók ágánál (ceges_szamlak_feldolgozasa()).
                                 "forras_postafiok": cimke,
+                                # ld. _szamla_szo_szerepel_e() komment fent.
+                                "biztos_szamla": biztos_szamla,
                                 "targy": targy,
                                 "erkezett": uj_erkezett,
                                 "erkezett_fejlec": erkezett_fejlec,
@@ -3871,6 +3943,18 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                 "nav_osszeg": None,
                                 "nav_datum": None,
                             }
+                            if not biztos_szamla:
+                                # "Nem biztos" tételnél NEM küldünk "Új
+                                # céges számla" értesítőt (hiszen még nem
+                                # biztos, hogy tényleg az) - csak elmentjük,
+                                # ld. _ceges_bizonytalan_athelyezese_biztosba()
+                                # a NAV-alapú utólagos visszaigazolásért.
+                                ceges_szamlak_bizonytalan[cid] = uj_rekord
+                                print(f"      ❓ '{cimke}' (céges cél) {csatolmany_jelzo}PDF mentve, "
+                                      f"de nem találtunk 'számla' szót - Nem biztos kategória: "
+                                      f"{kuldo_nev} – {targy[:50]}")
+                                continue
+                            ceges_szamlak[cid] = uj_rekord
                             uj_db += 1
                             statisztika["uj_szamla"] += 1
                             print(f"      🆕 Új céges számla ({cimke}) {csatolmany_jelzo}: {kuldo_nev} – {targy[:50]}")
@@ -4321,6 +4405,14 @@ def _nav_parosithato_rekordok(allapot: dict):
         if rekord.get("nav_parositva"):
             continue
         eredmeny.append((rekord, rekord.get("kinyert_szamlaszam"), rekord.get("kinyert_osszeg"), rekord.get("adoszam")))
+    # A "Nem biztos" kategóriát (ld. _szamla_szo_szerepel_e() komment) IS
+    # bevonjuk a párosításba - a felhasználó kifejezett kérése szerint egy
+    # sikeres NAV-párosítás önmagában elég bizonyíték arra, hogy egy ide
+    # került tétel TÉNYLEG számla, ld. _ceges_bizonytalan_athelyezese_biztosba().
+    for rekord in allapot.get("ceges_szamlak_bizonytalan", {}).values():
+        if rekord.get("nav_parositva"):
+            continue
+        eredmeny.append((rekord, rekord.get("kinyert_szamlaszam"), rekord.get("kinyert_osszeg"), rekord.get("adoszam")))
     return eredmeny
 
 
@@ -4371,6 +4463,11 @@ def nav_szamla_parositas(allapot: dict):
             if kulcs in parositott_nav_kulcsok:
                 continue
             rekord["nav_parositva"] = True
+            # ld. _nav_parosithato_rekordok() komment - egy sikeres
+            # NAV-párosítás a "Nem biztos" kategóriában lévő tételt is
+            # "visszaigazolja" (a tényleges dict-átmozgatást lentebb a
+            # _ceges_bizonytalan_athelyezese_biztosba() végzi).
+            rekord["biztos_szamla"] = True
             rekord["nav_szamla_azonosito"] = kulcs
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
@@ -4401,6 +4498,11 @@ def nav_szamla_parositas(allapot: dict):
             if not _nav_osszeg_egyezik(sajat_osszeg, nav_osszeg):
                 continue
             rekord["nav_parositva"] = True
+            # ld. _nav_parosithato_rekordok() komment - egy sikeres
+            # NAV-párosítás a "Nem biztos" kategóriában lévő tételt is
+            # "visszaigazolja" (a tényleges dict-átmozgatást lentebb a
+            # _ceges_bizonytalan_athelyezese_biztosba() végzi).
+            rekord["biztos_szamla"] = True
             rekord["nav_szamla_azonosito"] = kulcs
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = nav_osszeg
@@ -4437,6 +4539,11 @@ def nav_szamla_parositas(allapot: dict):
                 except ValueError:
                     pass
             rekord["nav_parositva"] = True
+            # ld. _nav_parosithato_rekordok() komment - egy sikeres
+            # NAV-párosítás a "Nem biztos" kategóriában lévő tételt is
+            # "visszaigazolja" (a tényleges dict-átmozgatást lentebb a
+            # _ceges_bizonytalan_athelyezese_biztosba() végzi).
+            rekord["biztos_szamla"] = True
             rekord["nav_szamla_azonosito"] = kulcs
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = nav_osszeg
@@ -4453,6 +4560,28 @@ def nav_szamla_parositas(allapot: dict):
     print(f"  🔗 NAV-párosítás: {parositott_db} db számla párosítva a NAV-adatokkal (Közüzemi + "
           f"Céges összesen), {len(csak_navban)} db NAV-tétel maradt párosítatlanul (lehet, hogy "
           f"még nem érkezett meg emailben, vagy nem egy figyelt postafiókba jött).")
+
+
+def _ceges_bizonytalan_athelyezese_biztosba(allapot: dict):
+    """A nav_szamla_parositas() UTÁN hívandó (ld. a hívási helyet a
+    main()-ben) - a felhasználó kifejezett kérése szerint ("vagy
+    sikerült összekötni, akkor ok"): ha egy, a "Céges számlák - Nem
+    biztos" kategóriában (allapot["ceges_szamlak_bizonytalan"]) lévő
+    tételt a fenti NAV-párosítás időközben sikeresen összekötött egy
+    valódi NAV-tétellel, az egyértelmű bizonyíték arra, hogy ez TÉNYLEG
+    egy számla (még ha a "számla" szó nem is szerepelt a PDF
+    szövegében) - átmozgatjuk a fő "ceges_szamlak" listába, onnantól a
+    normál Céges fülön jelenik meg, nem a "Nem biztos" kategóriában."""
+    bizonytalan = allapot.get("ceges_szamlak_bizonytalan") or {}
+    if not bizonytalan:
+        return
+    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+    athelyezendo_id_k = [cid for cid, r in bizonytalan.items() if r.get("nav_parositva")]
+    for cid in athelyezendo_id_k:
+        ceges_szamlak[cid] = bizonytalan.pop(cid)
+    if athelyezendo_id_k:
+        print(f"  🔀 {len(athelyezendo_id_k)} db 'Nem biztos' tétel NAV-párosítás alapján "
+              f"átsorolva a Céges számlák közé.")
 
 
 # ════════════════════════════════════════════
@@ -5791,6 +5920,12 @@ def main():
     # titkosított állapot mentése ELŐTT. MINDKÉT listát (szamlak +
     # ceges_szamlak) egyszerre párosítja, ld. nav_szamla_parositas().
     nav_szamla_parositas(allapot)
+
+    # ---- 2g2. A "Nem biztos" kategóriában lévő tételek közül azokat,
+    # amiket a fenti NAV-párosítás időközben sikeresen összekötött egy
+    # valódi NAV-tétellel, átsoroljuk a fő Céges számlák listába - ld. a
+    # felhasználó kifejezett kérését ("vagy sikerült összekötni, akkor ok").
+    _ceges_bizonytalan_athelyezese_biztosba(allapot)
 
     # ---- 2h. NAV-on talált, de emailben meg nem érkezett számlák
     # szállítóihoz sablon-emlékeztető küldése (ld. "NAV-ON TALÁLT,
