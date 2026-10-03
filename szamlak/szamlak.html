@@ -1009,10 +1009,18 @@
       const sorok = cs.tetelek.map((t, idx) => {
         // ld. a "nav-hozzaadas-kod" blokk kommentjét lentebb - a kód
         // szöveges, visszafejtés NÉLKÜL olvasható alakban hordozza az
-        // adószámot+számlaszámot, hogy a Python-oldal (ld. szamla_figyelo.py
-        // NAV_KOD_MINTA) egyszerű regex-kereséssel megtalálja az
-        // email tárgyában/szövegében - NINCS hozzá külön API-hívás/mentés.
-        const kod = `NAVKOD:${adoszam}:${t.szamlaszam || ""}`;
+        // adószámot+számlaszámot+összeget+dátumot+szállító nevét - MINDEN
+        // mezőt, amit erről a NAV-tételről ITT, a gomb megjelenítésekor
+        // ÚGYIS már ismerünk -, hogy a Python-oldal (ld. szamla_figyelo.py
+        // NAV_KOD_MINTA) egyszerű regex-kereséssel ne csak megtalálja az
+        // email tárgyában/szövegében, hanem AZONNAL, megbízhatóan ki is
+        // tudja tölteni a többi mezőt is, anélkül hogy egy KÜLÖN,
+        // string-egyezésen alapuló (és emiatt hibázható) NAV-párosításra
+        // kelljen hagyatkoznia - NINCS hozzá külön API-hívás/mentés.
+        const kodOsszeg = t.netto_osszeg_huf || t.netto_osszeg || "";
+        const kodDatum = (t.kiallitas_datum || "").slice(0, 10);
+        const kodNev = t.szallito_nev || "";
+        const kod = `NAVKOD:${adoszam}:${t.szamlaszam || ""}:${kodOsszeg}:${kodDatum}:${kodNev}`;
         const sorId = `nav-hozzaadas-${escHtml(adoszam)}-${idx}`;
         return `
         <tr>
