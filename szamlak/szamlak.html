@@ -463,6 +463,20 @@
             <div class="panel-statusz" id="ceges-email-statusz"></div>
           </div>
           <p class="panel-info">A fent listázott (email-ből begyűjtött), ILLETVE a Közüzemi fülön lévő számlákat is a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez a Céges táblázat "NAV-párosítás" oszlopában látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg egyik figyelt postafiókba sem, az itt lent, egy külön listában jelenik meg szállítónként csoportosítva - itt email-címet adhatsz meg a szállítóhoz, kijelölheted, majd egy sablon-szövegű emlékeztetőt küldhetsz neki, amiben megkéred, küldje el a számla másolatát.</p>
+
+          <div id="nav-emlekezteto-testreszabas-doboz" style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:16px;">
+            <h4 style="margin:0 0 10px;font-size:14px;">✉️ Emlékeztető-levél testreszabása (minden kijelölt szállítónak ezzel megy ki)</h4>
+            <label style="display:block;margin-bottom:10px;">Feladó email-cím
+              <input type="text" id="ceges-emlekezteto-feladas-cim-input" placeholder="pl. szamla@baloghgabor.hu (üresen hagyva: az alapértelmezett)" style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;">
+            </label>
+            <p class="panel-info" style="margin:-4px 0 10px;">A levél TÉNYLEGES postázása (bejelentkezés az SMTP-szerverre) változatlanul a beállított céges email-fiókkal történik - ez a mező csak azt állítja át, hogy a címzett MIT lásson feladóként ("From" fejléc). Ez csak akkor működik hiba nélkül, ha ez a cím a Gmail-fiók egy ellenőrzött <strong>"Küldés másként"</strong> aliasza (Gmail → Beállítások → Fiókok és importálás) - egy teljesen idegen cím esetén a Gmail elutasíthatja/felülírhatja. Üresen hagyva a beállított céges fiók saját címe megy ki feladóként.</p>
+            <label style="display:block;">Az emlékeztető-levél kérő mondata (ez kerül a tételek listája UTÁN, a levélben)
+              <textarea id="ceges-emlekezteto-szoveg-input" rows="4" placeholder="Kérjük, hogy a válaszlevélben konkrétan csatolva küldjék el..." style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;resize:vertical;"></textarea>
+            </label>
+            <p class="panel-info" style="margin:6px 0 0;">A <code>{cel_cim}</code> jelölő helyére automatikusan a számlák beküldésére szolgáló email-cím kerül. A köszöntés, a hiányzó számlák listája és az aláírás a mezőtől FÜGGETLENÜL, mindig ugyanúgy szerepel a levélben - csak ez a kérő mondat szerkeszthető itt. Kilépéskor (a mezőből kikattintva) automatikusan mentődik.</p>
+            <div class="panel-statusz" id="ceges-emlekezteto-testreszabas-statusz"></div>
+          </div>
+
           <div id="nav-bejelentkezes-statusz"></div>
           <div id="nav-csak-navban-hely"></div>
           <div id="nav-emlekezteto-gomb-hely"></div>
@@ -640,6 +654,13 @@
       </div>
     `;
   }
+
+  // ld. szamla_figyelo.py "NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK" - EZZEL
+  // SZÓ SZERINT EGYEZŐ szöveg, hogy a "ceges-emlekezteto-szoveg-input"
+  // mezőben (ha a felhasználó sosem írt bele sajátot) PONTOSAN az
+  // jelenjen meg, ami ténylegesen kimenne - ha a Python-oldali szöveg
+  // valaha változik, ezt itt is frissíteni kell.
+  const NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK_JS = "Kérjük, hogy a válaszlevélben KONKRÉTAN CSATOLVA (PDF mellékletként) küldjék el ezeknek a számláknak a másolatát a {cel_cim} email-címre - fontos, hogy ne csak szövegben írjanak vissza, mert a feldolgozás automatikusan, a csatolt fájl alapján történik.";
 
   // ── "Céges számlák" fül - renderelés ── A PDF itt NEM az adatbázisban
   // van tárolva (ld. szamla_figyelo.py "CÉGES SZÁMLÁK" szekció
@@ -2202,6 +2223,38 @@
     }
   });
 
+  // ── NAV-emlékeztető testreszabása (feladó-cím + kérő mondat) - ld. a
+  // HTML "nav-emlekezteto-testreszabas-doboz" fenti kommentje és
+  // szamla_figyelo.py "NAV-EMLÉKEZTETŐ - FELADÓ/SZÖVEG TESTRESZABÁS"
+  // szekciója. Ugyanaz az azonnali, mezőnkénti blur-mentés minta, mint a
+  // fenti "ceges-email-engedelyezve"-nél - egyetlen meta-kulcsot ír,
+  // nincs szükség a teljes allapotFrissitesEsMentese() diff-elésre.
+  [
+    ["ceges-emlekezteto-feladas-cim-input", "ceges_emlekezteto_feladas_cim"],
+    ["ceges-emlekezteto-szoveg-input", "ceges_emlekezteto_szoveg"],
+  ].forEach(([inputId, metaKulcs]) => {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    input.addEventListener("blur", async () => {
+      if (!aktualisApiKulcs) return; // a panel csak bejelentkezés UTÁN érhető el ténylegesen
+      const eredetiErtek = input.dataset.eredetiErtek || "";
+      const ujErtek = input.value.trim();
+      if (ujErtek === eredetiErtek) return;
+      input.disabled = true;
+      beStatuszMutat("ceges-emlekezteto-testreszabas-statusz", "Mentés...", "");
+      try {
+        await apiHivas("set_meta", { kulcs: metaKulcs, ertek: ujErtek || null });
+        input.dataset.eredetiErtek = ujErtek;
+        beStatuszMutat("ceges-emlekezteto-testreszabas-statusz", "✅ Elmentve.", "siker");
+      } catch (err) {
+        input.value = eredetiErtek;
+        beStatuszMutat("ceges-emlekezteto-testreszabas-statusz", "❌ Mentés sikertelen: " + err.message, "hiba");
+      } finally {
+        input.disabled = false;
+      }
+    });
+  });
+
   document.getElementById("felhasznalok-toggle").addEventListener("click", () => {
     if (!aktualisApiKulcs) return; // a panel csak bejelentkezés UTÁN érhető el ténylegesen
     felhasznalokListaFrissitese();
@@ -3067,6 +3120,23 @@
     // küldés ténylegesen engedélyezve van (ld. be-email-engedelyezve
     // hasonló mintáját fent) - ez FÜGGETLEN a közüzemi kapcsolótól.
     document.getElementById("ceges-email-engedelyezve").checked = adat.ceges_email_kikapcsolva === false;
+    // ld. a "nav-emlekezteto-testreszabas-doboz" blur-mentés fenti
+    // kommentje - a "dataset.eredetiErtek"-et UGYANARRA az értékre
+    // állítjuk, amit ténylegesen megjelenítünk (a mentett egyedi szöveg,
+    // VAGY ha nincs ilyen, a beépített alapérték szövege), hogy egy puszta
+    // rákattintás+kikattintás (tényleges szerkesztés nélkül) NE indítson
+    // felesleges mentést.
+    (() => {
+      const feladoInput = document.getElementById("ceges-emlekezteto-feladas-cim-input");
+      const feladoErtek = adat.ceges_emlekezteto_feladas_cim || "";
+      feladoInput.value = feladoErtek;
+      feladoInput.dataset.eredetiErtek = feladoErtek;
+
+      const szovegInput = document.getElementById("ceges-emlekezteto-szoveg-input");
+      const szovegErtek = (adat.ceges_emlekezteto_szoveg || "").trim() || NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK_JS;
+      szovegInput.value = szovegErtek;
+      szovegInput.dataset.eredetiErtek = szovegErtek;
+    })();
     postafiokListaRenderelese(adat.tovabbi_postafiokok);
     aktivAllapotSzuro = "mind";
     aktivSzolgaltatoSzuro = "mind";
