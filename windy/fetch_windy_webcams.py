@@ -19,39 +19,79 @@ import requests
 API_KEY = os.environ.get("WINDY_API_KEY")
 OUTPUT_FILE = "windy/data/webcams_hu.json"
 
-# Ez a workflow gyakorlatilag folyamatosan fut (önindító lánc, kb.
-# 1.5-2 percenként), és futásonként akár 24 külön kérést küld a Windy
-# szerverének (6 régió x max. 4 oldal). Ilyen gyakoriság mellett időnként
-# - ritkán, rendszertelenül - egy-egy kérésre 403/429/5xx érkezik, ami
-# szinte mindig a Windy szerverének pillanatnyi akadása, NEM valódi
-# jogosultsági/kulcs-probléma. Enélkül a retry nélkül egy ilyen szórványos
-# hiba feleslegesen "pirosra" futtatja a teljes GitHub Actions futást,
-# pedig a következő próbálkozásra már működne.
+# ld. windy_webcams_monitor.yml "cron" - ez a workflow 30 percenként fut
+# (NEM percenként/önindító láncban, az a Waze-monitornál igaz, ez a komment
+# korábban onnan lett átmásolva, félrevezetően), futásonként akár 24 külön
+# kérést küldve a Windy szerverének (6 régió x max. 4 oldal). Ennek a 24
+# kérésnek ÖNMAGÁBAN, 30 percre elosztva semmi köze a napi kvótához - a
+# 2026.10. folyamán többször jelentkező HTTP 429-ek oka az volt, hogy ezt a
+# 24 kérést EGYMÁS UTÁN, SZÜNET NÉLKÜL küldtük - ez egy rövid, másodperces
+# "burst" rate-limitet is kiválthat, még egy amúgy alacsony, 30 perces
+# átlagos terhelés mellett is. Ezért most minden kérés előtt egy rövid
+# szünetet tartunk (ld. REQUEST_PACING_SECONDS), ÉS - mivel egy sporadikus,
+# pillanatnyi Windy-oldali akadás/rate-limit NEM indokolja, hogy az egész
+# futás "pirosra" fusson (ld. lejjebb: egy adott régió retry-jainak
+# kimerülése esetén csak AZ a régió marad abbahagyva, a többi folytatódik) -
+# a teljes futás csak akkor áll le hibával (exit 1), ha VÉGÜL egyetlen
+# kamerát sem sikerült lekérdezni (ld. main() lentebb), hogy egy teljes
+# Windy-kiesést még mindig jelezzen, de egy részleges/átmeneti akadást ne.
 RETRYABLE_STATUS_CODES = {403, 429, 500, 502, 503, 504}
-MAX_RETRIES = 3
-RETRY_BASE_DELAY_SECONDS = 3
+MAX_RETRIES = 4
+RETRY_BASE_DELAY_SECONDS = 4
+REQUEST_PACING_SECONDS = 1.5
 
 
 def windy_get(url, params, headers):
+    """Visszaadja a response-t, vagy None-t, ha MAX_RETRIES próbálkozás
+    után sem sikerült - a hívó (fetch_hungarian_webcams()) ekkor NEM
+    crashel, hanem lezárja az éppen aktuális régió lekérdezését, és megy a
+    következő régióra (ld. ott a kommentet)."""
+    last_error = None
     for attempt in range(1, MAX_RETRIES + 1):
+        # Minden kérés előtt rövid szünet - ld. a fájl elején lévő komment
+        # a "burst" rate-limit elkerüléséről.
+        time.sleep(REQUEST_PACING_SECONDS)
         try:
             response = requests.get(url, params=params, headers=headers, timeout=15)
         except requests.exceptions.RequestException as e:
+            last_error = e
             if attempt == MAX_RETRIES:
-                raise
+                break
             delay = RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1))
             print(f"   ⚠️  Hálózati hiba (kísérlet {attempt}/{MAX_RETRIES}): {e} - újrapróbálás {delay}s múlva...")
             time.sleep(delay)
             continue
 
-        if response.status_code in RETRYABLE_STATUS_CODES and attempt < MAX_RETRIES:
-            delay = RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1))
-            print(f"   ⚠️  HTTP {response.status_code} érkezett (kísérlet {attempt}/{MAX_RETRIES}) - valószínűleg a Windy szerver pillanatnyi akadása, újrapróbálás {delay}s múlva...")
+        if response.status_code in RETRYABLE_STATUS_CODES:
+            if attempt == MAX_RETRIES:
+                last_error = requests.exceptions.HTTPError(
+                    f"HTTP {response.status_code} a {MAX_RETRIES}. próbálkozás után is"
+                )
+                break
+            # Ha a Windy küld "Retry-After" fejlécet (429-nél gyakori), azt
+            # vesszük figyelembe a saját exponenciális backoff helyett -
+            # pontosabb, mint a találgatás.
+            retry_after = response.headers.get("Retry-After")
+            try:
+                delay = float(retry_after) if retry_after else RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1))
+            except ValueError:
+                delay = RETRY_BASE_DELAY_SECONDS * (2 ** (attempt - 1))
+            print(f"   ⚠️  HTTP {response.status_code} érkezett (kísérlet {attempt}/{MAX_RETRIES}) - valószínűleg a Windy szerver pillanatnyi akadása/rate-limitje, újrapróbálás {delay:.0f}s múlva...")
             time.sleep(delay)
             continue
 
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            # Egyéb, nem a RETRYABLE_STATUS_CODES-ban szereplő hiba (pl.
+            # 400/404) - ezt nem érdemes újrapróbálni, de a hívó itt is a
+            # "csak ez a régió marad abbahagyva" ágra kerül.
+            last_error = e
+            break
         return response
+
+    print(f"   ⚠️  Ez a kérés {MAX_RETRIES} próbálkozás után sem járt sikerrel ({last_error}) - ez a régió itt megszakad, a már begyűjtött kamerákkal folytatjuk a következővel.")
+    return None
 
 # A Windy API a régiókat angolul adja vissza - ez fordítja magyarra a
 # weboldalon való megjelenítéshez. Ha egy régiónév nem szerepel itt,
@@ -108,6 +148,13 @@ def fetch_hungarian_webcams():
                 "include": "images,location,player",
             }
             response = windy_get(url, params, headers)
+            if response is None:
+                # ld. windy_get() kommentje - ez a régió itt megszakad
+                # (a már begyűjtött oldalaival), de a FUTÁS folytatódik a
+                # következő régióval, nem crashel az egész script.
+                print(f"   ⚠️  A '{region['name']}' régió lekérdezése idő előtt megszakadt - a már begyűjtött kamerákkal megyünk tovább.")
+                break
+
             page_data = response.json().get("webcams", [])
 
             if not page_data:
@@ -174,6 +221,17 @@ def main():
     data = fetch_hungarian_webcams()
     webcams = data.get("webcams", [])
     print(f"   -> {len(webcams)} kamera található.")
+
+    if not webcams:
+        # Ha a fenti, régiónkénti türelem ellenére VÉGÜL egyetlen kamerát
+        # sem sikerült lekérdezni (pl. teljes Windy-kiesés, vagy hibás/
+        # lejárt API-kulcs), akkor NEM írjuk felül a meglévő adatfájlt egy
+        # üres listával (ez elveszítené a korábbi, jó adatot) - ilyenkor a
+        # futás tényleg hibával áll le (exit 1), hogy ez a VALÓDI probléma
+        # még mindig jelzést kapjon, ellentétben egy csak részleges/
+        # átmeneti akadással (ld. a fájl elején lévő komment).
+        print("❌ HIBA: egyetlen kamerát sem sikerült lekérdezni (teljes Windy-kiesés vagy hibás API-kulcs lehet) - a meglévő adatfájlt NEM írjuk felül.")
+        sys.exit(1)
 
     # Csak a ténylegesen szükséges mezőket mentjük, hogy a fájl kicsi maradjon
     simplified = []
