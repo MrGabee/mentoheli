@@ -440,6 +440,12 @@
 
       <div id="ceges-tabla-hely"></div>
 
+      <div id="ceges-parositott-szekcio" style="display:none;">
+        <h3 style="margin:28px 0 8px;font-size:16px;">✅ Párosítva a NAV-val</h3>
+        <p class="panel-info">Ezek a számlák már megerősítetten egyeznek egy NAV Online Számla-tétellel - itt NEM kell semmit ellenőrizned rajtuk, csak a tájékoztatásod miatt vannak külön elválasztva a fenti, még egyeztetésre váró listától. A "✕"-szel itt is véglegesen elrejthető, ha mégsem kellene.</p>
+        <div id="ceges-parositott-tabla-hely"></div>
+      </div>
+
       <div id="ceges-bizonytalan-szekcio" style="display:none;">
         <h3 style="margin:28px 0 8px;font-size:16px;">❓ Nem biztos (automatikus előszűrés)</h3>
         <p class="panel-info">Ide kerülnek azok a PDF-csatolmányos levelek, amikben a script NEM találta meg a "számla" szót, ÉS még nem sikerült NAV-párosítani sem - ezek lehetnek valódi számlák (pl. a szó máshogy szerepel a PDF-ben, vagy képként van beszkennelve) vagy teljesen más dokumentumok (ajánlat, visszaigazolás, reklám, stb.). Ha tényleg számla, kattints a "✅ Ez számla" gombra (átkerül a fenti listába); ha nem, a "✕"-szel véglegesen elrejtheted. Egy sikeres NAV-párosítás a következő script-futásnál automatikusan is átsorolja a fenti listába, külön teendő nélkül.</p>
@@ -709,11 +715,26 @@
   // a párosítás esélyét is, nem csak megjelenítési célú.
   function cegesTablaRenderelese(lista) {
     const hely = document.getElementById("ceges-tabla-hely");
-    if (!lista.length) {
-      hely.innerHTML = '<div class="ures">Még nincs begyűjtött céges számla - küldd el az eladóknak a dedikált email-címet, és a script automatikusan felszedi, amint megérkezik.</div>';
+    // ld. a felhasználó kérése: "azokat a sorokat, amiket sikerült
+    // összekötni [a NAV-val]... kerüljön át az oldalon egy másik
+    // kategóriába" - a MEGERŐSÍTETTEN párosított (nav_parositva===true)
+    // tételeket itt szűrjük ki a fő listából, és a "✅ Párosítva a
+    // NAV-val" külön szekcióba (ld. cegesParositottTablaRenderelese()
+    // lentebb) rendereljük - így a fő tábla csak a még egyeztetésre váró
+    // (vagy sosem is várt, mert sosem lesz NAV-tétel hozzá) sorokat
+    // mutatja. Mindkét renderelő ugyanazt a teljes "lista"-t (cegesSzamlak)
+    // kapja minden hívási helyen, a szűrés itt, egy helyen történik - nem
+    // kellett az összes hívási helyet (6+ db) külön átírni.
+    const parositott = lista.filter(r => r.nav_parositva);
+    const paratlan = lista.filter(r => !r.nav_parositva);
+    cegesParositottTablaRenderelese(parositott);
+    if (!paratlan.length) {
+      hely.innerHTML = lista.length
+        ? '<div class="ures">Minden begyűjtött céges számla párosítva van a NAV-val - ld. a "✅ Párosítva a NAV-val" szekciót lejjebb.</div>'
+        : '<div class="ures">Még nincs begyűjtött céges számla - küldd el az eladóknak a dedikált email-címet, és a script automatikusan felszedi, amint megérkezik.</div>';
       return;
     }
-    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const rendezett = [...paratlan].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
     const mezoInputStyle = "width:100%;min-width:90px;box-sizing:border-box;border:1px solid var(--border);border-radius:6px;padding:4px 6px;font-size:13px;font-family:inherit;";
     // "user" szerepkörnél a tábla CSAK OLVASHATÓ: a szerkeszthető mezők
     // (input/select) helyett sima szöveg, és a két admin-csak oszlop
@@ -796,6 +817,25 @@
       input.addEventListener("blur", async () => {
         const nyersErtek = input.value.trim();
         if (nyersErtek === eredetiErtek) return;
+        // ld. "_cegesSorNavKodAlkalmazasa()" kommentje lentebb - ha a
+        // felhasználó EBBE a mezőbe (bármelyikbe - nem csak a "Számlaszám"-
+        // ba) illesztette be a "[[NAVKOD|...]]" kódot, itt, kilépéskor
+        // azonnal felismerjük, és a sor ÖSSZES érintett mezőjét egyszerre
+        // kitöltjük/párosítjuk - nem csak ezt az egyet.
+        const tr = input.closest("tr");
+        const navKodMezok = tr ? _cegesSorNavKodAlkalmazasa(tr, nyersErtek) : null;
+        if (navKodMezok) {
+          tr.querySelectorAll(".ceges-mezo-input").forEach(el => { el.disabled = true; });
+          const friss = await cegesSorMezoinekMentese(input.dataset.id, navKodMezok);
+          if (friss) {
+            cegesKartyakRenderelese(cegesSzamlak);
+            cegesTablaRenderelese(cegesSzamlak);
+          } else {
+            tr.querySelectorAll(".ceges-mezo-input").forEach(el => { el.disabled = false; });
+            alert("A NAV-kódot felismertük, de a mentés sikertelen volt - próbáld újra.");
+          }
+          return;
+        }
         const mezo = input.dataset.mezo;
         let ujErtek;
         if (mezo === "kinyert_osszeg") {
@@ -821,6 +861,61 @@
       btn.addEventListener("click", () => cegesSorEgyeztetese(btn.dataset.id));
     });
     hely.querySelectorAll(".ceges-torles-gomb").forEach(btn => {
+      btn.addEventListener("click", () => torlesVegrehajtasaCeges(btn.dataset.id));
+    });
+  }
+
+  // ── "✅ Párosítva a NAV-val" (ld. "ceges-parositott-szekcio" a HTML-ben,
+  // és a felhasználó kérése: "amiket sikerült összekötni... kerüljön át
+  // egy másik kategóriába") - a cegesTablaRenderelese() hívja, a TELJES
+  // listából (cegesSzamlak) kiszűrt, nav_parositva===true tételekkel. Ez
+  // UGYANAZ a "ceges_szamlak" kollekció (táblás, nem meta-blob), tehát a
+  // törlés is a megszokott rekordTorlese()-n (torlesVegrehajtasaCeges())
+  // megy - csak a MEGJELENÍTÉS különül el. Itt NINCS szerkeszthető mező/
+  // Mentés/Egyeztetés gomb (már megerősítetten párosítva van, nincs mit
+  // ellenőrizni rajta) - csak egy halványzöld háttérrel kiemelt,
+  // tájékoztató sor + a "✕" végleges elrejtés, ha mégsem kellene.
+  function cegesParositottTablaRenderelese(lista) {
+    const szekcio = document.getElementById("ceges-parositott-szekcio");
+    const hely = document.getElementById("ceges-parositott-tabla-hely");
+    if (!szekcio || !hely) return;
+    if (!lista || !lista.length) {
+      szekcio.style.display = "none";
+      hely.innerHTML = "";
+      return;
+    }
+    szekcio.style.display = "";
+    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const csakOlvas = szerepkor !== "admin";
+    const sorok = rendezett.map(r => {
+      const vanForrasPostafiok = !!r.forras_postafiok;
+      const cegNev = vanForrasPostafiok ? (escHtml(r.kuldo_nev) || "—") : (escHtml(r.adoszam) || "Ismeretlen");
+      const forras = escHtml(vanForrasPostafiok ? r.forras_postafiok : (r.kuldo_nev || null)) || "—";
+      const vegoszlop = csakOlvas ? "" : `<td><button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`;
+      return `<tr style="background:#eafaf1;">
+        <td>${cegNev}</td>
+        <td style="color:var(--muted);font-size:12px;">${forras}</td>
+        <td>${escHtml(r.targy) || "—"}</td>
+        <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
+        <td>${escHtml(r.kinyert_szamlaszam) || "—"}</td>
+        <td>${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "—" : r.kinyert_osszeg}</td>
+        <td>${(r.penznem || "HUF").toUpperCase() === "EUR" ? "€ (EUR)" : "Ft (HUF)"}</td>
+        <td>${escHtml(r.adoszam) || "—"}</td>
+        <td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>
+        <td><span style="color:var(--green);">✅ Párosítva</span>${r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : ""}</td>
+        ${vegoszlop}
+      </tr>`;
+    }).join("");
+    const fejlecVege = csakOlvas ? "" : "<th></th>";
+    hely.innerHTML = `
+      <table>
+        <thead>
+          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th>${fejlecVege}</tr>
+        </thead>
+        <tbody>${sorok}</tbody>
+      </table>
+    `;
+    hely.querySelectorAll(".ceges-parositott-torles-gomb").forEach(btn => {
       btn.addEventListener("click", () => torlesVegrehajtasaCeges(btn.dataset.id));
     });
   }
@@ -1017,10 +1112,18 @@
         // tudja tölteni a többi mezőt is, anélkül hogy egy KÜLÖN,
         // string-egyezésen alapuló (és emiatt hibázható) NAV-párosításra
         // kelljen hagyatkoznia - NINCS hozzá külön API-hívás/mentés.
+        // A "[[NAVKOD|...]]" ÖNMAGÁT HATÁROLÓ (zárójelpár) formátum - a
+        // felhasználó kérésére ("bárhova illeszthető be, más szöveg előtte/
+        // utána ugyanabban a sorban is") - KORÁBBAN sima ":"-tal elválasztott
+        // mezők voltak, de azt csak a sor VÉGÉN, önmagában lehetett
+        // biztonságosan felismerni. A "[[" / "]]" pár miatt a Python-oldali
+        // NAV_KOD_MINTA (és ennek kliens-oldali tükre, ld.
+        // _navKodKinyereseJs() lentebb) MINDEGY, hol áll a kód a szövegben -
+        // a sor/levél/mező BÁRMELY részén megtalálja.
         const kodOsszeg = t.netto_osszeg_huf || t.netto_osszeg || "";
         const kodDatum = (t.kiallitas_datum || "").slice(0, 10);
         const kodNev = t.szallito_nev || "";
-        const kod = `NAVKOD:${adoszam}:${t.szamlaszam || ""}:${kodOsszeg}:${kodDatum}:${kodNev}`;
+        const kod = `[[NAVKOD|${adoszam}|${t.szamlaszam || ""}|${kodOsszeg}|${kodDatum}|${kodNev}]]`;
         const sorId = `nav-hozzaadas-${escHtml(adoszam)}-${idx}`;
         return `
         <tr>
@@ -1037,13 +1140,13 @@
         <tr id="${sorId}" class="nav-hozzaadas-kod-sor" style="display:none;">
           <td colspan="4" style="background:#f3f4f6;border-radius:8px;">
             <div style="padding:8px 4px;font-size:13px;">
-              <p style="margin:0 0 6px;">Nincs meg emailben ez a számla? Kérd el az eladótól (vagy keresd elő a saját postafiókodból), és küldd/továbbítsd el a <strong>dedikált céges email-címre</strong> - de előtte illeszd be ezt a kódot a levél <strong>tárgyába VAGY a szövegébe, lehetőleg önálló sorként (ne írj utána ugyanabba a sorba mást)</strong>, hogy a script egyből ehhez a NAV-tételhez tudja kötni, extra kézi munka nélkül:</p>
+              <p style="margin:0 0 6px;">Nincs meg emailben ez a számla? Kérd el az eladótól (vagy keresd elő a saját postafiókodból), és küldd/továbbítsd el a <strong>dedikált céges email-címre</strong> - de előtte illeszd be ezt a kódot a levél <strong>tárgyába VAGY a szövegébe, BÁRHOVA (más szöveg előtte/utána, akár ugyanabba a sorba is írhatod, nem kell önálló sorba tenni)</strong>, hogy a script egyből ehhez a NAV-tételhez tudja kötni, extra kézi munka nélkül:</p>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
                 <code class="nav-hozzaadas-kod-szoveg" style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;user-select:all;">${escHtml(kod)}</code>
                 <button type="button" class="nav-hozzaadas-masolas-gomb" data-kod="${escHtml(kod)}" style="font-size:12px;padding:4px 8px;">📋 Kód másolása</button>
                 <span class="nav-hozzaadas-masolas-statusz" style="font-size:12px;color:var(--green);"></span>
               </div>
-              <p style="margin:6px 0 0;color:var(--muted);font-size:12px;">A következő script-futásnál a megérkező levelet felismeri a kódról, feltölti a Drive-ra, és rögtön megerősített (NAV-párosított) céges számlaként rögzíti.</p>
+              <p style="margin:6px 0 0;color:var(--muted);font-size:12px;">A megérkező levelet a legközelebbi script-futás felismeri a kódról, feltölti a Drive-ra, és rögtön megerősített (NAV-párosított) céges számlaként rögzíti. Azt is megteheted, hogy ezt a kódot - a Drive-feltöltés helyett - KÖZVETLENÜL beilleszted a lenti "Céges" táblázat valamelyik szerkeszthető mezőjébe (pl. "Számlaszám" vagy "Cégnév") egy MEGLÉVŐ sornál: onnan kikattintva (vagy "💾 Mentés") a dashboard azonnal, kézi beírás nélkül kitölti és párosítja a sort.</p>
             </div>
           </td>
         </tr>` : ""}
@@ -2490,6 +2593,75 @@
     return null;
   }
 
+  // ── NAVKOD felismerés KLIENS-OLDALON, a Céges tábla szerkeszthető
+  // mezőiben (ld. cegesTablaRenderelese() fent) - a felhasználó kérésére:
+  // ha a "[[NAVKOD|...]]" kódot (ld. navCsakNavbanRenderelese() "+
+  // Hozzáadás" doboza fent) NEM emailbe illeszti be, hanem KÖZVETLENÜL egy
+  // meglévő céges sor valamelyik mezőjébe (Cégnév/Számlaszám/Összeg/
+  // Adószám - BÁRMELYIKBE, nem kell tudni melyikbe "kellene"), azt itt is
+  // felismerjük, és a sor ÖSSZES érintett mezőjét EGYSZERRE kitöltjük/
+  // párosítjuk, anélkül hogy meg kellene várni egy email-t és a következő
+  // script-futást. A reguláris kifejezés és a mezőkinyerés logikája a
+  // Python-oldali NAV_KOD_MINTA/_nav_kod_kinyerese() PONTOS tükre
+  // (szamla_figyelo.py) - ha ott változik a formátum, itt is kell.
+  const NAV_KOD_MINTA_JS = /\[\[NAVKOD\|([^|\]\r\n]+)\|([^|\]\r\n]+)\|([^|\]\r\n]*)\|([^|\]\r\n]*)\|([^\]\r\n]*)\]\]/;
+  function _kodMezoTrim(s) {
+    return (s || "").replace(/^[.,;:)”"']+|[.,;:)”"']+$/g, "");
+  }
+  function _navKodKinyereseJs(szoveg) {
+    if (!szoveg) return null;
+    const talalat = NAV_KOD_MINTA_JS.exec(szoveg);
+    if (!talalat) return null;
+    const adoszam = talalat[1].trim();
+    const szamlaszam = _kodMezoTrim(talalat[2].trim());
+    if (!adoszam || !szamlaszam) return null;
+    const osszegNyers = talalat[3].trim();
+    let osszeg = null;
+    if (osszegNyers) {
+      const szam = Number(osszegNyers.replace(",", "."));
+      if (!isNaN(szam)) osszeg = szam;
+    }
+    const datum = talalat[4].trim() || null;
+    const nev = _kodMezoTrim(talalat[5].trim()) || null;
+    return { adoszam, szamlaszam, osszeg, datum, nev };
+  }
+  // ld. szamla_figyelo.py "_nav_kod_kulcs" (nav_szamla_parositas()) - a
+  // "nav_szamla_azonosito" mező KULCS-formátumának pontos tükre, hogy a
+  // kliens-oldalon itt elmentett párosítás a Python-oldali
+  // "parositott_nav_kulcsok" előszűrésnél is felismerhető legyen (ld. ott a
+  // kommentet), és ne próbálja újra/máshogy párosítani a következő futás.
+  function _navKodKulcsJs(adoszam, szamlaszam) {
+    return `${adoszam}|${_szamlaszamNormalizaltJs(szamlaszam)}`;
+  }
+  // A "tr" paraméterben átadott sor MINDEN "ceges-mezo-input" mezőjét
+  // frissíti (DOM-szinten, azonnal látható legyen), és visszaadja a
+  // mentendő mezők objektumát (vagy null-t, ha "nyersSzoveg"-ben nincs
+  // felismerhető NAVKOD). A hívó felelőssége ezt utána tényleg el is
+  // menteni (ld. cegesSorMezoinekMentese()).
+  function _cegesSorNavKodAlkalmazasa(tr, nyersSzoveg) {
+    const kod = _navKodKinyereseJs(nyersSzoveg);
+    if (!kod) return null;
+    const mezok = {
+      adoszam: kod.adoszam,
+      kinyert_szamlaszam: kod.szamlaszam,
+      nav_szamla_azonosito: _navKodKulcsJs(kod.adoszam, kod.szamlaszam),
+      nav_parositva: true,
+    };
+    if (kod.nev !== null) { mezok.kuldo_nev = kod.nev; mezok.nav_szallito_nev = kod.nev; }
+    if (kod.osszeg !== null) { mezok.kinyert_osszeg = kod.osszeg; mezok.nav_osszeg = kod.osszeg; }
+    if (kod.datum !== null) mezok.nav_datum = kod.datum;
+    if (tr) {
+      tr.querySelectorAll(".ceges-mezo-input").forEach(input => {
+        const mezo = input.dataset.mezo;
+        if (mezo === "kuldo_nev" && kod.nev !== null) input.value = kod.nev;
+        else if (mezo === "kinyert_szamlaszam") input.value = kod.szamlaszam;
+        else if (mezo === "kinyert_osszeg" && kod.osszeg !== null) input.value = kod.osszeg;
+        else if (mezo === "adoszam") input.value = kod.adoszam;
+      });
+    }
+    return mezok;
+  }
+
   // ── "💾 Mentés" gomb (Céges fül) - KIZÁRÓLAG menti a sor mezőit (a
   // felhasználó kifejezett kérésére: "a mentést és az egyeztetést rakd
   // külön" - korábban egy gomb csinálta mindkettőt, ez most kettéválik).
@@ -2499,6 +2671,33 @@
     const gomb = document.querySelector(`.ceges-mentes-gomb[data-id="${CSS.escape(id)}"]`);
     const tr = gomb ? gomb.closest("tr") : null;
     if (!tr) return;
+    const statuszHelyNavKod = document.querySelector(`.ceges-egyeztetes-statusz[data-id="${CSS.escape(id)}"]`);
+    // ld. a blur-eseménykezelő (cegesTablaRenderelese() fent) kommentje -
+    // ha a "💾 Mentés"-re kattintáskor VALAMELYIK mezőben még a nyers
+    // "[[NAVKOD|...]]" szöveg áll (pl. beillesztés után rögtön ide
+    // kattintott, nem külön kattintott ki a mezőből előtte), itt is
+    // felismerjük, és ugyanúgy, egyszerre töltjük ki/párosítjuk a sort - a
+    // lenti, normál mezőnkénti mentés helyett.
+    let navKodMezok = null;
+    tr.querySelectorAll(".ceges-mezo-input").forEach(input => {
+      if (navKodMezok) return;
+      navKodMezok = _cegesSorNavKodAlkalmazasa(tr, input.value.trim());
+    });
+    if (navKodMezok) {
+      gomb.disabled = true;
+      if (statuszHelyNavKod) statuszHelyNavKod.innerHTML = '<span style="color:var(--muted);">NAV-kód felismerve, mentés...</span>';
+      const frissNavKod = await cegesSorMezoinekMentese(id, navKodMezok);
+      if (!frissNavKod) {
+        gomb.disabled = false;
+        if (statuszHelyNavKod) statuszHelyNavKod.innerHTML = "";
+        return;
+      }
+      cegesKartyakRenderelese(cegesSzamlak);
+      cegesTablaRenderelese(cegesSzamlak);
+      const ujStatuszNavKod = document.querySelector(`.ceges-egyeztetes-statusz[data-id="${CSS.escape(id)}"]`);
+      if (ujStatuszNavKod) ujStatuszNavKod.innerHTML = '<span style="color:var(--green);">✅ NAV-kód felismerve - a sor automatikusan kitöltve és párosítva.</span>';
+      return;
+    }
     const eredetiRekord = cegesSzamlak.find(r => String(r.id) === String(id)) || {};
     const mezok = {};
     let hibasSzam = false;
