@@ -735,6 +735,60 @@ def szamlaszam_kinyerese_altalanos(szoveg: str):
     return talalat.group(1).strip().upper() or None
 
 
+# Általános (best-effort) ELADÓ/SZÁLLÍTÓ név-minta - a felhasználó
+# kifejezett jelzése szerint a levél "From" fejléce (ld.
+# _ceges_kuldo_nev_kinyerese()) GYAKRAN NEM a számlán szereplő valódi
+# kibocsátó/partner nevét mutatja (hanem pl. egy számlázó-rendszer vagy
+# egy továbbküldő postafiók nevét) - ezért a "Céges számlák" fülön
+# megjelenő "Eladó / cég" mezőhöz ELSŐDLEGESEN magából a PDF SZÖVEGÉBŐL
+# próbáljuk kinyerni a kibocsátó nevét; a "From" fejléc csak MÁSODLAGOS,
+# végső tartalék (ld. a hívási helyeken: "... or kuldo_nev").
+#
+# Két mintát próbálunk sorban:
+#   1) Egy "Eladó"/"Szállító"/"Kibocsátó" feliratot KÖVETŐ, cégformával
+#      (Kft./Zrt./Bt./Nyrt./Kkt./Rt./Ev.) végződő névrész - a magyar
+#      számlák túlnyomó többségén ez a szokásos jelölés.
+#   2) Ha ez nem talál semmit, egy feliratmentes, de cégforma-
+#      rövidítéssel végződő szövegrész a dokumentum ELSŐ kb. 600
+#      karakterében (a fejléc/kibocsátó-blokk jellemzően ott van) - ez
+#      egy durvább, de sok esetben működő tartalék. Szándékosan NEM
+#      keresünk a teljes dokumentumban (csak a fejrész közelében), mert
+#      egy "Kft."-re végződő szórész a számla VÉGÉN (pl. egy bank/jogi
+#      nyilatkozatban) könnyen egy MÁSIK céget (pl. a könyvelőt) találna
+#      meg, nem a kibocsátót.
+#
+# MINDKETTŐ best-effort, csak a "Céges számlák" fülön megjelenő névhez
+# használjuk (a NAV-párosítást NEM érinti, az a számlaszám/összeg alapján
+# megy, ld. "NAV ONLINE SZÁMLA" szekció) - None-t ad vissza, ha semmit
+# nem talált.
+ELADO_NEV_MINTA_FELIRATTAL = re.compile(
+    r"(?:eladó|szállító|kibocsátó)\s*(?:neve)?\s*[:\-]?\s*\n?\s*"
+    r"([A-ZÁÉÍÓÖŐÚÜŰ][\wÁÉÍÓÖŐÚÜŰáéíóöőúüű .,\-&]{2,70}?"
+    r"\b(?:Kft\.?|Zrt\.?|Bt\.?|Nyrt\.?|Kkt\.?|Rt\.?|Ev\.?|Egyéni\s*cég))",
+    re.IGNORECASE,
+)
+ELADO_NEV_MINTA_CEGFORMAVAL = re.compile(
+    r"([A-ZÁÉÍÓÖŐÚÜŰ][\wÁÉÍÓÖŐÚÜŰáéíóöőúüű .,\-&]{2,70}?"
+    r"\b(?:Kft\.?|Zrt\.?|Bt\.?|Nyrt\.?|Kkt\.?|Rt\.?))",
+)
+
+
+def szallito_nev_kinyerese_pdfbol(pdf_szoveg: str):
+    """Ld. fent az ELADO_NEV_MINTA_* kommentjét - best-effort, None-t ad
+    vissza, ha a PDF szövegéből nem sikerült kinyerni a kibocsátó/eladó
+    nevét (ilyenkor a hívó a levél "From" fejléce alapján kinyert nevet
+    használja tartalékként, ld. _ceges_kuldo_nev_kinyerese())."""
+    if not pdf_szoveg:
+        return None
+    talalat = ELADO_NEV_MINTA_FELIRATTAL.search(pdf_szoveg)
+    if not talalat:
+        talalat = ELADO_NEV_MINTA_CEGFORMAVAL.search(pdf_szoveg[:600])
+    if not talalat:
+        return None
+    nev = re.sub(r"\s+", " ", talalat.group(1)).strip(" .,-")
+    return nev[:80] or None
+
+
 # Negáció-őr: a FIZETVE_MINTA önmagában illeszkedne olyan mondatokra is,
 # amik valójában TAGADÓ vagy FELSZÓLÍTÓ értelműek, pl. "a számla MÉG NEM
 # került kiegyenlítésre" vagy "KÉRJÜK rendezze a számlát" - ezek éppen az
@@ -3194,7 +3248,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
             targy = _fejlec_dekodolas(msg.get("Subject", ""))
             erkezett_fejlec = msg.get("Date", "")
             feladó_email = _feladó_cim(msg)
-            kuldo_nev = _ceges_kuldo_nev_kinyerese(msg)
+            # Ez a levél "From" fejléce alapján kinyert név CSAK tartalék -
+            # ld. az ELADO_NEV_MINTA_* komment fent: a lenti ciklusban
+            # MINDEN csatolmánynál előbb a PDF SZÖVEGÉBŐL próbálunk valódi
+            # eladó/cég nevet kinyerni, és csak ha az nem jár sikerrel,
+            # esünk vissza erre.
+            kuldo_nev_feladobol = _ceges_kuldo_nev_kinyerese(msg)
             pdf_csatolmanyok_listaja = pdf_csatolmanyok(msg)
 
             if not pdf_csatolmanyok_listaja:
@@ -3204,7 +3263,7 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # törölnénk) - a postafiókban marad, kézi ellenőrzést
                 # igényel (pl. újra megkérni az eladót a PDF-re).
                 print(f"      ⚠️  Nincs PDF-csatolmány, a levél a postafiókban marad "
-                      f"(kézi ellenőrzést igényel): {kuldo_nev} – {targy[:60]}")
+                      f"(kézi ellenőrzést igényel): {kuldo_nev_feladobol} – {targy[:60]}")
                 hiba_db += 1
                 continue
 
@@ -3240,6 +3299,17 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 else:
                     kinyert_osszeg, kinyert_penznem = None, "HUF"
                 kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
+
+                # Ld. az ELADO_NEV_MINTA_* komment fent - ELSŐDLEGESEN a
+                # PDF szövegéből próbáljuk kinyerni a valódi eladó/cég
+                # nevet, a levél "From" fejléce (kuldo_nev_feladobol) csak
+                # VÉGSŐ tartalék, ha a PDF-ből nem jön ki semmi. Minden
+                # csatolmánynál ÚJRA a tartalékból indulunk (nem az előző
+                # csatolmány esetleg PDF-ből kinyert nevéből), hogy egy
+                # többszámlás levélnél ne "ragadjon át" egy korábbi
+                # csatolmány neve egy olyan másikra, amelyikből nem sikerül
+                # kinyerni semmit.
+                kuldo_nev = szallito_nev_kinyerese_pdfbol(ceges_pdf_szoveg) or kuldo_nev_feladobol
 
                 # ── CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM ──
                 # Ld. a szekció elején (a függvény docstringje felett)
@@ -3286,6 +3356,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 ceges_szamlak[cid] = {
                     "kuldo_nev": kuldo_nev,
                     "feladó_email": feladó_email,
+                    # Melyik figyelt postafiókból érkezett a tétel - ld. a
+                    # felhasználó kifejezett kérését ("+ oszlop, hogy
+                    # melyik postafiókból van"). A dedikált CEGES_IMAP_*
+                    # postafiók CÍME GitHub Secret, azt sosem írjuk ki -
+                    # csak egy olvasható, fix címke jelzi a forrást.
+                    "forras_postafiok": "Dedikált céges postafiók",
                     "targy": targy,
                     "erkezett": _email_datum_iso(erkezett_fejlec),
                     "erkezett_fejlec": erkezett_fejlec,
@@ -3441,7 +3517,29 @@ def _szamla_athelyezese_cegesbe(allapot: dict, rid: str, forras_cimke: str = Non
         # megtekintése KIZÁRÓLAG a Drive-linken át működik) - inkább a
         # régi helyén hagyjuk, mint hogy hozzáférés nélkül maradjon.
         return False
-    kuldo_nev = forras_cimke or rekord.get("szolgaltato_nev") or "Ismeretlen"
+    # FONTOS - a "kuldo_nev" (Eladó / cég) és a POSTAFIÓK (honnan jött a
+    # levél) KÉT KÜLÖNBÖZŐ dolog, amit korábban (hibásan) összekevertünk:
+    # ez a "forras_cimke"/"szolgaltato_nev" érték a postafióknak ADOTT
+    # CÍMKE (pl. "tv2-videk"), NEM a számlán szereplő eladó/cég neve - a
+    # Közüzemi oldalon ez szándékosan jó (ott egy postafiók = egy ismert
+    # szolgáltató), de a Céges fülön NEM, mert ott egyazon postafiókba
+    # sokféle beszállítótól jöhet számla. Ezért ezt MOST a "forras_
+    # postafiok" mezőbe tesszük (ld. a felhasználó kifejezett kérését egy
+    # külön "melyik postafiókból" oszlopra), a "kuldo_nev"-et pedig lentebb
+    # a tárolt PDF SZÖVEGÉBŐL próbáljuk kinyerni (ld. ELADO_NEV_MINTA_*).
+    forras_postafiok = forras_cimke or rekord.get("szolgaltato_nev") or "Ismeretlen"
+    try:
+        _pdf_bytes_athelyezeshez = base64.b64decode(pdf_b64)
+    except Exception:
+        _pdf_bytes_athelyezeshez = None
+    szallito_nev_pdfbol = szallito_nev_kinyerese_pdfbol(
+        pdf_szoveg_kinyerese(_pdf_bytes_athelyezeshez) if _pdf_bytes_athelyezeshez else None)
+    # Ha a PDF-ből nem sikerült kinyerni semmit, a levél "From" fejléce
+    # alapján az EREDETI beérkezéskor esetleg már elmentett nevet
+    # használjuk (ld. "feladó_nev" a tovabbi_postafiokok_feldolgozasa()
+    # "kozuzemi" ágában) - ez csak az ETTŐL a javítástól kezdve ÚJONNAN
+    # beérkező tételeknél létezik, a régebbieknél "Ismeretlen" lesz.
+    kuldo_nev = szallito_nev_pdfbol or rekord.get("feladó_nev") or "Ismeretlen"
     fajlnev = _ceges_fajlnev(rid, kuldo_nev, rekord.get("targy"))
     drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
     if not drive_url:
@@ -3451,15 +3549,12 @@ def _szamla_athelyezese_cegesbe(allapot: dict, rid: str, forras_cimke: str = Non
     # kell tartalmi ujjlenyomat, hogy a jövőben (más postafiókból jövő
     # duplikátum ELLEN, vagy törlés esetén) ugyanúgy részt vegyen a
     # duplikátum-védelemben, mint a frissen beérkező céges számlák.
-    try:
-        _pdf_bytes_ujjlenyomathoz = base64.b64decode(pdf_b64)
-    except Exception:
-        _pdf_bytes_ujjlenyomathoz = None
     ceges_ujjlenyomat = _szamla_tartalmi_ujjlenyomat(
-        kuldo_nev, rekord.get("szamlaszam"), rekord.get("osszeg"), _pdf_bytes_ujjlenyomathoz)
+        kuldo_nev, rekord.get("szamlaszam"), rekord.get("osszeg"), _pdf_bytes_athelyezeshez)
     ceges_szamlak[rid] = {
         "kuldo_nev": kuldo_nev,
-        "feladó_email": None,
+        "feladó_email": rekord.get("feladó_email"),
+        "forras_postafiok": forras_postafiok,
         "targy": rekord.get("targy"),
         "erkezett": rekord.get("erkezett"),
         "erkezett_fejlec": rekord.get("erkezett_fejlec"),
@@ -3699,12 +3794,18 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             ).hexdigest()[:16]
                             if cid in ceges_szamlak or cid in torolt_id_szet:
                                 continue
-                            kuldo_nev = _ceges_kuldo_nev_kinyerese(msg)
                             feladó_email = _feladó_cim(msg)
                             csatolmany_pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
                             csatolmany_teljes_szoveg = f"{szoveg}\n{csatolmany_pdf_szoveg}"
                             kinyert_szamlaszam_cs = szamlaszam_kinyerese_altalanos(csatolmany_teljes_szoveg)
                             kinyert_osszeg, kinyert_penznem = osszeg_es_penznem_kinyerese(csatolmany_teljes_szoveg)
+                            # Ld. az ELADO_NEV_MINTA_* komment (a modul
+                            # elején) - ELSŐDLEGESEN a PDF szövegéből, a
+                            # levél "From" fejléce csak VÉGSŐ tartalék.
+                            kuldo_nev = (
+                                szallito_nev_kinyerese_pdfbol(csatolmany_pdf_szoveg)
+                                or _ceges_kuldo_nev_kinyerese(msg)
+                            )
 
                             # ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM"
                             # szekció a ceges_szamlak_feldolgozasa() elején - EZ
@@ -3747,6 +3848,12 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             ceges_szamlak[cid] = {
                                 "kuldo_nev": kuldo_nev,
                                 "feladó_email": feladó_email,
+                                # Melyik ("további postafiókok" alatt
+                                # felvett, a felhasználó által elnevezett)
+                                # postafiókból érkezett - ld. a
+                                # forras_postafiok komment a dedikált céges
+                                # postafiók ágánál (ceges_szamlak_feldolgozasa()).
+                                "forras_postafiok": cimke,
                                 "targy": targy,
                                 "erkezett": uj_erkezett,
                                 "erkezett_fejlec": erkezett_fejlec,
@@ -3837,6 +3944,16 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                         # komment - kizárólag a NAV-párosításhoz kell (ld.
                         # "NAV ONLINE SZÁMLA" szekció lentebb), None is lehet.
                         "szamlaszam": kinyert_szamlaszam,
+                        # Csak ARRA az esetre mentjük el, ha a tételt KÉSŐBB
+                        # a Céges fülre helyeznék át (ld.
+                        # _szamla_athelyezese_cegesbe()) - ott a levél
+                        # "From" fejléce alapú név egy tartalék, ha a PDF
+                        # szövegéből nem sikerül kinyerni a valódi eladó/cég
+                        # nevet. Itt, a Közüzemi listán NEM jelenik meg sehol
+                        # (az ottani "Szolgáltató" oszlop szándékosan a
+                        # postafiók-cimkét mutatja).
+                        "feladó_nev": _ceges_kuldo_nev_kinyerese(msg),
+                        "feladó_email": _feladó_cim(msg),
                     }
                     szamlak[rid] = rekord
                     pdf_tarolas(allapot, rid, pdf_bytes)
