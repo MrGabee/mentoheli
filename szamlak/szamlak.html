@@ -287,6 +287,14 @@
       </div>
     </div>
 
+    <div class="panel" id="torolt-szamlak-panel">
+      <button type="button" class="panel-toggle" id="torolt-szamlak-toggle">🗑️ Törölt számlák (visszaállítható) ▾</button>
+      <div class="panel-tartalom" id="torolt-szamlak-tartalom" style="display:none;">
+        <p class="panel-info">Ide kerül minden számla, amit a "✕" gombbal véglegesen elrejtettél (Közüzemi, Céges, vagy a Céges "Nem biztos" listájából) - a Közüzemi/Céges "✕"-nél ez a KÖVETKEZŐ script-futás után jelenik meg itt, a "Nem biztos" listánál azonnal. Innen bármikor visszaállítható, egy új azonosítóval. FONTOS: ez a funkció csak az ETTŐL KEZDVE törölt tételekre vonatkozik - a korábban (e panel megjelenése előtt) törölt tételek teljes adatát már nem tudjuk innen visszahozni.</p>
+        <div id="torolt-szamlak-tabla-hely"></div>
+      </div>
+    </div>
+
     <div class="panel" id="felhasznalok-panel">
       <button type="button" class="panel-toggle" id="felhasznalok-toggle">👤 Felhasználók kezelése ▾</button>
       <div class="panel-tartalom" id="felhasznalok-tartalom" style="display:none;">
@@ -515,6 +523,7 @@
   // adja vissza, ugyanúgy, mint korábban (ld. api.php "login" komment).
   let szerepkor = "admin";
   let helyilegTorolt = new Set(); // ebben a böngésző-munkamenetben, az X gombbal épp most elrejtett (de a GitHub-mentés még folyamatban lévő/már megtörtént) számla-id-k - azonnali UI-visszajelzéshez
+  let helyilegVisszaallitott = new Set(); // ld. toroltSzamlaVisszaallitasa() - az épp most visszaállított "torolt_szamlak_archivum"-kulcsok, hogy a "🗑️ Törölt számlák" panel azonnal, frissítés nélkül eltüntesse őket
   // A "Bérlői körök" panelben, mentés ELŐTT, memóriában tartott
   // szerkesztési állapot: kibocsato_azonosito -> {kor: null|"kor_a"|"kor_b", ertesites: bool}.
   // Csak a "Bérlői körök mentése" gombra kattintva íródik ki a GitHub-ra
@@ -1037,7 +1046,7 @@
   // szamla_figyelo.py "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM").
   async function cegesBizonytalanTorlese(id) {
     if (!id) return;
-    if (!window.confirm("Biztosan véglegesen elrejted ezt a tételt? Ez nem vonható vissza - a jövőben sem jelenik meg többé.")) return;
+    if (!window.confirm("Biztosan véglegesen elrejted ezt a tételt? A '🗑️ Törölt számlák' panelről bármikor visszaállítható.")) return;
     if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return; }
     try {
       const friss = await allapotFrissitesEsMentese((adat) => {
@@ -1051,14 +1060,130 @@
           torolt.add(rekord.tartalmi_ujjlenyomat);
           adat.ceges_torolt_ujjlenyomatok = Array.from(torolt);
         }
+        // ld. "🗑️ Törölt számlák" panel (toroltSzamlakRenderelese() lentebb)
+        // - a "Nem biztos" listánál, a fenti két kollekcióval ellentétben,
+        // ITT, KÖZVETLENÜL (nem a Python-script következő futásakor)
+        // töröljük a rekordot, ezért az archívumba is KÖZVETLENÜL itt
+        // kerül be, azonnal visszaállíthatóan.
+        const archivum = adat.torolt_szamlak_archivum || {};
+        archivum[`ceges_szamlak_bizonytalan:${id}`] = {
+          kollekcio: "ceges_szamlak_bizonytalan",
+          eredeti_id: id,
+          rekord: rekord,
+          torolve_amikor: new Date().toISOString(),
+        };
+        adat.torolt_szamlak_archivum = archivum;
       });
       legutobbiAdat = friss;
+      toroltSzamlakRenderelese(friss.torolt_szamlak_archivum);
       cegesSzamlakBizonytalan = Object.entries(friss.ceges_szamlak_bizonytalan || {})
         .filter(([rid]) => !helyilegTorolt.has(rid))
         .map(([rid, r]) => Object.assign({ id: rid }, r));
       cegesBizonytalanTablaRenderelese(cegesSzamlakBizonytalan);
     } catch (e) {
       alert("A törlés sikertelen: " + e.message);
+    }
+  }
+
+  // ── "🗑️ Törölt számlák" panel - a felhasználó kifejezett kérésére
+  // ("csinálj külön kategóriát a törölt számlához, hogy vissza tudjam
+  // épiteni"): a Python-oldali "torolt_szamlak_archivum" (ld.
+  // szamla_figyelo.py _allapot_alapertekek() kommentje) TELJES, törölt
+  // rekordjait listázza, "♻️ Visszaállítás" gombbal. FONTOS: a Közüzemi/
+  // Céges "✕" gomb (torlesVegrehajtasa()/torlesVegrehajtasaCeges()) csak a
+  // "torolt_szamla_id_k" meta-listába ír - a TÉNYLEGES archiválás (a teljes
+  // rekord idemásolása) a Python-script KÖVETKEZŐ futásakor történik meg
+  // (ld. ott a komment), ezért egy most törölt tétel csak a következő
+  // futás UTÁN jelenik meg itt. A "Nem biztos" lista "✕"-je (fent,
+  // cegesBizonytalanTorlese()) viszont KÖZVETLENÜL ide ír, az azonnal
+  // megjelenik.
+  function toroltSzamlakRenderelese(archivum) {
+    const hely = document.getElementById("torolt-szamlak-tabla-hely");
+    if (!hely) return;
+    const bejegyzesek = Object.entries(archivum || {})
+      .filter(([kulcs]) => !helyilegVisszaallitott.has(kulcs))
+      .sort((a, b) => (b[1].torolve_amikor || "").localeCompare(a[1].torolve_amikor || ""));
+    if (!bejegyzesek.length) {
+      hely.innerHTML = '<div style="color:var(--muted);">Nincs archivált, visszaállítható törölt számla.</div>';
+      return;
+    }
+    const kollekcioCimke = (k) => {
+      if (k === "ceges_szamlak") return "Céges";
+      if (k === "ceges_szamlak_bizonytalan") return "Céges – Nem biztos";
+      return "Közüzemi";
+    };
+    hely.innerHTML = '<table><thead><tr>' +
+      '<th>Kategória</th><th>Szolgáltató/szállító</th><th>Számlaszám</th><th>Összeg</th><th>Törölve</th><th></th>' +
+      '</tr></thead><tbody>' +
+      bejegyzesek.map(([kulcs, b]) => {
+        const r = b.rekord || {};
+        const nev = r.kuldo_nev || r.szolgaltato_nev || "";
+        const szamlaszam = r.kinyert_szamlaszam || r.szamlaszam || "";
+        const osszegNyers = (r.kinyert_osszeg !== undefined && r.kinyert_osszeg !== null) ? r.kinyert_osszeg : r.osszeg;
+        const torolveDatum = b.torolve_amikor ? new Date(b.torolve_amikor).toLocaleString("hu-HU") : "";
+        return `<tr>
+          <td>${escHtml(kollekcioCimke(b.kollekcio))}</td>
+          <td>${escHtml(nev)}</td>
+          <td>${escHtml(szamlaszam)}</td>
+          <td>${osszegNyers != null && osszegNyers !== "" ? forint(osszegNyers) : ""}</td>
+          <td>${escHtml(torolveDatum)}</td>
+          <td><button type="button" class="torolt-visszaallit-gomb" data-kulcs="${escHtml(kulcs)}">♻️ Visszaállítás</button></td>
+        </tr>`;
+      }).join("") +
+      '</tbody></table>';
+    hely.querySelectorAll(".torolt-visszaallit-gomb").forEach(gomb => {
+      gomb.addEventListener("click", () => toroltSzamlaVisszaallitasa(gomb.dataset.kulcs));
+    });
+  }
+
+  async function toroltSzamlaVisszaallitasa(archivKulcs) {
+    if (!archivKulcs) return;
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return; }
+    if (!window.confirm("Visszaállítod ezt a tételt? Újra bekerül a megfelelő listába, egy ÚJ azonosítóval.")) return;
+    try {
+      const friss = await allapotFrissitesEsMentese((adat) => {
+        const archivum = adat.torolt_szamlak_archivum || {};
+        const bejegyzes = archivum[archivKulcs];
+        if (!bejegyzes) return;
+        delete archivum[archivKulcs];
+        adat.torolt_szamlak_archivum = archivum;
+        const kollekcio = bejegyzes.kollekcio || "szamlak";
+        const ujId = ujRekordAzonosito();
+        adat[kollekcio] = adat[kollekcio] || {};
+        adat[kollekcio][ujId] = Object.assign({}, bejegyzes.rekord);
+        // ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM" (szamla_figyelo.py)
+        // - amíg a tétel törölve volt, a tartalmi ujjlenyomata a
+        // "ceges_torolt_ujjlenyomatok" tiltólistán volt, hogy egy később
+        // (akár másik postafiókból) újra beérkező, tartalmilag ugyanolyan
+        // levél ne "támadjon fel". Most, hogy visszaállítjuk, ezt a
+        // tilalmat is feloldjuk - különben egy jövőbeli, ugyanilyen
+        // tartalmú beérkező levelet a script megint elutasítaná.
+        const ujjlenyomat = bejegyzes.rekord && bejegyzes.rekord.tartalmi_ujjlenyomat;
+        if (ujjlenyomat && Array.isArray(adat.ceges_torolt_ujjlenyomatok)) {
+          adat.ceges_torolt_ujjlenyomatok = adat.ceges_torolt_ujjlenyomatok.filter(u => u !== ujjlenyomat);
+        }
+      });
+      legutobbiAdat = friss;
+      helyilegVisszaallitott.add(archivKulcs);
+      toroltSzamlakRenderelese(friss.torolt_szamlak_archivum);
+      const tartosanTorolt = new Set(Array.isArray(friss.torolt_szamla_id_k) ? friss.torolt_szamla_id_k : []);
+      osszesSzamla = Object.entries(friss.szamlak || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid) && !tartosanTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
+      cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid) && !tartosanTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
+      cegesSzamlakBizonytalan = Object.entries(friss.ceges_szamlak_bizonytalan || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
+      cegesKartyakRenderelese(cegesSzamlak);
+      cegesTablaRenderelese(cegesSzamlak);
+      cegesBizonytalanTablaRenderelese(cegesSzamlakBizonytalan);
+      szolgaltatoSzurokEpitese(osszesSzamla);
+      szuresAlkalmazasa();
+      alert("Visszaállítva.");
+    } catch (e) {
+      alert("A visszaállítás sikertelen: " + e.message);
     }
   }
 
@@ -1670,7 +1795,7 @@
   // RÉTEG" komment), csak a megerősítő szöveg kollekció-specifikus.
   async function torlesVegrehajtasa(id) {
     if (!id) return;
-    if (!window.confirm("Biztosan véglegesen elrejted ezt a számlát? Ez nem vonható vissza - a jövőben, akár a forrás-portálon is meglévő azonos számla esetén sem jelenik meg többé.")) return;
+    if (!window.confirm("Biztosan véglegesen elrejted ezt a számlát? A jövőben, akár a forrás-portálon is meglévő azonos számla esetén sem jelenik meg többé automatikusan - de a következő script-futás után a '🗑️ Törölt számlák' panelről visszaállítható.")) return;
     await rekordTorlese("szamlak", id);
   }
 
@@ -2281,7 +2406,7 @@
   });
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -2856,7 +2981,7 @@
   // előtt), csak a megerősítő szöveg kollekció-specifikus.
   async function torlesVegrehajtasaCeges(id) {
     if (!id) return;
-    if (!window.confirm("Biztosan véglegesen elrejted ezt a céges számlát? Ez nem vonható vissza - a jövőben sem jelenik meg többé.")) return;
+    if (!window.confirm("Biztosan véglegesen elrejted ezt a céges számlát? A jövőben nem jelenik meg többé automatikusan - de a következő script-futás után a '🗑️ Törölt számlák' panelről visszaállítható.")) return;
     await rekordTorlese("ceges_szamlak", id);
   }
 
@@ -2871,6 +2996,16 @@
   function postafiokAzonositoKeszitese() {
     try { return crypto.randomUUID().replace(/-/g, "").slice(0, 16); }
     catch (e) { return "pf" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+  }
+
+  // Általános, bármely kollekcióhoz (szamlak/ceges_szamlak/...) használható
+  // új azonosító-generátor - ld. toroltSzamlaVisszaallitasa() lentebb: a
+  // visszaállított rekord TUDATOSAN új id-t kap, sosem a régit (a régi id
+  // véglegesen ott marad a "torolt_szamla_id_k" tiltólistában, ld.
+  // szamla_figyelo.py komment - ha a régi id-vel hoznánk vissza, a
+  // következő futás rögtön újra törölné).
+  function ujRekordAzonosito() {
+    return postafiokAzonositoKeszitese();
   }
 
   async function postafiokHozzaadasa(bejegyzes, statuszElemId) {
@@ -3138,6 +3273,8 @@
       szovegInput.dataset.eredetiErtek = szovegErtek;
     })();
     postafiokListaRenderelese(adat.tovabbi_postafiokok);
+    helyilegVisszaallitott = new Set(); // új betöltés - a korábbi munkamenetbeli optimista elrejtés már nem releváns
+    toroltSzamlakRenderelese(adat.torolt_szamlak_archivum);
     aktivAllapotSzuro = "mind";
     aktivSzolgaltatoSzuro = "mind";
     aktivNezet = "mind";
