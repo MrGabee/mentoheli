@@ -848,17 +848,11 @@ NAV_KOD_MINTA = re.compile(
 )
 
 
-def _nav_kod_kinyerese(szoveg: str):
-    """dict ({"adoszam", "szamlaszam", "osszeg", "datum", "nev"}) vagy
-    None - ld. NAV_KOD_MINTA kommentje. Az "osszeg"/"datum"/"nev" None
-    lehet, ha a kódból hiányzik/nem értelmezhető (pl. egy régebbi,
-    3-mezős kóddal) - ilyenkor a hívó a szokásos, PDF/NAV-párosítás
-    alapú kitöltésre esik vissza ezekre a mezőkre."""
-    if not szoveg:
-        return None
-    talalat = NAV_KOD_MINTA.search(szoveg)
-    if not talalat:
-        return None
+def _nav_kod_match_feldolgozasa(talalat):
+    """Egy NAV_KOD_MINTA regex-találat (re.Match) -> dict ({"adoszam",
+    "szamlaszam", "osszeg", "datum", "nev"}) vagy None, ha a kötelező
+    mezők (adószám/számlaszám) üresek - ld. _nav_kod_kinyerese()/
+    _nav_kod_osszes_kinyerese() közös belső logikája."""
     adoszam = talalat.group(1).strip()
     szamlaszam = talalat.group(2).strip().strip(".,;:)”\"'")
     if not adoszam or not szamlaszam:
@@ -871,6 +865,70 @@ def _nav_kod_kinyerese(szoveg: str):
     datum = talalat.group(4).strip() or None
     nev = talalat.group(5).strip().strip(".,;:)”\"'") or None
     return {"adoszam": adoszam, "szamlaszam": szamlaszam, "osszeg": osszeg, "datum": datum, "nev": nev}
+
+
+def _nav_kod_kinyerese(szoveg: str):
+    """dict ({"adoszam", "szamlaszam", "osszeg", "datum", "nev"}) vagy
+    None - ld. NAV_KOD_MINTA kommentje. Az "osszeg"/"datum"/"nev" None
+    lehet, ha a kódból hiányzik/nem értelmezhető (pl. egy régebbi,
+    3-mezős kóddal) - ilyenkor a hívó a szokásos, PDF/NAV-párosítás
+    alapú kitöltésre esik vissza ezekre a mezőkre. Ez a függvény az
+    ELSŐ találatot adja vissza - a dashboard "+ Hozzáadás" gombja és a
+    kézi, Céges-táblázatos beillesztés (ld. szamlak.html
+    _navKodKinyereseJs()) MINDIG pontosan egy kódot generál/vár, ott ez
+    elég. Ahol egy levélben TÖBB kód is szerepelhet (ld.
+    _nav_kod_osszes_kinyerese()/_nav_kod_valasztasa() - a rejtett
+    NAV-emlékeztető-kód miatt), azok NEM ezt, hanem azokat használják."""
+    if not szoveg:
+        return None
+    talalat = NAV_KOD_MINTA.search(szoveg)
+    if not talalat:
+        return None
+    return _nav_kod_match_feldolgozasa(talalat)
+
+
+def _nav_kod_osszes_kinyerese(szoveg: str) -> list:
+    """Ua., mint _nav_kod_kinyerese(), de az ÖSSZES érvényes találatot
+    adja vissza (lista, lehet üres) - ld. "REJTETT NAV-KÓD A NAV-
+    EMLÉKEZTETŐ LEVÉLBEN" szekció lentebb: egy emlékeztető-levél TÖBB
+    hiányzó tételt is felsorolhat egy szállítóhoz, ilyenkor TÖBB,
+    egyenként elrejtett kódot is beágyazunk a levél HTML-forrásába -
+    ennek a hívója (_nav_kod_valasztasa()) dönti el, melyik érvényes a
+    ténylegesen csatolt PDF-hez."""
+    if not szoveg:
+        return []
+    talalatok = []
+    for talalat in NAV_KOD_MINTA.finditer(szoveg):
+        feldolgozva = _nav_kod_match_feldolgozasa(talalat)
+        if feldolgozva:
+            talalatok.append(feldolgozva)
+    return talalatok
+
+
+def _nav_kod_valasztasa(szoveg: str, kinyert_szamlaszam=None, kinyert_osszeg=None):
+    """A levélben (rejtve, ld. lentebb) talált NAVKOD-kód(ok) közül
+    választja ki az ÉRVÉNYESET - ld. _nav_kod_osszes_kinyerese() komment.
+    Ha egyetlen kód sincs: None. Ha PONTOSAN EGY van: az (egyértelmű,
+    pl. egy "+ Hozzáadás"-sal generált egyedi kód, vagy egy olyan
+    emlékeztető-levél, aminek csak egy hiányzó tétele volt). Ha TÖBB van
+    (egy több hiányzó tételes emlékeztető-levél rejtett kódjai): csak
+    akkor fogadunk el egyet, ha a PDF-ből KÜLÖN, a kódtól FÜGGETLENÜL
+    kinyert számlaszám/összeg alapján PONTOSAN EGY illik rá egyértelműen -
+    különben None-t adunk vissza, mert egy ROSSZ párosítás (más tétel
+    adatait írná rá egy számlára) rosszabb, mint egyáltalán nem
+    párosítani (a szokásos, string-egyezésen alapuló nav_szamla_parositas()
+    ilyenkor még mindig megtalálhatja a helyeset később)."""
+    osszes = _nav_kod_osszes_kinyerese(szoveg)
+    if not osszes:
+        return None
+    if len(osszes) == 1:
+        return osszes[0]
+    illeszkedok = [
+        k for k in osszes
+        if (kinyert_szamlaszam and _szamlaszam_normalizalt(k["szamlaszam"]) == _szamlaszam_normalizalt(kinyert_szamlaszam))
+        or (kinyert_osszeg is not None and k["osszeg"] is not None and _nav_osszeg_egyezik(kinyert_osszeg, k["osszeg"]))
+    ]
+    return illeszkedok[0] if len(illeszkedok) == 1 else None
 
 
 # Negáció-őr: a FIZETVE_MINTA önmagában illeszkedne olyan mondatokra is,
@@ -3476,7 +3534,15 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # alapuló nav_szamla_parositas()-ra - ld. a felhasználó
                 # kifejezett kérését: "egyből ismerje meg, és töltse ki a
                 # többi adatot"). A "Nem biztos" kategóriát is kihagyjuk.
-                nav_kod_talalat = _nav_kod_kinyerese(f"{targy}\n{szoveg}\n{ceges_pdf_szoveg}")
+                # ld. "REJTETT NAV-KÓD A NAV-EMLÉKEZTETŐ LEVÉLBEN" szekció
+                # (_nav_kod_valasztasa() kommentje) - egy válasz-levél a
+                # beágyazott (idézett) emlékeztetőből TÖBB rejtett kódot is
+                # hordozhat, ha a szállítónak több hiányzó tétele is volt;
+                # ilyenkor a MÁR a PDF-ből kinyert számlaszám/összeg dönti
+                # el, melyik érvényes (vagy egyik sem, ha nem egyértelmű).
+                nav_kod_talalat = _nav_kod_valasztasa(
+                    f"{targy}\n{szoveg}\n{ceges_pdf_szoveg}", kinyert_szamlaszam, kinyert_osszeg
+                )
                 if nav_kod_talalat:
                     nav_kod_adoszam = nav_kod_talalat["adoszam"]
                     kinyert_szamlaszam = nav_kod_talalat["szamlaszam"]
@@ -4033,8 +4099,12 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
 
                             # ld. NAV_KOD_MINTA komment (ceges_szamlak_feldolgozasa()
                             # elején) - ugyanaz a felismerés itt, a "további
-                            # postafiókok" ceges-célú ágában is.
-                            nav_kod_talalat = _nav_kod_kinyerese(f"{targy}\n{csatolmany_teljes_szoveg}")
+                            # postafiókok" ceges-célú ágában is, a
+                            # _nav_kod_valasztasa() többes-találat-
+                            # egyértelműsítésével együtt (ld. ott).
+                            nav_kod_talalat = _nav_kod_valasztasa(
+                                f"{targy}\n{csatolmany_teljes_szoveg}", kinyert_szamlaszam_cs, kinyert_osszeg
+                            )
                             if nav_kod_talalat:
                                 nav_kod_adoszam = nav_kod_talalat["adoszam"]
                                 kinyert_szamlaszam_cs = nav_kod_talalat["szamlaszam"]
@@ -4841,6 +4911,51 @@ NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK = (
 )
 
 
+# ── REJTETT NAV-KÓD A NAV-EMLÉKEZTETŐ LEVÉLBEN ──
+# A felhasználó kifejezett kérésére: "meg tudod csinálni azt, hogy az
+# emailba valahogy eldugod a NAV-os kódot, amit megismer? mert ha válaszol,
+# akkor egyből be is tölti [...] Akár az email forráskódjában, ahonnan nem
+# tudják törölni." - ld. a "+ Hozzáadás" gomb kódja (szamlak.html
+# navCsakNavbanRenderelese(), ill. NAV_KOD_MINTA fenti komment) EDDIG azt
+# igényelte, hogy a szállító MAGA másolja be a kódot egy válasz-levélbe -
+# ez a lépés most elmarad: a kódot MAGUNK ágyazzuk be, LÁTHATATLANUL
+# (nulla betűméret, "display:none", Outlookhoz "mso-hide:all"), a KIMENŐ
+# emlékeztető levél HTML-forrásába. A LEGTÖBB email-kliens egy "Válasz"
+# gombra kattintáskor a TELJES eredeti HTML-t idézetként (blockquote)
+# beilleszti a válasz alá - ÍGY a rejtett kód a szállító válaszában IS
+# benne marad, akkor is, ha ők erről mit sem tudnak/nem törölhetik
+# (hiszen nem is látják). A Python-oldali kinyerés (email_szoveg_kinyerese())
+# egy egyszerű "<[^>]+>" tag-eltávolítással dolgozik, ami a CSS-t NEM veszi
+# figyelembe - tehát a "display:none" a MEGJELENÍTÉST tiltja le a
+# szállítónak, de a kód szövege a kinyert plain textben VÁLTOZATLANUL ott
+# marad, amit a script felismer.
+def _nav_kod_epitese(adoszam: str, tetel: dict) -> str:
+    """Ugyanaz a kódformátum/mezősorrend, mint a dashboard "+ Hozzáadás"
+    gombjáé (ld. szamlak.html navCsakNavbanRenderelese() "kod" változója) -
+    innen építjük fel egy adott NAV-tételhez a "[[NAVKOD|...]]" kódot,
+    hogy rejtve beágyazhassuk az emlékeztető-levélbe."""
+    osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg") or ""
+    datum = (tetel.get("kiallitas_datum") or "")[:10]
+    nev = tetel.get("szallito_nev") or ""
+    szamlaszam = tetel.get("szamlaszam") or ""
+    return f"[[NAVKOD|{adoszam}|{szamlaszam}|{osszeg}|{datum}|{nev}]]"
+
+
+def _nav_emlekezteto_rejtett_kod_html(adoszam: str, tetelek: list) -> str:
+    """A fenti szekció-komment szerinti, láthatatlan blokk - EGY kódot
+    ágyazunk be TÉTELENKÉNT (ha a szállítónak több hiányzó számlája is
+    van, mindegyikhez külön) - a visszaérkező válaszban a Python-oldal
+    (_nav_kod_valasztasa(), ld. ott) dönti el, melyik érvényes, ha a
+    PDF-ből kinyert adatok alapján egyértelműen azonosítható egy közülük."""
+    if not adoszam or not tetelek:
+        return ""
+    kodok = " ".join(_nav_kod_epitese(adoszam, t) for t in tetelek)
+    return (
+        '<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;'
+        f'font-size:0;line-height:0;color:transparent;">{kodok}</div>'
+    )
+
+
 def _nav_emlekezteto_kero_mondat_html(cel_cim: str, egyedi_szoveg: str | None) -> str:
     """A levél "kérő" bekezdése - ld. a fenti szekció-komment. Az
     "egyedi_szoveg" (ha van) a felhasználó SAJÁT, dashboardon beírt
@@ -4855,7 +4970,8 @@ def _nav_emlekezteto_kero_mondat_html(cel_cim: str, egyedi_szoveg: str | None) -
     return f"<p>{html_szoveg}</p>"
 
 
-def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list, egyedi_szoveg: str | None = None) -> str:
+def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list, egyedi_szoveg: str | None = None,
+                                 adoszam: str | None = None) -> str:
     sorok = "".join(
         f"<li>{_esc(t.get('szamlaszam') or 'ismeretlen számlaszám')} – "
         f"{_esc((t.get('kiallitas_datum') or '')[:10] or 'ismeretlen dátum')} – "
@@ -4872,8 +4988,14 @@ def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list, egyedi_szoveg:
     )
     alairas = f'<p style="color:#555;">Üdvözlettel,<br>{_esc(CEG_NEV)}</p>' if CEG_NEV else ""
     kero_mondat = _nav_emlekezteto_kero_mondat_html(cel_cim, egyedi_szoveg)
+    # ld. "REJTETT NAV-KÓD A NAV-EMLÉKEZTETŐ LEVÉLBEN" szekció - a
+    # felhasználó válasz-levelében a szállító TÖBBNYIRE automatikusan
+    # idézi az eredeti (ezt a) levelet, ÍGY ez a láthatatlan blokk a
+    # válaszban is benne marad.
+    rejtett_kod = _nav_emlekezteto_rejtett_kod_html(adoszam, tetelek)
     return f"""
     <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
+      {rejtett_kod}
       <p>Tisztelt {_esc(szallito_nev)}!</p>
       <p>{nyilvantartas_mondat} (a NAV Online Számla rendszer adatai) szerint az
       alábbi, Önök által kiállított számlá(k)nak nincs meg nálunk az
@@ -4922,7 +5044,7 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
         szallito_nev = sajat_tetelek[0].get("szallito_nev") or adoszam
         sikeres = email_kuldes(
             f"📄 Hiányzó számla-másolat kérése – {szallito_nev}",
-            _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek, egyedi_szoveg),
+            _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek, egyedi_szoveg, adoszam),
             cimzett=email_cim,
             kategoria="ceges",
             feladas_cim_felulbiralas=feladas_cim_felulbiralas,
