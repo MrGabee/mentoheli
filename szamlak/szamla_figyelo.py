@@ -937,6 +937,13 @@ def _allapot_alapertekek() -> dict:
         # UID-alapú dedup nem: ha a küldő UGYANAZT a számlát több, KÜLÖN
         # levélben küldi be.
         "ertesitett_szamla_ujjlenyomatok": {},
+        # Ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM" szekció
+        # (ceges_szamlak_feldolgozasa() eleje) - a dashboardon véglegesen
+        # TÖRÖLT céges számlák TARTALMI ujjlenyomatainak TARTÓS (nem
+        # lejáró) listája, hogy egy másik postafiókból (vagy később
+        # újra) beérkező, tartalmilag ugyanolyan példány ne "támadjon
+        # fel" új id-vel.
+        "ceges_torolt_ujjlenyomatok": [],
         # A korábbi (különálló, nem titkosított) szamla_beallitasok.json
         # mezői - ld. régi beallitasok_betoltese() kommentjeit, most
         # beallitasok_kinyerese() validálja ugyanígy, csak innen olvasva.
@@ -2387,6 +2394,42 @@ def _szamla_kor_override(allapot: dict, invoice_id: str):
     return (allapot.get("szamla_kor_felulbiralas") or {}).get(invoice_id) or None
 
 
+def _cim_lista_szetbontasa(cim_string):
+    """Egy esetlegesen VESSZŐVEL ELVÁLASZTOTT email-cím-stringet (pl. az
+    EMAIL_CIMZETT_SZAMLA env-változó értékét, ha valaki több címet adott
+    meg benne egyetlen stringként) egyedi, trim-elt címek LISTÁJÁVÁ bont.
+    Erre a _emailek_egyesitese()-vel való helyes (cím-szintű, nem egész-
+    string-szintű) dedupláláshoz van szükség - ld. az "ÚJ SZÁMLA
+    ÉRTESÍTŐ - EGYSÉGES, DEDUPLIKÁLT CÍMZETT-ÖSSZEÁLLÍTÁS" szekció
+    kommentjét lentebb a konkrét felhasználásért."""
+    return [c.strip() for c in (cim_string or "").split(",") if c.strip()]
+
+
+def _uj_szamla_alap_es_tulajdonos_cimzett(allapot: dict, alap_cimzett_string=None):
+    """ld. "ÚJ SZÁMLA ÉRTESÍTŐ - EGYSÉGES, DEDUPLIKÁLT CÍMZETT-
+    ÖSSZEÁLLÍTÁS" szekció kommentje - ez a közös pont, amit MINDEN "új
+    számla" értesítést küldő ág használ, hogy ne forduljon elő, hogy
+    ugyanaz a valódi email-cím (mert szerepel MIND az alap EMAIL_CIMZETT-
+    ben, MIND a dashboard "Tulajdonos" listájában - ami a tipikus eset,
+    hiszen a felhasználó jellemzően mindkettő) KÉT KÜLÖN emailt kapjon
+    egyetlen futás alatt, ugyanarról a számláról.
+
+    alap_cimzett_string: a kategória "alap" címzettje - "kozuzemi"
+    ágaknál EMAIL_CIMZETT, "ceges" ágaknál is (jelenleg) EMAIL_CIMZETT,
+    mert nincs külön céges alap-címzett (csak külön FELADÓ, ld.
+    CEGES_EMAIL_KULDO) - a hívó adja át, hogy ez a függvény ne tartalmazzon
+    kategória-specifikus elágazást.
+
+    Visszaadja a végső, deduplikált, vesszővel összefűzött 'cimzett'
+    stringet (vagy None-t, ha egyáltalán nincs egyetlen címzett sem -
+    ilyenkor a hívónak NEM szabad email_kuldes()-t hívnia, ld. a
+    felhasználási helyeket)."""
+    alap_lista = _cim_lista_szetbontasa(alap_cimzett_string)
+    tulajdonos_lista = allapot.get("tulajdonos_emailek") or []
+    vegso_lista = _emailek_egyesitese(alap_lista, tulajdonos_lista)
+    return _cimzett_string(vegso_lista)
+
+
 def _emailek_egyesitese(*listak):
     """Több email-cím-listát egyesít - kisbetűsítve hasonlítja össze (a
     duplikátum-szűréshez), de az EREDETI írásmódot tartja meg a
@@ -3144,6 +3187,59 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 hiba_db += 1
                 continue
 
+            # A NAV-párosításhoz (ld. "NAV ONLINE SZÁMLA" szekció lentebb)
+            # best-effort kinyerjük a PDF szövegéből az összeget és egy
+            # esetleges számlaszámot - a PDF-et magát ETTŐL FÜGGETLENÜL
+            # NEM tároljuk (ld. a szekció elején lévő komment), csak ezt a
+            # néhány kinyert szöveges mezőt, ami elenyésző helyet foglal.
+            # KORÁBBAN ez a Drive-feltöltés UTÁN történt - ELŐRE hoztuk,
+            # hogy a lenti TARTALMI duplikátum-ellenőrzés (ld. "CÉGES
+            # SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM") MÁR ISMERT
+            # duplikátumnál el se induljon a Drive-feltöltés (ne
+            # keletkezzen felesleges, árva fájl a Drive-on).
+            ceges_pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
+            if ceges_pdf_szoveg:
+                kinyert_osszeg, kinyert_penznem = osszeg_es_penznem_kinyerese(ceges_pdf_szoveg)
+            else:
+                kinyert_osszeg, kinyert_penznem = None, "HUF"
+            kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
+
+            # ── CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM ──
+            # Ugyanaz az elv, mint az "ÚJ SZÁMLA ÉRTESÍTŐK" tartalmi
+            # duplikátum-védelménél (ld. _szamla_tartalmi_ujjlenyomat()
+            # kommentje) - itt viszont nem csak az ÉRTESÍTŐ EMAIL kiküldését
+            # védjük, hanem magát a REKORD létrehozását is. Erre két eset
+            # miatt van szükség: (1) ugyanaz a számla TÖBB, különböző,
+            # figyelt postafiókba is megérkezhet (pl. a dedikált céges cím
+            # ÉS egy "további postafiókok" bejegyzés egyaránt megkapja),
+            # ilyenkor forrásonként MÁS "cid" jönne ki, és a tétel duplán
+            # jelenne meg a "Céges számlák" fülön; (2) ha a felhasználó egy
+            # tételt a dashboardon véglegesen töröl ("✕" gomb), a törölt
+            # tétel TARTALMI ujjlenyomata bekerül a tartósan megőrzött
+            # "ceges_torolt_ujjlenyomatok" listába (ld. main() törlés-
+            # kezelő blokkja) - enélkül egy később (akár egy MÁSIK
+            # postafiókból) újra beérkező, tartalmilag ugyanolyan példány
+            # új "cid"-del "feltámadna", holott a felhasználó kifejezetten
+            # törölte.
+            ceges_ujjlenyomat = _szamla_tartalmi_ujjlenyomat(kuldo_nev, kinyert_szamlaszam, kinyert_osszeg, pdf_bytes)
+            torolt_ujjlenyomatok = set(allapot.get("ceges_torolt_ujjlenyomatok") or [])
+            letezo_ujjlenyomatok = {
+                r.get("tartalmi_ujjlenyomat") for r in ceges_szamlak.values() if r.get("tartalmi_ujjlenyomat")
+            }
+            if ceges_ujjlenyomat in torolt_ujjlenyomatok:
+                print(f"      🗑️  Tartalmilag megegyezik egy korábban VÉGLEGESEN TÖRÖLT céges "
+                      f"számlával - a levél a postafiókban marad (kézi ellenőrzést igényel, "
+                      f"törlés/Drive-feltöltés NEM történt): {kuldo_nev} – {targy[:60]}")
+                hiba_db += 1
+                continue
+            if ceges_ujjlenyomat in letezo_ujjlenyomatok:
+                print(f"      🔁 Tartalmilag megegyezik egy MÁR RÖGZÍTETT céges számlával "
+                      f"(valószínűleg másik postafiókból is megérkezett) - a levél a "
+                      f"postafiókban marad (kézi ellenőrzést igényel, törlés/Drive-feltöltés "
+                      f"NEM történt): {kuldo_nev} – {targy[:60]}")
+                hiba_db += 1
+                continue
+
             cid = hashlib.md5(f"{CEGES_IMAP_USER}|{uid_str}|ceges".encode("utf-8")).hexdigest()[:16]
             fajlnev = _ceges_fajlnev(cid, kuldo_nev, pdf_nev)
             pdf_b64 = base64.b64encode(pdf_bytes).decode("ascii")
@@ -3155,18 +3251,6 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # megpróbálja.
                 hiba_db += 1
                 continue
-
-            # A NAV-párosításhoz (ld. "NAV ONLINE SZÁMLA" szekció lentebb)
-            # best-effort kinyerjük a PDF szövegéből az összeget és egy
-            # esetleges számlaszámot - a PDF-et magát ETTŐL FÜGGETLENÜL
-            # NEM tároljuk (ld. a szekció elején lévő komment), csak ezt a
-            # néhány kinyert szöveges mezőt, ami elenyésző helyet foglal.
-            ceges_pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
-            if ceges_pdf_szoveg:
-                kinyert_osszeg, kinyert_penznem = osszeg_es_penznem_kinyerese(ceges_pdf_szoveg)
-            else:
-                kinyert_osszeg, kinyert_penznem = None, "HUF"
-            kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
 
             ceges_szamlak[cid] = {
                 "kuldo_nev": kuldo_nev,
@@ -3186,6 +3270,10 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 "kinyert_osszeg": kinyert_osszeg,
                 "penznem": kinyert_penznem,
                 "kinyert_szamlaszam": kinyert_szamlaszam,
+                # ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM" fent -
+                # ez teszi lehetővé a jövőbeli (akár más postafiókból jövő,
+                # akár törlés utáni "feltámadó") duplikátumok felismerését.
+                "tartalmi_ujjlenyomat": ceges_ujjlenyomat,
                 # A script SOHA nem tölti ki automatikusan - a dashboard
                 # "Adószám" mezője (ld. cegesMezoMentese()) írja, ha a
                 # felhasználó kézzel megadja (jellemzően akkor, ha a
@@ -3316,6 +3404,17 @@ def _szamla_athelyezese_cegesbe(allapot: dict, rid: str, forras_cimke: str = Non
     drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
     if not drive_url:
         return False
+    # ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM" szekció
+    # (ceges_szamlak_feldolgozasa() eleje) - az áthelyezett tételnek is
+    # kell tartalmi ujjlenyomat, hogy a jövőben (más postafiókból jövő
+    # duplikátum ELLEN, vagy törlés esetén) ugyanúgy részt vegyen a
+    # duplikátum-védelemben, mint a frissen beérkező céges számlák.
+    try:
+        _pdf_bytes_ujjlenyomathoz = base64.b64decode(pdf_b64)
+    except Exception:
+        _pdf_bytes_ujjlenyomathoz = None
+    ceges_ujjlenyomat = _szamla_tartalmi_ujjlenyomat(
+        kuldo_nev, rekord.get("szamlaszam"), rekord.get("osszeg"), _pdf_bytes_ujjlenyomathoz)
     ceges_szamlak[rid] = {
         "kuldo_nev": kuldo_nev,
         "feladó_email": None,
@@ -3331,6 +3430,7 @@ def _szamla_athelyezese_cegesbe(allapot: dict, rid: str, forras_cimke: str = Non
         # vissza (ld. osszeg_es_penznem_kinyerese() kommentje).
         "penznem": rekord.get("penznem") or "HUF",
         "kinyert_szamlaszam": rekord.get("szamlaszam"),
+        "tartalmi_ujjlenyomat": ceges_ujjlenyomat,
         # Ld. a dashboard "Adószám" mezőjének kommentjét (szamlak.html) -
         # ha a fő listán már be volt írva kézzel, áthelyezésnél megőrizzük.
         "adoszam": rekord.get("adoszam"),
@@ -3539,6 +3639,34 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                         kuldo_nev = _ceges_kuldo_nev_kinyerese(msg)
                         feladó_email = _feladó_cim(msg)
                         kinyert_osszeg, kinyert_penznem = osszeg_es_penznem_kinyerese(teljes_szoveg)
+
+                        # ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM"
+                        # szekció a ceges_szamlak_feldolgozasa() elején - EZ
+                        # a "cid"-en (mailbox+UID) TÚLI, TARTALOM-alapú
+                        # védelem, ami EGY SZÁMLÁT felismer AKKOR IS, ha az
+                        # egy MÁSIK postafiókból (pl. a dedikált céges
+                        # postafiókból) MÁR rögzítésre került, VAGY ha a
+                        # felhasználó korábban véglegesen törölte a
+                        # dashboardon.
+                        ceges_ujjlenyomat = _szamla_tartalmi_ujjlenyomat(
+                            kuldo_nev, kinyert_szamlaszam, kinyert_osszeg, pdf_bytes)
+                        torolt_ujjlenyomatok = set(allapot.get("ceges_torolt_ujjlenyomatok") or [])
+                        letezo_ujjlenyomatok = {
+                            r.get("tartalmi_ujjlenyomat") for r in ceges_szamlak.values()
+                            if r.get("tartalmi_ujjlenyomat")
+                        }
+                        if ceges_ujjlenyomat in torolt_ujjlenyomatok:
+                            print(f"      🗑️  '{cimke}' (céges cél): tartalmilag megegyezik egy "
+                                  f"korábban VÉGLEGESEN TÖRÖLT céges számlával - kihagyva "
+                                  f"(Drive-feltöltés NEM történt): {targy[:60]}")
+                            continue
+                        if ceges_ujjlenyomat in letezo_ujjlenyomatok:
+                            print(f"      🔁 '{cimke}' (céges cél): tartalmilag megegyezik egy "
+                                  f"MÁR RÖGZÍTETT céges számlával (valószínűleg másik "
+                                  f"postafiókból is megérkezett) - kihagyva (Drive-feltöltés "
+                                  f"NEM történt): {targy[:60]}")
+                            continue
+
                         fajlnev = _ceges_fajlnev(cid, kuldo_nev, pdf_nev)
                         pdf_b64 = base64.b64encode(pdf_bytes).decode("ascii")
                         drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
@@ -3560,6 +3688,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             "kinyert_osszeg": kinyert_osszeg,
                             "penznem": kinyert_penznem,
                             "kinyert_szamlaszam": kinyert_szamlaszam,
+                            "tartalmi_ujjlenyomat": ceges_ujjlenyomat,
                             "adoszam": None,
                             "nav_szamla_azonosito": None,
                             "nav_parositva": False,
@@ -3589,21 +3718,19 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                   f"duplikátumnak tűnik, EMAIL NEM megy ki újra (a rekord rögzítve "
                                   f"marad): {targy[:60]}")
                             continue
-                        statisztika["email_ertesitesek"] += 1
-                        email_kuldes(
-                            f"📄 Új céges számla – {cimke}",
-                            uj_szamla_email_html(email_rekord),
-                            [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                            kategoria="ceges",
-                        )
-                        tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
-                        if tulajdonos_cimzett:
+                        # Ld. "ÚJ SZÁMLA ÉRTESÍTŐ - EGYSÉGES, DEDUPLIKÁLT
+                        # CÍMZETT-ÖSSZEÁLLÍTÁS" - EGYETLEN emailt küldünk,
+                        # az alap + tulajdonos címek UNIÓJÁNAK (ne kapja meg
+                        # ugyanaz a valódi cím kétszer, ha mindkét listában
+                        # szerepel - ld. a 2026.10-i duplikált-küldés hibát).
+                        vegso_cimzett = _uj_szamla_alap_es_tulajdonos_cimzett(allapot, EMAIL_CIMZETT)
+                        if vegso_cimzett:
                             statisztika["email_ertesitesek"] += 1
                             email_kuldes(
                                 f"📄 Új céges számla – {cimke}",
                                 uj_szamla_email_html(email_rekord),
                                 [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                                cimzett=tulajdonos_cimzett,
+                                cimzett=vegso_cimzett,
                                 kategoria="ceges",
                             )
                         continue
@@ -3651,20 +3778,17 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                               f"tűnik, EMAIL NEM megy ki újra (a rekord rögzítve marad): {targy[:60]}")
                         continue
 
-                    statisztika["email_ertesitesek"] += 1
-                    email_kuldes(
-                        f"📄 Új számla – {cimke}",
-                        uj_szamla_email_html(rekord),
-                        [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                    )
-                    tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
-                    if tulajdonos_cimzett:
+                    # Ld. "ÚJ SZÁMLA ÉRTESÍTŐ - EGYSÉGES, DEDUPLIKÁLT
+                    # CÍMZETT-ÖSSZEÁLLÍTÁS" - EGYETLEN emailt küldünk, az
+                    # alap + tulajdonos címek UNIÓJÁNAK.
+                    vegso_cimzett = _uj_szamla_alap_es_tulajdonos_cimzett(allapot, EMAIL_CIMZETT)
+                    if vegso_cimzett:
                         statisztika["email_ertesitesek"] += 1
                         email_kuldes(
                             f"📄 Új számla – {cimke}",
                             uj_szamla_email_html(rekord),
                             [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                            cimzett=tulajdonos_cimzett,
+                            cimzett=vegso_cimzett,
                         )
                 finally:
                     if kesz:
@@ -4645,13 +4769,26 @@ def main():
         # ugyanabba a "torolt_szamla_id_k" listába ír, ezért itt is
         # töröljük a "ceges_szamlak"-ból, nemcsak a fő "szamlak"-ból.
         ceges_szamlak_torleshez = allapot.setdefault("ceges_szamlak", {})
+        # ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM" szekció a
+        # ceges_szamlak_feldolgozasa()/tovabbi_postafiokok_feldolgozasa()
+        # elején: amikor egy céges tételt itt törlünk, a TARTALMI
+        # ujjlenyomatát (ha a rekordon már szerepel - régebbi, e javítás
+        # előtt felvett tételeken még nem) egy KÜLÖN, TARTÓSAN megőrzött
+        # listába mentjük - enélkül egy másik postafiókból (vagy egy
+        # később újra beérkező, tartalmilag ugyanolyan) példány a
+        # KÖVETKEZŐ futáskor új "cid"-del, "feltámadva" visszakerülne a
+        # listába, holott a felhasználó ezt már kifejezetten törölte.
+        ceges_torolt_ujjlenyomatok = allapot.setdefault("ceges_torolt_ujjlenyomatok", [])
         torolve_db = 0
         for tid in torolt_id_k:
             if tid in szamlak:
                 del szamlak[tid]
                 torolve_db += 1
             if tid in ceges_szamlak_torleshez:
-                del ceges_szamlak_torleshez[tid]
+                torolt_rekord = ceges_szamlak_torleshez.pop(tid)
+                ujjlenyomat = torolt_rekord.get("tartalmi_ujjlenyomat")
+                if ujjlenyomat and ujjlenyomat not in ceges_torolt_ujjlenyomatok:
+                    ceges_torolt_ujjlenyomatok.append(ujjlenyomat)
                 torolve_db += 1
             pdf_adatok.pop(tid, None)
         if torolve_db:
@@ -4860,25 +4997,20 @@ def main():
                           f"tűnik, EMAIL NEM megy ki újra (a rekord rögzítve marad): {targy[:60]}")
                     continue
 
-                statisztika["email_ertesitesek"] += 1
-                email_kuldes(
-                    f"📄 Új számla – {cfg['nev']}",
-                    uj_szamla_email_html(rekord),
-                    [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                )
                 # A tulajdonos MINDEN "új számla" értesítés másolatát megkapja,
-                # forrástól függetlenül (ld. "3 CÍMZETTI KÖR" szekció) - ez az
-                # IMAP-os (pl. MVM) ág nem megy át a Díjnet/Vízművek közös
-                # _uj_szamla_ertesites_kuldese()-n (annak nincs itt "kor"
-                # fogalma), ezért itt külön küldjük a másolatot.
-                tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
-                if tulajdonos_cimzett:
+                # forrástól függetlenül (ld. "3 CÍMZETTI KÖR" szekció) - de
+                # ld. "ÚJ SZÁMLA ÉRTESÍTŐ - EGYSÉGES, DEDUPLIKÁLT CÍMZETT-
+                # ÖSSZEÁLLÍTÁS": EGYETLEN emailt küldünk, az alap + tulajdonos
+                # címek UNIÓJÁNAK, nem két külön emailt (ne kapja meg ugyanaz
+                # a valódi cím kétszer, ha mindkét listában szerepel).
+                vegso_cimzett = _uj_szamla_alap_es_tulajdonos_cimzett(allapot, EMAIL_CIMZETT)
+                if vegso_cimzett:
                     statisztika["email_ertesitesek"] += 1
                     email_kuldes(
                         f"📄 Új számla – {cfg['nev']}",
                         uj_szamla_email_html(rekord),
                         [(pdf_nev or "szamla.pdf", pdf_bytes)] if pdf_bytes else None,
-                        cimzett=tulajdonos_cimzett,
+                        cimzett=vegso_cimzett,
                     )
                 continue
 
