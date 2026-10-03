@@ -810,6 +810,42 @@ def _szamla_szo_szerepel_e(pdf_szoveg: str) -> bool:
     return "számla" in also or "szamla" in also
 
 
+# A dashboardon (ld. szamlak.html navCsakNavbanRenderelese() "+ Hozzáadás"
+# gombja) megjelenített, a felhasználó kérésére bevezetett "titkos kód" -
+# amikor a NAV-on talált, de emailben SOHA meg nem érkezett számlát a
+# felhasználó UTÓLAG, kézzel elkéri az eladótól (vagy előkeresi a saját
+# postafiókjából) és egy figyelt postafiókba (dedikált céges postafiók VAGY
+# egy "további postafiók", cel="ceges") TOVÁBBÍTJA/beilleszti ezt a kódot a
+# levél tárgyába VAGY szövegébe - ez a mintázat ismeri fel. A kód maga
+# SEMMILYEN titkosítást/hash-t nem igényel (nincs is hozzá külön
+# adatbázis-mentés/lookup-tábla): szó szerint hordozza a NAV-tétel
+# adószámát+számlaszámát, ÍGY a Python-oldalnak elég egyszerűen beillesztenie
+# ezt a két értéket a frissen felvett rekord "adoszam"/"kinyert_szamlaszam"
+# mezőjébe - a TÉNYLEGES, végleges összekötést (szállító neve/összeg/dátum,
+# "nav_parositva") a már létező nav_szamla_parositas() végzi el, UGYANABBAN
+# a futásban (ld. main() hívási sorrendje) - nincs szükség semmilyen
+# plusz/duplikált párosító logikára itt.
+NAV_KOD_MINTA = re.compile(r"NAVKOD:([0-9A-Za-z\-]{6,30}):(\S+)")
+
+
+def _nav_kod_kinyerese(szoveg: str):
+    """(adoszam, szamlaszam) páros, vagy None - ld. NAV_KOD_MINTA kommentje.
+    A szamlaszam végéről a gyakori, véletlenül odaragadó írásjeleket (pl. a
+    kódot egy mondat végére illesztő pont/vessző) levágjuk, hogy a
+    számlaszám-egyezés (nav_szamla_parositas() "1. kör") biztosan
+    illeszkedjen a NAV-nál nyilvántartott, írásjel NÉLKÜLI alakra."""
+    if not szoveg:
+        return None
+    talalat = NAV_KOD_MINTA.search(szoveg)
+    if not talalat:
+        return None
+    adoszam = talalat.group(1).strip()
+    szamlaszam = talalat.group(2).strip().strip(".,;:)”\"'")
+    if not adoszam or not szamlaszam:
+        return None
+    return adoszam, szamlaszam
+
+
 # Negáció-őr: a FIZETVE_MINTA önmagában illeszkedne olyan mondatokra is,
 # amik valójában TAGADÓ vagy FELSZÓLÍTÓ értelműek, pl. "a számla MÉG NEM
 # került kiegyenlítésre" vagy "KÉRJÜK rendezze a számlát" - ezek éppen az
@@ -984,6 +1020,11 @@ def _allapot_alapertekek() -> dict:
     return {
         "szamlak": {},
         "ceges_szamlak": {},
+        # ld. _szamla_szo_szerepel_e() komment - "Nem biztos" kategória
+        # (nem tábla-alapú kollekció, hanem a "meta_kulcs_ertek" táblán
+        # keresztül, egyetlen blobként mentve/betöltve, ugyanúgy, mint a
+        # többi, itt felsorolt mező - ld. _ALLAPOT_KULON_KEZELT_KULCSOK).
+        "ceges_szamlak_bizonytalan": {},
         "tovabbi_postafiokok": {},
         "meroallasok": {},
         "ismeretlen_dokumentumok": {},
@@ -3275,6 +3316,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
             targy = _fejlec_dekodolas(msg.get("Subject", ""))
             erkezett_fejlec = msg.get("Date", "")
             feladó_email = _feladó_cim(msg)
+            # A levél SZÖVEGE (NEM a PDF) - kizárólag a NAV_KOD_MINTA
+            # (ld. a dashboard "+ Hozzáadás" gombjának kommentjét) kereséséhez
+            # kell: a felhasználó a tárgyba VAGY a szövegbe illesztheti be a
+            # kódot, ezért mindkettőt át kell néznünk (a PDF szövegét a lenti,
+            # csatolmányonkénti ciklusban adjuk hozzá).
+            szoveg = email_szoveg_kinyerese(msg)
             # Ez a levél "From" fejléce alapján kinyert név CSAK tartalék -
             # ld. az ELADO_NEV_MINTA_* komment fent: a lenti ciklusban
             # MINDEN csatolmánynál előbb a PDF SZÖVEGÉBŐL próbálunk valódi
@@ -3345,6 +3392,24 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # párosítás esetleg vissza nem igazolja (ld.
                 # _ceges_bizonytalan_athelyezese_biztosba()).
                 biztos_szamla = _szamla_szo_szerepel_e(ceges_pdf_szoveg)
+
+                # Ld. NAV_KOD_MINTA komment - ha a felhasználó a dashboard
+                # "+ Hozzáadás" gombjával kapott kódot illesztette be a
+                # levél tárgyába/szövegébe, az egyértelműen (a "számla" szó
+                # keresésénél sokkal erősebb jel) azonosítja, melyik
+                # NAV-tételről van szó - ilyenkor felülírjuk a (esetleg
+                # sikertelen/hibás) automatikus számlaszám-felismerést, és
+                # a "Nem biztos" kategóriát is kihagyjuk (biztos_szamla).
+                # A tényleges NAV-összekötést (szállító neve/összeg/dátum,
+                # "nav_parositva") a nav_szamla_parositas() végzi el, a fő
+                # feldolgozás UTÁN, UGYANEBBEN a futásban.
+                nav_kod_talalat = _nav_kod_kinyerese(f"{targy}\n{szoveg}\n{ceges_pdf_szoveg}")
+                if nav_kod_talalat:
+                    nav_kod_adoszam, nav_kod_szamlaszam = nav_kod_talalat
+                    kinyert_szamlaszam = nav_kod_szamlaszam
+                    biztos_szamla = True
+                else:
+                    nav_kod_adoszam = None
 
                 # ── CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM ──
                 # Ld. a szekció elején (a függvény docstringje felett)
@@ -3431,8 +3496,9 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     # írja, ha a felhasználó kézzel megadja (jellemzően
                     # akkor, ha a számlaszám/összeg alapján nem sikerült a
                     # NAV-párosítás) - ld. nav_szamla_parositas() "1.5 kör"
-                    # kommentje.
-                    "adoszam": None,
+                    # kommentje. Kivéve, ha a NAV_KOD_MINTA (ld. fent) talált
+                    # egy kódot - akkor onnan jön, nem a felhasználótól.
+                    "adoszam": nav_kod_adoszam,
                     # NAV Online Számla összekötés/párosítás - ld. "NAV
                     # ONLINE SZÁMLA" szekció lentebb (nav_ceges_parositas())
                     # - itt kezdetben mindig üres, a párosító funkció (a fő
@@ -3876,6 +3942,17 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                             # "Nem biztos" kategóriába kerül (lentebb).
                             biztos_szamla = _szamla_szo_szerepel_e(csatolmany_pdf_szoveg)
 
+                            # ld. NAV_KOD_MINTA komment (ceges_szamlak_feldolgozasa()
+                            # elején) - ugyanaz a felismerés itt, a "további
+                            # postafiókok" ceges-célú ágában is.
+                            nav_kod_talalat = _nav_kod_kinyerese(f"{targy}\n{csatolmany_teljes_szoveg}")
+                            if nav_kod_talalat:
+                                nav_kod_adoszam, nav_kod_szamlaszam = nav_kod_talalat
+                                kinyert_szamlaszam_cs = nav_kod_szamlaszam
+                                biztos_szamla = True
+                            else:
+                                nav_kod_adoszam = None
+
                             # ld. "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM"
                             # szekció a ceges_szamlak_feldolgozasa() elején - EZ
                             # a "cid"-en (mailbox+UID+index) TÚLI, TARTALOM-alapú
@@ -3936,7 +4013,7 @@ def tovabbi_postafiokok_feldolgozasa(allapot: dict, statisztika: dict, torolt_id
                                 "penznem": kinyert_penznem,
                                 "kinyert_szamlaszam": kinyert_szamlaszam_cs,
                                 "tartalmi_ujjlenyomat": ceges_ujjlenyomat,
-                                "adoszam": None,
+                                "adoszam": nav_kod_adoszam,
                                 "nav_szamla_azonosito": None,
                                 "nav_parositva": False,
                                 "nav_szallito_nev": None,
