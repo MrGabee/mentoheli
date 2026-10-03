@@ -1096,6 +1096,16 @@ def _allapot_alapertekek() -> dict:
         "email_kikapcsolva": True,
         "ceges_email_kikapcsolva": True,
         "torolt_szamla_id_k": [],
+        # ld. "NAV-emlékeztető - feladó/szöveg testreszabás" a
+        # _nav_emlekezteto_email_html()/nav_hianyzo_szamla_emlekezteto_kuldese()
+        # kommentjében - a dashboard "NAV Online Számla összekötés" paneljén
+        # szerkeszthető, a felhasználó kifejezett kérésére ("meg tudjam
+        # szabni, hogy milyen címről menjen ki, illetve a szöveget is
+        # szeretném látni"). Mindkettő None (nincs beállítva), ha a
+        # felhasználó sosem nyúlt hozzá - ilyenkor a beépített
+        # alapértelmezés érvényesül (ld. ott).
+        "ceges_emlekezteto_feladas_cim": None,
+        "ceges_emlekezteto_szoveg": None,
     }
 
 
@@ -1563,14 +1573,27 @@ def meroallas_ertek_kinyerese(szoveg: str):
 # ════════════════════════════════════════════
 #  📧  EMAIL KÜLDÉS
 # ════════════════════════════════════════════
-def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="kozuzemi"):
+def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="kozuzemi",
+                  feladas_cim_felulbiralas=None):
     """csatolmanyok: [(fajlnev, bytes), ...] - lehet üres/None.
     cimzett: ha None, az alapértelmezett EMAIL_CIMZETT-re megy (a szokásos
     értesítők) - a dashboard "dátum-intervallumos küldés" funkciója viszont
     egy tetszőleges, a felhasználó által megadott címre is tud küldeni.
     kategoria: "kozuzemi" (alapértelmezett) vagy "ceges" - ez dönti el,
     MELYIK dashboard-kapcsoló (EMAIL_KIKAPCSOLVA / EMAIL_KIKAPCSOLVA_CEGES)
-    vezérli ezt a konkrét levelet, ld. a két konstans elején lévő kommentet."""
+    vezérli ezt a konkrét levelet, ld. a két konstans elején lévő kommentet.
+    feladas_cim_felulbiralas: ha meg van adva, ez kerül a "From" FEJLÉCBE
+    a ténylegesen hitelesített (SMTP-bejelentkezéshez használt) cím
+    HELYETT - ld. a dashboard "Feladó email-cím" mezőjét
+    (nav_hianyzo_szamla_emlekezteto_kuldese() kommentje). FONTOS: ez NEM
+    egy új SMTP-fiók - a bejelentkezés (feladas_jelszo) változatlanul a
+    CEGES_EMAIL_KULDO/CEGES_EMAIL_JELSZO_KULDES fiókkal történik, csak a
+    LÁTSZÓLAGOS feladó-cím (a "From" fejléc) lesz más. Ez Gmail/Google
+    Workspace-nél csak akkor működik hiba nélkül, ha ez a cím az
+    AUTHENTIKÁLT fiók egy ellenőrzött "Küldés másként" (Send mail as)
+    aliasza (Gmail Beállítások → Fiókok és importálás) - egy TETSZŐLEGES,
+    nem-saját cím esetén a Gmail SMTP-szervere elutasíthatja/felülírhatja
+    a fejlécet."""
     kikapcsolva = EMAIL_KIKAPCSOLVA_CEGES if kategoria == "ceges" else EMAIL_KIKAPCSOLVA
     if kikapcsolva:
         print(f"  🔕 Email-küldés le van tiltva a dashboard beállításaiban ({kategoria}) - kihagyva: {targy!r}")
@@ -1585,11 +1608,15 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
         feladas_cim, feladas_jelszo = EMAIL_KULDO, EMAIL_JELSZO_KULDES
         smtp_host, smtp_port = SMTP_HOST, SMTP_PORT
 
+    # Ld. a fenti docstring - a HITELESÍTÉS (feladas_jelszo) mindig a
+    # valódi fiókkal történik, csak a megjelenő "From" fejléc változik.
+    felado_fejlec = (feladas_cim_felulbiralas or "").strip() or feladas_cim
+
     cimzett_vegso = cimzett or EMAIL_CIMZETT
     if DRY_RUN:
         csatolmany_nevek = [fajlnev for fajlnev, _ in (csatolmanyok or [])]
         print(f"  🧪 [DRY RUN] Email KIMENNE (de nem megy ki): {targy!r} -> "
-              f"{cimzett_vegso!r} (feladó: {feladas_cim!r}, csatolmányok: {csatolmany_nevek or 'nincs'})")
+              f"{cimzett_vegso!r} (feladó: {felado_fejlec!r}, csatolmányok: {csatolmany_nevek or 'nincs'})")
         return True
     if not (feladas_cim and feladas_jelszo and cimzett_vegso):
         print(f"  ⚠️  Nincs teljesen beállítva az email-küldés ({kategoria}) - kihagyva.")
@@ -1597,7 +1624,7 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
 
     msg = MIMEMultipart("mixed")
     msg["Subject"] = targy
-    msg["From"] = feladas_cim
+    msg["From"] = felado_fejlec
     msg["To"] = cimzett_vegso
     msg.attach(MIMEText(html_torzs, "html", "utf-8"))
 
@@ -4782,7 +4809,53 @@ def _ceges_bizonytalan_athelyezese_biztosba(allapot: dict):
 # sablon-szövegű kérés a hiányzó számla(k) másolatáért - ez a
 # SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK workflow_dispatch inputtal (vesszővel
 # elválasztott adószám-lista) érkezik ide.
-def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list) -> str:
+#
+# NAV-EMLÉKEZTETŐ - FELADÓ/SZÖVEG TESTRESZABÁS (a felhasználó kifejezett
+# kérésére: "meg tudjam szabni, hogy milyen címről menjen ki, illetve a
+# szöveget is szeretném látni, ugyanis bele kell írni, hogy arra kérem a
+# válaszba konkrétan csatolja a számlát, mert automatika dolgozza fel"):
+#   - allapot["ceges_emlekezteto_feladas_cim"]: ha ki van töltve, ez kerül
+#     a kimenő levél "From" fejlécébe a ténylegesen hitelesített cím
+#     HELYETT (ld. email_kuldes() "feladas_cim_felulbiralas" kommentje) -
+#     tipikusan egy Gmail "Küldés másként" alias.
+#   - allapot["ceges_emlekezteto_szoveg"]: ha ki van töltve, ez váltja fel
+#     a lenti NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK kérő-mondatot a levélben
+#     (a köszöntés/tételek listája/aláírás VÁLTOZATLAN marad körülötte) -
+#     a "{cel_cim}" jelölő helyére a tényleges fogadó-cím kerül. Mindkettő
+#     a dashboard "NAV Online Számla összekötés" paneljén szerkeszthető
+#     (ld. szamlak.html "ceges-emlekezteto-feladas-cim-input"/
+#     "ceges-emlekezteto-szoveg-input").
+#
+# FONTOS: a lenti ALAPÉRTÉK szövege (ami akkor érvényesül, ha a
+# felhasználó SOSEM írt be sajátot) szándékosan MÁR TARTALMAZZA a "konkrét
+# csatolás" kérést - ez egy valós, a felhasználó által tapasztalt problémát
+# old meg: több szállító a korábbi, enyhébb megfogalmazásra ("küldjék el a
+# másolatát") csak SZÖVEGES válasszal reagált (csatolmány nélkül), amit a
+# script emiatt nem tudott feldolgozni ("Nincs PDF-csatolmány" - ld. a
+# postafiók-feldolgozás eleje).
+NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK = (
+    "Kérjük, hogy a válaszlevélben KONKRÉTAN CSATOLVA (PDF mellékletként) "
+    "küldjék el ezeknek a számláknak a másolatát a {cel_cim} email-címre - "
+    "fontos, hogy ne csak szövegben írjanak vissza, mert a feldolgozás "
+    "automatikusan, a csatolt fájl alapján történik."
+)
+
+
+def _nav_emlekezteto_kero_mondat_html(cel_cim: str, egyedi_szoveg: str | None) -> str:
+    """A levél "kérő" bekezdése - ld. a fenti szekció-komment. Az
+    "egyedi_szoveg" (ha van) a felhasználó SAJÁT, dashboardon beírt
+    szövege; a "{cel_cim}" jelölőt ebben IS behelyettesítjük. Biztonsági
+    okból a felhasználó szövegét escape-eljük (html.escape) - ÍGY a benne
+    lévő "{cel_cim}" jelölő nem sérül (az escape nem érinti a kapcsos
+    zárójeleket), utána az ÚJSOR-okat <br>-re cseréljük, hogy a
+    dashboardon látott tördelés megmaradjon a levélben is."""
+    nyers = (egyedi_szoveg or "").strip() or NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK
+    escapelt = _esc(nyers).replace("{cel_cim}", f"<strong>{_esc(cel_cim)}</strong>")
+    html_szoveg = escapelt.replace("\n", "<br>")
+    return f"<p>{html_szoveg}</p>"
+
+
+def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list, egyedi_szoveg: str | None = None) -> str:
     sorok = "".join(
         f"<li>{_esc(t.get('szamlaszam') or 'ismeretlen számlaszám')} – "
         f"{_esc((t.get('kiallitas_datum') or '')[:10] or 'ismeretlen dátum')} – "
@@ -4798,6 +4871,7 @@ def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list) -> str:
         if CEG_NEV else "Nyilvántartásunk"
     )
     alairas = f'<p style="color:#555;">Üdvözlettel,<br>{_esc(CEG_NEV)}</p>' if CEG_NEV else ""
+    kero_mondat = _nav_emlekezteto_kero_mondat_html(cel_cim, egyedi_szoveg)
     return f"""
     <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
       <p>Tisztelt {_esc(szallito_nev)}!</p>
@@ -4805,8 +4879,7 @@ def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list) -> str:
       alábbi, Önök által kiállított számlá(k)nak nincs meg nálunk az
       elektronikus (email-es) másolata:</p>
       <ul>{sorok}</ul>
-      <p>Kérjük, legyenek szívesek elküldeni ezek másolatát a
-      <strong>{_esc(cel_cim)}</strong> email-címre.</p>
+      {kero_mondat}
       <p>Segítségüket előre is köszönjük!</p>
       {alairas}
     </div>
@@ -4817,7 +4890,11 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
     """Ld. a szekció elején lévő komment - teljesen no-op, ha a
     SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK env-változó üres (ez a NORMÁL eset -
     ütemezett futásnál MINDIG üres, csak a dashboard gombjával indított
-    workflow_dispatch-nál kaphat tartalmat, ld. modul-docstring eleje)."""
+    workflow_dispatch-nál kaphat tartalmat, ld. modul-docstring eleje).
+    A "ceges_emlekezteto_feladas_cim"/"ceges_emlekezteto_szoveg" (ld. a
+    fenti szekció-komment) az "allapot"-ból jön - MINDIG a legfrissebb,
+    dashboardon elmentett érték, mert az "allapot"-ot a main() a futás
+    elején, EGYETLEN get_all hívással tölti be."""
     if not SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK:
         return
 
@@ -4827,6 +4904,8 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
 
     szallito_emailek = allapot.get("nav_szallito_emailek", {})
     csak_navban = allapot.get("nav_csak_navban", [])
+    feladas_cim_felulbiralas = allapot.get("ceges_emlekezteto_feladas_cim")
+    egyedi_szoveg = allapot.get("ceges_emlekezteto_szoveg")
 
     kuldott_db = 0
     for adoszam in kijelolt_adoszamok:
@@ -4843,9 +4922,10 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
         szallito_nev = sajat_tetelek[0].get("szallito_nev") or adoszam
         sikeres = email_kuldes(
             f"📄 Hiányzó számla-másolat kérése – {szallito_nev}",
-            _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek),
+            _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek, egyedi_szoveg),
             cimzett=email_cim,
             kategoria="ceges",
+            feladas_cim_felulbiralas=feladas_cim_felulbiralas,
         )
         if sikeres:
             kuldott_db += 1
