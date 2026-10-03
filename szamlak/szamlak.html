@@ -722,10 +722,26 @@
     const csakOlvas = szerepkor !== "admin";
     const sorok = rendezett.map(r => {
       const cellak = [];
+      // A "forras_postafiok" mező CSAK az ettől a javítástól kezdve
+      // feldolgozott/áthelyezett tételeknél van kitöltve - egy RÉGEBBI
+      // rekordnál hiányzik, de ott a "kuldo_nev" (a javítás ELŐTTI
+      // felismerés) gyakran TÉNYLEGESEN nem a cég neve, hanem a
+      // postafiók/domain volt (ld. a felhasználó eredeti hibajelentését) -
+      // ezért ilyenkor ÁTTESSZÜK ezt az (akkor még pontatlan) értéket a
+      // "Forrás / postafiók" oszlopba (legalább ott van értelme), az
+      // "Eladó / cég" mezőt pedig ÜRESEN hagyjuk (admin kézzel beírhatja a
+      // valódi cégnevet), olvasás-only nézetben pedig az Adószámra esünk
+      // vissza, ha az ismert - így sosem marad ott félrevezető szöveg.
+      const vanForrasPostafiok = !!r.forras_postafiok;
+      const cegNevMezoErtek = vanForrasPostafiok ? (r.kuldo_nev || "") : "";
+      const cegNevOlvasva = vanForrasPostafiok
+        ? (escHtml(r.kuldo_nev) || "—")
+        : (escHtml(r.adoszam) || "Ismeretlen");
+      const forrasMegjelenitett = vanForrasPostafiok ? r.forras_postafiok : (r.kuldo_nev || null);
       cellak.push(csakOlvas
-        ? `<td>${escHtml(r.kuldo_nev) || "—"}</td>`
-        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kuldo_nev" value="${escHtml(r.kuldo_nev)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>`);
-      cellak.push(`<td style="color:var(--muted);font-size:12px;">${escHtml(r.forras_postafiok) || "—"}</td>`);
+        ? `<td>${cegNevOlvasva}</td>`
+        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kuldo_nev" value="${escHtml(cegNevMezoErtek)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>`);
+      cellak.push(`<td style="color:var(--muted);font-size:12px;">${escHtml(forrasMegjelenitett) || "—"}</td>`);
       cellak.push(`<td>${escHtml(r.targy) || "—"}</td>`);
       cellak.push(`<td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>`);
       cellak.push(csakOlvas
@@ -1456,6 +1472,22 @@
   //              törléshez kell tudni, melyik listát/renderelőt hívjuk)
   //   id:        a törlendő rekord azonosítója
   // Visszaadja true/false-ként, hogy a GitHub-mentés is sikeres volt.
+  // Soros "zár" a "torolt_szamla_id_k" meta-lista módosításaihoz - ld. a
+  // rekordTorlese() belsejében lévő kommentet a RACE CONDITION-ről, amit
+  // ez küszöböl ki. Minden "✕" kattintás a lánc VÉGÉRE fűzi a saját
+  // get_meta+set_meta párját, és csak akkor fut le, amikor az ELŐTTE lévő
+  // már teljesen befejeződött - így egyszerre MINDIG csak egy ilyen
+  // hívás-pár van folyamatban, bármennyi gombra kattint is a felhasználó
+  // gyors egymásutánban.
+  let _toroltListaZarolas = Promise.resolve();
+
+  async function _toroltListahozAdas(id) {
+    const { ertek } = await apiHivas("get_meta", { kulcs: "torolt_szamla_id_k" });
+    const lista = Array.isArray(ertek) ? ertek.slice() : [];
+    if (!lista.includes(id)) lista.push(id);
+    await apiHivas("set_meta", { kulcs: "torolt_szamla_id_k", ertek: lista });
+  }
+
   async function rekordTorlese(kollekcio, id) {
     if (!id) return false;
     if (!aktualisApiKulcs) {
@@ -1475,10 +1507,21 @@
     }
 
     try {
-      const { ertek } = await apiHivas("get_meta", { kulcs: "torolt_szamla_id_k" });
-      const lista = Array.isArray(ertek) ? ertek.slice() : [];
-      if (!lista.includes(id)) lista.push(id);
-      await apiHivas("set_meta", { kulcs: "torolt_szamla_id_k", ertek: lista });
+      // ld. "_toroltListaZarolas" fenti deklarációjának kommentjét - a
+      // get_meta+set_meta PÁR két KÜLÖN hálózati kérés, ezért ha a
+      // felhasználó egymás után gyorsan töröl több tételt, a hívások
+      // "versenyezhetnek" (race condition): a később induló, de hamarabb
+      // visszaérő set_meta felülírhatja/eldobhatja a közben még
+      // folyamatban lévő, korábbi törlés bejegyzését - ILYENKOR az adott
+      // tétel a képernyőn (optimistán) eltűnik, de az adatbázisba NEM
+      // mentődik el, ezért frissítés/új megnyitás után visszatér. Ezért
+      // minden "torolt_szamla_id_k"-módosítást EGYETLEN, egymás UTÁN (nem
+      // egyszerre) futó láncba fűzünk - így sosincs két egyidejű
+      // get_meta+set_meta pár ugyanarra a kulcsra, akármilyen gyorsan
+      // kattint is végig a felhasználó több "✕" gombon.
+      const sajatMuvelet = _toroltListaZarolas.then(() => _toroltListahozAdas(id));
+      _toroltListaZarolas = sajatMuvelet.catch(() => {}); // a lánc hibánál se álljon le, a KÖVETKEZŐ törlés is lefuthasson
+      await sajatMuvelet;
       return true;
     } catch (e) {
       // A helyi elrejtés megmarad (a felhasználó ezt már nem akarja
