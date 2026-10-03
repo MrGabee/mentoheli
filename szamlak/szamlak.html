@@ -440,6 +440,12 @@
 
       <div id="ceges-tabla-hely"></div>
 
+      <div id="ceges-bizonytalan-szekcio" style="display:none;">
+        <h3 style="margin:28px 0 8px;font-size:16px;">❓ Nem biztos (automatikus előszűrés)</h3>
+        <p class="panel-info">Ide kerülnek azok a PDF-csatolmányos levelek, amikben a script NEM találta meg a "számla" szót, ÉS még nem sikerült NAV-párosítani sem - ezek lehetnek valódi számlák (pl. a szó máshogy szerepel a PDF-ben, vagy képként van beszkennelve) vagy teljesen más dokumentumok (ajánlat, visszaigazolás, reklám, stb.). Ha tényleg számla, kattints a "✅ Ez számla" gombra (átkerül a fenti listába); ha nem, a "✕"-szel véglegesen elrejtheted. Egy sikeres NAV-párosítás a következő script-futásnál automatikusan is átsorolja a fenti listába, külön teendő nélkül.</p>
+        <div id="ceges-bizonytalan-tabla-hely"></div>
+      </div>
+
       <div class="panel" id="ceges-nav-panel">
         <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
         <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
@@ -473,6 +479,7 @@
   const API_URL = "https://reilviolin.hu/billing/api.php";
   let osszesSzamla = [];
   let cegesSzamlak = []; // a dedikált céges-postafiókból begyűjtött, Drive-ra feltöltött számlák metaadata (ld. "Céges számlák" fül) - a PDF itt NEM tárolt, csak a "drive_url"
+  let cegesSzamlakBizonytalan = []; // ld. cegesBizonytalanTablaRenderelese() - a "Nem biztos" kategória tételei (allapot["ceges_szamlak_bizonytalan"])
   let pdfTar = {};           // invoice-id -> base64 PDF (az api.php "get_all_pdfs" hívásából)
   let legutobbiAdat = null;  // a legutóbb betöltött teljes adatcsomag (mérőállások, ismeretlen levelek is - nézet-váltáskor ebből szűrünk újra)
   let aktualisApiKulcs = null; // a "login" action válaszából megkapott közös, titkos adat-API-kulcs (ld. api_config.php) - MINDEN adat-hívás ezt küldi, sehova máshova nem kerül, csak a böngésző sessionStorage-ába. A felhasználó ezt sosem írja be közvetlenül - csak a felhasználónevét/jelszavát, ld. bejelentkezes().
@@ -718,6 +725,7 @@
       cellak.push(csakOlvas
         ? `<td>${escHtml(r.kuldo_nev) || "—"}</td>`
         : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kuldo_nev" value="${escHtml(r.kuldo_nev)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>`);
+      cellak.push(`<td style="color:var(--muted);font-size:12px;">${escHtml(r.forras_postafiok) || "—"}</td>`);
       cellak.push(`<td>${escHtml(r.targy) || "—"}</td>`);
       cellak.push(`<td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>`);
       cellak.push(csakOlvas
@@ -762,7 +770,7 @@
       ${megjegyzes}
       <table>
         <thead>
-          <tr><th>Eladó / cég</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th>${fejlecVegek}</tr>
+          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th>${fejlecVegek}</tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -799,6 +807,127 @@
     hely.querySelectorAll(".ceges-torles-gomb").forEach(btn => {
       btn.addEventListener("click", () => torlesVegrehajtasaCeges(btn.dataset.id));
     });
+  }
+
+  // ── "Nem biztos" (ld. szamla_figyelo.py _szamla_szo_szerepel_e() komment)
+  // - a "ceges_szamlak_bizonytalan" kollekció megjelenítése. FONTOS: ez a
+  // kollekció (a 3 ismert, táblával rendelkező kollekciótól eltérően - ld.
+  // "_ALLAPOT_KULON_KEZELT_KULCSOK" fent) EGYETLEN meta-kulcsként (egy
+  // JSON-blobként) él az adatbázisban, ezért az egyes tételeken itt NEM a
+  // rekordFrissitese()/rekordTorlese() EGYSÉGES-réteget használjuk (az
+  // kizárólag a "szamlak"/"ceges_szamlak" táblás kollekciókra működik, ld.
+  // api.php "update_fields"/"upsert_record"/"delete_record"), hanem a
+  // generikus allapotFrissitesEsMentese()-t (teljes blob letöltés+mutálás+
+  // "set_meta" visszaírás) - ld. cegesBizonytalanAthelyezese()/
+  // cegesBizonytalanTorlese() lentebb.
+  function cegesBizonytalanTablaRenderelese(lista) {
+    const szekcio = document.getElementById("ceges-bizonytalan-szekcio");
+    const hely = document.getElementById("ceges-bizonytalan-tabla-hely");
+    if (!szekcio || !hely) return;
+    if (!lista || !lista.length) {
+      szekcio.style.display = "none";
+      hely.innerHTML = "";
+      return;
+    }
+    szekcio.style.display = "block";
+    const csakOlvas = szerepkor !== "admin";
+    const rendezett = [...lista].sort((a, b) => (b.erkezett || "").localeCompare(a.erkezett || ""));
+    const gombOszlop = csakOlvas ? "" : "<th></th>";
+    const sorok = rendezett.map(r => `
+      <tr>
+        <td>${escHtml(r.kuldo_nev) || "—"}</td>
+        <td style="color:var(--muted);font-size:12px;">${escHtml(r.forras_postafiok) || "—"}</td>
+        <td>${escHtml(r.targy) || "—"}</td>
+        <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
+        <td>${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "—" : forint(Number(r.kinyert_osszeg))}</td>
+        <td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>
+        ${csakOlvas ? "" : `<td style="min-width:150px;">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button type="button" class="ceges-biz-athelyezes-gomb" data-id="${escHtml(r.id)}" title="Áthelyezi a fenti, megerősített Céges-listába.">✅ Ez számla</button>
+            <button type="button" class="ceges-biz-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a tétel soha többé nem jelenik meg">✕</button>
+          </div>
+        </td>`}
+      </tr>
+    `).join("");
+    hely.innerHTML = `
+      <table>
+        <thead><tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Összeg</th><th>Számla (Drive)</th>${gombOszlop}</tr></thead>
+        <tbody>${sorok}</tbody>
+      </table>
+    `;
+    hely.querySelectorAll(".ceges-biz-athelyezes-gomb").forEach(btn => {
+      btn.addEventListener("click", () => cegesBizonytalanAthelyezese(btn.dataset.id));
+    });
+    hely.querySelectorAll(".ceges-biz-torles-gomb").forEach(btn => {
+      btn.addEventListener("click", () => cegesBizonytalanTorlese(btn.dataset.id));
+    });
+  }
+
+  // "✅ Ez számla" gomb - a "Nem biztos" listáról véglegesen (a felhasználó
+  // kézi megerősítésével) áthelyez egy tételt a megerősített "ceges_szamlak"
+  // listába, "biztos_szamla: true"-val - ugyanaz az elv, mint amikor a
+  // script maga ismeri fel a "számla" szót, vagy a NAV-párosítás
+  // visszaigazolja (ld. _ceges_bizonytalan_athelyezese_biztosba() a
+  // Python-oldalon - ez itt annak a dashboardról, KÉZZEL indított változata).
+  async function cegesBizonytalanAthelyezese(id) {
+    if (!id) return;
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return; }
+    try {
+      const friss = await allapotFrissitesEsMentese((adat) => {
+        const bizonytalan = adat.ceges_szamlak_bizonytalan || {};
+        const rekord = bizonytalan[id];
+        if (!rekord) return;
+        delete bizonytalan[id];
+        adat.ceges_szamlak_bizonytalan = bizonytalan;
+        adat.ceges_szamlak = adat.ceges_szamlak || {};
+        adat.ceges_szamlak[id] = Object.assign({}, rekord, { biztos_szamla: true });
+      });
+      legutobbiAdat = friss;
+      cegesSzamlak = Object.entries(friss.ceges_szamlak || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
+      cegesSzamlakBizonytalan = Object.entries(friss.ceges_szamlak_bizonytalan || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
+      cegesKartyakRenderelese(cegesSzamlak);
+      cegesTablaRenderelese(cegesSzamlak);
+      cegesBizonytalanTablaRenderelese(cegesSzamlakBizonytalan);
+    } catch (e) {
+      alert("Az áthelyezés sikertelen: " + e.message);
+    }
+  }
+
+  // "✕" gomb a "Nem biztos" listán - VÉGLEGES elrejtés (nem számla) - a
+  // "✕" Céges-fül megfelelőjéhez hasonlóan a tartalmi ujjlenyomatot is
+  // feljegyzi a "ceges_torolt_ujjlenyomatok" listába, hogy egy később
+  // (akár másik postafiókból) újra beérkező, tartalmilag ugyanolyan
+  // példány ne "támadjon fel" újra (ld. torlesVegrehajtasaCeges() fent /
+  // szamla_figyelo.py "CÉGES SZÁMLÁK - TARTALMI DUPLIKÁTUM-VÉDELEM").
+  async function cegesBizonytalanTorlese(id) {
+    if (!id) return;
+    if (!window.confirm("Biztosan véglegesen elrejted ezt a tételt? Ez nem vonható vissza - a jövőben sem jelenik meg többé.")) return;
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return; }
+    try {
+      const friss = await allapotFrissitesEsMentese((adat) => {
+        const bizonytalan = adat.ceges_szamlak_bizonytalan || {};
+        const rekord = bizonytalan[id];
+        if (!rekord) return;
+        delete bizonytalan[id];
+        adat.ceges_szamlak_bizonytalan = bizonytalan;
+        if (rekord.tartalmi_ujjlenyomat) {
+          const torolt = new Set(Array.isArray(adat.ceges_torolt_ujjlenyomatok) ? adat.ceges_torolt_ujjlenyomatok : []);
+          torolt.add(rekord.tartalmi_ujjlenyomat);
+          adat.ceges_torolt_ujjlenyomatok = Array.from(torolt);
+        }
+      });
+      legutobbiAdat = friss;
+      cegesSzamlakBizonytalan = Object.entries(friss.ceges_szamlak_bizonytalan || {})
+        .filter(([rid]) => !helyilegTorolt.has(rid))
+        .map(([rid, r]) => Object.assign({ id: rid }, r));
+      cegesBizonytalanTablaRenderelese(cegesSzamlakBizonytalan);
+    } catch (e) {
+      alert("A törlés sikertelen: " + e.message);
+    }
   }
 
   // ── NAV Online Számla összekötés - renderelés ── Ugyanaz a "mindig
@@ -861,13 +990,41 @@
     const kartyak = adoszamok.map(adoszam => {
       const cs = csoportok[adoszam];
       const email = szallitoEmailek[adoszam] || "";
-      const sorok = cs.tetelek.map(t => `
+      const sorok = cs.tetelek.map((t, idx) => {
+        // ld. a "nav-hozzaadas-kod" blokk kommentjét lentebb - a kód
+        // szöveges, visszafejtés NÉLKÜL olvasható alakban hordozza az
+        // adószámot+számlaszámot, hogy a Python-oldal (ld. szamla_figyelo.py
+        // NAV_KOD_MINTA) egyszerű regex-kereséssel megtalálja az
+        // email tárgyában/szövegében - NINCS hozzá külön API-hívás/mentés.
+        const kod = `NAVKOD:${adoszam}:${t.szamlaszam || ""}`;
+        const sorId = `nav-hozzaadas-${escHtml(adoszam)}-${idx}`;
+        return `
         <tr>
           <td>${escHtml(t.szamlaszam) || "—"}</td>
           <td>${escHtml((t.kiallitas_datum || "").slice(0, 10)) || "—"}</td>
           <td>${(t.netto_osszeg_huf || t.netto_osszeg) ? forint(Number(t.netto_osszeg_huf || t.netto_osszeg)) : "—"}</td>
+          <td>
+            ${t.szamlaszam
+              ? `<button type="button" class="nav-hozzaadas-gomb" data-target="${sorId}" style="font-size:12px;padding:4px 8px;">+ Hozzáadás</button>`
+              : `<span style="color:var(--muted);font-size:12px;">(nincs számlaszám, kézzel ellenőrizendő)</span>`}
+          </td>
         </tr>
-      `).join("");
+        ${t.szamlaszam ? `
+        <tr id="${sorId}" class="nav-hozzaadas-kod-sor" style="display:none;">
+          <td colspan="4" style="background:#f3f4f6;border-radius:8px;">
+            <div style="padding:8px 4px;font-size:13px;">
+              <p style="margin:0 0 6px;">Nincs meg emailben ez a számla? Kérd el az eladótól (vagy keresd elő a saját postafiókodból), és küldd/továbbítsd el a <strong>dedikált céges email-címre</strong> - de előtte illeszd be ezt a kódot a levél <strong>tárgyába VAGY a szövegébe</strong> (bárhova, csak legyen benne szó szerint), hogy a script egyből ehhez a NAV-tételhez tudja kötni, extra kézi munka nélkül:</p>
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <code class="nav-hozzaadas-kod-szoveg" style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;user-select:all;">${escHtml(kod)}</code>
+                <button type="button" class="nav-hozzaadas-masolas-gomb" data-kod="${escHtml(kod)}" style="font-size:12px;padding:4px 8px;">📋 Kód másolása</button>
+                <span class="nav-hozzaadas-masolas-statusz" style="font-size:12px;color:var(--green);"></span>
+              </div>
+              <p style="margin:6px 0 0;color:var(--muted);font-size:12px;">A következő script-futásnál a megérkező levelet felismeri a kódról, feltölti a Drive-ra, és rögtön megerősített (NAV-párosított) céges számlaként rögzíti.</p>
+            </div>
+          </td>
+        </tr>` : ""}
+      `;
+      }).join("");
       return `
         <div class="kor-sor" data-adoszam="${escHtml(adoszam)}" style="flex-direction:column;align-items:stretch;gap:8px;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;">
@@ -878,7 +1035,7 @@
             <label class="kor-jeloles nav-emlekezteto-cimke" style="white-space:nowrap;"><input type="checkbox" class="nav-emlekezteto-jelolo" data-adoszam="${escHtml(adoszam)}"> kijelölve emlékeztetőhöz</label>
           </div>
           <table>
-            <thead><tr><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th></tr></thead>
+            <thead><tr><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th><th></th></tr></thead>
             <tbody>${sorok}</tbody>
           </table>
           <label class="nav-szallito-email-cimke" style="max-width:420px;">Szállító email-címe (ide megy az emlékeztető, ha kijelölöd fent)
@@ -903,6 +1060,35 @@
         const siker = await navSzallitoEmailMentese(input.dataset.adoszam, ujErtek || null);
         input.disabled = false;
         if (!siker) input.value = eredetiErtek;
+      });
+    });
+    // "+ Hozzáadás" gomb - csak megjelenít/elrejt egy kód-dobozt (ld. a
+    // sorok fenti HTML-jét) - NINCS hozzá API-hívás/mentés, a kódot
+    // önmagában a sor adataiból (adószám+számlaszám) építjük fel.
+    hely.querySelectorAll(".nav-hozzaadas-gomb").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sor = document.getElementById(btn.dataset.target);
+        if (!sor) return;
+        const lathato = sor.style.display !== "none";
+        sor.style.display = lathato ? "none" : "";
+      });
+    });
+    // "📋 Kód másolása" gomb - a vágólapra teszi a kódot, hogy a
+    // felhasználó egyszerűen beilleszthesse az email tárgyába/szövegébe.
+    hely.querySelectorAll(".nav-hozzaadas-masolas-gomb").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const kod = btn.dataset.kod;
+        const statuszEl = btn.parentElement ? btn.parentElement.querySelector(".nav-hozzaadas-masolas-statusz") : null;
+        try {
+          await navigator.clipboard.writeText(kod);
+          if (statuszEl) statuszEl.textContent = "✅ Vágólapra másolva";
+        } catch (e) {
+          // Néhány böngésző/kontextus (pl. nem HTTPS) letilthatja a
+          // vágólap-hozzáférést - ilyenkor a kód a dobozból kézzel is
+          // kimásolható (ld. "user-select:all" a <code> elemen).
+          if (statuszEl) statuszEl.textContent = "⚠️ Nem sikerült automatán - másold ki kézzel a dobozból.";
+        }
+        if (statuszEl) setTimeout(() => { statuszEl.textContent = ""; }, 4000);
       });
     });
     if (gombHely) {
@@ -2608,9 +2794,13 @@
     cegesSzamlak = Object.entries(adat.ceges_szamlak || {})
       .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
       .map(([id, r]) => Object.assign({ id }, r));
+    cegesSzamlakBizonytalan = Object.entries(adat.ceges_szamlak_bizonytalan || {})
+      .filter(([id]) => !helyilegTorolt.has(id) && !tartosanTorolt.has(id))
+      .map(([id, r]) => Object.assign({ id }, r));
     cegesAllapotRenderelese(adat.ceges_allapot);
     cegesKartyakRenderelese(cegesSzamlak);
     cegesTablaRenderelese(cegesSzamlak);
+    cegesBizonytalanTablaRenderelese(cegesSzamlakBizonytalan);
     navAllapotRenderelese(adat.nav_allapot);
     navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek);
     // ceges_email_kikapcsolva === false az EGYETLEN eset, amikor a céges
