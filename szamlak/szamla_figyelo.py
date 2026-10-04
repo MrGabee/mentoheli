@@ -54,8 +54,9 @@ MŰKÖDÉS
 2. Új, "meroallas" típusú email esetén: elmenti egy külön, mérőállás-
    naplóba (nem keveredik a számlákkal), és - ha be van kapcsolva - egy
    rövid értesítőt küld.
-3. Naponta ELLENŐRZI, hogy van-e olyan még fizetetlen számla, aminek a
-   határideje SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE napon belül lejár (vagy
+3. Ha a dashboardon be van állítva a "Hány nappal a határidő előtt
+   jelezzen" érték (üresen KIKAPCSOLVA), naponta ELLENŐRZI, hogy van-e
+   olyan még fizetetlen számla, aminek a határideje ennyi napon belül lejár (vagy
    már le is járt) - ha igen, egy ÖSSZESÍTŐ emailt küld az ÖSSZES
    fizetetlen számláról, kimutatással, végösszeggel, és - amennyire
    lehetséges - újra csatolva az érintett PDF-eket (ezeket ilyenkor a
@@ -5471,7 +5472,11 @@ def main():
     # felülírt paraméterek - ugyanabból a már betöltött "allapot"
     # dict-ből (ld. beallitasok_kinyerese() kommentjét).
     beallitasok = beallitasok_kinyerese(allapot)
-    emlekezteto_napok = beallitasok["emlekezteto_napok_elotte"] or SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE
+    # A dashboard "Hány nappal a határidő előtt jelezzen" mezője ÜRES = a
+    # napi határidő-előtti összesítő KIKAPCSOLVA (a felhasználó kifejezett
+    # kérésére - korábban ilyenkor a beépített alapértékre (5 nap) esett
+    # vissza, és minden éjfél utáni első futáskor kiküldte az összesítőt).
+    emlekezteto_napok = beallitasok["emlekezteto_napok_elotte"]  # None = ki
 
     # A dashboard "X" gombjával véglegesen elrejtett számlák törlése - ld.
     # a BEALLITASOK_FAJL "torolt_szamla_id_k" mezőjének kommentjét. Minden
@@ -6083,8 +6088,10 @@ def main():
         print("  ℹ️  Vízművek: SZAMLA_VIZMUVEK_USER / SZAMLA_VIZMUVEK_JELSZO nincs beállítva - kihagyva.")
 
     # ---- 2. Határidő-előtti összesítő (naponta legfeljebb egyszer) ----
+    # CSAK akkor fut, ha a dashboardon meg van adva a "Hány nappal a határidő
+    # előtt jelezzen" érték - üresen KI VAN KAPCSOLVA.
     ma_str = magyar_ma().isoformat()
-    kuszob = (magyar_ma() + timedelta(days=emlekezteto_napok)).isoformat()
+    kuszob = (magyar_ma() + timedelta(days=emlekezteto_napok or 0)).isoformat()
 
     # (rid, rekord) párokban dolgozunk (nem csak a rekordokkal) - a PDF-
     # gyűjtéshez a rid (az állapotban lévő "pdf_adatok" kulcsa) kell, és
@@ -6097,7 +6104,7 @@ def main():
         if r["hatarido"] and r["hatarido"] <= kuszob
     ]
 
-    if figyelmeztetendo and allapot.get("utolso_emlekezteto_nap") != ma_str:
+    if emlekezteto_napok is not None and figyelmeztetendo and allapot.get("utolso_emlekezteto_nap") != ma_str:
         vegosszeg = sum(r["osszeg"] or 0 for r in fizetetlen)
         provider_osszegek = {}
         for r in fizetetlen:
