@@ -28,6 +28,7 @@ import re
 import json
 import time
 import requests
+from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
 
 # =====================================================================
@@ -37,6 +38,7 @@ from bs4 import BeautifulSoup
 BASE_URL = "https://www.police.hu"
 DATA_FAJL = "korozes/data/police_figyelo.json"
 MAX_UJ_RESZLET_LEKERDEZES = 40  # egy futásban max ennyi ÚJ elem részletét kérdezzük le
+HIREK_RIASZTAS_UTANI_FUTAS = 8  # ennyi egymás utáni "mind a 10 hír-kategória üres" futás után figyelmeztető email (~2 óra a 15 perces ütemnél)
 
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE A MAKE.COM-ON KERESZTÜLI FACEBOOK-POSZTOLÁST (FŐKAPCSOLÓ) ⬇️⬇️⬇️
 # True  = a lent, kategóriánként "facebook_post": True-ra állított
@@ -230,12 +232,8 @@ def korozes_szerv_egyezik(mezok):
 # HÍRFOLYAM FELDOLGOZÁSA
 # =====================================================================
 
-def hirek_lista_lekerdezese(list_path):
-    url = BASE_URL + list_path
-    resp = requests.get(url, headers=HEADERS, timeout=20)
-    resp.raise_for_status()
-    soup = BeautifulSoup(resp.text, "html.parser")
-
+def _hirek_foszelektor(soup):
+    """Eredeti, szigorú kinyerés: a cikkcímek h2/h3 elemekben lévő linkek."""
     cikkek = []
     seen_urls = set()
     for a in soup.select('h2 a[href*="/hirek-es-informaciok/"], h3 a[href*="/hirek-es-informaciok/"]'):
@@ -254,7 +252,62 @@ def hirek_lista_lekerdezese(list_path):
 
         teljes_url = href if href.startswith("http") else BASE_URL + href
         cikkek.append({"url": teljes_url, "cim": cim, "osszefoglalo": osszefoglalo})
+    return cikkek
 
+
+def _hirek_tartalek(soup):
+    """TARTALÉK kinyerés, ha a police.hu átalakította az oldal szerkezetét
+    (a h2/h3 szelektor ezért 0 találatot ad - pontosan ez történt: mind a 10
+    hír-kategória gyorsítótára a kezdetektől ÜRES volt). Itt már nem a
+    HTML-elem típusa számít, hanem csak az, hogy a link egy KONKRÉT cikkre
+    mutat (a hír-szekció alatt, a kategória-oldalak maguk nem számítanak),
+    és a link szövege elég hosszú ahhoz, hogy valódi cím legyen."""
+    kategoria_utak = {k["list_path"].rstrip("/") for k in HIREK_KATEGORIAK.values()}
+    cikkek = []
+    seen_urls = set()
+    for a in soup.find_all("a", href=True):
+        href = a["href"].split("#")[0]
+        if "/hirek-es-informaciok/legfrissebb-hireink/" not in href:
+            continue
+        if "?page=" in href or "?" in href:
+            continue
+        teljes_url = href if href.startswith("http") else BASE_URL + href
+        ut = teljes_url.replace(BASE_URL, "").rstrip("/")
+        if ut in kategoria_utak or teljes_url in seen_urls:
+            continue
+        cim = a.get_text(" ", strip=True)
+        if len(cim) < 15:
+            continue
+        seen_urls.add(teljes_url)
+
+        osszefoglalo = ""
+        kovetkezo_p = a.find_next("p")
+        if kovetkezo_p:
+            osszefoglalo = kovetkezo_p.get_text(" ", strip=True)
+        cikkek.append({"url": teljes_url, "cim": cim, "osszefoglalo": osszefoglalo})
+    return cikkek
+
+
+def hirek_lista_lekerdezese(list_path):
+    url = BASE_URL + list_path
+    resp = requests.get(url, headers=HEADERS, timeout=20)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    cikkek = _hirek_foszelektor(soup)
+    if not cikkek:
+        cikkek = _hirek_tartalek(soup)
+        if cikkek:
+            print(f"   ℹ️  A fő szelektor 0 találatot adott, a tartalék-kinyerés {len(cikkek)} cikket talált.")
+    if not cikkek:
+        # DIAGNOSZTIKA - hogy a következő futás naplójából kiderüljön, MIÉRT
+        # nincs találat (letiltás / JavaScript-es oldal / új szerkezet).
+        osszes_hirlink = [a["href"] for a in soup.find_all("a", href=True) if "/hirek-es-informaciok/" in a["href"]]
+        print(f"   🔎 DIAGNOSZTIKA: HTTP {resp.status_code}, {len(resp.text)} karakter, "
+              f"{len(soup.find_all('a'))} link összesen, ebből {len(osszes_hirlink)} hír-szekciós; "
+              f"h2/h3 elemek: {len(soup.find_all(['h2', 'h3']))}")
+        oldal_eleje = re.sub(r"\s+", " ", resp.text[:300])
+        print(f"   🔎 Oldal eleje: {oldal_eleje}")
     return cikkek
 
 
@@ -435,27 +488,46 @@ def main():
                 "facebook_post": kat["facebook_post"],
             })
 
+    ertesitett_hir_urlk = set()    # ugyanaz a cikk több kategóriában is szerepelhet - csak egyszer értesítünk róla
+    hirek_kategoria_hibak = 0      # hány hír-kategória lekérdezése dobott hibát
+    hirek_kategoria_uresek = 0     # hány hír-kategória adott 0 cikket (hiba nélkül)
     for kulcs, kat in HIREK_KATEGORIAK.items():
         print(f"🔍 Hírek: {kat['label']}...")
         cache["hirek"].setdefault(kulcs, [])
         latott_urlk = set(cache["hirek"][kulcs])
+        # KATEGÓRIA-SZINTŰ alapállapot: ha ehhez a kategóriához még SOHA nem
+        # mentettünk egyetlen cikket sem (pl. mert a korábbi, hibás kinyerés
+        # mindig 0-t adott - így maradt üres mind a 10), akkor az első
+        # sikeres lekérdezés csendben alapállapotot ment, NEM küld emailt
+        # a teljes aktuális oldalról. (A fájl-szintű "elso_futas" ezt nem
+        # fedi le, mert a fájl már régóta létezik.)
+        kategoria_elso_futas = elso_futas or not latott_urlk
 
         try:
             cikkek = hirek_lista_lekerdezese(kat["list_path"])
         except Exception as e:
             print(f"   ⚠️  Hiba a lista lekérdezésekor: {e}")
+            hirek_kategoria_hibak += 1
             continue
+
+        if not cikkek:
+            hirek_kategoria_uresek += 1
+        elif kategoria_elso_futas and not elso_futas:
+            print(f"   🌱 Alapállapot ehhez a kategóriához: {len(cikkek)} cikk elmentve, email nem megy.")
 
         for cikk in cikkek:
             if cikk["url"] in latott_urlk:
                 continue
             cache["hirek"][kulcs].append(cikk["url"])
 
-            if elso_futas:
+            if kategoria_elso_futas:
                 continue
 
             if not hirek_egyezik(cikk):
                 continue
+            if cikk["url"] in ertesitett_hir_urlk:
+                continue
+            ertesitett_hir_urlk.add(cikk["url"])
 
             print(f"   🎯 Találat: {cikk['cim']}")
 
@@ -474,7 +546,54 @@ def main():
                 "facebook_post": kat["facebook_post"],
             })
 
+    # ------------------------------------------------------------------
+    # EGÉSZSÉG-ŐR ("néma hiba" ellen): eddig, ha a police.hu átalakította az
+    # oldalát, a script zölden, hiba nélkül futott tovább, 0 találattal -
+    # és soha egyetlen email sem jött. Most ha az ÖSSZES hír-kategória
+    # egymás után HIRDEK_RIASZTAS_UTANI_FUTAS alkalommal 0 cikket (vagy hibát)
+    # ad, figyelmeztető emailt küldünk (legfeljebb naponta egyet).
+    # ------------------------------------------------------------------
+    egeszseg = cache.setdefault("_egeszseg", {})
+    mind_ures = (hirek_kategoria_hibak + hirek_kategoria_uresek) >= len(HIREK_KATEGORIAK)
+    egeszseg["hirek_ures_egymas_utan"] = (egeszseg.get("hirek_ures_egymas_utan", 0) + 1) if mind_ures else 0
+    riasztas_kell = False
+    if egeszseg["hirek_ures_egymas_utan"] >= HIREK_RIASZTAS_UTANI_FUTAS:
+        utolso = egeszseg.get("utolso_riasztas")
+        try:
+            utolso_dt = datetime.fromisoformat(utolso) if utolso else None
+        except ValueError:
+            utolso_dt = None
+        if utolso_dt is None or (datetime.now(timezone.utc) - utolso_dt) > timedelta(hours=24):
+            riasztas_kell = True
+            egeszseg["utolso_riasztas"] = datetime.now(timezone.utc).isoformat()
+
     gyorsitotar_mentese(cache)
+
+    smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
+    smtp_port = int(os.environ.get("SMTP_PORT", "465"))
+    email_kuldo = os.environ.get("EMAIL_KULDO", "")
+    email_jelszo = os.environ.get("EMAIL_JELSZO", "")
+    email_cimzett = os.environ.get("EMAIL_CIMZETT", "")
+    smtp_kesz = bool(email_kuldo and email_jelszo and email_cimzett)
+
+    if riasztas_kell:
+        print(f"\n🚨 A hír-figyelés {egeszseg['hirek_ures_egymas_utan']} futás óta egyetlen cikket sem lát - figyelmeztetés küldése.")
+        if smtp_kesz:
+            try:
+                smtp_email_kuldes(
+                    smtp_host, smtp_port, email_kuldo, email_jelszo, email_cimzett,
+                    "⚠️ Police.hu figyelő: a HÍREK-figyelés nem lát egyetlen cikket sem",
+                    "<h2>A police.hu hírfigyelő nem működik megfelelően</h2>"
+                    f"<p>Az utolsó <strong>{egeszseg['hirek_ures_egymas_utan']}</strong> futásban mind a "
+                    f"{len(HIREK_KATEGORIAK)} hír-kategória 0 cikket adott vissza (vagy hibát dobott) - "
+                    "valószínűleg a police.hu megváltoztatta az oldal szerkezetét, vagy letiltja a "
+                    "GitHub-os lekérdezéseket. Amíg ez így van, hír-értesítő NEM érkezik. "
+                    "A körözési rész ettől független.</p>"
+                    "<p>Részletek: GitHub → Actions → 'Police.hu Figyelő' → legutóbbi futás naplója "
+                    "('🔎 DIAGNOSZTIKA' sorok).</p>",
+                )
+            except Exception as e:
+                print(f"   ⚠️  Figyelmeztető email küldési hiba: {e}")
 
     if elso_futas:
         print(f"\n✅ Első futás - alapállapot elmentve ({sum(len(v) for v in cache['korozes'].values())} körözés, "
@@ -487,14 +606,8 @@ def main():
 
     print(f"\n📬 {len(talalt_ertesitesek)} új találat - értesítés küldése...")
 
-    smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-    smtp_port = int(os.environ.get("SMTP_PORT", "465"))
-    email_kuldo = os.environ.get("EMAIL_KULDO", "")
-    email_jelszo = os.environ.get("EMAIL_JELSZO", "")
-    email_cimzett = os.environ.get("EMAIL_CIMZETT", "")
-
     for ertesites in talalt_ertesitesek:
-        if email_kuldo and email_jelszo and email_cimzett:
+        if smtp_kesz:
             try:
                 smtp_email_kuldes(smtp_host, smtp_port, email_kuldo, email_jelszo,
                                    email_cimzett, ertesites["tema"], ertesites["torzs"])
