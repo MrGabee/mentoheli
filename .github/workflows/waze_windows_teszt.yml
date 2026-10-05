@@ -36,7 +36,7 @@ jobs:
           PYTHONUTF8: "1"
           PYTHONIOENCODING: "utf-8"
         run: |
-          T="$RUNNER_TEMP"
+          T="$(cygpath -u "$RUNNER_TEMP")"
           curl -fsSL -o "$T/wp.tgz" https://github.com/pufferffish/wireproxy/releases/latest/download/wireproxy_windows_amd64.tar.gz
           tar xzf "$T/wp.tgz" -C "$T"
           printf '%s\n' "$WG_CONFIG" > "$T/wg.conf"
