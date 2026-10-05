@@ -26,6 +26,8 @@ jobs:
 
           # Ezeket a workflow-kat figyeli az őrző (megjelenített név szerint).
           # Ha valamelyik túl régen futott, azt automatikusan újraindítja.
+          # Másik repóban lévő workflow "tulajdonos/repo|Név" alakban adható
+          # meg (ehhez a PAT_TOKEN-nek arra a repóra is jogosultnak kell lennie).
           FIGYELT_WORKFLOWOK=(
             "⚡ Csepel Áramszünet Monitor"
             "🚌 BKK Kijelző Figyelő"
@@ -38,40 +40,58 @@ jobs:
             "💰 Számla Figyelő (Vízművek / MVM / Díjnet)"
             "💧 Vízművek Monitor"
             "📷 Windy Webkamerák Frissítése (HU)"
+            "MrGabee/balesetinfo|🚨 VÉSZ Események Frissítése"
           )
 
           # Ha egy workflow utolsó futása ennél régebbi (percben), leállítottnak
           # tekintjük és újraindítjuk.
           LEALLTNAK_SZAMIT_PERC=6
 
-          REPO="${{ github.repository }}"
+          # Ha épp fut vagy sorban áll egy futás, a lánc él, nem indítjuk újra
+          # (különben a hosszú futású láncokat, pl. Police.hu, feleslegesen
+          # duplán indítanánk). A beragadt, régi "queued" futásokat viszont
+          # figyelmen kívül hagyjuk, ezért sorban állót csak ennél frissebbet nézünk.
+          AKTIV_FUTAS_MAX_PERC=30
+
+          SAJAT_REPO="${{ github.repository }}"
           MOST=$(date -u +%s)
 
-          echo "🔍 Ellenőrzés indul: $REPO"
+          echo "🔍 Ellenőrzés indul"
           echo ""
 
-          # Az összes workflow lekérdezése egyszer, hogy megjelenített névből
-          # meg tudjuk találni az ID-t
-          OSSZES_WORKFLOW=$(curl -s -H "Authorization: token $GH_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/$REPO/actions/workflows?per_page=100")
+          # Repónként egyszer kérdezzük le a workflow-listát, hogy megjelenített
+          # névből meg tudjuk találni az ID-t
+          declare -A WORKFLOW_LISTA
 
-          for NEV in "${FIGYELT_WORKFLOWOK[@]}"; do
-            echo "── $NEV ──"
+          for BEJEGYZES in "${FIGYELT_WORKFLOWOK[@]}"; do
+            if [[ "$BEJEGYZES" == *"|"* ]]; then
+              REPO="${BEJEGYZES%%|*}"
+              NEV="${BEJEGYZES#*|}"
+            else
+              REPO="$SAJAT_REPO"
+              NEV="$BEJEGYZES"
+            fi
+            echo "── $NEV ($REPO) ──"
 
-            WF_ID=$(echo "$OSSZES_WORKFLOW" | jq -r --arg nev "$NEV" '.workflows[]? | select(.name == $nev) | .id' | head -n1)
+            if [ -z "${WORKFLOW_LISTA[$REPO]}" ]; then
+              WORKFLOW_LISTA[$REPO]=$(curl -s -H "Authorization: token $GH_TOKEN" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "https://api.github.com/repos/$REPO/actions/workflows?per_page=100")
+            fi
+
+            WF_ID=$(echo "${WORKFLOW_LISTA[$REPO]}" | jq -r --arg nev "$NEV" '.workflows[]? | select(.name == $nev) | .id' | head -n1)
 
             if [ -z "$WF_ID" ]; then
-              echo "   ⚠️  Nem található ilyen nevű workflow, kihagyva."
+              echo "   ⚠️  Nem található ilyen nevű workflow (vagy nincs hozzáférés), kihagyva."
               echo ""
               continue
             fi
 
-            UTOLSO_FUTAS=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            UTOLSO_FUTASOK=$(curl -s -H "Authorization: token $GH_TOKEN" \
               -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/$REPO/actions/workflows/$WF_ID/runs?per_page=1")
+              "https://api.github.com/repos/$REPO/actions/workflows/$WF_ID/runs?per_page=10")
 
-            LETREHOZVA=$(echo "$UTOLSO_FUTAS" | jq -r '.workflow_runs[0].created_at // empty')
+            LETREHOZVA=$(echo "$UTOLSO_FUTASOK" | jq -r '.workflow_runs[0].created_at // empty')
 
             if [ -z "$LETREHOZVA" ]; then
               echo "   ⚠️  Nincs korábbi futás - kihagyva."
@@ -82,9 +102,19 @@ jobs:
             FUTAS_IDOPONT=$(date -u -d "$LETREHOZVA" +%s 2>/dev/null)
             KULONBSEG_PERC=$(( (MOST - FUTAS_IDOPONT) / 60 ))
 
-            echo "   Utolsó futás: $LETREHOZVA ($KULONBSEG_PERC perce)"
+            # Futó (in_progress) futás a GitHub 6 órás job-korlátjáig élőnek számít
+            # (pl. a balesetinfo VÉSZ egyetlen hosszú futásban pörög), a sorban
+            # álló (queued/pending) futás csak AKTIV_FUTAS_MAX_PERC percig.
+            AKTIV_DB=$(echo "$UTOLSO_FUTASOK" | jq --argjson most "$MOST" --argjson max "$AKTIV_FUTAS_MAX_PERC" \
+              '[.workflow_runs[]? | select(.status != "completed")
+                | ($most - (.created_at | fromdateiso8601)) as $kor
+                | select((.status == "in_progress" and $kor < 6 * 3600) or $kor < ($max * 60))] | length')
 
-            if [ "$KULONBSEG_PERC" -ge "$LEALLTNAK_SZAMIT_PERC" ]; then
+            echo "   Utolsó futás: $LETREHOZVA ($KULONBSEG_PERC perce), folyamatban: ${AKTIV_DB:-0}"
+
+            if [ "${AKTIV_DB:-0}" -gt 0 ]; then
+              echo "   ✅ Épp fut vagy sorban áll, nincs teendő."
+            elif [ "$KULONBSEG_PERC" -ge "$LEALLTNAK_SZAMIT_PERC" ]; then
               echo "   ❌ Leállt (>= $LEALLTNAK_SZAMIT_PERC perc) - újraindítás..."
               INDITAS_HTTP=$(curl -s -o /tmp/orzo_resp.txt -w "%{http_code}" -X POST \
                 -H "Authorization: token $GH_TOKEN" \

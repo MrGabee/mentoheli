@@ -44,7 +44,11 @@ jobs:
 
       - name: 💾 Állapot commitolása
         if: always()
+        # Átmeneti GitHub/hálózati hiba (pl. exit 128) miatt ne legyen
+        # piros a futás és ne jöjjön hibaemail - a következő kör úgyis menti.
+        continue-on-error: true
         run: |
+          set +e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -88,7 +92,11 @@ jobs:
 
       - name: 🔄 Következő futás indítása
         if: always()
+        # A curl hálózati hibái (pl. exit 6 / 60) se buktassák a futást:
+        # ha a dispatch nem megy át, a schedule 10 percen belül újraindít.
+        continue-on-error: true
         run: |
+          set +e
           SIKERULT=0
           for i in 1 2 3; do
             HTTP_KOD=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
