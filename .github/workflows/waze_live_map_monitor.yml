@@ -1,0 +1,109 @@
+name: 🚗 Waze Live Map Monitor - Budapest
+
+# A régi waze_budapest_monitor.yml / waze_monitor.yml / waze_token_refresh.yml
+# helyett. Új fájlnév kellett, mert a régiek kézzel le vannak tiltva.
+# Percenkénti figyelés: egy futás ~5,75 órán át percenként kérdez le, a
+# 15 percenkénti ütemezés csak akkor indít újat, ha az előző már véget ért
+# (a concurrency csoport miatt addig sorban vár).
+#
+# A Waze reCAPTCHA-ja a GitHub adatközponti IP-jét és a Linuxos böngészőt is
+# gyakran elutasítja. Ezért Windows runneren, valódi Chrome-mal fut, és az
+# otthoni router WireGuard VPN-szerverén át (WG_CONFIG secret) megy ki a netre.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+  # PR-ban tesztmódban fut: nem ment semmit és nem küld e-mailt.
+  pull_request:
+    paths:
+      - 'waze_budapest_monitor.py'
+      - '.github/workflows/waze_live_map_monitor.yml'
+
+concurrency:
+  group: waze-live-map-monitor-${{ github.event_name == 'pull_request' && 'pr' || 'main' }}
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: windows-latest
+    timeout-minutes: 358
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Playwright telepítése
+        run: |
+          pip install playwright
+          python -m playwright install chromium
+
+      # A wireproxy felhasználói térben építi fel a WireGuard-alagutat az
+      # otthoni routerhez, és SOCKS5 proxyt ad: csak a böngésző forgalma megy
+      # haza, a git és a telepítés nem. Ugyanabban a lépésben indul, mint a
+      # monitor, hogy biztosan együtt éljenek.
+      - name: 🚗 Waze monitor futtatása (otthoni routeren át)
+        env:
+          WG_CONFIG:          ${{ secrets.WG_CONFIG }}
+          EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE || secrets.EMAIL_CIMZETT }}
+          TESZT_MOD: ${{ github.event_name == 'pull_request' && '1' || '0' }}
+          # PR-on néma teszt (EMAIL_TESZT=1 esetén minta e-mailt küldene).
+          EMAIL_TESZT: "0"
+          FUTASIDO_PERC: ${{ github.event_name == 'pull_request' && '10' || '345' }}
+          KOR_MP: "60"
+          GIT_MENTES_PERC: "30"
+          FEJLES: "1"
+          PYTHONUTF8: "1"
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$WG_CONFIG" ]; then
+            T="$(cygpath -u "$RUNNER_TEMP")"
+            curl -fsSL -o "$T/wp.tgz" https://github.com/pufferffish/wireproxy/releases/latest/download/wireproxy_windows_amd64.tar.gz
+            tar xzf "$T/wp.tgz" -C "$T"
+            printf '%s\n' "$WG_CONFIG" > "$T/wg.conf"
+            printf 'WGConfig = %s\n\n[Socks5]\nBindAddress = 127.0.0.1:25344\n' "$(cygpath -w "$T/wg.conf")" > "$T/wireproxy.conf"
+            "$T/wireproxy.exe" -s -c "$T/wireproxy.conf" > /dev/null 2>&1 &
+            for i in $(seq 1 10); do
+              sleep 3
+              if curl -fsS --max-time 10 --socks5-hostname 127.0.0.1:25344 https://www.cloudflare.com/cdn-cgi/trace | grep -q "^ip="; then
+                echo "✅ Az otthoni routeren keresztül megyünk ki."
+                export PROXY_SZERVER=socks5://127.0.0.1:25344
+                break
+              fi
+            done
+            [ -n "$PROXY_SZERVER" ] || echo "⚠️ Az otthoni router nem érhető el, közvetlenül futunk."
+          else
+            echo "ℹ️ Nincs WG_CONFIG secret, közvetlenül futunk."
+          fi
+          python -u waze_budapest_monitor.py
+
+      - name: 💾 Adatok commitolása
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          B="$(cygpath -u "$RUNNER_TEMP")/waze"
+          mkdir -p "$B" && cp -r waze_budapest_allapot.json waze_budapest_aktiv.json waze_naplo "$B"/ 2>/dev/null || true
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp -r "$B"/. .
+            git add waze_budapest_allapot.json waze_budapest_aktiv.json waze_naplo 2>/dev/null || true
+            if git diff --staged --quiet; then echo "Nincs változás."; break; fi
+            git commit -m "waze budapest állapot [skip ci]"
+            if git push origin HEAD:main; then break; fi
+            sleep $((RANDOM % 6 + 2))
+          done
