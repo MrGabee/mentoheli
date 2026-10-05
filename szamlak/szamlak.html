@@ -295,6 +295,22 @@
       </div>
     </div>
 
+    <div class="panel" id="kor-ertesito-panel">
+      <button type="button" class="panel-toggle" id="kor-ertesito-toggle">📨 Bérlői értesítők (új számla → azonnali email) ▾</button>
+      <div class="panel-tartalom" id="kor-ertesito-tartalom" style="display:none;">
+        <p class="panel-info">Ha be van kapcsolva, akkor amikor egy ÚJ Díjnet/Vízművek számla betöltődik, a script emailt küld az érintett bérlői körnek (A/B kör), a PDF-fel együtt. Csak a már besorolt (A/B körös) számlákra vonatkozik; a "függőben" lévőkre, a kifizetettekre, az MVM/IMAP és a céges számlákra nem. FONTOS: a küldéshez a fenti "Email-küldés engedélyezve (közüzemi)" kapcsolónak is be kell lennie kapcsolva, és a körnek legyen email-címe.</p>
+        <label style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><input type="checkbox" id="ke-bekapcsolva" style="width:auto;flex:none;"> <span> Új számla betöltődésekor email az érintett bérlői körnek</span></label>
+        <label style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><input type="checkbox" id="ke-jovahagyas" checked style="width:auto;flex:none;"> <span> Teszt fázis: kiküldés ELŐTT a tulajdonos jóváhagyása kell (a tulajdonos kap egy "⏳ Jóváhagyásra vár" emailt, és itt hagyja jóvá)</span></label>
+        <p class="panel-info">A jóváhagyás kikapcsolása után az új számlák értesítője azonnal (a következő futáskor) kimegy. A már várakozó tételek ilyenkor is várnak a döntésedre.</p>
+        <button type="button" id="ke-mentes-gomb">Mentés</button>
+        <div class="panel-statusz" id="ke-statusz"></div>
+        <h4 style="margin:16px 0 6px;">⏳ Jóváhagyásra váró értesítők</h4>
+        <div id="ke-varolista-hely"></div>
+        <h4 style="margin:16px 0 6px;">🕘 Utóbbi tételek (kiküldve / elutasítva / kihagyva)</h4>
+        <div id="ke-elozmeny-hely"></div>
+      </div>
+    </div>
+
     <div class="panel" id="felhasznalok-panel">
       <button type="button" class="panel-toggle" id="felhasznalok-toggle">👤 Felhasználók kezelése ▾</button>
       <div class="panel-tartalom" id="felhasznalok-tartalom" style="display:none;">
@@ -1097,6 +1113,122 @@
   // futás UTÁN jelenik meg itt. A "Nem biztos" lista "✕"-je (fent,
   // cegesBizonytalanTorlese()) viszont KÖZVETLENÜL ide ír, az azonnal
   // megjelenik.
+  // ── "📨 Bérlői értesítők" panel ───────────────────────────────────
+  // A Python-script (szamla_figyelo.py, "BÉRLŐI KÖR AZONNALI ÉRTESÍTŐ")
+  // minden új, besorolt Díjnet/Vízművek számlánál felvesz egy tételt a
+  // "kor_ertesito_varolista"-ba. Jóváhagyás-módban "varakozik" állapotú;
+  // a dashboard CSAK a "kor_ertesito_dontesek"-be ír (rid -> "jovahagyva" /
+  // "elutasitva"), a tényleges átállítást és az email-küldést a script
+  // végzi a következő futáskor (<= ~20 perc).
+  function keAllapotBetoltes(adat) {
+    document.getElementById("ke-bekapcsolva").checked = adat.kor_azonnali_ertesito === true;
+    document.getElementById("ke-jovahagyas").checked = adat.kor_ertesito_jovahagyas !== false;
+    keListakRenderelese(adat.kor_ertesito_varolista || {}, adat.kor_ertesito_dontesek || {});
+  }
+
+  function keListakRenderelese(varolista, dontesek) {
+    const varHely = document.getElementById("ke-varolista-hely");
+    const elozHely = document.getElementById("ke-elozmeny-hely");
+    if (!varHely || !elozHely) return;
+    const datum = (iso) => iso ? new Date(iso).toLocaleString("hu-HU") : "";
+    const sorok = Object.entries(varolista);
+    const varakozok = sorok.filter(([, b]) => b.statusz === "varakozik")
+      .sort((a, b) => (b[1].letrehozva || "").localeCompare(a[1].letrehozva || ""));
+    const lezartak = sorok.filter(([, b]) => b.statusz !== "varakozik")
+      .sort((a, b) => (b[1].letrehozva || "").localeCompare(a[1].letrehozva || ""));
+
+    if (!varakozok.length) {
+      varHely.innerHTML = '<div style="color:var(--muted);">Nincs jóváhagyásra váró értesítő.</div>';
+    } else {
+      varHely.innerHTML = '<table><thead><tr><th>Kör</th><th>Szolgáltató</th><th>Számlaszám</th><th>Összeg</th><th>Határidő</th><th>Létrehozva</th><th></th></tr></thead><tbody>' +
+        varakozok.map(([rid, b]) => {
+          const dontes = dontesek[rid];
+          const muvelet = dontes === "jovahagyva"
+            ? '<span style="color:#15803d;">✅ Jóváhagyva – a következő futáskor kimegy (≤ ~20 perc)</span>'
+            : dontes === "elutasitva"
+              ? '<span style="color:#b91c1c;">🚫 Elutasítva – a következő futáskor lezárul (≤ ~20 perc)</span>'
+              : `<button type="button" class="ke-dontes-gomb" data-rid="${escHtml(rid)}" data-dontes="jovahagyva">✅ Jóváhagyom</button> <button type="button" class="ke-dontes-gomb" data-rid="${escHtml(rid)}" data-dontes="elutasitva">✕ Elutasítom</button>`;
+          return `<tr>
+            <td>${escHtml(b.kor_nev || b.kor || "")}</td>
+            <td>${escHtml(b.szolgaltato_nev || "")}</td>
+            <td>${escHtml(b.szamlaszam || b.targy || "")}</td>
+            <td>${b.osszeg != null && b.osszeg !== "" ? forint(b.osszeg) : ""}</td>
+            <td>${escHtml(b.hatarido || "")}</td>
+            <td>${escHtml(datum(b.letrehozva))}</td>
+            <td>${muvelet}</td>
+          </tr>`;
+        }).join("") + '</tbody></table>';
+      varHely.querySelectorAll(".ke-dontes-gomb").forEach(g => {
+        g.addEventListener("click", () => keDontesMentese(g.dataset.rid, g.dataset.dontes));
+      });
+    }
+
+    if (!lezartak.length) {
+      elozHely.innerHTML = '<div style="color:var(--muted);">Még nincs lezárt tétel.</div>';
+    } else {
+      const cimke = {
+        elkuldve: "📤 Kiküldve", elutasitva: "🚫 Elutasítva", kihagyva: "⏭️ Kihagyva",
+        jovahagyva: "✅ Jóváhagyva (kiküldésre vár)",
+      };
+      elozHely.innerHTML = '<table><thead><tr><th>Állapot</th><th>Kör</th><th>Szolgáltató</th><th>Számlaszám</th><th>Összeg</th><th>Időpont</th><th>Megjegyzés</th></tr></thead><tbody>' +
+        lezartak.map(([, b]) => `<tr>
+          <td>${escHtml(cimke[b.statusz] || b.statusz || "")}</td>
+          <td>${escHtml(b.kor_nev || b.kor || "")}</td>
+          <td>${escHtml(b.szolgaltato_nev || "")}</td>
+          <td>${escHtml(b.szamlaszam || b.targy || "")}</td>
+          <td>${b.osszeg != null && b.osszeg !== "" ? forint(b.osszeg) : ""}</td>
+          <td>${escHtml(datum(b.elkuldve || b.dontes_ideje || b.letrehozva))}</td>
+          <td>${escHtml(b.megjegyzes || "")}</td>
+        </tr>`).join("") + '</tbody></table>';
+    }
+  }
+
+  async function keDontesMentese(rid, dontes) {
+    if (!rid || (dontes !== "jovahagyva" && dontes !== "elutasitva")) return;
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return; }
+    const szoveg = dontes === "jovahagyva"
+      ? "Jóváhagyod? A bérlői kör a következő script-futáskor megkapja az emailt."
+      : "Elutasítod? Ehhez a számlához nem megy ki értesítő a bérlői körnek.";
+    if (!window.confirm(szoveg)) return;
+    try {
+      const friss = await allapotFrissitesEsMentese((adat) => {
+        const dontesek = adat.kor_ertesito_dontesek || {};
+        dontesek[rid] = dontes;
+        // már nem létező várólista-tételek döntéseinek takarítása
+        const varolista = adat.kor_ertesito_varolista || {};
+        Object.keys(dontesek).forEach(k => { if (!(k in varolista)) delete dontesek[k]; });
+        adat.kor_ertesito_dontesek = dontesek;
+      });
+      legutobbiAdat = friss;
+      keListakRenderelese(friss.kor_ertesito_varolista || {}, friss.kor_ertesito_dontesek || {});
+      beStatuszMutat("ke-statusz", "✅ Döntés elmentve.", "siker");
+    } catch (e) {
+      beStatuszMutat("ke-statusz", "❌ " + e.message, "hiba");
+    }
+  }
+
+  document.getElementById("ke-mentes-gomb").addEventListener("click", async () => {
+    const gomb = document.getElementById("ke-mentes-gomb");
+    if (!aktualisApiKulcs) { beStatuszMutat("ke-statusz", "Előbb nyisd meg a dashboardot az API-kulccsal.", "hiba"); return; }
+    const be = document.getElementById("ke-bekapcsolva").checked;
+    const jov = document.getElementById("ke-jovahagyas").checked;
+    if (be && !jov && !window.confirm("A jóváhagyás NÉLKÜL az új számlák értesítői azonnal kimennek a bérlői köröknek. Biztos?")) return;
+    gomb.disabled = true;
+    beStatuszMutat("ke-statusz", "Mentés...", "");
+    try {
+      const friss = await allapotFrissitesEsMentese((adat) => {
+        adat.kor_azonnali_ertesito = be;      // valódi boolean, nem null
+        adat.kor_ertesito_jovahagyas = jov;   // false = jóváhagyás nélkül megy
+      });
+      legutobbiAdat = friss;
+      beStatuszMutat("ke-statusz", "✅ Elmentve.", "siker");
+    } catch (e) {
+      beStatuszMutat("ke-statusz", "❌ " + e.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
   function toroltSzamlakRenderelese(archivum) {
     const hely = document.getElementById("torolt-szamlak-tabla-hely");
     if (!hely) return;
@@ -2406,7 +2538,7 @@
   });
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["kor-ertesito-toggle", "kor-ertesito-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -3275,6 +3407,7 @@
     postafiokListaRenderelese(adat.tovabbi_postafiokok);
     helyilegVisszaallitott = new Set(); // új betöltés - a korábbi munkamenetbeli optimista elrejtés már nem releváns
     toroltSzamlakRenderelese(adat.torolt_szamlak_archivum);
+    keAllapotBetoltes(adat);
     aktivAllapotSzuro = "mind";
     aktivSzolgaltatoSzuro = "mind";
     aktivNezet = "mind";
