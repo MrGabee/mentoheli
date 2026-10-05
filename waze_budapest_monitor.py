@@ -26,7 +26,8 @@ FONTOS:
 
 KIMENETEK:
   - waze_budapest_aktiv.json   - a legutóbbi kör összes riasztása + dugója
-  - waze_budapest_allapot.json - már látott riasztás-azonosítók (3 napig)
+  - waze_budapest_allapot.json - látott riasztás-azonosítók (az utolsó észlelés után 3 napig);
+                                 egy riasztásról csak egyszer megy e-mail
   - waze_naplo/YYYY-MM.jsonl   - minden újonnan látott riasztás, soronként
   - HTML e-mail az új riasztásokról (EMAIL_TIPUSOK szerint szűrve)
 
@@ -560,12 +561,16 @@ def feldolgozas(riasztasok, dugok, latott, csak_feltoltes):
         "riasztasok": riasztasok,
         "dugok": dugok,
     })
+    uj = [r for r in riasztasok if r["id"] not in latott]
+    # Minden most is látható riasztás "utoljára látva" idejét frissítjük, így
+    # egy hetekig fennálló bejelentés (pl. kátyú) sem esik ki az állapotból,
+    # és nem megy ki róla újra e-mail. Csak a 3 napja nem látottak törlődnek.
+    ido = most().isoformat(timespec="seconds")
+    for r in riasztasok:
+        latott[r["id"]] = ido
     hatar = (most() - ALLAPOT_MEGORZES).isoformat(timespec="seconds")
     for k in [k for k, v in latott.items() if v < hatar]:
         del latott[k]
-    uj = [r for r in riasztasok if r["id"] not in latott]
-    for r in uj:
-        latott[r["id"]] = most().isoformat(timespec="seconds")
     allapot_mentes(latott)
     if uj:
         naplo_iras(uj)
