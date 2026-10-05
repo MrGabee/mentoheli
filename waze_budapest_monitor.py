@@ -9,8 +9,8 @@ Chromiumban, és a térkép SAJÁT georss kérését (a saját friss tokenjével
 a Playwright route-jával egy budapesti csempére irányítjuk át. A többi
 csempét ugyanazzal a tokennel, a böngészőn belülről kérjük le, és ha a
 Waze ezt elutasítja, az oldal újratöltésével kérünk új tokent.
-(Egy georss válasz max. ~200 riasztás, ezért Budapest 6 csempe minden
-körben (2x3), Pest megye 4x4 csempéje körbeforgatva, körönként 2.)
+(Egy georss válasz max. ~200 riasztás, ezért Budapestet 4 csempére (2x2)
+bontjuk; kevesebb kérés percenként = kevesebb 403/429.)
 
 PERCENKÉNTI FIGYELÉS:
 A böngésző nyitva marad, és KOR_MP másodpercenként (alap: 60) újra lekérjük
@@ -69,11 +69,10 @@ except Exception:
     _BUDAPESTI_ZONA = None
 
 # --- Figyelt terület (lon/lat) ---
-# BBOX: Budapest + Pest megye befoglaló téglalapja (a szomszédos megyék
-# széleiből is belelóg egy kevés). BBOX_BP: Budapest + közvetlen agglomeráció,
-# ahol a sűrű bejelentések miatt kisebb csempék kellenek.
-BBOX = {"left": 18.65, "bottom": 46.92, "right": 20.15, "top": 47.86}
+# BBOX_BP: Budapest + közvetlen agglomeráció. Csak ezt figyeljük (a Pest
+# megyei kiterjesztés túl sok kérést jelentett percenként).
 BBOX_BP = {"left": 18.90, "bottom": 47.35, "right": 19.35, "top": 47.60}
+BBOX = BBOX_BP
 KOZEP = (47.4979, 19.0402)
 
 # A ul?ll=... link átirányít a live-mapre, a megadott pontra középre igazítva.
@@ -146,10 +145,10 @@ def _csempek(terulet, sorok, oszlopok):
 # (a Waze 429-cel lassít). Budapest 6 csempéjét minden körben lekérjük; a
 # megye 16 (ritkább) csempéjéből körönként MEGYE_KORONKENT darabot,
 # körbeforgatva (így ~8 percenként frissül mind).
-BP_CSEMPEK = _csempek(BBOX_BP, 2, 3)
-MEGYE_CSEMPEK = _csempek(BBOX, 4, 4)
-CSEMPEK = BP_CSEMPEK + MEGYE_CSEMPEK
-MEGYE_KORONKENT = 2
+BP_CSEMPEK = _csempek(BBOX_BP, 2, 2)
+MEGYE_CSEMPEK = []
+CSEMPEK = BP_CSEMPEK
+MEGYE_KORONKENT = 0
 
 
 def _georss_atiras(url, csempe):
@@ -189,7 +188,6 @@ class WazeMunkamenet:
         self._pw = sync_playwright().start()
         inditas = dict(
             headless=not FEJLES,
-            args=["--disable-blink-features=AutomationControlled"],
             proxy={"server": PROXY_SZERVER} if PROXY_SZERVER else None,
         )
         try:
@@ -204,9 +202,6 @@ class WazeMunkamenet:
             viewport={"width": 1600, "height": 1000},
             locale="hu-HU",
             timezone_id="Europe/Budapest",
-        )
-        context.add_init_script(
-            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
         )
         self.page = context.new_page()
         self.page.route(f"**{GEORSS_RESZ}*", self._utvonal)
@@ -253,17 +248,8 @@ class WazeMunkamenet:
             except Exception as e:
                 logging.warning(f"Nem JSON georss válasz: {e}")
 
-    def _egermozgas(self):
-        """Apró, emberi egérmozgás - a reCAPTCHA v3 a viselkedést is pontozza."""
-        try:
-            self.page.mouse.move(random.randint(200, 1400), random.randint(150, 850),
-                                 steps=random.randint(5, 15))
-        except Exception:
-            pass
-
     def _varj(self, feltetel, meddig):
         while not feltetel() and time.monotonic() < meddig:
-            self._egermozgas()
             self.page.wait_for_timeout(random.randint(400, 900))
 
     def kor(self):
@@ -300,7 +286,7 @@ class WazeMunkamenet:
             self._varj(lambda: len(self.valaszok) > elotte, min(time.monotonic() + 15, hatarido))
         self.page.wait_for_timeout(500)
         # A megyei mutatót csak a sikeresen lekért megyei csempék után léptetjük.
-        if all(i in self.valaszok for i in megye):
+        if megye and all(i in self.valaszok for i in megye):
             self.megye_mutato = (self.megye_mutato + MEGYE_KORONKENT) % len(MEGYE_CSEMPEK)
         self.utolso.update(self.valaszok)
         return dict(self.valaszok), dict(self.utolso)
@@ -392,17 +378,17 @@ def json_mentes(fajl, adat):
 
 
 def allapot_betoltes():
-    """{"mentve": iso, "latott": {id: iso}, "csempek": [feltöltött csempék]}
+    """{"mentve": iso, "latott": {id: iso}, "csempek_bp2x2": [feltöltött csempék]}
     - a régi (lapos) formátumot is kezeli."""
     nyers = json_betoltes(ALLAPOT_FAJL, {})
     if "latott" in nyers:
-        return nyers.get("mentve"), nyers["latott"], set(nyers.get("csempek", []))
+        return nyers.get("mentve"), nyers["latott"], set(nyers.get("csempek_bp2x2", []))
     return None, nyers, set()
 
 
 def allapot_mentes(latott, csempek):
     json_mentes(ALLAPOT_FAJL, {"mentve": most().isoformat(timespec="seconds"),
-                               "latott": latott, "csempek": sorted(csempek)})
+                               "latott": latott, "csempek_bp2x2": sorted(csempek)})
 
 
 def naplo_iras(uj_riasztasok):
@@ -562,9 +548,9 @@ def email_kuldes(targy, szoveg, html_torzs=None):
 def riasztas_email(riasztasok, teszt=False):
     riasztasok = sorted(riasztasok, key=_sorrend)
     if teszt:
-        cim = f"🧪 Waze Budapest + Pest megye TESZT – {len(riasztasok)} esemény (minta)"
+        cim = f"🧪 Waze Budapest TESZT – {len(riasztasok)} esemény (minta)"
     else:
-        cim = f"🚧 Waze Budapest + Pest megye – {len(riasztasok)} új esemény"
+        cim = f"🚧 Waze Budapest – {len(riasztasok)} új esemény"
     email_kuldes(f"{cim} | {most().strftime('%H:%M')}", email_szoveg(riasztasok, cim), email_html(riasztasok, cim))
 
 
