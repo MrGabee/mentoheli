@@ -10,7 +10,7 @@ monitor használta volna. Ez a változat ezért NEM maga kérdez le: megnyitja
 a live-mapet egy valódi Chromiumban, és a térkép SAJÁT georss kérését
 (a saját friss tokenjével együtt) a Playwright route-jával úgy módosítja,
 hogy a budapesti bounding box egy-egy csempéjére kérdezzen (egy válasz
-max. ~200 riasztás, ezért 3x3 csempe). A válaszokat elkapjuk,
+max. ~200 riasztás, ezért 2x2 csempe). A válaszokat elkapjuk,
 összefésüljük, és ebből dolgozunk.
 
 FONTOS:
@@ -77,6 +77,9 @@ EMAIL_TIPUSOK = [
 
 TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
 FEJLES = os.environ.get("FEJLES", "0") == "1"
+# Opcionális proxy a böngészőnek, pl. Cloudflare WARP proxy módban: socks5://127.0.0.1:40000
+PROXY_SZERVER = os.environ.get("PROXY_SZERVER", "")
+MAX_UJRATOLTES = int(os.environ.get("MAX_UJRATOLTES", "6"))
 MAX_PROBALKOZAS = int(os.environ.get("MAX_PROBALKOZAS", "2"))
 VARAKOZAS_MP = 20
 
@@ -112,7 +115,7 @@ def _csempek(sorok=3, oszlopok=3):
     ]
 
 
-CSEMPEK = _csempek()
+CSEMPEK = _csempek(2, 2)
 TERKEP_IDOKORLAT_MP = 150
 
 
@@ -141,6 +144,7 @@ def waze_adat_lekerese():
                 browser = p.chromium.launch(
                     headless=not FEJLES,
                     args=["--disable-blink-features=AutomationControlled"],
+                    proxy={"server": PROXY_SZERVER} if PROXY_SZERVER else None,
                 )
                 context = browser.new_context(
                     viewport={"width": 1600, "height": 1000},
@@ -223,7 +227,14 @@ def waze_adat_lekerese():
 
                 # 3) Ha a token nem újrahasznosítható, oldal-újratöltéssel
                 #    kérünk újat, és a térkép következő kérése a következő csempe.
-                while len(valaszok) < len(CSEMPEK) and time.monotonic() < hatarido:
+                ujratoltes = 0
+                while (len(valaszok) < len(CSEMPEK) and time.monotonic() < hatarido
+                       and ujratoltes < MAX_UJRATOLTES):
+                    ujratoltes += 1
+                    if 429 in statuszok[-3:]:
+                        page.wait_for_timeout(15000)  # rate limit: lassítunk
+                    else:
+                        page.wait_for_timeout(3000)
                     elotte = len(valaszok)
                     page.reload(wait_until="domcontentloaded", timeout=30000)
                     varj_eddig = time.monotonic() + 15
@@ -367,6 +378,7 @@ def main():
     tipusok = {}
     for r in riasztasok:
         tipusok[r["tipus"]] = tipusok.get(r["tipus"], 0) + 1
+    print(f"🌐 Proxy: {PROXY_SZERVER or 'nincs (közvetlen)'}")
     print(f"📊 Riasztások: {len(riasztasok)} {tipusok} | dugók: {len(dugok)}")
 
     if TESZT_MOD:
