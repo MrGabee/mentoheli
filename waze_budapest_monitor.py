@@ -9,7 +9,8 @@ a külön tokenfrissítő workflow tokenje pedig percek alatt lejárt, mire a
 monitor használta volna. Ez a változat ezért NEM maga kérdez le: megnyitja
 a live-mapet egy valódi Chromiumban, és a térkép SAJÁT georss kérését
 (a saját friss tokenjével együtt) a Playwright route-jával úgy módosítja,
-hogy a teljes budapesti bounding boxra kérdezzen. A válaszokat elkapjuk,
+hogy a budapesti bounding box egy-egy csempéjére kérdezzen (egy válasz
+max. ~200 riasztás, ezért 3x3 csempe). A válaszokat elkapjuk,
 összefésüljük, és ebből dolgozunk.
 
 FONTOS:
@@ -94,12 +95,33 @@ def most():
 # ------------------------------------------------------------------
 # Waze lekérdezés - a térkép saját kéréseinek átírásával és elkapásával
 # ------------------------------------------------------------------
-def _georss_atiras(url):
-    """A térkép georss kérésének bbox-át a teljes budapesti BBOX-ra cseréli,
+def _csempek(sorok=3, oszlopok=3):
+    """A BBOX-ot sorok x oszlopok csempére bontja. Egy georss válasz legfeljebb
+    ~200 riasztást ad vissza, ezért egy nagy bbox-nál elveszne a többi."""
+    dlat = (BBOX["top"] - BBOX["bottom"]) / sorok
+    dlon = (BBOX["right"] - BBOX["left"]) / oszlopok
+    return [
+        {
+            "bottom": round(BBOX["bottom"] + i * dlat, 5),
+            "top": round(BBOX["bottom"] + (i + 1) * dlat, 5),
+            "left": round(BBOX["left"] + j * dlon, 5),
+            "right": round(BBOX["left"] + (j + 1) * dlon, 5),
+        }
+        for i in range(sorok)
+        for j in range(oszlopok)
+    ]
+
+
+CSEMPEK = _csempek()
+TERKEP_IDOKORLAT_MP = 75
+
+
+def _georss_atiras(url, csempe):
+    """A térkép georss kérésének bbox-át a megadott csempére cseréli,
     és biztosítja, hogy riasztásokat és dugókat is kérjen."""
     resz = urlparse(url)
     parameterek = {k: v[-1] for k, v in parse_qs(resz.query).items()}
-    parameterek.update({k: str(v) for k, v in BBOX.items()})
+    parameterek.update({k: str(v) for k, v in csempe.items()})
     parameterek["types"] = "alerts,traffic"
     parameterek.setdefault("env", "row")
     return urlunparse(resz._replace(query=urlencode(parameterek, safe=",")))
@@ -108,8 +130,11 @@ def _georss_atiras(url):
 def waze_adat_lekerese():
     utolso_hiba = None
     for probalkozas in range(1, MAX_PROBALKOZAS + 1):
-        valaszok = []
+        valaszok = {}      # csempe index -> georss JSON
         statuszok = []
+        kiosztas = {}      # átírt URL -> csempe index
+        fuggo = []         # kiadott csempék, kérés-sorrendben
+        kovetkezo = [0]
         try:
             with sync_playwright() as p:
                 browser = p.chromium.launch(
@@ -131,15 +156,32 @@ def waze_adat_lekerese():
                 page = context.new_page()
 
                 def utvonal(route):
-                    route.continue_(url=_georss_atiras(route.request.url))
+                    # A még hiányzó csempék közül a következőt kérjük le.
+                    hianyzo = [i for i in range(len(CSEMPEK)) if i not in valaszok]
+                    if not hianyzo:
+                        route.continue_()
+                        return
+                    index = hianyzo[kovetkezo[0] % len(hianyzo)]
+                    kovetkezo[0] += 1
+                    uj_url = _georss_atiras(route.request.url, CSEMPEK[index])
+                    kiosztas[uj_url] = index
+                    fuggo.append(index)
+                    route.continue_(url=uj_url)
 
                 def valasz(resp):
                     if GEORSS_RESZ not in resp.url:
                         return
                     statuszok.append(resp.status)
-                    if resp.status == 200:
+                    # Ha a válasz URL-je az eredeti (nem átírt) kérésé, a
+                    # kiadás sorrendje alapján párosítjuk a csempével.
+                    index = kiosztas.get(resp.url)
+                    if index is not None and index in fuggo:
+                        fuggo.remove(index)
+                    elif fuggo:
+                        index = fuggo.pop(0)
+                    if resp.status == 200 and index is not None:
                         try:
-                            valaszok.append(resp.json())
+                            valaszok[index] = resp.json()
                         except Exception as e:
                             logging.warning(f"Nem JSON georss válasz: {e}")
 
@@ -149,18 +191,29 @@ def waze_adat_lekerese():
                 print(f"🌐 Live Map betöltése ({probalkozas}/{MAX_PROBALKOZAS})...")
                 page.goto(WAZE_INDITO_URL, wait_until="domcontentloaded", timeout=45000)
 
-                # Várunk, amíg a térkép legalább egyszer lekéri az adatokat.
-                for _ in range(30):
-                    if valaszok:
-                        break
-                    page.wait_for_timeout(1000)
-                # Egy kis plusz idő, hátha jön még egy (frissebb) válasz.
-                page.wait_for_timeout(3000)
+                # A térkép mozgatásával újabb georss kéréseket váltunk ki,
+                # amíg minden csempére nem jön válasz (vagy le nem jár az idő).
+                hatarido = time.monotonic() + TERKEP_IDOKORLAT_MP
+                lepes = 0
+                page.wait_for_timeout(5000)
+                while len(valaszok) < len(CSEMPEK) and time.monotonic() < hatarido:
+                    irany = 1 if lepes % 2 == 0 else -1
+                    page.mouse.move(800, 500)
+                    page.mouse.down()
+                    page.mouse.move(800 + irany * 150, 500 + irany * 80, steps=8)
+                    page.mouse.up()
+                    lepes += 1
+                    page.wait_for_timeout(2500)
+                page.wait_for_timeout(1500)
                 browser.close()
 
             print(f"  georss válaszok HTTP kódjai: {statuszok or 'egy sem érkezett'}")
+            print(f"  lefedett csempék: {len(valaszok)}/{len(CSEMPEK)}")
+            for i, v in valaszok.items():
+                if len(v.get("alerts", []) or []) >= 200:
+                    print(f"  ⚠️ A(z) {i}. csempe elérte a 200-as plafont, lehet, hogy hiányos.")
             if valaszok:
-                return valaszok
+                return list(valaszok.values())
             raise RuntimeError(
                 f"Nem jött sikeres georss válasz (HTTP kódok: {statuszok or 'nincs kérés'}). "
                 "403 esetén valószínűleg a reCAPTCHA utasította el a kérést."

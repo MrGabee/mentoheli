@@ -42,7 +42,7 @@ jobs:
         env:
           EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
-          EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE }}
+          EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE || secrets.EMAIL_CIMZETT }}
           TESZT_MOD: ${{ github.event_name == 'pull_request' && '1' || '0' }}
           FEJLES: "1"
         run: xvfb-run -a python waze_budapest_monitor.py
