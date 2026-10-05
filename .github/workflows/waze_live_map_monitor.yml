@@ -2,24 +2,27 @@ name: 🚗 Waze Live Map Monitor - Budapest
 
 # A régi waze_budapest_monitor.yml / waze_monitor.yml / waze_token_refresh.yml
 # helyett. Új fájlnév kellett, mert a régiek kézzel le vannak tiltva.
+# Percenkénti figyelés: egy futás ~5,75 órán át percenként kérdez le, a
+# 15 percenkénti ütemezés csak akkor indít újat, ha az előző már véget ért
+# (a concurrency csoport miatt addig sorban vár).
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'
-  # PR-ban tesztmódban fut: kiírja, mit talált, de nem ment és nem küld e-mailt.
+    - cron: '*/15 * * * *'
+  # PR-ban tesztmódban fut: nem ment semmit, csak egy minta e-mailt küld.
   pull_request:
     paths:
       - 'waze_budapest_monitor.py'
       - '.github/workflows/waze_live_map_monitor.yml'
 
 concurrency:
-  group: waze-live-map-monitor
+  group: waze-live-map-monitor-${{ github.event_name == 'pull_request' && 'pr' || 'main' }}
   cancel-in-progress: false
 
 jobs:
   figyel:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 358
     permissions:
       contents: write
 
@@ -67,11 +70,19 @@ jobs:
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE || secrets.EMAIL_CIMZETT }}
           TESZT_MOD: ${{ github.event_name == 'pull_request' && '1' || '0' }}
+          # PR-on minta e-mailt küld a talált riasztásokból.
+          EMAIL_TESZT: ${{ github.event_name == 'pull_request' && '1' || '0' }}
+          FUTASIDO_PERC: ${{ github.event_name == 'pull_request' && '4' || '345' }}
+          KOR_MP: "60"
+          GIT_MENTES_PERC: "30"
           FEJLES: "1"
-        run: xvfb-run -a python waze_budapest_monitor.py
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          xvfb-run -a python waze_budapest_monitor.py
 
       - name: 💾 Adatok commitolása
-        if: github.event_name != 'pull_request'
+        if: always() && github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
