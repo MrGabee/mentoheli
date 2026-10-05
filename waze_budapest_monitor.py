@@ -392,15 +392,17 @@ def json_mentes(fajl, adat):
 
 
 def allapot_betoltes():
-    """{"mentve": iso, "latott": {id: iso}} - a régi (lapos) formátumot is kezeli."""
+    """{"mentve": iso, "latott": {id: iso}, "csempek": [feltöltött csempék]}
+    - a régi (lapos) formátumot is kezeli."""
     nyers = json_betoltes(ALLAPOT_FAJL, {})
     if "latott" in nyers:
-        return nyers.get("mentve"), nyers["latott"]
-    return None, nyers
+        return nyers.get("mentve"), nyers["latott"], set(nyers.get("csempek", []))
+    return None, nyers, set()
 
 
-def allapot_mentes(latott):
-    json_mentes(ALLAPOT_FAJL, {"mentve": most().isoformat(timespec="seconds"), "latott": latott})
+def allapot_mentes(latott, csempek):
+    json_mentes(ALLAPOT_FAJL, {"mentve": most().isoformat(timespec="seconds"),
+                               "latott": latott, "csempek": sorted(csempek)})
 
 
 def naplo_iras(uj_riasztasok):
@@ -581,7 +583,7 @@ def teszt_minta(riasztasok, darab=25):
 # ------------------------------------------------------------------
 # Fő ciklus
 # ------------------------------------------------------------------
-def feldolgozas(riasztasok, dugok, latott, csendes=frozenset()):
+def feldolgozas(riasztasok, dugok, latott, feltoltott, csendes=frozenset()):
     """csendes: azon riasztások azonosítói, amelyek csak most először lekért
     csempéről jöttek - ezeket megjegyezzük, de nem küldünk róluk e-mailt."""
     json_mentes(AKTIV_FAJL, {
@@ -599,7 +601,7 @@ def feldolgozas(riasztasok, dugok, latott, csendes=frozenset()):
     hatar = (most() - ALLAPOT_MEGORZES).isoformat(timespec="seconds")
     for k in [k for k, v in latott.items() if v < hatar]:
         del latott[k]
-    allapot_mentes(latott)
+    allapot_mentes(latott, feltoltott)
     if uj:
         naplo_iras(uj)
     uj_emailre = [r for r in uj if r["id"] not in csendes]
@@ -612,18 +614,18 @@ def feldolgozas(riasztasok, dugok, latott, csendes=frozenset()):
 def main():
     print(f"🌐 Proxy: {PROXY_SZERVER or 'nincs (közvetlen)'} | kör: {KOR_MP} mp | futásidő: {FUTASIDO_PERC} perc")
     vege = time.monotonic() + FUTASIDO_PERC * 60
-    mentve, latott = allapot_betoltes()
+    mentve, latott, mentett_csempek = allapot_betoltes()
     friss = False
     if mentve:
         try:
             friss = most() - datetime.fromisoformat(mentve) < ALLAPOT_FRISS
         except Exception:
             pass
-    # Friss állapotnál minden csempe már "feltöltött". Különben egy csempe
-    # első sikeres lekérésekor a rajta lévő riasztásokat csak megjegyezzük,
-    # e-mailt csak a később megjelenőkről küldünk (a csempék körönként
-    # változó sikerrel jönnek, ezért ez csempénként, nem körönként megy).
-    feltoltott = set(range(len(CSEMPEK))) if (latott and friss) else set()
+    # Egy csempe első sikeres lekérésekor a rajta lévő riasztásokat csak
+    # megjegyezzük, e-mailt csak a később megjelenőkről küldünk (a csempék
+    # körönként változó sikerrel jönnek, ezért ez csempénként megy). Friss
+    # állapotnál az előző futásban már feltöltött csempék ismertek maradnak.
+    feltoltott = set(mentett_csempek) if (latott and friss) else set()
 
     munkamenet = WazeMunkamenet()
     munkamenet.indit()
@@ -665,8 +667,8 @@ def main():
                 else:
                     elso_csempek = [valaszok[i] for i in valaszok if i not in feltoltott]
                     csendes = {r["id"] for r in osszefesules(elso_csempek)[0]} if elso_csempek else set()
-                    feldolgozas(riasztasok, dugok, latott, csendes)
                     feltoltott.update(valaszok)
+                    feldolgozas(riasztasok, dugok, latott, feltoltott, csendes)
             else:
                 sikertelen_sorozat += 1
                 if sikertelen_sorozat >= UJRAINDITAS_HIBA_UTAN:
