@@ -581,7 +581,9 @@ def teszt_minta(riasztasok, darab=25):
 # ------------------------------------------------------------------
 # Fő ciklus
 # ------------------------------------------------------------------
-def feldolgozas(riasztasok, dugok, latott, csak_feltoltes):
+def feldolgozas(riasztasok, dugok, latott, csendes=frozenset()):
+    """csendes: azon riasztások azonosítói, amelyek csak most először lekért
+    csempéről jöttek - ezeket megjegyezzük, de nem küldünk róluk e-mailt."""
     json_mentes(AKTIV_FAJL, {
         "frissitve": most().isoformat(timespec="seconds"),
         "riasztasok": riasztasok,
@@ -600,10 +602,9 @@ def feldolgozas(riasztasok, dugok, latott, csak_feltoltes):
     allapot_mentes(latott)
     if uj:
         naplo_iras(uj)
-    print(f"  🆕 Új riasztás: {len(uj)}" + (" (első kör: csak feltöltés, e-mail nélkül)" if csak_feltoltes else ""))
-    if csak_feltoltes:
-        return
-    emailre = [r for r in uj if not EMAIL_TIPUSOK or r["tipus"] in EMAIL_TIPUSOK]
+    uj_emailre = [r for r in uj if r["id"] not in csendes]
+    print(f"  🆕 Új riasztás: {len(uj)}" + (f" (ebből {len(uj) - len(uj_emailre)} először lekért csempéről: csak feltöltés)" if len(uj_emailre) < len(uj) else ""))
+    emailre = [r for r in uj_emailre if not EMAIL_TIPUSOK or r["tipus"] in EMAIL_TIPUSOK]
     if emailre:
         riasztas_email(emailre)
 
@@ -618,7 +619,11 @@ def main():
             friss = most() - datetime.fromisoformat(mentve) < ALLAPOT_FRISS
         except Exception:
             pass
-    csak_feltoltes = not (latott and friss)
+    # Friss állapotnál minden csempe már "feltöltött". Különben egy csempe
+    # első sikeres lekérésekor a rajta lévő riasztásokat csak megjegyezzük,
+    # e-mailt csak a később megjelenőkről küldünk (a csempék körönként
+    # változó sikerrel jönnek, ezért ez csempénként, nem körönként megy).
+    feltoltott = set(range(len(CSEMPEK))) if (latott and friss) else set()
 
     munkamenet = WazeMunkamenet()
     munkamenet.indit()
@@ -658,8 +663,10 @@ def main():
                             riasztas_email(teszt_minta(riasztasok), teszt=True)
                         return
                 else:
-                    feldolgozas(riasztasok, dugok, latott, csak_feltoltes)
-                    csak_feltoltes = False
+                    elso_csempek = [valaszok[i] for i in valaszok if i not in feltoltott]
+                    csendes = {r["id"] for r in osszefesules(elso_csempek)[0]} if elso_csempek else set()
+                    feldolgozas(riasztasok, dugok, latott, csendes)
+                    feltoltott.update(valaszok)
             else:
                 sikertelen_sorozat += 1
                 if sikertelen_sorozat >= UJRAINDITAS_HIBA_UTAN:
