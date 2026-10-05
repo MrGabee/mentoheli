@@ -1,0 +1,65 @@
+name: 🚗 Waze Live Map Monitor - Budapest
+
+# A régi waze_budapest_monitor.yml / waze_monitor.yml / waze_token_refresh.yml
+# helyett. Új fájlnév kellett, mert a régiek kézzel le vannak tiltva.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'
+  # PR-ban tesztmódban fut: kiírja, mit talált, de nem ment és nem küld e-mailt.
+  pull_request:
+    paths:
+      - 'waze_budapest_monitor.py'
+      - '.github/workflows/waze_live_map_monitor.yml'
+
+concurrency:
+  group: waze-live-map-monitor
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Playwright telepítése
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y xvfb
+
+      - name: 🚗 Waze monitor futtatása
+        env:
+          EMAIL_KULDO:        ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE }}
+          TESZT_MOD: ${{ github.event_name == 'pull_request' && '1' || '0' }}
+          FEJLES: "1"
+        run: xvfb-run -a python waze_budapest_monitor.py
+
+      - name: 💾 Adatok commitolása
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/waze && cp -r waze_budapest_allapot.json waze_budapest_aktiv.json waze_naplo /tmp/waze/ 2>/dev/null || true
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp -r /tmp/waze/. .
+            git add waze_budapest_allapot.json waze_budapest_aktiv.json waze_naplo 2>/dev/null || true
+            if git diff --staged --quiet; then echo "Nincs változás."; break; fi
+            git commit -m "waze budapest állapot [skip ci]"
+            if git push origin HEAD:main; then break; fi
+            sleep $((RANDOM % 6 + 2))
+          done
