@@ -113,7 +113,7 @@ def _csempek(sorok=3, oszlopok=3):
 
 
 CSEMPEK = _csempek()
-TERKEP_IDOKORLAT_MP = 75
+TERKEP_IDOKORLAT_MP = 150
 
 
 def _georss_atiras(url, csempe):
@@ -135,6 +135,7 @@ def waze_adat_lekerese():
         kiosztas = {}      # átírt URL -> csempe index
         fuggo = []         # kiadott csempék, kérés-sorrendben
         kovetkezo = [0]
+        token_fejlecek = {}  # a térkép saját kérésének x-* fejlécei (reCAPTCHA token)
         try:
             with sync_playwright() as p:
                 browser = p.chromium.launch(
@@ -156,6 +157,10 @@ def waze_adat_lekerese():
                 page = context.new_page()
 
                 def utvonal(route):
+                    fejlecek = route.request.headers
+                    if fejlecek.get("x-recaptcha-token"):
+                        token_fejlecek.clear()
+                        token_fejlecek.update({k: v for k, v in fejlecek.items() if k.startswith("x-")})
                     # A még hiányzó csempék közül a következőt kérjük le.
                     hianyzo = [i for i in range(len(CSEMPEK)) if i not in valaszok]
                     if not hianyzo:
@@ -191,24 +196,44 @@ def waze_adat_lekerese():
                 print(f"🌐 Live Map betöltése ({probalkozas}/{MAX_PROBALKOZAS})...")
                 page.goto(WAZE_INDITO_URL, wait_until="domcontentloaded", timeout=45000)
 
-                # A térkép mozgatásával újabb georss kéréseket váltunk ki,
-                # amíg minden csempére nem jön válasz (vagy le nem jár az idő).
+                # 1) Megvárjuk a térkép saját (tokenes) kérését.
                 hatarido = time.monotonic() + TERKEP_IDOKORLAT_MP
-                lepes = 0
-                page.wait_for_timeout(5000)
+                elso_hatarido = time.monotonic() + 25
+                while not valaszok and time.monotonic() < elso_hatarido:
+                    page.wait_for_timeout(1000)
+
+                # 2) A hiányzó csempéket a böngészőn belülről kérjük le, a térkép
+                #    tokenjével; a route a következő hiányzó csempére írja át.
+                hibas_sorozat = 0
+                while (len(valaszok) < len(CSEMPEK) and time.monotonic() < hatarido
+                       and token_fejlecek and hibas_sorozat < 2):
+                    elotte = len(valaszok)
+                    try:
+                        page.evaluate(
+                            """async ([url, fejlecek]) => {
+                                const r = await fetch(url, { headers: fejlecek });
+                                await r.text();
+                            }""",
+                            [f"https://www.waze.com{GEORSS_RESZ}?env=row&types=alerts,traffic", dict(token_fejlecek)],
+                        )
+                    except Exception as e:
+                        logging.warning(f"Böngészőn belüli fetch hiba: {e}")
+                    page.wait_for_timeout(1200)
+                    hibas_sorozat = 0 if len(valaszok) > elotte else hibas_sorozat + 1
+
+                # 3) Ha a token nem újrahasznosítható, oldal-újratöltéssel
+                #    kérünk újat, és a térkép következő kérése a következő csempe.
                 while len(valaszok) < len(CSEMPEK) and time.monotonic() < hatarido:
-                    irany = 1 if lepes % 2 == 0 else -1
-                    page.mouse.move(800, 500)
-                    page.mouse.down()
-                    page.mouse.move(800 + irany * 150, 500 + irany * 80, steps=8)
-                    page.mouse.up()
-                    lepes += 1
-                    page.wait_for_timeout(2500)
-                page.wait_for_timeout(1500)
+                    elotte = len(valaszok)
+                    page.reload(wait_until="domcontentloaded", timeout=30000)
+                    varj_eddig = time.monotonic() + 15
+                    while len(valaszok) == elotte and time.monotonic() < min(varj_eddig, hatarido):
+                        page.wait_for_timeout(1000)
+                page.wait_for_timeout(1000)
                 browser.close()
 
             print(f"  georss válaszok HTTP kódjai: {statuszok or 'egy sem érkezett'}")
-            print(f"  lefedett csempék: {len(valaszok)}/{len(CSEMPEK)}")
+            print(f"  lefedett csempék: {len(valaszok)}/{len(CSEMPEK)} | reCAPTCHA token látva: {bool(token_fejlecek)}")
             for i, v in valaszok.items():
                 if len(v.get("alerts", []) or []) >= 200:
                     print(f"  ⚠️ A(z) {i}. csempe elérte a 200-as plafont, lehet, hogy hiányos.")
