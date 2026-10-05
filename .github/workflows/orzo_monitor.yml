@@ -50,7 +50,7 @@ jobs:
           # Ha épp fut vagy sorban áll egy futás, a lánc él, nem indítjuk újra
           # (különben a hosszú futású láncokat, pl. Police.hu, feleslegesen
           # duplán indítanánk). A beragadt, régi "queued" futásokat viszont
-          # figyelmen kívül hagyjuk, ezért csak az ennél frissebbeket nézzük.
+          # figyelmen kívül hagyjuk, ezért sorban állót csak ennél frissebbet nézünk.
           AKTIV_FUTAS_MAX_PERC=30
 
           SAJAT_REPO="${{ github.repository }}"
@@ -102,9 +102,13 @@ jobs:
             FUTAS_IDOPONT=$(date -u -d "$LETREHOZVA" +%s 2>/dev/null)
             KULONBSEG_PERC=$(( (MOST - FUTAS_IDOPONT) / 60 ))
 
+            # Futó (in_progress) futás a GitHub 6 órás job-korlátjáig élőnek számít
+            # (pl. a balesetinfo VÉSZ egyetlen hosszú futásban pörög), a sorban
+            # álló (queued/pending) futás csak AKTIV_FUTAS_MAX_PERC percig.
             AKTIV_DB=$(echo "$UTOLSO_FUTASOK" | jq --argjson most "$MOST" --argjson max "$AKTIV_FUTAS_MAX_PERC" \
               '[.workflow_runs[]? | select(.status != "completed")
-                | select(($most - (.created_at | fromdateiso8601)) < ($max * 60))] | length')
+                | ($most - (.created_at | fromdateiso8601)) as $kor
+                | select((.status == "in_progress" and $kor < 6 * 3600) or $kor < ($max * 60))] | length')
 
             echo "   Utolsó futás: $LETREHOZVA ($KULONBSEG_PERC perce), folyamatban: ${AKTIV_DB:-0}"
 
