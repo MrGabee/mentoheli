@@ -395,6 +395,11 @@ NAV_SOFTWARE_FEJLESZTO_EMAIL = "baloghgabee@gmail.com"
 # egymást követő <=30 napos "szeletre" bontva fut le.
 NAV_LEKERDEZES_NAPOK_VISSZA = 90
 
+# A dashboard címe - a bérlői-értesítő jóváhagyási emailben ide mutat a link.
+DASHBOARD_URL = os.environ.get("SZAMLA_DASHBOARD_URL", "https://mrgabee.github.io/mentoheli/szamlak/szamlak.html")
+# Az elküldött/elutasított várólista-bejegyzéseket ennyi napig őrizzük meg (utána ritkítjuk).
+KOR_ERTESITO_ELTARTAS_NAP = 30
+
 # ⬇️⬇️⬇️ ITT ÁLLÍTSD BE, HÁNY NAPPAL A HATÁRIDŐ ELŐTT MENJEN AZ ÖSSZESÍTŐ ⬇️⬇️⬇️
 SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE = 5  # <-- írd át a saját igényed szerint
 
@@ -1157,6 +1162,15 @@ def _allapot_alapertekek() -> dict:
         # "<kollekcio>:<eredeti_id>" (a két kollekció id-tere elméletben
         # ütközhetne, ezért a kollekció-nevet is a kulcsba tesszük).
         "torolt_szamlak_archivum": {},
+        # ld. "BÉRLŐI KÖR - AZONNALI ÚJ-SZÁMLA EMAIL, JÓVÁHAGYÁSI (TESZT)
+        # FÁZISSAL" szekció (_kor_ertesito_sorba_allitasa()) - a dashboard
+        # "📨 Bérlői értesítők" paneljén állítható. A két kapcsoló és a
+        # döntések CSAK a dashboardról íródnak, a várólistát CSAK a script
+        # írja (így nem írják felül egymást).
+        "kor_azonnali_ertesito": None,     # True = új számlánál azonnali email a bérlői körnek (None/False = ki)
+        "kor_ertesito_jovahagyas": None,   # False = jóváhagyás nélkül megy; None/True = a tulajdonos jóváhagyása kell
+        "kor_ertesito_varolista": {},      # rid -> {statusz: varakozik/jovahagyva/elkuldve/elutasitva/kihagyva, ...}
+        "kor_ertesito_dontesek": {},       # rid -> "jovahagyva"/"elutasitva" (a dashboardról)
         # A korábbi (különálló, nem titkosított) szamla_beallitasok.json
         # mezői - ld. régi beallitasok_betoltese() kommentjeit, most
         # beallitasok_kinyerese() validálja ugyanígy, csak innen olvasva.
@@ -2858,7 +2872,163 @@ def _cimzett_string(email_lista):
     return ", ".join(egyesitett)
 
 
-def _uj_szamla_ertesites_kuldese(rekord: dict, pdf_bytes, statisztika: dict, allapot: dict, kor_kulcs=None):
+# ══════════════════════════════════════════════════════════════════
+#  BÉRLŐI KÖR - AZONNALI ÚJ-SZÁMLA EMAIL, JÓVÁHAGYÁSI (TESZT) FÁZISSAL
+# ══════════════════════════════════════════════════════════════════
+# A felhasználó kérése: "ha egy számla betöltődik, akkor menjen ki email" a
+# bérlői körnek (1./2. kör) - és "egy teszt fázis, hogy előbb a tulajdonos
+# hagyja jóvá, hogy kimenjen (aztán ezt később kikapcsolom)".
+#
+# MŰKÖDÉS:
+#  1. Új (fizetetlen) Díjnet-/Vízművek-számla betöltődésekor, ha a
+#     dashboardon BE van kapcsolva a "kor_azonnali_ertesito", és a számla
+#     kor_a/kor_b körbe tartozik (a "fuggoben" tételek nem), a számla egy
+#     VÁRÓLISTÁRA kerül ("kor_ertesito_varolista").
+#  2. Ha a jóváhagyás kell (ez az ALAPÉRTELMEZÉS, amíg a dashboardon ki
+#     nem kapcsolod: "kor_ertesito_jovahagyas" = False), a tulajdonos
+#     kap egy "⏳ Jóváhagyásra vár" emailt, és a dashboardon
+#     ("📨 Bérlői értesítők" panel) jóváhagyhatja/elutasíthatja.
+#     Jóváhagyás NÉLKÜL a bérlőnek SEMMI nem megy ki.
+#  3. A script minden futásán (kor_ertesito_varolista_feldolgozasa())
+#     kiküldi a JÓVÁHAGYOTT tételeket a kör címzettjeinek (a PDF-fel), és
+#     lezárja őket. Ha a jóváhagyás ki van kapcsolva, a tétel azonnal
+#     "jovahagyva" állapotban kerül a várólistára, és ugyanabban a
+#     futásban kimegy.
+# A kapcsolók és a döntések CSAK a dashboardról íródnak, a várólista CSAK
+# a scriptből - így egy egyidejű futás és egy dashboard-kattintás nem
+# írhatja felül egymás változását.
+
+def _kor_ertesito_be_van_kapcsolva(allapot: dict) -> bool:
+    return allapot.get("kor_azonnali_ertesito") is True
+
+
+def _kor_ertesito_jovahagyas_kell(allapot: dict) -> bool:
+    # Szándékosan "csak a kifejezett False kapcsolja ki": a hiányzó/None
+    # érték (még sosem nyúltál hozzá) a BIZTONSÁGOS, jóváhagyásos módot jelenti.
+    return allapot.get("kor_ertesito_jovahagyas") is not False
+
+
+def _kor_nev_megjeleniteshez(allapot: dict, kor_kulcs: str) -> str:
+    return (allapot.get("kor_nevek") or {}).get(kor_kulcs) or (
+        "1. kör" if kor_kulcs == "kor_a" else "2. kör"
+    )
+
+
+def _kor_ertesito_sorba_allitasa(rid, rekord: dict, kor_kulcs, allapot: dict, statisztika: dict):
+    """Új számlát a bérlői-értesítő várólistára tesz (ld. fenti szekció)."""
+    if not rid or kor_kulcs not in ("kor_a", "kor_b"):
+        return
+    if not _kor_ertesito_be_van_kapcsolva(allapot):
+        return
+    varolista = allapot.setdefault("kor_ertesito_varolista", {})
+    if rid in varolista:
+        return
+    kor_nev = _kor_nev_megjeleniteshez(allapot, kor_kulcs)
+    if not _cimzett_string(_kor_cimzettek(allapot, kor_kulcs)):
+        print(f"      ℹ️  Bérlői értesítő kérve lenne a(z) '{kor_nev}' körnek, de nincs beállítva "
+              f"email-cím (dashboard 'Bérlői körök') - kihagyva: {rekord.get('targy')}")
+        return
+    jovahagyas_kell = _kor_ertesito_jovahagyas_kell(allapot)
+    varolista[rid] = {
+        "rid": rid,
+        "kor": kor_kulcs,
+        "kor_nev": kor_nev,
+        "szolgaltato_nev": rekord.get("szolgaltato_nev"),
+        "targy": rekord.get("targy"),
+        "szamlaszam": rekord.get("szamlaszam"),
+        "osszeg": rekord.get("osszeg"),
+        "hatarido": rekord.get("hatarido"),
+        "letrehozva": magyar_ido().isoformat(),
+        "statusz": "varakozik" if jovahagyas_kell else "jovahagyva",
+    }
+    if not jovahagyas_kell:
+        print(f"      📨 Bérlői értesítő sorba állítva (jóváhagyás nélkül, ebben a futásban kimegy): "
+              f"{kor_nev} – {rekord.get('targy')}")
+        return
+    print(f"      ⏳ Bérlői értesítő JÓVÁHAGYÁSRA VÁR (a tulajdonosnak): {kor_nev} – {rekord.get('targy')}")
+    tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+    if not tulajdonos_cimzett:
+        print("      ℹ️  Nincs beállítva tulajdonosi email-cím (dashboard 'Tulajdonos') - a jóváhagyási "
+              "kérés-email nem megy ki, de a tétel a dashboard '📨 Bérlői értesítők' paneljén ott vár.")
+        return
+    statisztika["email_ertesitesek"] += 1
+    email_kuldes(
+        f"⏳ Jóváhagyásra vár – új számla értesítő a(z) {kor_nev} körnek",
+        f"""
+        <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
+          <h2 style="color:#b45309;">⏳ Jóváhagyásra vár</h2>
+          <p>A(z) <strong>{_esc(kor_nev)}</strong> kör egy új számláról értesítőt kapna - de a teszt fázis
+          miatt ez csak a TE jóváhagyásod után megy ki:</p>
+          <p><strong>{_esc(rekord.get('szolgaltato_nev') or '')}</strong> – {_esc(rekord.get('targy') or '')}<br>
+          Összeg: {forint(rekord.get('osszeg'))} · Határidő: {_esc(str(rekord.get('hatarido') or 'ismeretlen'))}</p>
+          <p><a href="{_esc(DASHBOARD_URL)}" style="background:#1d4ed8;color:#fff;padding:10px 16px;
+          border-radius:6px;text-decoration:none;font-weight:bold;">Megnyitás a dashboardon → 📨 Bérlői értesítők</a></p>
+          <p style="color:#666;font-size:12px;">Jóváhagyás után a következő futásnál (legfeljebb ~20 perc) megy ki.
+          Ha nem hagyod jóvá, a bérlőnek semmi nem megy ki.</p>
+        </div>""",
+        cimzett=tulajdonos_cimzett,
+    )
+
+
+def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztika: dict):
+    """A dashboard-döntések átvezetése + a JÓVÁHAGYOTT bérlői értesítők
+    kiküldése + a régi, lezárt tételek ritkítása (ld. fenti szekció)."""
+    varolista = allapot.get("kor_ertesito_varolista") or {}
+    if not varolista:
+        return
+    dontesek = allapot.get("kor_ertesito_dontesek") or {}
+    most_iso = magyar_ido().isoformat()
+
+    for rid, b in varolista.items():
+        if b.get("statusz") == "varakozik":
+            d = dontesek.get(rid)
+            if d == "jovahagyva":
+                b["statusz"], b["dontes_ideje"] = "jovahagyva", most_iso
+                print(f"  ✅ Bérlői értesítő JÓVÁHAGYVA a dashboardon: {b.get('kor_nev')} – {b.get('targy')}")
+            elif d == "elutasitva":
+                b["statusz"], b["dontes_ideje"] = "elutasitva", most_iso
+                print(f"  🚫 Bérlői értesítő ELUTASÍTVA a dashboardon: {b.get('kor_nev')} – {b.get('targy')}")
+
+    kuldendo = [(rid, b) for rid, b in varolista.items() if b.get("statusz") == "jovahagyva"]
+    if kuldendo and EMAIL_KIKAPCSOLVA:
+        print(f"  🔕 {len(kuldendo)} jóváhagyott bérlői értesítő vár, de az email-küldés le van tiltva "
+              "a dashboard beállításaiban (Email-küldés engedélyezve) - kiküldés később.")
+        kuldendo = []
+    for rid, b in kuldendo:
+        rekord = szamlak.get(rid)
+        if rekord is None:
+            b["statusz"], b["megjegyzes"] = "kihagyva", "a számla időközben törlődött"
+            continue
+        if rekord.get("fizetve"):
+            b["statusz"], b["megjegyzes"] = "kihagyva", "a számla időközben kifizetődött"
+            continue
+        cimzett = _cimzett_string(_kor_cimzettek(allapot, b.get("kor")))
+        if not cimzett:
+            print(f"  ⚠️  Jóváhagyott bérlői értesítő, de a(z) '{b.get('kor_nev')}' körnek nincs email-címe - "
+                  f"várakozik: {b.get('targy')}")
+            continue
+        csatolmanyok = csatolmanyok_osszegyujtese(allapot, [(rid, rekord)])
+        statisztika["email_ertesitesek"] += 1
+        if email_kuldes(
+            f"📄 Új számla – {rekord['szolgaltato_nev']}",
+            uj_szamla_email_html(rekord),
+            csatolmanyok or None,
+            cimzett=cimzett,
+        ):
+            b["statusz"], b["elkuldve"] = "elkuldve", most_iso
+
+    hatar = magyar_ido() - timedelta(days=KOR_ERTESITO_ELTARTAS_NAP)
+    for rid in list(varolista):
+        b = varolista[rid]
+        if b.get("statusz") in ("elkuldve", "elutasitva", "kihagyva"):
+            try:
+                if datetime.fromisoformat(b.get("letrehozva")) < hatar:
+                    del varolista[rid]
+            except (TypeError, ValueError):
+                del varolista[rid]
+
+
+def _uj_szamla_ertesites_kuldese(rekord: dict, pdf_bytes, statisztika: dict, allapot: dict, kor_kulcs=None, rid=None):
     """Egységesen kezeli az "új számla" AZONNALI értesítő email kiküldését -
     ezt hívja a Díjnet- és a Vízművek-ág (az IMAP-os/MVM-ág külön, saját
     maga küld tulajdonosi másolatot, ld. main()).
@@ -2877,6 +3047,9 @@ def _uj_szamla_ertesites_kuldese(rekord: dict, pdf_bytes, statisztika: dict, all
     kor_kulcs: csak INFORMATÍV/naplózási célra kapja meg (pl. hogy a log
     mutassa, egy "fuggoben" kibocsátóról van-e szó) - a tényleges
     címzett-döntésben már NEM játszik szerepet."""
+    # ld. "BÉRLŐI KÖR - AZONNALI ÚJ-SZÁMLA EMAIL, JÓVÁHAGYÁSI (TESZT) FÁZISSAL" -
+    # a tulajdonosi értesítőtől FÜGGETLEN, ezért a lenti korai return-ök előtt.
+    _kor_ertesito_sorba_allitasa(rid, rekord, kor_kulcs, allapot, statisztika)
     if kor_kulcs == "fuggoben":
         print(f"      ⏳ Új számla érkezett egy még bérlői körbe nem sorolt kibocsátótól/fiókból "
               f"({rekord['targy']}) - a bérlői-kör-összesítőkbe majd csak a besorolás után kerül "
@@ -5893,7 +6066,7 @@ def main():
                         print(f"      🆕 Új Díjnet-számla: {rekord['szolgaltato_nev']} – "
                               f"{forint(osszeg)} – határidő: {hatarido} – kör: {kor}")
                         if not fizetve_e:
-                            _uj_szamla_ertesites_kuldese(rekord, pdf_bytes, statisztika, allapot, kor)
+                            _uj_szamla_ertesites_kuldese(rekord, pdf_bytes, statisztika, allapot, kor, rid=did)
                     else:
                         # Már ismert számla - csendben frissítjük (elsősorban a
                         # fizetve-állapotot), nem küldünk újabb "új számla" emailt
@@ -6042,7 +6215,7 @@ def main():
                             vizmuvek_pdf_letoltesek_szama += 1
                             pdf_tarolas(allapot, vid, pdf_bytes)
                         if not fizetve_e:
-                            _uj_szamla_ertesites_kuldese(rekord, pdf_bytes, statisztika, allapot, kor)
+                            _uj_szamla_ertesites_kuldese(rekord, pdf_bytes, statisztika, allapot, kor, rid=vid)
                     else:
                         # Már ismert számla - csendben frissítjük
                         # (elsősorban a fizetve-állapotot), nem küldünk
@@ -6238,6 +6411,9 @@ def main():
                     )
                     _tulajdonos_osszesito_masolat(allapot, kor_erintett, cim_resz, statisztika, True)
             allapot["utolso_fix_osszesito_datum"] = ma_str
+
+    # ---- 2b-2. Bérlői körök - azonnali új-számla emailek (jóváhagyási fázissal) ----
+    kor_ertesito_varolista_feldolgozasa(allapot, szamlak, statisztika)
 
     # ---- 2c. Dátum-intervallumos, eseti küldés egy megadott email-címre ----
     # Ezt a dashboard "Számlák küldése emailben" panelje indítja el egy
