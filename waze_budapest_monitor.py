@@ -36,7 +36,8 @@ KÖRNYEZETI VÁLTOZÓK:
   EMAIL_KULDO, EMAIL_JELSZO, EMAIL_CIMZETT_WAZE - Gmail küldéshez
   EMAIL_TIPUSOK - vesszővel elválasztott Waze típusok, amikről e-mail megy
                   (alap: ACCIDENT,ROAD_CLOSED,HAZARD,POLICE; üres = mind)
-  TESZT_MOD=1   - az első sikeres körig fut; nem ment semmit
+  TESZT_MOD=1   - az első sikeres körig fut; nem ment semmit (EMAIL_TESZT=1 esetén
+                  amíg minden csempéről van adat)
   EMAIL_TESZT=1 - TESZT_MOD mellett minta e-mailt küld a talált riasztásokból
   FUTASIDO_PERC - meddig fusson percenként (0 = egy kör)
   KOR_MP        - két kör között eltelt idő másodpercben (alap: 60)
@@ -649,9 +650,10 @@ def main():
                     tipusok[r["tipus"]] = tipusok.get(r["tipus"], 0) + 1
                 print(f"  📊 Riasztások: {len(riasztasok)} {tipusok} | dugók: {len(dugok)}")
                 if TESZT_MOD:
-                    # Tesztben addig fut, amíg minden csempéről van adat.
+                    # Tesztben az első sikeres kör elég (minta e-mailhez
+                    # viszont megvárjuk, hogy minden csempéről legyen adat).
                     volt_adat = True
-                    if len(osszes) == len(CSEMPEK):
+                    if not EMAIL_TESZT or len(osszes) == len(CSEMPEK):
                         if EMAIL_TESZT:
                             riasztas_email(teszt_minta(riasztasok), teszt=True)
                         return
