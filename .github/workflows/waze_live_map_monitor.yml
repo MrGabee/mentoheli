@@ -72,7 +72,7 @@ jobs:
           TESZT_MOD: ${{ github.event_name == 'pull_request' && '1' || '0' }}
           # PR-on minta e-mailt küld a talált riasztásokból.
           EMAIL_TESZT: ${{ github.event_name == 'pull_request' && '1' || '0' }}
-          FUTASIDO_PERC: ${{ github.event_name == 'pull_request' && '4' || '345' }}
+          FUTASIDO_PERC: ${{ github.event_name == 'pull_request' && '6' || '345' }}
           KOR_MP: "60"
           GIT_MENTES_PERC: "30"
           FEJLES: "1"

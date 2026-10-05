@@ -48,6 +48,7 @@ import json
 import time
 import html
 import hashlib
+import random
 import smtplib
 import subprocess
 import traceback
@@ -94,6 +95,9 @@ TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
 EMAIL_TESZT = os.environ.get("EMAIL_TESZT", "0") == "1"
 FEJLES = os.environ.get("FEJLES", "0") == "1"
 PROXY_SZERVER = os.environ.get("PROXY_SZERVER", "")
+# Valódi Google Chrome (a GitHub runneren telepítve van); ha nincs, a Playwright
+# saját Chromiuma. A reCAPTCHA a "Chrome for Testing"-et gyanúsabbnak láthatja.
+CHROME_CSATORNA = os.environ.get("CHROME_CSATORNA", "chrome")
 FUTASIDO_PERC = float(os.environ.get("FUTASIDO_PERC", "0"))
 KOR_MP = int(os.environ.get("KOR_MP", "60"))
 GIT_MENTES_PERC = float(os.environ.get("GIT_MENTES_PERC", "0"))
@@ -166,19 +170,23 @@ class WazeMunkamenet:
 
     def indit(self):
         self._pw = sync_playwright().start()
-        self.browser = self._pw.chromium.launch(
+        inditas = dict(
             headless=not FEJLES,
             args=["--disable-blink-features=AutomationControlled"],
             proxy={"server": PROXY_SZERVER} if PROXY_SZERVER else None,
         )
+        try:
+            self.browser = self._pw.chromium.launch(channel=CHROME_CSATORNA or None, **inditas)
+        except Exception as e:
+            print(f"ℹ️ '{CHROME_CSATORNA}' nem indult ({type(e).__name__}), beépített Chromium.")
+            self.browser = self._pw.chromium.launch(**inditas)
+        print(f"🧭 Böngésző: {self.browser.browser_type.name} {self.browser.version}")
+        # Saját user-agentet szándékosan nem adunk meg: ha eltér a valódi
+        # verziótól (a Client Hints-ben is látszik), az robotgyanús.
         context = self.browser.new_context(
             viewport={"width": 1600, "height": 1000},
             locale="hu-HU",
             timezone_id="Europe/Budapest",
-            user_agent=(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                "(KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
-            ),
         )
         context.add_init_script(
             "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
@@ -228,9 +236,18 @@ class WazeMunkamenet:
             except Exception as e:
                 logging.warning(f"Nem JSON georss válasz: {e}")
 
+    def _egermozgas(self):
+        """Apró, emberi egérmozgás - a reCAPTCHA v3 a viselkedést is pontozza."""
+        try:
+            self.page.mouse.move(random.randint(200, 1400), random.randint(150, 850),
+                                 steps=random.randint(5, 15))
+        except Exception:
+            pass
+
     def _varj(self, feltetel, meddig):
         while not feltetel() and time.monotonic() < meddig:
-            self.page.wait_for_timeout(500)
+            self._egermozgas()
+            self.page.wait_for_timeout(random.randint(400, 900))
 
     def kor(self):
         """Egy lekérési kör. Visszaadja a sikeres csempe-válaszokat (lehet üres)."""
@@ -610,6 +627,7 @@ def main():
                 if sikertelen_sorozat >= UJRAINDITAS_HIBA_UTAN:
                     print("🔁 Több sikertelen kör - új böngésző indul.")
                     munkamenet.bezar()
+                    time.sleep(20)
                     munkamenet = WazeMunkamenet()
                     munkamenet.indit()
                     sikertelen_sorozat = 0
