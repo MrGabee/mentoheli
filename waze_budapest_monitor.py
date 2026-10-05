@@ -1,5 +1,5 @@
 """
-🚧 WAZE BUDAPEST FIGYELŐ - PLAYWRIGHT, "LEHALLGATÓS" VÁLTOZAT
+🚧 WAZE BUDAPEST + PEST MEGYE FIGYELŐ - PLAYWRIGHT, "LEHALLGATÓS" VÁLTOZAT
 Forrás: a Waze Live Map (https://www.waze.com/live-map) saját georss hívásai.
 
 MIÉRT ÍGY?
@@ -9,7 +9,8 @@ Chromiumban, és a térkép SAJÁT georss kérését (a saját friss tokenjével
 a Playwright route-jával egy budapesti csempére irányítjuk át. A többi
 csempét ugyanazzal a tokennel, a böngészőn belülről kérjük le, és ha a
 Waze ezt elutasítja, az oldal újratöltésével kérünk új tokent.
-(Egy georss válasz max. ~200 riasztás, ezért 2x2 csempe.)
+(Egy georss válasz max. ~200 riasztás, ezért Budapest 6 csempe minden
+körben (2x3), Pest megye 4x4 csempéje körbeforgatva, körönként 2.)
 
 PERCENKÉNTI FIGYELÉS:
 A böngésző nyitva marad, és KOR_MP másodpercenként (alap: 60) újra lekérjük
@@ -66,8 +67,12 @@ try:
 except Exception:
     _BUDAPESTI_ZONA = None
 
-# --- Budapest + közvetlen agglomeráció (lon/lat) ---
-BBOX = {"left": 18.90, "bottom": 47.35, "right": 19.35, "top": 47.60}
+# --- Figyelt terület (lon/lat) ---
+# BBOX: Budapest + Pest megye befoglaló téglalapja (a szomszédos megyék
+# széleiből is belelóg egy kevés). BBOX_BP: Budapest + közvetlen agglomeráció,
+# ahol a sűrű bejelentések miatt kisebb csempék kellenek.
+BBOX = {"left": 18.65, "bottom": 46.92, "right": 20.15, "top": 47.86}
+BBOX_BP = {"left": 18.90, "bottom": 47.35, "right": 19.35, "top": 47.60}
 KOZEP = (47.4979, 19.0402)
 
 # A ul?ll=... link átirányít a live-mapre, a megadott pontra középre igazítva.
@@ -102,7 +107,7 @@ CHROME_CSATORNA = os.environ.get("CHROME_CSATORNA", "chrome")
 FUTASIDO_PERC = float(os.environ.get("FUTASIDO_PERC", "0"))
 KOR_MP = int(os.environ.get("KOR_MP", "60"))
 GIT_MENTES_PERC = float(os.environ.get("GIT_MENTES_PERC", "0"))
-KOR_IDOKORLAT_MP = 50          # egy kör legfeljebb ennyi ideig próbálkozik
+KOR_IDOKORLAT_MP = 55          # egy kör legfeljebb ennyi ideig próbálkozik
 MAX_UJRATOLTES = 3             # körönként ennyi oldal-újratöltés
 UJRAINDITAS_HIBA_UTAN = 3      # ennyi sikertelen kör után új böngésző
 
@@ -121,22 +126,29 @@ def most():
 # ------------------------------------------------------------------
 # Csempék, URL-átírás
 # ------------------------------------------------------------------
-def _csempek(sorok, oszlopok):
-    dlat = (BBOX["top"] - BBOX["bottom"]) / sorok
-    dlon = (BBOX["right"] - BBOX["left"]) / oszlopok
+def _csempek(terulet, sorok, oszlopok):
+    dlat = (terulet["top"] - terulet["bottom"]) / sorok
+    dlon = (terulet["right"] - terulet["left"]) / oszlopok
     return [
         {
-            "bottom": round(BBOX["bottom"] + i * dlat, 5),
-            "top": round(BBOX["bottom"] + (i + 1) * dlat, 5),
-            "left": round(BBOX["left"] + j * dlon, 5),
-            "right": round(BBOX["left"] + (j + 1) * dlon, 5),
+            "bottom": round(terulet["bottom"] + i * dlat, 5),
+            "top": round(terulet["bottom"] + (i + 1) * dlat, 5),
+            "left": round(terulet["left"] + j * dlon, 5),
+            "right": round(terulet["left"] + (j + 1) * dlon, 5),
         }
         for i in range(sorok)
         for j in range(oszlopok)
     ]
 
 
-CSEMPEK = _csempek(2, 2)
+# Több, kisebb csempe = kisebb esély a 200-as plafonra, de több kérés is
+# (a Waze 429-cel lassít). Budapest 6 csempéjét minden körben lekérjük; a
+# megye 16 (ritkább) csempéjéből körönként MEGYE_KORONKENT darabot,
+# körbeforgatva (így ~8 percenként frissül mind).
+BP_CSEMPEK = _csempek(BBOX_BP, 2, 3)
+MEGYE_CSEMPEK = _csempek(BBOX, 4, 4)
+CSEMPEK = BP_CSEMPEK + MEGYE_CSEMPEK
+MEGYE_KORONKENT = 2
 
 
 def _georss_atiras(url, csempe):
@@ -160,9 +172,12 @@ class WazeMunkamenet:
         self.page = None
         self.betoltve = False
         self.token_fejlecek = {}
-        self._uj_kor()
+        self.utolso = {}       # csempe index -> utolsó sikeres válasz (a megyéhez)
+        self.megye_mutato = 0
+        self._uj_kor([])
 
-    def _uj_kor(self):
+    def _uj_kor(self, korcsempek):
+        self.korcsempek = korcsempek  # ebben a körben lekérendő csempék indexei
         self.valaszok = {}     # csempe index -> georss JSON
         self.statuszok = []
         self.kiosztas = {}     # átírt URL -> csempe index
@@ -209,7 +224,7 @@ class WazeMunkamenet:
         fejlecek = route.request.headers
         if fejlecek.get("x-recaptcha-token"):
             self.token_fejlecek = {k: v for k, v in fejlecek.items() if k.startswith("x-")}
-        hianyzo = [i for i in range(len(CSEMPEK)) if i not in self.valaszok]
+        hianyzo = [i for i in self.korcsempek if i not in self.valaszok]
         if not hianyzo:
             route.continue_()
             return
@@ -251,8 +266,11 @@ class WazeMunkamenet:
             self.page.wait_for_timeout(random.randint(400, 900))
 
     def kor(self):
-        """Egy lekérési kör. Visszaadja a sikeres csempe-válaszokat (lehet üres)."""
-        self._uj_kor()
+        """Egy lekérési kör. Visszaadja (e kör sikeres válaszai, az összes csempe
+        legutóbbi ismert válasza) párost."""
+        megye = [len(BP_CSEMPEK) + (self.megye_mutato + k) % len(MEGYE_CSEMPEK)
+                 for k in range(MEGYE_KORONKENT)]
+        self._uj_kor(list(range(len(BP_CSEMPEK))) + megye)
         hatarido = time.monotonic() + KOR_IDOKORLAT_MP
 
         # 1) Ha van még tokenünk, először azzal próbálkozunk (újratöltés
@@ -272,7 +290,7 @@ class WazeMunkamenet:
 
         # 3) Ha a token nem újrahasznosítható, oldal-újratöltéssel kérünk újat.
         ujratoltes = 0
-        while (len(self.valaszok) < len(CSEMPEK) and time.monotonic() < hatarido
+        while (len(self.valaszok) < len(self.korcsempek) and time.monotonic() < hatarido
                and ujratoltes < MAX_UJRATOLTES):
             ujratoltes += 1
             self.page.wait_for_timeout(10000 if 429 in self.statuszok[-3:] else 2000)
@@ -280,11 +298,15 @@ class WazeMunkamenet:
             self.page.reload(wait_until="domcontentloaded", timeout=30000)
             self._varj(lambda: len(self.valaszok) > elotte, min(time.monotonic() + 15, hatarido))
         self.page.wait_for_timeout(500)
-        return dict(self.valaszok)
+        # A megyei mutatót csak a sikeresen lekért megyei csempék után léptetjük.
+        if all(i in self.valaszok for i in megye):
+            self.megye_mutato = (self.megye_mutato + MEGYE_KORONKENT) % len(MEGYE_CSEMPEK)
+        self.utolso.update(self.valaszok)
+        return dict(self.valaszok), dict(self.utolso)
 
     def _csempek_tokennel(self, hatarido):
         hibas_sorozat = 0
-        while (len(self.valaszok) < len(CSEMPEK) and time.monotonic() < hatarido
+        while (len(self.valaszok) < len(self.korcsempek) and time.monotonic() < hatarido
                and self.token_fejlecek and hibas_sorozat < 2):
             elotte = len(self.valaszok)
             try:
@@ -298,7 +320,10 @@ class WazeMunkamenet:
                 )
             except Exception as e:
                 logging.warning(f"Böngészőn belüli fetch hiba: {e}")
-            self.page.wait_for_timeout(800)
+            if 429 in self.statuszok[-1:]:
+                self.page.wait_for_timeout(8000)   # rate limit: kivárjuk
+            else:
+                self.page.wait_for_timeout(random.randint(1200, 2000))
             hibas_sorozat = 0 if len(self.valaszok) > elotte else hibas_sorozat + 1
 
 
@@ -534,9 +559,9 @@ def email_kuldes(targy, szoveg, html_torzs=None):
 def riasztas_email(riasztasok, teszt=False):
     riasztasok = sorted(riasztasok, key=_sorrend)
     if teszt:
-        cim = f"🧪 Waze Budapest TESZT – {len(riasztasok)} esemény (minta)"
+        cim = f"🧪 Waze Budapest + Pest megye TESZT – {len(riasztasok)} esemény (minta)"
     else:
-        cim = f"🚧 Waze Budapest – {len(riasztasok)} új esemény"
+        cim = f"🚧 Waze Budapest + Pest megye – {len(riasztasok)} új esemény"
     email_kuldes(f"{cim} | {most().strftime('%H:%M')}", email_szoveg(riasztasok, cim), email_html(riasztasok, cim))
 
 
@@ -598,35 +623,41 @@ def main():
     munkamenet.indit()
     sikertelen_sorozat = 0
     kor_szam = 0
+    volt_adat = False
     utolso_git = time.monotonic()
     try:
         while True:
             kor_szam += 1
             kor_kezdet = time.monotonic()
             try:
-                valaszok = munkamenet.kor()
+                valaszok, osszes = munkamenet.kor()
             except Exception as e:
                 logging.warning(f"Kör hiba: {e}\n{traceback.format_exc()}")
                 print(f"⚠️ Kör hiba: {type(e).__name__}: {e}")
-                valaszok = {}
-            print(f"[{most().strftime('%H:%M:%S')}] #{kor_szam} csempék: {len(valaszok)}/{len(CSEMPEK)} | HTTP: {munkamenet.statuszok}")
+                valaszok, osszes = {}, {}
+            print(f"[{most().strftime('%H:%M:%S')}] #{kor_szam} csempék: {len(valaszok)}/{len(munkamenet.korcsempek)} "
+                  f"(ismert: {len(osszes)}/{len(CSEMPEK)}) | HTTP: {munkamenet.statuszok}")
 
             if valaszok:
                 sikertelen_sorozat = 0
                 for i, v in valaszok.items():
                     if len(v.get("alerts", []) or []) >= 200:
                         print(f"  ⚠️ A(z) {i}. csempe elérte a 200-as plafont.")
-                riasztasok, dugok = osszefesules(valaszok.values())
+                riasztasok, dugok = osszefesules(osszes.values())
                 tipusok = {}
                 for r in riasztasok:
                     tipusok[r["tipus"]] = tipusok.get(r["tipus"], 0) + 1
                 print(f"  📊 Riasztások: {len(riasztasok)} {tipusok} | dugók: {len(dugok)}")
                 if TESZT_MOD:
-                    if EMAIL_TESZT:
-                        riasztas_email(teszt_minta(riasztasok), teszt=True)
-                    return
-                feldolgozas(riasztasok, dugok, latott, csak_feltoltes)
-                csak_feltoltes = False
+                    # Tesztben addig fut, amíg minden csempéről van adat.
+                    volt_adat = True
+                    if len(osszes) == len(CSEMPEK):
+                        if EMAIL_TESZT:
+                            riasztas_email(teszt_minta(riasztasok), teszt=True)
+                        return
+                else:
+                    feldolgozas(riasztasok, dugok, latott, csak_feltoltes)
+                    csak_feltoltes = False
             else:
                 sikertelen_sorozat += 1
                 if sikertelen_sorozat >= UJRAINDITAS_HIBA_UTAN:
@@ -648,7 +679,7 @@ def main():
     finally:
         munkamenet.bezar()
 
-    if TESZT_MOD:
+    if TESZT_MOD and not volt_adat:
         raise RuntimeError("Tesztmódban egyetlen körben sem jött adat (valószínűleg reCAPTCHA 403).")
 
 

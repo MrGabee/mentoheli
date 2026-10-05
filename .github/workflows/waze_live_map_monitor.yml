@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '*/15 * * * *'
-  # PR-ban tesztmódban fut: nem ment semmit, csak egy minta e-mailt küld.
+  # PR-ban tesztmódban fut: nem ment semmit és nem küld e-mailt.
   pull_request:
     paths:
       - 'waze_budapest_monitor.py'
@@ -70,9 +70,9 @@ jobs:
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_WAZE: ${{ secrets.EMAIL_CIMZETT_WAZE || secrets.EMAIL_CIMZETT }}
           TESZT_MOD: ${{ github.event_name == 'pull_request' && '1' || '0' }}
-          # PR-on minta e-mailt küld a talált riasztásokból.
-          EMAIL_TESZT: ${{ github.event_name == 'pull_request' && '1' || '0' }}
-          FUTASIDO_PERC: ${{ github.event_name == 'pull_request' && '6' || '345' }}
+          # PR-on néma teszt (EMAIL_TESZT=1 esetén minta e-mailt küldene).
+          EMAIL_TESZT: "0"
+          FUTASIDO_PERC: ${{ github.event_name == 'pull_request' && '10' || '345' }}
           KOR_MP: "60"
           GIT_MENTES_PERC: "30"
           FEJLES: "1"
