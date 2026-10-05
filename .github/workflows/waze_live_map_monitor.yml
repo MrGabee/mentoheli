@@ -41,10 +41,36 @@ jobs:
           python -m playwright install --with-deps chromium
           sudo apt-get install -y xvfb
 
-      # Ingyenes Cloudflare WARP proxy módban: a böngésző Cloudflare-es IP-ről
+      # Elsődleges út: az otthoni router WireGuard VPN-szervere (otthoni IP,
+      # ezt a reCAPTCHA elfogadja). A wireproxy felhasználói térben építi fel
+      # az alagutat és SOCKS5 proxyt ad, így csak a böngésző forgalma megy
+      # haza, a runner többi forgalma (git, apt) nem.
+      - name: 🏠 Otthoni router (WireGuard)
+        continue-on-error: true
+        env:
+          WG_CONFIG: ${{ secrets.WG_CONFIG }}
+        run: |
+          if [ -z "$WG_CONFIG" ]; then echo "ℹ️ Nincs WG_CONFIG secret, kihagyva."; exit 0; fi
+          curl -fsSL https://github.com/pufferffish/wireproxy/releases/latest/download/wireproxy_linux_amd64.tar.gz | tar xz -C /tmp
+          printf '%s\n' "$WG_CONFIG" > /tmp/wg.conf
+          printf 'WGConfig = /tmp/wg.conf\n\n[Socks5]\nBindAddress = 127.0.0.1:25344\n' > /tmp/wireproxy.conf
+          /tmp/wireproxy -s -c /tmp/wireproxy.conf &
+          for i in $(seq 1 10); do
+            sleep 3
+            if curl -fsS --max-time 10 --socks5-hostname 127.0.0.1:25344 https://www.cloudflare.com/cdn-cgi/trace | grep -q "^ip="; then
+              echo "✅ Az otthoni routeren keresztül megyünk ki."
+              echo "PROXY_SZERVER=socks5://127.0.0.1:25344" >> "$GITHUB_ENV"
+              echo "OTTHONI_UT=1" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
+          echo "⚠️ Az otthoni router nem érhető el, WARP-pal próbálkozunk."
+
+      # Tartalék: ingyenes Cloudflare WARP proxy módban: a böngésző Cloudflare-es IP-ről
       # éri el a Waze-t (a GitHub adatközponti IP-jét a reCAPTCHA gyakran elutasítja).
       # Ha a WARP nem indul, a monitor közvetlenül fut tovább.
       - name: 🌐 Cloudflare WARP indítása (proxy mód)
+        if: env.OTTHONI_UT != '1'
         continue-on-error: true
         run: |
           curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg

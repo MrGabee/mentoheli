@@ -323,7 +323,7 @@ class WazeMunkamenet:
             if 429 in self.statuszok[-1:]:
                 self.page.wait_for_timeout(8000)   # rate limit: kivárjuk
             else:
-                self.page.wait_for_timeout(random.randint(1200, 2000))
+                self.page.wait_for_timeout(random.randint(2500, 4000))
             hibas_sorozat = 0 if len(self.valaszok) > elotte else hibas_sorozat + 1
 
 
