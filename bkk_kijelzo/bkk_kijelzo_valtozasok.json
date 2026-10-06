@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-06T02:47:09.631340+02:00",
+  "frissitve": "2026-10-06T02:47:44.404957+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:30:23.500582+02:00",
-      "kulcs": "815 022",
-      "rendszam": "815 022",
-      "vehicle_id": "945518150228",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z50",
-      "route_id": "Z50",
-      "lat": 47.20846939086914,
-      "lon": 19.731409072875977,
-      "elozo_szoveg": "Cegléd",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-05T14:31:48.964508+02:00",
-      "kulcs": "AADI605",
-      "rendszam": "AADI605",
-      "vehicle_id": "102",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.47402572631836,
-      "lon": 19.04865837097168,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-10-05T14:31:48.964971+02:00",
-      "kulcs": "SKN829",
-      "rendszam": "SKN829",
-      "vehicle_id": "162",
-      "vehicle_label": "Római úti lakótelep",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.53253173828125,
-      "lon": 19.067325592041016,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Római úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-05T14:31:48.965004+02:00",
-      "kulcs": "AADR703",
-      "rendszam": "AADR703",
-      "vehicle_id": "170",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "284E",
-      "route_id": "2845",
-      "lat": 47.46282958984375,
-      "lon": 19.148950576782227,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
     {
       "idopont": "2026-10-05T14:31:48.965034+02:00",
       "kulcs": "AADR707",
@@ -260000,6 +259948,58 @@
       "lon": 19.05571746826172,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-06T02:47:44.328491+02:00",
+      "kulcs": "NTM435",
+      "rendszam": "NTM435",
+      "vehicle_id": "6503",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.519710540771484,
+      "lon": 19.148319244384766,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-06T02:47:44.328972+02:00",
+      "kulcs": "SKR824",
+      "rendszam": "SKR824",
+      "vehicle_id": "7710",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.4598388671875,
+      "lon": 19.120983123779297,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-06T02:47:44.329106+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54165267944336,
+      "lon": 19.070484161376953,
+      "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-06T02:47:44.329186+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51194763183594,
+      "lon": 19.09959602355957,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
