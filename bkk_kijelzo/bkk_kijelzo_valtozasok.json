@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-06T04:06:29.289307+02:00",
+  "frissitve": "2026-10-06T04:06:58.247706+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:40:21.431234+02:00",
-      "kulcs": "PDB714",
-      "rendszam": "PDB714",
-      "vehicle_id": "7040",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.55029296875,
-      "lon": 19.042015075683594,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-05T14:40:21.431393+02:00",
-      "kulcs": "PDB381",
-      "rendszam": "PDB381",
-      "vehicle_id": "7063",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.462806701660156,
-      "lon": 19.149490356445312,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-10-05T14:40:21.431593+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Gilice tér (Varjú utca)",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.46311569213867,
-      "lon": 19.14875602722168,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Gilice tér (Varjú utca)"
-    },
     {
       "idopont": "2026-10-05T14:40:21.431641+02:00",
       "kulcs": "AADI590",
@@ -260000,6 +259961,45 @@
       "lon": 19.171533584594727,
       "elozo_szoveg": "Havanna-lakótelep",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-06T04:06:58.152344+02:00",
+      "kulcs": "AAGL289",
+      "rendszam": "AAGL289",
+      "vehicle_id": "322",
+      "vehicle_label": "Szentlélek tér H",
+      "vonal_szam": "218",
+      "route_id": "2180",
+      "lat": 47.56809616088867,
+      "lon": 19.026329040527344,
+      "elozo_szoveg": "Nyár utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Szentlélek tér H"
+    },
+    {
+      "idopont": "2026-10-06T04:06:58.154883+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "250",
+      "route_id": "2500",
+      "lat": 47.42977523803711,
+      "lon": 19.0214786529541,
+      "elozo_szoveg": "Balatoni út / Háros utca",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-06T04:06:58.155057+02:00",
+      "kulcs": "432 311",
+      "rendszam": "432 311",
+      "vehicle_id": "915504323113",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.43207931518555,
+      "lon": 19.68065071105957,
+      "elozo_szoveg": "Szolnok",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
