@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-06T04:05:12.123163+02:00",
+  "frissitve": "2026-10-06T04:05:50.834071+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:40:21.428920+02:00",
-      "kulcs": "NBW005",
-      "rendszam": "NBW005",
-      "vehicle_id": "5975",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.50179672241211,
-      "lon": 19.13587760925293,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
-    {
-      "idopont": "2026-10-05T14:40:21.429143+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.519046783447266,
-      "lon": 19.091157913208008,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-05T14:40:21.429192+02:00",
-      "kulcs": "T9004",
-      "rendszam": "T9004",
-      "vehicle_id": "6143",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.4998664855957,
-      "lon": 19.08342933654785,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-05T14:40:21.430174+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.506622314453125,
-      "lon": 19.023887634277344,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-10-05T14:40:21.430193+02:00",
       "kulcs": "NCV292",
@@ -260000,6 +259948,58 @@
       "lon": 19.09069061279297,
       "elozo_szoveg": "Esztergom",
       "uj_szoveg": "Vác"
+    },
+    {
+      "idopont": "2026-10-06T04:05:50.743783+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint, Nyár utca",
+      "vonal_szam": "172",
+      "route_id": "1720",
+      "lat": 47.43258285522461,
+      "lon": 18.918304443359375,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
+    },
+    {
+      "idopont": "2026-10-06T04:05:50.745203+02:00",
+      "kulcs": "LYH119",
+      "rendszam": "LYH119",
+      "vehicle_id": "3708",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48971939086914,
+      "lon": 19.074533462524414,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-06T04:05:50.746421+02:00",
+      "kulcs": "AOIB820",
+      "rendszam": "AOIB820",
+      "vehicle_id": "883",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "8E",
+      "route_id": "0085",
+      "lat": 47.47330856323242,
+      "lon": 18.99277114868164,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-06T04:05:50.746884+02:00",
+      "kulcs": "815 034",
+      "rendszam": "815 034",
+      "vehicle_id": "945518150343",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.81639099121094,
+      "lon": 18.873109817504883,
+      "elozo_szoveg": "Szob",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
