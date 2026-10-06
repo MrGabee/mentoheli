@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-07T01:42:01.021700+02:00",
+  "frissitve": "2026-10-07T01:42:35.473215+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:03:51.897887+02:00",
-      "kulcs": "STZ867",
-      "rendszam": "STZ867",
-      "vehicle_id": "7822",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.44847106933594,
-      "lon": 18.905269622802734,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-06T15:03:51.898107+02:00",
-      "kulcs": "T9125",
-      "rendszam": "T9125",
-      "vehicle_id": "7864",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.514183044433594,
-      "lon": 19.04959487915039,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-06T15:03:51.898150+02:00",
       "kulcs": "T9130",
@@ -260000,6 +259974,32 @@
       "lon": 19.066057205200195,
       "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-07T01:42:35.408051+02:00",
+      "kulcs": "AAGL314",
+      "rendszam": "AAGL314",
+      "vehicle_id": "342",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46274185180664,
+      "lon": 19.005931854248047,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-07T01:42:35.408932+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51408004760742,
+      "lon": 19.103113174438477,
+      "elozo_szoveg": "Astoria M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M"
     }
   ]
 }
