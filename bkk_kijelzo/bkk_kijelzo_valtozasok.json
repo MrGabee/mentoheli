@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-06T02:57:00.852885+02:00",
+  "frissitve": "2026-10-06T02:57:34.874007+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:31:48.976098+02:00",
-      "kulcs": "STZ851",
-      "rendszam": "STZ851",
-      "vehicle_id": "7806",
-      "vehicle_label": "Budakeszi, Tesco áruház",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50764083862305,
-      "lon": 19.024599075317383,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Tesco áruház"
-    },
-    {
-      "idopont": "2026-10-05T14:31:48.976226+02:00",
-      "kulcs": "AOFL199",
-      "rendszam": "AOFL199",
-      "vehicle_id": "783",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.477874755859375,
-      "lon": 19.04557228088379,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-10-05T14:31:48.976385+02:00",
-      "kulcs": "T9124",
-      "rendszam": "T9124",
-      "vehicle_id": "7863",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.514129638671875,
-      "lon": 19.049407958984375,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-10-05T14:31:48.976432+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50397491455078,
-      "lon": 19.136768341064453,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-05T14:31:48.976446+02:00",
-      "kulcs": "AOFL203",
-      "rendszam": "AOFL203",
-      "vehicle_id": "787",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.49014663696289,
-      "lon": 19.060766220092773,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
     {
       "idopont": "2026-10-05T14:31:48.976494+02:00",
       "kulcs": "T9136",
@@ -260000,6 +259935,71 @@
       "lon": 19.137060165405273,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-06T02:57:34.782902+02:00",
+      "kulcs": "NGC027",
+      "rendszam": "NGC027",
+      "vehicle_id": "6326",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.464656829833984,
+      "lon": 19.02296257019043,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-06T02:57:34.783010+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50749588012695,
+      "lon": 19.02496910095215,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-06T02:57:34.783208+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.487178802490234,
+      "lon": 19.057823181152344,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-06T02:57:34.783644+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.5324821472168,
+      "lon": 19.081308364868164,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-06T02:57:34.783835+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51315689086914,
+      "lon": 19.101547241210938,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
