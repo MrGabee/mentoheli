@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T00:45:37.186890+02:00",
+  "frissitve": "2026-10-07T00:46:09.132843+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:00:53.088524+02:00",
-      "kulcs": "F0061",
-      "rendszam": "F0061",
-      "vehicle_id": "2998",
-      "vehicle_label": "Városmajor",
-      "vonal_szam": "60",
-      "route_id": "3600",
-      "lat": 47.495113372802734,
-      "lon": 18.979970932006836,
-      "elozo_szoveg": "Széchenyi-hegy, Gyermekvasút",
-      "uj_szoveg": "Városmajor"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.088591+02:00",
-      "kulcs": "FKU903",
-      "rendszam": "FKU903",
-      "vehicle_id": "3059",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.46549606323242,
-      "lon": 19.234058380126953,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.088650+02:00",
-      "kulcs": "AAGL287",
-      "rendszam": "AAGL287",
-      "vehicle_id": "309",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "63",
-      "route_id": "0630",
-      "lat": 47.57574462890625,
-      "lon": 18.879581451416016,
-      "elozo_szoveg": "Nagykovácsi, Tisza István tér",
-      "uj_szoveg": "Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-06T15:00:53.088725+02:00",
       "kulcs": "FLR708",
@@ -260000,6 +259961,45 @@
       "lon": 19.037607192993164,
       "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-07T00:46:09.055311+02:00",
+      "kulcs": "SKR724",
+      "rendszam": "SKR724",
+      "vehicle_id": "7673",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.43275833129883,
+      "lon": 19.26149559020996,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-07T00:46:09.055362+02:00",
+      "kulcs": "SKR806",
+      "rendszam": "SKR806",
+      "vehicle_id": "7692",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.48590850830078,
+      "lon": 19.19255828857422,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-07T00:46:09.055436+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48566818237305,
+      "lon": 19.069807052612305,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
