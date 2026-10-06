@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T00:20:06.149051+02:00",
+  "frissitve": "2026-10-07T00:20:45.296570+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T14:57:18.509659+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50537109375,
-      "lon": 19.136333465576172,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-06T14:57:18.509689+02:00",
-      "kulcs": "T8116",
-      "rendszam": "T8116",
-      "vehicle_id": "7895",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.481414794921875,
-      "lon": 19.135740280151367,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-06T14:57:18.509914+02:00",
-      "kulcs": "AOFL236",
-      "rendszam": "AOFL236",
-      "vehicle_id": "824",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52741622924805,
-      "lon": 18.97945785522461,
-      "elozo_szoveg": "Kurucles ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-06T14:57:18.509945+02:00",
       "kulcs": "AOFL239",
@@ -260000,6 +259961,45 @@
       "lon": 18.928083419799805,
       "elozo_szoveg": "Márta utca ► Budaörsi lakótelep",
       "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-07T00:20:45.208176+02:00",
+      "kulcs": "SKN824",
+      "rendszam": "SKN824",
+      "vehicle_id": "160",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55027389526367,
+      "lon": 19.042036056518555,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-07T00:20:45.208946+02:00",
+      "kulcs": "RVY702",
+      "rendszam": "RVY702",
+      "vehicle_id": "7451",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4511833190918,
+      "lon": 19.15958595275879,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-07T00:20:45.209266+02:00",
+      "kulcs": "415 067",
+      "rendszam": "415 067",
+      "vehicle_id": "945514150677",
+      "vehicle_label": "Vác",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.526641845703125,
+      "lon": 19.090679168701172,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Vác"
     }
   ]
 }
