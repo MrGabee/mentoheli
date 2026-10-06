@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T00:55:09.337613+02:00",
+  "frissitve": "2026-10-07T00:55:42.658487+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:00:53.092090+02:00",
-      "kulcs": "PKD003",
-      "rendszam": "PKD003",
-      "vehicle_id": "5813",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21A",
-      "route_id": "0211",
-      "lat": 47.49814224243164,
-      "lon": 18.98963165283203,
-      "elozo_szoveg": "Svábhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.093069+02:00",
-      "kulcs": "V2212",
-      "rendszam": "V2212",
-      "vehicle_id": "5852",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46512222290039,
-      "lon": 19.127614974975586,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.093414+02:00",
-      "kulcs": "V2215",
-      "rendszam": "V2215",
-      "vehicle_id": "5855",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.51923370361328,
-      "lon": 19.091154098510742,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-10-06T15:00:53.093640+02:00",
       "kulcs": "MUT895",
@@ -260000,6 +259961,45 @@
       "lon": 18.958341598510742,
       "elozo_szoveg": "Apor Vilmos tér",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-07T00:55:42.567536+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.511287689208984,
+      "lon": 19.056352615356445,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-07T00:55:42.567681+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58564376831055,
+      "lon": 19.094144821166992,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-07T00:55:42.568899+02:00",
+      "kulcs": "815 006",
+      "rendszam": "815 006",
+      "vehicle_id": "945518150061",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.526180267333984,
+      "lon": 19.090190887451172,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szob"
     }
   ]
 }
