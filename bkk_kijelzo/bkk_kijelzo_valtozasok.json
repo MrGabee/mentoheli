@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T01:16:31.797136+02:00",
+  "frissitve": "2026-10-07T01:17:06.023535+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:02:30.462797+02:00",
-      "kulcs": "V2213",
-      "rendszam": "V2213",
-      "vehicle_id": "5853",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42949295043945,
-      "lon": 19.217451095581055,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-06T15:02:30.462851+02:00",
-      "kulcs": "V2218",
-      "rendszam": "V2218",
-      "vehicle_id": "5858",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51547622680664,
-      "lon": 19.03700828552246,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-06T15:02:30.462948+02:00",
-      "kulcs": "MUM640",
-      "rendszam": "MUM640",
-      "vehicle_id": "5872",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.49593734741211,
-      "lon": 19.07114601135254,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
     {
       "idopont": "2026-10-06T15:02:30.463081+02:00",
       "kulcs": "V2295",
@@ -260000,6 +259961,45 @@
       "lon": 19.018146514892578,
       "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
       "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-07T01:17:05.955282+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.432212829589844,
+      "lon": 19.260944366455078,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-10-07T01:17:05.955995+02:00",
+      "kulcs": "T8109",
+      "rendszam": "T8109",
+      "vehicle_id": "7346",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50031661987305,
+      "lon": 19.109619140625,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-07T01:17:05.956103+02:00",
+      "kulcs": "SKR802",
+      "rendszam": "SKR802",
+      "vehicle_id": "7688",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49763488769531,
+      "lon": 18.963743209838867,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
     }
   ]
 }
