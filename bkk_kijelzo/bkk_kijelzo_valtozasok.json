@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-06T03:44:38.878189+02:00",
+  "frissitve": "2026-10-06T03:45:10.574039+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:37:22.376022+02:00",
-      "kulcs": "V4333",
-      "rendszam": "V4333",
-      "vehicle_id": "4992",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51681900024414,
-      "lon": 19.036569595336914,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-05T14:37:22.376033+02:00",
-      "kulcs": "AADI622",
-      "rendszam": "AADI622",
-      "vehicle_id": "50",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.469017028808594,
-      "lon": 19.29597282409668,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-05T14:37:22.376050+02:00",
-      "kulcs": "V4342",
-      "rendszam": "V4342",
-      "vehicle_id": "5001",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.51530075073242,
-      "lon": 19.037090301513672,
-      "elozo_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Kamaraerdei Ifjúsági Park"
-    },
-    {
-      "idopont": "2026-10-05T14:37:22.376066+02:00",
-      "kulcs": "V4348",
-      "rendszam": "V4348",
-      "vehicle_id": "5007",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.47683334350586,
-      "lon": 19.047182083129883,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-10-05T14:37:22.376392+02:00",
-      "kulcs": "V2258",
-      "rendszam": "V2258",
-      "vehicle_id": "556",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.49040985107422,
-      "lon": 19.04683494567871,
-      "elozo_szoveg": "Krisztina körút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-05T14:37:22.376599+02:00",
       "kulcs": "MOS256",
@@ -260000,6 +259935,71 @@
       "lon": 19.135560989379883,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-06T03:45:10.489528+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47775650024414,
+      "lon": 19.046390533447266,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-06T03:45:10.489603+02:00",
+      "kulcs": "NWB360",
+      "rendszam": "NWB360",
+      "vehicle_id": "6540",
+      "vehicle_label": "Rákoskeresztúr, városkp.",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54682159423828,
+      "lon": 19.142515182495117,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-10-06T03:45:10.489700+02:00",
+      "kulcs": "PDB386",
+      "rendszam": "PDB386",
+      "vehicle_id": "7068",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.4938850402832,
+      "lon": 19.27802276611328,
+      "elozo_szoveg": "Rákoscsaba vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-06T03:45:10.490139+02:00",
+      "kulcs": "SKN821",
+      "rendszam": "SKN821",
+      "vehicle_id": "7789",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56709671020508,
+      "lon": 19.128215789794922,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-06T03:45:10.490290+02:00",
+      "kulcs": "415 073",
+      "rendszam": "415 073",
+      "vehicle_id": "945514150735",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.28084945678711,
+      "lon": 19.53537940979004,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
