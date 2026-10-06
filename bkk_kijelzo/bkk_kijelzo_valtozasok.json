@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-07T01:54:31.861746+02:00",
+  "frissitve": "2026-10-07T01:55:17.806985+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:05:10.500531+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54442596435547,
-      "lon": 19.029735565185547,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-06T15:05:10.500745+02:00",
-      "kulcs": "RVY602",
-      "rendszam": "RVY602",
-      "vehicle_id": "7431",
-      "vehicle_label": "Ecseri út M-József A. ltp.",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.46907043457031,
-      "lon": 19.10772132873535,
-      "elozo_szoveg": "Ecseri út M ► József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "József Attila lakótelep, Távíró utca"
-    },
-    {
-      "idopont": "2026-10-06T15:05:10.500843+02:00",
-      "kulcs": "RVY615",
-      "rendszam": "RVY615",
-      "vehicle_id": "7444",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.461761474609375,
-      "lon": 19.115581512451172,
-      "elozo_szoveg": "József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "Ecseri út M ► Aszódi utca"
-    },
-    {
-      "idopont": "2026-10-06T15:05:10.501289+02:00",
-      "kulcs": "RVY740",
-      "rendszam": "RVY740",
-      "vehicle_id": "7638",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50154495239258,
-      "lon": 19.136301040649414,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Pécel, Kun József utca"
-    },
     {
       "idopont": "2026-10-06T15:05:10.501817+02:00",
       "kulcs": "SKR828",
@@ -260000,6 +259948,58 @@
       "lon": 19.05640983581543,
       "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
       "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-07T01:55:17.720368+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.487247467041016,
+      "lon": 19.057952880859375,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-07T01:55:17.723708+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.4990348815918,
+      "lon": 19.052383422851562,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-07T01:55:17.724161+02:00",
+      "kulcs": "NTP538",
+      "rendszam": "NTP538",
+      "vehicle_id": "6514",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47595977783203,
+      "lon": 19.04713249206543,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-07T01:55:17.724388+02:00",
+      "kulcs": "T8109",
+      "rendszam": "T8109",
+      "vehicle_id": "7346",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50400161743164,
+      "lon": 19.13669204711914,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
