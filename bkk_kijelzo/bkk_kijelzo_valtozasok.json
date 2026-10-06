@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-06T03:23:08.240726+02:00",
+  "frissitve": "2026-10-06T03:23:39.204717+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:34:52.795396+02:00",
-      "kulcs": "V1344",
-      "rendszam": "V1344",
-      "vehicle_id": "4447",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.42186737060547,
-      "lon": 19.122209548950195,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-05T14:34:52.795498+02:00",
-      "kulcs": "V1362",
-      "rendszam": "V1362",
-      "vehicle_id": "4463",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.497413635253906,
-      "lon": 19.082563400268555,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-05T14:34:52.796443+02:00",
-      "kulcs": "AAMH611",
-      "rendszam": "AAMH611",
-      "vehicle_id": "454",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.49995040893555,
-      "lon": 19.084278106689453,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-10-05T14:34:52.796658+02:00",
       "kulcs": "V1591",
@@ -260000,6 +259961,45 @@
       "lon": 19.075759887695312,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-06T03:23:39.118280+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.463748931884766,
+      "lon": 19.130157470703125,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-06T03:23:39.118594+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.5124626159668,
+      "lon": 19.05718231201172,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-06T03:23:39.119281+02:00",
+      "kulcs": "425 010",
+      "rendszam": "425 010",
+      "vehicle_id": "945514250105",
+      "vehicle_label": "Győr",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.45001983642578,
+      "lon": 19.005599975585938,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Győr"
     }
   ]
 }
