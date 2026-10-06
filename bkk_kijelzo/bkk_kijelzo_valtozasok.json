@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-06T03:05:51.658218+02:00",
+  "frissitve": "2026-10-06T03:06:24.142031+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:33:31.239991+02:00",
-      "kulcs": "V2105",
-      "rendszam": "V2105",
-      "vehicle_id": "5833",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.548770904541016,
-      "lon": 19.029369354248047,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-05T14:33:31.240169+02:00",
-      "kulcs": "V2222",
-      "rendszam": "V2222",
-      "vehicle_id": "5862",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.544437408447266,
-      "lon": 19.029809951782227,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-05T14:33:31.240547+02:00",
       "kulcs": "MUT900",
@@ -260000,6 +259974,32 @@
       "lon": 19.160945892333984,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-06T03:06:24.042359+02:00",
+      "kulcs": "AADR717",
+      "rendszam": "AADR717",
+      "vehicle_id": "185",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48960494995117,
+      "lon": 19.0755615234375,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-06T03:06:24.044573+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.4634895324707,
+      "lon": 19.13074493408203,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
     }
   ]
 }
