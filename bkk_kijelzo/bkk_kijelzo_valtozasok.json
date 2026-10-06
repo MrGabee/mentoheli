@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T00:22:54.953093+02:00",
+  "frissitve": "2026-10-07T00:23:29.302748+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T14:57:18.511000+02:00",
-      "kulcs": "480 013",
-      "rendszam": "480 013",
-      "vehicle_id": "915504800136",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.510189056396484,
-      "lon": 19.10283088684082,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
-    {
-      "idopont": "2026-10-06T14:57:18.511345+02:00",
-      "kulcs": "AOIM017",
-      "rendszam": "AOIM017",
-      "vehicle_id": "937",
-      "vehicle_label": "Soroksár, BILK",
-      "vonal_szam": "66E",
-      "route_id": "0665",
-      "lat": 47.4648323059082,
-      "lon": 19.12708854675293,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Soroksár, BILK"
-    },
-    {
-      "idopont": "2026-10-06T14:57:18.512450+02:00",
-      "kulcs": "AOJM873",
-      "rendszam": "AOJM873",
-      "vehicle_id": "996",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.39847946166992,
-      "lon": 19.106185913085938,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-10-06T14:58:55.020981+02:00",
       "kulcs": "AOJM878",
@@ -260000,6 +259961,45 @@
       "lon": 19.060497283935547,
       "elozo_szoveg": "Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-07T00:23:29.216156+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.5484619140625,
+      "lon": 19.0295467376709,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-07T00:23:29.217424+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.465057373046875,
+      "lon": 19.127309799194336,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-07T00:23:29.218190+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.470863342285156,
+      "lon": 19.238914489746094,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
     }
   ]
 }
