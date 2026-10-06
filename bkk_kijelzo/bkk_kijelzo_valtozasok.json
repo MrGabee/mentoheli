@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T00:41:21.448751+02:00",
+  "frissitve": "2026-10-07T00:42:02.288134+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T14:58:55.034939+02:00",
-      "kulcs": "T9147",
-      "rendszam": "T9147",
-      "vehicle_id": "7886",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50395965576172,
-      "lon": 19.136720657348633,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-06T14:58:55.035020+02:00",
-      "kulcs": "T8113",
-      "rendszam": "T8113",
-      "vehicle_id": "7892",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51777267456055,
-      "lon": 19.094398498535156,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-06T14:58:55.035134+02:00",
-      "kulcs": "AOFL215",
-      "rendszam": "AOFL215",
-      "vehicle_id": "802",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.493526458740234,
-      "lon": 19.011911392211914,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-06T14:58:55.035178+02:00",
       "kulcs": "AOFL219",
@@ -260000,6 +259961,45 @@
       "lon": 19.067041397094727,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-07T00:42:02.221907+02:00",
+      "kulcs": "PDB386",
+      "rendszam": "PDB386",
+      "vehicle_id": "7068",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49700927734375,
+      "lon": 19.05570411682129,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-07T00:42:02.222110+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37952423095703,
+      "lon": 19.10419273376465,
+      "elozo_szoveg": "Nagybányai út",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-07T00:42:02.222147+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.46028137207031,
+      "lon": 19.132076263427734,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
     }
   ]
 }
