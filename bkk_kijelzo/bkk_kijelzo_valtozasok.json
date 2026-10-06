@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T01:03:13.425016+02:00",
+  "frissitve": "2026-10-07T01:04:20.864324+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:00:53.097814+02:00",
-      "kulcs": "AOFL218",
-      "rendszam": "AOFL218",
-      "vehicle_id": "805",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.507789611816406,
-      "lon": 18.98920249938965,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.097894+02:00",
-      "kulcs": "AOFL229",
-      "rendszam": "AOFL229",
-      "vehicle_id": "817",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54662322998047,
-      "lon": 19.017120361328125,
-      "elozo_szoveg": "Máramaros út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.098004+02:00",
-      "kulcs": "AOFL246",
-      "rendszam": "AOFL246",
-      "vehicle_id": "834",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.47238540649414,
-      "lon": 19.159971237182617,
-      "elozo_szoveg": "Újhegyi lakótelep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-10-06T15:00:53.098375+02:00",
       "kulcs": "1103-752-1104-1105-753-1106",
@@ -260000,6 +259961,45 @@
       "lon": 19.096120834350586,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-07T01:04:20.775572+02:00",
+      "kulcs": "AADI637",
+      "rendszam": "AADI637",
+      "vehicle_id": "135",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.4637451171875,
+      "lon": 19.130111694335938,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-07T01:04:20.778642+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.517921447753906,
+      "lon": 19.077810287475586,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-07T01:04:20.778742+02:00",
+      "kulcs": "431",
+      "rendszam": "431",
+      "vehicle_id": "505580054318",
+      "vehicle_label": "Hatvan",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.49237060546875,
+      "lon": 19.1353702545166,
+      "elozo_szoveg": "Nagykáta",
+      "uj_szoveg": "Hatvan"
     }
   ]
 }
