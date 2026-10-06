@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-06T03:22:05.595229+02:00",
+  "frissitve": "2026-10-06T03:22:34.991402+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-05T14:34:52.795117+02:00",
-      "kulcs": "T0601",
-      "rendszam": "T0601",
-      "vehicle_id": "4285",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.516902923583984,
-      "lon": 19.092897415161133,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-05T14:34:52.795148+02:00",
-      "kulcs": "T0606",
-      "rendszam": "T0606",
-      "vehicle_id": "4290",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50625228881836,
-      "lon": 19.050960540771484,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-05T14:34:52.795202+02:00",
-      "kulcs": "AADI572",
-      "rendszam": "AADI572",
-      "vehicle_id": "43",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.530052185058594,
-      "lon": 19.007579803466797,
-      "elozo_szoveg": "Verecke lépcső ► Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
     {
       "idopont": "2026-10-05T14:34:52.795337+02:00",
       "kulcs": "AAMH601",
@@ -260000,6 +259961,45 @@
       "lon": 18.564050674438477,
       "elozo_szoveg": "Székesfehérvár",
       "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-10-06T03:22:34.903726+02:00",
+      "kulcs": "FLR742",
+      "rendszam": "FLR742",
+      "vehicle_id": "3156",
+      "vehicle_label": "Pestszentlőrinc, Béke tér",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54157638549805,
+      "lon": 19.151397705078125,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Pestszentlőrinc, Béke tér"
+    },
+    {
+      "idopont": "2026-10-06T03:22:34.905358+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43246841430664,
+      "lon": 19.261085510253906,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-10-06T03:22:34.905609+02:00",
+      "kulcs": "NTM435",
+      "rendszam": "NTM435",
+      "vehicle_id": "6503",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47713088989258,
+      "lon": 19.04955291748047,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
     }
   ]
 }
