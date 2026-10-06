@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-07T01:39:43.089053+02:00",
+  "frissitve": "2026-10-07T01:40:16.982034+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:03:51.894524+02:00",
-      "kulcs": "T0622",
-      "rendszam": "T0622",
-      "vehicle_id": "715",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.506370544433594,
-      "lon": 19.050973892211914,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-06T15:03:51.895030+02:00",
-      "kulcs": "PDZ834",
-      "rendszam": "PDZ834",
-      "vehicle_id": "7297",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53636932373047,
-      "lon": 19.05943489074707,
-      "elozo_szoveg": "Margitsziget ► Nyugati pályaudvar M",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-06T15:03:51.895218+02:00",
-      "kulcs": "T8106",
-      "rendszam": "T8106",
-      "vehicle_id": "7343",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49580001831055,
-      "lon": 19.06020164489746,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-10-06T15:03:51.895315+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48945617675781,
-      "lon": 19.090057373046875,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-10-06T15:03:51.895592+02:00",
       "kulcs": "AOGF657",
@@ -260000,6 +259948,58 @@
       "lon": 19.268056869506836,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-07T01:40:16.892058+02:00",
+      "kulcs": "AADR709",
+      "rendszam": "AADR709",
+      "vehicle_id": "177",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.438899993896484,
+      "lon": 19.10320472717285,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-07T01:40:16.893944+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475093841552734,
+      "lon": 19.040077209472656,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-07T01:40:16.894450+02:00",
+      "kulcs": "PDB386",
+      "rendszam": "PDB386",
+      "vehicle_id": "7068",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47723388671875,
+      "lon": 19.263669967651367,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-07T01:40:16.894723+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49745559692383,
+      "lon": 19.05495834350586,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
