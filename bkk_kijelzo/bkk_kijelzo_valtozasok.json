@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T00:51:08.298074+02:00",
+  "frissitve": "2026-10-07T00:51:37.287599+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:00:53.089493+02:00",
-      "kulcs": "AAHY863",
-      "rendszam": "AAHY863",
-      "vehicle_id": "425",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.55817413330078,
-      "lon": 19.08894157409668,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.089624+02:00",
-      "kulcs": "AAHY869",
-      "rendszam": "AAHY869",
-      "vehicle_id": "431",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.5909538269043,
-      "lon": 19.12312889099121,
-      "elozo_szoveg": "Rákospalota, Csömöri-patak",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-06T15:00:53.089720+02:00",
-      "kulcs": "V1321",
-      "rendszam": "V1321",
-      "vehicle_id": "4425",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.424285888671875,
-      "lon": 19.123361587524414,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-06T15:00:53.089886+02:00",
       "kulcs": "V1354",
@@ -260000,6 +259961,45 @@
       "lon": 19.089466094970703,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-07T00:51:37.211562+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48542785644531,
+      "lon": 19.070953369140625,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-07T00:51:37.211923+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55027770996094,
+      "lon": 19.042041778564453,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-07T00:51:37.212101+02:00",
+      "kulcs": "T8103",
+      "rendszam": "T8103",
+      "vehicle_id": "7340",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50400924682617,
+      "lon": 19.136716842651367,
+      "elozo_szoveg": "Kápolna tér",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
