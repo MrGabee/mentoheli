@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-08T00:24:41.277925+02:00",
+  "frissitve": "2026-10-08T00:25:51.638033+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T10:50:52.285616+02:00",
-      "kulcs": "T9001",
-      "rendszam": "T9001",
-      "vehicle_id": "6140",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.503971099853516,
-      "lon": 19.136735916137695,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-07T10:50:52.285790+02:00",
-      "kulcs": "NGC157",
-      "rendszam": "NGC157",
-      "vehicle_id": "6206",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51082992553711,
-      "lon": 19.05636215209961,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Rózsadomb ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-07T10:50:52.285865+02:00",
-      "kulcs": "V2202",
-      "rendszam": "V2202",
-      "vehicle_id": "6219",
-      "vehicle_label": "Kispest, Tulipán utca",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.46479415893555,
-      "lon": 19.126384735107422,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Kispest, Tulipán utca"
-    },
-    {
-      "idopont": "2026-10-07T10:50:52.285946+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.507198333740234,
-      "lon": 19.0230770111084,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-10-07T10:50:52.286104+02:00",
       "kulcs": "NLE854",
@@ -260000,6 +259948,58 @@
       "lon": 19.136728286743164,
       "elozo_szoveg": "Fővám tér M",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-08T00:25:51.546427+02:00",
+      "kulcs": "AADI607",
+      "rendszam": "AADI607",
+      "vehicle_id": "104",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.548439025878906,
+      "lon": 19.029590606689453,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-08T00:25:51.548903+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48949432373047,
+      "lon": 19.06160545349121,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-08T00:25:51.549403+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597816467285156,
+      "lon": 19.053892135620117,
+      "elozo_szoveg": "Budagyöngye",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T00:25:51.549622+02:00",
+      "kulcs": "PKN609",
+      "rendszam": "PKN609",
+      "vehicle_id": "7198",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.487300872802734,
+      "lon": 19.02362060546875,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
     }
   ]
 }
