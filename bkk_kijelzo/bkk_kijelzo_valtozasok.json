@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T02:52:35.474208+02:00",
+  "frissitve": "2026-10-07T02:53:09.094550+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:11:08.778025+02:00",
-      "kulcs": "PHG623",
-      "rendszam": "PHG623",
-      "vehicle_id": "7147",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "162",
-      "route_id": "1620",
-      "lat": 47.459136962890625,
-      "lon": 19.332111358642578,
-      "elozo_szoveg": "Maglód, Auchan áruház",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-06T15:11:08.778285+02:00",
-      "kulcs": "PHG651",
-      "rendszam": "PHG651",
-      "vehicle_id": "7175",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51967239379883,
-      "lon": 19.14822769165039,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
-    {
-      "idopont": "2026-10-06T15:11:08.778308+02:00",
-      "kulcs": "PHG652",
-      "rendszam": "PHG652",
-      "vehicle_id": "7176",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.54191207885742,
-      "lon": 19.151531219482422,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Cinkota H"
-    },
     {
       "idopont": "2026-10-06T15:11:08.778490+02:00",
       "kulcs": "PKN608",
@@ -260000,6 +259961,45 @@
       "lon": 19.136259078979492,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-07T02:53:09.000471+02:00",
+      "kulcs": "AADR717",
+      "rendszam": "AADR717",
+      "vehicle_id": "185",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46794128417969,
+      "lon": 19.075796127319336,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-07T02:53:09.003008+02:00",
+      "kulcs": "AAMH635",
+      "rendszam": "AAMH635",
+      "vehicle_id": "478",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497039794921875,
+      "lon": 19.05573272705078,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-07T02:53:09.003142+02:00",
+      "kulcs": "MXJ016",
+      "rendszam": "MXJ016",
+      "vehicle_id": "5892",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47432327270508,
+      "lon": 19.04656410217285,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
     }
   ]
 }
