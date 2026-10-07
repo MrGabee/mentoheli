@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T03:41:09.622362+02:00",
+  "frissitve": "2026-10-07T03:41:45.752442+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:15:43.933683+02:00",
-      "kulcs": "PKN618",
-      "rendszam": "PKN618",
-      "vehicle_id": "7207",
-      "vehicle_label": "Rákoshegy vasútállomás",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.46303939819336,
-      "lon": 19.1489200592041,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoshegy vasútállomás"
-    },
-    {
-      "idopont": "2026-10-06T15:15:43.933739+02:00",
-      "kulcs": "PKN626",
-      "rendszam": "PKN626",
-      "vehicle_id": "7215",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.470211029052734,
-      "lon": 19.223905563354492,
-      "elozo_szoveg": "Helikopter lakópark",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-10-06T15:15:43.933959+02:00",
-      "kulcs": "RCT314",
-      "rendszam": "RCT314",
-      "vehicle_id": "7328",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.464698791503906,
-      "lon": 19.12656593322754,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-10-06T15:15:43.934234+02:00",
       "kulcs": "V2237",
@@ -260000,6 +259961,45 @@
       "lon": 19.055519104003906,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-07T03:41:45.634612+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.541587829589844,
+      "lon": 19.15142822265625,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-07T03:41:45.637457+02:00",
+      "kulcs": "NTP538",
+      "rendszam": "NTP538",
+      "vehicle_id": "6514",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42145538330078,
+      "lon": 19.041332244873047,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-07T03:41:45.637539+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43885803222656,
+      "lon": 19.103130340576172,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
     }
   ]
 }
