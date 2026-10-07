@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T03:37:52.041547+02:00",
+  "frissitve": "2026-10-07T03:38:27.651392+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:15:43.931356+02:00",
-      "kulcs": "T9005",
-      "rendszam": "T9005",
-      "vehicle_id": "6144",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50501251220703,
-      "lon": 19.136688232421875,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-06T15:15:43.931574+02:00",
-      "kulcs": "NGC144",
-      "rendszam": "NGC144",
-      "vehicle_id": "6214",
-      "vehicle_label": "Zugliget, Libegő",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.510807037353516,
-      "lon": 19.056360244750977,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Zugliget, Libegő"
-    },
-    {
-      "idopont": "2026-10-06T15:15:43.931591+02:00",
-      "kulcs": "NGC141",
-      "rendszam": "NGC141",
-      "vehicle_id": "6216",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "157A",
-      "route_id": "1571",
-      "lat": 47.56768798828125,
-      "lon": 18.936317443847656,
-      "elozo_szoveg": "Budaliget, Géza fejedelem útja",
-      "uj_szoveg": "Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-06T15:15:43.931704+02:00",
       "kulcs": "NCV289",
@@ -260000,6 +259961,45 @@
       "lon": 19.141786575317383,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-07T03:38:27.583144+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52543640136719,
+      "lon": 19.06378936767578,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-07T03:38:27.583251+02:00",
+      "kulcs": "MUT887",
+      "rendszam": "MUT887",
+      "vehicle_id": "5940",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266242980957,
+      "lon": 19.161073684692383,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-07T03:38:27.583782+02:00",
+      "kulcs": "SXE201",
+      "rendszam": "SXE201",
+      "vehicle_id": "7838",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534393310546875,
+      "lon": 19.08237075805664,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
