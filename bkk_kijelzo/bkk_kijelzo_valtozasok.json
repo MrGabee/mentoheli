@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T00:52:31.726939+02:00",
+  "frissitve": "2026-10-08T00:53:04.757233+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T10:53:35.768771+02:00",
-      "kulcs": "V1586",
-      "rendszam": "V1586",
-      "vehicle_id": "4638",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.46846389770508,
-      "lon": 19.075246810913086,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-07T10:53:35.768866+02:00",
-      "kulcs": "AAMH627",
-      "rendszam": "AAMH627",
-      "vehicle_id": "470",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.530670166015625,
-      "lon": 19.198057174682617,
-      "elozo_szoveg": "Árpádföld",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-07T10:53:35.768967+02:00",
-      "kulcs": "V4060",
-      "rendszam": "V4060",
-      "vehicle_id": "4749",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.509681701660156,
-      "lon": 19.009960174560547,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
     {
       "idopont": "2026-10-07T10:53:35.769336+02:00",
       "kulcs": "V4293",
@@ -260000,6 +259961,45 @@
       "lon": 19.088973999023438,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-08T00:53:04.697960+02:00",
+      "kulcs": "AAGL252",
+      "rendszam": "AAGL252",
+      "vehicle_id": "252",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.43595504760742,
+      "lon": 18.978565216064453,
+      "elozo_szoveg": "Kamaraerdő",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-08T00:53:04.698264+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48448944091797,
+      "lon": 19.073780059814453,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-08T00:53:04.698451+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51761245727539,
+      "lon": 19.03871726989746,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
