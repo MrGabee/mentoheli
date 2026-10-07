@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-08T01:16:14.002733+02:00",
+  "frissitve": "2026-10-08T01:16:45.435112+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T10:55:47.732711+02:00",
-      "kulcs": "PDB388",
-      "rendszam": "PDB388",
-      "vehicle_id": "7070",
-      "vehicle_label": "Rákoscsaba-Újtelep",
-      "vonal_szam": "176E",
-      "route_id": "1765",
-      "lat": 47.50149154663086,
-      "lon": 19.13587188720703,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-07T10:55:47.732783+02:00",
-      "kulcs": "PDN612",
-      "rendszam": "PDN612",
-      "vehicle_id": "7083",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.43128967285156,
-      "lon": 19.071014404296875,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Királyerdő út ► Hollandi út"
-    },
-    {
-      "idopont": "2026-10-07T10:55:47.732826+02:00",
-      "kulcs": "PDN617",
-      "rendszam": "PDN617",
-      "vehicle_id": "7088",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.38924026489258,
-      "lon": 19.10003089904785,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-07T10:55:47.733221+02:00",
-      "kulcs": "PHG653",
-      "rendszam": "PHG653",
-      "vehicle_id": "7177",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.52314758300781,
-      "lon": 19.185379028320312,
-      "elozo_szoveg": "Rákosi út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-07T10:55:47.733419+02:00",
       "kulcs": "PKN622",
@@ -260000,6 +259948,58 @@
       "lon": 19.121171951293945,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T01:16:45.361609+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.6029052734375,
+      "lon": 19.06678009033203,
+      "elozo_szoveg": "B.megyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-08T01:16:45.361727+02:00",
+      "kulcs": "PKN623",
+      "rendszam": "PKN623",
+      "vehicle_id": "7212",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.50126647949219,
+      "lon": 19.107776641845703,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-08T01:16:45.361861+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49751281738281,
+      "lon": 18.96392250061035,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-08T01:16:45.361879+02:00",
+      "kulcs": "SKR805",
+      "rendszam": "SKR805",
+      "vehicle_id": "7691",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48672103881836,
+      "lon": 19.067880630493164,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
