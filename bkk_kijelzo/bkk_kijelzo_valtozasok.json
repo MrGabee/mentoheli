@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T02:49:04.623818+02:00",
+  "frissitve": "2026-10-07T02:49:42.180896+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:11:08.775005+02:00",
-      "kulcs": "T9003",
-      "rendszam": "T9003",
-      "vehicle_id": "6142",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.49990463256836,
-      "lon": 19.083717346191406,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-06T15:11:08.775077+02:00",
-      "kulcs": "T9013",
-      "rendszam": "T9013",
-      "vehicle_id": "6152",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.49980926513672,
-      "lon": 19.10369110107422,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
-    {
-      "idopont": "2026-10-06T15:11:08.775325+02:00",
-      "kulcs": "NGC143",
-      "rendszam": "NGC143",
-      "vehicle_id": "6215",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.5429573059082,
-      "lon": 18.964584350585938,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Pesthidegkút"
-    },
     {
       "idopont": "2026-10-06T15:11:08.775548+02:00",
       "kulcs": "NCV290",
@@ -260000,6 +259961,45 @@
       "lon": 19.15111541748047,
       "elozo_szoveg": "Újpalota",
       "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-07T02:49:42.091025+02:00",
+      "kulcs": "SKN824",
+      "rendszam": "SKN824",
+      "vehicle_id": "160",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55029296875,
+      "lon": 19.042037963867188,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-07T02:49:42.091063+02:00",
+      "kulcs": "AADR705",
+      "rendszam": "AADR705",
+      "vehicle_id": "173",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.547706604003906,
+      "lon": 19.140649795532227,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-07T02:49:42.093403+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.4818115234375,
+      "lon": 19.143648147583008,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
