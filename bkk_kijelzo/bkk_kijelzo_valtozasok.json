@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T01:51:02.035276+02:00",
+  "frissitve": "2026-10-08T01:51:35.156136+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T10:59:43.112849+02:00",
-      "kulcs": "SKR733",
-      "rendszam": "SKR733",
-      "vehicle_id": "7682",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4285774230957,
-      "lon": 19.262163162231445,
-      "elozo_szoveg": "Cargo City ► Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-07T10:59:43.112880+02:00",
-      "kulcs": "SKR737",
-      "rendszam": "SKR737",
-      "vehicle_id": "7686",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4327278137207,
-      "lon": 19.2616024017334,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-07T10:59:43.113524+02:00",
-      "kulcs": "T9121",
-      "rendszam": "T9121",
-      "vehicle_id": "7860",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51406478881836,
-      "lon": 19.049436569213867,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-10-07T10:59:43.113699+02:00",
       "kulcs": "T9143",
@@ -260000,6 +259961,45 @@
       "lon": 19.06279754638672,
       "elozo_szoveg": "Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-08T01:51:35.068806+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51931381225586,
+      "lon": 19.038209915161133,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T01:51:35.071655+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.579856872558594,
+      "lon": 19.088497161865234,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-08T01:51:35.072585+02:00",
+      "kulcs": "T8117",
+      "rendszam": "T8117",
+      "vehicle_id": "7896",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.500343322753906,
+      "lon": 19.11050796508789,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
