@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-07T02:23:18.254778+02:00",
+  "frissitve": "2026-10-07T02:23:50.261402+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:09:31.031207+02:00",
-      "kulcs": "FJX230",
-      "rendszam": "FJX230",
-      "vehicle_id": "3050",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.46944046020508,
-      "lon": 19.23725700378418,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-06T15:09:31.031255+02:00",
-      "kulcs": "FKU904",
-      "rendszam": "FKU904",
-      "vehicle_id": "3060",
-      "vehicle_label": "Rákoshegy",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.5003776550293,
-      "lon": 19.135610580444336,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-06T15:09:31.031504+02:00",
-      "kulcs": "FLR725",
-      "rendszam": "FLR725",
-      "vehicle_id": "3139",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.525997161865234,
-      "lon": 19.18245506286621,
-      "elozo_szoveg": "Rákosi út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-06T15:09:31.031594+02:00",
       "kulcs": "FLR741",
@@ -260000,6 +259961,45 @@
       "lon": 19.056198120117188,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-07T02:23:50.173036+02:00",
+      "kulcs": "NGC023",
+      "rendszam": "NGC023",
+      "vehicle_id": "6322",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.501121520996094,
+      "lon": 19.0242977142334,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-07T02:23:50.173090+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.482845306396484,
+      "lon": 19.130386352539062,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-07T02:23:50.173213+02:00",
+      "kulcs": "PKN618",
+      "rendszam": "PKN618",
+      "vehicle_id": "7207",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47081756591797,
+      "lon": 19.23885154724121,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
     }
   ]
 }
