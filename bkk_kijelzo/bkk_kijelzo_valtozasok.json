@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T00:13:33.400075+02:00",
+  "frissitve": "2026-10-08T00:14:10.277587+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T10:49:35.655367+02:00",
-      "kulcs": "T8001",
-      "rendszam": "T8001",
-      "vehicle_id": "6121",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49593734741211,
-      "lon": 19.060138702392578,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-10-07T10:49:35.656388+02:00",
-      "kulcs": "NGC147",
-      "rendszam": "NGC147",
-      "vehicle_id": "6195",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.566978454589844,
-      "lon": 18.954696655273438,
-      "elozo_szoveg": "Pesthidegkút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-07T10:49:35.656532+02:00",
-      "kulcs": "NGC143",
-      "rendszam": "NGC143",
-      "vehicle_id": "6215",
-      "vehicle_label": "Máriaremete",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.54469680786133,
-      "lon": 18.963516235351562,
-      "elozo_szoveg": "Máriaremete",
-      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-07T10:49:35.656702+02:00",
       "kulcs": "AELD558",
@@ -260000,6 +259961,45 @@
       "lon": 19.28693199157715,
       "elozo_szoveg": "Rákoskeresztúr, városközpont",
       "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-08T00:14:10.193054+02:00",
+      "kulcs": "AADI656",
+      "rendszam": "AADI656",
+      "vehicle_id": "155",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47521209716797,
+      "lon": 19.0402774810791,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-08T00:14:10.193218+02:00",
+      "kulcs": "FKU939",
+      "rendszam": "FKU939",
+      "vehicle_id": "3095",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54216766357422,
+      "lon": 19.151098251342773,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-08T00:14:10.194052+02:00",
+      "kulcs": "AOFL250",
+      "rendszam": "AOFL250",
+      "vehicle_id": "838",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.43489456176758,
+      "lon": 19.201210021972656,
+      "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
+      "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
     }
   ]
 }
