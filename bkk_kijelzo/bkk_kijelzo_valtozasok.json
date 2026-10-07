@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-07T02:47:18.925641+02:00",
+  "frissitve": "2026-10-07T02:47:50.098064+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-06T15:11:08.773807+02:00",
-      "kulcs": "V2210",
-      "rendszam": "V2210",
-      "vehicle_id": "5850",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51731872558594,
-      "lon": 19.03640365600586,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-06T15:11:08.773947+02:00",
-      "kulcs": "V2222",
-      "rendszam": "V2222",
-      "vehicle_id": "5862",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.44358444213867,
-      "lon": 19.096498489379883,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-06T15:11:08.774071+02:00",
-      "kulcs": "MUM646",
-      "rendszam": "MUM646",
-      "vehicle_id": "5878",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "282E",
-      "route_id": "2825",
-      "lat": 47.46284103393555,
-      "lon": 19.148359298706055,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-06T15:11:08.774242+02:00",
-      "kulcs": "V2292",
-      "rendszam": "V2292",
-      "vehicle_id": "590",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.542625427246094,
-      "lon": 18.96463966369629,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
     {
       "idopont": "2026-10-06T15:11:08.774279+02:00",
       "kulcs": "V2294",
@@ -260000,6 +259948,58 @@
       "lon": 19.068523406982422,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-07T02:47:50.017587+02:00",
+      "kulcs": "NTP538",
+      "rendszam": "NTP538",
+      "vehicle_id": "6514",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.519588470458984,
+      "lon": 19.14794158935547,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-07T02:47:50.018277+02:00",
+      "kulcs": "470 005",
+      "rendszam": "470 005",
+      "vehicle_id": "915504700054",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.46205139160156,
+      "lon": 21.486770629882812,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-07T02:47:50.018394+02:00",
+      "kulcs": "815 029",
+      "rendszam": "815 029",
+      "vehicle_id": "945514151188",
+      "vehicle_label": "Szolnok",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.280269622802734,
+      "lon": 19.53611946105957,
+      "elozo_szoveg": "Cegléd",
+      "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-10-07T02:47:50.018465+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51191329956055,
+      "lon": 19.099567413330078,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
