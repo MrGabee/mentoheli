@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-08T01:11:49.265302+02:00",
+  "frissitve": "2026-10-08T01:12:25.361752+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T10:55:47.727313+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57676315307617,
-      "lon": 19.10562515258789,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-07T10:55:47.727657+02:00",
-      "kulcs": "AAHY868",
-      "rendszam": "AAHY868",
-      "vehicle_id": "430",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "231B",
-      "route_id": "2312",
-      "lat": 47.54110336303711,
-      "lon": 19.11934471130371,
-      "elozo_szoveg": "Észak-Pesti Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-07T10:55:47.727690+02:00",
-      "kulcs": "AAHY870",
-      "rendszam": "AAHY870",
-      "vehicle_id": "432",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296A",
-      "route_id": "2961",
-      "lat": 47.598697662353516,
-      "lon": 19.12168312072754,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-07T10:55:47.727777+02:00",
-      "kulcs": "V1321",
-      "rendszam": "V1321",
-      "vehicle_id": "4425",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51060485839844,
-      "lon": 19.047136306762695,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
     {
       "idopont": "2026-10-07T10:55:47.727883+02:00",
       "kulcs": "V1342",
@@ -260000,6 +259948,58 @@
       "lon": 19.042051315307617,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-08T01:12:25.305422+02:00",
+      "kulcs": "AADI654",
+      "rendszam": "AADI654",
+      "vehicle_id": "153",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475711822509766,
+      "lon": 19.041608810424805,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-08T01:12:25.308027+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49974060058594,
+      "lon": 19.287012100219727,
+      "elozo_szoveg": "Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-08T01:12:25.308363+02:00",
+      "kulcs": "RVY729",
+      "rendszam": "RVY729",
+      "vehicle_id": "7627",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497032165527344,
+      "lon": 19.055734634399414,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-08T01:12:25.308593+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.51942825317383,
+      "lon": 19.038185119628906,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
