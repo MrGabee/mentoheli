@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T03:27:34.342041+02:00",
+  "frissitve": "2026-10-08T03:28:03.572274+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:12:18.661432+02:00",
-      "kulcs": "PHG625",
-      "rendszam": "PHG625",
-      "vehicle_id": "7149",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.523189544677734,
-      "lon": 19.171764373779297,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Mátyás király utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-07T11:12:18.661545+02:00",
-      "kulcs": "PHG652",
-      "rendszam": "PHG652",
-      "vehicle_id": "7176",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.540164947509766,
-      "lon": 19.253108978271484,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
-    {
-      "idopont": "2026-10-07T11:12:18.661896+02:00",
-      "kulcs": "T8109",
-      "rendszam": "T8109",
-      "vehicle_id": "7346",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47589111328125,
-      "lon": 19.099895477294922,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
     {
       "idopont": "2026-10-07T11:12:18.661958+02:00",
       "kulcs": "T9107",
@@ -260000,6 +259961,45 @@
       "lon": 19.047103881835938,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-08T03:28:03.521334+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43244171142578,
+      "lon": 19.260990142822266,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-10-08T03:28:03.521626+02:00",
+      "kulcs": "NWB361",
+      "rendszam": "NWB361",
+      "vehicle_id": "6541",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.546791076660156,
+      "lon": 19.142549514770508,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Cinkotai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T03:28:03.521866+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52539825439453,
+      "lon": 19.037988662719727,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
