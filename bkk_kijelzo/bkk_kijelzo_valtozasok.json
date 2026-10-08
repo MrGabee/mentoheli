@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T03:58:48.605290+02:00",
+  "frissitve": "2026-10-08T03:59:20.619535+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:17:16.468130+02:00",
-      "kulcs": "V2013",
-      "rendszam": "V2013",
-      "vehicle_id": "2013",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.507469177246094,
-      "lon": 19.02317237854004,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-10-07T11:17:16.469377+02:00",
-      "kulcs": "AADR759",
-      "rendszam": "AADR759",
-      "vehicle_id": "208",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50899124145508,
-      "lon": 19.058456420898438,
-      "elozo_szoveg": "Nyugati pályaudvar M (Podmaniczky utca)",
-      "uj_szoveg": "Kápolna tér"
-    },
-    {
-      "idopont": "2026-10-07T11:17:16.469681+02:00",
-      "kulcs": "FKU933",
-      "rendszam": "FKU933",
-      "vehicle_id": "3089",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.52006149291992,
-      "lon": 19.22689437866211,
-      "elozo_szoveg": "Cinkota, Lassú utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-07T11:17:16.469846+02:00",
       "kulcs": "AAGL282",
@@ -260000,6 +259961,45 @@
       "lon": 19.12749671936035,
       "elozo_szoveg": "Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya alsó vasútáll."
+    },
+    {
+      "idopont": "2026-10-08T03:59:20.474071+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.486820220947266,
+      "lon": 19.057167053222656,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-08T03:59:20.474818+02:00",
+      "kulcs": "480 017",
+      "rendszam": "480 017",
+      "vehicle_id": "915504800177",
+      "vehicle_label": "Szeged",
+      "vonal_szam": "IC",
+      "route_id": "IC",
+      "lat": 47.510948181152344,
+      "lon": 19.101760864257812,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szeged"
+    },
+    {
+      "idopont": "2026-10-08T03:59:20.475036+02:00",
+      "kulcs": "415 085",
+      "rendszam": "415 085",
+      "vehicle_id": "945514150859",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.181758880615234,
+      "lon": 19.810550689697266,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
