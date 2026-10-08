@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-09T00:23:57.457053+02:00",
+  "frissitve": "2026-10-09T00:24:35.207948+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T14:58:38.478832+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47590255737305,
-      "lon": 19.09992790222168,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-10-08T14:58:38.478848+02:00",
-      "kulcs": "T8118",
-      "rendszam": "T8118",
-      "vehicle_id": "7897",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50413513183594,
-      "lon": 19.136762619018555,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
     {
       "idopont": "2026-10-08T14:58:38.478874+02:00",
       "kulcs": "T8120",
@@ -260000,6 +259974,32 @@
       "lon": 19.038122177124023,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-09T00:24:35.017186+02:00",
+      "kulcs": "FLR725",
+      "rendszam": "FLR725",
+      "vehicle_id": "3139",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.465057373046875,
+      "lon": 19.127368927001953,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-09T00:24:35.019299+02:00",
+      "kulcs": "NWB355",
+      "rendszam": "NWB355",
+      "vehicle_id": "6535",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47071838378906,
+      "lon": 19.236433029174805,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
     }
   ]
 }
