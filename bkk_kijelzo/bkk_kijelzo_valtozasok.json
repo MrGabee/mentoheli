@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-09T01:23:29.260147+02:00",
+  "frissitve": "2026-10-09T01:24:35.013295+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:03:24.707260+02:00",
-      "kulcs": "RCT309",
-      "rendszam": "RCT309",
-      "vehicle_id": "7323",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.479820251464844,
-      "lon": 19.06649398803711,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-08T15:03:24.707320+02:00",
-      "kulcs": "RCT317",
-      "rendszam": "RCT317",
-      "vehicle_id": "7331",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.479610443115234,
-      "lon": 19.067062377929688,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-08T15:03:24.707360+02:00",
-      "kulcs": "T8102",
-      "rendszam": "T8102",
-      "vehicle_id": "7339",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.501033782958984,
-      "lon": 19.08275032043457,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-08T15:03:24.707436+02:00",
-      "kulcs": "T8109",
-      "rendszam": "T8109",
-      "vehicle_id": "7346",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47590637207031,
-      "lon": 19.09989356994629,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-10-08T15:03:24.707525+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.49982833862305,
-      "lon": 19.10401725769043,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
     {
       "idopont": "2026-10-08T15:03:24.707838+02:00",
       "kulcs": "RVY602",
@@ -260000,6 +259935,71 @@
       "lon": 19.038728713989258,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-09T01:24:34.926990+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5040397644043,
+      "lon": 19.1367244720459,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-09T01:24:34.929282+02:00",
+      "kulcs": "MXJ015",
+      "rendszam": "MXJ015",
+      "vehicle_id": "5891",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47690963745117,
+      "lon": 19.050376892089844,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-09T01:24:34.929369+02:00",
+      "kulcs": "AADI583",
+      "rendszam": "AADI583",
+      "vehicle_id": "62",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.50145721435547,
+      "lon": 19.024362564086914,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-09T01:24:34.929830+02:00",
+      "kulcs": "SKR816",
+      "rendszam": "SKR816",
+      "vehicle_id": "7703",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47019577026367,
+      "lon": 19.23649787902832,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-10-09T01:24:34.929923+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41019058227539,
+      "lon": 19.060325622558594,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
