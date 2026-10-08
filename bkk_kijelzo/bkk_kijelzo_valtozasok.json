@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-09T00:13:34.089358+02:00",
+  "frissitve": "2026-10-09T00:14:08.317939+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T14:58:38.468005+02:00",
-      "kulcs": "V1346",
-      "rendszam": "V1346",
-      "vehicle_id": "4449",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.50889205932617,
-      "lon": 19.04658317565918,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-08T14:58:38.470090+02:00",
-      "kulcs": "V4221",
-      "rendszam": "V4221",
-      "vehicle_id": "4881",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.47906494140625,
-      "lon": 19.17787742614746,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Kőbányai út ► Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-10-08T14:58:38.470409+02:00",
       "kulcs": "MFW514",
@@ -260000,6 +259974,32 @@
       "lon": 19.046396255493164,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-09T00:14:08.263627+02:00",
+      "kulcs": "SGY986",
+      "rendszam": "SGY986",
+      "vehicle_id": "7666",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47517776489258,
+      "lon": 19.04024887084961,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T00:14:08.263755+02:00",
+      "kulcs": "1149-775-1150",
+      "rendszam": "1149-775-1150",
+      "vehicle_id": "905516561495-905536467756-905516561503",
+      "vehicle_label": "Szentendre",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.50709915161133,
+      "lon": 19.039409637451172,
+      "elozo_szoveg": "Batthyány tér",
+      "uj_szoveg": "Szentendre"
     }
   ]
 }
