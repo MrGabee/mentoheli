@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:52:19.106328+02:00",
+  "frissitve": "2026-10-08T02:52:49.075150+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:08:33.341995+02:00",
-      "kulcs": "AAHY871",
-      "rendszam": "AAHY871",
-      "vehicle_id": "433",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "96",
-      "route_id": "0960",
-      "lat": 47.582740783691406,
-      "lon": 19.082351684570312,
-      "elozo_szoveg": "Újpest, Fóti út",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.342973+02:00",
-      "kulcs": "V1578",
-      "rendszam": "V1578",
-      "vehicle_id": "4630",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.498870849609375,
-      "lon": 19.08271026611328,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.343400+02:00",
-      "kulcs": "V4074",
-      "rendszam": "V4074",
-      "vehicle_id": "4763",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49191665649414,
-      "lon": 19.144439697265625,
-      "elozo_szoveg": "Kőbányai út ► Blaha Lujza tér M",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-10-07T11:08:33.343728+02:00",
       "kulcs": "V4162",
@@ -260000,6 +259961,45 @@
       "lon": 19.014394760131836,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-10-08T02:52:48.990770+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57984924316406,
+      "lon": 19.088520050048828,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-08T02:52:48.991345+02:00",
+      "kulcs": "RVY619",
+      "rendszam": "RVY619",
+      "vehicle_id": "7448",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.519283294677734,
+      "lon": 19.038232803344727,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T02:52:48.991594+02:00",
+      "kulcs": "SKN821",
+      "rendszam": "SKN821",
+      "vehicle_id": "7789",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50894546508789,
+      "lon": 19.0955753326416,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
     }
   ]
 }
