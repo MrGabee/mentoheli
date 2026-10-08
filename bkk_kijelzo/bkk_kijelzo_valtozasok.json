@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-09T01:11:33.247470+02:00",
+  "frissitve": "2026-10-09T01:12:04.563513+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:02:16.189710+02:00",
-      "kulcs": "SGY818",
-      "rendszam": "SGY818",
-      "vehicle_id": "7736",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.388858795166016,
-      "lon": 19.100927352905273,
-      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-08T15:02:16.189969+02:00",
-      "kulcs": "STZ858",
-      "rendszam": "STZ858",
-      "vehicle_id": "7813",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.51776123046875,
-      "lon": 18.923828125,
-      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-08T15:02:16.190006+02:00",
-      "kulcs": "STZ867",
-      "rendszam": "STZ867",
-      "vehicle_id": "7822",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.44622039794922,
-      "lon": 18.905838012695312,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-08T15:02:16.190206+02:00",
       "kulcs": "T9122",
@@ -260000,6 +259961,45 @@
       "lon": 19.12607765197754,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T01:12:04.512742+02:00",
+      "kulcs": "AADI658",
+      "rendszam": "AADI658",
+      "vehicle_id": "157",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47510528564453,
+      "lon": 19.03993797302246,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T01:12:04.514000+02:00",
+      "kulcs": "MOS256",
+      "rendszam": "MOS256",
+      "vehicle_id": "5709",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49705123901367,
+      "lon": 19.055681228637695,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-09T01:12:04.514778+02:00",
+      "kulcs": "AOIM054",
+      "rendszam": "AOIM054",
+      "vehicle_id": "975",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.465457916259766,
+      "lon": 19.1528263092041,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
     }
   ]
 }
