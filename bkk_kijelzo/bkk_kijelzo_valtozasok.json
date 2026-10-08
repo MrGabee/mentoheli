@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:22:54.868801+02:00",
+  "frissitve": "2026-10-08T02:23:26.060047+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:03:30.978026+02:00",
-      "kulcs": "480 022",
-      "rendszam": "480 022",
-      "vehicle_id": "915504800227",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.3477783203125,
-      "lon": 20.042749404907227,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-07T11:03:30.978445+02:00",
-      "kulcs": "AOIM023",
-      "rendszam": "AOIM023",
-      "vehicle_id": "943",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.54710006713867,
-      "lon": 19.141965866088867,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-07T11:03:30.978968+02:00",
       "kulcs": "815 004",
@@ -260000,6 +259974,32 @@
       "lon": 19.075794219970703,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T02:23:25.985707+02:00",
+      "kulcs": "SKN818",
+      "rendszam": "SKN818",
+      "vehicle_id": "7760",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.54970932006836,
+      "lon": 19.043052673339844,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-08T02:23:25.985839+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.5413932800293,
+      "lon": 19.151586532592773,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
     }
   ]
 }
