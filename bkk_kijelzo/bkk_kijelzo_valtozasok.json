@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-08T03:38:39.442708+02:00",
+  "frissitve": "2026-10-08T03:39:13.957585+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:13:34.923576+02:00",
-      "kulcs": "PHG625",
-      "rendszam": "PHG625",
-      "vehicle_id": "7149",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.52531433105469,
-      "lon": 19.176429748535156,
-      "elozo_szoveg": "Mátyás király utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-07T11:13:34.923748+02:00",
-      "kulcs": "PDN684",
-      "rendszam": "PDN684",
-      "vehicle_id": "7187",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "166",
-      "route_id": "1660",
-      "lat": 47.436824798583984,
-      "lon": 19.222627639770508,
-      "elozo_szoveg": "Ferihegy vasútállomás",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-10-07T11:13:34.924106+02:00",
-      "kulcs": "AOGF653",
-      "rendszam": "AOGF653",
-      "vehicle_id": "735",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "66",
-      "route_id": "0660",
-      "lat": 47.378299713134766,
-      "lon": 19.130517959594727,
-      "elozo_szoveg": "Soroksár, központi raktárak",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-07T11:13:34.927278+02:00",
-      "kulcs": "SKR802",
-      "rendszam": "SKR802",
-      "vehicle_id": "7688",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.519981384277344,
-      "lon": 19.09122085571289,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-07T11:13:34.927729+02:00",
-      "kulcs": "T9116",
-      "rendszam": "T9116",
-      "vehicle_id": "7854",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489463806152344,
-      "lon": 19.090259552001953,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-10-07T11:13:34.927773+02:00",
       "kulcs": "T9120",
@@ -260000,6 +259935,71 @@
       "lon": 20.043550491333008,
       "elozo_szoveg": "Szeged",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-08T03:39:13.875157+02:00",
+      "kulcs": "MUT888",
+      "rendszam": "MUT888",
+      "vehicle_id": "5941",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42667770385742,
+      "lon": 19.161060333251953,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-08T03:39:13.875196+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53212356567383,
+      "lon": 19.081199645996094,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T03:39:13.875310+02:00",
+      "kulcs": "AEHE426",
+      "rendszam": "AEHE426",
+      "vehicle_id": "623",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.422828674316406,
+      "lon": 19.074676513671875,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T03:39:13.875347+02:00",
+      "kulcs": "NTM435",
+      "rendszam": "NTM435",
+      "vehicle_id": "6503",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42137908935547,
+      "lon": 19.04059410095215,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-08T03:39:13.875665+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49885940551758,
+      "lon": 19.050384521484375,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
