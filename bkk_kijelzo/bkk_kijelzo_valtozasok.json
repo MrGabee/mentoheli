@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-09T00:29:29.400654+02:00",
+  "frissitve": "2026-10-09T00:30:05.017416+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T14:59:49.179056+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.576072692871094,
-      "lon": 19.104970932006836,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-08T14:59:49.179087+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56045913696289,
-      "lon": 19.090383529663086,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-08T14:59:49.180251+02:00",
-      "kulcs": "T0616",
-      "rendszam": "T0616",
-      "vehicle_id": "4300",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.506248474121094,
-      "lon": 19.0507755279541,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
     {
       "idopont": "2026-10-08T14:59:49.181843+02:00",
       "kulcs": "V1562",
@@ -260000,6 +259961,45 @@
       "lon": 19.101350784301758,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Lajosmizse"
+    },
+    {
+      "idopont": "2026-10-09T00:30:04.900546+02:00",
+      "kulcs": "AAGL316",
+      "rendszam": "AAGL316",
+      "vehicle_id": "344",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.455726623535156,
+      "lon": 18.940893173217773,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-09T00:30:04.901740+02:00",
+      "kulcs": "MOS287",
+      "rendszam": "MOS287",
+      "vehicle_id": "5740",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.50131607055664,
+      "lon": 19.119707107543945,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-10-09T00:30:04.902671+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46464538574219,
+      "lon": 19.022979736328125,
+      "elozo_szoveg": "Apor Vilmos tér",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
