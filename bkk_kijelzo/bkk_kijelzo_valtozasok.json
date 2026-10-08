@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T03:27:06.178393+02:00",
+  "frissitve": "2026-10-08T03:27:34.342041+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:12:18.661047+02:00",
-      "kulcs": "PDB715",
-      "rendszam": "PDB715",
-      "vehicle_id": "7041",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.52365493774414,
-      "lon": 18.994096755981445,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-07T11:12:18.661138+02:00",
-      "kulcs": "PDB385",
-      "rendszam": "PDB385",
-      "vehicle_id": "7067",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.49709701538086,
-      "lon": 19.286848068237305,
-      "elozo_szoveg": "Rákoscsaba-Újtelep",
-      "uj_szoveg": "Dél-pesti autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-10-07T11:12:18.661203+02:00",
-      "kulcs": "PDN612",
-      "rendszam": "PDN612",
-      "vehicle_id": "7083",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41645050048828,
-      "lon": 19.07215118408203,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
     {
       "idopont": "2026-10-07T11:12:18.661432+02:00",
       "kulcs": "PHG625",
@@ -260000,6 +259961,45 @@
       "lon": 19.097272872924805,
       "elozo_szoveg": "Zugló vasútállomás",
       "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-08T03:27:34.254979+02:00",
+      "kulcs": "RVY602",
+      "rendszam": "RVY602",
+      "vehicle_id": "7431",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48728561401367,
+      "lon": 19.058021545410156,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-08T03:27:34.255523+02:00",
+      "kulcs": "415 087",
+      "rendszam": "415 087",
+      "vehicle_id": "945514150875",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.62704086303711,
+      "lon": 19.59231948852539,
+      "elozo_szoveg": "Gödöllő",
+      "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-10-08T03:27:34.255590+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47595977783203,
+      "lon": 19.047103881835938,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
