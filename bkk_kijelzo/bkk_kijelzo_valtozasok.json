@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-09T00:50:13.034642+02:00",
+  "frissitve": "2026-10-09T00:50:51.108227+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:00:59.253999+02:00",
-      "kulcs": "V1451",
-      "rendszam": "V1451",
-      "vehicle_id": "4521",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51253890991211,
-      "lon": 19.047574996948242,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-08T15:00:59.254056+02:00",
-      "kulcs": "V1500",
-      "rendszam": "V1500",
-      "vehicle_id": "4552",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.46507263183594,
-      "lon": 19.126157760620117,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-10-08T15:00:59.254237+02:00",
-      "kulcs": "V1586",
-      "rendszam": "V1586",
-      "vehicle_id": "4638",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.46781921386719,
-      "lon": 19.07569694519043,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-08T15:00:59.254475+02:00",
-      "kulcs": "V4057",
-      "rendszam": "V4057",
-      "vehicle_id": "4746",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.59223175048828,
-      "lon": 19.120067596435547,
-      "elozo_szoveg": "Káposztásmegyer, Megyeri út",
-      "uj_szoveg": "Káp.megyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-10-08T15:00:59.254833+02:00",
-      "kulcs": "V4145",
-      "rendszam": "V4145",
-      "vehicle_id": "4833",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.50967025756836,
-      "lon": 19.010005950927734,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
     {
       "idopont": "2026-10-08T15:00:59.255305+02:00",
       "kulcs": "V4338",
@@ -260000,6 +259935,71 @@
       "lon": 19.060501098632812,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-09T00:50:51.008769+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.487281799316406,
+      "lon": 19.058008193969727,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-09T00:50:51.010891+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.579368591308594,
+      "lon": 19.089576721191406,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-09T00:50:51.011512+02:00",
+      "kulcs": "PKN614",
+      "rendszam": "PKN614",
+      "vehicle_id": "7203",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47978210449219,
+      "lon": 19.25547218322754,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-09T00:50:51.012023+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40449142456055,
+      "lon": 19.185867309570312,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-10-09T00:50:51.012251+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.48003387451172,
+      "lon": 19.051511764526367,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
