@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:06:59.183102+02:00",
+  "frissitve": "2026-10-08T02:07:32.188271+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:02:31.316474+02:00",
-      "kulcs": "V2275",
-      "rendszam": "V2275",
-      "vehicle_id": "573",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.548133850097656,
-      "lon": 19.029521942138672,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-10-07T11:02:31.316516+02:00",
-      "kulcs": "V2278",
-      "rendszam": "V2278",
-      "vehicle_id": "576",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.49943923950195,
-      "lon": 19.02388572692871,
-      "elozo_szoveg": "Alkotás utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-10-07T11:02:31.316642+02:00",
-      "kulcs": "V2204",
-      "rendszam": "V2204",
-      "vehicle_id": "5844",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46265411376953,
-      "lon": 19.13288688659668,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
     {
       "idopont": "2026-10-07T11:02:31.316689+02:00",
       "kulcs": "V2219",
@@ -260000,6 +259961,45 @@
       "lon": 19.014263153076172,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-10-08T02:07:32.138167+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53824234008789,
+      "lon": 19.06905174255371,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-08T02:07:32.138374+02:00",
+      "kulcs": "MXJ011",
+      "rendszam": "MXJ011",
+      "vehicle_id": "5887",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40541076660156,
+      "lon": 19.013954162597656,
+      "elozo_szoveg": "Budatétény",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-08T02:07:32.138847+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.488075256347656,
+      "lon": 19.12295913696289,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
