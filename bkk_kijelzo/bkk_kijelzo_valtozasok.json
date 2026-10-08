@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:54:28.510506+02:00",
+  "frissitve": "2026-10-08T02:54:59.526782+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:08:33.345786+02:00",
-      "kulcs": "V2294",
-      "rendszam": "V2294",
-      "vehicle_id": "592",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.498558044433594,
-      "lon": 19.028532028198242,
-      "elozo_szoveg": "Krisztina körút ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.345961+02:00",
-      "kulcs": "NBW004",
-      "rendszam": "NBW004",
-      "vehicle_id": "5974",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.501800537109375,
-      "lon": 19.13590431213379,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.346201+02:00",
-      "kulcs": "T8006",
-      "rendszam": "T8006",
-      "vehicle_id": "6126",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.487022399902344,
-      "lon": 19.05762481689453,
-      "elozo_szoveg": "Fővám tér M",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.346325+02:00",
-      "kulcs": "T9002",
-      "rendszam": "T9002",
-      "vehicle_id": "6141",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.4997673034668,
-      "lon": 19.103696823120117,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.346500+02:00",
-      "kulcs": "T9014",
-      "rendszam": "T9014",
-      "vehicle_id": "6153",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.501304626464844,
-      "lon": 19.107757568359375,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-07T11:08:33.347542+02:00",
       "kulcs": "NTP537",
@@ -260000,6 +259935,71 @@
       "lon": 19.022981643676758,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-08T02:54:59.478486+02:00",
+      "kulcs": "FKU939",
+      "rendszam": "FKU939",
+      "vehicle_id": "3095",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51230239868164,
+      "lon": 19.057130813598633,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-08T02:54:59.479383+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49463653564453,
+      "lon": 19.05979347229004,
+      "elozo_szoveg": "Deák F. tér (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-08T02:54:59.479552+02:00",
+      "kulcs": "NNE051",
+      "rendszam": "NNE051",
+      "vehicle_id": "6447",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46253967285156,
+      "lon": 19.133010864257812,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-08T02:54:59.479786+02:00",
+      "kulcs": "SKR724",
+      "rendszam": "SKR724",
+      "vehicle_id": "7673",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59848403930664,
+      "lon": 19.121280670166016,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T02:54:59.479951+02:00",
+      "kulcs": "AADI575",
+      "rendszam": "AADI575",
+      "vehicle_id": "78",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.499996185302734,
+      "lon": 19.02413558959961,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
     }
   ]
 }
