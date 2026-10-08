@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:35:08.215357+02:00",
+  "frissitve": "2026-10-08T02:35:42.697179+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:06:03.150968+02:00",
-      "kulcs": "AAMH630",
-      "rendszam": "AAMH630",
-      "vehicle_id": "473",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.52949905395508,
-      "lon": 19.19491195678711,
-      "elozo_szoveg": "Árpádföld",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-07T11:06:03.151963+02:00",
-      "kulcs": "V4341",
-      "rendszam": "V4341",
-      "vehicle_id": "5000",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54853439331055,
-      "lon": 19.02988624572754,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-07T11:06:03.152315+02:00",
       "kulcs": "AADI571",
@@ -260000,6 +259974,32 @@
       "lon": 19.023263931274414,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-08T02:35:42.607903+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.43117141723633,
+      "lon": 18.9281005859375,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-08T02:35:42.608267+02:00",
+      "kulcs": "NWB355",
+      "rendszam": "NWB355",
+      "vehicle_id": "6535",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54267501831055,
+      "lon": 18.96480369567871,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
     }
   ]
 }
