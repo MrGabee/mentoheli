@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-08T03:12:30.014165+02:00",
+  "frissitve": "2026-10-08T03:12:59.726826+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:09:48.452541+02:00",
-      "kulcs": "AOFL209",
-      "rendszam": "AOFL209",
-      "vehicle_id": "795",
-      "vehicle_label": "Szemeretelep vasútáll.",
-      "vonal_szam": "183",
-      "route_id": "1830",
-      "lat": 47.44164276123047,
-      "lon": 19.18610954284668,
-      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
-      "uj_szoveg": "Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-10-07T11:09:48.452654+02:00",
-      "kulcs": "AOFL244",
-      "rendszam": "AOFL244",
-      "vehicle_id": "832",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.472537994384766,
-      "lon": 19.16011619567871,
-      "elozo_szoveg": "Újhegyi lakótelep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-07T11:09:48.452799+02:00",
-      "kulcs": "AOIB801",
-      "rendszam": "AOIB801",
-      "vehicle_id": "872",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "210",
-      "route_id": "2100",
-      "lat": 47.49790573120117,
-      "lon": 18.989479064941406,
-      "elozo_szoveg": "Svábhegy",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-10-07T11:09:48.453679+02:00",
-      "kulcs": "415 022",
-      "rendszam": "415 022",
-      "vehicle_id": "945514150222",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.375709533691406,
-      "lon": 18.900150299072266,
-      "elozo_szoveg": "Százhalombatta",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-07T11:09:48.453940+02:00",
-      "kulcs": "415 105",
-      "rendszam": "415 105",
-      "vehicle_id": "945514151055",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S71",
-      "route_id": "S71",
-      "lat": 47.52608871459961,
-      "lon": 19.09004020690918,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
     {
       "idopont": "2026-10-07T11:09:48.454083+02:00",
       "kulcs": "AOIM030",
@@ -260000,6 +259935,71 @@
       "lon": 19.120107650756836,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
       "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-10-08T03:12:59.675377+02:00",
+      "kulcs": "NBW001",
+      "rendszam": "NBW001",
+      "vehicle_id": "5971",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52346420288086,
+      "lon": 19.019989013671875,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-08T03:12:59.675488+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5427131652832,
+      "lon": 18.964252471923828,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Máriaremete"
+    },
+    {
+      "idopont": "2026-10-08T03:12:59.675744+02:00",
+      "kulcs": "SKR735",
+      "rendszam": "SKR735",
+      "vehicle_id": "7684",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.43275451660156,
+      "lon": 19.261547088623047,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-08T03:12:59.675773+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49763107299805,
+      "lon": 18.963769912719727,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-08T03:12:59.675895+02:00",
+      "kulcs": "SKR831",
+      "rendszam": "SKR831",
+      "vehicle_id": "7717",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.519962310791016,
+      "lon": 19.03810691833496,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
