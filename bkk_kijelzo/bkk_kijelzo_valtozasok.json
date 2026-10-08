@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-09T00:07:23.513964+02:00",
+  "frissitve": "2026-10-09T00:08:00.223358+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T14:57:14.929821+02:00",
-      "kulcs": "941-671-942-909-655-910",
-      "rendszam": "941-671-942-909-655-910",
-      "vehicle_id": "905516569415-905536466717-905516569423-905516569092-905536466550-905516569100",
-      "vehicle_label": "Gödöllő",
-      "vonal_szam": "H8",
-      "route_id": "H8",
-      "lat": 47.50376892089844,
-      "lon": 19.13764190673828,
-      "elozo_szoveg": "Örs vezér tere",
-      "uj_szoveg": "Gödöllő"
-    },
-    {
-      "idopont": "2026-10-08T14:57:14.929863+02:00",
-      "kulcs": "945-673-946-885-643-886",
-      "rendszam": "945-673-946-885-643-886",
-      "vehicle_id": "905516569456-905536466733-905516569464-905516568854-905536466436-905516568862",
-      "vehicle_label": "Közvágóhíd",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.176063537597656,
-      "lon": 18.94158363342285,
-      "elozo_szoveg": "Ráckeve",
-      "uj_szoveg": "Közvágóhíd"
-    },
-    {
-      "idopont": "2026-10-08T14:57:14.929938+02:00",
-      "kulcs": "953-677-954-881-641-882",
-      "rendszam": "953-677-954-881-641-882",
-      "vehicle_id": "905516569530-905536466774-905516569548-905516568813-905536466410-905516568821",
-      "vehicle_label": "Tököl",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.46598815917969,
-      "lon": 19.077341079711914,
-      "elozo_szoveg": "Közvágóhíd",
-      "uj_szoveg": "Tököl"
-    },
     {
       "idopont": "2026-10-08T14:57:14.930020+02:00",
       "kulcs": "985-693-986-921-661-922",
@@ -260000,6 +259961,45 @@
       "lon": 19.1330509185791,
       "elozo_szoveg": "Budapest-Keleti",
       "uj_szoveg": "Hatvan"
+    },
+    {
+      "idopont": "2026-10-09T00:08:00.154704+02:00",
+      "kulcs": "PDB381",
+      "rendszam": "PDB381",
+      "vehicle_id": "7063",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.4997673034668,
+      "lon": 19.2871150970459,
+      "elozo_szoveg": "Rákoskert vasútállomás",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-09T00:08:00.154762+02:00",
+      "kulcs": "PKN609",
+      "rendszam": "PKN609",
+      "vehicle_id": "7198",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499698638916016,
+      "lon": 19.090471267700195,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-10-09T00:08:00.155093+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.4056396484375,
+      "lon": 19.01376724243164,
+      "elozo_szoveg": "Normafa",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
     }
   ]
 }
