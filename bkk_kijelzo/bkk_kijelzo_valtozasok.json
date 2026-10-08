@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:57:10.743790+02:00",
+  "frissitve": "2026-10-08T02:57:42.720467+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:08:33.353318+02:00",
-      "kulcs": "AOGL310",
-      "rendszam": "AOGL310",
-      "vehicle_id": "900",
-      "vehicle_label": "Apor Vilmos tér",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.5493049621582,
-      "lon": 19.07364273071289,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Apor Vilmos tér"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.354431+02:00",
-      "kulcs": "AOIM025",
-      "rendszam": "AOIM025",
-      "vehicle_id": "945",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.388919830322266,
-      "lon": 18.95849609375,
-      "elozo_szoveg": "Nagytétény, ipartelep",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-10-07T11:08:33.355350+02:00",
-      "kulcs": "AOJM861",
-      "rendszam": "AOJM861",
-      "vehicle_id": "984",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.4887809753418,
-      "lon": 19.06099510192871,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-10-07T11:09:48.444152+02:00",
       "kulcs": "AADI607",
@@ -260000,6 +259961,45 @@
       "lon": 19.0996150970459,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-10-08T02:57:42.632666+02:00",
+      "kulcs": "AADI606",
+      "rendszam": "AADI606",
+      "vehicle_id": "103",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39971923828125,
+      "lon": 18.994089126586914,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-08T02:57:42.637668+02:00",
+      "kulcs": "SKR736",
+      "rendszam": "SKR736",
+      "vehicle_id": "7685",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.465057373046875,
+      "lon": 19.127382278442383,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-08T02:57:42.638057+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.4737434387207,
+      "lon": 19.046302795410156,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
