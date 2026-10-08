@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T03:17:13.989471+02:00",
+  "frissitve": "2026-10-08T03:17:48.978534+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:11:03.449508+02:00",
-      "kulcs": "T9008",
-      "rendszam": "T9008",
-      "vehicle_id": "6147",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.515296936035156,
-      "lon": 19.050724029541016,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-07T11:11:03.449639+02:00",
-      "kulcs": "NGC159",
-      "rendszam": "NGC159",
-      "vehicle_id": "6209",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.54346466064453,
-      "lon": 19.031360626220703,
-      "elozo_szoveg": "Szent Margit Kórház ► Békásmegyer H",
-      "uj_szoveg": "Békásmegyer H"
-    },
-    {
-      "idopont": "2026-10-07T11:11:03.449807+02:00",
-      "kulcs": "NCV294",
-      "rendszam": "NCV294",
-      "vehicle_id": "6259",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49749755859375,
-      "lon": 19.051795959472656,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-07T11:11:03.449939+02:00",
       "kulcs": "NLE854",
@@ -260000,6 +259961,45 @@
       "lon": 19.045230865478516,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-08T03:17:48.928070+02:00",
+      "kulcs": "PDB709",
+      "rendszam": "PDB709",
+      "vehicle_id": "7035",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.462440490722656,
+      "lon": 19.13322639465332,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-08T03:17:48.928418+02:00",
+      "kulcs": "SKN818",
+      "rendszam": "SKN818",
+      "vehicle_id": "7760",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.501953125,
+      "lon": 19.13620948791504,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-08T03:17:48.928474+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.52529525756836,
+      "lon": 19.037944793701172,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
     }
   ]
 }
