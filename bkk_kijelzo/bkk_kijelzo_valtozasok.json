@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-08T04:20:12.840897+02:00",
+  "frissitve": "2026-10-08T04:20:54.614527+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:22:00.404387+02:00",
-      "kulcs": "928600015244",
-      "rendszam": "928600015244",
-      "vehicle_id": "915504800011",
-      "vehicle_label": "Tapolca",
-      "vonal_szam": "S",
-      "route_id": "S",
-      "lat": 46.956031799316406,
-      "lon": 17.8826904296875,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Tapolca"
-    },
-    {
-      "idopont": "2026-10-07T11:22:00.404902+02:00",
-      "kulcs": "415 061",
-      "rendszam": "415 061",
-      "vehicle_id": "945514150610",
-      "vehicle_label": "Pilisvörösvár",
-      "vonal_szam": "S76",
-      "route_id": "S76",
-      "lat": 47.55937957763672,
-      "lon": 19.079219818115234,
-      "elozo_szoveg": "Angyalföld",
-      "uj_szoveg": "Pilisvörösvár"
-    },
-    {
-      "idopont": "2026-10-07T11:22:00.405125+02:00",
-      "kulcs": "815 026",
-      "rendszam": "815 026",
-      "vehicle_id": "945518150269",
-      "vehicle_label": "Szolnok",
-      "vonal_szam": "Z60",
-      "route_id": "Z60",
-      "lat": 47.49211120605469,
-      "lon": 19.133129119873047,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Szolnok"
-    },
-    {
-      "idopont": "2026-10-07T11:23:19.117430+02:00",
-      "kulcs": "AADR709",
-      "rendszam": "AADR709",
-      "vehicle_id": "177",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.49613952636719,
-      "lon": 19.071035385131836,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-10-07T11:23:19.117572+02:00",
-      "kulcs": "V2006",
-      "rendszam": "V2006",
-      "vehicle_id": "2006",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.4740104675293,
-      "lon": 19.047317504882812,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-07T11:23:19.117686+02:00",
       "kulcs": "V2029",
@@ -260000,6 +259935,71 @@
       "lon": 19.498369216918945,
       "elozo_szoveg": "Lajosmizse",
       "uj_szoveg": "Kőbánya-Kispest"
+    },
+    {
+      "idopont": "2026-10-08T04:20:54.523504+02:00",
+      "kulcs": "V2007",
+      "rendszam": "V2007",
+      "vehicle_id": "2007",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.49608612060547,
+      "lon": 19.071556091308594,
+      "elozo_szoveg": "KOCSISZÍNBE  Mester u. / Ferenc krt.",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-08T04:20:54.523537+02:00",
+      "kulcs": "V2012",
+      "rendszam": "V2012",
+      "vehicle_id": "2012",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.49653625488281,
+      "lon": 19.070804595947266,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-08T04:20:54.525227+02:00",
+      "kulcs": "AAHY806",
+      "rendszam": "AAHY806",
+      "vehicle_id": "366",
+      "vehicle_label": "Izzó utcai lakótelep",
+      "vonal_szam": "220",
+      "route_id": "2200",
+      "lat": 47.56113815307617,
+      "lon": 19.091236114501953,
+      "elozo_szoveg": "Megyer, Julianus barát utca",
+      "uj_szoveg": "Izzó utcai lakótelep"
+    },
+    {
+      "idopont": "2026-10-08T04:20:54.525465+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699783325195,
+      "lon": 19.05571937561035,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-08T04:20:54.526684+02:00",
+      "kulcs": "V2252",
+      "rendszam": "V2252",
+      "vehicle_id": "7384",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.48407745361328,
+      "lon": 19.026853561401367,
+      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
     }
   ]
 }
