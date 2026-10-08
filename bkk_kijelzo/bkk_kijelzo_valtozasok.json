@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:46:16.134259+02:00",
+  "frissitve": "2026-10-08T02:46:51.119290+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:07:07.281433+02:00",
-      "kulcs": "MFW511",
-      "rendszam": "MFW511",
-      "vehicle_id": "5049",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.5003662109375,
-      "lon": 19.135221481323242,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Bosnyák tér"
-    },
-    {
-      "idopont": "2026-10-07T11:07:07.281795+02:00",
-      "kulcs": "V2268",
-      "rendszam": "V2268",
-      "vehicle_id": "566",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.4652214050293,
-      "lon": 19.127220153808594,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-10-07T11:07:07.281864+02:00",
-      "kulcs": "MOS268",
-      "rendszam": "MOS268",
-      "vehicle_id": "5721",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.3926887512207,
-      "lon": 19.222518920898438,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-07T11:07:07.283406+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.499813079833984,
-      "lon": 19.035221099853516,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-07T11:07:07.283439+02:00",
       "kulcs": "NCV291",
@@ -260000,6 +259948,58 @@
       "lon": 19.25554847717285,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-08T02:46:51.012858+02:00",
+      "kulcs": "AAGL257",
+      "rendszam": "AAGL257",
+      "vehicle_id": "257",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.43598175048828,
+      "lon": 18.978559494018555,
+      "elozo_szoveg": "Kamaraerdő",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-08T02:46:51.015033+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.56266403198242,
+      "lon": 19.090608596801758,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-10-08T02:46:51.015715+02:00",
+      "kulcs": "SKR816",
+      "rendszam": "SKR816",
+      "vehicle_id": "7703",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.4848747253418,
+      "lon": 19.192455291748047,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-08T02:46:51.016073+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47959899902344,
+      "lon": 19.051149368286133,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
