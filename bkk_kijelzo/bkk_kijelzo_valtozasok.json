@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-09T01:22:29.177728+02:00",
+  "frissitve": "2026-10-09T01:23:00.166837+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:03:24.706383+02:00",
-      "kulcs": "PDN618",
-      "rendszam": "PDN618",
-      "vehicle_id": "7089",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.43112564086914,
-      "lon": 19.070682525634766,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-08T15:03:24.706447+02:00",
-      "kulcs": "PDN627",
-      "rendszam": "PDN627",
-      "vehicle_id": "7098",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "179",
-      "route_id": "1790",
-      "lat": 47.4307746887207,
-      "lon": 19.070775985717773,
-      "elozo_szoveg": "Szent Imre tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-08T15:03:24.707065+02:00",
-      "kulcs": "PKN629",
-      "rendszam": "PKN629",
-      "vehicle_id": "7218",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.479400634765625,
-      "lon": 19.233713150024414,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-08T15:03:24.707260+02:00",
       "kulcs": "RCT309",
@@ -260000,6 +259961,45 @@
       "lon": 19.129236221313477,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-09T01:23:00.082899+02:00",
+      "kulcs": "NGC142",
+      "rendszam": "NGC142",
+      "vehicle_id": "6217",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.500457763671875,
+      "lon": 19.13555908203125,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-09T01:23:00.083023+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45136260986328,
+      "lon": 19.15921401977539,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-09T01:23:00.083448+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51762390136719,
+      "lon": 19.038728713989258,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
