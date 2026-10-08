@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:34:35.442432+02:00",
+  "frissitve": "2026-10-08T02:35:08.215357+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:06:03.150218+02:00",
-      "kulcs": "V1313",
-      "rendszam": "V1313",
-      "vehicle_id": "4417",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49734878540039,
-      "lon": 19.055614471435547,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-07T11:06:03.150398+02:00",
-      "kulcs": "V1356",
-      "rendszam": "V1356",
-      "vehicle_id": "4457",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.42194747924805,
-      "lon": 19.122331619262695,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-07T11:06:03.150913+02:00",
-      "kulcs": "V4032",
-      "rendszam": "V4032",
-      "vehicle_id": "4721",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.54304885864258,
-      "lon": 18.964391708374023,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-10-07T11:06:03.150968+02:00",
       "kulcs": "AAMH630",
@@ -260000,6 +259961,45 @@
       "lon": 19.005212783813477,
       "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
       "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-08T02:35:08.124443+02:00",
+      "kulcs": "AAGL305",
+      "rendszam": "AAGL305",
+      "vehicle_id": "335",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.47963333129883,
+      "lon": 19.064912796020508,
+      "elozo_szoveg": "Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-08T02:35:08.125337+02:00",
+      "kulcs": "NBW008",
+      "rendszam": "NBW008",
+      "vehicle_id": "5978",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.473758697509766,
+      "lon": 18.991439819335938,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-08T02:35:08.126242+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46486282348633,
+      "lon": 19.023263931274414,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
