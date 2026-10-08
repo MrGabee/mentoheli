@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:11:01.747110+02:00",
+  "frissitve": "2026-10-08T02:11:39.034952+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:02:31.319445+02:00",
-      "kulcs": "PHG624",
-      "rendszam": "PHG624",
-      "vehicle_id": "7148",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.504554748535156,
-      "lon": 19.1369571685791,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákosi út ► Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-10-07T11:02:31.319528+02:00",
-      "kulcs": "T0624",
-      "rendszam": "T0624",
-      "vehicle_id": "717",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.536617279052734,
-      "lon": 19.1071834564209,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-10-07T11:02:31.321159+02:00",
-      "kulcs": "PKN608",
-      "rendszam": "PKN608",
-      "vehicle_id": "7197",
-      "vehicle_label": "Kisszentmihály, Baross u.",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.50487518310547,
-      "lon": 19.136510848999023,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-07T11:02:31.321201+02:00",
-      "kulcs": "PKN616",
-      "rendszam": "PKN616",
-      "vehicle_id": "7205",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.47920608520508,
-      "lon": 19.235118865966797,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-07T11:02:31.321304+02:00",
-      "kulcs": "V1622",
-      "rendszam": "V1622",
-      "vehicle_id": "7291",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.46755599975586,
-      "lon": 19.080190658569336,
-      "elozo_szoveg": "Koppány utca",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
     {
       "idopont": "2026-10-07T11:02:31.321408+02:00",
       "kulcs": "T8107",
@@ -260000,6 +259935,71 @@
       "lon": 19.10956573486328,
       "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-08T02:11:38.948251+02:00",
+      "kulcs": "AADI656",
+      "rendszam": "AADI656",
+      "vehicle_id": "155",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.476871490478516,
+      "lon": 19.04482078552246,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-08T02:11:38.948338+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.4863166809082,
+      "lon": 19.068706512451172,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-08T02:11:38.951634+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49889373779297,
+      "lon": 19.05063819885254,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-08T02:11:38.951946+02:00",
+      "kulcs": "NTP546",
+      "rendszam": "NTP546",
+      "vehicle_id": "6522",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499481201171875,
+      "lon": 19.286685943603516,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-08T02:11:38.952097+02:00",
+      "kulcs": "PKN623",
+      "rendszam": "PKN623",
+      "vehicle_id": "7212",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47977066040039,
+      "lon": 19.25550651550293,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
     }
   ]
 }
