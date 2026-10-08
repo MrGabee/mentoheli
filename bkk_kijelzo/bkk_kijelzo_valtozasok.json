@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-08T02:22:25.103440+02:00",
+  "frissitve": "2026-10-08T02:22:54.868801+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-07T11:03:30.977549+02:00",
-      "kulcs": "867-634-868",
-      "rendszam": "867-634-868",
-      "vehicle_id": "905516568672-905536466345-905516568680",
-      "vehicle_label": "Közvágóhíd",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.312992095947266,
-      "lon": 18.973899841308594,
-      "elozo_szoveg": "Tököl",
-      "uj_szoveg": "Közvágóhíd"
-    },
-    {
-      "idopont": "2026-10-07T11:03:30.977988+02:00",
-      "kulcs": "480 018",
-      "rendszam": "480 018",
-      "vehicle_id": "915504800185",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.51070022583008,
-      "lon": 19.102130889892578,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
     {
       "idopont": "2026-10-07T11:03:30.978026+02:00",
       "kulcs": "480 022",
@@ -260000,6 +259974,32 @@
       "lon": 19.102188110351562,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-08T02:22:54.791561+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50933074951172,
+      "lon": 19.09610366821289,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-08T02:22:54.792185+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46793746948242,
+      "lon": 19.075794219970703,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
     }
   ]
 }
