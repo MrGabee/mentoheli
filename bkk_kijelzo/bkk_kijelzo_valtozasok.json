@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:27:23.409202+02:00",
+  "frissitve": "2026-10-10T01:27:57.489861+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:00:26.332888+02:00",
-      "kulcs": "480 018",
-      "rendszam": "480 018",
-      "vehicle_id": "915504800185",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.34822082519531,
-      "lon": 20.04252052307129,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.332914+02:00",
-      "kulcs": "480 019",
-      "rendszam": "480 019",
-      "vehicle_id": "915504800193",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.507728576660156,
-      "lon": 19.106170654296875,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.333454+02:00",
-      "kulcs": "AOIM020",
-      "rendszam": "AOIM020",
-      "vehicle_id": "940",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.416221618652344,
-      "lon": 19.093217849731445,
-      "elozo_szoveg": "Csepel, Határ utca",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.334155+02:00",
-      "kulcs": "AOIM041",
-      "rendszam": "AOIM041",
-      "vehicle_id": "962",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.475006103515625,
-      "lon": 18.989076614379883,
-      "elozo_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-09T15:00:26.334191+02:00",
       "kulcs": "AOIM044",
@@ -260000,6 +259948,58 @@
       "lon": 19.05575942993164,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-10T01:27:57.421699+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50712203979492,
+      "lon": 18.921463012695312,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-10T01:27:57.421857+02:00",
+      "kulcs": "MUT889",
+      "rendszam": "MUT889",
+      "vehicle_id": "5942",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.511375427246094,
+      "lon": 19.056432723999023,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-10T01:27:57.422142+02:00",
+      "kulcs": "RVY715",
+      "rendszam": "RVY715",
+      "vehicle_id": "7464",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46506118774414,
+      "lon": 19.12734031677246,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-10T01:27:57.422173+02:00",
+      "kulcs": "SKN828",
+      "rendszam": "SKN828",
+      "vehicle_id": "76",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5090446472168,
+      "lon": 19.095703125,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
     }
   ]
 }
