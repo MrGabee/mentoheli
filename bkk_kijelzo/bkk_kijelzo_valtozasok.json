@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:23:17.169225+02:00",
+  "frissitve": "2026-10-10T01:23:47.061400+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:00:26.328420+02:00",
-      "kulcs": "PMP919",
-      "rendszam": "PMP919",
-      "vehicle_id": "7237",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.55015182495117,
-      "lon": 19.042064666748047,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.328444+02:00",
-      "kulcs": "PON993",
-      "rendszam": "PON993",
-      "vehicle_id": "7260",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.515167236328125,
-      "lon": 19.18529510498047,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Rákosi út ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-09T15:00:26.328479+02:00",
       "kulcs": "V1622",
@@ -260000,6 +259974,32 @@
       "lon": 19.151092529296875,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T01:23:46.994015+02:00",
+      "kulcs": "FLR714",
+      "rendszam": "FLR714",
+      "vehicle_id": "3128",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.49332809448242,
+      "lon": 19.05620002746582,
+      "elozo_szoveg": "Márton Áron tér",
+      "uj_szoveg": "Cinkotai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T01:23:46.995500+02:00",
+      "kulcs": "T9129",
+      "rendszam": "T9129",
+      "vehicle_id": "7868",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50330352783203,
+      "lon": 19.076324462890625,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
