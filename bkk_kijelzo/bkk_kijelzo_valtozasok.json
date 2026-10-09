@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:18:34.733374+02:00",
+  "frissitve": "2026-10-10T01:19:07.104659+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:00:26.319522+02:00",
-      "kulcs": "FLR722",
-      "rendszam": "FLR722",
-      "vehicle_id": "3136",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.48374938964844,
-      "lon": 19.127864837646484,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.319574+02:00",
-      "kulcs": "FLR733",
-      "rendszam": "FLR733",
-      "vehicle_id": "3147",
-      "vehicle_label": "Rákoshegy",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.50153350830078,
-      "lon": 19.136194229125977,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoshegy"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.319898+02:00",
-      "kulcs": "AAHY804",
-      "rendszam": "AAHY804",
-      "vehicle_id": "364",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.52002716064453,
-      "lon": 19.09123992919922,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
     {
       "idopont": "2026-10-09T15:00:26.320211+02:00",
       "kulcs": "AAHY827",
@@ -260000,6 +259961,45 @@
       "lon": 19.127321243286133,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-10T01:19:07.056107+02:00",
+      "kulcs": "FKU916",
+      "rendszam": "FKU916",
+      "vehicle_id": "3072",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47811508178711,
+      "lon": 19.04522132873535,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-10T01:19:07.057156+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.50128173828125,
+      "lon": 19.107789993286133,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-10T01:19:07.057258+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59850311279297,
+      "lon": 19.054304122924805,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
     }
   ]
 }
