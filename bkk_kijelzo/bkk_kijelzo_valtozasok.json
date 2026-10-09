@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-10T00:10:18.524724+02:00",
+  "frissitve": "2026-10-10T00:10:54.734952+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T14:54:32.736780+02:00",
-      "kulcs": "SKN828",
-      "rendszam": "SKN828",
-      "vehicle_id": "76",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.57183837890625,
-      "lon": 19.006237030029297,
-      "elozo_szoveg": "Harsánylejtő",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
-    {
-      "idopont": "2026-10-09T14:54:32.737014+02:00",
-      "kulcs": "RVY745",
-      "rendszam": "RVY745",
-      "vehicle_id": "7643",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.389305114746094,
-      "lon": 19.21904182434082,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-09T14:54:32.737216+02:00",
-      "kulcs": "SKR728",
-      "rendszam": "SKR728",
-      "vehicle_id": "7677",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41661834716797,
-      "lon": 19.131107330322266,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
-    {
-      "idopont": "2026-10-09T14:54:32.737408+02:00",
-      "kulcs": "SKR819",
-      "rendszam": "SKR819",
-      "vehicle_id": "7705",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.533729553222656,
-      "lon": 18.993438720703125,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
     {
       "idopont": "2026-10-09T14:54:32.737498+02:00",
       "kulcs": "SKR828",
@@ -260000,6 +259948,58 @@
       "lon": 19.034826278686523,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-10T00:10:54.640735+02:00",
+      "kulcs": "V2023",
+      "rendszam": "V2023",
+      "vehicle_id": "2023",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.4737548828125,
+      "lon": 19.049015045166016,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-10T00:10:54.642788+02:00",
+      "kulcs": "FLR704",
+      "rendszam": "FLR704",
+      "vehicle_id": "3118",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.51101303100586,
+      "lon": 19.05622673034668,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-10T00:10:54.645918+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.503841400146484,
+      "lon": 19.088661193847656,
+      "elozo_szoveg": "Savoya Park",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T00:10:54.645940+02:00",
+      "kulcs": "PDB720",
+      "rendszam": "PDB720",
+      "vehicle_id": "7046",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43891143798828,
+      "lon": 19.103191375732422,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
     }
   ]
 }
