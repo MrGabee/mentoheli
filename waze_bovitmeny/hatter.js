@@ -3,7 +3,7 @@
 // Apps Scriptnek, ami e-mailt küld róluk.
 
 const BBOX = { left: 18.90, bottom: 47.35, right: 19.35, top: 47.62 }; // Budapest
-const TIPUSOK = ["ACCIDENT", "ROAD_CLOSED", "HAZARD", "POLICE"];        // ezekről megy levél
+const TIPUSOK = ["ACCIDENT"];  // csak balesetekről megy levél
 const MEGORZES_MS = 3 * 24 * 3600 * 1000;  // ennyi ideig emlékszik egy riasztásra
 const FRISS_MS = 30 * 60 * 1000;           // ennél hosszabb kiesés után újra csak feltölt
 const FELTOLTES_MS = 20 * 1000;            // a feltöltő kör ennyi ideig tart
@@ -99,7 +99,11 @@ async function feldolgoz({ status, adat }) {
 // --- Küldés az Apps Scriptnek --------------------------------------------
 async function kuldes(riasztasok, teszt = false) {
   const { scriptUrl, titok, kuldendo = [] } = await chrome.storage.local.get(["scriptUrl", "titok", "kuldendo"]);
-  const csomag = teszt ? riasztasok : kuldendo.concat(riasztasok);
+  const csomag = teszt ? riasztasok : kuldendo.concat(riasztasok).filter((r) => TIPUSOK.includes(r.tipus));
+  if (!csomag.length) {
+    await chrome.storage.local.set({ kuldendo: [] });
+    return;
+  }
   if (!scriptUrl) {
     await chrome.storage.local.set({ kuldendo: csomag.slice(-200), levelAllapot: "Nincs megadva Apps Script URL." });
     return;
