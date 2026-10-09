@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:16:29.494903+02:00",
+  "frissitve": "2026-10-10T01:16:59.633189+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T14:59:18.244998+02:00",
-      "kulcs": "415 003",
-      "rendszam": "415 003",
-      "vehicle_id": "945514150032",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "Z30",
-      "route_id": "Z30",
-      "lat": 47.36531066894531,
-      "lon": 18.873580932617188,
-      "elozo_szoveg": "Martonvásár",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-09T14:59:18.245312+02:00",
-      "kulcs": "415 115",
-      "rendszam": "415 115",
-      "vehicle_id": "945514151154",
-      "vehicle_label": "Sülysáp",
-      "vonal_szam": "S60",
-      "route_id": "S60",
-      "lat": 47.492061614990234,
-      "lon": 19.133100509643555,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Sülysáp"
-    },
     {
       "idopont": "2026-10-09T14:59:18.245530+02:00",
       "kulcs": "AOIM033",
@@ -260000,6 +259974,32 @@
       "lon": 19.027814865112305,
       "elozo_szoveg": "Széll Kálmán tér M ► Zsámbék",
       "uj_szoveg": "Budakeszi ► Páty ► Telki ► Zsámbék"
+    },
+    {
+      "idopont": "2026-10-10T01:16:59.542397+02:00",
+      "kulcs": "AADR758",
+      "rendszam": "AADR758",
+      "vehicle_id": "207",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49498748779297,
+      "lon": 19.05946922302246,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-10T01:16:59.545402+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.497657775878906,
+      "lon": 18.963760375976562,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
     }
   ]
 }
