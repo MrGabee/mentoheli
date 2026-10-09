@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:08:05.704469+02:00",
+  "frissitve": "2026-10-10T01:08:33.078936+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T14:59:18.234289+02:00",
-      "kulcs": "V1441",
-      "rendszam": "V1441",
-      "vehicle_id": "4511",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49750900268555,
-      "lon": 19.05523109436035,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-09T14:59:18.234392+02:00",
-      "kulcs": "V1510",
-      "rendszam": "V1510",
-      "vehicle_id": "4562",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.539588928222656,
-      "lon": 19.145530700683594,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-10-09T14:59:18.234665+02:00",
       "kulcs": "V4005",
@@ -260000,6 +259974,32 @@
       "lon": 19.095762252807617,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T01:08:33.026538+02:00",
+      "kulcs": "AAGL289",
+      "rendszam": "AAGL289",
+      "vehicle_id": "322",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47966003417969,
+      "lon": 19.05105972290039,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-10T01:08:33.028065+02:00",
+      "kulcs": "AOJM872",
+      "rendszam": "AOJM872",
+      "vehicle_id": "995",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41024398803711,
+      "lon": 19.060470581054688,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
