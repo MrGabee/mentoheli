@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T00:30:12.963695+02:00",
+  "frissitve": "2026-10-10T00:30:44.119944+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T14:55:43.754498+02:00",
-      "kulcs": "MXJ005",
-      "rendszam": "MXJ005",
-      "vehicle_id": "5867",
-      "vehicle_label": "Mechanikai Művek",
-      "vonal_szam": "87",
-      "route_id": "0870",
-      "lat": 47.46417236328125,
-      "lon": 19.01877212524414,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Mechanikai Művek"
-    },
-    {
-      "idopont": "2026-10-09T14:55:43.754650+02:00",
-      "kulcs": "V2294",
-      "rendszam": "V2294",
-      "vehicle_id": "592",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.59306716918945,
-      "lon": 19.120386123657227,
-      "elozo_szoveg": "Káp.megyer, Megyeri út",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-10-09T14:55:43.754981+02:00",
-      "kulcs": "AADI601",
-      "rendszam": "AADI601",
-      "vehicle_id": "61",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.40675735473633,
-      "lon": 19.01459312438965,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Lomnici utca ► Újbuda-központ M"
-    },
     {
       "idopont": "2026-10-09T14:55:43.755065+02:00",
       "kulcs": "T8008",
@@ -260000,6 +259961,45 @@
       "lon": 19.136184692382812,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-10T00:30:43.856620+02:00",
+      "kulcs": "PDB720",
+      "rendszam": "PDB720",
+      "vehicle_id": "7046",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.486995697021484,
+      "lon": 19.057600021362305,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-10T00:30:43.856847+02:00",
+      "kulcs": "AOFL200",
+      "rendszam": "AOFL200",
+      "vehicle_id": "784",
+      "vehicle_label": "Fácános tér",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.507713317871094,
+      "lon": 19.024658203125,
+      "elozo_szoveg": "Kálvin tér M",
+      "uj_szoveg": "Fácános tér"
+    },
+    {
+      "idopont": "2026-10-10T00:30:43.856868+02:00",
+      "kulcs": "SKN826",
+      "rendszam": "SKN826",
+      "vehicle_id": "7858",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50750732421875,
+      "lon": 19.024473190307617,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
