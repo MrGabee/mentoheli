@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-09T03:59:33.956281+02:00",
+  "frissitve": "2026-10-09T04:00:08.705431+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:19:16.776060+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51890182495117,
-      "lon": 19.104915618896484,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-08T15:19:16.776145+02:00",
-      "kulcs": "V2238",
-      "rendszam": "V2238",
-      "vehicle_id": "7370",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42654800415039,
-      "lon": 19.039443969726562,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-08T15:19:16.776188+02:00",
-      "kulcs": "V2243",
-      "rendszam": "V2243",
-      "vehicle_id": "7375",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.49092102050781,
-      "lon": 19.04608726501465,
-      "elozo_szoveg": "Krisztina körút ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-08T15:19:16.776317+02:00",
-      "kulcs": "AADI563",
-      "rendszam": "AADI563",
-      "vehicle_id": "74",
-      "vehicle_label": "Nagybányai út",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.50665283203125,
-      "lon": 19.03888511657715,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Nagybányai út"
-    },
-    {
-      "idopont": "2026-10-08T15:19:16.776754+02:00",
-      "kulcs": "RWA600",
-      "rendszam": "RWA600",
-      "vehicle_id": "7572",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.404449462890625,
-      "lon": 19.185802459716797,
-      "elozo_szoveg": "Pestszentimre vasútállomás",
-      "uj_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca"
-    },
     {
       "idopont": "2026-10-08T15:19:16.777015+02:00",
       "kulcs": "RVY748",
@@ -260000,6 +259935,71 @@
       "lon": 19.130035400390625,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-09T04:00:08.639822+02:00",
+      "kulcs": "MOS290",
+      "rendszam": "MOS290",
+      "vehicle_id": "5743",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "38",
+      "route_id": "0380",
+      "lat": 47.35270690917969,
+      "lon": 19.03893280029297,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-10-09T04:00:08.640127+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Hollandi út",
+      "vonal_szam": "152",
+      "route_id": "1520",
+      "lat": 47.43132019042969,
+      "lon": 19.070995330810547,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Királyerdő út ► Hollandi út"
+    },
+    {
+      "idopont": "2026-10-09T04:00:08.640345+02:00",
+      "kulcs": "RVY709",
+      "rendszam": "RVY709",
+      "vehicle_id": "7458",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42649459838867,
+      "lon": 19.16124725341797,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-09T04:00:08.640765+02:00",
+      "kulcs": "415 064",
+      "rendszam": "415 064",
+      "vehicle_id": "945514150644",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.45296096801758,
+      "lon": 19.193740844726562,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-09T04:00:08.640839+02:00",
+      "kulcs": "415 114",
+      "rendszam": "415 114",
+      "vehicle_id": "945514151147",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.28091049194336,
+      "lon": 19.53553009033203,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
