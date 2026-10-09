@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:44:16.291300+02:00",
+  "frissitve": "2026-10-10T01:44:54.093498+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:03:02.972472+02:00",
-      "kulcs": "RVY702",
-      "rendszam": "RVY702",
-      "vehicle_id": "7451",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4631233215332,
-      "lon": 19.147584915161133,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-09T15:03:02.972833+02:00",
-      "kulcs": "RVY736",
-      "rendszam": "RVY736",
-      "vehicle_id": "7634",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.384613037109375,
-      "lon": 19.204256057739258,
-      "elozo_szoveg": "Gyál, Bem József utca",
-      "uj_szoveg": "Bem József utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-09T15:03:02.972897+02:00",
-      "kulcs": "RVY742",
-      "rendszam": "RVY742",
-      "vehicle_id": "7640",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.47947311401367,
-      "lon": 19.067424774169922,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Vecsési út-Boráros tér H"
-    },
     {
       "idopont": "2026-10-09T15:03:02.973104+02:00",
       "kulcs": "SKR721",
@@ -260000,6 +259961,45 @@
       "lon": 19.037139892578125,
       "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T01:44:54.000074+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50251007080078,
+      "lon": 19.136343002319336,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-10T01:44:54.000185+02:00",
+      "kulcs": "V2004",
+      "rendszam": "V2004",
+      "vehicle_id": "2004",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50737762451172,
+      "lon": 19.024694442749023,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-10T01:44:54.002621+02:00",
+      "kulcs": "PDB379",
+      "rendszam": "PDB379",
+      "vehicle_id": "7061",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50129318237305,
+      "lon": 19.119544982910156,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
     }
   ]
 }
