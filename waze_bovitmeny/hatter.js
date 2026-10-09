@@ -25,6 +25,7 @@ chrome.alarms.onAlarm.addListener(async (a) => {
     await chrome.storage.local.set({ allapot: "Nincs nyitott Waze Live Map fül." });
     return;
   }
+  await chrome.storage.local.set({ kor: {} });  // ebben a körben látott riasztások
   chrome.tabs.reload(fulek[0].id);
   await kuldesUjraprobalas();
 });
@@ -61,7 +62,7 @@ function kinyer(adat) {
 
 async function feldolgoz({ status, adat }) {
   const most = Date.now();
-  const t = await chrome.storage.local.get(["latott", "utolsoSiker", "feltoltesIg", "hibaSorozat"]);
+  const t = await chrome.storage.local.get(["latott", "utolsoSiker", "feltoltesIg", "hibaSorozat", "kor", "korUj", "korEmail"]);
   const ido = new Date().toLocaleTimeString("hu-HU");
 
   if (status !== 200 || !adat) {
@@ -88,10 +89,17 @@ async function feldolgoz({ status, adat }) {
   for (const [k, v] of Object.entries(latott)) if (most - v > MEGORZES_MS) delete latott[k];
 
   const emailre = feltolt ? [] : uj.filter((r) => TIPUSOK.includes(r.tipus));
+  // A térkép egy betöltésnél több részletben kér adatot; a kijelzés a
+  // legutóbbi frissítés óta látott összes riasztást mutatja.
+  const ujKor = !Object.keys(t.kor || {}).length;
+  const kor = t.kor || {};
+  for (const r of riasztasok) kor[r.id] = 1;
+  const korUj = (ujKor ? 0 : t.korUj || 0) + uj.length;
+  const korEmail = (ujKor ? 0 : t.korEmail || 0) + emailre.length;
   await chrome.storage.local.set({
-    latott, feltoltesIg, utolsoSiker: most, hibaSorozat: 0, szunetIg: 0,
-    allapot: `${ido}: ${riasztasok.length} riasztás a térképen, ${uj.length} új` +
-      (feltolt ? " (első kör: csak megjegyezve)." : `, levélben: ${emailre.length}.`),
+    latott, feltoltesIg, utolsoSiker: most, hibaSorozat: 0, szunetIg: 0, kor, korUj, korEmail,
+    allapot: `${ido}: ${Object.keys(kor).length} riasztás a térképen, ${korUj} új` +
+      (feltolt ? " (első kör: csak megjegyezve)." : `, levélben: ${korEmail}.`),
   });
   if (emailre.length) await kuldes(emailre);
 }
