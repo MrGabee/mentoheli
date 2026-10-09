@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:13:41.336272+02:00",
+  "frissitve": "2026-10-10T01:14:09.314474+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T14:59:18.240959+02:00",
-      "kulcs": "T8109",
-      "rendszam": "T8109",
-      "vehicle_id": "7346",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50969314575195,
-      "lon": 19.05717658996582,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-10-09T14:59:18.240990+02:00",
-      "kulcs": "T9102",
-      "rendszam": "T9102",
-      "vehicle_id": "7349",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50393295288086,
-      "lon": 19.13673210144043,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-09T14:59:18.241207+02:00",
-      "kulcs": "V2251",
-      "rendszam": "V2251",
-      "vehicle_id": "7383",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.48410415649414,
-      "lon": 19.026853561401367,
-      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-09T14:59:18.242009+02:00",
       "kulcs": "SGY983",
@@ -260000,6 +259961,45 @@
       "lon": 19.013717651367188,
       "elozo_szoveg": "Budatétény",
       "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T01:14:09.263258+02:00",
+      "kulcs": "AADI648",
+      "rendszam": "AADI648",
+      "vehicle_id": "147",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50328826904297,
+      "lon": 19.13756561279297,
+      "elozo_szoveg": "Astoria M",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-10-10T01:14:09.264226+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Zsámbék",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.4557991027832,
+      "lon": 18.940269470214844,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T01:14:09.265489+02:00",
+      "kulcs": "T9129",
+      "rendszam": "T9129",
+      "vehicle_id": "7868",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.503089904785156,
+      "lon": 19.11779022216797,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
