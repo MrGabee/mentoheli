@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-09T02:00:48.886187+02:00",
+  "frissitve": "2026-10-09T02:01:16.454475+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:07:53.209153+02:00",
-      "kulcs": "NGC021",
-      "rendszam": "NGC021",
-      "vehicle_id": "6320",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21A",
-      "route_id": "0211",
-      "lat": 47.49814224243164,
-      "lon": 18.989612579345703,
-      "elozo_szoveg": "Svábhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-08T15:07:53.209283+02:00",
-      "kulcs": "NLE860",
-      "rendszam": "NLE860",
-      "vehicle_id": "6412",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50678253173828,
-      "lon": 19.023704528808594,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-10-08T15:07:53.209469+02:00",
-      "kulcs": "NTM421",
-      "rendszam": "NTM421",
-      "vehicle_id": "6489",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50772476196289,
-      "lon": 19.024396896362305,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
     {
       "idopont": "2026-10-08T15:07:53.209582+02:00",
       "kulcs": "NTM436",
@@ -260000,6 +259961,45 @@
       "lon": 19.036603927612305,
       "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
       "uj_szoveg": "Pasaréti tér"
+    },
+    {
+      "idopont": "2026-10-09T02:01:16.365539+02:00",
+      "kulcs": "AADI658",
+      "rendszam": "AADI658",
+      "vehicle_id": "157",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50153732299805,
+      "lon": 19.13617706298828,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-09T02:01:16.365713+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49728775024414,
+      "lon": 19.055261611938477,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T02:01:16.368815+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.504947662353516,
+      "lon": 19.09929656982422,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
     }
   ]
 }
