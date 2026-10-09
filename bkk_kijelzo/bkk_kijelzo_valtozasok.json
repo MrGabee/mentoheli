@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-09T03:45:31.609281+02:00",
+  "frissitve": "2026-10-09T03:46:05.473917+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:17:54.584789+02:00",
-      "kulcs": "NBW006",
-      "rendszam": "NBW006",
-      "vehicle_id": "5976",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.481658935546875,
-      "lon": 19.246994018554688,
-      "elozo_szoveg": "Rákoskeresztúr, városközpont",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-08T15:17:54.584974+02:00",
-      "kulcs": "T8008",
-      "rendszam": "T8008",
-      "vehicle_id": "6128",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.533294677734375,
-      "lon": 19.105655670166016,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-08T15:17:54.585026+02:00",
-      "kulcs": "T8012",
-      "rendszam": "T8012",
-      "vehicle_id": "6132",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.501224517822266,
-      "lon": 19.082944869995117,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-08T15:17:54.585092+02:00",
-      "kulcs": "T9001",
-      "rendszam": "T9001",
-      "vehicle_id": "6140",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51382827758789,
-      "lon": 19.049413681030273,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-08T15:17:54.587217+02:00",
-      "kulcs": "NCZ576",
-      "rendszam": "NCZ576",
-      "vehicle_id": "6192",
-      "vehicle_label": "Hungexpo",
-      "vonal_szam": "10",
-      "route_id": "0100",
-      "lat": 47.5016975402832,
-      "lon": 19.13654899597168,
-      "elozo_szoveg": "Hungexpo",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-08T15:17:54.588024+02:00",
       "kulcs": "NGC142",
@@ -260000,6 +259935,71 @@
       "lon": 19.280426025390625,
       "elozo_szoveg": "Rákoscsaba vasútállomás",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-09T03:46:05.383558+02:00",
+      "kulcs": "FLR725",
+      "rendszam": "FLR725",
+      "vehicle_id": "3139",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46254348754883,
+      "lon": 19.13298988342285,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-09T03:46:05.385525+02:00",
+      "kulcs": "NWB355",
+      "rendszam": "NWB355",
+      "vehicle_id": "6535",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.48582458496094,
+      "lon": 19.19268035888672,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-09T03:46:05.385656+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.483131408691406,
+      "lon": 19.023059844970703,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-09T03:46:05.386029+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48697280883789,
+      "lon": 19.067228317260742,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-09T03:46:05.386176+02:00",
+      "kulcs": "918061932169",
+      "rendszam": "918061932169",
+      "vehicle_id": "918061932169",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.46200180053711,
+      "lon": 21.487070083618164,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
