@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-09T04:03:51.357326+02:00",
+  "frissitve": "2026-10-09T04:04:26.087619+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:20:49.353520+02:00",
-      "kulcs": "AAHY832",
-      "rendszam": "AAHY832",
-      "vehicle_id": "393",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "104",
-      "route_id": "1040",
-      "lat": 47.609004974365234,
-      "lon": 19.11733627319336,
-      "elozo_szoveg": "Dunakeszi, Auchan áruház",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.354792+02:00",
-      "kulcs": "AAHY877",
-      "rendszam": "AAHY877",
-      "vehicle_id": "439",
-      "vehicle_label": "Újpest, Fóti út",
-      "vonal_szam": "96",
-      "route_id": "0960",
-      "lat": 47.541805267333984,
-      "lon": 19.15113639831543,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest, Fóti út"
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.354827+02:00",
-      "kulcs": "AAHY879",
-      "rendszam": "AAHY879",
-      "vehicle_id": "441",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.60261917114258,
-      "lon": 19.066057205200195,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.354895+02:00",
-      "kulcs": "V1330",
-      "rendszam": "V1330",
-      "vehicle_id": "4433",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51286315917969,
-      "lon": 19.047901153564453,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.355128+02:00",
-      "kulcs": "V1400",
-      "rendszam": "V1400",
-      "vehicle_id": "4472",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.42570495605469,
-      "lon": 19.03975486755371,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-08T15:20:49.355209+02:00",
       "kulcs": "V1433",
@@ -260000,6 +259935,71 @@
       "lon": 19.0229549407959,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T04:04:26.004322+02:00",
+      "kulcs": "AAHY867",
+      "rendszam": "AAHY867",
+      "vehicle_id": "429",
+      "vehicle_label": "Izzó utcai lakótelep",
+      "vonal_szam": "220",
+      "route_id": "2200",
+      "lat": 47.561126708984375,
+      "lon": 19.091272354125977,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Izzó utcai lakótelep"
+    },
+    {
+      "idopont": "2026-10-09T04:04:26.005067+02:00",
+      "kulcs": "T9014",
+      "rendszam": "T9014",
+      "vehicle_id": "6153",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "80",
+      "route_id": "4800",
+      "lat": 47.501731872558594,
+      "lon": 19.115568161010742,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T04:04:26.005261+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "250",
+      "route_id": "2500",
+      "lat": 47.42980194091797,
+      "lon": 19.02145767211914,
+      "elozo_szoveg": "Savoya Park",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-09T04:04:26.005286+02:00",
+      "kulcs": "PDB381",
+      "rendszam": "PDB381",
+      "vehicle_id": "7063",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499176025390625,
+      "lon": 19.286752700805664,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-09T04:04:26.005895+02:00",
+      "kulcs": "943-672-944-911-656-912",
+      "rendszam": "943-672-944-911-656-912",
+      "vehicle_id": "905516569431-905536466725-905516569449-905516569118-905536466568-905516569126",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.538883209228516,
+      "lon": 19.248722076416016,
+      "elozo_szoveg": "Cinkota",
+      "uj_szoveg": "Gödöllő"
     }
   ]
 }
