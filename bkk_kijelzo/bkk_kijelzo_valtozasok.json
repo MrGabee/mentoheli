@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T01:26:24.552032+02:00",
+  "frissitve": "2026-10-10T01:26:54.647361+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:00:26.331540+02:00",
-      "kulcs": "AOFL228",
-      "rendszam": "AOFL228",
-      "vehicle_id": "815",
-      "vehicle_label": "Fenyőgyöngye",
-      "vonal_szam": "65A",
-      "route_id": "0651",
-      "lat": 47.527740478515625,
-      "lon": 19.036697387695312,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Fenyőgyöngye"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.331666+02:00",
-      "kulcs": "AOFL244",
-      "rendszam": "AOFL244",
-      "vehicle_id": "832",
-      "vehicle_label": "Újhegy",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.48331069946289,
-      "lon": 19.128013610839844,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Újhegyi lakótelep"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.331680+02:00",
-      "kulcs": "AOFL246",
-      "rendszam": "AOFL246",
-      "vehicle_id": "834",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.470550537109375,
-      "lon": 19.157922744750977,
-      "elozo_szoveg": "Újhegyi lakótelep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.331791+02:00",
-      "kulcs": "AOIA471",
-      "rendszam": "AOIA471",
-      "vehicle_id": "848",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.5004997253418,
-      "lon": 18.96959114074707,
-      "elozo_szoveg": "Svábhegy",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-10-09T15:00:26.331834+02:00",
-      "kulcs": "AOIA477",
-      "rendszam": "AOIA477",
-      "vehicle_id": "854",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.47956848144531,
-      "lon": 19.067903518676758,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Normafa"
-    },
     {
       "idopont": "2026-10-09T15:00:26.331876+02:00",
       "kulcs": "AOIB791",
@@ -260000,6 +259935,71 @@
       "lon": 19.053842544555664,
       "elozo_szoveg": "Astoria M ► Békásmegyer H",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T01:26:54.596996+02:00",
+      "kulcs": "V2030",
+      "rendszam": "V2030",
+      "vehicle_id": "2030",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50739669799805,
+      "lon": 19.023805618286133,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-10T01:26:54.597826+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.49887466430664,
+      "lon": 19.050729751586914,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-10T01:26:54.598573+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.507991790771484,
+      "lon": 19.02863121032715,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-10T01:26:54.598945+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42666244506836,
+      "lon": 19.161094665527344,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-10-10T01:26:54.599241+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.514522552490234,
+      "lon": 19.1038875579834,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
