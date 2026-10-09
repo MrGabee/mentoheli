@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-09T04:08:10.369417+02:00",
+  "frissitve": "2026-10-09T04:08:46.285084+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:20:49.363799+02:00",
-      "kulcs": "AADI581",
-      "rendszam": "AADI581",
-      "vehicle_id": "81",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.51115417480469,
-      "lon": 18.972063064575195,
-      "elozo_szoveg": "Fácános tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.363828+02:00",
-      "kulcs": "AOFL225",
-      "rendszam": "AOFL225",
-      "vehicle_id": "812",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54661178588867,
-      "lon": 19.017135620117188,
-      "elozo_szoveg": "Máramaros út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.364022+02:00",
-      "kulcs": "AOFL246",
-      "rendszam": "AOFL246",
-      "vehicle_id": "834",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.484092712402344,
-      "lon": 19.127653121948242,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.364144+02:00",
-      "kulcs": "PJZ072",
-      "rendszam": "PJZ072",
-      "vehicle_id": "857",
-      "vehicle_label": "Nyeremény utca",
-      "vonal_szam": "297",
-      "route_id": "2970",
-      "lat": 47.486602783203125,
-      "lon": 19.271108627319336,
-      "elozo_szoveg": "R.csaba-Újt. vasútállomás",
-      "uj_szoveg": "Nyeremény utca"
-    },
-    {
-      "idopont": "2026-10-08T15:20:49.364562+02:00",
-      "kulcs": "903-652-904-917-659-918",
-      "rendszam": "903-652-904-917-659-918",
-      "vehicle_id": "905516569035-905536466527-905516569043-905516569175-905536466592-905516569183",
-      "vehicle_label": "Örs vezér tere",
-      "vonal_szam": "H8",
-      "route_id": "H8",
-      "lat": 47.59385681152344,
-      "lon": 19.35781478881836,
-      "elozo_szoveg": "Gödöllő",
-      "uj_szoveg": "Örs vezér tere"
-    },
     {
       "idopont": "2026-10-08T15:20:49.364582+02:00",
       "kulcs": "915-658-916",
@@ -260000,6 +259935,71 @@
       "lon": 19.133649826049805,
       "elozo_szoveg": "Debrecen",
       "uj_szoveg": "Miskolc-Tiszai"
+    },
+    {
+      "idopont": "2026-10-09T04:08:46.196535+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507938385009766,
+      "lon": 19.029823303222656,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-09T04:08:46.198521+02:00",
+      "kulcs": "NGC160",
+      "rendszam": "NGC160",
+      "vehicle_id": "6210",
+      "vehicle_label": "Szentlélek tér H",
+      "vonal_szam": "118",
+      "route_id": "1180",
+      "lat": 47.567989349365234,
+      "lon": 19.027698516845703,
+      "elozo_szoveg": "Óbudai rendelőintézet",
+      "uj_szoveg": "Szentlélek tér H"
+    },
+    {
+      "idopont": "2026-10-09T04:08:46.198737+02:00",
+      "kulcs": "PHG651",
+      "rendszam": "PHG651",
+      "vehicle_id": "7175",
+      "vehicle_label": "Kistarcsa, kórház H",
+      "vonal_szam": "92A",
+      "route_id": "0921",
+      "lat": 47.5196647644043,
+      "lon": 19.14826011657715,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Kistarcsa, kórház H"
+    },
+    {
+      "idopont": "2026-10-09T04:08:46.198842+02:00",
+      "kulcs": "RCT317",
+      "rendszam": "RCT317",
+      "vehicle_id": "7331",
+      "vehicle_label": "Gloriett-lakótelep",
+      "vonal_szam": "142E",
+      "route_id": "1425",
+      "lat": 47.42731475830078,
+      "lon": 19.172870635986328,
+      "elozo_szoveg": "Szentlőrinci úti lakótelep",
+      "uj_szoveg": "Gloriett-lakótelep"
+    },
+    {
+      "idopont": "2026-10-09T04:08:46.199496+02:00",
+      "kulcs": "907-654-908-955-678-956",
+      "rendszam": "907-654-908-955-678-956",
+      "vehicle_id": "905516569076-905536466543-905516569084-905516569555-905536466782-905516569563",
+      "vehicle_label": "Boráros tér",
+      "vonal_szam": "H7",
+      "route_id": "H7",
+      "lat": 47.41981887817383,
+      "lon": 19.06502342224121,
+      "elozo_szoveg": "Csepel",
+      "uj_szoveg": "Boráros tér"
     }
   ]
 }
