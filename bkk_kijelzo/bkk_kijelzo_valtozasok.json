@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-09T01:59:46.563751+02:00",
+  "frissitve": "2026-10-09T02:00:18.288690+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:07:53.208360+02:00",
-      "kulcs": "NBW002",
-      "rendszam": "NBW002",
-      "vehicle_id": "5972",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.49970626831055,
-      "lon": 19.286991119384766,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Dél-pesti autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-10-08T15:07:53.208564+02:00",
-      "kulcs": "T8004",
-      "rendszam": "T8004",
-      "vehicle_id": "6124",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50179672241211,
-      "lon": 19.081809997558594,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-08T15:07:53.208644+02:00",
-      "kulcs": "T8019",
-      "rendszam": "T8019",
-      "vehicle_id": "6139",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50562286376953,
-      "lon": 19.1363525390625,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-10-08T15:07:53.208743+02:00",
       "kulcs": "T9012",
@@ -260000,6 +259961,45 @@
       "lon": 19.0086727142334,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-09T02:00:18.201753+02:00",
+      "kulcs": "NBW001",
+      "rendszam": "NBW001",
+      "vehicle_id": "5971",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52408218383789,
+      "lon": 19.173646926879883,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-10-09T02:00:18.202335+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48701858520508,
+      "lon": 19.057580947875977,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-09T02:00:18.202464+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59876251220703,
+      "lon": 19.121288299560547,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
