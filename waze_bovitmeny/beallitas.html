@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 13px Arial, sans-serif; width: 320px; margin: 12px; color: #222; }
+  h3 { margin: 0 0 8px; }
+  label { display: block; margin-top: 8px; font-weight: 600; }
+  input { width: 100%; box-sizing: border-box; padding: 5px; margin-top: 2px; }
+  button { margin-top: 10px; padding: 6px 10px; }
+  .allapot { margin-top: 10px; padding: 6px; background: #f3f3f3; border-radius: 4px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <h3>🚧 Waze Budapest figyelő</h3>
+  <label>Apps Script webalkalmazás URL
+    <input id="scriptUrl" placeholder="https://script.google.com/macros/s/.../exec">
+  </label>
+  <label>Titkos kulcs (ugyanaz, mint az Apps Scriptben)
+    <input id="titok">
+  </label>
+  <button id="mentes">Mentés</button>
+  <button id="teszt">Teszt e-mail</button>
+  <div class="allapot" id="allapot">…</div>
+  <script src="beallitas.js"></script>
+</body>
+</html>
