@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-09T03:07:21.749217+02:00",
+  "frissitve": "2026-10-09T03:08:01.530899+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:13:22.407038+02:00",
-      "kulcs": "RVY732",
-      "rendszam": "RVY732",
-      "vehicle_id": "7630",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.477630615234375,
-      "lon": 19.343082427978516,
-      "elozo_szoveg": "Pécel, Kun József utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-08T15:13:22.407130+02:00",
-      "kulcs": "RVY747",
-      "rendszam": "RVY747",
-      "vehicle_id": "7645",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.389652252197266,
-      "lon": 19.2181453704834,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-08T15:13:22.407278+02:00",
-      "kulcs": "SKR726",
-      "rendszam": "SKR726",
-      "vehicle_id": "7675",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.432777404785156,
-      "lon": 19.261539459228516,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-08T15:13:22.407434+02:00",
-      "kulcs": "SKR816",
-      "rendszam": "SKR816",
-      "vehicle_id": "7703",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51446533203125,
-      "lon": 19.035343170166016,
-      "elozo_szoveg": "Rózsadomb ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-08T15:13:22.407633+02:00",
-      "kulcs": "T9112",
-      "rendszam": "T9112",
-      "vehicle_id": "7753",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51069641113281,
-      "lon": 19.09721565246582,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
     {
       "idopont": "2026-10-08T15:13:22.407868+02:00",
       "kulcs": "STZ873",
@@ -260000,6 +259935,71 @@
       "lon": 19.06954574584961,
       "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
       "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-09T03:08:01.441859+02:00",
+      "kulcs": "AAGL316",
+      "rendszam": "AAGL316",
+      "vehicle_id": "344",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47953796386719,
+      "lon": 19.050931930541992,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-09T03:08:01.441956+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.483943939208984,
+      "lon": 19.127567291259766,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-09T03:08:01.442153+02:00",
+      "kulcs": "MXJ011",
+      "rendszam": "MXJ011",
+      "vehicle_id": "5887",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.54844665527344,
+      "lon": 19.029592514038086,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-09T03:08:01.442656+02:00",
+      "kulcs": "RVY730",
+      "rendszam": "RVY730",
+      "vehicle_id": "7628",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497169494628906,
+      "lon": 19.05545425415039,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-09T03:08:01.443193+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40540313720703,
+      "lon": 19.0139102935791,
+      "elozo_szoveg": "Budatétény",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
