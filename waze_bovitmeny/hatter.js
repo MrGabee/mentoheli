@@ -1,16 +1,16 @@
-// A bővítmény háttere: percenként végiglépteti a nyitott Waze-fület Budapest
-// csempéin (a Waze egy betöltésre kb. 200 riasztást ad, ezért egy nézet nem
-// elég), a térkép által betöltött riasztásokból kiválogatja az újakat, és
+// A bővítmény háttere: a nyitott Waze-fület sorban Budapest csempéire
+// navigálja (a Waze egy betöltésre kb. 200 riasztást ad, ezért egy nézet nem
+// elég; percenként legfeljebb BETOLTES_PERCENKENT betöltés, hogy ne kapjon 429-et), a térkép által betöltött riasztásokból kiválogatja az újakat, és
 // elküldi őket az Apps Scriptnek, ami e-mailt küld róluk.
 
 const BBOX = { left: 18.90, bottom: 47.35, right: 19.35, top: 47.62 }; // Budapest
 const TIPUSOK = ["ACCIDENT"];  // csak balesetekről megy levél
 const MEGORZES_MS = 3 * 24 * 3600 * 1000;  // ennyi ideig emlékszik egy riasztásra
 const FRISS_MS = 30 * 60 * 1000;           // ennél hosszabb kiesés után újra csak feltölt
-const FELTOLTES_MS = 75 * 1000;            // a feltöltő kör ennyi ideig tart (egy teljes csempekör)
-const MAX_SZUNET_PERC = 15;
+const MAX_SZUNET_PERC = 30;
 const ZOOM = 13;          // csempék nagyítása (a teljes nézet kb. 12 lenne)
-const KOR_MS = 55 * 1000; // ennyi idő alatt lépked végig a csempéken
+const BETOLTES_PERCENKENT = 2;  // ennyi csempét tölt be percenként (6-nál a Waze letiltotta az oldalt)
+const VALASZ_VARAS_MS = 18 * 1000;  // ha ennyi idő alatt nem jön adat, az oldal nem töltött be
 
 // A csempék a Waze-ablak méretéből: annyi nézet, hogy lefedje Budapestet.
 function csempek(szel, mag) {
@@ -39,8 +39,14 @@ function idozito() {
 chrome.runtime.onInstalled.addListener(idozito);
 chrome.runtime.onStartup.addListener(idozito);
 
+let fut = false;  // egyszerre csak egy betöltési sorozat fusson
 chrome.alarms.onAlarm.addListener(async (a) => {
-  if (a.name !== "frissites") return;
+  if (a.name !== "frissites" || fut) return;
+  fut = true;
+  try { await betoltesek(); } finally { fut = false; }
+});
+
+async function betoltesek() {
   const { szunetIg = 0 } = await chrome.storage.local.get("szunetIg");
   if (Date.now() < szunetIg) return;
   const fulek = (await chrome.tabs.query({ url: "https://www.waze.com/*" }))
@@ -49,19 +55,40 @@ chrome.alarms.onAlarm.addListener(async (a) => {
     await chrome.storage.local.set({ allapot: "Nincs nyitott Waze Live Map fül." });
     return;
   }
-  const { ablak = { szel: 1900, mag: 900 } } = await chrome.storage.local.get("ablak");
+  const { ablak = { szel: 1900, mag: 900 }, mutato = 0 } = await chrome.storage.local.get(["ablak", "mutato"]);
   const lista = csempek(ablak.szel, ablak.mag);
-  await chrome.storage.local.set({ kor: {}, korCsempek: lista.length });  // ebben a körben látott riasztások
   await kuldesUjraprobalas();
-  const lepes = KOR_MS / lista.length;
-  for (const c of lista) {
+  let m = mutato % lista.length;
+  for (let k = 0; k < Math.min(BETOLTES_PERCENKENT, lista.length); k++) {
     const { szunetIg: sz = 0 } = await chrome.storage.local.get("szunetIg");
-    if (Date.now() < sz) return;  // a Waze lassítást kért: a kör többi része kimarad
+    if (Date.now() < sz) return;  // a Waze lassítást kért
+    // Új csempekör: a kijelzés innen számol.
+    if (m === 0) await chrome.storage.local.set({ kor: {}, korCsempek: lista.length });
+    const c = lista[m];
+    const indulas = Date.now();
     const url = `https://www.waze.com/ul?ll=${c.lat}%2C${c.lon}&navigate=no&zoom=${ZOOM}`;
     try { await chrome.tabs.update(fulek[0].id, { url }); } catch (e) { return; }
-    await varj(lepes);
+    m = (m + 1) % lista.length;
+    await chrome.storage.local.set({ mutato: m });
+    await varj(VALASZ_VARAS_MS);
+    // Ha a térkép nem kért adatot, az oldal nem töltött be (pl. 429 az oldalra).
+    const { utolsoValasz = 0 } = await chrome.storage.local.get("utolsoValasz");
+    if (utolsoValasz < indulas) {
+      await hiba("az oldal nem töltött be (valószínűleg 429)");
+      return;
+    }
   }
-});
+}
+
+async function hiba(ok) {
+  const { hibaSorozat = 0 } = await chrome.storage.local.get("hibaSorozat");
+  const perc = Math.min(2 ** (hibaSorozat + 1), MAX_SZUNET_PERC);
+  await chrome.storage.local.set({
+    hibaSorozat: hibaSorozat + 1,
+    szunetIg: Date.now() + perc * 60000,
+    allapot: `${new Date().toLocaleTimeString("hu-HU")}: ${ok}, ${perc} perc szünet.`,
+  });
+}
 
 // --- Válaszok feldolgozása (egymás után, hogy ne akadjanak össze) --------
 let sor = Promise.resolve();
@@ -99,21 +126,18 @@ async function feldolgoz({ status, adat }) {
   const t = await chrome.storage.local.get(["latott", "utolsoSiker", "feltoltesIg", "hibaSorozat", "kor", "korUj", "korEmail", "korCsempek", "korMax"]);
   const ido = new Date().toLocaleTimeString("hu-HU");
 
+  await chrome.storage.local.set({ utolsoValasz: most });
   if (status !== 200 || !adat) {
-    const hiba = (t.hibaSorozat || 0) + 1;
-    const perc = Math.min(2 ** hiba, MAX_SZUNET_PERC);
-    await chrome.storage.local.set({
-      hibaSorozat: hiba,
-      szunetIg: most + perc * 60000,
-      allapot: `${ido}: HTTP ${status}, ${perc} perc szünet.`,
-    });
+    await hiba(`HTTP ${status}`);
     return;
   }
 
   let latott = t.latott || {};
   let feltoltesIg = t.feltoltesIg || 0;
   if (!Object.keys(latott).length || most - (t.utolsoSiker || 0) > FRISS_MS) {
-    feltoltesIg = most + FELTOLTES_MS;
+    // Egy teljes csempekörig csak megjegyez.
+    const percek = Math.ceil((t.korCsempek || 6) / BETOLTES_PERCENKENT);
+    feltoltesIg = most + percek * 60000 + 30000;
   }
   const feltolt = most < feltoltesIg;
 
@@ -134,7 +158,7 @@ async function feldolgoz({ status, adat }) {
   const korMax = Math.max(ujKor ? 0 : t.korMax || 0, nyers);
   await chrome.storage.local.set({
     latott, feltoltesIg, utolsoSiker: most, hibaSorozat: 0, szunetIg: 0, kor, korUj, korEmail, korMax,
-    allapot: `${ido}: ${Object.keys(kor).length} riasztás Budapesten (${t.korCsempek || 1} csempe), ${korUj} új` +
+    allapot: `${ido}: ${Object.keys(kor).length} riasztás Budapesten (${t.korCsempek || 1} csempéből, ${BETOLTES_PERCENKENT}/perc), ${korUj} új` +
       (feltolt ? " (első kör: csak megjegyezve)." : `, levélben: ${korEmail}.`) +
       `\nLegnagyobb csempe: ${korMax} riasztás` + (korMax >= 195 ? " ⚠️ eléri a Waze 200-as határát" : "."),
   });
