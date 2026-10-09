@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-09T02:32:25.364988+02:00",
+  "frissitve": "2026-10-09T02:32:57.010273+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-08T15:10:47.960502+02:00",
-      "kulcs": "NWB351",
-      "rendszam": "NWB351",
-      "vehicle_id": "6531",
-      "vehicle_label": "Rákoshegy vasútállomás",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.462921142578125,
-      "lon": 19.149261474609375,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoshegy vasútállomás"
-    },
-    {
-      "idopont": "2026-10-08T15:10:47.960618+02:00",
-      "kulcs": "NWB365",
-      "rendszam": "NWB365",
-      "vehicle_id": "6545",
-      "vehicle_label": "Kispest, Vas Gereben utca",
-      "vonal_szam": "68",
-      "route_id": "0680",
-      "lat": 47.48076248168945,
-      "lon": 19.21982765197754,
-      "elozo_szoveg": "Akadémiaújtelep, 525. tér",
-      "uj_szoveg": "Kispest, Vas Gereben utca"
-    },
-    {
-      "idopont": "2026-10-08T15:10:47.960647+02:00",
-      "kulcs": "AILJ856",
-      "rendszam": "AILJ856",
-      "vehicle_id": "659",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.59416198730469,
-      "lon": 19.05113983154297,
-      "elozo_szoveg": "Pince köz ► Donát utca",
-      "uj_szoveg": "Donát utca ► Békásmegyer H"
-    },
     {
       "idopont": "2026-10-08T15:10:47.960663+02:00",
       "kulcs": "AADI580",
@@ -260000,6 +259961,45 @@
       "lon": 19.05548095703125,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T02:32:56.929644+02:00",
+      "kulcs": "AADR708",
+      "rendszam": "AADR708",
+      "vehicle_id": "176",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.43107223510742,
+      "lon": 19.07037353515625,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-10-09T02:32:56.929736+02:00",
+      "kulcs": "AADR717",
+      "rendszam": "AADR717",
+      "vehicle_id": "185",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.499813079833984,
+      "lon": 19.13560676574707,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-09T02:32:56.932541+02:00",
+      "kulcs": "SGY986",
+      "rendszam": "SGY986",
+      "vehicle_id": "7666",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509056091308594,
+      "lon": 19.095705032348633,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
