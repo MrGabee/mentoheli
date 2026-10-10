@@ -127,6 +127,7 @@
     font-size: 15px; font-weight: 600; cursor: pointer; color: var(--text);
   }
   .panel-toggle:hover { background: var(--surface-2); }
+  .panel-cim { margin: 0; padding: 14px 16px; font-size: 15px; font-weight: 600; color: var(--text); }
   .panel-tartalom { padding: 4px 16px 18px; }
   .panel-info { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
   .panel-tartalom label {
@@ -521,8 +522,8 @@
       </div>
 
       <div class="panel" id="ceges-nav-panel">
-        <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
-        <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
+        <h3 class="panel-cim">🔗 NAV Online Számla összekötés</h3>
+        <div class="panel-tartalom" id="ceges-nav-tartalom">
           <div id="ceges-email-admin-sor">
             <label style="display:flex;align-items:center;gap:10px;background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:8px;padding:12px 14px;margin-bottom:14px;">
               <input type="checkbox" id="ceges-email-engedelyezve" style="width:auto;flex:none;">
@@ -3661,7 +3662,7 @@
   });
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["kor-ertesito-toggle", "kor-ertesito-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["kor-ertesito-toggle", "kor-ertesito-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
