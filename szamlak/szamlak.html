@@ -363,6 +363,13 @@
   .bank-jel-ok { background: var(--green-soft); color: var(--green); }
   .bank-jel-nincs { background: var(--amber-soft); color: var(--amber); }
   .bank-jel-hiba { background: var(--red-soft); color: var(--red); }
+  .kezi-doboz { display: grid; gap: 10px; margin-bottom: 22px; }
+  .kezi-cel-cimke { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+  #kezi-cel { font: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); max-width: 100%; min-width: 0; }
+  button.bank-ejto { font: inherit; color: var(--text); text-align: left; width: 100%; }
+  .kezi-lista { display: grid; gap: 6px; }
+  .kezi-elem { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13.5px; }
+  .kezi-elem > span:first-child { min-width: 0; overflow-wrap: anywhere; }
   .bank-muveletek { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
   .bank-muveletek select { max-width: 100%; min-width: 0; flex: 1 1 200px; font: inherit; font-size: 13px; padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--text); }
   .bank-link-gomb { border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 6px; padding: 4px 8px; font-size: 12.5px; cursor: pointer; }
@@ -506,6 +513,19 @@
       <div id="ceges-bejelentkezes-statusz"></div>
 
       <div class="kartyak" id="ceges-kartyak"></div>
+
+      <div id="kezi-feltoltes-sor" class="kezi-doboz">
+        <input type="file" id="kezi-fajl" accept="application/pdf,.pdf" multiple hidden>
+        <label class="kezi-cel-cimke">Melyik számlát töltöd fel?
+          <select id="kezi-cel"></select>
+        </label>
+        <button type="button" class="bank-ejto" id="kezi-ejto">
+          <strong>Számla feltöltése (PDF)</strong>
+          <span>Kattints a tallózáshoz, vagy húzd ide a PDF-et. Ha fent kiválasztod, melyik NAV-tétel vagy banki terhelés számlája, egyből ahhoz kötjük. A számla a következő futáskor kerül a listába, a Drive-ra is feltöltve.</span>
+        </button>
+        <div class="panel-statusz" id="kezi-statusz"></div>
+        <div id="kezi-varolista"></div>
+      </div>
 
       <div id="ceges-tabla-hely"></div>
 
@@ -1115,6 +1135,7 @@
     const hely = document.getElementById("ceges-tabla-hely");
     bankSzamitas();
     bankRenderelese();
+    keziFeltoltesekRenderelese();
     // ld. a felhasználó kérése: "azokat a sorokat, amiket sikerült
     // összekötni [a NAV-val]... kerüljön át az oldalon egy másik
     // kategóriába" - a MEGERŐSÍTETTEN párosított (nav_parositva===true)
@@ -1767,6 +1788,7 @@
           <td>
             ${t.szamlaszam
               ? `<button type="button" class="nav-hozzaadas-gomb" data-target="${sorId}" style="font-size:12px;padding:4px 8px;">+ Hozzáadás</button>`
+                + (szerepkor === "admin" ? ` <button type="button" class="kezi-tetel-gomb" data-cel="${escHtml("nav:" + _navTetelKulcs(t))}" style="font-size:12px;padding:4px 8px;">📤 Számla feltöltése</button>` : "")
               : `<span style="color:var(--muted);font-size:12px;">(nincs számlaszám, kézzel ellenőrizendő)</span>`}
           </td>
         </tr>
@@ -3354,6 +3376,7 @@
             <option value="">Számla hozzárendelése…</option>
             ${jeloltek.map(x => `<option value="${escHtml(x.r.id)}">${escHtml(szamlaCimke(x.r))}</option>`).join("")}
           </select>
+          <button type="button" class="bank-link-gomb kezi-tetel-gomb" data-cel="${escHtml("bank:" + t.id)}" data-statusz="bank-statusz">Számla feltöltése</button>
           <button type="button" class="bank-link-gomb bank-kivul" data-id="${escHtml(t.id)}">Nem kell számla</button>
         </div>`;
       }
@@ -3405,6 +3428,215 @@
     document.querySelectorAll("#bank-szurok button").forEach(b => b.addEventListener("click", () => { bankSzuro = b.dataset.bankSzuro; bankRenderelese(); }));
     document.getElementById("bank-honap").addEventListener("change", e => { bankHonap = e.target.value; bankRenderelese(); });
     document.getElementById("bank-kereses").addEventListener("input", () => bankRenderelese());
+  })();
+
+
+  // ════════════════════════════════════════════
+  //  📤  KÉZI SZÁMLA-FELTÖLTÉS (Céges számlák, NAV- és bank-tételekhez is)
+  // ════════════════════════════════════════════
+  // A PDF a "pdf_adatok" táblába kerül "kezi_<id>" azonosítóval, a kérelem a
+  // "ceges_kezi_feltoltes_kerelmek" kulcsba (ezt csak a dashboard írja). A
+  // következő script-futás feltölti a Drive-ra és felveszi a céges számlák
+  // közé (ld. szamla_figyelo.py ceges_kezi_feltoltesek_feldolgozasa()), az
+  // eredményt a "ceges_kezi_feltoltes_eredmenyek" kulcsba írja.
+  const KEZI_PDF_MAX_BAJT = 10 * 1024 * 1024;
+  let keziFeltoltesKontextus = null;
+  let _keziKerelemZarolas = Promise.resolve();
+
+  function keziKerelemModositas(fn) {
+    const futas = _keziKerelemZarolas.then(async () => {
+      const { ertek } = await apiHivas("get_meta", { kulcs: "ceges_kezi_feltoltes_kerelmek" });
+      const kerelmek = Object.assign({}, lvObjektum(ertek));
+      fn(kerelmek);
+      await apiHivas("set_meta", { kulcs: "ceges_kezi_feltoltes_kerelmek", ertek: kerelmek });
+      legutobbiAdat.ceges_kezi_feltoltes_kerelmek = kerelmek;
+      return kerelmek;
+    });
+    _keziKerelemZarolas = futas.catch(() => {});
+    return futas;
+  }
+
+  function _fajlBase64(fajl) {
+    return new Promise((resolve, reject) => {
+      const olvaso = new FileReader();
+      olvaso.onload = () => resolve(String(olvaso.result).split(",")[1] || "");
+      olvaso.onerror = () => reject(new Error("A fájl nem olvasható."));
+      olvaso.readAsDataURL(fajl);
+    });
+  }
+
+  // kontextus: { bank_tetel_id?, nav_tetel?, kuldo_nev?, statuszId }
+  async function keziSzamlakFeltoltese(fajlok, kontextus) {
+    const statuszId = (kontextus && kontextus.statuszId) || "kezi-statusz";
+    const uzenetek = [];
+    let volt_hiba = false;
+    for (const fajl of fajlok) {
+      if (!/\.pdf$/i.test(fajl.name) && fajl.type !== "application/pdf") { volt_hiba = true; uzenetek.push(`${fajl.name}: csak PDF tölthető fel.`); continue; }
+      if (fajl.size > KEZI_PDF_MAX_BAJT) { volt_hiba = true; uzenetek.push(`${fajl.name}: túl nagy (legfeljebb 10 MB).`); continue; }
+      beStatuszMutat(statuszId, `Feltöltés: ${fajl.name}…`, "");
+      try {
+        const kid = "f" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+        await apiHivas("batch", { muveletek: [{ action: "set_pdf", id: "kezi_" + kid, base64: await _fajlBase64(fajl) }] });
+        const kerelem = { fajlnev: fajl.name, letrehozva: new Date().toISOString() };
+        if (kontextus && kontextus.bank_tetel_id) kerelem.bank_tetel_id = kontextus.bank_tetel_id;
+        if (kontextus && kontextus.nav_tetel) kerelem.nav_tetel = kontextus.nav_tetel;
+        if (kontextus && kontextus.kuldo_nev) kerelem.kuldo_nev = kontextus.kuldo_nev;
+        await keziKerelemModositas(k => { k[kid] = kerelem; });
+        uzenetek.push(`${fajl.name}: feltöltve.`);
+      } catch (e) {
+        volt_hiba = true;
+        uzenetek.push(`${fajl.name}: ${e.message}`);
+      }
+    }
+    let utoirat = " A következő futáskor (legfeljebb kb. 20 perc) kerül a céges számlák közé.";
+    const pat = aktualisPat();
+    if (pat && uzenetek.length && !volt_hiba) {
+      try { await ghWorkflowInditasa(pat, {}); patMentese(); utoirat = " A feldolgozás elindult (néhány perc)."; }
+      catch (e) { /* marad az ütemezett futás */ }
+    }
+    beStatuszMutat(statuszId, uzenetek.join(" ") + (volt_hiba ? "" : utoirat), volt_hiba ? "hiba" : "siker");
+    keziFeltoltesekRenderelese();
+    cegesTablaRenderelese(cegesSzamlak);
+  }
+
+  // A feltöltő doboz "Melyik számla ez?" listája: a NAV-ban szereplő, de
+  // még meg nem kapott számlák szállítónként, és a bankkivonat számla
+  // nélküli terhelései. Amihez már folyamatban van feltöltés, kimarad.
+  function _navTetelKulcs(t) {
+    return `${(t.szallito_adoszam || "").trim()}|${String(t.szamlaszam || "").replace(/\s+/g, "").toUpperCase()}`;
+  }
+  function keziCelOpciok() {
+    const kerelmek = Object.values(lvObjektum(legutobbiAdat && legutobbiAdat.ceges_kezi_feltoltes_kerelmek));
+    const foglaltNav = new Set(kerelmek.filter(k => k.nav_tetel).map(k => _navTetelKulcs(k.nav_tetel)));
+    const foglaltBank = new Set(kerelmek.map(k => k.bank_tetel_id).filter(Boolean));
+    const opciok = {};
+    const nav = ((legutobbiAdat && legutobbiAdat.nav_csak_navban) || [])
+      .filter(t => t && t.szamlaszam && !foglaltNav.has(_navTetelKulcs(t)))
+      .sort((a, b) => String(a.szallito_nev || "").localeCompare(String(b.szallito_nev || ""), "hu") || String(a.kiallitas_datum || "").localeCompare(String(b.kiallitas_datum || "")));
+    nav.forEach(t => {
+      const osszeg = t.netto_osszeg_huf || t.netto_osszeg;
+      opciok["nav:" + _navTetelKulcs(t)] = {
+        csoport: "nav",
+        cimke: [t.szallito_nev || t.szallito_adoszam, t.szamlaszam, osszeg ? forint(Number(osszeg)) + " nettó" : null, bankDatumHu(t.kiallitas_datum)].filter(Boolean).join(" · "),
+        kontextus: { nav_tetel: t },
+      };
+    });
+    const kivul = lvObjektum(legutobbiAdat && legutobbiAdat.bank_figyelmen_kivul);
+    bankOsszesTetel()
+      .filter(t => t.osszeg < 0 && !bankEredmeny.tetelSzamla[t.id] && !kivul[t.id] && !foglaltBank.has(t.id))
+      .forEach(t => {
+        opciok["bank:" + t.id] = {
+          csoport: "bank",
+          cimke: [t.partner || t.tipus, bankDatumHu(t.tranzakcio_datum || t.konyveles), forint(Math.abs(t.osszeg))].filter(Boolean).join(" · "),
+          kontextus: { bank_tetel_id: t.id, kuldo_nev: t.partner || "" },
+        };
+      });
+    return opciok;
+  }
+  function keziCelValasztoRenderelese() {
+    const valaszto = document.getElementById("kezi-cel");
+    if (!valaszto) return;
+    const elozo = valaszto.value;
+    const opciok = keziCelOpciok();
+    const csoport = nev => Object.entries(opciok).filter(([, o]) => o.csoport === nev)
+      .map(([v, o]) => `<option value="${escHtml(v)}">${escHtml(o.cimke)}</option>`).join("");
+    const nav = csoport("nav");
+    const bank = csoport("bank");
+    valaszto.innerHTML = `<option value="">Új számla, nincs párja (az adatokat a PDF-ből olvassa ki)</option>`
+      + (nav ? `<optgroup label="NAV-ban szerepel, de még nincs meg">${nav}</optgroup>` : "")
+      + (bank ? `<optgroup label="Bankból kifizetve, számla nélkül">${bank}</optgroup>` : "");
+    valaszto.value = opciok[elozo] ? elozo : "";
+  }
+  function keziKivalasztottKontextus() {
+    const ertek = document.getElementById("kezi-cel").value;
+    const o = keziCelOpciok()[ertek];
+    return Object.assign({ statuszId: "kezi-statusz" }, o ? o.kontextus : {});
+  }
+  // A NAV- és bank-listák soraiban lévő "Számla feltöltése" gomb: kiválasztja
+  // a tételt a feltöltő dobozban, és egyből megnyitja a fájlválasztót.
+  function keziFeltoltesTetelhez(celErtek, statuszId) {
+    keziCelValasztoRenderelese();
+    const valaszto = document.getElementById("kezi-cel");
+    valaszto.value = celErtek;
+    keziFajlValasztas(Object.assign(keziKivalasztottKontextus(), { statuszId: statuszId || "kezi-statusz" }));
+  }
+
+  function keziFajlValasztas(kontextus) {
+    keziFeltoltesKontextus = kontextus;
+    document.getElementById("kezi-fajl").click();
+  }
+
+  function keziFeltoltesekRenderelese() {
+    const hely = document.getElementById("kezi-varolista");
+    if (!hely || !legutobbiAdat) return;
+    document.getElementById("kezi-feltoltes-sor").style.display = szerepkor === "admin" ? "" : "none";
+    const kerelmek = lvObjektum(legutobbiAdat.ceges_kezi_feltoltes_kerelmek);
+    const eredmenyek = lvObjektum(legutobbiAdat.ceges_kezi_feltoltes_eredmenyek);
+    const fuggo = Object.entries(kerelmek)
+      .filter(([kid]) => (eredmenyek[kid] || {}).statusz !== "kesz")
+      .sort((a, b) => String(b[1].letrehozva || "").localeCompare(String(a[1].letrehozva || "")));
+    keziCelValasztoRenderelese();
+    if (!fuggo.length) { hely.innerHTML = ""; return; }
+    hely.innerHTML = `<div class="kezi-lista">${fuggo.map(([kid, k]) => {
+      const e = eredmenyek[kid];
+      const allapot = e && e.statusz === "hiba" ? `<span class="bank-jel bank-jel-hiba">Hiba</span> <span class="bank-alszoveg">${escHtml(e.hiba)}</span>`
+        : e && e.statusz === "varakozik" ? `<span class="bank-jel bank-jel-nincs">Újrapróbálás</span> <span class="bank-alszoveg">${escHtml(e.hiba)}</span>`
+        : '<span class="bank-alszoveg">feldolgozásra vár</span>';
+      const cel = k.nav_tetel ? ` · NAV: ${escHtml(k.nav_tetel.szamlaszam || "")}` : k.bank_tetel_id ? " · bank-tételhez" : "";
+      return `<div class="kezi-elem"><span><strong>${escHtml(k.fajlnev)}</strong><span class="bank-alszoveg">${cel}</span></span><span>${allapot}</span>${szerepkor === "admin" ? `<button type="button" class="torles-gomb kezi-megse" data-kid="${escHtml(kid)}" title="Feltöltés visszavonása">✕</button>` : ""}</div>`;
+    }).join("")}</div>`;
+    hely.querySelectorAll(".kezi-megse").forEach(b => b.addEventListener("click", async () => {
+      b.disabled = true;
+      try {
+        await keziKerelemModositas(k => { delete k[b.dataset.kid]; });
+        await apiHivas("batch", { muveletek: [{ action: "delete_pdf", id: "kezi_" + b.dataset.kid }] });
+      } catch (e) { alert("A visszavonás nem sikerült: " + e.message); }
+      keziFeltoltesekRenderelese();
+    }));
+  }
+
+  // A kész kérelmek lezárása: ha bank-tételhez tartozott, a bank-párosítást
+  // is rögzítjük, aztán a kérelmet töröljük (a script ezután az
+  // eredményt is eldobja). Csak admin, betöltéskor fut.
+  async function keziFeltoltesekLezarasa() {
+    if (szerepkor !== "admin" || !legutobbiAdat) return;
+    const kerelmek = lvObjektum(legutobbiAdat.ceges_kezi_feltoltes_kerelmek);
+    const eredmenyek = lvObjektum(legutobbiAdat.ceges_kezi_feltoltes_eredmenyek);
+    const kesz = Object.keys(kerelmek).filter(kid => (eredmenyek[kid] || {}).statusz === "kesz");
+    if (!kesz.length) return;
+    try {
+      for (const kid of kesz) {
+        const k = kerelmek[kid];
+        if (k.bank_tetel_id && eredmenyek[kid].rekord_id) {
+          await bankMetaBejegyzes("bank_kezi_parositasok", k.bank_tetel_id, eredmenyek[kid].rekord_id);
+        }
+      }
+      await keziKerelemModositas(k => { kesz.forEach(kid => delete k[kid]); });
+      keziFeltoltesekRenderelese();
+    } catch (e) { /* a következő betöltéskor újra megpróbáljuk */ }
+  }
+
+  (function keziEsemenyek() {
+    const input = document.getElementById("kezi-fajl");
+    input.addEventListener("change", () => {
+      const fajlok = [...input.files];
+      input.value = "";
+      const kontextus = keziFeltoltesKontextus || {};
+      keziFeltoltesKontextus = null;
+      if (fajlok.length) keziSzamlakFeltoltese(fajlok, kontextus);
+    });
+    document.addEventListener("click", e => {
+      const gomb = e.target.closest && e.target.closest(".kezi-tetel-gomb");
+      if (gomb) keziFeltoltesTetelhez(gomb.dataset.cel, gomb.dataset.statusz);
+    });
+    const ejto = document.getElementById("kezi-ejto");
+    ejto.addEventListener("click", e => { e.preventDefault(); keziFajlValasztas(keziKivalasztottKontextus()); });
+    ["dragenter", "dragover"].forEach(ev => ejto.addEventListener(ev, e => { e.preventDefault(); ejto.classList.add("rajta"); }));
+    ["dragleave", "drop"].forEach(ev => ejto.addEventListener(ev, e => { e.preventDefault(); ejto.classList.remove("rajta"); }));
+    ejto.addEventListener("drop", e => {
+      const fajlok = [...(e.dataTransfer.files || [])];
+      if (fajlok.length) keziSzamlakFeltoltese(fajlok, keziKivalasztottKontextus());
+    });
   })();
 
   function aktualisPat() {
@@ -4508,6 +4740,7 @@
     cegesBizonytalanTablaRenderelese(cegesSzamlakBizonytalan);
     navAllapotRenderelese(adat.nav_allapot);
     navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek);
+    keziFeltoltesekLezarasa();
     // ceges_email_kikapcsolva === false az EGYETLEN eset, amikor a céges
     // küldés ténylegesen engedélyezve van (ld. be-email-engedelyezve
     // hasonló mintáját fent) - ez FÜGGETLEN a közüzemi kapcsolótól.

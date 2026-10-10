@@ -1518,7 +1518,11 @@ def _pdf_tarolas_ritkitasa(allapot: dict):
         return
     hatar_nap = (magyar_ma() - timedelta(days=PDF_MEGORZESI_NAPOK)).isoformat()
     megtartando = {}
+    kezi_kerelmek = allapot.get("ceges_kezi_feltoltes_kerelmek") or {}
     for invoice_id, b64_adat in pdf_tar.items():
+        if invoice_id.startswith(KEZI_FELTOLTES_PDF_ELOTAG) and invoice_id[len(KEZI_FELTOLTES_PDF_ELOTAG):] in kezi_kerelmek:
+            megtartando[invoice_id] = b64_adat  # még feldolgozásra váró kézi feltöltés, ld. ceges_kezi_feltoltesek_feldolgozasa()
+            continue
         rekord = szamlak.get(invoice_id)
         if rekord is None:
             continue  # árva bejegyzés - a számla-metaadat már nincs meg, a PDF-et sem tartjuk
@@ -5488,6 +5492,104 @@ def ceges_level_valaszok_feldolgozasa(allapot: dict) -> None:
             eredmenyek.pop(kid, None)
 
 # ════════════════════════════════════════════
+#  📤  KÉZI SZÁMLA-FELTÖLTÉS (dashboard → Céges számlák)
+# ════════════════════════════════════════════
+# A dashboard a feltöltött PDF-et a "pdf_adatok" táblába teszi
+# "kezi_<kérelem-id>" azonosítóval, a kérelmet pedig a
+# "ceges_kezi_feltoltes_kerelmek" meta-kulcsba (ezt csak a dashboard írja).
+# Itt a script feltölti a PDF-et a Drive-ra, ugyanúgy kinyeri belőle a
+# számlaszámot/összeget, mint az emailből jövő céges számláknál, felveszi a
+# "ceges_szamlak" közé, törli a PDF-et a táblából, és az eredményt a
+# "ceges_kezi_feltoltes_eredmenyek" kulcsba írja (ezt csak a script írja).
+# Ha a kérelem egy NAV-tételhez tartozik ("nav_tetel"), a rekord egyből
+# NAV-párosítottként jön létre; a bank-tételhez kötést ("bank_tetel_id") a
+# dashboard végzi el, amikor meglátja a kész eredményt.
+KEZI_FELTOLTES_PDF_ELOTAG = "kezi_"
+
+
+def ceges_kezi_feltoltesek_feldolgozasa(allapot: dict) -> None:
+    kerelmek = allapot.get("ceges_kezi_feltoltes_kerelmek") or {}
+    if not isinstance(kerelmek, dict):
+        return
+    eredmenyek = allapot.setdefault("ceges_kezi_feltoltes_eredmenyek", {})
+    if not isinstance(eredmenyek, dict):
+        eredmenyek = allapot["ceges_kezi_feltoltes_eredmenyek"] = {}
+    pdf_adatok = allapot.setdefault("pdf_adatok", {})
+    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+    for kid, k in kerelmek.items():
+        if not isinstance(k, dict) or (eredmenyek.get(kid) or {}).get("statusz") == "kesz":
+            continue
+        pid = KEZI_FELTOLTES_PDF_ELOTAG + kid
+        b64 = pdf_adatok.get(pid)
+        if not b64:
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(),
+                               "hiba": "A feltöltött PDF nem található az adatbázisban - töltsd fel újra."}
+            continue
+        try:
+            pdf_bytes = base64.b64decode(b64)
+        except Exception:
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(), "hiba": "Hibás PDF-adat."}
+            pdf_adatok.pop(pid, None)
+            continue
+        pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes) or ""
+        szamlaszam = szamlaszam_kinyerese_altalanos(pdf_szoveg) if pdf_szoveg else None
+        osszeg, penznem = osszeg_es_penznem_kinyerese(pdf_szoveg) if pdf_szoveg else (None, "HUF")
+        kuldo_nev = (k.get("kuldo_nev") or "").strip() or szallito_nev_kinyerese_pdfbol(pdf_szoveg) or "Kézi feltöltés"
+        nav = k.get("nav_tetel") if isinstance(k.get("nav_tetel"), dict) else None
+        nav_kulcs = None
+        if nav:
+            szamlaszam = nav.get("szamlaszam") or szamlaszam
+            kuldo_nev = nav.get("szallito_nev") or kuldo_nev
+            nav_kulcs = f"{(nav.get('szallito_adoszam') or '').strip()}|{_szamlaszam_normalizalt(nav.get('szamlaszam'))}"
+
+        ujjlenyomat = _szamla_tartalmi_ujjlenyomat(kuldo_nev, szamlaszam, osszeg, pdf_bytes)
+        letezo = next((rid for rid, r in list(ceges_szamlak.items()) + list((allapot.get("ceges_szamlak_bizonytalan") or {}).items())
+                       if r.get("tartalmi_ujjlenyomat") == ujjlenyomat), None)
+        if letezo:
+            eredmenyek[kid] = {"statusz": "kesz", "idopont": magyar_ido().isoformat(), "rekord_id": letezo,
+                               "megjegyzes": "Ez a számla már szerepelt a listában."}
+            pdf_adatok.pop(pid, None)
+            continue
+        if DRY_RUN:
+            print(f"  🧪 [DRY RUN] Kézi céges számla-feltöltés feldolgozva LENNE: {k.get('fajlnev')!r}")
+            continue
+
+        cid = hashlib.md5(f"kezi|{kid}".encode("utf-8")).hexdigest()[:16]
+        fajlnev = _ceges_fajlnev(cid, kuldo_nev, k.get("fajlnev") or "szamla.pdf")
+        drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, b64) if SZAMLA_DRIVE_WEBAPP_URL else None
+        if SZAMLA_DRIVE_WEBAPP_URL and not drive_url:
+            eredmenyek[kid] = {"statusz": "varakozik", "idopont": magyar_ido().isoformat(),
+                               "hiba": "A Drive-feltöltés nem sikerült, a következő futás újrapróbálja."}
+            continue
+        ceges_szamlak[cid] = {
+            "kuldo_nev": kuldo_nev,
+            "forras_postafiok": "Kézi feltöltés",
+            "biztos_szamla": True,
+            "targy": k.get("fajlnev") or "Kézi feltöltés",
+            "erkezett": k.get("letrehozva") or magyar_ido().isoformat(),
+            "drive_url": drive_url,
+            "drive_fajlnev": fajlnev if drive_url else None,
+            "rogzitve": magyar_ido().isoformat(),
+            "kinyert_osszeg": osszeg,
+            "penznem": penznem,
+            "kinyert_szamlaszam": szamlaszam,
+            "tartalmi_ujjlenyomat": ujjlenyomat,
+            "adoszam": (nav.get("szallito_adoszam") if nav else None),
+            "nav_szamla_azonosito": nav_kulcs,
+            "nav_parositva": bool(nav),
+            "nav_szallito_nev": nav.get("szallito_nev") if nav else None,
+            "nav_osszeg": (nav.get("netto_osszeg_huf") or nav.get("netto_osszeg")) if nav else None,
+            "nav_datum": nav.get("kiallitas_datum") if nav else None,
+            "nav_brutto_osszeg": _nav_brutto_huf(nav) if nav else None,
+        }
+        pdf_adatok.pop(pid, None)
+        eredmenyek[kid] = {"statusz": "kesz", "idopont": magyar_ido().isoformat(), "rekord_id": cid}
+        print(f"  📤 Kézi feltöltésű céges számla felvéve: {kuldo_nev} ({k.get('fajlnev')})")
+    for kid in list(eredmenyek.keys()):
+        if kid not in kerelmek:
+            eredmenyek.pop(kid, None)
+
+# ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
 # ════════════════════════════════════════════
 def main():
@@ -6397,6 +6499,7 @@ def main():
     # ELŐTT, hogy az ebben a futásban feldolgozott/törölt céges számlák
     # metaadata is bekerüljön a lentebbi mentésbe.
     ceges_szamlak_feldolgozasa(allapot)
+    ceges_kezi_feltoltesek_feldolgozasa(allapot)
     ceges_level_valaszok_feldolgozasa(allapot)
 
     # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás
