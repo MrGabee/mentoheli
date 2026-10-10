@@ -2,7 +2,7 @@
 // Szándékosan "hálózat először": az oldal mindig a legfrissebb verzió,
 // a gyorsítótár csak akkor kell, ha nincs net (offline vázlat). Az API-
 // hívások (más domain) és minden nem-GET kérés érintetlenül megy át.
-const CACHE = "szamla-figyelo-v1";
+const CACHE = "szamla-figyelo-v2";
 const ALAP = ["./szamlak.html", "./manifest.webmanifest", "./ikonok/ikon-192.png"];
 
 self.addEventListener("install", (e) => {
