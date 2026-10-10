@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:31:24.581393+02:00",
+  "frissitve": "2026-10-10T02:31:53.507206+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:09:00.787277+02:00",
-      "kulcs": "FKU926",
-      "rendszam": "FKU926",
-      "vehicle_id": "3082",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.463111877441406,
-      "lon": 19.14887809753418,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.787488+02:00",
-      "kulcs": "FLR725",
-      "rendszam": "FLR725",
-      "vehicle_id": "3139",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161E",
-      "route_id": "1615",
-      "lat": 47.4869384765625,
-      "lon": 19.286598205566406,
-      "elozo_szoveg": "Rákoscsaba",
-      "uj_szoveg": "Kucorgó tér ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.787710+02:00",
-      "kulcs": "AAGL298",
-      "rendszam": "AAGL298",
-      "vehicle_id": "330",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "222",
-      "route_id": "2220",
-      "lat": 47.507450103759766,
-      "lon": 19.025440216064453,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Honfoglalás sétány"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.787726+02:00",
-      "kulcs": "AAGL299",
-      "rendszam": "AAGL299",
-      "vehicle_id": "331",
-      "vehicle_label": "Budakeszi, Tesco áruház",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50767135620117,
-      "lon": 19.024620056152344,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Tesco áruház"
-    },
     {
       "idopont": "2026-10-09T15:09:00.787741+02:00",
       "kulcs": "AAGL302",
@@ -260000,6 +259948,58 @@
       "lon": 19.090829849243164,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Esztergom"
+    },
+    {
+      "idopont": "2026-10-10T02:31:53.457892+02:00",
+      "kulcs": "FLR700",
+      "rendszam": "FLR700",
+      "vehicle_id": "3114",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.464473724365234,
+      "lon": 19.12637710571289,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-10T02:31:53.457921+02:00",
+      "kulcs": "FLR716",
+      "rendszam": "FLR716",
+      "vehicle_id": "3130",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44159698486328,
+      "lon": 19.186168670654297,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-10-10T02:31:53.457996+02:00",
+      "kulcs": "AAGL289",
+      "rendszam": "AAGL289",
+      "vehicle_id": "322",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45579528808594,
+      "lon": 18.941118240356445,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-10T02:31:53.458729+02:00",
+      "kulcs": "SKN828",
+      "rendszam": "SKN828",
+      "vehicle_id": "76",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51548767089844,
+      "lon": 19.09609603881836,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
     }
   ]
 }
