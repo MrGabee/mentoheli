@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T03:19:15.142223+02:00",
+  "frissitve": "2026-10-10T03:19:44.755835+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:12:56.687585+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.526161193847656,
-      "lon": 19.122732162475586,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-09T15:12:56.687781+02:00",
-      "kulcs": "AOFL221",
-      "rendszam": "AOFL221",
-      "vehicle_id": "808",
-      "vehicle_label": "Remetehegyi út",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.5278205871582,
-      "lon": 19.036890029907227,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Remetehegyi út"
-    },
-    {
-      "idopont": "2026-10-09T15:12:56.687888+02:00",
-      "kulcs": "AOFL231",
-      "rendszam": "AOFL231",
-      "vehicle_id": "819",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.50785446166992,
-      "lon": 18.989418029785156,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-09T15:12:56.688009+02:00",
       "kulcs": "AOFL242",
@@ -260000,6 +259961,45 @@
       "lon": 18.996484756469727,
       "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T03:19:44.663846+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.5985221862793,
+      "lon": 19.05431365966797,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-10T03:19:44.664219+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.50128173828125,
+      "lon": 19.107784271240234,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-10T03:19:44.664870+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.502716064453125,
+      "lon": 19.13626480102539,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
     }
   ]
 }
