@@ -127,6 +127,7 @@
     font-size: 15px; font-weight: 600; cursor: pointer; color: var(--text);
   }
   .panel-toggle:hover { background: var(--surface-2); }
+  .panel-cim { margin: 0; padding: 14px 16px; font-size: 15px; font-weight: 600; color: var(--text); }
   .panel-tartalom { padding: 4px 16px 18px; }
   .panel-info { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
   .panel-tartalom label {
@@ -342,7 +343,32 @@
   .lv-cimke.ok { background: var(--green-soft); color: var(--green); }
   .lv-link { border: 0; background: none; color: var(--blue); cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
   .lv-eszkozok { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
-  #lv-kereses { flex: 1 1 260px; min-width: 0; padding: 9px 12px; border-radius: 8px; font-size: 14px; }
+
+  /* ── Bank (OTP-kivonatok) ── */
+  .bank-ejto { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; border: 1.5px dashed var(--border); border-radius: 12px; padding: 18px 20px; background: var(--card); cursor: pointer; transition: border-color .15s ease, background-color .15s ease; }
+  .bank-ejto:hover, .bank-ejto.rajta { border-color: var(--blue); background: var(--blue-soft); }
+  .bank-ejto strong { font-size: 15px; }
+  .bank-ejto span { color: var(--muted); font-size: 13px; }
+  .bank-alcim { font-size: 16px; margin: 28px 0 10px; }
+  .bank-tabla-keret, #ceges-tabla-hely, #ceges-parositott-tabla-hely, #ceges-bizonytalan-tabla-hely { overflow-x: auto; }
+  .bank-tabla td { vertical-align: top; }
+  .bank-datum, .bank-szam { font-family: var(--f-num); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .bank-leiras { min-width: 220px; }
+  .bank-terheles { white-space: nowrap; }
+  .bank-jovairas { white-space: nowrap; color: var(--green); }
+  .bank-szamla { min-width: 240px; }
+  .bank-alszoveg { color: var(--muted); font-size: 12px; }
+  .bank-cella { white-space: nowrap; }
+  .bank-jel { display: inline-block; font-size: 12.5px; font-weight: 600; border-radius: 6px; padding: 1px 7px; }
+  .bank-jel-ok { background: var(--green-soft); color: var(--green); }
+  .bank-jel-nincs { background: var(--amber-soft); color: var(--amber); }
+  .bank-jel-hiba { background: var(--red-soft); color: var(--red); }
+  .bank-muveletek { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .bank-muveletek select { max-width: 100%; min-width: 0; flex: 1 1 200px; font: inherit; font-size: 13px; padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--text); }
+  .bank-link-gomb { border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 6px; padding: 4px 8px; font-size: 12.5px; cursor: pointer; }
+  .bank-link-gomb:hover { border-color: var(--blue); color: var(--blue); }
+  #bank-honap { font: inherit; font-size: 13px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); }
+  #lv-kereses, #bank-kereses { flex: 1 1 260px; min-width: 0; padding: 9px 12px; border-radius: 8px; font-size: 14px; }
   .lv-racs { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 16px; align-items: start; }
   .lv-lista { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; max-height: 75vh; overflow-y: auto; }
   .lv-elem { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; width: 100%; text-align: left; padding: 11px 14px; border: 0; border-bottom: 1px solid var(--border); background: transparent; cursor: pointer; color: var(--text); }
@@ -406,6 +432,7 @@
       <div class="om-cimke">Számlák</div>
       <button type="button" class="om-pont aktiv" data-oldal="kozuzemi">Közüzemi számlák <span class="om-szam" id="om-szam-kozuzemi"></span></button>
       <button type="button" class="om-pont" data-oldal="ceges">Céges számlák és NAV <span class="om-szam" id="om-szam-ceges"></span></button>
+      <button type="button" class="om-pont" data-oldal="bank">Bank (OTP kivonatok) <span class="om-szam" id="om-szam-bank"></span></button>
       <button type="button" class="om-pont" data-oldal="levelek">Céges levelek <span class="om-szam" id="om-szam-levelek"></span></button>
       <div class="om-cimke">Kezelés</div>
       <button type="button" class="om-pont" data-oldal="berlok">Bérlők és értesítések</button>
@@ -495,8 +522,8 @@
       </div>
 
       <div class="panel" id="ceges-nav-panel">
-        <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
-        <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
+        <h3 class="panel-cim">🔗 NAV Online Számla összekötés</h3>
+        <div class="panel-tartalom" id="ceges-nav-tartalom">
           <div id="ceges-email-admin-sor">
             <label style="display:flex;align-items:center;gap:10px;background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:8px;padding:12px 14px;margin-bottom:14px;">
               <input type="checkbox" id="ceges-email-engedelyezve" style="width:auto;flex:none;">
@@ -553,6 +580,36 @@
         <article class="lv-olvaso" id="lv-olvaso" aria-live="polite"></article>
       </div>
       <p class="panel-info" style="margin-top:12px;">Az Elküldött fül a rendszer által kiküldött összes levelet mutatja (értesítők, összesítők, NAV-emlékeztetők és a válaszaid), pontos szöveggel és címzettel. A Beérkezett fül a céges postafiókba érkezett leveleket mutatja, ahogy a figyelő a futásai során (20 percenként) beolvasta őket. A válasz a céges feladó-címről megy ki, a következő futáskor, vagy azonnal, ha a Beállításokban meg van adva a GitHub token.</p>
+    </div>
+
+    <div id="bank-tartalom" style="display:none;">
+      <div id="bank-feltoltes-sor">
+        <label class="bank-ejto" id="bank-ejto">
+          <input type="file" id="bank-fajl" accept="application/pdf,.pdf" multiple hidden>
+          <strong>OTP számlakivonat feltöltése</strong>
+          <span>Húzd ide a havi PDF-kivonatot, vagy kattints a tallózáshoz. Több hónap egyszerre is feltölthető, ugyanaz a kivonat újra feltöltve felülírja a régit.</span>
+        </label>
+        <div class="panel-statusz" id="bank-statusz"></div>
+      </div>
+
+      <h3 class="bank-alcim">Feltöltött kivonatok</h3>
+      <div id="bank-kivonat-lista"></div>
+
+      <h3 class="bank-alcim">Tételek</h3>
+      <div class="kartyak" id="bank-kartyak"></div>
+      <div class="lv-eszkozok">
+        <select id="bank-honap" aria-label="Hónap"></select>
+        <input type="search" id="bank-kereses" placeholder="Keresés partnerre, közleményre" aria-label="Keresés a tételekben">
+        <div class="szurok" id="bank-szurok" style="margin:0;">
+          <button type="button" data-bank-szuro="hianyzo" class="aktiv">Számla nélkül</button>
+          <button type="button" data-bank-szuro="parositott">Párosítva</button>
+          <button type="button" data-bank-szuro="kivul">Nem kell számla</button>
+          <button type="button" data-bank-szuro="terheles">Összes terhelés</button>
+          <button type="button" data-bank-szuro="jovairas">Jóváírások</button>
+        </div>
+      </div>
+      <div id="bank-tetel-lista"></div>
+      <p class="panel-info" style="margin-top:12px;">A PDF-et a böngésző olvassa ki, magát a fájlt nem tároljuk, csak a kivonat tételeit. Minden terhelést összevetünk a céges számlákkal: először a közleményben szereplő számlaszám alapján, utána a bruttó összeg (EUR-s kártyás fizetésnél az eurós összeg) és a dátum alapján (a számla előtt legfeljebb 15, utána legfeljebb 60 nap). Ami így sem talál párt, a "Számla nélkül" listába kerül: ott kézzel hozzárendelheted a számlát, vagy megjelölheted, hogy nem kell hozzá (pl. bankköltség, saját számlák közti átvezetés). Az eredmény a Céges számlák táblázat "Bank" oszlopában is látszik.</p>
     </div>
 
     <div id="kezeles-tartalom" style="display:none;">
@@ -1056,6 +1113,8 @@
   // a párosítás esélyét is, nem csak megjelenítési célú.
   function cegesTablaRenderelese(lista) {
     const hely = document.getElementById("ceges-tabla-hely");
+    bankSzamitas();
+    bankRenderelese();
     // ld. a felhasználó kérése: "azokat a sorokat, amiket sikerült
     // összekötni [a NAV-val]... kerüljön át az oldalon egy másik
     // kategóriába" - a MEGERŐSÍTETTEN párosított (nav_parositva===true)
@@ -1128,6 +1187,7 @@
         ? `<span style="color:var(--green);">✅ Párosítva</span>`
           + (r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : "")
         : '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'}</td>`);
+      cellak.push(`<td>${bankCellaHtml(r)}</td>`);
       if (!csakOlvas) {
         cellak.push(`<td style="min-width:170px;">
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -1148,7 +1208,7 @@
       ${megjegyzes}
       <table>
         <thead>
-          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th>${fejlecVegek}</tr>
+          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th>Bank</th>${fejlecVegek}</tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -1244,6 +1304,7 @@
         <td>${escHtml(r.adoszam) || "—"}</td>
         <td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>
         <td><span style="color:var(--green);">✅ Párosítva</span>${r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : ""}</td>
+        <td>${bankCellaHtml(r)}</td>
         ${vegoszlop}
       </tr>`;
     }).join("");
@@ -1251,7 +1312,7 @@
     hely.innerHTML = `
       <table>
         <thead>
-          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th>${fejlecVege}</tr>
+          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th>Bank</th>${fejlecVege}</tr>
         </thead>
         <tbody>${sorok}</tbody>
       </table>
@@ -2882,6 +2943,470 @@
     levelekRenderelese();
   }));
 
+  // ── OTP-kivonat értelmező (tiszta függvények, böngészőfüggetlen) ──
+  // Bemenet: oldalak listája, oldalanként { szel, elemek:[{x, y, w, s}] }
+  // (a pdf.js getTextContent() elemei, ld. bankPdfOldalai()).
+  const BANK_OSSZEG_MINTA = /^-?\d{1,3}(?:\.\d{3})*$/;
+  const BANK_DATUM_MINTA = /^\d{2}\.\d{2}\.\d{2}$/;
+
+  function _bankSorokba(elemek) {
+    const sorok = [];
+    [...elemek].filter(e => e.s && e.s.trim()).sort((a, b) => b.y - a.y || a.x - b.x).forEach(e => {
+      let sor = sorok.find(s => Math.abs(s.y - e.y) <= 2);
+      if (!sor) { sor = { y: e.y, elemek: [] }; sorok.push(sor); }
+      sor.elemek.push(e);
+    });
+    sorok.sort((a, b) => b.y - a.y);
+    sorok.forEach(s => s.elemek.sort((a, b) => a.x - b.x));
+    return sorok;
+  }
+
+  function _bankElemekSzovege(elemek) {
+    let szoveg = "";
+    let elozo = null;
+    for (const e of elemek) {
+      if (elozo && e.x - (elozo.x + elozo.w) > 1.5 && !/^[,.;:)]/.test(e.s)) szoveg += " ";
+      szoveg += e.s;
+      elozo = e;
+    }
+    return szoveg.replace(/\s+/g, " ").trim();
+  }
+
+  function _bankDatum(rovid) {
+    const m = /^(\d{2})\.(\d{2})\.(\d{2})$/.exec(rovid || "");
+    return m ? `20${m[1]}-${m[2]}-${m[3]}` : null;
+  }
+
+  function _bankOsszeg(szoveg) {
+    return Number(String(szoveg).replace(/\./g, ""));
+  }
+
+  // Egy tétel leírásából a típus, a partner, a közlemény, kártyás
+  // vásárlásnál a tranzakció napja és a devizás összeg.
+  function _bankLeirasReszletei(leiras, osszeg) {
+    const mezok = leiras.split(/,\s*/);
+    const tipus = mezok[0] || "";
+    const r = { tipus, partner: "", kozlemeny: "", tranzakcio_datum: null, deviza_osszeg: null, deviza_nem: null };
+    const deviza = /(\d+,\d{1,3})\s?(EUR|USD|GBP|CHF)\b/.exec(leiras);
+    if (deviza) { r.deviza_osszeg = Number(deviza[1].replace(",", ".")); r.deviza_nem = deviza[2]; }
+    const kartya = /Tranzakció:\s*(\d{2}\.\d{2}\.\d{2}),\s*(?:\d+,\d+\s?[A-Z]{3},\s*)?(.*)$/.exec(leiras);
+    if (kartya) {
+      r.tranzakcio_datum = _bankDatum(kartya[1]);
+      r.partner = kartya[2].replace(/,\s*\d+,\d+\s?[A-Z]{3}\b.*$/, "").replace(/\s*-SIMPLE\b/, "").trim();
+      return r;
+    }
+    const kozl = /\(5\.\)\s*(.*?)(?:,\s*N(?:,|$)|,\s*\(\d+\.\)|$)/.exec(leiras);
+    if (kozl) r.kozlemeny = kozl[1].trim();
+    const nevek = mezok.slice(3)
+      .map(m => m.replace(/^\d+\s+/, "").replace(/\s+\d{10,}.*$/, "").trim())
+      .filter(m => /\p{L}{3}/u.test(m) && !/^\(\d/.test(m) && !/^[A-Z0-9]{12,}$/.test(m) && !/^[A-Z]{6}[A-Z0-9]{2,5}$/.test(m));
+    r.partner = (osszeg < 0 ? (nevek[1] || nevek[0]) : nevek[0]) || "";
+    return r;
+  }
+
+  function otpKivonatErtelmezese(oldalak) {
+    const kivonat = { szamlaszam: null, kivonatszam: null, idoszak_tol: null, idoszak_ig: null, devizanem: "HUF", nyito: null, zaro: null, tetelek: [] };
+    let aktualis = null;
+    let tetelResz = false;
+    for (const oldal of oldalak) {
+      const osszegHatar = oldal.szel * 0.8;
+      for (const sor of _bankSorokba(oldal.elemek)) {
+        const szoveg = _bankElemekSzovege(sor.elemek);
+        let m;
+        if ((m = /SZÁMLASZÁM:\s*([\d-]+)/.exec(szoveg)) && !kivonat.szamlaszam) kivonat.szamlaszam = m[1];
+        if ((m = /IDŐSZAK:\s*(\d{2}\.\d{2}\.\d{2})-(\d{2}\.\d{2}\.\d{2})/.exec(szoveg)) && !kivonat.idoszak_tol) {
+          kivonat.idoszak_tol = _bankDatum(m[1]); kivonat.idoszak_ig = _bankDatum(m[2]);
+        }
+        if ((m = /KIVONATSZÁM:\s*(\d+\/\d{4})/.exec(szoveg)) && !kivonat.kivonatszam) kivonat.kivonatszam = m[1];
+        if ((m = /DEVIZANEM:\s*([A-Z]{3})/.exec(szoveg))) kivonat.devizanem = m[1];
+        if (/^FORGALMAK$|^KÖNYVELÉS\/ÉRTÉKNAP/.test(szoveg)) { tetelResz = true; aktualis = null; continue; }
+        if (/^SZÁMLASZÁM:|^TOVÁBBI SZÁMLAINFORMÁCIÓK|^JÓVÁÍRÁSOK ÖSSZESEN/.test(szoveg)) { tetelResz = false; aktualis = null; continue; }
+        if (!tetelResz) continue;
+        const elso = sor.elemek[0];
+        const utolso = sor.elemek[sor.elemek.length - 1];
+        const vanOsszeg = sor.elemek.length > 1 && utolso.x >= osszegHatar && BANK_OSSZEG_MINTA.test(utolso.s.trim());
+        const datumok = sor.elemek.filter(e => BANK_DATUM_MINTA.test(e.s.trim()) && e.x < oldal.szel * 0.2);
+        if (vanOsszeg && datumok.length) {
+          const kozep = sor.elemek.filter(e => e !== utolso && !datumok.includes(e));
+          const leiras = _bankElemekSzovege(kozep);
+          const osszeg = _bankOsszeg(utolso.s.trim());
+          if (/^NYITÓ EGYENLEG/.test(leiras)) { kivonat.nyito = osszeg; aktualis = null; continue; }
+          if (/^ZÁRÓ EGYENLEG/.test(leiras)) { kivonat.zaro = osszeg; aktualis = null; tetelResz = false; continue; }
+          aktualis = {
+            konyveles: _bankDatum(datumok[0].s.trim()),
+            ertéknap: _bankDatum((datumok[1] || datumok[0]).s.trim()),
+            leiras,
+            osszeg,
+          };
+          kivonat.tetelek.push(aktualis);
+        } else if (aktualis && elso.x > oldal.szel * 0.15 && !vanOsszeg) {
+          aktualis.leiras += " " + szoveg;
+        }
+      }
+    }
+    const szamlalo = {};
+    kivonat.tetelek.forEach(t => {
+      Object.assign(t, _bankLeirasReszletei(t.leiras, t.osszeg));
+      const alap = `${kivonat.szamlaszam}|${t.konyveles}|${t.osszeg}|${_bankHash(t.leiras)}`;
+      szamlalo[alap] = (szamlalo[alap] || 0) + 1;
+      t.id = alap + (szamlalo[alap] > 1 ? "#" + szamlalo[alap] : "");
+    });
+    if (kivonat.nyito !== null && kivonat.zaro !== null) {
+      const szum = kivonat.tetelek.reduce((s, t) => s + t.osszeg, 0);
+      kivonat.egyezik = Math.round(kivonat.nyito + szum) === Math.round(kivonat.zaro);
+    }
+    return kivonat;
+  }
+
+  function _bankHash(s) {
+    let h = 5381;
+    for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+    return h.toString(36);
+  }
+
+  // ── Párosítás: céges számla ↔ bank-terhelés ──
+  // Sorrend: kézi hozzárendelés, számlaszám a közleményben/leírásban,
+  // végül összeg (bruttó, ±1 Ft vagy devizában ±0,01) és dátum
+  // (a számla előtt legfeljebb 15, utána legfeljebb 60 nap).
+  function _bankNorm(s) {
+    return String(s || "").toUpperCase().replace(/[^A-Z0-9ÁÉÍÓÖŐÚÜŰ]/g, "");
+  }
+  function _bankNapKulonbseg(a, b) {
+    return Math.round((Date.parse(a) - Date.parse(b)) / 86400000);
+  }
+  function bankParositas(tetelek, szamlak, kezi, figyelmenKivul) {
+    const szamlaTetel = {};
+    const tetelSzamla = {};
+    const terhelesek = tetelek.filter(t => t.osszeg < 0);
+    const tetelById = Object.fromEntries(terhelesek.map(t => [t.id, t]));
+    const szamlaById = Object.fromEntries(szamlak.map(r => [r.id, r]));
+    const kot = (r, t, mod) => { szamlaTetel[r.id] = { tetel: t, mod }; tetelSzamla[t.id] = { rekord: r, mod }; };
+
+    // kezi[tetelId] = számla-id (kézi hozzárendelés) vagy "-" (a
+    // felhasználó leválasztotta, az automatikus körök ne nyúljanak hozzá).
+    for (const [tid, rid] of Object.entries(kezi || {})) {
+      if (tetelById[tid] && szamlaById[rid] && !szamlaTetel[rid]) kot(szamlaById[rid], tetelById[tid], "kezi");
+    }
+    const szabad = () => terhelesek.filter(t => !tetelSzamla[t.id] && !(figyelmenKivul || {})[t.id] && !(kezi || {})[t.id]);
+
+    for (const r of szamlak) {
+      if (szamlaTetel[r.id]) continue;
+      const szsz = _bankNorm(r.kinyert_szamlaszam);
+      if (szsz.length < 5) continue;
+      const t = szabad().find(t => _bankNorm(t.leiras).includes(szsz));
+      if (t) kot(r, t, "szamlaszam");
+    }
+
+    const jeloltOsszegek = r => {
+      const eur = (r.penznem || "HUF").toUpperCase() === "EUR";
+      const huf = [r.nav_brutto_osszeg, eur ? null : r.kinyert_osszeg].filter(v => v !== null && v !== undefined && v !== "").map(Number);
+      return { huf, eur: eur && r.kinyert_osszeg != null ? Number(r.kinyert_osszeg) : null };
+    };
+    const rendezett = [...szamlak].sort((a, b) => (a.nav_datum || a.erkezett || "").localeCompare(b.nav_datum || b.erkezett || ""));
+    for (const r of rendezett) {
+      if (szamlaTetel[r.id]) continue;
+      const { huf, eur } = jeloltOsszegek(r);
+      const datum = (r.nav_datum || r.erkezett || "").slice(0, 10);
+      if (!datum || (!huf.length && eur === null)) continue;
+      let legjobb = null;
+      for (const t of szabad()) {
+        const osszegOk = huf.some(o => Math.abs(Math.abs(t.osszeg) - Math.abs(o)) <= 1)
+          || (eur !== null && t.deviza_nem === "EUR" && Math.abs(t.deviza_osszeg - Math.abs(eur)) <= 0.01);
+        if (!osszegOk) continue;
+        const kul = _bankNapKulonbseg(t.tranzakcio_datum || t.konyveles, datum);
+        if (kul < -15 || kul > 60) continue;
+        if (!legjobb || Math.abs(kul) < Math.abs(legjobb.kul)) legjobb = { t, kul };
+      }
+      if (legjobb) kot(r, legjobb.t, "osszeg");
+    }
+    return { szamlaTetel, tetelSzamla };
+  }
+
+  // ════════════════════════════════════════════
+  //  🏦  BANK - OTP számlakivonatok és a céges számlák egyeztetése
+  // ════════════════════════════════════════════
+  // A PDF-et a böngésző dolgozza fel (pdf.js), a PDF maga nem kerül
+  // feltöltésre: csak a kiolvasott tételek mennek az adatbázisba,
+  // kivonatonként egy meta-kulcsban ("bank_kivonat__<számla>__<kivonatszám>").
+  // Kizárólag a dashboard írja ezeket, valamint a "bank_kezi_parositasok"
+  // és "bank_figyelmen_kivul" kulcsokat - a Python-script nem nyúl hozzájuk.
+  // A párosítás itt, megjelenítéskor fut, a céges számlák aktuális
+  // mezőivel (kinyert számlaszám/összeg, NAV-ból jövő bruttó összeg).
+  const BANK_KIVONAT_ELOTAG = "bank_kivonat__";
+  const PDFJS_VERZIO = "3.11.174";
+  let bankEredmeny = { szamlaTetel: {}, tetelSzamla: {} };
+  let bankSzuro = "hianyzo";
+  let bankHonap = "mind";
+  let _bankPdfjsIgeret = null;
+  let _bankMetaZarolas = Promise.resolve();
+
+  function bankKivonatok() {
+    const adat = legutobbiAdat || {};
+    return Object.keys(adat)
+      .filter(k => k.startsWith(BANK_KIVONAT_ELOTAG) && adat[k] && Array.isArray(adat[k].tetelek))
+      .map(k => Object.assign({ kulcs: k }, adat[k]))
+      .sort((a, b) => String(b.idoszak_ig || "").localeCompare(String(a.idoszak_ig || "")));
+  }
+  function bankOsszesTetel() {
+    const lattuk = new Set();
+    const tetelek = [];
+    bankKivonatok().forEach(k => k.tetelek.forEach(t => {
+      if (lattuk.has(t.id)) return;
+      lattuk.add(t.id);
+      tetelek.push(Object.assign({ kivonat_kulcs: k.kulcs }, t));
+    }));
+    return tetelek.sort((a, b) => String(b.konyveles || "").localeCompare(String(a.konyveles || "")));
+  }
+  function bankSzamitas() {
+    const adat = legutobbiAdat || {};
+    bankEredmeny = bankParositas(bankOsszesTetel(), cegesSzamlak, lvObjektum(adat.bank_kezi_parositasok), lvObjektum(adat.bank_figyelmen_kivul));
+  }
+  function bankDatumHu(iso) {
+    return iso ? iso.slice(0, 10).replace(/-/g, ".") : "";
+  }
+  const BANK_MOD_NEV = { kezi: "kézzel rendelve", szamlaszam: "számlaszám alapján", osszeg: "összeg és dátum alapján" };
+
+  // A céges táblák "Bank" oszlopa.
+  function bankCellaHtml(r) {
+    const talalat = bankEredmeny.szamlaTetel[r.id];
+    if (talalat) {
+      const t = talalat.tetel;
+      const reszlet = `${forint(Math.abs(t.osszeg))}, ${t.partner || t.tipus}, ${BANK_MOD_NEV[talalat.mod] || ""}`;
+      return `<span class="bank-cella" title="${escHtml(reszlet)}"><span class="bank-jel bank-jel-ok">Kifizetve</span><br><span class="bank-alszoveg">${escHtml(bankDatumHu(t.tranzakcio_datum || t.konyveles))}</span></span>`;
+    }
+    const datum = (r.nav_datum || r.erkezett || "").slice(0, 10);
+    const lefedett = datum && bankKivonatok().some(k => k.idoszak_tol <= datum && datum <= k.idoszak_ig);
+    return lefedett
+      ? '<span class="bank-jel bank-jel-nincs bank-cella" title="A számla dátumát lefedő kivonatban nincs hozzá illő terhelés. Lehet, hogy készpénzzel vagy másik számláról fizetted, vagy a Bank oldalon kézzel rendelheted hozzá.">Nincs kivonatban</span>'
+      : '<span class="bank-alszoveg bank-cella" title="Erre az időszakra még nincs feltöltött kivonat.">nincs kivonat</span>';
+  }
+
+  function bankPdfjsBetoltese() {
+    if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+    if (_bankPdfjsIgeret) return _bankPdfjsIgeret;
+    _bankPdfjsIgeret = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERZIO}/pdf.min.js`;
+      s.onload = () => {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERZIO}/pdf.worker.min.js`;
+        resolve(window.pdfjsLib);
+      };
+      s.onerror = () => { _bankPdfjsIgeret = null; reject(new Error("Nem sikerült betölteni a PDF-olvasót (pdf.js).")); };
+      document.head.appendChild(s);
+    });
+    return _bankPdfjsIgeret;
+  }
+  async function bankPdfOldalai(fajl) {
+    const pdfjs = await bankPdfjsBetoltese();
+    const doc = await pdfjs.getDocument({ data: new Uint8Array(await fajl.arrayBuffer()) }).promise;
+    const oldalak = [];
+    for (let p = 1; p <= doc.numPages; p++) {
+      const oldal = await doc.getPage(p);
+      const tartalom = await oldal.getTextContent();
+      oldalak.push({
+        szel: oldal.getViewport({ scale: 1 }).width,
+        elemek: tartalom.items.map(i => ({ x: i.transform[4], y: i.transform[5], w: i.width, s: i.str })),
+      });
+    }
+    return oldalak;
+  }
+
+  async function bankFajlokFeldolgozasa(fajlok) {
+    const statusz = document.getElementById("bank-statusz");
+    const uzenetek = [];
+    let volt_hiba = false;
+    for (const fajl of fajlok) {
+      statusz.className = "panel-statusz";
+      statusz.textContent = `Feldolgozás: ${fajl.name}…`;
+      try {
+        const kivonat = otpKivonatErtelmezese(await bankPdfOldalai(fajl));
+        if (!kivonat.szamlaszam || !kivonat.tetelek.length) {
+          throw new Error("ebben a PDF-ben nem találtam OTP-kivonat tételeket");
+        }
+        const azon = kivonat.kivonatszam ? kivonat.kivonatszam.replace(/\D+/g, "_") : `${kivonat.idoszak_tol}_${kivonat.idoszak_ig}`;
+        const kulcs = `${BANK_KIVONAT_ELOTAG}${kivonat.szamlaszam.replace(/\D/g, "")}__${azon}`;
+        const ertek = Object.assign(kivonat, { fajlnev: fajl.name, feltoltve: new Date().toISOString() });
+        await apiHivas("set_meta", { kulcs, ertek });
+        legutobbiAdat[kulcs] = ertek;
+        const ellenorzes = ertek.egyezik === false ? " A nyitó és záró egyenleg NEM egyezik a tételek összegével, nézd át!" : (ertek.egyezik ? " Egyenleg rendben." : "");
+        if (ertek.egyezik === false) volt_hiba = true;
+        uzenetek.push(`${fajl.name}: ${bankDatumHu(ertek.idoszak_tol)}–${bankDatumHu(ertek.idoszak_ig)}, ${ertek.tetelek.length} tétel.${ellenorzes}`);
+      } catch (e) {
+        volt_hiba = true;
+        uzenetek.push(`${fajl.name}: ${e.message}`);
+      }
+    }
+    statusz.className = "panel-statusz " + (volt_hiba ? "hiba" : "siker");
+    statusz.textContent = uzenetek.join(" ");
+    cegesTablaRenderelese(cegesSzamlak);
+  }
+
+  // Egy meta-objektum (kulcs → érték) egyetlen bejegyzésének átírása
+  // friss get_meta + set_meta párral, sorba állítva, hogy két gyors
+  // kattintás ne írja felül egymást.
+  function bankMetaBejegyzes(metaKulcs, tetelId, ertek) {
+    _bankMetaZarolas = _bankMetaZarolas.then(async () => {
+      const { ertek: regi } = await apiHivas("get_meta", { kulcs: metaKulcs });
+      const uj = Object.assign({}, lvObjektum(regi));
+      if (ertek === null) delete uj[tetelId]; else uj[tetelId] = ertek;
+      await apiHivas("set_meta", { kulcs: metaKulcs, ertek: uj });
+      legutobbiAdat[metaKulcs] = uj;
+    }).catch(e => alert("A mentés nem sikerült: " + e.message));
+    return _bankMetaZarolas.then(() => cegesTablaRenderelese(cegesSzamlak));
+  }
+
+  function bankRenderelese() {
+    const hely = document.getElementById("bank-tetel-lista");
+    if (!hely || !legutobbiAdat) return;
+    const csakOlvas = szerepkor !== "admin";
+    document.getElementById("bank-feltoltes-sor").style.display = csakOlvas ? "none" : "";
+    const kivonatok = bankKivonatok();
+    const osszes = bankOsszesTetel();
+    const kivul = lvObjektum(legutobbiAdat.bank_figyelmen_kivul);
+    const kezi = lvObjektum(legutobbiAdat.bank_kezi_parositasok);
+
+    // Feltöltött kivonatok
+    const kivHely = document.getElementById("bank-kivonat-lista");
+    kivHely.innerHTML = kivonatok.length ? `<div class="bank-tabla-keret"><table>
+      <thead><tr><th>Időszak</th><th>Számlaszám</th><th>Kivonat</th><th class="osszeg">Tételek</th><th class="osszeg">Nyitó</th><th class="osszeg">Záró</th><th>Ellenőrzés</th>${csakOlvas ? "" : "<th></th>"}</tr></thead>
+      <tbody>${kivonatok.map(k => `<tr>
+        <td>${escHtml(bankDatumHu(k.idoszak_tol))}–${escHtml(bankDatumHu(k.idoszak_ig))}</td>
+        <td class="bank-szam">${escHtml(k.szamlaszam)}</td>
+        <td>${escHtml(k.kivonatszam || "—")}</td>
+        <td class="osszeg">${k.tetelek.length}</td>
+        <td class="osszeg">${forint(k.nyito)}</td>
+        <td class="osszeg">${forint(k.zaro)}</td>
+        <td>${k.egyezik === true ? '<span class="bank-jel bank-jel-ok">Egyenleg rendben</span>' : k.egyezik === false ? '<span class="bank-jel bank-jel-hiba">Eltérés</span>' : "—"}</td>
+        ${csakOlvas ? "" : `<td><button type="button" class="torles-gomb bank-kivonat-torles" data-kulcs="${escHtml(k.kulcs)}" title="Kivonat törlése">✕</button></td>`}
+      </tr>`).join("")}</tbody></table></div>`
+      : '<div class="ures">Még nincs feltöltött kivonat.</div>';
+    kivHely.querySelectorAll(".bank-kivonat-torles").forEach(b => b.addEventListener("click", async () => {
+      if (!confirm("Biztosan törlöd ezt a kivonatot? A tételei eltűnnek a listából, de újra feltölthető.")) return;
+      b.disabled = true;
+      try {
+        await apiHivas("set_meta", { kulcs: b.dataset.kulcs, ertek: null });
+        legutobbiAdat[b.dataset.kulcs] = null;
+        cegesTablaRenderelese(cegesSzamlak);
+      } catch (e) { b.disabled = false; alert("A törlés nem sikerült: " + e.message); }
+    }));
+
+    // Hónap-választó
+    const honapok = [...new Set(osszes.map(t => (t.konyveles || "").slice(0, 7)).filter(Boolean))].sort().reverse();
+    if (bankHonap !== "mind" && !honapok.includes(bankHonap)) bankHonap = "mind";
+    const valaszto = document.getElementById("bank-honap");
+    valaszto.innerHTML = `<option value="mind">Minden hónap</option>` + honapok.map(h => `<option value="${h}" ${h === bankHonap ? "selected" : ""}>${h.replace("-", ". ")}.</option>`).join("");
+
+    const honapTetelei = osszes.filter(t => bankHonap === "mind" || (t.konyveles || "").startsWith(bankHonap));
+    const terhelesek = honapTetelei.filter(t => t.osszeg < 0);
+    const parositott = terhelesek.filter(t => bankEredmeny.tetelSzamla[t.id]);
+    const kivulLista = terhelesek.filter(t => !bankEredmeny.tetelSzamla[t.id] && kivul[t.id]);
+    const hianyzo = terhelesek.filter(t => !bankEredmeny.tetelSzamla[t.id] && !kivul[t.id]);
+    const szum = l => l.reduce((s, t) => s + Math.abs(t.osszeg), 0);
+    document.getElementById("bank-kartyak").innerHTML = `
+      <div class="kartya"><div class="cimke">Terhelések</div><div class="ertek">${terhelesek.length} db</div><div class="bank-alszoveg">${forint(szum(terhelesek))}</div></div>
+      <div class="kartya"><div class="cimke">Számlával párosítva</div><div class="ertek">${parositott.length} db</div><div class="bank-alszoveg">${forint(szum(parositott))}</div></div>
+      <div class="kartya"><div class="cimke">Számla nélkül</div><div class="ertek" style="color:${hianyzo.length ? "var(--red)" : "inherit"}">${hianyzo.length} db</div><div class="bank-alszoveg">${forint(szum(hianyzo))}</div></div>
+      <div class="kartya"><div class="cimke">Nem kell számla</div><div class="ertek">${kivulLista.length} db</div><div class="bank-alszoveg">${forint(szum(kivulLista))}</div></div>`;
+    const omSzam = document.getElementById("om-szam-bank");
+    if (omSzam) {
+      const osszHianyzo = osszes.filter(t => t.osszeg < 0 && !bankEredmeny.tetelSzamla[t.id] && !kivul[t.id]).length;
+      omSzam.textContent = osszHianyzo ? String(osszHianyzo) : "";
+    }
+
+    document.querySelectorAll("#bank-szurok button").forEach(b => b.classList.toggle("aktiv", b.dataset.bankSzuro === bankSzuro));
+    const kereses = (document.getElementById("bank-kereses").value || "").trim().toLowerCase();
+    const lista = ({
+      hianyzo, parositott, kivul: kivulLista,
+      terheles: terhelesek,
+      jovairas: honapTetelei.filter(t => t.osszeg > 0),
+    })[bankSzuro] || hianyzo;
+    const szurt = kereses ? lista.filter(t => t.leiras.toLowerCase().includes(kereses)) : lista;
+
+    if (!kivonatok.length) { hely.innerHTML = ""; return; }
+    if (!szurt.length) {
+      hely.innerHTML = `<div class="ures">${bankSzuro === "hianyzo" ? "Minden terheléshez van számla, vagy meg van jelölve, hogy nem kell." : "Nincs ilyen tétel."}</div>`;
+      return;
+    }
+    const szabadSzamlak = cegesSzamlak.filter(r => !bankEredmeny.szamlaTetel[r.id]);
+    const szamlaCimke = r => [r.kuldo_nev || r.nav_szallito_nev || r.forras_postafiok || "Ismeretlen", r.kinyert_szamlaszam, r.kinyert_osszeg != null ? osszegFormazva(Number(r.kinyert_osszeg), r.penznem) : null, bankDatumHu(r.nav_datum || r.erkezett)].filter(Boolean).join(" · ");
+    const sorok = szurt.map(t => {
+      const talalat = bankEredmeny.tetelSzamla[t.id];
+      let szamlaCella = "";
+      if (t.osszeg > 0) {
+        szamlaCella = '<span class="bank-alszoveg">jóváírás</span>';
+      } else if (talalat) {
+        szamlaCella = `<span class="bank-jel bank-jel-ok">${escHtml(szamlaCimke(talalat.rekord))}</span><br><span class="bank-alszoveg">${BANK_MOD_NEV[talalat.mod] || ""}</span>`
+          + (csakOlvas ? "" : ` <button type="button" class="bank-link-gomb bank-levalaszt" data-id="${escHtml(t.id)}">Leválasztás</button>`);
+      } else if (kivul[t.id]) {
+        szamlaCella = '<span class="bank-alszoveg">nem kell hozzá számla</span>'
+          + (csakOlvas ? "" : ` <button type="button" class="bank-link-gomb bank-kivul-vissza" data-id="${escHtml(t.id)}">Visszavonás</button>`);
+      } else if (csakOlvas) {
+        szamlaCella = '<span class="bank-jel bank-jel-hiba">Nincs számla</span>';
+      } else {
+        const tDatum = t.tranzakcio_datum || t.konyveles;
+        const jeloltek = szabadSzamlak
+          .map(r => ({ r, kul: Math.abs(_bankNapKulonbseg(tDatum, (r.nav_datum || r.erkezett || tDatum).slice(0, 10))) }))
+          .filter(x => x.kul <= 90)
+          .sort((a, b) => a.kul - b.kul)
+          .slice(0, 25);
+        szamlaCella = `<div class="bank-muveletek">
+          <select class="bank-hozzarendel" data-id="${escHtml(t.id)}" aria-label="Számla hozzárendelése">
+            <option value="">Számla hozzárendelése…</option>
+            ${jeloltek.map(x => `<option value="${escHtml(x.r.id)}">${escHtml(szamlaCimke(x.r))}</option>`).join("")}
+          </select>
+          <button type="button" class="bank-link-gomb bank-kivul" data-id="${escHtml(t.id)}">Nem kell számla</button>
+        </div>`;
+      }
+      const deviza = t.deviza_osszeg ? `<br><span class="bank-alszoveg">${t.deviza_osszeg.toLocaleString("hu-HU", { minimumFractionDigits: 2 })} ${escHtml(t.deviza_nem)}</span>` : "";
+      const reszlet = [t.tipus, t.kozlemeny].filter(Boolean).map(escHtml).join(" · ");
+      return `<tr>
+        <td class="bank-datum">${escHtml(bankDatumHu(t.tranzakcio_datum || t.konyveles))}</td>
+        <td class="bank-leiras" title="${escHtml(t.leiras)}"><strong>${escHtml(t.partner || t.tipus)}</strong><br><span class="bank-alszoveg">${reszlet}</span></td>
+        <td class="osszeg ${t.osszeg < 0 ? "bank-terheles" : "bank-jovairas"}">${t.osszeg < 0 ? "−" : "+"}${forint(Math.abs(t.osszeg))}${deviza}</td>
+        <td class="bank-szamla">${szamlaCella}</td>
+      </tr>`;
+    }).join("");
+    hely.innerHTML = `<div class="bank-tabla-keret"><table class="bank-tabla">
+      <thead><tr><th>Dátum</th><th>Partner / megnevezés</th><th class="osszeg">Összeg</th><th>Számla</th></tr></thead>
+      <tbody>${sorok}</tbody></table></div>`;
+    hely.querySelectorAll(".bank-hozzarendel").forEach(s => s.addEventListener("change", () => {
+      if (!s.value) return;
+      s.disabled = true;
+      bankMetaBejegyzes("bank_kezi_parositasok", s.dataset.id, s.value);
+    }));
+    hely.querySelectorAll(".bank-levalaszt").forEach(b => b.addEventListener("click", () => {
+      b.disabled = true;
+      bankMetaBejegyzes("bank_kezi_parositasok", b.dataset.id, "-");
+    }));
+    hely.querySelectorAll(".bank-kivul").forEach(b => b.addEventListener("click", () => {
+      b.disabled = true;
+      bankMetaBejegyzes("bank_figyelmen_kivul", b.dataset.id, true);
+    }));
+    hely.querySelectorAll(".bank-kivul-vissza").forEach(b => b.addEventListener("click", () => {
+      b.disabled = true;
+      bankMetaBejegyzes("bank_figyelmen_kivul", b.dataset.id, null);
+    }));
+  }
+
+  (function bankEsemenyek() {
+    const fajlInput = document.getElementById("bank-fajl");
+    const ejto = document.getElementById("bank-ejto");
+    fajlInput.addEventListener("change", () => {
+      const fajlok = [...fajlInput.files];
+      fajlInput.value = "";
+      if (fajlok.length) bankFajlokFeldolgozasa(fajlok);
+    });
+    ["dragenter", "dragover"].forEach(ev => ejto.addEventListener(ev, e => { e.preventDefault(); ejto.classList.add("rajta"); }));
+    ["dragleave", "drop"].forEach(ev => ejto.addEventListener(ev, e => { e.preventDefault(); ejto.classList.remove("rajta"); }));
+    ejto.addEventListener("drop", e => {
+      const fajlok = [...(e.dataTransfer.files || [])].filter(f => /\.pdf$/i.test(f.name) || f.type === "application/pdf");
+      if (fajlok.length) bankFajlokFeldolgozasa(fajlok);
+    });
+    document.querySelectorAll("#bank-szurok button").forEach(b => b.addEventListener("click", () => { bankSzuro = b.dataset.bankSzuro; bankRenderelese(); }));
+    document.getElementById("bank-honap").addEventListener("change", e => { bankHonap = e.target.value; bankRenderelese(); });
+    document.getElementById("bank-kereses").addEventListener("input", () => bankRenderelese());
+  })();
+
   function aktualisPat() {
     return document.getElementById("gh-pat-input").value.trim();
   }
@@ -3137,7 +3662,7 @@
   });
 
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["kor-ertesito-toggle", "kor-ertesito-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["ceges-nav-toggle", "ceges-nav-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["kor-ertesito-toggle", "kor-ertesito-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -4102,6 +4627,7 @@
   const OLDALAK = {
     kozuzemi:    { fomenu: "lakossagi", cim: "Közüzemi számlák", alcim: "Vízművek · MVM · Díjnet" },
     ceges:       { fomenu: "ceges", cim: "Céges számlák és NAV", alcim: "A cég nevére kért számlák és a NAV Online Számla egyeztetés" },
+    bank:        { sajat: "bank-tartalom", cim: "Bank", alcim: "OTP számlakivonatok egyeztetése a céges számlákkal" },
     levelek:     { sajat: "levelek-tartalom", cim: "Céges levelek", alcim: "Beérkezett és elküldött levelek, válaszolási lehetőséggel" },
     berlok:      { panelek: ["korok-panel", "kor-ertesito-panel", "cimzettek-panel"], cim: "Bérlők és értesítések", alcim: "Bérlői körök, címzettek, azonnali küldés" },
     kuldes:      { panelek: ["kuldes-panel"], cim: "Küldés dátum szerint", alcim: "Számlák PDF-fel egy megadott címre" },
@@ -4120,7 +4646,7 @@
     document.querySelectorAll("#oldalmenu button[data-oldal]").forEach(b => b.classList.toggle("aktiv", b.dataset.oldal === nev));
     $("oldal-cim").textContent = oldal.cim;
     $("oldal-alcim").textContent = oldal.alcim;
-    $("levelek-tartalom").style.display = oldal.sajat === "levelek-tartalom" ? "block" : "none";
+    ["levelek-tartalom", "bank-tartalom"].forEach(id => { $(id).style.display = oldal.sajat === id ? "block" : "none"; });
     if (oldal.sajat) {
       $("lakossagi-tartalom").style.display = "none";
       $("ceges-tartalom").style.display = "none";
