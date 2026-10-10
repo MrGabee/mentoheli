@@ -1183,6 +1183,10 @@ def _allapot_alapertekek() -> dict:
         # alapértelmezés érvényesül (ld. ott).
         "ceges_emlekezteto_feladas_cim": None,
         "ceges_emlekezteto_szoveg": None,
+        # A céges levelek (válaszok + NAV-emlékeztető) tényleges feladó-
+        # címe (CEGES_EMAIL_KULDO), CSAK a script írja, minden futáskor -
+        # a dashboard ebből mutatja, melyik címről mennek ki a levelek.
+        "ceges_felado_cim": "",
         # Ld. "CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ" szekció.
         # A naplót és az eredményeket CSAK a script írja, a válasz-kérelmeket
         # CSAK a dashboard - így a futás végi mentés sosem írja felül a
@@ -5181,10 +5185,11 @@ def _ceges_bizonytalan_athelyezese_biztosba(allapot: dict):
 # kérésére: "meg tudjam szabni, hogy milyen címről menjen ki, illetve a
 # szöveget is szeretném látni, ugyanis bele kell írni, hogy arra kérem a
 # válaszba konkrétan csatolja a számlát, mert automatika dolgozza fel"):
-#   - allapot["ceges_emlekezteto_feladas_cim"]: ha ki van töltve, ez kerül
-#     a kimenő levél "From" fejlécébe a ténylegesen hitelesített cím
-#     HELYETT (ld. email_kuldes() "feladas_cim_felulbiralas" kommentje) -
-#     tipikusan egy Gmail "Küldés másként" alias.
+#   - allapot["ceges_emlekezteto_feladas_cim"]: KORÁBBAN ez írta felül a
+#     "From" fejlécet - a felhasználó későbbi kérésére az emlékeztető
+#     MOST MÁR mindig a céges postafiók címéről (CEGES_EMAIL_KULDO) megy
+#     ki, ugyanonnan, ahonnan a "Céges levelek" válaszai, így ez a kulcs
+#     már nincs használatban.
 #   - allapot["ceges_emlekezteto_szoveg"]: ha ki van töltve, ez váltja fel
 #     a lenti NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK kérő-mondatot a levélben
 #     (a köszöntés/tételek listája/aláírás VÁLTOZATLAN marad körülötte) -
@@ -5310,7 +5315,7 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
     SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK env-változó üres (ez a NORMÁL eset -
     ütemezett futásnál MINDIG üres, csak a dashboard gombjával indított
     workflow_dispatch-nál kaphat tartalmat, ld. modul-docstring eleje).
-    A "ceges_emlekezteto_feladas_cim"/"ceges_emlekezteto_szoveg" (ld. a
+    A "ceges_emlekezteto_szoveg" (ld. a
     fenti szekció-komment) az "allapot"-ból jön - MINDIG a legfrissebb,
     dashboardon elmentett érték, mert az "allapot"-ot a main() a futás
     elején, EGYETLEN get_all hívással tölti be."""
@@ -5323,7 +5328,6 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
 
     szallito_emailek = allapot.get("nav_szallito_emailek", {})
     csak_navban = allapot.get("nav_csak_navban", [])
-    feladas_cim_felulbiralas = allapot.get("ceges_emlekezteto_feladas_cim")
     egyedi_szoveg = allapot.get("ceges_emlekezteto_szoveg")
 
     kuldott_db = 0
@@ -5343,8 +5347,14 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
             f"📄 Hiányzó számla-másolat kérése – {szallito_nev}",
             _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek, egyedi_szoveg, adoszam),
             cimzett=email_cim,
+            # A felhasználó kérésére az emlékeztető UGYANARRÓL a céges
+            # címről megy ki, amelyik postafiókról a "Céges levelek"
+            # menüpont szól (és ahonnan a válaszok is mennek, ld.
+            # _ceges_valasz_kuldese()) - ezért a korábbi "Feladó email-cím"
+            # felülírást (ceges_emlekezteto_feladas_cim) itt már nem
+            # használjuk, a válaszokat a szállító így ugyanabba a
+            # postafiókba küldi vissza, amit a figyelő olvas.
             kategoria="ceges",
-            feladas_cim_felulbiralas=feladas_cim_felulbiralas,
         )
         if sikeres:
             kuldott_db += 1
@@ -6500,6 +6510,7 @@ def main():
     # metaadata is bekerüljön a lentebbi mentésbe.
     ceges_szamlak_feldolgozasa(allapot)
     ceges_kezi_feltoltesek_feldolgozasa(allapot)
+    allapot["ceges_felado_cim"] = CEGES_EMAIL_KULDO or ""
     ceges_level_valaszok_feldolgozasa(allapot)
 
     # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás

@@ -557,10 +557,7 @@
 
           <div id="nav-emlekezteto-testreszabas-doboz" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:16px;">
             <h4 style="margin:0 0 10px;font-size:14px;">✉️ Emlékeztető-levél testreszabása (minden kijelölt szállítónak ezzel megy ki)</h4>
-            <label style="display:block;margin-bottom:10px;">Feladó email-cím
-              <input type="text" id="ceges-emlekezteto-feladas-cim-input" placeholder="pl. szamla@baloghgabor.hu (üresen hagyva: az alapértelmezett)" style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;">
-            </label>
-            <p class="panel-info" style="margin:-4px 0 10px;">A levél TÉNYLEGES postázása (bejelentkezés az SMTP-szerverre) változatlanul a beállított céges email-fiókkal történik - ez a mező csak azt állítja át, hogy a címzett MIT lásson feladóként ("From" fejléc). Ez csak akkor működik hiba nélkül, ha ez a cím a Gmail-fiók egy ellenőrzött <strong>"Küldés másként"</strong> aliasza (Gmail → Beállítások → Fiókok és importálás) - egy teljesen idegen cím esetén a Gmail elutasíthatja/felülírhatja. Üresen hagyva a beállított céges fiók saját címe megy ki feladóként.</p>
+            <p class="panel-info" style="margin:0 0 10px;">Feladó: <strong id="ceges-emlekezteto-felado-cim">a céges postafiók címe</strong>. Az emlékeztető ugyanarról a céges címről megy ki, amelyik postafiókról a Céges levelek menüpont szól és ahonnan a válaszaid is mennek, így a szállító válasza is oda érkezik vissza.</p>
             <label style="display:block;">Az emlékeztető-levél kérő mondata (ez kerül a tételek listája UTÁN, a levélben)
               <textarea id="ceges-emlekezteto-szoveg-input" rows="4" placeholder="Kérjük, hogy a válaszlevélben konkrétan csatolva küldjék el..." style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;resize:vertical;"></textarea>
             </label>
@@ -3919,14 +3916,13 @@
     }
   });
 
-  // ── NAV-emlékeztető testreszabása (feladó-cím + kérő mondat) - ld. a
+  // ── NAV-emlékeztető testreszabása (kérő mondat) - ld. a
   // HTML "nav-emlekezteto-testreszabas-doboz" fenti kommentje és
   // szamla_figyelo.py "NAV-EMLÉKEZTETŐ - FELADÓ/SZÖVEG TESTRESZABÁS"
   // szekciója. Ugyanaz az azonnali, mezőnkénti blur-mentés minta, mint a
   // fenti "ceges-email-engedelyezve"-nél - egyetlen meta-kulcsot ír,
   // nincs szükség a teljes allapotFrissitesEsMentese() diff-elésre.
   [
-    ["ceges-emlekezteto-feladas-cim-input", "ceges_emlekezteto_feladas_cim"],
     ["ceges-emlekezteto-szoveg-input", "ceges_emlekezteto_szoveg"],
   ].forEach(([inputId, metaKulcs]) => {
     const input = document.getElementById(inputId);
@@ -4835,10 +4831,7 @@
     // rákattintás+kikattintás (tényleges szerkesztés nélkül) NE indítson
     // felesleges mentést.
     (() => {
-      const feladoInput = document.getElementById("ceges-emlekezteto-feladas-cim-input");
-      const feladoErtek = adat.ceges_emlekezteto_feladas_cim || "";
-      feladoInput.value = feladoErtek;
-      feladoInput.dataset.eredetiErtek = feladoErtek;
+      document.getElementById("ceges-emlekezteto-felado-cim").textContent = adat.ceges_felado_cim || "a céges postafiók címe";
 
       const szovegInput = document.getElementById("ceges-emlekezteto-szoveg-input");
       const szovegErtek = (adat.ceges_emlekezteto_szoveg || "").trim() || NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK_JS;
