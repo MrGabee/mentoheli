@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-10T03:50:43.941724+02:00",
+  "frissitve": "2026-10-10T03:51:18.801876+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:17:01.110135+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.42653274536133,
-      "lon": 19.03946304321289,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-09T15:17:01.110175+02:00",
-      "kulcs": "V1355",
-      "rendszam": "V1355",
-      "vehicle_id": "4456",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.513038635253906,
-      "lon": 19.047754287719727,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-09T15:17:01.110424+02:00",
-      "kulcs": "V1442",
-      "rendszam": "V1442",
-      "vehicle_id": "4512",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.4974479675293,
-      "lon": 19.05527114868164,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-09T15:17:01.110638+02:00",
-      "kulcs": "V1562",
-      "rendszam": "V1562",
-      "vehicle_id": "4614",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.47117233276367,
-      "lon": 19.073415756225586,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-09T15:17:01.110689+02:00",
       "kulcs": "AAMH620",
@@ -260000,6 +259948,58 @@
       "lon": 19.07623291015625,
       "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-10T03:51:18.726943+02:00",
+      "kulcs": "AAGL250",
+      "rendszam": "AAGL250",
+      "vehicle_id": "250",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50731658935547,
+      "lon": 18.92134666442871,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-10T03:51:18.727024+02:00",
+      "kulcs": "AAGL276",
+      "rendszam": "AAGL276",
+      "vehicle_id": "276",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46263885498047,
+      "lon": 19.005775451660156,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-10T03:51:18.729099+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "182",
+      "route_id": "1820",
+      "lat": 47.4132080078125,
+      "lon": 19.201520919799805,
+      "elozo_szoveg": "Alacskai úti lakótelep",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-10T03:51:18.729513+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.479095458984375,
+      "lon": 19.050395965576172,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
