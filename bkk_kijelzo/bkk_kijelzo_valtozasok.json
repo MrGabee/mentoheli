@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:43:51.508699+02:00",
+  "frissitve": "2026-10-10T02:44:25.386609+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:10:22.995430+02:00",
-      "kulcs": "FJX218",
-      "rendszam": "FJX218",
-      "vehicle_id": "3038",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.46552658081055,
-      "lon": 19.234058380126953,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-09T15:10:22.995550+02:00",
-      "kulcs": "FKU933",
-      "rendszam": "FKU933",
-      "vehicle_id": "3089",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.5502815246582,
-      "lon": 19.04206657409668,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-09T15:10:22.995791+02:00",
-      "kulcs": "FLR742",
-      "rendszam": "FLR742",
-      "vehicle_id": "3156",
-      "vehicle_label": "Hungexpo",
-      "vonal_szam": "10",
-      "route_id": "0100",
-      "lat": 47.50141143798828,
-      "lon": 19.136655807495117,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Hungexpo"
-    },
-    {
-      "idopont": "2026-10-09T15:10:22.996314+02:00",
-      "kulcs": "LYH119",
-      "rendszam": "LYH119",
-      "vehicle_id": "3708",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54853820800781,
-      "lon": 18.964763641357422,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-09T15:10:22.996417+02:00",
       "kulcs": "AAHY822",
@@ -260000,6 +259948,58 @@
       "lon": 19.014196395874023,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-10-10T02:44:25.315125+02:00",
+      "kulcs": "FLR704",
+      "rendszam": "FLR704",
+      "vehicle_id": "3118",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.5604133605957,
+      "lon": 19.090835571289062,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-10-10T02:44:25.316029+02:00",
+      "kulcs": "PON993",
+      "rendszam": "PON993",
+      "vehicle_id": "7260",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52863693237305,
+      "lon": 19.065155029296875,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-10T02:44:25.316047+02:00",
+      "kulcs": "PDZ830",
+      "rendszam": "PDZ830",
+      "vehicle_id": "7293",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486778259277344,
+      "lon": 19.06777000427246,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T02:44:25.316578+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47548294067383,
+      "lon": 19.04094886779785,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
