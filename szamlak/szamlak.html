@@ -333,6 +333,14 @@
   .panel-toggle { font-family: var(--f-display); font-size: 16px; }
 
   /* Céges levelek */
+  .lv-mappak { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+  .lv-mappa { border: 0; background: transparent; padding: 9px 14px; font-size: 14.5px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; display: flex; gap: 8px; align-items: center; }
+  .lv-mappa:hover { color: var(--text); }
+  .lv-mappa.aktiv { color: var(--blue); border-bottom-color: var(--blue); }
+  .lv-cimke.hiba { background: var(--red-soft); color: var(--red); }
+  .lv-cimke.sor { background: var(--amber-soft); color: var(--amber); }
+  .lv-cimke.ok { background: var(--green-soft); color: var(--green); }
+  .lv-link { border: 0; background: none; color: var(--blue); cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
   .lv-eszkozok { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
   #lv-kereses { flex: 1 1 260px; min-width: 0; padding: 9px 12px; border-radius: 8px; font-size: 14px; }
   .lv-racs { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 16px; align-items: start; }
@@ -520,6 +528,10 @@
     </div><!-- /ceges-tartalom -->
 
     <div id="levelek-tartalom" style="display:none;">
+      <div class="lv-mappak" role="tablist" aria-label="Mappák">
+        <button type="button" role="tab" class="lv-mappa aktiv" data-lv-mappa="bejovo" aria-selected="true">Beérkezett <span class="om-szam" id="lv-db-bejovo"></span></button>
+        <button type="button" role="tab" class="lv-mappa" data-lv-mappa="kimeno" aria-selected="false">Elküldött <span class="om-szam" id="lv-db-kimeno"></span></button>
+      </div>
       <div class="lv-eszkozok">
         <input type="search" id="lv-kereses" placeholder="Keresés feladóra, tárgyra, szövegre" aria-label="Keresés a levelekben">
         <div class="szurok" id="lv-szurok" style="margin:0;">
@@ -528,12 +540,19 @@
           <button type="button" data-lv-szuro="pdfnelkul">PDF nélkül</button>
           <button type="button" data-lv-szuro="valaszolt">Megválaszolt</button>
         </div>
+        <div class="szurok" id="lv-szurok-ki" style="margin:0;display:none;">
+          <button type="button" data-lv-ki-szuro="mind" class="aktiv">Összes</button>
+          <button type="button" data-lv-ki-szuro="ceges">Céges</button>
+          <button type="button" data-lv-ki-szuro="kozuzemi">Közüzemi</button>
+          <button type="button" data-lv-ki-szuro="valasz">Válaszaim</button>
+          <button type="button" data-lv-ki-szuro="hiba">Hibás / sorban áll</button>
+        </div>
       </div>
       <div class="lv-racs">
         <div class="lv-lista" id="lv-lista" role="list"></div>
         <article class="lv-olvaso" id="lv-olvaso" aria-live="polite"></article>
       </div>
-      <p class="panel-info" style="margin-top:12px;">A lista a céges postafiókba érkezett leveleket mutatja, ahogy a figyelő a futásai során (20 percenként) beolvasta őket. A válasz a céges feladó-címről megy ki, a következő futáskor, vagy azonnal, ha a Beállításokban meg van adva a GitHub token.</p>
+      <p class="panel-info" style="margin-top:12px;">Az Elküldött fül a rendszer által kiküldött összes levelet mutatja (értesítők, összesítők, NAV-emlékeztetők és a válaszaid), pontos szöveggel és címzettel. A Beérkezett fül a céges postafiókba érkezett leveleket mutatja, ahogy a figyelő a futásai során (20 percenként) beolvasta őket. A válasz a céges feladó-címről megy ki, a következő futáskor, vagy azonnal, ha a Beállításokban meg van adva a GitHub token.</p>
     </div>
 
     <div id="kezeles-tartalom" style="display:none;">
@@ -2597,6 +2616,89 @@
   // ld. szamla_figyelo.py "CÉGES LEVELEK" szekció.
   let lvKivalasztott = null;
   let lvSzuro = "mind";
+  let lvMappa = "bejovo";
+  let lvKiSzuro = "mind";
+  let lvKiKivalasztott = null;
+  const LV_TIPUS_NEV = { automatikus: "Automatikus értesítő", valasz: "Válasz" };
+
+  // Elküldött: a script naplója (kimeno_levelek) + a még ki nem küldött
+  // (sorban álló) válaszok, hogy azok is azonnal látszódjanak.
+  function lvKimenoLista() {
+    const naplo = Object.values(lvObjektum(legutobbiAdat && legutobbiAdat.kimeno_levelek));
+    const kerelmek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_level_valasz_kerelmek);
+    const eredmenyek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_level_valasz_eredmenyek);
+    const sorban = Object.entries(kerelmek)
+      .filter(([kid, k]) => k && !eredmenyek[kid])
+      .map(([kid, k]) => ({ id: "sor-" + kid, datum: k.letrehozva, kategoria: "ceges", tipus: "valasz", felado: "(céges feladó-cím)", cimzett: k.cimzett, targy: k.targy, szoveg: k.szoveg, csatolmanyok: [], statusz: "sorban", valasz_level_id: k.level_id }));
+    return naplo.concat(sorban).sort((a, b) => String(b.datum || "").localeCompare(String(a.datum || "")));
+  }
+
+  function kimenoRenderelese() {
+    const listaHely = document.getElementById("lv-lista");
+    const kereses = (document.getElementById("lv-kereses").value || "").trim().toLowerCase();
+    const osszes = lvKimenoLista();
+    const szurt = osszes.filter(l => {
+      if (lvKiSzuro === "ceges" && l.kategoria !== "ceges") return false;
+      if (lvKiSzuro === "kozuzemi" && l.kategoria === "ceges") return false;
+      if (lvKiSzuro === "valasz" && l.tipus !== "valasz") return false;
+      if (lvKiSzuro === "hiba" && l.statusz === "elkuldve") return false;
+      if (!kereses) return true;
+      return [l.cimzett, l.targy, l.szoveg, l.felado].some(x => String(x || "").toLowerCase().includes(kereses));
+    });
+    if (!osszes.length) {
+      listaHely.innerHTML = '<div class="ures">Még nincs naplózott kimenő levél. A figyelő a következő küldéstől kezdve minden kiküldött levelet ide ír.</div>';
+    } else if (!szurt.length) {
+      listaHely.innerHTML = '<div class="ures">Nincs a szűrésnek megfelelő levél.</div>';
+    } else {
+      listaHely.innerHTML = szurt.map(l => `<button type="button" role="listitem" class="lv-elem${l.id === lvKiKivalasztott ? " aktiv" : ""}" data-lv-ki-id="${escHtml(l.id)}">
+          <b>${escHtml(l.cimzett || "")}</b>
+          <time>${escHtml(lvDatum(l.datum))}</time>
+          <span class="lv-targy">${escHtml(l.targy || "(nincs tárgy)")}</span>
+          <span class="lv-reszlet">${escHtml(String(l.szoveg || "").replace(/\s+/g, " ").slice(0, 140))}</span>
+          <span class="lv-jelek">${lvKiAllapotCimke(l)}<span class="lv-cimke">${l.kategoria === "ceges" ? "céges" : "közüzemi"}</span>${l.tipus === "valasz" ? '<span class="lv-cimke valasz">válasz</span>' : ""}${(l.csatolmanyok || []).length ? `<span class="lv-cimke pdf">${l.csatolmanyok.length} csatolmány</span>` : ""}</span>
+        </button>`).join("");
+      listaHely.querySelectorAll(".lv-elem").forEach(b => b.addEventListener("click", () => { lvKiKivalasztott = b.dataset.lvKiId; levelekRenderelese(); }));
+    }
+    if (!lvKiKivalasztott || !szurt.some(l => l.id === lvKiKivalasztott)) {
+      lvKiKivalasztott = szurt.length ? szurt[0].id : null;
+      if (lvKiKivalasztott) listaHely.querySelector(".lv-elem")?.classList.add("aktiv");
+    }
+    kimenoOlvasoRenderelese(szurt.find(l => l.id === lvKiKivalasztott) || null);
+  }
+
+  function lvKiAllapotCimke(l) {
+    if (l.statusz === "elkuldve") return '<span class="lv-cimke ok">elküldve</span>';
+    if (l.statusz === "sorban") return '<span class="lv-cimke sor">sorban áll</span>';
+    return '<span class="lv-cimke hiba">hiba</span>';
+  }
+
+  function kimenoOlvasoRenderelese(l) {
+    const hely = document.getElementById("lv-olvaso");
+    if (!l) { hely.innerHTML = '<div class="ures">Válassz egy levelet a listából.</div>'; return; }
+    const eredeti = l.valasz_level_id && lvObjektum(legutobbiAdat && legutobbiAdat.ceges_bejovo_levelek)[l.valasz_level_id];
+    hely.innerHTML = `
+      <h2>${escHtml(l.targy || "(nincs tárgy)")}</h2>
+      <div class="lv-meta">
+        <span>Állapot</span><span>${lvKiAllapotCimke(l)}${l.hiba ? " " + escHtml(l.hiba) : ""}${l.statusz === "sorban" ? " – a következő futáskor megy ki" : ""}</span>
+        <span>Címzett</span><span>${escHtml(l.cimzett || "")}</span>
+        <span>Feladó</span><span>${escHtml(l.felado || "")}</span>
+        <span>Időpont</span><span>${escHtml(lvDatum(l.datum))}</span>
+        <span>Típus</span><span>${escHtml(LV_TIPUS_NEV[l.tipus] || l.tipus || "")} · ${l.kategoria === "ceges" ? "céges" : "közüzemi"}</span>
+        <span>Csatolmány</span><span>${(l.csatolmanyok || []).length ? escHtml(l.csatolmanyok.join(", ")) : "nincs"}</span>
+        ${eredeti ? `<span>Válasz erre</span><span><button type="button" class="lv-link" id="lv-eredeti-link">${escHtml(eredeti.targy || "(nincs tárgy)")}</button></span>` : ""}
+      </div>
+      <div class="lv-szoveg">${escHtml(l.szoveg || "(üres levél)")}</div>`;
+    const link = document.getElementById("lv-eredeti-link");
+    if (link) link.addEventListener("click", () => { lvKivalasztott = eredeti.id; mappaValtas("bejovo"); });
+  }
+
+  function mappaValtas(mappa) {
+    lvMappa = mappa;
+    document.querySelectorAll(".lv-mappa").forEach(b => { const on = b.dataset.lvMappa === mappa; b.classList.toggle("aktiv", on); b.setAttribute("aria-selected", on ? "true" : "false"); });
+    document.getElementById("lv-szurok").style.display = mappa === "bejovo" ? "" : "none";
+    document.getElementById("lv-szurok-ki").style.display = mappa === "kimeno" ? "" : "none";
+    levelekRenderelese();
+  }
   let lvValaszNyitva = false;
   let _lvKerelemZarolas = Promise.resolve();
 
@@ -2623,6 +2725,10 @@
       .sort((a, b) => String(b.datum || b.naplozva || "").localeCompare(String(a.datum || a.naplozva || "")));
     const omSzam = document.getElementById("om-szam-levelek");
     if (omSzam) omSzam.textContent = levelek.length ? String(levelek.length) : "";
+    const kimenoDb = lvKimenoLista().length;
+    document.getElementById("lv-db-bejovo").textContent = levelek.length ? String(levelek.length) : "";
+    document.getElementById("lv-db-kimeno").textContent = kimenoDb ? String(kimenoDb) : "";
+    if (lvMappa === "kimeno") { kimenoRenderelese(); return; }
 
     const kereses = (document.getElementById("lv-kereses").value || "").trim().toLowerCase();
     const szurt = levelek.filter(l => {
@@ -2764,6 +2870,12 @@
   }
 
   document.getElementById("lv-kereses").addEventListener("input", () => levelekRenderelese());
+  document.querySelectorAll(".lv-mappa").forEach(b => b.addEventListener("click", () => mappaValtas(b.dataset.lvMappa)));
+  document.querySelectorAll("#lv-szurok-ki button[data-lv-ki-szuro]").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("#lv-szurok-ki button").forEach(x => x.classList.toggle("aktiv", x === b));
+    lvKiSzuro = b.dataset.lvKiSzuro;
+    levelekRenderelese();
+  }));
   document.querySelectorAll("#lv-szurok button[data-lv-szuro]").forEach(b => b.addEventListener("click", () => {
     document.querySelectorAll("#lv-szurok button").forEach(x => x.classList.toggle("aktiv", x === b));
     lvSzuro = b.dataset.lvSzuro;
@@ -3990,7 +4102,7 @@
   const OLDALAK = {
     kozuzemi:    { fomenu: "lakossagi", cim: "Közüzemi számlák", alcim: "Vízművek · MVM · Díjnet" },
     ceges:       { fomenu: "ceges", cim: "Céges számlák és NAV", alcim: "A cég nevére kért számlák és a NAV Online Számla egyeztetés" },
-    levelek:     { sajat: "levelek-tartalom", cim: "Céges levelek", alcim: "A céges postafiókba érkezett levelek, válaszolási lehetőséggel" },
+    levelek:     { sajat: "levelek-tartalom", cim: "Céges levelek", alcim: "Beérkezett és elküldött levelek, válaszolási lehetőséggel" },
     berlok:      { panelek: ["korok-panel", "kor-ertesito-panel", "cimzettek-panel"], cim: "Bérlők és értesítések", alcim: "Bérlői körök, címzettek, azonnali küldés" },
     kuldes:      { panelek: ["kuldes-panel"], cim: "Küldés dátum szerint", alcim: "Számlák PDF-fel egy megadott címre" },
     postafiokok: { panelek: ["postafiok-panel"], cim: "Postafiókok", alcim: "További figyelt email-fiókok" },
