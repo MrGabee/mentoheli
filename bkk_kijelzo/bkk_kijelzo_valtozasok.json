@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T01:07:30.678060+02:00",
+  "frissitve": "2026-10-11T01:08:04.270078+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.392871+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.51393127441406,
-      "lon": 19.07784080505371,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392895+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.53390121459961,
-      "lon": 19.107135772705078,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392907+02:00",
-      "kulcs": "T8120",
-      "rendszam": "T8120",
-      "vehicle_id": "7899",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.52497100830078,
-      "lon": 19.094575881958008,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-10-10T12:34:32.392929+02:00",
       "kulcs": "T8121",
@@ -260000,6 +259961,45 @@
       "lon": 19.060483932495117,
       "elozo_szoveg": "Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-11T01:08:04.177400+02:00",
+      "kulcs": "FKU929",
+      "rendszam": "FKU929",
+      "vehicle_id": "3085",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49969482421875,
+      "lon": 19.090383529663086,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-10-11T01:08:04.177516+02:00",
+      "kulcs": "FLR717",
+      "rendszam": "FLR717",
+      "vehicle_id": "3131",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56767654418945,
+      "lon": 19.127199172973633,
+      "elozo_szoveg": "Rákoshegy vasútállomás",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-11T01:08:04.178441+02:00",
+      "kulcs": "NWB365",
+      "rendszam": "NWB365",
+      "vehicle_id": "6545",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52389144897461,
+      "lon": 18.993621826171875,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
     }
   ]
 }
