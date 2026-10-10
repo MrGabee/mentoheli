@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Számla áttekintő</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f5f8b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Számlák">
+<link rel="icon" type="image/png" sizes="32x32" href="ikonok/favicon-32.png">
+<link rel="apple-touch-icon" href="ikonok/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
@@ -216,6 +223,8 @@
   body.szerepkor-user #cimzettek-panel,
   body.szerepkor-user #kuldes-panel,
   body.szerepkor-user #postafiok-panel,
+  body.szerepkor-user #kor-ertesito-panel,
+  body.szerepkor-user #torolt-szamlak-panel,
   body.szerepkor-user #oldalmenu [data-csak-admin] {
     display: none;
   }
@@ -422,9 +431,26 @@
     #oldalmenu button.om-pont { width: auto; white-space: nowrap; }
   }
   @media (prefers-reduced-motion: no-preference) { #oldalmenu button.om-pont, tbody tr td { transition: background-color .15s ease; } }
+  /* Telepítés-sáv (Android Chrome "beforeinstallprompt") */
+  #telepites-sav { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 50;
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--card);
+    border: 1px solid var(--border); box-shadow: 0 8px 28px rgba(16,24,40,.18); max-width: 460px; margin: 0 auto; }
+  #telepites-sav[hidden] { display: none; }
+  #telepites-sav img { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+  #telepites-sav .ts-szoveg { flex: 1; min-width: 0; font-size: 13px; color: var(--muted); }
+  #telepites-sav .ts-szoveg strong { display: block; color: var(--text); font-size: 14px; }
+  #telepites-sav button { border: 0; border-radius: 9px; padding: 8px 14px; font-weight: 600; font-size: 13px; cursor: pointer; }
+  #telepites-gomb { background: var(--blue); color: var(--on-accent); }
+  #telepites-bezar { background: transparent; color: var(--muted); padding: 8px !important; }
 </style>
 </head>
 <body>
+<div id="telepites-sav" hidden>
+  <img src="ikonok/ikon-192.png" alt="">
+  <div class="ts-szoveg"><strong>Telepítés a telefonra</strong>Saját ikonnal, teljes képernyőn indul.</div>
+  <button type="button" id="telepites-gomb">Telepítés</button>
+  <button type="button" id="telepites-bezar" aria-label="Bezárás">✕</button>
+</div>
 <div class="wrap">
 
   <div id="jelszo-kepernyo">
@@ -445,11 +471,11 @@
       <button type="button" class="om-pont" data-oldal="ceges">Céges számlák és NAV <span class="om-szam" id="om-szam-ceges"></span></button>
       <button type="button" class="om-pont" data-oldal="bank">Bank (OTP kivonatok) <span class="om-szam" id="om-szam-bank"></span></button>
       <button type="button" class="om-pont" data-oldal="levelek">Céges levelek <span class="om-szam" id="om-szam-levelek"></span></button>
-      <div class="om-cimke">Kezelés</div>
-      <button type="button" class="om-pont" data-oldal="berlok">Bérlők és értesítések</button>
+      <div class="om-cimke" data-csak-admin>Kezelés</div>
+      <button type="button" class="om-pont" data-oldal="berlok" data-csak-admin>Bérlők és értesítések</button>
       <button type="button" class="om-pont" data-oldal="kuldes" data-csak-admin>Küldés dátum szerint</button>
       <button type="button" class="om-pont" data-oldal="postafiokok" data-csak-admin>Postafiókok</button>
-      <button type="button" class="om-pont" data-oldal="beallitasok">Beállítások</button>
+      <button type="button" class="om-pont" data-oldal="beallitasok" data-csak-admin>Beállítások</button>
       <div class="om-lab">
         <span id="om-felhasznalo"></span>
         <button type="button" id="om-tema-gomb">Sötét / világos mód</button>
@@ -5039,6 +5065,34 @@
     tarol("szamla_tema", uj);
   });
 })();
+</script>
+<script>
+  // Telepíthető app (PWA): service worker + Android "Telepítés" sáv.
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
+  }
+  (() => {
+    let halasztott = null;
+    const sav = document.getElementById("telepites-sav");
+    const elrejtve = () => { try { return localStorage.getItem("telepites_elrejtve") === "1"; } catch (_) { return false; } };
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      halasztott = e;
+      if (!elrejtve()) sav.hidden = false;
+    });
+    document.getElementById("telepites-gomb").addEventListener("click", async () => {
+      sav.hidden = true;
+      if (!halasztott) return;
+      halasztott.prompt();
+      try { await halasztott.userChoice; } catch (_) {}
+      halasztott = null;
+    });
+    document.getElementById("telepites-bezar").addEventListener("click", () => {
+      sav.hidden = true;
+      try { localStorage.setItem("telepites_elrejtve", "1"); } catch (_) {}
+    });
+    window.addEventListener("appinstalled", () => { sav.hidden = true; });
+  })();
 </script>
 </body>
 </html>
