@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:59:31.475026+02:00",
+  "frissitve": "2026-10-10T03:00:04.465501+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:11:46.691618+02:00",
-      "kulcs": "NTP540",
-      "rendszam": "NTP540",
-      "vehicle_id": "6516",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.5006217956543,
-      "lon": 18.967893600463867,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-09T15:11:46.691692+02:00",
-      "kulcs": "NTP546",
-      "rendszam": "NTP546",
-      "vehicle_id": "6522",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.486698150634766,
-      "lon": 18.954185485839844,
-      "elozo_szoveg": "Csillebérc, KFKI",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-09T15:11:46.691815+02:00",
-      "kulcs": "NWB361",
-      "rendszam": "NWB361",
-      "vehicle_id": "6541",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50136947631836,
-      "lon": 19.136022567749023,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Bosnyák tér"
-    },
-    {
-      "idopont": "2026-10-09T15:11:46.692330+02:00",
-      "kulcs": "PDB378",
-      "rendszam": "PDB378",
-      "vehicle_id": "7060",
-      "vehicle_label": "Rákoshegy vasútállomás",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.462947845458984,
-      "lon": 19.14922523498535,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoshegy vasútállomás"
-    },
-    {
-      "idopont": "2026-10-09T15:11:46.692432+02:00",
-      "kulcs": "PDB390",
-      "rendszam": "PDB390",
-      "vehicle_id": "7072",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.50035858154297,
-      "lon": 19.135242462158203,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-09T15:11:46.692486+02:00",
       "kulcs": "PDN607",
@@ -260000,6 +259935,71 @@
       "lon": 19.008689880371094,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-10T03:00:04.397946+02:00",
+      "kulcs": "FLR725",
+      "rendszam": "FLR725",
+      "vehicle_id": "3139",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507545471191406,
+      "lon": 19.02452850341797,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-10T03:00:04.399123+02:00",
+      "kulcs": "MUU901",
+      "rendszam": "MUU901",
+      "vehicle_id": "5954",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59785461425781,
+      "lon": 19.053861618041992,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T03:00:04.399278+02:00",
+      "kulcs": "PDB720",
+      "rendszam": "PDB720",
+      "vehicle_id": "7046",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.439022064208984,
+      "lon": 19.1033992767334,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-10T03:00:04.399326+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52290725708008,
+      "lon": 19.171077728271484,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-10-10T03:00:04.399417+02:00",
+      "kulcs": "RVY710",
+      "rendszam": "RVY710",
+      "vehicle_id": "7459",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.4327278137207,
+      "lon": 19.261566162109375,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
