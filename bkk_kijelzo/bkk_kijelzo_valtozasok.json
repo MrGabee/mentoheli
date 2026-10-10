@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-11T01:06:55.785066+02:00",
+  "frissitve": "2026-10-11T01:07:30.678060+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.392803+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Mechanikai Művek",
-      "vonal_szam": "87",
-      "route_id": "0870",
-      "lat": 47.45302963256836,
-      "lon": 18.991188049316406,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Mechanikai Művek"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392830+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51802444458008,
-      "lon": 19.07311248779297,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392845+02:00",
-      "kulcs": "T8113",
-      "rendszam": "T8113",
-      "vehicle_id": "7892",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52094268798828,
-      "lon": 19.06891441345215,
-      "elozo_szoveg": "Hősök tere M ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392858+02:00",
-      "kulcs": "T8114",
-      "rendszam": "T8114",
-      "vehicle_id": "7893",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.52423858642578,
-      "lon": 19.063810348510742,
-      "elozo_szoveg": "Dagály utcai lakótelep",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-10T12:34:32.392871+02:00",
       "kulcs": "T8115",
@@ -260000,6 +259948,58 @@
       "lon": 19.287111282348633,
       "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
       "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-11T01:07:30.589622+02:00",
+      "kulcs": "AADR752",
+      "rendszam": "AADR752",
+      "vehicle_id": "201",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.50171661376953,
+      "lon": 19.13555908203125,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya-Kispest M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-11T01:07:30.592284+02:00",
+      "kulcs": "T9105",
+      "rendszam": "T9105",
+      "vehicle_id": "7352",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "80",
+      "route_id": "4800",
+      "lat": 47.499759674072266,
+      "lon": 19.083375930786133,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T01:07:30.592434+02:00",
+      "kulcs": "SKN821",
+      "rendszam": "SKN821",
+      "vehicle_id": "7789",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51416778564453,
+      "lon": 19.076662063598633,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-11T01:07:30.592961+02:00",
+      "kulcs": "AOJM872",
+      "rendszam": "AOJM872",
+      "vehicle_id": "995",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41025924682617,
+      "lon": 19.060483932495117,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
