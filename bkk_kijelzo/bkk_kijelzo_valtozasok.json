@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:14:30.754579+02:00",
+  "frissitve": "2026-10-11T00:15:04.892862+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.387159+02:00",
-      "kulcs": "NCV292",
-      "rendszam": "NCV292",
-      "vehicle_id": "6257",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.506858825683594,
-      "lon": 19.023447036743164,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.387172+02:00",
-      "kulcs": "NCV294",
-      "rendszam": "NCV294",
-      "vehicle_id": "6259",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50653076171875,
-      "lon": 19.023996353149414,
-      "elozo_szoveg": "Fény utcai piac",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.387185+02:00",
-      "kulcs": "AELD553",
-      "rendszam": "AELD553",
-      "vehicle_id": "626",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.459224700927734,
-      "lon": 19.126493453979492,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-10-10T12:34:32.387199+02:00",
       "kulcs": "NCV296",
@@ -260000,6 +259961,45 @@
       "lon": 19.039409637451172,
       "elozo_szoveg": "Batthyány tér",
       "uj_szoveg": "Szentendre"
+    },
+    {
+      "idopont": "2026-10-11T00:15:04.838895+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51070022583008,
+      "lon": 19.097278594970703,
+      "elozo_szoveg": "Gyöngyösi utca M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-11T00:15:04.840476+02:00",
+      "kulcs": "AOFL250",
+      "rendszam": "AOFL250",
+      "vehicle_id": "838",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.4343376159668,
+      "lon": 19.199974060058594,
+      "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
+      "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-11T00:15:04.840534+02:00",
+      "kulcs": "923-662-924",
+      "rendszam": "923-662-924",
+      "vehicle_id": "905516569233-905536466626-905516569241",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.50376510620117,
+      "lon": 19.13764762878418,
+      "elozo_szoveg": "Örs vezér tere",
+      "uj_szoveg": "Gödöllő"
     }
   ]
 }
