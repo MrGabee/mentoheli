@@ -9,7 +9,7 @@ const MEGORZES_MS = 3 * 24 * 3600 * 1000;  // ennyi ideig emlékszik egy riaszt�
 const FRISS_MS = 30 * 60 * 1000;           // ennél hosszabb kiesés után újra csak feltölt
 const MAX_SZUNET_PERC = 30;
 const ZOOM = 13;          // csempék nagyítása (a teljes nézet kb. 12 lenne)
-const BETOLTES_PERCENKENT = 2;  // ennyi csempét tölt be percenként (6-nál a Waze letiltotta az oldalt)
+const BETOLTES_PERCENKENT = 1;  // percenként egy csempe (6/percnél a Waze letiltotta az oldalt)
 const VALASZ_VARAS_MS = 18 * 1000;  // ha ennyi idő alatt nem jön adat, az oldal nem töltött be
 
 // A csempék a Waze-ablak méretéből: annyi nézet, hogy lefedje Budapestet.
