@@ -80,6 +80,10 @@
   #jelszo-urlap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
   #jelszo-kepernyo .jelszo-marad { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); cursor: pointer; }
   #jelszo-kepernyo .jelszo-marad input { width: auto; padding: 0; }
+  .gh-token-doboz { display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
+  .gh-token-doboz .gh-kapcsolo { display: flex; align-items: flex-start; gap: 10px; }
+  .gh-token-doboz .gh-kapcsolo input { width: auto; flex: none; margin-top: 3px; }
+  .gh-token-doboz summary { cursor: pointer; color: var(--muted); font-size: 13px; }
   #kijelentkezes-gomb { border: 1px solid var(--border); background: var(--card); color: var(--muted); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
   #jelszo-kepernyo input:not([type=checkbox]) {
     padding: 12px 14px; font-size: 16px; border: 1px solid var(--border);
@@ -633,7 +637,7 @@
         <div class="lv-lista" id="lv-lista" role="list"></div>
         <article class="lv-olvaso" id="lv-olvaso" aria-live="polite"></article>
       </div>
-      <p class="panel-info" style="margin-top:12px;">Az Elküldött fül a rendszer által kiküldött összes levelet mutatja (értesítők, összesítők, NAV-emlékeztetők és a válaszaid), pontos szöveggel és címzettel. A Beérkezett fül a céges postafiókba érkezett leveleket mutatja, ahogy a figyelő a futásai során (20 percenként) beolvasta őket. A válasz a céges feladó-címről megy ki, a következő futáskor, vagy azonnal, ha a Beállításokban meg van adva a GitHub token.</p>
+      <p class="panel-info" style="margin-top:12px;">Az Elküldött fül a rendszer által kiküldött összes levelet mutatja (értesítők, összesítők, NAV-emlékeztetők és a válaszaid), pontos szöveggel és címzettel. A Beérkezett fül a céges postafiókba érkezett leveleket mutatja, ahogy a figyelő a futásai során (20 percenként) beolvasta őket. A válasz a céges feladó-címről megy ki, a következő futáskor, vagy azonnal, ha a Beállításokban be van kapcsolva az azonnali indítás.</p>
     </div>
 
     <div id="bank-tartalom" style="display:none;">
@@ -670,14 +674,21 @@
     <div class="panel" id="beallitasok-panel">
       <button type="button" class="panel-toggle" id="beallitasok-toggle">⚙️ Beállítások (emlékeztető, összesítő-ütemezés) ▾</button>
       <div class="panel-tartalom" id="beallitasok-tartalom" style="display:none;">
-        <p class="panel-info">Ezen a panelen (és a többi, adatot mentő panelen) a bejelentkezéskor megadott API-kulcs elég a mentéshez - a lenti GitHub token KIZÁRÓLAG a "Küldés MOST"-jellegű gombokhoz kell (azok egy GitHub Actions futást indítanak el), és csak a böngésződben marad (session-tárolóban), sehova máshova nem kerül.</p>
+        <p class="panel-info">Ezen a panelen (és a többi, adatot mentő panelen) a bejelentkezéskor megadott API-kulcs elég a mentéshez - a "Küldés MOST"-jellegű gombok (azonnali GitHub Actions futás) a szerveren tárolt GitHub tokennel indulnak, azt nem kell itt megadni.</p>
         <label style="display:flex;align-items:center;gap:10px;background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:8px;padding:12px 14px;margin-bottom:14px;">
           <input type="checkbox" id="be-email-engedelyezve" style="width:auto;flex:none;">
           <span>📧 Email-küldés engedélyezve (közüzemi) — ha nincs bepipálva, egyetlen közüzemi (Díjnet/Vízművek/MVM) értesítő/emlékeztető/összesítő email sem megy ki (a dashboard adatai ettől függetlenül frissülnek). Amíg ezt nem mented bepipálva, alapból NINCS email-küldés. A céges email-küldést KÜLÖN, a Céges fülön kapcsolhatod be.</span>
         </label>
-        <label>GitHub token
-          <input type="password" id="gh-pat-input" autocomplete="off" placeholder="ghp_...">
-        </label>
+        <div class="gh-token-doboz">
+          <label class="gh-kapcsolo"><input type="checkbox" id="gh-azonnali" checked> <span>⚡ <strong>Azonnali indítás</strong>: bekapcsolva a „Küldés MOST” gombok és az azonnali válaszok rögtön elindítják a futást a szerveren tárolt tokennel. Kikapcsolva a rendszer nem indít futást, minden a következő ütemezett futáskor megy.</span></label>
+          <div class="panel-statusz" id="gh-azonnali-statusz"></div>
+          <details>
+            <summary>Tartalék: GitHub token kézzel (csak ha a szerveres indítás nincs beállítva)</summary>
+            <label>GitHub token
+              <input type="password" id="gh-pat-input" autocomplete="off" placeholder="ghp_...">
+            </label>
+          </details>
+        </div>
         <label>Bérlői emlékeztető: hány nappal a határidő előtt kapja meg a kör?
           <input type="number" id="be-kor-emlekezteto-napok" min="1" max="60" placeholder="üresen hagyva: nincs bérlői emlékeztető">
         </label>
@@ -747,7 +758,7 @@
     <div class="panel" id="korok-panel">
       <button type="button" class="panel-toggle" id="korok-toggle">👥 Bérlői körök kezelése ▾</button>
       <div class="panel-tartalom" id="korok-tartalom" style="display:none;">
-        <p class="panel-info">A Díjneten/Vízműveken érkező számlákat két bérlői körhöz sorolhatod - mindkettő saját email-címre kap "új számla" értesítőt (PDF-fel) és havi összesítőt. A besorolás az adatbázisban tárolódik - a mentéshez a bejelentkezéskor megadott API-kulcs elég, nem kell hozzá a lenti GitHub token.</p>
+        <p class="panel-info">A Díjneten/Vízműveken érkező számlákat két bérlői körhöz sorolhatod - mindkettő saját email-címre kap "új számla" értesítőt (PDF-fel) és havi összesítőt. A besorolás az adatbázisban tárolódik - a mentéshez a bejelentkezéskor megadott API-kulcs elég, nem kell hozzá GitHub token.</p>
         <label>1. kör neve <input type="text" id="kor-a-nev-input" placeholder="pl. Nagy Kft. bérlemény" style="max-width:320px;"></label>
         <label>2. kör neve <input type="text" id="kor-b-nev-input" placeholder="pl. Kis Kft. bérlemény" style="max-width:320px;"></label>
         <p class="panel-info" style="margin-top:2px;">A bérlői körök (és a tulajdonos/könyvelő) email-CÍMLISTÁIT és az azonnali "Küldés most" gombokat lentebb, a "📮 Címzettek és azonnali küldés" panelben találod. A régi, egy-cím-es GitHub Secretek (SZAMLA_KOR_A_EMAIL / SZAMLA_KOR_B_EMAIL) - ha még be vannak állítva - továbbra is UNIÓBAN kapnak emailt az itt/lent megadott listával.</p>
@@ -779,7 +790,7 @@
     <div class="panel" id="cimzettek-panel">
       <button type="button" class="panel-toggle" id="cimzettek-toggle">📮 Címzettek és azonnali küldés (könyvelő / bérlők / tulajdonos) ▾</button>
       <div class="panel-tartalom" id="cimzettek-tartalom" style="display:none;">
-        <p class="panel-info">Három, egymástól független email-kör: a <strong>könyvelő</strong> SOSEM kap innen számla-adatot/csatolmányt - a tulajdonos azt egy külön, kézzel megosztott Google Drive mappán keresztül adja át neki, ő csak egy havi, hónap-végi emlékeztetőt kap. A <strong>bérlő</strong> (1./2. kör) a jelenleg fizetetlen számláinak időszakos/kézi összesítőjét kapja - NEM azonnali, számlánkénti értesítőt. A <strong>tulajdonos</strong> minden új számláról azonnali értesítést kap, és minden bérlői-összesítő másolatát is megkapja. Soronként egy email-cím - a listák MENTÉSÉHEZ a bejelentkezéskor megadott API-kulcs elég, a "Küldés MOST" gombokhoz kell a lenti GitHub token.</p>
+        <p class="panel-info">Három, egymástól független email-kör: a <strong>könyvelő</strong> SOSEM kap innen számla-adatot/csatolmányt - a tulajdonos azt egy külön, kézzel megosztott Google Drive mappán keresztül adja át neki, ő csak egy havi, hónap-végi emlékeztetőt kap. A <strong>bérlő</strong> (1./2. kör) a jelenleg fizetetlen számláinak időszakos/kézi összesítőjét kapja - NEM azonnali, számlánkénti értesítőt. A <strong>tulajdonos</strong> minden új számláról azonnali értesítést kap, és minden bérlői-összesítő másolatát is megkapja. Soronként egy email-cím - a listák MENTÉSÉHEZ a bejelentkezéskor megadott API-kulcs elég, a "Küldés MOST" gombok a Beállításokban bekapcsolt azonnali indítással működnek.</p>
 
         <h3 style="font-size:14px;margin:6px 0 6px;">📁 Könyvelő</h3>
         <label>Email-cím(ek), soronként egy
@@ -818,7 +829,7 @@
     <div class="panel" id="kuldes-panel">
       <button type="button" class="panel-toggle" id="kuldes-toggle">📤 Számlák küldése emailben, dátum szerint ▾</button>
       <div class="panel-tartalom" id="kuldes-tartalom" style="display:none;">
-        <p class="panel-info">A megadott fizetési határidő-intervallumba eső számlákat PDF-csatolmánnyal elküldi a megadott címre. A küldés a GitHub Actions-ön keresztül indul, néhány percen belül lefut - ehhez is a fenti GitHub token kell.</p>
+        <p class="panel-info">A megadott fizetési határidő-intervallumba eső számlákat PDF-csatolmánnyal elküldi a megadott címre. A küldés a GitHub Actions-ön keresztül indul, néhány percen belül lefut (a Beállításokban az azonnali indításnak bekapcsolva kell lennie).</p>
         <label>Kezdő dátum (fizetési határidő) <input type="date" id="ku-datumtol"></label>
         <label>Záró dátum (fizetési határidő) <input type="date" id="ku-datumig"></label>
         <label>Célcím <input type="email" id="ku-email" placeholder="pl. sajat@email.hu"></label>
@@ -1925,7 +1936,7 @@
       document.getElementById("nav-emlekezteto-gomb").addEventListener("click", async () => {
         const gomb = document.getElementById("nav-emlekezteto-gomb");
         const pat = aktualisPat();
-        if (!pat) { beStatuszMutat("nav-emlekezteto-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a küldéshez.", "hiba"); return; }
+        if (!pat) { beStatuszMutat("nav-emlekezteto-statusz", patHianyUzenet(), "hiba"); return; }
         const kijelolt = Array.from(hely.querySelectorAll(".nav-emlekezteto-jelolo:checked")).map(cb => cb.dataset.adoszam);
         if (!kijelolt.length) { beStatuszMutat("nav-emlekezteto-statusz", "Jelölj ki legalább egy szállítót.", "hiba"); return; }
         const hianyzoEmail = kijelolt.filter(adoszam => {
@@ -2617,7 +2628,23 @@
     return h;
   }
 
+  // A szerveren (reilviolin.hu/billing) tárolt GitHub tokennel indít -
+  // ld. szamlak/szerver/futtatas.php. A böngésző a tokent nem látja.
+  const FUTTATAS_URL = "https://reilviolin.hu/billing/futtatas.php";
+  const SZERVER_TOKEN = "szerver";
+
   async function ghWorkflowInditasa(pat, inputs) {
+    if (pat === SZERVER_TOKEN) {
+      let r, v;
+      try {
+        r = await fetch(FUTTATAS_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ api_kulcs: aktualisApiKulcs, inputs: inputs || {} }) });
+        v = await r.json();
+      } catch (e) {
+        throw new Error("A szerveres indító (futtatas.php) nem érhető el. Töltsd fel a reilviolin.hu/billing mappába, vagy adj meg tartalék tokent a Beállításokban.");
+      }
+      if (!r.ok || !v.ok) throw new Error(v.hiba || ("Indítás sikertelen (HTTP " + r.status + ")"));
+      return;
+    }
     const resp = await fetch(
       `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${GH_WORKFLOW_FAJL}/dispatches`,
       { method: "POST", headers: Object.assign(ghFejlecek(pat), { "Content-Type": "application/json" }), body: JSON.stringify({ ref: GH_BRANCH, inputs }) }
@@ -2926,7 +2953,7 @@
           <label>Címzett <input type="email" id="lv-v-cimzett" required value="${escHtml(l.valasz_cim || l["feladó_email"] || "")}"></label>
           <label>Tárgy <input type="text" id="lv-v-targy" value="${escHtml(reTargy)}"></label>
           <label>Üzenet <textarea id="lv-v-szoveg" required>${escHtml("\n\n" + lvDatum(l.datum) + ", " + (l["feladó_nev"] || l["feladó_email"] || "") + " írta:\n" + idezet)}</textarea></label>
-          <label style="flex-direction:row;align-items:center;gap:8px;"><input type="checkbox" id="lv-v-azonnal" style="width:auto;"> Küldés azonnal (GitHub token kell a Beállításokban), különben a következő futáskor megy ki</label>
+          <label style="flex-direction:row;align-items:center;gap:8px;"><input type="checkbox" id="lv-v-azonnal" style="width:auto;"> Küldés azonnal (ha a Beállításokban be van kapcsolva az azonnali indítás), különben a következő futáskor megy ki</label>
           <div class="lv-gombsor">
             <button type="submit" class="lv-gomb fo" id="lv-v-kuld">Válasz küldése</button>
             <button type="button" class="lv-gomb" id="lv-v-megse">Mégse</button>
@@ -2980,7 +3007,7 @@
       if (azonnal) {
         const pat = aktualisPat();
         if (!pat) {
-          uzenet = "Válasz elmentve. Azonnali küldéshez nincs GitHub token, ezért a következő futáskor megy ki.";
+          uzenet = "Válasz elmentve. Az azonnali indítás ki van kapcsolva, ezért a következő futáskor megy ki.";
         } else {
           try { await ghWorkflowInditasa(pat, {}); patMentese(); uzenet = "Válasz elmentve, a küldés elindult (néhány perc)."; }
           catch (e) { uzenet = "Válasz elmentve, de az azonnali indítás nem sikerült (" + e.message + "). A következő futáskor kimegy."; }
@@ -3761,11 +3788,42 @@
     });
   })();
 
+  // Az "Azonnali indítás" kapcsoló (meta: azonnali_inditas) kikapcsolva
+  // úgy viselkedik, mintha nem volna token: minden a következő ütemezett
+  // futásra marad. Bekapcsolva a kézzel megadott tartalék token, ha nincs,
+  // a szerveren tárolt token indít.
+  function ghAzonnaliBe() {
+    const k = document.getElementById("gh-azonnali");
+    return !k || k.checked;
+  }
   function aktualisPat() {
-    return document.getElementById("gh-pat-input").value.trim();
+    if (!ghAzonnaliBe()) return "";
+    return document.getElementById("gh-pat-input").value.trim() || SZERVER_TOKEN;
+  }
+  function ghKapcsoloMegjelenitese(ertek) {
+    const k = document.getElementById("gh-azonnali");
+    if (!k) return;
+    k.checked = !(ertek && ertek.be === false);
+    const st = document.getElementById("gh-azonnali-statusz");
+    if (st) st.textContent = k.checked ? "Bekapcsolva: a gombok azonnal indítanak." : "Kikapcsolva: minden a következő ütemezett futáskor megy.";
+  }
+  document.getElementById("gh-azonnali").addEventListener("change", async (e) => {
+    const be = e.target.checked;
+    try {
+      await apiHivas("set_meta", { kulcs: "azonnali_inditas", ertek: { be } });
+      if (legutobbiAdat) legutobbiAdat.azonnali_inditas = { be };
+      ghKapcsoloMegjelenitese({ be });
+    } catch (err) {
+      e.target.checked = !be;
+      const st = document.getElementById("gh-azonnali-statusz");
+      if (st) st.textContent = "Nem sikerült menteni: " + err.message;
+    }
+  });
+  function patHianyUzenet() {
+    return "Az azonnali indítás ki van kapcsolva (Beállítások panel), ezért ez a gomb most nem indít futást.";
   }
   function patMentese() {
-    const pat = aktualisPat();
+    const pat = document.getElementById("gh-pat-input").value.trim();
     try { if (pat) sessionStorage.setItem("szamla_gh_pat", pat); } catch (e) { /* ignorálható */ }
   }
 
@@ -4206,7 +4264,7 @@
   // küldést/összesítést a Python-script végzi el, ez csak elindítja.
   document.getElementById("konyvelo-kuldes-most-gomb").addEventListener("click", async () => {
     const pat = aktualisPat();
-    if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent) a küldéshez.", "hiba"); return; }
+    if (!pat) { beStatuszMutat("cim-statusz", patHianyUzenet(), "hiba"); return; }
     patMentese();
     beStatuszMutat("cim-statusz", "Indítás...", "");
     try {
@@ -4220,7 +4278,7 @@
   document.querySelectorAll(".kor-osszesito-most-gomb").forEach(btn => {
     btn.addEventListener("click", async () => {
       const pat = aktualisPat();
-      if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent) a küldéshez.", "hiba"); return; }
+      if (!pat) { beStatuszMutat("cim-statusz", patHianyUzenet(), "hiba"); return; }
       patMentese();
       const pdfCsatolas = document.getElementById("cim-pdf-csatolas").checked;
       beStatuszMutat("cim-statusz", "Indítás...", "");
@@ -4235,7 +4293,7 @@
 
   document.getElementById("tulajdonos-kuldes-most-gomb").addEventListener("click", async () => {
     const pat = aktualisPat();
-    if (!pat) { beStatuszMutat("cim-statusz", "Add meg a GitHub tokent (fent) a küldéshez.", "hiba"); return; }
+    if (!pat) { beStatuszMutat("cim-statusz", patHianyUzenet(), "hiba"); return; }
     patMentese();
     const pdfCsatolas = document.getElementById("cim-pdf-csatolas").checked;
     beStatuszMutat("cim-statusz", "Indítás...", "");
@@ -4789,7 +4847,7 @@
     const datumtol = document.getElementById("ku-datumtol").value;
     const datumig = document.getElementById("ku-datumig").value;
     const email = document.getElementById("ku-email").value.trim();
-    if (!pat) { beStatuszMutat("ku-statusz", "Add meg a GitHub tokent (fent, a Beállítások panelben) a küldéshez.", "hiba"); return; }
+    if (!pat) { beStatuszMutat("ku-statusz", patHianyUzenet(), "hiba"); return; }
     if (!datumtol || !datumig) { beStatuszMutat("ku-statusz", "Add meg mindkét dátumot.", "hiba"); return; }
     if (datumtol > datumig) { beStatuszMutat("ku-statusz", "A kezdő dátum nem lehet a záró dátum után.", "hiba"); return; }
     if (!email || !email.includes("@")) { beStatuszMutat("ku-statusz", "Adj meg egy érvényes célcímet.", "hiba"); return; }
@@ -4850,6 +4908,7 @@
 
     document.body.classList.toggle("szerepkor-user", szerepkor === "user");
     legutobbiAdat = adat;
+    ghKapcsoloMegjelenitese(adat.azonnali_inditas);
     levelekRenderelese();
 
     // A "✕" gombbal véglegesen elrejtett számlák (ld. rekordTorlese())
