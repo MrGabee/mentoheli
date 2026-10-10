@@ -1183,6 +1183,13 @@ def _allapot_alapertekek() -> dict:
         # alapértelmezés érvényesül (ld. ott).
         "ceges_emlekezteto_feladas_cim": None,
         "ceges_emlekezteto_szoveg": None,
+        # A céges levelek (válaszok + NAV-emlékeztető) tényleges feladó-
+        # címe (CEGES_EMAIL_KULDO), CSAK a script írja, minden futáskor -
+        # a dashboard ebből mutatja, melyik címről mennek ki a levelek.
+        "ceges_felado_cim": "",
+        # A céges postafiók PDF nélküli leveleinek uid-jai (CSAK a script
+        # írja) - ld. ceges_osszes_uid_lekerese() "kihagyando" paramétere.
+        "ceges_pdf_nelkuli_uidok": {},
         # Ld. "CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ" szekció.
         # A naplót és az eredményeket CSAK a script írja, a válasz-kérelmeket
         # CSAK a dashboard - így a futás végi mentés sosem írja felül a
@@ -3549,16 +3556,36 @@ def _ceges_kuldo_nev_kinyerese(msg) -> str:
     return domain or "ismeretlen feladó"
 
 
-def ceges_osszes_uid_lekerese(conn, max_db=40):
+def ceges_osszes_uid_lekerese(conn, max_db=40, kihagyando=None):
     """A fő postafiók uj_uidok_lekerese()-jével ellentétben itt NINCS
-    dátum-szűrés (SINCE) és nincs "már feldolgozott" halmaz sem - ld. a
-    szekció elején lévő kommentet: ez a postafiók MAGA a feldolgozandó
-    sor (a sikeresen feldolgozott levelek törlődnek), ezért egyszerűen
-    MINDENT lekérünk, ami a mappában (jellemzően INBOX) éppen ott van."""
+    dátum-szűrés (SINCE) - ld. a szekció elején lévő kommentet: ez a
+    postafiók MAGA a feldolgozandó sor (a sikeresen feldolgozott levelek
+    törlődnek), ezért MINDENT lekérünk, ami a mappában éppen ott van.
+    Visszaad: (feldolgozandó uid-ok a sapkáig, az összes uid a mappában).
+
+    kihagyando: a korábbi futásokban már PDF nélkülinek talált levelek
+    uid-jai (ld. "ceges_pdf_nelkuli_uidok") - ezek a postafiókban maradnak,
+    de NEM foglalják a futásonkénti sapkát. Enélkül a sapkányi régi, PDF
+    nélküli levél (értesítők, válaszok) minden futásban újra elfoglalta az
+    összes helyet, és az utánuk érkező számlás levelek sosem kerültek sorra."""
     tipus, adat = conn.uid("search", None, "ALL")
     if tipus != "OK" or not adat or not adat[0]:
-        return []
-    return adat[0].split()[:max_db]
+        return [], []
+    osszes = adat[0].split()
+    kihagyando = kihagyando or set()
+    return [u for u in osszes if u.decode() not in kihagyando][:max_db], osszes
+
+
+def _imap_uidvalidity(conn) -> str:
+    """A kiválasztott mappa UIDVALIDITY értéke (a SELECT válaszából) - ha
+    megváltozik, a korábban eltárolt uid-ok már más levelekre mutathatnak."""
+    try:
+        _, adat = conn.response("UIDVALIDITY")
+        if adat and adat[0]:
+            return adat[0].decode() if isinstance(adat[0], bytes) else str(adat[0])
+    except Exception:
+        pass
+    return ""
 
 
 def _ceges_fajlnev(cid: str, kuldo_nev: str, eredeti_fajlnev: str) -> str:
@@ -3687,9 +3714,16 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
     hiba_db = 0
     torlendo_uidok = []
     try:
-        uidok = ceges_osszes_uid_lekerese(conn, CEGES_MAX_FELDOLGOZAS_FUTASONKENT)
+        uidvalidity = _imap_uidvalidity(conn)
+        pdf_nelkuli = allapot.get("ceges_pdf_nelkuli_uidok") or {}
+        if not isinstance(pdf_nelkuli, dict) or not uidvalidity or pdf_nelkuli.get("uidvalidity") != uidvalidity:
+            pdf_nelkuli = {"uidvalidity": uidvalidity, "uidok": []}
+        pdf_nelkuli_uidok = set(pdf_nelkuli.get("uidok") or [])
+        uidok, osszes_uid = ceges_osszes_uid_lekerese(conn, CEGES_MAX_FELDOLGOZAS_FUTASONKENT,
+                                                      pdf_nelkuli_uidok)
         print(f"  🏢 Céges számlák postafiók: {len(uidok)} feldolgozandó levél (sapka: "
-              f"{CEGES_MAX_FELDOLGOZAS_FUTASONKENT}/futás).")
+              f"{CEGES_MAX_FELDOLGOZAS_FUTASONKENT}/futás), további {len(pdf_nelkuli_uidok)} "
+              f"korábbról ismert, PDF nélküli levél a postafiókban.")
 
         for uid in uidok:
             uid_str = uid.decode()
@@ -3728,6 +3762,7 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 print(f"      ⚠️  Nincs PDF-csatolmány, a levél a postafiókban marad "
                       f"(kézi ellenőrzést igényel): {kuldo_nev_feladobol} – {targy[:60]}")
                 hiba_db += 1
+                pdf_nelkuli_uidok.add(uid_str)
                 continue
 
             # EGY levélhez TÖBB PDF-csatolmány is tartozhat (pl. egy
@@ -3959,6 +3994,13 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 conn.expunge()
             except Exception as e:
                 print(f"  ⚠️  Céges számlák postafiók végleges törlése (expunge) sikertelen: {e}")
+        # Csak a még a mappában lévő uid-okat őrizzük meg (a kézzel törölt
+        # levelek kikerülnek a listából).
+        mappaban = {u.decode() for u in osszes_uid}
+        allapot["ceges_pdf_nelkuli_uidok"] = {
+            "uidvalidity": uidvalidity,
+            "uidok": sorted(pdf_nelkuli_uidok & mappaban, key=lambda u: int(u) if u.isdigit() else 0),
+        }
     finally:
         try:
             conn.logout()
@@ -5181,10 +5223,11 @@ def _ceges_bizonytalan_athelyezese_biztosba(allapot: dict):
 # kérésére: "meg tudjam szabni, hogy milyen címről menjen ki, illetve a
 # szöveget is szeretném látni, ugyanis bele kell írni, hogy arra kérem a
 # válaszba konkrétan csatolja a számlát, mert automatika dolgozza fel"):
-#   - allapot["ceges_emlekezteto_feladas_cim"]: ha ki van töltve, ez kerül
-#     a kimenő levél "From" fejlécébe a ténylegesen hitelesített cím
-#     HELYETT (ld. email_kuldes() "feladas_cim_felulbiralas" kommentje) -
-#     tipikusan egy Gmail "Küldés másként" alias.
+#   - allapot["ceges_emlekezteto_feladas_cim"]: KORÁBBAN ez írta felül a
+#     "From" fejlécet - a felhasználó későbbi kérésére az emlékeztető
+#     MOST MÁR mindig a céges postafiók címéről (CEGES_EMAIL_KULDO) megy
+#     ki, ugyanonnan, ahonnan a "Céges levelek" válaszai, így ez a kulcs
+#     már nincs használatban.
 #   - allapot["ceges_emlekezteto_szoveg"]: ha ki van töltve, ez váltja fel
 #     a lenti NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK kérő-mondatot a levélben
 #     (a köszöntés/tételek listája/aláírás VÁLTOZATLAN marad körülötte) -
@@ -5310,7 +5353,7 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
     SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK env-változó üres (ez a NORMÁL eset -
     ütemezett futásnál MINDIG üres, csak a dashboard gombjával indított
     workflow_dispatch-nál kaphat tartalmat, ld. modul-docstring eleje).
-    A "ceges_emlekezteto_feladas_cim"/"ceges_emlekezteto_szoveg" (ld. a
+    A "ceges_emlekezteto_szoveg" (ld. a
     fenti szekció-komment) az "allapot"-ból jön - MINDIG a legfrissebb,
     dashboardon elmentett érték, mert az "allapot"-ot a main() a futás
     elején, EGYETLEN get_all hívással tölti be."""
@@ -5323,7 +5366,6 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
 
     szallito_emailek = allapot.get("nav_szallito_emailek", {})
     csak_navban = allapot.get("nav_csak_navban", [])
-    feladas_cim_felulbiralas = allapot.get("ceges_emlekezteto_feladas_cim")
     egyedi_szoveg = allapot.get("ceges_emlekezteto_szoveg")
 
     kuldott_db = 0
@@ -5343,8 +5385,14 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
             f"📄 Hiányzó számla-másolat kérése – {szallito_nev}",
             _nav_emlekezteto_email_html(szallito_nev, sajat_tetelek, egyedi_szoveg, adoszam),
             cimzett=email_cim,
+            # A felhasználó kérésére az emlékeztető UGYANARRÓL a céges
+            # címről megy ki, amelyik postafiókról a "Céges levelek"
+            # menüpont szól (és ahonnan a válaszok is mennek, ld.
+            # _ceges_valasz_kuldese()) - ezért a korábbi "Feladó email-cím"
+            # felülírást (ceges_emlekezteto_feladas_cim) itt már nem
+            # használjuk, a válaszokat a szállító így ugyanabba a
+            # postafiókba küldi vissza, amit a figyelő olvas.
             kategoria="ceges",
-            feladas_cim_felulbiralas=feladas_cim_felulbiralas,
         )
         if sikeres:
             kuldott_db += 1
@@ -6500,6 +6548,7 @@ def main():
     # metaadata is bekerüljön a lentebbi mentésbe.
     ceges_szamlak_feldolgozasa(allapot)
     ceges_kezi_feltoltesek_feldolgozasa(allapot)
+    allapot["ceges_felado_cim"] = CEGES_EMAIL_KULDO or ""
     ceges_level_valaszok_feldolgozasa(allapot)
 
     # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás
