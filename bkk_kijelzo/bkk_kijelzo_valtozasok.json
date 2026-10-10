@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-10T23:59:53.285289+02:00",
+  "frissitve": "2026-10-11T00:00:28.208840+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.386188+02:00",
-      "kulcs": "V2102",
-      "rendszam": "V2102",
-      "vehicle_id": "5830",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.469364166259766,
-      "lon": 19.057783126831055,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.386237+02:00",
-      "kulcs": "V2112",
-      "rendszam": "V2112",
-      "vehicle_id": "5840",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.47269058227539,
-      "lon": 19.096155166625977,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.386254+02:00",
-      "kulcs": "V2206",
-      "rendszam": "V2206",
-      "vehicle_id": "5846",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.54850387573242,
-      "lon": 19.029094696044922,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.386284+02:00",
-      "kulcs": "V2209",
-      "rendszam": "V2209",
-      "vehicle_id": "5849",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.4691276550293,
-      "lon": 19.10772705078125,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-10-10T12:34:32.386296+02:00",
       "kulcs": "V2211",
@@ -260000,6 +259948,58 @@
       "lon": 18.958499908447266,
       "elozo_szoveg": "Gazdagréti tér",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-11T00:00:28.130436+02:00",
+      "kulcs": "V2003",
+      "rendszam": "V2003",
+      "vehicle_id": "2003",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50732421875,
+      "lon": 19.025007247924805,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-11T00:00:28.130511+02:00",
+      "kulcs": "FKU940",
+      "rendszam": "FKU940",
+      "vehicle_id": "3096",
+      "vehicle_label": "Nyugati pályaudvar M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.560333251953125,
+      "lon": 19.090476989746094,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Nyugati pályaudvar M"
+    },
+    {
+      "idopont": "2026-10-11T00:00:28.131146+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43264389038086,
+      "lon": 19.261253356933594,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-10-11T00:00:28.132591+02:00",
+      "kulcs": "PDB725",
+      "rendszam": "PDB725",
+      "vehicle_id": "7051",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597816467285156,
+      "lon": 19.05390167236328,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
