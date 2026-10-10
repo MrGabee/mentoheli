@@ -368,13 +368,6 @@ NAV_ADOSZAM = os.environ.get("NAV_ADOSZAM") or ""
 # kinek a nevében kérjük a hiányzó számla-másolatot.
 CEG_NEV = os.environ.get("CEG_NEV") or ""
 
-# A számlázz.hu Számla Agent API kulcsa - a felhasználó saját
-# számlázz.hu fiókjában generálható ("Fiókom" alján, "Számla Agent
-# kulcsok"), NEM az ottani bejelentkezési jelszó. Ez egy GitHub Secret -
-# sosem kerül a repóba/dashboardba. Ld. részletesen a "SZÁMLÁZZ.HU -
-# BÉRLŐI ÁTSZÁMLÁZÁS" szekciót lentebb, a main() előtt.
-SZAMLAZZHU_AGENT_KULCS = os.environ.get("SZAMLAZZHU_AGENT_KULCS") or ""
-
 # A felhasználó kifejezett kérése szerint az ÉLES (nem teszt) NAV-környezet
 # van itt beállítva - a valódi céges bejövő számlákat kérdezzük le.
 NAV_API_BASE_URL = "https://api.onlineszamla.nav.gov.hu/invoiceService/v3"
@@ -1094,7 +1087,7 @@ def _api_hivas(action: str, parameterek: dict = None, idokorlat: int = 30) -> di
 
 # A "meta_kulcs_ertek" tábla (ld. szamlak/mysql/schema.sql) tartalmazza
 # az összes olyan mezőt, amit korábban az "allapot" JSON gyökerében,
-# illetve a KÜLÖN szamla_beallitasok.json fájlban tartottunk. Ez a
+# illetve a KÜLÖN (azóta törölt) szamla_beallitasok.json fájlban tartottunk. Ez a
 # lista adja meg, mely allapot-kulcsok mennek a "szamlak"/
 # "ceges_szamlak"/"tovabbi_postafiokok"/"pdf_adatok" ELKÜLÖNÍTETT
 # táblák helyett a közös meta-táblába.
@@ -1190,6 +1183,13 @@ def _allapot_alapertekek() -> dict:
         # alapértelmezés érvényesül (ld. ott).
         "ceges_emlekezteto_feladas_cim": None,
         "ceges_emlekezteto_szoveg": None,
+        # Ld. "CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ" szekció.
+        # A naplót és az eredményeket CSAK a script írja, a válasz-kérelmeket
+        # CSAK a dashboard - így a futás végi mentés sosem írja felül a
+        # futás közben a dashboardon beírt választ.
+        "ceges_bejovo_levelek": {},
+        "ceges_level_valasz_kerelmek": {},
+        "ceges_level_valasz_eredmenyek": {},
     }
 
 
@@ -3643,6 +3643,11 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
             # esünk vissza erre.
             kuldo_nev_feladobol = _ceges_kuldo_nev_kinyerese(msg)
             pdf_csatolmanyok_listaja = pdf_csatolmanyok(msg)
+            try:
+                _ceges_level_naplozasa(allapot, msg, uid_str, targy, kuldo_nev_feladobol,
+                                       feladó_email, pdf_csatolmanyok_listaja)
+            except Exception as e:
+                print(f"      ⚠️  A levél naplózása a 'Céges levelek' nézethez sikertelen: {e}")
 
             if not pdf_csatolmanyok_listaja:
                 # Nincs PDF-csatolmány (pl. az eladó csak egy sima
@@ -4813,6 +4818,40 @@ def _nav_osszeg_egyezik(a, b, tolerancia=1.0) -> bool:
         return False
 
 
+def _nav_osszeg_jeloltek(tetel: dict) -> list:
+    """A NAV-tétel összes olyan összege, amivel egy emailből kinyert
+    összeg egyezhet: bruttó (nettó + áfa) ÉS nettó, forintban és a
+    számla saját pénznemében is. Az emailből/PDF-ből kinyert összeg
+    jellemzően a "Fizetendő" (BRUTTÓ) végösszeg, a NAV digest viszont
+    külön adja a nettót és az áfát - korábban csak a nettóval
+    hasonlítottunk, így minden áfás számla összeg-alapú párosítása
+    elbukott."""
+    def _f(ertek):
+        try:
+            return float(ertek) if ertek not in (None, "") else None
+        except (TypeError, ValueError):
+            return None
+
+    jeloltek = []
+    for netto_kulcs, afa_kulcs in (("netto_osszeg_huf", "afa_osszeg_huf"), ("netto_osszeg", "afa_osszeg")):
+        netto = _f(tetel.get(netto_kulcs))
+        if netto is None:
+            continue
+        afa = _f(tetel.get(afa_kulcs)) or 0.0
+        jeloltek.append(netto + afa)
+        jeloltek.append(netto)
+    return jeloltek
+
+
+def _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel: dict) -> bool:
+    return any(_nav_osszeg_egyezik(sajat_osszeg, j) for j in _nav_osszeg_jeloltek(tetel))
+
+
+def _nav_brutto_huf(tetel: dict):
+    jeloltek = _nav_osszeg_jeloltek(tetel)
+    return jeloltek[0] if jeloltek else None
+
+
 def _szamlaszam_normalizalt(szamlaszam) -> str:
     """A számlaszám-egyezés (1. kör, ld. nav_szamla_parositas()) ÖSSZES
     whitespace-et (szóköz is) eltávolítva, nagybetűsítve hasonlítja össze
@@ -4939,6 +4978,7 @@ def nav_szamla_parositas(allapot: dict):
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
             rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
             parositott_nav_kulcsok.add(kulcs)
             break
 
@@ -4962,7 +5002,7 @@ def nav_szamla_parositas(allapot: dict):
             if kulcs in parositott_nav_kulcsok:
                 continue
             nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
-            if not _nav_osszeg_egyezik(sajat_osszeg, nav_osszeg):
+            if not _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel):
                 continue
             rekord["nav_parositva"] = True
             # ld. _nav_parosithato_rekordok() komment - egy sikeres
@@ -4974,6 +5014,7 @@ def nav_szamla_parositas(allapot: dict):
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = nav_osszeg
             rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
             parositott_nav_kulcsok.add(kulcs)
             break
 
@@ -4996,7 +5037,7 @@ def nav_szamla_parositas(allapot: dict):
             if kulcs in parositott_nav_kulcsok:
                 continue
             nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
-            if not _nav_osszeg_egyezik(sajat_osszeg, nav_osszeg):
+            if not _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel):
                 continue
             if erkezett_datum is not None and tetel.get("kiallitas_datum"):
                 try:
@@ -5015,6 +5056,7 @@ def nav_szamla_parositas(allapot: dict):
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = nav_osszeg
             rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
             parositott_nav_kulcsok.add(kulcs)
             break
 
@@ -5243,371 +5285,137 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
           f"{len(kijelolt_adoszamok)} kijelölt szállítóból.")
 
 
+
 # ════════════════════════════════════════════
-#  🧾  SZÁMLÁZZ.HU - BÉRLŐI ÁTSZÁMLÁZÁS (1./2. kör)
+#  ✉️  CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ
 # ════════════════════════════════════════════
-# A felhasználó kérésére: amikor egy közüzemi (Díjnet/Vízművek/email-
-# alapú) számla megérkezik az épület TULAJDONOSÁNAK nevére, ezt a
-# rendszer - ha be van kapcsolva - automatikusan "áthárítja" a bérlőre:
-# kiállít egy ÚJ, a bérlő nevére/adószámára szóló számlát a számlázz.hu
-# Számla Agent XML API-ján keresztül, ugyanarról az összegről (a
-# felhasználó NEM áfás - alanyi adómentes non-profit Kft -, ezért a
-# tétel áfakulcsa MINDIG "AAM", ld. SZAMLAZZHU_AFA_KULCS lent).
+# A dashboard "Céges levelek" menüpontja ebből a naplóból mutatja, milyen
+# levelek érkeztek a céges postafiókba (PDF-fel vagy anélkül). A naplóra
+# azért van szükség, mert a sikeresen feldolgozott leveleket a script
+# törli a postafiókból (ld. ceges_szamlak_feldolgozasa()).
 #
-# BIZTONSÁGI KAPCSOLÓK (mind a dashboardon, "🧾 Számlázz.hu" panelen
-# állítható, meta-kulcsként tárolva - ld. szamlak.html):
-#   szamlazzhu_fokapcsolo         - FŐ KAPCSOLÓ: ha False (ez az
-#                                    alapérték is, ha még sosem lett
-#                                    bekapcsolva), a teljes modul semmit
-#                                    nem csinál - sem előkészítés, sem
-#                                    kiállítás, MÉG a dashboard "Kiállítás
-#                                    most" gombjával indított manuális
-#                                    kérésre sem (ld. lentebb).
-#   szamlazzhu_uzemmod            - "teszt" (alapérték, HA hiányzik is)
-#                                    vagy "eles". Teszt módban a TELJES
-#                                    folyamat lefut (XML összeállítás,
-#                                    naplózás, állapot-frissítés
-#                                    "teszt_kiallitva"-ra), DE a
-#                                    számlázz.hu felé SOHA nem megy ki
-#                                    valódi HTTP-hívás - tehát éles számla
-#                                    SOSEM keletkezik teszt módban. Csak
-#                                    "eles" módban hívjuk ténylegesen a
-#                                    számlázz.hu API-t.
-#   szamlazzhu_auto_jovahagyas    - False (alapérték): egy új, kör_a/
-#                                    kör_b besorolású számlát csak
-#                                    "előkészítve" állapotba tesz, a
-#                                    tényleges kiállítás a dashboard
-#                                    "📄 Kiállítás most" gombjára vár
-#                                    (kézi jóváhagyás). True esetén a
-#                                    kiállítás AZONNAL, emberi jóváhagyás
-#                                    nélkül megtörténik.
-#   szamlazzhu_kor_a_engedelyezve /
-#   szamlazzhu_kor_b_engedelyezve - a két bérlői kör EGYMÁSTÓL FÜGGETLENÜL
-#                                    kapcsolható be - lehet, hogy csak az
-#                                    egyiknél szeretnéd élesíteni.
-#   szamlazzhu_vevo_adatok        - {"kor_a": {nev,adoszam,irsz,
-#                                    telepules,cim,email}, "kor_b": {...}}
-#                                    - a bérlők FIX számlázási adatai.
-#
-# Egy adott számlánál MINDEN feltételnek egyszerre kell teljesülnie:
-# fokapcsolo=True, az adott kör engedélyezve, ÉS a körhöz van kitöltött
-# (név+adószám) vevő-adat - különben a számla figyelmen kívül marad
-# (naplózva, miért).
-#
-# ÁLLAPOT-GÉP (minden érintett rekord "szamlazzhu_allapot" mezője, a fő
-# "szamlak" kollekcióban, ld. api.php "update_fields"):
-#   (nincs mező)      -> még nem foglalkozott vele a modul (vagy nem
-#                         kör_a/kör_b besorolású)
-#   "elokeszitve"      -> kör_a/kör_b, engedélyezve, kézi jóváhagyásra vár
-#   "kiallitva"        -> ÉLES módban sikeresen kiállítva a számlázz.hu-n
-#   "teszt_kiallitva"  -> TESZT módban "kiállítva" (szimulált, nincs
-#                         valós számla/PDF)
-#   "hiba"             -> a kiállítás megpróbálva, de hibával tért vissza
-#                         - a dashboard "Kiállítás most" gombjával
-#                         újrapróbálható (ld. SZAMLA_SZAMLAZZHU_KIALLITAS_ID)
-#
-# Az AUTOMATIKUS (soronkénti) feldolgozás egy rekordot csak addig néz meg
-# újra, amíg a "szamlazzhu_allapot" mezője nincs kitöltve - onnantól CSAK
-# a dashboard kézi gombja (SZAMLA_SZAMLAZZHU_KIALLITAS_ID) nyúlhat hozzá
-# újra (pl. hiba utáni újrapróbálkozás) - EZ a fő védelem a duplikált
-# (kétszeres) számlázás ellen.
-
-SZAMLAZZHU_API_URL = "https://www.szamlazz.hu/szamla/"
-
-# A felhasználó alanyi adómentes (nem áfás) non-profit Kft - ezért MINDEN
-# áthárítási tétel áfakulcsa fixen "AAM". Ha ez a jövőben változna (pl.
-# áfakörbe kerülne a cég), ITT kell átírni.
-SZAMLAZZHU_AFA_KULCS = "AAM"
-SZAMLAZZHU_MENNYISEGI_EGYSEG = "db"
-SZAMLAZZHU_FIZMOD = "átutalás"
-# Hány nappal a mai naptól legyen a fizetési határidő az áthárítási
-# számlán - szabadon átírható.
-SZAMLAZZHU_FIZETESI_HATARIDO_NAP = 8
-# Elektronikus (True) vagy papír-alapú (False) számla készüljön - ez csak
-# a számlázz.hu-s nyilvántartást/PDF-et érinti; a vevőnek csak akkor megy
-# ki automatikus email róla, ha meg van adva email-cím a vevő-adatoknál.
-SZAMLAZZHU_ESZAMLA = True
-
-# A dashboard "📄 Kiállítás most" gombja ezt a workflow_dispatch inputot
-# tölti ki (ld. .github/workflows/szamla_monitor.yml) - EGY konkrét
-# számla azonosítóját adja át, hogy AZT (és csakis azt) próbálja meg
-# (újra) kiállítani, függetlenül az "elokeszitve"/"hiba" állapottól.
-# Ütemezett futásnál mindig üres.
-SZAMLA_SZAMLAZZHU_KIALLITAS_ID = os.environ.get("SZAMLA_SZAMLAZZHU_KIALLITAS_ID", "").strip()
+# Válasz: a dashboard a "ceges_level_valasz_kerelmek" meta-kulcsba ír egy
+# kérelmet ({level_id, cimzett, targy, szoveg, letrehozva}), a script a
+# következő futáskor elküldi a céges feladó-címről (válaszlevélként, a
+# levélszálhoz kapcsolva), és az eredményt a "ceges_level_valasz_eredmenyek"
+# kulcsba írja. A két kulcsot két külön fél írja, így nem írják felül
+# egymást. A kézi válasz SZÁNDÉKOSAN nem függ a "céges email-küldés
+# engedélyezve" kapcsolótól (az az automatikus levelekre vonatkozik), de
+# dry-run alatt nem megy ki.
+CEGES_LEVEL_NAPLO_MAX_DB = 300
+CEGES_LEVEL_SZOVEG_MAX_KAR = 12000
 
 
-def _szamlazzhu_uzemmod(allapot: dict) -> str:
-    nyers = allapot.get("szamlazzhu_uzemmod")
-    return nyers if nyers in ("teszt", "eles") else "teszt"
-
-
-def _xml_lokalis_nev(elem) -> str:
-    return elem.tag.split("}")[-1] if elem is not None else ""
-
-
-def _xml_gyermek_szoveg(gyoker, nev: str):
-    """Névtér-független kereső: az ELSŐ olyan közvetlen gyermeket adja
-    vissza (szövegként), aminek a helyi (névtér-prefix nélküli) neve
-    megegyezik - a számlázz.hu válasz-XML névtere nem feltétlenül van
-    pontosan úgy deklarálva, ahogy a dokumentáció alapján várnánk, ezért
-    NEM egy fix névtér-szótárral keresünk (mint a NAV-résznél), hanem
-    egyszerű helyi névvel - ez megbízhatóbb egy külső, esetlegesen
-    névtér-inkonzisztens válasznál."""
-    if gyoker is None:
-        return None
-    for gyermek in gyoker:
-        if _xml_lokalis_nev(gyermek) == nev:
-            return (gyermek.text or "").strip() or None
-    return None
-
-
-def _szamlazzhu_tetel_szoveg(rekord: dict) -> str:
-    szolgaltato = rekord.get("szolgaltato_nev") or "közüzemi szolgáltató"
-    azonosito = rekord.get("szamlaszam") or rekord.get("targy") or ""
-    datum = (rekord.get("erkezett") or "")[:10]
-    resz = f" – {azonosito}" if azonosito else ""
-    resz2 = f" ({datum})" if datum else ""
-    return f"Közüzemi költség áthárítása – {szolgaltato}{resz}{resz2}"
-
-
-def _szamlazzhu_xml_epitese(rekord: dict, invoice_id: str, vevo: dict) -> str:
-    """Felépíti a Számla Agent XML kérést egy ÁTHÁRÍTÁSI (a bérlő nevére
-    szóló) számlához. Az "elado" (kiállító) blokkot SZÁNDÉKOSAN nem
-    küldjük - ilyenkor a számlázz.hu a saját fiók-beállításodban
-    rögzített cégadatokat használja automatikusan (ld. docs.szamlazz.hu/
-    agent - az "elado" minden mezője opcionális)."""
-    ma = magyar_ma()
-    hatarido = ma + timedelta(days=SZAMLAZZHU_FIZETESI_HATARIDO_NAP)
-    teljesites = (rekord.get("erkezett") or "")[:10] or ma.isoformat()
-    osszeg = float(rekord.get("osszeg") or 0)
-    email_sor = f"<email>{_xml_esc(vevo['email'])}</email>" if vevo.get("email") else ""
-
-    return f"""<?xml version="1.0" encoding="UTF-8"?>
-<xmlszamla xmlns="http://www.szamlazz.hu/xmlszamla" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.szamlazz.hu/xmlszamla https://www.szamlazz.hu/szamla/docs/xsds/agent/xmlszamla.xsd">
-  <beallitasok>
-    <szamlaagentkulcs>{_xml_esc(SZAMLAZZHU_AGENT_KULCS)}</szamlaagentkulcs>
-    <eszamla>{"true" if SZAMLAZZHU_ESZAMLA else "false"}</eszamla>
-    <szamlaLetoltes>true</szamlaLetoltes>
-    <valaszVerzio>2</valaszVerzio>
-    <szamlaKulsoAzon>{_xml_esc(invoice_id)}</szamlaKulsoAzon>
-  </beallitasok>
-  <fejlec>
-    <keltDatum>{ma.isoformat()}</keltDatum>
-    <teljesitesDatum>{teljesites}</teljesitesDatum>
-    <fizetesiHataridoDatum>{hatarido.isoformat()}</fizetesiHataridoDatum>
-    <fizmod>{_xml_esc(SZAMLAZZHU_FIZMOD)}</fizmod>
-    <penznem>HUF</penznem>
-    <szamlaNyelve>hu</szamlaNyelve>
-    <megjegyzes>{_xml_esc(_szamlazzhu_tetel_szoveg(rekord))}</megjegyzes>
-  </fejlec>
-  <vevo>
-    <nev>{_xml_esc(vevo["nev"])}</nev>
-    <irsz>{_xml_esc(vevo.get("irsz") or "")}</irsz>
-    <telepules>{_xml_esc(vevo.get("telepules") or "")}</telepules>
-    <cim>{_xml_esc(vevo.get("cim") or "")}</cim>
-    <adoszam>{_xml_esc(vevo.get("adoszam") or "")}</adoszam>
-    {email_sor}
-  </vevo>
-  <tetelek>
-    <tetel>
-      <megnevezes>{_xml_esc(_szamlazzhu_tetel_szoveg(rekord))}</megnevezes>
-      <mennyiseg>1</mennyiseg>
-      <mennyisegiEgyseg>{_xml_esc(SZAMLAZZHU_MENNYISEGI_EGYSEG)}</mennyisegiEgyseg>
-      <nettoEgysegar>{osszeg:.2f}</nettoEgysegar>
-      <afakulcs>{_xml_esc(SZAMLAZZHU_AFA_KULCS)}</afakulcs>
-      <nettoErtek>{osszeg:.2f}</nettoErtek>
-      <afaErtek>0</afaErtek>
-      <bruttoErtek>{osszeg:.2f}</bruttoErtek>
-    </tetel>
-  </tetelek>
-</xmlszamla>"""
-
-
-def _szamlazzhu_kerelem_kuldese(xml_szoveg: str) -> dict:
-    """A tényleges HTTP-hívás a számlázz.hu Számla Agent API-jára - CSAK
-    "eles" üzemmódban hívjuk (ld. _szamlazzhu_szamla_kiallitasa()). A
-    válasz valaszVerzio=2 esetén mindig strukturált XML (siker ÉS hiba
-    esetén is) - ha mégsem (pl. a kérésünk annyira hibás, hogy a
-    számlázz.hu vissza sem jut idáig), a nyers szöveget adjuk vissza
-    hibaüzenetként."""
-    try:
-        valasz = requests.post(
-            SZAMLAZZHU_API_URL,
-            files={"action-xmlagentxmlfile": ("szamla.xml", xml_szoveg.encode("utf-8"), "application/xml")},
-            timeout=45,
-        )
-    except Exception as e:
-        return {"ok": False, "hiba": f"Hálózati hiba: {e}"}
-
-    try:
-        gyoker = ET.fromstring(valasz.content)
-    except ET.ParseError:
-        nyers_szoveg = valasz.text or ""
-        return {"ok": False, "hiba": (nyers_szoveg[:400] or f"Érvénytelen válasz (HTTP {valasz.status_code})")}
-
-    sikeres = (_xml_gyermek_szoveg(gyoker, "sikeres") or "").lower() == "true"
-    if not sikeres:
-        hiba_kod = _xml_gyermek_szoveg(gyoker, "hibakod")
-        hiba_uzenet = _xml_gyermek_szoveg(gyoker, "hibauzenet")
-        return {
-            "ok": False,
-            "hiba": (f"{hiba_kod}: " if hiba_kod else "") + (hiba_uzenet or f"Ismeretlen hiba (HTTP {valasz.status_code})"),
-        }
-
-    return {
-        "ok": True,
-        "szamlaszam": _xml_gyermek_szoveg(gyoker, "szamlaszam"),
-        "netto": _xml_gyermek_szoveg(gyoker, "szamlanetto"),
-        "brutto": _xml_gyermek_szoveg(gyoker, "szamlabrutto"),
-        "pdf_b64": _xml_gyermek_szoveg(gyoker, "pdf"),
-    }
-
-
-def _szamlazzhu_szamla_kiallitasa(allapot: dict, invoice_id: str, rekord: dict, vevo: dict, uzemmod: str) -> dict:
-    """EGY konkrét számla áthárításának végrehajtása - a hívó
-    (szamlazzhu_ujraszamlazas_feldolgozasa()) már ellenőrizte a
-    kapcsolókat/vevő-adatokat, ez a függvény már csak a tényleges
-    XML-építést + (éles módban) a HTTP-hívást végzi, és beírja az
-    eredményt a rekordba."""
-    xml_szoveg = _szamlazzhu_xml_epitese(rekord, invoice_id, vevo)
-
-    if uzemmod != "eles":
-        # TESZT MÓD: SZÁNDÉKOSAN nincs HTTP-hívás - csak naplózzuk, hogy
-        # mi történne, és "teszt_kiallitva"-ra állítjuk a rekordot, hogy a
-        # dashboardon is látszódjon, hogy a modul idáig eljutott (a
-        # kapcsolók/vevő-adatok érvényesek), de ÉLES számla NEM
-        # keletkezett.
-        print(f"      🧪 [TESZT] Számlázz.hu áthárítás szimulálva: {rekord.get('szolgaltato_nev')} – "
-              f"{forint(rekord.get('osszeg'))} -> {vevo['nev']} (nincs valódi API-hívás).")
-        rekord["szamlazzhu_allapot"] = "teszt_kiallitva"
-        rekord["szamlazzhu_szamlaszam"] = None
-        rekord["szamlazzhu_hiba"] = None
-        rekord["szamlazzhu_uzemmod_kiallitaskor"] = "teszt"
-        rekord["szamlazzhu_kiallitva_datum"] = magyar_ido().isoformat()
-        return {"ok": True, "teszt": True}
-
-    eredmeny = _szamlazzhu_kerelem_kuldese(xml_szoveg)
-    if eredmeny.get("ok"):
-        rekord["szamlazzhu_allapot"] = "kiallitva"
-        rekord["szamlazzhu_szamlaszam"] = eredmeny.get("szamlaszam")
-        rekord["szamlazzhu_hiba"] = None
-        rekord["szamlazzhu_uzemmod_kiallitaskor"] = "eles"
-        rekord["szamlazzhu_kiallitva_datum"] = magyar_ido().isoformat()
-        pdf_b64 = eredmeny.get("pdf_b64")
-        if pdf_b64:
-            try:
-                pdf_tarolas(allapot, f"{invoice_id}__szlazz", base64.b64decode(pdf_b64))
-            except Exception as e:
-                print(f"      ⚠️  Számlázz.hu: a kiállított PDF eltárolása sikertelen ({e}), "
-                      f"maga a számla ({eredmeny.get('szamlaszam')}) sikeresen kiállítva.")
-        print(f"      ✅ Számlázz.hu áthárítási számla kiállítva: {rekord.get('szolgaltato_nev')} – "
-              f"{forint(rekord.get('osszeg'))} -> {vevo['nev']} (számlaszám: {eredmeny.get('szamlaszam')}).")
+def _level_olvashato_szoveg(msg) -> str:
+    """Megjelenítésre szánt szöveg: a text/plain részt részesíti előnyben,
+    ha nincs, a HTML-t alakítja egyszerű szöveggé."""
+    sima, html_reszek = [], []
+    for resz in (msg.walk() if msg.is_multipart() else [msg]):
+        if resz.get_content_maintype() == "multipart":
+            continue
+        if (resz.get("Content-Disposition") or "").lower().startswith("attachment"):
+            continue
+        ctype = resz.get_content_type()
+        if ctype not in ("text/plain", "text/html"):
+            continue
+        try:
+            darab = resz.get_payload(decode=True).decode(resz.get_content_charset() or "utf-8", errors="ignore")
+        except Exception:
+            continue
+        (sima if ctype == "text/plain" else html_reszek).append(darab)
+    if sima:
+        szoveg = "\n".join(sima)
     else:
-        rekord["szamlazzhu_allapot"] = "hiba"
-        rekord["szamlazzhu_hiba"] = eredmeny.get("hiba")
-        rekord["szamlazzhu_uzemmod_kiallitaskor"] = "eles"
-        rekord["szamlazzhu_kiallitva_datum"] = magyar_ido().isoformat()
-        print(f"      ❌ Számlázz.hu áthárítási számla kiállítása SIKERTELEN: {rekord.get('szolgaltato_nev')} – "
-              f"{eredmeny.get('hiba')}")
-    return eredmeny
+        szoveg = "\n".join(html_reszek)
+        szoveg = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", szoveg)
+        szoveg = re.sub(r"(?i)<br\s*/?>|</p>|</div>|</tr>|</li>", "\n", szoveg)
+        szoveg = re.sub(r"<[^>]+>", " ", szoveg)
+        szoveg = BeautifulSoup(szoveg, "html.parser").get_text() if "&" in szoveg else szoveg
+    szoveg = re.sub(r"[ \t\xa0]+", " ", szoveg)
+    szoveg = re.sub(r"\n\s*\n\s*\n+", "\n\n", szoveg)
+    return szoveg.strip()
 
 
-def szamlazzhu_ujraszamlazas_feldolgozasa(allapot: dict, szamlak: dict, statisztika: dict):
-    """Ld. a szekció eleji nagy kommentet a teljes logikáért. Két ágon fut:
-      1. Manuális felülbírálás (SZAMLA_SZAMLAZZHU_KIALLITAS_ID) - a
-         dashboard "📄 Kiállítás most" gombja indítja, EGY konkrét
-         rekordot dolgoz fel, FÜGGETLENÜL attól, hogy "elokeszitve" vagy
-         "hiba" állapotban van-e (retry is ezen megy) - de a fő
-         kapcsolónak/kör-kapcsolónak/vevő-adatnak ekkor is teljesülnie
-         kell, és egy MÁR "kiallitva"/"teszt_kiallitva" rekordot SOHA nem
-         állít ki újra (duplikáció elleni védelem).
-      2. Automatikus, teljes lista-átfutás - MINDEN kör_a/kör_b rekordot
-         megnéz, aminek MÉG NINCS "szamlazzhu_allapot" mezője - vagy
-         "elokeszitve"-re állítja (kézi jóváhagyásra vár), vagy (ha
-         szamlazzhu_auto_jovahagyas=True) rögtön ki is állítja.
-    """
-    fokapcsolo = allapot.get("szamlazzhu_fokapcsolo") is True
-    if not fokapcsolo:
-        if SZAMLA_SZAMLAZZHU_KIALLITAS_ID:
-            print("  🔕 Számlázz.hu: a FŐ KAPCSOLÓ ki van kapcsolva a dashboardon - a kézi "
-                  "'Kiállítás most' kérés is figyelmen kívül marad, amíg be nem kapcsolod.")
+def _ceges_level_naplozasa(allapot: dict, msg, uid_str: str, targy: str, kuldo_nev: str,
+                           feladó_email: str, pdf_lista) -> None:
+    from email.utils import parseaddr
+    message_id = (msg.get("Message-ID") or "").strip()
+    level_id = hashlib.md5((message_id or f"{CEGES_IMAP_USER}|{uid_str}|{targy}").encode("utf-8")).hexdigest()[:16]
+    naplo = allapot.setdefault("ceges_bejovo_levelek", {})
+    if level_id in naplo:
         return
-
-    uzemmod = _szamlazzhu_uzemmod(allapot)
-    auto_jovahagyas = allapot.get("szamlazzhu_auto_jovahagyas") is True
-    kor_engedelyek = {
-        "kor_a": allapot.get("szamlazzhu_kor_a_engedelyezve") is True,
-        "kor_b": allapot.get("szamlazzhu_kor_b_engedelyezve") is True,
+    _, valasz_cim = parseaddr(msg.get("Reply-To", "") or "")
+    naplo[level_id] = {
+        "id": level_id,
+        "feladó_nev": kuldo_nev,
+        "feladó_email": feladó_email,
+        "valasz_cim": valasz_cim or feladó_email,
+        "targy": targy,
+        "datum": _email_datum_iso(msg.get("Date", "")),
+        "message_id": message_id,
+        "references": (msg.get("References") or "").strip()[:2000],
+        "szoveg": _level_olvashato_szoveg(msg)[:CEGES_LEVEL_SZOVEG_MAX_KAR],
+        "pdf_nevek": [nev for nev, _ in (pdf_lista or [])],
+        "naplozva": magyar_ido().isoformat(),
     }
-    vevo_adatok_korok = allapot.get("szamlazzhu_vevo_adatok") or {}
+    if len(naplo) > CEGES_LEVEL_NAPLO_MAX_DB:
+        sorrend = sorted(naplo.values(), key=lambda r: (r.get("datum") or "", r.get("naplozva") or ""))
+        for regi in sorrend[: len(naplo) - CEGES_LEVEL_NAPLO_MAX_DB]:
+            naplo.pop(regi["id"], None)
 
-    def _vevo_ervenyes(kor_kulcs):
-        vevo = vevo_adatok_korok.get(kor_kulcs) or {}
-        if vevo.get("nev") and vevo.get("adoszam"):
-            return vevo
-        return None
 
-    def _kiallitas_es_naplo(invoice_id, rekord, vevo):
-        eredmeny = _szamlazzhu_szamla_kiallitasa(allapot, invoice_id, rekord, vevo, uzemmod)
-        if eredmeny.get("ok"):
-            statisztika["szamlazzhu_kiallitva"] += 1
-        else:
-            statisztika["szamlazzhu_hiba"] += 1
+def _ceges_valasz_kuldese(cimzett: str, targy: str, szoveg: str, eredeti: dict) -> None:
+    """Sima szöveges válaszlevél a céges feladó-címről. Hiba esetén kivételt dob."""
+    from email.utils import formatdate, make_msgid
+    if not (CEGES_EMAIL_KULDO and CEGES_EMAIL_JELSZO_KULDES):
+        raise RuntimeError("Nincs beállítva a céges feladó-cím (CEGES_EMAIL_KULDO_SZAMLA / CEGES_IMAP_USER).")
+    msg = MIMEText(szoveg, "plain", "utf-8")
+    msg["Subject"] = targy
+    msg["From"] = CEGES_EMAIL_KULDO
+    msg["To"] = cimzett
+    msg["Date"] = formatdate(localtime=True)
+    msg["Message-ID"] = make_msgid(domain=(CEGES_EMAIL_KULDO.split("@")[-1] or None))
+    eredeti_id = (eredeti or {}).get("message_id")
+    if eredeti_id:
+        msg["In-Reply-To"] = eredeti_id
+        msg["References"] = (((eredeti or {}).get("references") or "") + " " + eredeti_id).strip()
+    with smtplib.SMTP_SSL(CEGES_SMTP_HOST, CEGES_SMTP_PORT) as server:
+        server.login(CEGES_EMAIL_KULDO, CEGES_EMAIL_JELSZO_KULDES)
+        server.send_message(msg)
 
-    print(f"  🧾 Számlázz.hu áthárítás: engedélyezve ({uzemmod} üzemmódban), "
-          f"1. kör: {'BE' if kor_engedelyek['kor_a'] else 'ki'}, "
-          f"2. kör: {'BE' if kor_engedelyek['kor_b'] else 'ki'}, "
-          f"automatikus jóváhagyás: {'igen' if auto_jovahagyas else 'nem (kézi gombra vár)'}.")
 
-    # ---- 1. Manuális felülbírálás (dashboard "Kiállítás most" gomb) ----
-    if SZAMLA_SZAMLAZZHU_KIALLITAS_ID:
-        rekord = szamlak.get(SZAMLA_SZAMLAZZHU_KIALLITAS_ID)
-        if rekord is None:
-            print(f"  ⚠️  Számlázz.hu: a manuálisan kért azonosító ({SZAMLA_SZAMLAZZHU_KIALLITAS_ID}) "
-                  f"nem található a számlák között - kihagyva.")
-        else:
-            kor_kulcs = rekord.get("kor")
-            jelenlegi_allapot = rekord.get("szamlazzhu_allapot")
-            if kor_kulcs not in ("kor_a", "kor_b"):
-                print(f"  ⚠️  Számlázz.hu: a kért számla ({SZAMLA_SZAMLAZZHU_KIALLITAS_ID}) nincs "
-                      f"bérlői körbe sorolva - kihagyva.")
-            elif not kor_engedelyek[kor_kulcs]:
-                print(f"  ⚠️  Számlázz.hu: a kért számla köre ({kor_kulcs}) jelenleg nincs "
-                      f"engedélyezve a dashboardon - kihagyva.")
-            elif jelenlegi_allapot in ("kiallitva", "teszt_kiallitva"):
-                print(f"  ℹ️  Számlázz.hu: a kért számla ({SZAMLA_SZAMLAZZHU_KIALLITAS_ID}) már "
-                      f"korábban ki lett állítva ({jelenlegi_allapot}) - a duplikált számlázás "
-                      f"elkerülése végett NEM állítjuk ki újra. Ha mégis szükséges, azt a "
-                      f"számlázz.hu felületén sztornózással/kézzel kell rendezni.")
-            else:
-                vevo = _vevo_ervenyes(kor_kulcs)
-                if not vevo:
-                    print(f"  ⚠️  Számlázz.hu: a(z) {kor_kulcs} bérlő számlázási adatai (név+adószám) "
-                          f"nincsenek kitöltve a dashboardon - kihagyva.")
-                else:
-                    print(f"  📄 Számlázz.hu: manuálisan kért kiállítás fut le - {SZAMLA_SZAMLAZZHU_KIALLITAS_ID}.")
-                    _kiallitas_es_naplo(SZAMLA_SZAMLAZZHU_KIALLITAS_ID, rekord, vevo)
-
-    # ---- 2. Automatikus, teljes átfutás ----
-    for invoice_id, rekord in list(szamlak.items()):
-        kor_kulcs = rekord.get("kor")
-        if kor_kulcs not in ("kor_a", "kor_b"):
+def ceges_level_valaszok_feldolgozasa(allapot: dict) -> None:
+    kerelmek = allapot.get("ceges_level_valasz_kerelmek") or {}
+    if not isinstance(kerelmek, dict) or not kerelmek:
+        return
+    eredmenyek = allapot.setdefault("ceges_level_valasz_eredmenyek", {})
+    if not isinstance(eredmenyek, dict):
+        eredmenyek = allapot["ceges_level_valasz_eredmenyek"] = {}
+    naplo = allapot.get("ceges_bejovo_levelek") or {}
+    for kid, k in kerelmek.items():
+        if not isinstance(k, dict) or (eredmenyek.get(kid) or {}).get("statusz") == "elkuldve":
             continue
-        if not kor_engedelyek[kor_kulcs]:
+        cimzett = (k.get("cimzett") or "").strip()
+        targy = (k.get("targy") or "").strip()
+        szoveg = (k.get("szoveg") or "").strip()
+        if not (re.fullmatch(r"[^@\s,;]+@[^@\s,;]+\.[^@\s,;]+", cimzett) and szoveg):
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(),
+                               "hiba": "Hiányzó vagy érvénytelen címzett, vagy üres szöveg."}
             continue
-        if rekord.get("szamlazzhu_allapot"):
-            continue  # már foglalkozott vele a modul (elokeszitve/kiallitva/teszt_kiallitva/hiba)
-        vevo = _vevo_ervenyes(kor_kulcs)
-        if not vevo:
-            continue  # nincs kitöltött vevő-adat - a naplóban a manuális ágnál/dashboardon jelezzük
-        if auto_jovahagyas:
-            _kiallitas_es_naplo(invoice_id, rekord, vevo)
-        else:
-            rekord["szamlazzhu_allapot"] = "elokeszitve"
-            statisztika["szamlazzhu_elokeszitve"] += 1
-            print(f"      ⏳ Számlázz.hu: áthárítás előkészítve (kézi jóváhagyásra vár) - "
-                  f"{rekord.get('szolgaltato_nev')} – {forint(rekord.get('osszeg'))} -> {vevo['nev']}.")
-
+        if DRY_RUN:
+            print(f"  🧪 [DRY RUN] Céges válaszlevél KIMENNE: {targy!r} -> {cimzett!r}")
+            continue
+        try:
+            _ceges_valasz_kuldese(cimzett, targy or "Válasz", szoveg, naplo.get(k.get("level_id")))
+            eredmenyek[kid] = {"statusz": "elkuldve", "idopont": magyar_ido().isoformat(), "hiba": None}
+            print(f"  ✉️  Céges válaszlevél elküldve: {targy!r} -> {cimzett}")
+        except Exception as e:
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(), "hiba": str(e)[:300]}
+            print(f"  ❌ Céges válaszlevél küldése sikertelen ({cimzett}): {e}")
+    # Az olyan eredményeket, amikhez már nincs kérelem (a dashboard törölte), eldobjuk.
+    for kid in list(eredmenyek.keys()):
+        if kid not in kerelmek:
+            eredmenyek.pop(kid, None)
 
 # ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
@@ -5741,7 +5549,6 @@ def main():
         "fizetes_nem_azonositott": 0, "dijnet_uj_szamla": 0,
         "dijnet_fizetve_frissites": 0, "email_ertesitesek": 0,
         "vizmuvek_uj_szamla": 0, "vizmuvek_fizetve_frissites": 0,
-        "szamlazzhu_elokeszitve": 0, "szamlazzhu_kiallitva": 0, "szamlazzhu_hiba": 0,
     }
 
     # ---- 1. Új emailek beolvasása ----
@@ -6520,6 +6327,7 @@ def main():
     # ELŐTT, hogy az ebben a futásban feldolgozott/törölt céges számlák
     # metaadata is bekerüljön a lentebbi mentésbe.
     ceges_szamlak_feldolgozasa(allapot)
+    ceges_level_valaszok_feldolgozasa(allapot)
 
     # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás
     # (ld. "NAV ONLINE SZÁMLA" szekció) - SZÁNDÉKOSAN a Céges számlák ÉS a
@@ -6541,15 +6349,6 @@ def main():
     # bármit, ha a dashboardról egy "Emlékeztető küldése" gombnyomás
     # workflow_dispatch inputként adószám(oka)t adott át.
     nav_hianyzo_szamla_emlekezteto_kuldese(allapot)
-
-    # ---- 2i. Számlázz.hu - bérlői átszámlázás (ld. "SZÁMLÁZZ.HU - BÉRLŐI
-    # ÁTSZÁMLÁZÁS" szekció) - SZÁNDÉKOSAN az ÖSSZES fenti forrás (email/
-    # Díjnet/Vízművek) ÉS a kör-besorolás (kor_meghatarozasa-ágak, fentebb
-    # az 1b/1c pontoknál) UTÁN fut, hogy MINDEN ebben a futásban
-    # felismert/frissített számla már a VÉGLEGES "kor" mezővel rendelkezzen -
-    # a titkosított állapot mentése ELŐTT, hogy az itt beírt
-    # "szamlazzhu_allapot" mezők is bekerüljenek a lentebbi mentésbe.
-    szamlazzhu_ujraszamlazas_feldolgozasa(allapot, szamlak, statisztika)
 
     # ---- 3. Állapot mentése (titkosítva) ----
     # FONTOS: a feldolgozott_uidok egy set volt, aminek a sorrendje NEM
@@ -6604,8 +6403,6 @@ def main():
     print(f"   • Fizetési emlékeztető (kihagyva): {statisztika['fizetesi_emlekezteto']}")
     print(f"   • Mérőállás-esemény: {statisztika['meroallas']}  |  Fel nem ismert levél: {statisztika['ismeretlen']}")
     print(f"   • Kiküldött (vagy dry-run miatt csak naplózott) email-értesítés: {statisztika['email_ertesitesek']}")
-    print(f"   • Számlázz.hu átszámlázás - előkészítve: {statisztika['szamlazzhu_elokeszitve']}  |  "
-          f"kiállítva/hiba: {statisztika['szamlazzhu_kiallitva']}/{statisztika['szamlazzhu_hiba']}")
     print(f"   • Összes nyilvántartott számla: {len(szamlak)}  (ebből fizetetlen: "
           f"{sum(1 for r in szamlak.values() if not r['fizetve'])})")
     if DRY_RUN:
