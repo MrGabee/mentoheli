@@ -295,6 +295,18 @@
   .szurok button.aktiv { background: var(--text); border-color: var(--text); color: var(--card); }
   .kor-tabla-cim { font-family: var(--f-display); }
 
+  /* bérlői körök tartozása */
+  .kor-tartozasok { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 14px; }
+  .kt-kartya { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .kt-kartya.van-lejart { border-color: var(--red); box-shadow: inset 4px 0 0 var(--red); }
+  .kt-fej { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .kt-nev { font: 600 16px var(--f-display); overflow-wrap: anywhere; }
+  .kt-kor { font-size: 12px; font-weight: 600; color: var(--blue); background: var(--blue-soft); border-radius: 6px; padding: 1px 8px; white-space: nowrap; }
+  .kt-cimke { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 4px; }
+  .kt-osszeg { font: 500 28px/1.15 var(--f-num); font-variant-numeric: tabular-nums; }
+  .kt-reszlet { font-size: 13px; color: var(--muted); }
+  .kt-reszlet b { color: var(--red); font-weight: 600; }
+
   /* határidő-idővonal */
   #hatarido-idovonal { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px 8px; margin-bottom: 20px; }
   #hatarido-idovonal h2 { font-size: 16px; margin: 0 0 6px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
@@ -411,6 +423,8 @@
     </div>
 
     <div id="lakossagi-tartalom">
+
+    <section class="kor-tartozasok" id="kor-tartozasok" aria-label="Bérlői körök tartozása"></section>
 
     <div class="kartyak" id="kartyak"></div>
 
@@ -2299,6 +2313,34 @@
     el.textContent = (egyediNev ? `${alapNev} – ${egyediNev}` : alapNev) + ` (${db} db)`;
   }
 
+  // Körönkénti tartozás a lap tetején - MINDIG az összes fizetetlen számlából
+  // (a nézet-/állapot-szűrőktől függetlenül), hogy a valós tartozást mutassa.
+  // A HUF és az EUR külön összeg, ugyanúgy, mint a kartyakRenderelese()-ben.
+  function korTartozasokRenderelese() {
+    const hely = document.getElementById("kor-tartozasok");
+    if (!hely) return;
+    const korNevek = (legutobbiAdat && legutobbiAdat.kor_nevek) || {};
+    const ma = maiNap();
+    const kartya = (korKulcs, alapNev) => {
+      const tetelek = korCsoportSzures(osszesSzamla.filter(r => !r.fizetve), korKulcs);
+      const eur = r => (r.penznem || "HUF").toUpperCase() === "EUR";
+      const huf = tetelek.filter(r => !eur(r)).reduce((s, r) => s + (r.osszeg || 0), 0);
+      const eurOsszeg = tetelek.filter(eur).reduce((s, r) => s + (r.osszeg || 0), 0);
+      const lejart = tetelek.filter(r => r.hatarido && r.hatarido < ma);
+      const lejartHuf = lejart.filter(r => !eur(r)).reduce((s, r) => s + (r.osszeg || 0), 0);
+      const ismeretlen = tetelek.filter(r => r.osszeg === null || r.osszeg === undefined).length;
+      const nev = (korKulcs && korNevek[korKulcs]) || alapNev;
+      return `<div class="kt-kartya${lejart.length ? " van-lejart" : ""}">
+        <div class="kt-fej"><span class="kt-nev">${escHtml(nev)}</span>${korKulcs !== "fuggoben" ? `<span class="kt-kor">${escHtml(alapNev)}</span>` : ""}</div>
+        <span class="kt-cimke">${korKulcs === "fuggoben" ? "Fizetetlen, körbe nem sorolt" : "Tartozás összesen"}</span>
+        <span class="kt-osszeg">${forint(huf)}${eurOsszeg ? ` + ${osszegFormazva(eurOsszeg, "EUR")}` : ""}</span>
+        <span class="kt-reszlet">${tetelek.length} fizetetlen számla${lejart.length ? ` · <b>ebből lejárt ${lejart.length} db, ${forint(lejartHuf)}</b>` : " · nincs lejárt"}${ismeretlen ? ` · ${ismeretlen} db összege ismeretlen` : ""}</span>
+      </div>`;
+    };
+    const fuggobenDb = korCsoportSzures(osszesSzamla.filter(r => !r.fizetve), "fuggoben").length;
+    hely.innerHTML = kartya("kor_a", "1. kör") + kartya("kor_b", "2. kör") + (fuggobenDb ? kartya("fuggoben", "Nincs körbe sorolva") : "");
+  }
+
   function szuresAlkalmazasa() {
     const nezetSzerint = osszesSzamla.filter(r => nezetSzuro(r, aktivNezet));
     let szurt = nezetSzerint;
@@ -2307,6 +2349,7 @@
     if (aktivAllapotSzuro === "lejart") szurt = szurt.filter(r => !r.fizetve && r.hatarido && r.hatarido < maiNap());
     if (aktivSzolgaltatoSzuro !== "mind") szurt = szurt.filter(r => (r.szolgaltato_nev || "") === aktivSzolgaltatoSzuro);
     kartyakRenderelese(nezetSzerint);
+    korTartozasokRenderelese();
 
     const korA = korCsoportSzures(szurt, "kor_a");
     const korB = korCsoportSzures(szurt, "kor_b");
