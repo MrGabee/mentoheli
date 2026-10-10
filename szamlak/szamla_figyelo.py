@@ -389,6 +389,13 @@ NAV_SOFTWARE_FEJLESZTO_EMAIL = "baloghgabee@gmail.com"
 NAV_LEKERDEZES_NAPOK_VISSZA = 90
 
 # A dashboard címe - a bérlői-értesítő jóváhagyási emailben ide mutat a link.
+# A közüzemi levelek Reply-To címe - a main() tölti be a dashboardon
+# megadott "valasz_cim" meta-kulcsból (ld. email_kuldes()).
+KOZUZEMI_VALASZ_CIM = ""
+
+# Az "osszesito_honap_nap" különleges értéke: a hónap utolsó munkanapja.
+OSSZESITO_UTOLSO_MUNKANAP = "utolso_munkanap"
+
 DASHBOARD_URL = os.environ.get("SZAMLA_DASHBOARD_URL", "https://mrgabee.github.io/mentoheli/szamlak/szamlak.html")
 # Az elküldött/elutasított várólista-bejegyzéseket ennyi napig őrizzük meg (utána ritkítjuk).
 KOR_ERTESITO_ELTARTAS_NAP = 30
@@ -1190,6 +1197,8 @@ def _allapot_alapertekek() -> dict:
         # A céges postafiók PDF nélküli leveleinek uid-jai (CSAK a script
         # írja) - ld. ceges_osszes_uid_lekerese() "kihagyando" paramétere.
         "ceges_pdf_nelkuli_uidok": {},
+        # Bérlői határidő-emlékeztető: rid -> küldés dátuma, CSAK a script írja.
+        "kor_emlekezteto_kuldve": {},
         # Ld. "CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ" szekció.
         # A naplót és az eredményeket CSAK a script írja, a válasz-kérelmeket
         # CSAK a dashboard - így a futás végi mentés sosem írja felül a
@@ -1297,6 +1306,7 @@ def beallitasok_kinyerese(allapot: dict) -> dict:
         "email_kikapcsolva": True,
         "ceges_email_kikapcsolva": True,
         "torolt_szamla_id_k": [],
+        "kor_emlekezteto_napok": None,
     }
 
     napok = allapot.get("emlekezteto_napok_elotte")
@@ -1304,8 +1314,12 @@ def beallitasok_kinyerese(allapot: dict) -> dict:
         alap["emlekezteto_napok_elotte"] = napok
 
     honap_nap = allapot.get("osszesito_honap_nap")
-    if isinstance(honap_nap, int) and 1 <= honap_nap <= 28:
+    if (isinstance(honap_nap, int) and 1 <= honap_nap <= 28) or honap_nap == OSSZESITO_UTOLSO_MUNKANAP:
         alap["osszesito_honap_nap"] = honap_nap
+
+    kor_napok = allapot.get("kor_emlekezteto_napok")
+    if isinstance(kor_napok, int) and 0 < kor_napok <= 60:
+        alap["kor_emlekezteto_napok"] = kor_napok
 
     kivalasztott = allapot.get("kivalasztott_szamlak")
     if isinstance(kivalasztott, list) and all(isinstance(x, str) for x in kivalasztott):
@@ -1767,12 +1781,16 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
     # Ld. a fenti docstring - a HITELESÍTÉS (feladas_jelszo) mindig a
     # valódi fiókkal történik, csak a megjelenő "From" fejléc változik.
     felado_fejlec = (feladas_cim_felulbiralas or "").strip() or feladas_cim
+    # A közüzemi levelekre adott válasz a dashboardon megadott címre menjen
+    # (pl. noreply@ feladó mellett info@) - a céges levelekre NEM, mert
+    # azokra a válasz a céges postafiókba kell, amit a figyelő olvas.
+    valasz_cim = KOZUZEMI_VALASZ_CIM if kategoria != "ceges" else ""
 
     cimzett_vegso = cimzett or EMAIL_CIMZETT
     if DRY_RUN:
         csatolmany_nevek = [fajlnev for fajlnev, _ in (csatolmanyok or [])]
         print(f"  🧪 [DRY RUN] Email KIMENNE (de nem megy ki): {targy!r} -> "
-              f"{cimzett_vegso!r} (feladó: {felado_fejlec!r}, csatolmányok: {csatolmany_nevek or 'nincs'})")
+              f"{cimzett_vegso!r} (feladó: {felado_fejlec!r}, válaszcím: {valasz_cim or '-'!r}, csatolmányok: {csatolmany_nevek or 'nincs'})")
         return True
     if not (feladas_cim and feladas_jelszo and cimzett_vegso):
         print(f"  ⚠️  Nincs teljesen beállítva az email-küldés ({kategoria}) - kihagyva.")
@@ -1782,6 +1800,8 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
     msg["Subject"] = targy
     msg["From"] = felado_fejlec
     msg["To"] = cimzett_vegso
+    if valasz_cim:
+        msg["Reply-To"] = valasz_cim
     msg.attach(MIMEText(html_torzs, "html", "utf-8"))
 
     for fajlnev, tartalom in (csatolmanyok or []):
@@ -1826,35 +1846,243 @@ def osszeg_szoveg(osszeg, penznem=None):
     return forint(osszeg)
 
 
-def uj_szamla_email_html(rekord):
-    ismeretlen_jelzes = ""
-    if rekord["osszeg"] is None or rekord["hatarido"] is None:
-        ismeretlen_jelzes = (
-            '<p style="color:#b45309;background:#fffbeb;padding:10px 14px;'
-            'border-radius:8px;">⚠️ Az összeget és/vagy a határidőt nem '
-            "sikerült automatikusan kiolvasni ebből az emailből - nézd meg "
-            "a csatolt PDF-et / az eredeti levelet a pontos adatokért.</p>"
-        )
+# ════════════════════════════════════════════
+#  ✉️  LEVÉLSABLONOK - KÖZÖS, A DASHBOARD STÍLUSÁT KÖVETŐ KERET
+# ════════════════════════════════════════════
+# Email-kliensbarát HTML: táblázatos elrendezés, csak inline stílusok,
+# webfont nélküli tartalék-betűkészlettel (a Gmail/Outlook a <style>
+# blokkot és a webfontot gyakran eldobja). A színek a dashboard
+# tokenjei (szamlak.html :root).
+LEVEL_SZINEK = {
+    "kek": ("#1f5f8b", "#e2edf6"),
+    "borostyan": ("#a35a00", "#fbefdc"),
+    "piros": ("#b3261e", "#fbe3e1"),
+    "zold": ("#1b7f4b", "#e1f3e8"),
+    "lila": ("#8a2f9e", "#f6e6fa"),
+}
+_LV_BETU = "'Figtree','Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+_LV_CIM_BETU = "'Bricolage Grotesque','Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+_LV_SZAM_BETU = "'JetBrains Mono',Consolas,'Courier New',monospace"
+_LV_SZOVEG, _LV_HALVANY, _LV_KERET, _LV_HATTER = "#16202e", "#5d6a7c", "#dde2ea", "#f3f5f8"
+
+
+def _datum_hu(iso) -> str:
+    """'2026-10-17' -> '2026. október 17.' (ha nem értelmezhető, változatlanul)."""
+    if not iso:
+        return "ismeretlen"
+    honapok = ["január", "február", "március", "április", "május", "június", "július",
+               "augusztus", "szeptember", "október", "november", "december"]
+    try:
+        d = date.fromisoformat(str(iso)[:10])
+    except ValueError:
+        return _esc(str(iso))
+    return f"{d.year}. {honapok[d.month - 1]} {d.day}."
+
+
+def _hatarido_allapot(hatarido):
+    """(felirat, szín-kulcs) a határidő chiphez."""
+    if not hatarido:
+        return "határidő ismeretlen", "borostyan"
+    try:
+        hatra = (date.fromisoformat(str(hatarido)[:10]) - magyar_ma()).days
+    except ValueError:
+        return "határidő ismeretlen", "borostyan"
+    if hatra < 0:
+        return f"lejárt {-hatra} napja", "piros"
+    if hatra == 0:
+        return "ma jár le", "piros"
+    if hatra <= 7:
+        return f"{hatra} nap múlva jár le", "borostyan"
+    return f"{hatra} nap van hátra", "zold"
+
+
+def _lv_chip(szoveg, szin_kulcs):
+    eros, halvany = LEVEL_SZINEK[szin_kulcs]
+    return (f'<span style="display:inline-block;padding:3px 10px;border-radius:999px;'
+            f'background:{halvany};color:{eros};font-size:12px;font-weight:600;'
+            f'font-family:{_LV_BETU};white-space:nowrap;">{_esc(szoveg)}</span>')
+
+
+def _lv_bekezdes(szoveg):
+    return (f'<p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:{_LV_SZOVEG};'
+            f'font-family:{_LV_BETU};">{szoveg}</p>')
+
+
+def _lv_reszletek(sorok):
+    """[(címke, érték-HTML), ...] -> címke/érték táblázat."""
+    tr = "".join(
+        f'<tr><td style="padding:9px 0;border-top:1px solid {_LV_KERET};color:{_LV_HALVANY};'
+        f'font-size:13px;font-family:{_LV_BETU};width:42%;vertical-align:top;">{_esc(cimke)}</td>'
+        f'<td style="padding:9px 0;border-top:1px solid {_LV_KERET};color:{_LV_SZOVEG};'
+        f'font-size:14px;font-weight:600;font-family:{_LV_BETU};text-align:right;">{ertek}</td></tr>'
+        for cimke, ertek in sorok
+    )
+    return f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:4px 0 18px;">{tr}</table>'
+
+
+def _lv_osszeg_blokk(osszeg_html, hatarido, szin_kulcs):
+    eros, halvany = LEVEL_SZINEK[szin_kulcs]
+    felirat, chip_szin = _hatarido_allapot(hatarido)
     return f"""
-    <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
-      <h2 style="color:#1d4ed8;">📄 Új számla érkezett - {_esc(rekord['szolgaltato_nev'])}</h2>
-      <table style="width:100%;border-collapse:collapse;">
-        <tr><td style="padding:6px 0;color:#555;">Tárgy</td>
-            <td style="padding:6px 0;"><strong>{_esc(rekord['targy'])}</strong></td></tr>
-        <tr><td style="padding:6px 0;color:#555;">Összeg</td>
-            <td style="padding:6px 0;"><strong>{osszeg_szoveg(rekord['osszeg'], rekord.get('penznem'))}</strong></td></tr>
-        <tr><td style="padding:6px 0;color:#555;">Fizetési határidő</td>
-            <td style="padding:6px 0;"><strong>{rekord['hatarido'] or 'ismeretlen'}</strong></td></tr>
-        <tr><td style="padding:6px 0;color:#555;">Érkezett</td>
-            <td style="padding:6px 0;">{rekord['erkezett']}</td></tr>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;background:{halvany};border-radius:12px;margin:6px 0 20px;">
+        <tr><td style="padding:18px 20px;">
+          <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:{eros};font-weight:700;font-family:{_LV_BETU};">Fizetendő</div>
+          <div style="font-size:30px;line-height:1.2;font-weight:700;color:{_LV_SZOVEG};font-family:{_LV_SZAM_BETU};margin:4px 0 10px;">{osszeg_html}</div>
+          <div style="font-size:14px;color:{_LV_SZOVEG};font-family:{_LV_BETU};">Határidő: <strong>{_datum_hu(hatarido)}</strong>&nbsp; {_lv_chip(felirat, chip_szin)}</div>
+        </td></tr>
+      </table>"""
+
+
+def _lv_szamla_tabla(rekordok, osszesen=True):
+    """Számlalista (összesítő/emlékeztető) - soronként szolgáltató + tárgy,
+    jobbra összeg és határidő-chip."""
+    sorok = ""
+    for r in rekordok:
+        felirat, szin = _hatarido_allapot(r.get("hatarido"))
+        al = _esc(r.get("targy") or "")
+        if r.get("szamlaszam"):
+            al += f' · <span style="font-family:{_LV_SZAM_BETU};">{_esc(r["szamlaszam"])}</span>'
+        sorok += f"""
+        <tr>
+          <td style="padding:12px 0;border-top:1px solid {_LV_KERET};vertical-align:top;">
+            <div style="font-size:14px;font-weight:600;color:{_LV_SZOVEG};font-family:{_LV_BETU};">{_esc(r.get('szolgaltato_nev') or '')}</div>
+            <div style="font-size:12px;color:{_LV_HALVANY};font-family:{_LV_BETU};margin-top:2px;">{al}</div>
+          </td>
+          <td style="padding:12px 0 12px 12px;border-top:1px solid {_LV_KERET};vertical-align:top;text-align:right;white-space:nowrap;">
+            <div style="font-size:14px;font-weight:700;color:{_LV_SZOVEG};font-family:{_LV_SZAM_BETU};">{osszeg_szoveg(r.get('osszeg'), r.get('penznem'))}</div>
+            <div style="font-size:12px;color:{_LV_HALVANY};font-family:{_LV_BETU};margin:3px 0 4px;">{_datum_hu(r.get('hatarido'))}</div>
+            {_lv_chip(felirat, szin)}
+          </td>
+        </tr>"""
+    lab = ""
+    if osszesen:
+        vegosszeg = sum(r.get("osszeg") or 0 for r in rekordok)
+        lab = f"""
+        <tr>
+          <td style="padding:14px 0 0;border-top:2px solid {_LV_SZOVEG};font-size:14px;font-weight:700;color:{_LV_SZOVEG};font-family:{_LV_BETU};">Összesen ({len(rekordok)} db)</td>
+          <td style="padding:14px 0 0;border-top:2px solid {_LV_SZOVEG};text-align:right;font-size:18px;font-weight:700;color:{_LV_SZOVEG};font-family:{_LV_SZAM_BETU};white-space:nowrap;">{forint(vegosszeg)}</td>
+        </tr>"""
+    return f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:4px 0 20px;">{sorok}{lab}</table>'
+
+
+def level_keret(szin_kulcs, cimke, cim, tartalom, labjegyzet="", elonezet=""):
+    """A közös levélkeret: színes felső sáv, kártya, fejléc, lábjegyzet.
+    elonezet: a postafiók-listában a tárgy mellett látszó rövid szöveg."""
+    eros, halvany = LEVEL_SZINEK[szin_kulcs]
+    rejtett = (f'<div style="display:none;max-height:0;overflow:hidden;opacity:0;">{_esc(elonezet)}</div>'
+               if elonezet else "")
+    lab = labjegyzet or "Ez egy automatikus értesítő."
+    return f"""<div style="margin:0;padding:24px 12px;background:{_LV_HATTER};">{rejtett}
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;border-collapse:separate;background:#ffffff;border:1px solid {_LV_KERET};border-radius:16px;overflow:hidden;">
+        <tr><td style="height:6px;background:{eros};font-size:0;line-height:0;">&nbsp;</td></tr>
+        <tr><td style="padding:26px 28px 6px;">
+          <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:{eros};font-weight:700;font-family:{_LV_BETU};">{_esc(cimke)}</div>
+          <h1 style="margin:6px 0 18px;font-size:23px;line-height:1.3;font-weight:700;color:{_LV_SZOVEG};font-family:{_LV_CIM_BETU};">{cim}</h1>
+          {tartalom}
+        </td></tr>
+        <tr><td style="padding:16px 28px 24px;border-top:1px solid {_LV_KERET};background:#fafbfc;">
+          <div style="font-size:12px;line-height:1.6;color:{_LV_HALVANY};font-family:{_LV_BETU};">{lab}</div>
+        </td></tr>
       </table>
-      {ismeretlen_jelzes}
-      <p style="color:#777;font-size:13px;margin-top:20px;">
-        Ha volt csatolt PDF az eredeti levélben, azt ehhez az emailhez is
-        csatoltuk.
-      </p>
-    </div>
-    """
+    </td></tr>
+  </table>
+</div>"""
+
+
+_KOR_LABJEGYZET = ("Ez egy automatikus értesítő. Ha kérdése van, vagy a számlát már rendezte, "
+                   "egyszerűen válaszoljon erre a levélre.")
+
+
+def kor_uj_szamla_email_html(rekord: dict) -> str:
+    """Bérlői körnek szóló értesítő egy új számláról (a PDF csatolva)."""
+    tartalom = (
+        _lv_bekezdes("Tisztelt Bérlő!")
+        + _lv_bekezdes(f"Tájékoztatjuk, hogy új számla érkezett: <strong>{_esc(rekord.get('szolgaltato_nev') or '')}</strong>. "
+                       "A számlát csatoltuk ehhez a levélhez.")
+        + _lv_osszeg_blokk(osszeg_szoveg(rekord.get("osszeg"), rekord.get("penznem")), rekord.get("hatarido"), "kek")
+        + _lv_reszletek([
+            ("Szolgáltató", _esc(rekord.get("szolgaltato_nev") or "")),
+            ("Megnevezés", _esc(rekord.get("targy") or "")),
+            ("Számlaszám", _esc(rekord.get("szamlaszam") or "–")),
+        ])
+        + _lv_bekezdes("Kérjük, a számlát a fizetési határidőig szíveskedjen rendezni. Köszönjük!")
+    )
+    return level_keret("kek", "Új számla", f"Új számla érkezett – {_esc(rekord.get('szolgaltato_nev') or '')}",
+                       tartalom, _KOR_LABJEGYZET,
+                       f"{osszeg_szoveg(rekord.get('osszeg'), rekord.get('penznem'))}, határidő: {_datum_hu(rekord.get('hatarido'))}")
+
+
+def kor_hatarido_emlekezteto_html(rekordok: list, napok: int) -> str:
+    """Bérlői emlékeztető: ezeknek a számláknak a határideje napok-on belül lejár."""
+    egy = len(rekordok) == 1
+    if egy:
+        r = rekordok[0]
+        tartalom = (
+            _lv_bekezdes("Tisztelt Bérlő!")
+            + _lv_bekezdes(f"Szeretnénk emlékeztetni, hogy az alábbi számla fizetési határideje hamarosan lejár.")
+            + _lv_osszeg_blokk(osszeg_szoveg(r.get("osszeg"), r.get("penznem")), r.get("hatarido"), "borostyan")
+            + _lv_reszletek([
+                ("Szolgáltató", _esc(r.get("szolgaltato_nev") or "")),
+                ("Megnevezés", _esc(r.get("targy") or "")),
+                ("Számlaszám", _esc(r.get("szamlaszam") or "–")),
+            ])
+        )
+    else:
+        tartalom = (
+            _lv_bekezdes("Tisztelt Bérlő!")
+            + _lv_bekezdes(f"Szeretnénk emlékeztetni, hogy az alábbi {len(rekordok)} számla fizetési határideje "
+                           f"a következő {napok} napban lejár.")
+            + _lv_szamla_tabla(rekordok)
+        )
+    tartalom += _lv_bekezdes("Kérjük, rendezze a határidőig. A számlá" + ("t" if egy else "kat")
+                             + " ismét csatoltuk. Ha már kifizette, kérjük, tekintse ezt a levelet tárgytalannak.")
+    cim = "Hamarosan lejár egy számla" if egy else f"Hamarosan lejár {len(rekordok)} számla"
+    return level_keret("borostyan", "Fizetési emlékeztető", cim, tartalom, _KOR_LABJEGYZET,
+                       f"Határidő: {_datum_hu(min((r.get('hatarido') or '9999') for r in rekordok))}")
+
+
+def kor_havi_osszesito_html(rekordok: list, kor_nev: str = "") -> str:
+    """Bérlői kör havi összesítője a még fizetetlen számlákról."""
+    tartalom = (
+        _lv_bekezdes("Tisztelt Bérlő!")
+        + _lv_bekezdes("Az alábbiakban összefoglaltuk a jelenleg fizetésre váró számlákat. "
+                       "A számlákat csatoltuk ehhez a levélhez.")
+        + _lv_szamla_tabla(rekordok)
+        + _lv_bekezdes("Kérjük, a még nyitott tételeket a határidőig szíveskedjen rendezni. Köszönjük!")
+    )
+    honapok = ["január", "február", "március", "április", "május", "június", "július",
+               "augusztus", "szeptember", "október", "november", "december"]
+    ma = magyar_ma()
+    return level_keret("kek", f"Havi összesítő · {ma.year}. {honapok[ma.month - 1]}",
+                       "Fizetésre váró számlák", tartalom, _KOR_LABJEGYZET,
+                       f"{len(rekordok)} számla, összesen {forint(sum(r.get('osszeg') or 0 for r in rekordok))}")
+
+
+def uj_szamla_email_html(rekord):
+    """A tulajdonosnak szóló azonnali "új számla" értesítő."""
+    figyelmeztetes = ""
+    if rekord["osszeg"] is None or rekord["hatarido"] is None:
+        eros, halvany = LEVEL_SZINEK["borostyan"]
+        figyelmeztetes = (
+            f'<p style="margin:0 0 16px;padding:12px 14px;border-radius:10px;background:{halvany};'
+            f'color:{eros};font-size:13px;font-family:{_LV_BETU};">⚠️ Az összeget és/vagy a határidőt '
+            "nem sikerült automatikusan kiolvasni - nézd meg a csatolt PDF-et / az eredeti levelet.</p>"
+        )
+    tartalom = (
+        _lv_osszeg_blokk(osszeg_szoveg(rekord["osszeg"], rekord.get("penznem")), rekord["hatarido"], "kek")
+        + figyelmeztetes
+        + _lv_reszletek([
+            ("Tárgy", _esc(rekord["targy"] or "")),
+            ("Számlaszám", _esc(rekord.get("szamlaszam") or "–")),
+            ("Érkezett", _esc(str(rekord.get("erkezett") or ""))),
+        ])
+    )
+    return level_keret("kek", "Új számla", f"{_esc(rekord['szolgaltato_nev'])}", tartalom,
+                       "Ha volt csatolt PDF az eredeti levélben, azt ehhez az emailhez is csatoltuk. "
+                       f'<a href="{_esc(DASHBOARD_URL)}" style="color:#1f5f8b;">Megnyitás a dashboardon</a>',
+                       f"{osszeg_szoveg(rekord['osszeg'], rekord.get('penznem'))}, határidő: {_datum_hu(rekord['hatarido'])}")
 
 
 def uj_meroallas_email_html(rekord):
@@ -1908,53 +2136,24 @@ def osszesito_email_html(fizetetlen_lista, vegosszeg, provider_osszegek, cim=Non
     (határidő-vezérelt) és a fix-napi, kézzel kiválasztott összesítő más
     szöveget indokol, ezért paraméterezhető, alapértéken a régi
     (küszöb-alapú) szöveg marad."""
-    sorok = ""
-    for r in fizetetlen_lista:
-        lejart = r["hatarido"] and r["hatarido"] < magyar_ma().isoformat()
-        szin = "#dc2626" if lejart else "#111827"
-        sorok += f"""
-        <tr>
-          <td style="padding:8px;border-bottom:1px solid #eee;">{_esc(r['szolgaltato_nev'])}</td>
-          <td style="padding:8px;border-bottom:1px solid #eee;">{_esc(r['targy'])}</td>
-          <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">{forint(r['osszeg'])}</td>
-          <td style="padding:8px;border-bottom:1px solid #eee;color:{szin};">
-            {r['hatarido'] or 'ismeretlen'}{' ⏰ LEJÁRT' if lejart else ''}
-          </td>
-        </tr>"""
-
-    provider_sorok = "".join(
-        f'<li>{_esc(nev)}: <strong>{forint(osszeg)}</strong></li>'
-        for nev, osszeg in provider_osszegek.items()
-    )
-
     cim_vegso = cim or "💰 Fizetetlen számlák összesítője"
     bevezeto_vegso = bevezeto or (
         "<p>Az alábbi számlák még nincsenek kifizetve, és valamelyik határideje "
         f"{SZAMLA_EMLEKEZTETO_NAPOK_ELOTTE} napon belül lejár (vagy már lejárt):</p>"
     )
-    return f"""
-    <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;">
-      <h2 style="color:#b91c1c;">{cim_vegso}</h2>
-      {bevezeto_vegso}
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
-        <tr style="background:#f3f4f6;">
-          <th style="padding:8px;text-align:left;">Szolgáltató</th>
-          <th style="padding:8px;text-align:left;">Tárgy</th>
-          <th style="padding:8px;text-align:right;">Összeg</th>
-          <th style="padding:8px;text-align:left;">Határidő</th>
-        </tr>
-        {sorok}
-      </table>
-      <h3 style="margin-top:24px;">Szolgáltatónkénti bontás</h3>
-      <ul>{provider_sorok}</ul>
-      <p style="font-size:18px;margin-top:16px;">
-        <strong>Végösszeg: {forint(vegosszeg)}</strong>
-      </p>
-      <p style="color:#777;font-size:13px;margin-top:20px;">
-        Ahol sikerült, a PDF-számlákat is csatoltuk ehhez az emailhez.
-      </p>
-    </div>
-    """
+    bevezeto_vegso = bevezeto_vegso.replace(
+        "<p>", f'<p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:{_LV_SZOVEG};font-family:{_LV_BETU};">')
+    bontas = ""
+    if len(provider_osszegek) > 1:
+        bontas = (f'<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:{_LV_HALVANY};'
+                  f'font-weight:700;font-family:{_LV_BETU};margin:6px 0 2px;">Szolgáltatónként</div>'
+                  + _lv_reszletek([(nev, forint(osszeg)) for nev, osszeg in provider_osszegek.items()]))
+    tartalom = bevezeto_vegso + _lv_szamla_tabla(fizetetlen_lista) + bontas
+    return level_keret("piros" if any(r.get("hatarido") and r["hatarido"] < magyar_ma().isoformat()
+                                      for r in fizetetlen_lista) else "kek",
+                       "Összesítő", _esc(cim_vegso), tartalom,
+                       "Ahol sikerült, a PDF-számlákat is csatoltuk ehhez az emailhez.",
+                       f"{len(fizetetlen_lista)} számla, összesen {forint(vegosszeg)}")
 
 
 def konyvelo_emlekezteto_email_html():
@@ -3087,8 +3286,8 @@ def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztik
         csatolmanyok = csatolmanyok_osszegyujtese(allapot, [(rid, rekord)])
         statisztika["email_ertesitesek"] += 1
         if email_kuldes(
-            f"📄 Új számla – {rekord['szolgaltato_nev']}",
-            uj_szamla_email_html(rekord),
+            f"Új számla – {rekord['szolgaltato_nev']} – {osszeg_szoveg(rekord.get('osszeg'), rekord.get('penznem'))}",
+            kor_uj_szamla_email_html(rekord),
             csatolmanyok or None,
             cimzett=cimzett,
         ):
@@ -3103,6 +3302,89 @@ def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztik
                     del varolista[rid]
             except (TypeError, ValueError):
                 del varolista[rid]
+
+
+# BÉRLŐI KÖR - HATÁRIDŐ ELŐTTI EMLÉKEZTETŐ: a dashboardon megadott számú
+# nappal (kor_emlekezteto_napok) a fizetési határidő előtt a kör minden
+# még fizetetlen, ablakba eső számlájáról EGY levél megy (PDF-ekkel), és
+# számlánként csak egyszer (kor_emlekezteto_kuldve: rid -> dátum, CSAK a
+# script írja). A tulajdonos másolatot kap. Ha a számláról az új-számla
+# értesítő az elmúlt 3 napban ment ki, várunk vele, hogy ne menjen két
+# levél egyszerre.
+KOR_EMLEKEZTETO_UJ_SZAMLA_UTAN_NAP = 3
+
+
+def kor_hatarido_emlekezteto_kuldese(allapot: dict, szamlak: dict, napok, statisztika: dict):
+    kuldve = allapot.setdefault("kor_emlekezteto_kuldve", {})
+    for rid in [r for r in kuldve if r not in szamlak or szamlak[r].get("fizetve")]:
+        del kuldve[rid]
+    if not napok or EMAIL_KIKAPCSOLVA:
+        return
+    ma = magyar_ma()
+    varolista = allapot.get("kor_ertesito_varolista") or {}
+    for kor_kulcs in ("kor_a", "kor_b"):
+        cimzett = _cimzett_string(_kor_cimzettek(allapot, kor_kulcs))
+        if not cimzett:
+            continue
+        esedekes = []
+        for rid, r in _fizetetlen_szamlak_korhoz(szamlak, kor_kulcs):
+            if rid in kuldve or not r.get("hatarido"):
+                continue
+            try:
+                hatra = (date.fromisoformat(str(r["hatarido"])[:10]) - ma).days
+            except ValueError:
+                continue
+            if not 0 <= hatra <= napok:
+                continue
+            elkuldve = (varolista.get(rid) or {}).get("elkuldve")
+            if elkuldve:
+                try:
+                    if (magyar_ido() - datetime.fromisoformat(elkuldve)).days < KOR_EMLEKEZTETO_UJ_SZAMLA_UTAN_NAP:
+                        continue
+                except (TypeError, ValueError):
+                    pass
+            esedekes.append((rid, r))
+        if not esedekes:
+            continue
+        rekordok = sorted((r for _, r in esedekes), key=lambda r: r.get("hatarido") or "")
+        kor_nev = _kor_nev_megjeleniteshez(allapot, kor_kulcs)
+        if len(rekordok) == 1:
+            targy = (f"Fizetési emlékeztető – {rekordok[0].get('szolgaltato_nev')} – "
+                     f"határidő: {_datum_hu(rekordok[0].get('hatarido'))}")
+        else:
+            targy = f"Fizetési emlékeztető – {len(rekordok)} számla határideje közeleg"
+        html = kor_hatarido_emlekezteto_html(rekordok, napok)
+        csatolmanyok = csatolmanyok_osszegyujtese(allapot, esedekes)
+        statisztika["email_ertesitesek"] += 1
+        if email_kuldes(targy, html, csatolmanyok or None, cimzett=cimzett):
+            for rid, _ in esedekes:
+                kuldve[rid] = ma.isoformat()
+            print(f"  ⏰ Bérlői emlékeztető elküldve: {kor_nev} ({len(rekordok)} számla).")
+            tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+            if tulajdonos_cimzett:
+                email_kuldes(f"Másolat ({kor_nev}): {targy}", html, None, cimzett=tulajdonos_cimzett)
+
+
+# Egyszeri beállítás-csomag (a felhasználó kérése, 2026-10): a dashboardon
+# állítható kulcsokat EGYSZER, a következő futáskor tölti ki a script -
+# utána a dashboard a gazdájuk, a script nem nyúl hozzájuk újra.
+BEALLITAS_CSOMAG_2026_10 = {
+    "kor_azonnali_ertesito": True,
+    "kor_ertesito_jovahagyas": False,
+    "kor_emlekezteto_napok": 7,
+    "osszesito_honap_nap": OSSZESITO_UTOLSO_MUNKANAP,
+    "kivalasztott_szamlak": None,
+    "valasz_cim": "info@reilviolin.hu",
+}
+
+
+def beallitas_csomag_alkalmazasa(allapot: dict) -> None:
+    if allapot.get("beallitas_csomag_2026_10"):
+        return
+    allapot.update(BEALLITAS_CSOMAG_2026_10)
+    allapot["beallitas_csomag_2026_10"] = magyar_ido().isoformat()
+    print("  ⚙️  Egyszeri beállítás-csomag alkalmazva (bérlői értesítő jóváhagyás nélkül, "
+          "7 napos bérlői emlékeztető, havi összesítő a hónap utolsó munkanapján, válaszcím).")
 
 
 def _uj_szamla_ertesites_kuldese(rekord: dict, pdf_bytes, statisztika: dict, allapot: dict, kor_kulcs=None, rid=None):
@@ -3237,7 +3519,8 @@ def csatolmanyok_osszegyujtese(allapot: dict, rid_rekord_lista):
     return csatolmanyok
 
 
-def _osszesito_kuldese(allapot: dict, erintett, cim_resz: str, bevezeto: str, cimzett, statisztika: dict, pdf_csatolas: bool = True):
+def _osszesito_kuldese(allapot: dict, erintett, cim_resz: str, bevezeto: str, cimzett, statisztika: dict, pdf_csatolas: bool = True,
+                      html=None, targy=None):
     """Közös segédfüggvény MINDEN "fizetetlen számlák összesítője" jellegű
     emailhez - a küszöb-alapú (2. pont), a fix-napi (2b), és az ÚJ,
     manuális "Küldés most" gombok (2d) is ezt hívják. erintett: [(rid,
@@ -3254,8 +3537,8 @@ def _osszesito_kuldese(allapot: dict, erintett, cim_resz: str, bevezeto: str, ci
     csatolmanyok = csatolmanyok_osszegyujtese(allapot, erintett) if pdf_csatolas else None
     statisztika["email_ertesitesek"] += 1
     email_kuldes(
-        f"📅 Fizetendő számlák összesítője{cim_resz} – {len(erintett_rekordok)} db – {forint(vegosszeg)}",
-        osszesito_email_html(
+        targy or f"📅 Fizetendő számlák összesítője{cim_resz} – {len(erintett_rekordok)} db – {forint(vegosszeg)}",
+        html or osszesito_email_html(
             erintett_rekordok, vegosszeg, provider_osszegek,
             cim=f"📅 Fizetendő számlák összesítője{cim_resz}",
             bevezeto=bevezeto,
@@ -3302,12 +3585,12 @@ def _berlo_kor_osszesito_kuldese_most(allapot: dict, szamlak: dict, kor_kulcs: s
               "manuális összesítő kihagyva.")
         return
     kor_nev = (allapot.get("kor_nevek") or {}).get(kor_kulcs) or ("1. kör" if kor_kulcs == "kor_a" else "2. kör")
-    cim_resz = f" – {_esc(kor_nev)} (azonnali, dashboard)"
+    cim_resz = f" – {kor_nev} (azonnali, dashboard)"
     _osszesito_kuldese(
-        allapot, erintett, cim_resz,
-        f"<p>Ez a(z) <strong>{_esc(kor_nev)}</strong> jelenleg fizetetlen számláinak összesítője - "
-        "a dashboardról kifejezetten kért, azonnali küldés:</p>",
-        cimzett, statisztika, pdf_csatolas,
+        allapot, erintett, cim_resz, "", cimzett, statisztika, pdf_csatolas,
+        html=kor_havi_osszesito_html([r for _, r in erintett], kor_nev),
+        targy=f"Fizetésre váró számlák – {len(erintett)} db – "
+              f"{forint(sum(r.get('osszeg') or 0 for _, r in erintett))}",
     )
     _tulajdonos_osszesito_masolat(allapot, erintett, cim_resz, statisztika, pdf_csatolas)
 
@@ -3332,6 +3615,49 @@ def _tulajdonos_osszesito_kuldese_most(allapot: dict, szamlak: dict, statisztika
         "sorolt tételek) - a dashboardról kifejezetten kért, azonnali küldés:</p>",
         cimzett, statisztika, pdf_csatolas,
     )
+
+
+def _husvet_vasarnap(ev: int) -> date:
+    """Húsvétvasárnap (Gauss/Meeus-féle algoritmus, Gergely-naptár)."""
+    a, b, c = ev % 19, ev // 100, ev % 100
+    d, e = b // 4, b % 4
+    f = (b + 8) // 25
+    g = (b - f + 1) // 3
+    h = (19 * a + b - d - g + 15) % 30
+    i, k = c // 4, c % 4
+    l = (32 + 2 * e + 2 * i - h - k) % 7
+    m = (a + 11 * h + 22 * l) // 451
+    honap = (h + l - 7 * m + 114) // 31
+    nap = (h + l - 7 * m + 114) % 31 + 1
+    return date(ev, honap, nap)
+
+
+def _magyar_unnepnapok(ev: int) -> set:
+    """A magyar munkaszüneti napok (a fix ünnepek + nagypéntek, húsvét- és
+    pünkösdhétfő). Az évente rendeletben áthelyezett munkanapokat
+    (szombati ledolgozás) szándékosan nem követjük."""
+    husvet = _husvet_vasarnap(ev)
+    fix = [(1, 1), (3, 15), (5, 1), (8, 20), (10, 23), (11, 1), (12, 24), (12, 25), (12, 26)]
+    return {date(ev, h, n) for h, n in fix} | {
+        husvet - timedelta(days=2), husvet + timedelta(days=1), husvet + timedelta(days=50)}
+
+
+def honap_utolso_munkanapja(datum: date) -> date:
+    nap = date(datum.year, datum.month, _honap_utolso_napja(datum))
+    unnepek = _magyar_unnepnapok(datum.year)
+    while nap.weekday() >= 5 or nap in unnepek:
+        nap -= timedelta(days=1)
+    return nap
+
+
+def _osszesito_ma_esedekes(ma: date, beallitas) -> bool:
+    if beallitas == OSSZESITO_UTOLSO_MUNKANAP:
+        return ma == honap_utolso_munkanapja(ma)
+    return isinstance(beallitas, int) and ma.day == beallitas
+
+
+def _osszesito_nap_felirat(beallitas) -> str:
+    return "hónap utolsó munkanapja" if beallitas == OSSZESITO_UTOLSO_MUNKANAP else f"{beallitas}."
 
 
 def _honap_utolso_napja(datum: date) -> int:
@@ -5669,10 +5995,19 @@ def main():
     ismeretlen_fizetesek = allapot.setdefault("ismeretlen_fizetesek", {})
     feldolgozott_uidok = set(allapot.setdefault("feldolgozott_uidok", []))
 
+    beallitas_csomag_alkalmazasa(allapot)
+    global KOZUZEMI_VALASZ_CIM
+    KOZUZEMI_VALASZ_CIM = (allapot.get("valasz_cim") or "").strip()
+
     # A dashboardon (szamlak.html "Beállítások" panel) esetlegesen
     # felülírt paraméterek - ugyanabból a már betöltött "allapot"
     # dict-ből (ld. beallitasok_kinyerese() kommentjét).
     beallitasok = beallitasok_kinyerese(allapot)
+    print(f"  ⚙️  Közüzemi email-küldés: {'KIKAPCSOLVA' if beallitasok['email_kikapcsolva'] else 'bekapcsolva'}, "
+          f"bérlői új-számla értesítő: {'be' if _kor_ertesito_be_van_kapcsolva(allapot) else 'ki'}"
+          f"{' (jóváhagyással)' if _kor_ertesito_jovahagyas_kell(allapot) else ''}, "
+          f"bérlői emlékeztető: {beallitasok['kor_emlekezteto_napok'] or 'ki'} nap, "
+          f"havi összesítő: {beallitasok['osszesito_honap_nap'] or 'ki'}, válaszcím: {KOZUZEMI_VALASZ_CIM or '-'}")
     # A dashboard "Hány nappal a határidő előtt jelezzen" mezője ÜRES = a
     # napi határidő-előtti összesítő KIKAPCSOLVA (a felhasználó kifejezett
     # kérésére - korábban ilyenkor a beépített alapértékre (5 nap) esett
@@ -6380,7 +6715,7 @@ def main():
     if beallitasok["osszesito_honap_nap"] is not None:
         ma_datum = magyar_ma()
         if (
-            ma_datum.day == beallitasok["osszesito_honap_nap"]
+            _osszesito_ma_esedekes(ma_datum, beallitasok["osszesito_honap_nap"])
             and allapot.get("utolso_fix_osszesito_datum") != ma_str
         ):
             kivalasztott_id_k = beallitasok["kivalasztott_szamlak"]
@@ -6391,7 +6726,7 @@ def main():
                 if erintett:
                     _osszesito_kuldese(
                         allapot, erintett,
-                        f" ({beallitasok['osszesito_honap_nap']}.)",
+                        f" ({_osszesito_nap_felirat(beallitasok['osszesito_honap_nap'])})",
                         "<p>Ez egy általad beállított, fix napi összesítő - a Te kifejezett "
                         "kiválasztásod alapján:</p>",
                         None, statisztika,
@@ -6410,7 +6745,7 @@ def main():
                 if altalanos:
                     _osszesito_kuldese(
                         allapot, altalanos,
-                        f" ({beallitasok['osszesito_honap_nap']}.)",
+                        f" ({_osszesito_nap_felirat(beallitasok['osszesito_honap_nap'])})",
                         "<p>Ez egy általad beállított, fix napi összesítő - az ÖSSZES jelenleg "
                         "fizetetlen, bérlői körbe NEM sorolt számláról (nem volt egyedi kiválasztás):</p>",
                         None, statisztika,
@@ -6429,18 +6764,21 @@ def main():
                     kor_nev = (allapot.get("kor_nevek") or {}).get(kor_kulcs) or (
                         "1. kör" if kor_kulcs == "kor_a" else "2. kör"
                     )
-                    cim_resz = f" – {kor_nev} ({beallitasok['osszesito_honap_nap']}.)"
+                    cim_resz = f" – {kor_nev} ({_osszesito_nap_felirat(beallitasok['osszesito_honap_nap'])})"
                     _osszesito_kuldese(
-                        allapot, kor_erintett, cim_resz,
-                        f"<p>Ez a(z) <strong>{_esc(kor_nev)}</strong> havi, fix napi összesítője - "
-                        "az ehhez a körhöz tartozó, jelenleg fizetetlen számlákról:</p>",
-                        cimzett, statisztika,
+                        allapot, kor_erintett, cim_resz, "", cimzett, statisztika,
+                        html=kor_havi_osszesito_html([r for _, r in kor_erintett], kor_nev),
+                        targy=f"Fizetésre váró számlák – {len(kor_erintett)} db – "
+                              f"{forint(sum(r.get('osszeg') or 0 for _, r in kor_erintett))}",
                     )
                     _tulajdonos_osszesito_masolat(allapot, kor_erintett, cim_resz, statisztika, True)
             allapot["utolso_fix_osszesito_datum"] = ma_str
 
     # ---- 2b-2. Bérlői körök - azonnali új-számla emailek (jóváhagyási fázissal) ----
     kor_ertesito_varolista_feldolgozasa(allapot, szamlak, statisztika)
+
+    # ---- 2b-3. Bérlői körök - határidő előtti emlékeztető ----
+    kor_hatarido_emlekezteto_kuldese(allapot, szamlak, beallitasok["kor_emlekezteto_napok"], statisztika)
 
     # ---- 2c. Dátum-intervallumos, eseti küldés egy megadott email-címre ----
     # Ezt a dashboard "Számlák küldése emailben" panelje indítja el egy
