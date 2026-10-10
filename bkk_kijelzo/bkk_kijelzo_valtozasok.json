@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:22:30.733316+02:00",
+  "frissitve": "2026-10-11T00:23:03.471888+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.387621+02:00",
-      "kulcs": "NTM431",
-      "rendszam": "NTM431",
-      "vehicle_id": "6499",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "250",
-      "route_id": "2500",
-      "lat": 47.434844970703125,
-      "lon": 19.01295280456543,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Regényes utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.387633+02:00",
-      "kulcs": "NTM434",
-      "rendszam": "NTM434",
-      "vehicle_id": "6502",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "107",
-      "route_id": "1070",
-      "lat": 47.48929977416992,
-      "lon": 19.04694366455078,
-      "elozo_szoveg": "Budafoki út / Dombóvári út",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.387656+02:00",
-      "kulcs": "NTM437",
-      "rendszam": "NTM437",
-      "vehicle_id": "6505",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.42267990112305,
-      "lon": 19.041418075561523,
-      "elozo_szoveg": "Nagytétény-Diósd vá.",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-10-10T12:34:32.387678+02:00",
       "kulcs": "NTP538",
@@ -260000,6 +259961,45 @@
       "lon": 19.158687591552734,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-11T00:23:03.421203+02:00",
+      "kulcs": "FKU940",
+      "rendszam": "FKU940",
+      "vehicle_id": "3096",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.510860443115234,
+      "lon": 19.05612564086914,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-11T00:23:03.421794+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.50068664550781,
+      "lon": 19.107908248901367,
+      "elozo_szoveg": "Gyöngyösi utca M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-11T00:23:03.421966+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46556091308594,
+      "lon": 19.125486373901367,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
     }
   ]
 }
