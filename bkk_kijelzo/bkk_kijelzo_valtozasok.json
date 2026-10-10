@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:55:21.842549+02:00",
+  "frissitve": "2026-10-11T00:55:58.880646+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.390290+02:00",
-      "kulcs": "SKR721",
-      "rendszam": "SKR721",
-      "vehicle_id": "7670",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "VP50",
-      "route_id": "VP50",
-      "lat": 47.43933868408203,
-      "lon": 19.187915802001953,
-      "elozo_szoveg": "Szarvas csárda tér",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.390326+02:00",
-      "kulcs": "SKR727",
-      "rendszam": "SKR727",
-      "vehicle_id": "7676",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.43794250488281,
-      "lon": 19.101770401000977,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.390826+02:00",
-      "kulcs": "SKR733",
-      "rendszam": "SKR733",
-      "vehicle_id": "7682",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.47590255737305,
-      "lon": 19.069360733032227,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.390846+02:00",
-      "kulcs": "SKR734",
-      "rendszam": "SKR734",
-      "vehicle_id": "7683",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.42198181152344,
-      "lon": 19.262161254882812,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.390859+02:00",
-      "kulcs": "SKR735",
-      "rendszam": "SKR735",
-      "vehicle_id": "7684",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4548454284668,
-      "lon": 19.18833351135254,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
     {
       "idopont": "2026-10-10T12:34:32.390873+02:00",
       "kulcs": "SKR737",
@@ -260000,6 +259935,71 @@
       "lon": 19.05711555480957,
       "elozo_szoveg": "Nyugati pályaudvar M",
       "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-10-11T00:55:58.813486+02:00",
+      "kulcs": "AADI609",
+      "rendszam": "AADI609",
+      "vehicle_id": "106",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47538375854492,
+      "lon": 19.04690170288086,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-11T00:55:58.813562+02:00",
+      "kulcs": "AADR707",
+      "rendszam": "AADR707",
+      "vehicle_id": "175",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.49898910522461,
+      "lon": 19.050947189331055,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-10-11T00:55:58.815712+02:00",
+      "kulcs": "SKN832",
+      "rendszam": "SKN832",
+      "vehicle_id": "544",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50873565673828,
+      "lon": 19.095348358154297,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-11T00:55:58.815804+02:00",
+      "kulcs": "NGC152",
+      "rendszam": "NGC152",
+      "vehicle_id": "6198",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.49967956542969,
+      "lon": 19.024147033691406,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-11T00:55:58.816309+02:00",
+      "kulcs": "415 103",
+      "rendszam": "415 103",
+      "vehicle_id": "945514151030",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.52613067626953,
+      "lon": 19.090190887451172,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szob"
     }
   ]
 }
