@@ -3477,8 +3477,16 @@ def _fizetetlen_szamlak_korhoz(szamlak: dict, kor_kulcs):
     hozzáadása nélkül."""
     return [
         (rid, r) for rid, r in szamlak.items()
-        if not r.get("fizetve") and (kor_kulcs is None or r.get("kor") == kor_kulcs)
+        if not r.get("fizetve") and not _feldolgozas_alatt(r)
+        and (kor_kulcs is None or r.get("kor") == kor_kulcs)
     ]
+
+
+def _feldolgozas_alatt(r: dict) -> bool:
+    """A Vízművek portál "Feldolgozás alatt" állapota: a befizetés már
+    megtörtént, csak még nincs lekönyvelve - ezért nem kerül bele a körök
+    összesítőibe és emlékeztetőibe (a dashboard is külön mutatja)."""
+    return str(r.get("portal_allapot") or "").strip().lower().startswith("feldolgoz")
 
 
 def csatolmanyok_osszegyujtese(allapot: dict, rid_rekord_lista):
