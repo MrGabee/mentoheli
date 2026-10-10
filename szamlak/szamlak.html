@@ -77,7 +77,11 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     min-height: 70vh; text-align: center; gap: 14px;
   }
-  #jelszo-kepernyo input {
+  #jelszo-urlap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  #jelszo-kepernyo .jelszo-marad { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); cursor: pointer; }
+  #jelszo-kepernyo .jelszo-marad input { width: auto; padding: 0; }
+  #kijelentkezes-gomb { border: 1px solid var(--border); background: var(--card); color: var(--muted); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  #jelszo-kepernyo input:not([type=checkbox]) {
     padding: 12px 14px; font-size: 16px; border: 1px solid var(--border);
     border-radius: 10px; width: 260px; max-width: 80vw;
   }
@@ -456,9 +460,12 @@
   <div id="jelszo-kepernyo">
     <h1>🔒 Számla áttekintő</h1>
     <p id="jelszo-info">Jelentkezz be a felhasználóneveddel és jelszavaddal. (Az admin a "Felhasználók kezelése" panelen tud új belépést létrehozni.)</p>
-    <input type="text" id="jelszo-felhasznalonev" placeholder="Felhasználónév" autocomplete="username">
-    <input type="password" id="jelszo-jelszo" placeholder="Jelszó" autocomplete="current-password">
-    <button id="jelszo-gomb">Bejelentkezés</button>
+    <form id="jelszo-urlap" method="post" action="#" autocomplete="on">
+      <input type="text" id="jelszo-felhasznalonev" name="username" placeholder="Felhasználónév" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      <input type="password" id="jelszo-jelszo" name="password" placeholder="Jelszó" autocomplete="current-password" required>
+      <label class="jelszo-marad"><input type="checkbox" id="jelszo-maradjak" checked> Maradjak bejelentkezve ezen az eszközön</label>
+      <button type="submit" id="jelszo-gomb">Bejelentkezés</button>
+    </form>
     <div id="jelszo-hiba"></div>
   </div>
 
@@ -487,6 +494,7 @@
         <h1 id="oldal-cim">Közüzemi számlák</h1>
         <div class="alcim" id="oldal-alcim">Vízművek · MVM · Díjnet</div>
       </div>
+      <button type="button" id="kijelentkezes-gomb">Kijelentkezés</button>
     </div>
 
     <div class="nezet-gombok" id="fomenu-fulek">
@@ -4922,24 +4930,41 @@
       aktualisFelhasznalonev = felhasznalonev;
       szerepkor = belepes.szerepkor === "admin" ? "admin" : "user";
       await adatBetoltesEsMegjelenites();
+      // "Maradjak bejelentkezve": a localStorage túléli az app/böngésző
+      // bezárását, a sessionStorage csak az adott fület. A jelszót magát
+      // SOHA nem tároljuk - azt a böngésző/telefon jelszókezelője menti.
+      const maradjEl = document.getElementById("jelszo-maradjak");
+      const tar = (maradjEl && maradjEl.checked) ? localStorage : sessionStorage;
       try {
-        sessionStorage.setItem("szamla_api_kulcs", aktualisApiKulcs);
-        sessionStorage.setItem("szamla_szerepkor", szerepkor);
-        sessionStorage.setItem("szamla_felhasznalonev", felhasznalonev);
+        tar.setItem("szamla_api_kulcs", aktualisApiKulcs);
+        tar.setItem("szamla_szerepkor", szerepkor);
+        tar.setItem("szamla_felhasznalonev", felhasznalonev);
       } catch (e) { /* ignorálható */ }
+      // A jelszókezelő (Chrome / Android Google Jelszókezelő) felajánlja a mentést.
+      if (window.PasswordCredential && navigator.credentials && jelszo) {
+        try { await navigator.credentials.store(new PasswordCredential({ id: felhasznalonev, password: jelszo, name: felhasznalonev })); }
+        catch (e) { /* ignorálható */ }
+      }
     } catch (e) {
       aktualisApiKulcs = null;
       hibaEl.textContent = "Hibás felhasználónév/jelszó, vagy az adatbázis API nem érhető el (" + e.message + ").";
     }
   }
 
-  document.getElementById("jelszo-gomb").addEventListener("click", () => {
+  document.getElementById("jelszo-urlap").addEventListener("submit", (e) => {
+    e.preventDefault();
     bejelentkezes(document.getElementById("jelszo-felhasznalonev").value.trim(), document.getElementById("jelszo-jelszo").value);
   });
-  ["jelszo-felhasznalonev", "jelszo-jelszo"].forEach((elemId) => {
-    document.getElementById(elemId).addEventListener("keydown", (e) => {
-      if (e.key === "Enter") bejelentkezes(document.getElementById("jelszo-felhasznalonev").value.trim(), document.getElementById("jelszo-jelszo").value);
+
+  const MENTETT_KULCSOK = ["szamla_api_kulcs", "szamla_szerepkor", "szamla_felhasznalonev"];
+  document.getElementById("kijelentkezes-gomb").addEventListener("click", async () => {
+    MENTETT_KULCSOK.forEach((k) => {
+      try { localStorage.removeItem(k); } catch (e) { /* ignorálható */ }
+      try { sessionStorage.removeItem(k); } catch (e) { /* ignorálható */ }
     });
+    // Kijelentkezés után ne lépjen be magától a mentett jelszóval.
+    try { if (navigator.credentials && navigator.credentials.preventSilentAccess) await navigator.credentials.preventSilentAccess(); } catch (e) { /* ignorálható */ }
+    location.reload();
   });
 
   // Kényelmi funkció: ugyanabban a böngésző-fülben (session alatt) nem
@@ -4949,12 +4974,28 @@
   // csak közvetlenül betöltjük az adatot a mentett kulccsal.
   (async function ujraBelepesMentettAdatokkal() {
     let mentettKulcs, mentettSzerepkor, mentettNev;
-    try {
-      mentettKulcs = sessionStorage.getItem("szamla_api_kulcs");
-      mentettSzerepkor = sessionStorage.getItem("szamla_szerepkor");
-      mentettNev = sessionStorage.getItem("szamla_felhasznalonev");
-    } catch (e) { return; }
-    if (!mentettKulcs) return;
+    for (const tar of [sessionStorage, localStorage]) {
+      try {
+        mentettKulcs = tar.getItem("szamla_api_kulcs");
+        mentettSzerepkor = tar.getItem("szamla_szerepkor");
+        mentettNev = tar.getItem("szamla_felhasznalonev");
+      } catch (e) { mentettKulcs = null; }
+      if (mentettKulcs) break;
+    }
+    if (!mentettKulcs) {
+      // Nincs mentett belépés: ha a jelszókezelőben van mentett jelszó
+      // ehhez az oldalhoz, a böngésző csendben (kérdés nélkül) visszaadja.
+      if (window.PasswordCredential && navigator.credentials) {
+        try {
+          const c = await navigator.credentials.get({ password: true, mediation: "silent" });
+          if (c && c.password) {
+            document.getElementById("jelszo-felhasznalonev").value = c.id;
+            await bejelentkezes(c.id, c.password);
+          }
+        } catch (e) { /* ignorálható */ }
+      }
+      return;
+    }
     aktualisApiKulcs = mentettKulcs;
     aktualisFelhasznalonev = mentettNev || null;
     szerepkor = mentettSzerepkor === "admin" ? "admin" : "user";
@@ -4962,11 +5003,10 @@
       await adatBetoltesEsMegjelenites();
     } catch (e) {
       aktualisApiKulcs = null;
-      try {
-        sessionStorage.removeItem("szamla_api_kulcs");
-        sessionStorage.removeItem("szamla_szerepkor");
-        sessionStorage.removeItem("szamla_felhasznalonev");
-      } catch (e2) { /* ignorálható */ }
+      ["szamla_api_kulcs", "szamla_szerepkor", "szamla_felhasznalonev"].forEach((k) => {
+        try { sessionStorage.removeItem(k); } catch (e2) { /* ignorálható */ }
+        try { localStorage.removeItem(k); } catch (e2) { /* ignorálható */ }
+      });
       // A bejelentkező képernyő így is látszik marad - nem írunk hibát
       // bele, mert a felhasználó nem is próbált most éppen belépni.
     }
@@ -5044,7 +5084,7 @@
     if (visszaallitva || tartalom.style.display !== "block") return;
     visszaallitva = true;
     let nev = null;
-    try { nev = sessionStorage.getItem("szamla_felhasznalonev"); } catch (e) { /* ignorálható */ }
+    try { nev = sessionStorage.getItem("szamla_felhasznalonev") || localStorage.getItem("szamla_felhasznalonev"); } catch (e) { /* ignorálható */ }
     if (nev) $("om-felhasznalo").textContent = "Bejelentkezve: " + nev;
     const mentett = olvas("szamla_oldal");
     const adminCsak = mentett && document.querySelector(`#oldalmenu button[data-oldal="${mentett}"][data-csak-admin]`);
