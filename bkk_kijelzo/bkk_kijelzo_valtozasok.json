@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:42:22.141156+02:00",
+  "frissitve": "2026-10-11T00:42:55.902875+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.389215+02:00",
-      "kulcs": "T9104",
-      "rendszam": "T9104",
-      "vehicle_id": "7351",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.50028991699219,
-      "lon": 19.107995986938477,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.389229+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.50001907348633,
-      "lon": 19.08095932006836,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.389241+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.515907287597656,
-      "lon": 19.059175491333008,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.389262+02:00",
-      "kulcs": "T9109",
-      "rendszam": "T9109",
-      "vehicle_id": "7356",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.50205612182617,
-      "lon": 19.074541091918945,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.389276+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.500152587890625,
-      "lon": 19.109498977661133,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-10T12:34:32.389297+02:00",
       "kulcs": "V2113",
@@ -260000,6 +259935,71 @@
       "lon": 19.261554718017578,
       "elozo_szoveg": "Liszt Ferenc Airport 2",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-11T00:42:55.806757+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51998519897461,
+      "lon": 19.14813995361328,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-11T00:42:55.806977+02:00",
+      "kulcs": "V2030",
+      "rendszam": "V2030",
+      "vehicle_id": "2030",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.51114273071289,
+      "lon": 19.03192710876465,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-11T00:42:55.806998+02:00",
+      "kulcs": "V2031",
+      "rendszam": "V2031",
+      "vehicle_id": "2031",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.473968505859375,
+      "lon": 19.047338485717773,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-11T00:42:55.807025+02:00",
+      "kulcs": "V2034",
+      "rendszam": "V2034",
+      "vehicle_id": "2034",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50734329223633,
+      "lon": 19.024782180786133,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-11T00:42:55.809646+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.56045913696289,
+      "lon": 19.0902042388916,
+      "elozo_szoveg": "Bosnyák tér",
+      "uj_szoveg": "Megyer, Szondi utca"
     }
   ]
 }
