@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T03:16:56.293283+02:00",
+  "frissitve": "2026-10-10T03:17:26.674852+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:12:56.685584+02:00",
-      "kulcs": "AOGF664",
-      "rendszam": "AOGF664",
-      "vehicle_id": "746",
-      "vehicle_label": "Csepel, Soroksári rév",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.46215057373047,
-      "lon": 19.148313522338867,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Csepel, Soroksári rév"
-    },
-    {
-      "idopont": "2026-10-09T15:12:56.686009+02:00",
-      "kulcs": "RVY747",
-      "rendszam": "RVY747",
-      "vehicle_id": "7645",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.392913818359375,
-      "lon": 19.223712921142578,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-09T15:12:56.686255+02:00",
-      "kulcs": "SKR728",
-      "rendszam": "SKR728",
-      "vehicle_id": "7677",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41594314575195,
-      "lon": 19.134262084960938,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-10-09T15:12:56.686373+02:00",
       "kulcs": "SKR806",
@@ -260000,6 +259961,45 @@
       "lon": 19.118473052978516,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T03:17:26.607897+02:00",
+      "kulcs": "RVY709",
+      "rendszam": "RVY709",
+      "vehicle_id": "7458",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53422546386719,
+      "lon": 19.08225440979004,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T03:17:26.607953+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.54619216918945,
+      "lon": 19.02944564819336,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-10T03:17:26.608097+02:00",
+      "kulcs": "T9129",
+      "rendszam": "T9129",
+      "vehicle_id": "7868",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.500389099121094,
+      "lon": 19.110637664794922,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
