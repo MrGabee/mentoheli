@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:55:54.770647+02:00",
+  "frissitve": "2026-10-10T02:56:25.585897+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:11:46.682911+02:00",
-      "kulcs": "LYH110",
-      "rendszam": "LYH110",
-      "vehicle_id": "3699",
-      "vehicle_label": "Máriaremete",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.5429573059082,
-      "lon": 18.96419334411621,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Máriaremete"
-    },
-    {
-      "idopont": "2026-10-09T15:11:46.683064+02:00",
-      "kulcs": "AAHY822",
-      "rendszam": "AAHY822",
-      "vehicle_id": "383",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.577857971191406,
-      "lon": 19.10575294494629,
-      "elozo_szoveg": "Izzó utcai lakótelep ► Újpest-központ M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-09T15:11:46.683234+02:00",
-      "kulcs": "AAHY840",
-      "rendszam": "AAHY840",
-      "vehicle_id": "401",
-      "vehicle_label": "Rákospalota, MEDIMPEX",
-      "vonal_szam": "125",
-      "route_id": "1250",
-      "lat": 47.519351959228516,
-      "lon": 19.11284065246582,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Rákospalota, MEDIMPEX"
-    },
     {
       "idopont": "2026-10-09T15:11:46.683501+02:00",
       "kulcs": "T0602",
@@ -260000,6 +259961,45 @@
       "lon": 19.090560913085938,
       "elozo_szoveg": "Vác",
       "uj_szoveg": "Szob"
+    },
+    {
+      "idopont": "2026-10-10T02:56:25.501778+02:00",
+      "kulcs": "NTP540",
+      "rendszam": "NTP540",
+      "vehicle_id": "6516",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46464538574219,
+      "lon": 19.02294158935547,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-10T02:56:25.501899+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.53927993774414,
+      "lon": 19.04047966003418,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T02:56:25.502120+02:00",
+      "kulcs": "SKN828",
+      "rendszam": "SKN828",
+      "vehicle_id": "76",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.504119873046875,
+      "lon": 19.025175094604492,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
     }
   ]
 }
