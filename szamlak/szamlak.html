@@ -84,6 +84,15 @@
   .gh-token-doboz .gh-kapcsolo { display: flex; align-items: flex-start; gap: 10px; }
   .gh-token-doboz .gh-kapcsolo input { width: auto; flex: none; margin-top: 3px; }
   .gh-token-doboz summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+  @media (max-width: 700px) {
+    .kartyas-tabla, .kartyas-tabla tbody { display: block; border: 0; background: transparent; }
+    .kartyas-tabla thead { display: none; }
+    .kartyas-tabla tr { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+    .kartyas-tabla td { display: block; border: 0; padding: 2px 0; min-width: 0; text-align: left !important; }
+    .kartyas-tabla td[data-cimke]:not([data-cimke=""])::before { content: attr(data-cimke); display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .kartyas-tabla td:first-child { flex-basis: 100%; font-weight: 600; }
+    .kartyas-tabla td:first-child::before { display: none !important; }
+  }
   .fej-gombok { display: flex; gap: 8px; flex-wrap: wrap; }
   #app-telepites-gomb { border: 1px solid var(--blue); background: var(--blue-soft); color: var(--blue); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
   #telepites-utmutato { margin: 0 0 16px; padding: 14px 16px; font-size: 14px; line-height: 1.5; }
@@ -2225,11 +2234,14 @@
         cellak.push(`<td><button type="button" class="ceges-athelyezes-gomb" data-id="${escHtml(r.id)}" title="Áthelyezés kérése a Céges fülre - a legközelebbi script-futáskor kerül át.">→ Céges</button></td>`);
         cellak.push(`<td><button type="button" class="torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
       }
-      return `<tr>${cellak.join("")}</tr>`;
+      // Telefonon a sorok kártyaként jelennek meg (ld. .kartyas-tabla CSS),
+      // ott minden cella elé a fejléc kerül címkének.
+      const cimkek = szerepkor === "admin" ? [...megjelenoFejlecek, "", ""] : megjelenoFejlecek;
+      return `<tr>${cellak.map((c, i) => c.replace("<td", `<td data-cimke="${escHtml(cimkek[i] || "")}"`)).join("")}</tr>`;
     }).join("");
 
     hely.innerHTML = `
-      <table>
+      <table class="kartyas-tabla">
         <thead>
           <tr>${megjelenoFejlecek.map(f => `<th>${escHtml(f)}</th>`).join("")}${szerepkor === "admin" ? "<th></th><th></th>" : ""}</tr>
         </thead>
