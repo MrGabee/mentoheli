@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:32:01.907384+02:00",
+  "frissitve": "2026-10-11T00:32:32.015967+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.388187+02:00",
-      "kulcs": "PDB382",
-      "rendszam": "PDB382",
-      "vehicle_id": "7064",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.49229431152344,
-      "lon": 19.14287757873535,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.388200+02:00",
-      "kulcs": "PDB385",
-      "rendszam": "PDB385",
-      "vehicle_id": "7067",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.472740173339844,
-      "lon": 19.178403854370117,
-      "elozo_szoveg": "Felsőcsatári köz",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.388221+02:00",
-      "kulcs": "PDB387",
-      "rendszam": "PDB387",
-      "vehicle_id": "7069",
-      "vehicle_label": "Akadémiaújtelep, 525. tér",
-      "vonal_szam": "68",
-      "route_id": "0680",
-      "lat": 47.44157409667969,
-      "lon": 19.140605926513672,
-      "elozo_szoveg": "Kispest, Vas Gereben utca",
-      "uj_szoveg": "Akadémiaújtelep, 525. tér"
-    },
     {
       "idopont": "2026-10-10T12:34:32.388244+02:00",
       "kulcs": "PDN604",
@@ -260000,6 +259961,45 @@
       "lon": 19.09577751159668,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T00:32:31.930741+02:00",
+      "kulcs": "FKU950",
+      "rendszam": "FKU950",
+      "vehicle_id": "3106",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46595001220703,
+      "lon": 19.125869750976562,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-11T00:32:31.931464+02:00",
+      "kulcs": "SKN830",
+      "rendszam": "SKN830",
+      "vehicle_id": "545",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.514503479003906,
+      "lon": 19.09737205505371,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-11T00:32:31.931704+02:00",
+      "kulcs": "AOFL202",
+      "rendszam": "AOFL202",
+      "vehicle_id": "786",
+      "vehicle_label": "Fácános tér",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.507686614990234,
+      "lon": 19.024566650390625,
+      "elozo_szoveg": "Gyöngyösi utca M",
+      "uj_szoveg": "Fácános tér"
     }
   ]
 }
