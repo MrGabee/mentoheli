@@ -1061,12 +1061,9 @@
 
     document.getElementById("kartyak").innerHTML = `
       <div class="kartya">
-        <div class="cimke">Fizetetlen számlák</div>
-        <div class="ertek">${fizetetlenek.length} db</div>
-      </div>
-      <div class="kartya">
-        <div class="cimke">Fizetetlen összeg${eurTetelek.length ? " (Ft)" : ""}</div>
-        <div class="ertek">${forint(hufOsszeg)}</div>
+        <div class="cimke">Fizetetlen${eurTetelek.length ? " (Ft)" : ""}</div>
+        <div class="ertek" style="white-space:nowrap">${forint(hufOsszeg)}</div>
+        <div class="kartya-al">${fizetetlenek.length} db számla</div>
       </div>
       ${eurKartya}
       ${feldolgozas.length ? `<div class="kartya">
