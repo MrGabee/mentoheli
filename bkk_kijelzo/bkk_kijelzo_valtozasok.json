@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T01:22:58.768475+02:00",
+  "frissitve": "2026-10-11T01:23:28.918689+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.394535+02:00",
-      "kulcs": "415 108",
-      "rendszam": "415 108",
-      "vehicle_id": "945514151089",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.63705062866211,
-      "lon": 18.8498592376709,
-      "elozo_szoveg": "Esztergom",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.394548+02:00",
-      "kulcs": "415 110",
-      "rendszam": "415 110",
-      "vehicle_id": "945514151105",
-      "vehicle_label": "Sülysáp",
-      "vonal_szam": "S60",
-      "route_id": "S60",
-      "lat": 47.488868713378906,
-      "lon": 19.172969818115234,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Sülysáp"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.394569+02:00",
-      "kulcs": "415 114",
-      "rendszam": "415 114",
-      "vehicle_id": "945514151147",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.44995880126953,
-      "lon": 19.202489852905273,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
     {
       "idopont": "2026-10-10T12:34:32.394591+02:00",
       "kulcs": "815 007",
@@ -260000,6 +259961,45 @@
       "lon": 19.158889770507812,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-11T01:23:28.857666+02:00",
+      "kulcs": "AADR760",
+      "rendszam": "AADR760",
+      "vehicle_id": "209",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.486000061035156,
+      "lon": 19.069419860839844,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-11T01:23:28.859641+02:00",
+      "kulcs": "AAMH604",
+      "rendszam": "AAMH604",
+      "vehicle_id": "447",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.5604248046875,
+      "lon": 19.090858459472656,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-10-11T01:23:28.860121+02:00",
+      "kulcs": "AOFL250",
+      "rendszam": "AOFL250",
+      "vehicle_id": "838",
+      "vehicle_label": "Szarvas csárda tér",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.4156379699707,
+      "lon": 19.204286575317383,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
     }
   ]
 }
