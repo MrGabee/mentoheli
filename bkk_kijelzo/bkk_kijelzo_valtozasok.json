@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:36:29.287903+02:00",
+  "frissitve": "2026-10-11T00:37:02.502417+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.388641+02:00",
-      "kulcs": "PHG625",
-      "rendszam": "PHG625",
-      "vehicle_id": "7149",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.5192756652832,
-      "lon": 19.230281829833984,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.388663+02:00",
-      "kulcs": "PHG632",
-      "rendszam": "PHG632",
-      "vehicle_id": "7156",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.509063720703125,
-      "lon": 19.179885864257812,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
     {
       "idopont": "2026-10-10T12:34:32.388685+02:00",
       "kulcs": "PHG642",
@@ -260000,6 +259974,32 @@
       "lon": 19.0681095123291,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-11T00:37:02.435363+02:00",
+      "kulcs": "V2003",
+      "rendszam": "V2003",
+      "vehicle_id": "2003",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47382736206055,
+      "lon": 19.04696273803711,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-11T00:37:02.437851+02:00",
+      "kulcs": "915504900068",
+      "rendszam": "915504900068",
+      "vehicle_id": "915504900068",
+      "vehicle_label": "Székesfehérvár",
+      "vonal_szam": "G43",
+      "route_id": "G43",
+      "lat": 47.42454147338867,
+      "lon": 19.04146957397461,
+      "elozo_szoveg": "Pécs",
+      "uj_szoveg": "Székesfehérvár"
     }
   ]
 }
