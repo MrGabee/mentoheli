@@ -97,8 +97,8 @@ jobs:
           SZAMLA_IMAP_USER: ${{ secrets.SZAMLA_IMAP_USER }}
           SZAMLA_IMAP_JELSZO: ${{ secrets.SZAMLA_IMAP_JELSZO }}
           SZAMLA_IMAP_MAPPA: ${{ secrets.SZAMLA_IMAP_MAPPA }}
-          SMTP_HOST: smtp.gmail.com
-          SMTP_PORT: 465
+          SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '465' }}
           EMAIL_KULDO_SZAMLA: ${{ secrets.EMAIL_KULDO_SZAMLA }}
           EMAIL_JELSZO_SZAMLA: ${{ secrets.EMAIL_JELSZO_SZAMLA }}
           EMAIL_CIMZETT_SZAMLA: ${{ secrets.EMAIL_CIMZETT_SZAMLA }}

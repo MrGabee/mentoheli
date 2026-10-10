@@ -643,12 +643,19 @@
         <label>GitHub token
           <input type="password" id="gh-pat-input" autocomplete="off" placeholder="ghp_...">
         </label>
-        <label>Hány nappal a határidő előtt jelezzen (emlékeztető email)?
+        <label>Bérlői emlékeztető: hány nappal a határidő előtt kapja meg a kör?
+          <input type="number" id="be-kor-emlekezteto-napok" min="1" max="60" placeholder="üresen hagyva: nincs bérlői emlékeztető">
+        </label>
+        <label>Saját (tulajdonosi) napi emlékeztető: hány nappal a határidő előtt?
           <input type="number" id="be-napok-elotte" min="1" max="90" placeholder="üresen hagyva: KIKAPCSOLVA (nincs napi határidő-emlékeztető)">
         </label>
-        <label>A hónap melyik napján menjen a fix, tételes összesítő?
-          <input type="number" id="be-honap-nap" min="1" max="28" placeholder="üresen hagyva: kikapcsolva">
+        <label>Mikor menjen a havi összesítő a köröknek a fizetésre váró tételekről?
+          <select id="be-honap-nap"><option value="">kikapcsolva</option><option value="utolso_munkanap">a hónap utolsó munkanapján</option><option value="1">minden hónap 1.</option><option value="2">minden hónap 2.</option><option value="3">minden hónap 3.</option><option value="4">minden hónap 4.</option><option value="5">minden hónap 5.</option><option value="6">minden hónap 6.</option><option value="7">minden hónap 7.</option><option value="8">minden hónap 8.</option><option value="9">minden hónap 9.</option><option value="10">minden hónap 10.</option><option value="11">minden hónap 11.</option><option value="12">minden hónap 12.</option><option value="13">minden hónap 13.</option><option value="14">minden hónap 14.</option><option value="15">minden hónap 15.</option><option value="16">minden hónap 16.</option><option value="17">minden hónap 17.</option><option value="18">minden hónap 18.</option><option value="19">minden hónap 19.</option><option value="20">minden hónap 20.</option><option value="21">minden hónap 21.</option><option value="22">minden hónap 22.</option><option value="23">minden hónap 23.</option><option value="24">minden hónap 24.</option><option value="25">minden hónap 25.</option><option value="26">minden hónap 26.</option><option value="27">minden hónap 27.</option><option value="28">minden hónap 28.</option></select>
         </label>
+        <label>Válaszcím (Reply-To) a közüzemi levelekhez
+          <input type="email" id="be-valasz-cim" placeholder="pl. info@reilviolin.hu (üresen: a feladó címe)">
+        </label>
+        <p class="panel-info" style="margin-top:-6px;">Ha a címzett a levélre válaszol, a válasz erre a címre megy. A feladó címét (pl. noreply@reilviolin.hu) a GitHub-tárolóban, a <strong>Settings → Secrets and variables → Actions</strong> alatt az <code>EMAIL_KULDO_SZAMLA</code>, <code>EMAIL_JELSZO_SZAMLA</code>, <code>SMTP_HOST</code> és <code>SMTP_PORT</code> titkokkal lehet beállítani.</p>
         <div class="be-kivalasztas">
           <label><input type="radio" name="be-kivmod" id="be-kiv-mind" checked> A fix, tételes összesítőbe az ÖSSZES fizetetlen számla kerüljön</label>
           <label><input type="radio" name="be-kivmod" id="be-kiv-egyedi"> Csak az alább kiválasztott számlák kerüljenek bele</label>
@@ -670,7 +677,7 @@
     <div class="panel" id="kor-ertesito-panel">
       <button type="button" class="panel-toggle" id="kor-ertesito-toggle">📨 Bérlői értesítők (új számla → azonnali email) ▾</button>
       <div class="panel-tartalom" id="kor-ertesito-tartalom" style="display:none;">
-        <p class="panel-info">Ha be van kapcsolva, akkor amikor egy ÚJ Díjnet/Vízművek számla betöltődik, a script emailt küld az érintett bérlői körnek (A/B kör), a PDF-fel együtt. Csak a már besorolt (A/B körös) számlákra vonatkozik; a "függőben" lévőkre, a kifizetettekre, az MVM/IMAP és a céges számlákra nem. FONTOS: a küldéshez a fenti "Email-küldés engedélyezve (közüzemi)" kapcsolónak is be kell lennie kapcsolva, és a körnek legyen email-címe.</p>
+        <p class="panel-info">Ha be van kapcsolva, akkor amikor egy ÚJ Díjnet/Vízművek számla betöltődik, a script emailt küld az érintett bérlői körnek (A/B kör), a PDF-fel együtt. A határidő előtti bérlői emlékeztetőt és a havi összesítő időpontját a Beállítások panelen állíthatod. Csak a már besorolt (A/B körös) számlákra vonatkozik; a "függőben" lévőkre, a kifizetettekre, az MVM/IMAP és a céges számlákra nem. FONTOS: a küldéshez a fenti "Email-küldés engedélyezve (közüzemi)" kapcsolónak is be kell lennie kapcsolva, és a körnek legyen email-címe.</p>
         <label style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><input type="checkbox" id="ke-bekapcsolva" style="width:auto;flex:none;"> <span> Új számla betöltődésekor email az érintett bérlői körnek</span></label>
         <label style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><input type="checkbox" id="ke-jovahagyas" checked style="width:auto;flex:none;"> <span> Teszt fázis: kiküldés ELŐTT a tulajdonos jóváhagyása kell (a tulajdonos kap egy "⏳ Jóváhagyásra vár" emailt, és itt hagyja jóvá)</span></label>
         <p class="panel-info">A jóváhagyás kikapcsolása után az új számlák értesítője azonnal (a következő futáskor) kimegy. A már várakozó tételek ilyenkor is várnak a döntésedre.</p>
@@ -4002,7 +4009,9 @@
       // beallitasok_kinyerese()).
       document.getElementById("be-email-engedelyezve").checked = ertekek.email_kikapcsolva === false;
       document.getElementById("be-napok-elotte").value = ertekek.emlekezteto_napok_elotte ?? "";
-      document.getElementById("be-honap-nap").value = ertekek.osszesito_honap_nap ?? "";
+      document.getElementById("be-honap-nap").value = String(ertekek.osszesito_honap_nap ?? "");
+      document.getElementById("be-kor-emlekezteto-napok").value = ertekek.kor_emlekezteto_napok ?? "";
+      document.getElementById("be-valasz-cim").value = ertekek.valasz_cim || "";
       const kivalasztott = Array.isArray(ertekek.kivalasztott_szamlak) ? new Set(ertekek.kivalasztott_szamlak) : null;
       document.getElementById("be-kiv-egyedi").checked = !!kivalasztott;
       document.getElementById("be-kiv-mind").checked = !kivalasztott;
@@ -4693,12 +4702,23 @@
     const napokNyers = document.getElementById("be-napok-elotte").value.trim();
     const honapNapNyers = document.getElementById("be-honap-nap").value.trim();
     const napok = napokNyers === "" ? null : parseInt(napokNyers, 10);
-    const honapNap = honapNapNyers === "" ? null : parseInt(honapNapNyers, 10);
+    const honapNap = honapNapNyers === "" ? null : (honapNapNyers === "utolso_munkanap" ? honapNapNyers : parseInt(honapNapNyers, 10));
+    const korNapokNyers = document.getElementById("be-kor-emlekezteto-napok").value.trim();
+    const korNapok = korNapokNyers === "" ? null : parseInt(korNapokNyers, 10);
+    const valaszCim = document.getElementById("be-valasz-cim").value.trim();
+    if (korNapok !== null && (isNaN(korNapok) || korNapok < 1 || korNapok > 60)) {
+      beStatuszMutat("be-statusz", "A bérlői emlékeztető napjainak száma 1 és 60 között lehet (vagy hagyd üresen).", "hiba");
+      return;
+    }
+    if (valaszCim && !valaszCim.includes("@")) {
+      beStatuszMutat("be-statusz", "A válaszcím nem érvényes email-cím.", "hiba");
+      return;
+    }
     if (napok !== null && (isNaN(napok) || napok < 1 || napok > 90)) {
       beStatuszMutat("be-statusz", "Az emlékeztető-napok értéke 1 és 90 között lehet (vagy hagyd üresen).", "hiba");
       return;
     }
-    if (honapNap !== null && (isNaN(honapNap) || honapNap < 1 || honapNap > 28)) {
+    if (honapNap !== null && honapNap !== "utolso_munkanap" && (isNaN(honapNap) || honapNap < 1 || honapNap > 28)) {
       beStatuszMutat("be-statusz", "A hónap napja 1 és 28 között lehet (vagy hagyd üresen a kikapcsoláshoz).", "hiba");
       return;
     }
@@ -4715,6 +4735,8 @@
           { action: "set_meta", kulcs: "email_kikapcsolva", ertek: !document.getElementById("be-email-engedelyezve").checked },
           { action: "set_meta", kulcs: "emlekezteto_napok_elotte", ertek: napok },
           { action: "set_meta", kulcs: "osszesito_honap_nap", ertek: honapNap },
+          { action: "set_meta", kulcs: "kor_emlekezteto_napok", ertek: korNapok },
+          { action: "set_meta", kulcs: "valasz_cim", ertek: valaszCim || null },
           { action: "set_meta", kulcs: "kivalasztott_szamlak", ertek: kivalasztottSzamlak },
         ],
       });
