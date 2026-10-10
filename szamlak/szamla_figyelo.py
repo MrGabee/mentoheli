@@ -4806,6 +4806,40 @@ def _nav_osszeg_egyezik(a, b, tolerancia=1.0) -> bool:
         return False
 
 
+def _nav_osszeg_jeloltek(tetel: dict) -> list:
+    """A NAV-tétel összes olyan összege, amivel egy emailből kinyert
+    összeg egyezhet: bruttó (nettó + áfa) ÉS nettó, forintban és a
+    számla saját pénznemében is. Az emailből/PDF-ből kinyert összeg
+    jellemzően a "Fizetendő" (BRUTTÓ) végösszeg, a NAV digest viszont
+    külön adja a nettót és az áfát - korábban csak a nettóval
+    hasonlítottunk, így minden áfás számla összeg-alapú párosítása
+    elbukott."""
+    def _f(ertek):
+        try:
+            return float(ertek) if ertek not in (None, "") else None
+        except (TypeError, ValueError):
+            return None
+
+    jeloltek = []
+    for netto_kulcs, afa_kulcs in (("netto_osszeg_huf", "afa_osszeg_huf"), ("netto_osszeg", "afa_osszeg")):
+        netto = _f(tetel.get(netto_kulcs))
+        if netto is None:
+            continue
+        afa = _f(tetel.get(afa_kulcs)) or 0.0
+        jeloltek.append(netto + afa)
+        jeloltek.append(netto)
+    return jeloltek
+
+
+def _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel: dict) -> bool:
+    return any(_nav_osszeg_egyezik(sajat_osszeg, j) for j in _nav_osszeg_jeloltek(tetel))
+
+
+def _nav_brutto_huf(tetel: dict):
+    jeloltek = _nav_osszeg_jeloltek(tetel)
+    return jeloltek[0] if jeloltek else None
+
+
 def _szamlaszam_normalizalt(szamlaszam) -> str:
     """A számlaszám-egyezés (1. kör, ld. nav_szamla_parositas()) ÖSSZES
     whitespace-et (szóköz is) eltávolítva, nagybetűsítve hasonlítja össze
@@ -4932,6 +4966,7 @@ def nav_szamla_parositas(allapot: dict):
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
             rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
             parositott_nav_kulcsok.add(kulcs)
             break
 
@@ -4955,7 +4990,7 @@ def nav_szamla_parositas(allapot: dict):
             if kulcs in parositott_nav_kulcsok:
                 continue
             nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
-            if not _nav_osszeg_egyezik(sajat_osszeg, nav_osszeg):
+            if not _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel):
                 continue
             rekord["nav_parositva"] = True
             # ld. _nav_parosithato_rekordok() komment - egy sikeres
@@ -4967,6 +5002,7 @@ def nav_szamla_parositas(allapot: dict):
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = nav_osszeg
             rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
             parositott_nav_kulcsok.add(kulcs)
             break
 
@@ -4989,7 +5025,7 @@ def nav_szamla_parositas(allapot: dict):
             if kulcs in parositott_nav_kulcsok:
                 continue
             nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
-            if not _nav_osszeg_egyezik(sajat_osszeg, nav_osszeg):
+            if not _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel):
                 continue
             if erkezett_datum is not None and tetel.get("kiallitas_datum"):
                 try:
@@ -5008,6 +5044,7 @@ def nav_szamla_parositas(allapot: dict):
             rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
             rekord["nav_osszeg"] = nav_osszeg
             rekord["nav_datum"] = tetel.get("kiallitas_datum")
+            rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
             parositott_nav_kulcsok.add(kulcs)
             break
 
