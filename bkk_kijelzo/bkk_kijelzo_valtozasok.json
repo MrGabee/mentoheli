@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:26:56.126402+02:00",
+  "frissitve": "2026-10-10T02:27:29.071297+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:07:34.946757+02:00",
-      "kulcs": "AOFL207",
-      "rendszam": "AOFL207",
-      "vehicle_id": "793",
-      "vehicle_label": "Madárhegy",
-      "vonal_szam": "253",
-      "route_id": "2530",
-      "lat": 47.46467971801758,
-      "lon": 19.018522262573242,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Madárhegy"
-    },
-    {
-      "idopont": "2026-10-09T15:07:34.946845+02:00",
-      "kulcs": "AOFL218",
-      "rendszam": "AOFL218",
-      "vehicle_id": "805",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50351333618164,
-      "lon": 19.01601791381836,
-      "elozo_szoveg": "Kissvábhegy",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-10-09T15:07:34.947043+02:00",
-      "kulcs": "AOFL247",
-      "rendszam": "AOFL247",
-      "vehicle_id": "835",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.472774505615234,
-      "lon": 19.165075302124023,
-      "elozo_szoveg": "Újhegy",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-09T15:07:34.947288+02:00",
-      "kulcs": "AOIB808",
-      "rendszam": "AOIB808",
-      "vehicle_id": "879",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212A",
-      "route_id": "2121",
-      "lat": 47.49811553955078,
-      "lon": 18.989643096923828,
-      "elozo_szoveg": "Svábhegy",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-10-09T15:07:34.947343+02:00",
-      "kulcs": "AOIB824",
-      "rendszam": "AOIB824",
-      "vehicle_id": "889",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.46571350097656,
-      "lon": 19.016529083251953,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-10-09T15:07:34.947384+02:00",
       "kulcs": "AOGL304",
@@ -260000,6 +259935,71 @@
       "lon": 19.101558685302734,
       "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-10T02:27:28.980382+02:00",
+      "kulcs": "FKU909",
+      "rendszam": "FKU909",
+      "vehicle_id": "3065",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46372985839844,
+      "lon": 19.13019371032715,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-10T02:27:28.980457+02:00",
+      "kulcs": "FKU940",
+      "rendszam": "FKU940",
+      "vehicle_id": "3096",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.486000061035156,
+      "lon": 19.022356033325195,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-10T02:27:28.982229+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.5107536315918,
+      "lon": 19.097251892089844,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-10T02:27:28.982335+02:00",
+      "kulcs": "SKN826",
+      "rendszam": "SKN826",
+      "vehicle_id": "7858",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50436019897461,
+      "lon": 19.025001525878906,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-10T02:27:28.982398+02:00",
+      "kulcs": "AADI584",
+      "rendszam": "AADI584",
+      "vehicle_id": "84",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50844192504883,
+      "lon": 19.026979446411133,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
