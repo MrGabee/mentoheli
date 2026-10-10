@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T01:05:44.669024+02:00",
+  "frissitve": "2026-10-11T01:06:20.006832+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.392724+02:00",
-      "kulcs": "T9144",
-      "rendszam": "T9144",
-      "vehicle_id": "7883",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51830291748047,
-      "lon": 19.085994720458984,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392737+02:00",
-      "kulcs": "T9146",
-      "rendszam": "T9146",
-      "vehicle_id": "7885",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50548553466797,
-      "lon": 19.069637298583984,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392750+02:00",
-      "kulcs": "T9147",
-      "rendszam": "T9147",
-      "vehicle_id": "7886",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.517581939697266,
-      "lon": 19.09313201904297,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-10-10T12:34:32.392762+02:00",
       "kulcs": "T9148",
@@ -260000,6 +259961,45 @@
       "lon": 19.023881912231445,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Fácános tér"
+    },
+    {
+      "idopont": "2026-10-11T01:06:19.930769+02:00",
+      "kulcs": "FKU950",
+      "rendszam": "FKU950",
+      "vehicle_id": "3106",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.502525329589844,
+      "lon": 19.13629913330078,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-11T01:06:19.930798+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.463863372802734,
+      "lon": 19.129880905151367,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-11T01:06:19.930889+02:00",
+      "kulcs": "FLR745",
+      "rendszam": "FLR745",
+      "vehicle_id": "3159",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.489784240722656,
+      "lon": 19.0745792388916,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
     }
   ]
 }
