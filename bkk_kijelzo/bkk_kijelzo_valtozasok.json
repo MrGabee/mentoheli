@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:32:32.015967+02:00",
+  "frissitve": "2026-10-11T00:33:14.044347+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.388244+02:00",
-      "kulcs": "PDN604",
-      "rendszam": "PDN604",
-      "vehicle_id": "7076",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.454689025878906,
-      "lon": 19.018640518188477,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.388257+02:00",
-      "kulcs": "PDN605",
-      "rendszam": "PDN605",
-      "vehicle_id": "7077",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.41166305541992,
-      "lon": 19.005727767944336,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.388288+02:00",
-      "kulcs": "PDN611",
-      "rendszam": "PDN611",
-      "vehicle_id": "7082",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.408058166503906,
-      "lon": 19.082183837890625,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
     {
       "idopont": "2026-10-10T12:34:32.388302+02:00",
       "kulcs": "PDN612",
@@ -260000,6 +259961,45 @@
       "lon": 19.024566650390625,
       "elozo_szoveg": "Gyöngyösi utca M",
       "uj_szoveg": "Fácános tér"
+    },
+    {
+      "idopont": "2026-10-11T00:33:13.992387+02:00",
+      "kulcs": "RCT320",
+      "rendszam": "RCT320",
+      "vehicle_id": "7334",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.4266242980957,
+      "lon": 19.160795211791992,
+      "elozo_szoveg": "Szentlőrinci úti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-11T00:33:13.992493+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44122314453125,
+      "lon": 19.187320709228516,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-11T00:33:13.992725+02:00",
+      "kulcs": "AOIM049",
+      "rendszam": "AOIM049",
+      "vehicle_id": "970",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464622497558594,
+      "lon": 19.022972106933594,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
