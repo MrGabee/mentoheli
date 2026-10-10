@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:31:53.507206+02:00",
+  "frissitve": "2026-10-10T02:32:22.015210+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:09:00.787741+02:00",
-      "kulcs": "AAGL302",
-      "rendszam": "AAGL302",
-      "vehicle_id": "332",
-      "vehicle_label": "Gyál, Bem József utca",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.46422576904297,
-      "lon": 19.12700843811035,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Bem József utca"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.788192+02:00",
-      "kulcs": "AAHY827",
-      "rendszam": "AAHY827",
-      "vehicle_id": "388",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.603267669677734,
-      "lon": 19.059396743774414,
-      "elozo_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.788295+02:00",
-      "kulcs": "AAHY837",
-      "rendszam": "AAHY837",
-      "vehicle_id": "398",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.56791305541992,
-      "lon": 19.126794815063477,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Budakalász, Auchan áruház ► Békásmegyer, Újmegyeri tér"
-    },
     {
       "idopont": "2026-10-09T15:09:00.788338+02:00",
       "kulcs": "AAHY841",
@@ -260000,6 +259961,45 @@
       "lon": 19.09609603881836,
       "elozo_szoveg": "Astoria M ► Máriaremete",
       "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-10T02:32:21.928099+02:00",
+      "kulcs": "V2007",
+      "rendszam": "V2007",
+      "vehicle_id": "2007",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.4741325378418,
+      "lon": 19.04730224609375,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-10T02:32:21.930301+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507484436035156,
+      "lon": 19.02499771118164,
+      "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-10T02:32:21.930568+02:00",
+      "kulcs": "SKR727",
+      "rendszam": "SKR727",
+      "vehicle_id": "7676",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.534393310546875,
+      "lon": 19.08228874206543,
+      "elozo_szoveg": "Astoria M ► Határ út M",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
