@@ -111,6 +111,7 @@
   .badge-fizetve { background: var(--green-soft); color: var(--green); }
   .badge-fizetetlen { background: var(--amber-soft); color: var(--amber); }
   .badge-lejart { background: var(--red-soft); color: var(--red); }
+  .kartya-al { margin-top: 4px; font-size: 13px; color: var(--muted); }
   .badge-feldolgozas { background: var(--blue-soft); color: var(--blue); }
   .portal-allapot { margin-top: 3px; font-size: 11.5px; color: var(--muted); white-space: nowrap; }
   .osszeg { text-align: right; font-variant-numeric: tabular-nums; }
@@ -1070,7 +1071,8 @@
       ${eurKartya}
       ${feldolgozas.length ? `<div class="kartya">
         <div class="cimke">Feldolgozás alatt</div>
-        <div class="ertek" style="color:var(--blue)">${feldolgozas.length} db · ${forint(feldolgozasOsszeg)}</div>
+        <div class="ertek" style="color:var(--blue);white-space:nowrap">${forint(feldolgozasOsszeg)}</div>
+        <div class="kartya-al">${feldolgozas.length} db számla</div>
       </div>` : ""}
       <div class="kartya">
         <div class="cimke">Lejárt határidejű</div>
