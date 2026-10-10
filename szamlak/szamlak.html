@@ -84,14 +84,24 @@
   .gh-token-doboz .gh-kapcsolo { display: flex; align-items: flex-start; gap: 10px; }
   .gh-token-doboz .gh-kapcsolo input { width: auto; flex: none; margin-top: 3px; }
   .gh-token-doboz summary { cursor: pointer; color: var(--muted); font-size: 13px; }
-  @media (max-width: 700px) {
+  /* Telefonon és a telepített appban a számlák kártyaként jelennek meg. */
+  @media (max-width: 700px), (display-mode: standalone) {
     .kartyas-tabla, .kartyas-tabla tbody { display: block; border: 0; background: transparent; }
     .kartyas-tabla thead { display: none; }
-    .kartyas-tabla tr { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
-    .kartyas-tabla td { display: block; border: 0; padding: 2px 0; min-width: 0; text-align: left !important; }
-    .kartyas-tabla td[data-cimke]:not([data-cimke=""])::before { content: attr(data-cimke); display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-    .kartyas-tabla td:first-child { flex-basis: 100%; font-weight: 600; }
-    .kartyas-tabla td:first-child::before { display: none !important; }
+    .kartyas-tabla tr { display: flex; flex-wrap: wrap; align-items: center; column-gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    .kartyas-tabla td { display: block; border: 0; padding: 0; min-width: 0; text-align: left !important; background: transparent !important; }
+    .kartyas-tabla td.c-cim { order: 1; flex: 1 1 0; font-weight: 600; font-size: 15px; overflow-wrap: anywhere; }
+    .kartyas-tabla td.c-allapot { order: 2; text-align: right !important; }
+    .kartyas-tabla td.c-allapot .portal-allapot { text-align: right; }
+    .kartyas-tabla td.c-info { order: 3; flex-basis: 100%; margin-top: 2px; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+    .kartyas-tabla td.c-osszeg { order: 4; flex: 1 1 auto; margin-top: 10px; font-size: 20px; font-weight: 600; }
+    .kartyas-tabla td.c-hatarido { order: 5; margin-top: 10px; font-size: 14px; text-align: right !important; }
+    .kartyas-tabla td.c-hatarido::before { content: "Határidő"; display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .kartyas-tabla tr::after { content: ""; order: 6; flex-basis: 100%; height: 1px; background: var(--border); margin-top: 12px; }
+    .kartyas-tabla td.c-kor, .kartyas-tabla td.c-gomb { order: 7; margin-top: 10px; }
+    .kartyas-tabla td.c-kor { flex: 1 1 auto; }
+    .kartyas-tabla td.c-kor select { width: 100%; }
+    .kartyas-tabla td.c-gomb { flex: 0 0 auto; }
   }
   .fej-gombok { display: flex; gap: 8px; flex-wrap: wrap; }
   #app-telepites-gomb { border: 1px solid var(--blue); background: var(--blue-soft); color: var(--blue); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
@@ -2197,11 +2207,11 @@
         ? `<button type="button" class="letoltes-gomb" data-id="${escHtml(r.id)}">⬇️ PDF</button>`
         : `<span style="color:var(--muted);font-size:12px;">nincs PDF</span>`;
       const cellak = [];
-      if (szolgaltatoOszlop) cellak.push(`<td>${escHtml(r.szolgaltato_nev)}</td>`);
+      if (szolgaltatoOszlop) cellak.push(`<td class="c-cim">${escHtml(r.szolgaltato_nev)}</td>`);
       cellak.push(szamlaszamOszlop
-        ? `<td>${escHtml(r.szamlaszam) || "ismeretlen"}</td>`
-        : `<td>${escHtml(r.targy)}</td>`);
-      if (kelteOszlop) cellak.push(`<td>${escHtml(r.erkezett) || "ismeretlen"}</td>`);
+        ? `<td class="c-info">${escHtml(r.szamlaszam) || "ismeretlen"}</td>`
+        : `<td class="${szolgaltatoOszlop ? "c-info" : "c-cim"}">${escHtml(r.targy)}</td>`);
+      if (kelteOszlop) cellak.push(`<td class="c-info">${escHtml(r.erkezett) || "ismeretlen"}</td>`);
       if (kibocsatoOszlop) {
         // A "dijnet_extra_oszlop" a Díjnet portál eddig figyelmen kívül
         // hagyott oszlopának nyers tartalma (ld. szamla_figyelo.py
@@ -2213,17 +2223,17 @@
         const extraSor = (szerepkor === "admin" && r.dijnet_extra_oszlop)
           ? `<div style="color:var(--muted);font-size:11px;margin-top:2px;" title="A Díjnet portál 'extra' oszlopának nyers tartalma - lehet szerződésszám, de nem biztos, csak tájékoztató jellegű.">${escHtml(r.dijnet_extra_oszlop)}</div>`
           : "";
-        cellak.push(`<td>${escHtml(r.kibocsato_azonosito) || "—"}${extraSor}</td>`);
+        cellak.push(`<td class="c-info">${escHtml(r.kibocsato_azonosito) || "—"}${extraSor}</td>`);
       }
-      cellak.push(`<td class="osszeg">${osszegFormazva(r.osszeg, r.penznem)}</td>`);
-      cellak.push(`<td>${escHtml(r.hatarido) || "ismeretlen"}</td>`);
-      cellak.push(`<td>${allapotBadge(r)}</td>`);
+      cellak.push(`<td class="osszeg c-osszeg">${osszegFormazva(r.osszeg, r.penznem)}</td>`);
+      cellak.push(`<td class="c-hatarido">${escHtml(r.hatarido) || "ismeretlen"}</td>`);
+      cellak.push(`<td class="c-allapot">${allapotBadge(r)}</td>`);
       // A kör-felülbírálás (ld. korFelulbiralasSelectHtml) és a "✕" végleges-
       // elrejtés gomb admin-csak művelet - "user" szerepkörnél egyik cellát
       // sem tesszük ki (ld. "megjelenoFejlecek" fent, ami a fejlécből is
       // kiveszi a "Kör" oszlopot, hogy a cellaszám illeszkedjen).
-      if (szerepkor === "admin") cellak.push(`<td>${korFelulbiralasSelectHtml(r)}</td>`);
-      cellak.push(`<td>${letoltesGomb}</td>`);
+      if (szerepkor === "admin") cellak.push(`<td class="c-kor">${korFelulbiralasSelectHtml(r)}</td>`);
+      cellak.push(`<td class="c-gomb">${letoltesGomb}</td>`);
       if (szerepkor === "admin") {
         // A "→ Céges" gomb - egyedi (nem postafiók-szintű) áthelyezés-
         // kérés a Céges fülre, ld. cegesAthelyezesKerelme() lentebb - a
@@ -2231,8 +2241,8 @@
         // küldeni"). Az X gomb minden nézetben az utolsó oszlop - a
         // rekordot a saját "id" mezője (nem a DOM-index) azonosítja, ld.
         // torlesVegrehajtasa().
-        cellak.push(`<td><button type="button" class="ceges-athelyezes-gomb" data-id="${escHtml(r.id)}" title="Áthelyezés kérése a Céges fülre - a legközelebbi script-futáskor kerül át.">→ Céges</button></td>`);
-        cellak.push(`<td><button type="button" class="torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
+        cellak.push(`<td class="c-gomb"><button type="button" class="ceges-athelyezes-gomb" data-id="${escHtml(r.id)}" title="Áthelyezés kérése a Céges fülre - a legközelebbi script-futáskor kerül át.">→ Céges</button></td>`);
+        cellak.push(`<td class="c-gomb"><button type="button" class="torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
       }
       // Telefonon a sorok kártyaként jelennek meg (ld. .kartyas-tabla CSS),
       // ott minden cella elé a fejléc kerül címkének.
