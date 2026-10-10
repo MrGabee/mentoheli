@@ -3469,39 +3469,63 @@
     });
   }
 
-  // tetelek: [{ fajl, kontextus: { bank_tetel_id?, nav_tetel?, kuldo_nev? } }]
+  const _varakozas = ms => new Promise(r => setTimeout(r, ms));
+  // Hálózati hibánál ("Failed to fetch": a szerver megszakította a
+  // kapcsolatot, pl. túl sok gyors kérés miatt) kétszer újrapróbálja,
+  // növekvő várakozással. A hívások idempotensek (ugyanaz az azonosító).
+  async function _apiUjraprobalva(fn) {
+    const varakozasok = [2000, 5000];
+    for (let i = 0; ; i++) {
+      try { return await fn(); }
+      catch (e) {
+        if (i >= varakozasok.length || !/Nem sikerült elérni/.test(e.message)) throw e;
+        await _varakozas(varakozasok[i]);
+      }
+    }
+  }
+
+  // tetelek: [{ fajl, kontextus: { bank_tetel_id?, nav_tetel?, kuldo_nev? }, cel? }]
+  // Visszaadja a sikertelen tételeket (a hívó visszateheti őket a listába).
   async function keziSzamlakFeltoltese(tetelek, statuszId) {
     statuszId = statuszId || "kezi-statusz";
     const uzenetek = [];
-    let volt_hiba = false;
-    for (const { fajl, kontextus } of tetelek) {
-      if (!/\.pdf$/i.test(fajl.name) && fajl.type !== "application/pdf") { volt_hiba = true; uzenetek.push(`${fajl.name}: csak PDF tölthető fel.`); continue; }
-      if (fajl.size > KEZI_PDF_MAX_BAJT) { volt_hiba = true; uzenetek.push(`${fajl.name}: túl nagy (legfeljebb 10 MB).`); continue; }
-      beStatuszMutat(statuszId, `Feltöltés: ${fajl.name}…`, "");
+    const sikertelen = [];
+    let sikeres_db = 0;
+    for (const [idx, tetel] of tetelek.entries()) {
+      const { fajl, kontextus } = tetel;
+      if (!/\.pdf$/i.test(fajl.name) && fajl.type !== "application/pdf") { uzenetek.push(`${fajl.name}: csak PDF tölthető fel.`); continue; }
+      if (fajl.size > KEZI_PDF_MAX_BAJT) { uzenetek.push(`${fajl.name}: túl nagy (legfeljebb 10 MB).`); continue; }
+      if (idx > 0) await _varakozas(400);
+      beStatuszMutat(statuszId, `Feltöltés (${idx + 1}/${tetelek.length}): ${fajl.name}…`, "");
       try {
         const kid = "f" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
-        await apiHivas("batch", { muveletek: [{ action: "set_pdf", id: "kezi_" + kid, base64: await _fajlBase64(fajl) }] });
+        const base64 = await _fajlBase64(fajl);
+        await _apiUjraprobalva(() => apiHivas("batch", { muveletek: [{ action: "set_pdf", id: "kezi_" + kid, base64 }] }));
         const kerelem = { fajlnev: fajl.name, letrehozva: new Date().toISOString() };
         if (kontextus && kontextus.bank_tetel_id) kerelem.bank_tetel_id = kontextus.bank_tetel_id;
         if (kontextus && kontextus.nav_tetel) kerelem.nav_tetel = kontextus.nav_tetel;
         if (kontextus && kontextus.kuldo_nev) kerelem.kuldo_nev = kontextus.kuldo_nev;
-        await keziKerelemModositas(k => { k[kid] = kerelem; });
-        uzenetek.push(`${fajl.name}: feltöltve.`);
+        await _apiUjraprobalva(() => keziKerelemModositas(k => { k[kid] = kerelem; }));
+        sikeres_db++;
       } catch (e) {
-        volt_hiba = true;
-        uzenetek.push(`${fajl.name}: ${e.message}`);
+        sikertelen.push(tetel);
+        uzenetek.push(`${fajl.name} (${Math.max(1, Math.round(fajl.size / 1024))} kB): ${e.message}`);
       }
     }
+    const volt_hiba = uzenetek.length > 0;
+    if (sikeres_db) uzenetek.unshift(`${sikeres_db} számla feltöltve.`);
+    if (sikertelen.length) uzenetek.push(`A sikertelenek (${sikertelen.length} db) a listában maradtak, a Mentés gombbal újra megpróbálhatod.`);
     let utoirat = " A következő futáskor (legfeljebb kb. 20 perc) kerül a céges számlák közé.";
     const pat = aktualisPat();
-    if (pat && uzenetek.length && !volt_hiba) {
+    if (pat && sikeres_db) {
       try { await ghWorkflowInditasa(pat, {}); patMentese(); utoirat = " A feldolgozás elindult (néhány perc)."; }
       catch (e) { /* marad az ütemezett futás */ }
     }
-    beStatuszMutat(statuszId, uzenetek.join(" ") + (volt_hiba ? "" : utoirat), volt_hiba ? "hiba" : "siker");
+    beStatuszMutat(statuszId, uzenetek.join(" ") + (sikeres_db ? utoirat : ""), volt_hiba ? "hiba" : "siker");
     keziFeltoltesekRenderelese();
     cegesTablaRenderelese(cegesSzamlak);
     navCsakNavbanRenderelese(legutobbiAdat.nav_csak_navban, legutobbiAdat.nav_szallito_emailek);
+    return sikertelen;
   }
 
   // A feltöltő doboz "Melyik számla ez?" listája: a NAV-ban szereplő, de
@@ -3603,10 +3627,12 @@
       const gomb = document.getElementById("kezi-mentes");
       gomb.disabled = true;
       const opciok = keziCelOpciok();
-      const tetelek = keziElokeszitett.map(e => ({ fajl: e.fajl, kontextus: (opciok[e.cel] || {}).kontextus || {} }));
+      const tetelek = keziElokeszitett.map(e => ({ fajl: e.fajl, cel: e.cel, kontextus: (opciok[e.cel] || {}).kontextus || {} }));
       keziElokeszitett = [];
       keziElokeszitettRenderelese();
-      await keziSzamlakFeltoltese(tetelek, "kezi-statusz");
+      const sikertelen = await keziSzamlakFeltoltese(tetelek, "kezi-statusz");
+      keziElokeszitett = sikertelen.map(t => ({ id: Math.random().toString(36).slice(2, 10), fajl: t.fajl, cel: t.cel || "" }));
+      keziElokeszitettRenderelese();
     });
   }
   // A NAV- és bank-listák soraiban lévő "Számla feltöltése" gomb: a
