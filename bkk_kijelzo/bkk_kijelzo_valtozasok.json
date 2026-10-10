@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:01:10.564892+02:00",
+  "frissitve": "2026-10-10T02:01:42.250561+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:04:29.297730+02:00",
-      "kulcs": "815 021",
-      "rendszam": "815 021",
-      "vehicle_id": "945518150210",
-      "vehicle_label": "Esztergom",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.558189392089844,
-      "lon": 19.08016014099121,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Esztergom"
-    },
-    {
-      "idopont": "2026-10-09T15:04:29.298158+02:00",
-      "kulcs": "AOJM864",
-      "rendszam": "AOJM864",
-      "vehicle_id": "987",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.48879623413086,
-      "lon": 19.06101417541504,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-10-09T15:06:00.298835+02:00",
-      "kulcs": "AADI636",
-      "rendszam": "AADI636",
-      "vehicle_id": "134",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46871566772461,
-      "lon": 19.299535751342773,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-09T15:06:00.299126+02:00",
-      "kulcs": "AADR714",
-      "rendszam": "AADR714",
-      "vehicle_id": "182",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "236A",
-      "route_id": "2361",
-      "lat": 47.43329620361328,
-      "lon": 19.220661163330078,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Havanna-lakótelep",
-      "uj_szoveg": "Havanna-lakótelep"
-    },
-    {
-      "idopont": "2026-10-09T15:06:00.299217+02:00",
-      "kulcs": "V2002",
-      "rendszam": "V2002",
-      "vehicle_id": "2002",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50730895996094,
-      "lon": 19.02475357055664,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-10-09T15:06:00.299346+02:00",
       "kulcs": "V2021",
@@ -260000,6 +259935,71 @@
       "lon": 19.10338592529297,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T02:01:42.159716+02:00",
+      "kulcs": "V2030",
+      "rendszam": "V2030",
+      "vehicle_id": "2030",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.473876953125,
+      "lon": 19.048446655273438,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-10T02:01:42.160781+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.455806732177734,
+      "lon": 18.94114875793457,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Astoria M ► Zsámbék"
+    },
+    {
+      "idopont": "2026-10-10T02:01:42.161768+02:00",
+      "kulcs": "PDB709",
+      "rendszam": "PDB709",
+      "vehicle_id": "7035",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.451515197753906,
+      "lon": 19.15883445739746,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T02:01:42.162017+02:00",
+      "kulcs": "RVY718",
+      "rendszam": "RVY718",
+      "vehicle_id": "7467",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.53425979614258,
+      "lon": 19.082275390625,
+      "elozo_szoveg": "Astoria M ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-10T02:01:42.162366+02:00",
+      "kulcs": "415 068",
+      "rendszam": "415 068",
+      "vehicle_id": "945514150685",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.49222183227539,
+      "lon": 19.133970260620117,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Gödöllő"
     }
   ]
 }
