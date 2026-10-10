@@ -1,19 +1,6 @@
 {
-  "frissitve": "2026-10-11T00:40:17.527225+02:00",
+  "frissitve": "2026-10-11T00:40:44.117299+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.389040+02:00",
-      "kulcs": "PCC930",
-      "rendszam": "PCC930",
-      "vehicle_id": "7269",
-      "vehicle_label": "Fácános tér",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.511627197265625,
-      "lon": 18.997859954833984,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fácános tér"
-    },
     {
       "idopont": "2026-10-10T12:34:32.389054+02:00",
       "kulcs": "AOGF651",
@@ -260000,6 +259987,19 @@
       "lon": 19.141841888427734,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-11T00:40:44.060584+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42155838012695,
+      "lon": 19.041337966918945,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
     }
   ]
 }
