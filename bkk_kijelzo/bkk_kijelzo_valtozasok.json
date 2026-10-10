@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T03:40:03.103494+02:00",
+  "frissitve": "2026-10-10T03:40:36.185932+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:15:32.567778+02:00",
-      "kulcs": "MOS261",
-      "rendszam": "MOS261",
-      "vehicle_id": "5714",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.38838577270508,
-      "lon": 19.216413497924805,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-09T15:15:32.568371+02:00",
-      "kulcs": "V2290",
-      "rendszam": "V2290",
-      "vehicle_id": "588",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.5008430480957,
-      "lon": 19.024005889892578,
-      "elozo_szoveg": "Alkotás utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-10-09T15:15:32.568559+02:00",
-      "kulcs": "MUT895",
-      "rendszam": "MUT895",
-      "vehicle_id": "5948",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.43162155151367,
-      "lon": 19.173641204833984,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-09T15:15:32.568626+02:00",
-      "kulcs": "MUU901",
-      "rendszam": "MUU901",
-      "vehicle_id": "5954",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.475914001464844,
-      "lon": 19.10051918029785,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-09T15:15:32.568730+02:00",
-      "kulcs": "NBW005",
-      "rendszam": "NBW005",
-      "vehicle_id": "5975",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.47988510131836,
-      "lon": 19.25503158569336,
-      "elozo_szoveg": "Rákoskeresztúr, városközpont",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-09T15:15:32.568806+02:00",
       "kulcs": "NBW010",
@@ -260000,6 +259935,71 @@
       "lon": 20.017839431762695,
       "elozo_szoveg": "Szolnok",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-10T03:40:36.053371+02:00",
+      "kulcs": "AAMH615",
+      "rendszam": "AAMH615",
+      "vehicle_id": "458",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.4751091003418,
+      "lon": 19.040103912353516,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T03:40:36.053672+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56809616088867,
+      "lon": 19.125864028930664,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-10-10T03:40:36.053732+02:00",
+      "kulcs": "PKN614",
+      "rendszam": "PKN614",
+      "vehicle_id": "7203",
+      "vehicle_label": "Rákoscsaba vasútállomás",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.491859436035156,
+      "lon": 19.26234245300293,
+      "elozo_szoveg": "Újpalota, Sárfű utca",
+      "uj_szoveg": "Rákoscsaba vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T03:40:36.053880+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498905181884766,
+      "lon": 19.050886154174805,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-10T03:40:36.053969+02:00",
+      "kulcs": "T9135",
+      "rendszam": "T9135",
+      "vehicle_id": "7874",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.501529693603516,
+      "lon": 19.115108489990234,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
