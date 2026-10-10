@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T03:33:38.068942+02:00",
+  "frissitve": "2026-10-10T03:34:09.866002+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:14:04.860240+02:00",
-      "kulcs": "AADI600",
-      "rendszam": "AADI600",
-      "vehicle_id": "98",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.474056243896484,
-      "lon": 19.048532485961914,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-10-09T15:15:32.562214+02:00",
-      "kulcs": "AOJM885",
-      "rendszam": "AOJM885",
-      "vehicle_id": "1011",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.430782318115234,
-      "lon": 19.0705623626709,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-09T15:15:32.562417+02:00",
-      "kulcs": "AILJ858",
-      "rendszam": "AILJ858",
-      "vehicle_id": "1057",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.542850494384766,
-      "lon": 18.96477699279785,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Pesthidegkút"
-    },
     {
       "idopont": "2026-10-09T15:15:32.562429+02:00",
       "kulcs": "AADI609",
@@ -260000,6 +259961,45 @@
       "lon": 19.06472396850586,
       "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
       "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-10-10T03:34:09.806318+02:00",
+      "kulcs": "FKU940",
+      "rendszam": "FKU940",
+      "vehicle_id": "3096",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.4629020690918,
+      "lon": 19.00647735595703,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-10T03:34:09.807673+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.485294342041016,
+      "lon": 19.07140350341797,
+      "elozo_szoveg": "Határ út M ► Pestszentlőrinc",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-10T03:34:09.807801+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.405967712402344,
+      "lon": 19.014135360717773,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
