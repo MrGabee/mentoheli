@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-10T03:09:05.407668+02:00",
+  "frissitve": "2026-10-10T03:09:33.558365+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:12:56.673392+02:00",
-      "kulcs": "V2035",
-      "rendszam": "V2035",
-      "vehicle_id": "2035",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50726318359375,
-      "lon": 19.024715423583984,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-10-09T15:12:56.673490+02:00",
-      "kulcs": "AAGL253",
-      "rendszam": "AAGL253",
-      "vehicle_id": "253",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40E",
-      "route_id": "0405",
-      "lat": 47.464359283447266,
-      "lon": 19.01856803894043,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-10-09T15:12:56.674109+02:00",
-      "kulcs": "FLR725",
-      "rendszam": "FLR725",
-      "vehicle_id": "3139",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161E",
-      "route_id": "1615",
-      "lat": 47.4718017578125,
-      "lon": 19.29494857788086,
-      "elozo_szoveg": "Kucorgó tér ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-09T15:12:56.674211+02:00",
-      "kulcs": "FLR742",
-      "rendszam": "FLR742",
-      "vehicle_id": "3156",
-      "vehicle_label": "Hungexpo",
-      "vonal_szam": "10",
-      "route_id": "0100",
-      "lat": 47.49721145629883,
-      "lon": 19.1376953125,
-      "elozo_szoveg": "Hungexpo",
-      "uj_szoveg": "Hungexpo ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-09T15:12:56.674236+02:00",
       "kulcs": "FLR746",
@@ -260000,6 +259948,58 @@
       "lon": 19.02872085571289,
       "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
       "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-10T03:09:33.467923+02:00",
+      "kulcs": "AADR758",
+      "rendszam": "AADR758",
+      "vehicle_id": "207",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49702453613281,
+      "lon": 19.055723190307617,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-10T03:09:33.469709+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48397445678711,
+      "lon": 19.12602996826172,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T03:09:33.469959+02:00",
+      "kulcs": "SKR829",
+      "rendszam": "SKR829",
+      "vehicle_id": "7715",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42262268066406,
+      "lon": 19.08054542541504,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-10T03:09:33.470161+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53998565673828,
+      "lon": 19.069787979125977,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
     }
   ]
 }
