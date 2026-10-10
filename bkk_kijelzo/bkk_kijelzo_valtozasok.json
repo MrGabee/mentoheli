@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T01:06:20.006832+02:00",
+  "frissitve": "2026-10-11T01:06:55.785066+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:34:32.392762+02:00",
-      "kulcs": "T9148",
-      "rendszam": "T9148",
-      "vehicle_id": "7887",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.516963958740234,
-      "lon": 19.115468978881836,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392776+02:00",
-      "kulcs": "T9149",
-      "rendszam": "T9149",
-      "vehicle_id": "7888",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.50958251953125,
-      "lon": 19.064714431762695,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-10T12:34:32.392789+02:00",
-      "kulcs": "T8110",
-      "rendszam": "T8110",
-      "vehicle_id": "7889",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.48674774169922,
-      "lon": 19.06822967529297,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
     {
       "idopont": "2026-10-10T12:34:32.392803+02:00",
       "kulcs": "AOFL205",
@@ -260000,6 +259961,45 @@
       "lon": 19.0745792388916,
       "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
       "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-11T01:06:55.697107+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47956848144531,
+      "lon": 19.050975799560547,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-11T01:06:55.698349+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.475181579589844,
+      "lon": 18.988815307617188,
+      "elozo_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-11T01:06:55.698414+02:00",
+      "kulcs": "FLR749",
+      "rendszam": "FLR749",
+      "vehicle_id": "3163",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49977493286133,
+      "lon": 19.287111282348633,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
     }
   ]
 }
