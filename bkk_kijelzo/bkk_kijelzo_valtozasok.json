@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T04:06:21.209528+02:00",
+  "frissitve": "2026-10-10T04:06:51.961841+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:18:13.566669+02:00",
-      "kulcs": "SGY804",
-      "rendszam": "SGY804",
-      "vehicle_id": "7722",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.41598129272461,
-      "lon": 19.132577896118164,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
-    {
-      "idopont": "2026-10-09T15:18:13.567425+02:00",
-      "kulcs": "STZ869",
-      "rendszam": "STZ869",
-      "vehicle_id": "7824",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.44915008544922,
-      "lon": 18.905229568481445,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-09T15:18:13.567716+02:00",
-      "kulcs": "SKN826",
-      "rendszam": "SKN826",
-      "vehicle_id": "7858",
-      "vehicle_label": "Megyer, Szondi utca",
-      "vonal_szam": "30A",
-      "route_id": "0301",
-      "lat": 47.49973678588867,
-      "lon": 19.084373474121094,
-      "elozo_szoveg": "Déli pályaudvar M",
-      "uj_szoveg": "Megyer, Szondi utca"
-    },
-    {
-      "idopont": "2026-10-09T15:18:13.567895+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.519222259521484,
-      "lon": 19.090986251831055,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-09T15:18:13.568280+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50510025024414,
-      "lon": 19.13643455505371,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
     {
       "idopont": "2026-10-09T15:18:13.568366+02:00",
       "kulcs": "T8119",
@@ -260000,6 +259935,71 @@
       "lon": 19.680469512939453,
       "elozo_szoveg": "Nagykáta",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-10-10T04:06:51.891047+02:00",
+      "kulcs": "V2005",
+      "rendszam": "V2005",
+      "vehicle_id": "2005",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.54865264892578,
+      "lon": 19.029455184936523,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-10T04:06:51.891183+02:00",
+      "kulcs": "V2039",
+      "rendszam": "V2039",
+      "vehicle_id": "2039",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.4910774230957,
+      "lon": 19.1090087890625,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-10T04:06:51.893112+02:00",
+      "kulcs": "AELD561",
+      "rendszam": "AELD561",
+      "vehicle_id": "612",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "224",
+      "route_id": "2240",
+      "lat": 47.41724395751953,
+      "lon": 19.130752563476562,
+      "elozo_szoveg": "Szentlőrinci út",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-10-10T04:06:51.893437+02:00",
+      "kulcs": "RVY741",
+      "rendszam": "RVY741",
+      "vehicle_id": "7639",
+      "vehicle_label": "Gyál, Vecsési út",
+      "vonal_szam": "55",
+      "route_id": "0550",
+      "lat": 47.38531494140625,
+      "lon": 19.21044158935547,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Gyál, Vecsési út"
+    },
+    {
+      "idopont": "2026-10-10T04:06:51.893475+02:00",
+      "kulcs": "SKR735",
+      "rendszam": "SKR735",
+      "vehicle_id": "7684",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "136",
+      "route_id": "1360",
+      "lat": 47.43655014038086,
+      "lon": 19.17267417907715,
+      "elozo_szoveg": "Havanna-lakótelep",
+      "uj_szoveg": "Kőbánya-Kispest M"
     }
   ]
 }
