@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:32:52.099743+02:00",
+  "frissitve": "2026-10-10T02:33:28.589973+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:09:00.788369+02:00",
-      "kulcs": "AAHY845",
-      "rendszam": "AAHY845",
-      "vehicle_id": "406",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56047439575195,
-      "lon": 19.090412139892578,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.788403+02:00",
-      "kulcs": "AAHY849",
-      "rendszam": "AAHY849",
-      "vehicle_id": "410",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.590087890625,
-      "lon": 19.122509002685547,
-      "elozo_szoveg": "Rákospalota, Csömöri-patak",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.788484+02:00",
-      "kulcs": "T0207",
-      "rendszam": "T0207",
-      "vehicle_id": "4189",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.5141487121582,
-      "lon": 19.050079345703125,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.788623+02:00",
-      "kulcs": "T0612",
-      "rendszam": "T0612",
-      "vehicle_id": "4296",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49584197998047,
-      "lon": 19.060131072998047,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-10-09T15:09:00.788747+02:00",
-      "kulcs": "V1325",
-      "rendszam": "V1325",
-      "vehicle_id": "4428",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49908447265625,
-      "lon": 19.082597732543945,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-09T15:09:00.789017+02:00",
       "kulcs": "V1362",
@@ -260000,6 +259935,71 @@
       "lon": 19.081378936767578,
       "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
       "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-10T02:33:28.503308+02:00",
+      "kulcs": "AADI656",
+      "rendszam": "AADI656",
+      "vehicle_id": "155",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50899124145508,
+      "lon": 19.095632553100586,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T02:33:28.503397+02:00",
+      "kulcs": "V2006",
+      "rendszam": "V2006",
+      "vehicle_id": "2006",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47400665283203,
+      "lon": 19.047119140625,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-10T02:33:28.503495+02:00",
+      "kulcs": "AADR761",
+      "rendszam": "AADR761",
+      "vehicle_id": "210",
+      "vehicle_label": "Bosnyák tér",
+      "vonal_szam": "907A",
+      "route_id": "9071",
+      "lat": 47.494571685791016,
+      "lon": 19.061004638671875,
+      "elozo_szoveg": "Bosnyák tér",
+      "uj_szoveg": "Zugló vasútállomás ► Bosnyák tér"
+    },
+    {
+      "idopont": "2026-10-10T02:33:28.505719+02:00",
+      "kulcs": "PDB720",
+      "rendszam": "PDB720",
+      "vehicle_id": "7046",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.488929748535156,
+      "lon": 19.063331604003906,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-10-10T02:33:28.505764+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51921463012695,
+      "lon": 19.038249969482422,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
