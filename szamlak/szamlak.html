@@ -463,6 +463,7 @@
     <form id="jelszo-urlap" method="post" action="#" autocomplete="on">
       <input type="text" id="jelszo-felhasznalonev" name="username" placeholder="Felhasználónév" autocomplete="username" autocapitalize="none" spellcheck="false" required>
       <input type="password" id="jelszo-jelszo" name="password" placeholder="Jelszó" autocomplete="current-password" required>
+      <label class="jelszo-marad"><input type="checkbox" id="jelszo-mentes" checked> Jelszó mentése ezen az eszközön</label>
       <label class="jelszo-marad"><input type="checkbox" id="jelszo-maradjak" checked> Maradjak bejelentkezve ezen az eszközön</label>
       <button type="submit" id="jelszo-gomb">Bejelentkezés</button>
     </form>
@@ -4921,6 +4922,14 @@
     }
   }
 
+  const MENTETT_BELEPES = "szamla_mentett_belepes";
+  function mentettBelepes() {
+    try {
+      const b = JSON.parse(localStorage.getItem(MENTETT_BELEPES) || "null");
+      return (b && b.u && b.p) ? b : null;
+    } catch (e) { return null; }
+  }
+
   async function bejelentkezes(felhasznalonev, jelszo) {
     const hibaEl = document.getElementById("jelszo-hiba");
     hibaEl.textContent = "";
@@ -4931,8 +4940,7 @@
       szerepkor = belepes.szerepkor === "admin" ? "admin" : "user";
       await adatBetoltesEsMegjelenites();
       // "Maradjak bejelentkezve": a localStorage túléli az app/böngésző
-      // bezárását, a sessionStorage csak az adott fület. A jelszót magát
-      // SOHA nem tároljuk - azt a böngésző/telefon jelszókezelője menti.
+      // bezárását, a sessionStorage csak az adott fület.
       const maradjEl = document.getElementById("jelszo-maradjak");
       const tar = (maradjEl && maradjEl.checked) ? localStorage : sessionStorage;
       try {
@@ -4940,8 +4948,19 @@
         tar.setItem("szamla_szerepkor", szerepkor);
         tar.setItem("szamla_felhasznalonev", felhasznalonev);
       } catch (e) { /* ignorálható */ }
+      // "Jelszó mentése" pipa: a felhasználónév + jelszó ezen az eszközön
+      // marad (az appban is, ahol a telefon jelszókezelője nem mindig
+      // kérdez rá), így a következő belépésnél már ki van töltve.
+      const mentesEl = document.getElementById("jelszo-mentes");
+      try {
+        if (mentesEl && mentesEl.checked && jelszo) {
+          localStorage.setItem(MENTETT_BELEPES, JSON.stringify({ u: felhasznalonev, p: jelszo }));
+        } else if (mentesEl && !mentesEl.checked) {
+          localStorage.removeItem(MENTETT_BELEPES);
+        }
+      } catch (e) { /* ignorálható */ }
       // A jelszókezelő (Chrome / Android Google Jelszókezelő) felajánlja a mentést.
-      if (window.PasswordCredential && navigator.credentials && jelszo) {
+      if (mentesEl && mentesEl.checked && window.PasswordCredential && navigator.credentials && jelszo) {
         try { await navigator.credentials.store(new PasswordCredential({ id: felhasznalonev, password: jelszo, name: felhasznalonev })); }
         catch (e) { /* ignorálható */ }
       }
@@ -4970,7 +4989,7 @@
   // Kényelmi funkció: ugyanabban a böngésző-fülben (session alatt) nem
   // kell újra bejelentkezni - de új fül/böngésző-indítás után igen. Csak
   // a login EREDMÉNYÉT (a kapott közös api-kulcsot + szerepkört) tesszük
-  // el, a jelszót SOHA - ezért itt nem hívjuk újra a "login" action-t,
+  // el (a jelszót csak a "Jelszó mentése" pipa menti) - itt nem hívjuk újra a "login" action-t,
   // csak közvetlenül betöltjük az adatot a mentett kulccsal.
   (async function ujraBelepesMentettAdatokkal() {
     let mentettKulcs, mentettSzerepkor, mentettNev;
@@ -4982,7 +5001,15 @@
       } catch (e) { mentettKulcs = null; }
       if (mentettKulcs) break;
     }
+    // Elmentett jelszó: kitöltjük a mezőket (kijelentkezés után is),
+    // a "Bejelentkezés" gombot a felhasználó nyomja meg.
+    const mentett = mentettBelepes();
+    if (mentett) {
+      document.getElementById("jelszo-felhasznalonev").value = mentett.u;
+      document.getElementById("jelszo-jelszo").value = mentett.p;
+    }
     if (!mentettKulcs) {
+      if (mentett) return;
       // Nincs mentett belépés: ha a jelszókezelőben van mentett jelszó
       // ehhez az oldalhoz, a böngésző csendben (kérdés nélkül) visszaadja.
       if (window.PasswordCredential && navigator.credentials) {
@@ -5007,6 +5034,8 @@
         try { sessionStorage.removeItem(k); } catch (e2) { /* ignorálható */ }
         try { localStorage.removeItem(k); } catch (e2) { /* ignorálható */ }
       });
+      // A mentett kulcs lejárt: ha van elmentett jelszó, azzal újra belépünk.
+      if (mentett) { await bejelentkezes(mentett.u, mentett.p); return; }
       // A bejelentkező képernyő így is látszik marad - nem írunk hibát
       // bele, mert a felhasználó nem is próbált most éppen belépni.
     }
