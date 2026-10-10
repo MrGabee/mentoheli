@@ -364,12 +364,16 @@
   .bank-jel-nincs { background: var(--amber-soft); color: var(--amber); }
   .bank-jel-hiba { background: var(--red-soft); color: var(--red); }
   .kezi-doboz { display: grid; gap: 10px; margin-bottom: 22px; }
-  .kezi-cel-cimke { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
-  #kezi-cel { font: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); max-width: 100%; min-width: 0; }
+  .kezi-elem.kezi-elokeszitett-elem { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto; }
+  .kezi-elem-cel { font: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); max-width: 100%; min-width: 0; }
   button.bank-ejto { font: inherit; color: var(--text); text-align: left; width: 100%; }
   .kezi-lista { display: grid; gap: 6px; }
   .kezi-elem { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13.5px; }
   .kezi-elem > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+  .kezi-mentes-sor { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+  .kezi-mentes-gomb { border: 0; background: var(--blue); color: var(--on-accent); border-radius: 8px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; }
+  .kezi-mentes-gomb:disabled { opacity: .6; cursor: default; }
+  @media (max-width: 640px) { .kezi-elem.kezi-elokeszitett-elem { grid-template-columns: minmax(0, 1fr) auto; } .kezi-elokeszitett-elem .kezi-elem-cel { grid-column: 1 / -1; grid-row: 2; } }
   .bank-muveletek { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
   .bank-muveletek select { max-width: 100%; min-width: 0; flex: 1 1 200px; font: inherit; font-size: 13px; padding: 5px 6px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--text); }
   .bank-link-gomb { border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 6px; padding: 4px 8px; font-size: 12.5px; cursor: pointer; }
@@ -516,13 +520,11 @@
 
       <div id="kezi-feltoltes-sor" class="kezi-doboz">
         <input type="file" id="kezi-fajl" accept="application/pdf,.pdf" multiple hidden>
-        <label class="kezi-cel-cimke">Melyik számlát töltöd fel?
-          <select id="kezi-cel"></select>
-        </label>
         <button type="button" class="bank-ejto" id="kezi-ejto">
           <strong>Számla feltöltése (PDF)</strong>
-          <span>Kattints a tallózáshoz, vagy húzd ide a PDF-et. Ha fent kiválasztod, melyik NAV-tétel vagy banki terhelés számlája, egyből ahhoz kötjük. A számla a következő futáskor kerül a listába, a Drive-ra is feltöltve.</span>
+          <span>Kattints a tallózáshoz, vagy húzd ide a PDF-eket (egyszerre több is mehet). Mindegyik mellett kiválaszthatod, melyik cég melyik hiányzó számlája (NAV-tétel vagy banki terhelés), majd a Mentés gombbal töltődnek fel. A következő futáskor kerülnek a listába, a Drive-ra is feltöltve.</span>
         </button>
+        <div id="kezi-elokeszitett"></div>
         <div class="panel-statusz" id="kezi-statusz"></div>
         <div id="kezi-varolista"></div>
       </div>
@@ -1788,7 +1790,9 @@
           <td>
             ${t.szamlaszam
               ? `<button type="button" class="nav-hozzaadas-gomb" data-target="${sorId}" style="font-size:12px;padding:4px 8px;">+ Hozzáadás</button>`
-                + (szerepkor === "admin" ? ` <button type="button" class="kezi-tetel-gomb" data-cel="${escHtml("nav:" + _navTetelKulcs(t))}" style="font-size:12px;padding:4px 8px;">📤 Számla feltöltése</button>` : "")
+                + (szerepkor !== "admin" ? ""
+                  : keziFuggoCelok().has("nav:" + _navTetelKulcs(t)) ? ' <span class="bank-alszoveg">számla feltöltve, feldolgozásra vár</span>'
+                  : ` <button type="button" class="kezi-tetel-gomb" data-cel="${escHtml("nav:" + _navTetelKulcs(t))}" style="font-size:12px;padding:4px 8px;">📤 Számla feltöltése</button>`)
               : `<span style="color:var(--muted);font-size:12px;">(nincs számlaszám, kézzel ellenőrizendő)</span>`}
           </td>
         </tr>
@@ -3376,7 +3380,7 @@
             <option value="">Számla hozzárendelése…</option>
             ${jeloltek.map(x => `<option value="${escHtml(x.r.id)}">${escHtml(szamlaCimke(x.r))}</option>`).join("")}
           </select>
-          <button type="button" class="bank-link-gomb kezi-tetel-gomb" data-cel="${escHtml("bank:" + t.id)}" data-statusz="bank-statusz">Számla feltöltése</button>
+          ${keziFuggoCelok().has("bank:" + t.id) ? '<span class="bank-alszoveg">számla feltöltve, feldolgozásra vár</span>' : `<button type="button" class="bank-link-gomb kezi-tetel-gomb" data-cel="${escHtml("bank:" + t.id)}" data-statusz="bank-statusz">Számla feltöltése</button>`}
           <button type="button" class="bank-link-gomb bank-kivul" data-id="${escHtml(t.id)}">Nem kell számla</button>
         </div>`;
       }
@@ -3465,12 +3469,12 @@
     });
   }
 
-  // kontextus: { bank_tetel_id?, nav_tetel?, kuldo_nev?, statuszId }
-  async function keziSzamlakFeltoltese(fajlok, kontextus) {
-    const statuszId = (kontextus && kontextus.statuszId) || "kezi-statusz";
+  // tetelek: [{ fajl, kontextus: { bank_tetel_id?, nav_tetel?, kuldo_nev? } }]
+  async function keziSzamlakFeltoltese(tetelek, statuszId) {
+    statuszId = statuszId || "kezi-statusz";
     const uzenetek = [];
     let volt_hiba = false;
-    for (const fajl of fajlok) {
+    for (const { fajl, kontextus } of tetelek) {
       if (!/\.pdf$/i.test(fajl.name) && fajl.type !== "application/pdf") { volt_hiba = true; uzenetek.push(`${fajl.name}: csak PDF tölthető fel.`); continue; }
       if (fajl.size > KEZI_PDF_MAX_BAJT) { volt_hiba = true; uzenetek.push(`${fajl.name}: túl nagy (legfeljebb 10 MB).`); continue; }
       beStatuszMutat(statuszId, `Feltöltés: ${fajl.name}…`, "");
@@ -3497,6 +3501,7 @@
     beStatuszMutat(statuszId, uzenetek.join(" ") + (volt_hiba ? "" : utoirat), volt_hiba ? "hiba" : "siker");
     keziFeltoltesekRenderelese();
     cegesTablaRenderelese(cegesSzamlak);
+    navCsakNavbanRenderelese(legutobbiAdat.nav_csak_navban, legutobbiAdat.nav_szallito_emailek);
   }
 
   // A feltöltő doboz "Melyik számla ez?" listája: a NAV-ban szereplő, de
@@ -3504,6 +3509,16 @@
   // nélküli terhelései. Amihez már folyamatban van feltöltés, kimarad.
   function _navTetelKulcs(t) {
     return `${(t.szallito_adoszam || "").trim()}|${String(t.szamlaszam || "").replace(/\s+/g, "").toUpperCase()}`;
+  }
+  // Azok a NAV- és bank-tételek, amikhez már van feltöltött, még le nem zárt számla.
+  function keziFuggoCelok() {
+    const kerelmek = Object.values(lvObjektum(legutobbiAdat && legutobbiAdat.ceges_kezi_feltoltes_kerelmek));
+    const celok = new Set();
+    kerelmek.forEach(k => {
+      if (k.nav_tetel) celok.add("nav:" + _navTetelKulcs(k.nav_tetel));
+      if (k.bank_tetel_id) celok.add("bank:" + k.bank_tetel_id);
+    });
+    return celok;
   }
   function keziCelOpciok() {
     const kerelmek = Object.values(lvObjektum(legutobbiAdat && legutobbiAdat.ceges_kezi_feltoltes_kerelmek));
@@ -3533,32 +3548,72 @@
       });
     return opciok;
   }
-  function keziCelValasztoRenderelese() {
-    const valaszto = document.getElementById("kezi-cel");
-    if (!valaszto) return;
-    const elozo = valaszto.value;
-    const opciok = keziCelOpciok();
-    const csoport = nev => Object.entries(opciok).filter(([, o]) => o.csoport === nev)
-      .map(([v, o]) => `<option value="${escHtml(v)}">${escHtml(o.cimke)}</option>`).join("");
+  // A feltöltő dobozba tett PDF-ek először ide kerülnek: mindegyik mellett
+  // kiválasztható, melyik számláról van szó, és csak a "Mentés" gombra
+  // töltődnek fel.
+  let keziElokeszitett = [];
+  function keziCelOpcioHtml(opciok, kivalasztott, foglalt) {
+    const csoport = nev => Object.entries(opciok).filter(([v, o]) => o.csoport === nev && (v === kivalasztott || !foglalt.has(v)))
+      .map(([v, o]) => `<option value="${escHtml(v)}" ${v === kivalasztott ? "selected" : ""}>${escHtml(o.cimke)}</option>`).join("");
     const nav = csoport("nav");
     const bank = csoport("bank");
-    valaszto.innerHTML = `<option value="">Új számla, nincs párja (az adatokat a PDF-ből olvassa ki)</option>`
+    return `<option value="">Új számla, nincs párja (az adatokat a PDF-ből olvassa ki)</option>`
       + (nav ? `<optgroup label="NAV-ban szerepel, de még nincs meg">${nav}</optgroup>` : "")
       + (bank ? `<optgroup label="Bankból kifizetve, számla nélkül">${bank}</optgroup>` : "");
-    valaszto.value = opciok[elozo] ? elozo : "";
   }
-  function keziKivalasztottKontextus() {
-    const ertek = document.getElementById("kezi-cel").value;
-    const o = keziCelOpciok()[ertek];
-    return Object.assign({ statuszId: "kezi-statusz" }, o ? o.kontextus : {});
+  function keziElokeszitesHozzaadas(fajlok) {
+    const hibak = [];
+    fajlok.forEach(fajl => {
+      if (!/\.pdf$/i.test(fajl.name) && fajl.type !== "application/pdf") { hibak.push(`${fajl.name}: csak PDF tölthető fel.`); return; }
+      if (fajl.size > KEZI_PDF_MAX_BAJT) { hibak.push(`${fajl.name}: túl nagy (legfeljebb 10 MB).`); return; }
+      keziElokeszitett.push({ id: Math.random().toString(36).slice(2, 10), fajl, cel: "" });
+    });
+    beStatuszMutat("kezi-statusz", hibak.join(" "), hibak.length ? "hiba" : "");
+    keziElokeszitettRenderelese();
   }
-  // A NAV- és bank-listák soraiban lévő "Számla feltöltése" gomb: kiválasztja
-  // a tételt a feltöltő dobozban, és egyből megnyitja a fájlválasztót.
+  function keziElokeszitettRenderelese() {
+    const hely = document.getElementById("kezi-elokeszitett");
+    if (!hely) return;
+    if (!keziElokeszitett.length) { hely.innerHTML = ""; return; }
+    const opciok = keziCelOpciok();
+    keziElokeszitett.forEach(e => { if (e.cel && !opciok[e.cel]) e.cel = ""; });
+    hely.innerHTML = `<div class="kezi-lista">${keziElokeszitett.map(e => {
+      const foglalt = new Set(keziElokeszitett.filter(x => x !== e && x.cel).map(x => x.cel));
+      return `<div class="kezi-elem kezi-elokeszitett-elem">
+        <span class="kezi-fajlnev"><strong>${escHtml(e.fajl.name)}</strong> <span class="bank-alszoveg">${Math.max(1, Math.round(e.fajl.size / 1024))} kB</span></span>
+        <select class="kezi-elem-cel" data-id="${e.id}" aria-label="Melyik számla ez: ${escHtml(e.fajl.name)}">${keziCelOpcioHtml(opciok, e.cel, foglalt)}</select>
+        <button type="button" class="torles-gomb kezi-elem-torles" data-id="${e.id}" title="Kivétel a listából">✕</button>
+      </div>`;
+    }).join("")}</div>
+    <div class="kezi-mentes-sor">
+      <button type="button" id="kezi-mentes" class="kezi-mentes-gomb">Mentés (${keziElokeszitett.length} számla feltöltése)</button>
+      <button type="button" id="kezi-elvetes" class="bank-link-gomb">Mégse</button>
+    </div>`;
+    hely.querySelectorAll(".kezi-elem-cel").forEach(sel => sel.addEventListener("change", () => {
+      const e = keziElokeszitett.find(x => x.id === sel.dataset.id);
+      if (e) e.cel = sel.value;
+      keziElokeszitettRenderelese();
+    }));
+    hely.querySelectorAll(".kezi-elem-torles").forEach(b => b.addEventListener("click", () => {
+      keziElokeszitett = keziElokeszitett.filter(x => x.id !== b.dataset.id);
+      keziElokeszitettRenderelese();
+    }));
+    document.getElementById("kezi-elvetes").addEventListener("click", () => { keziElokeszitett = []; keziElokeszitettRenderelese(); });
+    document.getElementById("kezi-mentes").addEventListener("click", async () => {
+      const gomb = document.getElementById("kezi-mentes");
+      gomb.disabled = true;
+      const opciok = keziCelOpciok();
+      const tetelek = keziElokeszitett.map(e => ({ fajl: e.fajl, kontextus: (opciok[e.cel] || {}).kontextus || {} }));
+      keziElokeszitett = [];
+      keziElokeszitettRenderelese();
+      await keziSzamlakFeltoltese(tetelek, "kezi-statusz");
+    });
+  }
+  // A NAV- és bank-listák soraiban lévő "Számla feltöltése" gomb: a
+  // fájlválasztó után egyből feltölti, az adott tételhez kötve.
   function keziFeltoltesTetelhez(celErtek, statuszId) {
-    keziCelValasztoRenderelese();
-    const valaszto = document.getElementById("kezi-cel");
-    valaszto.value = celErtek;
-    keziFajlValasztas(Object.assign(keziKivalasztottKontextus(), { statuszId: statuszId || "kezi-statusz" }));
+    const o = keziCelOpciok()[celErtek];
+    keziFajlValasztas({ kontextus: o ? o.kontextus : {}, statuszId: statuszId || "kezi-statusz" });
   }
 
   function keziFajlValasztas(kontextus) {
@@ -3575,7 +3630,7 @@
     const fuggo = Object.entries(kerelmek)
       .filter(([kid]) => (eredmenyek[kid] || {}).statusz !== "kesz")
       .sort((a, b) => String(b[1].letrehozva || "").localeCompare(String(a[1].letrehozva || "")));
-    keziCelValasztoRenderelese();
+    keziElokeszitettRenderelese();
     if (!fuggo.length) { hely.innerHTML = ""; return; }
     hely.innerHTML = `<div class="kezi-lista">${fuggo.map(([kid, k]) => {
       const e = eredmenyek[kid];
@@ -3621,21 +3676,23 @@
     input.addEventListener("change", () => {
       const fajlok = [...input.files];
       input.value = "";
-      const kontextus = keziFeltoltesKontextus || {};
+      const cel = keziFeltoltesKontextus;
       keziFeltoltesKontextus = null;
-      if (fajlok.length) keziSzamlakFeltoltese(fajlok, kontextus);
+      if (!fajlok.length) return;
+      if (cel) keziSzamlakFeltoltese(fajlok.map(fajl => ({ fajl, kontextus: cel.kontextus })), cel.statuszId);
+      else keziElokeszitesHozzaadas(fajlok);
     });
     document.addEventListener("click", e => {
       const gomb = e.target.closest && e.target.closest(".kezi-tetel-gomb");
       if (gomb) keziFeltoltesTetelhez(gomb.dataset.cel, gomb.dataset.statusz);
     });
     const ejto = document.getElementById("kezi-ejto");
-    ejto.addEventListener("click", e => { e.preventDefault(); keziFajlValasztas(keziKivalasztottKontextus()); });
+    ejto.addEventListener("click", e => { e.preventDefault(); keziFajlValasztas(null); });
     ["dragenter", "dragover"].forEach(ev => ejto.addEventListener(ev, e => { e.preventDefault(); ejto.classList.add("rajta"); }));
     ["dragleave", "drop"].forEach(ev => ejto.addEventListener(ev, e => { e.preventDefault(); ejto.classList.remove("rajta"); }));
     ejto.addEventListener("drop", e => {
       const fajlok = [...(e.dataTransfer.files || [])];
-      if (fajlok.length) keziSzamlakFeltoltese(fajlok, keziKivalasztottKontextus());
+      if (fajlok.length) keziElokeszitesHozzaadas(fajlok);
     });
   })();
 
