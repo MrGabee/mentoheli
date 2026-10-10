@@ -1190,6 +1190,9 @@ def _allapot_alapertekek() -> dict:
         "ceges_bejovo_levelek": {},
         "ceges_level_valasz_kerelmek": {},
         "ceges_level_valasz_eredmenyek": {},
+        # Ld. "KIMENŐ LEVELEK NAPLÓJA" - minden ténylegesen elküldött (vagy
+        # küldéskor hibára futott) levél, CSAK a script írja.
+        "kimeno_levelek": {},
     }
 
 
@@ -1657,6 +1660,64 @@ def meroallas_ertek_kinyerese(szoveg: str):
 # ════════════════════════════════════════════
 #  📧  EMAIL KÜLDÉS
 # ════════════════════════════════════════════
+# ════════════════════════════════════════════
+#  📤  KIMENŐ LEVELEK NAPLÓJA
+# ════════════════════════════════════════════
+# Minden ténylegesen elküldött (vagy SMTP-hibára futott) levél ide kerül,
+# hogy a dashboard "Céges levelek" oldalán, az "Elküldött" fülön látszódjon,
+# mi ment ki, kinek, pontosan milyen szöveggel. Az email_kuldes() nem éri
+# el az "allapot"-ot, ezért egy modulszintű pufferbe gyűjtünk, amit a
+# main() a mentés előtt beolvaszt (kimeno_naplo_beolvasztasa()). Dry-run
+# és a kikapcsolt kategória miatt ki nem küldött levél nem kerül bele.
+KIMENO_NAPLO_PUFFER = []
+KIMENO_NAPLO_MAX_DB = 500
+
+
+def _html_szovegge(html_torzs: str) -> str:
+    szoveg = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", html_torzs or "")
+    szoveg = re.sub(r"(?i)<br\s*/?>|</p>|</div>|</tr>|</li>|</h[1-6]>", "\n", szoveg)
+    szoveg = re.sub(r"(?i)</td>", "  ", szoveg)
+    szoveg = BeautifulSoup(szoveg, "html.parser").get_text()
+    szoveg = re.sub(r"[ \t\xa0]+", " ", szoveg)
+    szoveg = re.sub(r"\n[ ]+", "\n", szoveg)
+    return re.sub(r"\n{3,}", "\n\n", szoveg).strip()
+
+
+def kimeno_level_naplozasa(kategoria, tipus, felado, cimzett, targy, szoveg, csatolmany_nevek=None,
+                           sikeres=True, hiba=None, valasz_level_id=None):
+    KIMENO_NAPLO_PUFFER.append({
+        "id": uuid.uuid4().hex[:16],
+        "datum": magyar_ido().isoformat(),
+        "kategoria": kategoria,
+        "tipus": tipus,
+        "felado": felado,
+        "cimzett": cimzett,
+        "targy": targy,
+        "szoveg": (szoveg or "")[:CEGES_LEVEL_SZOVEG_MAX_KAR],
+        "csatolmanyok": list(csatolmany_nevek or []),
+        "statusz": "elkuldve" if sikeres else "hiba",
+        "hiba": (str(hiba)[:300] if hiba else None),
+        "valasz_level_id": valasz_level_id,
+    })
+
+
+def kimeno_naplo_beolvasztasa(allapot: dict) -> None:
+    if not KIMENO_NAPLO_PUFFER:
+        return
+    naplo = allapot.get("kimeno_levelek")
+    if not isinstance(naplo, dict):
+        naplo = {}
+    naplo = dict(naplo)
+    for tetel in KIMENO_NAPLO_PUFFER:
+        naplo[tetel["id"]] = tetel
+    if len(naplo) > KIMENO_NAPLO_MAX_DB:
+        sorrend = sorted(naplo.values(), key=lambda r: r.get("datum") or "")
+        for regi in sorrend[: len(naplo) - KIMENO_NAPLO_MAX_DB]:
+            naplo.pop(regi["id"], None)
+    allapot["kimeno_levelek"] = naplo
+    KIMENO_NAPLO_PUFFER.clear()
+
+
 def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="kozuzemi",
                   feladas_cim_felulbiralas=None):
     """csatolmanyok: [(fajlnev, bytes), ...] - lehet üres/None.
@@ -1719,14 +1780,19 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
         resz.add_header("Content-Disposition", "attachment", filename=fajlnev)
         msg.attach(resz)
 
+    csatolmany_nevek = [fajlnev for fajlnev, tartalom in (csatolmanyok or []) if tartalom]
     try:
         with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
             server.login(feladas_cim, feladas_jelszo)
             server.send_message(msg)
         print(f"  ✅ Email elküldve: {targy}")
+        kimeno_level_naplozasa(kategoria, "automatikus", felado_fejlec, cimzett_vegso, targy,
+                               _html_szovegge(html_torzs), csatolmany_nevek)
         return True
     except Exception as e:
         print(f"  ⚠️  Email-küldési hiba: {e}")
+        kimeno_level_naplozasa(kategoria, "automatikus", felado_fejlec, cimzett_vegso, targy,
+                               _html_szovegge(html_torzs), csatolmany_nevek, sikeres=False, hiba=e)
         return False
 
 
@@ -5409,9 +5475,13 @@ def ceges_level_valaszok_feldolgozasa(allapot: dict) -> None:
             _ceges_valasz_kuldese(cimzett, targy or "Válasz", szoveg, naplo.get(k.get("level_id")))
             eredmenyek[kid] = {"statusz": "elkuldve", "idopont": magyar_ido().isoformat(), "hiba": None}
             print(f"  ✉️  Céges válaszlevél elküldve: {targy!r} -> {cimzett}")
+            kimeno_level_naplozasa("ceges", "valasz", CEGES_EMAIL_KULDO, cimzett, targy or "Válasz", szoveg,
+                                   valasz_level_id=k.get("level_id"))
         except Exception as e:
             eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(), "hiba": str(e)[:300]}
             print(f"  ❌ Céges válaszlevél küldése sikertelen ({cimzett}): {e}")
+            kimeno_level_naplozasa("ceges", "valasz", CEGES_EMAIL_KULDO, cimzett, targy or "Válasz", szoveg,
+                                   sikeres=False, hiba=e, valasz_level_id=k.get("level_id"))
     # Az olyan eredményeket, amikhez már nincs kérelem (a dashboard törölte), eldobjuk.
     for kid in list(eredmenyek.keys()):
         if kid not in kerelmek:
@@ -6379,6 +6449,7 @@ def main():
     # Ld. "TARTALMI DUPLIKÁTUM-VÉDELEM" szekció - a UJJLENYOMAT_MEGORZES_
     # NAP napnál régebbi ujjlenyomat-bejegyzések eldobása.
     _ujjlenyomatok_ritkitasa(allapot)
+    kimeno_naplo_beolvasztasa(allapot)
 
     if DRY_RUN:
         print("  🧪 [DRY RUN] Állapot MENTÉSE kihagyva - a felismerés/lekérdezés lefutott, "
