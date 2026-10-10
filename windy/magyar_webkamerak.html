@@ -21,6 +21,7 @@
     --turquoise: #2dd4bf;
     --mk-blue: #4f8fe0;
     --bkk-violet: #b384f0;
+    --jb-green: #5cc48c;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -439,6 +440,15 @@
     background: var(--bkk-violet);
   }
 
+  .source-badge.source-justbudapest {
+    color: var(--jb-green);
+    border-color: rgba(92, 196, 140, 0.4);
+  }
+
+  .source-badge.source-justbudapest::before {
+    background: var(--jb-green);
+  }
+
   .source-pill {
     display: inline-flex;
     align-items: center;
@@ -462,6 +472,23 @@
   .source-pill.source-utinform::before { background: var(--mk-blue); }
   .source-pill.source-kozutfigyelo { color: var(--bkk-violet); }
   .source-pill.source-kozutfigyelo::before { background: var(--bkk-violet); }
+  .source-pill.source-justbudapest { color: var(--jb-green); }
+  .source-pill.source-justbudapest::before { background: var(--jb-green); }
+
+  .cam-external-link {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--jb-green);
+    text-decoration: none;
+  }
 
   .cam-kf-loading {
     position: absolute;
@@ -694,6 +721,7 @@
     <option value="windy">Csak Windy kamerák</option>
     <option value="utinform">Csak Útinform kamerák</option>
     <option value="kozutfigyelo">Csak Közút Figyelő (Budapest) kamerák</option>
+    <option value="justbudapest">Csak JustBudapest kamerák</option>
   </select>
   <select id="filterSelect" class="filter-select">
     <option value="">Összes helyszín</option>
@@ -724,7 +752,7 @@
 </main>
 
 <footer>
-  Adatforrás: Windy Webcams API (api.windy.com), Útinform / Magyar Közút (utinform.hu) és Közút Figyelő / Budapest Közút Zrt. (kozutfigyelo.budapestkozut.hu) · A Windy és az Útinform adatokat GitHub Actions frissíti rendszeresen; a Közút Figyelő kamerák mindig élőben, közvetlenül a látogató böngészőjéből töltődnek be · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
+  Adatforrás: Windy Webcams API (api.windy.com), Útinform / Magyar Közút (utinform.hu) Közút Figyelő / Budapest Közút Zrt. (kozutfigyelo.budapestkozut.hu) és JustBudapest (justbudapest.com, csak link a forrásoldalra) · A Windy és az Útinform adatokat GitHub Actions frissíti rendszeresen; a Közút Figyelő kamerák mindig élőben, közvetlenül a látogató böngészőjéből töltődnek be · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
 </footer>
 
 <div class="lightbox" id="lightbox">
@@ -783,7 +811,25 @@
     windy: 'Windy',
     utinform: 'Útinform',
     kozutfigyelo: 'Közút Figyelő',
+    justbudapest: 'JustBudapest',
   };
+
+  // Kézzel felvett, nyilvánosan közzétett útkamerák, amelyeknek nincs
+  // lekérdezhető állókép-API-ja. Ezeknél a kártya csak a forrásoldalra
+  // linkel - az élő adást nem ágyazzuk be, mert az a forrásoldal saját
+  // streamje.
+  const STATIC_WEBCAMS = [
+    {
+      id: 'justbudapest-deak-ter',
+      source: 'justbudapest',
+      title: 'Budapest, Deák Ferenc tér (Bajcsy-Zsilinszky út - Károly krt.)',
+      city: 'Budapest',
+      region: 'Közép-Magyarország',
+      latitude: 47.4977,
+      longitude: 19.0544,
+      external_url: 'https://justbudapest.com/budapest-webcams/',
+    },
+  ];
 
   let allWebcams = [];
   let kfObserver = null;
@@ -1055,7 +1101,7 @@
 
     const cards = webcams.map((cam, idx) => {
       const title = escapeHtml(cam.title || 'Névtelen kamera');
-      const source = (cam.source === 'utinform' || cam.source === 'kozutfigyelo') ? cam.source : 'windy';
+      const source = SOURCE_LABELS[cam.source] ? cam.source : 'windy';
       const sourceLabel = SOURCE_LABELS[source];
       const isKf = source === 'kozutfigyelo';
       // A windy kameráknál "region", az útinform kameráknál "county" (megye)
@@ -1079,6 +1125,7 @@
           <div class="cam-image-wrap" data-idx="${idx}" data-media-slot="${idx}" ${isKf ? `data-kf-id="${escapeHtml(String(cam.kfExternalId))}"` : ''}>
             ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
             ${(!imgUrl && isKf) ? `<div class="cam-kf-loading">Kamera kép betöltése…</div>` : ''}
+            ${(!imgUrl && cam.external_url) ? `<a class="cam-external-link" href="${escapeHtml(cam.external_url)}" target="_blank" rel="noopener">▶ Élő adás a ${escapeHtml(sourceLabel)} oldalán →</a>` : ''}
             <div class="live-dot">élő</div>
             <div class="source-badge source-${source}">${escapeHtml(sourceLabel)}</div>
           </div>
@@ -1110,6 +1157,9 @@
       wrap.addEventListener('click', async () => {
         const idx = Number(wrap.dataset.idx);
         const cam = webcams[idx];
+        if (cam.external_url && !cam.image_preview && !cam.image_thumbnail) {
+          return; // a kártyán lévő link viszi a forrásoldalra
+        }
         if (cam.source === 'kozutfigyelo') {
           const loadedImg = wrap.querySelector('img');
           const dataUri = loadedImg ? loadedImg.src : await fetchKozutfigyeloImage(cam.kfExternalId);
@@ -1300,7 +1350,7 @@
         loadKozutfigyeloSource(),
       ]);
 
-      if (!windyResult && !utinformResult && !kozutfigyeloResult) {
+      if (!windyResult && !utinformResult && !kozutfigyeloResult && !STATIC_WEBCAMS.length) {
         setStatus('Nem sikerült betölteni egyik adatforrást sem.', 'error');
         renderEmpty('Ellenőrizd, hogy a GitHub Actions workflow-k lefutottak-e már legalább egyszer, és hogy a windy/data/webcams_hu.json illetve windy/data/webcams_utinform.json a repóban vannak-e - illetve hogy a kozutfigyelo-back.budapestkozut.hu API épp elérhető-e.');
         return;
@@ -1310,6 +1360,7 @@
         ...(windyResult ? windyResult.webcams : []),
         ...(utinformResult ? utinformResult.webcams : []),
         ...(kozutfigyeloResult ? kozutfigyeloResult.webcams : []),
+        ...STATIC_WEBCAMS,
       ];
 
       // A státuszsorban a HÁROM forrás közül a KÉSŐBBI "utoljára frissítve"
