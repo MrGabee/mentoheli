@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-10T02:08:51.788658+02:00",
+  "frissitve": "2026-10-10T02:09:25.908695+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:06:00.306741+02:00",
-      "kulcs": "NTM423",
-      "rendszam": "NTM423",
-      "vehicle_id": "6491",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.52328872680664,
-      "lon": 19.002397537231445,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-09T15:06:00.307752+02:00",
-      "kulcs": "PDN608",
-      "rendszam": "PDN608",
-      "vehicle_id": "7080",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.46403884887695,
-      "lon": 19.018760681152344,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Baross Gábor-telep"
-    },
-    {
-      "idopont": "2026-10-09T15:06:00.307875+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.43303680419922,
-      "lon": 19.182668685913086,
-      "elozo_szoveg": "Gilice tér (Varjú utca)",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-09T15:06:00.308136+02:00",
-      "kulcs": "PHG623",
-      "rendszam": "PHG623",
-      "vehicle_id": "7147",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.501731872558594,
-      "lon": 19.135927200317383,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba"
-    },
-    {
-      "idopont": "2026-10-09T15:06:00.308652+02:00",
-      "kulcs": "PKN605",
-      "rendszam": "PKN605",
-      "vehicle_id": "7221",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "130",
-      "route_id": "1300",
-      "lat": 47.551883697509766,
-      "lon": 19.133760452270508,
-      "elozo_szoveg": "Újpalota, Sárfű utca",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-10-09T15:06:00.308733+02:00",
       "kulcs": "PCC930",
@@ -260000,6 +259935,71 @@
       "lon": 19.103235244750977,
       "elozo_szoveg": "Pesterzsébeti lakótelep",
       "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-10T02:09:25.854384+02:00",
+      "kulcs": "V2022",
+      "rendszam": "V2022",
+      "vehicle_id": "2022",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50749588012695,
+      "lon": 19.023359298706055,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-10T02:09:25.854967+02:00",
+      "kulcs": "FKU933",
+      "rendszam": "FKU933",
+      "vehicle_id": "3089",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.486114501953125,
+      "lon": 19.124422073364258,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T02:09:25.855031+02:00",
+      "kulcs": "FLR705",
+      "rendszam": "FLR705",
+      "vehicle_id": "3119",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.47373962402344,
+      "lon": 18.99193000793457,
+      "elozo_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-10T02:09:25.855112+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45524978637695,
+      "lon": 18.907800674438477,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-10T02:09:25.856091+02:00",
+      "kulcs": "T9135",
+      "rendszam": "T9135",
+      "vehicle_id": "7874",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.501651763916016,
+      "lon": 19.115184783935547,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
