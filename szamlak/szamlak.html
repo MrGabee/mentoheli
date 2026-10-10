@@ -5,35 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Számla áttekintő</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
+  /* Arculat: bal oldali menü + munkaterület. A színek tokenekben vannak,
+     a sötét mód (rendszer-beállítás szerint) csak a tokeneket írja felül.
+     Minden natív vezérlő (gomb, mező, select) kifejezetten tokenekkel van
+     színezve, így sötét módban sem lesz "láthatatlan" gomb. */
   :root {
-    /* A böngésző/OS sötét módja NÉLKÜL is mindig világos native-vezérlő
-       (gomb/select/checkbox) stílust kényszerít ki - enélkül egyes
-       böngészők sötét módban a nem explicit módon színezett natív
-       elemeket (pl. egy csak border+background-ot megadó <button>-t)
-       automatikusan sötét háttér+világos szöveg helyett VILÁGOS
-       háttér+VILÁGOS (láthatatlan) szöveggel rajzolhatják ki - ez okozta
-       az "üres téglalapnak látszó gomb" jelenséget. */
     color-scheme: light;
-    --bg: #f7f8fa;
+    --bg: #f3f5f8;
     --card: #ffffff;
-    --border: #e5e7eb;
-    --text: #111827;
-    --muted: #6b7280;
-    --blue: #1d4ed8;
-    --red: #dc2626;
-    --green: #16a34a;
-    --amber: #b45309;
+    --surface-2: #eef1f6;
+    --border: #dde2ea;
+    --text: #16202e;
+    --muted: #5d6a7c;
+    --blue: #1f5f8b;
+    --blue-soft: #e2edf6;
+    --red: #b3261e;
+    --red-soft: #fbe3e1;
+    --green: #1b7f4b;
+    --green-soft: #e1f3e8;
+    --amber: #a35a00;
+    --amber-soft: #fbefdc;
+    --amber-line: #f0d29a;
+    --purple: #8a2f9e;
+    --purple-soft: #f6e6fa;
+    --on-accent: #ffffff;
+    --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --f-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --f-num: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f141b; --card: #161d27; --surface-2: #1c2531; --border: #2a3443;
+    --text: #e6ebf2; --muted: #93a0b2; --blue: #6fb0e0; --blue-soft: #1b2e40;
+    --red: #f2867f; --red-soft: #3a1a18; --green: #5cc98d; --green-soft: #15301f;
+    --amber: #f0b052; --amber-soft: #33260f; --amber-line: #5a4318;
+    --purple: #d79be6; --purple-soft: #33203a; --on-accent: #0f141b;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f141b; --card: #161d27; --surface-2: #1c2531; --border: #2a3443;
+    --text: #e6ebf2; --muted: #93a0b2; --blue: #6fb0e0; --blue-soft: #1b2e40;
+    --red: #f2867f; --red-soft: #3a1a18; --green: #5cc98d; --green-soft: #15301f;
+    --amber: #f0b052; --amber-soft: #33260f; --amber-line: #5a4318;
+    --purple: #d79be6; --purple-soft: #33203a; --on-accent: #0f141b;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: var(--f-body); font-size: 15px; line-height: 1.5;
   }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 60px; }
-  h1 { font-size: 22px; margin: 0 0 4px; }
+  .wrap { margin: 0 auto; }
+  h1 { font: 700 26px/1.15 var(--f-display); margin: 0 0 4px; text-wrap: balance; }
+  h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; }
   .alcim { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
 
   /* ── Jelszó-képernyő ── */
@@ -47,7 +76,7 @@
   }
   #jelszo-kepernyo button {
     padding: 12px 22px; font-size: 15px; border: none; border-radius: 10px;
-    background: var(--blue); color: #fff; cursor: pointer;
+    background: var(--blue); color: var(--on-accent); cursor: pointer;
   }
   #jelszo-hiba { color: var(--red); font-size: 14px; min-height: 20px; }
   #jelszo-info { color: var(--muted); font-size: 13px; max-width: 380px; }
@@ -57,23 +86,23 @@
   .kartyak { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
   .kartya { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
   .kartya .cimke { color: var(--muted); font-size: 13px; }
-  .kartya .ertek { font-size: 22px; font-weight: 700; margin-top: 4px; }
+  .kartya .ertek { font: 500 24px/1.2 var(--f-num); font-variant-numeric: tabular-nums; margin-top: 4px; }
 
-  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
   th, td { padding: 10px 12px; text-align: left; font-size: 14px; border-bottom: 1px solid var(--border); }
-  th { background: #f3f4f6; color: var(--muted); font-weight: 600; }
+  th { background: var(--surface-2); color: var(--muted); font-weight: 600; }
   tr:last-child td { border-bottom: none; }
   .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
-  .badge-fizetve { background: #dcfce7; color: var(--green); }
-  .badge-fizetetlen { background: #fef3c7; color: var(--amber); }
-  .badge-lejart { background: #fee2e2; color: var(--red); }
+  .badge-fizetve { background: var(--green-soft); color: var(--green); }
+  .badge-fizetetlen { background: var(--amber-soft); color: var(--amber); }
+  .badge-lejart { background: var(--red-soft); color: var(--red); }
   .osszeg { text-align: right; font-variant-numeric: tabular-nums; }
   .szurok { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
   .szurok button {
     padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border);
     background: var(--card); cursor: pointer; font-size: 13px;
   }
-  .szurok button.aktiv { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .szurok button.aktiv { background: var(--blue); color: var(--on-accent); border-color: var(--blue); }
 
   /* ── Nézet-váltó (Összes / Vízművek / Díjnet) - ugyanolyan "nagy kártya"
      megjelenés, mint a fenti KPI-kártyáké (.kartya), hogy jól látható,
@@ -87,7 +116,7 @@
   }
   .nezet-gomb:hover { border-color: var(--blue); }
   .nezet-gomb .ikon { display: block; font-size: 30px; margin-bottom: 8px; }
-  .nezet-gomb.aktiv { border-color: var(--blue); background: #eff6ff; color: var(--blue); }
+  .nezet-gomb.aktiv { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
   .frissitve { color: var(--muted); font-size: 12px; margin-top: 20px; text-align: center; }
   .ures { color: var(--muted); text-align: center; padding: 30px; }
 
@@ -97,12 +126,13 @@
     width: 100%; text-align: left; padding: 14px 16px; border: none; background: none;
     font-size: 15px; font-weight: 600; cursor: pointer; color: var(--text);
   }
-  .panel-toggle:hover { background: #f3f4f6; }
+  .panel-toggle:hover { background: var(--surface-2); }
   .panel-tartalom { padding: 4px 16px 18px; }
   .panel-info { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
   .panel-tartalom label {
     display: block; font-size: 13px; color: var(--muted); margin-bottom: 12px;
   }
+  .panel-tartalom input[type="text"],
   .panel-tartalom input[type="password"],
   .panel-tartalom input[type="number"],
   .panel-tartalom input[type="date"],
@@ -121,7 +151,7 @@
   .be-kiv-sor input[type="checkbox"] { width: auto; }
   .panel-tartalom button {
     padding: 9px 18px; border: none; border-radius: 8px; background: var(--blue);
-    color: #fff; font-size: 14px; cursor: pointer;
+    color: var(--on-accent); font-size: 14px; cursor: pointer; font-family: inherit; font-weight: 600;
   }
   .panel-tartalom button:disabled { opacity: 0.6; cursor: default; }
   .panel-statusz { font-size: 13px; margin-top: 10px; min-height: 18px; }
@@ -146,8 +176,8 @@
     padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px;
     background: var(--card); color: var(--text); font-size: 12px; font-family: inherit;
   }
-  .kor-sor button.kor-aktiv-a { background: #eff6ff; border-color: var(--blue); color: var(--blue); }
-  .kor-sor button.kor-aktiv-b { background: #fdf4ff; border-color: #a21caf; color: #a21caf; }
+  .kor-sor button.kor-aktiv-a { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
+  .kor-sor button.kor-aktiv-b { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
   .kor-sor label.kor-jeloles { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); font-weight: 400; }
   .kor-sor label.kor-jeloles input { width: auto; }
   .kor-ures { color: var(--muted); font-size: 13px; padding: 6px 0; }
@@ -157,7 +187,7 @@
     border: 1px solid var(--border); background: var(--card); color: var(--muted);
     border-radius: 6px; width: 26px; height: 26px; line-height: 1; cursor: pointer; font-size: 14px;
   }
-  .torles-gomb:hover { background: #fee2e2; border-color: var(--red); color: var(--red); }
+  .torles-gomb:hover { background: var(--red-soft); border-color: var(--red); color: var(--red); }
 
   /* ── "Megnyitás Drive-on" - kis ikonos pill-gomb (nem márka-logó,
      csak egy általános "külső link" ikon, hogy a Céges/Közüzemi
@@ -165,10 +195,10 @@
   .drive-link {
     display: inline-flex; align-items: center; gap: 5px;
     padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px;
-    background: #eff6ff; color: var(--blue); text-decoration: none;
+    background: var(--blue-soft); color: var(--blue); text-decoration: none;
     font-size: 12px; font-weight: 600; white-space: nowrap;
   }
-  .drive-link:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .drive-link:hover { background: var(--blue); color: var(--on-accent); border-color: var(--blue); }
   .drive-link svg { width: 13px; height: 13px; flex-shrink: 0; }
 
   /* ── "user" (korlátozott) szerepkör - admin-csak szekciók elrejtése ──
@@ -184,7 +214,8 @@
   body.szerepkor-user #korok-panel,
   body.szerepkor-user #cimzettek-panel,
   body.szerepkor-user #kuldes-panel,
-  body.szerepkor-user #postafiok-panel {
+  body.szerepkor-user #postafiok-panel,
+  body.szerepkor-user #oldalmenu [data-csak-admin] {
     display: none;
   }
 
@@ -202,6 +233,138 @@
   body.szerepkor-user #nav-emlekezteto-gomb-hely {
     display: none;
   }
+
+  /* ══ Új arculat: elrendezés, oldalsó menü, egységes vezérlők ══ */
+  button, input, select, textarea { font-family: inherit; color: var(--text); }
+  input[type="text"], input[type="password"], input[type="number"], input[type="date"],
+  input[type="email"], input[type="search"], select, textarea {
+    background: var(--card); border: 1px solid var(--border); color: var(--text);
+  }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--blue); outline-offset: 2px;
+  }
+  code { background: var(--surface-2); border-radius: 4px; padding: 1px 4px; }
+  a { color: var(--blue); }
+  .osszeg, .ertek { font-family: var(--f-num); font-variant-numeric: tabular-nums; }
+  tbody tr:hover td { background: var(--surface-2); }
+  th { font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+  [id$="-tabla-hely"], #meroallas-hely, #ismeretlen-hely, #nav-csak-navban-hely, #ke-varolista-hely, #ke-elozmeny-hely { overflow-x: auto; }
+
+  #jelszo-kepernyo { padding: 24px 16px; }
+  #jelszo-kepernyo h1 { font-size: 30px; }
+
+  .app-racs { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: 100vh; }
+  #oldalmenu {
+    background: var(--card); border-right: 1px solid var(--border);
+    padding: 22px 14px; display: flex; flex-direction: column; gap: 3px;
+    position: sticky; top: env(safe-area-inset-top, 0px); height: 100vh; overflow-y: auto;
+  }
+  .om-marka { display: flex; align-items: center; gap: 10px; padding: 0 10px 18px; font: 700 18px/1.1 var(--f-display); }
+  .om-jel { width: 30px; height: 30px; border-radius: 8px; background: var(--blue); color: var(--on-accent); display: grid; place-items: center; font: 600 13px var(--f-num); flex: none; }
+  .om-cimke { margin: 14px 10px 6px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  #oldalmenu button.om-pont {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;
+    padding: 9px 10px; border: 0; border-radius: 8px; background: transparent;
+    color: var(--muted); font-size: 14.5px; font-weight: 500; text-align: left; cursor: pointer;
+  }
+  #oldalmenu button.om-pont:hover { background: var(--surface-2); color: var(--text); }
+  #oldalmenu button.om-pont.aktiv { background: var(--blue-soft); color: var(--blue); font-weight: 600; }
+  .om-szam { font: 500 12px var(--f-num); background: var(--surface-2); color: var(--muted); border-radius: 999px; padding: 1px 8px; }
+  .om-szam:empty { display: none; }
+  .om-szam.figyelem { background: var(--red-soft); color: var(--red); }
+  .om-lab { margin-top: auto; padding: 14px 10px 0; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
+  .om-lab button { align-self: flex-start; border: 1px solid var(--border); background: var(--card); border-radius: 7px; padding: 5px 10px; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text); }
+
+  .munkaterulet { min-width: 0; padding-block: 26px 60px; padding-inline: clamp(16px, 3vw, 40px); }
+  .munkaterulet > * { max-width: 1180px; }
+  .oldal-fej { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  #oldal-alcim { margin-bottom: 0; }
+  #fomenu-fulek { display: none !important; }
+
+  /* összesítő sáv: egy egybefüggő kártya, belül elválasztott cellákkal */
+  .kartyak { gap: 0; background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .kartyak .kartya { border: 0; border-radius: 0; border-left: 1px solid var(--border); margin-left: -1px; }
+  .kartya .cimke { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+  .kartya.figyelmeztet .ertek { color: var(--amber); }
+
+  /* forrás-nézet gombok kompaktabban */
+  .nezet-gombok { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+  .nezet-gomb { padding: 12px; font-size: 15px; font-weight: 600; border-width: 1px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .nezet-gomb .ikon { display: inline; font-size: 18px; margin: 0; }
+  .szurok button { color: var(--muted); font-family: inherit; }
+  .szurok button.aktiv { background: var(--text); border-color: var(--text); color: var(--card); }
+  .kor-tabla-cim { font-family: var(--f-display); }
+
+  /* határidő-idővonal */
+  #hatarido-idovonal { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px 8px; margin-bottom: 20px; }
+  #hatarido-idovonal h2 { font-size: 16px; margin: 0 0 6px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  #hatarido-idovonal h2 span { font: 400 13px var(--f-body); color: var(--muted); }
+  .iv-gorgeto { overflow-x: auto; }
+  .iv-sav { position: relative; min-width: 620px; height: 112px; margin-inline: 8px; }
+  .iv-tengely { position: absolute; left: 0; right: 0; top: 74px; height: 2px; background: var(--border); }
+  .iv-ma { position: absolute; top: 18px; height: 70px; width: 2px; background: var(--blue); }
+  .iv-ma b { position: absolute; top: 74px; left: 6px; font: 600 11px var(--f-body); color: var(--blue); white-space: nowrap; }
+  .iv-jel { position: absolute; font: 500 11px var(--f-num); color: var(--muted); top: 92px; transform: translateX(-50%); white-space: nowrap; }
+  .iv-jel.elso { transform: none; } .iv-jel.utolso { transform: translateX(-100%); }
+  .iv-pont { position: absolute; top: 66px; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--card); box-shadow: 0 0 0 1px var(--border); transform: translateX(-50%); }
+  .iv-pont::before { content: ""; position: absolute; left: 50%; bottom: 15px; width: 1px; height: 14px; background: var(--border); }
+  .iv-pont.also::before { height: 36px; }
+  .iv-pont.lejart { background: var(--red); } .iv-pont.hamar { background: var(--amber); } .iv-pont.kesobb { background: var(--blue); }
+  .iv-pont span { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font: 500 11px var(--f-num); color: var(--text); white-space: nowrap; background: var(--card); padding: 0 3px; }
+  .iv-pont.also span { bottom: 52px; }
+  .iv-pont.bal span { left: -6px; transform: none; } .iv-pont.jobb span { left: auto; right: -6px; transform: none; }
+  .iv-ures { color: var(--muted); font-size: 13px; padding: 4px 0 10px; }
+
+  /* kezelési oldalak: a panelek kártyaként, nyitva */
+  #kezeles-tartalom .panel { margin-top: 0; margin-bottom: 16px; }
+  .panel { border-radius: 10px; }
+  .panel-toggle { font-family: var(--f-display); font-size: 16px; }
+
+  /* Céges levelek */
+  .lv-eszkozok { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  #lv-kereses { flex: 1 1 260px; min-width: 0; padding: 9px 12px; border-radius: 8px; font-size: 14px; }
+  .lv-racs { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 16px; align-items: start; }
+  .lv-lista { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; max-height: 75vh; overflow-y: auto; }
+  .lv-elem { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; width: 100%; text-align: left; padding: 11px 14px; border: 0; border-bottom: 1px solid var(--border); background: transparent; cursor: pointer; color: var(--text); }
+  .lv-elem:last-child { border-bottom: 0; }
+  .lv-elem:hover { background: var(--surface-2); }
+  .lv-elem.aktiv { background: var(--blue-soft); }
+  .lv-elem b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lv-elem time { font: 500 11.5px var(--f-num); color: var(--muted); white-space: nowrap; }
+  .lv-elem .lv-targy { grid-column: 1 / -1; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lv-elem .lv-reszlet { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lv-jelek { grid-column: 1 / -1; display: flex; gap: 6px; flex-wrap: wrap; }
+  .lv-cimke { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+  .lv-cimke.pdf { background: var(--blue-soft); color: var(--blue); }
+  .lv-cimke.nincspdf { background: var(--amber-soft); color: var(--amber); }
+  .lv-cimke.valasz { background: var(--green-soft); color: var(--green); }
+  .lv-olvaso { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; min-width: 0; }
+  .lv-olvaso h2 { font-size: 19px; margin: 0 0 8px; overflow-wrap: anywhere; }
+  .lv-meta { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 12px; font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  .lv-meta span:nth-child(even) { color: var(--text); overflow-wrap: anywhere; }
+  .lv-szoveg { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 14px; max-height: 50vh; overflow-y: auto; }
+  .lv-valaszok { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .lv-valasz-tetel { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+  .lv-valasz-tetel pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; margin: 6px 0 0; color: var(--muted); }
+  .lv-valasz-urlap { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .lv-valasz-urlap label { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+  .lv-valasz-urlap input, .lv-valasz-urlap textarea { padding: 8px 10px; border-radius: 8px; font-size: 14px; width: 100%; }
+  .lv-valasz-urlap textarea { min-height: 180px; resize: vertical; line-height: 1.5; }
+  .lv-gombsor { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .lv-gomb { padding: 9px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-weight: 600; font-size: 14px; cursor: pointer; }
+  .lv-gomb.fo { background: var(--blue); border-color: var(--blue); color: var(--on-accent); }
+  .lv-gomb:disabled { opacity: .6; cursor: default; }
+  body.szerepkor-user .lv-valasz-resz { display: none !important; }
+  @media (max-width: 900px) { .lv-racs { grid-template-columns: 1fr; } .lv-lista { max-height: 45vh; } }
+
+  @media (max-width: 900px) {
+    .app-racs { grid-template-columns: 1fr; }
+    #oldalmenu { flex-direction: row; align-items: center; height: auto; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--border); padding: 10px 16px; gap: 6px; z-index: 5; }
+    .om-marka { padding: 0 6px 0 0; } .om-marka .om-nev { display: none; }
+    .om-cimke, .om-lab { display: none; }
+    #oldalmenu button.om-pont { width: auto; white-space: nowrap; }
+  }
+  @media (prefers-reduced-motion: no-preference) { #oldalmenu button.om-pont, tbody tr td { transition: background-color .15s ease; } }
 </style>
 </head>
 <body>
@@ -217,8 +380,30 @@
   </div>
 
   <div id="tartalom">
-    <h1>💰 Számla áttekintő</h1>
-    <div class="alcim">Vízművek · MVM · Díjnet</div>
+  <div class="app-racs">
+    <nav id="oldalmenu" aria-label="Fő menü">
+      <div class="om-marka"><span class="om-jel">Ft</span><span class="om-nev">Számla Figyelő</span></div>
+      <div class="om-cimke">Számlák</div>
+      <button type="button" class="om-pont aktiv" data-oldal="kozuzemi">Közüzemi számlák <span class="om-szam" id="om-szam-kozuzemi"></span></button>
+      <button type="button" class="om-pont" data-oldal="ceges">Céges számlák és NAV <span class="om-szam" id="om-szam-ceges"></span></button>
+      <button type="button" class="om-pont" data-oldal="levelek">Céges levelek <span class="om-szam" id="om-szam-levelek"></span></button>
+      <div class="om-cimke">Kezelés</div>
+      <button type="button" class="om-pont" data-oldal="berlok">Bérlők és értesítések</button>
+      <button type="button" class="om-pont" data-oldal="kuldes" data-csak-admin>Küldés dátum szerint</button>
+      <button type="button" class="om-pont" data-oldal="postafiokok" data-csak-admin>Postafiókok</button>
+      <button type="button" class="om-pont" data-oldal="beallitasok">Beállítások</button>
+      <div class="om-lab">
+        <span id="om-felhasznalo"></span>
+        <button type="button" id="om-tema-gomb">Sötét / világos mód</button>
+      </div>
+    </nav>
+    <main class="munkaterulet">
+    <div class="oldal-fej">
+      <div>
+        <h1 id="oldal-cim">Közüzemi számlák</h1>
+        <div class="alcim" id="oldal-alcim">Vízművek · MVM · Díjnet</div>
+      </div>
+    </div>
 
     <div class="nezet-gombok" id="fomenu-fulek">
       <button type="button" class="nezet-gomb aktiv" data-fomenu="lakossagi"><span class="ikon">🏠</span>Közüzemi számlák</button>
@@ -228,6 +413,8 @@
     <div id="lakossagi-tartalom">
 
     <div class="kartyak" id="kartyak"></div>
+
+    <section id="hatarido-idovonal" aria-label="Fizetési határidők"></section>
 
     <div class="nezet-gombok" id="forras-nezet-szurok">
       <button type="button" class="nezet-gomb aktiv" data-nezet="mind"><span class="ikon">📋</span>Összes</button>
@@ -260,11 +447,87 @@
     <h2 id="ismeretlen-cim" style="font-size:18px;margin:32px 0 10px;display:none;">❓ Fel nem ismert levelek</h2>
     <div id="ismeretlen-hely"></div>
 
+    <div class="frissitve" id="frissitve"></div>
+
+    </div><!-- /lakossagi-tartalom -->
+
+    <div id="ceges-tartalom" style="display:none;">
+      <p class="panel-info">Ide kerülnek azok a számlák, amiket a cég nevében történő vásárláskor kérsz el emailben az eladótól, a dedikált céges email-címre. A postafiókot a script rendszeresen ellenőrzi: minden PDF-csatolmányos levelet feltölt a Google Drive-ra ("Céges számlák" mappa, eladónkénti almappákkal), majd - hogy ne fogyjon a postafiók tárhelye - a levelet onnan véglegesen törli. Emiatt itt lent NEM egy letöltés-gomb van, hanem egy "Megnyitás Drive-on" link.</p>
+
+      <div id="ceges-bejelentkezes-statusz"></div>
+
+      <div class="kartyak" id="ceges-kartyak"></div>
+
+      <div id="ceges-tabla-hely"></div>
+
+      <div id="ceges-parositott-szekcio" style="display:none;">
+        <h3 style="margin:28px 0 8px;font-size:16px;">✅ Párosítva a NAV-val</h3>
+        <p class="panel-info">Ezek a számlák már megerősítetten egyeznek egy NAV Online Számla-tétellel - itt NEM kell semmit ellenőrizned rajtuk, csak a tájékoztatásod miatt vannak külön elválasztva a fenti, még egyeztetésre váró listától. A "✕"-szel itt is véglegesen elrejthető, ha mégsem kellene.</p>
+        <div id="ceges-parositott-tabla-hely"></div>
+      </div>
+
+      <div id="ceges-bizonytalan-szekcio" style="display:none;">
+        <h3 style="margin:28px 0 8px;font-size:16px;">❓ Nem biztos (automatikus előszűrés)</h3>
+        <p class="panel-info">Ide kerülnek azok a PDF-csatolmányos levelek, amikben a script NEM találta meg a "számla" szót, ÉS még nem sikerült NAV-párosítani sem - ezek lehetnek valódi számlák (pl. a szó máshogy szerepel a PDF-ben, vagy képként van beszkennelve) vagy teljesen más dokumentumok (ajánlat, visszaigazolás, reklám, stb.). Ha tényleg számla, kattints a "✅ Ez számla" gombra (átkerül a fenti listába); ha nem, a "✕"-szel véglegesen elrejtheted. Egy sikeres NAV-párosítás a következő script-futásnál automatikusan is átsorolja a fenti listába, külön teendő nélkül.</p>
+        <div id="ceges-bizonytalan-tabla-hely"></div>
+      </div>
+
+      <div class="panel" id="ceges-nav-panel">
+        <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
+        <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
+          <div id="ceges-email-admin-sor">
+            <label style="display:flex;align-items:center;gap:10px;background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:8px;padding:12px 14px;margin-bottom:14px;">
+              <input type="checkbox" id="ceges-email-engedelyezve" style="width:auto;flex:none;">
+              <span>📧 Email-küldés engedélyezve (céges) — a "Céges számlák" fülhöz tartozó levelek: az "Új céges számla" értesítő és a lenti NAV-emlékeztető. FÜGGETLEN a közüzemi (Beállítások panel) kapcsolótól - egymástól elkülönítve ki/bekapcsolható. Változtatáskor azonnal mentődik.</span>
+            </label>
+            <div class="panel-statusz" id="ceges-email-statusz"></div>
+          </div>
+          <p class="panel-info">A fent listázott (email-ből begyűjtött), ILLETVE a Közüzemi fülön lévő számlákat is a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez a Céges táblázat "NAV-párosítás" oszlopában látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg egyik figyelt postafiókba sem, az itt lent, egy külön listában jelenik meg szállítónként csoportosítva - itt email-címet adhatsz meg a szállítóhoz, kijelölheted, majd egy sablon-szövegű emlékeztetőt küldhetsz neki, amiben megkéred, küldje el a számla másolatát.</p>
+
+          <div id="nav-emlekezteto-testreszabas-doboz" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:16px;">
+            <h4 style="margin:0 0 10px;font-size:14px;">✉️ Emlékeztető-levél testreszabása (minden kijelölt szállítónak ezzel megy ki)</h4>
+            <label style="display:block;margin-bottom:10px;">Feladó email-cím
+              <input type="text" id="ceges-emlekezteto-feladas-cim-input" placeholder="pl. szamla@baloghgabor.hu (üresen hagyva: az alapértelmezett)" style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;">
+            </label>
+            <p class="panel-info" style="margin:-4px 0 10px;">A levél TÉNYLEGES postázása (bejelentkezés az SMTP-szerverre) változatlanul a beállított céges email-fiókkal történik - ez a mező csak azt állítja át, hogy a címzett MIT lásson feladóként ("From" fejléc). Ez csak akkor működik hiba nélkül, ha ez a cím a Gmail-fiók egy ellenőrzött <strong>"Küldés másként"</strong> aliasza (Gmail → Beállítások → Fiókok és importálás) - egy teljesen idegen cím esetén a Gmail elutasíthatja/felülírhatja. Üresen hagyva a beállított céges fiók saját címe megy ki feladóként.</p>
+            <label style="display:block;">Az emlékeztető-levél kérő mondata (ez kerül a tételek listája UTÁN, a levélben)
+              <textarea id="ceges-emlekezteto-szoveg-input" rows="4" placeholder="Kérjük, hogy a válaszlevélben konkrétan csatolva küldjék el..." style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;resize:vertical;"></textarea>
+            </label>
+            <p class="panel-info" style="margin:6px 0 0;">A <code>{cel_cim}</code> jelölő helyére automatikusan a számlák beküldésére szolgáló email-cím kerül. A köszöntés, a hiányzó számlák listája és az aláírás a mezőtől FÜGGETLENÜL, mindig ugyanúgy szerepel a levélben - csak ez a kérő mondat szerkeszthető itt. Kilépéskor (a mezőből kikattintva) automatikusan mentődik.</p>
+            <div class="panel-statusz" id="ceges-emlekezteto-testreszabas-statusz"></div>
+          </div>
+
+          <div id="nav-bejelentkezes-statusz"></div>
+          <div id="nav-csak-navban-hely"></div>
+          <div id="nav-emlekezteto-gomb-hely"></div>
+        </div>
+      </div>
+
+    </div><!-- /ceges-tartalom -->
+
+    <div id="levelek-tartalom" style="display:none;">
+      <div class="lv-eszkozok">
+        <input type="search" id="lv-kereses" placeholder="Keresés feladóra, tárgyra, szövegre" aria-label="Keresés a levelekben">
+        <div class="szurok" id="lv-szurok" style="margin:0;">
+          <button type="button" data-lv-szuro="mind" class="aktiv">Összes</button>
+          <button type="button" data-lv-szuro="pdf">PDF-fel</button>
+          <button type="button" data-lv-szuro="pdfnelkul">PDF nélkül</button>
+          <button type="button" data-lv-szuro="valaszolt">Megválaszolt</button>
+        </div>
+      </div>
+      <div class="lv-racs">
+        <div class="lv-lista" id="lv-lista" role="list"></div>
+        <article class="lv-olvaso" id="lv-olvaso" aria-live="polite"></article>
+      </div>
+      <p class="panel-info" style="margin-top:12px;">A lista a céges postafiókba érkezett leveleket mutatja, ahogy a figyelő a futásai során (20 percenként) beolvasta őket. A válasz a céges feladó-címről megy ki, a következő futáskor, vagy azonnal, ha a Beállításokban meg van adva a GitHub token.</p>
+    </div>
+
+    <div id="kezeles-tartalom" style="display:none;">
     <div class="panel" id="beallitasok-panel">
       <button type="button" class="panel-toggle" id="beallitasok-toggle">⚙️ Beállítások (emlékeztető, összesítő-ütemezés) ▾</button>
       <div class="panel-tartalom" id="beallitasok-tartalom" style="display:none;">
         <p class="panel-info">Ezen a panelen (és a többi, adatot mentő panelen) a bejelentkezéskor megadott API-kulcs elég a mentéshez - a lenti GitHub token KIZÁRÓLAG a "Küldés MOST"-jellegű gombokhoz kell (azok egy GitHub Actions futást indítanak el), és csak a böngésződben marad (session-tárolóban), sehova máshova nem kerül.</p>
-        <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
+        <label style="display:flex;align-items:center;gap:10px;background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:8px;padding:12px 14px;margin-bottom:14px;">
           <input type="checkbox" id="be-email-engedelyezve" style="width:auto;flex:none;">
           <span>📧 Email-küldés engedélyezve (közüzemi) — ha nincs bepipálva, egyetlen közüzemi (Díjnet/Vízművek/MVM) értesítő/emlékeztető/összesítő email sem megy ki (a dashboard adatai ettől függetlenül frissülnek). Amíg ezt nem mented bepipálva, alapból NINCS email-küldés. A céges email-küldést KÜLÖN, a Céges fülön kapcsolhatod be.</span>
         </label>
@@ -451,63 +714,9 @@
       </div>
     </div>
 
-    <div class="frissitve" id="frissitve"></div>
-
-    </div><!-- /lakossagi-tartalom -->
-
-    <div id="ceges-tartalom" style="display:none;">
-      <p class="panel-info">Ide kerülnek azok a számlák, amiket a cég nevében történő vásárláskor kérsz el emailben az eladótól, a dedikált céges email-címre. A postafiókot a script rendszeresen ellenőrzi: minden PDF-csatolmányos levelet feltölt a Google Drive-ra ("Céges számlák" mappa, eladónkénti almappákkal), majd - hogy ne fogyjon a postafiók tárhelye - a levelet onnan véglegesen törli. Emiatt itt lent NEM egy letöltés-gomb van, hanem egy "Megnyitás Drive-on" link.</p>
-
-      <div id="ceges-bejelentkezes-statusz"></div>
-
-      <div class="kartyak" id="ceges-kartyak"></div>
-
-      <div id="ceges-tabla-hely"></div>
-
-      <div id="ceges-parositott-szekcio" style="display:none;">
-        <h3 style="margin:28px 0 8px;font-size:16px;">✅ Párosítva a NAV-val</h3>
-        <p class="panel-info">Ezek a számlák már megerősítetten egyeznek egy NAV Online Számla-tétellel - itt NEM kell semmit ellenőrizned rajtuk, csak a tájékoztatásod miatt vannak külön elválasztva a fenti, még egyeztetésre váró listától. A "✕"-szel itt is véglegesen elrejthető, ha mégsem kellene.</p>
-        <div id="ceges-parositott-tabla-hely"></div>
-      </div>
-
-      <div id="ceges-bizonytalan-szekcio" style="display:none;">
-        <h3 style="margin:28px 0 8px;font-size:16px;">❓ Nem biztos (automatikus előszűrés)</h3>
-        <p class="panel-info">Ide kerülnek azok a PDF-csatolmányos levelek, amikben a script NEM találta meg a "számla" szót, ÉS még nem sikerült NAV-párosítani sem - ezek lehetnek valódi számlák (pl. a szó máshogy szerepel a PDF-ben, vagy képként van beszkennelve) vagy teljesen más dokumentumok (ajánlat, visszaigazolás, reklám, stb.). Ha tényleg számla, kattints a "✅ Ez számla" gombra (átkerül a fenti listába); ha nem, a "✕"-szel véglegesen elrejtheted. Egy sikeres NAV-párosítás a következő script-futásnál automatikusan is átsorolja a fenti listába, külön teendő nélkül.</p>
-        <div id="ceges-bizonytalan-tabla-hely"></div>
-      </div>
-
-      <div class="panel" id="ceges-nav-panel">
-        <button type="button" class="panel-toggle" id="ceges-nav-toggle">🔗 NAV Online Számla összekötés ▾</button>
-        <div class="panel-tartalom" id="ceges-nav-tartalom" style="display:none;">
-          <div id="ceges-email-admin-sor">
-            <label style="display:flex;align-items:center;gap:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-bottom:14px;">
-              <input type="checkbox" id="ceges-email-engedelyezve" style="width:auto;flex:none;">
-              <span>📧 Email-küldés engedélyezve (céges) — a "Céges számlák" fülhöz tartozó levelek: az "Új céges számla" értesítő és a lenti NAV-emlékeztető. FÜGGETLEN a közüzemi (Beállítások panel) kapcsolótól - egymástól elkülönítve ki/bekapcsolható. Változtatáskor azonnal mentődik.</span>
-            </label>
-            <div class="panel-statusz" id="ceges-email-statusz"></div>
-          </div>
-          <p class="panel-info">A fent listázott (email-ből begyűjtött), ILLETVE a Közüzemi fülön lévő számlákat is a script minden futáskor összeveti a NAV Online Számla rendszerben, a cég adószámára nyilvántartott bejövő számlákkal - ez a Céges táblázat "NAV-párosítás" oszlopában látszik. Ha a NAV-on van egy számla, ami emailben SOHA nem érkezett meg egyik figyelt postafiókba sem, az itt lent, egy külön listában jelenik meg szállítónként csoportosítva - itt email-címet adhatsz meg a szállítóhoz, kijelölheted, majd egy sablon-szövegű emlékeztetőt küldhetsz neki, amiben megkéred, küldje el a számla másolatát.</p>
-
-          <div id="nav-emlekezteto-testreszabas-doboz" style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:16px;">
-            <h4 style="margin:0 0 10px;font-size:14px;">✉️ Emlékeztető-levél testreszabása (minden kijelölt szállítónak ezzel megy ki)</h4>
-            <label style="display:block;margin-bottom:10px;">Feladó email-cím
-              <input type="text" id="ceges-emlekezteto-feladas-cim-input" placeholder="pl. szamla@baloghgabor.hu (üresen hagyva: az alapértelmezett)" style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;">
-            </label>
-            <p class="panel-info" style="margin:-4px 0 10px;">A levél TÉNYLEGES postázása (bejelentkezés az SMTP-szerverre) változatlanul a beállított céges email-fiókkal történik - ez a mező csak azt állítja át, hogy a címzett MIT lásson feladóként ("From" fejléc). Ez csak akkor működik hiba nélkül, ha ez a cím a Gmail-fiók egy ellenőrzött <strong>"Küldés másként"</strong> aliasza (Gmail → Beállítások → Fiókok és importálás) - egy teljesen idegen cím esetén a Gmail elutasíthatja/felülírhatja. Üresen hagyva a beállított céges fiók saját címe megy ki feladóként.</p>
-            <label style="display:block;">Az emlékeztető-levél kérő mondata (ez kerül a tételek listája UTÁN, a levélben)
-              <textarea id="ceges-emlekezteto-szoveg-input" rows="4" placeholder="Kérjük, hogy a válaszlevélben konkrétan csatolva küldjék el..." style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;resize:vertical;"></textarea>
-            </label>
-            <p class="panel-info" style="margin:6px 0 0;">A <code>{cel_cim}</code> jelölő helyére automatikusan a számlák beküldésére szolgáló email-cím kerül. A köszöntés, a hiányzó számlák listája és az aláírás a mezőtől FÜGGETLENÜL, mindig ugyanúgy szerepel a levélben - csak ez a kérő mondat szerkeszthető itt. Kilépéskor (a mezőből kikattintva) automatikusan mentődik.</p>
-            <div class="panel-statusz" id="ceges-emlekezteto-testreszabas-statusz"></div>
-          </div>
-
-          <div id="nav-bejelentkezes-statusz"></div>
-          <div id="nav-csak-navban-hely"></div>
-          <div id="nav-emlekezteto-gomb-hely"></div>
-        </div>
-      </div>
-
-    </div><!-- /ceges-tartalom -->
+    </div><!-- /kezeles-tartalom -->
+    </main>
+  </div><!-- /app-racs -->
   </div>
 
 </div>
@@ -656,6 +865,8 @@
     const hufOsszeg = hufTetelek.reduce((s, r) => s + (r.osszeg || 0), 0);
     const eurOsszeg = eurTetelek.reduce((s, r) => s + (r.osszeg || 0), 0);
     const lejartak = fizetetlenek.filter(r => r.hatarido && r.hatarido < maiNap());
+    const hetMulva = new Date(Date.now() + 7 * 86400000).toISOString().slice(0, 10);
+    const hamarosan = fizetetlenek.filter(r => r.hatarido && r.hatarido >= maiNap() && r.hatarido <= hetMulva);
 
     const eurKartya = eurTetelek.length ? `
       <div class="kartya">
@@ -675,9 +886,60 @@
       ${eurKartya}
       <div class="kartya">
         <div class="cimke">Lejárt határidejű</div>
-        <div class="ertek" style="color:${lejartak.length ? '#dc2626' : 'inherit'}">${lejartak.length} db</div>
+        <div class="ertek" style="color:${lejartak.length ? 'var(--red)' : 'inherit'}">${lejartak.length} db</div>
+      </div>
+      <div class="kartya${hamarosan.length ? " figyelmeztet" : ""}">
+        <div class="cimke">7 napon belül lejár</div>
+        <div class="ertek">${hamarosan.length} db</div>
       </div>
     `;
+
+    const omSzam = document.getElementById("om-szam-kozuzemi");
+    if (omSzam) {
+      omSzam.textContent = fizetetlenek.length ? String(fizetetlenek.length) : "";
+      omSzam.classList.toggle("figyelem", lejartak.length > 0);
+      omSzam.title = lejartak.length ? `${lejartak.length} lejárt` : "fizetetlen számlák";
+    }
+    hataridoIdovonalRenderelese(fizetetlenek);
+  }
+
+  // Határidő-idővonal: a fizetetlen, határidővel rendelkező számlák a mai
+  // nap körüli ablakban (14 nappal előtte, 30 nappal utána). Ami ennél
+  // régebben lejárt, a bal szélre kerül.
+  function hataridoIdovonalRenderelese(fizetetlenek) {
+    const hely = document.getElementById("hatarido-idovonal");
+    if (!hely) return;
+    const NAP = 86400000;
+    const ma = new Date(maiNap() + "T00:00:00Z").getTime();
+    const kezdet = ma - 14 * NAP, veg = ma + 30 * NAP;
+    const poz = t => Math.min(100, Math.max(0, (t - kezdet) / (veg - kezdet) * 100));
+    const datumRovid = t => { const d = new Date(t); return String(d.getUTCMonth() + 1).padStart(2, "0") + "." + String(d.getUTCDate()).padStart(2, "0"); };
+    const tetelek = fizetetlenek
+      .filter(r => r.hatarido && /^\d{4}-\d{2}-\d{2}/.test(r.hatarido))
+      .map(r => ({ r, t: new Date(r.hatarido.slice(0, 10) + "T00:00:00Z").getTime() }))
+      .filter(x => x.t <= veg)
+      .sort((a, b) => a.t - b.t);
+    const jelek = [0, 0.25, 0.5, 0.75, 1].map(f => {
+      const t = kezdet + f * (veg - kezdet);
+      return `<span class="iv-jel${f === 0 ? " elso" : f === 1 ? " utolso" : ""}" style="left:${f * 100}%">${datumRovid(t)}</span>`;
+    }).join("");
+    const pontok = tetelek.map((x, i) => {
+      const osztaly = x.t < ma ? "lejart" : (x.t <= ma + 7 * NAP ? "hamar" : "kesobb");
+      const nev = (x.r.szolgaltato_nev || "").replace(/\s*\(.*\)\s*$/, "").split(/\s+/).slice(0, 2).join(" ");
+      const cimke = `${escHtml(nev)} ${escHtml(osszegFormazva(x.r.osszeg, x.r.penznem))}`;
+      const cim = `${escHtml(x.r.szolgaltato_nev || "")} – ${escHtml(x.r.hatarido)} – ${escHtml(osszegFormazva(x.r.osszeg, x.r.penznem))}`;
+      const p = poz(x.t);
+      const igazitas = p < 12 ? " bal" : p > 88 ? " jobb" : "";
+      return `<div class="iv-pont ${osztaly}${i % 2 ? " also" : ""}${igazitas}" style="left:${p}%" title="${cim}"><span>${cimke}</span></div>`;
+    }).join("");
+    hely.innerHTML = `
+      <h2>Fizetési határidők <span>${datumRovid(kezdet)} – ${datumRovid(veg)} · ${tetelek.length} fizetetlen számla</span></h2>
+      ${tetelek.length ? "" : '<div class="iv-ures">Nincs fizetetlen számla ebben az időszakban.</div>'}
+      <div class="iv-gorgeto"><div class="iv-sav">
+        <div class="iv-tengely"></div>${jelek}
+        <div class="iv-ma" style="left:${poz(ma)}%"><b>Ma</b></div>
+        ${pontok}
+      </div></div>`;
   }
 
   // ld. szamla_figyelo.py "NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK" - EZZEL
@@ -714,10 +976,10 @@
     const idopont = a.utolso_probalkozas ? new Date(a.utolso_probalkozas).toLocaleString("hu-HU") : "ismeretlen";
     let hatterSzin, szoveg;
     if (!a.beallitva) {
-      hatterSzin = "#f3f4f6";
+      hatterSzin = "var(--surface-2)";
       szoveg = `<span style="color:var(--muted);">ℹ️ A céges email-postafiók még nincs beállítva (a CEGES_IMAP_* GitHub Secretek hiányoznak).</span>`;
     } else if (a.sikeres_bejelentkezes) {
-      hatterSzin = "#dcfce7";
+      hatterSzin = "var(--green-soft)";
       szoveg = `<span style="color:var(--green);">✅ Sikeres bejelentkezés a postafiókba (utoljára: ${idopont})</span>`;
       if (typeof a.utolso_futas_feltoltve_db === "number") {
         szoveg += `<br><span style="color:var(--muted);font-weight:400;">Legutóbbi futás: ${a.utolso_futas_feltoltve_db} db számla feldolgozva`
@@ -725,7 +987,7 @@
           + `.</span>`;
       }
     } else {
-      hatterSzin = "#fee2e2";
+      hatterSzin = "var(--red-soft)";
       szoveg = `<span style="color:var(--red);">❌ Sikertelen bejelentkezés a postafiókba (utoljára próbálva: ${idopont})</span>`;
       if (a.hiba) {
         szoveg += `<br><span style="color:var(--muted);font-weight:400;">${escHtml(a.hiba)}</span>`;
@@ -938,7 +1200,7 @@
       const cegNev = vanForrasPostafiok ? (escHtml(r.kuldo_nev) || "—") : (escHtml(r.adoszam) || "Ismeretlen");
       const forras = escHtml(vanForrasPostafiok ? r.forras_postafiok : (r.kuldo_nev || null)) || "—";
       const vegoszlop = csakOlvas ? "" : `<td><button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`;
-      return `<tr style="background:#eafaf1;">
+      return `<tr style="background:var(--green-soft);">
         <td>${cegNev}</td>
         <td style="color:var(--muted);font-size:12px;">${forras}</td>
         <td>${escHtml(r.targy) || "—"}</td>
@@ -1144,9 +1406,9 @@
         varakozok.map(([rid, b]) => {
           const dontes = dontesek[rid];
           const muvelet = dontes === "jovahagyva"
-            ? '<span style="color:#15803d;">✅ Jóváhagyva – a következő futáskor kimegy (≤ ~20 perc)</span>'
+            ? '<span style="color:var(--green);">✅ Jóváhagyva – a következő futáskor kimegy (≤ ~20 perc)</span>'
             : dontes === "elutasitva"
-              ? '<span style="color:#b91c1c;">🚫 Elutasítva – a következő futáskor lezárul (≤ ~20 perc)</span>'
+              ? '<span style="color:var(--red);">🚫 Elutasítva – a következő futáskor lezárul (≤ ~20 perc)</span>'
               : `<button type="button" class="ke-dontes-gomb" data-rid="${escHtml(rid)}" data-dontes="jovahagyva">✅ Jóváhagyom</button> <button type="button" class="ke-dontes-gomb" data-rid="${escHtml(rid)}" data-dontes="elutasitva">✕ Elutasítom</button>`;
           return `<tr>
             <td>${escHtml(b.kor_nev || b.kor || "")}</td>
@@ -1332,16 +1594,16 @@
     const idopont = a.utolso_probalkozas ? new Date(a.utolso_probalkozas).toLocaleString("hu-HU") : "ismeretlen";
     let hatterSzin, szoveg;
     if (!a.beallitva) {
-      hatterSzin = "#f3f4f6";
+      hatterSzin = "var(--surface-2)";
       szoveg = `<span style="color:var(--muted);">ℹ️ A NAV-összekötés még nincs beállítva (a NAV_TECHNIKAI_LOGIN / NAV_TECHNIKAI_JELSZO / NAV_ALAIRO_KULCS / NAV_ADOSZAM GitHub Secretek hiányoznak).</span>`;
     } else if (a.sikeres_lekerdezes) {
-      hatterSzin = "#dcfce7";
+      hatterSzin = "var(--green-soft)";
       szoveg = `<span style="color:var(--green);">✅ Sikeres NAV-lekérdezés (utoljára: ${idopont})</span>`;
       if (typeof a.utolso_futas_talalt_db === "number") {
         szoveg += `<br><span style="color:var(--muted);font-weight:400;">${a.utolso_futas_talalt_db} db bejövő számla-tétel lekérve a NAV-tól.</span>`;
       }
     } else {
-      hatterSzin = "#fee2e2";
+      hatterSzin = "var(--red-soft)";
       szoveg = `<span style="color:var(--red);">❌ Sikertelen NAV-lekérdezés (utoljára próbálva: ${idopont})</span>`;
       if (a.hiba) {
         szoveg += `<br><span style="color:var(--muted);font-weight:400;">${escHtml(a.hiba)}</span>`;
@@ -1416,11 +1678,11 @@
         </tr>
         ${t.szamlaszam ? `
         <tr id="${sorId}" class="nav-hozzaadas-kod-sor" style="display:none;">
-          <td colspan="4" style="background:#f3f4f6;border-radius:8px;">
+          <td colspan="4" style="background:var(--surface-2);border-radius:8px;">
             <div style="padding:8px 4px;font-size:13px;">
               <p style="margin:0 0 6px;">Nincs meg emailben ez a számla? Kérd el az eladótól (vagy keresd elő a saját postafiókodból), és küldd/továbbítsd el a <strong>dedikált céges email-címre</strong> - de előtte illeszd be ezt a kódot a levél <strong>tárgyába VAGY a szövegébe, BÁRHOVA (más szöveg előtte/utána, akár ugyanabba a sorba is írhatod, nem kell önálló sorba tenni)</strong>, hogy a script egyből ehhez a NAV-tételhez tudja kötni, extra kézi munka nélkül:</p>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                <code class="nav-hozzaadas-kod-szoveg" style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;user-select:all;">${escHtml(kod)}</code>
+                <code class="nav-hozzaadas-kod-szoveg" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:13px;user-select:all;">${escHtml(kod)}</code>
                 <button type="button" class="nav-hozzaadas-masolas-gomb" data-kod="${escHtml(kod)}" style="font-size:12px;padding:4px 8px;">📋 Kód másolása</button>
                 <span class="nav-hozzaadas-masolas-statusz" style="font-size:12px;color:var(--green);"></span>
               </div>
@@ -1547,16 +1809,16 @@
       const idopont = b.utolso_probalkozas ? new Date(b.utolso_probalkozas).toLocaleString("hu-HU") : null;
       let hatterSzin, statuszSzoveg;
       if (b.aktiv === false) {
-        hatterSzin = "#f3f4f6";
+        hatterSzin = "var(--surface-2)";
         statuszSzoveg = `<span style="color:var(--muted);">⏸️ Szüneteltetve</span>`;
       } else if (b.utolso_hiba) {
-        hatterSzin = "#fee2e2";
+        hatterSzin = "var(--red-soft)";
         statuszSzoveg = `<span style="color:var(--red);">❌ Hiba (${idopont || "ismeretlen"}): ${escHtml(b.utolso_hiba)}</span>`;
       } else if (idopont) {
-        hatterSzin = "#dcfce7";
+        hatterSzin = "var(--green-soft)";
         statuszSzoveg = `<span style="color:var(--green);">✅ Rendben (utoljára: ${idopont})</span>`;
       } else {
-        hatterSzin = "#f3f4f6";
+        hatterSzin = "var(--surface-2)";
         statuszSzoveg = `<span style="color:var(--muted);">⏳ Még nem futott le - a következő script-futáskor kezdi figyelni.</span>`;
       }
       const cel = b.cel === "ceges" ? "ceges" : "kozuzemi";
@@ -2283,6 +2545,188 @@
     return adat;
   }
 
+
+  // ════════════════════════════════════════════
+  //  ✉️  CÉGES LEVELEK - beérkezett levelek és válasz
+  // ════════════════════════════════════════════
+  // Adatok: "ceges_bejovo_levelek" (a script naplózza), "ceges_level_valasz_kerelmek"
+  // (CSAK a dashboard írja), "ceges_level_valasz_eredmenyek" (CSAK a script írja),
+  // ld. szamla_figyelo.py "CÉGES LEVELEK" szekció.
+  let lvKivalasztott = null;
+  let lvSzuro = "mind";
+  let lvValaszNyitva = false;
+  let _lvKerelemZarolas = Promise.resolve();
+
+  function lvObjektum(x) { return x && typeof x === "object" && !Array.isArray(x) ? x : {}; }
+  function lvDatum(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (isNaN(d)) return iso.slice(0, 16);
+    return d.toLocaleString("hu-HU", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+  }
+  function lvValaszai(levelId) {
+    const kerelmek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_level_valasz_kerelmek);
+    const eredmenyek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_level_valasz_eredmenyek);
+    return Object.entries(kerelmek)
+      .filter(([, k]) => k && k.level_id === levelId)
+      .map(([kid, k]) => Object.assign({ kid }, k, { eredmeny: eredmenyek[kid] || null }))
+      .sort((a, b) => String(a.letrehozva || "").localeCompare(String(b.letrehozva || "")));
+  }
+
+  function levelekRenderelese() {
+    const listaHely = document.getElementById("lv-lista");
+    if (!listaHely) return;
+    const levelek = Object.values(lvObjektum(legutobbiAdat && legutobbiAdat.ceges_bejovo_levelek))
+      .sort((a, b) => String(b.datum || b.naplozva || "").localeCompare(String(a.datum || a.naplozva || "")));
+    const omSzam = document.getElementById("om-szam-levelek");
+    if (omSzam) omSzam.textContent = levelek.length ? String(levelek.length) : "";
+
+    const kereses = (document.getElementById("lv-kereses").value || "").trim().toLowerCase();
+    const szurt = levelek.filter(l => {
+      const pdfDb = (l.pdf_nevek || []).length;
+      if (lvSzuro === "pdf" && !pdfDb) return false;
+      if (lvSzuro === "pdfnelkul" && pdfDb) return false;
+      if (lvSzuro === "valaszolt" && !lvValaszai(l.id).length) return false;
+      if (!kereses) return true;
+      return [l["feladó_nev"], l["feladó_email"], l.targy, l.szoveg].some(x => String(x || "").toLowerCase().includes(kereses));
+    });
+
+    if (!levelek.length) {
+      listaHely.innerHTML = '<div class="ures">Még nincs naplózott levél. A figyelő a következő futásakor kezdi gyűjteni a céges postafiókba érkező leveleket.</div>';
+    } else if (!szurt.length) {
+      listaHely.innerHTML = '<div class="ures">Nincs a szűrésnek megfelelő levél.</div>';
+    } else {
+      listaHely.innerHTML = szurt.map(l => {
+        const pdfDb = (l.pdf_nevek || []).length;
+        const valaszDb = lvValaszai(l.id).length;
+        return `<button type="button" role="listitem" class="lv-elem${l.id === lvKivalasztott ? " aktiv" : ""}" data-lv-id="${escHtml(l.id)}">
+          <b>${escHtml(l["feladó_nev"] || l["feladó_email"] || "ismeretlen feladó")}</b>
+          <time>${escHtml(lvDatum(l.datum || l.naplozva))}</time>
+          <span class="lv-targy">${escHtml(l.targy || "(nincs tárgy)")}</span>
+          <span class="lv-reszlet">${escHtml(String(l.szoveg || "").replace(/\s+/g, " ").slice(0, 140))}</span>
+          <span class="lv-jelek">
+            ${pdfDb ? `<span class="lv-cimke pdf">${pdfDb} PDF</span>` : '<span class="lv-cimke nincspdf">nincs PDF</span>'}
+            ${valaszDb ? `<span class="lv-cimke valasz">${valaszDb} válasz</span>` : ""}
+          </span>
+        </button>`;
+      }).join("");
+      listaHely.querySelectorAll(".lv-elem").forEach(b => b.addEventListener("click", () => {
+        lvKivalasztott = b.dataset.lvId;
+        lvValaszNyitva = false;
+        levelekRenderelese();
+      }));
+    }
+    if (!lvKivalasztott || !levelek.some(l => l.id === lvKivalasztott)) {
+      lvKivalasztott = szurt.length ? szurt[0].id : null;
+      if (lvKivalasztott) listaHely.querySelector(".lv-elem")?.classList.add("aktiv");
+    }
+    levelOlvasoRenderelese(levelek.find(l => l.id === lvKivalasztott) || null);
+  }
+
+  function levelOlvasoRenderelese(l) {
+    const hely = document.getElementById("lv-olvaso");
+    if (!l) { hely.innerHTML = '<div class="ures">Válassz egy levelet a listából.</div>'; return; }
+    const valaszok = lvValaszai(l.id);
+    const valaszHtml = valaszok.map(v => {
+      const e = v.eredmeny;
+      const allapot = !e ? '<span class="badge badge-fizetetlen">sorban áll</span>'
+        : e.statusz === "elkuldve" ? '<span class="badge badge-fizetve">elküldve</span>'
+        : `<span class="badge badge-lejart">hiba</span> ${escHtml(e.hiba || "")}`;
+      return `<div class="lv-valasz-tetel">${allapot} · ${escHtml(lvDatum(v.letrehozva))} · ${escHtml(v.cimzett)}<pre>${escHtml(v.szoveg)}</pre></div>`;
+    }).join("");
+    const reTargy = /^(re|vá|va|válasz)\s*:/i.test(l.targy || "") ? (l.targy || "") : "Re: " + (l.targy || "");
+    const idezet = String(l.szoveg || "").split("\n").slice(0, 40).map(s => "> " + s).join("\n");
+    hely.innerHTML = `
+      <h2>${escHtml(l.targy || "(nincs tárgy)")}</h2>
+      <div class="lv-meta">
+        <span>Feladó</span><span>${escHtml(l["feladó_nev"] || "")} &lt;${escHtml(l["feladó_email"] || "")}&gt;</span>
+        <span>Érkezett</span><span>${escHtml(lvDatum(l.datum || l.naplozva))}</span>
+        <span>Csatolmány</span><span>${(l.pdf_nevek || []).length ? escHtml(l.pdf_nevek.join(", ")) : "nincs PDF"}</span>
+      </div>
+      <div class="lv-szoveg">${escHtml(l.szoveg || "(üres levél)")}</div>
+      ${valaszok.length ? `<div class="lv-valaszok"><h3 style="font-size:15px;margin:0;">Válaszok</h3>${valaszHtml}</div>` : ""}
+      <div class="lv-valasz-resz">
+        ${lvValaszNyitva ? `
+        <form class="lv-valasz-urlap" id="lv-valasz-urlap">
+          <label>Címzett <input type="email" id="lv-v-cimzett" required value="${escHtml(l.valasz_cim || l["feladó_email"] || "")}"></label>
+          <label>Tárgy <input type="text" id="lv-v-targy" value="${escHtml(reTargy)}"></label>
+          <label>Üzenet <textarea id="lv-v-szoveg" required>${escHtml("\n\n" + lvDatum(l.datum) + ", " + (l["feladó_nev"] || l["feladó_email"] || "") + " írta:\n" + idezet)}</textarea></label>
+          <label style="flex-direction:row;align-items:center;gap:8px;"><input type="checkbox" id="lv-v-azonnal" style="width:auto;"> Küldés azonnal (GitHub token kell a Beállításokban), különben a következő futáskor megy ki</label>
+          <div class="lv-gombsor">
+            <button type="submit" class="lv-gomb fo" id="lv-v-kuld">Válasz küldése</button>
+            <button type="button" class="lv-gomb" id="lv-v-megse">Mégse</button>
+            <span class="panel-statusz" id="lv-v-statusz" style="margin:0;"></span>
+          </div>
+        </form>` : `<div class="lv-gombsor" style="margin-top:16px;"><button type="button" class="lv-gomb fo" id="lv-valasz-gomb">Válasz</button><span class="panel-statusz" id="lv-v-statusz" style="margin:0;"></span></div>`}
+      </div>`;
+    const valaszGomb = document.getElementById("lv-valasz-gomb");
+    if (valaszGomb) valaszGomb.addEventListener("click", () => {
+      lvValaszNyitva = true;
+      levelOlvasoRenderelese(l);
+      const ta = document.getElementById("lv-v-szoveg");
+      ta.focus(); ta.setSelectionRange(0, 0);
+    });
+    const urlap = document.getElementById("lv-valasz-urlap");
+    if (urlap) {
+      document.getElementById("lv-v-megse").addEventListener("click", () => { lvValaszNyitva = false; levelOlvasoRenderelese(l); });
+      urlap.addEventListener("submit", ev => { ev.preventDefault(); levelValaszKuldese(l); });
+    }
+  }
+
+  async function levelValaszKuldese(l) {
+    const cimzett = document.getElementById("lv-v-cimzett").value.trim();
+    const targy = document.getElementById("lv-v-targy").value.trim();
+    const szoveg = document.getElementById("lv-v-szoveg").value;
+    const azonnal = document.getElementById("lv-v-azonnal").checked;
+    const gomb = document.getElementById("lv-v-kuld");
+    if (!/^[^@\s,;]+@[^@\s,;]+\.[^@\s,;]+$/.test(cimzett) || !szoveg.trim()) {
+      beStatuszMutat("lv-v-statusz", "Adj meg egy érvényes címzettet és írj üzenetet.", "hiba");
+      return;
+    }
+    gomb.disabled = true;
+    beStatuszMutat("lv-v-statusz", "Mentés...", "");
+    const kid = "v" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    const kerelem = { level_id: l.id, cimzett, targy, szoveg, letrehozva: new Date().toISOString() };
+    const futas = _lvKerelemZarolas.then(async () => {
+      const { ertek } = await apiHivas("get_meta", { kulcs: "ceges_level_valasz_kerelmek" });
+      const kerelmek = Object.assign({}, lvObjektum(ertek));
+      kerelmek[kid] = kerelem;
+      // Legfeljebb 300 kérelmet tartunk meg (a legrégebbiek esnek ki).
+      const kulcsok = Object.keys(kerelmek).sort((a, b) => String(kerelmek[a].letrehozva || "").localeCompare(String(kerelmek[b].letrehozva || "")));
+      kulcsok.slice(0, Math.max(0, kulcsok.length - 300)).forEach(k => delete kerelmek[k]);
+      await apiHivas("set_meta", { kulcs: "ceges_level_valasz_kerelmek", ertek: kerelmek });
+      return kerelmek;
+    });
+    _lvKerelemZarolas = futas.catch(() => {});
+    try {
+      const kerelmek = await futas;
+      legutobbiAdat.ceges_level_valasz_kerelmek = kerelmek;
+      let uzenet = "Válasz elmentve, a következő futáskor kimegy (legfeljebb kb. 20 perc).";
+      if (azonnal) {
+        const pat = aktualisPat();
+        if (!pat) {
+          uzenet = "Válasz elmentve. Azonnali küldéshez nincs GitHub token, ezért a következő futáskor megy ki.";
+        } else {
+          try { await ghWorkflowInditasa(pat, {}); patMentese(); uzenet = "Válasz elmentve, a küldés elindult (néhány perc)."; }
+          catch (e) { uzenet = "Válasz elmentve, de az azonnali indítás nem sikerült (" + e.message + "). A következő futáskor kimegy."; }
+        }
+      }
+      lvValaszNyitva = false;
+      levelekRenderelese();
+      beStatuszMutat("lv-v-statusz", uzenet, "siker");
+    } catch (e) {
+      gomb.disabled = false;
+      beStatuszMutat("lv-v-statusz", "Mentés sikertelen: " + e.message, "hiba");
+    }
+  }
+
+  document.getElementById("lv-kereses").addEventListener("input", () => levelekRenderelese());
+  document.querySelectorAll("#lv-szurok button[data-lv-szuro]").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("#lv-szurok button").forEach(x => x.classList.toggle("aktiv", x === b));
+    lvSzuro = b.dataset.lvSzuro;
+    levelekRenderelese();
+  }));
+
   function aktualisPat() {
     return document.getElementById("gh-pat-input").value.trim();
   }
@@ -2428,7 +2872,7 @@
     return '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">'
       + '<span style="flex:1;font-weight:600;">' + fh.felhasznalonev + '</span>'
       + '<span style="color:var(--muted);font-size:13px;">' + szerepkorSzoveg + (letrehozva ? " · " + letrehozva : "") + '</span>'
-      + '<button type="button" class="fh-torles-gomb" data-nev="' + fh.felhasznalonev + '" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:4px 10px;font-size:13px;cursor:pointer;">Törlés</button>'
+      + '<button type="button" class="fh-torles-gomb" data-nev="' + fh.felhasznalonev + '" style="background:var(--red-soft);color:var(--red);border:none;border-radius:6px;padding:4px 10px;font-size:13px;cursor:pointer;">Törlés</button>'
       + '</div>';
   }
 
@@ -3358,6 +3802,7 @@
 
     document.body.classList.toggle("szerepkor-user", szerepkor === "user");
     legutobbiAdat = adat;
+    levelekRenderelese();
 
     // A "✕" gombbal véglegesen elrejtett számlák (ld. rekordTorlese())
     // az adatbázisban is megvannak MÉG (a Python-purge csak a következő
@@ -3489,6 +3934,98 @@
       // bele, mert a felhasználó nem is próbált most éppen belépni.
     }
   })();
+})();
+</script>
+<script>
+// Oldalsó menü - a meglévő "fomenu" (Közüzemi/Céges) gombokat és a
+// panelek saját nyitó gombjait hívja, így minden korábbi működés
+// (adatbetöltés a panel megnyitásakor, szerepkör szerinti rejtés)
+// változatlan marad. A közüzemi és a céges rész szándékosan két külön
+// menüpont.
+(function () {
+  "use strict";
+  const OLDALAK = {
+    kozuzemi:    { fomenu: "lakossagi", cim: "Közüzemi számlák", alcim: "Vízművek · MVM · Díjnet" },
+    ceges:       { fomenu: "ceges", cim: "Céges számlák és NAV", alcim: "A cég nevére kért számlák és a NAV Online Számla egyeztetés" },
+    levelek:     { sajat: "levelek-tartalom", cim: "Céges levelek", alcim: "A céges postafiókba érkezett levelek, válaszolási lehetőséggel" },
+    berlok:      { panelek: ["korok-panel", "kor-ertesito-panel", "cimzettek-panel"], cim: "Bérlők és értesítések", alcim: "Bérlői körök, címzettek, azonnali küldés" },
+    kuldes:      { panelek: ["kuldes-panel"], cim: "Küldés dátum szerint", alcim: "Számlák PDF-fel egy megadott címre" },
+    postafiokok: { panelek: ["postafiok-panel"], cim: "Postafiókok", alcim: "További figyelt email-fiókok" },
+    beallitasok: { panelek: ["beallitasok-panel", "felhasznalok-panel", "torolt-szamlak-panel"], cim: "Beállítások", alcim: "Emlékeztetők, felhasználók, törölt számlák" },
+  };
+  const KEZELESI_PANELEK = ["beallitasok-panel", "torolt-szamlak-panel", "kor-ertesito-panel", "felhasznalok-panel", "korok-panel", "cimzettek-panel", "kuldes-panel", "postafiok-panel"];
+  const $ = id => document.getElementById(id);
+
+  function tarol(kulcs, ertek) { try { localStorage.setItem(kulcs, ertek); } catch (e) { /* ignorálható */ } }
+  function olvas(kulcs) { try { return localStorage.getItem(kulcs); } catch (e) { return null; } }
+
+  function oldalValtas(nev) {
+    const oldal = OLDALAK[nev] || OLDALAK.kozuzemi;
+    if (!OLDALAK[nev]) nev = "kozuzemi";
+    document.querySelectorAll("#oldalmenu button[data-oldal]").forEach(b => b.classList.toggle("aktiv", b.dataset.oldal === nev));
+    $("oldal-cim").textContent = oldal.cim;
+    $("oldal-alcim").textContent = oldal.alcim;
+    $("levelek-tartalom").style.display = oldal.sajat === "levelek-tartalom" ? "block" : "none";
+    if (oldal.sajat) {
+      $("lakossagi-tartalom").style.display = "none";
+      $("ceges-tartalom").style.display = "none";
+      $("kezeles-tartalom").style.display = "none";
+    } else if (oldal.fomenu) {
+      $("kezeles-tartalom").style.display = "none";
+      const gomb = document.querySelector(`#fomenu-fulek button[data-fomenu="${oldal.fomenu}"]`);
+      if (gomb) gomb.click();
+    } else {
+      $("lakossagi-tartalom").style.display = "none";
+      $("ceges-tartalom").style.display = "none";
+      $("kezeles-tartalom").style.display = "block";
+      KEZELESI_PANELEK.forEach(id => {
+        const panel = $(id);
+        if (!panel) return;
+        const lathato = oldal.panelek.includes(id);
+        panel.style.display = lathato ? "" : "none";
+        if (lathato) {
+          const tartalom = $(id.replace(/-panel$/, "-tartalom"));
+          const toggle = $(id.replace(/-panel$/, "-toggle"));
+          if (tartalom && toggle && tartalom.style.display === "none") toggle.click();
+        }
+      });
+    }
+    tarol("szamla_oldal", nev);
+    window.scrollTo(0, 0);
+  }
+
+  document.querySelectorAll("#oldalmenu button[data-oldal]").forEach(b => {
+    b.addEventListener("click", () => oldalValtas(b.dataset.oldal));
+  });
+
+  // Az utoljára nézett oldalt csak a bejelentkezés UTÁN állítjuk vissza
+  // (a panelek adatbetöltése az API-kulcsot igényli).
+  let visszaallitva = false;
+  const tartalom = $("tartalom");
+  new MutationObserver(() => {
+    if (visszaallitva || tartalom.style.display !== "block") return;
+    visszaallitva = true;
+    let nev = null;
+    try { nev = sessionStorage.getItem("szamla_felhasznalonev"); } catch (e) { /* ignorálható */ }
+    if (nev) $("om-felhasznalo").textContent = "Bejelentkezve: " + nev;
+    const mentett = olvas("szamla_oldal");
+    const adminCsak = mentett && document.querySelector(`#oldalmenu button[data-oldal="${mentett}"][data-csak-admin]`);
+    if (mentett && mentett !== "kozuzemi" && !(adminCsak && document.body.classList.contains("szerepkor-user"))) {
+      oldalValtas(mentett);
+    }
+  }).observe(tartalom, { attributes: true, attributeFilter: ["style"] });
+
+  // Sötét / világos mód: alapból a rendszer-beállítást követi, a gomb
+  // felülbírálja (csak ebben a böngészőben megjegyezve).
+  const temaMentett = olvas("szamla_tema");
+  if (temaMentett === "dark" || temaMentett === "light") document.documentElement.dataset.theme = temaMentett;
+  $("om-tema-gomb").addEventListener("click", () => {
+    const most = document.documentElement.dataset.theme
+      || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const uj = most === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = uj;
+    tarol("szamla_tema", uj);
+  });
 })();
 </script>
 </body>

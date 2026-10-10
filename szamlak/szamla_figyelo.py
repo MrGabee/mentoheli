@@ -1183,6 +1183,13 @@ def _allapot_alapertekek() -> dict:
         # alapértelmezés érvényesül (ld. ott).
         "ceges_emlekezteto_feladas_cim": None,
         "ceges_emlekezteto_szoveg": None,
+        # Ld. "CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ" szekció.
+        # A naplót és az eredményeket CSAK a script írja, a válasz-kérelmeket
+        # CSAK a dashboard - így a futás végi mentés sosem írja felül a
+        # futás közben a dashboardon beírt választ.
+        "ceges_bejovo_levelek": {},
+        "ceges_level_valasz_kerelmek": {},
+        "ceges_level_valasz_eredmenyek": {},
     }
 
 
@@ -3636,6 +3643,11 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
             # esünk vissza erre.
             kuldo_nev_feladobol = _ceges_kuldo_nev_kinyerese(msg)
             pdf_csatolmanyok_listaja = pdf_csatolmanyok(msg)
+            try:
+                _ceges_level_naplozasa(allapot, msg, uid_str, targy, kuldo_nev_feladobol,
+                                       feladó_email, pdf_csatolmanyok_listaja)
+            except Exception as e:
+                print(f"      ⚠️  A levél naplózása a 'Céges levelek' nézethez sikertelen: {e}")
 
             if not pdf_csatolmanyok_listaja:
                 # Nincs PDF-csatolmány (pl. az eladó csak egy sima
@@ -5273,6 +5285,138 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
           f"{len(kijelolt_adoszamok)} kijelölt szállítóból.")
 
 
+
+# ════════════════════════════════════════════
+#  ✉️  CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ
+# ════════════════════════════════════════════
+# A dashboard "Céges levelek" menüpontja ebből a naplóból mutatja, milyen
+# levelek érkeztek a céges postafiókba (PDF-fel vagy anélkül). A naplóra
+# azért van szükség, mert a sikeresen feldolgozott leveleket a script
+# törli a postafiókból (ld. ceges_szamlak_feldolgozasa()).
+#
+# Válasz: a dashboard a "ceges_level_valasz_kerelmek" meta-kulcsba ír egy
+# kérelmet ({level_id, cimzett, targy, szoveg, letrehozva}), a script a
+# következő futáskor elküldi a céges feladó-címről (válaszlevélként, a
+# levélszálhoz kapcsolva), és az eredményt a "ceges_level_valasz_eredmenyek"
+# kulcsba írja. A két kulcsot két külön fél írja, így nem írják felül
+# egymást. A kézi válasz SZÁNDÉKOSAN nem függ a "céges email-küldés
+# engedélyezve" kapcsolótól (az az automatikus levelekre vonatkozik), de
+# dry-run alatt nem megy ki.
+CEGES_LEVEL_NAPLO_MAX_DB = 300
+CEGES_LEVEL_SZOVEG_MAX_KAR = 12000
+
+
+def _level_olvashato_szoveg(msg) -> str:
+    """Megjelenítésre szánt szöveg: a text/plain részt részesíti előnyben,
+    ha nincs, a HTML-t alakítja egyszerű szöveggé."""
+    sima, html_reszek = [], []
+    for resz in (msg.walk() if msg.is_multipart() else [msg]):
+        if resz.get_content_maintype() == "multipart":
+            continue
+        if (resz.get("Content-Disposition") or "").lower().startswith("attachment"):
+            continue
+        ctype = resz.get_content_type()
+        if ctype not in ("text/plain", "text/html"):
+            continue
+        try:
+            darab = resz.get_payload(decode=True).decode(resz.get_content_charset() or "utf-8", errors="ignore")
+        except Exception:
+            continue
+        (sima if ctype == "text/plain" else html_reszek).append(darab)
+    if sima:
+        szoveg = "\n".join(sima)
+    else:
+        szoveg = "\n".join(html_reszek)
+        szoveg = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", szoveg)
+        szoveg = re.sub(r"(?i)<br\s*/?>|</p>|</div>|</tr>|</li>", "\n", szoveg)
+        szoveg = re.sub(r"<[^>]+>", " ", szoveg)
+        szoveg = BeautifulSoup(szoveg, "html.parser").get_text() if "&" in szoveg else szoveg
+    szoveg = re.sub(r"[ \t\xa0]+", " ", szoveg)
+    szoveg = re.sub(r"\n\s*\n\s*\n+", "\n\n", szoveg)
+    return szoveg.strip()
+
+
+def _ceges_level_naplozasa(allapot: dict, msg, uid_str: str, targy: str, kuldo_nev: str,
+                           feladó_email: str, pdf_lista) -> None:
+    from email.utils import parseaddr
+    message_id = (msg.get("Message-ID") or "").strip()
+    level_id = hashlib.md5((message_id or f"{CEGES_IMAP_USER}|{uid_str}|{targy}").encode("utf-8")).hexdigest()[:16]
+    naplo = allapot.setdefault("ceges_bejovo_levelek", {})
+    if level_id in naplo:
+        return
+    _, valasz_cim = parseaddr(msg.get("Reply-To", "") or "")
+    naplo[level_id] = {
+        "id": level_id,
+        "feladó_nev": kuldo_nev,
+        "feladó_email": feladó_email,
+        "valasz_cim": valasz_cim or feladó_email,
+        "targy": targy,
+        "datum": _email_datum_iso(msg.get("Date", "")),
+        "message_id": message_id,
+        "references": (msg.get("References") or "").strip()[:2000],
+        "szoveg": _level_olvashato_szoveg(msg)[:CEGES_LEVEL_SZOVEG_MAX_KAR],
+        "pdf_nevek": [nev for nev, _ in (pdf_lista or [])],
+        "naplozva": magyar_ido().isoformat(),
+    }
+    if len(naplo) > CEGES_LEVEL_NAPLO_MAX_DB:
+        sorrend = sorted(naplo.values(), key=lambda r: (r.get("datum") or "", r.get("naplozva") or ""))
+        for regi in sorrend[: len(naplo) - CEGES_LEVEL_NAPLO_MAX_DB]:
+            naplo.pop(regi["id"], None)
+
+
+def _ceges_valasz_kuldese(cimzett: str, targy: str, szoveg: str, eredeti: dict) -> None:
+    """Sima szöveges válaszlevél a céges feladó-címről. Hiba esetén kivételt dob."""
+    from email.utils import formatdate, make_msgid
+    if not (CEGES_EMAIL_KULDO and CEGES_EMAIL_JELSZO_KULDES):
+        raise RuntimeError("Nincs beállítva a céges feladó-cím (CEGES_EMAIL_KULDO_SZAMLA / CEGES_IMAP_USER).")
+    msg = MIMEText(szoveg, "plain", "utf-8")
+    msg["Subject"] = targy
+    msg["From"] = CEGES_EMAIL_KULDO
+    msg["To"] = cimzett
+    msg["Date"] = formatdate(localtime=True)
+    msg["Message-ID"] = make_msgid(domain=(CEGES_EMAIL_KULDO.split("@")[-1] or None))
+    eredeti_id = (eredeti or {}).get("message_id")
+    if eredeti_id:
+        msg["In-Reply-To"] = eredeti_id
+        msg["References"] = (((eredeti or {}).get("references") or "") + " " + eredeti_id).strip()
+    with smtplib.SMTP_SSL(CEGES_SMTP_HOST, CEGES_SMTP_PORT) as server:
+        server.login(CEGES_EMAIL_KULDO, CEGES_EMAIL_JELSZO_KULDES)
+        server.send_message(msg)
+
+
+def ceges_level_valaszok_feldolgozasa(allapot: dict) -> None:
+    kerelmek = allapot.get("ceges_level_valasz_kerelmek") or {}
+    if not isinstance(kerelmek, dict) or not kerelmek:
+        return
+    eredmenyek = allapot.setdefault("ceges_level_valasz_eredmenyek", {})
+    if not isinstance(eredmenyek, dict):
+        eredmenyek = allapot["ceges_level_valasz_eredmenyek"] = {}
+    naplo = allapot.get("ceges_bejovo_levelek") or {}
+    for kid, k in kerelmek.items():
+        if not isinstance(k, dict) or (eredmenyek.get(kid) or {}).get("statusz") == "elkuldve":
+            continue
+        cimzett = (k.get("cimzett") or "").strip()
+        targy = (k.get("targy") or "").strip()
+        szoveg = (k.get("szoveg") or "").strip()
+        if not (re.fullmatch(r"[^@\s,;]+@[^@\s,;]+\.[^@\s,;]+", cimzett) and szoveg):
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(),
+                               "hiba": "Hiányzó vagy érvénytelen címzett, vagy üres szöveg."}
+            continue
+        if DRY_RUN:
+            print(f"  🧪 [DRY RUN] Céges válaszlevél KIMENNE: {targy!r} -> {cimzett!r}")
+            continue
+        try:
+            _ceges_valasz_kuldese(cimzett, targy or "Válasz", szoveg, naplo.get(k.get("level_id")))
+            eredmenyek[kid] = {"statusz": "elkuldve", "idopont": magyar_ido().isoformat(), "hiba": None}
+            print(f"  ✉️  Céges válaszlevél elküldve: {targy!r} -> {cimzett}")
+        except Exception as e:
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(), "hiba": str(e)[:300]}
+            print(f"  ❌ Céges válaszlevél küldése sikertelen ({cimzett}): {e}")
+    # Az olyan eredményeket, amikhez már nincs kérelem (a dashboard törölte), eldobjuk.
+    for kid in list(eredmenyek.keys()):
+        if kid not in kerelmek:
+            eredmenyek.pop(kid, None)
+
 # ════════════════════════════════════════════
 #  🚀  FŐ FOLYAMAT
 # ════════════════════════════════════════════
@@ -6183,6 +6327,7 @@ def main():
     # ELŐTT, hogy az ebben a futásban feldolgozott/törölt céges számlák
     # metaadata is bekerüljön a lentebbi mentésbe.
     ceges_szamlak_feldolgozasa(allapot)
+    ceges_level_valaszok_feldolgozasa(allapot)
 
     # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás
     # (ld. "NAV ONLINE SZÁMLA" szekció) - SZÁNDÉKOSAN a Céges számlák ÉS a
