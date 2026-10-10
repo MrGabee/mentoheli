@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-10T04:02:14.602901+02:00",
+  "frissitve": "2026-10-10T04:02:47.498982+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-09T15:18:13.559468+02:00",
-      "kulcs": "T8012",
-      "rendszam": "T8012",
-      "vehicle_id": "6132",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.475830078125,
-      "lon": 19.099790573120117,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-10-09T15:18:13.559495+02:00",
-      "kulcs": "T8014",
-      "rendszam": "T8014",
-      "vehicle_id": "6134",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.486968994140625,
-      "lon": 19.057538986206055,
-      "elozo_szoveg": "Fővám tér M",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-10-09T15:18:13.559582+02:00",
-      "kulcs": "T9008",
-      "rendszam": "T9008",
-      "vehicle_id": "6147",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.4998893737793,
-      "lon": 19.0834903717041,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-09T15:18:13.559943+02:00",
       "kulcs": "NCV289",
@@ -260000,6 +259961,45 @@
       "lon": 19.055418014526367,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T04:02:47.409125+02:00",
+      "kulcs": "AADI633",
+      "rendszam": "AADI633",
+      "vehicle_id": "131",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.48948669433594,
+      "lon": 19.24398422241211,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
+      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-10T04:02:47.411389+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "R.csaba - Kőbánya-Kisp.M",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.477596282958984,
+      "lon": 19.262582778930664,
+      "elozo_szoveg": "Kucorgó tér ► Rákoscsaba",
+      "uj_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-10T04:02:47.411994+02:00",
+      "kulcs": "AADI581",
+      "rendszam": "AADI581",
+      "vehicle_id": "81",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39962387084961,
+      "lon": 18.99151611328125,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
