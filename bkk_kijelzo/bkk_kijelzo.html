@@ -6,30 +6,43 @@
 <title>BKK Kijelző Figyelő</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* A Balesetinfo program arculata: ugyanazok a színtokenek, világos és sötét módban.
+     A régi változónevek (--bg-card, --amber, --turquoise…) a program színeire mutatnak. */
   :root {
-    --bg: #1b1d1f; --bg-card: #232629; --amber: #f2a340; --turquoise: #2dd4bf;
-    --red: #e24444; --text: #eef0f2; --text-muted: #9aa0a6; --border: #34383c;
-    --line-blue: #1976d2;
+    color-scheme: light;
+    --bg: #f3f5f8; --bg-card: #ffffff; --bg-card-hover: #eef1f6; --surface-2: #eef1f6; --border: #dde2ea;
+    --text: #16202e; --text-muted: #5d6a7c; --blue: #1f5f8b; --blue-soft: #e2edf6; --blue-hover: #174a6d;
+    --amber: var(--blue); --turquoise: var(--blue); --red: #b3261e; --green: #1b7f4b; --on-accent: #ffffff;
+    --mk-blue: #2f6fc0; --bkk-violet: #7a4fc4; --jb-green: #1f8a55; --line-blue: #1976d2;
+    --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --f-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
+  @media (prefers-color-scheme: dark) { :root {
+    color-scheme: dark;
+    --bg: #0f141b; --bg-card: #161d27; --bg-card-hover: #1c2531; --surface-2: #1c2531; --border: #2a3443;
+    --text: #e6ebf2; --text-muted: #93a0b2; --blue: #6fb0e0; --blue-soft: #1b2e40; --blue-hover: #8cc3ea;
+    --red: #f2867f; --green: #5cc98d; --on-accent: #0f141b;
+    --mk-blue: #4f8fe0; --bkk-violet: #b384f0; --jb-green: #5cc48c;
+  } }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.5; }
+  body { background: var(--bg); color: var(--text); font-family: var(--f-body); line-height: 1.5; }
 
   .hazard-stripe { height: 6px; background: repeating-linear-gradient(-45deg, var(--amber), var(--amber) 14px, #1b1d1f 14px, #1b1d1f 28px); }
 
   header { max-width: 800px; margin: 0 auto; padding: 40px 24px 20px; }
-  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
-  h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 38px); text-transform: uppercase; }
+  .eyebrow { font-family: var(--f-body); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+  h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(26px, 4vw, 38px); text-transform: uppercase; }
   h1 span { color: var(--turquoise); }
   header p.lead { color: var(--text-muted); font-size: 14px; margin-top: 10px; }
-  .frissitve { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
+  .frissitve { font-family: var(--f-body); font-size: 12px; color: var(--text-muted); margin-top: 14px; }
 
   main { max-width: 800px; margin: 0 auto; padding: 0 24px 64px; }
 
   .szuro-sor { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
   .szuro-btn {
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 100px;
+    font-family: var(--f-body); font-size: 12px; padding: 7px 14px; border-radius: 100px;
     border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer;
   }
   .szuro-btn.aktiv { border-color: var(--amber); color: var(--amber); }
@@ -50,11 +63,11 @@
   .vonal-csoport.osszecsukva .vonal-csoport-tetelek { display: none; }
   .vonalszam-jelveny {
     display: inline-flex; align-items: baseline; gap: 7px; background: var(--line-blue);
-    color: #fff; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 19px;
+    color: #fff; font-family: var(--f-display); font-weight: 700; font-size: 19px;
     padding: 4px 12px; border-radius: 8px; line-height: 1.25;
   }
-  .vonalszam-jelveny .jelveny-routeid { font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 11px; opacity: 0.85; }
-  .vonal-csoport-szamlalo { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+  .vonalszam-jelveny .jelveny-routeid { font-family: var(--f-body); font-weight: 400; font-size: 11px; opacity: 0.85; }
+  .vonal-csoport-szamlalo { font-family: var(--f-body); font-size: 11px; color: var(--text-muted); white-space: nowrap; }
 
   .jarmu-item {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
@@ -64,13 +77,13 @@
   .jarmu-fejlec { display: flex; justify-content: space-between; align-items: center; }
   /* A rendszám/jármű-azonosító csak másodlagos infó - a lényeg a kijelző
      szövege (lásd .jarmu-kijelzo lejjebb), ezért ez visszafogottabb. */
-  .jarmu-jarat { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px; color: var(--text-muted); }
-  .jarmu-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 100px; background: rgba(154,160,166,0.15); color: var(--text-muted); }
+  .jarmu-jarat { font-family: var(--f-body); font-weight: 500; font-size: 12px; color: var(--text-muted); }
+  .jarmu-badge { font-family: var(--f-body); font-size: 10px; padding: 3px 8px; border-radius: 100px; background: rgba(154,160,166,0.15); color: var(--text-muted); }
   .jarmu-item.rendellenes .jarmu-badge { background: rgba(226,68,68,0.15); color: var(--red); }
   .jarmu-kijelzo-sor { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px; }
   /* A kijelző szövege a lényeg (ezért "Kijelző Figyelő") - ez legyen a
      legszembetűnőbb elem minden jármű-kártyán, kinyitás nélkül is. */
-  .jarmu-kijelzo { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 16px; color: var(--text); flex: 1; min-width: 0; }
+  .jarmu-kijelzo { font-family: var(--f-display); font-weight: 600; font-size: 16px; color: var(--text); flex: 1; min-width: 0; }
   .jarmu-kijelzo-sor .flag-btn { margin-top: 0; flex-shrink: 0; }
   .jarmu-linkek { display: none; margin-top: 10px; gap: 8px; }
   .jarmu-item.nyitva .jarmu-linkek { display: flex; }
@@ -83,7 +96,7 @@
   /* ── Fő fülek: Élő figyelés / Előzmények / Figyelt szövegek ── */
   .fotab-sor { display: flex; gap: 8px; max-width: 800px; margin: 0 auto; padding: 0 24px; }
   .fotab-btn {
-    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px; text-transform: uppercase;
+    font-family: var(--f-display); font-weight: 600; font-size: 13px; text-transform: uppercase;
     letter-spacing: 0.03em; padding: 10px 18px; border-radius: 8px 8px 0 0; border: 1px solid var(--border);
     border-bottom: none; background: transparent; color: var(--text-muted); cursor: pointer;
   }
@@ -98,8 +111,8 @@
     background: var(--bg); color: var(--text); font-size: 13px;
   }
   .token-input-sor button {
-    font-family: 'JetBrains Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 8px;
-    border: none; background: var(--amber); color: #1b1d1f; font-weight: 700; cursor: pointer;
+    font-family: var(--f-body); font-size: 13px; padding: 9px 16px; border-radius: 8px;
+    border: none; background: var(--amber); color: var(--on-accent); font-weight: 700; cursor: pointer;
   }
   .elozmeny-talalat {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
@@ -107,26 +120,26 @@
   }
   .elozmeny-talalat.jelenleg-is { border-left-color: var(--turquoise); }
   .elozmeny-talalat .ef-fejlec { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-  .elozmeny-talalat .ef-jarat { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14px; }
-  .elozmeny-talalat .ef-ido { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); }
+  .elozmeny-talalat .ef-jarat { font-family: var(--f-display); font-weight: 600; font-size: 14px; }
+  .elozmeny-talalat .ef-ido { font-family: var(--f-body); font-size: 11px; color: var(--text-muted); }
   .elozmeny-talalat .ef-valtozas { font-size: 13px; margin-top: 6px; color: var(--text-muted); }
   .elozmeny-talalat .ef-valtozas .ef-regi { text-decoration: line-through; }
   .elozmeny-talalat .ef-valtozas .ef-uj { color: var(--text); font-weight: 600; }
   .elo-most-badge {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; background: rgba(45,212,191,0.15);
+    font-family: var(--f-body); font-size: 10px; background: var(--blue-soft);
     color: var(--turquoise); padding: 2px 8px; border-radius: 100px;
   }
   .flag-btn {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 5px 10px; border-radius: 100px;
+    font-family: var(--f-body); font-size: 11px; padding: 5px 10px; border-radius: 100px;
     border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); cursor: pointer; margin-top: 8px;
   }
-  .flag-btn.flagelve { border-color: var(--amber); color: var(--amber); background: rgba(242,163,64,0.1); }
+  .flag-btn.flagelve { border-color: var(--amber); color: var(--amber); background: var(--blue-soft); }
   .flag-btn:disabled { opacity: 0.5; cursor: default; }
   .flag-statusz { font-size: 12px; margin-top: 8px; min-height: 16px; }
   .flag-statusz.siker { color: var(--turquoise); }
   .flag-statusz.hiba { color: var(--red); }
   .flagelt-panel { background: var(--bg-card); border: 1px solid var(--amber); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
-  .flagelt-panel h3 { font-family: 'Oswald', sans-serif; font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
+  .flagelt-panel h3 { font-family: var(--f-display); font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
   .flagelt-sor { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
   .flagelt-sor:last-child { border-bottom: none; }
   .flagelt-torles-btn { border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); border-radius: 6px; padding: 3px 8px; cursor: pointer; font-size: 11px; }
@@ -136,7 +149,7 @@
     display: flex; align-items: center; justify-content: center; padding: 24px;
   }
   .kapu-doboz { max-width: 340px; width: 100%; text-align: center; }
-  .kapu-doboz h2 { font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 20px; margin-bottom: 16px; }
+  .kapu-doboz h2 { font-family: var(--f-display); text-transform: uppercase; font-size: 20px; margin-bottom: 16px; }
   .kapu-doboz input {
     width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border);
     background: var(--bg-card); color: var(--text); font-size: 15px; margin-bottom: 10px; text-align: center;
@@ -154,10 +167,21 @@
      eltakarná a teljes jelszó-mezőt. */
   .kapu-doboz button:not(.kapu-szem-btn) {
     width: 100%; padding: 12px; border-radius: 8px; border: none;
-    background: var(--amber); color: #1b1d1f; font-weight: 700; font-size: 14px; cursor: pointer;
+    background: var(--amber); color: var(--on-accent); font-weight: 700; font-size: 14px; cursor: pointer;
   }
   .kapu-hiba { color: var(--red); font-size: 13px; margin-top: 8px; min-height: 18px; }
   .rejtve { display: none !important; }
+
+  /* Programhoz illő megjelenés */
+  .hazard-stripe { display: none; }
+  h1 { font-family: var(--f-display); text-transform: none; letter-spacing: -0.01em; font-size: clamp(24px, 4vw, 34px); }
+  h1 span { color: var(--blue); }
+  .eyebrow { color: var(--blue); }
+  input, select, textarea, button { font-family: inherit; }
+  button, .fotab-btn, .szuro-btn { text-transform: none; letter-spacing: 0; }
+  .frissitve, .eyebrow { font-variant-numeric: tabular-nums; }
+  /* A programon belül nyitva a program adja a keretet. */
+  html.beagyazva header { padding-top: 16px; padding-bottom: 12px; }
 </style>
 </head>
 <body>
@@ -253,7 +277,17 @@
   const KAPU_EMLEKEZET_KULCS = "bkk_kijelzo_belepve";
   const KAPU_EMLEKEZET_NAPOK = 7;
 
+
+  // A Balesetinfo programból (ugyanarról a címről) nyitva nem kér újra jelszót.
+  function programbolBelepve() {
+    try { return [KAPU_JELSZO, 'megrendelo2026'].indexOf(localStorage.getItem('balesetinfo_jelszo')) !== -1; }
+    catch (e) { return false; }
+  }
+
+  if (window.self !== window.top) document.documentElement.classList.add('beagyazva');
+
   function kapuEllenorzes() {
+    if (programbolBelepve()) return kapuMegnyitas();
     try {
       const mentett = localStorage.getItem(KAPU_EMLEKEZET_KULCS);
       if (mentett && Number(mentett) > Date.now()) {
