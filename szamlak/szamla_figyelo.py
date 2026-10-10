@@ -6517,6 +6517,8 @@ def main():
                 vizmuvek_sorok, vizmuvek_token = vizmuvek_szamlak_lekerdezese(vizmuvek_session)
                 vizmuvek_pdf_letoltesek_szama = 0
                 vizmuvek_pdf_potlas_szama = 0
+                vizmuvek_latott_idk = set()
+                vizmuvek_allapot_db = {}
                 for sor in vizmuvek_sorok:
                     szamlaszam = str(sor.get("INVID") or "").strip()
                     if not szamlaszam:
@@ -6526,9 +6528,12 @@ def main():
                     vid = hashlib.md5(
                         f"vizmuvek|{szamlaszam}".encode("utf-8")
                     ).hexdigest()[:16]
+                    vizmuvek_latott_idk.add(vid)
                     if vid in torolt_id_szet:
                         continue  # a felhasználó véglegesen elrejtette ezt a számlát - ld. torolt_szamla_id_k
-                    fizetve_e = _vizmuvek_fizetve_e(sor.get("STATUS_MEGNEV"))
+                    portal_allapot = str(sor.get("STATUS_MEGNEV") or "").strip()
+                    vizmuvek_allapot_db[portal_allapot or "(üres)"] = vizmuvek_allapot_db.get(portal_allapot or "(üres)", 0) + 1
+                    fizetve_e = _vizmuvek_fizetve_e(portal_allapot)
                     # Az AMOUNT mező a valós portál-válaszban MÁR szám (nem
                     # szöveg), ezért itt nem kell a Díjnetnél használt
                     # szöveg->szám konverzió - a dátummezők ("INV_DATE"/
@@ -6561,6 +6566,7 @@ def main():
                             "forras": "vizmuvek_portal",
                             "szamlaszam": szamlaszam,
                             "kor": kor,
+                            "portal_allapot": portal_allapot,
                         }
                         szamlak[vid] = rekord
                         statisztika["vizmuvek_uj_szamla"] += 1
@@ -6584,6 +6590,7 @@ def main():
                         # újabb "új számla" emailt (kivéve utólagos
                         # értesítést, ld. _kor_utolagos_ertesites_ha_kell()).
                         letezo = szamlak[vid]
+                        letezo["portal_allapot"] = portal_allapot
                         if fizetve_e and not letezo.get("fizetve"):
                             letezo["fizetve"] = True
                             letezo["fizetve_datum"] = magyar_ido().isoformat()
@@ -6607,6 +6614,23 @@ def main():
                             potolt_pdf = vizmuvek_pdf_letoltese(vizmuvek_session, vizmuvek_token, sor)
                             vizmuvek_pdf_potlas_szama += 1
                             pdf_tarolas(allapot, vid, potolt_pdf)
+                if vizmuvek_allapot_db:
+                    print("  🚰 Vízművek portál-állapotok: " + ", ".join(
+                        f"{k}: {v} db" for k, v in sorted(vizmuvek_allapot_db.items())))
+                # Ha egy nálunk még fizetetlen Vízművek-számla már nem
+                # szerepel a portál listájában, a portál rendezettnek
+                # tekinti (a fizetendő számlák listájából kikerül) - ezt
+                # is fizetettnek vesszük. Csak sikeres, nem üres lista
+                # esetén, hogy egy hibás lekérdezés ne jelöljön semmit.
+                if vizmuvek_sorok:
+                    for rid, r in szamlak.items():
+                        if (r.get("forras") == "vizmuvek_portal" and not r.get("fizetve")
+                                and rid not in vizmuvek_latott_idk):
+                            r["fizetve"] = True
+                            r["fizetve_datum"] = magyar_ido().isoformat()
+                            r["portal_allapot"] = "kikerült a fizetendők közül"
+                            statisztika["vizmuvek_fizetve_frissites"] += 1
+                            print(f"      ✅ Vízművek-számla fizetettre állítva (kikerült a portál listájából): {r['targy']}")
                 # 1. pont: ld. a Díjnet-résznél lévő azonos indoklást - csak
                 # szerkezeti (darabszám) log, nem tartalom.
                 vizmuvek_pdf_hianyzik_db = sum(
