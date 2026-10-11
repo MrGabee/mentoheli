@@ -114,7 +114,7 @@ KEP_HIR = KEP_ALAP + "rendorseg_hir.png"
 
 # Szöveges módban a poszt "link" mezője ezekre az átirányító oldalakra mutat: a
 # Facebook-előnézet az illusztrációt mutatja, kattintásra a police.hu-ra visz.
-ATIRANYITO_ALAP = "https://mrgabee.github.io/mentoheli/rendorseg/"
+ATIRANYITO_ALAP = "https://kozles.github.io/posztol/"
 ATIRANYITO_KOROZES = ATIRANYITO_ALAP
 ATIRANYITO_HIR = ATIRANYITO_ALAP + "hir.html"
 
