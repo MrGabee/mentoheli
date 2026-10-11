@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-11T04:00:08.428892+02:00",
+  "frissitve": "2026-10-11T04:00:35.823627+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.016882+02:00",
-      "kulcs": "480 010",
-      "rendszam": "480 010",
-      "vehicle_id": "915504800102",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.34762954711914,
-      "lon": 20.042850494384766,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.016927+02:00",
-      "kulcs": "480 019",
-      "rendszam": "480 019",
-      "vehicle_id": "915504800193",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.46363830566406,
-      "lon": 19.151220321655273,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.016971+02:00",
-      "kulcs": "918061932318",
-      "rendszam": "918061932318",
-      "vehicle_id": "918061932318",
-      "vehicle_label": "Wien Westbf",
-      "vonal_szam": "EC",
-      "route_id": "EC",
-      "lat": 47.450008392333984,
-      "lon": 18.904739379882812,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Wien Westbf"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.017070+02:00",
-      "kulcs": "AOIM010",
-      "rendszam": "AOIM010",
-      "vehicle_id": "928",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.43340301513672,
-      "lon": 19.17441177368164,
-      "elozo_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-10-10T13:02:30.017095+02:00",
       "kulcs": "AADI597",
@@ -260000,6 +259948,58 @@
       "lon": 19.008766174316406,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-11T04:00:35.735156+02:00",
+      "kulcs": "AADI645",
+      "rendszam": "AADI645",
+      "vehicle_id": "144",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "97E",
+      "route_id": "0975",
+      "lat": 47.469058990478516,
+      "lon": 19.294265747070312,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T04:00:35.737802+02:00",
+      "kulcs": "V2297",
+      "rendszam": "V2297",
+      "vehicle_id": "595",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.44083786010742,
+      "lon": 19.035200119018555,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-11T04:00:35.738021+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523502349853516,
+      "lon": 18.99297523498535,
+      "elozo_szoveg": "Cinkotai autóbuszgarázs",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T04:00:35.738045+02:00",
+      "kulcs": "PDB379",
+      "rendszam": "PDB379",
+      "vehicle_id": "7061",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51458740234375,
+      "lon": 19.03671646118164,
+      "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
+      "uj_szoveg": "Pasaréti tér"
     }
   ]
 }
