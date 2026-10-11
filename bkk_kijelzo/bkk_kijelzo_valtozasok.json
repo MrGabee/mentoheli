@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:11:12.800907+02:00",
+  "frissitve": "2026-10-11T03:11:46.949755+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.005114+02:00",
-      "kulcs": "V1437",
-      "rendszam": "V1437",
-      "vehicle_id": "4507",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "48",
-      "route_id": "3480",
-      "lat": 47.435935974121094,
-      "lon": 19.042150497436523,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.005128+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.49210739135742,
-      "lon": 19.050683975219727,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.005141+02:00",
-      "kulcs": "V1440",
-      "rendszam": "V1440",
-      "vehicle_id": "4510",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.479705810546875,
-      "lon": 19.051239013671875,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.005163+02:00",
-      "kulcs": "V1443",
-      "rendszam": "V1443",
-      "vehicle_id": "4513",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "48",
-      "route_id": "3480",
-      "lat": 47.44099044799805,
-      "lon": 19.03638458251953,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.005186+02:00",
-      "kulcs": "V1451",
-      "rendszam": "V1451",
-      "vehicle_id": "4521",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.48841094970703,
-      "lon": 19.054506301879883,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-10T13:02:30.005225+02:00",
       "kulcs": "V1500",
@@ -260000,6 +259935,71 @@
       "lon": 20.094409942626953,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-10-11T03:11:46.856604+02:00",
+      "kulcs": "FKU940",
+      "rendszam": "FKU940",
+      "vehicle_id": "3096",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.534088134765625,
+      "lon": 19.082189559936523,
+      "elozo_szoveg": "Astoria M ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-11T03:11:46.857376+02:00",
+      "kulcs": "AAMH637",
+      "rendszam": "AAMH637",
+      "vehicle_id": "480",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497413635253906,
+      "lon": 19.054983139038086,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-11T03:11:46.857472+02:00",
+      "kulcs": "NBW001",
+      "rendszam": "NBW001",
+      "vehicle_id": "5971",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.4987907409668,
+      "lon": 19.050146102905273,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-11T03:11:46.857667+02:00",
+      "kulcs": "PDB382",
+      "rendszam": "PDB382",
+      "vehicle_id": "7064",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52316665649414,
+      "lon": 19.01774024963379,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-11T03:11:46.857733+02:00",
+      "kulcs": "RCT320",
+      "rendszam": "RCT320",
+      "vehicle_id": "7334",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486793518066406,
+      "lon": 19.067672729492188,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
