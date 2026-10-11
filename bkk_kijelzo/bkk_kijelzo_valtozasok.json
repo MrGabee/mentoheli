@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T00:52:22.232832+02:00",
+  "frissitve": "2026-10-12T00:52:52.629455+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:20:03.900112+02:00",
-      "kulcs": "PDN625",
-      "rendszam": "PDN625",
-      "vehicle_id": "7096",
-      "vehicle_label": "Csepel, Soroksári rév",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.46236801147461,
-      "lon": 19.148391723632812,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Csepel, Soroksári rév"
-    },
-    {
-      "idopont": "2026-10-11T12:20:03.900216+02:00",
-      "kulcs": "PDN643",
-      "rendszam": "PDN643",
-      "vehicle_id": "7114",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.47405242919922,
-      "lon": 19.048538208007812,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-10-11T12:20:03.900447+02:00",
-      "kulcs": "PKN608",
-      "rendszam": "PKN608",
-      "vehicle_id": "7197",
-      "vehicle_label": "Újpalota, Sárfű utca",
-      "vonal_szam": "130",
-      "route_id": "1300",
-      "lat": 47.50014877319336,
-      "lon": 19.10346794128418,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Újpalota, Sárfű utca"
-    },
     {
       "idopont": "2026-10-11T12:20:03.901136+02:00",
       "kulcs": "AOGF672",
@@ -260000,6 +259961,45 @@
       "lon": 19.256000518798828,
       "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-12T00:52:52.577261+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51923370361328,
+      "lon": 19.038227081298828,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T00:52:52.577393+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.536495208740234,
+      "lon": 19.107013702392578,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-12T00:52:52.577569+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47975540161133,
+      "lon": 19.255496978759766,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
