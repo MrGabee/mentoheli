@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-12T01:59:01.399658+02:00",
+  "frissitve": "2026-10-12T01:59:34.969477+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:28:59.700689+02:00",
-      "kulcs": "PKN601",
-      "rendszam": "PKN601",
-      "vehicle_id": "7190",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.479434967041016,
-      "lon": 19.256187438964844,
-      "elozo_szoveg": "Rákoskeresztúr, városközpont",
-      "uj_szoveg": "Rákoskeresztúr, városkp."
-    },
-    {
-      "idopont": "2026-10-11T12:28:59.701014+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50577926635742,
-      "lon": 19.13663101196289,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-11T12:28:59.701267+02:00",
-      "kulcs": "RVY604",
-      "rendszam": "RVY604",
-      "vehicle_id": "7433",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.499786376953125,
-      "lon": 19.287120819091797,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Dél-pesti autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-10-11T12:28:59.701389+02:00",
-      "kulcs": "RVY703",
-      "rendszam": "RVY703",
-      "vehicle_id": "7452",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.4798469543457,
-      "lon": 19.06654167175293,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-11T12:28:59.702040+02:00",
-      "kulcs": "SKR828",
-      "rendszam": "SKR828",
-      "vehicle_id": "7714",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.462913513183594,
-      "lon": 19.149206161499023,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-10-11T12:28:59.702505+02:00",
       "kulcs": "AOFL198",
@@ -260000,6 +259935,71 @@
       "lon": 19.12006378173828,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-12T01:59:34.918182+02:00",
+      "kulcs": "AADR714",
+      "rendszam": "AADR714",
+      "vehicle_id": "182",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59782028198242,
+      "lon": 19.053869247436523,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T01:59:34.919208+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Rákospalota, Mélyfúró u.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56904220581055,
+      "lon": 19.126440048217773,
+      "elozo_szoveg": "Rákospalota, Mélyfúró utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-12T01:59:34.919555+02:00",
+      "kulcs": "AADI562",
+      "rendszam": "AADI562",
+      "vehicle_id": "41",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42661666870117,
+      "lon": 19.16080093383789,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-12T01:59:34.919871+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498966217041016,
+      "lon": 19.00933265686035,
+      "elozo_szoveg": "Svábhegy ► Csillebérc",
+      "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-12T01:59:34.919915+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.484737396240234,
+      "lon": 19.07316780090332,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
