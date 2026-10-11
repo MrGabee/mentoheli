@@ -56,6 +56,13 @@ HIREK_RIASZTAS_UTANI_FUTAS = 8  # ennyi egymás utáni "mind a 10 hír-kategóri
 #         Az email-küldést ez NEM érinti.
 MAKE_WEBHOOK_AKTIV = False  # = "Make.com kapcsoló"
 
+# True  = a rendőrségi posztok a MAKE_WEBHOOK_URL_RENDORSEG forgatókönyvön mennek
+#         (illusztrációs kép, lezáráskor a poszt átírása, utolsó poszt lekérdezése).
+# False = a fő MAKE_WEBHOOK_URL-en, csak szövegként. A fő forgatókönyv csak a
+#         "message" mezőt ismeri, ezért ilyenkor kép, javítás és lekérdezés nincs.
+#         (A Make-szervezetben az új Facebook-modulok el sem indulnak, ezért ez az alap.)
+MAKE_KEPES_FORGATOKONYV = False
+
 # A körözési rendszerben ezekre a szervekre szűrünk (Elrendelő VAGY Eljáró szerv mezőben)
 KOROZES_SZERV_SZURO = [
     "BUDAPESTI XXI. KER. RK",
@@ -398,13 +405,10 @@ def hirek_egyezik(cikk):
 # =====================================================================
 
 def _make_hivas(adat, timeout=60):
-    # A rendőrségi posztok KÜLÖN Make-forgatókönyvön mennek (képes poszt, javítás,
-    # utolsó poszt lekérdezése), hogy a fő posztolót ne érintsék. A fő
-    # MAKE_WEBHOOK_URL-re szándékosan nem esünk vissza: az csak szöveget posztol,
-    # és a link előnézetében megjelenne az ember fotója.
-    url = os.environ.get("MAKE_WEBHOOK_URL_RENDORSEG", "")
+    nev = "MAKE_WEBHOOK_URL_RENDORSEG" if MAKE_KEPES_FORGATOKONYV else "MAKE_WEBHOOK_URL"
+    url = os.environ.get(nev, "")
     if not url:
-        print("      ⚠️  Nincs beállítva MAKE_WEBHOOK_URL_RENDORSEG, Facebook-posztolás kihagyva.")
+        print(f"      ⚠️  Nincs beállítva {nev}, Facebook-posztolás kihagyva.")
         return None
     try:
         return requests.post(url, json=adat, timeout=timeout)
@@ -419,7 +423,10 @@ def facebook_post(uzenet, kep_url=None, post_id=None):
     - post_id: nem új poszt, hanem a meglévő szövegének átírása
     Visszaad: a poszt azonosítóját (str), True-t (ha nincs azonosító), vagy None-t hiba esetén."""
     adat = {"message": uzenet}
-    if post_id:
+    if not MAKE_KEPES_FORGATOKONYV:
+        if post_id:
+            return None   # a fő forgatókönyv csak új posztot tud, átírni nem
+    elif post_id:
         adat["post_id"] = post_id
     elif kep_url:
         adat["kep"] = kep_url
@@ -446,6 +453,8 @@ def _ido(szoveg):
 def utolso_poszt_ideje():
     """Az oldal legutóbbi posztjának ideje (bármelyik figyelőtől), a Make-en
     keresztül lekérdezve. None, ha nem sikerült."""
+    if not MAKE_KEPES_FORGATOKONYV:
+        return None   # a fő forgatókönyv a kérdést posztként küldené ki
     resp = _make_hivas({"kerdes": "utolso_poszt"}, timeout=30)
     try:
         return _ido(resp.json()["utolso"]) if resp is not None and resp.status_code == 200 else None
@@ -602,7 +611,7 @@ def lezart_posztok_javitasa(cache):
         if info["hiany"] < LEZARAS_404_SZAM:
             continue
         print(f"   ✅ Lekerült a police.hu-ról, poszt javítása: {url}")
-        if not MAKE_WEBHOOK_AKTIV or facebook_post(lezart_poszt_szoveg(info["tipus"]), post_id=info["post_id"]):
+        if not (MAKE_WEBHOOK_AKTIV and MAKE_KEPES_FORGATOKONYV) or facebook_post(lezart_poszt_szoveg(info["tipus"]), post_id=info["post_id"]):
             del posztok[url]
         time.sleep(1)
 
