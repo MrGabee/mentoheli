@@ -398,9 +398,13 @@ def hirek_egyezik(cikk):
 # =====================================================================
 
 def _make_hivas(adat, timeout=60):
-    url = os.environ.get("MAKE_WEBHOOK_URL", "")
+    # A rendőrségi posztok KÜLÖN Make-forgatókönyvön mennek (képes poszt, javítás,
+    # utolsó poszt lekérdezése), hogy a fő posztolót ne érintsék. A fő
+    # MAKE_WEBHOOK_URL-re szándékosan nem esünk vissza: az csak szöveget posztol,
+    # és a link előnézetében megjelenne az ember fotója.
+    url = os.environ.get("MAKE_WEBHOOK_URL_RENDORSEG", "")
     if not url:
-        print("      ⚠️  Nincs beállítva MAKE_WEBHOOK_URL, Facebook-posztolás kihagyva.")
+        print("      ⚠️  Nincs beállítva MAKE_WEBHOOK_URL_RENDORSEG, Facebook-posztolás kihagyva.")
         return None
     try:
         return requests.post(url, json=adat, timeout=timeout)
