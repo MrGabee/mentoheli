@@ -1,9 +1,11 @@
-import re
+import re, collections
 s=open('/tmp/o',encoding='utf-8',errors='replace').read()
-print('feeds:', re.findall(r'<link[^>]*(?:rss|atom)[^>]*>', s, re.I)[:5])
-for m in re.findall(r'<script[^>]*ld\+json[^>]*>(.*?)</script>', s, re.S)[:4]:
-    print(m.strip()[:2500]); print('#####')
-# első dátumminta környezete nyers HTML-ben
-for m in list(re.finditer(r'20\d\d\.\d\d\.\d\d\.', s))[:3]:
-    print('---- raw at', m.start())
-    print(s[max(0,m.start()-1500):m.start()+800])
+links=re.findall(r'href="([^"]+)"', s)
+c=collections.Counter(re.sub(r'/[^/]+$','/*',l) for l in links)
+print(c.most_common(25))
+ev=[l for l in links if re.search(r'/program/|/event/|/esemeny', l)]
+print(len(ev), ev[:10])
+for l in ev[:2]:
+    i=s.find(l); print('---- RAW around', l); print(s[max(0,i-2500):i+1500])
+for m in re.findall(r'<script[^>]*ld\+json[^>]*>(.*?)</script>', s, re.S)[:3]:
+    print('LD', m.strip()[:2000])
