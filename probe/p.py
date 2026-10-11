@@ -1,23 +1,18 @@
-import sys, re, requests
+import sys, re, json, requests
 sys.path.insert(0, ".")
 from korozes import police_figyelo as pf
 from bs4 import BeautifulSoup
-for kulcs in ["eltunt_szemelyek", "korozott_szemelyek", "jarmu_korozes"]:
-    l = pf.korozes_lista_lekerdezese(pf.KOROZES_KATEGORIAK[kulcs]["list_path"])
-    e = l[0]
-    r = requests.get(e["url"], headers=pf.HEADERS, timeout=20)
-    print("=====", kulcs, e, r.status_code, len(r.text))
-    s = BeautifulSoup(r.text, "html.parser")
-    for t in s(["script", "style", "nav", "header", "footer"]): t.decompose()
-    main = s.find("main") or s.body
-    txt = re.sub(r"\n\s*\n+", "\n", main.get_text("\n", strip=True))
-    i = txt.find("szerv")
-    print(txt[:2500])
-    print("..SZERV..", txt[max(0,i-800):i+400] if i >= 0 else "NINCS 'szerv'")
-    m = re.search(r"szerv", r.text, re.I)
-    if m: print("RAW", r.text[m.start()-600:m.start()+400])
-# hírlista szerkezete
-r = requests.get(pf.BASE_URL + pf.HIREK_KATEGORIAK["felhivasok"]["list_path"], headers=pf.HEADERS, timeout=20)
-i = r.text.find("/felhivasok/")
-i = r.text.find("/felhivasok/", i + 1)
-print("=====HÍRLISTA RAW", r.text[i-1500:i+1500])
+d = json.load(open("korozes/data/police_figyelo.json"))
+for kulcs in ["eltunt_szemelyek", "jarmu_korozes", "korozott_szemelyek"]:
+    path = pf.KOROZES_KATEGORIAK[kulcs]["list_path"]
+    ids = d["korozes"][kulcs]
+    for i in [ids[0], ids[5], ids[len(ids)//3], ids[-30]]:
+        r = requests.get(pf.BASE_URL + path + "/" + i, headers=pf.HEADERS, timeout=20, allow_redirects=False)
+        s = BeautifulSoup(r.text, "html.parser")
+        print(kulcs, i, r.status_code, r.headers.get("location"), len(r.text), "Név:" in r.text, "elrendelő szerv" in r.text, (s.title.string if s.title else "")[:80])
+# kép a friss eltűnt adatlapon
+l = pf.korozes_lista_lekerdezese(pf.KOROZES_KATEGORIAK["eltunt_szemelyek"]["list_path"])
+r = requests.get(l[0]["url"], headers=pf.HEADERS, timeout=20)
+for m in re.finditer(r'<img[^>]+>', r.text):
+    if "koral" in m.group(0).lower() or "kep" in m.group(0).lower() or "photo" in m.group(0).lower(): print("IMG", m.group(0)[:300])
+print("OG", re.findall(r'<meta property="og:[^>]+>', r.text)[:6])
