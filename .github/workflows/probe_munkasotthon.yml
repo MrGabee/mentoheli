@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          MAKE_WEBHOOK_URL_SZINES: ${{ secrets.MAKE_WEBHOOK_URL_SZINES }}
         run: |
           pip -q install requests beautifulsoup4
           python3 probe/p.py
