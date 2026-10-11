@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-12T00:11:11.961156+02:00",
+  "frissitve": "2026-10-12T00:11:42.036742+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:15:03.689759+02:00",
-      "kulcs": "AOFL240",
-      "rendszam": "AOFL240",
-      "vehicle_id": "828",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.59466552734375,
-      "lon": 19.051498413085938,
-      "elozo_szoveg": "Pince köz ► Donát utca",
-      "uj_szoveg": "Donát utca ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-10-11T12:15:03.689825+02:00",
-      "kulcs": "AOFL244",
-      "rendszam": "AOFL244",
-      "vehicle_id": "832",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.467594146728516,
-      "lon": 19.1093807220459,
-      "elozo_szoveg": "Ecseri út M ► Aszódi utca",
-      "uj_szoveg": "Aszódi utca"
-    },
-    {
-      "idopont": "2026-10-11T12:15:03.689977+02:00",
-      "kulcs": "AOFL254",
-      "rendszam": "AOFL254",
-      "vehicle_id": "843",
-      "vehicle_label": "Ecseri út M-József A. ltp.",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.46363830566406,
-      "lon": 19.100915908813477,
-      "elozo_szoveg": "Aszódi utca",
-      "uj_szoveg": "Ecseri út M ► József Attila lakótelep, Távíró utca"
-    },
-    {
-      "idopont": "2026-10-11T12:15:03.690503+02:00",
-      "kulcs": "949-675-950",
-      "rendszam": "949-675-950",
-      "vehicle_id": "905516569498-905536466758-905516569506",
-      "vehicle_label": "Tököl",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.39894104003906,
-      "lon": 19.114948272705078,
-      "elozo_szoveg": "Soroksár, Hősök tere",
-      "uj_szoveg": "Tököl"
-    },
     {
       "idopont": "2026-10-11T12:15:03.690565+02:00",
       "kulcs": "971-686-972-1101-751-1102",
@@ -260000,6 +259948,58 @@
       "lon": 19.152795791625977,
       "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-12T00:11:41.974410+02:00",
+      "kulcs": "PDB702",
+      "rendszam": "PDB702",
+      "vehicle_id": "7028",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598487854003906,
+      "lon": 19.12130355834961,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T00:11:41.974566+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52325439453125,
+      "lon": 19.018190383911133,
+      "elozo_szoveg": "Rózsadomb ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-12T00:11:41.974710+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46586227416992,
+      "lon": 19.125782012939453,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T00:11:41.974929+02:00",
+      "kulcs": "AADI599",
+      "rendszam": "AADI599",
+      "vehicle_id": "96",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47774887084961,
+      "lon": 19.046363830566406,
+      "elozo_szoveg": "Csillebérc, KFKI",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
     }
   ]
 }
