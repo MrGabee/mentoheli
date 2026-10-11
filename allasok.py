@@ -72,7 +72,8 @@ def csepel_feldolgoz(oldal):
 def varosgazda_feldolgoz(oldal, link):
     """varosgazda.eu: "– Kőműves és segédmunkás // 2026. Szeptember 17." sorok."""
     lista = []
-    for sor in re.findall(r"[–-]\s*([^<>/]{3,80}?)\s*//\s*(\d{4})\.\s*([A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]+)\s*(\d{1,2})\.", html.unescape(oldal)):
+    szoveg = html.unescape(re.sub(r"<[^>]+>", " ", oldal))
+    for sor in re.findall(r"[–-]\s*([^–/\n]{3,80}?)\s*//\s*(\d{4})\.\s*([A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]+)\s*(\d{1,2})\.", szoveg):
         nev, ev, honap, nap = sor
         try:
             datum = date(int(ev), HONAPOK[honap.lower()], int(nap))

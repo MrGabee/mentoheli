@@ -30,6 +30,7 @@ import kerdes_nektek
 import esti_idojaras
 import veradas
 import allasok
+import hivatali_hirek
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
@@ -56,6 +57,7 @@ MENETREND = [
     ("programok",     time(8, 0),   None,     lambda nap, a: kerulet_programok.reggeli_szoveg(nap)),
     ("ezen_a_napon",  time(10, 30), None,     lambda nap, a: ezen_a_napon.szoveg(nap)),
     ("erdekesseg",    time(13, 0),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
+    ("hivatali",      time(11, 45), None,     lambda nap, a: hivatali_hirek.szoveg(nap, a)),
     ("veradas",       time(15, 0),  {HETFO},  lambda nap, a: veradas.heti_szoveg(nap)),
     ("allasok",       time(15, 0),  {SZERDA}, lambda nap, a: allasok.heti_szoveg(nap, a)),
     ("hetvege",       time(16, 0),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),

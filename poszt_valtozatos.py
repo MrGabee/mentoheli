@@ -103,6 +103,11 @@ CIMEK = {
         "🤔 KÍVÁNCSI VAGYOK… 🤔",
         "❓ MAI KÉRDÉSEM ❓",
     ],
+    "hivatali": [
+        "📢 HIVATALI HÍREK 📢",
+        "📮 FONTOS TUDNIVALÓ AZ ÜGYINTÉZÉSHEZ 📮",
+        "📢 ÉRDEMES TUDNI 📢",
+    ],
     "allasok": [
         "💼 ÚJ ÁLLÁSOK A KÖRNYÉKEN 💼",
         "🔎 MUNKÁT KERESEL? 🔎",
@@ -225,6 +230,11 @@ BEVEZETOK = {
         "Kíváncsi vagyok a véleményetekre:",
         "Beszélgessünk egy kicsit, érdekel, mit gondoltok:",
         "Egy gyors kérdés a mai napra:",
+    ],
+    "hivatali": [
+        "Szólok, mert ez sokunkat érinthet:",
+        "Átnéztem a posta és a kormányhivatal híreit, ezt érdemes tudni:",
+        "Egy fontos hír, mielőtt postára vagy kormányablakba mennétek 👇",
     ],
     "allasok": [
         "Összegyűjtöttem a héten megjelent csepeli álláshirdetéseket 👇",
