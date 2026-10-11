@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:10:42.647563+02:00",
+  "frissitve": "2026-10-11T03:11:12.800907+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.004909+02:00",
-      "kulcs": "V1343",
-      "rendszam": "V1343",
-      "vehicle_id": "4446",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.50847244262695,
-      "lon": 19.046926498413086,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.004950+02:00",
-      "kulcs": "V1347",
-      "rendszam": "V1347",
-      "vehicle_id": "4450",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.42213439941406,
-      "lon": 19.122568130493164,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.004963+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.48699951171875,
-      "lon": 19.05729866027832,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.004991+02:00",
-      "kulcs": "V1353",
-      "rendszam": "V1353",
-      "vehicle_id": "4454",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.431007385253906,
-      "lon": 19.11640739440918,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.005081+02:00",
-      "kulcs": "V1404",
-      "rendszam": "V1404",
-      "vehicle_id": "4475",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.429298400878906,
-      "lon": 19.03786849975586,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-10T13:02:30.005114+02:00",
       "kulcs": "V1437",
@@ -260000,6 +259935,71 @@
       "lon": 19.14207649230957,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-11T03:11:12.711007+02:00",
+      "kulcs": "AADI655",
+      "rendszam": "AADI655",
+      "vehicle_id": "154",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47492980957031,
+      "lon": 19.039440155029297,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T03:11:12.711999+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507991790771484,
+      "lon": 19.028995513916016,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-11T03:11:12.713607+02:00",
+      "kulcs": "RVY720",
+      "rendszam": "RVY720",
+      "vehicle_id": "7469",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.579620361328125,
+      "lon": 19.10953140258789,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-11T03:11:12.713634+02:00",
+      "kulcs": "RVY730",
+      "rendszam": "RVY730",
+      "vehicle_id": "7628",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49702072143555,
+      "lon": 19.055767059326172,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-11T03:11:12.713944+02:00",
+      "kulcs": "415 016",
+      "rendszam": "415 016",
+      "vehicle_id": "945514150164",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "G60",
+      "route_id": "G60",
+      "lat": 47.2484016418457,
+      "lon": 20.094409942626953,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
