@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:38:06.499575+02:00",
+  "frissitve": "2026-10-11T03:38:35.676122+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.011358+02:00",
-      "kulcs": "PKN608",
-      "rendszam": "PKN608",
-      "vehicle_id": "7197",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "130",
-      "route_id": "1300",
-      "lat": 47.54517364501953,
-      "lon": 19.139928817749023,
-      "elozo_szoveg": "Újpalota, Sárfű utca",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.011379+02:00",
-      "kulcs": "PKN610",
-      "rendszam": "PKN610",
-      "vehicle_id": "7199",
-      "vehicle_label": "Rákoshegy",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.49989318847656,
-      "lon": 19.13705062866211,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoshegy"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.011426+02:00",
-      "kulcs": "PKN614",
-      "rendszam": "PKN614",
-      "vehicle_id": "7203",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.47896957397461,
-      "lon": 19.256240844726562,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-10-10T13:02:30.011460+02:00",
       "kulcs": "PKN616",
@@ -260000,6 +259961,45 @@
       "lon": 20.04360008239746,
       "elozo_szoveg": "Szeged",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-11T03:38:35.624095+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42158889770508,
+      "lon": 19.041309356689453,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-11T03:38:35.625209+02:00",
+      "kulcs": "FLR735",
+      "rendszam": "FLR735",
+      "vehicle_id": "3149",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44279479980469,
+      "lon": 19.179208755493164,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-11T03:38:35.626075+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.51101303100586,
+      "lon": 19.05626106262207,
+      "elozo_szoveg": "Béke tér ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
     }
   ]
 }
