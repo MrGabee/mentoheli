@@ -1,6 +1,7 @@
 """
 🎉 Kerületi programajánló
-  - reggeli_szoveg: minden reggel a mai és a következő napok programjai
+  - reggeli_szoveg: minden reggel a mai és a következő napok programjai,
+    a végén a Kultik Csepel mozi aznapi műsorával
   - hetvegi_szoveg: pénteken a hétvégi programok (a Csili műsorával együtt)
 """
 
@@ -17,6 +18,19 @@ REGGELI_NAPOK = 7
 MAX_PROGRAM = 10
 
 HELY_JEL = {"Csepeli Munkásotthon": "🏛️", "Barba Negra": "🎸", "Csili": "🎭", "Müpa": "🎻", "Fedák": "🎭"}
+
+
+# A reggeli posztban a mozi műsorából legfeljebb ennyi film
+MAX_FILM = 8
+
+
+def _kultik_ma(ma):
+    """A Kultik Csepel mai filmjei (cím + időpontok). Hiba esetén üres."""
+    try:
+        return [f for f in (forrasok.kultik() or []) if f["nap"] == ma]
+    except Exception as ex:
+        print(f"  ❌ Kultik: {ex}")
+        return []
 
 
 def _jel(p):
@@ -39,7 +53,8 @@ def reggeli_szoveg(ma, lista=None):
         lista, hibas = forrasok.programok(ma, ma + timedelta(days=REGGELI_NAPOK - 1))
         if len(hibas) == len(forrasok.FORRASOK):
             return None
-    if not [p for p in lista if p["nap"] == ma or p.get("keruleti", True)]:
+    mozi = _kultik_ma(ma)
+    if not [p for p in lista if p["nap"] == ma or p.get("keruleti", True)] and not mozi:
         return ""
 
     st = Stilus("programok", ma.isoformat())
@@ -57,10 +72,15 @@ def reggeli_szoveg(ma, lista=None):
         for p in kesobbi:
             sorok += _sor(p)
         sorok.append("")
+    if mozi:
+        sorok.append("🎬 MA A KULTIK CSEPEL MOZIBAN")
+        for f in mozi[:MAX_FILM]:
+            sorok.append(f"🍿 {f['cim']} – {', '.join(f['idok'])}")
+        sorok += [f"   🔗 {forrasok.KULTIK_URL}", ""]
     sorok.append("🎟️ Jegyek és részletek a linkeken. Jó szórakozást!")
     if st.zaro:
         sorok.append(st.zaro)
-    sorok.append("#Csepel #Soroksár #programajánló #BarbaNegra #Munkásotthon #Müpa")
+    sorok.append("#Csepel #Soroksár #programajánló #BarbaNegra #Munkásotthon #Müpa #Kultik")
     return "\n".join(sorok)
 
 

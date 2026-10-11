@@ -210,3 +210,46 @@ def programok(tol, ig):
             osszes.append(dict(p, keruleti=keruleti))
     osszes.sort(key=lambda x: (x["nap"], x["ido"]))
     return osszes, hibas
+
+
+KULTIK_URL = "https://port.hu/helyszin/mozi/kultik-csepel/place-7912"
+PORT_ALAP = "https://port.hu"
+
+
+def kultik_feldolgoz(oldal):
+    """A port.hu mozioldala: a filmcímek táblázata (<a class="event-title">) és
+    mellette a napi idősáv-táblázat (<div class="scroll-table" data-day="ÉÉÉÉHHNN">),
+    amelynek soraiban (<tr class="event-row">) az adott film vetítési időpontjai vannak.
+    Visszaad: [{"cim", "nap", "idok": [...], "link"}]."""
+    lista = []
+    for m in re.finditer(r'<div class="scroll-table" data-day="(\d{8})"', oldal):
+        d = m.group(1)
+        try:
+            nap = date(int(d[:4]), int(d[4:6]), int(d[6:]))
+        except ValueError:
+            continue
+        elotte = oldal[:m.start()]
+        cimtabla = elotte[elotte.rfind("<table"):]
+        filmek = re.findall(r'<a href="([^"]+)" title="[^"]*" class="event-title">(.*?)</a>', cimtabla, re.S)
+        idotabla = oldal[m.end():].split("</table>", 1)[0]
+        sorok = idotabla.split('<tr class="event-row">')[1:]
+        for (link, cim), sor in zip(filmek, sorok):
+            idok = sorted(re.findall(r'event-time">\s*(\d{1,2}:\d{2})', sor))
+            if idok:
+                lista.append({"cim": _szoveg(cim), "nap": nap, "idok": idok, "link": PORT_ALAP + link})
+    return lista
+
+
+def kultik():
+    """A Kultik Csepel mozi műsora a port.hu-ról, vagy None hiba esetén."""
+    try:
+        r = requests.get(KULTIK_URL, headers=HEADERS, timeout=25)
+        if r.status_code != 200:
+            print(f"  ⚠️ Kultik (port.hu) HTTP {r.status_code}")
+            return None
+        lista = kultik_feldolgoz(r.text)
+        print(f"  🎬 Kultik Csepel: {len(lista)} film")
+        return lista
+    except Exception as ex:
+        print(f"  ❌ Kultik (port.hu): {ex}")
+        return None
