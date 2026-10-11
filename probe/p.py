@@ -11,9 +11,7 @@ def get(url, **kw):
         signal.alarm(0)
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
      "Accept-Language": "hu-HU,hu;q=0.9", "Accept": "text/html,application/xhtml+xml"}
-print("git fetch...")
-subprocess.run("timeout 60 git fetch -q origin claude/project-thread-oeicnh && git checkout -q FETCH_HEAD -- allasok.py poszt_valtozatos.py", shell=True, check=True)
-sys.path.insert(0, ".")
+sys.path.insert(0, "probe")
 from datetime import date
 import allasok
 allasok.requests.get = lambda url, headers=None, timeout=None: get(url)
