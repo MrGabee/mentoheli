@@ -25,7 +25,7 @@ CSEPEL_URL = "https://allas.csepel.hu/"
 VAROSGAZDA_URL = "https://varosgazda.eu/karrier/"
 PROFESSION_URL = "https://www.profession.hu/allasok/budapest/1,0,23,csepel"
 
-# Egy posztban legfeljebb ennyi állás, a többi a következő hétre marad
+# Egy posztban legfeljebb ennyi állás (a többire a végén utalunk)
 MAX_ALLAS = 12
 # Ennyi azonosítót jegyzünk meg (a régiek kiesnek)
 MAX_LATOTT = 1500
@@ -72,7 +72,8 @@ def csepel_feldolgoz(oldal):
 def varosgazda_feldolgoz(oldal, link):
     """varosgazda.eu: "– Kőműves és segédmunkás // 2026. Szeptember 17." sorok."""
     lista = []
-    for sor in re.findall(r"[–-]\s*([^<>/]{3,80}?)\s*//\s*(\d{4})\.\s*([A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]+)\s*(\d{1,2})\.", html.unescape(oldal)):
+    szoveg = html.unescape(re.sub(r"<[^>]+>", " ", oldal))
+    for sor in re.findall(r"[–-]\s*([^–/\n]{3,80}?)\s*//\s*(\d{4})\.\s*([A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]+)\s*(\d{1,2})\.", szoveg):
         nev, ev, honap, nap = sor
         try:
             datum = date(int(ev), HONAPOK[honap.lower()], int(nap))
@@ -150,7 +151,8 @@ def heti_szoveg(nap, allapot, lista=None):
     # A dátummal rendelkezők a legfrissebbek elöl, a dátum nélküliek utánuk
     uj.sort(key=lambda a: a["datum"] or date.min, reverse=True)
     kimegy = uj[:MAX_ALLAS]
-    volt.extend(_kulcs(a) for a in kimegy)
+    # Mindet látottnak jelöljük, hogy a régi hirdetések ne gyűljenek fel
+    volt.extend(_kulcs(a) for a in uj)
     del volt[:-MAX_LATOTT]
 
     st = Stilus("allasok", nap.isoformat())
@@ -160,7 +162,7 @@ def heti_szoveg(nap, allapot, lista=None):
         sorok.append(f"   🔗 {a['link']}")
     sorok.append("")
     if len(uj) > MAX_ALLAS:
-        sorok.append(f"➕ És még {len(uj) - MAX_ALLAS} új hirdetés, ezeket jövő héten hozom.")
+        sorok.append(f"➕ És még {len(uj) - MAX_ALLAS} új hirdetés, ezeket az alábbi oldalon találod.")
     sorok.append(f"🔎 Még több csepeli állás: {CSEPEL_URL}")
     if st.zaro:
         sorok += ["", st.zaro]
