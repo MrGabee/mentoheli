@@ -199,6 +199,8 @@ def facebook_szoveg(riasztasok):
         f"🕐 {magyar_ido().strftime('%Y.%m.%d %H:%M')}",
         st.vonal(),
         "",
+        st.bevezeto,
+        "",
     ]
 
     for r in sorted(riasztasok, key=lambda x: (-x["szint"], x["terulet"])):

@@ -197,6 +197,7 @@ def facebook_szoveg(esetek):
         f"🕐 {ido}   •   {db} új esemény",
         st.vonal(),
         "",
+        st.bevezeto,
         "",
         "",
     ]

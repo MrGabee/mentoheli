@@ -335,13 +335,15 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
         f"🕒 {ido}   •   {db_uj} új esemény",
         st.vonal(),
         "",
+        st.bevezeto,
+        "",
     ]
 
     # A kért bevezető mondat - jelezve, hogy nem csak Csepelről olvasnak minket
     sorok.append(
         "👋 Mivel nemcsak Csepelről, hanem a környező kerületekből és "
         "városokból (Pesterzsébet, Szigetszentmiklós) is sokan "
-        "olvastok minket, mostantól ezekről a területekről is beszámolunk, "
+        "olvastok, mostantól ezekről a területekről is beszámolok, "
         "hogy senki ne maradjon le a fontos hírekről! 💙"
     )
     sorok.append("")
@@ -412,6 +414,8 @@ def facebook_szoveg_emlekezteto(emlekezteto_adatok, ido):
         st.cim,
         f"🕒 {ido}   •   {db} esemény",
         st.vonal(),
+        "",
+        st.bevezeto,
         "",
         "ℹ️ Ez egy emlékeztető korábban már bejelentett, tervezett "
         "áramszünet(ek)ről, amik hamarosan esedékesek:",

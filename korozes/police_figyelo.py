@@ -475,15 +475,15 @@ def main():
             st = Stilus("korozes")
             if kulcs == "korozott_szemelyek":
                 fb_szoveg = (
-                    f"{st.cim}\n\n"
+                    f"{st.cim}\n{st.bevezeto}\n\n"
                     f"Új körözés: {kat['label']}\n\n"
                     f"Egyező szerv: {egyezo_szerv}\n\n"
-                    f"A nevet és a fényképet adatvédelmi okból itt nem tesszük közzé - "
+                    f"A nevet és a fényképet adatvédelmi okból itt nem teszem közzé - "
                     f"a teljes hivatalos közlemény bejelentkezés nélkül elérhető:\n{elem['url']}"
                 )
                 fb_kep = None
             else:
-                fb_szoveg = f"{st.cim}\n\n{reszlet['cim']}\n\n{kat['label']} · {egyezo_szerv}\n\n{elem['url']}"
+                fb_szoveg = f"{st.cim}\n{st.bevezeto}\n\n{reszlet['cim']}\n\n{kat['label']} · {egyezo_szerv}\n\n{elem['url']}"
                 fb_kep = reszlet["kep"]
 
             talalt_ertesitesek.append({
@@ -548,7 +548,7 @@ def main():
                 "tema": f"[Hír] {cikk['cim']}",
                 "torzs": torzs,
                 "kep": None,
-                "fb_szoveg": f"{Stilus('rendorseg').cim}\n\n{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n{cikk['url']}",
+                "fb_szoveg": f"{(st := Stilus('rendorseg')).cim}\n{st.bevezeto}\n\n{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n{cikk['url']}",
                 "fb_kep": None,
                 "facebook_post": kat["facebook_post"],
             })

@@ -4,7 +4,8 @@ Minden reggel egy Facebook poszt arról, ami aznap érinti a környéket:
   ⚡ aznapi áramszünetek  (aramszunet_aktiv.json, az áramszünet-figyelő írja)
   💧 vízhiányok           (vizmuvek.hu munkatérkép, élő lekérdezés)
   ⚠️ időjárási riasztások (MeteoAlarm / HungaroMet)
-Ha aznap nincs semmi, nem posztol.
+  🎂 a napi névnap
+Minden nap posztol; ha nincs zavar, azt is megírja.
 """
 
 import os
@@ -19,6 +20,7 @@ for _valtozo in ("EMAIL_KULDO", "EMAIL_JELSZO", "EMAIL_CIMZETT_ARAM"):
 import idojaras_riasztas_monitor as riasztas
 import vizmuvek_monitor as vizmuvek
 from poszt_valtozatos import Stilus
+from nevnap import nevnap
 
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
@@ -95,7 +97,13 @@ def facebook_szoveg(aram, viz, idojaras):
         f"📅 Mai helyzet – {magyar_ido().strftime('%Y.%m.%d.')}",
         st.vonal(),
         "",
+        st.bevezeto,
+        "",
     ]
+
+    nevek = nevnap(magyar_ido().date())
+    if nevek:
+        sorok += [f"🎂 Ma {nevek} napja van, boldog névnapot kívánok! 🌷", ""]
 
     if idojaras:
         sorok.append("⚠️ IDŐJÁRÁSI RIASZTÁS")
@@ -126,8 +134,11 @@ def facebook_szoveg(aram, viz, idojaras):
             sorok.append(f"📍 {terulet}: {cimek}")
         sorok.append("")
 
+    if not (idojaras or aram or viz):
+        sorok += ["✅ Ma nem tudok áramszünetről, vízhiányról vagy időjárási riasztásról a környéken. Nyugis napot! 😊", ""]
+
     sorok += [
-        "ℹ️ Részletek a korábbi posztjainkban. Források: E.ON, Fővárosi Vízművek, HungaroMet",
+        "ℹ️ Részletek a korábbi posztjaimban. Források: E.ON, Fővárosi Vízművek, HungaroMet",
     ]
     if st.zaro:
         sorok.append(st.zaro)
@@ -148,10 +159,6 @@ def main():
     viz      = vizhianyok()
     idojaras = mai_riasztasok(ma)
     print(f"⚡ {len(aram)}  💧 {len(viz)}  ⚠️ {len(idojaras)}")
-
-    if not (aram or viz or idojaras):
-        print("✅ Ma nincs semmi a környéken - nincs poszt.")
-        return
 
     szoveg = facebook_szoveg(aram, viz, idojaras)
     print("\n" + szoveg + "\n")
