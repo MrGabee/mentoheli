@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-12T00:31:46.321425+02:00",
+  "frissitve": "2026-10-12T00:32:21.227722+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:16:53.989015+02:00",
-      "kulcs": "T8101",
-      "rendszam": "T8101",
-      "vehicle_id": "7338",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.488800048828125,
-      "lon": 19.060691833496094,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-10-11T12:16:53.989148+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.504066467285156,
-      "lon": 19.136795043945312,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-10-11T12:16:53.989181+02:00",
       "kulcs": "V2113",
@@ -260000,6 +259974,32 @@
       "lon": 19.104276657104492,
       "elozo_szoveg": "Rákoskeresztúr, városközpont",
       "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-12T00:32:21.139367+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.5093879699707,
+      "lon": 19.096160888671875,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-12T00:32:21.145035+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.53849792480469,
+      "lon": 19.069133758544922,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
     }
   ]
 }
