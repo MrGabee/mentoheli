@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T01:02:12.959848+02:00",
+  "frissitve": "2026-10-12T01:02:42.217260+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:21:55.456271+02:00",
-      "kulcs": "V2241",
-      "rendszam": "V2241",
-      "vehicle_id": "7373",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.548580169677734,
-      "lon": 19.02911949157715,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-11T12:21:55.456388+02:00",
-      "kulcs": "RVY601",
-      "rendszam": "RVY601",
-      "vehicle_id": "7430",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.46473693847656,
-      "lon": 19.12611961364746,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-11T12:21:55.457169+02:00",
-      "kulcs": "SGY803",
-      "rendszam": "SGY803",
-      "vehicle_id": "7721",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.4167594909668,
-      "lon": 19.13062858581543,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
     {
       "idopont": "2026-10-11T12:21:55.457543+02:00",
       "kulcs": "AOFL199",
@@ -260000,6 +259961,45 @@
       "lon": 19.133079528808594,
       "elozo_szoveg": "Budapest-Keleti",
       "uj_szoveg": "Hatvan"
+    },
+    {
+      "idopont": "2026-10-12T01:02:42.152679+02:00",
+      "kulcs": "AADI562",
+      "rendszam": "AADI562",
+      "vehicle_id": "41",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44289016723633,
+      "lon": 19.09307289123535,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T01:02:42.152850+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.523590087890625,
+      "lon": 18.992868423461914,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-12T01:02:42.152931+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50761795043945,
+      "lon": 19.025798797607422,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
