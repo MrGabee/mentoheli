@@ -103,6 +103,14 @@ BEVEZETOK = {
         "Ha teheted, ma figyelj az időjárásra, mert ezt jelezték:",
         "Szólok, mert ma nem lesz barátságos az idő:",
     ],
+    # A {nev} helyére a figyelt oldal neve kerül
+    "megosztas": [
+        "Ezt most osztotta meg a(z) {nev}, érdemes elolvasni 👇",
+        "Láttam a(z) {nev} oldalán, szerintem titeket is érdekel:",
+        "Továbbadom, mert fontos lehet. Forrás: {nev}",
+        "Friss hír a(z) {nev} oldaláról:",
+        "Ezt találtam a(z) {nev} oldalán, nézzétek meg:",
+    ],
     "reggeli": [
         "Összeszedtem, mire érdemes ma figyelni a környéken:",
         "Szép napot, szomszédok! Itt a mai helyzet:",
