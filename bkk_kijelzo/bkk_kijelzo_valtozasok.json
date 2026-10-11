@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-12T00:56:26.304742+02:00",
+  "frissitve": "2026-10-12T00:57:06.614148+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:20:53.596923+02:00",
-      "kulcs": "RVY611",
-      "rendszam": "RVY611",
-      "vehicle_id": "7440",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.399147033691406,
-      "lon": 19.205615997314453,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-11T12:20:53.597032+02:00",
-      "kulcs": "T9111",
-      "rendszam": "T9111",
-      "vehicle_id": "7470",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49607467651367,
-      "lon": 19.058534622192383,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-11T12:20:53.597084+02:00",
-      "kulcs": "RVY722",
-      "rendszam": "RVY722",
-      "vehicle_id": "7620",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "294E",
-      "route_id": "2945",
-      "lat": 47.38764190673828,
-      "lon": 19.215377807617188,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-11T12:20:53.597199+02:00",
-      "kulcs": "RVY739",
-      "rendszam": "RVY739",
-      "vehicle_id": "7637",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50151824951172,
-      "lon": 19.13628578186035,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Pécel, Kun József utca"
-    },
     {
       "idopont": "2026-10-11T12:20:53.597231+02:00",
       "kulcs": "RVY743",
@@ -260000,6 +259948,58 @@
       "lon": 19.046789169311523,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-12T00:57:06.526550+02:00",
+      "kulcs": "AADI653",
+      "rendszam": "AADI653",
+      "vehicle_id": "152",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.533470153808594,
+      "lon": 19.08184242248535,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-12T00:57:06.531384+02:00",
+      "kulcs": "NTM438",
+      "rendszam": "NTM438",
+      "vehicle_id": "6506",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39959716796875,
+      "lon": 18.99049949645996,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-12T00:57:06.532106+02:00",
+      "kulcs": "415 087",
+      "rendszam": "415 087",
+      "vehicle_id": "945514150875",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.492069244384766,
+      "lon": 19.13298988342285,
+      "elozo_szoveg": "Gödöllő",
+      "uj_szoveg": "Nagykáta"
+    },
+    {
+      "idopont": "2026-10-12T00:57:06.532212+02:00",
+      "kulcs": "AADI599",
+      "rendszam": "AADI599",
+      "vehicle_id": "96",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.568031311035156,
+      "lon": 19.026071548461914,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
     }
   ]
 }
