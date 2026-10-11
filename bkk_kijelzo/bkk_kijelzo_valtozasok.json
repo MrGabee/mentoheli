@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T00:37:26.112475+02:00",
+  "frissitve": "2026-10-12T00:37:57.352642+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:17:50.157215+02:00",
-      "kulcs": "SGY810",
-      "rendszam": "SGY810",
-      "vehicle_id": "7728",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.41048812866211,
-      "lon": 19.060585021972656,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-10-11T12:17:50.157255+02:00",
-      "kulcs": "SGY813",
-      "rendszam": "SGY813",
-      "vehicle_id": "7731",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40692901611328,
-      "lon": 19.078950881958008,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-11T12:17:50.157509+02:00",
-      "kulcs": "T9116",
-      "rendszam": "T9116",
-      "vehicle_id": "7854",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.514068603515625,
-      "lon": 19.049253463745117,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-10-11T12:17:50.157689+02:00",
       "kulcs": "T9129",
@@ -260000,6 +259961,45 @@
       "lon": 19.01415252685547,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-12T00:37:57.238277+02:00",
+      "kulcs": "FLR747",
+      "rendszam": "FLR747",
+      "vehicle_id": "3161",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52461624145508,
+      "lon": 19.063417434692383,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-12T00:37:57.238901+02:00",
+      "kulcs": "T8108",
+      "rendszam": "T8108",
+      "vehicle_id": "7345",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50150680541992,
+      "lon": 19.115015029907227,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-12T00:37:57.239056+02:00",
+      "kulcs": "RVY712",
+      "rendszam": "RVY712",
+      "vehicle_id": "7461",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.426631927490234,
+      "lon": 19.16107177734375,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
