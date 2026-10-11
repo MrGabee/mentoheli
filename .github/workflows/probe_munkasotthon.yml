@@ -10,6 +10,7 @@ jobs:
       - env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
           MAKE_WEBHOOK_URL_SZINES: ${{ secrets.MAKE_WEBHOOK_URL_SZINES }}
+          MAKE2_API_TOKEN: ${{ secrets.MAKE2_API_TOKEN }}
         run: |
           pip -q install requests beautifulsoup4
           python3 probe/p.py
