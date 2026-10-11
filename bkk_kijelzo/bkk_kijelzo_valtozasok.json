@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T02:30:23.063562+02:00",
+  "frissitve": "2026-10-11T02:30:55.246835+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:45:02.116516+02:00",
-      "kulcs": "SKR737",
-      "rendszam": "SKR737",
-      "vehicle_id": "7686",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46259307861328,
-      "lon": 19.14977264404297,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-10T12:45:02.116596+02:00",
-      "kulcs": "SKR808",
-      "rendszam": "SKR808",
-      "vehicle_id": "7694",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.5076789855957,
-      "lon": 19.024940490722656,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-10T12:45:02.116683+02:00",
-      "kulcs": "SKR818",
-      "rendszam": "SKR818",
-      "vehicle_id": "7704",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.51153564453125,
-      "lon": 19.05666160583496,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Margitsziget ► Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-10-10T12:45:02.117153+02:00",
       "kulcs": "T9113",
@@ -260000,6 +259961,45 @@
       "lon": 19.036705017089844,
       "elozo_szoveg": "Kolosy tér",
       "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-10-11T02:30:55.084154+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50910568237305,
+      "lon": 19.095802307128906,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T02:30:55.086631+02:00",
+      "kulcs": "PDB701",
+      "rendszam": "PDB701",
+      "vehicle_id": "7027",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.5339241027832,
+      "lon": 19.082069396972656,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-11T02:30:55.087177+02:00",
+      "kulcs": "415 084",
+      "rendszam": "415 084",
+      "vehicle_id": "945514150842",
+      "vehicle_label": "Esztergom",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.5278205871582,
+      "lon": 19.091459274291992,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Esztergom"
     }
   ]
 }
