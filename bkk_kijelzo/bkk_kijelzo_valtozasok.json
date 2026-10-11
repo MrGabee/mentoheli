@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T02:58:00.753026+02:00",
+  "frissitve": "2026-10-11T02:58:32.022217+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.003144+02:00",
-      "kulcs": "V2004",
-      "rendszam": "V2004",
-      "vehicle_id": "2004",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.486568450927734,
-      "lon": 19.07033348083496,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.003213+02:00",
-      "kulcs": "V2011",
-      "rendszam": "V2011",
-      "vehicle_id": "2011",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.48155975341797,
-      "lon": 19.06816291809082,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.003236+02:00",
-      "kulcs": "V2013",
-      "rendszam": "V2013",
-      "vehicle_id": "2013",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.51462173461914,
-      "lon": 19.038501739501953,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-10-10T13:02:30.003270+02:00",
       "kulcs": "V2018",
@@ -260000,6 +259961,45 @@
       "lon": 18.958513259887695,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-11T02:58:31.953495+02:00",
+      "kulcs": "FLR728",
+      "rendszam": "FLR728",
+      "vehicle_id": "3142",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.525390625,
+      "lon": 19.038005828857422,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-11T02:58:31.954061+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.48390579223633,
+      "lon": 19.127561569213867,
+      "elozo_szoveg": "Kőbánya alsó vasútáll.",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-11T02:58:31.954436+02:00",
+      "kulcs": "RVY717",
+      "rendszam": "RVY717",
+      "vehicle_id": "7466",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.43275833129883,
+      "lon": 19.261552810668945,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
