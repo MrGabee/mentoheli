@@ -3,6 +3,7 @@
   - Barba Negra (Csepel, Szállító u. 3.) – a barbanegra.hu/programok oldal
   - Csepeli Munkásotthon (Árpád u. 1.) – a jegy.hu helyszínoldala (a saját
     Google-naptáruk nem nyilvános, ezért csak a jegyes programok látszanak)
+  - Fedák Sári Színház (Soroksár) – a fedakszinhaz.hu játékterv-oldala
   - Müpa – a jegy.hu helyszínoldala (nem kerületi, ezért naponta csak
     néhány programja kerül be, és csak a mai/hétvégi ajánlóba)
 Minden forrás egységes listát ad: {"cim", "nap" (date), "ido", "hely", "link"}.
@@ -128,10 +129,63 @@ def mupa():
     return jegy_hu("mupa", "Müpa")
 
 
+FEDAK_URL = "https://www.fedakszinhaz.hu/jatekterv/"
+FEDAK_ALAP = "https://www.fedakszinhaz.hu/"
+
+HONAP_SZAM = {"JANUÁR": 1, "FEBRUÁR": 2, "MÁRCIUS": 3, "ÁPRILIS": 4, "MÁJUS": 5, "JÚNIUS": 6,
+              "JÚLIUS": 7, "AUGUSZTUS": 8, "SZEPTEMBER": 9, "OKTÓBER": 10, "NOVEMBER": 11, "DECEMBER": 12}
+
+
+def fedak_feldolgoz(oldal):
+    """A Webnode-os oldal szövegblokkjai: <h4>szerző</h4><h3>CÍM</h3><h4>műfaj</h4>
+    <h4>2026. OKTÓBER 11. /vasárnap/<br>15:00 ÓRA</h4><h4>terem</h4>"""
+    lista, latott = [], set()
+    for blokk in re.split(r'<div class="b b-text', oldal)[1:]:
+        cim = re.search(r"<h3[^>]*>(.*?)</h3>", blokk, re.S)
+        datum = re.search(r"(\d{4})\.\s*([A-ZÁÉÍÓÖŐÚÜŰ]+)\s*(\d{1,2})\.(.*?)(\d{1,2}[:.]\d{2})\s*ÓRA", _szoveg(blokk))
+        if not (cim and datum) or datum.group(2) not in HONAP_SZAM:
+            continue
+        h4 = [_szoveg(x) for x in re.findall(r"<h4[^>]*>(.*?)</h4>", blokk, re.S)]
+        szerzo = h4[0] if h4 and not re.search(r"\d{4}\.", h4[0]) else ""
+        cim = _szoveg(cim.group(1))
+        cim = f"{szerzo}: {cim}" if szerzo else cim
+        try:
+            nap = date(int(datum.group(1)), HONAP_SZAM[datum.group(2)], int(datum.group(3)))
+        except ValueError:
+            continue
+        if (nap, cim) in latott:
+            continue
+        latott.add((nap, cim))
+        lista.append({
+            "cim":  cim,
+            "nap":  nap,
+            "ido":  datum.group(5).replace(".", ":"),
+            "hely": "Fedák Sári Színház (Soroksár)",
+            "link": FEDAK_URL,
+        })
+    lista.sort(key=lambda x: (x["nap"], x["ido"]))
+    return lista
+
+
+def fedak():
+    try:
+        r = requests.get(FEDAK_URL, headers=HEADERS, timeout=25)
+        if r.status_code != 200:
+            print(f"  ⚠️ Fedák Sári Színház HTTP {r.status_code}")
+            return None
+        lista = fedak_feldolgoz(r.text)
+        print(f"  🎭 Fedák Sári Színház: {len(lista)} előadás")
+        return lista
+    except Exception as ex:
+        print(f"  ❌ Fedák Sári Színház: {ex}")
+        return None
+
+
 # (név, lekérdező, kerületi-e, naponta legfeljebb ennyi program)
 FORRASOK = [
     ("Csepeli Munkásotthon", munkasotthon, True,  None),
     ("Barba Negra",          barba_negra,  True,  None),
+    ("Fedák Sári Színház",   fedak,        True,  None),
     ("Müpa",                 mupa,         False, 3),
 ]
 
