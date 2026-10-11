@@ -25,8 +25,8 @@ CSEPEL_URL = "https://allas.csepel.hu/"
 VAROSGAZDA_URL = "https://varosgazda.eu/karrier/"
 PROFESSION_URL = "https://www.profession.hu/allasok/budapest/1,0,23,csepel"
 
-# Egy posztban legfeljebb ennyi állás (a többire a végén utalunk)
-MAX_ALLAS = 30
+# Az előző állásposzt óta megjelent összes hirdetés kimegy; ez csak biztonsági felső korlát
+MAX_ALLAS = 100
 # Ennyi azonosítót jegyzünk meg (a régiek kiesnek)
 MAX_LATOTT = 1500
 
