@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          curl -sSL -m 30 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} %{content_type} size %{size_download}\n" "https://www.barbanegra.hu/en/events"
+          curl -sSL -m 30 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} %{content_type} size %{size_download}\n" "https://www.barbanegra.hu/programok"
           python3 probe/p.py
           grep -oE '(https?://[^"]*)?/(api|wp-json|_next|graphql)[^" ]*' /tmp/o | sort -u | head -20
           grep -oE 'href="[^"]*event[^"]*"' /tmp/o | sort -u | head -20
