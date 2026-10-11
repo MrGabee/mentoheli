@@ -54,6 +54,17 @@ CIMEK = {
         "RIASZTÁST ADOTT KI A HUNGAROMET",
         "VIGYÁZAT, VÁLTOZÉKONY IDŐ!",
     ],
+    "csili": [
+        "🎭 PROGRAM A CSILIBEN 🎭",
+        "🎟️ CSILI PROGRAMAJÁNLÓ 🎟️",
+        "✨ KULTÚRA PESTERZSÉBETEN ✨",
+        "🎶 A CSILI MŰSORÁRÓL 🎶",
+    ],
+    "csili_emlekezteto": [
+        "⏰ HOLNAP A CSILIBEN ⏰",
+        "🔔 EMLÉKEZTETŐ – HOLNAPI PROGRAMOK 🔔",
+        "📆 NE FELEDJÉTEK: HOLNAP CSILI! 📆",
+    ],
     "reggeli": [
         "☀️ JÓ REGGELT, CSEPEL, PESTERZSÉBET, SZIGETSZENTMIKLÓS! ☀️",
         "🌅 REGGELI KÖRKÉP A KÖRNYÉKRŐL 🌅",
@@ -102,6 +113,26 @@ BEVEZETOK = {
         "Most jött a HungaroMet figyelmeztetése, érdemes felkészülni:",
         "Ha teheted, ma figyelj az időjárásra, mert ezt jelezték:",
         "Szólok, mert ma nem lesz barátságos az idő:",
+    ],
+    "csili": [
+        "Ezt a programot láttam a Csiliben, szerintem érdemes ránézni 👇",
+        "Ha még nincs tervetek, ezt most láttam a Csili műsorán:",
+        "Ezt ajánlom figyelmetekbe a Csiliből:",
+        "Friss a Csili kínálatából, hátha kedvet kaptok hozzá:",
+        "Szólok, mert ez jól hangzik, hamarosan a Csiliben:",
+    ],
+    "csili_emlekezteto": [
+        "Csak szólok, hogy holnap ezek lesznek a Csiliben, amikről korábban írtam:",
+        "Kis emlékeztető, ha még nem foglaltatok helyet, holnap:",
+        "Nehogy lemaradjatok, holnap ezek várnak a Csiliben:",
+    ],
+    # A {nev} helyére a figyelt oldal neve kerül
+    "megosztas": [
+        "Ezt most osztotta meg a(z) {nev}, érdemes elolvasni 👇",
+        "Láttam a(z) {nev} oldalán, szerintem titeket is érdekel:",
+        "Továbbadom, mert fontos lehet. Forrás: {nev}",
+        "Friss hír a(z) {nev} oldaláról:",
+        "Ezt találtam a(z) {nev} oldalán, nézzétek meg:",
     ],
     "reggeli": [
         "Összeszedtem, mire érdemes ma figyelni a környéken:",

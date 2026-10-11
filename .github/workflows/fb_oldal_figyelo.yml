@@ -1,0 +1,50 @@
+name: 📣 Facebook-oldal Figyelő
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 10 percenként megnézi a figyelt oldalak RSS-csatornáit (fb_oldalak.json)
+    - cron: '*/10 * * * *'
+
+concurrency:
+  group: fb-oldal-figyelo
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests beautifulsoup4
+
+      - name: 📣 Oldal figyelő futtatása
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        run: python fb_oldal_figyelo.py
+
+      - name: 💾 Állapot commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
+          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
+          git stash pop || true
+          [ -f fb_oldal_allapot.json ] && git add fb_oldal_allapot.json || echo "fájl nem létezik"
+          git diff --staged --quiet || git commit -m "fb oldal figyelő állapot [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
