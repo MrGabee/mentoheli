@@ -13,6 +13,8 @@ from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from poszt_valtozatos import Stilus
+
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
 def magyar_ido():
@@ -326,11 +328,14 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
 
     erintett_keruletek = sorted(set(f["kerulet"] for f in uj_adatok))
     tobb_kerulet = len(erintett_keruletek) > 1
+    st = Stilus("aramszunet")
 
     sorok = [
-        "⚡ ÁRAMSZÜNET ÉRTESÍTŐ ⚡",
+        st.cim,
         f"🕒 {ido}   •   {db_uj} új esemény",
-        "═" * 32,
+        st.vonal(),
+        "",
+        st.bevezeto,
         "",
     ]
 
@@ -338,7 +343,7 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     sorok.append(
         "👋 Mivel nemcsak Csepelről, hanem a környező kerületekből és "
         "városokból (Pesterzsébet, Szigetszentmiklós) is sokan "
-        "olvastok minket, mostantól ezekről a területekről is beszámolunk, "
+        "olvastok, mostantól ezekről a területekről is beszámolok, "
         "hogy senki ne maradjon le a fontos hírekről! 💙"
     )
     sorok.append("")
@@ -366,8 +371,8 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     # Csoportosítás kerület szerint, hogy átlátható legyen, hol mi történik
     for kerulet in erintett_keruletek:
         keruleti_uj = [f for f in uj_adatok if f["kerulet"] == kerulet]
-        sorok.append(f"▸▸▸  {kerulet.upper()}  ◂◂◂")
-        sorok.append("─" * 32)
+        sorok.append(st.terulet(kerulet.upper()))
+        sorok.append(st.vekony())
         for f in keruleti_uj:
             sorok.append(esemeny_blokk(f, f["tipus"] == "TERVEZETT"))
             sorok.append("")
@@ -375,18 +380,20 @@ def facebook_szoveg(uj_adatok, osszes_aktiv_adatok, ido):
     # Összesítő - az összes jelenleg aktív üzemzavar tömören, kerület szerint
     aktiv_uzemzavar = [e for e in osszes_aktiv_adatok if e["tipus"] == "UZEMZAVAR"]
     if aktiv_uzemzavar:
-        sorok.append("═" * 32)
+        sorok.append(st.vonal())
         sorok.append(f"📋 ÖSSZES AKTÍV ÜZEMZAVAR  ({len(aktiv_uzemzavar)} db)")
-        sorok.append("─" * 32)
+        sorok.append(st.vekony())
         for f in aktiv_uzemzavar:
             utca = f["utcak"] or f["kerulet"]
             sorok.append(f"• [{f['kerulet']}] {utca}  |  {f['kezdes']}  |  {f['fogyaszto']} fogyasztó")
         sorok.append("")
 
-    sorok.append("─" * 32)
+    sorok.append(st.vekony())
     sorok.append("ℹ️ Forrás: E.ON nyilvános tájékoztatás")
     sorok.append("🤖 Automatikus értesítő – Baleset-info.hu")
     sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Szigetszentmiklós")
+    if st.zaro:
+        sorok += ["", st.zaro]
 
     if KEP_URL:
         sorok.append("")
@@ -401,11 +408,14 @@ def facebook_szoveg_emlekezteto(emlekezteto_adatok, ido):
     esemény, hogy a követők ne értsék félre kétszeri bejelentésnek."""
     db = len(emlekezteto_adatok)
     erintett_keruletek = sorted(set(f["kerulet"] for f in emlekezteto_adatok))
+    st = Stilus("aramszunet_emlekezteto")
 
     sorok = [
-        "⏰ EMLÉKEZTETŐ – közelgő áramszünet ⏰",
+        st.cim,
         f"🕒 {ido}   •   {db} esemény",
-        "═" * 32,
+        st.vonal(),
+        "",
+        st.bevezeto,
         "",
         "ℹ️ Ez egy emlékeztető korábban már bejelentett, tervezett "
         "áramszünet(ek)ről, amik hamarosan esedékesek:",
@@ -430,16 +440,18 @@ def facebook_szoveg_emlekezteto(emlekezteto_adatok, ido):
 
     for kerulet in erintett_keruletek:
         keruleti = [f for f in emlekezteto_adatok if f["kerulet"] == kerulet]
-        sorok.append(f"▸▸▸  {kerulet.upper()}  ◂◂◂")
-        sorok.append("─" * 32)
+        sorok.append(st.terulet(kerulet.upper()))
+        sorok.append(st.vekony())
         for f in keruleti:
             sorok.append(esemeny_blokk(f))
             sorok.append("")
 
-    sorok.append("─" * 32)
+    sorok.append(st.vekony())
     sorok.append("ℹ️ Forrás: E.ON nyilvános tájékoztatás")
     sorok.append("🤖 Automatikus értesítő – Baleset-info.hu")
     sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Szigetszentmiklós")
+    if st.zaro:
+        sorok += ["", st.zaro]
 
     if KEP_URL:
         sorok.append("")

@@ -1,0 +1,166 @@
+"""
+🎨 Változatos Facebook-posztok
+- Napi arculat: a címsor, az elválasztó vonalak, a területcímkék és a
+  záró mondat egy napon belül egységes, de minden nap más (a dátumból
+  számolja, így egy napon belül minden futás ugyanazt választja).
+- Személyes bevezető: minden poszt egy közvetlen, saját hangú mondattal
+  indul, ez posztonként változik, hogy ne ismétlődjön.
+A tartalom (címek, időpontok, linkek) nem változik.
+Új változatot a listák bővítésével lehet hozzáadni.
+"""
+
+import random
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
+
+CIMEK = {
+    "vizmuvek": [
+        "💧 FŐVÁROSI VÍZMŰVEK ÉRTESÍTŐ 💧",
+        "🚰 VÍZMŰVES HÍREK A KÖRNYÉKRŐL 🚰",
+        "💦 FIGYELEM, VÍZÜGY! 💦",
+        "🔧 VÍZMŰVEK – ÚJ MUNKÁK A KÖRNYÉKEN 🔧",
+        "💧 VÍZHIÁNY / VÍZMŰVES MUNKA 💧",
+    ],
+    "aramszunet": [
+        "⚡ ÁRAMSZÜNET ÉRTESÍTŐ ⚡",
+        "🔌 ÁRAMSZÜNET A KÖRNYÉKEN 🔌",
+        "💡 FIGYELEM, ÁRAMSZÜNET! 💡",
+        "⚡ E.ON – ÚJ ÁRAMSZÜNET ⚡",
+        "🔦 KÉSZÜLJ, ÁRAMSZÜNET LESZ! 🔦",
+    ],
+    "aramszunet_emlekezteto": [
+        "⏰ EMLÉKEZTETŐ – közelgő áramszünet ⏰",
+        "🔔 NE FELEDD: áramszünet közeleg! 🔔",
+        "📆 EMLÉKEZTETŐ – hamarosan áramszünet 📆",
+        "⏳ MÁR NEM SOKÁRA: tervezett áramszünet ⏳",
+    ],
+    "rendorseg": [
+        "🚔 RENDŐRSÉGI HÍR",
+        "🚨 FRISS A RENDŐRSÉGTŐL",
+        "👮 RENDŐRSÉGI TÁJÉKOZTATÁS",
+        "🚓 A RENDŐRSÉG KÖZLI",
+    ],
+    "korozes": [
+        "🔎 KÖRÖZÉS",
+        "🚨 SEGÍTS A RENDŐRSÉGNEK!",
+        "👀 LÁTTAD? KÖRÖZÉS",
+        "📢 KÖRÖZÉSI FELHÍVÁS",
+    ],
+    "idojaras": [
+        "IDŐJÁRÁSI RIASZTÁS",
+        "FIGYELMEZTETÉS – VESZÉLYES IDŐ",
+        "RIASZTÁST ADOTT KI A HUNGAROMET",
+        "VIGYÁZAT, VÁLTOZÉKONY IDŐ!",
+    ],
+    "reggeli": [
+        "☀️ JÓ REGGELT, CSEPEL, PESTERZSÉBET, SZIGETSZENTMIKLÓS! ☀️",
+        "🌅 REGGELI KÖRKÉP A KÖRNYÉKRŐL 🌅",
+        "☕ KÁVÉ MELLÉ: EZ VÁR MA RÁNK ☕",
+        "🗞️ NAPINDÍTÓ – MAI HELYZET 🗞️",
+        "🌞 SZÉP NAPOT! ÍGY KEZDŐDIK A MAI NAP 🌞",
+    ],
+}
+
+BEVEZETOK = {
+    "vizmuvek": [
+        "Sziasztok! A Vízművek újabb munkát jelzett a környéken, érdemes ránézni 👇",
+        "Néztem a Vízművek munkatérképét, ezt találtam a környéken:",
+        "Csak szólok, hogy a Vízművek dolgozik a környéken, pár helyen lehet, hogy nem lesz víz:",
+        "Hahó, csepeliek, erzsébetiek, miklósiak! Vízműves munka a környéken 💧",
+        "Friss infó a Vízművektől, nézzétek meg, nem a ti utcátokat érinti-e:",
+        "Érdemes lehet előre bekészíteni egy kis vizet, mert ezt láttam a Vízműveknél:",
+    ],
+    "aramszunet": [
+        "Sziasztok! Az E.ON új áramszünetet jelzett a környéken 👇",
+        "Gyorsan szólok, mert áramszünet lesz a környéken, nézzétek meg az utcátokat:",
+        "Érdemes előre feltölteni a telefont, mert ezt találtam az E.ON-nál:",
+        "Hahó, szomszédok! Áramszünetről jött hír:",
+        "Friss infó az E.ON-tól, hátha titeket is érint:",
+    ],
+    "aramszunet_emlekezteto": [
+        "Csak emlékeztetőül, mert már nincs sok hátra:",
+        "Szóltam már róla, de jobb kétszer: közeledik az áramszünet!",
+        "Nehogy meglepetés érjen titeket, ez hamarosan esedékes:",
+        "Kis emlékeztető a korábban bejelentett áramszünetről:",
+    ],
+    "rendorseg": [
+        "Ezt most osztotta meg a rendőrség, a környéket érinti:",
+        "Fontos hír jött a rendőrségtől:",
+        "Erről most olvastam a police.hu-n:",
+        "Kérlek, figyeljetek egymásra! Ezt közölte a rendőrség:",
+    ],
+    "korozes": [
+        "Kérlek, nézzétek meg, hátha tudtok segíteni:",
+        "Ha bármit tudtok, szóljatok a rendőrségnek:",
+        "Minden megosztás számít, kérlek, segítsetek a rendőrségnek:",
+        "Új körözést adtak ki, a környéket érinti:",
+    ],
+    "idojaras": [
+        "Vigyázzatok magatokra, riasztást adtak ki a környékre!",
+        "Most jött a HungaroMet figyelmeztetése, érdemes felkészülni:",
+        "Ha teheted, ma figyelj az időjárásra, mert ezt jelezték:",
+        "Szólok, mert ma nem lesz barátságos az idő:",
+    ],
+    "reggeli": [
+        "Összeszedtem, mire érdemes ma figyelni a környéken:",
+        "Szép napot, szomszédok! Itt a mai helyzet:",
+        "Reggeli kávé mellé hoztam a mai tudnivalókat ☕",
+        "Sziasztok! Ez vár ma ránk a környéken:",
+        "Mielőtt elindultok, nézzétek meg ezt:",
+    ],
+}
+
+# (vastag vonal, vékony vonal, hossz) - a széles jeleknél rövidebb a vonal
+VONALAK = [
+    ("═", "─", 32),
+    ("━", "┄", 32),
+    ("▬", "‐", 20),
+    ("◆", "◇", 16),
+    ("•", "·", 24),
+]
+
+TERULET_KERETEK = [
+    "▸▸▸  {}  ◂◂◂",
+    "【 {} 】",
+    "📌 {}",
+    "— {} —",
+    "◉ {}",
+    "🔹 {} 🔹",
+]
+
+ZAROK = [
+    "💙 Oszd meg, hogy a szomszédaid is tudjanak róla!",
+    "🙏 Köszönöm, hogy követtek!",
+    "📲 Kapcsold be az értesítéseket, hogy ne maradj le semmiről!",
+    "🏘️ Vigyázzatok magatokra és egymásra!",
+    "💬 Ha tudsz valami újat, írd meg kommentben!",
+    "",
+]
+
+
+class Stilus:
+    """A mai arculat egy kategóriához, plusz egy véletlenszerű bevezető."""
+
+    def __init__(self, kategoria, nap=None):
+        self.kategoria = kategoria
+        nap = nap or datetime.now(MAGYAR_TZ).strftime("%Y-%m-%d")
+        # A közös elemek (vonal, keret) napi szinten minden posztnál egyformák,
+        # a címsor és a záró mondat kategóriánként is napi szinten fix.
+        napi = random.Random(nap)
+        napi_kat = random.Random(f"{nap}|{kategoria}")
+        self._vastag, self._vekony, self._hossz = napi.choice(VONALAK)
+        self._terulet = napi.choice(TERULET_KERETEK)
+        self.cim = napi_kat.choice(CIMEK.get(kategoria, [""]))
+        self.zaro = napi_kat.choice(ZAROK)
+        self.bevezeto = random.choice(BEVEZETOK.get(kategoria, [""]))
+
+    def vonal(self):
+        return self._vastag * self._hossz
+
+    def vekony(self):
+        return self._vekony * self._hossz
+
+    def terulet(self, nev):
+        return self._terulet.format(nev)

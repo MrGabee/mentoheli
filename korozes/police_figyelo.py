@@ -24,12 +24,17 @@ mivel ott egy még el nem ítélt, valódi ember személyes adatairól van szó.
 """
 
 import os
+import sys
 import re
 import json
 import time
 import requests
 from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
+
+# A közös poszt-stílusok (poszt_valtozatos.py) a repó gyökerében vannak
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from poszt_valtozatos import Stilus  # noqa: E402
 
 # =====================================================================
 # BEÁLLÍTÁS
@@ -467,16 +472,18 @@ def main():
             # a teljes, hivatalos közlemény). Minden más kategóriánál (eltűnt
             # személy, jármű-/légi-/vízijármű-körözés, holttest) ez a
             # korlátozás nem indokolt, ott a korábbi, teljes tartalom marad.
+            st = Stilus("korozes")
             if kulcs == "korozott_szemelyek":
                 fb_szoveg = (
+                    f"{st.cim}\n{st.bevezeto}\n\n"
                     f"Új körözés: {kat['label']}\n\n"
                     f"Egyező szerv: {egyezo_szerv}\n\n"
-                    f"A nevet és a fényképet adatvédelmi okból itt nem tesszük közzé - "
+                    f"A nevet és a fényképet adatvédelmi okból itt nem teszem közzé - "
                     f"a teljes hivatalos közlemény bejelentkezés nélkül elérhető:\n{elem['url']}"
                 )
                 fb_kep = None
             else:
-                fb_szoveg = f"{reszlet['cim']}\n\n{kat['label']} · {egyezo_szerv}\n\n{elem['url']}"
+                fb_szoveg = f"{st.cim}\n{st.bevezeto}\n\n{reszlet['cim']}\n\n{kat['label']} · {egyezo_szerv}\n\n{elem['url']}"
                 fb_kep = reszlet["kep"]
 
             talalt_ertesitesek.append({
@@ -541,7 +548,7 @@ def main():
                 "tema": f"[Hír] {cikk['cim']}",
                 "torzs": torzs,
                 "kep": None,
-                "fb_szoveg": f"{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n{cikk['url']}",
+                "fb_szoveg": f"{(st := Stilus('rendorseg')).cim}\n{st.bevezeto}\n\n{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n{cikk['url']}",
                 "fb_kep": None,
                 "facebook_post": kat["facebook_post"],
             })
