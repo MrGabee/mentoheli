@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rendőrségi hír – police.hu</title>
+<!-- A Facebook ebből az oldalból készít előnézetet: az illusztrációt mutatja,
+     nem a police.hu-s fotót. Kattintásra a police.hu hivatalos oldalára visz. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rendőrségi hír – a teljes cikk a police.hu-n">
+<meta property="og:description" content="Kattints a rendőrség hivatalos oldalához.">
+<meta property="og:image" content="https://mrgabee.github.io/mentoheli/kepek/rendorseg_hir.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="robots" content="noindex">
+<style>body{font-family:system-ui,sans-serif;max-width:560px;margin:15vh auto;padding:0 16px;text-align:center}</style>
+</head>
+<body>
+<p>Átirányítás a police.hu-ra…</p>
+<p><a id="tovabb" href="https://www.police.hu/">Ha nem történik semmi, kattints ide.</a></p>
+<script>
+// Csak police.hu-ra irányít át, máshová nem
+var u = new URLSearchParams(location.search).get("u") || "";
+if (/^https:\/\/(www\.)?police\.hu\//.test(u)) {
+  document.getElementById("tovabb").href = u;
+  location.replace(u);
+}
+</script>
+</body>
+</html>
