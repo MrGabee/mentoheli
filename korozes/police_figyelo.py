@@ -54,7 +54,7 @@ HIREK_RIASZTAS_UTANI_FUTAS = 8  # ennyi egymás utáni "mind a 10 hír-kategóri
 # False = ez a Make.com-kapcsoló - akkor is letiltja a Facebook-posztolást,
 #         ha egy-egy kategóriánál "facebook_post": True van beállítva.
 #         Az email-küldést ez NEM érinti.
-MAKE_WEBHOOK_AKTIV = False  # = "Make.com kapcsoló"
+MAKE_WEBHOOK_AKTIV = True  # = "Make.com kapcsoló"
 
 # True  = a rendőrségi posztok a MAKE_WEBHOOK_URL_RENDORSEG forgatókönyvön mennek
 #         (illusztrációs kép, lezáráskor a poszt átírása, utolsó poszt lekérdezése).
@@ -557,8 +557,7 @@ def korozes_poszt_szoveg(kulcs, kat, reszlet, szerv, url):
     tel = _telefon(m)
     hivd = f"☎️ Ha bármit tudsz, hívd a 112-t vagy a kapitányságot: {tel}" if tel else "☎️ Ha bármit tudsz, hívd a 112-t!"
     if kulcs == "korozott_szemelyek":
-        # Adatvédelem: csak rövidített név (B. Fanni), fénykép nélkül. A poszt
-        # képes posztként megy ki, így a link előnézete sem mutatja a fotót.
+        # Adatvédelem: csak rövidített név (B. Fanni), fénykép nélkül.
         sorok = [st.cim, st.bevezeto, "",
                  f"🚨 Elfogatóparancs a környéken: {rovid_nev(m)}" if rovid_nev(m) else "🚨 Új elfogatóparancs a környéken",
                  f"⚖️ {m[JOGALAP]}" if m.get(JOGALAP) else None,
