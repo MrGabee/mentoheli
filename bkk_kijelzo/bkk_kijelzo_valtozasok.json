@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:52:17.321737+02:00",
+  "frissitve": "2026-10-11T03:52:46.075200+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.014696+02:00",
-      "kulcs": "T9123",
-      "rendszam": "T9123",
-      "vehicle_id": "7862",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.494232177734375,
-      "lon": 19.059980392456055,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.014732+02:00",
-      "kulcs": "T9125",
-      "rendszam": "T9125",
-      "vehicle_id": "7864",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51569747924805,
-      "lon": 19.090091705322266,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.014765+02:00",
-      "kulcs": "T9128",
-      "rendszam": "T9128",
-      "vehicle_id": "7867",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.522159576416016,
-      "lon": 19.067045211791992,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-10-10T13:02:30.014799+02:00",
       "kulcs": "T9130",
@@ -260000,6 +259961,45 @@
       "lon": 18.978111267089844,
       "elozo_szoveg": "Máriaremete ► Hűvösvölgy",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-11T03:52:45.986853+02:00",
+      "kulcs": "AADR701",
+      "rendszam": "AADR701",
+      "vehicle_id": "168",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52806091308594,
+      "lon": 19.007062911987305,
+      "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
+      "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-11T03:52:45.987180+02:00",
+      "kulcs": "FKU950",
+      "rendszam": "FKU950",
+      "vehicle_id": "3106",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.479732513427734,
+      "lon": 19.255535125732422,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-11T03:52:45.988751+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57978057861328,
+      "lon": 19.088634490966797,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
     }
   ]
 }
