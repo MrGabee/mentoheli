@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T01:44:28.458706+02:00",
+  "frissitve": "2026-10-12T01:44:55.103764+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:28:08.144532+02:00",
-      "kulcs": "AADI640",
-      "rendszam": "AADI640",
-      "vehicle_id": "139",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.488094329833984,
-      "lon": 19.24479866027832,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-11T12:28:08.144866+02:00",
-      "kulcs": "V2019",
-      "rendszam": "V2019",
-      "vehicle_id": "2019",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.4631233215332,
-      "lon": 19.023048400878906,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-11T12:28:08.144938+02:00",
-      "kulcs": "V2030",
-      "rendszam": "V2030",
-      "vehicle_id": "2030",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50727844238281,
-      "lon": 19.02477264404297,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-10-11T12:28:08.145903+02:00",
       "kulcs": "AAHY809",
@@ -260000,6 +259961,45 @@
       "lon": 19.037616729736328,
       "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-12T01:44:55.041429+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60262680053711,
+      "lon": 19.066055297851562,
+      "elozo_szoveg": "B.megyer, Újmegyeri tér",
+      "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-12T01:44:55.041527+02:00",
+      "kulcs": "PKN624",
+      "rendszam": "PKN624",
+      "vehicle_id": "7213",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60322952270508,
+      "lon": 19.0665340423584,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-12T01:44:55.041646+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54680252075195,
+      "lon": 19.142536163330078,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
