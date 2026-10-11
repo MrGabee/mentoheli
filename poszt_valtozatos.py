@@ -72,6 +72,43 @@ CIMEK = {
         "🗞️ NAPINDÍTÓ – MAI HELYZET 🗞️",
         "🌞 SZÉP NAPOT! ÍGY KEZDŐDIK A MAI NAP 🌞",
     ],
+    "programok": [
+        "🎉 MAI PROGRAMAJÁNLÓ A KÖRNYÉKRŐL 🎉",
+        "🎸 MI VAN MA CSEPELEN? 🎸",
+        "🎟️ KERÜLETI PROGRAMOK 🎟️",
+        "✨ ERRE ÉRDEMES FIGYELNI A HÉTEN ✨",
+        "🎶 KONCERT, SZÍNHÁZ, KÖZÖSSÉG – A KÖRNYÉKEN 🎶",
+    ],
+    "hetvege": [
+        "🥳 HÉTVÉGI PROGRAMAJÁNLÓ 🥳",
+        "🎈 MIT CSINÁLJUNK A HÉTVÉGÉN? 🎈",
+        "🌟 ITT A HÉTVÉGE! IRÁNY A PROGRAMOK 🌟",
+        "🎭 HÉTVÉGÉRE AJÁNLOM 🎭",
+    ],
+    "ezen_a_napon": [
+        "📜 EZEN A NAPON TÖRTÉNT 📜",
+        "🕰️ VISSZATEKINTŐ – MI TÖRTÉNT MA, RÉGEN? 🕰️",
+        "📖 TÖRTÉNELMI NAPTÁR 📖",
+        "⏳ A MAI NAP A TÖRTÉNELEMBEN ⏳",
+    ],
+    "erdekesseg": [
+        "🏛️ KÖRNYÉKBELI ÉRDEKESSÉG 🏛️",
+        "🔍 TUDTAD? – HELYTÖRTÉNET 🔍",
+        "🗺️ FEDEZZÜK FEL A KÖRNYÉKET! 🗺️",
+        "📚 A MI KÖRNYÉKÜNK – ÉRDEKESSÉGEK 📚",
+    ],
+    "kerdes": [
+        "💬 KÉRDÉS NEKTEK 💬",
+        "🗣️ BESZÉLGESSÜNK! 🗣️",
+        "🤔 KÍVÁNCSI VAGYOK… 🤔",
+        "❓ MAI KÉRDÉSEM ❓",
+    ],
+    "esti_idojaras": [
+        "🌙 HOLNAPI IDŐJÁRÁS 🌙",
+        "🌤️ MILYEN IDŐ LESZ HOLNAP? 🌤️",
+        "🌃 ESTI IDŐJÁRÁS-JELENTÉS 🌃",
+        "⭐ JÓ ÉJT! ÍGY INDUL A HOLNAP ⭐",
+    ],
 }
 
 BEVEZETOK = {
@@ -140,6 +177,43 @@ BEVEZETOK = {
         "Reggeli kávé mellé hoztam a mai tudnivalókat ☕",
         "Sziasztok! Ez vár ma ránk a környéken:",
         "Mielőtt elindultok, nézzétek meg ezt:",
+    ],
+    "programok": [
+        "Összeszedtem, mi lesz a környéken a következő napokban 👇",
+        "Ha még nincs programotok, ezeket ajánlom a Munkásotthonból, a Barba Negrából és a Müpából:",
+        "Szeretek szólni, ha jó program van a közelben, és most van bőven:",
+        "Kultúra a szomszédban, nem kell messzire menni:",
+        "Néztem a környékbeli műsorokat, ezek akadtak meg a szememen:",
+    ],
+    "hetvege": [
+        "Itt a péntek! Összeszedtem, hova érdemes elmenni a hétvégén a környéken 👇",
+        "Hétvégére tervezel? Ezeket a programokat ajánlom a közelben:",
+        "Nem kell messzire menni egy jó hétvégéhez, nézzétek:",
+        "Ha még nincs hétvégi program, itt van pár ötlet tőlem:",
+    ],
+    "ezen_a_napon": [
+        "Kicsit belelapoztam a történelemkönyvbe, ezt találtam a mai napra:",
+        "Tudtátok, mi történt ezen a napon régen? Nézzétek:",
+        "Egy kis történelem a kávé mellé ☕",
+        "Mai történelmi morzsák, hátha valaki nem tudta:",
+    ],
+    "erdekesseg": [
+        "Ma egy kis helytörténettel jövök, szerintem érdekes 👇",
+        "Ismeritek ezt a helyet? Összeszedtem róla pár dolgot:",
+        "Szeretem a környékünket, és ma ezt mutatom meg nektek:",
+        "Egy kis érdekesség a környékről, amit talán nem mindenki tud:",
+    ],
+    "kerdes": [
+        "Most én kérdezek titeket! 😊",
+        "Kíváncsi vagyok a véleményetekre:",
+        "Beszélgessünk egy kicsit, érdekel, mit gondoltok:",
+        "Egy gyors kérdés a mai napra:",
+    ],
+    "esti_idojaras": [
+        "Megnéztem nektek, milyen időre ébredünk holnap:",
+        "Mielőtt lefekszetek, itt a holnapi időjárás:",
+        "Hogy holnap reggel ne érjen meglepetés, ilyen idő lesz:",
+        "Esti kis időjárás-jelentés tőlem 🌙",
     ],
 }
 
