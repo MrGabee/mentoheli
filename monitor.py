@@ -465,8 +465,17 @@ def main():
     esemenyek = osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo)
 
     print(f"\n⚡ Változások: {len(esemenyek)}")
+    # Ha a levélküldés hibázik, az állapotot akkor is mentjük, különben
+    # minden futás újra és újra ugyanazokat a leveleket próbálná elküldeni,
+    # és a sok sikertelen bejelentkezés miatt a Gmail tovább tiltja a fiókot.
+    levelhiba = None
     for e in esemenyek:
-        email_kuldes(e)
+        try:
+            email_kuldes(e)
+        except Exception as ex:
+            print(f"❌ E-mail küldése sikertelen, a többit ebben a futásban kihagyom: {ex}")
+            levelhiba = ex
+            break
 
     # Állapot frissítése
     for kulcs, adat in uj_adatok.items():
@@ -476,6 +485,10 @@ def main():
     ment(ALLAPOT_FAJL, regi_allapot)
     ment(ESEMENY_NAPLO, esemeny_naplo)
     print("💾 Állapot mentve. ✅ Kész.\n")
+
+    # A futás piros maradjon, hogy a levélküldési hiba látszódjon az Actions-ben
+    if levelhiba:
+        raise SystemExit(f"Levélküldési hiba: {levelhiba}")
 
 
 if __name__ == "__main__":
