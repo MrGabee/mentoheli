@@ -29,6 +29,7 @@ import re
 import json
 import time
 import requests
+from urllib.parse import quote
 from datetime import datetime, timedelta, timezone, time as dtime
 from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
@@ -58,8 +59,9 @@ MAKE_WEBHOOK_AKTIV = True  # = "Make.com kapcsoló"
 
 # True  = a rendőrségi posztok a MAKE_WEBHOOK_URL_RENDORSEG forgatókönyvön mennek
 #         (illusztrációs kép, lezáráskor a poszt átírása, utolsó poszt lekérdezése).
-# False = a fő MAKE_WEBHOOK_URL-en, szövegként, az illusztráció a "link" mezőben
-#         megy (ebből lesz az előnézet). Javítás és lekérdezés ilyenkor nincs.
+# False = a fő MAKE_WEBHOOK_URL-en, szövegként; a "link" mező az átirányító
+#         oldalra mutat (ebből lesz az illusztrációs előnézet). Javítás és
+#         lekérdezés ilyenkor nincs.
 #         (A Make-szervezetben az új Facebook-modulok el sem indulnak, ezért ez az alap.)
 MAKE_KEPES_FORGATOKONYV = False
 
@@ -109,6 +111,16 @@ LEZARVA_JARMU = "A rendőrség visszavonta a jármű körözését. Köszönöm 
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
 KEP_KOROZES = KEP_ALAP + "rendorseg_korozes.png"
 KEP_HIR = KEP_ALAP + "rendorseg_hir.png"
+
+# Szöveges módban a poszt "link" mezője ezekre az átirányító oldalakra mutat: a
+# Facebook-előnézet az illusztrációt mutatja, kattintásra a police.hu-ra visz.
+ATIRANYITO_ALAP = "https://mrgabee.github.io/mentoheli/rendorseg/"
+ATIRANYITO_KOROZES = ATIRANYITO_ALAP
+ATIRANYITO_HIR = ATIRANYITO_ALAP + "hir.html"
+
+
+def elonezet_link(atiranyito, police_url):
+    return f"{atiranyito}?u={quote(police_url, safe='')}"
 
 # Lecsengés: a rendőrségi poszt várólistára kerül, és csak akkor megy ki, ha
 #  - az oldal legutóbbi posztja legalább LECSENGES_PERC perce ment ki,
@@ -417,7 +429,7 @@ def _make_hivas(adat, timeout=60):
         return None
 
 
-def facebook_post(uzenet, kep_url=None, post_id=None):
+def facebook_post(uzenet, kep_url=None, post_id=None, link=None):
     """Poszt a Facebook Oldalra egy Make.com automatizáción (webhook) keresztül.
     - kep_url: képes posztként megy ki ezzel a képpel (a Make visszaadja az azonosítóját)
     - post_id: nem új poszt, hanem a meglévő szövegének átírása
@@ -426,10 +438,10 @@ def facebook_post(uzenet, kep_url=None, post_id=None):
     if not MAKE_KEPES_FORGATOKONYV:
         if post_id:
             return None   # a fő forgatókönyv csak új posztot tud, átírni nem
-        if kep_url:
-            # A Link mezőbe az illusztráció kerül: a Facebook ebből készít
-            # előnézetet, így a szövegben lévő police.hu-link fotója nem jelenik meg.
-            adat["link"] = kep_url
+        if link:
+            # A Link mező az átirányító oldalra mutat: a Facebook abból készít
+            # előnézetet (illusztráció), így a police.hu-s fotó nem jelenik meg.
+            adat["link"] = link
     elif post_id:
         adat["post_id"] = post_id
     elif kep_url:
@@ -520,7 +532,7 @@ def varolista_kuldese(cache):
         print("   ℹ️  Várakozás közben lekerült a police.hu-ról, nem posztolom.")
         lista.pop(0)
         return
-    post_id = facebook_post(tetel["fb_szoveg"], tetel["kep"])
+    post_id = facebook_post(tetel["fb_szoveg"], tetel["kep"], link=tetel.get("link"))
     if not post_id:
         return   # sikertelen: a következő futás újrapróbálja
     lista.pop(0)
@@ -735,6 +747,7 @@ def main():
             # korlátozás nem indokolt, ott a korábbi, teljes tartalom marad.
             fb_szoveg = korozes_poszt_szoveg(kulcs, kat, reszlet, egyezo_szerv, elem["url"])
             fb_kep = KEP_KOROZES
+            fb_link = elonezet_link(ATIRANYITO_KOROZES, elem["url"])
 
             talalt_ertesitesek.append({
                 "tema": f"[Körözés] {reszlet['cim']}",
@@ -742,6 +755,7 @@ def main():
                 "kep": reszlet["kep"],
                 "fb_szoveg": fb_szoveg,
                 "fb_kep": fb_kep,
+                "fb_link": fb_link,
                 "facebook_post": kat["facebook_post"],
                 "kovetes": {"url": elem["url"], "tipus": kulcs},
             })
@@ -801,6 +815,7 @@ def main():
                 "kep": None,
                 "fb_szoveg": f"{(st := Stilus('rendorseg')).cim}\n{st.bevezeto}\n\n{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n🔗 {cikk['url']}",
                 "fb_kep": KEP_HIR,
+                "fb_link": elonezet_link(ATIRANYITO_HIR, cikk["url"]),
                 "facebook_post": kat["facebook_post"],
             })
 
@@ -885,7 +900,7 @@ def main():
         if MAKE_WEBHOOK_AKTIV and ertesites["facebook_post"]:
             cache.setdefault("fb_varolista", []).append({
                 "fb_szoveg": ertesites["fb_szoveg"], "kep": ertesites["fb_kep"],
-                "kovetes": ertesites.get("kovetes"),
+                "kovetes": ertesites.get("kovetes"), "link": ertesites.get("fb_link"),
                 "felvetel": datetime.now(timezone.utc).isoformat()})
 
         time.sleep(1)
