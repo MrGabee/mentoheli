@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:32:32.710289+02:00",
+  "frissitve": "2026-10-11T03:33:06.577156+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.010257+02:00",
-      "kulcs": "PDB712",
-      "rendszam": "PDB712",
-      "vehicle_id": "7038",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.50956344604492,
-      "lon": 19.013608932495117,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.010333+02:00",
-      "kulcs": "PDB727",
-      "rendszam": "PDB727",
-      "vehicle_id": "7053",
-      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.501895904541016,
-      "lon": 19.091123580932617,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.010386+02:00",
-      "kulcs": "PDB376",
-      "rendszam": "PDB376",
-      "vehicle_id": "7058",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.47991180419922,
-      "lon": 19.25480079650879,
-      "elozo_szoveg": "Helikopter lakópark",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-10-10T13:02:30.010409+02:00",
       "kulcs": "PDB377",
@@ -260000,6 +259961,45 @@
       "lon": 19.055580139160156,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T03:33:06.523740+02:00",
+      "kulcs": "AADI655",
+      "rendszam": "AADI655",
+      "vehicle_id": "154",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50930404663086,
+      "lon": 19.09606170654297,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T03:33:06.524750+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.499664306640625,
+      "lon": 19.08708953857422,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-11T03:33:06.525105+02:00",
+      "kulcs": "AAMH634",
+      "rendszam": "AAMH634",
+      "vehicle_id": "477",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43256378173828,
+      "lon": 19.261056900024414,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
     }
   ]
 }
