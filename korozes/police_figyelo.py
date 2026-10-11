@@ -58,8 +58,8 @@ MAKE_WEBHOOK_AKTIV = True  # = "Make.com kapcsoló"
 
 # True  = a rendőrségi posztok a MAKE_WEBHOOK_URL_RENDORSEG forgatókönyvön mennek
 #         (illusztrációs kép, lezáráskor a poszt átírása, utolsó poszt lekérdezése).
-# False = a fő MAKE_WEBHOOK_URL-en, csak szövegként. A fő forgatókönyv csak a
-#         "message" mezőt ismeri, ezért ilyenkor kép, javítás és lekérdezés nincs.
+# False = a fő MAKE_WEBHOOK_URL-en, szövegként, az illusztráció a "link" mezőben
+#         megy (ebből lesz az előnézet). Javítás és lekérdezés ilyenkor nincs.
 #         (A Make-szervezetben az új Facebook-modulok el sem indulnak, ezért ez az alap.)
 MAKE_KEPES_FORGATOKONYV = False
 
@@ -426,6 +426,10 @@ def facebook_post(uzenet, kep_url=None, post_id=None):
     if not MAKE_KEPES_FORGATOKONYV:
         if post_id:
             return None   # a fő forgatókönyv csak új posztot tud, átírni nem
+        if kep_url:
+            # A Link mezőbe az illusztráció kerül: a Facebook ebből készít
+            # előnézetet, így a szövegben lévő police.hu-link fotója nem jelenik meg.
+            adat["link"] = kep_url
     elif post_id:
         adat["post_id"] = post_id
     elif kep_url:
