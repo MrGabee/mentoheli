@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T01:45:24.397210+02:00",
+  "frissitve": "2026-10-12T01:45:52.439044+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:28:08.145903+02:00",
-      "kulcs": "AAHY809",
-      "rendszam": "AAHY809",
-      "vehicle_id": "369",
-      "vehicle_label": "Flórián tér",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.60344696044922,
-      "lon": 19.067066192626953,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Flórián tér"
-    },
-    {
-      "idopont": "2026-10-11T12:28:08.146164+02:00",
-      "kulcs": "AAHY856",
-      "rendszam": "AAHY856",
-      "vehicle_id": "418",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.534114837646484,
-      "lon": 19.067523956298828,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-11T12:28:08.147095+02:00",
-      "kulcs": "V1355",
-      "rendszam": "V1355",
-      "vehicle_id": "4456",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.479671478271484,
-      "lon": 19.066234588623047,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Boráros tér H"
-    },
     {
       "idopont": "2026-10-11T12:28:08.147590+02:00",
       "kulcs": "V4162",
@@ -260000,6 +259961,45 @@
       "lon": 19.142536163330078,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T01:45:52.349647+02:00",
+      "kulcs": "NBW012",
+      "rendszam": "NBW012",
+      "vehicle_id": "5982",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.48594284057617,
+      "lon": 19.19217872619629,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-12T01:45:52.350066+02:00",
+      "kulcs": "PKN605",
+      "rendszam": "PKN605",
+      "vehicle_id": "7221",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.4837760925293,
+      "lon": 19.022565841674805,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-12T01:45:52.350445+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48716354370117,
+      "lon": 19.066911697387695,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
