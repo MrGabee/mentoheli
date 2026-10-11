@@ -59,6 +59,8 @@ MAKE_WEBHOOK_AKTIV = False  # = "Make.com kapcsoló"
 KOROZES_SZERV_SZURO = [
     "BUDAPESTI XXI. KER. RK",
     "BUDAPESTI XX-XXIII. KER. RK",
+    "BUDAPESTI XX. KER. RK",
+    "BUDAPESTI XXIII. KER. RK",
     "Budapesti XX., XXI. és XXIII. Kerületi Bíróság",
     # Szigetszentmiklós saját rendőrkapitányságához tartozik (Pest Vármegyei
     # Rendőr-főkapitányság alá) - egyszerű "SZIGETSZENTMIKLÓS" részszöveges
@@ -72,11 +74,27 @@ KOROZES_SZERV_SZURO = [
 # találatok elkerülésével - csak akkor egyezik, ha utána KER/kerület áll -,
 # valamint Szigetszentmiklós néven, ékezettel és ékezet nélkül is)
 HIREK_MINTA = re.compile(
-    r"XX\.?\s*(KER|kerület)|XXI\.?\s*(KER|kerület)|szigetszentmikl[oó]s",
+    r"\bXXI?\.?\s*(KER|kerület)|\bXXIII\.?\s*(KER|kerület)|csepel|pesterzsébet|"
+    r"soroksár(?!i\s+út)|szigetszentmikl[oó]s",   # a Soroksári út a IX. kerületben van
     re.IGNORECASE,
 )
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PoliceHuFigyelo/1.0)"}
+
+# A kiposztolt körözéseket ennyi egymás utáni futáson át "Az oldal nem található"
+# (404) állapotban kell látni, mielőtt lezártnak vesszük és javítjuk a posztot
+LEZARAS_404_SZAM = 2
+# Ennyi nap után már nem figyeljük, hogy egy kiposztolt körözés lekerült-e
+KOVETES_NAP = 180
+
+# Ezzel a szöveggel íródik át a poszt, ha az adatlap lekerült a police.hu-ról.
+# Név és fénykép nélkül, hogy a lezárt ügy szereplője ne maradjon az oldalon.
+LEZARVA_SZOVEG = {
+    "eltunt_szemelyek": "A rendőrség lezárta a keresést, a felhívás lekerült a police.hu-ról. "
+                        "Köszönöm mindenkinek, aki megosztotta és figyelt! 🙏",
+    "korozott_szemelyek": "A rendőrség visszavonta ezt a körözést. Köszönöm a figyelmet!",
+}
+LEZARVA_JARMU = "A rendőrség visszavonta a jármű körözését. Köszönöm mindenkinek a megosztást! 🙏"
 
 # ---------------------------------------------------------------------
 # KÖRÖZÉSI KATEGÓRIÁK
@@ -87,12 +105,12 @@ KOROZES_KATEGORIAK = {
     "eltunt_szemelyek": {
         "label": "Eltűnt, ismeretlen helyen lévő személy",
         "list_path": "/hu/koral/eltunt-szemelyek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "korozott_szemelyek": {
         "label": "Elfogatóparancs alapján körözött személy",
         "list_path": "/hu/koral/elfogatoparancs-alapjan-korozott-szemelyek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "holttest_korozes": {
         "label": "Ismeretlen holttest/holttestrész körözés",
@@ -102,17 +120,17 @@ KOROZES_KATEGORIAK = {
     "jarmu_korozes": {
         "label": "Közúti jármű körözés",
         "list_path": "/hu/koral/kozutijarmu-korozesek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "legijarmu_korozes": {
         "label": "Légi jármű körözés",
         "list_path": "/hu/koral/legijarmu-korozesek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "vizijarmu_korozes": {
         "label": "Vízi jármű körözés",
         "list_path": "/hu/koral/vizijarmu-korozesek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
 }
 
@@ -123,52 +141,52 @@ HIREK_KATEGORIAK = {
     "legfrissebb": {
         "label": "Legfrissebb híreink",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "szervezeti_hirek": {
         "label": "Szervezeti hírek",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/szervezeti-hirek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "helyi_hirek": {
         "label": "Helyi hírek",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/helyi-hirek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "bunugyek": {
         "label": "Bűnügyek",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/bunugyek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "felhivasok": {
         "label": "Felhívások",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/felhivasok",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "dijkituzesek": {
         "label": "Díjkitűzések",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/dijkituzesek",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "kozrendvedelem": {
         "label": "Közrendvédelem",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/kozrendvedelem",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "kozlekedesrendeszet": {
         "label": "Közlekedésrendészet",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/kozlekedesrendeszet",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "igazgatasrendeszet": {
         "label": "Igazgatásrendészet",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/igazgatasrendeszet",
-        "facebook_post": False,
+        "facebook_post": True,
     },
     "hatarrendeszet": {
         "label": "Határrendészet",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/hatarrendeszet",
-        "facebook_post": False,
+        "facebook_post": True,
     },
 }
 
@@ -212,11 +230,33 @@ def korozes_reszlet_lekerdezese(detail_url):
         if kulcs:
             mezok[kulcs] = ertek
 
+    # Az adatlap szövege ma így néz ki: "Körözést elrendelő szerv" / ": SZERENCSI RK".
+    # Az üres ":" után több soros érték jöhet (Cím:, Tel:, E-mail:), ezt a
+    # következő címkéig összegyűjtjük.
+    for t in soup(["script", "style"]):
+        t.decompose()
+    sorok = [x.strip() for x in soup.get_text("\n").split("\n") if x.strip()]
+    for i in range(len(sorok) - 1):
+        if sorok[i].startswith(":") or not sorok[i + 1].startswith(":"):
+            continue
+        ertek = sorok[i + 1][1:].strip()
+        if not ertek:
+            tobb, j = [], i + 2
+            while j < len(sorok) and len(tobb) < 6 and not (j + 1 < len(sorok) and sorok[j + 1].startswith(":")):
+                tobb.append(sorok[j])
+                j += 1
+            ertek = " ".join(tobb)
+        mezok.setdefault(sorok[i], ertek)
+
     kep_meta = soup.find("meta", attrs={"property": "og:image"})
     kep_url = kep_meta["content"] if kep_meta and kep_meta.get("content") else ""
 
     h1 = soup.find("h1")
-    cim = h1.get_text(" ", strip=True) if h1 else ""
+    cim = mezok.get("Név") or (h1.get_text(" ", strip=True) if h1 else "")
+    if mezok.get("Jármű fajta") or mezok.get("Gyártmány"):   # jármű: "Motorkerékpár: EGYÉB GYÁRTMÁNY MX01"
+        tipus = " ".join(v for v in (mezok.get("Gyártmány"), mezok.get("Típusa")) if v)
+        fajta = mezok.get("Jármű fajta", "Jármű").capitalize()
+        cim = f"{fajta}: {tipus}" if tipus else fajta
 
     return {"cim": cim, "kep": kep_url, "mezok": mezok}
 
@@ -224,7 +264,7 @@ def korozes_reszlet_lekerdezese(detail_url):
 def korozes_szerv_egyezik(mezok):
     ellenorzendo_mezok = [
         v for k, v in mezok.items()
-        if "elrendelő szerv" in k.lower() or "eljáró szerv" in k.lower()
+        if "szerv" in k.lower() and "értesítési" not in k.lower() and "határozat" not in k.lower()
     ]
     szoveg = " ".join(ellenorzendo_mezok).upper()
     for szerv in KOROZES_SZERV_SZURO:
@@ -238,9 +278,24 @@ def korozes_szerv_egyezik(mezok):
 # =====================================================================
 
 def _hirek_foszelektor(soup):
-    """Eredeti, szigorú kinyerés: a cikkcímek h2/h3 elemekben lévő linkek."""
+    """A hírlista cikkei: <article> elemek, a címben linkkel, a bevezető a
+    .lead-text-ben. (Régi oldalszerkezet esetén h2/h3-as linkek.)"""
     cikkek = []
     seen_urls = set()
+    for art in soup.find_all("article"):
+        a = art.select_one('h1 a[href*="/hirek-es-informaciok/"], h2 a[href*="/hirek-es-informaciok/"], h3 a[href*="/hirek-es-informaciok/"]')
+        if not a:
+            continue
+        href = a.get("href", "")
+        if "?page=" in href or href in seen_urls:
+            continue
+        seen_urls.add(href)
+        lead = art.select_one(".lead-text")
+        teljes_url = href if href.startswith("http") else BASE_URL + href
+        cikkek.append({"url": teljes_url, "cim": a.get_text(" ", strip=True),
+                       "osszefoglalo": lead.get_text(" ", strip=True) if lead else ""})
+    if cikkek:
+        return cikkek
     for a in soup.select('h2 a[href*="/hirek-es-informaciok/"], h3 a[href*="/hirek-es-informaciok/"]'):
         href = a.get("href", "")
         if "?page=" in href or href in seen_urls:
@@ -325,7 +380,7 @@ def hirek_egyezik(cikk):
 # FACEBOOK POSZTOLÁS (Make.com webhookon keresztül)
 # =====================================================================
 
-def facebook_post(uzenet, kep_url=None):
+def facebook_post(uzenet, kep_url=None, post_id=None):
     """Szöveges posztot küld a Facebook Oldalra - nem közvetlenül a Meta
     Graph API-n keresztül, hanem egy Make.com automatizáción (Scenario)
     keresztül: ide küldünk egy egyszerű webhook-hívást a szöveggel, a
@@ -339,23 +394,109 @@ def facebook_post(uzenet, kep_url=None):
     make_webhook_url = os.environ.get("MAKE_WEBHOOK_URL", "")
     if not make_webhook_url:
         print("      ⚠️  Nincs beállítva MAKE_WEBHOOK_URL, Facebook-posztolás kihagyva.")
-        return False
+        return None
 
     teljes_uzenet = uzenet
     if kep_url:
         teljes_uzenet = f"{uzenet}\n\n{kep_url}"
 
+    adat = {"message": teljes_uzenet}
+    if post_id:
+        adat["post_id"] = post_id   # a Make ilyenkor a meglévő posztot írja át
     try:
-        resp = requests.post(make_webhook_url, json={"message": teljes_uzenet}, timeout=20)
+        resp = requests.post(make_webhook_url, json=adat, timeout=60)
         if resp.status_code == 200:
-            print("      ✅ Facebook poszt sikeres (Make.com-on keresztül).")
-            return True
+            print(f"      ✅ Facebook poszt {'javítva' if post_id else 'sikeres'} (Make.com-on keresztül).")
+            # A Make válaszában jön az új poszt azonosítója (a későbbi javításhoz)
+            try:
+                return resp.json().get("id") or True
+            except ValueError:
+                return True
         else:
             print(f"      ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
-            return False
+            return None
     except Exception as e:
         print(f"      ⚠️  Facebook poszt hiba: {e}")
-        return False
+        return None
+
+
+def _telefon(mezok):
+    for k, v in mezok.items():
+        if "értesítési" in k.lower():
+            m = re.search(r"Tel:\s*([0-9()\-/ ]{6,})", v)
+            if m:
+                return m.group(1).strip(" ;")
+    return ""
+
+
+JOGALAP = "Körözés jogalapja, bűncselekmény megnevezése, minősítése"
+
+
+def korozes_poszt_szoveg(kulcs, kat, reszlet, szerv, url):
+    """A körözés Facebook-szövege, E/1-ben."""
+    st = Stilus("korozes")
+    m = reszlet["mezok"]
+    tel = _telefon(m)
+    hivd = f"☎️ Ha bármit tudsz, hívd a 112-t vagy a kapitányságot: {tel}" if tel else "☎️ Ha bármit tudsz, hívd a 112-t!"
+    if kulcs == "korozott_szemelyek":
+        # Adatvédelem: se név, se fénykép, és a link is csak a körözési LISTÁRA
+        # mutat, mert az adatlap linkjének előnézete a fotót és a nevet is mutatná.
+        sorok = [st.cim, st.bevezeto, "",
+                 f"🚨 Új elfogatóparancs a környéken ({szerv}).",
+                 f"⚖️ {m[JOGALAP]}" if m.get(JOGALAP) else None,
+                 "",
+                 "A nevet és a fényképet adatvédelmi okból itt nem teszem közzé, a hivatalos körözési lista itt érhető el:",
+                 BASE_URL + kat["list_path"]]
+    elif kulcs == "eltunt_szemelyek":
+        szul = m.get("Születési dátum", "")[:4]
+        sorok = [st.cim, st.bevezeto, "",
+                 f"👤 {reszlet['cim']}" + (f" (született {szul})" if szul else ""),
+                 f"📅 Eltűnés napja: {m['Eltűnés dátuma']}" if m.get("Eltűnés dátuma") else None,
+                 f"🚔 {szerv}", hivd, "",
+                 f"📸 A fénykép és minden részlet: {url}"]
+    elif "jarmu" in kulcs:
+        sorok = [st.cim, st.bevezeto, "",
+                 f"🚗 {reszlet['cim']}",
+                 f"🎨 Szín: {m['Szín'].lower()}" if m.get("Szín") else None,
+                 f"🔢 Rendszám: {m['Rendszám']}" if m.get("Rendszám") else None,
+                 f"📅 Eltulajdonítás: {m['Eltűnés/eltulajdonítás dátuma']}" if m.get("Eltűnés/eltulajdonítás dátuma") else None,
+                 f"🚔 {szerv}", hivd, "", f"🔗 Részletek: {url}"]
+    else:
+        sorok = [st.cim, st.bevezeto, "", reszlet["cim"], f"{kat['label']} · {szerv}", "", url]
+    if st.zaro:
+        sorok += ["", st.zaro]
+    return "\n".join(sor for sor in sorok if sor is not None)
+
+
+def lezart_poszt_szoveg(tipus):
+    szoveg = LEZARVA_SZOVEG.get(tipus, LEZARVA_JARMU)
+    return f"✅ FRISSÍTÉS – LEZÁRVA\n\n{szoveg}\n\n#Csepel #Pesterzsébet #Soroksár #Szigetszentmiklós"
+
+
+def lezart_posztok_javitasa(cache):
+    """A kiposztolt körözések adatlapját újra megnézi; ha a police.hu már
+    "Az oldal nem található" (404) választ ad, a posztot átírja."""
+    posztok = cache.setdefault("fb_posztok", {})
+    most = datetime.now(timezone.utc)
+    for url, info in list(posztok.items()):
+        try:
+            if most - datetime.fromisoformat(info["datum"]) > timedelta(days=KOVETES_NAP):
+                del posztok[url]
+                continue
+            resp = requests.get(url, headers=HEADERS, timeout=20)
+        except Exception as e:
+            print(f"   ⚠️  Követés-hiba ({url}): {e}")
+            continue
+        if resp.status_code != 404:
+            info["hiany"] = 0
+            continue
+        info["hiany"] = info.get("hiany", 0) + 1
+        if info["hiany"] < LEZARAS_404_SZAM:
+            continue
+        print(f"   ✅ Lekerült a police.hu-ról, poszt javítása: {url}")
+        if not MAKE_WEBHOOK_AKTIV or facebook_post(lezart_poszt_szoveg(info["tipus"]), post_id=info["post_id"]):
+            del posztok[url]
+        time.sleep(1)
 
 
 # =====================================================================
@@ -472,19 +613,8 @@ def main():
             # a teljes, hivatalos közlemény). Minden más kategóriánál (eltűnt
             # személy, jármű-/légi-/vízijármű-körözés, holttest) ez a
             # korlátozás nem indokolt, ott a korábbi, teljes tartalom marad.
-            st = Stilus("korozes")
-            if kulcs == "korozott_szemelyek":
-                fb_szoveg = (
-                    f"{st.cim}\n{st.bevezeto}\n\n"
-                    f"Új körözés: {kat['label']}\n\n"
-                    f"Egyező szerv: {egyezo_szerv}\n\n"
-                    f"A nevet és a fényképet adatvédelmi okból itt nem teszem közzé - "
-                    f"a teljes hivatalos közlemény bejelentkezés nélkül elérhető:\n{elem['url']}"
-                )
-                fb_kep = None
-            else:
-                fb_szoveg = f"{st.cim}\n{st.bevezeto}\n\n{reszlet['cim']}\n\n{kat['label']} · {egyezo_szerv}\n\n{elem['url']}"
-                fb_kep = reszlet["kep"]
+            fb_szoveg = korozes_poszt_szoveg(kulcs, kat, reszlet, egyezo_szerv, elem["url"])
+            fb_kep = None   # az eltűnt személy fotója a police.hu-link előnézetében jelenik meg
 
             talalt_ertesitesek.append({
                 "tema": f"[Körözés] {reszlet['cim']}",
@@ -493,6 +623,7 @@ def main():
                 "fb_szoveg": fb_szoveg,
                 "fb_kep": fb_kep,
                 "facebook_post": kat["facebook_post"],
+                "kovetes": {"url": elem["url"], "tipus": kulcs},
             })
 
     ertesitett_hir_urlk = set()    # ugyanaz a cikk több kategóriában is szerepelhet - csak egyszer értesítünk róla
@@ -574,6 +705,10 @@ def main():
             riasztas_kell = True
             egeszseg["utolso_riasztas"] = datetime.now(timezone.utc).isoformat()
 
+    if cache.get("fb_posztok"):
+        print("🔍 Kiposztolt körözések ellenőrzése...")
+        lezart_posztok_javitasa(cache)
+
     gyorsitotar_mentese(cache)
 
     smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
@@ -625,9 +760,16 @@ def main():
             print("   ⚠️  Nincs beállítva SMTP - email kihagyva.")
 
         if MAKE_WEBHOOK_AKTIV and ertesites["facebook_post"]:
-            facebook_post(ertesites["fb_szoveg"], ertesites["fb_kep"])
+            post_id = facebook_post(ertesites["fb_szoveg"], ertesites["fb_kep"])
+            if isinstance(post_id, str) and ertesites.get("kovetes"):
+                k = ertesites["kovetes"]
+                cache.setdefault("fb_posztok", {})[k["url"]] = {
+                    "post_id": post_id, "tipus": k["tipus"],
+                    "datum": datetime.now(timezone.utc).isoformat(), "hiany": 0}
 
         time.sleep(1)
+
+    gyorsitotar_mentese(cache)
 
 
 if __name__ == "__main__":
