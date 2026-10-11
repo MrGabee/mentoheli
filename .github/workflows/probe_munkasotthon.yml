@@ -6,10 +6,7 @@ jobs:
   p:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: |
-          for u in "https://www.munkasotthon.hu/" "https://munkasotthon.hu/wp-json/" "https://www.munkasotthon.hu/wp-json/tribe/events/v1/events?per_page=3" "https://www.munkasotthon.hu/feed/" "https://www.munkasotthon.hu/programok/" "https://www.munkasotthon.hu/esemenyek/"; do
-            echo "=================== $u"
-            curl -sSL -m 20 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} %{content_type} %{url_effective}\n" "$u" || true
-            head -c 2500 /tmp/o | tr '\n' ' ' | sed 's/  */ /g'; echo
-            grep -oE 'href="[^"]*(program|esemeny|event|naptar|feed|musor)[^"]*"' /tmp/o | sort -u | head -30
-          done
+          curl -sSL -m 30 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} %{content_type} size %{size_download}\n" "https://www.programturizmus.hu/partner-csepeli-munkasotthon-muvelodesi-haz.html"
+          python3 probe/p.py
