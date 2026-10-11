@@ -103,6 +103,12 @@ CIMEK = {
         "🤔 KÍVÁNCSI VAGYOK… 🤔",
         "❓ MAI KÉRDÉSEM ❓",
     ],
+    "allasok": [
+        "💼 ÚJ ÁLLÁSOK A KÖRNYÉKEN 💼",
+        "🔎 MUNKÁT KERESEL? 🔎",
+        "💼 HETI ÁLLÁSAJÁNLÓ 💼",
+        "🛠️ FRISS ÁLLÁSHIRDETÉSEK CSEPELEN 🛠️",
+    ],
     "veradas": [
         "🩸 VÉRADÁS A KÖRNYÉKEN 🩸",
         "❤️ ADJ VÉRT, ÉLETET MENTESZ! ❤️",
@@ -219,6 +225,12 @@ BEVEZETOK = {
         "Kíváncsi vagyok a véleményetekre:",
         "Beszélgessünk egy kicsit, érdekel, mit gondoltok:",
         "Egy gyors kérdés a mai napra:",
+    ],
+    "allasok": [
+        "Összegyűjtöttem a héten megjelent csepeli álláshirdetéseket 👇",
+        "Ha te vagy valaki az ismerősi körödből munkát keres, ezeket nézd meg:",
+        "Átnéztem az állásoldalakat, ezek az új hirdetések a környéken:",
+        "Friss munkalehetőségek a közelben, hátha valakinek pont ez kell:",
     ],
     "veradas": [
         "Összeszedtem, hol adhattok vért a héten a környéken 👇",
