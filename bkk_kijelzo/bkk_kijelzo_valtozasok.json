@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-11T02:28:01.925201+02:00",
+  "frissitve": "2026-10-11T02:28:30.354405+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:45:02.113221+02:00",
-      "kulcs": "V2218",
-      "rendszam": "V2218",
-      "vehicle_id": "5858",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.548248291015625,
-      "lon": 19.02899932861328,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-10T12:45:02.113587+02:00",
-      "kulcs": "T8016",
-      "rendszam": "T8016",
-      "vehicle_id": "6136",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.506900787353516,
-      "lon": 19.051860809326172,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-10T12:45:02.113620+02:00",
-      "kulcs": "T8019",
-      "rendszam": "T8019",
-      "vehicle_id": "6139",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52482604980469,
-      "lon": 19.124858856201172,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-10T12:45:02.113635+02:00",
-      "kulcs": "T9002",
-      "rendszam": "T9002",
-      "vehicle_id": "6141",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.503990173339844,
-      "lon": 19.13681411743164,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-10T12:45:02.113850+02:00",
       "kulcs": "NCV300",
@@ -260000,6 +259948,58 @@
       "lon": 19.11956787109375,
       "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
       "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-10-11T02:28:30.269997+02:00",
+      "kulcs": "PDB714",
+      "rendszam": "PDB714",
+      "vehicle_id": "7040",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.526390075683594,
+      "lon": 19.03809356689453,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-11T02:28:30.270081+02:00",
+      "kulcs": "PDB379",
+      "rendszam": "PDB379",
+      "vehicle_id": "7061",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51533508300781,
+      "lon": 19.031848907470703,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-11T02:28:30.270310+02:00",
+      "kulcs": "SKN826",
+      "rendszam": "SKN826",
+      "vehicle_id": "7858",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5074577331543,
+      "lon": 19.025156021118164,
+      "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-11T02:28:30.270577+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.475860595703125,
+      "lon": 19.04706573486328,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
