@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:34:33.591036+02:00",
+  "frissitve": "2026-10-11T03:35:02.530577+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.010780+02:00",
-      "kulcs": "PDN617",
-      "rendszam": "PDN617",
-      "vehicle_id": "7088",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.4160041809082,
-      "lon": 19.07904815673828,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.010845+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.39853286743164,
-      "lon": 19.10624885559082,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.010865+02:00",
-      "kulcs": "PDN623",
-      "rendszam": "PDN623",
-      "vehicle_id": "7094",
-      "vehicle_label": "Csepel, Soroksári rév",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.45759963989258,
-      "lon": 19.145139694213867,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Csepel, Soroksári rév"
-    },
     {
       "idopont": "2026-10-10T13:02:30.010913+02:00",
       "kulcs": "PDN626",
@@ -260000,6 +259961,45 @@
       "lon": 19.025028228759766,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-11T03:35:02.450003+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Telki-Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.53750228881836,
+      "lon": 18.843626022338867,
+      "elozo_szoveg": "Telki ► Zsámbék",
+      "uj_szoveg": "Zsámbék"
+    },
+    {
+      "idopont": "2026-10-11T03:35:02.450959+02:00",
+      "kulcs": "V2261",
+      "rendszam": "V2261",
+      "vehicle_id": "559",
+      "vehicle_label": "Mexikói út M",
+      "vonal_szam": "3",
+      "route_id": "3030",
+      "lat": 47.45646286010742,
+      "lon": 19.11406707763672,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Mexikói út M"
+    },
+    {
+      "idopont": "2026-10-11T03:35:02.451236+02:00",
+      "kulcs": "PDN639",
+      "rendszam": "PDN639",
+      "vehicle_id": "7110",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.479583740234375,
+      "lon": 19.067285537719727,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
     }
   ]
 }
