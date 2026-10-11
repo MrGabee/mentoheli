@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T00:03:15.874202+02:00",
+  "frissitve": "2026-10-12T00:03:55.012655+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:15:03.682769+02:00",
-      "kulcs": "V1590",
-      "rendszam": "V1590",
-      "vehicle_id": "4642",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.46474075317383,
-      "lon": 19.12627601623535,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-10-11T12:15:03.683043+02:00",
-      "kulcs": "V4220",
-      "rendszam": "V4220",
-      "vehicle_id": "4880",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.51511764526367,
-      "lon": 19.0373592376709,
-      "elozo_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Kamaraerdei Ifjúsági Park"
-    },
-    {
-      "idopont": "2026-10-11T12:15:03.683733+02:00",
-      "kulcs": "V2108",
-      "rendszam": "V2108",
-      "vehicle_id": "5836",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.463985443115234,
-      "lon": 19.023231506347656,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-11T12:15:03.683861+02:00",
       "kulcs": "V2216",
@@ -260000,6 +259961,45 @@
       "lon": 19.186185836791992,
       "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
       "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
+    },
+    {
+      "idopont": "2026-10-12T00:03:54.906635+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.568023681640625,
+      "lon": 19.026227951049805,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-12T00:03:54.906710+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46474075317383,
+      "lon": 19.127756118774414,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-12T00:03:54.906739+02:00",
+      "kulcs": "FLR747",
+      "rendszam": "FLR747",
+      "vehicle_id": "3161",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.461124420166016,
+      "lon": 19.136341094970703,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
     }
   ]
 }
