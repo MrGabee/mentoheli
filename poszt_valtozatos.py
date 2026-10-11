@@ -109,6 +109,11 @@ CIMEK = {
         "🩸 HETI VÉRADÁSOK A KÖZELBEN 🩸",
         "💉 ITT ADHATSZ VÉRT A HÉTEN 💉",
     ],
+    "veradas_emlekezteto": [
+        "⏰ HOLNAP VÉRADÁS A KÖZELBEN ⏰",
+        "🔔 EMLÉKEZTETŐ – HOLNAP VÉRADÁS 🔔",
+        "🩸 NE FELEDD: HOLNAP ADHATSZ VÉRT 🩸",
+    ],
     "esti_idojaras": [
         "🌙 HOLNAPI IDŐJÁRÁS 🌙",
         "🌤️ MILYEN IDŐ LESZ HOLNAP? 🌤️",
@@ -220,6 +225,11 @@ BEVEZETOK = {
         "Ha a héten van egy szabad órád, ezeken a helyeken életet menthetsz:",
         "Megnéztem a Vérellátó naptárát, ezek a véradások lesznek a közelben:",
         "Kevés dologgal lehet ennyit segíteni. Itt adhattok vért a héten:",
+    ],
+    "veradas_emlekezteto": [
+        "Csak szólok, hogy holnap véradás lesz a környéken:",
+        "Ha holnap ráérsz, itt életet menthetsz, nem kell messzire menni:",
+        "Kis emlékeztető: holnap kitelepült véradás lesz a közelben 👇",
     ],
     "esti_idojaras": [
         "Megnéztem nektek, milyen időre ébredünk holnap:",

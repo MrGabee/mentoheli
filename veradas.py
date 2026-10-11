@@ -30,8 +30,9 @@ SUGAR_KM = 20
 CIM_MINTA = re.compile(r"^(12[01]\d|119\d|109\d)\s+Budapest|^2310\b|Szigetszentmikl[oó]s", re.I)
 
 # Az állandó véradóhelyek (pl. a Köves úti Délpesti Területi Vérellátó) minden
-# héten szerepelnek; True = csak akkor posztolunk, ha kitelepült véradás is van.
-CSAK_HA_VAN_KITELEPULT = True
+# héten szerepelnek; True = a heti poszt csak akkor megy, ha kitelepült véradás is van.
+# A kitelepült véradásokról előző este külön emlékeztető megy (emlekezteto_szoveg).
+CSAK_HA_VAN_KITELEPULT = False
 ALLANDO_MINTA = re.compile(r"Vérellátó|RVK", re.I)
 
 NAPOK = ["hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap"]
@@ -115,6 +116,32 @@ def heti_szoveg(hetfo, lista=None):
     sorok += ["📝 Időpontot foglalni (nem kötelező) és minden részletet itt találsz:", OLDAL, "",
               "❤️ Egy véradással akár három életet is megmenthetsz. Vigyél magaddal személyit, "
               "lakcímkártyát és TAJ-kártyát, és előtte egyél, igyál rendesen!"]
+    if st.zaro:
+        sorok += ["", st.zaro]
+    sorok.append("#véradás #Csepel #Pesterzsébet #Szigetszentmiklós")
+    return "\n".join(sorok)
+
+
+def emlekezteto_szoveg(ma, lista=None):
+    """Előző esti emlékeztető a holnapi kitelepült (nem állandó helyszínű) véradásokról.
+    None = a forrás hibás, "" = holnap nincs kitelepült véradás."""
+    if lista is None:
+        lista = esemenyek()
+        if lista is None:
+            return None
+    holnap = ma + timedelta(days=1)
+    holnapi = sorted((e for e in lista if e["nap"] == holnap and not ALLANDO_MINTA.search(e["hely"])),
+                     key=lambda e: e["kezd"])
+    if not holnapi:
+        return ""
+    st = Stilus("veradas_emlekezteto", ma.isoformat())
+    sorok = [st.cim, f"📅 Holnap, {holnap.strftime('%m.%d.')} ({NAPOK[holnap.weekday()]})", st.vonal(), "",
+             st.bevezeto, ""]
+    for e in holnapi:
+        sorok += [f"🏥 {e['hely']}", f"   📍 {e['cim']}",
+                  f"   🕒 {_rovid_ido(e['kezd'])}–{_rovid_ido(e['zar'])}", ""]
+    sorok += ["📝 Részletek és időpontfoglalás:", OLDAL, "",
+              "🪪 Vigyél személyit, lakcímkártyát és TAJ-kártyát, és előtte egyél, igyál rendesen!"]
     if st.zaro:
         sorok += ["", st.zaro]
     sorok.append("#véradás #Csepel #Pesterzsébet #Szigetszentmiklós")
