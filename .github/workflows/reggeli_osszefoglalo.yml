@@ -7,8 +7,7 @@ on:
     - cron: '0 5 * * *'
 
 concurrency:
-  # Közös csoport a riasztás-figyelővel, mert mindkettő írja az fb_kvota.json-t
-  group: fb-kvota
+  group: reggeli-osszefoglalo
   cancel-in-progress: false
 
 jobs:
@@ -16,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 4
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: 📥 Kód letöltése
@@ -35,17 +34,5 @@ jobs:
       - name: ☀️ Összefoglaló posztolása
         env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          FB_KVOTA_TOKEN:   ${{ secrets.PAT_TOKEN }}
         run: python reggeli_osszefoglalo.py
-
-      - name: 💾 Kvóta commitolása
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git stash
-          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
-          git stash pop || true
-          [ -f fb_kvota.json ] && git add fb_kvota.json || echo "fájl nem létezik"
-          git diff --staged --quiet || git commit -m "reggeli összefoglaló kvóta [skip ci]"
-          git push origin main || true
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

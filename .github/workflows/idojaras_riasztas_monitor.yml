@@ -8,8 +8,7 @@ on:
     - cron: '*/30 * * * *'
 
 concurrency:
-  # Közös csoport a reggeli összefoglalóval, mert mindkettő írja az fb_kvota.json-t
-  group: fb-kvota
+  group: idojaras-riasztas
   cancel-in-progress: false
 
 jobs:
@@ -36,6 +35,7 @@ jobs:
       - name: ⚠️ Riasztás monitor futtatása
         env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          FB_KVOTA_TOKEN:   ${{ secrets.PAT_TOKEN }}
         run: python idojaras_riasztas_monitor.py
 
       - name: 💾 Állapot commitolása
@@ -45,9 +45,7 @@ jobs:
           git stash
           git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
           git stash pop || true
-          for f in idojaras_riasztas_allapot.json fb_kvota.json; do
-            [ -f "$f" ] && git add "$f"
-          done
+          [ -f idojaras_riasztas_allapot.json ] && git add idojaras_riasztas_allapot.json || echo "fájl nem létezik"
           git diff --staged --quiet || git commit -m "időjárási riasztás állapot [skip ci]"
           git push origin main || true
         env:
