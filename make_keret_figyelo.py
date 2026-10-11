@@ -54,7 +54,8 @@ def ertekel(nev, o, most):
     szazalek = round(hasznalt * 100 / keret)
     szoveg = (f"{nev}: {hasznalt} / {keret} művelet ({szazalek}%), a hó végére várhatóan kb. {becsult}. "
               f"Újraindul: {vege.strftime('%Y.%m.%d.')}")
-    return szoveg, szazalek >= FIGYELMEZTETES_SZAZALEK or becsult > keret
+    # Az első napokban a becslés még nagyon bizonytalan, ezért csak 3 nap után számít
+    return szoveg, szazalek >= FIGYELMEZTETES_SZAZALEK or (eltelt >= 3 and becsult > keret)
 
 
 def email(tema, sorok):
