@@ -19,8 +19,8 @@ KATEGORIAK = [
     "Kategória:Szigetszentmiklós",
 ]
 
-# Ezek a szócikkek nem érdekességek (választókerület, listák stb.)
-KIZART = re.compile(r"választókerület|^Lista|listája|^Budapest X", re.I)
+# Ezek a szócikkek nem érdekességek (járatok, utak, választókerület, listák)
+KIZART = re.compile(r"busz\b|villamos|HÉV\b|mellékút|főút|vasútvonal|választókerület|^Lista|listája|^Budapest X", re.I)
 
 MAX_HOSSZ = 650
 

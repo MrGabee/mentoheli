@@ -53,7 +53,7 @@ def barba_negra_feldolgoz(oldal):
         lista.append({
             "cim":  cim,
             "nap":  nap,
-            "ido":  f"kapunyitás {ido.group(1)}" if ido else "",
+            "ido":  f"{ido.group(1)} kapunyitás" if ido else "",
             "hely": f"Barba Negra {szinpad}".strip(),
             "link": BARBA_ALAP + link.group(1),
         })
