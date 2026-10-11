@@ -1,0 +1,170 @@
+"""
+☀️ Reggeli összefoglaló – Csepel (XXI.) + Pesterzsébet (XX.) + Szigetszentmiklós
+Minden reggel egy Facebook poszt arról, ami aznap érinti a környéket:
+  ⚡ aznapi áramszünetek  (aramszunet_aktiv.json, az áramszünet-figyelő írja)
+  💧 vízhiányok           (vizmuvek.hu munkatérkép, élő lekérdezés)
+  ⚠️ időjárási riasztások (MeteoAlarm / HungaroMet)
+Ha aznap nincs semmi, nem posztol. Napi korlát: fb_kvota.py (1 poszt/nap).
+"""
+
+import os
+import json
+from datetime import datetime, timedelta, timezone
+
+# A vízműves modul betöltéskor e-mail beállításokat vár - itt nem
+# küldünk e-mailt, ezért üres alapértéket kap, ha nincs megadva.
+for _valtozo in ("EMAIL_KULDO", "EMAIL_JELSZO", "EMAIL_CIMZETT_ARAM"):
+    os.environ.setdefault(_valtozo, "")
+
+import fb_kvota
+import idojaras_riasztas_monitor as riasztas
+import vizmuvek_monitor as vizmuvek
+
+MAGYAR_TZ = timezone(timedelta(hours=2))
+
+def magyar_ido():
+    return datetime.now(MAGYAR_TZ)
+
+
+# ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
+FACEBOOK_POSZTOLAS_AKTIV = True
+
+FORRAS = "reggeli_osszefoglalo"
+ARAMSZUNET_FAJL = "aramszunet_aktiv.json"
+
+TERULET_SORREND = ["XXI. kerület (Csepel)", "XX. kerület (Pesterzsébet)", "Szigetszentmiklós"]
+
+
+# ════════════════════════════════════════════
+#  ⚡  ÁRAMSZÜNETEK MA
+# ════════════════════════════════════════════
+def mai_aramszunetek(ma):
+    try:
+        with open(ARAMSZUNET_FAJL, encoding="utf-8") as f:
+            esemenyek = json.load(f).get("esemenyek", [])
+    except Exception as ex:
+        print(f"  ⚠️ Áramszünet-fájl nem olvasható: {ex}")
+        return []
+    return [e for e in esemenyek if (e.get("kezdes") or "").startswith(ma)]
+
+def utca_nevek(esemeny, max_db=4):
+    """'Budapest XXI. Rakéta utca 10' → 'Rakéta utca', ismétlések nélkül."""
+    nevek = []
+    for cim in esemeny.get("utcak_lista") or []:
+        szavak = cim.split()
+        # Település és kerület levágása, házszám elhagyása
+        while szavak and (szavak[0] in ("Budapest", "Szigetszentmiklós") or szavak[0].endswith(".")):
+            szavak = szavak[1:]
+        while szavak and (any(ch.isdigit() for ch in szavak[-1]) or szavak[-1].startswith("/")):
+            szavak = szavak[:-1]
+        nev = " ".join(szavak)
+        if nev and nev not in nevek:
+            nevek.append(nev)
+    if len(nevek) > max_db:
+        return ", ".join(nevek[:max_db]) + f" és még {len(nevek) - max_db}"
+    return ", ".join(nevek)
+
+
+# ════════════════════════════════════════════
+#  💧  VÍZHIÁNYOK
+# ════════════════════════════════════════════
+def vizhianyok():
+    esetek = vizmuvek.lekerdez()
+    return [e for e in esetek if e["tipus"] in ("geo_0", "geo_1")]
+
+
+# ════════════════════════════════════════════
+#  ⚠️  RIASZTÁSOK MA
+# ════════════════════════════════════════════
+def mai_riasztasok(ma):
+    """Ami legkésőbb ma kezdődik és még érvényes (a lejártakat a lekérdezés kiszűri)."""
+    mai = []
+    for r in riasztas.lekerdez() or []:
+        kezdet = riasztas._ido(r["kezdet"])
+        if kezdet and kezdet.astimezone(MAGYAR_TZ).strftime("%Y-%m-%d") <= ma:
+            mai.append(r)
+    return mai
+
+
+# ════════════════════════════════════════════
+#  📘  POSZT SZÖVEG
+# ════════════════════════════════════════════
+def facebook_szoveg(aram, viz, idojaras):
+    sorok = [
+        "☀️ JÓ REGGELT, CSEPEL, PESTERZSÉBET, SZIGETSZENTMIKLÓS! ☀️",
+        f"📅 Mai helyzet – {magyar_ido().strftime('%Y.%m.%d.')}",
+        "═" * 32,
+        "",
+    ]
+
+    if idojaras:
+        sorok.append("⚠️ IDŐJÁRÁSI RIASZTÁS")
+        for r in sorted(idojaras, key=lambda x: -x["szint"]):
+            sjel, snev = riasztas.SZINT_NEV.get(r["szint"], ("⚠️", ""))
+            tjel, tnev = riasztas.TIPUS_NEV.get(r["tipus"], ("⚠️", r["esemeny"]))
+            sorok.append(f"{sjel} {r['terulet']}: {tjel} {tnev}, {riasztas.ido_szoveg(r['kezdet'])} – {riasztas.ido_szoveg(r['lejar'])}")
+        sorok.append("")
+
+    if aram:
+        sorok.append(f"⚡ ÁRAMSZÜNET MA ({len(aram)} db)")
+        for terulet in TERULET_SORREND:
+            for e in (x for x in aram if x.get("kerulet") == terulet):
+                tol = (e.get("kezdes") or "")[11:16]
+                ig  = (e.get("veg") or "")[11:16]
+                sorok.append(f"📍 {terulet}: {utca_nevek(e)} ({tol}–{ig})")
+        sorok.append("")
+
+    if viz:
+        sorok.append(f"💧 VÍZHIÁNY ({len(viz)} helyszín)")
+        for terulet in TERULET_SORREND:
+            helyek = [e for e in viz if e["terulet"] == terulet]
+            if not helyek:
+                continue
+            cimek = ", ".join(e["cim"] for e in helyek[:4])
+            if len(helyek) > 4:
+                cimek += f" és még {len(helyek) - 4}"
+            sorok.append(f"📍 {terulet}: {cimek}")
+        sorok.append("")
+
+    sorok += [
+        "ℹ️ Részletek a korábbi posztjainkban. Források: E.ON, Fővárosi Vízművek, HungaroMet",
+        "#Csepel #Pesterzsébet #Szigetszentmiklós #reggeli",
+    ]
+    return "\n".join(sorok)
+
+
+# ════════════════════════════════════════════
+#  ▶️  FŐPROGRAM
+# ════════════════════════════════════════════
+def main():
+    print(f"\n{'='*55}")
+    print(f"☀️ Reggeli összefoglaló – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
+    print(f"{'='*55}")
+
+    if fb_kvota.maradt(FORRAS) <= 0:
+        print("✅ A mai összefoglaló már kiment (vagy betelt a napi korlát).")
+        return
+
+    ma = magyar_ido().strftime("%Y-%m-%d")
+    aram     = mai_aramszunetek(ma)
+    viz      = vizhianyok()
+    idojaras = mai_riasztasok(ma)
+    print(f"⚡ {len(aram)}  💧 {len(viz)}  ⚠️ {len(idojaras)}")
+
+    if not (aram or viz or idojaras):
+        print("✅ Ma nincs semmi a környéken - nincs poszt.")
+        return
+
+    szoveg = facebook_szoveg(aram, viz, idojaras)
+    print("\n" + szoveg + "\n")
+
+    if not FACEBOOK_POSZTOLAS_AKTIV:
+        print("ℹ️ Facebook-posztolás kikapcsolva.")
+        return
+    if riasztas.facebook_poszt_kuldese(szoveg):
+        fb_kvota.elhasznal(FORRAS)
+    print("✅ Kész.\n")
+
+
+if __name__ == "__main__":
+    main()

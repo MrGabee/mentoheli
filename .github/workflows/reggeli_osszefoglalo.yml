@@ -1,0 +1,51 @@
+name: ☀️ Reggeli Összefoglaló
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 05:00 UTC = 07:00 nyári időben, 06:00 téli időben
+    - cron: '0 5 * * *'
+
+concurrency:
+  # Közös csoport a riasztás-figyelővel, mert mindkettő írja az fb_kvota.json-t
+  group: fb-kvota
+  cancel-in-progress: false
+
+jobs:
+  osszefoglalo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests beautifulsoup4
+
+      - name: ☀️ Összefoglaló posztolása
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        run: python reggeli_osszefoglalo.py
+
+      - name: 💾 Kvóta commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
+          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
+          git stash pop || true
+          [ -f fb_kvota.json ] && git add fb_kvota.json || echo "fájl nem létezik"
+          git diff --staged --quiet || git commit -m "reggeli összefoglaló kvóta [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
