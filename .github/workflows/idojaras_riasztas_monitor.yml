@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Félóránként néz rá a HungaroMet riasztásaira (MeteoAlarm feed).
-    # Csak új vagy emelkedett szintű riasztásnál posztol, napi max. 3-at.
+    # Csak új vagy emelkedett szintű riasztásnál posztol.
     - cron: '*/30 * * * *'
 
 concurrency:
@@ -35,7 +35,6 @@ jobs:
       - name: ⚠️ Riasztás monitor futtatása
         env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
-          FB_KVOTA_TOKEN:   ${{ secrets.PAT_TOKEN }}
         run: python idojaras_riasztas_monitor.py
 
       - name: 💾 Állapot commitolása

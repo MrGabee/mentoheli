@@ -34,5 +34,4 @@ jobs:
       - name: ☀️ Összefoglaló posztolása
         env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
-          FB_KVOTA_TOKEN:   ${{ secrets.PAT_TOKEN }}
         run: python reggeli_osszefoglalo.py

@@ -43,7 +43,6 @@ jobs:
           # vízművek-monitornál - egyetlen Make.com webhook URL-t kell
           # csak beállítani a repóban, ami mindhárom monitorhoz elég.
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
-          FB_KVOTA_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: python korozes/police_figyelo.py
 
       - name: 💾 Adat commitolása (önjavító)

@@ -9,8 +9,6 @@ import json
 import hashlib
 import smtplib
 import requests
-
-import fb_kvota
 from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -462,15 +460,12 @@ def facebook_poszt_kuldese(szoveg):
     if not MAKE_WEBHOOK_URL:
         print("  ⚠️  Nincs beállítva MAKE_WEBHOOK_URL - Facebook-posztolás kihagyva.")
         return False
-    if not fb_kvota.posztolhat("aramszunet"):
-        return False
 
     try:
         resp = requests.post(MAKE_WEBHOOK_URL, json={"message": szoveg}, timeout=20)
 
         if resp.status_code == 200:
             print("  ✅ Facebook poszt elküldve (Make.com-on keresztül).")
-            fb_kvota.elhasznal("aramszunet")
             return True
         else:
             print(f"  ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")

@@ -27,12 +27,7 @@ import os
 import re
 import json
 import time
-import sys
 import requests
-
-# A közös posztkorlát (fb_kvota.py) a repó gyökerében van
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-import fb_kvota  # noqa: E402
 from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
 
@@ -340,8 +335,6 @@ def facebook_post(uzenet, kep_url=None):
     if not make_webhook_url:
         print("      ⚠️  Nincs beállítva MAKE_WEBHOOK_URL, Facebook-posztolás kihagyva.")
         return False
-    if not fb_kvota.posztolhat("police"):
-        return False
 
     teljes_uzenet = uzenet
     if kep_url:
@@ -351,7 +344,6 @@ def facebook_post(uzenet, kep_url=None):
         resp = requests.post(make_webhook_url, json={"message": teljes_uzenet}, timeout=20)
         if resp.status_code == 200:
             print("      ✅ Facebook poszt sikeres (Make.com-on keresztül).")
-            fb_kvota.elhasznal("police")
             return True
         else:
             print(f"      ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")

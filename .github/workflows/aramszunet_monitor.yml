@@ -34,7 +34,6 @@ jobs:
           EMAIL_JELSZO:       ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT_ARAM: ${{ secrets.EMAIL_CIMZETT_ARAM }}
           MAKE_WEBHOOK_URL:   ${{ secrets.MAKE_WEBHOOK_URL }}
-          FB_KVOTA_TOKEN:     ${{ secrets.PAT_TOKEN }}
         run: python aramszunet_monitor.py
       - name: 💾 Állapot commitolása
         if: always()

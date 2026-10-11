@@ -4,7 +4,7 @@ Minden reggel egy Facebook poszt arról, ami aznap érinti a környéket:
   ⚡ aznapi áramszünetek  (aramszunet_aktiv.json, az áramszünet-figyelő írja)
   💧 vízhiányok           (vizmuvek.hu munkatérkép, élő lekérdezés)
   ⚠️ időjárási riasztások (MeteoAlarm / HungaroMet)
-Ha aznap nincs semmi, nem posztol. Napi korlát: fb_kvota.py (1 poszt/nap).
+Ha aznap nincs semmi, nem posztol.
 """
 
 import os
@@ -16,7 +16,6 @@ from datetime import datetime, timedelta, timezone
 for _valtozo in ("EMAIL_KULDO", "EMAIL_JELSZO", "EMAIL_CIMZETT_ARAM"):
     os.environ.setdefault(_valtozo, "")
 
-import fb_kvota
 import idojaras_riasztas_monitor as riasztas
 import vizmuvek_monitor as vizmuvek
 
@@ -29,7 +28,6 @@ def magyar_ido():
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
 FACEBOOK_POSZTOLAS_AKTIV = True
 
-FORRAS = "reggeli_osszefoglalo"
 ARAMSZUNET_FAJL = "aramszunet_aktiv.json"
 
 TERULET_SORREND = ["XXI. kerület (Csepel)", "XX. kerület (Pesterzsébet)", "Szigetszentmiklós"]
@@ -141,10 +139,6 @@ def main():
     print(f"☀️ Reggeli összefoglaló – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*55}")
 
-    if fb_kvota.maradt(FORRAS) <= 0:
-        print("✅ A mai összefoglaló már kiment (vagy betelt a napi korlát).")
-        return
-
     ma = magyar_ido().strftime("%Y-%m-%d")
     aram     = mai_aramszunetek(ma)
     viz      = vizhianyok()
@@ -161,8 +155,7 @@ def main():
     if not FACEBOOK_POSZTOLAS_AKTIV:
         print("ℹ️ Facebook-posztolás kikapcsolva.")
         return
-    if riasztas.facebook_poszt_kuldese(szoveg):
-        fb_kvota.elhasznal(FORRAS)
+    riasztas.facebook_poszt_kuldese(szoveg)
     print("✅ Kész.\n")
 
 

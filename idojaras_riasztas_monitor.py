@@ -4,7 +4,6 @@ Adatforrás: MeteoAlarm Atom feed (a HungaroMet hivatalos veszélyjelzései)
 Szűrés: figyelt területek (Budapest, Pest megye), legalább sárga szint
 Értesítés: Facebook poszt (Mr.Gabee oldal, Make.com webhookon keresztül)
 Posztol, ha új riasztás jelenik meg, vagy egy meglévő szintje emelkedik.
-Napi korlát: fb_kvota.py (alapból max. 3 riasztás-poszt naponta).
 """
 
 import os
@@ -13,8 +12,6 @@ import re
 import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
-
-import fb_kvota
 
 # ─────────────────────────────────────────────
 #  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
@@ -34,7 +31,6 @@ FACEBOOK_POSZTOLAS_AKTIV = True
 
 FEED_URL    = "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-hungary"
 ALLAPOT_FAJL = "idojaras_riasztas_allapot.json"
-FORRAS      = "idojaras_riasztas"
 
 # Figyelt területek (a feed területnevei között keresi, pontos szóra).
 FIGYELT_TERULETEK = ["Budapest", "Pest"]
@@ -255,14 +251,7 @@ def main():
 
         if not FACEBOOK_POSZTOLAS_AKTIV:
             print("ℹ️ Facebook-posztolás kikapcsolva.")
-        elif fb_kvota.maradt(FORRAS) <= 0:
-            # Kvóta betelt: nem posztolunk, és nem is jegyezzük be,
-            # így ha holnap is érvényes, akkor kimegy.
-            print("⛔ Elérte a napi posztkorlátot - most nem posztol.")
-            return
-        elif facebook_poszt_kuldese(szoveg):
-            fb_kvota.elhasznal(FORRAS)
-        else:
+        elif not facebook_poszt_kuldese(szoveg):
             # Sikertelen küldés: a következő futás újra megpróbálja.
             return
 
