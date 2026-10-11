@@ -3,10 +3,11 @@ print = functools.partial(print, flush=True)
 class Lejart(Exception): pass
 def _alarm(*_): raise Lejart()
 signal.signal(signal.SIGALRM, _alarm)
+_eredeti = requests.get
 def get(url, **kw):
     signal.alarm(40)
     try:
-        return requests.get(url, headers=H, timeout=20, **kw)
+        return _eredeti(url, headers=H, timeout=20, **kw)
     finally:
         signal.alarm(0)
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
