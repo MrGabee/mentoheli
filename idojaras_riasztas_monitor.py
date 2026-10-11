@@ -13,6 +13,8 @@ import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 
+from poszt_valtozatos import Stilus
+
 # ─────────────────────────────────────────────
 #  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
 # ─────────────────────────────────────────────
@@ -190,11 +192,12 @@ def ido_szoveg(iso):
 def facebook_szoveg(riasztasok):
     legmagasabb = max(r["szint"] for r in riasztasok)
     jel, nev = SZINT_NEV.get(legmagasabb, ("⚠️", ""))
+    st = Stilus("idojaras")
 
     sorok = [
-        f"{jel} IDŐJÁRÁSI RIASZTÁS – {nev} FOKOZAT {jel}",
+        f"{jel} {st.cim} – {nev} FOKOZAT {jel}",
         f"🕐 {magyar_ido().strftime('%Y.%m.%d %H:%M')}",
-        "═" * 32,
+        st.vonal(),
         "",
     ]
 
@@ -207,8 +210,10 @@ def facebook_szoveg(riasztasok):
 
     sorok += [
         "ℹ️ Forrás: HungaroMet veszélyjelzés (met.hu)",
-        "#időjárás #riasztás #Csepel #Pesterzsébet #Szigetszentmiklós",
     ]
+    if st.zaro:
+        sorok.append(st.zaro)
+    sorok.append("#időjárás #riasztás #Csepel #Pesterzsébet #Szigetszentmiklós")
     return "\n".join(sorok)
 
 def facebook_poszt_kuldese(szoveg):

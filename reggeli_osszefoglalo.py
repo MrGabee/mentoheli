@@ -18,6 +18,7 @@ for _valtozo in ("EMAIL_KULDO", "EMAIL_JELSZO", "EMAIL_CIMZETT_ARAM"):
 
 import idojaras_riasztas_monitor as riasztas
 import vizmuvek_monitor as vizmuvek
+from poszt_valtozatos import Stilus
 
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
@@ -88,10 +89,11 @@ def mai_riasztasok(ma):
 #  📘  POSZT SZÖVEG
 # ════════════════════════════════════════════
 def facebook_szoveg(aram, viz, idojaras):
+    st = Stilus("reggeli")
     sorok = [
-        "☀️ JÓ REGGELT, CSEPEL, PESTERZSÉBET, SZIGETSZENTMIKLÓS! ☀️",
+        st.cim,
         f"📅 Mai helyzet – {magyar_ido().strftime('%Y.%m.%d.')}",
-        "═" * 32,
+        st.vonal(),
         "",
     ]
 
@@ -126,8 +128,10 @@ def facebook_szoveg(aram, viz, idojaras):
 
     sorok += [
         "ℹ️ Részletek a korábbi posztjainkban. Források: E.ON, Fővárosi Vízművek, HungaroMet",
-        "#Csepel #Pesterzsébet #Szigetszentmiklós #reggeli",
     ]
+    if st.zaro:
+        sorok.append(st.zaro)
+    sorok.append("#Csepel #Pesterzsébet #Szigetszentmiklós #reggeli")
     return "\n".join(sorok)
 
 
