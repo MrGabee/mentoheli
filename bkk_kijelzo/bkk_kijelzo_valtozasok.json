@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T00:28:58.836515+02:00",
+  "frissitve": "2026-10-12T00:29:27.324894+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:16:53.985602+02:00",
-      "kulcs": "V1359",
-      "rendszam": "V1359",
-      "vehicle_id": "4460",
-      "vehicle_label": "Széchenyi István tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.512916564941406,
-      "lon": 19.0477352142334,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Széchenyi István tér"
-    },
-    {
-      "idopont": "2026-10-11T12:16:53.985661+02:00",
-      "kulcs": "V1441",
-      "rendszam": "V1441",
-      "vehicle_id": "4511",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.50251007080078,
-      "lon": 19.039695739746094,
-      "elozo_szoveg": "Szent Gellért tér - Műegyetem M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-11T12:16:53.986121+02:00",
-      "kulcs": "V4238",
-      "rendszam": "V4238",
-      "vehicle_id": "4897",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.49589920043945,
-      "lon": 19.0728702545166,
-      "elozo_szoveg": "Izraelita temető",
-      "uj_szoveg": "Kőbányai út ► Új köztemető (Kozma utca)"
-    },
     {
       "idopont": "2026-10-11T12:16:53.987234+02:00",
       "kulcs": "AELD561",
@@ -260000,6 +259961,45 @@
       "lon": 19.12734031677246,
       "elozo_szoveg": "Kőbánya-Kispest M ► Határ út M",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-12T00:29:27.259600+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50693893432617,
+      "lon": 18.921632766723633,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-12T00:29:27.259972+02:00",
+      "kulcs": "NGC150",
+      "rendszam": "NGC150",
+      "vehicle_id": "6197",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.507415771484375,
+      "lon": 19.02556800842285,
+      "elozo_szoveg": "Zemplén Győző utca",
+      "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-12T00:29:27.260380+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.498538970947266,
+      "lon": 19.05475425720215,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
