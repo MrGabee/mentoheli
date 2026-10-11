@@ -1,15 +1,21 @@
-import requests, re
-ID="c904424062b8fed477daf383a5170f42b614517abf53b244308f5ed56618e0a5@group.calendar.google.com"
+import re, collections, requests
 H={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36","Accept-Language":"hu"}
-for u,p in [
- ("https://calendar.google.com/calendar/ical/%s/public/basic.ics"%ID,None),
- ("https://www.google.com/calendar/ical/%s/public/basic.ics"%ID,None),
- ("https://calendar.google.com/calendar/htmlembed",{"src":ID,"mode":"AGENDA","ctz":"Europe/Budapest"}),
- ("https://calendar.google.com/calendar/embed",{"src":ID,"mode":"AGENDA","ctz":"Europe/Budapest"}),
-]:
-    r=requests.get(u,params=p,headers=H,timeout=30); s=r.text
-    print("=====",r.url[:150],"HTTP",r.status_code,len(s))
-    if "BEGIN:VEVENT" in s: print(s[:3000]); continue
-    txt=" ".join(re.sub(r"<[^>]+>"," ",re.sub(r"<(script|style)[^>]*>.*?</\1>"," ",s,flags=re.S)).split())
-    print("TXT",txt[:2500])
-    i=s.find("event"); print("RAW",s[i:i+1500] if "htmlembed" in u else "")
+URLS=["https://www.mupa.hu/programok","https://www.mupa.hu/","https://www.mupa.hu/api/programs",
+"https://soroksariszinhaz.hu/","https://www.soroksariszinhaz.hu/","https://www.jegy.hu/venue/soroksari-szinhaz",
+"https://www.jegy.hu/search?q=soroks%C3%A1r","https://23.kerulet.ittlakunk.hu/civil/190530/tamogatokat-keres-soroksari-szinhaz",
+"https://www.soroksar.hu/","https://concertbudapest.hu/helyszin/mupa/"]
+for u in URLS:
+    print("=====",u)
+    try: r=requests.get(u,headers=H,timeout=25)
+    except Exception as e: print("ERR",str(e)[:150]); continue
+    s=r.text; print("HTTP",r.status_code,r.url,len(s),r.headers.get("content-type"))
+    t=re.search(r"<title>(.*?)</title>",s,re.S); print("TITLE",t and t.group(1).strip()[:120])
+    links=re.findall(r'href="([^"]+)"',s)
+    c=collections.Counter(re.sub(r'/[^/]+/?$','/*',l) for l in links); print(c.most_common(12))
+    ev=list(dict.fromkeys(l for l in links if re.search(r'program|esemeny|eloadas|szinhaz|venue|musor',l,re.I)))
+    print(len(ev),ev[:30])
+    for m in re.findall(r'<script[^>]*ld\+json[^>]*>(.*?)</script>',s,re.S)[:2]: print("LD",m.strip()[:800])
+    if "ittlakunk" in u:
+        txt=" ".join(re.sub(r"<[^>]+>"," ",re.sub(r"<(script|style)[^>]*>.*?</\1>"," ",s,flags=re.S)).split()); i=txt.find("Soroksári Színház"); print(txt[i:i+1500])
+    if "mupa.hu/programok" in u and ev:
+        i=s.find(ev[min(8,len(ev)-1)]); print("RAW",s[max(0,i-1500):i+1500])
