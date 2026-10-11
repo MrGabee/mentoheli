@@ -103,6 +103,12 @@ CIMEK = {
         "🤔 KÍVÁNCSI VAGYOK… 🤔",
         "❓ MAI KÉRDÉSEM ❓",
     ],
+    "veradas": [
+        "🩸 VÉRADÁS A KÖRNYÉKEN 🩸",
+        "❤️ ADJ VÉRT, ÉLETET MENTESZ! ❤️",
+        "🩸 HETI VÉRADÁSOK A KÖZELBEN 🩸",
+        "💉 ITT ADHATSZ VÉRT A HÉTEN 💉",
+    ],
     "esti_idojaras": [
         "🌙 HOLNAPI IDŐJÁRÁS 🌙",
         "🌤️ MILYEN IDŐ LESZ HOLNAP? 🌤️",
@@ -208,6 +214,12 @@ BEVEZETOK = {
         "Kíváncsi vagyok a véleményetekre:",
         "Beszélgessünk egy kicsit, érdekel, mit gondoltok:",
         "Egy gyors kérdés a mai napra:",
+    ],
+    "veradas": [
+        "Összeszedtem, hol adhattok vért a héten a környéken 👇",
+        "Ha a héten van egy szabad órád, ezeken a helyeken életet menthetsz:",
+        "Megnéztem a Vérellátó naptárát, ezek a véradások lesznek a közelben:",
+        "Kevés dologgal lehet ennyit segíteni. Itt adhattok vért a héten:",
     ],
     "esti_idojaras": [
         "Megnéztem nektek, milyen időre ébredünk holnap:",
