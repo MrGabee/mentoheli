@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-11T23:46:36.668591+02:00",
+  "frissitve": "2026-10-11T23:47:18.536693+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:10:05.514352+02:00",
-      "kulcs": "PDN618",
-      "rendszam": "PDN618",
-      "vehicle_id": "7089",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.388004302978516,
-      "lon": 19.102733612060547,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-11T12:10:05.514478+02:00",
-      "kulcs": "PDN636",
-      "rendszam": "PDN636",
-      "vehicle_id": "7107",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45478820800781,
-      "lon": 19.18159294128418,
-      "elozo_szoveg": "Pestszentlőrinc vasútáll.",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
-    {
-      "idopont": "2026-10-11T12:10:05.514577+02:00",
-      "kulcs": "PHG625",
-      "rendszam": "PHG625",
-      "vehicle_id": "7149",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.52003860473633,
-      "lon": 19.148237228393555,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
-    {
-      "idopont": "2026-10-11T12:10:05.515566+02:00",
-      "kulcs": "T9109",
-      "rendszam": "T9109",
-      "vehicle_id": "7356",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49464797973633,
-      "lon": 19.059661865234375,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-10-11T12:10:05.515863+02:00",
       "kulcs": "RVY612",
@@ -260000,6 +259948,58 @@
       "lon": 19.101179122924805,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-10-11T23:47:18.466891+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Solymári elágazás",
+      "vonal_szam": "257",
+      "route_id": "2570",
+      "lat": 47.54322052001953,
+      "lon": 18.96393394470215,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Solymári elágazás"
+    },
+    {
+      "idopont": "2026-10-11T23:47:18.468062+02:00",
+      "kulcs": "V2299",
+      "rendszam": "V2299",
+      "vehicle_id": "597",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "56A",
+      "route_id": "3561",
+      "lat": 47.47565841674805,
+      "lon": 19.046955108642578,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-11T23:47:18.468605+02:00",
+      "kulcs": "PKN617",
+      "rendszam": "PKN617",
+      "vehicle_id": "7206",
+      "vehicle_label": "R.csaba - Kőbánya-Kisp.M",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.47959518432617,
+      "lon": 19.255556106567383,
+      "elozo_szoveg": "Kucorgó tér ► Rákoscsaba",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-10-11T23:47:18.469285+02:00",
+      "kulcs": "AOFL240",
+      "rendszam": "AOFL240",
+      "vehicle_id": "828",
+      "vehicle_label": "Pince köz-Donát utca",
+      "vonal_szam": "243",
+      "route_id": "2430",
+      "lat": 47.59785461425781,
+      "lon": 19.053852081298828,
+      "elozo_szoveg": "Pince köz-Donát utca",
+      "uj_szoveg": "Pince köz ► Donát utca"
     }
   ]
 }
