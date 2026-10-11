@@ -1,18 +1,30 @@
-import sys, re, json, requests
+import sys, re, collections, time, requests
 sys.path.insert(0, ".")
-from korozes import police_figyelo as pf
+sys.path.insert(0, "probe")
+import pf_uj as pf
 from bs4 import BeautifulSoup
-d = json.load(open("korozes/data/police_figyelo.json"))
-for kulcs in ["eltunt_szemelyek", "jarmu_korozes", "korozott_szemelyek"]:
-    path = pf.KOROZES_KATEGORIAK[kulcs]["list_path"]
-    ids = d["korozes"][kulcs]
-    for i in [ids[0], ids[5], ids[len(ids)//3], ids[-30]]:
-        r = requests.get(pf.BASE_URL + path + "/" + i, headers=pf.HEADERS, timeout=20, allow_redirects=False)
-        s = BeautifulSoup(r.text, "html.parser")
-        print(kulcs, i, r.status_code, r.headers.get("location"), len(r.text), "Név:" in r.text, "elrendelő szerv" in r.text, (s.title.string if s.title else "")[:80])
-# kép a friss eltűnt adatlapon
-l = pf.korozes_lista_lekerdezese(pf.KOROZES_KATEGORIAK["eltunt_szemelyek"]["list_path"])
-r = requests.get(l[0]["url"], headers=pf.HEADERS, timeout=20)
-for m in re.finditer(r'<img[^>]+>', r.text):
-    if "koral" in m.group(0).lower() or "kep" in m.group(0).lower() or "photo" in m.group(0).lower(): print("IMG", m.group(0)[:300])
-print("OG", re.findall(r'<meta property="og:[^>]+>', r.text)[:6])
+for kulcs in ["eltunt_szemelyek", "korozott_szemelyek", "jarmu_korozes"]:
+    kat = pf.KOROZES_KATEGORIAK[kulcs]
+    lista = pf.korozes_lista_lekerdezese(kat["list_path"])
+    szervek = collections.Counter()
+    minta = None
+    for e in lista[:18]:
+        r = pf.korozes_reszlet_lekerdezese(e["url"])
+        sz = [v for k, v in r["mezok"].items() if "szerv" in k.lower() and "értesítési" not in k.lower()]
+        szervek[" | ".join(sz)[:80]] += 1
+        egy = pf.korozes_szerv_egyezik(r["mezok"])
+        if egy: print("  TALÁLAT", kulcs, r["cim"] if kulcs != "korozott_szemelyek" else "(név rejtve)", egy)
+        minta = minta or (r, e)
+        time.sleep(0.2)
+    print("==", kulcs, dict(szervek.most_common(8)))
+    r, e = minta
+    print("-- MINTA (szűrő nélkül, BUDAPESTI XXI. KER. RK-nak tettetve):")
+    print(pf.korozes_poszt_szoveg(kulcs, kat, r, "BUDAPESTI XXI. KER. RK", e["url"]))
+    print("-- LEZÁRT:"); print(pf.lezart_poszt_szoveg(kulcs)); print()
+for kulcs, kat in pf.HIREK_KATEGORIAK.items():
+    for page in ["", "?page=1"]:
+        resp = requests.get(pf.BASE_URL + kat["list_path"] + page, headers=pf.HEADERS, timeout=20)
+        cikkek = pf._hirek_foszelektor(BeautifulSoup(resp.text, "html.parser"))
+        if page == "": print("--", kulcs, len(cikkek), "cikk; első:", cikkek[0] if cikkek else None)
+        for c in cikkek:
+            if pf.hirek_egyezik(c): print("HÍR-TALÁLAT", kulcs, page, c["cim"], "|", c["osszefoglalo"][:100])
