@@ -8,5 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          curl -sSL -m 30 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} %{content_type} size %{size_download}\n" "https://www.programturizmus.hu/partner-csepeli-munkasotthon-muvelodesi-haz.html"
-          python3 probe/p.py
+          for u in partner-csepeli-munkasotthon-muvelodesi-haz ajanlat-barba-negra-blue-stage-programok ajanlat-barba-negra-red-stage-programok; do
+            echo "################################ $u"
+            curl -sSL -m 30 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} size %{size_download}\n" "https://www.programturizmus.hu/$u.html"
+            python3 probe/p.py
+          done
