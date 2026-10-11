@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-12T01:36:10.803617+02:00",
+  "frissitve": "2026-10-12T01:36:40.360347+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:25:58.523511+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Mechanikai Művek",
-      "vonal_szam": "87",
-      "route_id": "0870",
-      "lat": 47.46403121948242,
-      "lon": 19.01875114440918,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Mechanikai Művek"
-    },
-    {
-      "idopont": "2026-10-11T12:25:58.523550+02:00",
-      "kulcs": "T8113",
-      "rendszam": "T8113",
-      "vehicle_id": "7892",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.5250244140625,
-      "lon": 19.06296157836914,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-11T12:25:58.523807+02:00",
       "kulcs": "AOFL232",
@@ -260000,6 +259974,32 @@
       "lon": 19.151424407958984,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-12T01:36:40.275959+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49814224243164,
+      "lon": 19.02108383178711,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-12T01:36:40.276109+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53400802612305,
+      "lon": 19.082088470458984,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
