@@ -29,6 +29,11 @@ SUGAR_KM = 20
 # XX. (120x), XXI. (121x), XIX. (119x), IX. (109x) kerület, Szigetszentmiklós (2310)
 CIM_MINTA = re.compile(r"^(12[01]\d|119\d|109\d)\s+Budapest|^2310\b|Szigetszentmikl[oó]s", re.I)
 
+# Az állandó véradóhelyek (pl. a Köves úti Délpesti Területi Vérellátó) minden
+# héten szerepelnek; True = csak akkor posztolunk, ha kitelepült véradás is van.
+CSAK_HA_VAN_KITELEPULT = True
+ALLANDO_MINTA = re.compile(r"Vérellátó|RVK", re.I)
+
 NAPOK = ["hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap"]
 NAP_ROVID = ["H", "K", "Sze", "Cs", "P", "Szo", "V"]
 
@@ -88,6 +93,9 @@ def heti_szoveg(hetfo, lista=None):
     vasarnap = hetfo + timedelta(days=6)
     heti = sorted((e for e in lista if hetfo <= e["nap"] <= vasarnap), key=lambda e: (e["nap"], e["kezd"]))
     if not heti:
+        return ""
+    if CSAK_HA_VAN_KITELEPULT and all(ALLANDO_MINTA.search(e["hely"]) for e in heti):
+        print("  ℹ️ A héten csak az állandó véradóhely szerepel, nincs új véradás.")
         return ""
 
     helyek = {}
