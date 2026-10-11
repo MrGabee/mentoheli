@@ -1,35 +1,23 @@
-import sys, re, collections
+import sys, re, requests
 sys.path.insert(0, ".")
-sys.argv = ["x"]
 from korozes import police_figyelo as pf
-import time
-# 1) körözések: utolsó elemek szervei
+from bs4 import BeautifulSoup
 for kulcs in ["eltunt_szemelyek", "korozott_szemelyek", "jarmu_korozes"]:
-    kat = pf.KOROZES_KATEGORIAK[kulcs]
-    lista = pf.korozes_lista_lekerdezese(kat["list_path"])
-    print("==", kulcs, len(lista), "elem a listán")
-    szervek = collections.Counter()
-    for e in lista[:25]:
-        r = pf.korozes_reszlet_lekerdezese(e["url"])
-        sz = [v for k, v in r["mezok"].items() if "szerv" in k.lower()]
-        szervek[" | ".join(sz)[:90]] += 1
-        if pf.korozes_szerv_egyezik(r["mezok"]): print("  TALÁLAT", r["cim"], sz)
-        time.sleep(0.2)
-    for s, n in szervek.most_common(30): print("  ", n, s)
-    if lista: print("  mezők:", list(r["mezok"])[:15])
-# 2) hírek: tágabb minta
-TAG = re.compile(r"csepel|pesterzsébet|soroksár|szigetszentmikl|XX\.?\s*(KER|kerület)|XXI\.?\s*(KER|kerület)|XXIII\.?\s*(KER|kerület)|halásztelek|tököl|szigethalom", re.I)
-for kulcs, kat in pf.HIREK_KATEGORIAK.items():
-    for page in ["", "?page=1", "?page=2"]:
-        try:
-            import requests
-            from bs4 import BeautifulSoup
-            resp = requests.get(pf.BASE_URL + kat["list_path"] + page, headers=pf.HEADERS, timeout=20)
-            cikkek = pf._hirek_tartalek(BeautifulSoup(resp.text, "html.parser"))
-        except Exception as ex:
-            print(kulcs, ex); continue
-        for c in cikkek:
-            t = c["cim"] + " " + c["osszefoglalo"]
-            regi, uj = pf.hirek_egyezik(c), bool(TAG.search(t))
-            if regi or uj: print("HÍR", kulcs, page, "régi" if regi else "", "új" if uj else "", c["cim"][:100], c["url"])
-    print("--", kulcs, "kész; példa:", (cikkek[0]["cim"][:80], cikkek[0]["osszefoglalo"][:80]) if cikkek else None)
+    l = pf.korozes_lista_lekerdezese(pf.KOROZES_KATEGORIAK[kulcs]["list_path"])
+    e = l[0]
+    r = requests.get(e["url"], headers=pf.HEADERS, timeout=20)
+    print("=====", kulcs, e, r.status_code, len(r.text))
+    s = BeautifulSoup(r.text, "html.parser")
+    for t in s(["script", "style", "nav", "header", "footer"]): t.decompose()
+    main = s.find("main") or s.body
+    txt = re.sub(r"\n\s*\n+", "\n", main.get_text("\n", strip=True))
+    i = txt.find("szerv")
+    print(txt[:2500])
+    print("..SZERV..", txt[max(0,i-800):i+400] if i >= 0 else "NINCS 'szerv'")
+    m = re.search(r"szerv", r.text, re.I)
+    if m: print("RAW", r.text[m.start()-600:m.start()+400])
+# hírlista szerkezete
+r = requests.get(pf.BASE_URL + pf.HIREK_KATEGORIAK["felhivasok"]["list_path"], headers=pf.HEADERS, timeout=20)
+i = r.text.find("/felhivasok/")
+i = r.text.find("/felhivasok/", i + 1)
+print("=====HÍRLISTA RAW", r.text[i-1500:i+1500])
