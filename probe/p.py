@@ -1,28 +1,23 @@
 import re, requests
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
      "Accept-Language": "hu-HU,hu;q=0.9", "Accept": "text/html,application/xhtml+xml"}
-URLS = ["https://allas.csepel.hu/", "https://varosgazda.eu/",
-        "https://www.profession.hu/allasok/budapest/1,0,23,csepel",
-        "https://hu.indeed.com/jobs?q=&l=budapest+xxi.+ker%C3%BClet",
-        "https://allas.jofogas.hu/budapest/xxi-kerulet/allasajanlat"]
-for u in URLS:
-    print("=" * 30, u)
-    try:
-        r = requests.get(u, headers=H, timeout=30)
-    except Exception as e:
-        print("HIBA", e); continue
-    t = r.text
-    print("STATUS", r.status_code, len(t), r.url)
-    print("TITLE", re.findall(r"<title>(.*?)</title>", t, re.S)[:1])
-    print("LD+JSON", len(re.findall(r'application/ld\+json', t)), "JobPosting", t.count("JobPosting"), "__NEXT_DATA__", t.count("__NEXT_DATA__"))
-    links = re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', t, re.S)
-    seen = 0
-    for h, txt in links:
-        txt = " ".join(re.sub(r"<[^>]+>", " ", txt).split())
-        if len(txt) > 15 and any(k in h.lower() for k in ["allas", "job", "karrier", "hirdet", "munka", "pozic", "viewjob", "/rc/"]):
-            print("  L", h[:150], "|", txt[:90]); seen += 1
-            if seen >= 15: break
-    if "varosgazda" in u:
-        for h, txt in links:
-            if re.search(r"karrier|állás|allas|munka", h + txt, re.I):
-                print("  V", h, "|", " ".join(re.sub(r"<[^>]+>", " ", txt).split())[:80])
+def clean(t): return re.sub(r"\n\s*\n+", "\n", re.sub(r"<script.*?</script>|<style.*?</style>|<svg.*?</svg>", "", t, flags=re.S))
+t = requests.get("https://allas.csepel.hu/", headers=H, timeout=30).text
+i = t.find("profession.hu/allas/")
+print("### CSEPEL", clean(t[max(0, i-2500):i+2500]))
+t = requests.get("https://varosgazda.eu/2026/09/17/allaslehetosegek/", headers=H, timeout=30).text
+m = re.search(r'<div class="entry-content.*?</article>', t, re.S) or re.search(r"<article.*?</article>", t, re.S)
+print("### VAROSGAZDA", re.sub(r"[ \t]+", " ", re.sub(r"<[^>]+>", " ", clean(m.group(0) if m else t[:5000])))[:3000])
+t = requests.get("https://www.profession.hu/allasok/budapest/1,0,23,csepel", headers=H, timeout=30).text
+i = t.find("kiszallito-csepel-lang")
+print("### PROFESSION", clean(t[max(0, i-3000):i+3500]))
+ld = re.findall(r'<script type="application/ld\+json">(.*?)</script>', t, re.S)
+print("### PROF LD", [x[:600] for x in ld])
+t = requests.get("https://posta.hu/aktualitasok", headers=H, timeout=30)
+print("### POSTA", t.status_code, len(t.text), t.url)
+tt = t.text
+print(re.findall(r"<title>(.*?)</title>", tt, re.S)[:1], "NEXT", tt.count("__NEXT_DATA__"), "json", re.findall(r'(/[^"\']*(?:api|json)[^"\']*)', tt)[:10])
+for h, x in re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', tt, re.S)[:400]:
+    x = " ".join(re.sub(r"<[^>]+>", " ", x).split())
+    if "aktualit" in h and len(x) > 10:
+        print("  P", h, "|", x[:120])
