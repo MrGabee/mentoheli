@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T02:47:42.875208+02:00",
+  "frissitve": "2026-10-11T02:48:16.546829+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:48:24.148501+02:00",
-      "kulcs": "F0062",
-      "rendszam": "F0062",
-      "vehicle_id": "2999",
-      "vehicle_label": "Széchenyi-hegy",
-      "vonal_szam": "60",
-      "route_id": "3600",
-      "lat": 47.5080451965332,
-      "lon": 19.00821304321289,
-      "elozo_szoveg": "Városmajor",
-      "uj_szoveg": "Széchenyi-hegy, Gyermekvasút"
-    },
-    {
-      "idopont": "2026-10-10T12:48:24.148734+02:00",
-      "kulcs": "AAGL296",
-      "rendszam": "AAGL296",
-      "vehicle_id": "328",
-      "vehicle_label": "Diósd, Sashegyi út",
-      "vonal_szam": "113",
-      "route_id": "1130",
-      "lat": 47.405738830566406,
-      "lon": 19.013826370239258,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Diósd, Sashegyi út"
-    },
-    {
-      "idopont": "2026-10-10T12:48:24.148760+02:00",
-      "kulcs": "AAGL312",
-      "rendszam": "AAGL312",
-      "vehicle_id": "341",
-      "vehicle_label": "Törökbálint vasútállomás",
-      "vonal_szam": "173",
-      "route_id": "1730",
-      "lat": 47.46410369873047,
-      "lon": 19.01852035522461,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Nyár utca ► Törökbálint vasútállomás"
-    },
     {
       "idopont": "2026-10-10T12:48:24.148926+02:00",
       "kulcs": "AAHY821",
@@ -260000,6 +259961,45 @@
       "lon": 19.038352966308594,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-11T02:48:16.459380+02:00",
+      "kulcs": "PKN621",
+      "rendszam": "PKN621",
+      "vehicle_id": "7210",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.536556243896484,
+      "lon": 19.10694122314453,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-11T02:48:16.459430+02:00",
+      "kulcs": "T9105",
+      "rendszam": "T9105",
+      "vehicle_id": "7352",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50016784667969,
+      "lon": 19.10951805114746,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-11T02:48:16.459891+02:00",
+      "kulcs": "AOIM055",
+      "rendszam": "AOIM055",
+      "vehicle_id": "976",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47955322265625,
+      "lon": 19.05106544494629,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
