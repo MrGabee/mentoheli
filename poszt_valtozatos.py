@@ -10,9 +10,10 @@ A tartalom (címek, időpontok, linkek) nem változik.
 """
 
 import random
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
-MAGYAR_TZ = timezone(timedelta(hours=2))
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 CIMEK = {
     "vizmuvek": [

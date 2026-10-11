@@ -10,7 +10,8 @@ Minden nap posztol; ha nincs zavar, azt is megírja.
 
 import os
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, time, timezone
+from zoneinfo import ZoneInfo
 
 # A vízműves modul betöltéskor e-mail beállításokat vár - itt nem
 # küldünk e-mailt, ezért üres alapértéket kap, ha nincs megadva.
@@ -22,7 +23,11 @@ import vizmuvek_monitor as vizmuvek
 from poszt_valtozatos import Stilus
 from nevnap import nevnap
 
-MAGYAR_TZ = timezone(timedelta(hours=2))
+# Valódi budapesti időzóna, nyári/téli időszámítással
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
+
+# A poszt helyi idő szerint ekkor megy ki, egész évben
+KULDES_IDEJE = time(6, 30)
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
@@ -149,10 +154,26 @@ def facebook_szoveg(aram, viz, idojaras):
 # ════════════════════════════════════════════
 #  ▶️  FŐPROGRAM
 # ════════════════════════════════════════════
+def most_kell_futni(utemezes):
+    """A workflow két UTC-időpontban indul (04:30 és 05:30), mert a GitHub
+    nem ismeri az óraátállítást. Ez kiválasztja, melyik felel meg aznap
+    a helyi 6:30-nak: nyáron a 04:30 UTC, télen az 05:30 UTC.
+    Kézi indításnál (nincs ütemezés) mindig fut."""
+    if not utemezes:
+        return True
+    perc, ora = utemezes.split()[:2]
+    cel = datetime.combine(magyar_ido().date(), KULDES_IDEJE, MAGYAR_TZ).astimezone(timezone.utc)
+    return int(ora) == cel.hour and int(perc) == cel.minute
+
+
 def main():
     print(f"\n{'='*55}")
     print(f"☀️ Reggeli összefoglaló – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
     print(f"{'='*55}")
+
+    if not most_kell_futni(os.environ.get("UTEMEZES", "")):
+        print("⏭️ Ez az időpont most nem 6:30 helyi idő szerint (óraátállítás) - kihagyva.")
+        return
 
     ma = magyar_ido().strftime("%Y-%m-%d")
     aram     = mai_aramszunetek(ma)
