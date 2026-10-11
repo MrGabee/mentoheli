@@ -16,7 +16,7 @@ REGGELI_NAPOK = 7
 # Egy posztban legfeljebb ennyi program, hogy ne legyen túl hosszú
 MAX_PROGRAM = 10
 
-HELY_JEL = {"Csepeli Munkásotthon": "🏛️", "Barba Negra": "🎸", "Csili": "🎭", "Müpa": "🎻"}
+HELY_JEL = {"Csepeli Munkásotthon": "🏛️", "Barba Negra": "🎸", "Csili": "🎭", "Müpa": "🎻", "Fedák": "🎭"}
 
 
 def _jel(p):
@@ -60,7 +60,7 @@ def reggeli_szoveg(ma, lista=None):
     sorok.append("🎟️ Jegyek és részletek a linkeken. Jó szórakozást!")
     if st.zaro:
         sorok.append(st.zaro)
-    sorok.append("#Csepel #programajánló #BarbaNegra #Munkásotthon #Müpa")
+    sorok.append("#Csepel #Soroksár #programajánló #BarbaNegra #Munkásotthon #Müpa")
     return "\n".join(sorok)
 
 
