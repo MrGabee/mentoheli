@@ -8,8 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          for u in partner-csepeli-munkasotthon-muvelodesi-haz ajanlat-barba-negra-blue-stage-programok ajanlat-barba-negra-red-stage-programok; do
-            echo "################################ $u"
-            curl -sSL -m 30 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} size %{size_download}\n" "https://www.programturizmus.hu/$u.html"
-            python3 probe/p.py
-          done
+          curl -sSL -m 30 -A "Mozilla/5.0" -o /tmp/o -w "HTTP %{http_code} %{content_type} size %{size_download}\n" "https://www.barbanegra.hu/en/events"
+          python3 probe/p.py
+          grep -oE '(https?://[^"]*)?/(api|wp-json|_next|graphql)[^" ]*' /tmp/o | sort -u | head -20
+          grep -oE 'href="[^"]*event[^"]*"' /tmp/o | sort -u | head -20
+          for u in "https://www.barbanegra.hu/wp-json/tribe/events/v1/events?per_page=2" "https://www.barbanegra.hu/feed/"; do echo "== $u"; curl -sSL -m 20 -A "Mozilla/5.0" -w "\nHTTP %{http_code} %{content_type}\n" "$u" | head -c 1500; echo; done
