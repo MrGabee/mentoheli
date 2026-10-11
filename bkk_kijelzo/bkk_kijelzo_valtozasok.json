@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:39:13.727925+02:00",
+  "frissitve": "2026-10-11T03:39:46.465032+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.011848+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489723205566406,
-      "lon": 19.089736938476562,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.011908+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.517295837402344,
-      "lon": 19.05488395690918,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.011927+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.49989318847656,
-      "lon": 19.083518981933594,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.011950+02:00",
-      "kulcs": "T9107",
-      "rendszam": "T9107",
-      "vehicle_id": "7354",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.5070686340332,
-      "lon": 19.071882247924805,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
     {
       "idopont": "2026-10-10T13:02:30.012040+02:00",
       "kulcs": "V2115",
@@ -260000,6 +259948,58 @@
       "lon": 19.15015983581543,
       "elozo_szoveg": "Vác",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-11T03:39:46.406930+02:00",
+      "kulcs": "SKN831",
+      "rendszam": "SKN831",
+      "vehicle_id": "164",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50168228149414,
+      "lon": 19.135616302490234,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-11T03:39:46.407025+02:00",
+      "kulcs": "AADR711",
+      "rendszam": "AADR711",
+      "vehicle_id": "179",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.422607421875,
+      "lon": 19.080520629882812,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-11T03:39:46.407123+02:00",
+      "kulcs": "V2021",
+      "rendszam": "V2021",
+      "vehicle_id": "2021",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.49347686767578,
+      "lon": 19.109024047851562,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-11T03:39:46.408883+02:00",
+      "kulcs": "PKN621",
+      "rendszam": "PKN621",
+      "vehicle_id": "7210",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.49781036376953,
+      "lon": 19.01943588256836,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M"
     }
   ]
 }
