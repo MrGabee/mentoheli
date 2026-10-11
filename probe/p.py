@@ -1,8 +1,11 @@
-import re, requests
-H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124", "Accept-Language": "hu",
-     "X-Requested-With": "XMLHttpRequest", "Referer": "https://www.ovsz.hu/hu/ver/veradasok"}
-u = "https://www.ovsz.hu/sites/all/scripts/gps2020/esemenyek-table.php"
-r = requests.post(u, headers=H, timeout=40, data={"latitude_percent": 1.0 - 0.5835, "longitude_percent": 0.4457,
-                                                   "kereses_radius": 10, "idopontfoglalas": "off"})
-print("STATUS", r.status_code, len(r.text))
-print(r.text[:9000])
+import subprocess, sys
+subprocess.run("git fetch -q --depth=1 origin claude/project-thread-oeicnh && git checkout FETCH_HEAD -- veradas.py poszt_valtozatos.py", shell=True, check=True)
+sys.path.insert(0, ".")
+from datetime import date
+import veradas
+l = veradas.esemenyek()
+for e in l:
+    print(" ", e)
+for h in [date(2026, 10, 12), date(2026, 10, 19)]:
+    print("=" * 40, h)
+    print(veradas.heti_szoveg(h, l))
