@@ -1,16 +1,13 @@
-import re, requests, json
+import re, requests
 H={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36","Accept-Language":"hu"}
-def g(u,**k):
-    r=requests.get(u,headers=H,timeout=30,**k); print("=====",r.url[:140],"HTTP",r.status_code,len(r.text)); return r.text
-s=g("https://mupa.hu/programok/naptar")
-ls=list(dict.fromkeys(re.findall(r'href="(https://mupa.hu/program/[^"]+)"',s))); print(len(ls),ls[:5])
-if ls:
-    i=s.find(ls[3]); print("RAW",re.sub(r"\s+"," ",s[max(0,i-2500):i+2500]))
-s=g("https://www.jegy.hu/venue_list/")
-print(sorted(set(re.findall(r'https://www.jegy.hu/venues/([^/"]*soroks[^/"]*)/',s))))
-print(sorted(set(re.findall(r'https://www.jegy.hu/venues/([^/"]*(?:csepel|erzsebet|miklos|szigetszent)[^/"]*)/',s))))
-s=g("https://soroksar.hu/wp-json/tribe/events/v1/events",params={"per_page":5})
-print(s[:1500])
-s=g("https://soroksar.hu/esemenyek/")
-print(" ".join(re.sub(r"<[^>]+>"," ",re.sub(r"<(script|style)[^>]*>.*?</\1>"," ",s,flags=re.S)).split())[:2000])
-print(re.findall(r'href="(https://soroksar.hu/esemenyek/[^"]+)"',s)[:20])
+def g(u):
+    r=requests.get(u,headers=H,timeout=30); print("=====",r.url[:140],"HTTP",r.status_code,len(r.text)); return r.text
+for v in ["mupa","csepeli-munkasotthon-szinhazterem","csepeli-munkasotthon"]:
+    s=g("https://www.jegy.hu/venue/"+v)
+    n=re.search(r'<span class="highlight">(\d+)</span>\s*esem',s); print("count",n and n.group(1))
+    print(re.findall(r'itemprop="startDate" content="([^"]+)"',s)[:15])
+    print([re.sub(r"\s+"," ",x) for x in re.findall(r"<h2>(.*?)</h2>",s,re.S)][:15])
+    print("pager",re.findall(r'href="([^"]*page=\d+[^"]*)"',s)[:5])
+s=g("https://mupa.hu/")
+ls=list(dict.fromkeys(re.findall(r'href="(https://mupa.hu/program/[^"]+)"',s)))
+i=s.find(ls[1]); print("RAW",re.sub(r"\s+"," ",s[max(0,i-1200):i+1800]))
