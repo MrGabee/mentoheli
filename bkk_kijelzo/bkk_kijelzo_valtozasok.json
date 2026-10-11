@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T03:39:46.465032+02:00",
+  "frissitve": "2026-10-11T03:40:16.479939+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T13:02:30.012040+02:00",
-      "kulcs": "V2115",
-      "rendszam": "V2115",
-      "vehicle_id": "7365",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464786529541016,
-      "lon": 19.024261474609375,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.012076+02:00",
-      "kulcs": "V2238",
-      "rendszam": "V2238",
-      "vehicle_id": "7370",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.478851318359375,
-      "lon": 19.040616989135742,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-10T13:02:30.012113+02:00",
-      "kulcs": "V2241",
-      "rendszam": "V2241",
-      "vehicle_id": "7373",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.475372314453125,
-      "lon": 19.04677391052246,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-10T13:02:30.012139+02:00",
       "kulcs": "V2242",
@@ -260000,6 +259961,45 @@
       "lon": 19.01943588256836,
       "elozo_szoveg": "Mártonhegy",
       "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-11T03:40:16.429271+02:00",
+      "kulcs": "RVY618",
+      "rendszam": "RVY618",
+      "vehicle_id": "7447",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.42387008666992,
+      "lon": 19.23464012145996,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-11T03:40:16.429305+02:00",
+      "kulcs": "RVY705",
+      "rendszam": "RVY705",
+      "vehicle_id": "7454",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48572540283203,
+      "lon": 19.070165634155273,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-11T03:40:16.429612+02:00",
+      "kulcs": "415 097",
+      "rendszam": "415 097",
+      "vehicle_id": "945514150974",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.1727294921875,
+      "lon": 20.01413917541504,
+      "elozo_szoveg": "Szolnok",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
