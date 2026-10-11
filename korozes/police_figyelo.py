@@ -29,7 +29,8 @@ import re
 import json
 import time
 import requests
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, time as dtime
+from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 
 # A közös poszt-stílusok (poszt_valtozatos.py) a repó gyökerében vannak
@@ -95,6 +96,22 @@ LEZARVA_SZOVEG = {
     "korozott_szemelyek": "A rendőrség visszavonta ezt a körözést. Köszönöm a figyelmet!",
 }
 LEZARVA_JARMU = "A rendőrség visszavonta a jármű körözését. Köszönöm mindenkinek a megosztást! 🙏"
+
+# A rendőrségi posztok képes posztként mennek ki ezzel az illusztrációval, így
+# a szövegben lévő police.hu-linkekhez nem jelenik meg előnézet (a fotó sem).
+KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
+KEP_KOROZES = KEP_ALAP + "rendorseg_korozes.png"
+KEP_HIR = KEP_ALAP + "rendorseg_hir.png"
+
+# Lecsengés: a rendőrségi poszt várólistára kerül, és csak akkor megy ki, ha
+#  - az oldal legutóbbi posztja legalább LECSENGES_PERC perce ment ki,
+#  - a következő időzített poszt legalább IDOZITETT_TAVOLSAG_PERC perc múlva jön,
+#  - nincs éjszaka (EJSZAKA_TOL és EJSZAKA_IG között vár reggelig).
+LECSENGES_PERC = 60
+IDOZITETT_TAVOLSAG_PERC = 45
+EJSZAKA_TOL = (22, 0)
+EJSZAKA_IG = (6, 45)
+VAROLISTA_MAX_ORA = 48   # ennél régebben váró posztot már nem teszünk ki
 
 # ---------------------------------------------------------------------
 # KÖRÖZÉSI KATEGÓRIÁK
@@ -380,44 +397,121 @@ def hirek_egyezik(cikk):
 # FACEBOOK POSZTOLÁS (Make.com webhookon keresztül)
 # =====================================================================
 
-def facebook_post(uzenet, kep_url=None, post_id=None):
-    """Szöveges posztot küld a Facebook Oldalra - nem közvetlenül a Meta
-    Graph API-n keresztül, hanem egy Make.com automatizáción (Scenario)
-    keresztül: ide küldünk egy egyszerű webhook-hívást a szöveggel, a
-    Make.com pedig ezt posztolja ki a Facebook Oldalra. Ez elkerüli a
-    Meta fejlesztői app / Business Portfolio beállítását.
-    Szükséges env változó: MAKE_WEBHOOK_URL.
-    Ha van kep_url (a cikk borítóképe), azt egyszerű linkként fűzzük a
-    szöveg végéhez, mert a jelenlegi Make Scenario szöveges posztot
-    küld - ha később külön képes posztot is szeretnél, a Make Scenario-t
-    bővíteni kell egy Router/Filter ággal."""
-    make_webhook_url = os.environ.get("MAKE_WEBHOOK_URL", "")
-    if not make_webhook_url:
+def _make_hivas(adat, timeout=60):
+    url = os.environ.get("MAKE_WEBHOOK_URL", "")
+    if not url:
         print("      ⚠️  Nincs beállítva MAKE_WEBHOOK_URL, Facebook-posztolás kihagyva.")
         return None
-
-    teljes_uzenet = uzenet
-    if kep_url:
-        teljes_uzenet = f"{uzenet}\n\n{kep_url}"
-
-    adat = {"message": teljes_uzenet}
-    if post_id:
-        adat["post_id"] = post_id   # a Make ilyenkor a meglévő posztot írja át
     try:
-        resp = requests.post(make_webhook_url, json=adat, timeout=60)
-        if resp.status_code == 200:
-            print(f"      ✅ Facebook poszt {'javítva' if post_id else 'sikeres'} (Make.com-on keresztül).")
-            # A Make válaszában jön az új poszt azonosítója (a későbbi javításhoz)
-            try:
-                return resp.json().get("id") or True
-            except ValueError:
-                return True
-        else:
-            print(f"      ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
-            return None
+        return requests.post(url, json=adat, timeout=timeout)
     except Exception as e:
-        print(f"      ⚠️  Facebook poszt hiba: {e}")
+        print(f"      ⚠️  Make.com hiba: {e}")
         return None
+
+
+def facebook_post(uzenet, kep_url=None, post_id=None):
+    """Poszt a Facebook Oldalra egy Make.com automatizáción (webhook) keresztül.
+    - kep_url: képes posztként megy ki ezzel a képpel (a Make visszaadja az azonosítóját)
+    - post_id: nem új poszt, hanem a meglévő szövegének átírása
+    Visszaad: a poszt azonosítóját (str), True-t (ha nincs azonosító), vagy None-t hiba esetén."""
+    adat = {"message": uzenet}
+    if post_id:
+        adat["post_id"] = post_id
+    elif kep_url:
+        adat["kep"] = kep_url
+    resp = _make_hivas(adat)
+    if resp is None:
+        return None
+    if resp.status_code != 200:
+        print(f"      ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
+        return None
+    print(f"      ✅ Facebook poszt {'javítva' if post_id else 'sikeres'} (Make.com-on keresztül).")
+    try:
+        return resp.json().get("id") or True
+    except ValueError:
+        return True
+
+
+def _ido(szoveg):
+    """Facebook/Make dátum ("2026-10-11T19:00:00+0000" vagy ...Z) -> aware datetime."""
+    szoveg = (szoveg or "").strip().replace("Z", "+00:00")
+    szoveg = re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", szoveg)
+    return datetime.fromisoformat(szoveg)
+
+
+def utolso_poszt_ideje():
+    """Az oldal legutóbbi posztjának ideje (bármelyik figyelőtől), a Make-en
+    keresztül lekérdezve. None, ha nem sikerült."""
+    resp = _make_hivas({"kerdes": "utolso_poszt"}, timeout=30)
+    try:
+        return _ido(resp.json()["utolso"]) if resp is not None and resp.status_code == 200 else None
+    except Exception:
+        print(f"      ⚠️  Nem sikerült lekérdezni az utolsó poszt idejét: {resp.text[:200] if resp is not None else ''}")
+        return None
+
+
+def idozitett_posztok(nap):
+    """Az adott nap időzített posztjai (reggeli összefoglaló + színes posztok), helyi időben."""
+    tz = ZoneInfo("Europe/Budapest")
+    idok = [dtime(6, 30)]
+    try:
+        import szines_posztok
+        idok += [ido for _, ido, napok, _ in szines_posztok.MENETREND if napok is None or nap.weekday() in napok]
+    except Exception as e:
+        print(f"      ⚠️  A színes posztok menetrendje nem olvasható: {e}")
+        idok += [dtime(8, 0), dtime(10, 30), dtime(13, 0), dtime(16, 0), dtime(18, 0), dtime(20, 30)]
+    return [datetime.combine(nap, i, tz) for i in idok]
+
+
+def szabad_ablak(most, cache):
+    """(True, "") ha most kimehet egy rendőrségi poszt, különben (False, ok)."""
+    helyi = most.astimezone(ZoneInfo("Europe/Budapest"))
+    hm = (helyi.hour, helyi.minute)
+    if hm >= EJSZAKA_TOL or hm < EJSZAKA_IG:
+        return False, "éjszaka, reggelig vár"
+    tav = timedelta(minutes=IDOZITETT_TAVOLSAG_PERC)
+    for t in idozitett_posztok(helyi.date()):
+        if timedelta(0) <= t - helyi < tav or timedelta(0) <= helyi - t < tav:
+            return False, f"időzített poszt közel ({t.strftime('%H:%M')})"
+    # Saját nyilvántartás: ha tudjuk, hogy még nem telt le a lecsengés, nem kérdezünk
+    nem_elotte = cache.get("_lecsenges", {}).get("nem_elotte")
+    if nem_elotte and most < datetime.fromisoformat(nem_elotte):
+        return False, f"lecsengés, legkorábban {datetime.fromisoformat(nem_elotte).astimezone(ZoneInfo('Europe/Budapest')).strftime('%H:%M')}"
+    utolso = utolso_poszt_ideje()
+    if utolso is None:
+        return True, ""   # a Make-lekérdezés nem működik: a fenti szabályok elegendők
+    kovetkezo = utolso + timedelta(minutes=LECSENGES_PERC)
+    cache.setdefault("_lecsenges", {})["nem_elotte"] = kovetkezo.isoformat()
+    if most < kovetkezo:
+        return False, f"az előző poszt még cseng ({utolso.astimezone(ZoneInfo('Europe/Budapest')).strftime('%H:%M')})"
+    return True, ""
+
+
+def varolista_kuldese(cache):
+    """A várólista legrégebbi posztját küldi ki, ha most van rá szabad ablak."""
+    lista = cache.setdefault("fb_varolista", [])
+    most = datetime.now(timezone.utc)
+    lista[:] = [t for t in lista if most - datetime.fromisoformat(t["felvetel"]) < timedelta(hours=VAROLISTA_MAX_ORA)]
+    if not lista:
+        return
+    mehet, ok = szabad_ablak(most, cache)
+    if not mehet:
+        print(f"⏳ {len(lista)} rendőrségi poszt vár ({ok}).")
+        return
+    tetel = lista[0]
+    if tetel.get("kovetes") and requests.get(tetel["kovetes"]["url"], headers=HEADERS, timeout=20).status_code == 404:
+        print("   ℹ️  Várakozás közben lekerült a police.hu-ról, nem posztolom.")
+        lista.pop(0)
+        return
+    post_id = facebook_post(tetel["fb_szoveg"], tetel["kep"])
+    if not post_id:
+        return   # sikertelen: a következő futás újrapróbálja
+    lista.pop(0)
+    cache["_lecsenges"] = {"nem_elotte": (most + timedelta(minutes=LECSENGES_PERC)).isoformat()}
+    if isinstance(post_id, str) and tetel.get("kovetes"):
+        k = tetel["kovetes"]
+        cache.setdefault("fb_posztok", {})[k["url"]] = {
+            "post_id": post_id, "tipus": k["tipus"], "datum": most.isoformat(), "hiany": 0}
 
 
 def _telefon(mezok):
@@ -432,6 +526,17 @@ def _telefon(mezok):
 JOGALAP = "Körözés jogalapja, bűncselekmény megnevezése, minősítése"
 
 
+def rovid_nev(mezok):
+    """"BARANYI FANNI" -> "B. Fanni" (családnév kezdőbetűje + utónév)."""
+    nev = mezok.get("Név", "").split()
+    uto = mezok.get("Viselt utónév 1", "").strip()
+    if not nev:
+        return ""
+    if not uto or uto not in nev:
+        uto = nev[-1]
+    return f"{nev[0][0]}. {uto.title()}"
+
+
 def korozes_poszt_szoveg(kulcs, kat, reszlet, szerv, url):
     """A körözés Facebook-szövege, E/1-ben."""
     st = Stilus("korozes")
@@ -439,14 +544,13 @@ def korozes_poszt_szoveg(kulcs, kat, reszlet, szerv, url):
     tel = _telefon(m)
     hivd = f"☎️ Ha bármit tudsz, hívd a 112-t vagy a kapitányságot: {tel}" if tel else "☎️ Ha bármit tudsz, hívd a 112-t!"
     if kulcs == "korozott_szemelyek":
-        # Adatvédelem: se név, se fénykép, és a link is csak a körözési LISTÁRA
-        # mutat, mert az adatlap linkjének előnézete a fotót és a nevet is mutatná.
+        # Adatvédelem: csak rövidített név (B. Fanni), fénykép nélkül. A poszt
+        # képes posztként megy ki, így a link előnézete sem mutatja a fotót.
         sorok = [st.cim, st.bevezeto, "",
-                 f"🚨 Új elfogatóparancs a környéken ({szerv}).",
+                 f"🚨 Elfogatóparancs a környéken: {rovid_nev(m)}" if rovid_nev(m) else "🚨 Új elfogatóparancs a környéken",
                  f"⚖️ {m[JOGALAP]}" if m.get(JOGALAP) else None,
-                 "",
-                 "A nevet és a fényképet adatvédelmi okból itt nem teszem közzé, a hivatalos körözési lista itt érhető el:",
-                 BASE_URL + kat["list_path"]]
+                 f"🚔 {szerv}", hivd, "",
+                 f"🔗 Hivatalos körözés: {url}"]
     elif kulcs == "eltunt_szemelyek":
         szul = m.get("Születési dátum", "")[:4]
         sorok = [st.cim, st.bevezeto, "",
@@ -614,7 +718,7 @@ def main():
             # személy, jármű-/légi-/vízijármű-körözés, holttest) ez a
             # korlátozás nem indokolt, ott a korábbi, teljes tartalom marad.
             fb_szoveg = korozes_poszt_szoveg(kulcs, kat, reszlet, egyezo_szerv, elem["url"])
-            fb_kep = None   # az eltűnt személy fotója a police.hu-link előnézetében jelenik meg
+            fb_kep = KEP_KOROZES
 
             talalt_ertesitesek.append({
                 "tema": f"[Körözés] {reszlet['cim']}",
@@ -679,8 +783,8 @@ def main():
                 "tema": f"[Hír] {cikk['cim']}",
                 "torzs": torzs,
                 "kep": None,
-                "fb_szoveg": f"{(st := Stilus('rendorseg')).cim}\n{st.bevezeto}\n\n{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n{cikk['url']}",
-                "fb_kep": None,
+                "fb_szoveg": f"{(st := Stilus('rendorseg')).cim}\n{st.bevezeto}\n\n{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n🔗 {cikk['url']}",
+                "fb_kep": KEP_HIR,
                 "facebook_post": kat["facebook_post"],
             })
 
@@ -744,6 +848,9 @@ def main():
 
     if not talalt_ertesitesek:
         print("\n✅ Nincs új, releváns találat ebben a körben.")
+        if MAKE_WEBHOOK_AKTIV:
+            varolista_kuldese(cache)
+            gyorsitotar_mentese(cache)
         return
 
     print(f"\n📬 {len(talalt_ertesitesek)} új találat - értesítés küldése...")
@@ -760,15 +867,15 @@ def main():
             print("   ⚠️  Nincs beállítva SMTP - email kihagyva.")
 
         if MAKE_WEBHOOK_AKTIV and ertesites["facebook_post"]:
-            post_id = facebook_post(ertesites["fb_szoveg"], ertesites["fb_kep"])
-            if isinstance(post_id, str) and ertesites.get("kovetes"):
-                k = ertesites["kovetes"]
-                cache.setdefault("fb_posztok", {})[k["url"]] = {
-                    "post_id": post_id, "tipus": k["tipus"],
-                    "datum": datetime.now(timezone.utc).isoformat(), "hiany": 0}
+            cache.setdefault("fb_varolista", []).append({
+                "fb_szoveg": ertesites["fb_szoveg"], "kep": ertesites["fb_kep"],
+                "kovetes": ertesites.get("kovetes"),
+                "felvetel": datetime.now(timezone.utc).isoformat()})
 
         time.sleep(1)
 
+    if MAKE_WEBHOOK_AKTIV:
+        varolista_kuldese(cache)
     gyorsitotar_mentese(cache)
 
 
