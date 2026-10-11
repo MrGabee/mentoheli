@@ -552,6 +552,10 @@ def _telefon(mezok):
     return ""
 
 
+# A személyes posztok végére: miért illusztráció van a fénykép helyett
+SZEMELYISEGI_JOG = ("🔒 A fényképet a személyiségi jogok védelme miatt nem teszem ki, "
+                    "helyette illusztráció szerepel. A hivatalos adatlap a linken érhető el.")
+
 JOGALAP = "Körözés jogalapja, bűncselekmény megnevezése, minősítése"
 
 
@@ -578,14 +582,14 @@ def korozes_poszt_szoveg(kulcs, kat, reszlet, szerv, url):
                  f"🚨 Elfogatóparancs a környéken: {rovid_nev(m)}" if rovid_nev(m) else "🚨 Új elfogatóparancs a környéken",
                  f"⚖️ {m[JOGALAP]}" if m.get(JOGALAP) else None,
                  f"🚔 {szerv}", hivd, "",
-                 f"🔗 Hivatalos körözés: {url}"]
+                 f"🔗 Hivatalos körözés: {url}", "", SZEMELYISEGI_JOG]
     elif kulcs == "eltunt_szemelyek":
         szul = m.get("Születési dátum", "")[:4]
         sorok = [st.cim, st.bevezeto, "",
                  f"👤 {reszlet['cim']}" + (f" (született {szul})" if szul else ""),
                  f"📅 Eltűnés napja: {m['Eltűnés dátuma']}" if m.get("Eltűnés dátuma") else None,
                  f"🚔 {szerv}", hivd, "",
-                 f"📸 A fénykép és minden részlet: {url}"]
+                 f"📸 A fénykép és minden részlet: {url}", "", SZEMELYISEGI_JOG]
     elif "jarmu" in kulcs:
         sorok = [st.cim, st.bevezeto, "",
                  f"🚗 {reszlet['cim']}",
