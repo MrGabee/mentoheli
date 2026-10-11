@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-11T02:41:44.746239+02:00",
+  "frissitve": "2026-10-11T02:42:16.756811+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-10T12:47:15.675118+02:00",
-      "kulcs": "V1581",
-      "rendszam": "V1581",
-      "vehicle_id": "4633",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.46807861328125,
-      "lon": 19.07552719116211,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-10T12:47:15.675817+02:00",
-      "kulcs": "V4044",
-      "rendszam": "V4044",
-      "vehicle_id": "4733",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.49193572998047,
-      "lon": 19.1444091796875,
-      "elozo_szoveg": "Kőbányai út ► Blaha Lujza tér M",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-10-10T12:47:15.676207+02:00",
-      "kulcs": "AAMH649",
-      "rendszam": "AAMH649",
-      "vehicle_id": "492",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.43233108520508,
-      "lon": 19.260889053344727,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
     {
       "idopont": "2026-10-10T12:47:15.676526+02:00",
       "kulcs": "V2266",
@@ -260000,6 +259961,45 @@
       "lon": 19.014205932617188,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-10-11T02:42:16.668493+02:00",
+      "kulcs": "FJX226",
+      "rendszam": "FJX226",
+      "vehicle_id": "3046",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175476074219,
+      "lon": 19.135587692260742,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-11T02:42:16.668706+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46630859375,
+      "lon": 19.15355110168457,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-11T02:42:16.669151+02:00",
+      "kulcs": "SKN818",
+      "rendszam": "SKN818",
+      "vehicle_id": "7760",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.4777717590332,
+      "lon": 19.04639434814453,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
     }
   ]
 }
