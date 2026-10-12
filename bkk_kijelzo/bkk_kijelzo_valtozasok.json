@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T02:40:09.254507+02:00",
+  "frissitve": "2026-10-12T02:40:38.561816+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:35:00.205870+02:00",
-      "kulcs": "V1586",
-      "rendszam": "V1586",
-      "vehicle_id": "4638",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.49900817871094,
-      "lon": 19.082416534423828,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-11T12:35:00.206048+02:00",
-      "kulcs": "V4104",
-      "rendszam": "V4104",
-      "vehicle_id": "4793",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.50969314575195,
-      "lon": 19.010034561157227,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
-    {
-      "idopont": "2026-10-11T12:35:00.206444+02:00",
-      "kulcs": "V1608",
-      "rendszam": "V1608",
-      "vehicle_id": "5096",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.46477127075195,
-      "lon": 19.126340866088867,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
     {
       "idopont": "2026-10-11T12:35:00.206911+02:00",
       "kulcs": "V2214",
@@ -260000,6 +259961,45 @@
       "lon": 19.10161018371582,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Debrecen"
+    },
+    {
+      "idopont": "2026-10-12T02:40:38.478968+02:00",
+      "kulcs": "RVY601",
+      "rendszam": "RVY601",
+      "vehicle_id": "7430",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.46159362792969,
+      "lon": 19.130205154418945,
+      "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-10-12T02:40:38.479060+02:00",
+      "kulcs": "RVY619",
+      "rendszam": "RVY619",
+      "vehicle_id": "7448",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.422523498535156,
+      "lon": 19.083072662353516,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T02:40:38.479100+02:00",
+      "kulcs": "RVY708",
+      "rendszam": "RVY708",
+      "vehicle_id": "7457",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48542785644531,
+      "lon": 19.070985794067383,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
