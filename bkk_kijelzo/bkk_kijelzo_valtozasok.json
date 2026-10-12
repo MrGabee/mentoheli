@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:38:06.648547+02:00",
+  "frissitve": "2026-10-13T00:38:37.211113+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T14:59:24.783900+02:00",
-      "kulcs": "AOFL193",
-      "rendszam": "AOFL193",
-      "vehicle_id": "777",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.489990234375,
-      "lon": 19.06081199645996,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-10-12T14:59:24.784055+02:00",
-      "kulcs": "STZ861",
-      "rendszam": "STZ861",
-      "vehicle_id": "7816",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.4643669128418,
-      "lon": 19.018564224243164,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-10-12T14:59:24.784076+02:00",
-      "kulcs": "AOFL198",
-      "rendszam": "AOFL198",
-      "vehicle_id": "782",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.488861083984375,
-      "lon": 19.037736892700195,
-      "elozo_szoveg": "Sánc utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-10-12T14:59:24.784201+02:00",
       "kulcs": "T9116",
@@ -260000,6 +259961,45 @@
       "lon": 19.115135192871094,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-13T00:38:37.150251+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45573425292969,
+      "lon": 18.94023323059082,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-10-13T00:38:37.150574+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175857543945,
+      "lon": 19.13556671142578,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-13T00:38:37.151019+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.56785583496094,
+      "lon": 19.02789306640625,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
