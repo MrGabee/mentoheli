@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T01:02:22.590422+02:00",
+  "frissitve": "2026-10-13T01:02:53.053582+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:02:09.173686+02:00",
-      "kulcs": "NTP543",
-      "rendszam": "NTP543",
-      "vehicle_id": "6519",
-      "vehicle_label": "Savoyai Jenő tér",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.46438217163086,
-      "lon": 19.018760681152344,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Regényes utca ► Savoyai Jenő tér"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.174345+02:00",
-      "kulcs": "PDB714",
-      "rendszam": "PDB714",
-      "vehicle_id": "7040",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.52366256713867,
-      "lon": 18.99409294128418,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.174845+02:00",
-      "kulcs": "PDN605",
-      "rendszam": "PDN605",
-      "vehicle_id": "7077",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.40571212768555,
-      "lon": 19.01422119140625,
-      "elozo_szoveg": "Budatétény vasútáll. (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
     {
       "idopont": "2026-10-12T15:02:09.174905+02:00",
       "kulcs": "PDN611",
@@ -260000,6 +259961,45 @@
       "lon": 19.097354888916016,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-13T01:02:53.002225+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50749969482422,
+      "lon": 19.025815963745117,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-13T01:02:53.002720+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.507080078125,
+      "lon": 19.09627914428711,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-13T01:02:53.002836+02:00",
+      "kulcs": "415 068",
+      "rendszam": "415 068",
+      "vehicle_id": "945514150685",
+      "vehicle_label": "Hatvan",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.49224853515625,
+      "lon": 19.13409996032715,
+      "elozo_szoveg": "Sülysáp",
+      "uj_szoveg": "Hatvan"
     }
   ]
 }
