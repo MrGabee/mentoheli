@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:46:09.320549+02:00",
+  "frissitve": "2026-10-13T00:46:45.913087+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:00:38.761219+02:00",
-      "kulcs": "MMM139",
-      "rendszam": "MMM139",
-      "vehicle_id": "5411",
-      "vehicle_label": "Nem szállít utasokat",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.507362365722656,
-      "lon": 19.039241790771484,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M H"
-    },
-    {
-      "idopont": "2026-10-12T15:00:38.761495+02:00",
-      "kulcs": "MOS257",
-      "rendszam": "MOS257",
-      "vehicle_id": "5710",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "238",
-      "route_id": "2380",
-      "lat": 47.385536193847656,
-      "lon": 19.02029037475586,
-      "elozo_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-10-12T15:00:38.761545+02:00",
       "kulcs": "MOS273",
@@ -260000,6 +259974,32 @@
       "lon": 19.067716598510742,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-13T00:46:45.832956+02:00",
+      "kulcs": "AADI660",
+      "rendszam": "AADI660",
+      "vehicle_id": "159",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50151824951172,
+      "lon": 19.13617706298828,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-13T00:46:45.833151+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.53949737548828,
+      "lon": 19.069534301757812,
+      "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
     }
   ]
 }
