@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-12T04:17:30.359514+02:00",
+  "frissitve": "2026-10-12T04:18:06.356789+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:52:30.971723+02:00",
-      "kulcs": "815 009",
-      "rendszam": "815 009",
-      "vehicle_id": "945518150095",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.52613830566406,
-      "lon": 19.09016990661621,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
-    {
-      "idopont": "2026-10-11T12:52:30.972164+02:00",
-      "kulcs": "AOJM861",
-      "rendszam": "AOJM861",
-      "vehicle_id": "984",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.48920822143555,
-      "lon": 19.06268882751465,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-10-11T12:53:27.857010+02:00",
-      "kulcs": "AADR702",
-      "rendszam": "AADR702",
-      "vehicle_id": "169",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.43177795410156,
-      "lon": 19.173715591430664,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-11T12:53:27.857039+02:00",
-      "kulcs": "AADR704",
-      "rendszam": "AADR704",
-      "vehicle_id": "172",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.4365234375,
-      "lon": 19.172643661499023,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-11T12:53:27.857142+02:00",
-      "kulcs": "V2004",
-      "rendszam": "V2004",
-      "vehicle_id": "2004",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47676467895508,
-      "lon": 19.059194564819336,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-11T12:53:27.857253+02:00",
       "kulcs": "V2024",
@@ -260000,6 +259935,71 @@
       "lon": 19.18583106994629,
       "elozo_szoveg": "Kőbánya alsó vasútállomás",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-12T04:18:06.284262+02:00",
+      "kulcs": "V4119",
+      "rendszam": "V4119",
+      "vehicle_id": "4808",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "41",
+      "route_id": "3410",
+      "lat": 47.4412841796875,
+      "lon": 18.979490280151367,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-12T04:18:06.284767+02:00",
+      "kulcs": "NTM428",
+      "rendszam": "NTM428",
+      "vehicle_id": "6496",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51242446899414,
+      "lon": 19.11640739440918,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-12T04:18:06.285446+02:00",
+      "kulcs": "T9134",
+      "rendszam": "T9134",
+      "vehicle_id": "7873",
+      "vehicle_label": "Orczy tér",
+      "vonal_szam": "72",
+      "route_id": "4720",
+      "lat": 47.51072692871094,
+      "lon": 19.09708023071289,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
+    },
+    {
+      "idopont": "2026-10-12T04:18:06.285540+02:00",
+      "kulcs": "1127-764-1128-1129-765-1130",
+      "rendszam": "1127-764-1128-1129-765-1130",
+      "vehicle_id": "905516561271-905536467640-905516561289-905516561297-905536467657-905516561305",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.66045379638672,
+      "lon": 19.07480812072754,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
+    },
+    {
+      "idopont": "2026-10-12T04:18:06.286642+02:00",
+      "kulcs": "AOIM027",
+      "rendszam": "AOIM027",
+      "vehicle_id": "947",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47963333129883,
+      "lon": 19.051172256469727,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
