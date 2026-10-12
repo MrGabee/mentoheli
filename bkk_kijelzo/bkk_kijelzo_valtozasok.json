@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T01:49:37.878915+02:00",
+  "frissitve": "2026-10-13T01:50:10.558969+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:06:23.291516+02:00",
-      "kulcs": "NTM423",
-      "rendszam": "NTM423",
-      "vehicle_id": "6491",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.43657302856445,
-      "lon": 19.039623260498047,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-12T15:06:23.291530+02:00",
-      "kulcs": "NTM425",
-      "rendszam": "NTM425",
-      "vehicle_id": "6493",
-      "vehicle_label": "Nagytétény-Diósd vá.",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.47737503051758,
-      "lon": 19.048599243164062,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-12T15:06:23.292266+02:00",
-      "kulcs": "NTP539",
-      "rendszam": "NTP539",
-      "vehicle_id": "6515",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.5111198425293,
-      "lon": 18.97205352783203,
-      "elozo_szoveg": "Fácános tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-12T15:06:23.292405+02:00",
       "kulcs": "CITY001",
@@ -260000,6 +259961,45 @@
       "lon": 19.05101203918457,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-13T01:50:10.493116+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40443420410156,
+      "lon": 19.185909271240234,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-10-13T01:50:10.493383+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.484962463378906,
+      "lon": 19.072608947753906,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T01:50:10.493634+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49876022338867,
+      "lon": 19.054885864257812,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
