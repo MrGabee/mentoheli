@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T02:02:46.062612+02:00",
+  "frissitve": "2026-10-12T02:03:26.957346+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:29:54.905003+02:00",
-      "kulcs": "AAGL322",
-      "rendszam": "AAGL322",
-      "vehicle_id": "352",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.59745407104492,
-      "lon": 18.928190231323242,
-      "elozo_szoveg": "Solymár, PEMÜ",
-      "uj_szoveg": "Solymár vasútállomás ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-11T12:29:54.905140+02:00",
-      "kulcs": "AAHY821",
-      "rendszam": "AAHY821",
-      "vehicle_id": "382",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57341384887695,
-      "lon": 19.1030330657959,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-11T12:29:54.905258+02:00",
-      "kulcs": "AAHY838",
-      "rendszam": "AAHY838",
-      "vehicle_id": "399",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "124",
-      "route_id": "1240",
-      "lat": 47.57205581665039,
-      "lon": 19.130783081054688,
-      "elozo_szoveg": "Rákospalota, Bogáncs utca",
-      "uj_szoveg": "Bosnyák tér"
-    },
     {
       "idopont": "2026-10-11T12:29:54.906444+02:00",
       "kulcs": "V1354",
@@ -260000,6 +259961,45 @@
       "lon": 19.024734497070312,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-12T02:03:26.863871+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464630126953125,
+      "lon": 19.022930145263672,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-12T02:03:26.866153+02:00",
+      "kulcs": "NTM428",
+      "rendszam": "NTM428",
+      "vehicle_id": "6496",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.504913330078125,
+      "lon": 19.09935188293457,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-12T02:03:26.866260+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51786422729492,
+      "lon": 19.077781677246094,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
     }
   ]
 }
