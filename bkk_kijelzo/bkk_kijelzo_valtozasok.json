@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:56:51.126992+02:00",
+  "frissitve": "2026-10-13T00:57:22.815368+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:02:09.163548+02:00",
-      "kulcs": "AAGL267",
-      "rendszam": "AAGL267",
-      "vehicle_id": "267",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "218",
-      "route_id": "2180",
-      "lat": 47.609100341796875,
-      "lon": 18.989734649658203,
-      "elozo_szoveg": "Pilisborosjenő",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.163705+02:00",
-      "kulcs": "FJX218",
-      "rendszam": "FJX218",
-      "vehicle_id": "3038",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.50485610961914,
-      "lon": 19.136489868164062,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.163821+02:00",
-      "kulcs": "FKU929",
-      "rendszam": "FKU929",
-      "vehicle_id": "3085",
-      "vehicle_label": "Rákoskert sugárút",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.5019416809082,
-      "lon": 19.136199951171875,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoskert sugárút"
-    },
     {
       "idopont": "2026-10-12T15:02:09.164082+02:00",
       "kulcs": "FLR746",
@@ -260000,6 +259961,45 @@
       "lon": 19.024127960205078,
       "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
       "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-13T00:57:22.738382+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.585384368896484,
+      "lon": 19.093839645385742,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-13T00:57:22.739033+02:00",
+      "kulcs": "SKR822",
+      "rendszam": "SKR822",
+      "vehicle_id": "7708",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.464630126953125,
+      "lon": 19.02296257019043,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-13T00:57:22.739280+02:00",
+      "kulcs": "415 088",
+      "rendszam": "415 088",
+      "vehicle_id": "945514150883",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.49203109741211,
+      "lon": 19.132909774780273,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Nagykáta"
     }
   ]
 }
