@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-13T01:11:33.956391+02:00",
+  "frissitve": "2026-10-13T01:12:09.118912+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:03:32.226966+02:00",
-      "kulcs": "AAHY817",
-      "rendszam": "AAHY817",
-      "vehicle_id": "378",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.59010696411133,
-      "lon": 19.122514724731445,
-      "elozo_szoveg": "Rákospalota, Csömöri-patak",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-12T15:03:32.227083+02:00",
-      "kulcs": "AAHY828",
-      "rendszam": "AAHY828",
-      "vehicle_id": "389",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.603790283203125,
-      "lon": 19.059768676757812,
-      "elozo_szoveg": "Budakalász, Auchan áruház ► Rákospalota, Kossuth utca",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-12T15:03:32.227418+02:00",
-      "kulcs": "AAHY864",
-      "rendszam": "AAHY864",
-      "vehicle_id": "426",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.51996612548828,
-      "lon": 19.091251373291016,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-12T15:03:32.227444+02:00",
-      "kulcs": "T0603",
-      "rendszam": "T0603",
-      "vehicle_id": "4287",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.506683349609375,
-      "lon": 19.0510311126709,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
     {
       "idopont": "2026-10-12T15:03:32.227599+02:00",
       "kulcs": "AAHY876",
@@ -260000,6 +259948,58 @@
       "lon": 19.01374626159668,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T01:12:09.040462+02:00",
+      "kulcs": "AAGL261",
+      "rendszam": "AAGL261",
+      "vehicle_id": "261",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.507991790771484,
+      "lon": 19.028738021850586,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-13T01:12:09.040769+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.4666862487793,
+      "lon": 19.153860092163086,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T01:12:09.040817+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.485809326171875,
+      "lon": 19.124597549438477,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-13T01:12:09.041318+02:00",
+      "kulcs": "RVY722",
+      "rendszam": "RVY722",
+      "vehicle_id": "7620",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.4970817565918,
+      "lon": 19.055566787719727,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
     }
   ]
 }
