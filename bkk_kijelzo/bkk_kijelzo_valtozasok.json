@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:10:43.849136+02:00",
+  "frissitve": "2026-10-13T00:11:15.719716+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T14:58:07.505444+02:00",
-      "kulcs": "MMM139",
-      "rendszam": "MMM139",
-      "vehicle_id": "5411",
-      "vehicle_label": "Nem szállít utasokat",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.50663757324219,
-      "lon": 19.038726806640625,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M H"
-    },
-    {
-      "idopont": "2026-10-12T14:58:07.505748+02:00",
-      "kulcs": "MOS266",
-      "rendszam": "MOS266",
-      "vehicle_id": "5719",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.38343811035156,
-      "lon": 19.228065490722656,
-      "elozo_szoveg": "Vecsési út ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-12T14:58:07.505790+02:00",
-      "kulcs": "MOS281",
-      "rendszam": "MOS281",
-      "vehicle_id": "5734",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.4793701171875,
-      "lon": 19.067401885986328,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Vecsési út"
-    },
     {
       "idopont": "2026-10-12T14:58:07.505857+02:00",
       "kulcs": "PKD002",
@@ -260000,6 +259961,45 @@
       "lon": 19.050687789916992,
       "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
       "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-13T00:11:15.632873+02:00",
+      "kulcs": "AADI660",
+      "rendszam": "AADI660",
+      "vehicle_id": "159",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475425720214844,
+      "lon": 19.040851593017578,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-13T00:11:15.633620+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52332305908203,
+      "lon": 19.018800735473633,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-13T00:11:15.633991+02:00",
+      "kulcs": "815 038",
+      "rendszam": "815 038",
+      "vehicle_id": "945518150384",
+      "vehicle_label": "Hatvan",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.49317169189453,
+      "lon": 19.14653968811035,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Hatvan"
     }
   ]
 }
