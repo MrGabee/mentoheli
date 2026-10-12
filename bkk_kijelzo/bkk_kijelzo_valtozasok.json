@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-12T02:39:39.592437+02:00",
+  "frissitve": "2026-10-12T02:40:09.254507+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:35:00.205211+02:00",
-      "kulcs": "AAHY823",
-      "rendszam": "AAHY823",
-      "vehicle_id": "384",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.5798225402832,
-      "lon": 19.088539123535156,
-      "elozo_szoveg": "Megyer, Julianus barát utca",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-11T12:35:00.205441+02:00",
-      "kulcs": "AAHY867",
-      "rendszam": "AAHY867",
-      "vehicle_id": "429",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.530029296875,
-      "lon": 19.196395874023438,
-      "elozo_szoveg": "Árpádföld",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-11T12:35:00.205463+02:00",
-      "kulcs": "AAHY868",
-      "rendszam": "AAHY868",
-      "vehicle_id": "430",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "231",
-      "route_id": "2310",
-      "lat": 47.50473403930664,
-      "lon": 19.136516571044922,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-11T12:35:00.205560+02:00",
-      "kulcs": "AAMH601",
-      "rendszam": "AAMH601",
-      "vehicle_id": "444",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196",
-      "route_id": "1960",
-      "lat": 47.577484130859375,
-      "lon": 19.11460304260254,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Káp.megyer, Szilas-patak"
-    },
     {
       "idopont": "2026-10-11T12:35:00.205870+02:00",
       "kulcs": "V1586",
@@ -260000,6 +259948,58 @@
       "lon": 19.161291122436523,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-12T02:40:09.173229+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.4989013671875,
+      "lon": 19.050687789916992,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-12T02:40:09.173323+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47145462036133,
+      "lon": 19.2838134765625,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-12T02:40:09.173383+02:00",
+      "kulcs": "T8105",
+      "rendszam": "T8105",
+      "vehicle_id": "7342",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50147247314453,
+      "lon": 19.115100860595703,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-12T02:40:09.173866+02:00",
+      "kulcs": "415 116",
+      "rendszam": "415 116",
+      "vehicle_id": "945514151162",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.511051177978516,
+      "lon": 19.10161018371582,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
