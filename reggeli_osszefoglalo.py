@@ -166,6 +166,12 @@ def most_kell_futni(utemezes):
     return int(ora) == cel.hour and int(perc) == cel.minute
 
 
+def szoveg(nap):
+    """A színes posztok menetrendjéből (6:30) hívva: a nap összefoglalója."""
+    ma = nap.strftime("%Y-%m-%d")
+    return facebook_szoveg(mai_aramszunetek(ma), vizhianyok(), mai_riasztasok(ma))
+
+
 def main():
     print(f"\n{'='*55}")
     print(f"☀️ Reggeli összefoglaló – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")

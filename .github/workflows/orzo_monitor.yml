@@ -38,6 +38,14 @@ jobs:
             "💰 Számla Figyelő (Vízművek / MVM / Díjnet)"
             "💧 Vízművek Monitor"
             "📷 Windy Webkamerák Frissítése (HU)"
+            # A csak "schedule"-lel induló workflow-k: a GitHub ütemezője
+            # gyakran órákig kihagyja őket, ezért az őrző a saját
+            # ütemüknek megfelelő idő (perc) után elindítja őket.
+            "🌈 Színes posztok|25"
+            "🎭 Csili Program Figyelő|35"
+            "📣 Facebook-oldal Figyelő|15"
+            "⚠️ Időjárási Riasztás Monitor|35"
+            "📊 Make Keret Figyelő|1500"
           )
 
           # Ha egy workflow utolsó futása ennél régebbi (percben), leállítottnak
@@ -56,7 +64,10 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/$REPO/actions/workflows?per_page=100")
 
-          for NEV in "${FIGYELT_WORKFLOWOK[@]}"; do
+          for TETEL in "${FIGYELT_WORKFLOWOK[@]}"; do
+            NEV="${TETEL%%|*}"
+            HATAR="$LEALLTNAK_SZAMIT_PERC"
+            [ "$TETEL" != "$NEV" ] && HATAR="${TETEL##*|}"
             echo "── $NEV ──"
 
             WF_ID=$(echo "$OSSZES_WORKFLOW" | jq -r --arg nev "$NEV" '.workflows[]? | select(.name == $nev) | .id' | head -n1)
@@ -84,8 +95,8 @@ jobs:
 
             echo "   Utolsó futás: $LETREHOZVA ($KULONBSEG_PERC perce)"
 
-            if [ "$KULONBSEG_PERC" -ge "$LEALLTNAK_SZAMIT_PERC" ]; then
-              echo "   ❌ Leállt (>= $LEALLTNAK_SZAMIT_PERC perc) - újraindítás..."
+            if [ "$KULONBSEG_PERC" -ge "$HATAR" ]; then
+              echo "   ❌ Leállt (>= $HATAR perc) - újraindítás..."
               INDITAS_HTTP=$(curl -s -o /tmp/orzo_resp.txt -w "%{http_code}" -X POST \
                 -H "Authorization: token $GH_TOKEN" \
                 -H "Accept: application/vnd.github.v3+json" \
