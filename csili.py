@@ -35,10 +35,10 @@ MAX_LEIRAS = 350
 # Ennyi nappal előre posztolja ki az eseményeket
 HORIZONT_NAP = 14
 
-# Helyi idő szerint ebben a sávban posztol, futásonként legfeljebb ennyit
-POSZT_ORA_TOL = 8
+# Naponta legfeljebb egy Csili-poszt megy ki (új esemény vagy emlékeztető),
+# az új esemény helyi idő szerint ebben a sávban
+POSZT_ORA_TOL = 17
 POSZT_ORA_IG = 21
-POSZT_FUTASONKENT = 1
 
 # Az emlékeztető hány nappal az esemény előtt, és helyi idő szerint
 # legkorábban hány órakor menjen ki
@@ -204,6 +204,8 @@ def main():
     bejelentett  = {int(k): v for k, v in (allapot.get("bejelentett") or {}).items()} \
         if isinstance(allapot.get("bejelentett"), dict) else {}
     emlekeztetve = set(allapot.get("emlekeztetve", []))
+    # A legutóbbi Csili-poszt napja: naponta legfeljebb egy megy ki
+    mai_poszt = allapot.get("utolso_poszt_nap") or max(bejelentett.values(), default="")
 
     # Ami még előttünk van és nem posztoltuk ki, a legkorábbi elöl
     varo = [e for e in lista
@@ -211,29 +213,35 @@ def main():
             and e["kezdes"].replace(tzinfo=MAGYAR_TZ) > most]
     print(f"📊 Esemény a következő {HORIZONT_NAP} napban: {len(lista)}, kiposztolásra vár: {len(varo)}")
 
-    if POSZT_ORA_TOL <= most.hour < POSZT_ORA_IG:
-        for e in varo[:POSZT_FUTASONKENT]:
-            szoveg = facebook_szoveg(e)
-            print("\n" + szoveg + "\n")
-            if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg):
-                break  # sikertelen: a következő futás újra megpróbálja
-            bejelentett[e["id"]] = ma.isoformat()
-    else:
-        print("🌙 Posztolási sávon kívül - most nem posztol.")
+    # ⏰ Emlékeztető a kiposztolt eseményekről, előtte való nap reggel.
+    # Ha ma esedékes, ez a nap egyetlen Csili-posztja.
+    cel_nap = ma + timedelta(days=EMLEKEZTETO_NAPPAL_ELOTTE)
+    esedekes = [e for e in lista
+                if e["id"] in bejelentett and e["id"] not in emlekeztetve
+                and e["kezdes"].date() == cel_nap
+                # ha csak ma posztoltuk ki, felesleges ma emlékeztetni
+                and bejelentett[e["id"]] != ma.isoformat()]
 
-    # ⏰ Emlékeztető a kiposztolt eseményekről, előtte való nap reggel
-    if most.hour >= EMLEKEZTETO_ORA:
-        cel_nap = ma + timedelta(days=EMLEKEZTETO_NAPPAL_ELOTTE)
-        esedekes = [e for e in lista
-                    if e["id"] in bejelentett and e["id"] not in emlekeztetve
-                    and e["kezdes"].date() == cel_nap
-                    # ha csak ma posztoltuk ki, felesleges ma emlékeztetni
-                    and bejelentett[e["id"]] != ma.isoformat()]
-        if esedekes:
+    if mai_poszt == ma.isoformat():
+        print("✋ Ma már ment ki Csili-poszt, holnap jön a következő.")
+    elif esedekes:
+        if most.hour >= EMLEKEZTETO_ORA:
             szoveg = emlekezteto_szoveg(esedekes)
             print("\n" + szoveg + "\n")
             if not FACEBOOK_POSZTOLAS_AKTIV or facebook_poszt_kuldese(szoveg):
                 emlekeztetve |= {e["id"] for e in esedekes}
+                mai_poszt = ma.isoformat()
+        else:
+            print("⏰ Ma emlékeztető megy ki, új eseményt nem posztol.")
+    elif varo and POSZT_ORA_TOL <= most.hour < POSZT_ORA_IG:
+        e = varo[0]
+        szoveg = facebook_szoveg(e)
+        print("\n" + szoveg + "\n")
+        if not FACEBOOK_POSZTOLAS_AKTIV or facebook_poszt_kuldese(szoveg):
+            bejelentett[e["id"]] = ma.isoformat()
+            mai_poszt = ma.isoformat()
+    elif varo:
+        print("🌙 Posztolási sávon kívül - most nem posztol.")
 
     # Az elmúlt események kikerülnek az állapotból
     aktualis = {e["id"] for e in lista}
@@ -241,6 +249,7 @@ def main():
         json.dump({
             "bejelentett":  {str(k): v for k, v in bejelentett.items() if k in aktualis},
             "emlekeztetve": sorted(emlekeztetve & aktualis),
+            "utolso_poszt_nap": mai_poszt,
         }, f)
     print("💾 Állapot mentve. ✅ Kész.")
 
