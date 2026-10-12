@@ -1,19 +1,6 @@
 {
-  "frissitve": "2026-10-13T01:34:27.574826+02:00",
+  "frissitve": "2026-10-13T01:34:56.630112+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:04:55.105750+02:00",
-      "kulcs": "STZ867",
-      "rendszam": "STZ867",
-      "vehicle_id": "7822",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.449153900146484,
-      "lon": 18.90521812438965,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-12T15:04:55.106456+02:00",
       "kulcs": "T8121",
@@ -260000,6 +259987,19 @@
       "lon": 19.141916275024414,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-13T01:34:56.540446+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44302749633789,
+      "lon": 19.178730010986328,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
     }
   ]
 }
