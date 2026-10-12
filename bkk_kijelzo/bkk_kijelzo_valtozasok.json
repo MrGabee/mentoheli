@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T01:43:42.041199+02:00",
+  "frissitve": "2026-10-13T01:44:12.455567+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:06:23.286475+02:00",
-      "kulcs": "T0607",
-      "rendszam": "T0607",
-      "vehicle_id": "4291",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53641891479492,
-      "lon": 19.107223510742188,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-10-12T15:06:23.286655+02:00",
-      "kulcs": "V1325",
-      "rendszam": "V1325",
-      "vehicle_id": "4428",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51224136352539,
-      "lon": 19.04753875732422,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-12T15:06:23.286987+02:00",
-      "kulcs": "V1433",
-      "rendszam": "V1433",
-      "vehicle_id": "4503",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.432411193847656,
-      "lon": 19.037179946899414,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-12T15:06:23.287009+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.467796325683594,
-      "lon": 19.075729370117188,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-12T15:06:23.287100+02:00",
-      "kulcs": "AAMH612",
-      "rendszam": "AAMH612",
-      "vehicle_id": "455",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.49997329711914,
-      "lon": 19.08424949645996,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-10-12T15:06:23.287646+02:00",
       "kulcs": "V4062",
@@ -260000,6 +259935,71 @@
       "lon": 19.142473220825195,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-13T01:44:12.407571+02:00",
+      "kulcs": "AADR704",
+      "rendszam": "AADR704",
+      "vehicle_id": "172",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486820220947266,
+      "lon": 19.067644119262695,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-13T01:44:12.407784+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46275329589844,
+      "lon": 19.00594711303711,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-13T01:44:12.408010+02:00",
+      "kulcs": "MXJ014",
+      "rendszam": "MXJ014",
+      "vehicle_id": "5890",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.52004623413086,
+      "lon": 19.148149490356445,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-13T01:44:12.408255+02:00",
+      "kulcs": "PKN604",
+      "rendszam": "PKN604",
+      "vehicle_id": "7193",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50141525268555,
+      "lon": 19.120595932006836,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-10-13T01:44:12.408655+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.541316986083984,
+      "lon": 19.151697158813477,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota"
     }
   ]
 }
