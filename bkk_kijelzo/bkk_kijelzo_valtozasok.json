@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:58:25.101155+02:00",
+  "frissitve": "2026-10-13T00:58:56.133098+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:02:09.165503+02:00",
-      "kulcs": "AAMH607",
-      "rendszam": "AAMH607",
-      "vehicle_id": "450",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.55964660644531,
-      "lon": 19.082378387451172,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.165728+02:00",
-      "kulcs": "V1554",
-      "rendszam": "V1554",
-      "vehicle_id": "4606",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.54090881347656,
-      "lon": 19.14322280883789,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.165788+02:00",
-      "kulcs": "V1570",
-      "rendszam": "V1570",
-      "vehicle_id": "4622",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.42195129394531,
-      "lon": 19.12213706970215,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-10-12T15:02:09.165811+02:00",
       "kulcs": "V1576",
@@ -260000,6 +259961,45 @@
       "lon": 19.02086067199707,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Pusztaszabolcs"
+    },
+    {
+      "idopont": "2026-10-13T00:58:56.047656+02:00",
+      "kulcs": "AADI590",
+      "rendszam": "AADI590",
+      "vehicle_id": "71",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.399593353271484,
+      "lon": 18.990697860717773,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-13T00:58:56.047758+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56767654418945,
+      "lon": 19.127229690551758,
+      "elozo_szoveg": "Rákoshegy vasútállomás",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-13T00:58:56.047798+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52166748046875,
+      "lon": 19.168315887451172,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
     }
   ]
 }
