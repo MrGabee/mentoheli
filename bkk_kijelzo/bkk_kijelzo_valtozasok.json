@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-12T02:24:17.433696+02:00",
+  "frissitve": "2026-10-12T02:24:49.007447+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:32:59.599845+02:00",
-      "kulcs": "V1581",
-      "rendszam": "V1581",
-      "vehicle_id": "4633",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.47099685668945,
-      "lon": 19.073261260986328,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-11T12:32:59.600001+02:00",
-      "kulcs": "V4089",
-      "rendszam": "V4089",
-      "vehicle_id": "4778",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.54722213745117,
-      "lon": 19.028947830200195,
-      "elozo_szoveg": "Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park"
-    },
-    {
-      "idopont": "2026-10-11T12:32:59.600049+02:00",
-      "kulcs": "AAMH637",
-      "rendszam": "AAMH637",
-      "vehicle_id": "480",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49699020385742,
-      "lon": 19.055707931518555,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-11T12:32:59.600458+02:00",
-      "kulcs": "AAMH678",
-      "rendszam": "AAMH678",
-      "vehicle_id": "521",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.55962371826172,
-      "lon": 19.08237648010254,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
     {
       "idopont": "2026-10-11T12:32:59.600523+02:00",
       "kulcs": "V2259",
@@ -260000,6 +259948,58 @@
       "lon": 19.024118423461914,
       "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-12T02:24:48.911948+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46795654296875,
+      "lon": 19.075727462768555,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T02:24:48.914234+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50813674926758,
+      "lon": 19.028038024902344,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-12T02:24:48.914541+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49858093261719,
+      "lon": 19.054655075073242,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-12T02:24:48.914657+02:00",
+      "kulcs": "182 573",
+      "rendszam": "182 573",
+      "vehicle_id": "918061825736",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.461978912353516,
+      "lon": 21.486650466918945,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
