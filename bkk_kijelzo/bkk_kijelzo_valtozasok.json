@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T01:26:46.020401+02:00",
+  "frissitve": "2026-10-13T01:27:15.483158+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:04:55.091497+02:00",
-      "kulcs": "T0616",
-      "rendszam": "T0616",
-      "vehicle_id": "4300",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51659393310547,
-      "lon": 19.092668533325195,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-12T15:04:55.091691+02:00",
-      "kulcs": "V1336",
-      "rendszam": "V1336",
-      "vehicle_id": "4439",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.499202728271484,
-      "lon": 19.082345962524414,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-12T15:04:55.091850+02:00",
-      "kulcs": "V1357",
-      "rendszam": "V1357",
-      "vehicle_id": "4458",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.46587371826172,
-      "lon": 19.022005081176758,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-12T15:04:55.092098+02:00",
-      "kulcs": "V1503",
-      "rendszam": "V1503",
-      "vehicle_id": "4555",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49553298950195,
-      "lon": 19.07345199584961,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-10-12T15:04:55.092179+02:00",
-      "kulcs": "AAMH615",
-      "rendszam": "AAMH615",
-      "vehicle_id": "458",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.57732009887695,
-      "lon": 19.11445426940918,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-12T15:04:55.092336+02:00",
       "kulcs": "V1586",
@@ -260000,6 +259935,71 @@
       "lon": 19.047080993652344,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-13T01:27:15.395582+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50746536254883,
+      "lon": 19.02495765686035,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-13T01:27:15.395686+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.53935623168945,
+      "lon": 19.069477081298828,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T01:27:15.396503+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46664810180664,
+      "lon": 19.077133178710938,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-13T01:27:15.396532+02:00",
+      "kulcs": "SKR811",
+      "rendszam": "SKR811",
+      "vehicle_id": "7697",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48831558227539,
+      "lon": 19.05999183654785,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-13T01:27:15.396715+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48930740356445,
+      "lon": 19.108661651611328,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
