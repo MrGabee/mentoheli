@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:39:08.458824+02:00",
+  "frissitve": "2026-10-13T00:39:41.763488+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T14:59:24.784201+02:00",
-      "kulcs": "T9116",
-      "rendszam": "T9116",
-      "vehicle_id": "7854",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.509944915771484,
-      "lon": 19.096773147583008,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-10-12T14:59:24.784285+02:00",
-      "kulcs": "T9126",
-      "rendszam": "T9126",
-      "vehicle_id": "7865",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.504310607910156,
-      "lon": 19.136627197265625,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-12T14:59:24.784403+02:00",
-      "kulcs": "T9143",
-      "rendszam": "T9143",
-      "vehicle_id": "7882",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.521240234375,
-      "lon": 19.101346969604492,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-12T14:59:24.784593+02:00",
       "kulcs": "AOFL215",
@@ -260000,6 +259961,45 @@
       "lon": 19.02789306640625,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-13T00:39:41.676012+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49892807006836,
+      "lon": 19.051254272460938,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T00:39:41.680005+02:00",
+      "kulcs": "AADI590",
+      "rendszam": "AADI590",
+      "vehicle_id": "71",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42156219482422,
+      "lon": 19.04132080078125,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-13T00:39:41.680118+02:00",
+      "kulcs": "RVY607",
+      "rendszam": "RVY607",
+      "vehicle_id": "7436",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42266082763672,
+      "lon": 19.079240798950195,
+      "elozo_szoveg": "Kispest, Vas Gereben utca",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
