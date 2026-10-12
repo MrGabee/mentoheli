@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T02:31:05.399042+02:00",
+  "frissitve": "2026-10-12T02:31:38.649035+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:33:54.886148+02:00",
-      "kulcs": "V1337",
-      "rendszam": "V1337",
-      "vehicle_id": "4440",
-      "vehicle_label": "Széchenyi István tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51289367675781,
-      "lon": 19.04767417907715,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Széchenyi István tér"
-    },
-    {
-      "idopont": "2026-10-11T12:33:54.886216+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.50224304199219,
-      "lon": 19.039831161499023,
-      "elozo_szoveg": "Szent Gellért tér - Műegyetem M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-10-11T12:33:54.886267+02:00",
-      "kulcs": "V1362",
-      "rendszam": "V1362",
-      "vehicle_id": "4463",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.47983932495117,
-      "lon": 19.066314697265625,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-11T12:33:54.886277+02:00",
       "kulcs": "V1363",
@@ -260000,6 +259961,45 @@
       "lon": 19.071386337280273,
       "elozo_szoveg": "Határ út M ► Pestszentlőrinc",
       "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-12T02:31:38.563251+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.441593170166016,
+      "lon": 19.186180114746094,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-10-12T02:31:38.563484+02:00",
+      "kulcs": "NTM438",
+      "rendszam": "NTM438",
+      "vehicle_id": "6506",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51974868774414,
+      "lon": 19.148080825805664,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-12T02:31:38.563600+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.46904373168945,
+      "lon": 19.294662475585938,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
