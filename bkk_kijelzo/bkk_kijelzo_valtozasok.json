@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:30:46.884158+02:00",
+  "frissitve": "2026-10-13T00:31:18.619669+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T14:59:24.778971+02:00",
-      "kulcs": "V2222",
-      "rendszam": "V2222",
-      "vehicle_id": "5862",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.44333267211914,
-      "lon": 19.095882415771484,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-12T14:59:24.779200+02:00",
-      "kulcs": "MUT895",
-      "rendszam": "MUT895",
-      "vehicle_id": "5948",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.50150680541992,
-      "lon": 19.13566017150879,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-12T14:59:24.779305+02:00",
-      "kulcs": "NBW001",
-      "rendszam": "NBW001",
-      "vehicle_id": "5971",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.499855041503906,
-      "lon": 19.1048583984375,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
     {
       "idopont": "2026-10-12T14:59:24.779603+02:00",
       "kulcs": "T9012",
@@ -260000,6 +259961,45 @@
       "lon": 19.02288055419922,
       "elozo_szoveg": "Apor Vilmos tér",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-13T00:31:18.535684+02:00",
+      "kulcs": "SKR725",
+      "rendszam": "SKR725",
+      "vehicle_id": "7674",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46504592895508,
+      "lon": 19.127315521240234,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-13T00:31:18.535916+02:00",
+      "kulcs": "915504900068",
+      "rendszam": "915504900068",
+      "vehicle_id": "915504900068",
+      "vehicle_label": "Székesfehérvár",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.46318054199219,
+      "lon": 19.020889282226562,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Székesfehérvár"
+    },
+    {
+      "idopont": "2026-10-13T00:31:18.536036+02:00",
+      "kulcs": "815 009",
+      "rendszam": "815 009",
+      "vehicle_id": "945518150095",
+      "vehicle_label": "Esztergom",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.527870178222656,
+      "lon": 19.091520309448242,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Esztergom"
     }
   ]
 }
