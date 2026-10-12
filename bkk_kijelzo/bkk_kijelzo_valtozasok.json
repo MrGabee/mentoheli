@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-12T04:01:43.394109+02:00",
+  "frissitve": "2026-10-12T04:02:19.519045+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:47:31.447850+02:00",
-      "kulcs": "SKR829",
-      "rendszam": "SKR829",
-      "vehicle_id": "7715",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "VP50",
-      "route_id": "VP50",
-      "lat": 47.4394645690918,
-      "lon": 19.187469482421875,
-      "elozo_szoveg": "Szarvas csárda tér",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-10-11T12:47:31.448070+02:00",
-      "kulcs": "T9113",
-      "rendszam": "T9113",
-      "vehicle_id": "7754",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51406478881836,
-      "lon": 19.049217224121094,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-10-11T12:47:31.448434+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52531814575195,
-      "lon": 19.063230514526367,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-11T12:47:31.448743+02:00",
-      "kulcs": "AOFL252",
-      "rendszam": "AOFL252",
-      "vehicle_id": "841",
-      "vehicle_label": "Újhegy",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.48402404785156,
-      "lon": 19.12763214111328,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
     {
       "idopont": "2026-10-11T12:47:31.450126+02:00",
       "kulcs": "AOGL319",
@@ -260000,6 +259948,58 @@
       "lon": 19.07069206237793,
       "elozo_szoveg": "Csepel, Szent Imre tér",
       "uj_szoveg": "Királyerdő út ► Hollandi út"
+    },
+    {
+      "idopont": "2026-10-12T04:02:19.433177+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519325256347656,
+      "lon": 19.03822135925293,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-12T04:02:19.433281+02:00",
+      "kulcs": "AAGL284",
+      "rendszam": "AAGL284",
+      "vehicle_id": "308",
+      "vehicle_label": "Törökbálint, Nyár utca",
+      "vonal_szam": "172",
+      "route_id": "1720",
+      "lat": 47.433284759521484,
+      "lon": 18.919588088989258,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
+    },
+    {
+      "idopont": "2026-10-12T04:02:19.434301+02:00",
+      "kulcs": "NGC165",
+      "rendszam": "NGC165",
+      "vehicle_id": "6207",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50748062133789,
+      "lon": 19.025585174560547,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-12T04:02:19.434687+02:00",
+      "kulcs": "RVY609",
+      "rendszam": "RVY609",
+      "vehicle_id": "7438",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48725509643555,
+      "lon": 19.06678009033203,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
     }
   ]
 }
