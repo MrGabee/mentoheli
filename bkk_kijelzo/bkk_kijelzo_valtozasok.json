@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T01:38:01.861908+02:00",
+  "frissitve": "2026-10-13T01:38:32.580407+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:04:55.107844+02:00",
-      "kulcs": "918071936432",
-      "rendszam": "918071936432",
-      "vehicle_id": "918071936432",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.26129913330078,
-      "lon": 16.940040588378906,
-      "elozo_szoveg": "Szombathely",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-12T15:04:55.107905+02:00",
-      "kulcs": "AADI596",
-      "rendszam": "AADI596",
-      "vehicle_id": "92",
-      "vehicle_label": "Balatoni út / Háros utca",
-      "vonal_szam": "58",
-      "route_id": "0580",
-      "lat": 47.47705078125,
-      "lon": 19.049753189086914,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Balatoni út / Háros utca"
-    },
-    {
-      "idopont": "2026-10-12T15:04:55.108385+02:00",
-      "kulcs": "815 009",
-      "rendszam": "815 009",
-      "vehicle_id": "945518150095",
-      "vehicle_label": "Esztergom",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.55942153930664,
-      "lon": 19.079099655151367,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Esztergom"
-    },
     {
       "idopont": "2026-10-12T15:04:55.108494+02:00",
       "kulcs": "AADI598",
@@ -260000,6 +259961,45 @@
       "lon": 19.124370574951172,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-13T01:38:32.491538+02:00",
+      "kulcs": "FLR735",
+      "rendszam": "FLR735",
+      "vehicle_id": "3149",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.525508880615234,
+      "lon": 19.063737869262695,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-13T01:38:32.492183+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42825698852539,
+      "lon": 19.15580177307129,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-13T01:38:32.492775+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42155456542969,
+      "lon": 19.04132843017578,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
     }
   ]
 }
