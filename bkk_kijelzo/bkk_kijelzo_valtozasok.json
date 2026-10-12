@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T03:37:54.130596+02:00",
+  "frissitve": "2026-10-12T03:38:23.162329+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:43:36.483116+02:00",
-      "kulcs": "AONW965",
-      "rendszam": "AONW965",
-      "vehicle_id": "1033",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.47319412231445,
-      "lon": 18.99228286743164,
-      "elozo_szoveg": "Gazdagréti tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-11T12:43:36.483836+02:00",
-      "kulcs": "AADR755",
-      "rendszam": "AADR755",
-      "vehicle_id": "204",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48943328857422,
-      "lon": 19.090343475341797,
-      "elozo_szoveg": "Déli pályaudvar M",
-      "uj_szoveg": "Zugló vasútállomás (Hermina út)"
-    },
-    {
-      "idopont": "2026-10-11T12:43:36.483896+02:00",
-      "kulcs": "AAGL262",
-      "rendszam": "AAGL262",
-      "vehicle_id": "262",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40",
-      "route_id": "0400",
-      "lat": 47.46410369873047,
-      "lon": 19.01853370666504,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
     {
       "idopont": "2026-10-11T12:43:36.484322+02:00",
       "kulcs": "AAHY819",
@@ -260000,6 +259961,45 @@
       "lon": 19.16107177734375,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-12T03:38:23.075548+02:00",
+      "kulcs": "AAGL314",
+      "rendszam": "AAGL314",
+      "vehicle_id": "342",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.5079345703125,
+      "lon": 19.029996871948242,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-12T03:38:23.075661+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.5252685546875,
+      "lon": 19.063749313354492,
+      "elozo_szoveg": "Rákospalota, Mélyfúró utca",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-12T03:38:23.076393+02:00",
+      "kulcs": "AEHE426",
+      "rendszam": "AEHE426",
+      "vehicle_id": "623",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.4228401184082,
+      "lon": 19.07468032836914,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
