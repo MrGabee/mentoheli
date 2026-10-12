@@ -2,12 +2,9 @@ name: ☀️ Reggeli Összefoglaló
 
 on:
   workflow_dispatch:
-  schedule:
-    # Helyi idő szerint 6:30-kor posztol egész évben. A GitHub UTC-ben
-    # ütemez, ezért két időpontban indul; a script dönti el, melyik
-    # felel meg aznap a 6:30-nak (nyáron 04:30 UTC, télen 05:30 UTC).
-    - cron: '30 4 * * *'
-    - cron: '30 5 * * *'
+  # A 6:30-as posztot már a Színes posztok menetrendje küldi (a GitHub
+  # ütemezője megbízhatatlan, az viszont késve is pótolja). Ez csak kézi
+  # indításra fut.
 
 concurrency:
   group: reggeli-osszefoglalo

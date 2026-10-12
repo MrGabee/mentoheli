@@ -35,7 +35,7 @@ jobs:
           python-version: '3.12'
 
       - name: 📦 Függőségek telepítése
-        run: pip install requests
+        run: pip install requests beautifulsoup4
 
       - name: 🌈 Színes posztok futtatása
         env:

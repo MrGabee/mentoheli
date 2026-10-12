@@ -24,6 +24,7 @@ from zoneinfo import ZoneInfo
 
 import idojaras_riasztas_monitor as kuldo
 import kerulet_programok
+import reggeli_osszefoglalo
 import ezen_a_napon
 import csepeli_erdekesseg
 import kerdes_nektek
@@ -54,6 +55,7 @@ PENTEK = 4
 
 # (kulcs, időpont, csak ezeken a napokon [0=hétfő] vagy None, szöveg(nap, allapot))
 MENETREND = [
+    ("reggeli",       time(6, 30),  None,     lambda nap, a: reggeli_osszefoglalo.szoveg(nap)),
     ("programok",     time(8, 0),   None,     lambda nap, a: kerulet_programok.reggeli_szoveg(nap)),
     ("ezen_a_napon",  time(10, 30), None,     lambda nap, a: ezen_a_napon.szoveg(nap)),
     ("erdekesseg",    time(13, 0),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
