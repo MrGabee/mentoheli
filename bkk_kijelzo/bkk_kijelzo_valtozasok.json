@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T02:23:14.372668+02:00",
+  "frissitve": "2026-10-12T02:23:42.955864+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:32:59.598270+02:00",
-      "kulcs": "AAHY855",
-      "rendszam": "AAHY855",
-      "vehicle_id": "417",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.560218811035156,
-      "lon": 19.090906143188477,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-10-11T12:32:59.598363+02:00",
-      "kulcs": "AAHY868",
-      "rendszam": "AAHY868",
-      "vehicle_id": "430",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.50472640991211,
-      "lon": 19.136754989624023,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-11T12:32:59.598384+02:00",
-      "kulcs": "AAHY871",
-      "rendszam": "AAHY871",
-      "vehicle_id": "433",
-      "vehicle_label": "Újpest, Fóti út",
-      "vonal_szam": "96",
-      "route_id": "0960",
-      "lat": 47.54153823852539,
-      "lon": 19.15141487121582,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest, Fóti út"
-    },
     {
       "idopont": "2026-10-11T12:32:59.598571+02:00",
       "kulcs": "V1359",
@@ -260000,6 +259961,45 @@
       "lon": 19.048812866210938,
       "elozo_szoveg": "Hengermalom út ► Budatétény",
       "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-12T02:23:42.873247+02:00",
+      "kulcs": "AADI566",
+      "rendszam": "AADI566",
+      "vehicle_id": "42",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.54963684082031,
+      "lon": 19.0432071685791,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-12T02:23:42.873425+02:00",
+      "kulcs": "MUT900",
+      "rendszam": "MUT900",
+      "vehicle_id": "5953",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51304626464844,
+      "lon": 19.05767250061035,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-12T02:23:42.873445+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.503990173339844,
+      "lon": 19.14223861694336,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
     }
   ]
 }
