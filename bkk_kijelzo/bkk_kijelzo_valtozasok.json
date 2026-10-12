@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T03:28:49.894818+02:00",
+  "frissitve": "2026-10-12T03:29:22.777396+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:41:38.322103+02:00",
-      "kulcs": "V1590",
-      "rendszam": "V1590",
-      "vehicle_id": "4642",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.42216873168945,
-      "lon": 19.122556686401367,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-11T12:41:38.322214+02:00",
-      "kulcs": "AAMH633",
-      "rendszam": "AAMH633",
-      "vehicle_id": "476",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49699020385742,
-      "lon": 19.055736541748047,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-11T12:41:38.322544+02:00",
-      "kulcs": "AAMH649",
-      "rendszam": "AAMH649",
-      "vehicle_id": "492",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.43238067626953,
-      "lon": 19.260826110839844,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
     {
       "idopont": "2026-10-11T12:41:38.322909+02:00",
       "kulcs": "V4285",
@@ -260000,6 +259961,45 @@
       "lon": 19.49835968017578,
       "elozo_szoveg": "Lajosmizse",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-12T03:29:22.687070+02:00",
+      "kulcs": "AADI653",
+      "rendszam": "AADI653",
+      "vehicle_id": "152",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.58015823364258,
+      "lon": 19.10835075378418,
+      "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-12T03:29:22.688551+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49763870239258,
+      "lon": 19.054710388183594,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-12T03:29:22.690141+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47551727294922,
+      "lon": 19.04698944091797,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
