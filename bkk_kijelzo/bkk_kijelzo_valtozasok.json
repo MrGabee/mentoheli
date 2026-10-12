@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:57:22.815368+02:00",
+  "frissitve": "2026-10-13T00:57:59.975978+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:02:09.164082+02:00",
-      "kulcs": "FLR746",
-      "rendszam": "FLR746",
-      "vehicle_id": "3160",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46778869628906,
-      "lon": 19.302433013916016,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.164312+02:00",
-      "kulcs": "AAHY802",
-      "rendszam": "AAHY802",
-      "vehicle_id": "362",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "122E",
-      "route_id": "1225",
-      "lat": 47.598548889160156,
-      "lon": 19.120912551879883,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.164590+02:00",
-      "kulcs": "AAHY820",
-      "rendszam": "AAHY820",
-      "vehicle_id": "381",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.577857971191406,
-      "lon": 19.10573387145996,
-      "elozo_szoveg": "Izzó utcai lakótelep ► Újpest-központ M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.164634+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56105422973633,
-      "lon": 19.090105056762695,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-12T15:02:09.164823+02:00",
-      "kulcs": "AAHY851",
-      "rendszam": "AAHY851",
-      "vehicle_id": "412",
-      "vehicle_label": "Dunakeszi, Auchan áruház",
-      "vonal_szam": "126",
-      "route_id": "1260",
-      "lat": 47.5777702331543,
-      "lon": 19.114826202392578,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Dunakeszi, Auchan áruház"
-    },
     {
       "idopont": "2026-10-12T15:02:09.164890+02:00",
       "kulcs": "AAHY859",
@@ -260000,6 +259935,71 @@
       "lon": 19.132909774780273,
       "elozo_szoveg": "Budapest-Keleti",
       "uj_szoveg": "Nagykáta"
+    },
+    {
+      "idopont": "2026-10-13T00:57:59.910725+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.53439712524414,
+      "lon": 19.08229637145996,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T00:57:59.911139+02:00",
+      "kulcs": "PKN601",
+      "rendszam": "PKN601",
+      "vehicle_id": "7190",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48823547363281,
+      "lon": 19.059856414794922,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-13T00:57:59.911268+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266357421875,
+      "lon": 19.161035537719727,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-13T00:57:59.911318+02:00",
+      "kulcs": "SKR725",
+      "rendszam": "SKR725",
+      "vehicle_id": "7674",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.432762145996094,
+      "lon": 19.261507034301758,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-13T00:57:59.911566+02:00",
+      "kulcs": "815 010",
+      "rendszam": "815 010",
+      "vehicle_id": "945518150103",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.52621078491211,
+      "lon": 19.090240478515625,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szob"
     }
   ]
 }
