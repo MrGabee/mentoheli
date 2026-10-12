@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-13T00:39:41.763488+02:00",
+  "frissitve": "2026-10-13T00:40:09.380299+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T14:59:24.784593+02:00",
-      "kulcs": "AOFL215",
-      "rendszam": "AOFL215",
-      "vehicle_id": "802",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.49363327026367,
-      "lon": 19.011810302734375,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-12T14:59:24.784648+02:00",
-      "kulcs": "AOFL222",
-      "rendszam": "AOFL222",
-      "vehicle_id": "809",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54014205932617,
-      "lon": 19.046255111694336,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Erdőalja út ► Máramaros út"
-    },
     {
       "idopont": "2026-10-12T14:59:24.785336+02:00",
       "kulcs": "AOFL251",
@@ -260000,6 +259974,32 @@
       "lon": 19.079240798950195,
       "elozo_szoveg": "Kispest, Vas Gereben utca",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-13T00:40:09.314503+02:00",
+      "kulcs": "AAGL309",
+      "rendszam": "AAGL309",
+      "vehicle_id": "339",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50798416137695,
+      "lon": 19.02873992919922,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-13T00:40:09.315120+02:00",
+      "kulcs": "SKR811",
+      "rendszam": "SKR811",
+      "vehicle_id": "7697",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37955856323242,
+      "lon": 19.104223251342773,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
