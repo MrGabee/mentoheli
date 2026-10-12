@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T03:40:58.046962+02:00",
+  "frissitve": "2026-10-12T03:41:29.371484+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:43:36.489231+02:00",
-      "kulcs": "T8100",
-      "rendszam": "T8100",
-      "vehicle_id": "7337",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50606155395508,
-      "lon": 19.050695419311523,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-11T12:43:36.489488+02:00",
-      "kulcs": "V2242",
-      "rendszam": "V2242",
-      "vehicle_id": "7374",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.49351501464844,
-      "lon": 19.044218063354492,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-11T12:43:36.489763+02:00",
-      "kulcs": "RVY720",
-      "rendszam": "RVY720",
-      "vehicle_id": "7469",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.50175857543945,
-      "lon": 19.13558006286621,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-10-11T12:43:36.489856+02:00",
       "kulcs": "RVY737",
@@ -260000,6 +259961,45 @@
       "lon": 20.094289779663086,
       "elozo_szoveg": "Sülysáp",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-10-12T03:41:29.303817+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.4869499206543,
+      "lon": 19.06732940673828,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-12T03:41:29.305327+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.53643035888672,
+      "lon": 19.10718536376953,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-12T03:41:29.305375+02:00",
+      "kulcs": "NNE058",
+      "rendszam": "NNE058",
+      "vehicle_id": "6454",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47544860839844,
+      "lon": 19.040834426879883,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
