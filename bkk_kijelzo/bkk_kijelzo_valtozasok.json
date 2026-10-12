@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-12T02:01:40.711601+02:00",
+  "frissitve": "2026-10-12T02:02:14.177545+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-11T12:29:54.903811+02:00",
-      "kulcs": "AADR707",
-      "rendszam": "AADR707",
-      "vehicle_id": "175",
-      "vehicle_label": "Szent Lőrinc-telep",
-      "vonal_szam": "132E",
-      "route_id": "1325",
-      "lat": 47.463409423828125,
-      "lon": 19.147268295288086,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Havanna-lakótelep ► Szent Lőrinc-telep"
-    },
-    {
-      "idopont": "2026-10-11T12:29:54.904157+02:00",
-      "kulcs": "AAGL250",
-      "rendszam": "AAGL250",
-      "vehicle_id": "250",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50028610229492,
-      "lon": 18.916793823242188,
-      "elozo_szoveg": "Budakeszi, Tesco áruház",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-11T12:29:54.904257+02:00",
-      "kulcs": "AAGL271",
-      "rendszam": "AAGL271",
-      "vehicle_id": "271",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50743103027344,
-      "lon": 19.02532958984375,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
     {
       "idopont": "2026-10-11T12:29:54.905003+02:00",
       "kulcs": "AAGL322",
@@ -260000,6 +259961,45 @@
       "lon": 19.095348358154297,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-12T02:02:14.073936+02:00",
+      "kulcs": "NWB354",
+      "rendszam": "NWB354",
+      "vehicle_id": "6534",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519447326660156,
+      "lon": 19.038150787353516,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-12T02:02:14.074274+02:00",
+      "kulcs": "RVY702",
+      "rendszam": "RVY702",
+      "vehicle_id": "7451",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.432777404785156,
+      "lon": 19.261484146118164,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-12T02:02:14.074447+02:00",
+      "kulcs": "AADI575",
+      "rendszam": "AADI575",
+      "vehicle_id": "78",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50748825073242,
+      "lon": 19.024734497070312,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
