@@ -36,7 +36,7 @@ from bs4 import BeautifulSoup
 
 # A közös poszt-stílusok (poszt_valtozatos.py) a repó gyökerében vannak
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from poszt_valtozatos import Stilus  # noqa: E402
+from poszt_valtozatos import Stilus, ZAROK as ZARO_SOROK  # noqa: E402
 
 # =====================================================================
 # BEÁLLÍTÁS
@@ -131,6 +131,13 @@ IDOZITETT_TAVOLSAG_PERC = 45
 EJSZAKA_TOL = (22, 0)
 EJSZAKA_IG = (6, 45)
 VAROLISTA_MAX_ORA = 48   # ennél régebben váró posztot már nem teszünk ki
+
+# A körözések nem egyenként mennek ki: a nap folyamán gyűlnek, és naponta
+# egyszer, ettől az időponttól (helyi idő) egyetlen összesítő posztban és
+# egyetlen emailben jelennek meg az elmúlt 24 óra körözései. 9:00 azért, mert
+# a 8:00-s és 10:30-as időzített poszt között itt van szabad ablak.
+OSSZESITO_IDO = dtime(9, 0)
+KORAL_LISTA_URL = BASE_URL + "/hu/koral"
 
 # ---------------------------------------------------------------------
 # KÖRÖZÉSI KATEGÓRIÁK
@@ -570,38 +577,115 @@ def rovid_nev(mezok):
     return f"{nev[0][0]}. {uto.title()}"
 
 
-def korozes_poszt_szoveg(kulcs, kat, reszlet, szerv, url):
-    """A körözés Facebook-szövege, E/1-ben."""
-    st = Stilus("korozes")
+def korozes_tetel_sorok(kulcs, kat, reszlet, szerv, url):
+    """Egy körözés sorai a napi összesítő posztba (címsor és záró nélkül)."""
     m = reszlet["mezok"]
     tel = _telefon(m)
-    hivd = f"☎️ Ha bármit tudsz, hívd a 112-t vagy a kapitányságot: {tel}" if tel else "☎️ Ha bármit tudsz, hívd a 112-t!"
+    hivd = f"☎️ Kapitányság: {tel}" if tel else None
     if kulcs == "korozott_szemelyek":
         # Adatvédelem: csak rövidített név (B. Fanni), fénykép nélkül.
-        sorok = [st.cim, st.bevezeto, "",
-                 f"🚨 Elfogatóparancs a környéken: {rovid_nev(m)}" if rovid_nev(m) else "🚨 Új elfogatóparancs a környéken",
+        sorok = [f"🚨 Elfogatóparancs: {rovid_nev(m)}" if rovid_nev(m) else "🚨 Elfogatóparancs",
                  f"⚖️ {m[JOGALAP]}" if m.get(JOGALAP) else None,
-                 f"🚔 {szerv}", hivd, "",
-                 f"🔗 Hivatalos körözés: {url}", "", SZEMELYISEGI_JOG]
+                 f"🚔 {szerv}", hivd, f"🔗 {url}"]
     elif kulcs == "eltunt_szemelyek":
         szul = m.get("Születési dátum", "")[:4]
-        sorok = [st.cim, st.bevezeto, "",
-                 f"👤 {reszlet['cim']}" + (f" (született {szul})" if szul else ""),
+        sorok = [f"👤 Eltűnt: {reszlet['cim']}" + (f" (született {szul})" if szul else ""),
                  f"📅 Eltűnés napja: {m['Eltűnés dátuma']}" if m.get("Eltűnés dátuma") else None,
-                 f"🚔 {szerv}", hivd, "",
-                 f"📸 A fénykép és minden részlet: {url}", "", SZEMELYISEGI_JOG]
+                 f"🚔 {szerv}", hivd, f"📸 Fénykép és részletek: {url}"]
     elif "jarmu" in kulcs:
-        sorok = [st.cim, st.bevezeto, "",
-                 f"🚗 {reszlet['cim']}",
+        sorok = [f"🚗 {reszlet['cim']}",
                  f"🎨 Szín: {m['Szín'].lower()}" if m.get("Szín") else None,
                  f"🔢 Rendszám: {m['Rendszám']}" if m.get("Rendszám") else None,
                  f"📅 Eltulajdonítás: {m['Eltűnés/eltulajdonítás dátuma']}" if m.get("Eltűnés/eltulajdonítás dátuma") else None,
-                 f"🚔 {szerv}", hivd, "", f"🔗 Részletek: {url}"]
+                 f"🚔 {szerv}", hivd, f"🔗 {url}"]
     else:
-        sorok = [st.cim, st.bevezeto, "", reszlet["cim"], f"{kat['label']} · {szerv}", "", url]
+        sorok = [reszlet["cim"], f"{kat['label']} · {szerv}", f"🔗 {url}"]
+    return [sor for sor in sorok if sor is not None]
+
+
+def osszesito_poszt_szoveg(tetelek):
+    """Az elmúlt 24 óra körözései egy Facebook-posztban, E/1-ben."""
+    st = Stilus("korozes")
+    db = len(tetelek)
+    sorok = [st.cim,
+             "Az elmúlt 24 órában ez a körözés jelent meg a környéken:" if db == 1
+             else f"Az elmúlt 24 órában {db} körözés jelent meg a környéken:", ""]
+    for i, t in enumerate(tetelek, 1):
+        tsorok = list(t["sorok"])
+        if db > 1:
+            tsorok[0] = f"{i}. {tsorok[0]}"
+        sorok += tsorok + [""]
+    sorok.append("☎️ Ha bármit tudsz, hívd a 112-t vagy az illetékes kapitányságot!")
+    if any(t.get("szemely") for t in tetelek):
+        sorok += ["", SZEMELYISEGI_JOG]
     if st.zaro:
         sorok += ["", st.zaro]
-    return "\n".join(sor for sor in sorok if sor is not None)
+    return "\n".join(sorok)
+
+
+def _regi_varolista_atvezetese(cache):
+    """Egyszeri átállás: a várólistán egyenként váró körözés-posztok átkerülnek
+    a napi gyűjtőbe (a szövegükből a címsort, bevezetőt és zárást elhagyva)."""
+    lista = cache.get("fb_varolista", [])
+    regiek = [t for t in lista if t.get("kovetes")]
+    if not regiek:
+        return
+    gyujto = cache.setdefault("korozes_gyujto", [])
+    for t in regiek:
+        sorok = [x for x in t["fb_szoveg"].split("\n")[2:]
+                 if x.strip() and x != SZEMELYISEGI_JOG and not x.startswith("🙏")
+                 and not x.startswith("☎️ Ha bármit tudsz")]
+        if len(sorok) > 1 and sorok[-1] in ZARO_SOROK:
+            sorok.pop()
+        gyujto.append({"sorok": sorok, "url": t["kovetes"]["url"], "facebook_post": True,
+                       "szemely": "szemelyek" in t["kovetes"]["tipus"], "felvetel": t["felvetel"],
+                       "tema": "[Körözés] " + sorok[0], "torzs": ""})
+    cache["fb_varolista"] = [t for t in lista if not t.get("kovetes")]
+    print(f"   ↪️  {len(regiek)} egyenként váró körözés-poszt átkerült a napi összesítőbe.")
+
+
+def napi_osszesito(cache, email_kuldes):
+    """Naponta egyszer, OSSZESITO_IDO után: az összegyűlt körözésekből egy
+    email és egy Facebook-poszt (a várólista elejére) készül."""
+    tz = ZoneInfo("Europe/Budapest")
+    most = datetime.now(timezone.utc)
+    helyi = most.astimezone(tz)
+    ma = helyi.date().isoformat()
+    if helyi.time() < OSSZESITO_IDO or cache.get("_osszesito_nap") == ma:
+        return
+    gyujto = cache.get("korozes_gyujto", [])
+    tetelek = [t for t in gyujto if most - datetime.fromisoformat(t["felvetel"]) < timedelta(hours=VAROLISTA_MAX_ORA)]
+    cache["_osszesito_nap"] = ma
+    cache["korozes_gyujto"] = []
+    if not tetelek:
+        print("📋 Napi körözés-összesítő: az elmúlt 24 órában nem volt új körözés.")
+        return
+
+    # Ami közben lekerült a police.hu-ról, az már nem kerül bele
+    elo = []
+    for t in tetelek:
+        try:
+            if requests.get(t["url"], headers=HEADERS, timeout=20).status_code == 404:
+                print(f"   ℹ️  Közben lekerült a police.hu-ról, kimarad: {t['url']}")
+                continue
+        except Exception:
+            pass
+        elo.append(t)
+    if not elo:
+        return
+    print(f"📋 Napi körözés-összesítő: {len(elo)} körözés.")
+
+    datum = helyi.strftime("%Y.%m.%d.")
+    email_kuldes(f"[Körözés] Napi összesítő – {len(elo)} új körözés ({datum})",
+                 f"<h1>Az elmúlt 24 óra körözései ({len(elo)})</h1>"
+                 + "<hr>".join(t["torzs"] or "<p>" + "<br>".join(t["sorok"]) + "</p>" for t in elo))
+
+    fb = [t for t in elo if t["facebook_post"]]
+    if MAKE_WEBHOOK_AKTIV and fb:
+        cache.setdefault("fb_varolista", []).insert(0, {
+            "fb_szoveg": osszesito_poszt_szoveg(fb), "kep": KEP_KOROZES,
+            "link": elonezet_link(ATIRANYITO_KOROZES, KORAL_LISTA_URL),
+            "felvetel": most.isoformat()})
 
 
 def lezart_poszt_szoveg(tipus):
@@ -678,6 +762,7 @@ def gyorsitotar_mentese(adat):
 
 def main():
     cache = gyorsitotar_betoltese()
+    _regi_varolista_atvezetese(cache)
     elso_futas = not os.path.exists(DATA_FAJL)
     uj_lekerdezes_szamlalo = 0
 
@@ -749,19 +834,15 @@ def main():
             # a teljes, hivatalos közlemény). Minden más kategóriánál (eltűnt
             # személy, jármű-/légi-/vízijármű-körözés, holttest) ez a
             # korlátozás nem indokolt, ott a korábbi, teljes tartalom marad.
-            fb_szoveg = korozes_poszt_szoveg(kulcs, kat, reszlet, egyezo_szerv, elem["url"])
-            fb_kep = KEP_KOROZES
-            fb_link = elonezet_link(ATIRANYITO_KOROZES, elem["url"])
-
-            talalt_ertesitesek.append({
+            # Nem megy ki azonnal: a napi összesítőbe gyűlik (lásd napi_osszesito).
+            cache.setdefault("korozes_gyujto", []).append({
                 "tema": f"[Körözés] {reszlet['cim']}",
                 "torzs": torzs,
-                "kep": reszlet["kep"],
-                "fb_szoveg": fb_szoveg,
-                "fb_kep": fb_kep,
-                "fb_link": fb_link,
+                "sorok": korozes_tetel_sorok(kulcs, kat, reszlet, egyezo_szerv, elem["url"]),
+                "url": elem["url"],
+                "szemely": kulcs in ("korozott_szemelyek", "eltunt_szemelyek"),
                 "facebook_post": kat["facebook_post"],
-                "kovetes": {"url": elem["url"], "tipus": kulcs},
+                "felvetel": datetime.now(timezone.utc).isoformat(),
             })
 
     ertesitett_hir_urlk = set()    # ugyanaz a cikk több kategóriában is szerepelhet - csak egyszer értesítünk róla
@@ -880,6 +961,19 @@ def main():
         print(f"\n✅ Első futás - alapállapot elmentve ({sum(len(v) for v in cache['korozes'].values())} körözés, "
               f"{sum(len(v) for v in cache['hirek'].values())} hír). Email nem ment.")
         return
+
+    def email_kuldes(tema, torzs):
+        if not smtp_kesz:
+            print("   ⚠️  Nincs beállítva SMTP - email kihagyva.")
+            return
+        try:
+            smtp_email_kuldes(smtp_host, smtp_port, email_kuldo, email_jelszo, email_cimzett, tema, torzs)
+            print(f"   ✅ Email elküldve: {tema}")
+        except Exception as e:
+            print(f"   ⚠️  Email-küldési hiba: {e}")
+
+    napi_osszesito(cache, email_kuldes)
+    gyorsitotar_mentese(cache)
 
     if not talalt_ertesitesek:
         print("\n✅ Nincs új, releváns találat ebben a körben.")
