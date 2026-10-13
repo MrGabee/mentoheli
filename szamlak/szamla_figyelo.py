@@ -1995,10 +1995,11 @@ _KOR_LABJEGYZET = ("Ez egy automatikus értesítő. Ha kérdése van, vagy a sz�
                    "egyszerűen válaszoljon erre a levélre.")
 
 
-def kor_uj_szamla_email_html(rekord: dict) -> str:
+def kor_uj_szamla_email_html(rekord: dict, elotag_bekezdes: str = "") -> str:
     """Bérlői körnek szóló értesítő egy új számláról (a PDF csatolva)."""
     tartalom = (
         _lv_bekezdes("Tisztelt Bérlő!")
+        + (_lv_bekezdes(elotag_bekezdes) if elotag_bekezdes else "")
         + _lv_bekezdes(f"Tájékoztatjuk, hogy új számla érkezett: <strong>{_esc(rekord.get('szolgaltato_nev') or '')}</strong>. "
                        "A számlát csatoltuk ehhez a levélhez.")
         + _lv_osszeg_blokk(osszeg_szoveg(rekord.get("osszeg"), rekord.get("penznem")), rekord.get("hatarido"), "kek")
@@ -3417,6 +3418,68 @@ def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztik
                     del varolista[rid]
             except (TypeError, ValueError):
                 del varolista[rid]
+
+
+# EGYSZERI HIBAJAVÍTÓ ÚJRAKÜLDÉS (a felhasználó kérése, 2026-10-13): a
+# Díjnet PDF-letöltés sorindex-hibája miatt (ld. dijnet_pdf_letoltese())
+# a B körnek kiment új-számla értesítőhöz egy másik számla PDF-je került.
+# A hiba javítása előtti 24 órában a B körnek kiküldött Díjnetes
+# értesítőket egyszer újraküldjük, bocsánatkéréssel és a helyes PDF-fel.
+# Csak akkor megy ki, ha a tárolt PDF már ellenőrzötten az adott számláé
+# (a pótlás tölti le) - addig vár, legfeljebb a határidőig.
+HIBAJAVITO_UJRAKULDES_KOROK = ("kor_b",)
+HIBAJAVITO_UJRAKULDES_ABLAK = ("2026-10-12T11:00:00", "2026-10-13T11:30:00")
+HIBAJAVITO_UJRAKULDES_HATARIDO = "2026-10-20"
+
+
+def hibajavito_ujrakuldes(allapot: dict, szamlak: dict, statisztika: dict):
+    allapot_kulcs = "hibajavito_ujrakuldes_2026_10_13"
+    kesz = allapot.setdefault(allapot_kulcs, {})
+    if kesz.get("lezarva") or EMAIL_KIKAPCSOLVA:
+        return
+    if magyar_ma().isoformat() > HIBAJAVITO_UJRAKULDES_HATARIDO:
+        kesz["lezarva"] = magyar_ido().isoformat()
+        return
+    varolista = allapot.get("kor_ertesito_varolista") or {}
+    pdf_tar = allapot.get("pdf_adatok", {})
+    tol, ig = HIBAJAVITO_UJRAKULDES_ABLAK
+    hatralevo = 0
+    for rid, b in varolista.items():
+        if rid in kesz or b.get("statusz") != "elkuldve":
+            continue
+        if b.get("kor") not in HIBAJAVITO_UJRAKULDES_KOROK:
+            continue
+        if not (tol <= str(b.get("elkuldve") or "")[:19] <= ig):
+            continue
+        rekord = szamlak.get(rid)
+        if not rekord or not (rekord.get("szolgaltato") == "dijnet" or rekord.get("forras") == "dijnet_portal"):
+            continue
+        pdf_b64 = pdf_tar.get(rid)
+        pdf_bytes = base64.b64decode(pdf_b64) if pdf_b64 else None
+        if not pdf_bytes or not _dijnet_pdf_egyezik(pdf_bytes, rekord.get("szamlaszam"), rekord.get("osszeg")):
+            hatralevo += 1
+            continue  # még nincs ellenőrzötten helyes PDF - a következő futás újra megnézi
+        cimzett = _cimzett_string(_kor_cimzettek(allapot, b.get("kor")))
+        if not cimzett:
+            continue
+        targy = (f"Javított melléklet – Új számla – {rekord['szolgaltato_nev']} – "
+                 f"{osszeg_szoveg(rekord.get('osszeg'), rekord.get('penznem'))}")
+        html = kor_uj_szamla_email_html(
+            rekord,
+            "Elnézést kérünk, technikai hiba miatt a korábbi értesítő levelünkhöz nem a megfelelő "
+            "számla lett csatolva. Ebben a levélben már a helyes számlát küldjük, a korábbi "
+            "mellékletet kérjük, tekintse tárgytalannak.",
+        )
+        csatolmanyok = [(f"{rekord.get('szamlaszam') or 'szamla'}.pdf", pdf_bytes)]
+        statisztika["email_ertesitesek"] += 1
+        if email_kuldes(targy, html, csatolmanyok, cimzett=cimzett):
+            kesz[rid] = magyar_ido().isoformat()
+            print(f"  🔁 Javított bérlői értesítő elküldve: {b.get('kor_nev') or b.get('kor')} – {rekord.get('targy')}")
+            tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+            if tulajdonos_cimzett:
+                email_kuldes(f"Másolat: {targy}", html, csatolmanyok, cimzett=tulajdonos_cimzett)
+    if hatralevo:
+        print(f"  🔁 Javított bérlői értesítő: {hatralevo} db vár a helyes PDF-re.")
 
 
 # BÉRLŐI KÖR - HATÁRIDŐ ELŐTTI EMLÉKEZTETŐ: a dashboardon megadott számú
@@ -6927,6 +6990,7 @@ def main():
 
     # ---- 2b-2. Bérlői körök - azonnali új-számla emailek (jóváhagyási fázissal) ----
     kor_ertesito_varolista_feldolgozasa(allapot, szamlak, statisztika)
+    hibajavito_ujrakuldes(allapot, szamlak, statisztika)
 
     # ---- 2b-3. Bérlői körök - határidő előtti emlékeztető ----
     kor_hatarido_emlekezteto_kuldese(allapot, szamlak, beallitasok["kor_emlekezteto_napok"], statisztika)
