@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-14T00:18:04.516275+02:00",
+  "frissitve": "2026-10-14T00:18:38.882467+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:44:59.652381+02:00",
-      "kulcs": "V1357",
-      "rendszam": "V1357",
-      "vehicle_id": "4458",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.430198669433594,
-      "lon": 19.037673950195312,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.652404+02:00",
-      "kulcs": "V1359",
-      "rendszam": "V1359",
-      "vehicle_id": "4460",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49943923950195,
-      "lon": 19.082340240478516,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.652461+02:00",
-      "kulcs": "V1400",
-      "rendszam": "V1400",
-      "vehicle_id": "4472",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.466556549072266,
-      "lon": 19.0220947265625,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.652631+02:00",
-      "kulcs": "V1461",
-      "rendszam": "V1461",
-      "vehicle_id": "4531",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49753952026367,
-      "lon": 19.055221557617188,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-13T14:44:59.652856+02:00",
       "kulcs": "V1581",
@@ -260000,6 +259948,58 @@
       "lon": 19.0456600189209,
       "elozo_szoveg": "Törökbálint, Márta utca",
       "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-14T00:18:38.799284+02:00",
+      "kulcs": "AADR720",
+      "rendszam": "AADR720",
+      "vehicle_id": "189",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.510704040527344,
+      "lon": 19.097291946411133,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-14T00:18:38.799484+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.523685455322266,
+      "lon": 18.994049072265625,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-14T00:18:38.799799+02:00",
+      "kulcs": "MXJ014",
+      "rendszam": "MXJ014",
+      "vehicle_id": "5890",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.41292953491211,
+      "lon": 18.994781494140625,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-14T00:18:38.800608+02:00",
+      "kulcs": "AADI598",
+      "rendszam": "AADI598",
+      "vehicle_id": "95",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.512752532958984,
+      "lon": 19.116926193237305,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
     }
   ]
 }
