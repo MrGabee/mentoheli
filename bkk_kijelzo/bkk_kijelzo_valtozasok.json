@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T00:57:42.776778+02:00",
+  "frissitve": "2026-10-14T00:58:12.634701+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:47:30.263818+02:00",
-      "kulcs": "V1443",
-      "rendszam": "V1443",
-      "vehicle_id": "4513",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.42707824707031,
-      "lon": 19.03911590576172,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-13T14:47:30.263949+02:00",
-      "kulcs": "V1532",
-      "rendszam": "V1532",
-      "vehicle_id": "4584",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.49156188964844,
-      "lon": 19.145618438720703,
-      "elozo_szoveg": "Sörgyár",
-      "uj_szoveg": "Salgótarjáni utca ► Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-10-13T14:47:30.263977+02:00",
-      "kulcs": "V1553",
-      "rendszam": "V1553",
-      "vehicle_id": "4605",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51933670043945,
-      "lon": 19.091150283813477,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
     {
       "idopont": "2026-10-13T14:47:30.264061+02:00",
       "kulcs": "V1576",
@@ -260000,6 +259961,45 @@
       "lon": 19.101640701293945,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-10-14T00:58:12.566800+02:00",
+      "kulcs": "PKN621",
+      "rendszam": "PKN621",
+      "vehicle_id": "7210",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48724365234375,
+      "lon": 19.05794334411621,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-14T00:58:12.566943+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.49903869628906,
+      "lon": 19.052221298217773,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-10-14T00:58:12.567343+02:00",
+      "kulcs": "415 075",
+      "rendszam": "415 075",
+      "vehicle_id": "945514150750",
+      "vehicle_label": "Pusztaszabolcs",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 47.46315002441406,
+      "lon": 19.02079963684082,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Pusztaszabolcs"
     }
   ]
 }
