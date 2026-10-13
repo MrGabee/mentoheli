@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T02:05:36.928138+02:00",
+  "frissitve": "2026-10-13T02:06:03.926078+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:08:00.636531+02:00",
-      "kulcs": "NTM421",
-      "rendszam": "NTM421",
-      "vehicle_id": "6489",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "187",
-      "route_id": "1870",
-      "lat": 47.435935974121094,
-      "lon": 18.978532791137695,
-      "elozo_szoveg": "Kamaraerdő",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-12T15:08:00.636588+02:00",
-      "kulcs": "NTM431",
-      "rendszam": "NTM431",
-      "vehicle_id": "6499",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.43179702758789,
-      "lon": 19.004962921142578,
-      "elozo_szoveg": "Jégmadár utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-10-12T15:08:00.636622+02:00",
-      "kulcs": "NTM437",
-      "rendszam": "NTM437",
-      "vehicle_id": "6505",
-      "vehicle_label": "Csillebérc, KFKI",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.506568908691406,
-      "lon": 19.024093627929688,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa ► Csillebérc, KFKI"
-    },
     {
       "idopont": "2026-10-12T15:08:00.636676+02:00",
       "kulcs": "NTP540",
@@ -260000,6 +259961,45 @@
       "lon": 19.076072692871094,
       "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
       "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-13T02:06:03.846840+02:00",
+      "kulcs": "FKU907",
+      "rendszam": "FKU907",
+      "vehicle_id": "3063",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53947448730469,
+      "lon": 19.06954002380371,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-13T02:06:03.847055+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46461486816406,
+      "lon": 19.128398895263672,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-13T02:06:03.847895+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.4056396484375,
+      "lon": 19.013734817504883,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
     }
   ]
 }
