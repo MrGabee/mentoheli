@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T03:54:02.786433+02:00",
+  "frissitve": "2026-10-13T03:54:42.995706+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:17:55.818392+02:00",
-      "kulcs": "V2237",
-      "rendszam": "V2237",
-      "vehicle_id": "7369",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.543556213378906,
-      "lon": 19.029996871948242,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-10-12T15:17:55.818483+02:00",
-      "kulcs": "V2243",
-      "rendszam": "V2243",
-      "vehicle_id": "7375",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51704406738281,
-      "lon": 19.036375045776367,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-12T15:17:55.818794+02:00",
-      "kulcs": "RVY606",
-      "rendszam": "RVY606",
-      "vehicle_id": "7435",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "236",
-      "route_id": "2360",
-      "lat": 47.41636657714844,
-      "lon": 19.252838134765625,
-      "elozo_szoveg": "Ferihegy vá. - Ganztelep",
-      "uj_szoveg": "Ferihegy vasútállomás ► Havanna-lakótelep"
-    },
-    {
-      "idopont": "2026-10-12T15:17:55.818940+02:00",
-      "kulcs": "RVY617",
-      "rendszam": "RVY617",
-      "vehicle_id": "7446",
-      "vehicle_label": "Millenniumtelep H",
-      "vonal_szam": "135",
-      "route_id": "1350",
-      "lat": 47.412757873535156,
-      "lon": 19.160888671875,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Millenniumtelep H"
-    },
-    {
-      "idopont": "2026-10-12T15:17:55.819606+02:00",
-      "kulcs": "RVY747",
-      "rendszam": "RVY747",
-      "vehicle_id": "7645",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.38317108154297,
-      "lon": 19.22854232788086,
-      "elozo_szoveg": "Vecsési út ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-10-12T15:17:55.819701+02:00",
       "kulcs": "SCD596",
@@ -260000,6 +259935,71 @@
       "lon": 18.25305938720703,
       "elozo_szoveg": "Dombóvár",
       "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-10-13T03:54:42.917025+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57987976074219,
+      "lon": 19.088464736938477,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-13T03:54:42.917249+02:00",
+      "kulcs": "MXJ014",
+      "rendszam": "MXJ014",
+      "vehicle_id": "5890",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.475643157958984,
+      "lon": 19.04697036743164,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T03:54:42.917667+02:00",
+      "kulcs": "PHG632",
+      "rendszam": "PHG632",
+      "vehicle_id": "7156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.4724235534668,
+      "lon": 19.294776916503906,
+      "elozo_szoveg": "Kucorgó tér ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-13T03:54:42.918123+02:00",
+      "kulcs": "861-631-862",
+      "rendszam": "861-631-862",
+      "vehicle_id": "905516568615-905536466311-905516568623",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.174583435058594,
+      "lon": 18.941843032836914,
+      "elozo_szoveg": "Ráckeve",
+      "uj_szoveg": "Közvágóhíd"
+    },
+    {
+      "idopont": "2026-10-13T03:54:42.918171+02:00",
+      "kulcs": "991-696-992-989-695-990",
+      "rendszam": "991-696-992-989-695-990",
+      "vehicle_id": "905516569910-905536466964-905516569928-905516569894-905536466956-905516569902",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.66049575805664,
+      "lon": 19.074621200561523,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
     }
   ]
 }
