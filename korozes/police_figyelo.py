@@ -603,19 +603,28 @@ def korozes_tetel_sorok(kulcs, kat, reszlet, szerv, url):
     return [sor for sor in sorok if sor is not None]
 
 
-def osszesito_poszt_szoveg(tetelek):
-    """Az elmúlt 24 óra körözései egy Facebook-posztban, E/1-ben."""
-    st = Stilus("korozes")
+def osszesito_poszt_szoveg(tetelek, hirek=()):
+    """Az elmúlt 24 óra körözései és rendőrségi hírei egy Facebook-posztban, E/1-ben."""
+    st = Stilus("korozes" if tetelek else "rendorseg")
     db = len(tetelek)
-    sorok = [st.cim,
-             "Az elmúlt 24 órában ez a körözés jelent meg a környéken:" if db == 1
-             else f"Az elmúlt 24 órában {db} körözés jelent meg a környéken:", ""]
+    sorok = [st.cim]
+    if tetelek:
+        sorok += ["Az elmúlt 24 órában ez a körözés jelent meg a környéken:" if db == 1
+                  else f"Az elmúlt 24 órában {db} körözés jelent meg a környéken:", ""]
     for i, t in enumerate(tetelek, 1):
         tsorok = list(t["sorok"])
         if db > 1:
             tsorok[0] = f"{i}. {tsorok[0]}"
         sorok += tsorok + [""]
-    sorok.append("☎️ Ha bármit tudsz, hívd a 112-t vagy az illetékes kapitányságot!")
+    if hirek:
+        sorok += ["📰 A rendőrség hírei az elmúlt 24 órából:" if tetelek
+                  else "Összegyűjtöttem a rendőrség elmúlt 24 órás híreit a környékről:", ""]
+        for h in hirek:
+            sorok += [f"🚔 {h['cim']}", f"🔗 {h['url']}", ""]
+    if not tetelek:
+        sorok.pop()   # a záró sor előtti üres sort a zárás adja
+    if tetelek:
+        sorok.append("☎️ Ha bármit tudsz, hívd a 112-t vagy az illetékes kapitányságot!")
     if any(t.get("szemely") for t in tetelek):
         sorok += ["", SZEMELYISEGI_JOG]
     if st.zaro:
@@ -627,6 +636,13 @@ def _regi_varolista_atvezetese(cache):
     """Egyszeri átállás: a várólistán egyenként váró körözés-posztok átkerülnek
     a napi gyűjtőbe (a szövegükből a címsort, bevezetőt és zárást elhagyva)."""
     lista = cache.get("fb_varolista", [])
+    for t in [t for t in lista if t.get("kep") == KEP_HIR]:
+        sorok = [x for x in t["fb_szoveg"].split("\n") if x.strip()]
+        url = next((x[2:].strip() for x in sorok if x.startswith("🔗")), "")
+        cache.setdefault("hir_gyujto", []).append(
+            {"cim": sorok[2] if len(sorok) > 2 else sorok[0], "url": url, "felvetel": t["felvetel"]})
+        lista.remove(t)
+        print("   ↪️  Egy egyenként váró rendőrségi hír átkerült a napi összesítőbe.")
     regiek = [t for t in lista if t.get("kovetes")]
     if not regiek:
         return
@@ -655,10 +671,13 @@ def napi_osszesito(cache, email_kuldes):
         return
     gyujto = cache.get("korozes_gyujto", [])
     tetelek = [t for t in gyujto if most - datetime.fromisoformat(t["felvetel"]) < timedelta(hours=VAROLISTA_MAX_ORA)]
+    hirek = [h for h in cache.get("hir_gyujto", [])
+             if most - datetime.fromisoformat(h["felvetel"]) < timedelta(hours=VAROLISTA_MAX_ORA)]
     cache["_osszesito_nap"] = ma
     cache["korozes_gyujto"] = []
-    if not tetelek:
-        print("📋 Napi körözés-összesítő: az elmúlt 24 órában nem volt új körözés.")
+    cache["hir_gyujto"] = []
+    if not tetelek and not hirek:
+        print("📋 Napi összesítő: az elmúlt 24 órában nem volt új körözés és rendőrségi hír.")
         return
 
     # Ami közben lekerült a police.hu-ról, az már nem kerül bele
@@ -671,20 +690,20 @@ def napi_osszesito(cache, email_kuldes):
         except Exception:
             pass
         elo.append(t)
-    if not elo:
-        return
-    print(f"📋 Napi körözés-összesítő: {len(elo)} körözés.")
+    print(f"📋 Napi összesítő: {len(elo)} körözés, {len(hirek)} rendőrségi hír.")
 
     datum = helyi.strftime("%Y.%m.%d.")
-    email_kuldes(f"[Körözés] Napi összesítő – {len(elo)} új körözés ({datum})",
-                 f"<h1>Az elmúlt 24 óra körözései ({len(elo)})</h1>"
-                 + "<hr>".join(t["torzs"] or "<p>" + "<br>".join(t["sorok"]) + "</p>" for t in elo))
+    if elo:
+        email_kuldes(f"[Körözés] Napi összesítő – {len(elo)} új körözés ({datum})",
+                     f"<h1>Az elmúlt 24 óra körözései ({len(elo)})</h1>"
+                     + "<hr>".join(t["torzs"] or "<p>" + "<br>".join(t["sorok"]) + "</p>" for t in elo))
 
     fb = [t for t in elo if t["facebook_post"]]
-    if MAKE_WEBHOOK_AKTIV and fb:
+    if MAKE_WEBHOOK_AKTIV and (fb or hirek):
         cache.setdefault("fb_varolista", []).insert(0, {
-            "fb_szoveg": osszesito_poszt_szoveg(fb), "kep": KEP_KOROZES,
-            "link": elonezet_link(ATIRANYITO_KOROZES, KORAL_LISTA_URL),
+            "fb_szoveg": osszesito_poszt_szoveg(fb, hirek), "kep": KEP_KOROZES if fb else KEP_HIR,
+            "link": elonezet_link(ATIRANYITO_KOROZES, KORAL_LISTA_URL) if fb
+                    else elonezet_link(ATIRANYITO_HIR, hirek[0]["url"]),
             "felvetel": most.isoformat()})
 
 
@@ -901,8 +920,13 @@ def main():
                 "fb_szoveg": f"{(st := Stilus('rendorseg')).cim}\n{st.bevezeto}\n\n{cikk['cim']}\n\n{cikk['osszefoglalo']}\n\n🔗 {cikk['url']}",
                 "fb_kep": KEP_HIR,
                 "fb_link": elonezet_link(ATIRANYITO_HIR, cikk["url"]),
-                "facebook_post": kat["facebook_post"],
+                # Nem megy ki egyenként: a napi összesítőbe gyűlik (lásd napi_osszesito).
+                "facebook_post": False,
             })
+            if kat["facebook_post"]:
+                cache.setdefault("hir_gyujto", []).append({
+                    "cim": cikk["cim"], "url": cikk["url"],
+                    "felvetel": datetime.now(timezone.utc).isoformat()})
 
     # ------------------------------------------------------------------
     # EGÉSZSÉG-ŐR ("néma hiba" ellen): eddig, ha a police.hu átalakította az
