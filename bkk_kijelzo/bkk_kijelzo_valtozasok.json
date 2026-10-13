@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T22:52:06.025479+02:00",
+  "frissitve": "2026-10-13T22:52:33.710675+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:22:02.657390+02:00",
-      "kulcs": "STZ841",
-      "rendszam": "STZ841",
-      "vehicle_id": "7796",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50726318359375,
-      "lon": 18.921567916870117,
-      "elozo_szoveg": "Budakeszi, Dózsa Gy. tér",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-10-13T14:22:02.657820+02:00",
-      "kulcs": "STZ858",
-      "rendszam": "STZ858",
-      "vehicle_id": "7813",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "140A",
-      "route_id": "1401",
-      "lat": 47.50625228881836,
-      "lon": 19.02457618713379,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-10-13T14:22:02.658014+02:00",
-      "kulcs": "AOFL202",
-      "rendszam": "AOFL202",
-      "vehicle_id": "786",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.54931640625,
-      "lon": 19.073667526245117,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Kálvin tér M"
-    },
     {
       "idopont": "2026-10-13T14:22:02.658085+02:00",
       "kulcs": "T9130",
@@ -260000,6 +259961,45 @@
       "lon": 19.091869354248047,
       "elozo_szoveg": "Vác",
       "uj_szoveg": "Esztergom"
+    },
+    {
+      "idopont": "2026-10-13T22:52:33.628685+02:00",
+      "kulcs": "1149-775-1150",
+      "rendszam": "1149-775-1150",
+      "vehicle_id": "905516561495-905536467756-905516561503",
+      "vehicle_label": "Szentendre",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.50709915161133,
+      "lon": 19.039409637451172,
+      "elozo_szoveg": "Batthyány tér",
+      "uj_szoveg": "Szentendre"
+    },
+    {
+      "idopont": "2026-10-13T22:52:33.628735+02:00",
+      "kulcs": "861-631-862-889-645-890",
+      "rendszam": "861-631-862-889-645-890",
+      "vehicle_id": "905516568615-905536466311-905516568623-905516568896-905536466451-905516568904",
+      "vehicle_label": "Dunaharaszti külső",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.34283447265625,
+      "lon": 19.0492000579834,
+      "elozo_szoveg": "Dunaharaszti külső (- Közvágóhíd)",
+      "uj_szoveg": "Dunaharaszti külső"
+    },
+    {
+      "idopont": "2026-10-13T22:52:33.628917+02:00",
+      "kulcs": "957-679-958",
+      "rendszam": "957-679-958",
+      "vehicle_id": "905516569571-905536466790-905516569589",
+      "vehicle_label": "Csepel",
+      "vonal_szam": "H7",
+      "route_id": "H7",
+      "lat": 47.47892761230469,
+      "lon": 19.066627502441406,
+      "elozo_szoveg": "Boráros tér",
+      "uj_szoveg": "Csepel"
     }
   ]
 }
