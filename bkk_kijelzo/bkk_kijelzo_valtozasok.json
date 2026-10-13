@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T00:52:53.194120+02:00",
+  "frissitve": "2026-10-14T00:53:31.345783+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:46:24.052251+02:00",
-      "kulcs": "AOGL316",
-      "rendszam": "AOGL316",
-      "vehicle_id": "906",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.47556686401367,
-      "lon": 19.04096031188965,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Baross Gábor-telep, Ispiláng utca"
-    },
-    {
-      "idopont": "2026-10-13T14:46:24.052347+02:00",
-      "kulcs": "AOGL323",
-      "rendszam": "AOGL323",
-      "vehicle_id": "914",
-      "vehicle_label": "Apor Vilmos tér",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.549217224121094,
-      "lon": 19.075246810913086,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Apor Vilmos tér"
-    },
-    {
-      "idopont": "2026-10-13T14:46:24.052555+02:00",
-      "kulcs": "918061937234",
-      "rendszam": "918061937234",
-      "vehicle_id": "918061937234",
-      "vehicle_label": "Keszthely",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.46025085449219,
-      "lon": 19.020769119262695,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Keszthely"
-    },
     {
       "idopont": "2026-10-13T14:46:24.053138+02:00",
       "kulcs": "415 105",
@@ -260000,6 +259961,45 @@
       "lon": 19.255544662475586,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-14T00:53:31.291763+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.498741149902344,
+      "lon": 19.049665451049805,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-14T00:53:31.291879+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.44751739501953,
+      "lon": 18.908958435058594,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-14T00:53:31.291916+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.43576431274414,
+      "lon": 18.978578567504883,
+      "elozo_szoveg": "Kamaraerdő",
+      "uj_szoveg": "Budaörsi lakótelep"
     }
   ]
 }
