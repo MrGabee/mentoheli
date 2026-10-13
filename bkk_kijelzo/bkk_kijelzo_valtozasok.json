@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-14T00:22:22.402379+02:00",
+  "frissitve": "2026-10-14T00:22:59.348901+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:44:59.654811+02:00",
-      "kulcs": "V2111",
-      "rendszam": "V2111",
-      "vehicle_id": "5839",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46397399902344,
-      "lon": 19.02326774597168,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.654899+02:00",
-      "kulcs": "V2213",
-      "rendszam": "V2213",
-      "vehicle_id": "5853",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42934799194336,
-      "lon": 19.217761993408203,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-10-13T14:44:59.655065+02:00",
       "kulcs": "MUM642",
@@ -260000,6 +259974,32 @@
       "lon": 19.128591537475586,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-14T00:22:59.282039+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.476898193359375,
+      "lon": 19.050426483154297,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-14T00:22:59.283944+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41021728515625,
+      "lon": 19.062015533447266,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
