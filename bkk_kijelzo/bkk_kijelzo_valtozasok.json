@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T02:37:55.630636+02:00",
+  "frissitve": "2026-10-13T02:38:29.106368+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:10:38.431958+02:00",
-      "kulcs": "T0601",
-      "rendszam": "T0601",
-      "vehicle_id": "4285",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.516632080078125,
-      "lon": 19.092668533325195,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-12T15:10:38.432152+02:00",
-      "kulcs": "AAHY879",
-      "rendszam": "AAHY879",
-      "vehicle_id": "441",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.60298156738281,
-      "lon": 19.0670223236084,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "B.megyer, Újmegyeri tér"
-    },
-    {
-      "idopont": "2026-10-12T15:10:38.432426+02:00",
-      "kulcs": "V1363",
-      "rendszam": "V1363",
-      "vehicle_id": "4464",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.42647933959961,
-      "lon": 19.039470672607422,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-12T15:10:38.432487+02:00",
-      "kulcs": "V1402",
-      "rendszam": "V1402",
-      "vehicle_id": "4474",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.4802360534668,
-      "lon": 19.05173110961914,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-10-12T15:10:38.432628+02:00",
-      "kulcs": "V1448",
-      "rendszam": "V1448",
-      "vehicle_id": "4518",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.4975471496582,
-      "lon": 19.055261611938477,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-12T15:10:38.432689+02:00",
       "kulcs": "V1503",
@@ -260000,6 +259935,71 @@
       "lon": 19.03820037841797,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
       "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-13T02:38:29.012931+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49885559082031,
+      "lon": 19.050586700439453,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T02:38:29.015781+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52605056762695,
+      "lon": 19.06400489807129,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-13T02:38:29.015808+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43888473510742,
+      "lon": 19.10321807861328,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-13T02:38:29.015916+02:00",
+      "kulcs": "MXJ014",
+      "rendszam": "MXJ014",
+      "vehicle_id": "5890",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.421470642089844,
+      "lon": 19.041332244873047,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-13T02:38:29.016758+02:00",
+      "kulcs": "T8118",
+      "rendszam": "T8118",
+      "vehicle_id": "7897",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50185012817383,
+      "lon": 19.11581039428711,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
