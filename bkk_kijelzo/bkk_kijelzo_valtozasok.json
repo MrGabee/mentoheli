@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T02:30:15.507703+02:00",
+  "frissitve": "2026-10-13T02:30:48.795416+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:09:22.938673+02:00",
-      "kulcs": "AOFL225",
-      "rendszam": "AOFL225",
-      "vehicle_id": "812",
-      "vehicle_label": "Mártonhegy",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.507102966308594,
-      "lon": 19.023164749145508,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Mártonhegy"
-    },
-    {
-      "idopont": "2026-10-12T15:09:22.938757+02:00",
-      "kulcs": "AOFL232",
-      "rendszam": "AOFL232",
-      "vehicle_id": "820",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "237",
-      "route_id": "2370",
-      "lat": 47.56212615966797,
-      "lon": 19.008115768432617,
-      "elozo_szoveg": "Jablonka út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-10-12T15:09:22.938939+02:00",
-      "kulcs": "AADI584",
-      "rendszam": "AADI584",
-      "vehicle_id": "84",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250",
-      "route_id": "2500",
-      "lat": 47.436317443847656,
-      "lon": 19.040931701660156,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Regényes utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-12T15:09:22.939344+02:00",
       "kulcs": "AOGL310",
@@ -260000,6 +259961,45 @@
       "lon": 19.063289642333984,
       "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
       "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-10-13T02:30:48.728220+02:00",
+      "kulcs": "AADI660",
+      "rendszam": "AADI660",
+      "vehicle_id": "159",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.508785247802734,
+      "lon": 19.095396041870117,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-13T02:30:48.730367+02:00",
+      "kulcs": "FKU907",
+      "rendszam": "FKU907",
+      "vehicle_id": "3063",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.48543930053711,
+      "lon": 19.071374893188477,
+      "elozo_szoveg": "Határ út M ► Pestszentlőrinc",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-13T02:30:48.730666+02:00",
+      "kulcs": "MUU901",
+      "rendszam": "MUU901",
+      "vehicle_id": "5954",
+      "vehicle_label": "Mogyoródi-patak",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.5795783996582,
+      "lon": 19.108219146728516,
+      "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
