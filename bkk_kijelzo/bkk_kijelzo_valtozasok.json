@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-14T00:24:01.161749+02:00",
+  "frissitve": "2026-10-14T00:24:34.540109+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:44:59.655233+02:00",
-      "kulcs": "V2293",
-      "rendszam": "V2293",
-      "vehicle_id": "591",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.43600082397461,
-      "lon": 19.042186737060547,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.655328+02:00",
-      "kulcs": "V2297",
-      "rendszam": "V2297",
-      "vehicle_id": "595",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.48541259765625,
-      "lon": 19.025190353393555,
-      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.655631+02:00",
-      "kulcs": "T8017",
-      "rendszam": "T8017",
-      "vehicle_id": "6137",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.500823974609375,
-      "lon": 19.082855224609375,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.655674+02:00",
-      "kulcs": "T9003",
-      "rendszam": "T9003",
-      "vehicle_id": "6142",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.49988555908203,
-      "lon": 19.083778381347656,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-13T14:44:59.655914+02:00",
-      "kulcs": "NGC164",
-      "rendszam": "NGC164",
-      "vehicle_id": "6213",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.54541015625,
-      "lon": 19.033781051635742,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
     {
       "idopont": "2026-10-13T14:44:59.655938+02:00",
       "kulcs": "V2201",
@@ -260000,6 +259935,71 @@
       "lon": 19.127723693847656,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-14T00:24:34.463890+02:00",
+      "kulcs": "AAGL309",
+      "rendszam": "AAGL309",
+      "vehicle_id": "339",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.4868278503418,
+      "lon": 19.05716323852539,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-14T00:24:34.464077+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46794128417969,
+      "lon": 19.075754165649414,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-14T00:24:34.464211+02:00",
+      "kulcs": "AADI601",
+      "rendszam": "AADI601",
+      "vehicle_id": "61",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46463394165039,
+      "lon": 19.02297019958496,
+      "elozo_szoveg": "Gazdagréti tér",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-14T00:24:34.464289+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51763916015625,
+      "lon": 19.0387020111084,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-14T00:24:34.464653+02:00",
+      "kulcs": "T8116",
+      "rendszam": "T8116",
+      "vehicle_id": "7895",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50456237792969,
+      "lon": 19.136844635009766,
+      "elozo_szoveg": "Dózsa György út M",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
