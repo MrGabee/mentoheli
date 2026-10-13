@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T03:44:05.015697+02:00",
+  "frissitve": "2026-10-13T03:44:33.409355+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:16:32.149948+02:00",
-      "kulcs": "JARMU2",
-      "rendszam": "JARMU2",
-      "vehicle_id": "7835",
-      "vehicle_label": "Pilisborosjenő",
-      "vonal_szam": "218",
-      "route_id": "2180",
-      "lat": 47.58638000488281,
-      "lon": 19.0061092376709,
-      "elozo_szoveg": "Üröm ► Pilisborosjenő",
-      "uj_szoveg": "Pilisborosjenő"
-    },
-    {
-      "idopont": "2026-10-12T15:16:32.150078+02:00",
-      "kulcs": "T9124",
-      "rendszam": "T9124",
-      "vehicle_id": "7863",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.505313873291016,
-      "lon": 19.136594772338867,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-12T15:16:32.150173+02:00",
-      "kulcs": "T9135",
-      "rendszam": "T9135",
-      "vehicle_id": "7874",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.499847412109375,
-      "lon": 19.08338737487793,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-12T15:16:32.150187+02:00",
       "kulcs": "T9136",
@@ -260000,6 +259961,45 @@
       "lon": 19.135587692260742,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-13T03:44:33.323661+02:00",
+      "kulcs": "FKU904",
+      "rendszam": "FKU904",
+      "vehicle_id": "3060",
+      "vehicle_label": "R.csaba-Újtelep, Naplás út",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.50117492675781,
+      "lon": 19.235660552978516,
+      "elozo_szoveg": "Rákoshegy vasútállomás",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Naplás út"
+    },
+    {
+      "idopont": "2026-10-13T03:44:33.324344+02:00",
+      "kulcs": "PHG632",
+      "rendszam": "PHG632",
+      "vehicle_id": "7156",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.47962188720703,
+      "lon": 19.255451202392578,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-13T03:44:33.324392+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Cinkotai garázs",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.567405700683594,
+      "lon": 19.124942779541016,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota"
     }
   ]
 }
