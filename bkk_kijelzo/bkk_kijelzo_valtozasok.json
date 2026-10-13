@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T03:25:08.221848+02:00",
+  "frissitve": "2026-10-13T03:25:48.655241+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:14:54.304184+02:00",
-      "kulcs": "T9004",
-      "rendszam": "T9004",
-      "vehicle_id": "6143",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.50141143798828,
-      "lon": 19.10770034790039,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-12T15:14:54.305889+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "116",
-      "route_id": "1160",
-      "lat": 47.50835037231445,
-      "lon": 19.023759841918945,
-      "elozo_szoveg": "Fény utcai piac",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-10-12T15:14:54.306074+02:00",
-      "kulcs": "NGC032",
-      "rendszam": "NGC032",
-      "vehicle_id": "6331",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.39799118041992,
-      "lon": 18.973323822021484,
-      "elozo_szoveg": "Nagytétény-Diósd vasútállomás",
-      "uj_szoveg": "Nagytétény-Diósd vá."
-    },
-    {
-      "idopont": "2026-10-12T15:14:54.306353+02:00",
-      "kulcs": "NTM426",
-      "rendszam": "NTM426",
-      "vehicle_id": "6494",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.464271545410156,
-      "lon": 19.018672943115234,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Jégmadár utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-10-12T15:14:54.306807+02:00",
-      "kulcs": "AOCT668",
-      "rendszam": "AOCT668",
-      "vehicle_id": "699",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.464752197265625,
-      "lon": 19.017786026000977,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-10-12T15:14:54.306822+02:00",
       "kulcs": "AADI591",
@@ -260000,6 +259935,71 @@
       "lon": 19.075746536254883,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-13T03:25:48.566934+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50802993774414,
+      "lon": 19.027503967285156,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-13T03:25:48.567021+02:00",
+      "kulcs": "AADI590",
+      "rendszam": "AADI590",
+      "vehicle_id": "71",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.476078033447266,
+      "lon": 19.053146362304688,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-13T03:25:48.567209+02:00",
+      "kulcs": "RVY607",
+      "rendszam": "RVY607",
+      "vehicle_id": "7436",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.44757080078125,
+      "lon": 19.14999771118164,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-13T03:25:48.567517+02:00",
+      "kulcs": "SKN821",
+      "rendszam": "SKN821",
+      "vehicle_id": "7789",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56743240356445,
+      "lon": 19.124950408935547,
+      "elozo_szoveg": "Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-13T03:25:48.567652+02:00",
+      "kulcs": "949-675-950-953-677-954",
+      "rendszam": "949-675-950-953-677-954",
+      "vehicle_id": "905516569498-905536466758-905516569506-905516569530-905536466774-905516569548",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.174644470214844,
+      "lon": 18.941789627075195,
+      "elozo_szoveg": "Ráckeve",
+      "uj_szoveg": "Közvágóhíd"
     }
   ]
 }
