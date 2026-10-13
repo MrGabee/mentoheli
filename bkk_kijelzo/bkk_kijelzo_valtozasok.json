@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-13T03:36:35.124773+02:00",
+  "frissitve": "2026-10-13T03:37:08.540614+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:16:32.142145+02:00",
-      "kulcs": "MPW608",
-      "rendszam": "MPW608",
-      "vehicle_id": "5595",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.47256851196289,
-      "lon": 19.160184860229492,
-      "elozo_szoveg": "Újhegyi lakótelep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-12T15:16:32.142368+02:00",
-      "kulcs": "MOS263",
-      "rendszam": "MOS263",
-      "vehicle_id": "5716",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.4796142578125,
-      "lon": 19.067100524902344,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Vecsési út"
-    },
-    {
-      "idopont": "2026-10-12T15:16:32.142392+02:00",
-      "kulcs": "V2274",
-      "rendszam": "V2274",
-      "vehicle_id": "572",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42654037475586,
-      "lon": 19.03953742980957,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-12T15:16:32.142556+02:00",
-      "kulcs": "V2102",
-      "rendszam": "V2102",
-      "vehicle_id": "5830",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.53726577758789,
-      "lon": 19.0548038482666,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-12T15:16:32.142836+02:00",
       "kulcs": "V2223",
@@ -260000,6 +259948,58 @@
       "lon": 19.055763244628906,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-13T03:37:08.468191+02:00",
+      "kulcs": "AAGL261",
+      "rendszam": "AAGL261",
+      "vehicle_id": "261",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.431251525878906,
+      "lon": 18.928009033203125,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-13T03:37:08.468650+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.526527404785156,
+      "lon": 19.038246154785156,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-13T03:37:08.469723+02:00",
+      "kulcs": "415 096",
+      "rendszam": "415 096",
+      "vehicle_id": "945514150966",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.34585952758789,
+      "lon": 20.043960571289062,
+      "elozo_szoveg": "Szeged",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-13T03:37:08.469879+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.405941009521484,
+      "lon": 19.01415252685547,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény"
     }
   ]
 }
