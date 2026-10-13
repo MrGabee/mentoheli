@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T04:26:18.708205+02:00",
+  "frissitve": "2026-10-13T04:26:53.225530+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:25:39.871914+02:00",
-      "kulcs": "FLR747",
-      "rendszam": "FLR747",
-      "vehicle_id": "3161",
-      "vehicle_label": "Rákoskert sugárút",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.501991271972656,
-      "lon": 19.13621711730957,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoskert sugárút"
-    },
-    {
-      "idopont": "2026-10-12T15:25:39.871985+02:00",
-      "kulcs": "AAGL302",
-      "rendszam": "AAGL302",
-      "vehicle_id": "332",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50728988647461,
-      "lon": 18.92159080505371,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Budakeszi, Dózsa Gy. tér"
-    },
-    {
-      "idopont": "2026-10-12T15:25:39.872238+02:00",
-      "kulcs": "AAHY813",
-      "rendszam": "AAHY813",
-      "vehicle_id": "373",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "122E",
-      "route_id": "1225",
-      "lat": 47.598548889160156,
-      "lon": 19.12093162536621,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
-    {
-      "idopont": "2026-10-12T15:25:39.872311+02:00",
-      "kulcs": "AAHY824",
-      "rendszam": "AAHY824",
-      "vehicle_id": "385",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.58033752441406,
-      "lon": 19.099809646606445,
-      "elozo_szoveg": "Izzó utcai lakótelep ► Újpest-központ M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-12T15:25:39.872458+02:00",
-      "kulcs": "AAHY848",
-      "rendszam": "AAHY848",
-      "vehicle_id": "409",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.60332489013672,
-      "lon": 19.066749572753906,
-      "elozo_szoveg": "B.megyer, Újmegyeri tér",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
     {
       "idopont": "2026-10-12T15:25:39.872476+02:00",
       "kulcs": "AAHY850",
@@ -260000,6 +259935,71 @@
       "lon": 18.992347717285156,
       "elozo_szoveg": "Gazdagréti tér",
       "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-13T04:26:53.127759+02:00",
+      "kulcs": "AADR702",
+      "rendszam": "AADR702",
+      "vehicle_id": "169",
+      "vehicle_label": "Ferihegy vá. - Ganztelep",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.40446090698242,
+      "lon": 19.185880661010742,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca"
+    },
+    {
+      "idopont": "2026-10-13T04:26:53.129378+02:00",
+      "kulcs": "V4011",
+      "rendszam": "V4011",
+      "vehicle_id": "4700",
+      "vehicle_label": "Káp.megyer, Megyeri út",
+      "vonal_szam": "14",
+      "route_id": "3140",
+      "lat": 47.55139923095703,
+      "lon": 19.09347915649414,
+      "elozo_szoveg": "Lehel tér M",
+      "uj_szoveg": "Káposztásmegyer, Megyeri út"
+    },
+    {
+      "idopont": "2026-10-13T04:26:53.129744+02:00",
+      "kulcs": "MUT893",
+      "rendszam": "MUT893",
+      "vehicle_id": "5946",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "136",
+      "route_id": "1360",
+      "lat": 47.43732452392578,
+      "lon": 19.17083740234375,
+      "elozo_szoveg": "Havanna-lakótelep",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-13T04:26:53.131054+02:00",
+      "kulcs": "T9136",
+      "rendszam": "T9136",
+      "vehicle_id": "7875",
+      "vehicle_label": "Öv utca / Egressy út",
+      "vonal_szam": "77",
+      "route_id": "4770",
+      "lat": 47.499813079833984,
+      "lon": 19.103679656982422,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Öv utca / Egressy út"
+    },
+    {
+      "idopont": "2026-10-13T04:26:53.131899+02:00",
+      "kulcs": "AOIM051",
+      "rendszam": "AOIM051",
+      "vehicle_id": "972",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "133E",
+      "route_id": "1335",
+      "lat": 47.54707336425781,
+      "lon": 19.14203453063965,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
