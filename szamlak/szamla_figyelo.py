@@ -2596,6 +2596,88 @@ def dijnet_pdf_letoltese(session, sor: dict):
     return None
 
 
+DIJNET_PDF_KERESES_MAX_SOR = 40
+DIJNET_PDF_KERESES_SZUNET_ORA = 6
+
+
+def _dijnet_szamla_id(sor: dict) -> str:
+    return hashlib.md5(
+        f"dijnet|{sor['szolgaltato_nyers']}|{sor['szamlaszam']}".encode("utf-8")
+    ).hexdigest()[:16]
+
+
+def dijnet_pdf_kereses(session, sorok: list, hianyzo: dict, allapot: dict, kotelezo: bool) -> dict:
+    """A Díjnet "vfw_rowid"-je és a táblázat sorrendje nem feltétlenül
+    egyezik, ezért a hiányzó PDF-eket nem soronként találgatjuk, hanem
+    végigmegyünk a rowid-kon, minden PDF-et EGYSZER letöltünk, és a
+    szövege alapján (számlaszám, utána egyedi összeg) párosítjuk a
+    hiányzó számlákhoz. hianyzo: {did: sor}. Visszatérés: {did: pdf_bytes}.
+
+    Nem fut minden futáskor: csak ha új számlához kell PDF (kotelezo),
+    vagy az előző keresés óta eltelt DIJNET_PDF_KERESES_SZUNET_ORA.
+    ADATVÉDELEM: csak darabszámokat naplóz."""
+    if not hianyzo:
+        return {}
+    utolso = allapot.get("dijnet_pdf_kereses_ideje")
+    if not kotelezo and utolso:
+        try:
+            if magyar_ido() - datetime.fromisoformat(utolso) < timedelta(hours=DIJNET_PDF_KERESES_SZUNET_ORA):
+                return {}
+        except (TypeError, ValueError):
+            pass
+    allapot["dijnet_pdf_kereses_ideje"] = magyar_ido().isoformat()
+
+    hatar = min(len(sorok) + 3, DIJNET_PDF_KERESES_MAX_SOR)
+    letoltott = []  # [(pdf_bytes, szamjegyek, szoveg)]
+    olvashato_db = cid_db = 0
+    for rowid in range(hatar):
+        try:
+            pdf_bytes = _dijnet_pdf_letoltese_rowid(session, rowid)
+        except Exception as e:
+            print(f"      ⚠️  Díjnet PDF-keresés: letöltési hiba (nem kritikus): {type(e).__name__}")
+            continue
+        if not pdf_bytes:
+            continue
+        szoveg = pdf_szoveg_kinyerese(pdf_bytes)
+        if szoveg.strip():
+            olvashato_db += 1
+        if "(cid:" in szoveg:
+            cid_db += 1
+        letoltott.append((pdf_bytes, re.sub(r"\D", "", szoveg), szoveg))
+
+    talalat = {}
+    hasznalt = set()
+    # 1. kör: számlaszám (csak számjegyek) - ez egyértelmű
+    for did, sor in hianyzo.items():
+        jegyek = re.sub(r"\D", "", sor.get("szamlaszam") or "")
+        if len(jegyek) < 5:
+            continue
+        for i, (pdf_bytes, szamjegyek, _) in enumerate(letoltott):
+            if i not in hasznalt and jegyek in szamjegyek:
+                talalat[did] = pdf_bytes
+                hasznalt.add(i)
+                break
+    # 2. kör: összeg - csak ha pontosan egy szabad PDF-ben szerepel
+    for did, sor in hianyzo.items():
+        if did in talalat:
+            continue
+        osszeg = _dijnet_osszeg_konvertalas(sor.get("osszeg_nyers") or "")
+        if not osszeg:
+            continue
+        ezres = f"{int(round(float(osszeg))):,}".split(",")
+        minta = re.compile(r"(?<![\d.,])" + r"[ .\u00a0\u202f]?".join(ezres) + r"(?![\d])")
+        jeloltek = [
+            i for i, (_, _, szoveg) in enumerate(letoltott)
+            if i not in hasznalt and minta.search(szoveg)
+        ]
+        if len(jeloltek) == 1:
+            talalat[did] = letoltott[jeloltek[0]][0]
+            hasznalt.add(jeloltek[0])
+    print(f"  🔎 Díjnet PDF-keresés: {len(letoltott)} PDF letöltve ({olvashato_db} olvasható szövegű, "
+          f"{cid_db} kódolt betűkészletű), {len(talalat)}/{len(hianyzo)} hiányzó számlához párosítva.")
+    return talalat
+
+
 def dijnet_tarolt_pdf_ellenorzes(allapot: dict):
     """Egyszeri javítás: a korábban (a rowid-elcsúszás miatt) rossz,
     szomszédos számlához tartozó, eltárolt Díjnet-PDF-eket törli, hogy a
@@ -3422,13 +3504,13 @@ def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztik
 
 # EGYSZERI HIBAJAVÍTÓ ÚJRAKÜLDÉS (a felhasználó kérése, 2026-10-13): a
 # Díjnet PDF-letöltés sorindex-hibája miatt (ld. dijnet_pdf_letoltese())
-# a B körnek kiment új-számla értesítőhöz egy másik számla PDF-je került.
-# A hiba javítása előtti 24 órában a B körnek kiküldött Díjnetes
+# a bérlői köröknek kiment új-számla értesítőhöz egy másik számla PDF-je került.
+# A 2026-10-13 hajnalán a köröknek kiküldött Díjnetes
 # értesítőket egyszer újraküldjük, bocsánatkéréssel és a helyes PDF-fel.
 # Csak akkor megy ki, ha a tárolt PDF már ellenőrzötten az adott számláé
 # (a pótlás tölti le) - addig vár, legfeljebb a határidőig.
-HIBAJAVITO_UJRAKULDES_KOROK = ("kor_b",)
-HIBAJAVITO_UJRAKULDES_ABLAK = ("2026-10-12T11:00:00", "2026-10-13T11:30:00")
+HIBAJAVITO_UJRAKULDES_KOROK = ("kor_b", "kor_a")  # A kör: a felhasználó kérése, 2026-10-13 11:38
+HIBAJAVITO_UJRAKULDES_ABLAK = ("2026-10-13T00:00:00", "2026-10-13T11:30:00")
 HIBAJAVITO_UJRAKULDES_HATARIDO = "2026-10-20"
 
 
@@ -6539,6 +6621,16 @@ def main():
                 dijnet_sorok = dijnet_szamlak_lekerdezese(dijnet_session)
                 if dijnet_sorok:
                     dijnet_tarolt_pdf_ellenorzes(allapot)
+                pdf_hianyzo = {}
+                uj_szamla_van = False
+                for sor in dijnet_sorok:
+                    did = _dijnet_szamla_id(sor)
+                    if did in torolt_id_szet or did in allapot.get("pdf_adatok", {}):
+                        continue
+                    pdf_hianyzo[did] = sor
+                    uj_szamla_van = uj_szamla_van or did not in szamlak
+                dijnet_talalt_pdf = dijnet_pdf_kereses(
+                    dijnet_session, dijnet_sorok, pdf_hianyzo, allapot, uj_szamla_van)
                 dijnet_pdf_letoltesek_szama = 0
                 dijnet_pdf_potlas_szama = 0
                 for sor in dijnet_sorok:
@@ -6563,8 +6655,8 @@ def main():
                         # fizetetlenekhez), mert a felhasználó kérésére mostantól
                         # tartósan is eltároljuk (pdf_tarolas), nem csak az
                         # email-csatolmányhoz kell.
-                        pdf_bytes = None
-                        if dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
+                        pdf_bytes = dijnet_talalt_pdf.get(did)
+                        if pdf_bytes is None and dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
                             pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor)
                             dijnet_pdf_letoltesek_szama += 1
                         # FONTOS - a Díjnet táblázat "Szolgáltató" oszlopa (szoveg[0],
@@ -6677,10 +6769,11 @@ def main():
                         # örökre kiéheztetni a pótlást) - belül megpróbáljuk
                         # pótolni. Több futás alatt fokozatosan az összes
                         # (a 120 napos ablakban látott) számla PDF-je bekerül.
-                        if did not in allapot.get("pdf_adatok", {}) and dijnet_pdf_potlas_szama < DIJNET_PDF_POTLAS_MAX_FUTASONKENT:
-                            potolt_pdf = dijnet_pdf_letoltese(dijnet_session, sor)
-                            dijnet_pdf_potlas_szama += 1
-                            pdf_tarolas(allapot, did, potolt_pdf)
+                        # Utólagos PDF-pótlás: a dijnet_pdf_kereses() a ciklus
+                        # előtt már végigment a rowid-okon és szöveg alapján
+                        # párosított - itt csak eltároljuk, amit talált.
+                        if did not in allapot.get("pdf_adatok", {}):
+                            pdf_tarolas(allapot, did, dijnet_talalt_pdf.get(did))
                 # 1. pont: futás végi, SZERKEZETI (csak darabszám, nem
                 # tartalom) log arról, mennyi Díjnet-számlának nincs (még)
                 # tárolt PDF-je - ez teszi láthatóvá az Actions naplóban,
