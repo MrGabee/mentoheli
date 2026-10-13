@@ -3505,12 +3505,12 @@ def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztik
 # EGYSZERI HIBAJAVÍTÓ ÚJRAKÜLDÉS (a felhasználó kérése, 2026-10-13): a
 # Díjnet PDF-letöltés sorindex-hibája miatt (ld. dijnet_pdf_letoltese())
 # a bérlői köröknek kiment új-számla értesítőhöz egy másik számla PDF-je került.
-# A hiba javítása előtti 24 órában a B körnek kiküldött Díjnetes
+# A 2026-10-13 hajnalán a köröknek kiküldött Díjnetes
 # értesítőket egyszer újraküldjük, bocsánatkéréssel és a helyes PDF-fel.
 # Csak akkor megy ki, ha a tárolt PDF már ellenőrzötten az adott számláé
 # (a pótlás tölti le) - addig vár, legfeljebb a határidőig.
 HIBAJAVITO_UJRAKULDES_KOROK = ("kor_b", "kor_a")  # A kör: a felhasználó kérése, 2026-10-13 11:38
-HIBAJAVITO_UJRAKULDES_ABLAK = ("2026-10-12T11:00:00", "2026-10-13T11:30:00")
+HIBAJAVITO_UJRAKULDES_ABLAK = ("2026-10-13T00:00:00", "2026-10-13T11:30:00")
 HIBAJAVITO_UJRAKULDES_HATARIDO = "2026-10-20"
 
 
