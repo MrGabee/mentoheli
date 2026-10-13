@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-13T03:09:51.983241+02:00",
+  "frissitve": "2026-10-13T03:10:23.839483+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:13:17.334018+02:00",
-      "kulcs": "PKD002",
-      "rendszam": "PKD002",
-      "vehicle_id": "5812",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.523258209228516,
-      "lon": 19.002399444580078,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-12T15:13:17.334693+02:00",
-      "kulcs": "MUT888",
-      "rendszam": "MUT888",
-      "vehicle_id": "5941",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.463111877441406,
-      "lon": 19.148252487182617,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Havanna-lakótelep"
-    },
-    {
-      "idopont": "2026-10-12T15:13:17.335088+02:00",
-      "kulcs": "T8005",
-      "rendszam": "T8005",
-      "vehicle_id": "6125",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.501976013183594,
-      "lon": 19.081951141357422,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-12T15:13:17.335112+02:00",
-      "kulcs": "T8006",
-      "rendszam": "T8006",
-      "vehicle_id": "6126",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.50114059448242,
-      "lon": 19.08269500732422,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-12T15:13:17.335214+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50531005859375,
-      "lon": 19.136362075805664,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
     {
       "idopont": "2026-10-12T15:13:17.335272+02:00",
       "kulcs": "T9005",
@@ -260000,6 +259935,71 @@
       "lon": 19.07318878173828,
       "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
       "uj_szoveg": "Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-10-13T03:10:23.772851+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507930755615234,
+      "lon": 19.029712677001953,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-13T03:10:23.773243+02:00",
+      "kulcs": "NBW007",
+      "rendszam": "NBW007",
+      "vehicle_id": "5977",
+      "vehicle_label": "Dayka Gábor utca",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49971008300781,
+      "lon": 19.287050247192383,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Dayka Gábor utca"
+    },
+    {
+      "idopont": "2026-10-13T03:10:23.773469+02:00",
+      "kulcs": "PDN607",
+      "rendszam": "PDN607",
+      "vehicle_id": "7079",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.42380142211914,
+      "lon": 19.02505111694336,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-10-13T03:10:23.773786+02:00",
+      "kulcs": "SKR820",
+      "rendszam": "SKR820",
+      "vehicle_id": "7706",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49801254272461,
+      "lon": 19.054710388183594,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-13T03:10:23.773989+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.485321044921875,
+      "lon": 19.071361541748047,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
     }
   ]
 }
