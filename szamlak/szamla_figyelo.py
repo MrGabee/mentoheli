@@ -2515,31 +2515,50 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
     return talalt_szamlak
 
 
+def _pdf_szoveg_tisztitva(pdf_bytes) -> str:
+    """A PDF szövege a "(cid:NN)" jelölések nélkül - a Díjnet PDF-jei
+    kódolt betűkészletűek, a pdfplumber ezeket "(cid:NN)" formában adja
+    vissza, és ezek számjegyei hamis egyezést adhatnának."""
+    return re.sub(r"\(cid:\d+\)", " ", pdf_szoveg_kinyerese(pdf_bytes) if pdf_bytes else "")
+
+
 def _dijnet_pdf_egyezik(pdf_bytes, szamlaszam, osszeg):
     """Ellenőrzi, hogy a letöltött PDF tényleg az adott számláé-e: a
     számlaszám (csak a számjegyeit nézve) vagy az összeg szerepel-e a
     PDF szövegében. Visszatérés: "szamlaszam" / "osszeg" (ez egyezett),
-    False (van szöveg, de
-    nem egyezik - rossz PDF), None (nincs kiolvasható szöveg, nem
-    ellenőrizhető). ADATVÉDELEM: semmit nem ír ki a PDF tartalmából."""
-    szoveg = pdf_szoveg_kinyerese(pdf_bytes) if pdf_bytes else ""
+    False (van szöveg, de nem egyezik), None (nincs kiolvasható szöveg,
+    nem ellenőrizhető). ADATVÉDELEM: semmit nem ír ki a PDF tartalmából."""
+    szoveg = _pdf_szoveg_tisztitva(pdf_bytes)
     if not szoveg.strip():
         return None
     szam_jegyek = re.sub(r"\D", "", szamlaszam or "")
     if len(szam_jegyek) >= 5 and szam_jegyek in re.sub(r"\D", "", szoveg):
         return "szamlaszam"
-    if osszeg:
-        try:
-            ezres = f"{int(round(float(osszeg))):,}".split(",")
-            minta = r"(?<![\d.,])" + r"[ .\u00a0\u202f]?".join(ezres) + r"(?![\d])"
-            if re.search(minta, szoveg):
-                return "osszeg"
-        except (TypeError, ValueError):
-            pass
+    minta = _osszeg_minta(osszeg)
+    if minta and minta.search(szoveg):
+        return "osszeg"
     return False
 
 
+def _osszeg_minta(osszeg):
+    try:
+        if not osszeg:
+            return None
+        ezres = f"{int(round(float(osszeg))):,}".split(",")
+        return re.compile(r"(?<![\d.,])" + r"[ .\u00a0\u202f]?".join(ezres) + r"(?![\d])")
+    except (TypeError, ValueError):
+        return None
+
+
+def _azonosito_norm(szoveg) -> str:
+    return re.sub(r"[^0-9A-Z]", "", str(szoveg or "").upper())
+
+
 def _dijnet_pdf_letoltese_rowid(session, rowid: int):
+    """Kiválasztja a rowid-hoz tartozó számlát, és letölti a PDF-jét.
+    Visszatérés: (pdf_bytes, kontextus) - a kontextus a letöltő oldal
+    szövege és a fájlnév-fejléc, normalizálva: ebből ellenőrizhető, melyik
+    számla van ténylegesen kiválasztva (a PDF szövege kódolt, abból nem)."""
     session.get(
         DIJNET_BASE + "/ekonto/control/szamla_select",
         params={"vfw_coll": "szamla_list", "vfw_rowid": rowid, "exp": "K"},
@@ -2550,49 +2569,53 @@ def _dijnet_pdf_letoltese_rowid(session, rowid: int):
     soup = BeautifulSoup(valasz.text, "html.parser")  # ld. _dijnet_vfw_token() kommentje a parser-választásról
     link = soup.select_one('a[href*="szamla_pdf"]')
     if not link or not link.get("href"):
-        return None
+        return None, ""
     pdf_url = DIJNET_BASE + "/ekonto/control/" + link["href"].lstrip("/")
     pdf_valasz = session.get(pdf_url, timeout=20)
     if pdf_valasz.status_code == 200 and pdf_valasz.content:
-        return pdf_valasz.content
-    return None
+        kontextus = _azonosito_norm(
+            soup.get_text(" ") + " " + link["href"] + " " + (pdf_valasz.headers.get("Content-Disposition") or ""))
+        return pdf_valasz.content, kontextus
+    return None, ""
 
 
-def dijnet_pdf_letoltese(session, sor: dict):
-    """Best-effort PDF-letöltés egy adott számla-sorhoz. Ha bármi nem a
-    várt módon viselkedik (a portál felülete változott, nincs PDF-link
-    stb.), None-t ad vissza - ez NEM állítja meg a számla rögzítését,
-    csak a PDF-csatolmány marad el az értesítő emailből.
+def _kontextus_szamlaja(kontextus: str, szamlaszamok: list):
+    """Melyik számlaszám szerepel a letöltő oldalon - csak akkor ad
+    választ, ha pontosan egy (ha az oldal több számlát is listáz, az
+    nem azonosít)."""
+    talalt = {sz for sz in szamlaszamok if len(_azonosito_norm(sz)) >= 5 and _azonosito_norm(sz) in kontextus}
+    return talalt.pop() if len(talalt) == 1 else None
 
-    A sor "rowid_jeloltek" listáját sorban kipróbálja, és csak azt a PDF-
-    et fogadja el, amelyikben a számlaszám vagy az összeg szerepel (ld.
-    _dijnet_pdf_egyezik()) - egy rossz (másik számlához tartozó) PDF-et
-    inkább elhagyunk, mint hogy rossz csatolmány menjen ki."""
+
+def dijnet_pdf_letoltese(session, sor: dict, szamlaszamok=None):
+    """Best-effort PDF-letöltés egy adott számla-sorhoz; None, ha nem
+    sikerül, vagy nem igazolható, hogy a PDF ehhez a számlához tartozik
+    (inkább nincs csatolmány, mint rossz). Elsődlegesen a letöltő oldal
+    alapján ellenőriz (ld. _dijnet_pdf_letoltese_rowid()), tartalékként a
+    PDF szövegéből."""
     jeloltek = sor.get("rowid_jeloltek") or [sor.get("sor_index")]
+    szamlaszamok = szamlaszamok or [sor.get("szamlaszam")]
     osszeg = _dijnet_osszeg_konvertalas(sor.get("osszeg_nyers") or "")
-    ellenorizhetetlen = None
     osszeg_egyezes = None
     for rowid in jeloltek:
         try:
-            pdf_bytes = _dijnet_pdf_letoltese_rowid(session, rowid)
+            pdf_bytes, kontextus = _dijnet_pdf_letoltese_rowid(session, rowid)
         except Exception as e:
             print(f"      ⚠️  Díjnet PDF-letöltés sikertelen (nem kritikus): {type(e).__name__}")
             continue
         if not pdf_bytes:
             continue
+        if _kontextus_szamlaja(kontextus, szamlaszamok) == sor.get("szamlaszam"):
+            return pdf_bytes
         egyezes = _dijnet_pdf_egyezik(pdf_bytes, sor.get("szamlaszam"), osszeg)
         if egyezes == "szamlaszam":
             return pdf_bytes
         if egyezes == "osszeg" and osszeg_egyezes is None:
-            osszeg_egyezes = pdf_bytes  # gyengébb egyezés - a számlaszámos jelölt előnyt élvez
-        if egyezes is None and ellenorizhetetlen is None:
-            ellenorizhetetlen = pdf_bytes
+            osszeg_egyezes = pdf_bytes
     if osszeg_egyezes is not None:
         return osszeg_egyezes
-    if ellenorizhetetlen is not None:
-        return ellenorizhetetlen
-    print(f"      ⚠️  Díjnet PDF: egyik letöltött PDF sem egyezett a(z) {sor.get('szamlaszam')} "
-          f"számlával ({len(jeloltek)} jelölt) - PDF nélkül megy tovább.")
+    print(f"      ⚠️  Díjnet PDF: nem igazolható, hogy a letöltött PDF a(z) {sor.get('szamlaszam')} "
+          f"számláé ({len(jeloltek)} jelölt) - PDF nélkül megy tovább.")
     return None
 
 
@@ -2606,75 +2629,116 @@ def _dijnet_szamla_id(sor: dict) -> str:
     ).hexdigest()[:16]
 
 
-def dijnet_pdf_kereses(session, sorok: list, hianyzo: dict, allapot: dict, kotelezo: bool) -> dict:
+def dijnet_pdf_kereses(session, sorok: list, allapot: dict, torolt_id_szet, kotelezo: bool) -> dict:
     """A Díjnet "vfw_rowid"-je és a táblázat sorrendje nem feltétlenül
-    egyezik, ezért a hiányzó PDF-eket nem soronként találgatjuk, hanem
-    végigmegyünk a rowid-kon, minden PDF-et EGYSZER letöltünk, és a
-    szövege alapján (számlaszám, utána egyedi összeg) párosítjuk a
-    hiányzó számlákhoz. hianyzo: {did: sor}. Visszatérés: {did: pdf_bytes}.
+    egyezik, ezért végigmegyünk a rowid-okon, minden PDF-et EGYSZER
+    letöltünk, és a letöltő oldal (vagy tartalékként a PDF szövege)
+    alapján párosítjuk a számlákhoz. Visszatérés: {did: pdf_bytes} a még
+    PDF nélküli számlákra.
+
+    Egyszer (dijnet_pdf_ellenorzes_v2) a már tárolt PDF-eket is
+    összeveti az igazolt példánnyal, és az eltérőt lecseréli.
 
     Nem fut minden futáskor: csak ha új számlához kell PDF (kotelezo),
-    vagy az előző keresés óta eltelt DIJNET_PDF_KERESES_SZUNET_ORA.
+    ha a v2-ellenőrzés még nem futott le, vagy ha hiányzó PDF van és az
+    előző keresés óta eltelt DIJNET_PDF_KERESES_SZUNET_ORA.
     ADATVÉDELEM: csak darabszámokat naplóz."""
-    if not hianyzo:
-        return {}
-    utolso = allapot.get("dijnet_pdf_kereses_ideje")
-    if not kotelezo and utolso:
+    pdf_tar = allapot.setdefault("pdf_adatok", {})
+    sor_by_did = {}
+    for sor in sorok:
+        did = _dijnet_szamla_id(sor)
+        if did not in torolt_id_szet:
+            sor_by_did[did] = sor
+    hianyzo = {did: sor for did, sor in sor_by_did.items() if did not in pdf_tar}
+    v2_kesz = bool(allapot.get("dijnet_pdf_ellenorzes_v2"))
+    if not kotelezo and v2_kesz:
+        if not hianyzo:
+            return {}
+        utolso = allapot.get("dijnet_pdf_kereses_ideje")
         try:
-            if magyar_ido() - datetime.fromisoformat(utolso) < timedelta(hours=DIJNET_PDF_KERESES_SZUNET_ORA):
+            if utolso and magyar_ido() - datetime.fromisoformat(utolso) < timedelta(hours=DIJNET_PDF_KERESES_SZUNET_ORA):
                 return {}
         except (TypeError, ValueError):
             pass
     allapot["dijnet_pdf_kereses_ideje"] = magyar_ido().isoformat()
 
+    szamlaszamok = [sor.get("szamlaszam") for sor in sor_by_did.values()]
+    did_by_szam = {sor.get("szamlaszam"): did for did, sor in sor_by_did.items()}
     hatar = min(len(sorok) + 3, DIJNET_PDF_KERESES_MAX_SOR)
-    letoltott = []  # [(pdf_bytes, szamjegyek, szoveg)]
-    olvashato_db = cid_db = 0
+    igazolt = {}     # did -> pdf (letöltő oldal alapján)
+    maradek = []     # [(pdf_bytes, tisztitott_szoveg)]
     for rowid in range(hatar):
         try:
-            pdf_bytes = _dijnet_pdf_letoltese_rowid(session, rowid)
+            pdf_bytes, kontextus = _dijnet_pdf_letoltese_rowid(session, rowid)
         except Exception as e:
             print(f"      ⚠️  Díjnet PDF-keresés: letöltési hiba (nem kritikus): {type(e).__name__}")
             continue
         if not pdf_bytes:
             continue
-        szoveg = pdf_szoveg_kinyerese(pdf_bytes)
-        if szoveg.strip():
-            olvashato_db += 1
-        if "(cid:" in szoveg:
-            cid_db += 1
-        letoltott.append((pdf_bytes, re.sub(r"\D", "", szoveg), szoveg))
+        szam = _kontextus_szamlaja(kontextus, szamlaszamok)
+        if szam and did_by_szam.get(szam) not in igazolt:
+            igazolt[did_by_szam[szam]] = pdf_bytes
+        else:
+            maradek.append((pdf_bytes, _pdf_szoveg_tisztitva(pdf_bytes)))
 
-    talalat = {}
+    talalat = {did: pdf for did, pdf in igazolt.items() if did in hianyzo}
     hasznalt = set()
-    # 1. kör: számlaszám (csak számjegyek) - ez egyértelmű
-    for did, sor in hianyzo.items():
-        jegyek = re.sub(r"\D", "", sor.get("szamlaszam") or "")
-        if len(jegyek) < 5:
-            continue
-        for i, (pdf_bytes, szamjegyek, _) in enumerate(letoltott):
-            if i not in hasznalt and jegyek in szamjegyek:
-                talalat[did] = pdf_bytes
-                hasznalt.add(i)
-                break
-    # 2. kör: összeg - csak ha pontosan egy szabad PDF-ben szerepel
     for did, sor in hianyzo.items():
         if did in talalat:
             continue
-        osszeg = _dijnet_osszeg_konvertalas(sor.get("osszeg_nyers") or "")
-        if not osszeg:
+        jegyek = re.sub(r"\D", "", sor.get("szamlaszam") or "")
+        if len(jegyek) < 5:
             continue
-        ezres = f"{int(round(float(osszeg))):,}".split(",")
-        minta = re.compile(r"(?<![\d.,])" + r"[ .\u00a0\u202f]?".join(ezres) + r"(?![\d])")
-        jeloltek = [
-            i for i, (_, _, szoveg) in enumerate(letoltott)
-            if i not in hasznalt and minta.search(szoveg)
-        ]
+        for i, (pdf_bytes, szoveg) in enumerate(maradek):
+            if i not in hasznalt and jegyek in re.sub(r"\D", "", szoveg):
+                talalat[did] = pdf_bytes
+                hasznalt.add(i)
+                break
+    for did, sor in hianyzo.items():
+        if did in talalat:
+            continue
+        minta = _osszeg_minta(_dijnet_osszeg_konvertalas(sor.get("osszeg_nyers") or ""))
+        if not minta:
+            continue
+        jeloltek = [i for i, (_, szoveg) in enumerate(maradek) if i not in hasznalt and minta.search(szoveg)]
         if len(jeloltek) == 1:
-            talalat[did] = letoltott[jeloltek[0]][0]
+            talalat[did] = maradek[jeloltek[0]][0]
             hasznalt.add(jeloltek[0])
-    print(f"  🔎 Díjnet PDF-keresés: {len(letoltott)} PDF letöltve ({olvashato_db} olvasható szövegű, "
-          f"{cid_db} kódolt betűkészletű), {len(talalat)}/{len(hianyzo)} hiányzó számlához párosítva.")
+
+    igazolt_lista = allapot.setdefault("dijnet_pdf_igazolt", [])
+    for did in list(igazolt) + list(talalat):
+        if did not in igazolt_lista:
+            igazolt_lista.append(did)
+    lecserelt = 0
+    if not v2_kesz and igazolt:
+        szamlak = allapot.get("szamlak", {})
+        feltoltott = allapot.get("drive_feltoltott_id_k") or []
+        ujrakuldes = allapot.get("hibajavito_ujrakuldes_2026_10_13") or {}
+        for did, pdf_bytes in igazolt.items():
+            if did not in pdf_tar:
+                continue
+            try:
+                tarolt = base64.b64decode(pdf_tar[did])
+            except Exception:
+                tarolt = b""
+            if tarolt == pdf_bytes or (
+                    pdf_szoveg_kinyerese(tarolt).strip()
+                    and pdf_szoveg_kinyerese(tarolt) == pdf_szoveg_kinyerese(pdf_bytes)):
+                continue
+            pdf_tar[did] = base64.b64encode(pdf_bytes).decode("ascii")
+            lecserelt += 1
+            if did in feltoltott:
+                feltoltott.remove(did)
+                if did in szamlak:
+                    szamlak[did]["drive_pdf_javitott"] = True
+            if did in ujrakuldes:
+                del ujrakuldes[did]  # a javított levél is rossz PDF-fel ment - újra kimegy
+                print("      🔁 Egy már kiküldött javított értesítő PDF-je sem volt a helyes - újraküldésre kerül.")
+        allapot["dijnet_pdf_ellenorzes_v2"] = magyar_ido().isoformat()
+
+    print(f"  🔎 Díjnet PDF-keresés: {len(igazolt) + len(maradek)} PDF letöltve, ebből "
+          f"{len(igazolt)} a letöltő oldal alapján azonosítva; {len(talalat)}/{len(hianyzo)} hiányzó "
+          f"PDF pótolva, {lecserelt} tárolt PDF lecserélve.")
     return talalat
 
 
@@ -3538,7 +3602,9 @@ def hibajavito_ujrakuldes(allapot: dict, szamlak: dict, statisztika: dict):
             continue
         pdf_b64 = pdf_tar.get(rid)
         pdf_bytes = base64.b64decode(pdf_b64) if pdf_b64 else None
-        if not pdf_bytes or not _dijnet_pdf_egyezik(pdf_bytes, rekord.get("szamlaszam"), rekord.get("osszeg")):
+        igazolt_pdf = rid in (allapot.get("dijnet_pdf_igazolt") or []) or (
+            pdf_bytes and _dijnet_pdf_egyezik(pdf_bytes, rekord.get("szamlaszam"), rekord.get("osszeg")))
+        if not pdf_bytes or not igazolt_pdf:
             hatralevo += 1
             continue  # még nincs ellenőrzötten helyes PDF - a következő futás újra megnézi
         cimzett = _cimzett_string(_kor_cimzettek(allapot, b.get("kor")))
@@ -6621,16 +6687,12 @@ def main():
                 dijnet_sorok = dijnet_szamlak_lekerdezese(dijnet_session)
                 if dijnet_sorok:
                     dijnet_tarolt_pdf_ellenorzes(allapot)
-                pdf_hianyzo = {}
-                uj_szamla_van = False
-                for sor in dijnet_sorok:
-                    did = _dijnet_szamla_id(sor)
-                    if did in torolt_id_szet or did in allapot.get("pdf_adatok", {}):
-                        continue
-                    pdf_hianyzo[did] = sor
-                    uj_szamla_van = uj_szamla_van or did not in szamlak
+                uj_szamla_van = any(
+                    _dijnet_szamla_id(sor) not in szamlak and _dijnet_szamla_id(sor) not in torolt_id_szet
+                    for sor in dijnet_sorok)
                 dijnet_talalt_pdf = dijnet_pdf_kereses(
-                    dijnet_session, dijnet_sorok, pdf_hianyzo, allapot, uj_szamla_van)
+                    dijnet_session, dijnet_sorok, allapot, torolt_id_szet, uj_szamla_van)
+                dijnet_szamlaszamok = [sor.get("szamlaszam") for sor in dijnet_sorok]
                 dijnet_pdf_letoltesek_szama = 0
                 dijnet_pdf_potlas_szama = 0
                 for sor in dijnet_sorok:
@@ -6657,7 +6719,7 @@ def main():
                         # email-csatolmányhoz kell.
                         pdf_bytes = dijnet_talalt_pdf.get(did)
                         if pdf_bytes is None and dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
-                            pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor)
+                            pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor, dijnet_szamlaszamok)
                             dijnet_pdf_letoltesek_szama += 1
                         # FONTOS - a Díjnet táblázat "Szolgáltató" oszlopa (szoveg[0],
                         # itt: szolgaltato_nyers) tartalmazza a valódi szolgáltató-nevet
