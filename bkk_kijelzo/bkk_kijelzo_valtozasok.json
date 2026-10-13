@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T00:40:54.265977+02:00",
+  "frissitve": "2026-10-14T00:41:30.401461+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:46:24.044286+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51284408569336,
-      "lon": 19.047746658325195,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-13T14:46:24.044328+02:00",
-      "kulcs": "V1440",
-      "rendszam": "V1440",
-      "vehicle_id": "4510",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.46570587158203,
-      "lon": 19.021900177001953,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-13T14:46:24.044459+02:00",
-      "kulcs": "V1518",
-      "rendszam": "V1518",
-      "vehicle_id": "4570",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.542396545410156,
-      "lon": 19.121807098388672,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-10-13T14:46:24.044496+02:00",
       "kulcs": "V1542",
@@ -260000,6 +259961,45 @@
       "lon": 19.027843475341797,
       "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
       "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-14T00:41:30.312482+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.430973052978516,
+      "lon": 18.92827606201172,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-14T00:41:30.313100+02:00",
+      "kulcs": "PDB381",
+      "rendszam": "PDB381",
+      "vehicle_id": "7063",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49708938598633,
+      "lon": 19.055545806884766,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-14T00:41:30.313482+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37956237792969,
+      "lon": 19.10417366027832,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
