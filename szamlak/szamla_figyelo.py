@@ -2559,11 +2559,18 @@ def _dijnet_pdf_letoltese_rowid(session, rowid: int):
     Visszatérés: (pdf_bytes, kontextus) - a kontextus a letöltő oldal
     szövege és a fájlnév-fejléc, normalizálva: ebből ellenőrizhető, melyik
     számla van ténylegesen kiválasztva (a PDF szövege kódolt, abból nem)."""
-    session.get(
+    # Előbb vissza a listához (egy korábbi kiválasztás után a portál a
+    # számla-részleteknél áll, és a következő kiválasztás nélküle nem
+    # mindig vált), majd kiválasztás. A kiválasztás válaszoldala a számla
+    # adatait mutatja - ez is a kontextus része, ebből azonosítható.
+    session.get(DIJNET_BASE + "/ekonto/control/szamla_list", timeout=12)
+    valasztas = session.get(
         DIJNET_BASE + "/ekonto/control/szamla_select",
         params={"vfw_coll": "szamla_list", "vfw_rowid": rowid, "exp": "K"},
         timeout=12,
     )
+    valasztas.encoding = "iso-8859-2"
+    valasztas_szoveg = BeautifulSoup(valasztas.text, "html.parser").get_text(" ")
     valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_letolt", timeout=12)
     valasz.encoding = "iso-8859-2"
     soup = BeautifulSoup(valasz.text, "html.parser")  # ld. _dijnet_vfw_token() kommentje a parser-választásról
@@ -2574,7 +2581,8 @@ def _dijnet_pdf_letoltese_rowid(session, rowid: int):
     pdf_valasz = session.get(pdf_url, timeout=20)
     if pdf_valasz.status_code == 200 and pdf_valasz.content:
         kontextus = _azonosito_norm(
-            soup.get_text(" ") + " " + link["href"] + " " + (pdf_valasz.headers.get("Content-Disposition") or ""))
+            valasztas_szoveg + " " + soup.get_text(" ") + " " + link["href"] + " "
+            + (pdf_valasz.headers.get("Content-Disposition") or ""))
         return pdf_valasz.content, kontextus
     return None, ""
 
@@ -2650,8 +2658,8 @@ def dijnet_pdf_kereses(session, sorok: list, allapot: dict, torolt_id_szet, kote
         if did not in torolt_id_szet:
             sor_by_did[did] = sor
     hianyzo = {did: sor for did, sor in sor_by_did.items() if did not in pdf_tar}
-    v2_kesz = bool(allapot.get("dijnet_pdf_ellenorzes_v2")) and bool(allapot.get("dijnet_pdf_diag_v1"))
-    allapot["dijnet_pdf_diag_v1"] = True
+    v2_kesz = bool(allapot.get("dijnet_pdf_ellenorzes_v2")) and bool(allapot.get("dijnet_pdf_diag_v2"))
+    allapot["dijnet_pdf_diag_v2"] = True
     if not kotelezo and v2_kesz:
         if not hianyzo:
             return {}
