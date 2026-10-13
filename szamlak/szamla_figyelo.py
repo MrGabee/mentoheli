@@ -2650,7 +2650,8 @@ def dijnet_pdf_kereses(session, sorok: list, allapot: dict, torolt_id_szet, kote
         if did not in torolt_id_szet:
             sor_by_did[did] = sor
     hianyzo = {did: sor for did, sor in sor_by_did.items() if did not in pdf_tar}
-    v2_kesz = bool(allapot.get("dijnet_pdf_ellenorzes_v2"))
+    v2_kesz = bool(allapot.get("dijnet_pdf_ellenorzes_v2")) and bool(allapot.get("dijnet_pdf_diag_v1"))
+    allapot["dijnet_pdf_diag_v1"] = True
     if not kotelezo and v2_kesz:
         if not hianyzo:
             return {}
@@ -2667,6 +2668,8 @@ def dijnet_pdf_kereses(session, sorok: list, allapot: dict, torolt_id_szet, kote
     hatar = min(len(sorok) + 3, DIJNET_PDF_KERESES_MAX_SOR)
     igazolt = {}     # did -> pdf (letöltő oldal alapján)
     maradek = []     # [(pdf_bytes, tisztitott_szoveg)]
+    pdf_hash_k = set()
+    oldal_talalat_eloszlas = {}  # hány számlaszám szerepelt egy letöltő oldalon -> db (csak darabszám)
     for rowid in range(hatar):
         try:
             pdf_bytes, kontextus = _dijnet_pdf_letoltese_rowid(session, rowid)
@@ -2675,6 +2678,9 @@ def dijnet_pdf_kereses(session, sorok: list, allapot: dict, torolt_id_szet, kote
             continue
         if not pdf_bytes:
             continue
+        pdf_hash_k.add(hashlib.md5(pdf_bytes).hexdigest())
+        talalt_db = sum(1 for sz in szamlaszamok if len(_azonosito_norm(sz)) >= 5 and _azonosito_norm(sz) in kontextus)
+        oldal_talalat_eloszlas[talalt_db] = oldal_talalat_eloszlas.get(talalt_db, 0) + 1
         szam = _kontextus_szamlaja(kontextus, szamlaszamok)
         if szam and did_by_szam.get(szam) not in igazolt:
             igazolt[did_by_szam[szam]] = pdf_bytes
@@ -2738,7 +2744,8 @@ def dijnet_pdf_kereses(session, sorok: list, allapot: dict, torolt_id_szet, kote
 
     print(f"  🔎 Díjnet PDF-keresés: {len(igazolt) + len(maradek)} PDF letöltve, ebből "
           f"{len(igazolt)} a letöltő oldal alapján azonosítva; {len(talalat)}/{len(hianyzo)} hiányzó "
-          f"PDF pótolva, {lecserelt} tárolt PDF lecserélve.")
+          f"PDF pótolva, {lecserelt} tárolt PDF lecserélve. Különböző PDF: {len(pdf_hash_k)} db; "
+          f"letöltő oldalon talált számlaszámok száma (számlaszám/oldal: oldal db): {oldal_talalat_eloszlas}.")
     return talalat
 
 
