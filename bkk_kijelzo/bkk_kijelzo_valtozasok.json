@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-13T02:27:07.505351+02:00",
+  "frissitve": "2026-10-13T02:27:36.019001+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:09:22.935445+02:00",
-      "kulcs": "PKN621",
-      "rendszam": "PKN621",
-      "vehicle_id": "7210",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.5196533203125,
-      "lon": 19.148265838623047,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
-    {
-      "idopont": "2026-10-12T15:09:22.935583+02:00",
-      "kulcs": "PMP919",
-      "rendszam": "PMP919",
-      "vehicle_id": "7237",
-      "vehicle_label": "Albertfalva vasútállomás",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.546932220458984,
-      "lon": 19.14239501953125,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Albertfalva vasútállomás"
-    },
-    {
-      "idopont": "2026-10-12T15:09:22.935769+02:00",
-      "kulcs": "RCT310",
-      "rendszam": "RCT310",
-      "vehicle_id": "7324",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.41307067871094,
-      "lon": 19.201889038085938,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Népliget M"
-    },
     {
       "idopont": "2026-10-12T15:09:22.935866+02:00",
       "kulcs": "T8101",
@@ -260000,6 +259961,45 @@
       "lon": 19.04706573486328,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-13T02:27:35.965912+02:00",
+      "kulcs": "AADR712",
+      "rendszam": "AADR712",
+      "vehicle_id": "180",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48748016357422,
+      "lon": 19.05843162536621,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-13T02:27:35.967373+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50458908081055,
+      "lon": 19.024734497070312,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-13T02:27:35.967788+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51322555541992,
+      "lon": 19.101606369018555,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
