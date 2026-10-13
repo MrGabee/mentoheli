@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-13T03:22:51.635311+02:00",
+  "frissitve": "2026-10-13T03:23:27.710254+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-12T15:14:54.299775+02:00",
-      "kulcs": "AAMH644",
-      "rendszam": "AAMH644",
-      "vehicle_id": "487",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.43233108520508,
-      "lon": 19.260791778564453,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-10-12T15:14:54.300117+02:00",
-      "kulcs": "AAMH660",
-      "rendszam": "AAMH660",
-      "vehicle_id": "503",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.59874725341797,
-      "lon": 19.12126922607422,
-      "elozo_szoveg": "Káp.megyer, Mogyoródi-p.",
-      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
-    },
     {
       "idopont": "2026-10-12T15:14:54.300364+02:00",
       "kulcs": "AAMH668",
@@ -260000,6 +259974,32 @@
       "lon": 19.159631729125977,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-13T03:23:27.643259+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51064682006836,
+      "lon": 19.09723472595215,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-13T03:23:27.645914+02:00",
+      "kulcs": "PDB702",
+      "rendszam": "PDB702",
+      "vehicle_id": "7028",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51203536987305,
+      "lon": 19.056961059570312,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
     }
   ]
 }
