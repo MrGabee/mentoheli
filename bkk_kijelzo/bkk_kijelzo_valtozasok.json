@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T00:46:21.642235+02:00",
+  "frissitve": "2026-10-14T00:46:54.093961+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:46:24.048145+02:00",
-      "kulcs": "PDB390",
-      "rendszam": "PDB390",
-      "vehicle_id": "7072",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.52322006225586,
-      "lon": 19.17184066772461,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Mátyás király utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-13T14:46:24.048244+02:00",
-      "kulcs": "PDN618",
-      "rendszam": "PDN618",
-      "vehicle_id": "7089",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.390262603759766,
-      "lon": 19.09659194946289,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-13T14:46:24.048343+02:00",
-      "kulcs": "PDN629",
-      "rendszam": "PDN629",
-      "vehicle_id": "7100",
-      "vehicle_label": "Mindszenty J. bíboros tér",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.476192474365234,
-      "lon": 19.037612915039062,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Mindszenty József bíboros tér"
-    },
     {
       "idopont": "2026-10-13T14:46:24.048398+02:00",
       "kulcs": "PDN635",
@@ -260000,6 +259961,45 @@
       "lon": 19.064767837524414,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-14T00:46:54.002358+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.53893280029297,
+      "lon": 19.069358825683594,
+      "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-14T00:46:54.002861+02:00",
+      "kulcs": "NGC151",
+      "rendszam": "NGC151",
+      "vehicle_id": "6193",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.49769592285156,
+      "lon": 19.054731369018555,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-14T00:46:54.003429+02:00",
+      "kulcs": "480 022",
+      "rendszam": "480 022",
+      "vehicle_id": "915504800227",
+      "vehicle_label": "Szolnok",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.510929107666016,
+      "lon": 19.101829528808594,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szolnok"
     }
   ]
 }
