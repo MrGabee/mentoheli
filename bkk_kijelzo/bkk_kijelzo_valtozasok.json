@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-14T01:01:51.092116+02:00",
+  "frissitve": "2026-10-14T01:02:27.157028+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:47:30.267647+02:00",
-      "kulcs": "NGC164",
-      "rendszam": "NGC164",
-      "vehicle_id": "6213",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.5433235168457,
-      "lon": 19.030527114868164,
-      "elozo_szoveg": "Szent Margit Kórház ► Harsánylejtő",
-      "uj_szoveg": "Harsánylejtő"
-    },
-    {
-      "idopont": "2026-10-13T14:47:30.267660+02:00",
-      "kulcs": "NGC144",
-      "rendszam": "NGC144",
-      "vehicle_id": "6214",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.545413970947266,
-      "lon": 19.033777236938477,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Szent Margit Kórház ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-10-13T14:47:30.268000+02:00",
-      "kulcs": "NNE058",
-      "rendszam": "NNE058",
-      "vehicle_id": "6454",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.530033111572266,
-      "lon": 19.008682250976562,
-      "elozo_szoveg": "Verecke lépcső ► Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-10-13T14:47:30.268029+02:00",
-      "kulcs": "NNE065",
-      "rendszam": "NNE065",
-      "vehicle_id": "6461",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.523658752441406,
-      "lon": 18.994117736816406,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
     {
       "idopont": "2026-10-13T14:47:30.268101+02:00",
       "kulcs": "NTM423",
@@ -260000,6 +259948,58 @@
       "lon": 19.160829544067383,
       "elozo_szoveg": "Aszódi utca",
       "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-14T01:02:27.070469+02:00",
+      "kulcs": "NGC155",
+      "rendszam": "NGC155",
+      "vehicle_id": "6204",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50742721557617,
+      "lon": 19.025320053100586,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-14T01:02:27.070630+02:00",
+      "kulcs": "PDB389",
+      "rendszam": "PDB389",
+      "vehicle_id": "7071",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51935958862305,
+      "lon": 19.038179397583008,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-14T01:02:27.070837+02:00",
+      "kulcs": "PCC930",
+      "rendszam": "PCC930",
+      "vehicle_id": "7269",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.51338195800781,
+      "lon": 19.09891128540039,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-14T01:02:27.071385+02:00",
+      "kulcs": "415 109",
+      "rendszam": "415 109",
+      "vehicle_id": "945514151097",
+      "vehicle_label": "Hatvan",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.49232864379883,
+      "lon": 19.134910583496094,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Hatvan"
     }
   ]
 }
