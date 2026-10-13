@@ -1,0 +1,58 @@
+name: 🌈 Színes posztok
+
+on:
+  workflow_dispatch:
+    inputs:
+      poszt:
+        description: 'Egy poszt azonnali kiküldése (programok, ezen_a_napon, erdekesseg, hetvege, kerdes, esti_idojaras) – üresen a menetrend szerint fut'
+        required: false
+        default: ''
+  schedule:
+    # Félóránként nézi, melyik színes poszt esedékes (a menetrend a
+    # szines_posztok.py elején van, helyi idő szerint)
+    - cron: '10,40 * * * *'
+
+concurrency:
+  group: szines-posztok
+  cancel-in-progress: false
+
+jobs:
+  posztol:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests beautifulsoup4
+
+      - name: 🌈 Színes posztok futtatása
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          MAKE_WEBHOOK_URL_SZINES: ${{ secrets.MAKE_WEBHOOK_URL_SZINES }}
+          KENYSZERITETT: ${{ github.event.inputs.poszt }}
+        run: python szines_posztok.py
+
+      - name: 💾 Állapot commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
+          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
+          git stash pop || true
+          [ -f szines_allapot.json ] && git add szines_allapot.json || echo "fájl nem létezik"
+          git diff --staged --quiet || git commit -m "színes posztok állapot [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

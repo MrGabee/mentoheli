@@ -1,0 +1,38 @@
+name: ☀️ Reggeli Összefoglaló
+
+on:
+  workflow_dispatch:
+  # A 6:30-as posztot már a Színes posztok menetrendje küldi (a GitHub
+  # ütemezője megbízhatatlan, az viszont késve is pótolja). Ez csak kézi
+  # indításra fut.
+
+concurrency:
+  group: reggeli-osszefoglalo
+  cancel-in-progress: false
+
+jobs:
+  osszefoglalo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: read
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests beautifulsoup4
+
+      - name: ☀️ Összefoglaló posztolása
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          UTEMEZES:         ${{ github.event.schedule }}
+        run: python reggeli_osszefoglalo.py

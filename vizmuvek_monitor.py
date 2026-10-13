@@ -16,6 +16,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 
+from poszt_valtozatos import Stilus
+
 # ─────────────────────────────────────────────
 #  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
 # ─────────────────────────────────────────────
@@ -188,20 +190,22 @@ def facebook_szoveg(esetek):
     db  = len(esetek)
 
     erintett_teruletek = sorted(set(e["terulet"] for e in esetek))
+    st = Stilus("vizmuvek")
 
     sorok = [
-        "💧 FŐVÁROSI VÍZMŰVEK ÉRTESÍTŐ 💧",
+        st.cim,
         f"🕐 {ido}   •   {db} új esemény",
-        "═" * 32,
+        st.vonal(),
         "",
+        st.bevezeto,
         "",
         "",
     ]
 
     for terulet in erintett_teruletek:
         teruleti_esetek = [e for e in esetek if e["terulet"] == terulet]
-        sorok.append(f"▸▸▸  {terulet.upper()}  ◂◂◂")
-        sorok.append("─" * 32)
+        sorok.append(st.terulet(terulet.upper()))
+        sorok.append(st.vekony())
         for e in teruleti_esetek:
             emoji, label, _ = TIPUS_MAP.get(e["tipus"], ("💧", e["tipus"], ""))
             sorok.append(f"{emoji} {label}")
@@ -211,10 +215,12 @@ def facebook_szoveg(esetek):
             sorok.append(f"   🗺️ {e['gmaps']}")
             sorok.append("")
 
-    sorok.append("─" * 32)
+    sorok.append(st.vekony())
     sorok.append("🔗 Vízművek munkatérkép:")
     sorok.append("https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk")
     sorok.append("📍 Figyelt terület: Csepel, Pesterzsébet, Szigetszentmiklós")
+    if st.zaro:
+        sorok += ["", st.zaro]
 
     return "\n".join(sorok)
 

@@ -43,6 +43,8 @@ jobs:
           # vízművek-monitornál - egyetlen Make.com webhook URL-t kell
           # csak beállítani a repóban, ami mindhárom monitorhoz elég.
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          # A rendőrségi posztok külön Make-forgatókönyve (képes poszt, javítás)
+          MAKE_WEBHOOK_URL_RENDORSEG: ${{ secrets.MAKE_WEBHOOK_URL_RENDORSEG }}
         run: python korozes/police_figyelo.py
 
       - name: 💾 Adat commitolása (önjavító)

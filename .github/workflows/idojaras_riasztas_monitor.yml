@@ -1,0 +1,51 @@
+name: ⚠️ Időjárási Riasztás Monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Félóránként néz rá a HungaroMet riasztásaira (MeteoAlarm feed).
+    # Csak új vagy emelkedett szintű riasztásnál posztol.
+    - cron: '*/30 * * * *'
+
+concurrency:
+  group: idojaras-riasztas
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests
+
+      - name: ⚠️ Riasztás monitor futtatása
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        run: python idojaras_riasztas_monitor.py
+
+      - name: 💾 Állapot commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
+          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
+          git stash pop || true
+          [ -f idojaras_riasztas_allapot.json ] && git add idojaras_riasztas_allapot.json || echo "fájl nem létezik"
+          git diff --staged --quiet || git commit -m "időjárási riasztás állapot [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

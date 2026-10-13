@@ -6,30 +6,33 @@
 <title>Magyar Webkamerák · Windy API</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* A Balesetinfo program arculata: ugyanazok a színtokenek, világos és sötét módban.
+     A régi változónevek (--bg-card, --amber, --turquoise…) a program színeire mutatnak. */
   :root {
-    --bg: #1b1d1f;
-    --bg-card: #232629;
-    --bg-card-hover: #2a2e31;
-    --amber: #f2a340;
-    --red: #c8102e;
-    --text: #eef0f2;
-    --text-muted: #9aa0a6;
-    --border: #34383c;
-    --green: #4caf6f;
-    --turquoise: #2dd4bf;
-    --mk-blue: #4f8fe0;
-    --bkk-violet: #b384f0;
-    --jb-green: #5cc48c;
+    color-scheme: light;
+    --bg: #f3f5f8; --bg-card: #ffffff; --bg-card-hover: #eef1f6; --surface-2: #eef1f6; --border: #dde2ea;
+    --text: #16202e; --text-muted: #5d6a7c; --blue: #1f5f8b; --blue-soft: #e2edf6; --blue-hover: #174a6d;
+    --amber: var(--blue); --turquoise: var(--blue); --red: #b3261e; --green: #1b7f4b; --on-accent: #ffffff;
+    --mk-blue: #2f6fc0; --bkk-violet: #7a4fc4; --jb-green: #1f8a55; --line-blue: #1976d2;
+    --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --f-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
+  @media (prefers-color-scheme: dark) { :root {
+    color-scheme: dark;
+    --bg: #0f141b; --bg-card: #161d27; --bg-card-hover: #1c2531; --surface-2: #1c2531; --border: #2a3443;
+    --text: #e6ebf2; --text-muted: #93a0b2; --blue: #6fb0e0; --blue-soft: #1b2e40; --blue-hover: #8cc3ea;
+    --red: #f2867f; --green: #5cc98d; --on-accent: #0f141b;
+    --mk-blue: #4f8fe0; --bkk-violet: #b384f0; --jb-green: #5cc48c;
+  } }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--f-body);
     min-height: 100vh;
     line-height: 1.5;
   }
@@ -52,7 +55,7 @@
   }
 
   .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -61,7 +64,7 @@
   }
 
   h1 {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     font-weight: 700;
     font-size: clamp(32px, 5vw, 52px);
     letter-spacing: -0.01em;
@@ -96,7 +99,7 @@
     background: var(--bg-card);
     border: 1px solid var(--border);
     color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 13px;
     padding: 12px 14px;
     border-radius: 4px;
@@ -114,9 +117,9 @@
 
   button {
     background: var(--amber);
-    color: #1b1d1f;
+    color: var(--on-accent);
     border: none;
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     font-weight: 600;
     font-size: 13px;
     letter-spacing: 0.04em;
@@ -127,7 +130,7 @@
     transition: background 0.15s ease, transform 0.1s ease;
   }
 
-  button:hover { background: #ffb75c; }
+  button:hover { background: var(--blue-hover); }
   button:active { transform: scale(0.98); }
   button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
   button:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -136,7 +139,7 @@
     background: var(--bg-card);
     border: 1px solid var(--border);
     color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 13px;
     padding: 12px 14px;
     border-radius: 4px;
@@ -154,7 +157,7 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 32px 24px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 13px;
     color: var(--text-muted);
     min-height: 20px;
@@ -191,7 +194,7 @@
   .cam-image-wrap {
     position: relative;
     aspect-ratio: 16 / 9;
-    background: #141617;
+    background: var(--surface-2);
     overflow: hidden;
     cursor: zoom-in;
   }
@@ -213,7 +216,7 @@
     align-items: center;
     gap: 6px;
     margin-top: 10px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 11px;
     color: var(--amber);
     text-decoration: none;
@@ -229,7 +232,7 @@
     gap: 6px;
     margin-top: 10px;
     margin-left: 10px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 11px;
     color: var(--turquoise);
     background: none;
@@ -242,7 +245,7 @@
   }
 
   .cam-playback-btn:hover {
-    background: rgba(45, 212, 191, 0.12);
+    background: var(--blue-soft);
   }
 
   /* ---- Közút Figyelő idővonal-csúszka ---- */
@@ -252,7 +255,7 @@
     gap: 6px;
     margin-top: 10px;
     margin-left: 10px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 11px;
     color: var(--bkk-violet);
     background: none;
@@ -285,7 +288,7 @@
   }
 
   .cam-timeline-time {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 11px;
     color: var(--text-muted);
     margin-top: 6px;
@@ -297,11 +300,11 @@
     aspect-ratio: 16 / 9;
     border: none;
     display: block;
-    background: #141617;
+    background: var(--surface-2);
   }
 
   .cam-exact-location {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 12px;
     font-weight: 500;
     color: var(--turquoise);
@@ -337,7 +340,7 @@
     left: 0;
     right: 0;
     text-align: center;
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     font-size: 16px;
     color: var(--text);
     text-transform: uppercase;
@@ -348,7 +351,7 @@
     position: absolute;
     top: 20px;
     right: 28px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 13px;
     color: var(--text-muted);
     letter-spacing: 0.06em;
@@ -365,7 +368,7 @@
     background: rgba(20, 22, 23, 0.75);
     padding: 4px 9px 4px 7px;
     border-radius: 100px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -397,7 +400,7 @@
     background: rgba(20, 22, 23, 0.78);
     padding: 4px 9px;
     border-radius: 100px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.06em;
@@ -415,7 +418,7 @@
 
   .source-badge.source-windy {
     color: var(--amber);
-    border-color: rgba(242, 163, 64, 0.4);
+    border-color: var(--blue);
   }
 
   .source-badge.source-windy::before {
@@ -453,7 +456,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.04em;
@@ -483,7 +486,7 @@
     justify-content: center;
     text-align: center;
     padding: 12px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 12px;
     letter-spacing: 0.04em;
     color: var(--jb-green);
@@ -498,11 +501,11 @@
     justify-content: center;
     text-align: center;
     padding: 12px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 11px;
     letter-spacing: 0.04em;
     color: var(--text-muted);
-    background: #141617;
+    background: var(--surface-2);
   }
 
   .cam-body {
@@ -510,7 +513,7 @@
   }
 
   .cam-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     font-weight: 500;
     font-size: 16px;
     color: var(--text);
@@ -523,7 +526,7 @@
   }
 
   .cam-coords {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 11px;
     color: var(--text-muted);
     margin-top: 8px;
@@ -537,7 +540,7 @@
   }
 
   .empty-state h2, .loading-state h2 {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     text-transform: uppercase;
     font-size: 20px;
     color: var(--text);
@@ -561,7 +564,7 @@
   }
 
   .featured-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     font-weight: 700;
     font-size: clamp(22px, 3vw, 32px);
     letter-spacing: -0.01em;
@@ -610,7 +613,7 @@
   }
 
   .featured-item-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     font-weight: 500;
     font-size: 15px;
     color: var(--text);
@@ -620,7 +623,7 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 24px 32px 48px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 11px;
     color: var(--text-muted);
     border-top: 1px solid var(--border);
@@ -649,7 +652,7 @@
   }
 
   .gate-box h2 {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--f-display);
     text-transform: uppercase;
     font-size: 20px;
     margin-bottom: 8px;
@@ -667,7 +670,7 @@
     background: var(--bg-card);
     border: 1px solid var(--border);
     color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
     font-size: 14px;
     padding: 12px 14px;
     border-radius: 4px;
@@ -685,12 +688,23 @@
     font-size: 12px;
     margin-top: 10px;
     min-height: 16px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--f-body);
   }
 
   #protectedContent {
     display: none;
   }
+
+  /* Programhoz illő megjelenés */
+  .hazard-stripe { display: none; }
+  h1 { font-family: var(--f-display); text-transform: none; letter-spacing: -0.01em; font-size: clamp(24px, 4vw, 34px); }
+  h1 span { color: var(--blue); }
+  .eyebrow { color: var(--blue); }
+  input, select, textarea, button { font-family: inherit; }
+  button, .fotab-btn, .szuro-btn { text-transform: none; letter-spacing: 0; }
+  .frissitve, .eyebrow { font-variant-numeric: tabular-nums; }
+  /* A programon belül nyitva a program adja a keretet. */
+  html.beagyazva header { padding-top: 16px; padding-bottom: 12px; }
 </style>
 </head>
 <body>
@@ -1475,8 +1489,17 @@
     if (e.key === 'Enter') tryUnlock();
   });
 
+
+  // A Balesetinfo programból (ugyanarról a címről) nyitva nem kér újra jelszót.
+  function programbolBelepve() {
+    try { return [GATE_PASSWORD, 'megrendelo2026'].indexOf(localStorage.getItem('balesetinfo_jelszo')) !== -1; }
+    catch (e) { return false; }
+  }
+
+  if (window.self !== window.top) document.documentElement.classList.add('beagyazva');
+
   // Ha van még érvényes, korábbi belépés, ugorjuk át a jelszókaput
-  if (hasValidRememberedUnlock()) {
+  if (hasValidRememberedUnlock() || programbolBelepve()) {
     unlockGate();
   } else {
     gateInput.focus();
