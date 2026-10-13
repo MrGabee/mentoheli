@@ -2414,11 +2414,32 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
     MIN_CELLASZAM = 8
     kihagyott_db = 0
     cellaszam_eloszlas = {}  # csak SZÁMOK (darabszám cellánként), nem tartalom - diagnosztikához
+    # adat_sor_szamlalo: a Díjnet "vfw_rowid"-je az ADATSOROK 0-tól
+    # induló sorszáma (a referencia-integráció is "tbody > tr"-en
+    # számol) - az "idx" viszont a "table.table tr" MINDEN sorát
+    # számolja, a fejléc-sor(oka)t is. Korábban az idx ment a PDF-
+    # letöltéshez, ezért a fejléc miatt a SZOMSZÉDOS sor PDF-je jött le
+    # (pl. MOHU-értesítő mellett Csatornázási Művek PDF).
+    adat_sor_szamlalo = 0
     for idx, sor in enumerate(sorok):
         cellak = sor.find_all("td")
         cellaszam_eloszlas[len(cellak)] = cellaszam_eloszlas.get(len(cellak), 0) + 1
         if len(cellak) < MIN_CELLASZAM:
             continue  # fejléc/üres/eltérő szerkezetű sor - kihagyjuk (nem számít bele a kihagyott_db-be, ez várható zaj pl. fejléc-soroknál)
+        adat_sor_index = adat_sor_szamlalo
+        adat_sor_szamlalo += 1
+        # Ha a sor HTML-je (onclick/href) maga tartalmazza a rowid-t, az
+        # a legmegbízhatóbb - ezt próbáljuk először, utána az adatsor-
+        # sorszámot, végül (régi viselkedés) a nyers idx-et. A letöltött
+        # PDF-et dijnet_pdf_letoltese() a számlaszámmal/összeggel
+        # ellenőrzi, így csak a valóban egyező jelölt marad meg.
+        rowid_jeloltek = []
+        talalt_rowid = re.search(r"rowid\D{0,3}(\d+)", str(sor))
+        if talalt_rowid:
+            rowid_jeloltek.append(int(talalt_rowid.group(1)))
+        for jelolt in (adat_sor_index, idx):
+            if jelolt not in rowid_jeloltek:
+                rowid_jeloltek.append(jelolt)
         szoveg = [c.get_text(strip=True) for c in cellak]
         try:
             szamlaszam = szoveg[2]
@@ -2471,6 +2492,7 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
 
         talalt_szamlak.append({
             "sor_index": idx,
+            "rowid_jeloltek": rowid_jeloltek,
             "szolgaltato_nyers": szoveg[0],
             "megjelenitett_nev": szoveg[1] or szoveg[0],
             "szamlaszam": szamlaszam,
@@ -2492,30 +2514,123 @@ def dijnet_szamlak_lekerdezese(session, napok_vissza=DIJNET_LEKERDEZES_NAPOK_VIS
     return talalt_szamlak
 
 
-def dijnet_pdf_letoltese(session, sor_index: int):
+def _dijnet_pdf_egyezik(pdf_bytes, szamlaszam, osszeg):
+    """Ellenőrzi, hogy a letöltött PDF tényleg az adott számláé-e: a
+    számlaszám (csak a számjegyeit nézve) vagy az összeg szerepel-e a
+    PDF szövegében. Visszatérés: "szamlaszam" / "osszeg" (ez egyezett),
+    False (van szöveg, de
+    nem egyezik - rossz PDF), None (nincs kiolvasható szöveg, nem
+    ellenőrizhető). ADATVÉDELEM: semmit nem ír ki a PDF tartalmából."""
+    szoveg = pdf_szoveg_kinyerese(pdf_bytes) if pdf_bytes else ""
+    if not szoveg.strip():
+        return None
+    szam_jegyek = re.sub(r"\D", "", szamlaszam or "")
+    if len(szam_jegyek) >= 5 and szam_jegyek in re.sub(r"\D", "", szoveg):
+        return "szamlaszam"
+    if osszeg:
+        try:
+            ezres = f"{int(round(float(osszeg))):,}".split(",")
+            minta = r"(?<![\d.,])" + r"[ .\u00a0\u202f]?".join(ezres) + r"(?![\d])"
+            if re.search(minta, szoveg):
+                return "osszeg"
+        except (TypeError, ValueError):
+            pass
+    return False
+
+
+def _dijnet_pdf_letoltese_rowid(session, rowid: int):
+    session.get(
+        DIJNET_BASE + "/ekonto/control/szamla_select",
+        params={"vfw_coll": "szamla_list", "vfw_rowid": rowid, "exp": "K"},
+        timeout=12,
+    )
+    valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_letolt", timeout=12)
+    valasz.encoding = "iso-8859-2"
+    soup = BeautifulSoup(valasz.text, "html.parser")  # ld. _dijnet_vfw_token() kommentje a parser-választásról
+    link = soup.select_one('a[href*="szamla_pdf"]')
+    if not link or not link.get("href"):
+        return None
+    pdf_url = DIJNET_BASE + "/ekonto/control/" + link["href"].lstrip("/")
+    pdf_valasz = session.get(pdf_url, timeout=20)
+    if pdf_valasz.status_code == 200 and pdf_valasz.content:
+        return pdf_valasz.content
+    return None
+
+
+def dijnet_pdf_letoltese(session, sor: dict):
     """Best-effort PDF-letöltés egy adott számla-sorhoz. Ha bármi nem a
     várt módon viselkedik (a portál felülete változott, nincs PDF-link
     stb.), None-t ad vissza - ez NEM állítja meg a számla rögzítését,
-    csak a PDF-csatolmány marad el az értesítő emailből."""
-    try:
-        session.get(
-            DIJNET_BASE + "/ekonto/control/szamla_select",
-            params={"vfw_coll": "szamla_list", "vfw_rowid": sor_index, "exp": "K"},
-            timeout=12,
-        )
-        valasz = session.get(DIJNET_BASE + "/ekonto/control/szamla_letolt", timeout=12)
-        valasz.encoding = "iso-8859-2"
-        soup = BeautifulSoup(valasz.text, "html.parser")  # ld. _dijnet_vfw_token() kommentje a parser-választásról
-        link = soup.select_one('a[href*="szamla_pdf"]')
-        if not link or not link.get("href"):
-            return None
-        pdf_url = DIJNET_BASE + "/ekonto/control/" + link["href"].lstrip("/")
-        pdf_valasz = session.get(pdf_url, timeout=20)
-        if pdf_valasz.status_code == 200 and pdf_valasz.content:
-            return pdf_valasz.content
-    except Exception as e:
-        print(f"      ⚠️  Díjnet PDF-letöltés sikertelen (nem kritikus): {e}")
+    csak a PDF-csatolmány marad el az értesítő emailből.
+
+    A sor "rowid_jeloltek" listáját sorban kipróbálja, és csak azt a PDF-
+    et fogadja el, amelyikben a számlaszám vagy az összeg szerepel (ld.
+    _dijnet_pdf_egyezik()) - egy rossz (másik számlához tartozó) PDF-et
+    inkább elhagyunk, mint hogy rossz csatolmány menjen ki."""
+    jeloltek = sor.get("rowid_jeloltek") or [sor.get("sor_index")]
+    osszeg = _dijnet_osszeg_konvertalas(sor.get("osszeg_nyers") or "")
+    ellenorizhetetlen = None
+    osszeg_egyezes = None
+    for rowid in jeloltek:
+        try:
+            pdf_bytes = _dijnet_pdf_letoltese_rowid(session, rowid)
+        except Exception as e:
+            print(f"      ⚠️  Díjnet PDF-letöltés sikertelen (nem kritikus): {type(e).__name__}")
+            continue
+        if not pdf_bytes:
+            continue
+        egyezes = _dijnet_pdf_egyezik(pdf_bytes, sor.get("szamlaszam"), osszeg)
+        if egyezes == "szamlaszam":
+            return pdf_bytes
+        if egyezes == "osszeg" and osszeg_egyezes is None:
+            osszeg_egyezes = pdf_bytes  # gyengébb egyezés - a számlaszámos jelölt előnyt élvez
+        if egyezes is None and ellenorizhetetlen is None:
+            ellenorizhetetlen = pdf_bytes
+    if osszeg_egyezes is not None:
+        return osszeg_egyezes
+    if ellenorizhetetlen is not None:
+        return ellenorizhetetlen
+    print(f"      ⚠️  Díjnet PDF: egyik letöltött PDF sem egyezett a(z) {sor.get('szamlaszam')} "
+          f"számlával ({len(jeloltek)} jelölt) - PDF nélkül megy tovább.")
     return None
+
+
+def dijnet_tarolt_pdf_ellenorzes(allapot: dict):
+    """Egyszeri javítás: a korábban (a rowid-elcsúszás miatt) rossz,
+    szomszédos számlához tartozó, eltárolt Díjnet-PDF-eket törli, hogy a
+    PDF-pótlás a helyeset töltse le. A Drive-ra már feltöltött rossz
+    példány helyett a helyes "_javitott" végű néven kerül fel újra."""
+    if allapot.get("dijnet_pdf_ellenorzes_v1"):
+        return
+    szamlak = allapot.get("szamlak", {})
+    pdf_tar = allapot.get("pdf_adatok", {})
+    feltoltott = allapot.get("drive_feltoltott_id_k") or []
+    torolt_db = 0
+    ok_db = 0
+    nem_ellenorizheto_db = 0
+    for rid, r in szamlak.items():
+        if not (r.get("szolgaltato") == "dijnet" or r.get("forras") == "dijnet_portal"):
+            continue
+        if rid not in pdf_tar:
+            continue
+        try:
+            pdf_bytes = base64.b64decode(pdf_tar[rid])
+        except Exception:
+            continue
+        egyezes = _dijnet_pdf_egyezik(pdf_bytes, r.get("szamlaszam"), r.get("osszeg"))
+        if egyezes is False:
+            del pdf_tar[rid]
+            if rid in feltoltott:
+                feltoltott.remove(rid)
+                r["drive_pdf_javitott"] = True
+            torolt_db += 1
+        elif egyezes:
+            ok_db += 1
+        else:
+            nem_ellenorizheto_db += 1
+    allapot["dijnet_pdf_ellenorzes_v1"] = magyar_ido().isoformat()
+    print(f"  🔎 Díjnet tárolt PDF-ek ellenőrzése: {ok_db} db rendben, {torolt_db} db rossz "
+          f"(törölve, újra letöltődik), {nem_ellenorizheto_db} db nem ellenőrizhető.")
 
 
 # ════════════════════════════════════════════
@@ -3745,6 +3860,8 @@ def _drive_fajlnev(invoice_id: str, rekord: dict) -> str:
 
     azonosito_resz = rekord.get("szamlaszam") or rekord.get("targy") or "szamla"
     nyers = f"{rekord.get('szolgaltato_nev') or ''}_{azonosito_resz}_{invoice_id}"
+    if rekord.get("drive_pdf_javitott"):
+        nyers += "_javitott"  # ld. dijnet_tarolt_pdf_ellenorzes() - a korábbi, rossz példány neve foglalt
     ekezet_nelkul = "".join(
         ch for ch in unicodedata.normalize("NFD", nyers) if not unicodedata.combining(ch)
     )
@@ -6357,6 +6474,8 @@ def main():
             dijnet_session = dijnet_bejelentkezes()
             if dijnet_session:
                 dijnet_sorok = dijnet_szamlak_lekerdezese(dijnet_session)
+                if dijnet_sorok:
+                    dijnet_tarolt_pdf_ellenorzes(allapot)
                 dijnet_pdf_letoltesek_szama = 0
                 dijnet_pdf_potlas_szama = 0
                 for sor in dijnet_sorok:
@@ -6383,7 +6502,7 @@ def main():
                         # email-csatolmányhoz kell.
                         pdf_bytes = None
                         if dijnet_pdf_letoltesek_szama < DIJNET_MAX_PDF_LETOLTES_FUTASONKENT:
-                            pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
+                            pdf_bytes = dijnet_pdf_letoltese(dijnet_session, sor)
                             dijnet_pdf_letoltesek_szama += 1
                         # FONTOS - a Díjnet táblázat "Szolgáltató" oszlopa (szoveg[0],
                         # itt: szolgaltato_nyers) tartalmazza a valódi szolgáltató-nevet
@@ -6496,7 +6615,7 @@ def main():
                         # pótolni. Több futás alatt fokozatosan az összes
                         # (a 120 napos ablakban látott) számla PDF-je bekerül.
                         if did not in allapot.get("pdf_adatok", {}) and dijnet_pdf_potlas_szama < DIJNET_PDF_POTLAS_MAX_FUTASONKENT:
-                            potolt_pdf = dijnet_pdf_letoltese(dijnet_session, sor["sor_index"])
+                            potolt_pdf = dijnet_pdf_letoltese(dijnet_session, sor)
                             dijnet_pdf_potlas_szama += 1
                             pdf_tarolas(allapot, did, potolt_pdf)
                 # 1. pont: futás végi, SZERKEZETI (csak darabszám, nem
