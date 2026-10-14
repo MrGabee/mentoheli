@@ -15,6 +15,5 @@ for path,data in [("/JobAd/ListGridAsync",{"__RequestVerificationToken":tok,"Cit
     print("  ",r.text[:800] if "json" in (r.headers.get("Content-Type") or "") else body(r.text)[:800])
     print("  info:",re.findall(r'JobAd/Info/(\d+)',r.text)[:10])
 # script inline around ListGridAsync
-for m in re.finditer(r'(?s)<script[^>]*>(.*?)</script>',t):
-    sc=m.group(1)
-    if "JobAd" in sc or "filterForm" in sc: print("SCRIPT:",sc[:1500])
+i=t.find("var refreshList"); i=i if i>0 else t.find("refreshList = function"); i=i if i>0 else t.find("function refreshList")
+print("REFRESHLIST:",t[i:i+2500])
