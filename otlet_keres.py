@@ -24,6 +24,11 @@ def szoveg(nap):
         "Milyen témáról olvasnál szívesen? Van egy ötleted, amit érdemes lenne megmutatnom, "
         "vagy valami, ami szerinted hiányzik?",
         "",
+    ]
+    if nap == date(2026, 10, 15):
+        sorok += ["📌 Egy fontos dolog: a tegnapi állásos bejegyzésembe kicsit hiba csúszott, ezért ma délután "
+                  "új bejegyzéssel jövök, amibe a kommentekben érkezett hirdetéseket is beleraktam.", ""]
+    sorok += [
         "Írd meg bátran:",
         "💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)",
     ]
