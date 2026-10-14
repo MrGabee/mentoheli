@@ -48,6 +48,10 @@ SZINES_WEBHOOK = os.environ.get("MAKE_WEBHOOK_URL_SZINES", "")
 if SZINES_WEBHOOK:
     kuldo.MAKE_WEBHOOK_URL = SZINES_WEBHOOK
 
+# Minden poszt végére: gyors kapcsolatfelvétel (ahol nincs már benne)
+KAPCSOLAT_SOR = "💬 Írj nekem gyorsan: " + allasok.KAPCSOLAT_URL
+KAPCSOLAT_NELKUL = {"allasok", "otlet_keres"}
+
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
 KEPEK = {"otlet_keres": KEP_ALAP + "otlet_keres.png"}
@@ -147,6 +151,8 @@ def main():
     if szoveg == "":
         print(f"ℹ️ {kulcs}: ma nincs miről írni, kihagyva.")
     else:
+        if kulcs not in KAPCSOLAT_NELKUL:
+            szoveg += "\n\n" + KAPCSOLAT_SOR
         print("\n" + szoveg + "\n")
         if not FACEBOOK_POSZTOLAS_AKTIV:
             print("ℹ️ Facebook-posztolás kikapcsolva.")
