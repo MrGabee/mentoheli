@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-14T02:10:23.772046+02:00",
+  "frissitve": "2026-10-14T02:10:55.996822+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:54:17.293903+02:00",
-      "kulcs": "T9108",
-      "rendszam": "T9108",
-      "vehicle_id": "7355",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48942947387695,
-      "lon": 19.089885711669922,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-13T14:54:17.294050+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47748947143555,
-      "lon": 19.047367095947266,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-10-13T14:54:17.294096+02:00",
-      "kulcs": "V2244",
-      "rendszam": "V2244",
-      "vehicle_id": "7376",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.48660659790039,
-      "lon": 19.024709701538086,
-      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-13T14:54:17.294298+02:00",
-      "kulcs": "RVY603",
-      "rendszam": "RVY603",
-      "vehicle_id": "7432",
-      "vehicle_label": "Ecseri út M-József A. ltp.",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.46373748779297,
-      "lon": 19.10080337524414,
-      "elozo_szoveg": "Aszódi utca",
-      "uj_szoveg": "Ecseri út M ► József Attila lakótelep, Távíró utca"
-    },
     {
       "idopont": "2026-10-13T14:54:17.294369+02:00",
       "kulcs": "RVY611",
@@ -260000,6 +259948,58 @@
       "lon": 19.054718017578125,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-14T02:10:55.928630+02:00",
+      "kulcs": "AADR720",
+      "rendszam": "AADR720",
+      "vehicle_id": "189",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51078796386719,
+      "lon": 19.09727668762207,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-14T02:10:55.929719+02:00",
+      "kulcs": "AAGL268",
+      "rendszam": "AAGL268",
+      "vehicle_id": "268",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.508033752441406,
+      "lon": 19.02790069580078,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-14T02:10:55.930233+02:00",
+      "kulcs": "FLR713",
+      "rendszam": "FLR713",
+      "vehicle_id": "3127",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56742858886719,
+      "lon": 19.124862670898438,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-14T02:10:55.930918+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.47031021118164,
+      "lon": 19.07377052307129,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
+      "uj_szoveg": "Millenniumtelep H"
     }
   ]
 }
