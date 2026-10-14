@@ -323,6 +323,12 @@ def heti_szoveg(nap, allapot, lista=None):
 
     st = Stilus("allasok", nap.isoformat())
     sorok = [st.cim, st.vonal(), ""]
+    if not allapot.get("allas_bocsanat"):
+        # Egyszeri: az előző (ellenőrzés nélküli) posztban sok link már nem élt
+        mikor = "tegnapi" if nap == date(2026, 10, 15) else "legutóbbi"
+        sorok += [f"🙏 Elnézést kérek a {mikor} állásposzt linkjeiért, valami hiba csúszott a számításba, "
+                  "és sok hirdetés már nem volt elérhető. Ezúttal minden linket egyenként ellenőriztem.", ""]
+        allapot["allas_bocsanat"] = nap.isoformat()
     for t in olvasoi_lista:
         sorok += ["📣 Olvasói jelzés alapján:", t["szoveg"].strip(), ""]
     if kimegy:
