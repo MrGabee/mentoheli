@@ -45,6 +45,6 @@ def szoveg(nap):
         f"📩 e-mailben: {OLVASOI_EMAIL}",
         f"🌐 online, egy kattintással: {allasok.KAPCSOLAT_URL}",
         "",
-        "Ha szeretnéd, a neved nélkül teszem közzé. 🙏",
+        "Nemcsak gondot, bármilyen kerületi hírt, infót, fotót is szívesen fogadok. Ha szeretnéd, a neved nélkül teszem közzé. 🙏",
         "#Csepel #XXIkerület #olvasóijelzés",
     ])
