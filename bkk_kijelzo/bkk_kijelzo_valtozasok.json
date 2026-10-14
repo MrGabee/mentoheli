@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T02:58:30.731866+02:00",
+  "frissitve": "2026-10-14T02:59:02.573840+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:59:01.911364+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.506561279296875,
-      "lon": 19.023956298828125,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-13T14:59:01.911460+02:00",
-      "kulcs": "NGC019",
-      "rendszam": "NGC019",
-      "vehicle_id": "6318",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.52326202392578,
-      "lon": 19.00239372253418,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-13T14:59:01.911514+02:00",
-      "kulcs": "NGC030",
-      "rendszam": "NGC030",
-      "vehicle_id": "6329",
-      "vehicle_label": "Mechanikai Művek",
-      "vonal_szam": "87",
-      "route_id": "0870",
-      "lat": 47.46450424194336,
-      "lon": 19.018211364746094,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Mechanikai Művek"
-    },
     {
       "idopont": "2026-10-13T14:59:01.911527+02:00",
       "kulcs": "NGC031",
@@ -260000,6 +259961,45 @@
       "lon": 18.958290100097656,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-14T02:59:02.482142+02:00",
+      "kulcs": "AAGL265",
+      "rendszam": "AAGL265",
+      "vehicle_id": "265",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45592498779297,
+      "lon": 18.94042205810547,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-14T02:59:02.483608+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50749588012695,
+      "lon": 19.024690628051758,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-14T02:59:02.483958+02:00",
+      "kulcs": "RVY604",
+      "rendszam": "RVY604",
+      "vehicle_id": "7433",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.443119049072266,
+      "lon": 19.09306526184082,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
