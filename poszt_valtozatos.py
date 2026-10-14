@@ -111,7 +111,7 @@ CIMEK = {
     "allasok": [
         "💼 ÚJ ÁLLÁSOK A KÖRNYÉKEN 💼",
         "🔎 MUNKÁT KERESEL? 🔎",
-        "💼 HETI ÁLLÁSAJÁNLÓ 💼",
+        "💼 ÁLLÁSAJÁNLÓ 💼",
         "🛠️ FRISS ÁLLÁSHIRDETÉSEK CSEPELEN 🛠️",
     ],
     "veradas": [
@@ -237,7 +237,7 @@ BEVEZETOK = {
         "Egy fontos hír, mielőtt postára vagy kormányablakba mennétek 👇",
     ],
     "allasok": [
-        "Összegyűjtöttem a héten megjelent csepeli álláshirdetéseket 👇",
+        "Összegyűjtöttem a legfrissebb álláshirdetéseket a környékről 👇",
         "Ha te vagy valaki az ismerősi körödből munkát keres, ezeket nézd meg:",
         "Átnéztem az állásoldalakat, ezek az új hirdetések a környéken:",
         "Friss munkalehetőségek a közelben, hátha valakinek pont ez kell:",
