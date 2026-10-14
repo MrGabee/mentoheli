@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-14T02:02:24.761949+02:00",
+  "frissitve": "2026-10-14T02:02:58.790416+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:54:17.285215+02:00",
-      "kulcs": "AAHY839",
-      "rendszam": "AAHY839",
-      "vehicle_id": "400",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "125",
-      "route_id": "1250",
-      "lat": 47.58683776855469,
-      "lon": 19.133285522460938,
-      "elozo_szoveg": "Rákospalota, MEDIMPEX",
-      "uj_szoveg": "Bosnyák tér"
-    },
-    {
-      "idopont": "2026-10-13T14:54:17.285850+02:00",
-      "kulcs": "AAHY862",
-      "rendszam": "AAHY862",
-      "vehicle_id": "424",
-      "vehicle_label": "Kisszentmihály, Baross u.",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.504974365234375,
-      "lon": 19.13669776916504,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-13T14:54:17.285946+02:00",
-      "kulcs": "T0606",
-      "rendszam": "T0606",
-      "vehicle_id": "4290",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.495933532714844,
-      "lon": 19.06014633178711,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-10-13T14:54:17.286258+02:00",
-      "kulcs": "V1339",
-      "rendszam": "V1339",
-      "vehicle_id": "4442",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51298141479492,
-      "lon": 19.047775268554688,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-13T14:54:17.286598+02:00",
-      "kulcs": "V1448",
-      "rendszam": "V1448",
-      "vehicle_id": "4518",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.497337341308594,
-      "lon": 19.05554962158203,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-13T14:54:17.286936+02:00",
       "kulcs": "AAMH626",
@@ -260000,6 +259935,71 @@
       "lon": 19.02495574951172,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-14T02:02:58.691205+02:00",
+      "kulcs": "AADI660",
+      "rendszam": "AADI660",
+      "vehicle_id": "159",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464637756347656,
+      "lon": 19.02292823791504,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-14T02:02:58.692976+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51450729370117,
+      "lon": 19.09739112854004,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-14T02:02:58.693302+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.426605224609375,
+      "lon": 19.160844802856445,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-14T02:02:58.693635+02:00",
+      "kulcs": "RVY720",
+      "rendszam": "RVY720",
+      "vehicle_id": "7469",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.432743072509766,
+      "lon": 19.26157569885254,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-14T02:02:58.693829+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.4982795715332,
+      "lon": 19.054744720458984,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
