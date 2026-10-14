@@ -1,5 +1,5 @@
 """
-✉️ Egyszeri olvasói levél (a NAPOK-ban megadott napon megy ki, 14:00-kor).
+✉️ Egyszeri olvasói levél (a NAPOK-ban megadott napon megy ki, 14:30 körül).
 """
 
 from datetime import date
