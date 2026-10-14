@@ -16,7 +16,5 @@ u="https://kormanyhivatalok.hu/dokumentumtar?combine=XXI.&forras=300&field_dokum
 r=requests.get(u,headers=H,timeout=40)
 print("KH",r.status_code,r.url,len(r.text))
 t=r.text
-i=t.find("view-content"); print(t[i:i+6000] if i>=0 else t[:3000])
-for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>',t,re.S):
-    x=re.sub("<[^>]+>","",m.group(2)).strip()
-    if len(x)>20: print("A",m.group(1),"|",x[:150])
+i=t.find("/system/files/dokumentum"); print("ROW>>>",re.sub(r"\s+"," ",t[i-2500:i+1500]))
+print("PAGER", re.findall(r'page=(\d+)',t)[:10])
