@@ -31,7 +31,7 @@ Együttműködésüket és intézkedésüket előre is köszönöm!
 Tisztelettel,
 K. Viktor«”
 
-Köszönöm Viktornak, hogy megírta. Ti mit tapasztaltok az Erdősor utcában? Írjátok meg kommentben!
+Köszönöm Viktornak, hogy megírta. Ha te is ott laksz vagy arra jársz, írd meg kommentben, mit tapasztalsz! Ha van fotód vagy videód a száguldozókról, azt is küldd el nekem üzenetben.
 #Csepel #Erdősorutca #gyorshajtás #olvasóilevél"""
 
 
