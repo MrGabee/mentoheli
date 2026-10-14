@@ -199,8 +199,12 @@ def kozszolgallas():
         azon, cim, ceg, hely = m.group(1), _szoveg(m.group(2)), _szoveg(m.group(3)), _szoveg(m.group(4))
         if not (hely in KSZ_TELEPULESEK or (hely == "Budapest" and KSZ_KORNYEK.search(ceg))):
             continue
-        cim = re.sub(r"\s+-\s+[^-]*\d[^-]*$", "", cim)   # a végéről a hivatkozási szám le
-        lista.append({"cim": cim, "ceg": ceg.title() if ceg.isupper() else ceg,
+        cim = re.sub(r"(\s+-\s+\S*[\d/]\S*)+$", "", cim)   # a végéről a hivatkozási szám le
+        if re.search(r"(?i)igazgató\b|igazgatóhelyettes|főosztályvezető|osztályvezető", cim):
+            continue   # vezetői pályázatok helyett a mindennapi munkák
+        if ceg.isupper():
+            ceg = re.sub(r"\b(?i:[ivxl]+)\.", lambda m: m.group().upper(), ceg.title())
+        lista.append({"cim": cim, "ceg": ceg,
                       "link": f"{KSZ_URL}/JobAd/Info/{azon}", "datum": None})
     print(f"  🏛️ közszolgállás: {osszes} hirdetésből {len(lista)} a környéken")
     return lista if osszes else None
