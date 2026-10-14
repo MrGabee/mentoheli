@@ -40,6 +40,11 @@ KH_LISTA = (KH_URL + "/dokumentumtar?combine=XXI.&forras=300"
 # Olvasók által beküldött hirdetések (kézzel vesszük fel, lejárati dátummal)
 OLVASOI_FAJL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "olvasoi_allasok.json")
 OLVASOI_EMAIL = "olvaso@mrgabee.hu"
+# A hirdetésfeladó Google űrlap választáblázata, CSV-ként közzétéve (üres = még nincs)
+OLVASOI_CSV_URL = ""
+# Ha a beküldő nem ad meg lejáratot, ennyi napig jelenik meg a hirdetése
+OLVASOI_NAP = 14
+KAPCSOLAT_URL = "https://mrgabee.github.io/mentoheli/kapcsolat.html"
 # Közszolgállás: környékbeli település, vagy budapesti munkáltató, akinek a nevében ez szerepel
 KSZ_TELEPULESEK = {"Szigetszentmiklós", "Halásztelek", "Tököl", "Szigethalom", "Dunaharaszti", "Gyál"}
 KSZ_KORNYEK = re.compile(r"\bXXI\.|\bXX\.|\bXXIII\.|CSEPEL|PESTERZSÉBET|SOROKSÁR|DÉL-PESTI|KÜLSŐ-PESTI", re.I)
@@ -250,15 +255,74 @@ def kormanyhivatal(ma=None):
     return lista
 
 
+def _urlap_datum(szoveg):
+    """Google Táblázat dátuma ("2026. 10. 21." vagy "10/21/2026") -> date, vagy None."""
+    sz = re.findall(r"\d+", szoveg or "")
+    try:
+        if len(sz) >= 3 and len(sz[0]) == 4:
+            return date(int(sz[0]), int(sz[1]), int(sz[2]))
+        if len(sz) >= 3 and len(sz[2]) == 4:
+            return date(int(sz[2]), int(sz[0]), int(sz[1]))
+    except ValueError:
+        pass
+    return None
+
+
+def urlap_hirdetesek(ma):
+    """A hirdetésfeladó űrlapon beküldött, még érvényes hirdetések (a választáblázat CSV-je)."""
+    if not OLVASOI_CSV_URL:
+        return []
+    import csv
+    import io
+    try:
+        r = requests.get(OLVASOI_CSV_URL, headers=HEADERS, timeout=30)
+        r.raise_for_status()
+        r.encoding = "utf-8"
+        sorok = list(csv.reader(io.StringIO(r.text)))
+    except Exception as ex:
+        print(f"  ❌ hirdetésfeladó űrlap: {ex}")
+        return []
+    if len(sorok) < 2:
+        return []
+    fej = [f.strip().lower() for f in sorok[0]]
+
+    def oszlop(sor, eleje):
+        for i, f in enumerate(fej):
+            if f.startswith(eleje) and i < len(sor):
+                return " ".join(sor[i].split())[:600]
+        return ""
+
+    tetelek = []
+    for sor in sorok[1:]:
+        ceg, munka = oszlop(sor, "cég"), oszlop(sor, "munkakör")
+        if not (ceg and munka):
+            continue
+        bekuldve = _urlap_datum(oszlop(sor, "időbélyeg")) or ma
+        ig = _urlap_datum(oszlop(sor, "meddig")) or bekuldve + timedelta(days=OLVASOI_NAP)
+        if ig < ma:
+            continue
+        reszek = [f"🔧 {ceg} – {munka.upper()} ({oszlop(sor, 'munkavégzés')})".replace(" ()", "")]
+        if oszlop(sor, "a munka"):
+            reszek.append(oszlop(sor, "a munka"))
+        if oszlop(sor, "bérezés"):
+            reszek.append(f"💰 {oszlop(sor, 'bérezés')}")
+        if oszlop(sor, "jelentkezés"):
+            reszek.append(f"📞 Jelentkezés: {oszlop(sor, 'jelentkezés')}")
+        tetelek.append({"szoveg": "\n".join(reszek), "ervenyes_ig": ig.isoformat()})
+    print(f"  📝 hirdetésfeladó űrlap: {len(tetelek)} érvényes hirdetés")
+    return tetelek
+
+
 def olvasoi(ma=None):
-    """Az olvasók által beküldött, még érvényes hirdetések."""
+    """Az olvasók által beküldött, még érvényes hirdetések (kézi lista + űrlap)."""
     ma = ma or date.today()
     try:
         with open(OLVASOI_FAJL, encoding="utf-8") as f:
             tetelek = json.load(f)
     except (OSError, ValueError):
-        return []
-    return [t for t in tetelek if t.get("szoveg") and date.fromisoformat(t.get("ervenyes_ig", "1970-01-01")) >= ma]
+        tetelek = []
+    kezi = [t for t in tetelek if t.get("szoveg") and date.fromisoformat(t.get("ervenyes_ig", "1970-01-01")) >= ma]
+    return kezi + urlap_hirdetesek(ma)
 
 
 def _kulcs(a):
@@ -339,7 +403,7 @@ def heti_szoveg(nap, allapot, lista=None):
         sorok.append("")
     if len(uj) > len(kimegy):
         sorok.append(f"➕ További {len(uj) - len(kimegy)} hirdetést a következő állásposztban hozok.")
-    sorok.append(f"📩 Ha neked is van álláshirdetésed, küldd el az {OLVASOI_EMAIL} címre!")
+    sorok.append(f"📝 Ha neked is van álláshirdetésed, add fel ingyen itt: {KAPCSOLAT_URL}")
     if st.zaro:
         sorok += ["", st.zaro]
     sorok.append("#állás #munka #Csepel #Pesterzsébet #Szigetszentmiklós")
