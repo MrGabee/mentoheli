@@ -5,6 +5,7 @@ Minden reggel egy Facebook poszt arról, ami aznap érinti a környéket:
   💧 vízhiányok           (vizmuvek.hu munkatérkép, élő lekérdezés)
   ⚠️ időjárási riasztások (MeteoAlarm / HungaroMet)
   🎂 a napi névnap
+  🌫️ rossz levegő és pollen, ha van (Open-Meteo / CAMS)
 Minden nap posztol; ha nincs zavar, azt is megírja.
 """
 
@@ -22,6 +23,7 @@ import idojaras_riasztas_monitor as riasztas
 import vizmuvek_monitor as vizmuvek
 from poszt_valtozatos import Stilus
 from nevnap import nevnap
+import levego
 
 # Valódi budapesti időzóna, nyári/téli időszámítással
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
@@ -95,7 +97,7 @@ def mai_riasztasok(ma):
 # ════════════════════════════════════════════
 #  📘  POSZT SZÖVEG
 # ════════════════════════════════════════════
-def facebook_szoveg(aram, viz, idojaras):
+def facebook_szoveg(aram, viz, idojaras, levego_sorok=()):
     st = Stilus("reggeli")
     sorok = [
         st.cim,
@@ -139,11 +141,15 @@ def facebook_szoveg(aram, viz, idojaras):
             sorok.append(f"📍 {terulet}: {cimek}")
         sorok.append("")
 
+    if levego_sorok:
+        sorok += list(levego_sorok) + [""]
+
     if not (idojaras or aram or viz):
         sorok += ["✅ Ma nem tudok áramszünetről, vízhiányról vagy időjárási riasztásról a környéken. Nyugis napot! 😊", ""]
 
     sorok += [
-        "ℹ️ Részletek a korábbi posztjaimban. Források: E.ON, Fővárosi Vízművek, HungaroMet",
+        "ℹ️ Részletek a korábbi posztjaimban. Források: E.ON, Fővárosi Vízművek, HungaroMet"
+        + (", Copernicus (CAMS)" if levego_sorok else ""),
     ]
     if st.zaro:
         sorok.append(st.zaro)
@@ -169,7 +175,7 @@ def most_kell_futni(utemezes):
 def szoveg(nap):
     """A színes posztok menetrendjéből (6:30) hívva: a nap összefoglalója."""
     ma = nap.strftime("%Y-%m-%d")
-    return facebook_szoveg(mai_aramszunetek(ma), vizhianyok(), mai_riasztasok(ma))
+    return facebook_szoveg(mai_aramszunetek(ma), vizhianyok(), mai_riasztasok(ma), levego.sorok())
 
 
 def main():
@@ -187,7 +193,7 @@ def main():
     idojaras = mai_riasztasok(ma)
     print(f"⚡ {len(aram)}  💧 {len(viz)}  ⚠️ {len(idojaras)}")
 
-    szoveg = facebook_szoveg(aram, viz, idojaras)
+    szoveg = facebook_szoveg(aram, viz, idojaras, levego.sorok())
     print("\n" + szoveg + "\n")
 
     if not FACEBOOK_POSZTOLAS_AKTIV:
