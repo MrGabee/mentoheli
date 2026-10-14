@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-14T02:15:14.468319+02:00",
+  "frissitve": "2026-10-14T02:15:48.140786+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:54:17.298581+02:00",
-      "kulcs": "815 036",
-      "rendszam": "815 036",
-      "vehicle_id": "945518150368",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.52886962890625,
-      "lon": 19.092609405517578,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
-    {
-      "idopont": "2026-10-13T14:55:41.965768+02:00",
-      "kulcs": "AADI604",
-      "rendszam": "AADI604",
-      "vehicle_id": "101",
-      "vehicle_label": "Csillebérc, KFKI",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.506568908691406,
-      "lon": 19.0240535736084,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa ► Csillebérc, KFKI"
-    },
     {
       "idopont": "2026-10-13T14:55:41.965832+02:00",
       "kulcs": "AONW951",
@@ -260000,6 +259974,32 @@
       "lon": 19.121288299560547,
       "elozo_szoveg": "Káposztásmegyer",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-14T02:15:48.046476+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49766159057617,
+      "lon": 18.96381950378418,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-14T02:15:48.049136+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48688888549805,
+      "lon": 19.067649841308594,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
