@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T03:25:05.527167+02:00",
+  "frissitve": "2026-10-14T03:25:37.370897+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T15:00:11.867221+02:00",
-      "kulcs": "1115-758-1116-1117-759-1118",
-      "rendszam": "1115-758-1116-1117-759-1118",
-      "vehicle_id": "905516561156-905536467582-905516561164-905516561172-905536467590-905516561180",
-      "vehicle_label": "Batthyány tér",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.66051483154297,
-      "lon": 19.074691772460938,
-      "elozo_szoveg": "Szentendre",
-      "uj_szoveg": "Batthyány tér"
-    },
-    {
-      "idopont": "2026-10-13T15:00:11.867428+02:00",
-      "kulcs": "907-654-908-931-666-932",
-      "rendszam": "907-654-908-931-666-932",
-      "vehicle_id": "905516569076-905536466543-905516569084-905516569316-905536466667-905516569324",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.47897720336914,
-      "lon": 19.0666561126709,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-10-13T15:00:11.867604+02:00",
-      "kulcs": "995-698-996-997-699-998",
-      "rendszam": "995-698-996-997-699-998",
-      "vehicle_id": "905516569951-905536466980-905516569969-905516569977-905536466998-905516569985",
-      "vehicle_label": "Békásmegyer",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.507171630859375,
-      "lon": 19.039480209350586,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Békásmegyer"
-    },
     {
       "idopont": "2026-10-13T15:00:11.867812+02:00",
       "kulcs": "480 010",
@@ -260000,6 +259961,45 @@
       "lon": 19.59697914123535,
       "elozo_szoveg": "Gödöllő",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-10-14T03:25:37.320555+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47700500488281,
+      "lon": 19.050052642822266,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-14T03:25:37.321907+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46792221069336,
+      "lon": 19.075788497924805,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-14T03:25:37.322479+02:00",
+      "kulcs": "861-631-862-889-645-890",
+      "rendszam": "861-631-862-889-645-890",
+      "vehicle_id": "905516568615-905536466311-905516568623-905516568896-905536466451-905516568904",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.174468994140625,
+      "lon": 18.941818237304688,
+      "elozo_szoveg": "Dunaharaszti külső",
+      "uj_szoveg": "Közvágóhíd"
     }
   ]
 }
