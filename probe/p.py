@@ -1,18 +1,27 @@
-import requests, re, html, urllib3, json
+import requests, re, html, urllib3, json, urllib.parse
 urllib3.disable_warnings()
 H={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
 B="https://kozszolgallas.ksz.gov.hu"
-def body(t): return html.unescape(re.sub(r"\s+"," ",re.sub(r"<[^>]+>"," ",re.sub(r"(?s)<(script|style).*?</\1>","",t))))
-s=requests.Session(); s.headers.update(H); s.verify=False
-t=s.get(B+"/JobAd?isDetailSearch=true",timeout=30).text
-tok=re.search(r'name="__RequestVerificationToken"[^>]*value="([^"]+)"',t).group(1)
-def lst(payload):
+def items(t):
+    out=[]
+    for m in re.finditer(r'(?s)jobaditemelement" id="(\d+)".*?<h4>\s*<strong>(.*?)</strong>.*?<h5><strong>(.*?)</strong></h5>.*?<h5>(.*?)</h5>.*?határid[^<]*</h6>.*?<h6>\s*([\d.]+)',html.unescape(t)):
+        out.append((m.group(1)," ".join(m.group(2).split())[:50],m.group(3)[:40],m.group(4),m.group(5)))
+    return out
+def run(label,payload,cookie=None):
+    s=requests.Session(); s.headers.update(H); s.verify=False
+    t=s.get(B+"/JobAd?isDetailSearch=true",timeout=30).text
+    tok=re.search(r'name="__RequestVerificationToken"[^>]*value="([^"]+)"',t).group(1)
+    if cookie is not None: s.cookies.set("publicweb.jobad.search",urllib.parse.quote(json.dumps(cookie)),domain="kozszolgallas.ksz.gov.hu")
     r=s.post(B+"/JobAd/ListGridAsync",data=json.dumps(payload),headers={"Content-Type":"application/json; charset=utf-8","X-Requested-With":"XMLHttpRequest","RequestVerificationToken":tok},timeout=30)
-    return r
-r=lst({"cityId":["310"],"page":1,"pagesize":50,"sort":"Created DESC"})
-print("== SZM",r.status_code,len(r.text)); 
-i=r.text.find("Jelentkez"); print("RAW:",r.text[max(0,i-3000):i+300])
-print(" total:",re.findall(r'ListInfo_TotalCount"[^>]*value="(\d+)"',r.text), re.findall(r'value="(\d+)"[^>]*id="ListInfo_TotalCount"',r.text))
-print(body(r.text)[:3000])
-r=lst({"cityId":["194"],"page":1,"pagesize":20,"sort":"Created DESC","keyword":"XXI"})
-print("== BP XXI",r.status_code,len(r.text)); print(body(r.text)[:2000])
+    tot=re.findall(r'ListInfo_TotalCount"[^>]*value="(\d+)"',r.text)
+    print("==",label,r.status_code,"total",tot,"n",len(items(r.text)))
+    for i in items(r.text)[:8]: print("   ",i)
+run("page2",{"page":2,"sort":"Created DESC"})
+run("cityId int",{"cityId":[310],"page":1})
+run("CityId int",{"CityId":[310],"page":1})
+run("cookie",{"page":1},cookie={"cityId":["310"],"page":1})
+run("cookie+body",{"cityId":["310"],"page":1},cookie={"cityId":["310"],"page":1})
+run("pagesize",{"page":1,"pagesize":60,"PageSize":60})
+run("keyword csepel",{"keyword":"Csepel","page":1})
+run("Keyword csepel",{"Keyword":"Csepel","page":1})
+run("county",{"countyCode":["BP"],"page":1})
