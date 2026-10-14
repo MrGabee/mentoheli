@@ -10,7 +10,7 @@ NAPOK = {date(2026, 10, 15)}
 
 OLVASOI_EMAIL = "olvaso@mrgabee.hu"
 # Ha üres, a WhatsApp-sor szám nélkül marad ki a posztból
-WHATSAPP_SZAM = ""
+WHATSAPP_SZAM = "+36 70 754 0254"
 
 
 def szoveg(nap):
@@ -25,7 +25,7 @@ def szoveg(nap):
         "vagy valami, ami szerinted hiányzik?",
         "",
         "Írd meg bátran:",
-        "💬 Facebook-üzenetben az oldalnak",
+        "💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)",
     ]
     if WHATSAPP_SZAM:
         sorok.append(f"📱 WhatsApp-üzenetben: {WHATSAPP_SZAM}")
