@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T02:22:49.837024+02:00",
+  "frissitve": "2026-10-14T02:23:25.514792+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:55:41.970334+02:00",
-      "kulcs": "V2263",
-      "rendszam": "V2263",
-      "vehicle_id": "561",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.4659423828125,
-      "lon": 19.08148765563965,
-      "elozo_szoveg": "Koppány utca",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
-    {
-      "idopont": "2026-10-13T14:55:41.970767+02:00",
-      "kulcs": "V2221",
-      "rendszam": "V2221",
-      "vehicle_id": "5861",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.548545837402344,
-      "lon": 19.029109954833984,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-13T14:55:41.970794+02:00",
-      "kulcs": "V2225",
-      "rendszam": "V2225",
-      "vehicle_id": "5865",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42934799194336,
-      "lon": 19.217695236206055,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-10-13T14:55:41.971402+02:00",
       "kulcs": "NBW008",
@@ -260000,6 +259961,45 @@
       "lon": 19.038249969482422,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-14T02:23:25.426506+02:00",
+      "kulcs": "AAGL265",
+      "rendszam": "AAGL265",
+      "vehicle_id": "265",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45594787597656,
+      "lon": 18.940412521362305,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-10-14T02:23:25.427280+02:00",
+      "kulcs": "AAGL309",
+      "rendszam": "AAGL309",
+      "vehicle_id": "339",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.49876022338867,
+      "lon": 19.0495548248291,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-14T02:23:25.427774+02:00",
+      "kulcs": "PKN607",
+      "rendszam": "PKN607",
+      "vehicle_id": "7196",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47135543823242,
+      "lon": 19.23942756652832,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
     }
   ]
 }
