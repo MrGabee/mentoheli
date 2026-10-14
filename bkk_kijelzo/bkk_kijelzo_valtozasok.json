@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-14T02:46:40.080321+02:00",
+  "frissitve": "2026-10-14T02:47:08.967809+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T14:57:13.792166+02:00",
-      "kulcs": "SKR735",
-      "rendszam": "SKR735",
-      "vehicle_id": "7684",
-      "vehicle_label": "Cargo C.-Liszt F. Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46337890625,
-      "lon": 19.147714614868164,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Cargo City ► Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-13T14:57:13.792397+02:00",
-      "kulcs": "SGY807",
-      "rendszam": "SGY807",
-      "vehicle_id": "7725",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "35",
-      "route_id": "0350",
-      "lat": 47.410213470458984,
-      "lon": 19.060375213623047,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-10-13T14:57:13.792648+02:00",
       "kulcs": "STZ852",
@@ -260000,6 +259974,32 @@
       "lon": 19.12059783935547,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-14T02:47:08.914188+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48393630981445,
+      "lon": 19.127553939819336,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-14T02:47:08.914250+02:00",
+      "kulcs": "AAMH639",
+      "rendszam": "AAMH639",
+      "vehicle_id": "482",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49700164794922,
+      "lon": 19.055736541748047,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
     }
   ]
 }
