@@ -50,7 +50,10 @@ if SZINES_WEBHOOK:
 KESES_ORA = 2
 
 HETFO = 0
+KEDD = 1
 SZERDA = 2
+CSUTORTOK = 3
+SZOMBAT = 5
 PENTEK = 4
 
 # (kulcs, időpont, csak ezeken a napokon [0=hétfő] vagy None, szöveg(nap, allapot))
@@ -61,7 +64,7 @@ MENETREND = [
     ("erdekesseg",    time(13, 0),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
     ("hivatali",      time(11, 45), None,     lambda nap, a: hivatali_hirek.szoveg(nap, a)),
     ("veradas",       time(15, 0),  {HETFO},  lambda nap, a: veradas.heti_szoveg(nap)),
-    ("allasok",       time(15, 0),  {SZERDA}, lambda nap, a: allasok.heti_szoveg(nap, a)),
+    ("allasok",       time(15, 0),  {KEDD, CSUTORTOK, SZOMBAT}, lambda nap, a: allasok.heti_szoveg(nap, a)),
     ("hetvege",       time(16, 0),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),
     ("kerdes",        time(18, 0),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
     ("veradas_holnap", time(19, 0), None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),

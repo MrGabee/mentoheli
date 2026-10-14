@@ -4,15 +4,23 @@ Források:
   - allas.csepel.hu (az önkormányzat állásportálja)
   - varosgazda.eu (a Csepeli Városgazda saját álláslistája)
   - profession.hu (Csepel kulcsszóra)
+  - kozszolgallas.ksz.gov.hu (a közszolgálati állásportál; a teljes listát
+    lekérjük, és a környékbeli munkáltatókra / településekre szűrünk)
 A hu.indeed.com és az allas.jofogas.hu a GitHub szervereiről nem érhető el
 (robotszűrő, HTTP 403), ezért azok kimaradnak.
 Csak a még nem posztolt hirdetések kerülnek be (az állapotfájlban tárolva).
+Kiküldés előtt minden linket megnyit: ami hibaoldalra, „nincs publikálva”
+oldalra vagy általános listára visz, illetve nincs rajta az állás neve, kimarad.
 """
 
+import os
+import json
 import re
 import html
 import requests
-from datetime import date
+import urllib3
+from concurrent.futures import ThreadPoolExecutor
+from datetime import date, timedelta
 
 from poszt_valtozatos import Stilus
 
@@ -24,11 +32,34 @@ HEADERS = {
 CSEPEL_URL = "https://allas.csepel.hu/"
 VAROSGAZDA_URL = "https://varosgazda.eu/karrier/"
 PROFESSION_URL = "https://www.profession.hu/allasok/budapest/1,0,23,csepel"
+KSZ_URL = "https://kozszolgallas.ksz.gov.hu"
+KH_URL = "https://kormanyhivatalok.hu"
+# A Budapesti Kormányhivatal XXI. kerületi álláspályázatai a dokumentumtárban
+KH_LISTA = (KH_URL + "/dokumentumtar?combine=XXI.&forras=300"
+            "&field_dokumentum_cimke%5B%5D=99&kozzeteve=All")
+# Olvasók által beküldött hirdetések (kézzel vesszük fel, lejárati dátummal)
+OLVASOI_FAJL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "olvasoi_allasok.json")
+OLVASOI_EMAIL = "olvaso@mrgabee.hu"
+# Közszolgállás: környékbeli település, vagy budapesti munkáltató, akinek a nevében ez szerepel
+KSZ_TELEPULESEK = {"Szigetszentmiklós", "Halásztelek", "Tököl", "Szigethalom", "Dunaharaszti", "Gyál"}
+KSZ_KORNYEK = re.compile(r"\bXXI\.|\bXX\.|\bXXIII\.|CSEPEL|PESTERZSÉBET|SOROKSÁR|DÉL-PESTI|KÜLSŐ-PESTI", re.I)
 
-# Az előző állásposzt óta megjelent összes hirdetés kimegy; ez csak biztonsági felső korlát
-MAX_ALLAS = 100
+# Egy posztban legfeljebb ennyi hirdetés; ami nem fér bele, a következő állásposztba kerül
+MAX_ALLAS = 30
+# Ebből legfeljebb ennyi lehet a közszolgálati portálról (onnan jön a legtöbb)
+MAX_KSZ = 15
 # Ennyi azonosítót jegyzünk meg (a régiek kiesnek)
 MAX_LATOTT = 1500
+# Ennél régebbi dátumú hirdetés nem kerül be (gyakran már lejárt)
+MAX_KOR_NAP = 30
+
+# A kozszolgallas.ksz.gov.hu tanúsítványláncából hiányzik a köztes tanúsítvány
+# (a böngésző pótolja, a Python nem), ezért ott csak olvasunk, ellenőrzés nélkül.
+NEM_ELLENORZOTT_TLS = ("kozszolgallas.ksz.gov.hu",)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+HALOTT_SZOVEG = ("nincs publikálva", "az oldal nem található", "a keresett oldal nem található",
+                 "hirdetés nem található", "lejárt a hirdetés", "már nem aktív", "a hirdetés lejárt",
+                 "page not found")
 
 HONAPOK = {"január": 1, "február": 2, "március": 3, "április": 4, "május": 5, "június": 6, "július": 7,
            "augusztus": 8, "szeptember": 9, "október": 10, "november": 11, "december": 12}
@@ -111,6 +142,125 @@ def profession_feldolgoz(oldal):
     return lista
 
 
+def _szavak(cim):
+    """Az állás nevének jellemző szótövei (az oldalon ezek közül legalább egynek szerepelnie kell)."""
+    return [w[:5].lower() for w in re.findall(r"\w+", cim) if len(w) >= 4] or [cim.lower()[:5]]
+
+
+def link_el(a):
+    """True: a link él és az adott állást mutatja; False: biztosan nem; None: most nem eldönthető."""
+    url = a["link"]
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=25, allow_redirects=True,
+                         verify=not any(h in url for h in NEM_ELLENORZOTT_TLS))
+    except Exception as ex:
+        print(f"  ⏳ Nem ellenőrizhető most: {url} ({ex.__class__.__name__})")
+        return None
+    if r.status_code in (404, 410):
+        return False
+    if r.status_code != 200:
+        return None
+    vegso = r.url
+    if "pdf" in r.headers.get("Content-Type", "").lower():
+        return True   # a letölthető pályázati kiírás megvan
+    if "/Errors/" in vegso or "/Error" in vegso:
+        return False
+    if "profession.hu" in url and "/allas/" not in vegso:
+        return False   # lejárt: általános állásfelsorolásra irányít át
+    if "drive.google.com" in url:
+        return "ServiceLogin" not in vegso and "accounts.google.com" not in vegso
+    szoveg = _szoveg(re.sub(r"(?s)<(script|style).*?</\1>", " ", r.text)).lower()
+    if any(h in szoveg for h in HALOTT_SZOVEG):
+        return False
+    return any(w in szoveg for w in _szavak(a["cim"]))
+
+
+def ellenoriz(lista):
+    """(élő hirdetések, biztosan halott hirdetések) – párhuzamosan nézi meg a linkeket."""
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        eredmeny = list(ex.map(link_el, lista))
+    elo = [a for a, e in zip(lista, eredmeny) if e is True]
+    halott = [a for a, e in zip(lista, eredmeny) if e is False]
+    for a in halott:
+        print(f"  🚫 Nem elérhető, kimarad: {a['cim']} – {a['link']}")
+    print(f"  ✅ Ellenőrizve: {len(elo)} él, {len(halott)} nem elérhető, "
+          f"{len(lista) - len(elo) - len(halott)} most nem ellenőrizhető.")
+    return elo, halott
+
+
+def kozszolgallas():
+    """A közszolgálati állásportál összes aktív hirdetése (egy lekéréssel), a környékre szűrve."""
+    try:
+        s = requests.Session()
+        s.headers.update(HEADERS)
+        s.verify = False   # hiányos tanúsítványlánc, lásd NEM_ELLENORZOTT_TLS
+        oldal = s.get(KSZ_URL + "/JobAd?isDetailSearch=true", timeout=30).text
+        tok = re.search(r'name="__RequestVerificationToken"[^>]*value="([^"]+)"', oldal).group(1)
+        r = s.post(KSZ_URL + "/JobAd/ListGridAsync", timeout=90,
+                   data='{"page":1,"pagesize":5000,"sort":"Created DESC"}',
+                   headers={"Content-Type": "application/json; charset=utf-8",
+                            "X-Requested-With": "XMLHttpRequest", "RequestVerificationToken": tok})
+        if r.status_code != 200:
+            print(f"  ⚠️ közszolgállás HTTP {r.status_code}")
+            return None
+    except Exception as ex:
+        print(f"  ❌ közszolgállás: {ex}")
+        return None
+    lista, osszes = [], 0
+    for m in re.finditer(r'(?s)jobaditemelement" id="(\d+)".*?<h4>\s*<strong>(.*?)</strong>.*?<h5><strong>(.*?)</strong></h5>'
+                         r'.*?<h5>(.*?)</h5>', r.text):
+        osszes += 1
+        azon, cim, ceg, hely = m.group(1), _szoveg(m.group(2)), _szoveg(m.group(3)), _szoveg(m.group(4))
+        if not (hely in KSZ_TELEPULESEK or (hely == "Budapest" and KSZ_KORNYEK.search(ceg))):
+            continue
+        cim = re.sub(r"(\s+-\s+\S*[\d/]\S*)+$", "", cim)   # a végéről a hivatkozási szám le
+        if re.search(r"(?i)igazgató\b|igazgatóhelyettes|főosztályvezető|osztályvezető", cim):
+            continue   # vezetői pályázatok helyett a mindennapi munkák
+        if ceg.isupper():
+            ceg = re.sub(r"\b(?i:[ivxl]+)\.", lambda m: m.group().upper(), ceg.title())
+        lista.append({"cim": cim, "ceg": ceg,
+                      "link": f"{KSZ_URL}/JobAd/Info/{azon}", "datum": None})
+    print(f"  🏛️ közszolgállás: {osszes} hirdetésből {len(lista)} a környéken")
+    return lista if osszes else None
+
+
+def kormanyhivatal(ma=None):
+    """A kormányhivatal XXI. kerületi álláspályázatai, amelyekre még lehet jelentkezni."""
+    ma = ma or date.today()
+    oldal = _get(KH_LISTA)
+    if oldal is None:
+        return None
+    lista = []
+    for m in re.finditer(r'(?s)data-toggle="collapse".*?>(.*?)<b>Közzététel ideje:</b>\s*(\d{4})\.(\d{2})\.(\d{2})'
+                         r'.*?href="(/system/files/[^"]+\.pdf)"', oldal):
+        cim = _szoveg(m.group(1)).rstrip(" -")
+        hatarido = re.search(r"jelentkezés\s+([a-záéíóöőúüű]+)\s+(\d{1,2})", cim, re.I)
+        if hatarido and hatarido.group(1).lower() in HONAPOK:
+            hatar = date(int(m.group(2)), HONAPOK[hatarido.group(1).lower()], int(hatarido.group(2)))
+            if hatar < date(int(m.group(2)), int(m.group(3)), int(m.group(4))):
+                hatar = hatar.replace(year=hatar.year + 1)
+            if hatar < ma:
+                continue   # a jelentkezési határidő lejárt
+        cim = re.sub(r"\s*\(BP_[^)]*\)", "", cim)
+        cim = re.sub(r"\s*-\s*", " – ", cim).strip(" –")
+        lista.append({"cim": cim, "ceg": "Budapesti Kormányhivatal XXI. kerületi hivatala",
+                      "link": KH_URL + m.group(5),
+                      "datum": date(int(m.group(2)), int(m.group(3)), int(m.group(4)))})
+    print(f"  🏢 kormányhivatal: {len(lista)} élő pályázat")
+    return lista
+
+
+def olvasoi(ma=None):
+    """Az olvasók által beküldött, még érvényes hirdetések."""
+    ma = ma or date.today()
+    try:
+        with open(OLVASOI_FAJL, encoding="utf-8") as f:
+            tetelek = json.load(f)
+    except (OSError, ValueError):
+        return []
+    return [t for t in tetelek if t.get("szoveg") and date.fromisoformat(t.get("ervenyes_ig", "1970-01-01")) >= ma]
+
+
 def _kulcs(a):
     """Ugyanaz az állás több forrásból is jöhet: a név és a cég alapján szűrünk."""
     return re.sub(r"\W+", "", f"{a['cim']}|{a['ceg']}".lower())
@@ -121,14 +271,16 @@ def osszes():
     eredmenyek, hibas = [], 0
     for nev, fv in [("allas.csepel.hu", lambda: (lambda o: None if o is None else csepel_feldolgoz(o))(_get(CSEPEL_URL))),
                     ("Városgazda", varosgazda),
-                    ("profession.hu", lambda: (lambda o: None if o is None else profession_feldolgoz(o))(_get(PROFESSION_URL)))]:
+                    ("profession.hu", lambda: (lambda o: None if o is None else profession_feldolgoz(o))(_get(PROFESSION_URL))),
+                    ("közszolgállás", kozszolgallas),
+                    ("kormányhivatal", kormanyhivatal)]:
         lista = fv()
         if lista is None:
             hibas += 1
             continue
         print(f"  💼 {nev}: {len(lista)} hirdetés")
         eredmenyek += lista
-    if hibas == 3:
+    if hibas == 5:
         return None
     latott, egyedi = set(), []
     for a in eredmenyek:
@@ -144,26 +296,45 @@ def heti_szoveg(nap, allapot, lista=None):
         lista = osszes()
         if lista is None:
             return None
+    olvasoi_lista = olvasoi(nap)
+    if allapot.get("allas_ellenorzes") != 1:
+        # Az első, linkellenőrzéses futás mindent újra átnéz (a korábbi posztban sok halott link volt)
+        allapot["allas_latott"], allapot["allas_ellenorzes"] = [], 1
     volt = allapot.setdefault("allas_latott", [])
-    uj = [a for a in lista if _kulcs(a) not in volt]
-    if not uj:
+    hatar = nap - timedelta(days=MAX_KOR_NAP)
+    regi = [a for a in lista if _kulcs(a) not in volt and a["datum"] and a["datum"] < hatar]
+    uj = [a for a in lista if _kulcs(a) not in volt and not (a["datum"] and a["datum"] < hatar)]
+    volt.extend(_kulcs(a) for a in regi)
+    # Csak az a link kerül ki, ami tényleg az adott állást nyitja meg
+    uj, halott = ellenoriz(uj) if uj else ([], [])
+    volt.extend(_kulcs(a) for a in halott)
+    if not uj and not olvasoi_lista:
+        del volt[:-MAX_LATOTT]
         return ""
-    # A dátummal rendelkezők a legfrissebbek elöl, a dátum nélküliek utánuk
+    # A dátummal rendelkezők a legfrissebbek elöl; a közszolgálati portálról csak korlátozott számú,
+    # a többi a következő állásposztba csúszik (azokat nem jelöljük látottnak)
     uj.sort(key=lambda a: a["datum"] or date.min, reverse=True)
-    kimegy = uj[:MAX_ALLAS]
-    # Mindet látottnak jelöljük, hogy a régi hirdetések ne gyűljenek fel
-    volt.extend(_kulcs(a) for a in uj)
+    ksz = [a for a in uj if a["link"].startswith(KSZ_URL)]
+    tobbi = [a for a in uj if not a["link"].startswith(KSZ_URL)]
+    kimegy = tobbi[:MAX_ALLAS - min(MAX_KSZ, len(ksz))]
+    kimegy += ksz[:min(MAX_KSZ, MAX_ALLAS - len(kimegy))]
+    volt.extend(_kulcs(a) for a in kimegy)
     del volt[:-MAX_LATOTT]
 
     st = Stilus("allasok", nap.isoformat())
-    sorok = [st.cim, st.vonal(), "", st.bevezeto, ""]
-    for a in kimegy:
-        sorok.append(f"🔹 {a['cim']}" + (f" – {a['ceg']}" if a["ceg"] else ""))
-        sorok.append(f"   🔗 {a['link']}")
-    sorok.append("")
-    if len(uj) > MAX_ALLAS:
-        sorok.append(f"➕ És még {len(uj) - MAX_ALLAS} új hirdetés, ezeket az alábbi oldalon találod.")
+    sorok = [st.cim, st.vonal(), ""]
+    for t in olvasoi_lista:
+        sorok += ["📣 Olvasói jelzés alapján:", t["szoveg"].strip(), ""]
+    if kimegy:
+        sorok += [st.bevezeto, ""]
+        for a in kimegy:
+            sorok.append(f"🔹 {a['cim']}" + (f" – {a['ceg']}" if a["ceg"] else ""))
+            sorok.append(f"   🔗 {a['link']}")
+        sorok.append("")
+    if len(uj) > len(kimegy):
+        sorok.append(f"➕ További {len(uj) - len(kimegy)} hirdetést a következő állásposztban hozok.")
     sorok.append(f"🔎 Még több csepeli állás: {CSEPEL_URL}")
+    sorok.append(f"📩 Ha neked is van álláshirdetésed, küldd el az {OLVASOI_EMAIL} címre!")
     if st.zaro:
         sorok += ["", st.zaro]
     sorok.append("#állás #munka #Csepel #Pesterzsébet #Szigetszentmiklós")
