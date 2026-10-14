@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-15T01:45:00.242120+02:00",
+  "frissitve": "2026-10-15T01:45:30.871841+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T14:52:58.204582+02:00",
-      "kulcs": "PDB705",
-      "rendszam": "PDB705",
-      "vehicle_id": "7031",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.48367691040039,
-      "lon": 19.127883911132812,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-10-14T14:52:58.204881+02:00",
-      "kulcs": "PDB390",
-      "rendszam": "PDB390",
-      "vehicle_id": "7072",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.479862213134766,
-      "lon": 19.254989624023438,
-      "elozo_szoveg": "Rákoskeresztúr, városkp.",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-14T14:52:58.204974+02:00",
-      "kulcs": "PDN615",
-      "rendszam": "PDN615",
-      "vehicle_id": "7086",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.4307746887207,
-      "lon": 19.070674896240234,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Királyerdő út ► Hollandi út"
-    },
-    {
-      "idopont": "2026-10-14T14:52:58.204992+02:00",
-      "kulcs": "PDN616",
-      "rendszam": "PDN616",
-      "vehicle_id": "7087",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41652297973633,
-      "lon": 19.07223129272461,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-14T14:52:58.205331+02:00",
-      "kulcs": "PHG624",
-      "rendszam": "PHG624",
-      "vehicle_id": "7148",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.5042610168457,
-      "lon": 19.136621475219727,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-10-14T14:52:58.205372+02:00",
       "kulcs": "PHG626",
@@ -260000,6 +259935,71 @@
       "lon": 19.13555908203125,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-15T01:45:30.786657+02:00",
+      "kulcs": "AADR714",
+      "rendszam": "AADR714",
+      "vehicle_id": "182",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.546817779541016,
+      "lon": 19.14249610900879,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-15T01:45:30.786717+02:00",
+      "kulcs": "AADR720",
+      "rendszam": "AADR720",
+      "vehicle_id": "189",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.548892974853516,
+      "lon": 19.04328155517578,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-15T01:45:30.787533+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542728424072266,
+      "lon": 18.964269638061523,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-15T01:45:30.787786+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48714828491211,
+      "lon": 19.066957473754883,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-15T01:45:30.787941+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.547054290771484,
+      "lon": 19.142757415771484,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
