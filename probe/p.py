@@ -5,21 +5,17 @@ B="https://kozszolgallas.ksz.gov.hu"
 def body(t): return html.unescape(re.sub(r"\s+"," ",re.sub(r"<[^>]+>"," ",re.sub(r"(?s)<(script|style).*?</\1>","",t))))
 s=requests.Session(); s.headers.update(H); s.verify=False
 t=s.get(B+"/JobAd?isDetailSearch=true",timeout=30).text
-opts=re.findall(r'<option value="([^"]*)"[^>]*>([^<]*)',t)
-for v,n in opts:
-    n=html.unescape(n)
-    if "Budapest" in n or "Szigetszentmikl" in n or "XXI" in n or "XX." in n: print(" OPT",v,n)
 form=re.search(r'(?s)<form id="filterForm".*?</form>',t).group(0)
-hidden=dict(re.findall(r'<input[^>]*name="([^"]+)"[^>]*value="([^"]*)"',form))
-print(" HIDDEN",{k:v[:20] for k,v in hidden.items()})
-cc=re.search(r'(?s)<select[^>]*name="CountyCode"[^>]*>(.*?)</select>',t)
-if cc: print(" COUNTY",[(v,html.unescape(n)) for v,n in re.findall(r'<option value="([^"]*)"[^>]*>([^<]*)',cc.group(1))])
-city=[v for v,n in opts if html.unescape(n).startswith("Budapest")]
-print(" budapest ids",city[:30])
-tok=hidden.get("__RequestVerificationToken","")
-for cid in city[:3]:
-    data={"__RequestVerificationToken":tok,"CityId":cid,"ListInfo.Page":"1","sort":"","keyword":""}
-    r=s.post(B+"/JobAd/ListGridAsync",data=data,headers={"X-Requested-With":"XMLHttpRequest"},timeout=30)
-    print("== POST city",cid,r.status_code,len(r.text))
-    print("  info:",re.findall(r'/JobAd/Info/\d+',r.text)[:20])
-    print("  ",body(r.text)[:1500])
+data={}
+for inp in re.findall(r'<input[^>]*>',form):
+    n=re.search(r'name="([^"]+)"',inp); v=re.search(r'value="([^"]*)"',inp)
+    if n and 'type="checkbox"' not in inp and 'type="radio"' not in inp: data[n.group(1)]=html.unescape(v.group(1)) if v else ""
+for sel in re.findall(r'<select[^>]*name="([^"]+)"',form): data.setdefault(sel,"")
+data["CityId"]="310"
+print("keys",list(data))
+# where is the listing container?
+i=t.find("list-container-jobad"); print("CONTAINER:",t[i-200:i+1500])
+r=s.post(B+"/JobAd/ListGridAsync",data=data,headers={"X-Requested-With":"XMLHttpRequest","RequestVerificationToken":data.get("__RequestVerificationToken",""),"Referer":B+"/JobAd?isDetailSearch=true","Origin":B},timeout=30)
+print("== POST",r.status_code,r.url,len(r.text)); print(r.text[:3000])
+r=s.get(B+"/JobAd?CityId=310",timeout=30); print("== GET city",r.status_code,len(r.text)); 
+i=r.text.find("list-container-jobad"); print(body(r.text[i:i+20000])[:2000])
