@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T01:44:25.531407+02:00",
+  "frissitve": "2026-10-15T01:45:00.242120+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T14:52:58.203306+02:00",
-      "kulcs": "NCV293",
-      "rendszam": "NCV293",
-      "vehicle_id": "6258",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50657653808594,
-      "lon": 19.023944854736328,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-14T14:52:58.203995+02:00",
-      "kulcs": "NTM441",
-      "rendszam": "NTM441",
-      "vehicle_id": "6509",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21A",
-      "route_id": "0211",
-      "lat": 47.50019454956055,
-      "lon": 18.989822387695312,
-      "elozo_szoveg": "Csillebérc, KFKI",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-14T14:52:58.204255+02:00",
-      "kulcs": "CITY001",
-      "rendszam": "CITY001",
-      "vehicle_id": "656",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.52750778198242,
-      "lon": 19.208044052124023,
-      "elozo_szoveg": "Malomdomb (áruház)",
-      "uj_szoveg": "Cinkota H"
-    },
     {
       "idopont": "2026-10-14T14:52:58.204582+02:00",
       "kulcs": "PDB705",
@@ -260000,6 +259961,45 @@
       "lon": 19.06937599182129,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-15T01:45:00.158644+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46342849731445,
+      "lon": 19.13092613220215,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-15T01:45:00.159000+02:00",
+      "kulcs": "NBW012",
+      "rendszam": "NBW012",
+      "vehicle_id": "5982",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.483123779296875,
+      "lon": 19.023048400878906,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-15T01:45:00.159042+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50177764892578,
+      "lon": 19.13555908203125,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
     }
   ]
 }
