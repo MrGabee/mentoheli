@@ -2,15 +2,9 @@
 🌈 Színes posztok – egész napra elosztva, az áramszünetes és egyéb
 értesítések mellé, hogy az oldal változatosabb legyen.
 
-Napi menetrend (helyi idő, nyári/téli időszámítással):
-  08:00  🎉 Kerületi programajánló (Munkásotthon, Barba Negra, …)
-  10:30  📜 Ezen a napon történt
-  13:00  🏛️ Környékbeli érdekesség (helytörténet)
-  15:00  🩸 Heti véradás-ajánló – csak hétfőn
-  16:00  🥳 Hétvégi programajánló – csak pénteken
-  18:00  💬 Kérdés nektek
-  19:00  ⏰ Véradás-emlékeztető – csak ha holnap kitelepült véradás van
-  20:30  🌙 Holnapi időjárás
+Napi menetrend (helyi idő, nyári/téli időszámítással): a MENETREND lista.
+A posztok nem kerek órákra, hanem a szomszédaik közé, nagyjából félútra
+esnek; a tényleges kiküldés a következő futáskor (:10 vagy :40) történik.
 
 A workflow félóránként fut. Minden poszt a saját időpontja után, legfeljebb
 KESES_ORA órán belül megy ki, naponta egyszer (szines_allapot.json), és
@@ -90,17 +84,17 @@ PENTEK = 4
 MENETREND = [
     ("reggeli",       time(6, 30),  None,     lambda nap, a: reggeli_osszefoglalo.szoveg(nap)),
     ("otlet_keres",   time(7, 15),  None,     lambda nap, a: otlet_keres.szoveg(nap)),
-    ("programok",     time(8, 0),   None,     lambda nap, a: kerulet_programok.reggeli_szoveg(nap)),
-    ("ezen_a_napon",  time(10, 30), None,     lambda nap, a: ezen_a_napon.szoveg(nap)),
+    ("programok",     time(8, 5),   None,     lambda nap, a: kerulet_programok.reggeli_szoveg(nap)),
+    ("ezen_a_napon",  time(10, 20), None,     lambda nap, a: ezen_a_napon.szoveg(nap)),
     ("olvasoi_level", time(14, 30),  None,     lambda nap, a: olvasoi_level.szoveg(nap, a)),
-    ("erdekesseg",    time(13, 0),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
-    ("hivatali",      time(11, 45), None,     lambda nap, a: hivatali_hirek.szoveg(nap, a)),
-    ("veradas",       time(15, 0),  {HETFO},  lambda nap, a: veradas.heti_szoveg(nap)),
-    ("allasok",       time(15, 0),  {KEDD, CSUTORTOK, SZOMBAT}, lambda nap, a: allasok.heti_szoveg(nap, a)),
-    ("hetvege",       time(16, 0),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),
-    ("kerulet_problema", time(16, 30), None, lambda nap, a: kerulet_problema.szoveg(nap)),
-    ("kerdes",        time(18, 0),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
-    ("veradas_holnap", time(19, 0), None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
+    ("erdekesseg",    time(12, 50),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
+    ("hivatali",      time(11, 35), None,     lambda nap, a: hivatali_hirek.szoveg(nap, a)),
+    ("veradas",       time(15, 35),  {HETFO},  lambda nap, a: veradas.heti_szoveg(nap)),
+    ("allasok",       time(15, 35),  {KEDD, CSUTORTOK, SZOMBAT}, lambda nap, a: allasok.heti_szoveg(nap, a)),
+    ("hetvege",       time(16, 35),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),
+    ("kerulet_problema", time(17, 35), None, lambda nap, a: kerulet_problema.szoveg(nap)),
+    ("kerdes",        time(18, 35),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
+    ("veradas_holnap", time(19, 35), None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
 ]
 
