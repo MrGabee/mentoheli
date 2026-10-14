@@ -4,6 +4,8 @@
 
 from datetime import date
 
+import allasok
+
 NAPOK = {date(2026, 10, 15)}
 
 LEVEL = """✉️ OLVASÓI LEVÉL: SZÁGULDOZÁS AZ ERDŐSOR UTCÁBAN ✉️
@@ -35,9 +37,10 @@ Köszönöm Viktornak, hogy megírta. Ha neked is van problémád a környéken,
 💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)
 📱 WhatsApp-üzenetben: +36 70 754 0254
 📩 e-mailben: olvaso@mrgabee.hu
+🌐 online, egy kattintással: {kapcsolat}
 
 #Csepel #Erdősorutca #gyorshajtás #olvasóilevél"""
 
 
 def szoveg(nap):
-    return LEVEL if nap in NAPOK else ""
+    return LEVEL.format(kapcsolat=allasok.KAPCSOLAT_URL) if nap in NAPOK else ""
