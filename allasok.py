@@ -339,7 +339,6 @@ def heti_szoveg(nap, allapot, lista=None):
         sorok.append("")
     if len(uj) > len(kimegy):
         sorok.append(f"➕ További {len(uj) - len(kimegy)} hirdetést a következő állásposztban hozok.")
-    sorok.append(f"🔎 Még több csepeli állás: {CSEPEL_URL}")
     sorok.append(f"📩 Ha neked is van álláshirdetésed, küldd el az {OLVASOI_EMAIL} címre!")
     if st.zaro:
         sorok += ["", st.zaro]
