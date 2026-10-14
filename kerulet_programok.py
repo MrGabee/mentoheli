@@ -1,7 +1,7 @@
 """
 🎉 Kerületi programajánló
-  - reggeli_szoveg: minden reggel a mai és a következő napok programjai,
-    a végén a Kultik Csepel mozi aznapi műsorával
+  - reggeli_szoveg: minden reggel a mai és a következő napok programjai
+    (a Csili műsorával együtt), a végén a Kultik Csepel mozi aznapi műsorával
   - hetvegi_szoveg: pénteken a hétvégi programok (a Csili műsorával együtt)
 """
 
@@ -53,6 +53,8 @@ def reggeli_szoveg(ma, lista=None):
         lista, hibas = forrasok.programok(ma, ma + timedelta(days=REGGELI_NAPOK - 1))
         if len(hibas) == len(forrasok.FORRASOK):
             return None
+        lista = sorted(lista + _csili(ma, ma + timedelta(days=REGGELI_NAPOK - 1)),
+                       key=lambda p: (p["nap"], p["ido"]))
     mozi = _kultik_ma(ma)
     if not [p for p in lista if p["nap"] == ma or p.get("keruleti", True)] and not mozi:
         return ""
@@ -80,15 +82,15 @@ def reggeli_szoveg(ma, lista=None):
     sorok.append("🎟️ Jegyek és részletek a linkeken. Jó szórakozást!")
     if st.zaro:
         sorok.append(st.zaro)
-    sorok.append("#Csepel #Soroksár #programajánló #BarbaNegra #Munkásotthon #Müpa #Kultik")
+    sorok.append("#Csepel #Soroksár #programajánló #BarbaNegra #Munkásotthon #Csili #Müpa #Kultik")
     return "\n".join(sorok)
 
 
-def _csili(pentek):
-    """A Csili hétvégi műsora ugyanabban a formában. Hiba esetén üres."""
+def _csili(tol, ig):
+    """A Csili műsora a két nap között, ugyanabban a formában. Hiba esetén üres."""
     try:
         import csili
-        esemenyek = csili.esemenyek(pentek, pentek + timedelta(days=2)) or []
+        esemenyek = csili.esemenyek(tol, ig) or []
     except Exception as ex:
         print(f"  ❌ Csili: {ex}")
         return []
@@ -99,7 +101,7 @@ def _csili(pentek):
 def hetvegi_szoveg(pentek, lista=None):
     if lista is None:
         lista, hibas = forrasok.programok(pentek, pentek + timedelta(days=2))
-        lista = sorted(lista + _csili(pentek), key=lambda p: (p["nap"], p["ido"]))
+        lista = sorted(lista + _csili(pentek, pentek + timedelta(days=2)), key=lambda p: (p["nap"], p["ido"]))
     if not lista:
         return ""
 

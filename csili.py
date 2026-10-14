@@ -25,7 +25,9 @@ MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
-FACEBOOK_POSZTOLAS_AKTIV = True
+# A Csili nem kap külön posztot: a programjai a reggeli kerületi körképben
+# és a pénteki hétvégi ajánlóban jelennek meg (kerulet_programok.py)
+FACEBOOK_POSZTOLAS_AKTIV = False
 
 ALLAPOT_FAJL = "csili_allapot.json"
 
