@@ -31,7 +31,11 @@ Együttműködésüket és intézkedésüket előre is köszönöm!
 Tisztelettel,
 K. Viktor«”
 
-Köszönöm Viktornak, hogy megírta. Ha te is ott laksz vagy arra jársz, írd meg kommentben, mit tapasztalsz! Ha van fotód vagy videód a száguldozókról, azt is küldd el nekem üzenetben.
+Köszönöm Viktornak, hogy megírta. Ha neked is van problémád a környéken, írj nekem, és utánajárok:
+💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)
+📱 WhatsApp-üzenetben: +36 70 754 0254
+📩 e-mailben: olvaso@mrgabee.hu
+
 #Csepel #Erdősorutca #gyorshajtás #olvasóilevél"""
 
 
