@@ -92,7 +92,7 @@ MENETREND = [
     ("otlet_keres",   time(7, 15),  None,     lambda nap, a: otlet_keres.szoveg(nap)),
     ("programok",     time(8, 0),   None,     lambda nap, a: kerulet_programok.reggeli_szoveg(nap)),
     ("ezen_a_napon",  time(10, 30), None,     lambda nap, a: ezen_a_napon.szoveg(nap)),
-    ("olvasoi_level", time(12, 0),  None,     lambda nap, a: olvasoi_level.szoveg(nap)),
+    ("olvasoi_level", time(14, 0),  None,     lambda nap, a: olvasoi_level.szoveg(nap)),
     ("erdekesseg",    time(13, 0),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
     ("hivatali",      time(11, 45), None,     lambda nap, a: hivatali_hirek.szoveg(nap, a)),
     ("veradas",       time(15, 0),  {HETFO},  lambda nap, a: veradas.heti_szoveg(nap)),
