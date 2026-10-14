@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-14T03:31:22.951711+02:00",
+  "frissitve": "2026-10-14T03:31:52.393156+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-13T15:01:24.890773+02:00",
-      "kulcs": "T8007",
-      "rendszam": "T8007",
-      "vehicle_id": "6127",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.475852966308594,
-      "lon": 19.099903106689453,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-10-13T15:01:24.890844+02:00",
-      "kulcs": "T8019",
-      "rendszam": "T8019",
-      "vehicle_id": "6139",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52523422241211,
-      "lon": 19.063692092895508,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-13T15:01:24.891165+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Svábhegy",
-      "vonal_szam": "21A",
-      "route_id": "0211",
-      "lat": 47.506622314453125,
-      "lon": 19.02387046813965,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Svábhegy"
-    },
     {
       "idopont": "2026-10-13T15:01:24.891458+02:00",
       "kulcs": "NTM421",
@@ -260000,6 +259961,45 @@
       "lon": 19.136354446411133,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-14T03:31:52.305322+02:00",
+      "kulcs": "AADI659",
+      "rendszam": "AADI659",
+      "vehicle_id": "158",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509063720703125,
+      "lon": 19.095752716064453,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-14T03:31:52.307799+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.51450729370117,
+      "lon": 19.097412109375,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-14T03:31:52.308159+02:00",
+      "kulcs": "RVY617",
+      "rendszam": "RVY617",
+      "vehicle_id": "7446",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48894119262695,
+      "lon": 19.063274383544922,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
     }
   ]
 }
