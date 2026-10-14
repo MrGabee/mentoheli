@@ -19,6 +19,7 @@ futásonként legfeljebb egy, hogy ne egyszerre jöjjenek.
 
 import os
 import json
+import requests
 from datetime import datetime, time, timedelta
 from zoneinfo import ZoneInfo
 
@@ -46,6 +47,28 @@ ALLAPOT_FAJL = "szines_allapot.json"
 SZINES_WEBHOOK = os.environ.get("MAKE_WEBHOOK_URL_SZINES", "")
 if SZINES_WEBHOOK:
     kuldo.MAKE_WEBHOOK_URL = SZINES_WEBHOOK
+
+# Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
+KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
+KEPEK = {"otlet_keres": KEP_ALAP + "otlet_keres.png"}
+
+
+def kepes_poszt_kuldese(szoveg, kep_url):
+    """Képes poszt a színes posztok Make-forgatókönyvén ("kep" mező)."""
+    if not kuldo.MAKE_WEBHOOK_URL:
+        print("  ⚠️  Nincs beállítva a Make webhook - Facebook-posztolás kihagyva.")
+        return False
+    try:
+        resp = requests.post(kuldo.MAKE_WEBHOOK_URL, json={"message": szoveg, "kep": kep_url}, timeout=60)
+    except Exception as e:
+        print(f"  ⚠️  Facebook poszt hiba: {e}")
+        return False
+    if resp.status_code != 200:
+        print(f"  ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code}): {resp.text[:300]}")
+        return False
+    print("  ✅ Képes Facebook poszt elküldve (Make.com-on keresztül).")
+    return True
+
 
 # Ha a GitHub késve indítja a futást, ennyi órán belül még kimegy a poszt
 KESES_ORA = 2
@@ -127,7 +150,8 @@ def main():
         print("\n" + szoveg + "\n")
         if not FACEBOOK_POSZTOLAS_AKTIV:
             print("ℹ️ Facebook-posztolás kikapcsolva.")
-        elif not kuldo.facebook_poszt_kuldese(szoveg):
+        elif not (kepes_poszt_kuldese(szoveg, KEPEK[kulcs]) if kulcs in KEPEK
+                  else kuldo.facebook_poszt_kuldese(szoveg)):
             return  # sikertelen küldés: a következő futás újrapróbálja
 
     if not most_kulcsok:
