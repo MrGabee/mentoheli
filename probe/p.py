@@ -5,10 +5,14 @@ B="https://kozszolgallas.ksz.gov.hu"
 def body(t): return html.unescape(re.sub(r"\s+"," ",re.sub(r"<[^>]+>"," ",re.sub(r"(?s)<(script|style).*?</\1>","",t))))
 s=requests.Session(); s.headers.update(H); s.verify=False
 t=s.get(B+"/JobAd?isDetailSearch=true",timeout=30).text
-i=t.find("getDataJSON = function"); i=i if i>0 else t.find("function getDataJSON")
-print("GETDATA:",t[i:i+2500])
 tok=re.search(r'name="__RequestVerificationToken"[^>]*value="([^"]+)"',t).group(1)
-for payload in [{"CityId":"310"},{"CityId":["310"]},{"CityId":310,"sort":"Created DESC","ListInfo":{"Page":1}}]:
-    r=s.post(B+"/JobAd/ListGridAsync",data=json.dumps(payload),headers={"Content-Type":"application/json; charset=utf-8","X-Requested-With":"XMLHttpRequest","RequestVerificationToken":tok,"Referer":B+"/JobAd?isDetailSearch=true"},timeout=30,allow_redirects=False)
-    print("== JSON",payload,r.status_code,r.headers.get("Location"),len(r.text))
-    print("  info:",re.findall(r'JobAd/Info/(\d+)',r.text)[:15]); print("  ",body(r.text)[:1200])
+def lst(payload):
+    r=s.post(B+"/JobAd/ListGridAsync",data=json.dumps(payload),headers={"Content-Type":"application/json; charset=utf-8","X-Requested-With":"XMLHttpRequest","RequestVerificationToken":tok},timeout=30)
+    return r
+r=lst({"cityId":["310"],"page":1,"pagesize":50,"sort":"Created DESC"})
+print("== SZM",r.status_code,len(r.text)); 
+i=r.text.find("Jelentkez"); print("RAW:",r.text[max(0,i-3000):i+300])
+print(" total:",re.findall(r'ListInfo_TotalCount"[^>]*value="(\d+)"',r.text), re.findall(r'value="(\d+)"[^>]*id="ListInfo_TotalCount"',r.text))
+print(body(r.text)[:3000])
+r=lst({"cityId":["194"],"page":1,"pagesize":20,"sort":"Created DESC","keyword":"XXI"})
+print("== BP XXI",r.status_code,len(r.text)); print(body(r.text)[:2000])
