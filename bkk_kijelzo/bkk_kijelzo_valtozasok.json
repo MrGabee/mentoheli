@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T01:43:19.342392+02:00",
+  "frissitve": "2026-10-16T01:43:50.984144+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:04:32.530773+02:00",
-      "kulcs": "NWB360",
-      "rendszam": "NWB360",
-      "vehicle_id": "6540",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.49970626831055,
-      "lon": 19.28702163696289,
-      "elozo_szoveg": "Rákoscsaba-Újtelep",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
-    },
-    {
-      "idopont": "2026-10-15T15:04:32.530805+02:00",
-      "kulcs": "NWB365",
-      "rendszam": "NWB365",
-      "vehicle_id": "6545",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.48074722290039,
-      "lon": 19.232887268066406,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-15T15:04:32.530865+02:00",
-      "kulcs": "AILJ861",
-      "rendszam": "AILJ861",
-      "vehicle_id": "680",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.55082702636719,
-      "lon": 19.042179107666016,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Verecke lépcső ► Batthyány tér M+H"
-    },
     {
       "idopont": "2026-10-15T15:04:32.530934+02:00",
       "kulcs": "AOCT657",
@@ -260000,6 +259961,45 @@
       "lon": 19.067827224731445,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T01:43:50.897484+02:00",
+      "kulcs": "AAMH631",
+      "rendszam": "AAMH631",
+      "vehicle_id": "474",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43210220336914,
+      "lon": 19.261001586914062,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-10-16T01:43:50.897895+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50177764892578,
+      "lon": 19.135568618774414,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-16T01:43:50.898370+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56770706176758,
+      "lon": 19.127239227294922,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
