@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T01:37:08.235734+02:00",
+  "frissitve": "2026-10-16T01:37:38.331867+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:03:26.937653+02:00",
-      "kulcs": "873-637-874-887-644-888",
-      "rendszam": "873-637-874-887-644-888",
-      "vehicle_id": "905516568730-905536466378-905516568748-905516568870-905536466444-905516568888",
-      "vehicle_label": "Közvágóhíd",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.312843322753906,
-      "lon": 18.973146438598633,
-      "elozo_szoveg": "Tököl",
-      "uj_szoveg": "Közvágóhíd"
-    },
-    {
-      "idopont": "2026-10-15T15:03:26.937699+02:00",
-      "kulcs": "907-654-908-931-666-932",
-      "rendszam": "907-654-908-931-666-932",
-      "vehicle_id": "905516569076-905536466543-905516569084-905516569316-905536466667-905516569324",
-      "vehicle_label": "Boráros tér",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.42186737060547,
-      "lon": 19.06646156311035,
-      "elozo_szoveg": "Csepel",
-      "uj_szoveg": "Boráros tér"
-    },
-    {
-      "idopont": "2026-10-15T15:04:32.522554+02:00",
-      "kulcs": "AILJ858",
-      "rendszam": "AILJ858",
-      "vehicle_id": "1057",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.545989990234375,
-      "lon": 18.962135314941406,
-      "elozo_szoveg": "Máriaremete",
-      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-15T15:04:32.523290+02:00",
       "kulcs": "V2022",
@@ -260000,6 +259961,45 @@
       "lon": 19.037776947021484,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
       "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-16T01:37:38.279042+02:00",
+      "kulcs": "LYH119",
+      "rendszam": "LYH119",
+      "vehicle_id": "3708",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47784423828125,
+      "lon": 19.04589080810547,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-16T01:37:38.279458+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53401184082031,
+      "lon": 19.082063674926758,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T01:37:38.279481+02:00",
+      "kulcs": "PDB715",
+      "rendszam": "PDB715",
+      "vehicle_id": "7041",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.428279876708984,
+      "lon": 19.155799865722656,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
