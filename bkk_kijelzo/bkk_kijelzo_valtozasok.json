@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-16T01:03:02.898239+02:00",
+  "frissitve": "2026-10-16T01:03:34.201594+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:01:08.911859+02:00",
-      "kulcs": "T9112",
-      "rendszam": "T9112",
-      "vehicle_id": "7753",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48947525024414,
-      "lon": 19.089967727661133,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-15T15:01:08.912764+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Fenyőgyöngye",
-      "vonal_szam": "65A",
-      "route_id": "0651",
-      "lat": 47.52774429321289,
-      "lon": 19.036710739135742,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Fenyőgyöngye"
-    },
-    {
-      "idopont": "2026-10-15T15:01:08.912887+02:00",
-      "kulcs": "AOFL225",
-      "rendszam": "AOFL225",
-      "vehicle_id": "812",
-      "vehicle_label": "Óbudai autóbuszgarázs",
-      "vonal_szam": "118",
-      "route_id": "1180",
-      "lat": 47.53982162475586,
-      "lon": 19.046188354492188,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Óbudai autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-10-15T15:01:08.912971+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "121",
-      "route_id": "1210",
-      "lat": 47.57752990722656,
-      "lon": 19.114831924438477,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Káp.megyer, Szilas-patak"
-    },
     {
       "idopont": "2026-10-15T15:01:08.913068+02:00",
       "kulcs": "AOFL246",
@@ -260000,6 +259948,58 @@
       "lon": 19.096120834350586,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-16T01:03:34.112699+02:00",
+      "kulcs": "AADR716",
+      "rendszam": "AADR716",
+      "vehicle_id": "184",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.496463775634766,
+      "lon": 19.057117462158203,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-16T01:03:34.115000+02:00",
+      "kulcs": "MOS268",
+      "rendszam": "MOS268",
+      "vehicle_id": "5721",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.47848129272461,
+      "lon": 19.34300994873047,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-16T01:03:34.115321+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.489585876464844,
+      "lon": 19.075300216674805,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-16T01:03:34.115807+02:00",
+      "kulcs": "SKR824",
+      "rendszam": "SKR824",
+      "vehicle_id": "7710",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48898696899414,
+      "lon": 19.06322479248047,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
     }
   ]
 }
