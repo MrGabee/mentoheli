@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-16T00:12:59.721956+02:00",
+  "frissitve": "2026-10-16T00:13:36.590117+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T14:57:12.164795+02:00",
-      "kulcs": "V2217",
-      "rendszam": "V2217",
-      "vehicle_id": "5857",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.429542541503906,
-      "lon": 19.21746063232422,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-15T14:57:12.164824+02:00",
-      "kulcs": "V2222",
-      "rendszam": "V2222",
-      "vehicle_id": "5862",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.46590805053711,
-      "lon": 19.081480026245117,
-      "elozo_szoveg": "Koppány utca",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
     {
       "idopont": "2026-10-15T14:57:12.165373+02:00",
       "kulcs": "T8019",
@@ -260000,6 +259974,32 @@
       "lon": 19.12429428100586,
       "elozo_szoveg": "Szentlőrinci úti lakótelep",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T00:13:36.504026+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.42699432373047,
+      "lon": 19.15975570678711,
+      "elozo_szoveg": "Soroksár, IKEA áruház",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-16T00:13:36.504151+02:00",
+      "kulcs": "AOFL250",
+      "rendszam": "AOFL250",
+      "vehicle_id": "838",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.43410873413086,
+      "lon": 19.203630447387695,
+      "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
+      "uj_szoveg": "Pestszentimre"
     }
   ]
 }
