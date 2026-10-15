@@ -268,6 +268,10 @@ VONALAK = [
     ("▬", "‐", 20),
     ("◆", "◇", 16),
     ("•", "·", 24),
+    ("〰", "〰", 14),
+    ("✦", "·", 18),
+    ("▪", "▫", 20),
+    ("~", "~", 28),
 ]
 
 TERULET_KERETEK = [
@@ -295,12 +299,12 @@ class Stilus:
     def __init__(self, kategoria, nap=None):
         self.kategoria = kategoria
         nap = nap or datetime.now(MAGYAR_TZ).strftime("%Y-%m-%d")
-        # A közös elemek (vonal, keret) napi szinten minden posztnál egyformák,
-        # a címsor és a záró mondat kategóriánként is napi szinten fix.
-        napi = random.Random(nap)
+        # Minden elem kategóriánként és naponta más, egy napon belül fix.
         napi_kat = random.Random(f"{nap}|{kategoria}")
-        self._vastag, self._vekony, self._hossz = napi.choice(VONALAK)
-        self._terulet = napi.choice(TERULET_KERETEK)
+        # A vonal és a keret kategóriánként is más, hogy az egy napon belüli
+        # posztok ne nézzenek ki egyformán.
+        self._vastag, self._vekony, self._hossz = napi_kat.choice(VONALAK)
+        self._terulet = napi_kat.choice(TERULET_KERETEK)
         self.cim = napi_kat.choice(CIMEK.get(kategoria, [""]))
         self.zaro = napi_kat.choice(ZAROK)
         self.bevezeto = random.choice(BEVEZETOK.get(kategoria, [""]))
@@ -313,3 +317,68 @@ class Stilus:
 
     def terulet(self, nev):
         return self._terulet.format(nev)
+
+
+# Elérhetőségek: minden poszt más formában és más felvezetéssel kéri, hogy
+# írjanak nekem, így nem ugyanaz a blokk zárja az összes bejegyzést.
+FELVEZETOK = [
+    "Ha neked is van problémád a környéken, vagy bármilyen hírt, infót tudsz, írj nekem, és utánajárok:",
+    "Neked is van egy gondod vagy egy híred a környékről? Szólj, és utánanézek:",
+    "Ha te is tudsz valamit, ami a kerületet érinti, keress meg bátran:",
+    "Bármilyen gond, hír vagy fotó a környékről jöhet, itt érsz el:",
+    "Ha valami téged is zavar a környéken, írd meg, és foglalkozom vele:",
+    "Van egy hasonló ügyed, vagy tudsz valamit, amiről írnom kéne? Itt elérsz:",
+]
+
+
+def kapcsolat_blokk(nap, kulcs, email, whatsapp, url="", felvezeto=None):
+    """Elérhetőségek a poszt aljára, napi és posztonkénti változattal."""
+    r = random.Random(f"{nap}|{kulcs}|kapcsolat")
+    fel = FELVEZETOK[r.randrange(len(FELVEZETOK))] if felvezeto is None else felvezeto
+    forma = r.randrange(4)
+    if forma == 0:
+        sorok = ["💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)"]
+        if whatsapp:
+            sorok.append(f"📱 WhatsApp-üzenetben: {whatsapp}")
+        sorok.append(f"📩 e-mailben: {email}")
+        if url:
+            sorok.append(f"🌐 online, egy kattintással: {url}")
+    elif forma == 1:
+        sorok = [f"✉️ {email}"]
+        if whatsapp:
+            sorok.append(f"📲 WhatsApp: {whatsapp}")
+        sorok.append("💬 vagy egyszerűen írj az oldalnak Messengeren")
+        if url:
+            sorok.append(f"👉 {url}")
+    elif forma == 2:
+        reszek = ["Messengeren"]
+        if whatsapp:
+            reszek.append(f"WhatsAppon ({whatsapp})")
+        reszek.append(f"e-mailben ({email})")
+        sorok = ["📬 " + ", ".join(reszek[:-1]) + " vagy " + reszek[-1] + "."]
+        if url:
+            sorok.append(f"Ha gyorsabb, itt egy kattintással is megírhatod: {url}")
+    else:
+        sorok = []
+        if url:
+            sorok.append(f"🖱️ Egy kattintás: {url}")
+        if whatsapp:
+            sorok.append(f"☎️ WhatsApp: {whatsapp}")
+        sorok += [f"📧 E-mail: {email}", "💭 Messenger: az oldal „Üzenetküldés” gombja"]
+    return ([fel] if fel else []) + sorok
+
+
+ROVID_KAPCSOLAT = [
+    "💬 Írj nekem Messengeren, WhatsAppon ({wa}) vagy az {email} címre.",
+    "📬 Tudsz valamit erről? Írj nekem: {email}",
+    "Ha van hozzá infód, szólj Messengeren vagy WhatsAppon ({wa}). 🙏",
+    "✉️ Hírt, fotót, kérdést szívesen fogadok: {email}",
+    "📲 Kérdésed van, vagy tudsz valamit? Írj: {url}",
+]
+
+
+def rovid_kapcsolat(nap, kulcs, email, whatsapp, url=""):
+    """Egysoros elérhetőség a színes posztok aljára, posztonként más."""
+    lehet = [m for m in ROVID_KAPCSOLAT if url or "{url}" not in m]
+    m = random.Random(f"{nap}|{kulcs}|rovid").choice(lehet)
+    return m.format(wa=whatsapp, email=email, url=url)

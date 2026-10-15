@@ -13,6 +13,7 @@ import os
 from datetime import date
 
 import allasok
+from poszt_valtozatos import Stilus, kapcsolat_blokk
 
 FAJL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "olvasoi_hirek.json")
 OLVASOI_EMAIL = "olvaso@mrgabee.hu"
@@ -33,17 +34,14 @@ def szoveg(nap, allapot):
         if t["id"] in volt or date.fromisoformat(t["datum"]) > nap:
             continue
         volt.append(t["id"])
+        st = Stilus("olvasoi_level", nap.isoformat())
         return "\n".join([
             t["cim"],
-            "••••••••••••••••••••••••",
+            st.vonal(),
             "",
             t["szoveg"].strip(),
             "",
-            "Ha neked is van problémád a környéken, vagy bármilyen hírt, infót tudsz, írj nekem, és utánajárok:",
-            "💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)",
-            f"📱 WhatsApp-üzenetben: {WHATSAPP_SZAM}",
-            f"📩 e-mailben: {OLVASOI_EMAIL}",
-            f"🌐 online, egy kattintással: {allasok.KAPCSOLAT_URL}",
+            *kapcsolat_blokk(nap, t["id"], OLVASOI_EMAIL, WHATSAPP_SZAM, allasok.KAPCSOLAT_URL),
             "",
             t.get("hashtagek") or "#Csepel #olvasóihír",
         ])

@@ -5,6 +5,8 @@ A NAPOK-ban felsorolt napokon megy ki (a színes posztok menetrendjében).
 
 from datetime import date
 
+from poszt_valtozatos import Stilus, kapcsolat_blokk
+
 # Ezeken a napokon megy ki
 NAPOK = {date(2026, 10, 15)}
 
@@ -18,7 +20,7 @@ def szoveg(nap):
         return ""
     sorok = [
         "💡 MIT LÁTNÁL SZÍVESEN AZ OLDALAIMON? 💡",
-        "••••••••••••••••••••••••",
+        Stilus("otlet_keres", nap.isoformat()).vonal(),
         "",
         "Szeretném, ha az oldalaim még inkább rólatok és nektek szólnának. "
         "Milyen témáról olvasnál szívesen? Van egy ötleted, amit érdemes lenne megmutatnom, "
@@ -29,13 +31,7 @@ def szoveg(nap):
         sorok += ["📌 Egy fontos dolog: a tegnapi állásos bejegyzésembe kicsit hiba csúszott, ezért ma délután "
                   "új bejegyzéssel jövök, amibe a kommentekben érkezett hirdetéseket is beleraktam.", ""]
     sorok += [
-        "Írd meg bátran:",
-        "💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)",
-    ]
-    if WHATSAPP_SZAM:
-        sorok.append(f"📱 WhatsApp-üzenetben: {WHATSAPP_SZAM}")
-    sorok += [
-        f"📩 e-mailben: {OLVASOI_EMAIL}",
+        *kapcsolat_blokk(nap, "otlet_keres", OLVASOI_EMAIL, WHATSAPP_SZAM, felvezeto="Írd meg bátran:"),
         "",
         "Minden üzenetet elolvasok, köszönöm, hogy segítesz! 🙏",
         "#Csepel #ötlet",
