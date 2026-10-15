@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T03:39:49.615886+02:00",
+  "frissitve": "2026-10-15T03:40:34.140189+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T15:03:26.507569+02:00",
-      "kulcs": "815 025",
-      "rendszam": "815 025",
-      "vehicle_id": "945518150251",
-      "vehicle_label": "Esztergom",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.5595817565918,
-      "lon": 19.07893943786621,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Esztergom"
-    },
-    {
-      "idopont": "2026-10-14T15:03:26.507872+02:00",
-      "kulcs": "AOJM861",
-      "rendszam": "AOJM861",
-      "vehicle_id": "984",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.469783782958984,
-      "lon": 19.074426651000977,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-10-14T15:04:37.487959+02:00",
-      "kulcs": "AOJM880",
-      "rendszam": "AOJM880",
-      "vehicle_id": "1006",
-      "vehicle_label": "Csepel, Határ utca",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.48392868041992,
-      "lon": 19.127534866333008,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Csepel, Határ utca"
-    },
     {
       "idopont": "2026-10-14T15:04:37.488386+02:00",
       "kulcs": "AADI628",
@@ -260000,6 +259961,45 @@
       "lon": 19.055469512939453,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-15T03:40:34.052989+02:00",
+      "kulcs": "AADI589",
+      "rendszam": "AADI589",
+      "vehicle_id": "48",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.421539306640625,
+      "lon": 19.041301727294922,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-15T03:40:34.053120+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54266357421875,
+      "lon": 18.964771270751953,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-15T03:40:34.053261+02:00",
+      "kulcs": "NBW004",
+      "rendszam": "NBW004",
+      "vehicle_id": "5974",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.515838623046875,
+      "lon": 19.039236068725586,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
