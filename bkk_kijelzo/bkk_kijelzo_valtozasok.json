@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-15T23:59:41.953357+02:00",
+  "frissitve": "2026-10-16T00:00:15.043925+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T14:55:43.888051+02:00",
-      "kulcs": "PDB390",
-      "rendszam": "PDB390",
-      "vehicle_id": "7072",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.4798583984375,
-      "lon": 19.255027770996094,
-      "elozo_szoveg": "Rákoskeresztúr, városközpont",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-15T14:55:43.888611+02:00",
-      "kulcs": "PHG651",
-      "rendszam": "PHG651",
-      "vehicle_id": "7175",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51964569091797,
-      "lon": 19.148303985595703,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
-    {
-      "idopont": "2026-10-15T14:55:43.890593+02:00",
-      "kulcs": "RCT311",
-      "rendszam": "RCT311",
-      "vehicle_id": "7325",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.46472930908203,
-      "lon": 19.12614631652832,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-15T14:55:43.890905+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.5012092590332,
-      "lon": 19.107770919799805,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-15T14:55:43.892243+02:00",
-      "kulcs": "SKR723",
-      "rendszam": "SKR723",
-      "vehicle_id": "7672",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.41672897338867,
-      "lon": 19.13069725036621,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
     {
       "idopont": "2026-10-15T14:55:43.892624+02:00",
       "kulcs": "SKR818",
@@ -260000,6 +259935,71 @@
       "lon": 18.957979202270508,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-16T00:00:14.973073+02:00",
+      "kulcs": "FLR708",
+      "rendszam": "FLR708",
+      "vehicle_id": "3122",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46334457397461,
+      "lon": 19.148242950439453,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-16T00:00:14.973684+02:00",
+      "kulcs": "MXJ006",
+      "rendszam": "MXJ006",
+      "vehicle_id": "5886",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.473602294921875,
+      "lon": 19.028270721435547,
+      "elozo_szoveg": "Normafa",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T00:00:14.973727+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50318908691406,
+      "lon": 19.135202407836914,
+      "elozo_szoveg": "Cinkota H",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-16T00:00:14.973768+02:00",
+      "kulcs": "AELH152",
+      "rendszam": "AELH152",
+      "vehicle_id": "636",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59784698486328,
+      "lon": 19.053878784179688,
+      "elozo_szoveg": "Nagybányai út",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T00:00:14.973804+02:00",
+      "kulcs": "NTM430",
+      "rendszam": "NTM430",
+      "vehicle_id": "6498",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.405635833740234,
+      "lon": 19.01378631591797,
+      "elozo_szoveg": "Savoya Park",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
     }
   ]
 }
