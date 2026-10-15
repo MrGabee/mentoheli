@@ -4,6 +4,7 @@ Minden nap megy ki, a bevezető naponta változik.
 """
 
 import allasok
+from poszt_valtozatos import Stilus, kapcsolat_blokk
 
 OLVASOI_EMAIL = "olvaso@mrgabee.hu"
 WHATSAPP_SZAM = "+36 70 754 0254"
@@ -32,19 +33,26 @@ BEVEZETOK = [
 ]
 
 
+ZAROK = [
+    "Nemcsak gondot, bármilyen kerületi hírt, infót, fotót is szívesen fogadok. Ha szeretnéd, a neved nélkül teszem közzé. 🙏",
+    "Névtelenül is írhatsz, a neved nélkül adom tovább. 🤝",
+    "Jó hírnek, fotónak, tippnek is örülök, nem csak panasznak. 😊",
+    "Minden üzenetet elolvasok, és ha kéred, név nélkül teszem közzé.",
+    "Ha van fotód, küldd azt is, sokat segít. 📸",
+]
+
+
 def szoveg(nap):
     n = nap.toordinal()
     return "\n".join([
         CIMEK[n % len(CIMEK)],
-        "••••••••••••••••••••••••",
+        Stilus("kerulet_problema", nap.isoformat()).vonal(),
         "",
         BEVEZETOK[n % len(BEVEZETOK)],
         "",
-        "💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)",
-        f"📱 WhatsApp-üzenetben: {WHATSAPP_SZAM}",
-        f"📩 e-mailben: {OLVASOI_EMAIL}",
-        f"🌐 online, egy kattintással: {allasok.KAPCSOLAT_URL}",
+        *kapcsolat_blokk(nap, "kerulet_problema", OLVASOI_EMAIL, WHATSAPP_SZAM,
+                         allasok.KAPCSOLAT_URL, felvezeto=""),
         "",
-        "Nemcsak gondot, bármilyen kerületi hírt, infót, fotót is szívesen fogadok. Ha szeretnéd, a neved nélkül teszem közzé. 🙏",
+        ZAROK[(n * 3) % len(ZAROK)],
         "#Csepel #XXIkerület #olvasóijelzés",
     ])

@@ -30,6 +30,7 @@ import hivatali_hirek
 import otlet_keres
 import kerulet_problema
 import olvasoi_level
+import poszt_valtozatos
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
@@ -44,8 +45,11 @@ SZINES_WEBHOOK = os.environ.get("MAKE_WEBHOOK_URL_SZINES", "")
 if SZINES_WEBHOOK:
     kuldo.MAKE_WEBHOOK_URL = SZINES_WEBHOOK
 
-# Minden poszt végére: gyors kapcsolatfelvétel (ahol nincs már benne)
-KAPCSOLAT_SOR = "💬 Írj nekem gyorsan: " + allasok.KAPCSOLAT_URL
+# Minden poszt végére: gyors kapcsolatfelvétel (ahol nincs már benne),
+# posztonként más megfogalmazással
+def kapcsolat_sor(nap, kulcs):
+    return poszt_valtozatos.rovid_kapcsolat(nap, kulcs, allasok.OLVASOI_EMAIL,
+                                            "+36 70 754 0254", allasok.KAPCSOLAT_URL)
 KAPCSOLAT_NELKUL = {"allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
@@ -150,7 +154,7 @@ def main():
         print(f"ℹ️ {kulcs}: ma nincs miről írni, kihagyva.")
     else:
         if kulcs not in KAPCSOLAT_NELKUL:
-            szoveg += "\n\n" + KAPCSOLAT_SOR
+            szoveg += "\n\n" + kapcsolat_sor(most.date(), kulcs)
         print("\n" + szoveg + "\n")
         if not FACEBOOK_POSZTOLAS_AKTIV:
             print("ℹ️ Facebook-posztolás kikapcsolva.")
