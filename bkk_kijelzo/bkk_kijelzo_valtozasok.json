@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T03:31:39.099144+02:00",
+  "frissitve": "2026-10-15T03:32:11.865001+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T15:03:26.494457+02:00",
-      "kulcs": "AAHY864",
-      "rendszam": "AAHY864",
-      "vehicle_id": "426",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.519989013671875,
-      "lon": 19.09125518798828,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-14T15:03:26.494546+02:00",
-      "kulcs": "T0615",
-      "rendszam": "T0615",
-      "vehicle_id": "4299",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.536434173583984,
-      "lon": 19.107118606567383,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-10-14T15:03:26.494618+02:00",
-      "kulcs": "AAHY872",
-      "rendszam": "AAHY872",
-      "vehicle_id": "434",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.60245895385742,
-      "lon": 19.065757751464844,
-      "elozo_szoveg": "B.megyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
     {
       "idopont": "2026-10-14T15:03:26.494659+02:00",
       "kulcs": "AAHY878",
@@ -260000,6 +259961,45 @@
       "lon": 19.26154136657715,
       "elozo_szoveg": "Liszt Ferenc Airport 2",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-15T03:32:11.801277+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.51445770263672,
+      "lon": 19.097482681274414,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-15T03:32:11.801343+02:00",
+      "kulcs": "RVY605",
+      "rendszam": "RVY605",
+      "vehicle_id": "7434",
+      "vehicle_label": "Pesterzsébeti lakótelep",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.488197326660156,
+      "lon": 19.06490707397461,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-10-15T03:32:11.801759+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50163269042969,
+      "lon": 19.13616371154785,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
     }
   ]
 }
