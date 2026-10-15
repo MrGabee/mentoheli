@@ -1,0 +1,58 @@
+name: 🚌 Buszkésés-mérő
+
+on:
+  workflow_dispatch:
+    inputs:
+      teszt:
+        description: 'Teszt: azonnal mér, csak kiírja, nem ment'
+        required: false
+        default: ''
+  schedule:
+    # Hétköznap 10 percenként, UTC 4–8 óra (helyi 6–9, nyári és téli időben is);
+    # a szkript maga szűr a helyi 6:00–9:00 sávra
+    - cron: '*/10 4-7 * * 1-5'
+
+concurrency:
+  group: buszkeses
+  cancel-in-progress: false
+
+jobs:
+  meres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests
+
+      - name: 🚌 Mérés
+        env:
+          BKK_API_KEY: ${{ secrets.BKK_API_KEY }}
+          TESZT: ${{ github.event.inputs.teszt }}
+        run: python buszkeses.py
+
+      - name: 💾 Mérések commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add buszkeses/ || true
+          git stash
+          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
+          git stash pop || true
+          git add buszkeses/ || true
+          git diff --staged --quiet || git commit -m "buszkésés mérés [skip ci]"
+          git push origin main || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
