@@ -36,7 +36,7 @@ from bs4 import BeautifulSoup
 
 # A közös poszt-stílusok (poszt_valtozatos.py) a repó gyökerében vannak
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from poszt_valtozatos import Stilus, ZAROK as ZARO_SOROK  # noqa: E402
+from poszt_valtozatos import Stilus, ZAROK as ZARO_SOROK, atrendez  # noqa: E402
 
 # =====================================================================
 # BEÁLLÍTÁS
@@ -429,6 +429,8 @@ def _make_hivas(adat, timeout=60):
     if not url:
         print(f"      ⚠️  Nincs beállítva {nev}, Facebook-posztolás kihagyva.")
         return None
+    if adat.get("message"):
+        adat = {**adat, "message": atrendez(adat["message"])}
     try:
         return requests.post(url, json=adat, timeout=timeout)
     except Exception as e:

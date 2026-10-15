@@ -63,7 +63,7 @@ def kepes_poszt_kuldese(szoveg, kep_url):
         print("  ⚠️  Nincs beállítva a Make webhook - Facebook-posztolás kihagyva.")
         return False
     try:
-        resp = requests.post(kuldo.MAKE_WEBHOOK_URL, json={"message": szoveg, "kep": kep_url}, timeout=60)
+        resp = requests.post(kuldo.MAKE_WEBHOOK_URL, json={"message": poszt_valtozatos.atrendez(szoveg), "kep": kep_url}, timeout=60)
     except Exception as e:
         print(f"  ⚠️  Facebook poszt hiba: {e}")
         return False
