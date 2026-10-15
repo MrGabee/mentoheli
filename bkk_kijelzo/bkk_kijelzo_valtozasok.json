@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T01:39:12.105463+02:00",
+  "frissitve": "2026-10-16T01:39:42.601638+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:04:32.525495+02:00",
-      "kulcs": "V1357",
-      "rendszam": "V1357",
-      "vehicle_id": "4458",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.42670440673828,
-      "lon": 19.039350509643555,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-15T15:04:32.525754+02:00",
-      "kulcs": "V1503",
-      "rendszam": "V1503",
-      "vehicle_id": "4555",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49530029296875,
-      "lon": 19.07454490661621,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-10-15T15:04:32.526145+02:00",
-      "kulcs": "V4027",
-      "rendszam": "V4027",
-      "vehicle_id": "4716",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.51660919189453,
-      "lon": 19.03657341003418,
-      "elozo_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Kamaraerdei Ifjúsági Park"
-    },
     {
       "idopont": "2026-10-15T15:04:32.526235+02:00",
       "kulcs": "V4063",
@@ -260000,6 +259961,45 @@
       "lon": 19.28382682800293,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-16T01:39:42.507796+02:00",
+      "kulcs": "AADR709",
+      "rendszam": "AADR709",
+      "vehicle_id": "177",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.598724365234375,
+      "lon": 19.054292678833008,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T01:39:42.510671+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49891662597656,
+      "lon": 19.049612045288086,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-16T01:39:42.510844+02:00",
+      "kulcs": "SKR828",
+      "rendszam": "SKR828",
+      "vehicle_id": "7714",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43891143798828,
+      "lon": 19.10321044921875,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
     }
   ]
 }
