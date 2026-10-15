@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-16T01:30:14.994389+02:00",
+  "frissitve": "2026-10-16T01:30:49.096607+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:03:26.932176+02:00",
-      "kulcs": "PDN606",
-      "rendszam": "PDN606",
-      "vehicle_id": "7078",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.46403121948242,
-      "lon": 19.018760681152344,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Baross Gábor-telep"
-    },
-    {
-      "idopont": "2026-10-15T15:03:26.932554+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.4351921081543,
-      "lon": 19.183277130126953,
-      "elozo_szoveg": "Gilice tér (Varjú utca)",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-15T15:03:26.932571+02:00",
-      "kulcs": "PDN623",
-      "rendszam": "PDN623",
-      "vehicle_id": "7094",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.39021682739258,
-      "lon": 19.096637725830078,
-      "elozo_szoveg": "Szentmiklósi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-15T15:03:26.932706+02:00",
-      "kulcs": "PDN638",
-      "rendszam": "PDN638",
-      "vehicle_id": "7109",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.4263801574707,
-      "lon": 19.080223083496094,
-      "elozo_szoveg": "Horgásztanya ► Szentmiklósi út",
-      "uj_szoveg": "Szentmiklósi út ► Szent Imre tér"
-    },
     {
       "idopont": "2026-10-15T15:03:26.932741+02:00",
       "kulcs": "PDN643",
@@ -260000,6 +259948,58 @@
       "lon": 19.161048889160156,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-16T01:30:49.009185+02:00",
+      "kulcs": "RVY603",
+      "rendszam": "RVY603",
+      "vehicle_id": "7432",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52775573730469,
+      "lon": 19.036733627319336,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-10-16T01:30:49.009508+02:00",
+      "kulcs": "AOFL194",
+      "rendszam": "AOFL194",
+      "vehicle_id": "778",
+      "vehicle_label": "Fácános tér",
+      "vonal_szam": "955",
+      "route_id": "9550",
+      "lat": 47.50773239135742,
+      "lon": 19.02442741394043,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Fácános tér"
+    },
+    {
+      "idopont": "2026-10-16T01:30:49.009842+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.501129150390625,
+      "lon": 19.136306762695312,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-16T01:30:49.009865+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.40593338012695,
+      "lon": 19.0141544342041,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
