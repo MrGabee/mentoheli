@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T02:18:29.273241+02:00",
+  "frissitve": "2026-10-15T02:18:58.560994+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T14:55:17.348388+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47595977783203,
-      "lon": 19.100093841552734,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-10-14T14:55:17.348470+02:00",
-      "kulcs": "AOFL207",
-      "rendszam": "AOFL207",
-      "vehicle_id": "793",
-      "vehicle_label": "Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.485374450683594,
-      "lon": 19.040386199951172,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
-    {
-      "idopont": "2026-10-14T14:55:17.348708+02:00",
-      "kulcs": "AOFL238",
-      "rendszam": "AOFL238",
-      "vehicle_id": "826",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.5946159362793,
-      "lon": 19.05149269104004,
-      "elozo_szoveg": "Pince köz ► Donát utca",
-      "uj_szoveg": "Donát utca ► Békásmegyer H"
-    },
     {
       "idopont": "2026-10-14T14:55:17.348905+02:00",
       "kulcs": "AADI585",
@@ -260000,6 +259961,45 @@
       "lon": 19.13576889038086,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-15T02:18:58.469714+02:00",
+      "kulcs": "AADI589",
+      "rendszam": "AADI589",
+      "vehicle_id": "48",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.5124626159668,
+      "lon": 19.116466522216797,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-15T02:18:58.470436+02:00",
+      "kulcs": "RVY604",
+      "rendszam": "RVY604",
+      "vehicle_id": "7433",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.487548828125,
+      "lon": 19.058517456054688,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-15T02:18:58.470639+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51252365112305,
+      "lon": 19.100507736206055,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
