@@ -3,7 +3,6 @@
 Minden nap megy ki, a bevezető naponta változik.
 """
 
-import allasok
 
 OLVASOI_EMAIL = "olvaso@mrgabee.hu"
 WHATSAPP_SZAM = "+36 70 754 0254"
@@ -43,7 +42,6 @@ def szoveg(nap):
         "💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)",
         f"📱 WhatsApp-üzenetben: {WHATSAPP_SZAM}",
         f"📩 e-mailben: {OLVASOI_EMAIL}",
-        f"🌐 online, egy kattintással: {allasok.KAPCSOLAT_URL}",
         "",
         "Nemcsak gondot, bármilyen kerületi hírt, infót, fotót is szívesen fogadok. Ha szeretnéd, a neved nélkül teszem közzé. 🙏",
         "#Csepel #XXIkerület #olvasóijelzés",
