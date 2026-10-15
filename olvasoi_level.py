@@ -12,6 +12,7 @@ import json
 import os
 from datetime import date
 
+import allasok
 
 FAJL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "olvasoi_hirek.json")
 OLVASOI_EMAIL = "olvaso@mrgabee.hu"
@@ -42,6 +43,7 @@ def szoveg(nap, allapot):
             "💬 Facebook-üzenetben (az oldal tetején az „Üzenetküldés” gombbal)",
             f"📱 WhatsApp-üzenetben: {WHATSAPP_SZAM}",
             f"📩 e-mailben: {OLVASOI_EMAIL}",
+            f"🌐 online, egy kattintással: {allasok.KAPCSOLAT_URL}",
             "",
             t.get("hashtagek") or "#Csepel #olvasóihír",
         ])

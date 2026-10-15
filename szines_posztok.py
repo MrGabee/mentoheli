@@ -45,7 +45,7 @@ if SZINES_WEBHOOK:
     kuldo.MAKE_WEBHOOK_URL = SZINES_WEBHOOK
 
 # Minden poszt végére: gyors kapcsolatfelvétel (ahol nincs már benne)
-KAPCSOLAT_SOR = "💬 Írj nekem Messengeren, WhatsAppon (+36 70 754 0254) vagy az olvaso@mrgabee.hu címre."
+KAPCSOLAT_SOR = "💬 Írj nekem gyorsan: " + allasok.KAPCSOLAT_URL
 KAPCSOLAT_NELKUL = {"allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
