@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T03:25:29.037221+02:00",
+  "frissitve": "2026-10-15T03:25:58.898046+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T15:01:51.731834+02:00",
-      "kulcs": "T9114",
-      "rendszam": "T9114",
-      "vehicle_id": "7852",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51066589355469,
-      "lon": 19.097246170043945,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Deák Ferenc tér M ► Orczy tér"
-    },
-    {
-      "idopont": "2026-10-14T15:01:51.732016+02:00",
-      "kulcs": "T9136",
-      "rendszam": "T9136",
-      "vehicle_id": "7875",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.49980926513672,
-      "lon": 19.103965759277344,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
-    {
-      "idopont": "2026-10-14T15:01:51.732119+02:00",
-      "kulcs": "T9146",
-      "rendszam": "T9146",
-      "vehicle_id": "7885",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50511932373047,
-      "lon": 19.13640022277832,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
     {
       "idopont": "2026-10-14T15:01:51.732216+02:00",
       "kulcs": "T8117",
@@ -260000,6 +259961,45 @@
       "lon": 18.941862106323242,
       "elozo_szoveg": "Ráckeve",
       "uj_szoveg": "Közvágóhíd"
+    },
+    {
+      "idopont": "2026-10-15T03:25:58.798881+02:00",
+      "kulcs": "AEGB792",
+      "rendszam": "AEGB792",
+      "vehicle_id": "547",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50438690185547,
+      "lon": 19.024917602539062,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-15T03:25:58.799123+02:00",
+      "kulcs": "NGC019",
+      "rendszam": "NGC019",
+      "vehicle_id": "6318",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50763702392578,
+      "lon": 19.02542495727539,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-15T03:25:58.799351+02:00",
+      "kulcs": "PDB389",
+      "rendszam": "PDB389",
+      "vehicle_id": "7071",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.507972717285156,
+      "lon": 19.028799057006836,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
     }
   ]
 }
