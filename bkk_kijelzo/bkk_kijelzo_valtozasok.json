@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T03:47:22.150659+02:00",
+  "frissitve": "2026-10-15T03:47:57.626986+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T15:04:37.496277+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50656509399414,
-      "lon": 19.023948669433594,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-14T15:04:37.496403+02:00",
-      "kulcs": "NGC031",
-      "rendszam": "NGC031",
-      "vehicle_id": "6330",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.5006217956543,
-      "lon": 18.965579986572266,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-14T15:04:37.496537+02:00",
-      "kulcs": "NNE054",
-      "rendszam": "NNE054",
-      "vehicle_id": "6450",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.520809173583984,
-      "lon": 18.998743057250977,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
     {
       "idopont": "2026-10-14T15:04:37.496652+02:00",
       "kulcs": "NTM421",
@@ -260000,6 +259961,45 @@
       "lon": 19.067703247070312,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-15T03:47:57.535720+02:00",
+      "kulcs": "AOJM881",
+      "rendszam": "AOJM881",
+      "vehicle_id": "1007",
+      "vehicle_label": "Szent László utcai ltp.",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.4307746887207,
+      "lon": 19.070768356323242,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Szent László utcai lakótelep"
+    },
+    {
+      "idopont": "2026-10-15T03:47:57.535809+02:00",
+      "kulcs": "AADI654",
+      "rendszam": "AADI654",
+      "vehicle_id": "153",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50166320800781,
+      "lon": 19.136146545410156,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-15T03:47:57.538716+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Újpest-városkapu M",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54130935668945,
+      "lon": 19.151723861694336,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota"
     }
   ]
 }
