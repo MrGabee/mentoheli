@@ -382,3 +382,85 @@ def rovid_kapcsolat(nap, kulcs, email, whatsapp, url=""):
     lehet = [m for m in ROVID_KAPCSOLAT if url or "{url}" not in m]
     m = random.Random(f"{nap}|{kulcs}|rovid").choice(lehet)
     return m.format(wa=whatsapp, email=email, url=url)
+
+
+# ── Elrendezés ────────────────────────────────────────────────────────────
+# Minden kész posztot küldés előtt egy véletlenszerű (a szövegből számolt,
+# így újraküldésnél ugyanolyan) elrendezésre teszünk át, hogy ne egy
+# kaptafára készüljön minden bejegyzés: hol a cím van elöl, hol egy
+# személyes mondat, hol nincs elválasztó vonal, hol alul van, stb.
+
+import hashlib as _hashlib
+import re as _re
+
+_BETU = _re.compile(r"[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]")
+_KERET_EMOJI = _re.compile(r"^(\W+?)\s+(.*?)(?:\s+(\W+))?$")
+
+
+def _cimsor(sor):
+    betuk = _BETU.findall(sor)
+    return len(betuk) >= 4 and sum(b.isupper() for b in betuk) / len(betuk) > 0.7
+
+
+def _vonal(sor):
+    s = sor.strip()
+    return len(s) >= 5 and not _BETU.search(s) and not any(c.isdigit() for c in s) and len(set(s)) <= 3
+
+
+def _cim_valtozat(cim, r):
+    m = _KERET_EMOJI.match(cim.strip())
+    if not m:
+        return cim
+    elo, mag, hatul = m.group(1), m.group(2), m.group(3)
+    valtozatok = [cim, f"{elo} {mag}", f"{mag} {elo}"]
+    if hatul:
+        valtozatok.append(f"{mag} {hatul}")
+    return r.choice(valtozatok)
+
+
+def atrendez(szoveg):
+    """A kész poszt elrendezését változtatja meg, a tartalmát nem."""
+    if not szoveg:
+        return szoveg
+    r = random.Random(_hashlib.sha256(szoveg.encode("utf-8")).hexdigest())
+    sorok = szoveg.split("\n")
+    if not sorok or not _cimsor(sorok[0]):
+        return szoveg
+    cim = sorok[0]
+    i = 1
+    vonal = ""
+    if i < len(sorok) and _vonal(sorok[i]):
+        vonal = sorok[i].strip()
+        i += 1
+    # hashtagek a végéről
+    j = len(sorok)
+    while j > i and (not sorok[j - 1].strip() or sorok[j - 1].lstrip().startswith("#")):
+        j -= 1
+    tagek = [s for s in sorok[j:] if s.strip()]
+    torzs = "\n".join(sorok[i:j]).strip("\n")
+    bekezdesek = [b for b in torzs.split("\n\n") if b.strip()]
+    if not bekezdesek:
+        return szoveg
+    cim = _cim_valtozat(cim, r)
+    vonal = vonal or "━" * 20
+
+    forma = r.randrange(6)
+    if forma == 0:      # cím, vonal, szöveg (a megszokott)
+        reszek = [cim + "\n" + vonal] + bekezdesek
+    elif forma == 1:    # cím, szöveg, alul a vonal
+        reszek = [cim] + bekezdesek + [vonal]
+    elif forma == 2:    # vonal nélkül
+        reszek = [cim] + bekezdesek
+    elif (forma == 3 and len(bekezdesek) > 1 and "\n" not in bekezdesek[0]
+          and len(bekezdesek[0]) < 300):   # személyes mondat elöl, utána a cím
+        reszek = [bekezdesek[0], cim + "\n" + vonal] + bekezdesek[1:]
+    elif forma == 4:    # a cím két vonal között
+        reszek = [vonal + "\n" + cim + "\n" + vonal] + bekezdesek
+    else:               # cím, szöveg, a hashtagek előtt vonal
+        reszek = [cim, "\n\n".join(bekezdesek)]
+        if tagek:
+            tagek = [vonal] + tagek
+    kimenet = "\n\n".join(reszek)
+    if tagek:
+        kimenet += "\n\n" + "\n".join(tagek)
+    return kimenet

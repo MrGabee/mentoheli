@@ -12,6 +12,8 @@ import os
 import json
 import hashlib
 import requests
+
+import poszt_valtozatos
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -134,7 +136,7 @@ def facebook_poszt_kuldese(szoveg):
         print("  ⚠️  Nincs beállítva MAKE_WEBHOOK_URL - Facebook-posztolás kihagyva.")
         return False
     try:
-        resp = requests.post(MAKE_WEBHOOK_URL, json={"message": szoveg}, timeout=20)
+        resp = requests.post(MAKE_WEBHOOK_URL, json={"message": poszt_valtozatos.atrendez(szoveg)}, timeout=20)
         if resp.status_code == 200:
             print("  ✅ Facebook poszt elküldve (Make.com-on keresztül).")
             return True
