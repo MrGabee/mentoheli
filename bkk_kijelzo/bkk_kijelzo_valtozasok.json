@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-16T00:28:38.014241+02:00",
+  "frissitve": "2026-10-16T00:29:08.730790+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T14:58:35.352017+02:00",
-      "kulcs": "V1400",
-      "rendszam": "V1400",
-      "vehicle_id": "4472",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.429412841796875,
-      "lon": 19.03789710998535,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-15T14:58:35.352309+02:00",
-      "kulcs": "V1551",
-      "rendszam": "V1551",
-      "vehicle_id": "4603",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.49571990966797,
-      "lon": 19.072866439819336,
-      "elozo_szoveg": "KOCSISZÍNBE  Orczy tér",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-10-15T14:58:35.352396+02:00",
-      "kulcs": "V1580",
-      "rendszam": "V1580",
-      "vehicle_id": "4632",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "52",
-      "route_id": "3520",
-      "lat": 47.42216873168945,
-      "lon": 19.12255096435547,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-15T14:58:35.352521+02:00",
-      "kulcs": "V4006",
-      "rendszam": "V4006",
-      "vehicle_id": "4695",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.50017166137695,
-      "lon": 19.02397346496582,
-      "elozo_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-15T14:58:35.352573+02:00",
-      "kulcs": "V4025",
-      "rendszam": "V4025",
-      "vehicle_id": "4714",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.542964935302734,
-      "lon": 18.964340209960938,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-10-15T14:58:35.352606+02:00",
       "kulcs": "V4033",
@@ -260000,6 +259935,71 @@
       "lon": 19.128002166748047,
       "elozo_szoveg": "Kőbánya-Kispest M ► Határ út M",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-16T00:29:08.651683+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59782028198242,
+      "lon": 19.053857803344727,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T00:29:08.651728+02:00",
+      "kulcs": "MOS275",
+      "rendszam": "MOS275",
+      "vehicle_id": "5728",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.501312255859375,
+      "lon": 19.119672775268555,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-10-16T00:29:08.651832+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48479080200195,
+      "lon": 19.011972427368164,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-16T00:29:08.652433+02:00",
+      "kulcs": "915504900142",
+      "rendszam": "915504900142",
+      "vehicle_id": "915504900142",
+      "vehicle_label": "Székesfehérvár",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.46352005004883,
+      "lon": 19.020849227905273,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Székesfehérvár"
+    },
+    {
+      "idopont": "2026-10-16T00:29:08.652490+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.441654205322266,
+      "lon": 19.18614959716797,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Astoria M ► Újpalota"
     }
   ]
 }
