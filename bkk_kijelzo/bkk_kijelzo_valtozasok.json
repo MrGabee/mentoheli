@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T02:02:19.223087+02:00",
+  "frissitve": "2026-10-15T02:02:51.168373+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T14:54:02.061678+02:00",
-      "kulcs": "PTG283",
-      "rendszam": "PTG283",
-      "vehicle_id": "7276",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53215026855469,
-      "lon": 19.067886352539062,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-14T14:54:02.061773+02:00",
-      "kulcs": "PDZ833",
-      "rendszam": "PDZ833",
-      "vehicle_id": "7296",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44158935546875,
-      "lon": 19.034175872802734,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-10-14T14:54:02.062031+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51879119873047,
-      "lon": 19.085285186767578,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-14T14:54:02.062216+02:00",
       "kulcs": "T9106",
@@ -260000,6 +259961,45 @@
       "lon": 19.1264705657959,
       "elozo_szoveg": "Rákospalota, Mélyfúró utca",
       "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-15T02:02:51.083728+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48970413208008,
+      "lon": 19.074708938598633,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-15T02:02:51.083855+02:00",
+      "kulcs": "AADI580",
+      "rendszam": "AADI580",
+      "vehicle_id": "66",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51498794555664,
+      "lon": 19.09674835205078,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-15T02:02:51.084123+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50745391845703,
+      "lon": 19.02515983581543,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
