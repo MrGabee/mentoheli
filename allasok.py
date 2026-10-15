@@ -44,7 +44,7 @@ OLVASOI_EMAIL = "olvaso@mrgabee.hu"
 OLVASOI_CSV_URL = ""
 # Ha a beküldő nem ad meg lejáratot, ennyi napig jelenik meg a hirdetése
 OLVASOI_NAP = 14
-KAPCSOLAT_URL = "https://mrgabee.github.io/mentoheli/kapcsolat.html"
+KAPCSOLAT_URL = "https://kozles.github.io/posztol/kapcsolat.html"
 # Közszolgállás: környékbeli település, vagy budapesti munkáltató, akinek a nevében ez szerepel
 KSZ_TELEPULESEK = {"Szigetszentmiklós", "Halásztelek", "Tököl", "Szigethalom", "Dunaharaszti", "Gyál"}
 KSZ_KORNYEK = re.compile(r"\bXXI\.|\bXX\.|\bXXIII\.|CSEPEL|PESTERZSÉBET|SOROKSÁR|DÉL-PESTI|KÜLSŐ-PESTI", re.I)
@@ -403,7 +403,7 @@ def heti_szoveg(nap, allapot, lista=None):
         sorok.append("")
     if len(uj) > len(kimegy):
         sorok.append(f"➕ További {len(uj) - len(kimegy)} hirdetést a következő állásposztban hozok.")
-    sorok.append(f"📝 Ha neked is van álláshirdetésed, küldd el üzenetben vagy a {OLVASOI_EMAIL} címre, és ingyen közzéteszem.")
+    sorok.append(f"📝 Ha neked is van álláshirdetésed, add fel ingyen itt: {KAPCSOLAT_URL}")
     if st.zaro:
         sorok += ["", st.zaro]
     sorok.append("#állás #munka #Csepel #Pesterzsébet #Szigetszentmiklós")
