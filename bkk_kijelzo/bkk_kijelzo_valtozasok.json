@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-15T02:38:51.933006+02:00",
+  "frissitve": "2026-10-15T02:39:18.429033+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-14T14:57:51.956093+02:00",
-      "kulcs": "NHB035",
-      "rendszam": "NHB035",
-      "vehicle_id": "6334",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.52326965332031,
-      "lon": 19.00240707397461,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-14T14:57:51.956355+02:00",
-      "kulcs": "NTM430",
-      "rendszam": "NTM430",
-      "vehicle_id": "6498",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49913787841797,
-      "lon": 19.03598976135254,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-14T14:57:51.956368+02:00",
-      "kulcs": "NTM431",
-      "rendszam": "NTM431",
-      "vehicle_id": "6499",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.48964309692383,
-      "lon": 18.959617614746094,
-      "elozo_szoveg": "Csillebérc, KFKI",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-14T14:57:51.956486+02:00",
       "kulcs": "NWB353",
@@ -260000,6 +259961,45 @@
       "lon": 19.103248596191406,
       "elozo_szoveg": "Pesterzsébeti lakótelep",
       "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-15T02:39:18.345795+02:00",
+      "kulcs": "PDB704",
+      "rendszam": "PDB704",
+      "vehicle_id": "7030",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.42664337158203,
+      "lon": 19.161090850830078,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-15T02:39:18.346082+02:00",
+      "kulcs": "T8105",
+      "rendszam": "T8105",
+      "vehicle_id": "7342",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5014762878418,
+      "lon": 19.115190505981445,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-15T02:39:18.346530+02:00",
+      "kulcs": "AADI600",
+      "rendszam": "AADI600",
+      "vehicle_id": "98",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49885559082031,
+      "lon": 19.050338745117188,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
