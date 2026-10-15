@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T01:22:57.106699+02:00",
+  "frissitve": "2026-10-16T01:23:27.326172+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:02:22.882725+02:00",
-      "kulcs": "AOIB822",
-      "rendszam": "AOIB822",
-      "vehicle_id": "885",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.54705810546875,
-      "lon": 19.14207649230957,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
-    {
-      "idopont": "2026-10-15T15:02:22.883372+02:00",
-      "kulcs": "AOGL319",
-      "rendszam": "AOGL319",
-      "vehicle_id": "910",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.477787017822266,
-      "lon": 19.04815101623535,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Baross Gábor-telep, Ispiláng utca"
-    },
-    {
-      "idopont": "2026-10-15T15:02:22.883842+02:00",
-      "kulcs": "918071936747",
-      "rendszam": "918071936747",
-      "vehicle_id": "918071936747",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.69369888305664,
-      "lon": 17.28997039794922,
-      "elozo_szoveg": "Keszthely",
-      "uj_szoveg": "Budapest-Déli"
-    },
     {
       "idopont": "2026-10-15T15:02:22.883991+02:00",
       "kulcs": "AADI597",
@@ -260000,6 +259961,45 @@
       "lon": 19.075773239135742,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-16T01:23:27.238786+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48284149169922,
+      "lon": 19.130443572998047,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-16T01:23:27.238948+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54103088378906,
+      "lon": 19.150737762451172,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-16T01:23:27.239624+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51893615722656,
+      "lon": 19.038314819335938,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
