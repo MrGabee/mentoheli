@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T02:56:16.432367+02:00",
+  "frissitve": "2026-10-16T02:56:47.680498+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:11:15.786863+02:00",
-      "kulcs": "415 116",
-      "rendszam": "415 116",
-      "vehicle_id": "945514151162",
-      "vehicle_label": "Monor",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.51082992553711,
-      "lon": 19.101850509643555,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Monor"
-    },
-    {
-      "idopont": "2026-10-15T15:11:15.786979+02:00",
-      "kulcs": "815 033",
-      "rendszam": "815 033",
-      "vehicle_id": "945518150335",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.74300003051758,
-      "lon": 18.717809677124023,
-      "elozo_szoveg": "Esztergom",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-15T15:11:15.786990+02:00",
-      "kulcs": "AOIM028",
-      "rendszam": "AOIM028",
-      "vehicle_id": "948",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52473831176758,
-      "lon": 19.116968154907227,
-      "elozo_szoveg": "Rákospatak u./Csömöri út",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
     {
       "idopont": "2026-10-15T15:11:15.787195+02:00",
       "kulcs": "AOJM864",
@@ -260000,6 +259961,45 @@
       "lon": 19.04676055908203,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-16T02:56:47.593707+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.548362731933594,
+      "lon": 19.029775619506836,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-16T02:56:47.595832+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58564758300781,
+      "lon": 19.094127655029297,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-16T02:56:47.596460+02:00",
+      "kulcs": "RVY603",
+      "rendszam": "RVY603",
+      "vehicle_id": "7432",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.38263702392578,
+      "lon": 19.107179641723633,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
