@@ -98,7 +98,7 @@ MENETREND = [
     ("hetvege",       time(16, 35),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),
     ("kerulet_problema", time(17, 35), None, lambda nap, a: kerulet_problema.szoveg(nap)),
     ("kerdes",        time(18, 35),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
-    ("veradas_holnap", time(19, 35), None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
+    ("veradas_holnap", time(20, 0), None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
 ]
 
