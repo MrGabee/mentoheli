@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-17T01:04:49.430494+02:00",
+  "frissitve": "2026-10-17T01:05:24.164473+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:50:10.780933+02:00",
-      "kulcs": "T8106",
-      "rendszam": "T8106",
-      "vehicle_id": "7343",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49552536010742,
-      "lon": 19.060232162475586,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-10-16T14:50:10.781031+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.505149841308594,
-      "lon": 19.136693954467773,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-16T14:50:10.781069+02:00",
       "kulcs": "V2116",
@@ -260000,6 +259974,32 @@
       "lon": 19.090917587280273,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-10-17T01:05:24.076884+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.478233337402344,
+      "lon": 19.04846954345703,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-17T01:05:24.081054+02:00",
+      "kulcs": "PCC930",
+      "rendszam": "PCC930",
+      "vehicle_id": "7269",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.517486572265625,
+      "lon": 19.07763671875,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
     }
   ]
 }
