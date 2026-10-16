@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-17T01:38:28.338175+02:00",
+  "frissitve": "2026-10-17T01:38:56.549244+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:53:11.865222+02:00",
-      "kulcs": "480 003",
-      "rendszam": "480 003",
-      "vehicle_id": "915504800037",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.510379791259766,
-      "lon": 19.102500915527344,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.865671+02:00",
-      "kulcs": "415 002",
-      "rendszam": "415 002",
-      "vehicle_id": "945514150024",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S12",
-      "route_id": "S12",
-      "lat": 47.52363967895508,
-      "lon": 18.318660736083984,
-      "elozo_szoveg": "Oroszlány",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.866249+02:00",
-      "kulcs": "815 040",
-      "rendszam": "815 040",
-      "vehicle_id": "945518150400",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.52748107910156,
-      "lon": 19.091400146484375,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
     {
       "idopont": "2026-10-16T14:53:11.866600+02:00",
       "kulcs": "AOJM868",
@@ -260000,6 +259961,45 @@
       "lon": 19.103195190429688,
       "elozo_szoveg": "Pesterzsébeti lakótelep",
       "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-17T01:38:56.453153+02:00",
+      "kulcs": "AAGL277",
+      "rendszam": "AAGL277",
+      "vehicle_id": "277",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.48194885253906,
+      "lon": 19.052536010742188,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-17T01:38:56.453568+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.525543212890625,
+      "lon": 19.063854217529297,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-17T01:38:56.456577+02:00",
+      "kulcs": "T9106",
+      "rendszam": "T9106",
+      "vehicle_id": "7353",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50270462036133,
+      "lon": 19.11720848083496,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
