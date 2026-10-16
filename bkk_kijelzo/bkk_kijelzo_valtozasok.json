@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-17T01:34:20.897407+02:00",
+  "frissitve": "2026-10-17T01:34:47.967633+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:53:11.862034+02:00",
-      "kulcs": "V2242",
-      "rendszam": "V2242",
-      "vehicle_id": "7374",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.54730987548828,
-      "lon": 19.029037475585938,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.862104+02:00",
-      "kulcs": "V2250",
-      "rendszam": "V2250",
-      "vehicle_id": "7382",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.501094818115234,
-      "lon": 19.02409553527832,
-      "elozo_szoveg": "Alkotás utca ► Savoya Park",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.862160+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Piski utca",
-      "vonal_szam": "275",
-      "route_id": "2750",
-      "lat": 47.49163818359375,
-      "lon": 19.282686233520508,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Piski utca"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.862190+02:00",
-      "kulcs": "AOGF660",
-      "rendszam": "AOGF660",
-      "vehicle_id": "742",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.39628601074219,
-      "lon": 19.107284545898438,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.862327+02:00",
-      "kulcs": "RVY619",
-      "rendszam": "RVY619",
-      "vehicle_id": "7448",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.46445083618164,
-      "lon": 19.12641143798828,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-10-16T14:53:11.862395+02:00",
       "kulcs": "RVY707",
@@ -260000,6 +259935,71 @@
       "lon": 19.061904907226562,
       "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
       "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-10-17T01:34:47.872755+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50907897949219,
+      "lon": 19.095745086669922,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-17T01:34:47.872970+02:00",
+      "kulcs": "AADR760",
+      "rendszam": "AADR760",
+      "vehicle_id": "209",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46372985839844,
+      "lon": 19.130157470703125,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-17T01:34:47.876414+02:00",
+      "kulcs": "FLR700",
+      "rendszam": "FLR700",
+      "vehicle_id": "3114",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.4853515625,
+      "lon": 19.07140350341797,
+      "elozo_szoveg": "Határ út M ► Pestszentlőrinc",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-17T01:34:47.876947+02:00",
+      "kulcs": "PDB710",
+      "rendszam": "PDB710",
+      "vehicle_id": "7036",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.56044387817383,
+      "lon": 19.0908260345459,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-10-17T01:34:47.876976+02:00",
+      "kulcs": "PDN640",
+      "rendszam": "PDN640",
+      "vehicle_id": "7111",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.47963333129883,
+      "lon": 19.067203521728516,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
     }
   ]
 }
