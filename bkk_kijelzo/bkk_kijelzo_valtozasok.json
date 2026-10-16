@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-17T01:15:53.091111+02:00",
+  "frissitve": "2026-10-17T01:16:21.742531+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:51:42.221927+02:00",
-      "kulcs": "MPW603",
-      "rendszam": "MPW603",
-      "vehicle_id": "5590",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.435997009277344,
-      "lon": 19.13868522644043,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-10-16T14:51:42.221946+02:00",
-      "kulcs": "MPW604",
-      "rendszam": "MPW604",
-      "vehicle_id": "5591",
-      "vehicle_label": "Market Central Ferihegy",
-      "vonal_szam": "236",
-      "route_id": "2360",
-      "lat": 47.43545150756836,
-      "lon": 19.221893310546875,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Vecsés, Market Central Ferihegy",
-      "uj_szoveg": "Vecsés, Market Central Ferihegy"
-    },
     {
       "idopont": "2026-10-16T14:51:42.221987+02:00",
       "kulcs": "MPW612",
@@ -260000,6 +259974,32 @@
       "lon": 19.043882369995117,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-17T01:16:21.635054+02:00",
+      "kulcs": "T9106",
+      "rendszam": "T9106",
+      "vehicle_id": "7353",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5040283203125,
+      "lon": 19.13669776916504,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-17T01:16:21.635114+02:00",
+      "kulcs": "RVY709",
+      "rendszam": "RVY709",
+      "vehicle_id": "7458",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.43275451660156,
+      "lon": 19.261516571044922,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
