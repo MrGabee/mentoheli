@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T03:43:45.776226+02:00",
+  "frissitve": "2026-10-16T03:44:17.637151+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:16:29.933373+02:00",
-      "kulcs": "PDN602",
-      "rendszam": "PDN602",
-      "vehicle_id": "7074",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.46468734741211,
-      "lon": 19.01774787902832,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budatétény vasútáll. (Campona)"
-    },
-    {
-      "idopont": "2026-10-15T15:16:29.933422+02:00",
-      "kulcs": "AOCT677",
-      "rendszam": "AOCT677",
-      "vehicle_id": "708",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.524314880371094,
-      "lon": 19.11786651611328,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
-    {
-      "idopont": "2026-10-15T15:16:29.933446+02:00",
-      "kulcs": "PDN613",
-      "rendszam": "PDN613",
-      "vehicle_id": "7084",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.42619323730469,
-      "lon": 19.078277587890625,
-      "elozo_szoveg": "Horgásztanya ► Szentmiklósi út",
-      "uj_szoveg": "Szentmiklósi út ► Szent Imre tér"
-    },
     {
       "idopont": "2026-10-15T15:16:29.933617+02:00",
       "kulcs": "PDN633",
@@ -260000,6 +259961,45 @@
       "lon": 19.125503540039062,
       "elozo_szoveg": "Rákospalota, Kossuth utca",
       "uj_szoveg": "Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-10-16T03:44:17.549433+02:00",
+      "kulcs": "PKN607",
+      "rendszam": "PKN607",
+      "vehicle_id": "7196",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.501407623291016,
+      "lon": 19.12061882019043,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-10-16T03:44:17.549783+02:00",
+      "kulcs": "SKR818",
+      "rendszam": "SKR818",
+      "vehicle_id": "7704",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55029296875,
+      "lon": 19.04202651977539,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-16T03:44:17.549934+02:00",
+      "kulcs": "SKN821",
+      "rendszam": "SKN821",
+      "vehicle_id": "7789",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.568206787109375,
+      "lon": 19.126148223876953,
+      "elozo_szoveg": "Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
     }
   ]
 }
