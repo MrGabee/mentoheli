@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-17T01:32:48.108614+02:00",
+  "frissitve": "2026-10-17T01:33:20.752886+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:53:11.860610+02:00",
-      "kulcs": "PDB718",
-      "rendszam": "PDB718",
-      "vehicle_id": "7044",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.523681640625,
-      "lon": 18.99412727355957,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.860866+02:00",
-      "kulcs": "PDN611",
-      "rendszam": "PDN611",
-      "vehicle_id": "7082",
-      "vehicle_label": "Szentmiklósi út",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.430999755859375,
-      "lon": 19.070758819580078,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Horgásztanya ► Szentmiklósi út"
-    },
-    {
-      "idopont": "2026-10-16T14:53:11.860888+02:00",
-      "kulcs": "PDN613",
-      "rendszam": "PDN613",
-      "vehicle_id": "7084",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "179",
-      "route_id": "1790",
-      "lat": 47.46650314331055,
-      "lon": 19.075803756713867,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Csepeli Kórház ► Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-10-16T14:53:11.860959+02:00",
       "kulcs": "PDN621",
@@ -260000,6 +259961,45 @@
       "lon": 19.091339111328125,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Esztergom"
+    },
+    {
+      "idopont": "2026-10-17T01:33:20.663009+02:00",
+      "kulcs": "V2041",
+      "rendszam": "V2041",
+      "vehicle_id": "2041",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47408676147461,
+      "lon": 19.047048568725586,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-17T01:33:20.666501+02:00",
+      "kulcs": "FJX190",
+      "rendszam": "FJX190",
+      "vehicle_id": "3010",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519325256347656,
+      "lon": 19.038158416748047,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-17T01:33:20.667588+02:00",
+      "kulcs": "415 021",
+      "rendszam": "415 021",
+      "vehicle_id": "945514150214",
+      "vehicle_label": "Győr",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.46371841430664,
+      "lon": 19.02042007446289,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Győr"
     }
   ]
 }
