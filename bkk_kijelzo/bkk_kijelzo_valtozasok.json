@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T02:58:50.363726+02:00",
+  "frissitve": "2026-10-16T02:59:18.691052+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:12:33.164877+02:00",
-      "kulcs": "T0602",
-      "rendszam": "T0602",
-      "vehicle_id": "4286",
-      "vehicle_label": "Erzsébet k.né útja, alulj.",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.50631332397461,
-      "lon": 19.050870895385742,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Erzsébet királyné útja, aluljáró"
-    },
-    {
-      "idopont": "2026-10-15T15:12:33.164962+02:00",
-      "kulcs": "T0616",
-      "rendszam": "T0616",
-      "vehicle_id": "4300",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53643035888672,
-      "lon": 19.107168197631836,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-10-15T15:12:33.165266+02:00",
-      "kulcs": "V1359",
-      "rendszam": "V1359",
-      "vehicle_id": "4460",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49858093261719,
-      "lon": 19.082666397094727,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-15T15:12:33.165335+02:00",
       "kulcs": "V1401",
@@ -260000,6 +259961,45 @@
       "lon": 19.008682250976562,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-16T02:59:18.624159+02:00",
+      "kulcs": "FLR743",
+      "rendszam": "FLR743",
+      "vehicle_id": "3157",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.44167709350586,
+      "lon": 19.186071395874023,
+      "elozo_szoveg": "Pestszentlőrinc",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-16T02:59:18.624652+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.406673431396484,
+      "lon": 19.182889938354492,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-10-16T02:59:18.624765+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.501678466796875,
+      "lon": 19.12296485900879,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
     }
   ]
 }
