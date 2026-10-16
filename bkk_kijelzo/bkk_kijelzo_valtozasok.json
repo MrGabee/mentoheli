@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T04:14:36.483566+02:00",
+  "frissitve": "2026-10-16T04:15:15.681340+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:21:49.919027+02:00",
-      "kulcs": "AAHY853",
-      "rendszam": "AAHY853",
-      "vehicle_id": "415",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.51997375488281,
-      "lon": 19.091205596923828,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-15T15:21:49.919077+02:00",
-      "kulcs": "AAHY857",
-      "rendszam": "AAHY857",
-      "vehicle_id": "419",
-      "vehicle_label": "Üres kijelző",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.533103942871094,
-      "lon": 19.067216873168945,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Göncz Árpád városkp. M"
-    },
-    {
-      "idopont": "2026-10-15T15:21:49.919263+02:00",
-      "kulcs": "T0712",
-      "rendszam": "T0712",
-      "vehicle_id": "4314",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53644561767578,
-      "lon": 19.107107162475586,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-10-15T15:21:49.920667+02:00",
       "kulcs": "V1443",
@@ -260000,6 +259961,45 @@
       "lon": 19.151809692382812,
       "elozo_szoveg": "Vác",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-16T04:15:15.593466+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542667388916016,
+      "lon": 18.96477508544922,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-16T04:15:15.594665+02:00",
+      "kulcs": "AOFL213",
+      "rendszam": "AOFL213",
+      "vehicle_id": "800",
+      "vehicle_label": "Pince köz-Donát utca",
+      "vonal_szam": "243",
+      "route_id": "2430",
+      "lat": 47.59466552734375,
+      "lon": 19.051528930664062,
+      "elozo_szoveg": "Pince köz ► Donát utca",
+      "uj_szoveg": "Donát utca ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-16T04:15:15.594888+02:00",
+      "kulcs": "975-688-976-977-689-978",
+      "rendszam": "975-688-976-977-689-978",
+      "vehicle_id": "905516569753-905536466881-905516569761-905516569779-905536466899-905516569787",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.66038131713867,
+      "lon": 19.07479476928711,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
     }
   ]
 }
