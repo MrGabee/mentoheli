@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-17T01:43:32.941030+02:00",
+  "frissitve": "2026-10-17T01:44:04.741036+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:54:19.802066+02:00",
-      "kulcs": "MUT895",
-      "rendszam": "MUT895",
-      "vehicle_id": "5948",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.43177795410156,
-      "lon": 19.173778533935547,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-16T14:54:19.802081+02:00",
-      "kulcs": "MUT896",
-      "rendszam": "MUT896",
-      "vehicle_id": "5949",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.41304016113281,
-      "lon": 19.201887130737305,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-10-16T14:54:19.802212+02:00",
-      "kulcs": "NBW006",
-      "rendszam": "NBW006",
-      "vehicle_id": "5976",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.50135803222656,
-      "lon": 19.136022567749023,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Madárdomb"
-    },
     {
       "idopont": "2026-10-16T14:54:19.802228+02:00",
       "kulcs": "NBW007",
@@ -260000,6 +259961,45 @@
       "lon": 19.06603240966797,
       "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-17T01:44:04.668114+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.43123245239258,
+      "lon": 18.92805290222168,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-17T01:44:04.671092+02:00",
+      "kulcs": "MUT885",
+      "rendszam": "MUT885",
+      "vehicle_id": "5938",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48683166503906,
+      "lon": 19.067859649658203,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-17T01:44:04.671834+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.5469970703125,
+      "lon": 19.142192840576172,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
