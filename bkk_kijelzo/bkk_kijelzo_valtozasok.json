@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-16T02:28:08.632045+02:00",
+  "frissitve": "2026-10-16T02:28:38.737688+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:10:01.984039+02:00",
-      "kulcs": "V4259",
-      "rendszam": "V4259",
-      "vehicle_id": "4918",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.51609420776367,
-      "lon": 18.999065399169922,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Márton Áron tér"
-    },
-    {
-      "idopont": "2026-10-15T15:10:01.984197+02:00",
-      "kulcs": "V4332",
-      "rendszam": "V4332",
-      "vehicle_id": "4991",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49208450317383,
-      "lon": 19.1397762298584,
-      "elozo_szoveg": "Salgótarjáni utca ► Blaha Lujza tér M",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-10-15T15:10:01.984486+02:00",
       "kulcs": "V1606",
@@ -260000,6 +259974,32 @@
       "lon": 19.023386001586914,
       "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-16T02:28:38.651059+02:00",
+      "kulcs": "AAGL261",
+      "rendszam": "AAGL261",
+      "vehicle_id": "261",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50705337524414,
+      "lon": 18.921611785888672,
+      "elozo_szoveg": "Budakeszi",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-16T02:28:38.653698+02:00",
+      "kulcs": "SKN821",
+      "rendszam": "SKN821",
+      "vehicle_id": "7789",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50746536254883,
+      "lon": 19.025001525878906,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Rákospalota, MEDIMPEX"
     }
   ]
 }
