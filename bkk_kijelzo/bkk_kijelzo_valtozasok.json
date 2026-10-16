@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T02:59:18.691052+02:00",
+  "frissitve": "2026-10-16T02:59:45.499670+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:12:33.165335+02:00",
-      "kulcs": "V1401",
-      "rendszam": "V1401",
-      "vehicle_id": "4473",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.46571350097656,
-      "lon": 19.02189826965332,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-15T15:12:33.165583+02:00",
-      "kulcs": "V1514",
-      "rendszam": "V1514",
-      "vehicle_id": "4566",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.54228591918945,
-      "lon": 19.12138557434082,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-15T15:12:33.165774+02:00",
-      "kulcs": "V1589",
-      "rendszam": "V1589",
-      "vehicle_id": "4641",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.495628356933594,
-      "lon": 19.07275390625,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
     {
       "idopont": "2026-10-15T15:12:33.166061+02:00",
       "kulcs": "V4072",
@@ -260000,6 +259961,45 @@
       "lon": 19.12296485900879,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-16T02:59:45.447821+02:00",
+      "kulcs": "AADI656",
+      "rendszam": "AADI656",
+      "vehicle_id": "155",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50152587890625,
+      "lon": 19.13619613647461,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-16T02:59:45.447860+02:00",
+      "kulcs": "AADR709",
+      "rendszam": "AADR709",
+      "vehicle_id": "177",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44381332397461,
+      "lon": 19.092864990234375,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T02:59:45.449123+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.567405700683594,
+      "lon": 19.124895095825195,
+      "elozo_szoveg": "Rákospalota, Mélyfúró utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
     }
   ]
 }
