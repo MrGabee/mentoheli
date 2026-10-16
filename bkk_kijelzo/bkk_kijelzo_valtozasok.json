@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-16T03:53:52.641402+02:00",
+  "frissitve": "2026-10-16T03:54:25.148992+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:17:41.879801+02:00",
-      "kulcs": "V1350",
-      "rendszam": "V1350",
-      "vehicle_id": "4452",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.499027252197266,
-      "lon": 19.082653045654297,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-15T15:17:41.879818+02:00",
-      "kulcs": "V1352",
-      "rendszam": "V1352",
-      "vehicle_id": "4453",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51274108886719,
-      "lon": 19.047727584838867,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-15T15:17:41.880051+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.512699127197266,
-      "lon": 19.04776954650879,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-15T15:17:41.880234+02:00",
-      "kulcs": "V1532",
-      "rendszam": "V1532",
-      "vehicle_id": "4584",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.53958511352539,
-      "lon": 19.14478302001953,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-10-15T15:17:41.880297+02:00",
       "kulcs": "V1567",
@@ -260000,6 +259948,58 @@
       "lon": 19.136707305908203,
       "elozo_szoveg": "Örs vezér tere M H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-16T03:54:25.051461+02:00",
+      "kulcs": "NTM430",
+      "rendszam": "NTM430",
+      "vehicle_id": "6498",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47463607788086,
+      "lon": 19.04671287536621,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-16T03:54:25.052028+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50846862792969,
+      "lon": 19.09498405456543,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-16T03:54:25.052269+02:00",
+      "kulcs": "1107-754-1108-1109-755-1110",
+      "rendszam": "1107-754-1108-1109-755-1110",
+      "vehicle_id": "905516561073-905536467541-905516561081-905516561099-905536467558-905516561107",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.66045379638672,
+      "lon": 19.074655532836914,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
+    },
+    {
+      "idopont": "2026-10-16T03:54:25.052534+02:00",
+      "kulcs": "415 058",
+      "rendszam": "415 058",
+      "vehicle_id": "945514150586",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G40",
+      "route_id": "G40",
+      "lat": 46.416351318359375,
+      "lon": 18.253070831298828,
+      "elozo_szoveg": "Dombóvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
