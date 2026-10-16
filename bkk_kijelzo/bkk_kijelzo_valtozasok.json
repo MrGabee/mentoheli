@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-16T02:43:16.248074+02:00",
+  "frissitve": "2026-10-16T02:43:45.904034+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:10:01.994369+02:00",
-      "kulcs": "815 010",
-      "rendszam": "815 010",
-      "vehicle_id": "945518150103",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.75954818725586,
-      "lon": 19.158170700073242,
-      "elozo_szoveg": "Vác",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-15T15:10:01.994480+02:00",
-      "kulcs": "AOIM032",
-      "rendszam": "AOIM032",
-      "vehicle_id": "952",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.54737854003906,
-      "lon": 19.14018440246582,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
-    {
-      "idopont": "2026-10-15T15:10:01.994561+02:00",
-      "kulcs": "AOIM040",
-      "rendszam": "AOIM040",
-      "vehicle_id": "960",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.472537994384766,
-      "lon": 18.998424530029297,
-      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-10-15T15:10:01.994635+02:00",
-      "kulcs": "AOIM048",
-      "rendszam": "AOIM048",
-      "vehicle_id": "969",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.50642395019531,
-      "lon": 19.02431869506836,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-10-15T15:11:15.774315+02:00",
-      "kulcs": "AONW959",
-      "rendszam": "AONW959",
-      "vehicle_id": "1026",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.5473747253418,
-      "lon": 19.142166137695312,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-15T15:11:15.774410+02:00",
       "kulcs": "AOLH516",
@@ -260000,6 +259935,71 @@
       "lon": 19.067806243896484,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T02:43:45.855755+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46406555175781,
+      "lon": 19.1293888092041,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-16T02:43:45.855867+02:00",
+      "kulcs": "NBW004",
+      "rendszam": "NBW004",
+      "vehicle_id": "5974",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.501365661621094,
+      "lon": 19.120132446289062,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-10-16T02:43:45.855994+02:00",
+      "kulcs": "PDB715",
+      "rendszam": "PDB715",
+      "vehicle_id": "7041",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51198959350586,
+      "lon": 19.056884765625,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-16T02:43:45.856011+02:00",
+      "kulcs": "PDB720",
+      "rendszam": "PDB720",
+      "vehicle_id": "7046",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46596908569336,
+      "lon": 19.15317153930664,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-16T02:43:45.856433+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54220199584961,
+      "lon": 19.151044845581055,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
     }
   ]
 }
