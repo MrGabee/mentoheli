@@ -85,6 +85,9 @@ SZOMBAT = 5
 PENTEK = 4
 
 # (kulcs, időpont, csak ezeken a napokon [0=hétfő] vagy None, szöveg(nap, allapot))
+# Holnapi véradás: 2026.10.16-án kivételesen 20:00-kor, egyébként 19:35-kor
+VERADAS_IDO = time(20, 0) if datetime.now(MAGYAR_TZ).strftime("%Y-%m-%d") == "2026-10-16" else time(19, 35)
+
 MENETREND = [
     ("reggeli",       time(6, 30),  None,     lambda nap, a: reggeli_osszefoglalo.szoveg(nap)),
     ("otlet_keres",   time(7, 15),  None,     lambda nap, a: otlet_keres.szoveg(nap)),
@@ -98,7 +101,7 @@ MENETREND = [
     ("hetvege",       time(16, 35),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),
     ("kerulet_problema", time(17, 35), None, lambda nap, a: kerulet_problema.szoveg(nap)),
     ("kerdes",        time(18, 35),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
-    ("veradas_holnap", time(20, 0), None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
+    ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
 ]
 
