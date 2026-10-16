@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-16T02:00:13.179540+02:00",
+  "frissitve": "2026-10-16T02:00:52.325104+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:06:48.840885+02:00",
-      "kulcs": "AADR720",
-      "rendszam": "AADR720",
-      "vehicle_id": "189",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.518558502197266,
-      "lon": 19.033292770385742,
-      "elozo_szoveg": "Szemlőhegy",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-15T15:06:48.841214+02:00",
-      "kulcs": "AADR755",
-      "rendszam": "AADR755",
-      "vehicle_id": "204",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "7E",
-      "route_id": "0075",
-      "lat": 47.547080993652344,
-      "lon": 19.142057418823242,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-10-15T15:06:48.841289+02:00",
-      "kulcs": "AAGL253",
-      "rendszam": "AAGL253",
-      "vehicle_id": "253",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "240",
-      "route_id": "2400",
-      "lat": 47.45571517944336,
-      "lon": 18.94088363647461,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-15T15:06:48.841398+02:00",
-      "kulcs": "AAGL264",
-      "rendszam": "AAGL264",
-      "vehicle_id": "264",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "88",
-      "route_id": "0880",
-      "lat": 47.46436309814453,
-      "lon": 19.01857566833496,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint ► Budatétény vasútállomás (Campona)"
-    },
     {
       "idopont": "2026-10-15T15:06:48.841898+02:00",
       "kulcs": "FLR719",
@@ -260000,6 +259948,58 @@
       "lon": 19.008419036865234,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-16T02:00:52.244940+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45587921142578,
+      "lon": 18.940439224243164,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-16T02:00:52.245017+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50876998901367,
+      "lon": 19.095375061035156,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-16T02:00:52.245092+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.427494049072266,
+      "lon": 19.15959358215332,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-16T02:00:52.245316+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.484500885009766,
+      "lon": 19.074188232421875,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
