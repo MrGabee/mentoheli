@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-16T03:44:48.161681+02:00",
+  "frissitve": "2026-10-16T03:45:18.987105+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:16:29.933764+02:00",
-      "kulcs": "T0622",
-      "rendszam": "T0622",
-      "vehicle_id": "715",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51665115356445,
-      "lon": 19.092601776123047,
-      "elozo_szoveg": "Erzsébet k.né útja, alulj.",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-15T15:16:29.933814+02:00",
-      "kulcs": "PHG638",
-      "rendszam": "PHG638",
-      "vehicle_id": "7162",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.50537109375,
-      "lon": 19.136356353759766,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-15T15:16:29.933872+02:00",
-      "kulcs": "PHG646",
-      "rendszam": "PHG646",
-      "vehicle_id": "7170",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.540096282958984,
-      "lon": 19.25307273864746,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
-    {
-      "idopont": "2026-10-15T15:16:29.934018+02:00",
-      "kulcs": "PKN604",
-      "rendszam": "PKN604",
-      "vehicle_id": "7193",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.46295928955078,
-      "lon": 19.149267196655273,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-10-15T15:16:29.934179+02:00",
-      "kulcs": "PMP912",
-      "rendszam": "PMP912",
-      "vehicle_id": "7229",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.464744567871094,
-      "lon": 19.017780303955078,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-10-15T15:16:29.934204+02:00",
       "kulcs": "PMP915",
@@ -260000,6 +259935,71 @@
       "lon": 19.066076278686523,
       "elozo_szoveg": "Békásmegyer",
       "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-16T03:45:18.872183+02:00",
+      "kulcs": "FLR743",
+      "rendszam": "FLR743",
+      "vehicle_id": "3157",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46247100830078,
+      "lon": 19.133108139038086,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-16T03:45:18.872698+02:00",
+      "kulcs": "AAMH654",
+      "rendszam": "AAMH654",
+      "vehicle_id": "497",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699783325195,
+      "lon": 19.055706024169922,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-16T03:45:18.872882+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47975540161133,
+      "lon": 19.255504608154297,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-16T03:45:18.872957+02:00",
+      "kulcs": "NTM430",
+      "rendszam": "NTM430",
+      "vehicle_id": "6498",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.448116302490234,
+      "lon": 19.037656784057617,
+      "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-16T03:45:18.873121+02:00",
+      "kulcs": "PKN622",
+      "rendszam": "PKN622",
+      "vehicle_id": "7211",
+      "vehicle_label": "Rákoskeresztúr, városkp.",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54679870605469,
+      "lon": 19.14249610900879,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
     }
   ]
 }
