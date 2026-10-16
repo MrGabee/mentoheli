@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-16T03:00:48.676136+02:00",
+  "frissitve": "2026-10-16T03:01:18.062786+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:12:33.167366+02:00",
-      "kulcs": "MPW604",
-      "rendszam": "MPW604",
-      "vehicle_id": "5591",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "166",
-      "route_id": "1660",
-      "lat": 47.43682098388672,
-      "lon": 19.222671508789062,
-      "elozo_szoveg": "Ferihegy vasútállomás",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-10-15T15:12:33.167605+02:00",
-      "kulcs": "MOS258",
-      "rendszam": "MOS258",
-      "vehicle_id": "5711",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.3923454284668,
-      "lon": 19.22456932067871,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-15T15:12:33.167627+02:00",
-      "kulcs": "MOS261",
-      "rendszam": "MOS261",
-      "vehicle_id": "5714",
-      "vehicle_label": "Gyál, Bem József utca",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.46427917480469,
-      "lon": 19.12696647644043,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Bem József utca"
-    },
     {
       "idopont": "2026-10-15T15:12:33.169024+02:00",
       "kulcs": "V2208",
@@ -260000,6 +259961,45 @@
       "lon": 19.071447372436523,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T03:01:18.012188+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.429771423339844,
+      "lon": 19.168487548828125,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-16T03:01:18.012436+02:00",
+      "kulcs": "SKR726",
+      "rendszam": "SKR726",
+      "vehicle_id": "7675",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45073318481445,
+      "lon": 19.1606388092041,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-16T03:01:18.012508+02:00",
+      "kulcs": "SKR820",
+      "rendszam": "SKR820",
+      "vehicle_id": "7706",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48952865600586,
+      "lon": 19.062040328979492,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
     }
   ]
 }
