@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-17T01:01:58.467398+02:00",
+  "frissitve": "2026-10-17T01:02:32.559481+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:50:10.778696+02:00",
-      "kulcs": "T9010",
-      "rendszam": "T9010",
-      "vehicle_id": "6149",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50417709350586,
-      "lon": 19.13671112060547,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-16T14:50:10.778876+02:00",
-      "kulcs": "NGC142",
-      "rendszam": "NGC142",
-      "vehicle_id": "6217",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54514694213867,
-      "lon": 18.96364974975586,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Pesthidegkút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-16T14:50:10.778931+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.506832122802734,
-      "lon": 19.023494720458984,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-16T14:50:10.779614+02:00",
       "kulcs": "AOCT655",
@@ -260000,6 +259961,45 @@
       "lon": 19.133289337158203,
       "elozo_szoveg": "Budapest-Keleti",
       "uj_szoveg": "Hatvan"
+    },
+    {
+      "idopont": "2026-10-17T01:02:32.491373+02:00",
+      "kulcs": "FLR727",
+      "rendszam": "FLR727",
+      "vehicle_id": "3141",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.517704010009766,
+      "lon": 19.038681030273438,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-17T01:02:32.491659+02:00",
+      "kulcs": "NBW003",
+      "rendszam": "NBW003",
+      "vehicle_id": "5973",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52366638183594,
+      "lon": 18.9931640625,
+      "elozo_szoveg": "Bosnyák tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-17T01:02:32.491749+02:00",
+      "kulcs": "NNE057",
+      "rendszam": "NNE057",
+      "vehicle_id": "6453",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507633209228516,
+      "lon": 19.025402069091797,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
