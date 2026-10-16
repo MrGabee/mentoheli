@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-16T02:02:25.971755+02:00",
+  "frissitve": "2026-10-16T02:02:56.730411+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-15T15:06:48.844269+02:00",
-      "kulcs": "V1402",
-      "rendszam": "V1402",
-      "vehicle_id": "4474",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.497352600097656,
-      "lon": 19.05556869506836,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-15T15:06:48.844289+02:00",
-      "kulcs": "V1404",
-      "rendszam": "V1404",
-      "vehicle_id": "4475",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49660873413086,
-      "lon": 19.05699920654297,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
     {
       "idopont": "2026-10-15T15:06:48.845187+02:00",
       "kulcs": "V4150",
@@ -260000,6 +259974,32 @@
       "lon": 19.142057418823242,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-16T02:02:56.643628+02:00",
+      "kulcs": "PDN640",
+      "rendszam": "PDN640",
+      "vehicle_id": "7111",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.44218063354492,
+      "lon": 19.018484115600586,
+      "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
+      "uj_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H"
+    },
+    {
+      "idopont": "2026-10-16T02:02:56.643949+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.514434814453125,
+      "lon": 19.097511291503906,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
     }
   ]
 }
