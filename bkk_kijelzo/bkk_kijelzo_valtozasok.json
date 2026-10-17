@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-18T01:02:17.731536+02:00",
+  "frissitve": "2026-10-18T01:02:50.848107+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:40:00.999106+02:00",
-      "kulcs": "T9126",
-      "rendszam": "T9126",
-      "vehicle_id": "7865",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49441146850586,
-      "lon": 19.059978485107422,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-17T12:40:00.999157+02:00",
-      "kulcs": "AOFL203",
-      "rendszam": "AOFL203",
-      "vehicle_id": "787",
-      "vehicle_label": "Kamaraerdő",
-      "vonal_szam": "187",
-      "route_id": "1870",
-      "lat": 47.464027404785156,
-      "lon": 19.018783569335938,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Kamaraerdő"
-    },
-    {
-      "idopont": "2026-10-17T12:40:00.999541+02:00",
-      "kulcs": "AOFL209",
-      "rendszam": "AOFL209",
-      "vehicle_id": "795",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "183",
-      "route_id": "1830",
-      "lat": 47.4398307800293,
-      "lon": 19.211936950683594,
-      "elozo_szoveg": "Szemeretelep vasútállomás",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-10-17T12:40:00.999592+02:00",
-      "kulcs": "AOFL214",
-      "rendszam": "AOFL214",
-      "vehicle_id": "801",
-      "vehicle_label": "Regőczi István tér",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.507694244384766,
-      "lon": 19.024641036987305,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Regőczi István tér"
-    },
-    {
-      "idopont": "2026-10-17T12:40:00.999710+02:00",
-      "kulcs": "AOFL227",
-      "rendszam": "AOFL227",
-      "vehicle_id": "814",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54663848876953,
-      "lon": 19.017122268676758,
-      "elozo_szoveg": "Máramaros út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
     {
       "idopont": "2026-10-17T12:40:00.999790+02:00",
       "kulcs": "AOFL240",
@@ -260000,6 +259935,71 @@
       "lon": 19.03819465637207,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-18T01:02:50.759813+02:00",
+      "kulcs": "FJX190",
+      "rendszam": "FJX190",
+      "vehicle_id": "3010",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52649688720703,
+      "lon": 19.038232803344727,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-18T01:02:50.761280+02:00",
+      "kulcs": "AAMH616",
+      "rendszam": "AAMH616",
+      "vehicle_id": "459",
+      "vehicle_label": "Rákospalota, Mélyfúró u.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.567405700683594,
+      "lon": 19.124876022338867,
+      "elozo_szoveg": "Rákospalota, Mélyfúró utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-18T01:02:50.761434+02:00",
+      "kulcs": "MUT885",
+      "rendszam": "MUT885",
+      "vehicle_id": "5938",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45145034790039,
+      "lon": 19.158979415893555,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-18T01:02:50.761687+02:00",
+      "kulcs": "AILJ863",
+      "rendszam": "AILJ863",
+      "vehicle_id": "670",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507484436035156,
+      "lon": 19.025588989257812,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-18T01:02:50.761919+02:00",
+      "kulcs": "PCC933",
+      "rendszam": "PCC933",
+      "vehicle_id": "7272",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59852981567383,
+      "lon": 19.121294021606445,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Káp.megyer, Mogyoródi-p."
     }
   ]
 }
