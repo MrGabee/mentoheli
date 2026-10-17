@@ -6,32 +6,45 @@ on:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Források
         run: |
           python3 - <<'PY'
-          import urllib.request, re
+          import urllib.request, re, html
+          from concurrent.futures import ThreadPoolExecutor
           def get(u):
               r = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safari/537.36"})
               with urllib.request.urlopen(r, timeout=25) as f:
                   return f.status, f.read().decode("utf-8", "replace")
-          s, t = get("https://www.csepelsc.hu/")
-          print("CSEPELSC NYERS:", t)
-          s, t = get("https://adatbank.mlsz.hu/")
-          print("ADATBANK LINKEK:", sorted(set(re.findall(r'href="(https://adatbank\.mlsz\.hu/[^"]+)"', t)))[:120])
-          urls = [
-            "https://hunfoci.hu/noi-nb2/noi-nb2-keleti-csoport-2026-2027-5-fordulo.html",
-            "https://adatbank.mlsz.hu/league/62/0/31786/1.html",
-          ]
-          for u in urls:
+          def szoveg(t):
+              t = re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", t)
+              return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", t)))
+          for u in ["https://www.csepelsc.com/", "https://csepelsc.com/"]:
               try:
                   s, t = get(u)
-                  links = sorted(set(l for l in re.findall(r'href="([^"]+)"', t) if "csepel" in l.lower()))[:40]
-                  ctx = [t[max(0,m.start()-120):m.start()+120].replace("\n"," ") for m in re.finditer("(?i)csepel", t)][:5]
-                  print("=====", u, s, len(t), "csepel:", t.count("Csepel"))
-                  print("LINKS", links)
-                  for c in ctx: print("CTX", re.sub(r"<[^>]+>"," ",c))
+                  print("=====", u, s, len(t))
+                  print("LINKEK:", sorted(set(re.findall(r'href="([^"#]+)"', t)))[:150])
+                  print("SZOVEG:", szoveg(t)[:3000])
+                  break
               except Exception as e:
                   print("=====", u, "HIBA", e)
+          def liga(i):
+              u = f"https://adatbank.mlsz.hu/league/67/0/{i}/1.html"
+              try:
+                  s, t = get(u)
+              except Exception as e:
+                  return None
+              if "csepel" not in t.lower():
+                  return None
+              cim = re.search(r"<title>(.*?)</title>", t, re.S)
+              klub = sorted(set(re.findall(r'href="(https://adatbank\.mlsz\.hu/club/[^"]+)"[^>]*>[^<]*(?:<[^>]+>)*[^<]*[Cc][Ss][Ee][Pp][Ee][Ll]', t)))[:5]
+              ctx = [szoveg(t[max(0,m.start()-200):m.start()+200]) for m in re.finditer("(?i)csepel", t)][:3]
+              return (u, cim.group(1).strip() if cim else "", klub, ctx)
+          with ThreadPoolExecutor(16) as ex:
+              for r in ex.map(liga, range(33450, 33900)):
+                  if r:
+                      print("#####", r[0], "|", r[1])
+                      print("   KLUB", r[2])
+                      for c in r[3]: print("   CTX", c[:300])
           PY
