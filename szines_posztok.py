@@ -123,9 +123,23 @@ def ment_allapot(allapot):
         json.dump(allapot, f, ensure_ascii=False, indent=2)
 
 
+# Csendes időszakok (helyi idő): ilyenkor nem megy ki színes poszt, mert Gábor
+# kézzel tesz ki valamit; az esedékes poszt utána, a KESES_ORA-n belül megy ki.
+CSENDES_IDOSZAKOK = [
+    ("2026-10-17 20:10", "2026-10-17 20:55"),  # megosztott bejegyzés 20:30-kor
+]
+
+
+def csendes(most):
+    t = most.strftime("%Y-%m-%d %H:%M")
+    return any(tol <= t < ig for tol, ig in CSENDES_IDOSZAKOK)
+
+
 def esedekes(most, allapot):
     """A most kimenő posztok kulcsai, időrendben."""
     ma = most.date().isoformat()
+    if csendes(most):
+        return []
     lista = []
     for kulcs, ido, napok, _ in MENETREND:
         if napok is not None and most.weekday() not in napok:
