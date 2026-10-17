@@ -30,6 +30,7 @@ import hivatali_hirek
 import otlet_keres
 import kerulet_problema
 import olvasoi_level
+import csepeli_sport
 import poszt_valtozatos
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
@@ -96,6 +97,8 @@ MENETREND = [
     ("olvasoi_level", time(14, 30),  None,     lambda nap, a: olvasoi_level.szoveg(nap, a)),
     ("erdekesseg",    time(12, 50),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
     ("hivatali",      time(11, 35), None,     lambda nap, a: hivatali_hirek.szoveg(nap, a)),
+    ("sport_eredmeny", time(9, 15),  {HETFO},  lambda nap, a: csepeli_sport.eredmeny_szoveg(nap)),
+    ("sport_elozetes", time(15, 35), {PENTEK}, lambda nap, a: csepeli_sport.elozetes_szoveg(nap)),
     ("veradas",       time(15, 35),  {HETFO},  lambda nap, a: veradas.heti_szoveg(nap)),
     ("allasok",       time(15, 35),  {KEDD, CSUTORTOK, SZOMBAT}, lambda nap, a: allasok.heti_szoveg(nap, a)),
     ("hetvege",       time(16, 35),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),

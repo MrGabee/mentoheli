@@ -8,35 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Források
+      - uses: actions/checkout@v4
+      - name: Próba (nem posztol)
         run: |
-          python3 - <<'PY'
-          import urllib.request, re, html
-          from concurrent.futures import ThreadPoolExecutor
-          def get(u):
-              r = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safari/537.36"})
-              with urllib.request.urlopen(r, timeout=25) as f:
-                  return f.status, f.read().decode("utf-8", "replace")
-          s, t = get("https://adatbank.mlsz.hu/club/67/0/33753/1/330199.html")
-          for m in list(re.finditer(r'match/67/5/33753/\d+/\d+\.html', t))[:3]:
-              print("----- MECCS BLOKK")
-              print(re.sub(r"\n\s*\n+", "\n", t[max(0,m.start()-1500):m.start()+1200]))
-          i = t.find("többi csapat")
-          print("----- TOBBI:", t[max(0,i-800):i+200])
-          s, t = get("https://adatbank.mlsz.hu/match/2187785.html")
-          for m in list(re.finditer(r"(?i)csepel sc", t))[:4]:
-              print("----- NB3 MECCS:", re.sub(r"\n\s*\n+", "\n", t[max(0,m.start()-700):m.start()+700]))
-          def liga(i):
-              try:
-                  s, t = get(f"https://adatbank.mlsz.hu/league/67/0/{i}/1.html")
-              except Exception:
-                  return None
-              if "csepel" not in t.lower():
-                  return None
-              cim = re.search(r"<title>(.*?)</title>", t, re.S)
-              csap = sorted(set(re.findall(r"club/67/\d/%d/\d+/(\d+)\.html'?\"?[^>]*>\s*\d*\s*(CSEPEL[^<]*)" % i, t, re.I)))
-              return i, cim.group(1).strip() if cim else "", csap
-          with ThreadPoolExecutor(16) as ex:
-              for r in ex.map(liga, list(range(33300, 33450)) + list(range(33900, 34400))):
-                  if r: print("#####", r)
-          PY
+          pip install -q requests tzdata
+          python csepeli_sport.py elozetes
+          python -c "
+          import csepeli_sport as cs
+          from datetime import date
+          m = cs.osszes_meccs()
+          print(cs.eredmeny_szoveg(date(2026, 10, 19), m))
+          print(cs.elozetes_szoveg(date(2026, 10, 23), m))
+          "
