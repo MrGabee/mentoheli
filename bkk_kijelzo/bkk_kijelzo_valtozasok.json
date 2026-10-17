@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-17T03:35:05.870663+02:00",
+  "frissitve": "2026-10-17T03:35:36.270438+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T15:05:14.755195+02:00",
-      "kulcs": "STZ847",
-      "rendszam": "STZ847",
-      "vehicle_id": "7802",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.446231842041016,
-      "lon": 18.905845642089844,
-      "elozo_szoveg": "Törökbálint vasútállomás ► Nyár utca",
-      "uj_szoveg": "Nyár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-16T15:05:14.755443+02:00",
-      "kulcs": "T9120",
-      "rendszam": "T9120",
-      "vehicle_id": "7859",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.501216888427734,
-      "lon": 19.107770919799805,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-16T15:05:14.755576+02:00",
       "kulcs": "T9137",
@@ -260000,6 +259974,32 @@
       "lon": 21.484790802001953,
       "elozo_szoveg": "Debrecen",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-17T03:35:36.180621+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Telki-Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.537899017333984,
+      "lon": 18.840280532836914,
+      "elozo_szoveg": "Telki ► Zsámbék",
+      "uj_szoveg": "Zsámbék"
+    },
+    {
+      "idopont": "2026-10-17T03:35:36.181245+02:00",
+      "kulcs": "AADI614",
+      "rendszam": "AADI614",
+      "vehicle_id": "57",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.462646484375,
+      "lon": 19.005516052246094,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
     }
   ]
 }
