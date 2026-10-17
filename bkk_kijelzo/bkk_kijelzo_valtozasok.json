@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T00:51:49.730405+02:00",
+  "frissitve": "2026-10-18T00:52:47.317709+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:38:07.096515+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.543243408203125,
-      "lon": 18.964008331298828,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Pesthidegkút"
-    },
-    {
-      "idopont": "2026-10-17T12:38:07.096748+02:00",
-      "kulcs": "AOFL237",
-      "rendszam": "AOFL237",
-      "vehicle_id": "825",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54015350341797,
-      "lon": 19.046295166015625,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Erdőalja út ► Máramaros út"
-    },
-    {
-      "idopont": "2026-10-17T12:38:07.096912+02:00",
-      "kulcs": "AOFL255",
-      "rendszam": "AOFL255",
-      "vehicle_id": "844",
-      "vehicle_label": "Ecseri út M - Aszódi utca",
-      "vonal_szam": "181",
-      "route_id": "1810",
-      "lat": 47.460662841796875,
-      "lon": 19.1148681640625,
-      "elozo_szoveg": "József Attila lakótelep, Távíró utca",
-      "uj_szoveg": "Ecseri út M ► Aszódi utca"
-    },
     {
       "idopont": "2026-10-17T12:38:07.097207+02:00",
       "kulcs": "AOGL312",
@@ -260000,6 +259961,45 @@
       "lon": 19.051544189453125,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-18T00:52:47.231213+02:00",
+      "kulcs": "FLR736",
+      "rendszam": "FLR736",
+      "vehicle_id": "3150",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.56120681762695,
+      "lon": 19.09086799621582,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-10-18T00:52:47.231251+02:00",
+      "kulcs": "FLR737",
+      "rendszam": "FLR737",
+      "vehicle_id": "3151",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.482818603515625,
+      "lon": 19.130464553833008,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-18T00:52:47.233156+02:00",
+      "kulcs": "T9142",
+      "rendszam": "T9142",
+      "vehicle_id": "7881",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "80",
+      "route_id": "4800",
+      "lat": 47.49977111816406,
+      "lon": 19.083154678344727,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
