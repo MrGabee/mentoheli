@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T01:06:03.924457+02:00",
+  "frissitve": "2026-10-18T01:06:30.959822+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:41:08.396541+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50658416748047,
-      "lon": 19.0240421295166,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:41:08.396631+02:00",
-      "kulcs": "AADI579",
-      "rendszam": "AADI579",
-      "vehicle_id": "63",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.54267501831055,
-      "lon": 18.964832305908203,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-10-17T12:41:08.397595+02:00",
-      "kulcs": "PDB387",
-      "rendszam": "PDB387",
-      "vehicle_id": "7069",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.49987030029297,
-      "lon": 19.10489845275879,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
     {
       "idopont": "2026-10-17T12:41:08.397682+02:00",
       "kulcs": "PDN611",
@@ -260000,6 +259961,45 @@
       "lon": 19.185941696166992,
       "elozo_szoveg": "Szarvas csárda tér",
       "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-18T01:06:30.871284+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.479557037353516,
+      "lon": 19.050952911376953,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-18T01:06:30.871793+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49919509887695,
+      "lon": 19.286752700805664,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-18T01:06:30.873225+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51730728149414,
+      "lon": 19.077533721923828,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
     }
   ]
 }
