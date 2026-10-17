@@ -39,6 +39,8 @@ NAPOK = ["hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vas
 NAGYBETUS_SZAVAK = {"FC", "SC", "SE", "SK", "AK", "FS", "ISSIMO", "UFC", "USE", "MTE",
                     "BSE", "TFSE", "VSE", "KSE", "MÁV", "NB", "BLSZ", "MLSZ", "HNP", "REAC",
                     "AFC", "LSE", "DSE", "ESE", "TC", "UTE"}
+# Rövid szavak, amelyek nem betűszók (a többi legfeljebb 4 betűs szó nagybetűs marad: BVSC, REAC)
+KISBETUS_ROVIDITESEK = {"BP", "SZ", "KFT", "ÚJ", "DÉL", "ÉSZAK", "KUPA", "NŐI", "VÁC", "PEST", "DUNA", "TATA", "EGER", "PÁPA", "BAJA", "GYŐR", "PÉCS", "MAKÓ", "ÓZD", "MÓR", "ÉRD", "SZOB", "ONGA"}
 ROMAI = re.compile(r"^(I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XV|XX|XXI)\.?$")
 
 
@@ -58,7 +60,9 @@ def szep_nev(nev):
         return nev
     def resz(szo):
         alap = szo.rstrip(".")
-        if alap in NAGYBETUS_SZAVAK or ROMAI.match(szo) or any(c.isdigit() for c in alap):
+        betuk = [c for c in alap if c.isalpha()]
+        if (alap in NAGYBETUS_SZAVAK or ROMAI.match(szo) or any(c.isdigit() for c in alap)
+                or (len(betuk) <= 4 and alap.strip('"') not in KISBETUS_ROVIDITESEK)):
             return szo
         return szo.capitalize()
     return " ".join(szo if re.match(r"^U-?\d+$", szo) else "-".join(resz(r) for r in szo.split("-"))
@@ -166,7 +170,11 @@ def elozetes_szoveg(ma, meccsek=None):
         if meccsek is None:
             return None
     vasarnap = ma + timedelta(days=(6 - ma.weekday()) % 7)
-    lista = [m for m in meccsek if ma <= m["nap"] <= vasarnap and m["golok"] is None][:MAX_MECCS]
+    most = datetime.now(MAGYAR_TZ)
+    # A mai, már elkezdődött meccsek kimaradnak
+    elmult = most.strftime("%H:%M") if ma == most.date() else ""
+    lista = [m for m in meccsek if ma <= m["nap"] <= vasarnap and m["golok"] is None
+             and not (m["nap"] == ma and m["ido"] and m["ido"].zfill(5) < elmult)][:MAX_MECCS]
     if not lista:
         return ""
     st = Stilus("sport_elozetes", ma.isoformat())
