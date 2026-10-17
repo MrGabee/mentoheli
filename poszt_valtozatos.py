@@ -85,6 +85,12 @@ CIMEK = {
         "⚽ KI MIKOR JÁTSZIK? HÉTVÉGI MECCSPROGRAM ⚽",
         "🥅 HÉTVÉGI MENETREND A CSEPELI CSAPATOKNAK 🥅",
     ],
+    "sport_hetkoz": [
+        "⚽ HOLNAP JÁTSZIK A CSEPEL SC ⚽",
+        "💚 HÉTKÖZI MECCS – HAJRÁ, CSEPEL! 🤍",
+        "🏟️ MECCSNAP JÖN HÉTKÖZBEN IS 🏟️",
+        "⚽ NE FELEDJÉTEK: HOLNAP MECCS! ⚽",
+    ],
     "sport_eredmeny": [
         "⚽ ÍGY JÁTSZOTTAK A CSEPELI CSAPATOK ⚽",
         "📋 HÉTVÉGI EREDMÉNYEK – CSEPELI FOCI 📋",
