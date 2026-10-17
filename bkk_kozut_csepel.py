@@ -41,9 +41,9 @@ MAX_POSZT_FUTASONKENT = 2
 KERULET_MINTA = re.compile(r"(?<![IVX])(XXI|XX)\.\s*,")
 # Kerületjelzés nélküli címekhez: csepeli, erzsébeti és a környéket érintő utak.
 KULCSSZAVAK = [
-    "csepel", "erzsébet", "weiss manfréd", "ráckevei", "rákóczi ferenc út",
+    "csepel", "pesterzsébet", "weiss manfréd", "ráckevei", "rákóczi ferenc út",
     "szent istván út", "corvin csomópont", "gerincút", "gubacsi", "határ út",
-    "nagykőrösi út", "soroksári út", "kvassay", "deák ferenc híd", "m0",
+    "nagykőrösi út", "soroksári út", "kvassay", "deák ferenc híd",
     "kis-duna", "szabadkikötő", "hollandi út", "szentlőrinci út", "helsinki út",
 ]
 
@@ -76,6 +76,9 @@ def kornyekbeli(cim):
     if KERULET_MINTA.search(cim):
         return True
     kis = cim.lower()
+    # Az M0-ból csak a déli szakasz érint minket (Deák Ferenc híd, Csepel-sziget).
+    if "m0" in kis and "déli" in kis:
+        return True
     return any(k in kis for k in KULCSSZAVAK)
 
 
