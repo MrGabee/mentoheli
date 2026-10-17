@@ -31,7 +31,7 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: 📦 Függőségek telepítése
-        run: pip install playwright==1.61.0 requests
+        run: pip install playwright==1.61.0 requests tzdata
 
       - name: 🚧 Csepeli közúti változások
         env:
