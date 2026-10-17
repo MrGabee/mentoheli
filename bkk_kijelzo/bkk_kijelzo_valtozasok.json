@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T00:31:55.896286+02:00",
+  "frissitve": "2026-10-18T00:32:31.497129+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:35:42.878591+02:00",
-      "kulcs": "SKR724",
-      "rendszam": "SKR724",
-      "vehicle_id": "7673",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46303176879883,
-      "lon": 19.149757385253906,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-17T12:35:42.878916+02:00",
-      "kulcs": "AOFL191",
-      "rendszam": "AOFL191",
-      "vehicle_id": "775",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "251",
-      "route_id": "2510",
-      "lat": 47.464393615722656,
-      "lon": 19.018856048583984,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Lomnici utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-10-17T12:35:42.879034+02:00",
-      "kulcs": "STZ868",
-      "rendszam": "STZ868",
-      "vehicle_id": "7823",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "140A",
-      "route_id": "1401",
-      "lat": 47.506385803222656,
-      "lon": 19.024351119995117,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
     {
       "idopont": "2026-10-17T12:35:42.879234+02:00",
       "kulcs": "T9132",
@@ -260000,6 +259961,45 @@
       "lon": 19.099018096923828,
       "elozo_szoveg": "Astoria M ► Máriaremete",
       "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-18T00:32:31.407027+02:00",
+      "kulcs": "V2020",
+      "rendszam": "V2020",
+      "vehicle_id": "2020",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47407531738281,
+      "lon": 19.04764747619629,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-18T00:32:31.408427+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Pécel, Kun József utca",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.50297164916992,
+      "lon": 19.136289596557617,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-10-18T00:32:31.408553+02:00",
+      "kulcs": "NNE064",
+      "rendszam": "NNE064",
+      "vehicle_id": "6460",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50746536254883,
+      "lon": 19.025094985961914,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
