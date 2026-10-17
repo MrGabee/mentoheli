@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-17T23:56:04.926638+02:00",
+  "frissitve": "2026-10-17T23:56:36.826139+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:31:35.518826+02:00",
-      "kulcs": "T9128",
-      "rendszam": "T9128",
-      "vehicle_id": "7867",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.50044631958008,
-      "lon": 19.05488395690918,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-10-17T12:31:35.519171+02:00",
-      "kulcs": "T8116",
-      "rendszam": "T8116",
-      "vehicle_id": "7895",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50001907348633,
-      "lon": 19.07914161682129,
-      "elozo_szoveg": "Keleti pályaudvar M ► Kápolna tér",
-      "uj_szoveg": "Kápolna tér"
-    },
-    {
-      "idopont": "2026-10-17T12:31:35.519199+02:00",
-      "kulcs": "T8117",
-      "rendszam": "T8117",
-      "vehicle_id": "7896",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.481346130371094,
-      "lon": 19.13611602783203,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-17T12:31:35.519419+02:00",
-      "kulcs": "AADI581",
-      "rendszam": "AADI581",
-      "vehicle_id": "81",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50670623779297,
-      "lon": 19.023963928222656,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
-    {
-      "idopont": "2026-10-17T12:31:35.519485+02:00",
-      "kulcs": "AOFL227",
-      "rendszam": "AOFL227",
-      "vehicle_id": "814",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.555198669433594,
-      "lon": 19.012020111083984,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
     {
       "idopont": "2026-10-17T12:31:35.519509+02:00",
       "kulcs": "AOFL230",
@@ -260000,6 +259935,71 @@
       "lon": 19.191139221191406,
       "elozo_szoveg": "Veres Péter út ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-17T23:56:36.771002+02:00",
+      "kulcs": "AOJM880",
+      "rendszam": "AOJM880",
+      "vehicle_id": "1006",
+      "vehicle_label": "Sósfürdő",
+      "vonal_szam": "151",
+      "route_id": "1510",
+      "lat": 47.48393249511719,
+      "lon": 19.127567291259766,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Sósfürdő"
+    },
+    {
+      "idopont": "2026-10-17T23:56:36.771567+02:00",
+      "kulcs": "FLR715",
+      "rendszam": "FLR715",
+      "vehicle_id": "3129",
+      "vehicle_label": "Vidor utca",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.48951721191406,
+      "lon": 19.243938446044922,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
+      "uj_szoveg": "Vidor utca"
+    },
+    {
+      "idopont": "2026-10-17T23:56:36.773176+02:00",
+      "kulcs": "AADI590",
+      "rendszam": "AADI590",
+      "vehicle_id": "71",
+      "vehicle_label": "Savoyai Jenő tér",
+      "vonal_szam": "141",
+      "route_id": "1410",
+      "lat": 47.43162536621094,
+      "lon": 19.004947662353516,
+      "elozo_szoveg": "Jégmadár utca ► Savoyai Jenő tér",
+      "uj_szoveg": "Savoyai Jenő tér"
+    },
+    {
+      "idopont": "2026-10-17T23:56:36.773649+02:00",
+      "kulcs": "SKR811",
+      "rendszam": "SKR811",
+      "vehicle_id": "7697",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "91",
+      "route_id": "0910",
+      "lat": 47.51470184326172,
+      "lon": 19.037757873535156,
+      "elozo_szoveg": "Rózsadomb ► Széll Kálmán tér M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-17T23:56:36.774668+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38872146606445,
+      "lon": 18.958234786987305,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
