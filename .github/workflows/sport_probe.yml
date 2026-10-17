@@ -16,19 +16,19 @@ jobs:
               r = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safari/537.36"})
               with urllib.request.urlopen(r, timeout=25) as f:
                   return f.status, f.read().decode("utf-8", "replace")
+          s, t = get("https://www.csepelsc.hu/")
+          print("CSEPELSC NYERS:", t)
+          s, t = get("https://adatbank.mlsz.hu/")
+          print("ADATBANK LINKEK:", sorted(set(re.findall(r'href="(https://adatbank\.mlsz\.hu/[^"]+)"', t)))[:120])
           urls = [
-            "https://adatbank.mlsz.hu/",
-            "https://adatbank.mlsz.hu/league/62/0/31786/1.html",
-            "https://www.csepelfc.hu/", "https://csepelfc.hu/", "https://www.csepelsc.hu/",
-            "https://www.magyarfutball.hu/hu/csapat/csepel",
-            "https://www.blsz.hu/", "https://blsz.hu/",
             "https://hunfoci.hu/noi-nb2/noi-nb2-keleti-csoport-2026-2027-5-fordulo.html",
+            "https://adatbank.mlsz.hu/league/62/0/31786/1.html",
           ]
           for u in urls:
               try:
                   s, t = get(u)
-                  links = sorted(set(l for l in re.findall(r'href="([^"]+)"', t) if "csepel" in l.lower() or "erzsebet" in l.lower()))[:40]
-                  ctx = [t[max(0,m.start()-120):m.start()+120].replace("\n"," ") for m in re.finditer("Csepel", t)][:5]
+                  links = sorted(set(l for l in re.findall(r'href="([^"]+)"', t) if "csepel" in l.lower()))[:40]
+                  ctx = [t[max(0,m.start()-120):m.start()+120].replace("\n"," ") for m in re.finditer("(?i)csepel", t)][:5]
                   print("=====", u, s, len(t), "csepel:", t.count("Csepel"))
                   print("LINKS", links)
                   for c in ctx: print("CTX", re.sub(r"<[^>]+>"," ",c))
