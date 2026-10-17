@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-17T02:11:38.421946+02:00",
+  "frissitve": "2026-10-17T02:12:11.162229+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:56:54.239475+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49872589111328,
-      "lon": 19.034887313842773,
-      "elozo_szoveg": "Budai Vár ► Deák Ferenc tér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-16T14:56:54.239544+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50676345825195,
-      "lon": 19.02364730834961,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-10-16T14:56:54.239684+02:00",
-      "kulcs": "NHB035",
-      "rendszam": "NHB035",
-      "vehicle_id": "6334",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.52328872680664,
-      "lon": 19.002408981323242,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-16T14:56:54.239710+02:00",
       "kulcs": "NLE848",
@@ -260000,6 +259961,45 @@
       "lon": 19.08209800720215,
       "elozo_szoveg": "Astoria M ► Határ út M",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-17T02:12:11.072078+02:00",
+      "kulcs": "PDB707",
+      "rendszam": "PDB707",
+      "vehicle_id": "7033",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.520084381103516,
+      "lon": 19.038066864013672,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-17T02:12:11.072163+02:00",
+      "kulcs": "PKN612",
+      "rendszam": "PKN612",
+      "vehicle_id": "7201",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47977066040039,
+      "lon": 19.255474090576172,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-10-17T02:12:11.072269+02:00",
+      "kulcs": "SGY981",
+      "rendszam": "SGY981",
+      "vehicle_id": "7661",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475215911865234,
+      "lon": 19.04033660888672,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
