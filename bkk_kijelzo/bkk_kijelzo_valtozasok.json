@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T00:59:12.891837+02:00",
+  "frissitve": "2026-10-18T00:59:42.797245+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:40:00.994227+02:00",
-      "kulcs": "NGC154",
-      "rendszam": "NGC154",
-      "vehicle_id": "6203",
-      "vehicle_label": "Fácános tér",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.50747299194336,
-      "lon": 19.024999618530273,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fácános tér"
-    },
-    {
-      "idopont": "2026-10-17T12:40:00.995027+02:00",
-      "kulcs": "NHB034",
-      "rendszam": "NHB034",
-      "vehicle_id": "6333",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.49345016479492,
-      "lon": 19.03251838684082,
-      "elozo_szoveg": "Naphegy tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:40:00.995633+02:00",
-      "kulcs": "PDB725",
-      "rendszam": "PDB725",
-      "vehicle_id": "7051",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53212356567383,
-      "lon": 19.06795310974121,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-10-17T12:40:00.995727+02:00",
       "kulcs": "PDB382",
@@ -260000,6 +259961,45 @@
       "lon": 18.95850944519043,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-18T00:59:42.701343+02:00",
+      "kulcs": "MUT894",
+      "rendszam": "MUT894",
+      "vehicle_id": "5947",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.46503448486328,
+      "lon": 19.12738609313965,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-18T00:59:42.701942+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49923324584961,
+      "lon": 19.00899887084961,
+      "elozo_szoveg": "Svábhegy ► Csillebérc",
+      "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-18T00:59:42.702415+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.475914001464844,
+      "lon": 19.047109603881836,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
