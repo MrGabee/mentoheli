@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T01:59:13.528113+02:00",
+  "frissitve": "2026-10-18T01:59:47.267686+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:50:01.664925+02:00",
-      "kulcs": "SKN824",
-      "rendszam": "SKN824",
-      "vehicle_id": "160",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53216552734375,
-      "lon": 19.06790542602539,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-17T12:50:01.665062+02:00",
-      "kulcs": "V2002",
-      "rendszam": "V2002",
-      "vehicle_id": "2002",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47398376464844,
-      "lon": 19.04740333557129,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:50:01.666152+02:00",
-      "kulcs": "FLR710",
-      "rendszam": "FLR710",
-      "vehicle_id": "3124",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.50431442260742,
-      "lon": 19.137012481689453,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Veres Péter út ► Centenáriumi lakótelep"
-    },
     {
       "idopont": "2026-10-17T12:50:01.666206+02:00",
       "kulcs": "FLR733",
@@ -260000,6 +259961,45 @@
       "lon": 19.15044403076172,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-18T01:59:47.181648+02:00",
+      "kulcs": "V2002",
+      "rendszam": "V2002",
+      "vehicle_id": "2002",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.507320404052734,
+      "lon": 19.024715423583984,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-18T01:59:47.183244+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49740982055664,
+      "lon": 19.055700302124023,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Deák F. tér (City centre)"
+    },
+    {
+      "idopont": "2026-10-18T01:59:47.183392+02:00",
+      "kulcs": "AELD564",
+      "rendszam": "AELD564",
+      "vehicle_id": "617",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59782791137695,
+      "lon": 19.05388069152832,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
