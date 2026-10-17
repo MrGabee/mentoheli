@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-17T02:42:19.806055+02:00",
+  "frissitve": "2026-10-17T02:42:48.840578+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:59:34.994820+02:00",
-      "kulcs": "AOIM020",
-      "rendszam": "AOIM020",
-      "vehicle_id": "940",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.454803466796875,
-      "lon": 19.18153190612793,
-      "elozo_szoveg": "Pestszentlőrinc vasútáll.",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-10-16T14:59:34.995132+02:00",
-      "kulcs": "415 068",
-      "rendszam": "415 068",
-      "vehicle_id": "945514150685",
-      "vehicle_label": "Sülysáp",
-      "vonal_szam": "S60",
-      "route_id": "S60",
-      "lat": 47.49250030517578,
-      "lon": 19.13994026184082,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Sülysáp"
-    },
-    {
-      "idopont": "2026-10-16T15:00:45.504727+02:00",
-      "kulcs": "AADI608",
-      "rendszam": "AADI608",
-      "vehicle_id": "105",
-      "vehicle_label": "Balatoni út / Háros utca",
-      "vonal_szam": "58",
-      "route_id": "0580",
-      "lat": 47.47706985473633,
-      "lon": 19.04974937438965,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Balatoni út / Háros utca"
-    },
-    {
-      "idopont": "2026-10-16T15:00:45.504831+02:00",
-      "kulcs": "LMG123",
-      "rendszam": "LMG123",
-      "vehicle_id": "1112",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.49184036254883,
-      "lon": 19.242591857910156,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "R.csaba-Újtelep, Naplás út"
-    },
-    {
-      "idopont": "2026-10-16T15:00:45.505023+02:00",
-      "kulcs": "AADI637",
-      "rendszam": "AADI637",
-      "vehicle_id": "135",
-      "vehicle_label": "R.csaba-Újtelep, Naplás út",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.501163482666016,
-      "lon": 19.13594627380371,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Naplás út"
-    },
     {
       "idopont": "2026-10-16T15:00:45.506044+02:00",
       "kulcs": "FJX187",
@@ -260000,6 +259935,71 @@
       "lon": 19.041500091552734,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-17T02:42:48.750178+02:00",
+      "kulcs": "V2022",
+      "rendszam": "V2022",
+      "vehicle_id": "2022",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47403335571289,
+      "lon": 19.047359466552734,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-17T02:42:48.751992+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.498146057128906,
+      "lon": 19.054698944091797,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-10-17T02:42:48.752108+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497032165527344,
+      "lon": 19.055709838867188,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-17T02:42:48.752305+02:00",
+      "kulcs": "AADI583",
+      "rendszam": "AADI583",
+      "vehicle_id": "62",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.421470642089844,
+      "lon": 19.041358947753906,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-17T02:42:48.752658+02:00",
+      "kulcs": "SKN818",
+      "rendszam": "SKN818",
+      "vehicle_id": "7760",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.477787017822266,
+      "lon": 19.046375274658203,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
     }
   ]
 }
