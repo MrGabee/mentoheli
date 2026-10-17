@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-18T00:25:53.761527+02:00",
+  "frissitve": "2026-10-18T00:26:28.443785+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:35:42.869789+02:00",
-      "kulcs": "V2024",
-      "rendszam": "V2024",
-      "vehicle_id": "2024",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47439956665039,
-      "lon": 19.05441665649414,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:35:42.869842+02:00",
-      "kulcs": "V2030",
-      "rendszam": "V2030",
-      "vehicle_id": "2030",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47383499145508,
-      "lon": 19.048437118530273,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-17T12:35:42.870680+02:00",
       "kulcs": "AAHY850",
@@ -260000,6 +259974,32 @@
       "lon": 19.04204559326172,
       "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-18T00:26:28.358985+02:00",
+      "kulcs": "AAGL309",
+      "rendszam": "AAGL309",
+      "vehicle_id": "339",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48728561401367,
+      "lon": 19.058048248291016,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-18T00:26:28.359163+02:00",
+      "kulcs": "MUU903",
+      "rendszam": "MUU903",
+      "vehicle_id": "5956",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42742919921875,
+      "lon": 19.15968894958496,
+      "elozo_szoveg": "Alacskai úti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
     }
   ]
 }
