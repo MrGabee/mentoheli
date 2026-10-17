@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T00:20:10.407891+02:00",
+  "frissitve": "2026-10-18T00:20:43.795453+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:34:42.344516+02:00",
-      "kulcs": "RVY708",
-      "rendszam": "RVY708",
-      "vehicle_id": "7457",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.500450134277344,
-      "lon": 19.135652542114258,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-17T12:34:42.344932+02:00",
-      "kulcs": "RVY749",
-      "rendszam": "RVY749",
-      "vehicle_id": "7647",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.501338958740234,
-      "lon": 19.1363582611084,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-17T12:34:42.345356+02:00",
-      "kulcs": "SKR824",
-      "rendszam": "SKR824",
-      "vehicle_id": "7710",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.463111877441406,
-      "lon": 19.148435592651367,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Havanna-lakótelep"
-    },
     {
       "idopont": "2026-10-17T12:34:42.345448+02:00",
       "kulcs": "SKR828",
@@ -260000,6 +259961,45 @@
       "lon": 19.09062957763672,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Vác"
+    },
+    {
+      "idopont": "2026-10-18T00:20:43.715983+02:00",
+      "kulcs": "FJX190",
+      "rendszam": "FJX190",
+      "vehicle_id": "3010",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48255920410156,
+      "lon": 19.12905502319336,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-18T00:20:43.718176+02:00",
+      "kulcs": "AADI582",
+      "rendszam": "AADI582",
+      "vehicle_id": "83",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46510314941406,
+      "lon": 19.022932052612305,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-18T00:20:43.718280+02:00",
+      "kulcs": "AADI595",
+      "rendszam": "AADI595",
+      "vehicle_id": "91",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.54845428466797,
+      "lon": 19.02958106994629,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
