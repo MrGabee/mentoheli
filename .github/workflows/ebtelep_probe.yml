@@ -1,0 +1,38 @@
+name: 🐶 Ebtelep próba
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Oldal szerkezete
+        run: |
+          python3 - <<'PY'
+          import urllib.request, re, json
+          def get(u):
+              r = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})
+              with urllib.request.urlopen(r, timeout=30) as f:
+                  return f.status, f.read().decode("utf-8", "replace")
+          for u in ["https://ebtelep.hu/allatok/", "https://ebtelep.hu/wp-json/wp/v2/types", "https://ebtelep.hu/wp-json/"]:
+              try:
+                  s, t = get(u)
+                  print("=====", u, s, len(t))
+                  if "wp-json/wp/v2/types" in u:
+                      print(t[:3000])
+                  elif u.endswith("wp-json/"):
+                      print(re.findall(r'"(/wp/v2/[a-z_\-]+)"', t)[:80])
+                  else:
+                      body = re.sub(r"<script.*?</script>|<style.*?</style>", "", t, flags=re.S)
+                      txt = re.sub(r"<[^>]+>", "\n", body)
+                      txt = re.sub(r"\n\s*\n+", "\n", txt)
+                      i = txt.find("Csepel")
+                      print("LINKS:", sorted(set(re.findall(r'href="(https://ebtelep\.hu/[^"]+)"', t)))[:120])
+                      print("TEXT:", txt[:6000])
+                      for k in ["Csepel", "XXI", "Erzsébet", "XX.", "page/2", "befog", "Befog"]:
+                          print(k, t.count(k))
+              except Exception as e:
+                  print("=====", u, "HIBA", e)
+          PY
