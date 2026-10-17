@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-18T01:28:53.950381+02:00",
+  "frissitve": "2026-10-18T01:29:25.439944+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:44:12.376468+02:00",
-      "kulcs": "SKR805",
-      "rendszam": "SKR805",
-      "vehicle_id": "7691",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.50767517089844,
-      "lon": 19.024993896484375,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-17T12:44:12.376490+02:00",
-      "kulcs": "SKR811",
-      "rendszam": "SKR811",
-      "vehicle_id": "7697",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51080322265625,
-      "lon": 19.056325912475586,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Rózsadomb ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:44:12.376570+02:00",
-      "kulcs": "SKR829",
-      "rendszam": "SKR829",
-      "vehicle_id": "7715",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "54",
-      "route_id": "0540",
-      "lat": 47.3892707824707,
-      "lon": 19.16206169128418,
-      "elozo_szoveg": "Péterimajor, Víztorony tér",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-10-17T12:44:12.376717+02:00",
-      "kulcs": "SGY824",
-      "rendszam": "SGY824",
-      "vehicle_id": "7742",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45472717285156,
-      "lon": 19.181827545166016,
-      "elozo_szoveg": "Pestszentlőrinc vasútáll.",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
     {
       "idopont": "2026-10-17T12:44:12.376863+02:00",
       "kulcs": "AOFL198",
@@ -260000,6 +259948,58 @@
       "lon": 19.119457244873047,
       "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
       "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-10-18T01:29:25.352202+02:00",
+      "kulcs": "AAGL265",
+      "rendszam": "AAGL265",
+      "vehicle_id": "265",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.455928802490234,
+      "lon": 18.94041633605957,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-10-18T01:29:25.352238+02:00",
+      "kulcs": "AAGL268",
+      "rendszam": "AAGL268",
+      "vehicle_id": "268",
+      "vehicle_label": "Páty-Telki-Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.52223587036133,
+      "lon": 18.940673828125,
+      "elozo_szoveg": "Budakeszi ► Páty ► Telki ► Zsámbék",
+      "uj_szoveg": "Páty ► Telki ► Zsámbék"
+    },
+    {
+      "idopont": "2026-10-18T01:29:25.354720+02:00",
+      "kulcs": "AELD568",
+      "rendszam": "AELD568",
+      "vehicle_id": "621",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.465084075927734,
+      "lon": 19.1273193359375,
+      "elozo_szoveg": "Szentlőrinci úti lakótelep",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-18T01:29:25.355514+02:00",
+      "kulcs": "AOIM041",
+      "rendszam": "AOIM041",
+      "vehicle_id": "962",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.474609375,
+      "lon": 19.046772003173828,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
