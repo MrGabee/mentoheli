@@ -1,0 +1,59 @@
+name: 🚧 Csepeli közúti változások (poszt)
+
+on:
+  workflow_dispatch:
+    inputs:
+      teszt:
+        description: 'Teszt: csak kiírja a találatokat, nem posztol, nem ment'
+        required: false
+        default: '0'
+  schedule:
+    # 20 percenként, félúton a kerek idők között
+    - cron: '7,27,47 * * * *'
+
+concurrency:
+  group: bkk-kozut-csepel
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.61.0-jammy
+    timeout-minutes: 6
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 📦 Függőségek telepítése
+        run: pip install playwright==1.61.0 requests
+
+      - name: 🚧 Csepeli közúti változások
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          TESZT_MOD: ${{ github.event.inputs.teszt == '1' && '1' || '0' }}
+        run: python bkk_kozut_csepel.py
+
+      - name: 💾 Állapot commitolása
+        if: github.event.inputs.teszt != '1'
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f bkk_kozut_csepel_allapot.json ] || exit 0
+          cp bkk_kozut_csepel_allapot.json /tmp/csepel_allapot.json
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/csepel_allapot.json bkk_kozut_csepel_allapot.json
+            git add bkk_kozut_csepel_allapot.json
+            git diff --staged --quiet && exit 0
+            git commit -m "csepeli közúti állapot [skip ci]"
+            git push origin HEAD:main && exit 0
+            sleep $((RANDOM % 6 + 2))
+          done
