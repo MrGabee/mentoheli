@@ -101,6 +101,7 @@ MENETREND = [
     ("sport_elozetes", time(15, 35), {PENTEK}, lambda nap, a: csepeli_sport.elozetes_szoveg(nap)),
     ("veradas",       time(15, 35),  {HETFO},  lambda nap, a: veradas.heti_szoveg(nap)),
     ("allasok",       time(15, 35),  {KEDD, CSUTORTOK, SZOMBAT}, lambda nap, a: allasok.heti_szoveg(nap, a)),
+    ("sport_hetkoz",  time(16, 5),   None,     lambda nap, a: csepeli_sport.hetkoznapi_szoveg(nap)),
     ("hetvege",       time(16, 35),  {PENTEK}, lambda nap, a: kerulet_programok.hetvegi_szoveg(nap)),
     ("kerulet_problema", time(17, 35), None, lambda nap, a: kerulet_problema.szoveg(nap)),
     ("kerdes",        time(18, 35),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
