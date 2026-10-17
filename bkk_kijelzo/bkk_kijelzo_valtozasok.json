@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-17T03:39:13.302038+02:00",
+  "frissitve": "2026-10-17T03:39:46.281558+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T15:06:49.987163+02:00",
-      "kulcs": "AAHY847",
-      "rendszam": "AAHY847",
-      "vehicle_id": "408",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "124",
-      "route_id": "1240",
-      "lat": 47.572975158691406,
-      "lon": 19.128231048583984,
-      "elozo_szoveg": "Rákospalota, Bogáncs utca",
-      "uj_szoveg": "Bosnyák tér"
-    },
-    {
-      "idopont": "2026-10-16T15:06:49.988378+02:00",
-      "kulcs": "AAHY864",
-      "rendszam": "AAHY864",
-      "vehicle_id": "426",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.519962310791016,
-      "lon": 19.091167449951172,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-16T15:06:49.988442+02:00",
-      "kulcs": "T0609",
-      "rendszam": "T0609",
-      "vehicle_id": "4293",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53642272949219,
-      "lon": 19.10723114013672,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-10-16T15:06:49.988539+02:00",
       "kulcs": "AAHY876",
@@ -260000,6 +259961,45 @@
       "lon": 19.14179039001465,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-17T03:39:46.192883+02:00",
+      "kulcs": "V2020",
+      "rendszam": "V2020",
+      "vehicle_id": "2020",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47404098510742,
+      "lon": 19.04707908630371,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-17T03:39:46.195001+02:00",
+      "kulcs": "NNE062",
+      "rendszam": "NNE062",
+      "vehicle_id": "6458",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.485069274902344,
+      "lon": 19.125167846679688,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-17T03:39:46.195034+02:00",
+      "kulcs": "NNE072",
+      "rendszam": "NNE072",
+      "vehicle_id": "6468",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56748962402344,
+      "lon": 19.12507438659668,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
     }
   ]
 }
