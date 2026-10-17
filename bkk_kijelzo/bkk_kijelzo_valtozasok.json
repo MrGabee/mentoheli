@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-18T01:26:18.773886+02:00",
+  "frissitve": "2026-10-18T01:26:53.696075+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:44:12.370961+02:00",
-      "kulcs": "AADI657",
-      "rendszam": "AADI657",
-      "vehicle_id": "156",
-      "vehicle_label": "Déli pályaudvar M",
-      "vonal_szam": "MP52",
-      "route_id": "MP52",
-      "lat": 47.50751495361328,
-      "lon": 19.051101684570312,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Déli pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-17T12:44:12.371554+02:00",
-      "kulcs": "FLR739",
-      "rendszam": "FLR739",
-      "vehicle_id": "3153",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.48774337768555,
-      "lon": 19.246793746948242,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-17T12:44:12.371797+02:00",
-      "kulcs": "AAHY824",
-      "rendszam": "AAHY824",
-      "vehicle_id": "385",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57577133178711,
-      "lon": 19.10470962524414,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-10-17T12:44:12.371810+02:00",
-      "kulcs": "AAHY829",
-      "rendszam": "AAHY829",
-      "vehicle_id": "390",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "204",
-      "route_id": "2040",
-      "lat": 47.56855392456055,
-      "lon": 19.125593185424805,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Budakalász, Auchan áruház ► Békásmegyer, Újmegyeri tér"
-    },
     {
       "idopont": "2026-10-17T12:44:12.372125+02:00",
       "kulcs": "V1344",
@@ -260000,6 +259948,58 @@
       "lon": 19.023193359375,
       "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
       "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-18T01:26:53.625348+02:00",
+      "kulcs": "SKN825",
+      "rendszam": "SKN825",
+      "vehicle_id": "161",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50540542602539,
+      "lon": 19.02397918701172,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-18T01:26:53.627455+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59852600097656,
+      "lon": 19.12126350402832,
+      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-18T01:26:53.627707+02:00",
+      "kulcs": "AILJ863",
+      "rendszam": "AILJ863",
+      "vehicle_id": "670",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.508766174316406,
+      "lon": 19.095380783081055,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-18T01:26:53.627830+02:00",
+      "kulcs": "AADI586",
+      "rendszam": "AADI586",
+      "vehicle_id": "72",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50847244262695,
+      "lon": 19.02698516845703,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
