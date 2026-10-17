@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-17T02:22:16.664427+02:00",
+  "frissitve": "2026-10-17T02:22:47.732232+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T14:58:05.450885+02:00",
-      "kulcs": "MFW501",
-      "rendszam": "MFW501",
-      "vehicle_id": "5103",
-      "vehicle_label": "Helikopter lakópark",
-      "vonal_szam": "46",
-      "route_id": "0460",
-      "lat": 47.54680633544922,
-      "lon": 19.14249038696289,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Helikopter lakópark"
-    },
-    {
-      "idopont": "2026-10-16T14:58:05.452148+02:00",
-      "kulcs": "MOS259",
-      "rendszam": "MOS259",
-      "vehicle_id": "5712",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.47943878173828,
-      "lon": 19.067514419555664,
-      "elozo_szoveg": "Vecsési út-Boráros tér H",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-10-16T14:58:05.452432+02:00",
-      "kulcs": "V2111",
-      "rendszam": "V2111",
-      "vehicle_id": "5839",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46404266357422,
-      "lon": 19.023283004760742,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-16T14:58:05.452564+02:00",
       "kulcs": "V2218",
@@ -260000,6 +259961,45 @@
       "lon": 19.075790405273438,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-17T02:22:47.643190+02:00",
+      "kulcs": "AADI623",
+      "rendszam": "AADI623",
+      "vehicle_id": "118",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54163360595703,
+      "lon": 19.151317596435547,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-17T02:22:47.643897+02:00",
+      "kulcs": "FLR742",
+      "rendszam": "FLR742",
+      "vehicle_id": "3156",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46249771118164,
+      "lon": 19.13307762145996,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-17T02:22:47.645248+02:00",
+      "kulcs": "AELD561",
+      "rendszam": "AELD561",
+      "vehicle_id": "612",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.519290924072266,
+      "lon": 19.038211822509766,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
