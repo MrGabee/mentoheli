@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-17T03:14:45.929579+02:00",
+  "frissitve": "2026-10-17T03:15:18.115868+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T15:03:55.612956+02:00",
-      "kulcs": "MFW532",
-      "rendszam": "MFW532",
-      "vehicle_id": "5045",
-      "vehicle_label": "Rákoscsaba-Újtelep",
-      "vonal_szam": "176E",
-      "route_id": "1765",
-      "lat": 47.50117874145508,
-      "lon": 19.135944366455078,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
-    },
-    {
-      "idopont": "2026-10-16T15:03:55.612993+02:00",
-      "kulcs": "AAMH663",
-      "rendszam": "AAMH663",
-      "vehicle_id": "506",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.542152404785156,
-      "lon": 19.150630950927734,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
     {
       "idopont": "2026-10-16T15:03:55.613238+02:00",
       "kulcs": "MMM137",
@@ -260000,6 +259974,32 @@
       "lon": 18.940391540527344,
       "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
       "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-17T03:15:18.029235+02:00",
+      "kulcs": "AAGL261",
+      "rendszam": "AAGL261",
+      "vehicle_id": "261",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46261215209961,
+      "lon": 19.005714416503906,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-17T03:15:18.029278+02:00",
+      "kulcs": "AAGL277",
+      "rendszam": "AAGL277",
+      "vehicle_id": "277",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45597457885742,
+      "lon": 18.940404891967773,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
     }
   ]
 }
