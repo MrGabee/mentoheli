@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-17T03:26:09.426965+02:00",
+  "frissitve": "2026-10-17T03:26:44.247007+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-16T15:03:55.620922+02:00",
-      "kulcs": "431 206",
-      "rendszam": "431 206",
-      "vehicle_id": "915504312066",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.693599700927734,
-      "lon": 17.28982925415039,
-      "elozo_szoveg": "Keszthely",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-16T15:03:55.621341+02:00",
-      "kulcs": "AADI597",
-      "rendszam": "AADI597",
-      "vehicle_id": "93",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.474056243896484,
-      "lon": 19.04851531982422,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-10-16T15:03:55.621985+02:00",
-      "kulcs": "815 033",
-      "rendszam": "815 033",
-      "vehicle_id": "945518150335",
-      "vehicle_label": "Esztergom",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.559471130371094,
-      "lon": 19.079069137573242,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Esztergom"
-    },
-    {
-      "idopont": "2026-10-16T15:03:55.622237+02:00",
-      "kulcs": "AOIM044",
-      "rendszam": "AOIM044",
-      "vehicle_id": "965",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.50642776489258,
-      "lon": 19.024227142333984,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Gazdagréti tér"
-    },
     {
       "idopont": "2026-10-16T15:03:55.622353+02:00",
       "kulcs": "AOJM863",
@@ -260000,6 +259948,58 @@
       "lon": 19.029342651367188,
       "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
       "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-17T03:26:44.158251+02:00",
+      "kulcs": "AAGL287",
+      "rendszam": "AAGL287",
+      "vehicle_id": "309",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45515823364258,
+      "lon": 18.907869338989258,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-17T03:26:44.158400+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Páty-Telki-Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.511234283447266,
+      "lon": 18.81570053100586,
+      "elozo_szoveg": "Páty ► Telki ► Zsámbék",
+      "uj_szoveg": "Telki ► Zsámbék"
+    },
+    {
+      "idopont": "2026-10-17T03:26:44.159438+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48735046386719,
+      "lon": 19.05815315246582,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-17T03:26:44.159500+02:00",
+      "kulcs": "T9120",
+      "rendszam": "T9120",
+      "vehicle_id": "7859",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50452423095703,
+      "lon": 19.136878967285156,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
