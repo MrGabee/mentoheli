@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T00:16:27.930992+02:00",
+  "frissitve": "2026-10-19T00:16:58.333230+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:29:37.212863+02:00",
-      "kulcs": "AADR716",
-      "rendszam": "AADR716",
-      "vehicle_id": "184",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.51655197143555,
-      "lon": 18.976716995239258,
-      "elozo_szoveg": "Zugliget, Libegő",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-18T12:29:37.212945+02:00",
-      "kulcs": "V2009",
-      "rendszam": "V2009",
-      "vehicle_id": "2009",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50736618041992,
-      "lon": 19.0250186920166,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-10-18T12:29:37.213313+02:00",
-      "kulcs": "AAGL273",
-      "rendszam": "AAGL273",
-      "vehicle_id": "273",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.46437454223633,
-      "lon": 19.01860237121582,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
     {
       "idopont": "2026-10-18T12:29:37.213806+02:00",
       "kulcs": "AAHY838",
@@ -260000,6 +259961,45 @@
       "lon": 19.02667808532715,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-10-19T00:16:58.241390+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.496883392333984,
+      "lon": 19.239643096923828,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-19T00:16:58.245299+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.500709533691406,
+      "lon": 19.107906341552734,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-19T00:16:58.246257+02:00",
+      "kulcs": "901-651-902",
+      "rendszam": "901-651-902",
+      "vehicle_id": "905516569019-905536466519-905516569027",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.51934814453125,
+      "lon": 19.21714973449707,
+      "elozo_szoveg": "Cinkota",
+      "uj_szoveg": "Gödöllő"
     }
   ]
 }
