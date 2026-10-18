@@ -232,13 +232,13 @@ HIREK_KATEGORIAK = {
         "facebook_post": True,
     },
     # BRFK (feltöltő szerv 108): egész Budapest, ebből csak a dél-pesti esetek
-    # (XVIII., XIX., XX., XXI., XXIII. kerület és a "dél-pesti" említések).
+    # (IX., X., XVIII., XIX., XX., XXI., XXIII. kerület és a "dél-pesti" említések).
     "szerv_108": {
         "label": "Dél-pesti hírek",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink?field_feltolto_szerv_target_id=108",
         "facebook_post": True,
         "szuro": re.compile(
-            r"\b(XVIII|XIX|XX|XXI|XXIII)\.?\s*(KER|kerület)|dél-?pest|csepel|pesterzsébet|"
+            r"\b(IX|X|XVIII|XIX|XX|XXI|XXIII)\.?\s*(KER|kerület)|dél-?pest|csepel|pesterzsébet|ferencváros|kőbány|"
             r"soroksár(?!i\s+út)|kispest|pestszentl[őo]rinc|pestszentimre", re.I),
     },
     # Szigetszentmiklósi RK (feltöltő szerv 117): csak a környékbeli települések.
