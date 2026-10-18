@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:49:53.033531+02:00",
+  "frissitve": "2026-10-18T03:50:23.976061+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:07:38.975312+02:00",
-      "kulcs": "V2290",
-      "rendszam": "V2290",
-      "vehicle_id": "588",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.477684020996094,
-      "lon": 19.04739761352539,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-10-17T13:07:38.975373+02:00",
-      "kulcs": "V2296",
-      "rendszam": "V2296",
-      "vehicle_id": "594",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.50051498413086,
-      "lon": 19.025583267211914,
-      "elozo_szoveg": "Krisztina körút ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-17T13:07:38.976176+02:00",
-      "kulcs": "NCV286",
-      "rendszam": "NCV286",
-      "vehicle_id": "6251",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.5050163269043,
-      "lon": 19.030677795410156,
-      "elozo_szoveg": "Budai Vár ► Deák Ferenc tér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-17T13:07:38.976211+02:00",
       "kulcs": "NCV294",
@@ -260000,6 +259961,45 @@
       "lon": 19.02831268310547,
       "elozo_szoveg": "Bécsi út / Vörösvári út",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-18T03:50:23.890248+02:00",
+      "kulcs": "AAGL294",
+      "rendszam": "AAGL294",
+      "vehicle_id": "327",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50712966918945,
+      "lon": 18.9215030670166,
+      "elozo_szoveg": "Solymár, PEMÜ",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-18T03:50:23.891552+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.387630462646484,
+      "lon": 19.215354919433594,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Vecsési út ► Határ út M"
+    },
+    {
+      "idopont": "2026-10-18T03:50:23.891933+02:00",
+      "kulcs": "T9106",
+      "rendszam": "T9106",
+      "vehicle_id": "7353",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50035095214844,
+      "lon": 19.11056137084961,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
