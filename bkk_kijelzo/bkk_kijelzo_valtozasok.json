@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:06:50.880317+02:00",
+  "frissitve": "2026-10-18T03:07:24.802704+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:00:56.486136+02:00",
-      "kulcs": "MPW611",
-      "rendszam": "MPW611",
-      "vehicle_id": "5598",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "93A",
-      "route_id": "0931",
-      "lat": 47.452186584472656,
-      "lon": 19.195453643798828,
-      "elozo_szoveg": "Pestszentlőrinc, Fedezék utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-17T13:00:56.486451+02:00",
-      "kulcs": "V2215",
-      "rendszam": "V2215",
-      "vehicle_id": "5855",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.42947006225586,
-      "lon": 19.217573165893555,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-17T13:00:56.486544+02:00",
-      "kulcs": "MXJ006",
-      "rendszam": "MXJ006",
-      "vehicle_id": "5886",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.397918701171875,
-      "lon": 18.9730224609375,
-      "elozo_szoveg": "Nagytétény-Diósd vá.",
-      "uj_szoveg": "Nagytétény-Diósd vasútállomás"
-    },
-    {
-      "idopont": "2026-10-17T13:00:56.486852+02:00",
-      "kulcs": "NGC154",
-      "rendszam": "NGC154",
-      "vehicle_id": "6203",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.511131286621094,
-      "lon": 18.972002029418945,
-      "elozo_szoveg": "Fácános tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-17T13:00:56.487295+02:00",
-      "kulcs": "NCV288",
-      "rendszam": "NCV288",
-      "vehicle_id": "6253",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.505611419677734,
-      "lon": 19.030061721801758,
-      "elozo_szoveg": "Budai Vár ► Deák Ferenc tér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-17T13:00:56.487314+02:00",
       "kulcs": "NCV293",
@@ -260000,6 +259935,71 @@
       "lon": 19.037933349609375,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
       "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-18T03:07:24.711915+02:00",
+      "kulcs": "V2032",
+      "rendszam": "V2032",
+      "vehicle_id": "2032",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47383499145508,
+      "lon": 19.048988342285156,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-18T03:07:24.714327+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.47965621948242,
+      "lon": 19.2567195892334,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-18T03:07:24.714501+02:00",
+      "kulcs": "SGY982",
+      "rendszam": "SGY982",
+      "vehicle_id": "7662",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49971389770508,
+      "lon": 19.089305877685547,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M"
+    },
+    {
+      "idopont": "2026-10-18T03:07:24.714763+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53900146484375,
+      "lon": 19.06938934326172,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-18T03:07:24.714865+02:00",
+      "kulcs": "415 024",
+      "rendszam": "415 024",
+      "vehicle_id": "945514150248",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 46.72808837890625,
+      "lon": 18.476119995117188,
+      "elozo_szoveg": "Pincehely",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
