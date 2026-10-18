@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:22:12.825162+02:00",
+  "frissitve": "2026-10-18T03:22:46.847057+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:03:23.554366+02:00",
-      "kulcs": "T9140",
-      "rendszam": "T9140",
-      "vehicle_id": "7879",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.520668029785156,
-      "lon": 19.09229850769043,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-17T13:03:23.554383+02:00",
-      "kulcs": "AOFL204",
-      "rendszam": "AOFL204",
-      "vehicle_id": "788",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "251A",
-      "route_id": "2511",
-      "lat": 47.465057373046875,
-      "lon": 19.017902374267578,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Lomnici utca ► Városház tér"
-    },
-    {
-      "idopont": "2026-10-17T13:03:23.554606+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54292297363281,
-      "lon": 18.964723587036133,
-      "elozo_szoveg": "Pesthidegkút",
-      "uj_szoveg": "Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-17T13:03:23.554621+02:00",
-      "kulcs": "AOFL211",
-      "rendszam": "AOFL211",
-      "vehicle_id": "798",
-      "vehicle_label": "Budaliget, Géza f. útja",
-      "vonal_szam": "157A",
-      "route_id": "1571",
-      "lat": 47.54297637939453,
-      "lon": 18.964223861694336,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Budaliget, Géza fejedelem útja"
-    },
-    {
-      "idopont": "2026-10-17T13:03:23.554773+02:00",
-      "kulcs": "AOFL230",
-      "rendszam": "AOFL230",
-      "vehicle_id": "818",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53411102294922,
-      "lon": 19.026195526123047,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
     {
       "idopont": "2026-10-17T13:03:23.554788+02:00",
       "kulcs": "AOFL231",
@@ -260000,6 +259935,71 @@
       "lon": 19.07309341430664,
       "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-18T03:22:46.748006+02:00",
+      "kulcs": "V2002",
+      "rendszam": "V2002",
+      "vehicle_id": "2002",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50743865966797,
+      "lon": 19.024709701538086,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-18T03:22:46.749235+02:00",
+      "kulcs": "FKU916",
+      "rendszam": "FKU916",
+      "vehicle_id": "3072",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51028823852539,
+      "lon": 19.097408294677734,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-18T03:22:46.750216+02:00",
+      "kulcs": "MUU901",
+      "rendszam": "MUU901",
+      "vehicle_id": "5954",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51926803588867,
+      "lon": 19.038188934326172,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-18T03:22:46.750493+02:00",
+      "kulcs": "T9106",
+      "rendszam": "T9106",
+      "vehicle_id": "7353",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50251007080078,
+      "lon": 19.076927185058594,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-18T03:22:46.750674+02:00",
+      "kulcs": "T9142",
+      "rendszam": "T9142",
+      "vehicle_id": "7881",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.504486083984375,
+      "lon": 19.136613845825195,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
     }
   ]
 }
