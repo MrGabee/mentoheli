@@ -150,6 +150,18 @@ CIMEK = {
         "🌃 ESTI IDŐJÁRÁS-JELENTÉS 🌃",
         "⭐ JÓ ÉJT! ÍGY INDUL A HOLNAP ⭐",
     ],
+    "vallalkozas": [
+        "🏪 HELYI VÁLLALKOZÁS BEMUTATKOZIK 🏪",
+        "🤝 ISMERD MEG A SZOMSZÉD VÁLLALKOZÓT! 🤝",
+        "🛠️ CSEPELI KEZEK, CSEPELI MUNKA 🛠️",
+        "🏠 A MI KÖRNYÉKÜNK VÁLLALKOZÓI 🏠",
+    ],
+    "vallalkozas_velemeny": [
+        "⭐ KIT AJÁNLOTOK? ⭐",
+        "🗳️ A TI VÉLEMÉNYETEK SZÁMÍT 🗳️",
+        "👍 HELYI AJÁNLÓ – TI DÖNTÖTÖK 👍",
+        "🔎 KERESEK, AJÁNLJATOK! 🔎",
+    ],
 }
 
 BEVEZETOK = {
@@ -289,6 +301,18 @@ BEVEZETOK = {
         "Mielőtt lefekszetek, itt a holnapi időjárás:",
         "Hogy holnap reggel ne érjen meglepetés, ilyen idő lesz:",
         "Esti kis időjárás-jelentés tőlem 🌙",
+    ],
+    "vallalkozas": [
+        "Szeretem, ha a pénzünk a környéken marad, ezért ma egy helyi vállalkozást mutatok be:",
+        "Ma egy olyan helyet mutatok, amit érdemes ismerni a környéken:",
+        "Bemutatok nektek egy kerületi vállalkozást, hátha pont rájuk van szükségetek:",
+        "Egy újabb helyi vállalkozó, akit szívesen bemutatok nektek:",
+    ],
+    "vallalkozas_velemeny": [
+        "Most a ti tapasztalatotokra van szükségem:",
+        "Gyűjtsük össze együtt a környék legjobbjait!",
+        "Kíváncsi vagyok, kit ajánlanátok jó szívvel:",
+        "Segítsünk egymásnak egy jó ajánlással:",
     ],
 }
 
