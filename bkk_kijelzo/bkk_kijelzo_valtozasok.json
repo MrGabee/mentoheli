@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T01:23:05.850159+02:00",
+  "frissitve": "2026-10-19T01:23:32.155527+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:36:00.430032+02:00",
-      "kulcs": "AOIM021",
-      "rendszam": "AOIM021",
-      "vehicle_id": "941",
-      "vehicle_label": "Csepel, Határ utca",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.48394775390625,
-      "lon": 19.127565383911133,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Csepel, Határ utca"
-    },
-    {
-      "idopont": "2026-10-18T12:36:00.430398+02:00",
-      "kulcs": "415 080",
-      "rendszam": "415 080",
-      "vehicle_id": "945514150800",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.37107849121094,
-      "lon": 19.38896942138672,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-18T12:36:00.430484+02:00",
-      "kulcs": "415 088",
-      "rendszam": "415 088",
-      "vehicle_id": "945514150883",
-      "vehicle_label": "Monor",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.51129150390625,
-      "lon": 19.10124969482422,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Monor"
-    },
     {
       "idopont": "2026-10-18T12:36:00.431110+02:00",
       "kulcs": "AOJM860",
@@ -260000,6 +259961,45 @@
       "lon": 19.03829002380371,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-19T01:23:32.067943+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54163360595703,
+      "lon": 19.151418685913086,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T01:23:32.068308+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.509037017822266,
+      "lon": 19.095651626586914,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-19T01:23:32.068815+02:00",
+      "kulcs": "SKR818",
+      "rendszam": "SKR818",
+      "vehicle_id": "7704",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.471656799316406,
+      "lon": 19.23965835571289,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
     }
   ]
 }
