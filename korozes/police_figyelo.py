@@ -181,6 +181,10 @@ KOROZES_KATEGORIAK = {
 # ---------------------------------------------------------------------
 # HÍR KATEGÓRIÁK
 # ---------------------------------------------------------------------
+# A kapitányság nevét kivesszük a szűrés előtt, különben minden hírük
+# "Szigetszentmiklós"-találat lenne (Ráckeve, Dunaharaszti stb. is).
+KAPITANYSAG_NEV = re.compile(r"szigetszentmikl[oó]si\s+(rendőr\w*|rk\b)", re.I)
+
 HIREK_KATEGORIAK = {
     "legfrissebb": {
         "label": "Legfrissebb híreink",
@@ -226,6 +230,21 @@ HIREK_KATEGORIAK = {
         "label": "Igazgatásrendészet",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/igazgatasrendeszet",
         "facebook_post": True,
+    },
+    # Gábor kérésére: ennek a szervnek (police.hu feltöltő szerv 108) minden
+    # híre megy, szűrés nélkül ("minden": True).
+    "szerv_108": {
+        "label": "Dél-pesti hírek",
+        "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink?field_feltolto_szerv_target_id=108",
+        "facebook_post": True,
+        "minden": True,
+    },
+    # Szigetszentmiklósi RK (feltöltő szerv 117): csak a környékbeli települések.
+    "szerv_117": {
+        "label": "Szigetszentmiklós és környéke",
+        "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink?field_feltolto_szerv_target_id=117",
+        "facebook_post": True,
+        "szuro": re.compile(r"szigetszentmikl[oó]s|halásztel|halasztel|tököl|tokol|szigethal", re.I),
     },
     "hatarrendeszet": {
         "label": "Határrendészet",
@@ -902,7 +921,10 @@ def main():
             if kategoria_elso_futas:
                 continue
 
-            if not hirek_egyezik(cikk):
+            if not kat.get("minden") and not (
+                    kat["szuro"].search(KAPITANYSAG_NEV.sub("", cikk["cim"] + " " + cikk["osszefoglalo"]))
+                    if kat.get("szuro")
+                    else hirek_egyezik(cikk)):
                 continue
             if cikk["url"] in ertesitett_hir_urlk:
                 continue

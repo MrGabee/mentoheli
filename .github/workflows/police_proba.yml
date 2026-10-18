@@ -1,0 +1,38 @@
+name: Police.hu hírlista próba (nem posztol)
+
+on:
+  workflow_dispatch:
+    inputs:
+      szerv:
+        description: "feltöltő szerv azonosító"
+        default: "108"
+
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests beautifulsoup4
+      - name: Lista
+        working-directory: korozes
+        env:
+          SZERV: ${{ inputs.szerv }}
+        run: |
+          cat > /tmp/proba.py <<'PY'
+          import os, requests
+          from bs4 import BeautifulSoup
+          import police_figyelo as p
+          szerv = os.environ["SZERV"]
+          r = requests.get(p.BASE_URL + "/hu/hirek-es-informaciok/legfrissebb-hireink?field_feltolto_szerv_target_id=" + szerv, headers=p.HEADERS, timeout=30)
+          print("HTTP", r.status_code)
+          s = BeautifulSoup(r.text, "html.parser")
+          o = s.select_one(f'option[value="{szerv}"]')
+          print("Szerv:", o.get_text(strip=True) if o else "?")
+          for c in (p._hirek_foszelektor(s) or p._hirek_tartalek(s)):
+              print("-", c["cim"][:100], "|", c["osszefoglalo"][:80])
+          PY
+          PYTHONPATH=. python /tmp/proba.py
