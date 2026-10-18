@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T02:22:47.776658+02:00",
+  "frissitve": "2026-10-18T02:23:16.997840+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:53:43.712828+02:00",
-      "kulcs": "V1321",
-      "rendszam": "V1321",
-      "vehicle_id": "4425",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.49901580810547,
-      "lon": 19.08261489868164,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-17T12:53:43.713090+02:00",
-      "kulcs": "V1407",
-      "rendszam": "V1407",
-      "vehicle_id": "4477",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "48",
-      "route_id": "3480",
-      "lat": 47.456321716308594,
-      "lon": 19.040119171142578,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:53:43.713168+02:00",
-      "kulcs": "V1451",
-      "rendszam": "V1451",
-      "vehicle_id": "4521",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.46858596801758,
-      "lon": 19.075374603271484,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-17T12:53:43.713239+02:00",
       "kulcs": "AAMH620",
@@ -260000,6 +259961,45 @@
       "lon": 19.042015075683594,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-18T02:23:16.907872+02:00",
+      "kulcs": "V2032",
+      "rendszam": "V2032",
+      "vehicle_id": "2032",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50736618041992,
+      "lon": 19.025894165039062,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-18T02:23:16.910273+02:00",
+      "kulcs": "AELD564",
+      "rendszam": "AELD564",
+      "vehicle_id": "617",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51762008666992,
+      "lon": 19.038721084594727,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-18T02:23:16.910589+02:00",
+      "kulcs": "AADI582",
+      "rendszam": "AADI582",
+      "vehicle_id": "83",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46483612060547,
+      "lon": 19.02276611328125,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
     }
   ]
 }
