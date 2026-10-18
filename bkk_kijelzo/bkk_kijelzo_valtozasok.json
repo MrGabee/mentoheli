@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T02:40:48.461192+02:00",
+  "frissitve": "2026-10-18T02:41:20.288635+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:55:46.165540+02:00",
-      "kulcs": "AOFL214",
-      "rendszam": "AOFL214",
-      "vehicle_id": "801",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.50721740722656,
-      "lon": 18.988304138183594,
-      "elozo_szoveg": "Regőczi István tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:55:46.165618+02:00",
-      "kulcs": "AADI581",
-      "rendszam": "AADI581",
-      "vehicle_id": "81",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.500770568847656,
-      "lon": 18.965803146362305,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:55:46.165808+02:00",
-      "kulcs": "AOFL239",
-      "rendszam": "AOFL239",
-      "vehicle_id": "827",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52706527709961,
-      "lon": 18.97878646850586,
-      "elozo_szoveg": "Kurucles ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-17T12:55:46.166025+02:00",
       "kulcs": "AOFL255",
@@ -260000,6 +259961,45 @@
       "lon": 19.05120277404785,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-18T02:41:20.203709+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.379547119140625,
+      "lon": 19.104223251342773,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-18T02:41:20.204049+02:00",
+      "kulcs": "AOIM023",
+      "rendszam": "AOIM023",
+      "vehicle_id": "943",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475460052490234,
+      "lon": 19.040786743164062,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-18T02:41:20.204142+02:00",
+      "kulcs": "815 025",
+      "rendszam": "815 025",
+      "vehicle_id": "945518150251",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.5113410949707,
+      "lon": 19.101200103759766,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
