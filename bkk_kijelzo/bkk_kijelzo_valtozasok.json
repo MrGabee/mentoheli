@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:12:20.165689+02:00",
+  "frissitve": "2026-10-18T03:12:54.585842+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:00:56.491672+02:00",
-      "kulcs": "1117-759-1118",
-      "rendszam": "1117-759-1118",
-      "vehicle_id": "905516561172-905536467590-905516561180",
-      "vehicle_label": "Batthyány tér",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.598262786865234,
-      "lon": 19.054683685302734,
-      "elozo_szoveg": "Békásmegyer",
-      "uj_szoveg": "Batthyány tér"
-    },
-    {
-      "idopont": "2026-10-17T13:00:56.491754+02:00",
-      "kulcs": "925-663-926",
-      "rendszam": "925-663-926",
-      "vehicle_id": "905516569258-905536466634-905516569266",
-      "vehicle_label": "Cinkota",
-      "vonal_szam": "H8",
-      "route_id": "H8",
-      "lat": 47.593257904052734,
-      "lon": 19.357925415039062,
-      "elozo_szoveg": "Gödöllő",
-      "uj_szoveg": "Cinkota"
-    },
-    {
-      "idopont": "2026-10-17T13:00:56.491985+02:00",
-      "kulcs": "480 010",
-      "rendszam": "480 010",
-      "vehicle_id": "915504800102",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.347591400146484,
-      "lon": 20.042980194091797,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-17T13:00:56.492182+02:00",
-      "kulcs": "AOIM011",
-      "rendszam": "AOIM011",
-      "vehicle_id": "930",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46452713012695,
-      "lon": 19.126766204833984,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-10-17T13:00:56.492246+02:00",
       "kulcs": "AOIM024",
@@ -260000,6 +259948,58 @@
       "lon": 19.286714553833008,
       "elozo_szoveg": "Rákoscsaba-Újtelep",
       "uj_szoveg": "Dayka Gábor utca"
+    },
+    {
+      "idopont": "2026-10-18T03:12:54.497713+02:00",
+      "kulcs": "AAMH637",
+      "rendszam": "AAMH637",
+      "vehicle_id": "480",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497013092041016,
+      "lon": 19.055700302124023,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-18T03:12:54.497942+02:00",
+      "kulcs": "NNE064",
+      "rendszam": "NNE064",
+      "vehicle_id": "6460",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542945861816406,
+      "lon": 18.96457862854004,
+      "elozo_szoveg": "Máriaremete",
+      "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-18T03:12:54.498100+02:00",
+      "kulcs": "PCC933",
+      "rendszam": "PCC933",
+      "vehicle_id": "7272",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46242904663086,
+      "lon": 19.133249282836914,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-18T03:12:54.498247+02:00",
+      "kulcs": "SKR818",
+      "rendszam": "SKR818",
+      "vehicle_id": "7704",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.479759216308594,
+      "lon": 19.255496978759766,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
     }
   ]
 }
