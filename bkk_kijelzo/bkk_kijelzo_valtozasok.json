@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T01:53:37.687811+02:00",
+  "frissitve": "2026-10-19T01:54:07.226898+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:40:11.744955+02:00",
-      "kulcs": "T9114",
-      "rendszam": "T9114",
-      "vehicle_id": "7852",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50397872924805,
-      "lon": 19.13665771484375,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-18T12:40:11.745002+02:00",
-      "kulcs": "T9118",
-      "rendszam": "T9118",
-      "vehicle_id": "7856",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51407241821289,
-      "lon": 19.04941177368164,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-10-18T12:40:11.745029+02:00",
-      "kulcs": "T9120",
-      "rendszam": "T9120",
-      "vehicle_id": "7859",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49427032470703,
-      "lon": 19.060073852539062,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-10-18T12:40:11.745101+02:00",
       "kulcs": "T9126",
@@ -260000,6 +259961,45 @@
       "lon": 19.352266311645508,
       "elozo_szoveg": "Gödöllő, autóbusz-állomás",
       "uj_szoveg": "Gödöllő, autóbusz-áll."
+    },
+    {
+      "idopont": "2026-10-19T01:54:07.143410+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46256637573242,
+      "lon": 19.13292694091797,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-19T01:54:07.143925+02:00",
+      "kulcs": "RVY706",
+      "rendszam": "RVY706",
+      "vehicle_id": "7455",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598487854003906,
+      "lon": 19.12131118774414,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-19T01:54:07.144062+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597816467285156,
+      "lon": 19.053874969482422,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
