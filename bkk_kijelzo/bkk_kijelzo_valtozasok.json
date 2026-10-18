@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T00:38:34.432099+02:00",
+  "frissitve": "2026-10-19T00:39:01.252155+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:30:29.361435+02:00",
-      "kulcs": "T8113",
-      "rendszam": "T8113",
-      "vehicle_id": "7892",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50511169433594,
-      "lon": 19.13649559020996,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-18T12:30:29.361567+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54302215576172,
-      "lon": 18.964548110961914,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Pesthidegkút"
-    },
-    {
-      "idopont": "2026-10-18T12:30:29.361616+02:00",
-      "kulcs": "AOFL218",
-      "rendszam": "AOFL218",
-      "vehicle_id": "805",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.54541015625,
-      "lon": 19.033832550048828,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
     {
       "idopont": "2026-10-18T12:30:29.361630+02:00",
       "kulcs": "AOFL219",
@@ -260000,6 +259961,45 @@
       "lon": 19.027896881103516,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-19T00:39:01.202204+02:00",
+      "kulcs": "FKU929",
+      "rendszam": "FKU929",
+      "vehicle_id": "3085",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52534103393555,
+      "lon": 19.06357192993164,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-19T00:39:01.202613+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.421382904052734,
+      "lon": 19.041339874267578,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-19T00:39:01.202753+02:00",
+      "kulcs": "T8103",
+      "rendszam": "T8103",
+      "vehicle_id": "7340",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50265121459961,
+      "lon": 19.11709976196289,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
