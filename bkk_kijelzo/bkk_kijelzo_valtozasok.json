@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T02:43:22.931935+02:00",
+  "frissitve": "2026-10-18T02:43:54.246270+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:56:48.774664+02:00",
-      "kulcs": "V4164",
-      "rendszam": "V4164",
-      "vehicle_id": "4852",
-      "vehicle_label": "Sörgyár",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.491981506347656,
-      "lon": 19.08856964111328,
-      "elozo_szoveg": "Salgótarjáni utca ► Sörgyár",
-      "uj_szoveg": "Sörgyár"
-    },
-    {
-      "idopont": "2026-10-17T12:56:48.774957+02:00",
-      "kulcs": "AADI565",
-      "rendszam": "AADI565",
-      "vehicle_id": "55",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.542667388916016,
-      "lon": 18.964824676513672,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-10-17T12:56:48.774983+02:00",
-      "kulcs": "V2259",
-      "rendszam": "V2259",
-      "vehicle_id": "557",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.51738739013672,
-      "lon": 19.06252670288086,
-      "elozo_szoveg": "Lehel tér M",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
     {
       "idopont": "2026-10-17T12:56:48.775136+02:00",
       "kulcs": "V2274",
@@ -260000,6 +259961,45 @@
       "lon": 19.056316375732422,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-18T02:43:54.183475+02:00",
+      "kulcs": "FLR735",
+      "rendszam": "FLR735",
+      "vehicle_id": "3149",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.525062561035156,
+      "lon": 19.06368064880371,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-18T02:43:54.183961+02:00",
+      "kulcs": "PDZ830",
+      "rendszam": "PDZ830",
+      "vehicle_id": "7293",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56768798828125,
+      "lon": 19.127222061157227,
+      "elozo_szoveg": "Rákospalota",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-18T02:43:54.184031+02:00",
+      "kulcs": "SKR723",
+      "rendszam": "SKR723",
+      "vehicle_id": "7672",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51252746582031,
+      "lon": 19.057228088378906,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
     }
   ]
 }
