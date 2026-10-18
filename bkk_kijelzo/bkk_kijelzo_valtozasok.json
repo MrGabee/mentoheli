@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:32:45.026930+02:00",
+  "frissitve": "2026-10-18T03:33:15.373946+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:04:17.940057+02:00",
-      "kulcs": "V2113",
-      "rendszam": "V2113",
-      "vehicle_id": "7363",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54848098754883,
-      "lon": 19.029809951782227,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-17T13:04:17.940584+02:00",
-      "kulcs": "RVY726",
-      "rendszam": "RVY726",
-      "vehicle_id": "7624",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "HP61",
-      "route_id": "HP61",
-      "lat": 47.51937484741211,
-      "lon": 19.217546463012695,
-      "elozo_szoveg": "Vidámvásár utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-17T13:04:17.940629+02:00",
-      "kulcs": "RVY738",
-      "rendszam": "RVY738",
-      "vehicle_id": "7636",
-      "vehicle_label": "Vecsési út-Boráros tér H",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.38718795776367,
-      "lon": 19.222291946411133,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Boráros tér H"
-    },
-    {
-      "idopont": "2026-10-17T13:04:17.940683+02:00",
-      "kulcs": "RVY746",
-      "rendszam": "RVY746",
-      "vehicle_id": "7644",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.38302230834961,
-      "lon": 19.20196533203125,
-      "elozo_szoveg": "Gyál, Bem József utca",
-      "uj_szoveg": "Bem József utca ► Határ út M"
-    },
     {
       "idopont": "2026-10-17T13:04:17.940735+02:00",
       "kulcs": "SCD590",
@@ -260000,6 +259948,58 @@
       "lon": 19.025592803955078,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-18T03:33:15.322996+02:00",
+      "kulcs": "V2031",
+      "rendszam": "V2031",
+      "vehicle_id": "2031",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.473876953125,
+      "lon": 19.0472354888916,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-18T03:33:15.324368+02:00",
+      "kulcs": "SKN830",
+      "rendszam": "SKN830",
+      "vehicle_id": "545",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.439300537109375,
+      "lon": 19.10393524169922,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-10-18T03:33:15.324395+02:00",
+      "kulcs": "V2222",
+      "rendszam": "V2222",
+      "vehicle_id": "5862",
+      "vehicle_label": "Mexikói út M",
+      "vonal_szam": "3",
+      "route_id": "3030",
+      "lat": 47.45562744140625,
+      "lon": 19.11442756652832,
+      "elozo_szoveg": "KOCSISZÍNBE  Nagykőrösi út / Határ út",
+      "uj_szoveg": "Mexikói út M"
+    },
+    {
+      "idopont": "2026-10-18T03:33:15.324789+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.4891357421875,
+      "lon": 19.062753677368164,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
     }
   ]
 }
