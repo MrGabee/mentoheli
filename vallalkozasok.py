@@ -109,6 +109,26 @@ def velemeny_szoveg(nap):
     return "\n".join(sorok)
 
 
+# Egyszeri rovatindító poszt (2026.10.19. hétfő 13:40)
+BEJELENTO_NAP = date(2026, 10, 19)
+BEJELENTO = """🏪 ÚJ ROVAT: CSEPELI VÁLLALKOZÁSOK 🏪
+
+Új rovatot indítok, és ehhez a ti segítségetekre is szükségem van!
+
+Szeretném, ha jobban megismernénk azokat, akik itt dolgoznak a környéken: a sarki péket, a megbízható szerelőt, a fodrászt, a kis családi boltot. Szerintem sokszor nem is tudjuk, milyen jó helyek vannak tőlünk pár utcányira.
+
+🤝 Vállalkozó vagy Csepelen vagy a környéken? Jelentkezz, és szívesen bemutatlak, teljesen ingyen! Írj nekem, vagy válaszd az űrlapon a „Vállalkozás bemutatása” menüpontot:
+👉 https://kozles.github.io/posztol/kapcsolat.html
+
+Ismersz egy jó helyi vállalkozást? Írd meg kommentben, és lehet, hogy hamarosan ők is bemutatkoznak!
+
+#Csepel #helyivállalkozás #vásároljhelyben #újrovat"""
+
+
+def bejelento_szoveg(nap):
+    return BEJELENTO if nap == BEJELENTO_NAP else ""
+
+
 if __name__ == "__main__":
     ma = date.today()
     print(velemeny_szoveg(ma))

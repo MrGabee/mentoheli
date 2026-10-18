@@ -108,6 +108,7 @@ MENETREND = [
     ("kerulet_problema", time(17, 35), None, lambda nap, a: kerulet_problema.szoveg(nap)),
     ("kerdes",        time(18, 35),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
     ("vallalkozas",   time(13, 25),  {SZERDA}, lambda nap, a: vallalkozasok.bemutato_szoveg(nap, a)),
+    ("rovat_vallalkozas", time(13, 40), {HETFO}, lambda nap, a: vallalkozasok.bejelento_szoveg(nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
