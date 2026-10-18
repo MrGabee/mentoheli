@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-19T01:43:14.519409+02:00",
+  "frissitve": "2026-10-19T01:43:47.709995+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:38:58.089019+02:00",
-      "kulcs": "SKR817",
-      "rendszam": "SKR817",
-      "vehicle_id": "7702",
-      "vehicle_label": "Zugliget, Libegő",
-      "vonal_szam": "291",
-      "route_id": "2910",
-      "lat": 47.510807037353516,
-      "lon": 19.056427001953125,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Zugliget, Libegő"
-    },
-    {
-      "idopont": "2026-10-18T12:38:58.089792+02:00",
-      "kulcs": "T9123",
-      "rendszam": "T9123",
-      "vehicle_id": "7862",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48942184448242,
-      "lon": 19.089929580688477,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-18T12:38:58.090085+02:00",
-      "kulcs": "T8115",
-      "rendszam": "T8115",
-      "vehicle_id": "7894",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51919174194336,
-      "lon": 19.090999603271484,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-18T12:38:58.090228+02:00",
-      "kulcs": "AOFL209",
-      "rendszam": "AOFL209",
-      "vehicle_id": "795",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "183",
-      "route_id": "1830",
-      "lat": 47.441795349121094,
-      "lon": 19.213367462158203,
-      "elozo_szoveg": "Szemeretelep vasútállomás",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-10-18T12:38:58.090355+02:00",
-      "kulcs": "AOFL221",
-      "rendszam": "AOFL221",
-      "vehicle_id": "808",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.54664993286133,
-      "lon": 19.01717758178711,
-      "elozo_szoveg": "Máramaros út",
-      "uj_szoveg": "Szentlélek tér H"
-    },
     {
       "idopont": "2026-10-18T12:38:58.091226+02:00",
       "kulcs": "981-691-982-1131-766-1132",
@@ -260000,6 +259935,71 @@
       "lon": 19.056167602539062,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-19T01:43:47.625645+02:00",
+      "kulcs": "AADI652",
+      "rendszam": "AADI652",
+      "vehicle_id": "151",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50261688232422,
+      "lon": 19.136228561401367,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-19T01:43:47.628569+02:00",
+      "kulcs": "FLR743",
+      "rendszam": "FLR743",
+      "vehicle_id": "3157",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54142761230469,
+      "lon": 19.151588439941406,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-19T01:43:47.628609+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.462623596191406,
+      "lon": 19.005733489990234,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-19T01:43:47.628884+02:00",
+      "kulcs": "NGC152",
+      "rendszam": "NGC152",
+      "vehicle_id": "6198",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175857543945,
+      "lon": 19.135604858398438,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-19T01:43:47.629044+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.567447662353516,
+      "lon": 19.124935150146484,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota"
     }
   ]
 }
