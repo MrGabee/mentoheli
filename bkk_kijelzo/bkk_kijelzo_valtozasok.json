@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T01:54:07.226898+02:00",
+  "frissitve": "2026-10-19T01:54:35.236620+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:40:11.745101+02:00",
-      "kulcs": "T9126",
-      "rendszam": "T9126",
-      "vehicle_id": "7865",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.49966812133789,
-      "lon": 19.083118438720703,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-18T12:40:11.745214+02:00",
-      "kulcs": "AOFL204",
-      "rendszam": "AOFL204",
-      "vehicle_id": "788",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.489688873291016,
-      "lon": 19.036455154418945,
-      "elozo_szoveg": "Sánc utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-18T12:40:11.745323+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.517601013183594,
-      "lon": 19.093996047973633,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
     {
       "idopont": "2026-10-18T12:40:11.745485+02:00",
       "kulcs": "AOFL210",
@@ -260000,6 +259961,45 @@
       "lon": 19.053874969482422,
       "elozo_szoveg": "Békásmegyer H",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-19T01:54:35.125343+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47475051879883,
+      "lon": 19.046735763549805,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T01:54:35.125846+02:00",
+      "kulcs": "SKR830",
+      "rendszam": "SKR830",
+      "vehicle_id": "7716",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.447296142578125,
+      "lon": 19.150314331054688,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-19T01:54:35.126029+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.5113410949707,
+      "lon": 19.056413650512695,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
