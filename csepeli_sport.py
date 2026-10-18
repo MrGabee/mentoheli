@@ -19,6 +19,7 @@ import sys
 import random
 import html
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, date, timedelta
 from zoneinfo import ZoneInfo
 
@@ -36,8 +37,13 @@ KLUB_KEZDOLAPOK = [
     ADATBANK + "/club/67/5/33817/1/335288.html",
 ]
 # Ezekről a bajnokságokról nem írok
-KIHAGYOTT_BAJNOKSAGOK = ["veterán", "öregfiúk", "old boys"]
-MAX_MECCS = 25
+MAX_MECCS = 40
+# A klubok csapatlistája mellett végignézem az évad összes bajnokságát is
+# (ezek azonosítói ebbe a tartományba esnek), és minden csapatot felveszek,
+# amelyiknek a nevében ott van a Csepel (pl. más klubok csepeli csapatai).
+EVAD = 67
+BAJNOKSAG_TARTOMANY = range(33300, 34600)
+CSEPELI_NEV = re.compile(r"CSEPEL|CSFC", re.I)
 
 # A kiemelt csapat: a Csepel SC felnőtt csapata (bajnokság és kupa)
 KIEMELT_CSAPAT = "CSEPEL SC"
@@ -131,26 +137,74 @@ def csapat_meccsei(html_szoveg, bajnoksag):
     return meccsek
 
 
-def osszes_meccs():
-    """Minden csepeli csapat minden meccse. None, ha az adatbank nem elérhető."""
+def _csapat_kulcs(url):
+    """(bajnokság, csapat) azonosító egy csapatoldal URL-jéből."""
+    r = re.search(r"/club/\d+/\d+/(\d+)/\d+/(\d+)\.html", url)
+    return (r.group(1), r.group(2)) if r else url
+
+
+def bajnoksag_csepeli_csapatai(azon):
+    """Egy bajnokság csepeli csapatai: [(bajnokság neve, csapatoldal URL)]."""
+    try:
+        t = _letolt(f"{ADATBANK}/league/{EVAD}/0/{azon}/1.html")
+    except Exception:
+        return []
+    if not CSEPELI_NEV.search(t):
+        return []
+    cim = re.search(r"<title>(.*?)</title>", t, re.S)
+    nev = re.sub(r"\s+\d+\. forduló\s*-\s*MLSZ adatbank\s*$", "", html.unescape(cim.group(1)).strip()) if cim else ""
+    lista = []
+    latott = set()
+    for a in re.finditer(r'<a\b[^>]*href="((?:https://adatbank\.mlsz\.hu)?/club/\d+/\d+/%d/\d+/\d+\.html)"[^>]*>(.*?)</a>' % azon, t, re.S):
+        url, tag = a.group(1), a.group(0)
+        if url.startswith("/"):
+            url = ADATBANK + url
+        if url in latott:
+            continue
+        cim_attr = re.search(r'title="([^"]+)"', tag)
+        csapat = html.unescape(cim_attr.group(1) if cim_attr else _tiszta(a.group(2)))
+        if CSEPELI_NEV.search(csapat):
+            latott.add(url)
+            lista.append((nev, url))
+    if not lista:
+        print(f"  ⚠️ {azon}: csepeli név van az oldalon, de csapatlinket nem találtam")
+    return lista
+
+
+def osszes_meccs(teljes=True):
+    """Minden csepeli csapat minden meccse. None, ha az adatbank nem elérhető.
+    teljes=False: csak a klubok csapatlistája (gyors, a Csepel SC-hez elég)."""
     csapatok = {}
     for kezdo in KLUB_KEZDOLAPOK:
         try:
             for bajnoksag, url in klub_csapatai(_letolt(kezdo)):
-                if not any(k in bajnoksag.lower() for k in KIHAGYOTT_BAJNOKSAGOK):
-                    csapatok.setdefault(url, bajnoksag)
+                csapatok.setdefault(_csapat_kulcs(url), (url, bajnoksag))
         except Exception as ex:
             print(f"  ❌ {kezdo}: {ex}")
     if not csapatok:
         return None
-    meccsek, hibak = {}, 0
-    for url, bajnoksag in csapatok.items():
+    if teljes:
+        with ThreadPoolExecutor(16) as ex:
+            for lista in ex.map(bajnoksag_csepeli_csapatai, BAJNOKSAG_TARTOMANY):
+                for bajnoksag, url in lista:
+                    csapatok.setdefault(_csapat_kulcs(url), (url, bajnoksag))
+
+    def letolt_csapat(par):
+        url, bajnoksag = par
         try:
-            for m in csapat_meccsei(_letolt(url), bajnoksag):
-                meccsek.setdefault(m["id"], m)
+            return csapat_meccsei(_letolt(url), bajnoksag)
         except Exception as ex:
-            hibak += 1
             print(f"  ❌ {url}: {ex}")
+            return None
+
+    meccsek, hibak = {}, 0
+    with ThreadPoolExecutor(8) as ex:
+        for eredmeny in ex.map(letolt_csapat, csapatok.values()):
+            if eredmeny is None:
+                hibak += 1
+                continue
+            for m in eredmeny:
+                meccsek.setdefault(m["id"], m)
     print(f"  ⚽ {len(csapatok)} csapat, {len(meccsek)} meccs, {hibak} hiba")
     if hibak > len(csapatok) // 2:
         return None
@@ -275,7 +329,7 @@ def hetkoznapi_szoveg(ma, meccsek=None):
     if holnap.weekday() > 3:
         return ""  # a péntek–vasárnapi meccsek a pénteki beharangozóban vannak
     if meccsek is None:
-        meccsek = osszes_meccs()
+        meccsek = osszes_meccs(teljes=False)
         if meccsek is None:
             return None
     lista = [m for m in meccsek if m["nap"] == holnap and kiemelt(m) and m["golok"] is None]
@@ -295,6 +349,8 @@ if __name__ == "__main__":
     mod = sys.argv[1] if len(sys.argv) > 1 else "elozetes"
     meccsek = osszes_meccs()
     if meccsek is not None:
+        for b in sorted({(m["bajnoksag"], m["csapat"]) for m in meccsek}):
+            print(f"   🏷️ {b[0]} | {b[1]}")
         for m in meccsek:
             print(f"   {m['nap']} {m['ido']:>5} | {m['bajnoksag']} | {m['hazai']} – {m['vendeg']} | {m['golok']}")
     fv = {"elozetes": elozetes_szoveg, "eredmeny": eredmeny_szoveg, "hetkoz": hetkoznapi_szoveg}[mod]

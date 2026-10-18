@@ -1,0 +1,23 @@
+name: Sport próba (nem posztol)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mod:
+        description: "elozetes / eredmeny / hetkoz"
+        default: "elozetes"
+      datum:
+        description: "YYYY-MM-DD (üres = ma)"
+        default: ""
+
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q requests tzdata
+      - run: time python csepeli_sport.py "${{ inputs.mod }}" ${{ inputs.datum }}
