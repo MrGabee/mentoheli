@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-19T01:18:57.642210+02:00",
+  "frissitve": "2026-10-19T01:19:27.596672+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:36:00.425573+02:00",
-      "kulcs": "T8106",
-      "rendszam": "T8106",
-      "vehicle_id": "7343",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.50101089477539,
-      "lon": 19.083141326904297,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-18T12:36:00.426485+02:00",
-      "kulcs": "RVY744",
-      "rendszam": "RVY744",
-      "vehicle_id": "7642",
-      "vehicle_label": "Szigetszentmiklós",
-      "vonal_szam": "38",
-      "route_id": "0380",
-      "lat": 47.38968276977539,
-      "lon": 19.031293869018555,
-      "elozo_szoveg": "Auchan Sziget ► Szigetszentmiklós",
-      "uj_szoveg": "Szigetszentmiklós, városháza"
-    },
-    {
-      "idopont": "2026-10-18T12:36:00.426684+02:00",
-      "kulcs": "SKR723",
-      "rendszam": "SKR723",
-      "vehicle_id": "7672",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.500423431396484,
-      "lon": 19.135669708251953,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-18T12:36:00.426712+02:00",
-      "kulcs": "SKR724",
-      "rendszam": "SKR724",
-      "vehicle_id": "7673",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46211242675781,
-      "lon": 19.155534744262695,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
     {
       "idopont": "2026-10-18T12:36:00.426960+02:00",
       "kulcs": "SKR825",
@@ -260000,6 +259948,58 @@
       "lon": 19.047094345092773,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-19T01:19:27.505197+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43234634399414,
+      "lon": 19.260705947875977,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-10-19T01:19:27.505298+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59851837158203,
+      "lon": 19.054288864135742,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-19T01:19:27.505544+02:00",
+      "kulcs": "NGC029",
+      "rendszam": "NGC029",
+      "vehicle_id": "6328",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51267623901367,
+      "lon": 19.116710662841797,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T01:19:27.506219+02:00",
+      "kulcs": "SIF014",
+      "rendszam": "SIF014",
+      "vehicle_id": "7749",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.47990417480469,
+      "lon": 19.141450881958008,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Káposztásmegyer",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
