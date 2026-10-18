@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:46:41.280814+02:00",
+  "frissitve": "2026-10-18T03:47:12.988825+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:06:29.252910+02:00",
-      "kulcs": "AOFL247",
-      "rendszam": "AOFL247",
-      "vehicle_id": "835",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.47153091430664,
-      "lon": 19.166641235351562,
-      "elozo_szoveg": "Újhegy",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-17T13:06:29.252932+02:00",
-      "kulcs": "AOFL248",
-      "rendszam": "AOFL248",
-      "vehicle_id": "836",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "185",
-      "route_id": "1850",
-      "lat": 47.483482360839844,
-      "lon": 19.127761840820312,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
-    {
-      "idopont": "2026-10-17T13:06:29.253077+02:00",
-      "kulcs": "AOIB790",
-      "rendszam": "AOIB790",
-      "vehicle_id": "861",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "154",
-      "route_id": "1540",
-      "lat": 47.473716735839844,
-      "lon": 19.05097198486328,
-      "elozo_szoveg": "Újbuda-központ M ► Gazdagréti tér",
-      "uj_szoveg": "Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-10-17T13:06:29.253413+02:00",
-      "kulcs": "1121-761-1122",
-      "rendszam": "1121-761-1122",
-      "vehicle_id": "905516561214-905536467616-905516561222",
-      "vehicle_label": "Békásmegyer",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.507171630859375,
-      "lon": 19.039480209350586,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Békásmegyer"
-    },
-    {
-      "idopont": "2026-10-17T13:06:29.254582+02:00",
-      "kulcs": "AOIM036",
-      "rendszam": "AOIM036",
-      "vehicle_id": "956",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46318054199219,
-      "lon": 19.31294059753418,
-      "elozo_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-17T13:06:29.254757+02:00",
       "kulcs": "AOJM864",
@@ -260000,6 +259935,71 @@
       "lon": 19.28191375732422,
       "elozo_szoveg": "Rákoscsaba vasútállomás",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-18T03:47:12.897895+02:00",
+      "kulcs": "AAHY845",
+      "rendszam": "AAHY845",
+      "vehicle_id": "406",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.560604095458984,
+      "lon": 19.089889526367188,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-10-18T03:47:12.898007+02:00",
+      "kulcs": "AAMH616",
+      "rendszam": "AAMH616",
+      "vehicle_id": "459",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48395919799805,
+      "lon": 19.127044677734375,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-18T03:47:12.898310+02:00",
+      "kulcs": "NWB359",
+      "rendszam": "NWB359",
+      "vehicle_id": "6539",
+      "vehicle_label": "Rákoskeresztúr, városkp.",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54678726196289,
+      "lon": 19.142501831054688,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-10-18T03:47:12.898465+02:00",
+      "kulcs": "PON993",
+      "rendszam": "PON993",
+      "vehicle_id": "7260",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.49718475341797,
+      "lon": 19.055377960205078,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-18T03:47:12.898493+02:00",
+      "kulcs": "PCC933",
+      "rendszam": "PCC933",
+      "vehicle_id": "7272",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51132583618164,
+      "lon": 19.0563907623291,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
     }
   ]
 }
