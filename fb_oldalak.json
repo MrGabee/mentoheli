@@ -1,4 +1,12 @@
 {
-  "_leiras": "A figyelt Facebook-oldalak. 'nev': ahogy a posztban szerepel, 'rss': az rss.app / FetchRSS által adott hírcsatorna-cím. Új oldalnál csak egy újabb sort kell ide felvenni.",
-  "oldalak": []
+  "_leiras": "A figyelt Facebook-oldalak. 'nev': ahogy a posztban szerepel, 'rss': hírcsatorna-cím (a helyben futó RSS-Bridge: http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=OLDALNEV&format=Atom). 'szuro': csak az ennek megfelelő bejegyzések mennek ki (regex). 'csendes_perc': kiküldés után ennyi percig nem megy ki színes poszt. 'max_szoveg': legfeljebb ennyi karakter kerül a posztba.",
+  "oldalak": [
+    {
+      "nev": "Volánbusz",
+      "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=volaninform&format=Atom",
+      "szuro": "\\b(672|673|674|675|676|688|690)\\b|[Cc]sepel",
+      "csendes_perc": 40,
+      "max_szoveg": 1500
+    }
+  ]
 }
