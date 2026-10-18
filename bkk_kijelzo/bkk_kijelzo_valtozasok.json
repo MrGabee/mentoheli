@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:27:04.571535+02:00",
+  "frissitve": "2026-10-18T03:27:38.281101+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:04:17.935017+02:00",
-      "kulcs": "AAMH639",
-      "rendszam": "AAMH639",
-      "vehicle_id": "482",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49699783325195,
-      "lon": 19.0557804107666,
-      "elozo_szoveg": "Deák F. tér (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-17T13:04:17.935170+02:00",
-      "kulcs": "V4238",
-      "rendszam": "V4238",
-      "vehicle_id": "4897",
-      "vehicle_label": "Sörgyár",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.49591827392578,
-      "lon": 19.07279396057129,
-      "elozo_szoveg": "Sörgyár",
-      "uj_szoveg": "Salgótarjáni utca ► Sörgyár"
-    },
-    {
-      "idopont": "2026-10-17T13:04:17.935272+02:00",
-      "kulcs": "V4297",
-      "rendszam": "V4297",
-      "vehicle_id": "4956",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.49239730834961,
-      "lon": 19.087764739990234,
-      "elozo_szoveg": "Kőbányai út ► Új köztemető (Kozma utca)",
-      "uj_szoveg": "Új köztemető (Kozma utca)"
-    },
     {
       "idopont": "2026-10-17T13:04:17.935308+02:00",
       "kulcs": "V4328",
@@ -260000,6 +259961,45 @@
       "lon": 21.486099243164062,
       "elozo_szoveg": "Debrecen",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-18T03:27:38.196019+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.54845428466797,
+      "lon": 19.029531478881836,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-18T03:27:38.196055+02:00",
+      "kulcs": "PDB714",
+      "rendszam": "PDB714",
+      "vehicle_id": "7040",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48725509643555,
+      "lon": 19.05796241760254,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-18T03:27:38.196345+02:00",
+      "kulcs": "STZ839",
+      "rendszam": "STZ839",
+      "vehicle_id": "7794",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.455970764160156,
+      "lon": 18.94041633605957,
+      "elozo_szoveg": "Diósd, Sashegyi út",
+      "uj_szoveg": "Astoria M ► Budakeszi"
     }
   ]
 }
