@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T01:25:40.255184+02:00",
+  "frissitve": "2026-10-19T01:26:13.835897+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:36:56.579747+02:00",
-      "kulcs": "V2295",
-      "rendszam": "V2295",
-      "vehicle_id": "593",
-      "vehicle_label": "Káp.megyer, Megyeri út",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.51753616333008,
-      "lon": 19.06279182434082,
-      "elozo_szoveg": "Lehel tér M",
-      "uj_szoveg": "Káposztásmegyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-10-18T12:36:56.579822+02:00",
-      "kulcs": "NBW005",
-      "rendszam": "NBW005",
-      "vehicle_id": "5975",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.4578742980957,
-      "lon": 19.17679214477539,
-      "elozo_szoveg": "Felsőcsatári köz",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-10-18T12:36:56.580044+02:00",
-      "kulcs": "T8012",
-      "rendszam": "T8012",
-      "vehicle_id": "6132",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49550247192383,
-      "lon": 19.06281089782715,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
     {
       "idopont": "2026-10-18T12:36:56.580220+02:00",
       "kulcs": "NCV292",
@@ -260000,6 +259961,45 @@
       "lon": 19.136173248291016,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-19T01:26:13.739473+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48741912841797,
+      "lon": 19.05817985534668,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-10-19T01:26:13.745126+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49702453613281,
+      "lon": 19.055706024169922,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-19T01:26:13.745445+02:00",
+      "kulcs": "NWB357",
+      "rendszam": "NWB357",
+      "vehicle_id": "6537",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.486080169677734,
+      "lon": 19.02238655090332,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
     }
   ]
 }
