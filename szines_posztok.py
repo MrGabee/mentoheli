@@ -130,9 +130,20 @@ CSENDES_IDOSZAKOK = [
 ]
 
 
+# Dinamikus csendes ablak: a Facebook-oldal figyelő állítja be egy fontos
+# megosztás után, hogy legyen ideje lecsengeni (fb_oldal_figyelo.py).
+CSENDES_FAJL = "csendes_ablak.json"
+
+
 def csendes(most):
     t = most.strftime("%Y-%m-%d %H:%M")
-    return any(tol <= t < ig for tol, ig in CSENDES_IDOSZAKOK)
+    if any(tol <= t < ig for tol, ig in CSENDES_IDOSZAKOK):
+        return True
+    try:
+        with open(CSENDES_FAJL, encoding="utf-8") as f:
+            return t < json.load(f).get("ig", "")
+    except Exception:
+        return False
 
 
 def esedekes(most, allapot):

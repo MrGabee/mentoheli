@@ -3,8 +3,9 @@ name: 📣 Facebook-oldal Figyelő
 on:
   workflow_dispatch:
   schedule:
-    # 10 percenként megnézi a figyelt oldalak RSS-csatornáit (fb_oldalak.json)
-    - cron: '*/10 * * * *'
+    # 5 percenként indul (a GitHub ennél sűrűbben nem tud), futásonként kétszer néz rá
+    # a figyelt oldalakra (fb_oldalak.json), így kb. 2,5 percenként frissül
+    - cron: '2-59/5 * * * *'
 
 concurrency:
   group: fb-oldal-figyelo
@@ -13,7 +14,7 @@ concurrency:
 jobs:
   figyel:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 8
     permissions:
       contents: write
 
@@ -31,10 +32,18 @@ jobs:
       - name: 📦 Függőségek telepítése
         run: pip install requests beautifulsoup4
 
+      - name: 🌉 RSS-Bridge indítása (Facebook-oldalak olvasásához)
+        run: |
+          docker run -d --name rssbridge -p 3000:80 -e RSSBRIDGE_system_enabled_bridges='FacebookBridge' rssbridge/rss-bridge:latest
+          for i in $(seq 1 30); do curl -sf -o /dev/null 'http://localhost:3000/' && break; sleep 1; done
+
       - name: 📣 Oldal figyelő futtatása
         env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
-        run: python fb_oldal_figyelo.py
+        run: |
+          python fb_oldal_figyelo.py
+          sleep 150
+          python fb_oldal_figyelo.py
 
       - name: 💾 Állapot commitolása
         run: |
@@ -44,6 +53,7 @@ jobs:
           git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
           git stash pop || true
           [ -f fb_oldal_allapot.json ] && git add fb_oldal_allapot.json || echo "fájl nem létezik"
+          [ -f csendes_ablak.json ] && git add csendes_ablak.json || true
           git diff --staged --quiet || git commit -m "fb oldal figyelő állapot [skip ci]"
           git push origin main || true
         env:

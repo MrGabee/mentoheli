@@ -10,12 +10,13 @@ hogy ne zúdítson ki egyszerre sok régi bejegyzést.
 
 import os
 import json
+import re
 import hashlib
 import requests
 
 import poszt_valtozatos
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from poszt_valtozatos import Stilus
@@ -29,6 +30,8 @@ FACEBOOK_POSZTOLAS_AKTIV = True
 
 OLDALAK_FAJL = "fb_oldalak.json"
 ALLAPOT_FAJL = "fb_oldal_allapot.json"
+# Közös csendes ablak: amíg tart, a színes posztok várnak (szines_posztok.py olvassa)
+CSENDES_FAJL = "csendes_ablak.json"
 
 # Egy bejegyzés szövegéből legfeljebb ennyi karakter kerül a posztba
 MAX_SZOVEG = 400
@@ -118,17 +121,26 @@ def lekerdez(rss_url):
 # ════════════════════════════════════════════
 #  📘  FACEBOOK POSZT
 # ════════════════════════════════════════════
-def facebook_szoveg(oldal_nev, b):
+def facebook_szoveg(oldal_nev, b, max_szoveg=MAX_SZOVEG):
     st = Stilus("megosztas")
     szoveg = b["szoveg"] or b["cim"]
-    if len(szoveg) > MAX_SZOVEG:
-        szoveg = szoveg[:MAX_SZOVEG].rsplit(" ", 1)[0] + "…"
+    if len(szoveg) > max_szoveg:
+        szoveg = szoveg[:max_szoveg].rsplit(" ", 1)[0] + "…"
     sorok = [st.bevezeto.format(nev=oldal_nev), ""]
     if szoveg:
         sorok += [f"„{szoveg}”", ""]
     if b["link"]:
         sorok.append(f"👉 {b['link']}")
     return "\n".join(sorok)
+
+def csendes_ablak(perc):
+    """A színes posztokat `perc` percig hátrébb tolja (a meglévő ablakot csak hosszabbítja)."""
+    ig = (magyar_ido() + timedelta(minutes=perc)).strftime("%Y-%m-%d %H:%M")
+    regi = betolt(CSENDES_FAJL, {}).get("ig", "")
+    if ig > regi:
+        with open(CSENDES_FAJL, "w", encoding="utf-8") as f:
+            json.dump({"ig": ig}, f, ensure_ascii=False, indent=2)
+        print(f"  🤫 Színes posztok szünetelnek eddig: {ig}")
 
 def facebook_poszt_kuldese(szoveg):
     """Szöveges poszt a Facebook Oldalra a Make.com webhookon keresztül."""
@@ -178,15 +190,22 @@ def main():
             print(f"  🆕 Új oldal, {len(bejegyzesek)} meglévő bejegyzés megjegyezve (nem osztja meg).")
             continue
 
+        szuro = re.compile(oldal["szuro"]) if oldal.get("szuro") else None
         # Régebbitől az újabb felé osztja meg
         for b in reversed(bejegyzesek):
             if b["azonosito"] in latott:
                 continue
-            szoveg = facebook_szoveg(nev, b)
+            if szuro and not szuro.search(f"{b['cim']} {b['szoveg']}"):
+                print(f"  ⏭️ Nem illik a szűrőre: {b['cim'][:80]}")
+                latott.append(b["azonosito"])
+                continue
+            szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG))
             print("\n" + szoveg + "\n")
             if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg):
                 break  # sikertelen: a következő futás újra megpróbálja
             latott.append(b["azonosito"])
+            if FACEBOOK_POSZTOLAS_AKTIV and oldal.get("csendes_perc"):
+                csendes_ablak(oldal["csendes_perc"])
 
         allapot[rss] = latott[-200:]
 
