@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T00:42:44.559515+02:00",
+  "frissitve": "2026-10-19T00:43:16.712940+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:31:18.796278+02:00",
-      "kulcs": "T8009",
-      "rendszam": "T8009",
-      "vehicle_id": "6129",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.506263732910156,
-      "lon": 19.050687789916992,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-18T12:31:18.796297+02:00",
-      "kulcs": "T8010",
-      "rendszam": "T8010",
-      "vehicle_id": "6130",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.481319427490234,
-      "lon": 19.13599395751953,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-18T12:31:18.796369+02:00",
-      "kulcs": "AADI583",
-      "rendszam": "AADI583",
-      "vehicle_id": "62",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49764633178711,
-      "lon": 19.05303382873535,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-10-18T12:31:18.796623+02:00",
       "kulcs": "NLE848",
@@ -260000,6 +259961,45 @@
       "lon": 19.05998992919922,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-19T00:43:16.660367+02:00",
+      "kulcs": "LYH122",
+      "rendszam": "LYH122",
+      "vehicle_id": "3711",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.568119049072266,
+      "lon": 19.125890731811523,
+      "elozo_szoveg": "Nagybányai út",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-19T00:43:16.660911+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.602638244628906,
+      "lon": 19.066102981567383,
+      "elozo_szoveg": "Fácános tér",
+      "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-19T00:43:16.660976+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48676300048828,
+      "lon": 19.067827224731445,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
