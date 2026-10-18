@@ -429,9 +429,9 @@ def _make_hivas(adat, timeout=60):
     if not url:
         print(f"      ⚠️  Nincs beállítva {nev}, Facebook-posztolás kihagyva.")
         return None
-    if adat.get("message"):
-        adat = {**adat, "message": atrendez(adat["message"])}
     try:
+        if adat.get("message"):
+            adat = {**adat, "message": atrendez(adat["message"])}
         return requests.post(url, json=adat, timeout=timeout)
     except Exception as e:
         print(f"      ⚠️  Make.com hiba: {e}")

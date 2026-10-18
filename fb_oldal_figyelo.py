@@ -112,10 +112,22 @@ def lekerdez(rss_url):
         if r.status_code != 200:
             print(f"  ⚠️ HTTP {r.status_code}")
             return None
-        return feldolgoz(r.content)
+        bejegyzesek = feldolgoz(r.content)
     except Exception as ex:
         print(f"  ❌ {ex}")
         return None
+    # Az RSS-Bridge a saját hibáit is bejegyzésként adja vissza: ezek nem posztok,
+    # sosem mehetnek ki, és az oldal lekérése ilyenkor sikertelennek számít.
+    hibak = [b for b in bejegyzesek if bridge_hiba(b)]
+    for b in hibak:
+        print(f"  ⚠️ RSS-Bridge hiba: {b['cim'][:120]}")
+    return None if hibak else bejegyzesek
+
+def bridge_hiba(b):
+    return (b["cim"].startswith("Bridge returned error")
+            or "localhost" in b["link"]
+            or "RssBridge" in b["szoveg"]
+            or "HttpException" in b["szoveg"])
 
 
 # ════════════════════════════════════════════

@@ -9,6 +9,7 @@ A tartalom (címek, időpontok, linkek) nem változik.
 Új változatot a listák bővítésével lehet hozzáadni.
 """
 
+import poszt_ellenor
 import random
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -449,7 +450,9 @@ def _cim_valtozat(cim, r):
 
 
 def atrendez(szoveg):
-    """A kész poszt elrendezését változtatja meg, a tartalmát nem."""
+    """A kész poszt elrendezését változtatja meg, a tartalmát nem.
+    Előtte a poszt-ellenőrző átnézi: hibás posztnál kivételt dob, és a küldés elmarad."""
+    poszt_ellenor.ellenoriz(szoveg)
     if not szoveg:
         return szoveg
     r = random.Random(_hashlib.sha256(szoveg.encode("utf-8")).hexdigest())
