@@ -81,7 +81,7 @@ def bemutato_szoveg(nap, allapot):
             "",
             "💬 Jártatok már náluk? Írjátok meg kommentben a tapasztalatotokat!",
             "",
-            "🤝 Vállalkozó vagy a kerületben? Szívesen bemutatlak téged is, ingyen. Írj nekem!",
+            "🤝 Vállalkozó vagy a kerületben? Szívesen bemutatlak téged is, ingyen. Írj Messengeren, WhatsAppon (+36 70 754 0254), e-mailben (olvaso@mrgabee.hu), vagy jelentkezz az űrlapon: https://kozles.github.io/posztol/kapcsolat.html",
             "ℹ️ Ez nem fizetett hirdetés.",
         ]
         if st.zaro:
@@ -117,8 +117,11 @@ BEJELENTO = """🏪 ÚJ ROVAT: CSEPELI VÁLLALKOZÁSOK 🏪
 
 Szeretném, ha jobban megismernénk azokat, akik itt dolgoznak a környéken: a sarki péket, a megbízható szerelőt, a fodrászt, a kis családi boltot. Szerintem sokszor nem is tudjuk, milyen jó helyek vannak tőlünk pár utcányira.
 
-🤝 Vállalkozó vagy Csepelen vagy a környéken? Jelentkezz, és szívesen bemutatlak, teljesen ingyen! Írj nekem, vagy válaszd az űrlapon a „Vállalkozás bemutatása” menüpontot:
-👉 https://kozles.github.io/posztol/kapcsolat.html
+🤝 Vállalkozó vagy Csepelen vagy a környéken? Jelentkezz, és szívesen bemutatlak, teljesen ingyen! Így érsz el:
+💬 Messenger: írj az oldalnak üzenetet
+📱 WhatsApp: +36 70 754 0254
+✉️ E-mail: olvaso@mrgabee.hu
+📝 Űrlap („Vállalkozás bemutatása” menüpont): https://kozles.github.io/posztol/kapcsolat.html
 
 Ismersz egy jó helyi vállalkozást? Írd meg kommentben, és lehet, hogy hamarosan ők is bemutatkoznak!
 

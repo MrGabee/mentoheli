@@ -52,7 +52,7 @@ if SZINES_WEBHOOK:
 def kapcsolat_sor(nap, kulcs):
     return poszt_valtozatos.rovid_kapcsolat(nap, kulcs, allasok.OLVASOI_EMAIL,
                                             "+36 70 754 0254", allasok.KAPCSOLAT_URL)
-KAPCSOLAT_NELKUL = {"allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
+KAPCSOLAT_NELKUL = {"rovat_vallalkozas", "vallalkozas", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
