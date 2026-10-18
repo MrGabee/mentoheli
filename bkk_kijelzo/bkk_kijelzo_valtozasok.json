@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-18T03:52:33.339022+02:00",
+  "frissitve": "2026-10-18T03:53:05.074514+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T13:07:38.980041+02:00",
-      "kulcs": "T9136",
-      "rendszam": "T9136",
-      "vehicle_id": "7875",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.49976348876953,
-      "lon": 19.0838623046875,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-17T13:07:38.980110+02:00",
-      "kulcs": "T9141",
-      "rendszam": "T9141",
-      "vehicle_id": "7880",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.5140266418457,
-      "lon": 19.049367904663086,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-17T13:07:38.980214+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.5249137878418,
-      "lon": 19.125036239624023,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-10-17T13:07:38.980373+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Pesthidegkút",
-      "vonal_szam": "257",
-      "route_id": "2570",
-      "lat": 47.54323959350586,
-      "lon": 18.964014053344727,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Pesthidegkút"
-    },
     {
       "idopont": "2026-10-17T13:07:38.980454+02:00",
       "kulcs": "AOFL222",
@@ -260000,6 +259948,58 @@
       "lon": 19.498340606689453,
       "elozo_szoveg": "Lajosmizse",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-18T03:53:05.000614+02:00",
+      "kulcs": "FKU929",
+      "rendszam": "FKU929",
+      "vehicle_id": "3085",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40446853637695,
+      "lon": 19.185821533203125,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-18T03:53:05.002306+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.382408142089844,
+      "lon": 19.22972869873047,
+      "elozo_szoveg": "Vecsési út ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-18T03:53:05.002367+02:00",
+      "kulcs": "MUT890",
+      "rendszam": "MUT890",
+      "vehicle_id": "5943",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.5192985534668,
+      "lon": 19.03819465637207,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-18T03:53:05.002775+02:00",
+      "kulcs": "STZ839",
+      "rendszam": "STZ839",
+      "vehicle_id": "7794",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.48672103881836,
+      "lon": 19.056894302368164,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
     }
   ]
 }
