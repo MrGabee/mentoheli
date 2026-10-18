@@ -231,13 +231,15 @@ HIREK_KATEGORIAK = {
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/igazgatasrendeszet",
         "facebook_post": True,
     },
-    # Gábor kérésére: ennek a szervnek (police.hu feltöltő szerv 108) minden
-    # híre megy, szűrés nélkül ("minden": True).
+    # BRFK (feltöltő szerv 108): egész Budapest, ebből csak a dél-pesti esetek
+    # (XVIII., XIX., XX., XXI., XXIII. kerület és a "dél-pesti" említések).
     "szerv_108": {
         "label": "Dél-pesti hírek",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink?field_feltolto_szerv_target_id=108",
         "facebook_post": True,
-        "minden": True,
+        "szuro": re.compile(
+            r"\b(XVIII|XIX|XX|XXI|XXIII)\.?\s*(KER|kerület)|dél-?pest|csepel|pesterzsébet|"
+            r"soroksár(?!i\s+út)|kispest|pestszentl[őo]rinc|pestszentimre", re.I),
     },
     # Szigetszentmiklósi RK (feltöltő szerv 117): csak a környékbeli települések.
     "szerv_117": {
