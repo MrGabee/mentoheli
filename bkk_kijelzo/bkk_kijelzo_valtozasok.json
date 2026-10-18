@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-18T02:10:31.553468+02:00",
+  "frissitve": "2026-10-18T02:11:03.671014+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-17T12:50:58.105423+02:00",
-      "kulcs": "AOFL236",
-      "rendszam": "AOFL236",
-      "vehicle_id": "824",
-      "vehicle_label": "Máriaremete",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.544586181640625,
-      "lon": 18.96354866027832,
-      "elozo_szoveg": "Máriaremete",
-      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-17T12:50:58.105435+02:00",
-      "kulcs": "AOFL237",
-      "rendszam": "AOFL237",
-      "vehicle_id": "825",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.555335998535156,
-      "lon": 19.011905670166016,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
-    {
-      "idopont": "2026-10-17T12:50:58.105446+02:00",
-      "kulcs": "AOFL239",
-      "rendszam": "AOFL239",
-      "vehicle_id": "827",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52296829223633,
-      "lon": 18.988515853881836,
-      "elozo_szoveg": "Kurucles",
-      "uj_szoveg": "Kurucles ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-17T12:50:58.105500+02:00",
-      "kulcs": "AOFL250",
-      "rendszam": "AOFL250",
-      "vehicle_id": "838",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.4832878112793,
-      "lon": 19.12822151184082,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
     {
       "idopont": "2026-10-17T12:50:58.105598+02:00",
       "kulcs": "AOIB795",
@@ -260000,6 +259948,58 @@
       "lon": 19.077720642089844,
       "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
       "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-18T02:11:03.615183+02:00",
+      "kulcs": "V2031",
+      "rendszam": "V2031",
+      "vehicle_id": "2031",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.473854064941406,
+      "lon": 19.04726791381836,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-18T02:11:03.616424+02:00",
+      "kulcs": "NBW004",
+      "rendszam": "NBW004",
+      "vehicle_id": "5974",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52325439453125,
+      "lon": 19.01815414428711,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-18T02:11:03.616655+02:00",
+      "kulcs": "SGY982",
+      "rendszam": "SGY982",
+      "vehicle_id": "7662",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49980545043945,
+      "lon": 19.287250518798828,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-18T02:11:03.616731+02:00",
+      "kulcs": "T9142",
+      "rendszam": "T9142",
+      "vehicle_id": "7881",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50229263305664,
+      "lon": 19.11639404296875,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
