@@ -85,7 +85,8 @@ KOROZES_SZERV_SZURO = [
 # valamint Szigetszentmiklós néven, ékezettel és ékezet nélkül is)
 HIREK_MINTA = re.compile(
     r"\bXXI?\.?\s*(KER|kerület)|\bXXIII\.?\s*(KER|kerület)|csepel|pesterzsébet|"
-    r"soroksár(?!i\s+út)|szigetszentmikl[oó]s",   # a Soroksári út a IX. kerületben van
+    r"soroksár(?!i\s+út)|szigetszentmikl[oó]s|"   # a Soroksári út a IX. kerületben van
+    r"dél-pest|délpest",                           # dél-pesti esetek is (Gábor kérésére)
     re.IGNORECASE,
 )
 
