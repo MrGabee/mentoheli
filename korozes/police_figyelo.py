@@ -227,6 +227,14 @@ HIREK_KATEGORIAK = {
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/igazgatasrendeszet",
         "facebook_post": True,
     },
+    # Gábor kérésére: ennek a szervnek (police.hu feltöltő szerv 108) minden
+    # híre megy, szűrés nélkül ("minden": True).
+    "szerv_108": {
+        "label": "Dél-pesti hírek",
+        "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink?field_feltolto_szerv_target_id=108",
+        "facebook_post": True,
+        "minden": True,
+    },
     "hatarrendeszet": {
         "label": "Határrendészet",
         "list_path": "/hu/hirek-es-informaciok/legfrissebb-hireink/hatarrendeszet",
@@ -902,7 +910,7 @@ def main():
             if kategoria_elso_futas:
                 continue
 
-            if not hirek_egyezik(cikk):
+            if not kat.get("minden") and not hirek_egyezik(cikk):
                 continue
             if cikk["url"] in ertesitett_hir_urlk:
                 continue
