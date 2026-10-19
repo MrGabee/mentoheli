@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T02:16:45.623412+02:00",
+  "frissitve": "2026-10-19T02:17:15.377805+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:43:29.192221+02:00",
-      "kulcs": "T8107",
-      "rendszam": "T8107",
-      "vehicle_id": "7344",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.506282806396484,
-      "lon": 19.050979614257812,
-      "elozo_szoveg": "Kossuth Lajos tér M",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-18T12:43:29.192329+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.49351119995117,
-      "lon": 19.044139862060547,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-18T12:43:29.192550+02:00",
-      "kulcs": "RVY615",
-      "rendszam": "RVY615",
-      "vehicle_id": "7444",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.44298553466797,
-      "lon": 19.157669067382812,
-      "elozo_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-10-18T12:43:29.192590+02:00",
       "kulcs": "RVY619",
@@ -260000,6 +259961,45 @@
       "lon": 18.964046478271484,
       "elozo_szoveg": "Csillebérc, Gyermekvasút",
       "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T02:17:15.328484+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699401855469,
+      "lon": 19.055757522583008,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-19T02:17:15.328665+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51289749145508,
+      "lon": 19.11715316772461,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T02:17:15.328823+02:00",
+      "kulcs": "T8105",
+      "rendszam": "T8105",
+      "vehicle_id": "7342",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50440979003906,
+      "lon": 19.1366024017334,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
     }
   ]
 }
