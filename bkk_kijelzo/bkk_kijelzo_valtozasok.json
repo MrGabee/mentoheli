@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-20T01:42:34.122645+02:00",
+  "frissitve": "2026-10-20T01:43:06.461381+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:03:08.156594+02:00",
-      "kulcs": "NWB365",
-      "rendszam": "NWB365",
-      "vehicle_id": "6545",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.48061752319336,
-      "lon": 19.232866287231445,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-19T15:03:08.157329+02:00",
-      "kulcs": "PDN607",
-      "rendszam": "PDN607",
-      "vehicle_id": "7079",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.46403121948242,
-      "lon": 19.018775939941406,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Baross Gábor-telep"
-    },
-    {
-      "idopont": "2026-10-19T15:03:08.157369+02:00",
-      "kulcs": "PDN611",
-      "rendszam": "PDN611",
-      "vehicle_id": "7082",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.42644500732422,
-      "lon": 19.078855514526367,
-      "elozo_szoveg": "Horgásztanya ► Szentmiklósi út",
-      "uj_szoveg": "Szentmiklósi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-19T15:03:08.157450+02:00",
-      "kulcs": "PDN617",
-      "rendszam": "PDN617",
-      "vehicle_id": "7088",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41593933105469,
-      "lon": 19.072612762451172,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
     {
       "idopont": "2026-10-19T15:03:08.157521+02:00",
       "kulcs": "PDN623",
@@ -260000,6 +259948,58 @@
       "lon": 19.055381774902344,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-20T01:43:06.369774+02:00",
+      "kulcs": "FLR705",
+      "rendszam": "FLR705",
+      "vehicle_id": "3119",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54177474975586,
+      "lon": 19.15123748779297,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-20T01:43:06.369866+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46251678466797,
+      "lon": 19.00541114807129,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-20T01:43:06.370568+02:00",
+      "kulcs": "PDB390",
+      "rendszam": "PDB390",
+      "vehicle_id": "7072",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50136947631836,
+      "lon": 19.120126724243164,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-10-20T01:43:06.370790+02:00",
+      "kulcs": "RVY602",
+      "rendszam": "RVY602",
+      "vehicle_id": "7431",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486976623535156,
+      "lon": 19.06720542907715,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
