@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T03:01:56.826329+02:00",
+  "frissitve": "2026-10-19T03:02:29.572288+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:50:27.970503+02:00",
-      "kulcs": "T8100",
-      "rendszam": "T8100",
-      "vehicle_id": "7337",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50932312011719,
-      "lon": 19.05885887145996,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-10-18T12:50:27.970660+02:00",
-      "kulcs": "T9102",
-      "rendszam": "T9102",
-      "vehicle_id": "7349",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489505767822266,
-      "lon": 19.089933395385742,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-18T12:50:27.970695+02:00",
-      "kulcs": "T9103",
-      "rendszam": "T9103",
-      "vehicle_id": "7350",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.4998893737793,
-      "lon": 19.083576202392578,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-18T12:50:27.970768+02:00",
       "kulcs": "V2237",
@@ -260000,6 +259961,45 @@
       "lon": 19.098962783813477,
       "elozo_szoveg": "Astoria M ► Máriaremete",
       "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-19T03:02:29.485723+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.50498962402344,
+      "lon": 19.099166870117188,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-19T03:02:29.485792+02:00",
+      "kulcs": "PDB390",
+      "rendszam": "PDB390",
+      "vehicle_id": "7072",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50751495361328,
+      "lon": 19.024572372436523,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-19T03:02:29.487143+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50897979736328,
+      "lon": 19.095638275146484,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
