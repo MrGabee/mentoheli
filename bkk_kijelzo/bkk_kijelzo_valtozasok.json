@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T01:09:21.437513+02:00",
+  "frissitve": "2026-10-20T01:09:56.531311+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T14:59:17.916008+02:00",
-      "kulcs": "STZ838",
-      "rendszam": "STZ838",
-      "vehicle_id": "7793",
-      "vehicle_label": "Budakeszi, Tesco áruház",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.5074462890625,
-      "lon": 19.025583267211914,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Tesco áruház"
-    },
-    {
-      "idopont": "2026-10-19T14:59:17.916093+02:00",
-      "kulcs": "STZ845",
-      "rendszam": "STZ845",
-      "vehicle_id": "7800",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50743103027344,
-      "lon": 19.0253849029541,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-10-19T14:59:17.916515+02:00",
-      "kulcs": "T9115",
-      "rendszam": "T9115",
-      "vehicle_id": "7853",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51405715942383,
-      "lon": 19.049156188964844,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-19T14:59:17.916614+02:00",
       "kulcs": "T9120",
@@ -260000,6 +259961,45 @@
       "lon": 19.125038146972656,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-20T01:09:56.447201+02:00",
+      "kulcs": "NTP541",
+      "rendszam": "NTP541",
+      "vehicle_id": "6517",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.478275299072266,
+      "lon": 19.044029235839844,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-20T01:09:56.447258+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.498897552490234,
+      "lon": 19.050609588623047,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-20T01:09:56.447371+02:00",
+      "kulcs": "PDN608",
+      "rendszam": "PDN608",
+      "vehicle_id": "7080",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.42373275756836,
+      "lon": 19.0257511138916,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
     }
   ]
 }
