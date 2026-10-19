@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-19T03:52:55.896942+02:00",
+  "frissitve": "2026-10-19T03:53:24.909077+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:57:01.059444+02:00",
-      "kulcs": "PDN642",
-      "rendszam": "PDN642",
-      "vehicle_id": "7113",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.40576171875,
-      "lon": 19.01432228088379,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-18T12:57:01.059483+02:00",
-      "kulcs": "PHG629",
-      "rendszam": "PHG629",
-      "vehicle_id": "7153",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51984786987305,
-      "lon": 19.148101806640625,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Rákosszentmihály vá."
-    },
     {
       "idopont": "2026-10-18T12:57:01.061009+02:00",
       "kulcs": "V2245",
@@ -260000,6 +259974,32 @@
       "lon": 19.02290153503418,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-19T03:53:24.821932+02:00",
+      "kulcs": "AAGL293",
+      "rendszam": "AAGL293",
+      "vehicle_id": "326",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.49887466430664,
+      "lon": 19.050594329833984,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-19T03:53:24.822945+02:00",
+      "kulcs": "V2275",
+      "rendszam": "V2275",
+      "vehicle_id": "573",
+      "vehicle_label": "Mexikói út M",
+      "vonal_szam": "3",
+      "route_id": "3030",
+      "lat": 47.45562744140625,
+      "lon": 19.114450454711914,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Mexikói út M"
     }
   ]
 }
