@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T00:38:04.748788+02:00",
+  "frissitve": "2026-10-20T00:38:39.290943+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T14:56:50.984046+02:00",
-      "kulcs": "T9102",
-      "rendszam": "T9102",
-      "vehicle_id": "7349",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48932647705078,
-      "lon": 19.090007781982422,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-19T14:56:50.984148+02:00",
-      "kulcs": "V2237",
-      "rendszam": "V2237",
-      "vehicle_id": "7369",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.59325408935547,
-      "lon": 19.12051773071289,
-      "elozo_szoveg": "Káposztásmegyer, Megyeri út",
-      "uj_szoveg": "Lehel tér M"
-    },
-    {
-      "idopont": "2026-10-19T14:56:50.984187+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.49309158325195,
-      "lon": 19.04446792602539,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-19T14:56:50.984532+02:00",
       "kulcs": "RVY616",
@@ -260000,6 +259961,45 @@
       "lon": 19.117050170898438,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-20T00:38:39.233054+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.507789611816406,
+      "lon": 19.03237533569336,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-20T00:38:39.233107+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59892654418945,
+      "lon": 19.054393768310547,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-20T00:38:39.233343+02:00",
+      "kulcs": "NGC164",
+      "rendszam": "NGC164",
+      "vehicle_id": "6213",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.50979995727539,
+      "lon": 19.057157516479492,
+      "elozo_szoveg": "Óbudai rendelőintézet",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
     }
   ]
 }
