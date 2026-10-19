@@ -32,6 +32,7 @@ import kerulet_problema
 import olvasoi_level
 import csepeli_sport
 import vallalkozasok
+import egyszeri_posztok
 import poszt_valtozatos
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
@@ -109,6 +110,7 @@ MENETREND = [
     ("kerdes",        time(18, 35),  None,     lambda nap, a: kerdes_nektek.szoveg(nap)),
     ("vallalkozas",   time(13, 25),  {SZERDA}, lambda nap, a: vallalkozasok.bemutato_szoveg(nap, a)),
     ("rovat_vallalkozas", time(13, 40), {HETFO}, lambda nap, a: vallalkozasok.bejelento_szoveg(nap)),
+    ("bkk_soroksar", time(15, 5), {HETFO}, lambda nap, a: egyszeri_posztok.szoveg("bkk_soroksar", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
