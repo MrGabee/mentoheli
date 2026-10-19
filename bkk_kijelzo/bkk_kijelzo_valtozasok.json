@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T03:19:02.465499+02:00",
+  "frissitve": "2026-10-19T03:19:34.591865+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:52:22.555652+02:00",
-      "kulcs": "MPW608",
-      "rendszam": "MPW608",
-      "vehicle_id": "5595",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "VP52",
-      "route_id": "VP52",
-      "lat": 47.42217254638672,
-      "lon": 19.12238883972168,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-18T12:52:22.555758+02:00",
-      "kulcs": "V2270",
-      "rendszam": "V2270",
-      "vehicle_id": "568",
-      "vehicle_label": "Kispest, Tulipán utca",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.46499252319336,
-      "lon": 19.126216888427734,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Kispest, Tulipán utca"
-    },
-    {
-      "idopont": "2026-10-18T12:52:22.555908+02:00",
-      "kulcs": "MOS293",
-      "rendszam": "MOS293",
-      "vehicle_id": "5746",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "238",
-      "route_id": "2380",
-      "lat": 47.376930236816406,
-      "lon": 19.00676727294922,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-10-18T12:52:22.556051+02:00",
       "kulcs": "V2214",
@@ -260000,6 +259961,45 @@
       "lon": 19.116863250732422,
       "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
       "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T03:19:34.506161+02:00",
+      "kulcs": "NGC154",
+      "rendszam": "NGC154",
+      "vehicle_id": "6203",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.487239837646484,
+      "lon": 19.057954788208008,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-19T03:19:34.506495+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.50126266479492,
+      "lon": 19.107770919799805,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-19T03:19:34.507927+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38860321044922,
+      "lon": 18.957963943481445,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Keleti pályaudvar M"
     }
   ]
 }
