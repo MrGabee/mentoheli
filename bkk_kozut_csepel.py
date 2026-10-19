@@ -18,6 +18,7 @@ import json
 import random
 import hashlib
 import requests
+from datetime import datetime
 
 import poszt_valtozatos
 from bkk_kozut_playwright_monitor import (
@@ -34,8 +35,12 @@ BALESET_SZAVAK = ["baleset", "ütközés", "karambol"]
 ALLAPOT_FAJL = "bkk_kozut_csepel_allapot.json"
 MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
-# Egy futásban legfeljebb ennyi posztot küldünk, a többi a következő körre marad.
-MAX_POSZT_FUTASONKENT = 2
+# Az egy futásban talált új események egyetlen, összevont posztban mennek ki.
+# Ugyanazzal a címmel ennyi napon belül nem posztolunk újra (a naponta
+# ismétlődő éjszakai korlátozások minden nap új azonosítót kapnak).
+CIM_ISMETLES_NAP = 14
+# Éjszaka nem posztolunk: az új események reggelig várnak.
+EJSZAKA_TOL, EJSZAKA_IG = (22, 0), (6, 45)
 
 # A cím elején álló kerületjelzés ("XXI., Szent István úton") a legbiztosabb.
 KERULET_MINTA = re.compile(r"(?<![IVX])(XXI|XX)\.\s*,")
@@ -118,16 +123,50 @@ def oldal_esemenyei():
     raise RuntimeError(f"Az oldal betöltése sikertelen: {utolso_hiba}")
 
 
-def poszt_szoveg(e):
-    r = random.Random(e["id"])
-    sorok = [r.choice(CIMEK), "", r.choice(BEVEZETOK), "", f"📍 {e['cim']}"]
+TOBB_BEVEZETO = [
+    "A BKK közúti oldalán több új bejegyzést is láttam, ami minket érint:",
+    "Egyszerre több helyen is változik a forgalom a környéken:",
+    "Összeszedtem a friss korlátozásokat, amik a mi utainkat érintik:",
+    "Több dologra is figyeljetek, ha mostanában erre jártok:",
+]
+
+
+def _esemeny_sorok(e):
+    sorok = [f"📍 {e['cim']}"]
     if e["befejezes"]:
         sorok.append(f"🕐 {e['kezdes']} – {e['befejezes']}")
     else:
         sorok.append(f"🕐 Kezdete: {e['kezdes']}")
+    return sorok
+
+
+def poszt_szoveg(esemenyek):
+    """Egy vagy több új esemény egyetlen posztban."""
+    r = random.Random("|".join(e["id"] for e in esemenyek))
+    bev = r.choice(BEVEZETOK if len(esemenyek) == 1 else TOBB_BEVEZETO)
+    sorok = [r.choice(CIMEK), "", bev]
+    for e in esemenyek:
+        sorok += [""] + _esemeny_sorok(e)
     sorok += ["", r.choice(ZAROK), "", "Forrás: BKK Info (Közút)",
               "#Csepel #Pesterzsébet #közlekedés #lezárás"]
     return "\n".join(sorok)
+
+
+def ejszaka(t):
+    hm = (t.hour, t.minute)
+    return hm >= EJSZAKA_TOL or hm < EJSZAKA_IG
+
+
+def nemreg_latott_cim(allapot, cim, t):
+    for v in allapot.values():
+        if v.get("cim") != cim:
+            continue
+        try:
+            if (t - datetime.fromisoformat(v["eloszor_latva"])).days < CIM_ISMETLES_NAP:
+                return True
+        except Exception:
+            return True
+    return False
 
 
 def facebook_poszt(szoveg):
@@ -164,19 +203,28 @@ def main():
         with open(ALLAPOT_FAJL, encoding="utf-8") as f:
             allapot = json.load(f)
 
-    elkuldve = 0
+    t = most()
+    ujak = []
     for e in helyi:
-        if e["id"] in allapot:
+        if e["id"] in allapot or any(u["id"] == e["id"] for u in ujak):
             continue
         if elso_futas:
-            allapot[e["id"]] = {"cim": e["cim"], "eloszor_latva": most().isoformat(), "posztolva": False}
+            allapot[e["id"]] = {"cim": e["cim"], "eloszor_latva": t.isoformat(), "posztolva": False}
             continue
-        if elkuldve >= MAX_POSZT_FUTASONKENT:
-            break
-        print(f"🆕 {e['cim']}")
-        if facebook_poszt(poszt_szoveg(e)):
-            elkuldve += 1
-            allapot[e["id"]] = {"cim": e["cim"], "eloszor_latva": most().isoformat(), "posztolva": True}
+        if nemreg_latott_cim(allapot, e["cim"], t) or any(u["cim"] == e["cim"] for u in ujak):
+            print(f"🔁 Már posztolt/ismert cím, kihagyva: {e['cim']}")
+            allapot[e["id"]] = {"cim": e["cim"], "eloszor_latva": t.isoformat(), "posztolva": False}
+            continue
+        ujak.append(e)
+
+    if ujak and ejszaka(t):
+        print(f"🌙 Éjszaka van, {len(ujak)} új esemény reggelig vár.")
+    elif ujak:
+        for e in ujak:
+            print(f"🆕 {e['cim']}")
+        if facebook_poszt(poszt_szoveg(ujak)):
+            for e in ujak:
+                allapot[e["id"]] = {"cim": e["cim"], "eloszor_latva": t.isoformat(), "posztolva": True}
 
     if elso_futas:
         print(f"ℹ️ Első futás: {len(allapot)} futó esemény megjegyezve, posztolás nélkül.")
