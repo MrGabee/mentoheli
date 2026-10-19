@@ -29,7 +29,7 @@ import levego
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 # A poszt helyi idő szerint ekkor megy ki, egész évben
-KULDES_IDEJE = time(6, 30)
+KULDES_IDEJE = time(5, 50)
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
@@ -173,7 +173,7 @@ def most_kell_futni(utemezes):
 
 
 def szoveg(nap):
-    """A színes posztok menetrendjéből (6:30) hívva: a nap összefoglalója."""
+    """A színes posztok menetrendjéből (5:50) hívva: a nap összefoglalója."""
     ma = nap.strftime("%Y-%m-%d")
     return facebook_szoveg(mai_aramszunetek(ma), vizhianyok(), mai_riasztasok(ma), levego.sorok())
 

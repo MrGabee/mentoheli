@@ -513,7 +513,7 @@ def utolso_poszt_ideje():
 def idozitett_posztok(nap):
     """Az adott nap időzített posztjai (reggeli összefoglaló + színes posztok), helyi időben."""
     tz = ZoneInfo("Europe/Budapest")
-    idok = [dtime(6, 30)]
+    idok = [dtime(5, 50)]
     try:
         import szines_posztok
         idok += [ido for _, ido, napok, _ in szines_posztok.MENETREND if napok is None or nap.weekday() in napok]
