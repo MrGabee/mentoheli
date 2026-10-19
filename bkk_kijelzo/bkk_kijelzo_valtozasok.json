@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-20T00:13:53.952754+02:00",
+  "frissitve": "2026-10-20T00:14:21.533741+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T14:55:33.705890+02:00",
-      "kulcs": "NTM436",
-      "rendszam": "NTM436",
-      "vehicle_id": "6504",
-      "vehicle_label": "Fácános tér",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.5074348449707,
-      "lon": 19.02497673034668,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fácános tér"
-    },
-    {
-      "idopont": "2026-10-19T14:55:33.705960+02:00",
-      "kulcs": "NTP541",
-      "rendszam": "NTP541",
-      "vehicle_id": "6517",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.48676300048828,
-      "lon": 18.954917907714844,
-      "elozo_szoveg": "Csillebérc, KFKI",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-19T14:55:33.706155+02:00",
-      "kulcs": "AOCT652",
-      "rendszam": "AOCT652",
-      "vehicle_id": "682",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.47417449951172,
-      "lon": 18.995325088500977,
-      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-10-19T14:55:33.706192+02:00",
-      "kulcs": "AOCT654",
-      "rendszam": "AOCT654",
-      "vehicle_id": "684",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.545188903808594,
-      "lon": 19.13991355895996,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
     {
       "idopont": "2026-10-19T14:55:33.706286+02:00",
       "kulcs": "AOCT663",
@@ -260000,6 +259948,58 @@
       "lon": 19.201772689819336,
       "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
       "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-20T00:14:21.460130+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56461715698242,
+      "lon": 19.12087631225586,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-20T00:14:21.460217+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.4970703125,
+      "lon": 19.0556640625,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-20T00:14:21.460386+02:00",
+      "kulcs": "AILJ861",
+      "rendszam": "AILJ861",
+      "vehicle_id": "680",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56767272949219,
+      "lon": 19.127222061157227,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-20T00:14:21.460655+02:00",
+      "kulcs": "1107-754-1108",
+      "rendszam": "1107-754-1108",
+      "vehicle_id": "905516561073-905536467541-905516561081",
+      "vehicle_label": "Szentendre",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.50709915161133,
+      "lon": 19.039409637451172,
+      "elozo_szoveg": "Batthyány tér",
+      "uj_szoveg": "Szentendre"
     }
   ]
 }
