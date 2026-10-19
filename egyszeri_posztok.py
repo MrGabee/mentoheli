@@ -32,6 +32,15 @@ Hol tart? A tervet most véleményezik, és ha továbbmegy, a csepeli, pesterzs�
 https://einfoszab.budapest.hu/File/DownloadDvD/131522?filename=Tajekoztato%20Soroksar%20autobuszkozlekedes%20fejlesztesenek%20lehetosegerol_KKVB_260922_alairt.pdf&prevcont=Session&prevaction=DvdItem&path=Tev%C3%A9kenys%C3%A9gre,%20m%C5%B1k%C3%B6d%C3%A9sre%20vonatkoz%C3%B3%20adatok%20%2F%20D%C3%B6nt%C3%A9shozatal,%20%C3%BCl%C3%A9sek%20%2F%20A%20F%C5%91v%C3%A1rosi%20K%C3%B6zgy%C5%B1l%C3%A9s%20bizotts%C3%A1gainak%20%C3%BCl%C3%A9sei&type=5&key=fovarosi-kozgyules-bizottsagainak-nyilvanos-ulesei&fileId=217403&sessionType=4&organizationtype=2&parentId=18580&parenttype=2
 
 #Csepel #Pesterzsébet #Soroksár #BKK #közlekedés #148"""),
+    "bombariado": (date(2026, 10, 19), """⚠️ BOMBARIADÓ EGY CSEPELI ISKOLÁBAN ⚠️
+
+Az értesüléseim szerint Csepelen, a Tejút utca egyik iskolájában bombariadó van. Részleteket egyelőre nem tudok.
+
+Kedves szülők: őrizzétek meg a nyugalmatokat, és kövessétek az iskola és a hatóságok utasításait. Aki teheti, kerülje el a környéket, hogy ne zavarjuk a mentesítést.
+
+❓ Ha tudsz részleteket, írd meg kommentben vagy üzenetben, és frissítem a bejegyzést.
+
+#Csepel #bombariadó #Tejútutca"""),
 }
 
 
