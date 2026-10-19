@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T23:50:16.201531+02:00",
+  "frissitve": "2026-10-19T23:50:56.163073+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T14:52:39.584324+02:00",
-      "kulcs": "PDB711",
-      "rendszam": "PDB711",
-      "vehicle_id": "7037",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.483707427978516,
-      "lon": 19.127912521362305,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-10-19T14:52:39.584563+02:00",
-      "kulcs": "PDN616",
-      "rendszam": "PDN616",
-      "vehicle_id": "7087",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41478729248047,
-      "lon": 19.0747013092041,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-19T14:52:39.584646+02:00",
-      "kulcs": "AADI590",
-      "rendszam": "AADI590",
-      "vehicle_id": "71",
-      "vehicle_label": "Dániel út",
-      "vonal_szam": "156",
-      "route_id": "1560",
-      "lat": 47.5074577331543,
-      "lon": 19.024995803833008,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Dániel út"
-    },
     {
       "idopont": "2026-10-19T14:52:39.584734+02:00",
       "kulcs": "PDN645",
@@ -260000,6 +259961,45 @@
       "lon": 19.107236862182617,
       "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
       "uj_szoveg": "Mexikói út M"
+    },
+    {
+      "idopont": "2026-10-19T23:50:56.060796+02:00",
+      "kulcs": "V2112",
+      "rendszam": "V2112",
+      "vehicle_id": "5840",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.499969482421875,
+      "lon": 19.108150482177734,
+      "elozo_szoveg": "KOCSISZÍNBE  Puskás F. Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-10-19T23:50:56.062961+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49782180786133,
+      "lon": 19.0548152923584,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-19T23:50:56.063074+02:00",
+      "kulcs": "AOFL225",
+      "rendszam": "AOFL225",
+      "vehicle_id": "812",
+      "vehicle_label": "Apor Vilmos tér",
+      "vonal_szam": "102",
+      "route_id": "1020",
+      "lat": 47.49640655517578,
+      "lon": 19.01083755493164,
+      "elozo_szoveg": "Mártonhegy",
+      "uj_szoveg": "Apor Vilmos tér"
     }
   ]
 }
