@@ -65,9 +65,6 @@ FORRASOK = [
     {"nev": "Médiatanács (NMHH)", "url": "https://nmhh.hu/media/palyazatok", "tipus": "html", "profil": "media",
      "link_minta": r"/cikk/|tamogatasi-program|palyazat"},
     {"nev": "Nemzeti Filmintézet", "url": "https://nfi.hu/", "tipus": "html", "profil": "media", "link_minta": r"palyazat|tamogatas"},
-    {"nev": "Kreatív Európa Iroda", "url": "https://kreativeuropa.hu/", "tipus": "html", "profil": "media", "link_minta": r"palyazat|felhivas"},
-    {"nev": "Petőfi Kulturális Ügynökség", "url": "https://pka.hu/", "tipus": "html", "link_minta": r"palyazat|felhivas"},
-    {"nev": "Oktatási Hivatal", "url": "https://www.oktatas.hu/", "tipus": "html", "profil": "media", "link_minta": r"palyazat|felhivas"},
     {"nev": "Ökotárs Alapítvány", "url": "https://okotars.hu/", "tipus": "html", "profil": "nonprofit", "link_minta": r"palyazat|felhivas"},
     # --- Google Hírek keresések: bármelyik oldalon megjelent felhívást elkapják ---
     *[{"nev": f"Google Hírek: {k}", "tipus": "rss", "hir": True,
@@ -79,7 +76,6 @@ FORRASOK = [
                 "NKA pályázat", "Erasmus+ pályázat", "pályázat munkavédelem", "pályázat repülés",
                 "pályázat felnőttképzés", "pályázat Budapest", "pályázat Csepel"]],
     # --- Helyi ---
-    {"nev": "Budapest.hu", "url": "https://budapest.hu/", "tipus": "html", "profil": "helyi", "link_minta": r"palyazat|felhivas|tamogatas"},
     {"nev": "Csepel.hu", "url": "https://csepel.hu/", "tipus": "html", "profil": "helyi"},
 ]
 
@@ -125,7 +121,7 @@ KIZARO_SZAVAK = ["eredmeny", "nyertes", "dontes", "lezarult", "kiertekel", "hirl
                  "egyuttmukodesek", "modosult", "nyilvantartasba", "archiv", "elszamolas", "palyazatkezelo",
                  "tanfolyam", "elominosit", "kedvezmeny", "tamogataspont", "kinevez", "bucsuz", "emlekez",
                  "szemelyi valtozas", "uj ablakban", "fesztivaldij", "fesztivalszerepl", "tamogatott projekt",
-                 "szerzodesmodosit", "szakmai beszamolo",
+                 "szerzodesmodosit", "szakmai beszamolo", "folyamata", "jeloltallit",
                  # állás- és egyéb (nem támogatási) "pályázatok", hírek a támogatásokról
                  "vezerigazgat", "igazgatoi", "rektor", "munkakor", "allasajanlat", "olimpia", "kormanyhatarozat",
                  "kozlony", "vizsgal", "botrany", "kampany", "kapott", "nyert"]
@@ -187,6 +183,8 @@ def html_elemek(forras, tartalom):
         if not href or href.startswith(("#", "mailto:", "javascript:", "tel:")) or len(cim) < 25:
             continue
         link = urljoin(forras["url"], href).split("#")[0]
+        if "?st=" in link:  # keresőoldalak
+            continue
         if forras.get("link_minta") and not re.search(forras["link_minta"], norm(link)):
             continue
         # a forrásoldal maga, vagy egy domain kezdőlapja nem felhívás
@@ -214,7 +212,7 @@ def profilok(elem, forras):
     if any(tartalmaz(szoveg, s) for s in KIZARO_SZAVAK + NEM_RELEVANS):
         return []
     ev = datetime.now().year
-    evek = [int(e) for e in re.findall(r"(?<!\d)(20\d\d)(?!\d)", szoveg)]
+    evek = [int(e) for e in re.findall(r"(?<!\d)(20\d\d)(?!\d)", szoveg + " " + elem["link"])]
     if evek and max(evek) < ev:  # csak régi évszám szerepel benne: lejárt kiírás
         return []
     if not any(tartalmaz(szoveg, s.strip()) for s in PALYAZAT_SZAVAK):
