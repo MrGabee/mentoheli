@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T02:56:14.259063+02:00",
+  "frissitve": "2026-10-19T02:56:40.576519+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:48:22.318394+02:00",
-      "kulcs": "416 037",
-      "rendszam": "416 037",
-      "vehicle_id": "955514160378",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S21",
-      "route_id": "S21",
-      "lat": 47.06880187988281,
-      "lon": 19.49839973449707,
-      "elozo_szoveg": "Lajosmizse",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-18T12:48:22.318452+02:00",
-      "kulcs": "AOIM043",
-      "rendszam": "AOIM043",
-      "vehicle_id": "964",
-      "vehicle_label": "Rákospatak u./Csömöri út",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.49706268310547,
-      "lon": 18.9981689453125,
-      "elozo_szoveg": "Thomán István utca",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
-    {
-      "idopont": "2026-10-18T12:49:24.768973+02:00",
-      "kulcs": "AADI607",
-      "rendszam": "AADI607",
-      "vehicle_id": "104",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50064468383789,
-      "lon": 18.967975616455078,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-18T12:49:24.769253+02:00",
       "kulcs": "AADI626",
@@ -260000,6 +259961,45 @@
       "lon": 19.103357315063477,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T02:56:40.488736+02:00",
+      "kulcs": "NGC160",
+      "rendszam": "NGC160",
+      "vehicle_id": "6210",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50837326049805,
+      "lon": 19.02692985534668,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-19T02:56:40.488966+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50749588012695,
+      "lon": 19.024723052978516,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-19T02:56:40.489059+02:00",
+      "kulcs": "RVY606",
+      "rendszam": "RVY606",
+      "vehicle_id": "7435",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.447208404541016,
+      "lon": 19.15047264099121,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
