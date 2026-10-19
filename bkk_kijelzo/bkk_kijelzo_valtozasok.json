@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T02:42:30.265922+02:00",
+  "frissitve": "2026-10-19T02:43:02.833585+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:47:29.376306+02:00",
-      "kulcs": "AONW965",
-      "rendszam": "AONW965",
-      "vehicle_id": "1033",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.473209381103516,
-      "lon": 18.99234962463379,
-      "elozo_szoveg": "Gazdagréti tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-18T12:47:29.376547+02:00",
-      "kulcs": "AADI631",
-      "rendszam": "AADI631",
-      "vehicle_id": "127",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.50120162963867,
-      "lon": 19.13631820678711,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-10-18T12:47:29.376678+02:00",
-      "kulcs": "AADI647",
-      "rendszam": "AADI647",
-      "vehicle_id": "146",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.5502815246582,
-      "lon": 19.04209327697754,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-10-18T12:47:29.377263+02:00",
       "kulcs": "AAGL254",
@@ -260000,6 +259961,45 @@
       "lon": 19.055715560913086,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-19T02:43:02.734796+02:00",
+      "kulcs": "AAGL309",
+      "rendszam": "AAGL309",
+      "vehicle_id": "339",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46261215209961,
+      "lon": 19.005752563476562,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-10-19T02:43:02.735862+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50177001953125,
+      "lon": 19.135540008544922,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-19T02:43:02.735975+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49369430541992,
+      "lon": 19.060216903686523,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
