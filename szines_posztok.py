@@ -92,7 +92,7 @@ VASARNAP = 6
 VERADAS_IDO = time(20, 0) if datetime.now(MAGYAR_TZ).strftime("%Y-%m-%d") == "2026-10-16" else time(19, 35)
 
 MENETREND = [
-    ("reggeli",       time(6, 30),  None,     lambda nap, a: reggeli_osszefoglalo.szoveg(nap)),
+    ("reggeli",       time(5, 50),  None,     lambda nap, a: reggeli_osszefoglalo.szoveg(nap)),
     ("otlet_keres",   time(7, 15),  None,     lambda nap, a: otlet_keres.szoveg(nap)),
     ("programok",     time(8, 5),   None,     lambda nap, a: kerulet_programok.reggeli_szoveg(nap)),
     ("ezen_a_napon",  time(10, 20), None,     lambda nap, a: ezen_a_napon.szoveg(nap)),

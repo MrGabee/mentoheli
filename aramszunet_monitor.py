@@ -11,6 +11,7 @@ import smtplib
 import requests
 
 import poszt_valtozatos
+import ejszakai_sor
 from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -722,6 +723,8 @@ def main():
     print(f"{'='*55}")
 
     regi = betolt_allapot()
+    if FACEBOOK_POSZTOLAS_AKTIV:
+        ejszakai_sor.sor_kiurites(regi, facebook_poszt_kuldese)
     uj   = []
     osszes_aktiv = []  # minden jelenleg is aktív csepeli esemény
 
@@ -747,7 +750,7 @@ def main():
 
         if FACEBOOK_POSZTOLAS_AKTIV:
             print("\n📘 Facebook poszt küldése...")
-            facebook_poszt_kuldese(fb_szoveg_txt)
+            ejszakai_sor.kuld_vagy_sorba(regi, fb_szoveg_txt, facebook_poszt_kuldese)
     else:
         print("✅ Nincs új esemény.")
 
@@ -802,7 +805,7 @@ def main():
             fb_emlekezteto_szoveg = facebook_szoveg_emlekezteto(
                 emlekezteto_kuldendo, most.strftime("%Y.%m.%d %H:%M:%S")
             )
-            facebook_poszt_kuldese(fb_emlekezteto_szoveg)
+            ejszakai_sor.kuld_vagy_sorba(regi, fb_emlekezteto_szoveg, facebook_poszt_kuldese)
     else:
         print("⏰ Nincs a beállított küszöbök egyikén belül sem esedékes, még nem jelzett tervezett esemény.")
 

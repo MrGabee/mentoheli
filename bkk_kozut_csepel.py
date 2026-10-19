@@ -21,6 +21,7 @@ import requests
 from datetime import datetime
 
 import poszt_valtozatos
+from ejszakai_sor import ejszaka
 from bkk_kozut_playwright_monitor import (
     sync_playwright, cookie_sav_elfogadasa, esemenyek_kinyerese, most,
     MAX_PROBALKOZAS, UJRAPROBALKOZAS_ALAP_VARAKOZAS_MP,
@@ -39,8 +40,7 @@ TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
 # Ugyanazzal a címmel ennyi napon belül nem posztolunk újra (a naponta
 # ismétlődő éjszakai korlátozások minden nap új azonosítót kapnak).
 CIM_ISMETLES_NAP = 14
-# Éjszaka nem posztolunk: az új események reggelig várnak.
-EJSZAKA_TOL, EJSZAKA_IG = (22, 0), (6, 45)
+# Éjszaka nem posztolunk: az új események a jó reggelt posztig várnak (ejszakai_sor).
 
 # A cím elején álló kerületjelzés ("XXI., Szent István úton") a legbiztosabb.
 KERULET_MINTA = re.compile(r"(?<![IVX])(XXI|XX)\.\s*,")
@@ -150,11 +150,6 @@ def poszt_szoveg(esemenyek):
     sorok += ["", r.choice(ZAROK), "", "Forrás: BKK Info (Közút)",
               "#Csepel #Pesterzsébet #közlekedés #lezárás"]
     return "\n".join(sorok)
-
-
-def ejszaka(t):
-    hm = (t.hour, t.minute)
-    return hm >= EJSZAKA_TOL or hm < EJSZAKA_IG
 
 
 def nemreg_latott_cim(allapot, cim, t):

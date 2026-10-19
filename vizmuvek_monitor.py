@@ -13,6 +13,7 @@ import smtplib
 import requests
 
 import poszt_valtozatos
+import ejszakai_sor
 from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -399,6 +400,8 @@ def main():
     print(f"{'='*55}")
 
     regi = betolt_allapot()
+    if FACEBOOK_POSZTOLAS_AKTIV:
+        ejszakai_sor.sor_kiurites(regi, facebook_poszt_kuldese)
     uj   = []
 
     for e in lekerdez():
@@ -414,7 +417,7 @@ def main():
         if FACEBOOK_POSZTOLAS_AKTIV:
             print("\n📘 Facebook poszt küldése...")
             fb_szoveg = facebook_szoveg(uj)
-            facebook_poszt_kuldese(fb_szoveg)
+            ejszakai_sor.kuld_vagy_sorba(regi, fb_szoveg, facebook_poszt_kuldese)
     else:
         print("✅ Nincs új esemény.")
 
