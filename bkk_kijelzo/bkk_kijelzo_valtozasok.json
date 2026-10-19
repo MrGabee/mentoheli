@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T02:33:32.996912+02:00",
+  "frissitve": "2026-10-19T02:34:03.705294+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:45:22.064411+02:00",
-      "kulcs": "AOGF663",
-      "rendszam": "AOGF663",
-      "vehicle_id": "745",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46900177001953,
-      "lon": 19.295133590698242,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-18T12:45:22.065529+02:00",
-      "kulcs": "T9112",
-      "rendszam": "T9112",
-      "vehicle_id": "7753",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51399612426758,
-      "lon": 19.049257278442383,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-18T12:45:22.065630+02:00",
-      "kulcs": "AOFL198",
-      "rendszam": "AOFL198",
-      "vehicle_id": "782",
-      "vehicle_label": "Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.48417282104492,
-      "lon": 19.041807174682617,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
     {
       "idopont": "2026-10-18T12:45:22.066757+02:00",
       "kulcs": "T8121",
@@ -260000,6 +259961,45 @@
       "lon": 19.05571746826172,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-19T02:34:03.615119+02:00",
+      "kulcs": "PKN629",
+      "rendszam": "PKN629",
+      "vehicle_id": "7218",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.475223541259766,
+      "lon": 18.988739013671875,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-19T02:34:03.615198+02:00",
+      "kulcs": "T8103",
+      "rendszam": "T8103",
+      "vehicle_id": "7340",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.495880126953125,
+      "lon": 19.05853271484375,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-19T02:34:03.615468+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54179382324219,
+      "lon": 19.15118408203125,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
