@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T03:35:28.565993+02:00",
+  "frissitve": "2026-10-19T03:35:57.464743+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:54:11.792890+02:00",
-      "kulcs": "AOJM862",
-      "rendszam": "AOJM862",
-      "vehicle_id": "985",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.444854736328125,
-      "lon": 19.097938537597656,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-10-18T12:55:04.467407+02:00",
-      "kulcs": "AOJM880",
-      "rendszam": "AOJM880",
-      "vehicle_id": "1006",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.41611862182617,
-      "lon": 19.093215942382812,
-      "elozo_szoveg": "Csepel, Határ utca",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-18T12:55:04.467484+02:00",
-      "kulcs": "AADI604",
-      "rendszam": "AADI604",
-      "vehicle_id": "101",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49901580810547,
-      "lon": 19.03619956970215,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-18T12:55:04.468337+02:00",
       "kulcs": "AADI611",
@@ -260000,6 +259961,45 @@
       "lon": 19.014358520507812,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-19T03:35:57.382173+02:00",
+      "kulcs": "AAGL312",
+      "rendszam": "AAGL312",
+      "vehicle_id": "341",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.478065490722656,
+      "lon": 19.045652389526367,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-19T03:35:57.383420+02:00",
+      "kulcs": "PKN602",
+      "rendszam": "PKN602",
+      "vehicle_id": "7191",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48970413208008,
+      "lon": 19.074600219726562,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-19T03:35:57.384070+02:00",
+      "kulcs": "415 109",
+      "rendszam": "415 109",
+      "vehicle_id": "945514151097",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.43212890625,
+      "lon": 19.680419921875,
+      "elozo_szoveg": "Nagykáta",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
