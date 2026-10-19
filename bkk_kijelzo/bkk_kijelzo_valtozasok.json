@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-19T02:25:56.279513+02:00",
+  "frissitve": "2026-10-19T02:26:26.171532+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:44:28.425576+02:00",
-      "kulcs": "SKR808",
-      "rendszam": "SKR808",
-      "vehicle_id": "7694",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.5076789855957,
-      "lon": 19.024951934814453,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-18T12:44:28.425667+02:00",
-      "kulcs": "SKR822",
-      "rendszam": "SKR822",
-      "vehicle_id": "7708",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.4998893737793,
-      "lon": 19.104883193969727,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
-    {
-      "idopont": "2026-10-18T12:44:28.425868+02:00",
-      "kulcs": "SGY809",
-      "rendszam": "SGY809",
-      "vehicle_id": "7727",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.43058395385742,
-      "lon": 19.071670532226562,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
     {
       "idopont": "2026-10-18T12:44:28.426480+02:00",
       "kulcs": "T8114",
@@ -260000,6 +259961,45 @@
       "lon": 19.04680633544922,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-19T02:26:26.082759+02:00",
+      "kulcs": "AADI568",
+      "rendszam": "AADI568",
+      "vehicle_id": "53",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50487518310547,
+      "lon": 19.024444580078125,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-19T02:26:26.083212+02:00",
+      "kulcs": "NGC152",
+      "rendszam": "NGC152",
+      "vehicle_id": "6198",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52467346191406,
+      "lon": 19.037792205810547,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-19T02:26:26.083850+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.50130844116211,
+      "lon": 19.024375915527344,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
     }
   ]
 }
