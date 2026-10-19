@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-19T01:59:39.790326+02:00",
+  "frissitve": "2026-10-19T02:00:10.087000+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-18T12:41:29.050677+02:00",
-      "kulcs": "PHG638",
-      "rendszam": "PHG638",
-      "vehicle_id": "7162",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.50471496582031,
-      "lon": 19.136892318725586,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákosszentmihály, Mátyás király utca"
-    },
-    {
-      "idopont": "2026-10-18T12:41:29.050783+02:00",
-      "kulcs": "PKN604",
-      "rendszam": "PKN604",
-      "vehicle_id": "7193",
-      "vehicle_label": "Rákoshegy",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.50173568725586,
-      "lon": 19.136184692382812,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-18T12:41:29.050980+02:00",
-      "kulcs": "V1620",
-      "rendszam": "V1620",
-      "vehicle_id": "7289",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.465267181396484,
-      "lon": 19.08209991455078,
-      "elozo_szoveg": "Koppány utca",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
-    {
-      "idopont": "2026-10-18T12:41:29.050997+02:00",
-      "kulcs": "V1622",
-      "rendszam": "V1622",
-      "vehicle_id": "7291",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.48158264160156,
-      "lon": 19.06922721862793,
-      "elozo_szoveg": "Mester utca / Ferenc körút",
-      "uj_szoveg": "Koppány utca"
-    },
-    {
-      "idopont": "2026-10-18T12:41:29.051809+02:00",
-      "kulcs": "SKR722",
-      "rendszam": "SKR722",
-      "vehicle_id": "7671",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.463443756103516,
-      "lon": 19.14734649658203,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Fiatalság utca"
-    },
     {
       "idopont": "2026-10-18T12:41:29.051873+02:00",
       "kulcs": "SKR736",
@@ -260000,6 +259935,71 @@
       "lon": 19.09304428100586,
       "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-19T02:00:10.000287+02:00",
+      "kulcs": "FKU916",
+      "rendszam": "FKU916",
+      "vehicle_id": "3072",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.57001876831055,
+      "lon": 19.127548217773438,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-19T02:00:10.000354+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45527648925781,
+      "lon": 18.90774154663086,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-19T02:00:10.000487+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509342193603516,
+      "lon": 19.096120834350586,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-19T02:00:10.000634+02:00",
+      "kulcs": "MUT890",
+      "rendszam": "MUT890",
+      "vehicle_id": "5943",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598472595214844,
+      "lon": 19.121381759643555,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-19T02:00:10.000917+02:00",
+      "kulcs": "PKN604",
+      "rendszam": "PKN604",
+      "vehicle_id": "7193",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.514705657958984,
+      "lon": 19.03785514831543,
+      "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
+      "uj_szoveg": "Pasaréti tér"
     }
   ]
 }
