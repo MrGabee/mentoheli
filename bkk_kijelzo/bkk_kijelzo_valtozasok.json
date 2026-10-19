@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T01:12:33.119504+02:00",
+  "frissitve": "2026-10-20T01:13:04.697931+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:00:40.044417+02:00",
-      "kulcs": "AADI610",
-      "rendszam": "AADI610",
-      "vehicle_id": "107",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.49345397949219,
-      "lon": 19.03251075744629,
-      "elozo_szoveg": "Naphegy tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-19T15:00:40.044815+02:00",
-      "kulcs": "AADR710",
-      "rendszam": "AADR710",
-      "vehicle_id": "178",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "284E",
-      "route_id": "2845",
-      "lat": 47.4628791809082,
-      "lon": 19.148513793945312,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-10-19T15:00:40.045234+02:00",
-      "kulcs": "AAGL260",
-      "rendszam": "AAGL260",
-      "vehicle_id": "260",
-      "vehicle_label": "Angeli u. / Nagytétényi út",
-      "vonal_szam": "13",
-      "route_id": "0130",
-      "lat": 47.405723571777344,
-      "lon": 19.013832092285156,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
     {
       "idopont": "2026-10-19T15:00:40.045270+02:00",
       "kulcs": "AAGL265",
@@ -260000,6 +259961,45 @@
       "lon": 19.0382022857666,
       "elozo_szoveg": "Astoria M ► Pesterzsébet",
       "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-20T01:13:04.636150+02:00",
+      "kulcs": "AAGL258",
+      "rendszam": "AAGL258",
+      "vehicle_id": "258",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46263122558594,
+      "lon": 19.005739212036133,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-20T01:13:04.636187+02:00",
+      "kulcs": "AAGL267",
+      "rendszam": "AAGL267",
+      "vehicle_id": "267",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.5080680847168,
+      "lon": 19.027307510375977,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-20T01:13:04.636511+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.485965728759766,
+      "lon": 19.069435119628906,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
