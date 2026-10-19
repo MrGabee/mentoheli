@@ -1,0 +1,40 @@
+"""
+📌 Egyszeri, adott napra ütemezett posztok (Gábor jóváhagyásával).
+A szines_posztok.py MENETREND-jéből hívva: csak a megadott napon ad szöveget.
+"""
+
+from datetime import date
+
+POSZTOK = {
+    "bkk_soroksar": (date(2026, 10, 19), """🚌 KÖZVETLEN BUSZ A BELVÁROSBA? ÚJ BKK-JAVASLAT DÉL-PESTNEK 🚌
+
+Beleástam magam a BKK egyik friss anyagába, ami a környékünk buszhálózatát érinti. Fontos: ez egyelőre csak javaslat, még semmi nem dőlt el, de érdemes tudni róla.
+
+Mi a lényeg?
+
+🟠 66-os buszcsalád (66, 66B, 66E): Soroksár felől a Határ út helyett továbbmenne a belvárosba, a Boráros térre, egyes változatokban egészen a Kálvin térig. A BKK számítása szerint a Kálvin térig akár 12 percet, az Újbuda-központig 9, a Deák térig 7 percet lehetne nyerni.
+🟤 148-as busz (Csepel): Kőbánya-Kispest helyett a Határ úti metrómegállóig járna, így gyorsabban elérné a metrót.
+🟢 119-es és 🟣 166-os: Wekerletelepen át Kőbánya-Kispestig járnának, a 119-es sűrűbben.
+🔴 54-es: rövidebb lenne, Péterimajort és a Víztorony teret a 166-os szolgálná ki.
+
+Három változat van:
+1️⃣ a 66-osok mindig csak a Boráros térig mennek,
+2️⃣ csúcsidőben a Kálvin térig, egyébként a Boráros térig,
+3️⃣ munkanapokon reggel 6 és este 9 között a Kálvin térig.
+
+A BKK napi 500-1000 utassal többel számol, és őszintén leírja a hátulütőket is: egyes utakon újabb átszállás jöhet, és Wekerletelepen ritkább lehet a busz. A 148-asról a Kőbánya-Kispesti közvetlen kapcsolat is megszűnne.
+
+Hol tart? A tervet most véleményezik, és ha továbbmegy, a csepeli, pesterzsébeti és kispesti kapcsolatok miatt szélesebb egyeztetés és társadalmi egyeztetés is jön. Kell hozzá egy bővített buszforduló is, és a pénz is kérdés: évente 65-160 millió forint.
+
+💬 Ti hogy látjátok? Jól jönne a közvetlen belvárosi busz, vagy inkább a 148-as Kőbánya-Kispesti kapcsolatát hiányolnátok? Írjátok meg kommentben!
+
+📄 A BKK teljes tájékoztatója:
+https://einfoszab.budapest.hu/File/DownloadDvD/131522?filename=Tajekoztato%20Soroksar%20autobuszkozlekedes%20fejlesztesenek%20lehetosegerol_KKVB_260922_alairt.pdf&prevcont=Session&prevaction=DvdItem&path=Tev%C3%A9kenys%C3%A9gre,%20m%C5%B1k%C3%B6d%C3%A9sre%20vonatkoz%C3%B3%20adatok%20%2F%20D%C3%B6nt%C3%A9shozatal,%20%C3%BCl%C3%A9sek%20%2F%20A%20F%C5%91v%C3%A1rosi%20K%C3%B6zgy%C5%B1l%C3%A9s%20bizotts%C3%A1gainak%20%C3%BCl%C3%A9sei&type=5&key=fovarosi-kozgyules-bizottsagainak-nyilvanos-ulesei&fileId=217403&sessionType=4&organizationtype=2&parentId=18580&parenttype=2
+
+#Csepel #Pesterzsébet #Soroksár #BKK #közlekedés #148"""),
+}
+
+
+def szoveg(kulcs, nap):
+    datum, s = POSZTOK[kulcs]
+    return s if nap == datum else ""
