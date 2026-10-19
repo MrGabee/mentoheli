@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-19T23:51:33.541721+02:00",
+  "frissitve": "2026-10-19T23:52:13.165211+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T14:52:39.586350+02:00",
-      "kulcs": "RVY711",
-      "rendszam": "RVY711",
-      "vehicle_id": "7460",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.41277313232422,
-      "lon": 19.160888671875,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-19T14:52:39.586395+02:00",
-      "kulcs": "RVY719",
-      "rendszam": "RVY719",
-      "vehicle_id": "7468",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.462501525878906,
-      "lon": 19.149221420288086,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-19T14:52:39.586867+02:00",
-      "kulcs": "SCD596",
-      "rendszam": "SCD596",
-      "vehicle_id": "7658",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46329116821289,
-      "lon": 19.147811889648438,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
-    {
-      "idopont": "2026-10-19T14:52:39.587050+02:00",
-      "kulcs": "SKR802",
-      "rendszam": "SKR802",
-      "vehicle_id": "7688",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.50767135620117,
-      "lon": 19.024919509887695,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-19T14:52:39.587202+02:00",
-      "kulcs": "SKR825",
-      "rendszam": "SKR825",
-      "vehicle_id": "7711",
-      "vehicle_label": "Ecseri út M-József A. ltp.",
-      "vonal_szam": "281",
-      "route_id": "2810",
-      "lat": 47.46424865722656,
-      "lon": 19.100343704223633,
-      "elozo_szoveg": "Aszódi utca",
-      "uj_szoveg": "Ecseri út M-József A. ltp."
-    },
     {
       "idopont": "2026-10-19T14:52:39.587216+02:00",
       "kulcs": "SKR826",
@@ -260000,6 +259935,71 @@
       "lon": 19.037710189819336,
       "elozo_szoveg": "Sánc utca",
       "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-19T23:52:13.058466+02:00",
+      "kulcs": "AONW960",
+      "rendszam": "AONW960",
+      "vehicle_id": "1027",
+      "vehicle_label": "Apor Vilmos tér",
+      "vonal_szam": "112",
+      "route_id": "1120",
+      "lat": 47.49470901489258,
+      "lon": 18.998476028442383,
+      "elozo_szoveg": "Thomán István utca",
+      "uj_szoveg": "Apor Vilmos tér"
+    },
+    {
+      "idopont": "2026-10-19T23:52:13.061137+02:00",
+      "kulcs": "V2102",
+      "rendszam": "V2102",
+      "vehicle_id": "5830",
+      "vehicle_label": "Hidegkuti N. Stadion",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.54843521118164,
+      "lon": 19.029752731323242,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "KOCSISZÍNBE  Hidegkuti N. Stadion"
+    },
+    {
+      "idopont": "2026-10-19T23:52:13.061335+02:00",
+      "kulcs": "NBW005",
+      "rendszam": "NBW005",
+      "vehicle_id": "5975",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48482131958008,
+      "lon": 19.13138198852539,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-19T23:52:13.063171+02:00",
+      "kulcs": "SKR726",
+      "rendszam": "SKR726",
+      "vehicle_id": "7675",
+      "vehicle_label": "Kőb.-Kispest M-Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46413803100586,
+      "lon": 19.14621353149414,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-19T23:52:13.063515+02:00",
+      "kulcs": "AOIB811",
+      "rendszam": "AOIB811",
+      "vehicle_id": "882",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "53",
+      "route_id": "0530",
+      "lat": 47.4873161315918,
+      "lon": 18.98978042602539,
+      "elozo_szoveg": "Mindszenty József bíboros tér",
+      "uj_szoveg": "Kelenföld vasútállomás M"
     }
   ]
 }
