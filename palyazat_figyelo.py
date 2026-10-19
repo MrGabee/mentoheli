@@ -39,52 +39,47 @@ UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chr
 
 # tipus: "rss" vagy "html". profil: ha meg van adva, a forrás minden
 # pályázat-szerű linkje ehhez a profilhoz tartozik (szakmai forrás).
+# tipus: "rss" vagy "html". profil: ha meg van adva, a forrás minden
+# pályázat-szerű linkje ehhez a profilhoz tartozik (szakmai forrás).
+# link_minta: csak az ilyen című (URL) linkeket nézzük az oldalon (menüpontok kiszűrésére).
 FORRASOK = [
-    # --- Összesítő / hírlevél oldalak ---
-    {"nev": "PályázatMenedzser", "url": "https://palyazatmenedzser.hu/feed/", "tipus": "rss"},
+    # --- Összesítő oldalak ---
     {"nev": "Palyazatok.org", "url": "https://palyazatok.org/feed/", "tipus": "rss"},
-    {"nev": "Pályázat Asszisztens", "url": "https://palyazatasszisztens.hu/palyazatok", "tipus": "html"},
-    {"nev": "PAFI", "url": "https://pafi.hu/palyazatok", "tipus": "html"},
-    {"nev": "Nonprofit.hu", "url": "https://www.nonprofit.hu/palyazatok", "tipus": "html"},
+    {"nev": "PAFI", "url": "https://pafi.hu/palyazatok", "tipus": "html", "link_minta": r"/p/"},
+    {"nev": "Nonprofit.hu", "url": "https://www.nonprofit.hu/palyazatok", "tipus": "html", "link_minta": r"/palyazatok/."},
     {"nev": "Napitender", "url": "https://napitender.hu/feed/", "tipus": "rss"},
     {"nev": "Vállalkozz Ma", "url": "https://www.vallalkozzma.hu/palyazatok/", "tipus": "html"},
-    {"nev": "EU Pályázati Portál", "url": "https://www.eupalyazatiportal.hu/feed/", "tipus": "rss"},
-    {"nev": "Pályázatfigyelő (palyazat.hu)", "url": "https://www.palyazat.hu/", "tipus": "html"},
     {"nev": "Civil Információs Portál", "url": "https://civil.info.hu/palyazatok", "tipus": "html", "profil": "nonprofit"},
-    # --- Állami / uniós ---
-    {"nev": "Pályázat.gov.hu", "url": "https://palyazat.gov.hu/", "tipus": "html"},
-    {"nev": "Széchenyi Terv Plusz felhívások", "url": "https://www.palyazat.gov.hu/doc/felhivasok", "tipus": "html"},
-    {"nev": "NFSZ (vállalkozóvá válás, bértámogatás)", "url": "https://nfsz.munka.hu/", "tipus": "html", "profil": "vallalkozas"},
-    {"nev": "NKFIH", "url": "https://nkfih.gov.hu/palyazoknak", "tipus": "html", "profil": "muszaki"},
-    {"nev": "Vállalkozz Digitálisan", "url": "https://vallalkozzdigitalisan.hu/", "tipus": "html", "profil": "vallalkozas"},
-    {"nev": "MFB pontok", "url": "https://www.mfbpont.hu/", "tipus": "html", "profil": "vallalkozas"},
-    # --- Bethlen Gábor Alapkezelő (NEA, Csoóri, tehetség, stb.) ---
-    {"nev": "NEA (Bethlen Gábor Alapkezelő)", "url": "https://bgazrt.hu/tamogatasok/nemzeti-egyuttmukodesi-alap/", "tipus": "html", "profil": "nonprofit"},
-    {"nev": "Bethlen Gábor Alapkezelő", "url": "https://bgazrt.hu/", "tipus": "html"},
+    # --- Állami ---
+    {"nev": "NFSZ", "url": "https://nfsz.munka.hu/", "tipus": "html", "profil": "vallalkozas"},
+    {"nev": "NKFIH", "url": "https://nkfih.gov.hu/palyazoknak/palyazatok/aktualis-felhivasok", "tipus": "html",
+     "profil": "muszaki", "link_minta": r"palyazati-felhivas|/nkfi-alap/[^/]+/?$"},
+    {"nev": "Vállalkozz Digitálisan", "url": "https://vallalkozzdigitalisan.hu/", "tipus": "html", "profil": "vallalkozas",
+     "link_minta": r"palyazat|tamogatas"},
+    {"nev": "Bethlen Gábor Alapkezelő (NEA stb.)", "url": "https://bgazrt.hu/tamogatasok/nemzeti-egyuttmukodesi-alap/",
+     "tipus": "html", "profil": "nonprofit", "link_minta": r"felhivas|kiiras|palyazat"},
+    {"nev": "Bethlen Gábor Alapkezelő", "url": "https://bgazrt.hu/", "tipus": "html", "link_minta": r"felhivas|kiiras|palyazat"},
     # --- Kultúra, média, oktatás ---
-    {"nev": "Nemzeti Kulturális Alap", "url": "https://nka.hu/kiemelt-kategoriak/palyaztatas/kollegiumok-felhivasai/felhivasok/", "tipus": "html"},
-    {"nev": "Médiatanács (NMHH)", "url": "https://nmhh.hu/media/palyazatok", "tipus": "html", "profil": "media"},
-    {"nev": "Magyar Média Mecenatúra", "url": "https://mecenatura.mediatanacs.hu/", "tipus": "html", "profil": "media"},
-    {"nev": "Nemzeti Filmintézet", "url": "https://nfi.hu/", "tipus": "html", "profil": "media"},
-    {"nev": "Kreatív Európa Iroda", "url": "https://kreativeuropa.hu/", "tipus": "html", "profil": "media"},
-    {"nev": "Petőfi Kulturális Ügynökség", "url": "https://pka.hu/palyazatok", "tipus": "html", "profil": "media"},
-    {"nev": "Magyar Művészeti Akadémia", "url": "https://www.mma.hu/palyazatok", "tipus": "html", "profil": "media"},
-    {"nev": "Tempus Közalapítvány (Erasmus+)", "url": "https://tka.hu/palyazatok", "tipus": "html", "profil": "media"},
-    {"nev": "Oktatási Hivatal", "url": "https://www.oktatas.hu/", "tipus": "html", "profil": "media"},
-    # --- Alapítványok, cégek ---
-    {"nev": "MOL Alapítvány", "url": "https://molalapitvany.hu/", "tipus": "html"},
-    {"nev": "Vodafone Alapítvány", "url": "https://www.vodafone.hu/alapitvany", "tipus": "html"},
-    {"nev": "Ökotárs Alapítvány", "url": "https://okotars.hu/hu/palyazatok", "tipus": "html", "profil": "nonprofit"},
+    {"nev": "Nemzeti Kulturális Alap", "url": "https://nka.hu/kiemelt-kategoriak/palyaztatas/kollegiumok-felhivasai/felhivasok/",
+     "tipus": "html", "link_minta": r"felhivas"},
+    {"nev": "Médiatanács (NMHH)", "url": "https://nmhh.hu/media/palyazatok", "tipus": "html", "profil": "media",
+     "link_minta": r"/cikk/|tamogatasi-program|palyazat"},
+    {"nev": "Nemzeti Filmintézet", "url": "https://nfi.hu/", "tipus": "html", "profil": "media", "link_minta": r"palyazat|tamogatas"},
+    {"nev": "Kreatív Európa Iroda", "url": "https://kreativeuropa.hu/", "tipus": "html", "profil": "media", "link_minta": r"palyazat|felhivas"},
+    {"nev": "Petőfi Kulturális Ügynökség", "url": "https://pka.hu/", "tipus": "html", "link_minta": r"palyazat|felhivas"},
+    {"nev": "Oktatási Hivatal", "url": "https://www.oktatas.hu/", "tipus": "html", "profil": "media", "link_minta": r"palyazat|felhivas"},
+    {"nev": "Ökotárs Alapítvány", "url": "https://okotars.hu/", "tipus": "html", "profil": "nonprofit", "link_minta": r"palyazat|felhivas"},
     # --- Google Hírek keresések: bármelyik oldalon megjelent felhívást elkapják ---
-    *[{"nev": f"Google Hírek: {k}", "tipus": "rss",
+    *[{"nev": f"Google Hírek: {k}", "tipus": "rss", "hir": True,
        "url": "https://news.google.com/rss/search?hl=hu&gl=HU&ceid=HU:hu&q=" + quote(k + " when:14d")}
-      for k in ["pályázati felhívás", "pályázat egyéni vállalkozó", "vissza nem térítendő támogatás",
-                "pályázat önrész nélkül", "pályázat nonprofit", "pályázat civil szervezet",
-                "pályázat pedagógus", "pályázat informatika oktatás", "pályázat televízió műsor",
-                "pályázat média tartalomgyártás", "pályázat munkavédelem", "pályázat repülés",
+      for k in ["pályázati felhívás", "pályázat egyéni vállalkozó", "pályázat mikrovállalkozás",
+                "vissza nem térítendő támogatás", "pályázat önrész nélkül", "pályázat nonprofit",
+                "pályázat civil szervezet", "pályázat pedagógus", "pályázat informatika oktatás",
+                "pályázat televízió műsor", "pályázat média tartalomgyártás", "Médiatanács pályázat",
+                "NKA pályázat", "Erasmus+ pályázat", "pályázat munkavédelem", "pályázat repülés",
                 "pályázat felnőttképzés", "pályázat Budapest", "pályázat Csepel"]],
     # --- Helyi ---
-    {"nev": "Budapest.hu", "url": "https://budapest.hu/", "tipus": "html", "profil": "helyi"},
+    {"nev": "Budapest.hu", "url": "https://budapest.hu/", "tipus": "html", "profil": "helyi", "link_minta": r"palyazat|felhivas|tamogatas"},
     {"nev": "Csepel.hu", "url": "https://csepel.hu/", "tipus": "html", "profil": "helyi"},
 ]
 
@@ -119,12 +114,21 @@ PROFILOK = {
 
 # Ezek nélkül a link nem pályázat (menüpontok, cikkek kiszűrésére)
 PALYAZAT_SZAVAK = ["palyaz", "felhivas", "kiiras", "tamogatas", "osztondij", "alap ", "program", "hitel"]
+# hírcikkeknél (Google Hírek) erősebb jel kell, hogy tényleg megnyíló felhívásról szóljon
+HIR_SZAVAK = ["palyazati felhivas", "kiir", "palyazhat", "igenyelhet", "beadhat", "nyilik", "megnyil", "indul",
+              "jelentkez", "palyazatot hirdet", "palyazatot ir"]
 # Ezekkel biztosan nem új lehetőség
 KIZARO_SZAVAK = ["eredmeny", "nyertes", "dontes", "lezarult", "kiertekel", "hirlevel", "adatvedelem",
                  "cookie", "bejelentkez", "regisztracio", "palyazatiras", "elofizet", "kapcsolat",
                  "szolgaltatas", "rolunk", "gyik", "kozlemeny", "tajekoztatas", "beszamolo", "utmutato",
                  "informaciok", "sablon", "nyomtatvany", "karrier", "allaslehetoseg", "jogszabaly", "piackutat",
-                 "egyuttmukodesek", "modosult", "nyilvantartasba", "archiv", "elszamolas", "palyazatkezelo"]
+                 "egyuttmukodesek", "modosult", "nyilvantartasba", "archiv", "elszamolas", "palyazatkezelo",
+                 "tanfolyam", "elominosit", "kedvezmeny", "tamogataspont", "kinevez", "bucsuz", "emlekez",
+                 "szemelyi valtozas", "uj ablakban", "fesztivaldij", "fesztivalszerepl", "tamogatott projekt",
+                 "szerzodesmodosit", "szakmai beszamolo",
+                 # állás- és egyéb (nem támogatási) "pályázatok", hírek a támogatásokról
+                 "vezerigazgat", "igazgatoi", "rektor", "munkakor", "allasajanlat", "olimpia", "kormanyhatarozat",
+                 "kozlony", "vizsgal", "botrany", "kampany", "kapott", "nyert"]
 # Budapesti magánszemélynek / vállalkozásnak / nonprofit kft-nek nem szóló területek
 NEM_RELEVANS = ["hataron tul", "kulhoni", "karpatalja", "erdely", "felvidek", "vajdasag", "csango", "egyhaz",
                 "nemzetisegi", "magyar falu", "falusi", "kistelepules", "allatved", "vallasturiszt",
@@ -150,7 +154,7 @@ def letolt(url):
     req = urllib.request.Request(url, headers={
         "User-Agent": UA, "Accept-Language": "hu-HU,hu;q=0.9,en;q=0.5",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=45) as r:
         nyers = r.read()
         kodolas = r.headers.get_content_charset() or "utf-8"
     return nyers.decode(kodolas, errors="replace")
@@ -183,6 +187,8 @@ def html_elemek(forras, tartalom):
         if not href or href.startswith(("#", "mailto:", "javascript:", "tel:")) or len(cim) < 25:
             continue
         link = urljoin(forras["url"], href).split("#")[0]
+        if forras.get("link_minta") and not re.search(forras["link_minta"], norm(link)):
+            continue
         # a forrásoldal maga, vagy egy domain kezdőlapja nem felhívás
         if link in latott or link.rstrip("/") == forras["url"].rstrip("/") or urlparse(link).path.strip("/") == "":
             continue
@@ -212,6 +218,8 @@ def profilok(elem, forras):
     if evek and max(evek) < ev:  # csak régi évszám szerepel benne: lejárt kiírás
         return []
     if not any(tartalmaz(szoveg, s.strip()) for s in PALYAZAT_SZAVAK):
+        return []
+    if forras.get("hir") and not any(tartalmaz(szoveg, s) for s in HIR_SZAVAK):
         return []
     talalt = [k for k, p in PROFILOK.items() if any(tartalmaz(szoveg, s) for s in p["szavak"])]
     if forras.get("profil") and forras["profil"] not in talalt:
