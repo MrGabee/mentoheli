@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-20T02:09:52.460175+02:00",
+  "frissitve": "2026-10-20T02:10:22.713100+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:06:07.406689+02:00",
-      "kulcs": "NCV290",
-      "rendszam": "NCV290",
-      "vehicle_id": "6255",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.499351501464844,
-      "lon": 19.035968780517578,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-19T15:06:07.406707+02:00",
-      "kulcs": "NCV293",
-      "rendszam": "NCV293",
-      "vehicle_id": "6258",
-      "vehicle_label": "Fény utcai piac",
-      "vonal_szam": "116",
-      "route_id": "1160",
-      "lat": 47.5009765625,
-      "lon": 19.03399658203125,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Fény utcai piac"
-    },
-    {
-      "idopont": "2026-10-19T15:06:07.406807+02:00",
-      "kulcs": "NGC021",
-      "rendszam": "NGC021",
-      "vehicle_id": "6320",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.506629943847656,
-      "lon": 19.023906707763672,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
-    {
-      "idopont": "2026-10-19T15:06:07.408076+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.43706512451172,
-      "lon": 19.18379783630371,
-      "elozo_szoveg": "Gilice tér (Varjú utca)",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-19T15:06:07.408241+02:00",
-      "kulcs": "PHG623",
-      "rendszam": "PHG623",
-      "vehicle_id": "7147",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51966857910156,
-      "lon": 19.148229598999023,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
     {
       "idopont": "2026-10-19T15:06:07.408318+02:00",
       "kulcs": "PHG640",
@@ -260000,6 +259935,71 @@
       "lon": 19.08081817626953,
       "elozo_szoveg": "Csepel-Királyerdő",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-20T02:10:22.615245+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47544860839844,
+      "lon": 19.04085350036621,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-20T02:10:22.619274+02:00",
+      "kulcs": "AAGL286",
+      "rendszam": "AAGL286",
+      "vehicle_id": "320",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.508052825927734,
+      "lon": 19.02786636352539,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-20T02:10:22.619482+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.48484802246094,
+      "lon": 19.073204040527344,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-20T02:10:22.619520+02:00",
+      "kulcs": "MOS258",
+      "rendszam": "MOS258",
+      "vehicle_id": "5711",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497459411621094,
+      "lon": 19.055002212524414,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-20T02:10:22.620521+02:00",
+      "kulcs": "AADI596",
+      "rendszam": "AADI596",
+      "vehicle_id": "92",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49770736694336,
+      "lon": 18.96380615234375,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
     }
   ]
 }
