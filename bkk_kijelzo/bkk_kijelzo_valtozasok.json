@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T03:23:56.138201+02:00",
+  "frissitve": "2026-10-20T03:24:27.308233+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:12:47.044593+02:00",
-      "kulcs": "V2231",
-      "rendszam": "V2231",
-      "vehicle_id": "6442",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.49406433105469,
-      "lon": 19.043771743774414,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-19T15:12:47.045870+02:00",
-      "kulcs": "PDB381",
-      "rendszam": "PDB381",
-      "vehicle_id": "7063",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "176E",
-      "route_id": "1765",
-      "lat": 47.49928665161133,
-      "lon": 19.286767959594727,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Rákoscsaba-Újtelep"
-    },
-    {
-      "idopont": "2026-10-19T15:12:47.045997+02:00",
-      "kulcs": "PDN603",
-      "rendszam": "PDN603",
-      "vehicle_id": "7075",
-      "vehicle_label": "Baross Gábor-telep",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.46467971801758,
-      "lon": 19.017757415771484,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Baross Gábor-telep"
-    },
     {
       "idopont": "2026-10-19T15:12:47.046155+02:00",
       "kulcs": "PDN617",
@@ -260000,6 +259961,45 @@
       "lon": 19.13664436340332,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-20T03:24:27.222261+02:00",
+      "kulcs": "AAGL301",
+      "rendszam": "AAGL301",
+      "vehicle_id": "281",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50716018676758,
+      "lon": 18.921642303466797,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-20T03:24:27.223151+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46204376220703,
+      "lon": 19.13418960571289,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-20T03:24:27.223704+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.5037727355957,
+      "lon": 19.140451431274414,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
     }
   ]
 }
