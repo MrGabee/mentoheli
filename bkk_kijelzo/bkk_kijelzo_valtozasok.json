@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T03:25:26.812648+02:00",
+  "frissitve": "2026-10-20T03:25:56.548649+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:12:47.047572+02:00",
-      "kulcs": "RCT316",
-      "rendszam": "RCT316",
-      "vehicle_id": "7330",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.463016510009766,
-      "lon": 19.14861297607422,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-19T15:12:47.047690+02:00",
-      "kulcs": "T8103",
-      "rendszam": "T8103",
-      "vehicle_id": "7340",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.475990295410156,
-      "lon": 19.100255966186523,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-10-19T15:12:47.047763+02:00",
-      "kulcs": "T9101",
-      "rendszam": "T9101",
-      "vehicle_id": "7348",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52275466918945,
-      "lon": 19.130929946899414,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-10-19T15:12:47.048033+02:00",
       "kulcs": "V2246",
@@ -260000,6 +259961,45 @@
       "lon": 18.941801071166992,
       "elozo_szoveg": "Ráckeve",
       "uj_szoveg": "Közvágóhíd"
+    },
+    {
+      "idopont": "2026-10-20T03:25:56.492715+02:00",
+      "kulcs": "NTM430",
+      "rendszam": "NTM430",
+      "vehicle_id": "6498",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.5484619140625,
+      "lon": 19.029550552368164,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-20T03:25:56.492789+02:00",
+      "kulcs": "AADI580",
+      "rendszam": "AADI580",
+      "vehicle_id": "66",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50460433959961,
+      "lon": 19.024761199951172,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-20T03:25:56.493226+02:00",
+      "kulcs": "918071930278",
+      "rendszam": "918071930278",
+      "vehicle_id": "918071930278",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "IR",
+      "route_id": "IR",
+      "lat": 47.46194076538086,
+      "lon": 21.486400604248047,
+      "elozo_szoveg": "Debrecen",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
