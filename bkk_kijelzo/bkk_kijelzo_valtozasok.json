@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T03:37:50.585862+02:00",
+  "frissitve": "2026-10-20T03:38:23.422258+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:14:18.676585+02:00",
-      "kulcs": "PDN627",
-      "rendszam": "PDN627",
-      "vehicle_id": "7098",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.50019454956055,
-      "lon": 18.970916748046875,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-10-19T15:14:18.676736+02:00",
-      "kulcs": "PDN638",
-      "rendszam": "PDN638",
-      "vehicle_id": "7109",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41604232788086,
-      "lon": 19.072322845458984,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-19T15:14:18.677913+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.5356559753418,
-      "lon": 19.10764503479004,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
     {
       "idopont": "2026-10-19T15:14:18.677966+02:00",
       "kulcs": "T8107",
@@ -260000,6 +259961,45 @@
       "lon": 19.115365982055664,
       "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
       "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-20T03:38:23.338478+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534297943115234,
+      "lon": 19.08245849609375,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-20T03:38:23.338690+02:00",
+      "kulcs": "NTM435",
+      "rendszam": "NTM435",
+      "vehicle_id": "6503",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42158126831055,
+      "lon": 19.041305541992188,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-20T03:38:23.339134+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49864959716797,
+      "lon": 19.04860496520996,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
