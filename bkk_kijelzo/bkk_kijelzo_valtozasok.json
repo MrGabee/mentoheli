@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T03:47:07.790016+02:00",
+  "frissitve": "2026-10-20T03:47:43.050785+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:15:40.273837+02:00",
-      "kulcs": "V1349",
-      "rendszam": "V1349",
-      "vehicle_id": "4451",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.497520446777344,
-      "lon": 19.05527687072754,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.273963+02:00",
-      "kulcs": "V1401",
-      "rendszam": "V1401",
-      "vehicle_id": "4473",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.46889877319336,
-      "lon": 19.024568557739258,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.274062+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51295852661133,
-      "lon": 19.047883987426758,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
     {
       "idopont": "2026-10-19T15:15:40.274077+02:00",
       "kulcs": "AAMH608",
@@ -260000,6 +259961,45 @@
       "lon": 19.06761360168457,
       "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
       "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-10-20T03:47:42.963567+02:00",
+      "kulcs": "AADI566",
+      "rendszam": "AADI566",
+      "vehicle_id": "42",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.536468505859375,
+      "lon": 19.107173919677734,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-20T03:47:42.964104+02:00",
+      "kulcs": "PHG656",
+      "rendszam": "PHG656",
+      "vehicle_id": "7180",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.47954177856445,
+      "lon": 19.25602149963379,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-20T03:47:42.965189+02:00",
+      "kulcs": "AOIM039",
+      "rendszam": "AOIM039",
+      "vehicle_id": "959",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.479713439941406,
+      "lon": 19.051259994506836,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
