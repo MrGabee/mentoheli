@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-20T03:13:39.415932+02:00",
+  "frissitve": "2026-10-20T03:14:07.225135+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:11:39.524179+02:00",
-      "kulcs": "STZ859",
-      "rendszam": "STZ859",
-      "vehicle_id": "7814",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40E",
-      "route_id": "0405",
-      "lat": 47.4643669128418,
-      "lon": 19.018583297729492,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-10-19T15:11:39.524709+02:00",
-      "kulcs": "T8114",
-      "rendszam": "T8114",
-      "vehicle_id": "7893",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52510070800781,
-      "lon": 19.063264846801758,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-19T15:11:39.524797+02:00",
-      "kulcs": "AOFL208",
-      "rendszam": "AOFL208",
-      "vehicle_id": "794",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.549320220947266,
-      "lon": 19.07370948791504,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-10-19T15:11:39.524883+02:00",
-      "kulcs": "AOFL218",
-      "rendszam": "AOFL218",
-      "vehicle_id": "805",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.5543212890625,
-      "lon": 19.01317024230957,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
     {
       "idopont": "2026-10-19T15:11:39.524966+02:00",
       "kulcs": "AOFL223",
@@ -260000,6 +259948,58 @@
       "lon": 19.12133026123047,
       "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-20T03:14:07.139685+02:00",
+      "kulcs": "NNE052",
+      "rendszam": "NNE052",
+      "vehicle_id": "6448",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46377944946289,
+      "lon": 19.130037307739258,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-10-20T03:14:07.140231+02:00",
+      "kulcs": "RVY730",
+      "rendszam": "RVY730",
+      "vehicle_id": "7628",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49609375,
+      "lon": 19.058029174804688,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-20T03:14:07.140274+02:00",
+      "kulcs": "SKR725",
+      "rendszam": "SKR725",
+      "vehicle_id": "7674",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.4327278137207,
+      "lon": 19.26151466369629,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-20T03:14:07.140331+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49192810058594,
+      "lon": 19.061193466186523,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
