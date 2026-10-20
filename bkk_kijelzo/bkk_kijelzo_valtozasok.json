@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T03:56:16.021072+02:00",
+  "frissitve": "2026-10-20T03:56:50.415674+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:15:40.288947+02:00",
-      "kulcs": "AOGL311",
-      "rendszam": "AOGL311",
-      "vehicle_id": "901",
-      "vehicle_label": "Svábhegy",
-      "vonal_szam": "210",
-      "route_id": "2100",
-      "lat": 47.54884338378906,
-      "lon": 19.07354164123535,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Svábhegy"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.289217+02:00",
-      "kulcs": "AOGL318",
-      "rendszam": "AOGL318",
-      "vehicle_id": "909",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.49097442626953,
-      "lon": 19.013856887817383,
-      "elozo_szoveg": "Apor Vilmos tér",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.290231+02:00",
-      "kulcs": "AOIM028",
-      "rendszam": "AOIM028",
-      "vehicle_id": "948",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52474594116211,
-      "lon": 19.116960525512695,
-      "elozo_szoveg": "Rákospatak u./Csömöri út",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
     {
       "idopont": "2026-10-19T15:15:40.290339+02:00",
       "kulcs": "AADI599",
@@ -260000,6 +259961,45 @@
       "lon": 19.59246063232422,
       "elozo_szoveg": "Gödöllő",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-10-20T03:56:50.337128+02:00",
+      "kulcs": "NGC160",
+      "rendszam": "NGC160",
+      "vehicle_id": "6210",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50800323486328,
+      "lon": 19.026491165161133,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-20T03:56:50.337231+02:00",
+      "kulcs": "NNE055",
+      "rendszam": "NNE055",
+      "vehicle_id": "6451",
+      "vehicle_label": "Római úti lakótelep",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597835540771484,
+      "lon": 19.053876876831055,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Római úti lakótelep"
+    },
+    {
+      "idopont": "2026-10-20T03:56:50.338249+02:00",
+      "kulcs": "AOIM027",
+      "rendszam": "AOIM027",
+      "vehicle_id": "947",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51371765136719,
+      "lon": 19.102481842041016,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
