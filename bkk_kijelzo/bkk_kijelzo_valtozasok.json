@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T01:16:41.296467+02:00",
+  "frissitve": "2026-10-21T01:17:12.480688+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T14:55:55.821441+02:00",
-      "kulcs": "V1330",
-      "rendszam": "V1330",
-      "vehicle_id": "4433",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2B",
-      "route_id": "3022",
-      "lat": 47.42197036743164,
-      "lon": 19.12232780456543,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-20T14:55:55.821890+02:00",
-      "kulcs": "V1547",
-      "rendszam": "V1547",
-      "vehicle_id": "4599",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49188232421875,
-      "lon": 19.089075088500977,
-      "elozo_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)",
-      "uj_szoveg": "Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-10-20T14:55:55.822372+02:00",
-      "kulcs": "V4127",
-      "rendszam": "V4127",
-      "vehicle_id": "4815",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47723388671875,
-      "lon": 19.04731559753418,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-10-20T14:55:55.822520+02:00",
       "kulcs": "V4163",
@@ -260000,6 +259961,45 @@
       "lon": 19.201416015625,
       "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
       "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-21T01:17:12.415612+02:00",
+      "kulcs": "AADR720",
+      "rendszam": "AADR720",
+      "vehicle_id": "189",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49833679199219,
+      "lon": 18.96400260925293,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T01:17:12.417335+02:00",
+      "kulcs": "T8109",
+      "rendszam": "T8109",
+      "vehicle_id": "7346",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.503963470458984,
+      "lon": 19.136789321899414,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-21T01:17:12.417649+02:00",
+      "kulcs": "T8113",
+      "rendszam": "T8113",
+      "vehicle_id": "7892",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5003662109375,
+      "lon": 19.11055564880371,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
