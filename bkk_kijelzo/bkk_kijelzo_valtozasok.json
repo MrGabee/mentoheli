@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-20T04:07:09.531436+02:00",
+  "frissitve": "2026-10-20T04:07:44.096855+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:18:10.050509+02:00",
-      "kulcs": "NGC162",
-      "rendszam": "NGC162",
-      "vehicle_id": "6202",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.52983856201172,
-      "lon": 19.005741119384766,
-      "elozo_szoveg": "Verecke lépcső ► Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-10-19T15:18:10.050580+02:00",
-      "kulcs": "V2201",
-      "rendszam": "V2201",
-      "vehicle_id": "6218",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.429325103759766,
-      "lon": 19.217700958251953,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-19T15:18:10.050624+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49771499633789,
-      "lon": 19.053443908691406,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-19T15:18:10.050635+02:00",
-      "kulcs": "NCV288",
-      "rendszam": "NCV288",
-      "vehicle_id": "6253",
-      "vehicle_label": "Aranyhegy",
-      "vonal_szam": "219",
-      "route_id": "2190",
-      "lat": 47.5843505859375,
-      "lon": 19.044204711914062,
-      "elozo_szoveg": "Csillaghegy H",
-      "uj_szoveg": "Aranyhegy"
-    },
     {
       "idopont": "2026-10-19T15:18:10.050821+02:00",
       "kulcs": "NLE860",
@@ -260000,6 +259948,58 @@
       "lon": 19.139097213745117,
       "elozo_szoveg": "Szent Imre tér H",
       "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-20T04:07:44.019968+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Izzó utcai lakótelep",
+      "vonal_szam": "220",
+      "route_id": "2200",
+      "lat": 47.560462951660156,
+      "lon": 19.0904541015625,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Izzó utcai lakótelep"
+    },
+    {
+      "idopont": "2026-10-20T04:07:44.020015+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Batthyány tér M H",
+      "vonal_szam": "11",
+      "route_id": "0110",
+      "lat": 47.533653259277344,
+      "lon": 18.993432998657227,
+      "elozo_szoveg": "Batthyány tér M H",
+      "uj_szoveg": "Batthyány tér M+H"
+    },
+    {
+      "idopont": "2026-10-20T04:07:44.021369+02:00",
+      "kulcs": "915504702126",
+      "rendszam": "915504702126",
+      "vehicle_id": "915504702126",
+      "vehicle_label": "Miskolc-Tiszai",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.492149353027344,
+      "lon": 19.133750915527344,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Miskolc-Tiszai"
+    },
+    {
+      "idopont": "2026-10-20T04:07:44.021435+02:00",
+      "kulcs": "AOIM002",
+      "rendszam": "AOIM002",
+      "vehicle_id": "919",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "36",
+      "route_id": "0360",
+      "lat": 47.45473098754883,
+      "lon": 19.181793212890625,
+      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
