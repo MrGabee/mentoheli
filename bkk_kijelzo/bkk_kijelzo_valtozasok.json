@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T02:32:12.433675+02:00",
+  "frissitve": "2026-10-20T02:32:42.556374+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:07:38.439240+02:00",
-      "kulcs": "885-643-886-873-637-874",
-      "rendszam": "885-643-886-873-637-874",
-      "vehicle_id": "905516568854-905536466436-905516568862-905516568730-905536466378-905516568748",
-      "vehicle_label": "Közvágóhíd",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.31319046020508,
-      "lon": 18.97399139404297,
-      "elozo_szoveg": "Tököl",
-      "uj_szoveg": "Közvágóhíd"
-    },
-    {
-      "idopont": "2026-10-19T15:07:38.439383+02:00",
-      "kulcs": "963-682-964-961-681-962",
-      "rendszam": "963-682-964-961-681-962",
-      "vehicle_id": "905516569639-905536466824-905516569647-905516569613-905536466816-905516569621",
-      "vehicle_label": "Csepel",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.478851318359375,
-      "lon": 19.06684112548828,
-      "elozo_szoveg": "Boráros tér",
-      "uj_szoveg": "Csepel"
-    },
-    {
-      "idopont": "2026-10-19T15:07:38.439451+02:00",
-      "kulcs": "991-696-992-989-695-990",
-      "rendszam": "991-696-992-989-695-990",
-      "vehicle_id": "905516569910-905536466964-905516569928-905516569894-905536466956-905516569902",
-      "vehicle_label": "Szentendre",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.50709915161133,
-      "lon": 19.039409637451172,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Szentendre"
-    },
     {
       "idopont": "2026-10-19T15:07:38.439547+02:00",
       "kulcs": "AOGL320",
@@ -260000,6 +259961,45 @@
       "lon": 19.025428771972656,
       "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-20T02:32:42.462488+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.426631927490234,
+      "lon": 19.160825729370117,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-20T02:32:42.463571+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.514122009277344,
+      "lon": 19.10317039489746,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-20T02:32:42.463629+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.547096252441406,
+      "lon": 19.142038345336914,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
