@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-20T04:20:57.663601+02:00",
+  "frissitve": "2026-10-20T04:21:33.809111+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:22:03.584140+02:00",
-      "kulcs": "AAMH602",
-      "rendszam": "AAMH602",
-      "vehicle_id": "445",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196",
-      "route_id": "1960",
-      "lat": 47.57728576660156,
-      "lon": 19.115100860595703,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-19T15:22:03.584247+02:00",
-      "kulcs": "AAMH604",
-      "rendszam": "AAMH604",
-      "vehicle_id": "447",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.55964660644531,
-      "lon": 19.082420349121094,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-19T15:22:03.584357+02:00",
-      "kulcs": "V1438",
-      "rendszam": "V1438",
-      "vehicle_id": "4508",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51272201538086,
-      "lon": 19.04765510559082,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-10-19T15:22:03.584764+02:00",
-      "kulcs": "AAMH626",
-      "rendszam": "AAMH626",
-      "vehicle_id": "469",
-      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
-      "vonal_szam": "122E",
-      "route_id": "1225",
-      "lat": 47.56132125854492,
-      "lon": 19.078163146972656,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
-    },
-    {
-      "idopont": "2026-10-19T15:22:03.584838+02:00",
-      "kulcs": "V4024",
-      "rendszam": "V4024",
-      "vehicle_id": "4713",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.500328063964844,
-      "lon": 19.02398109436035,
-      "elozo_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-10-19T15:22:03.584911+02:00",
       "kulcs": "V4045",
@@ -260000,6 +259935,71 @@
       "lon": 18.995290756225586,
       "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-20T04:21:33.717208+02:00",
+      "kulcs": "LYH110",
+      "rendszam": "LYH110",
+      "vehicle_id": "3699",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "118",
+      "route_id": "1180",
+      "lat": 47.5399055480957,
+      "lon": 19.045894622802734,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-20T04:21:33.717398+02:00",
+      "kulcs": "V1419",
+      "rendszam": "V1419",
+      "vehicle_id": "4489",
+      "vehicle_label": "Jászai Mari tér",
+      "vonal_szam": "2",
+      "route_id": "3020",
+      "lat": 47.46770095825195,
+      "lon": 19.075679779052734,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Jászai Mari tér"
+    },
+    {
+      "idopont": "2026-10-20T04:21:33.717458+02:00",
+      "kulcs": "V1585",
+      "rendszam": "V1585",
+      "vehicle_id": "4637",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "24",
+      "route_id": "3240",
+      "lat": 47.467830657958984,
+      "lon": 19.075706481933594,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-10-20T04:21:33.719036+02:00",
+      "kulcs": "T9119",
+      "rendszam": "T9119",
+      "vehicle_id": "7857",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "80",
+      "route_id": "4800",
+      "lat": 47.50398254394531,
+      "lon": 19.136716842651367,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-10-20T04:21:33.720053+02:00",
+      "kulcs": "416 037",
+      "rendszam": "416 037",
+      "vehicle_id": "955514160378",
+      "vehicle_label": "Kőbánya-Kispest",
+      "vonal_szam": "S21",
+      "route_id": "S21",
+      "lat": 47.07048034667969,
+      "lon": 19.497610092163086,
+      "elozo_szoveg": "Lajosmizse",
+      "uj_szoveg": "Kőbánya-Kispest"
     }
   ]
 }
