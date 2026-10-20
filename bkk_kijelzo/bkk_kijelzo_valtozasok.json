@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-21T00:36:59.848933+02:00",
+  "frissitve": "2026-10-21T00:37:31.169986+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T14:52:06.908772+02:00",
-      "kulcs": "RCT318",
-      "rendszam": "RCT318",
-      "vehicle_id": "7332",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.46474075317383,
-      "lon": 19.12615203857422,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-20T14:52:06.908856+02:00",
-      "kulcs": "T8105",
-      "rendszam": "T8105",
-      "vehicle_id": "7342",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51907730102539,
-      "lon": 19.084823608398438,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-20T14:52:06.909179+02:00",
-      "kulcs": "V2251",
-      "rendszam": "V2251",
-      "vehicle_id": "7383",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.484153747558594,
-      "lon": 19.026599884033203,
-      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-20T14:52:06.909721+02:00",
-      "kulcs": "RVY748",
-      "rendszam": "RVY748",
-      "vehicle_id": "7646",
-      "vehicle_label": "Gyál, Bem József utca",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.46422576904297,
-      "lon": 19.127031326293945,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Bem József utca"
-    },
     {
       "idopont": "2026-10-20T14:52:06.909754+02:00",
       "kulcs": "SCD590",
@@ -260000,6 +259948,58 @@
       "lon": 19.074304580688477,
       "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
       "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-21T00:37:31.001406+02:00",
+      "kulcs": "AAGL250",
+      "rendszam": "AAGL250",
+      "vehicle_id": "250",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.42948913574219,
+      "lon": 18.929468154907227,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-21T00:37:31.002138+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53367233276367,
+      "lon": 19.082008361816406,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-21T00:37:31.002173+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49905776977539,
+      "lon": 19.236108779907227,
+      "elozo_szoveg": "Rákoshegy vasútállomás",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
+    },
+    {
+      "idopont": "2026-10-21T00:37:31.002287+02:00",
+      "kulcs": "PDN608",
+      "rendszam": "PDN608",
+      "vehicle_id": "7080",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.479774475097656,
+      "lon": 19.067102432250977,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
     }
   ]
 }
