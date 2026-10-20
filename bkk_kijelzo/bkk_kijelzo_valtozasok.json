@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-20T02:03:55.078276+02:00",
+  "frissitve": "2026-10-20T02:04:23.019203+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:06:07.402668+02:00",
-      "kulcs": "T0614",
-      "rendszam": "T0614",
-      "vehicle_id": "4298",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.514915466308594,
-      "lon": 19.091039657592773,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Astoria M (Dohány utca)"
-    },
-    {
-      "idopont": "2026-10-19T15:06:07.402798+02:00",
-      "kulcs": "V1330",
-      "rendszam": "V1330",
-      "vehicle_id": "4433",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.512699127197266,
-      "lon": 19.04769515991211,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-19T15:06:07.402874+02:00",
-      "kulcs": "V1343",
-      "rendszam": "V1343",
-      "vehicle_id": "4446",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.499271392822266,
-      "lon": 19.082509994506836,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-10-19T15:06:07.403465+02:00",
       "kulcs": "V4032",
@@ -260000,6 +259961,45 @@
       "lon": 19.077922821044922,
       "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
       "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-20T02:04:22.927977+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49982833862305,
+      "lon": 19.287137985229492,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Astoria M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-20T02:04:22.932002+02:00",
+      "kulcs": "NBW005",
+      "rendszam": "NBW005",
+      "vehicle_id": "5975",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50178146362305,
+      "lon": 19.135595321655273,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-20T02:04:22.932448+02:00",
+      "kulcs": "PCC930",
+      "rendszam": "PCC930",
+      "vehicle_id": "7269",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48963928222656,
+      "lon": 19.076175689697266,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
     }
   ]
 }
