@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T00:42:23.734548+02:00",
+  "frissitve": "2026-10-21T00:42:55.703068+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T14:52:06.911590+02:00",
-      "kulcs": "971-686-972-1101-751-1102",
-      "rendszam": "971-686-972-1101-751-1102",
-      "vehicle_id": "905516569712-905536466865-905516569720-905516561016-905536467517-905516561024",
-      "vehicle_label": "Szentendre",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.50709915161133,
-      "lon": 19.039409637451172,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Szentendre"
-    },
-    {
-      "idopont": "2026-10-20T14:52:06.912095+02:00",
-      "kulcs": "415 051",
-      "rendszam": "415 051",
-      "vehicle_id": "945514150511",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S12",
-      "route_id": "S12",
-      "lat": 47.520870208740234,
-      "lon": 18.317140579223633,
-      "elozo_szoveg": "Oroszlány",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-20T14:52:06.912263+02:00",
-      "kulcs": "815 006",
-      "rendszam": "815 006",
-      "vehicle_id": "945518150061",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.52602005004883,
-      "lon": 19.090070724487305,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
     {
       "idopont": "2026-10-20T14:52:06.912389+02:00",
       "kulcs": "AOIM031",
@@ -260000,6 +259961,45 @@
       "lon": 19.055341720581055,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-21T00:42:55.645657+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48594665527344,
+      "lon": 19.06950569152832,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-21T00:42:55.646001+02:00",
+      "kulcs": "PKN626",
+      "rendszam": "PKN626",
+      "vehicle_id": "7215",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50128173828125,
+      "lon": 19.119583129882812,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-10-21T00:42:55.646392+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46242141723633,
+      "lon": 19.133281707763672,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
