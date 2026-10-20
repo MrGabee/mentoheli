@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-20T03:42:56.103843+02:00",
+  "frissitve": "2026-10-20T03:43:28.704740+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:14:18.683774+02:00",
-      "kulcs": "AOIM045",
-      "rendszam": "AOIM045",
-      "vehicle_id": "966",
-      "vehicle_label": "Rákospatak u./Csömöri út",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.494686126708984,
-      "lon": 18.998497009277344,
-      "elozo_szoveg": "Thomán István utca",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.270481+02:00",
-      "kulcs": "AOJM886",
-      "rendszam": "AOJM886",
-      "vehicle_id": "1014",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.43107223510742,
-      "lon": 19.07059097290039,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.270770+02:00",
-      "kulcs": "AADI607",
-      "rendszam": "AADI607",
-      "vehicle_id": "104",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.436729431152344,
-      "lon": 19.01705551147461,
-      "elozo_szoveg": "Lomnici utca ► Újbuda-központ M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.270870+02:00",
-      "kulcs": "LMG140",
-      "rendszam": "LMG140",
-      "vehicle_id": "1093",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.50454330444336,
-      "lon": 19.136917114257812,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákosi út ► Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-10-19T15:15:40.271119+02:00",
-      "kulcs": "AADI645",
-      "rendszam": "AADI645",
-      "vehicle_id": "144",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.533348083496094,
-      "lon": 19.06730842590332,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-10-19T15:15:40.271326+02:00",
       "kulcs": "AADR708",
@@ -260000,6 +259935,71 @@
       "lon": 19.119991302490234,
       "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
       "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-10-20T03:43:28.622262+02:00",
+      "kulcs": "AADR716",
+      "rendszam": "AADR716",
+      "vehicle_id": "184",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.550296783447266,
+      "lon": 19.04206085205078,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-20T03:43:28.623800+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.560462951660156,
+      "lon": 19.09039306640625,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-10-20T03:43:28.623943+02:00",
+      "kulcs": "AADI564",
+      "rendszam": "AADI564",
+      "vehicle_id": "54",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.543094635009766,
+      "lon": 18.964508056640625,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-20T03:43:28.624310+02:00",
+      "kulcs": "NNE052",
+      "rendszam": "NNE052",
+      "vehicle_id": "6448",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51116180419922,
+      "lon": 19.056324005126953,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-20T03:43:28.625405+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.466331481933594,
+      "lon": 19.153484344482422,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
     }
   ]
 }
