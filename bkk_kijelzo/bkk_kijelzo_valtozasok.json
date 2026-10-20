@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-20T22:51:26.073901+02:00",
+  "frissitve": "2026-10-20T22:51:56.890727+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T14:21:08.790807+02:00",
-      "kulcs": "AOFL247",
-      "rendszam": "AOFL247",
-      "vehicle_id": "835",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.48316955566406,
-      "lon": 19.128307342529297,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-10-20T14:21:08.791049+02:00",
-      "kulcs": "AOIB794",
-      "rendszam": "AOIB794",
-      "vehicle_id": "865",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.487300872802734,
-      "lon": 18.989824295043945,
-      "elozo_szoveg": "Mindszenty József bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-10-20T14:21:08.791452+02:00",
       "kulcs": "1139-770-1140-1147-774-1148",
@@ -260000,6 +259974,32 @@
       "lon": 18.909669876098633,
       "elozo_szoveg": "Budapest-Kelenföld",
       "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-10-20T22:51:56.815276+02:00",
+      "kulcs": "863-632-864-865-633-866",
+      "rendszam": "863-632-864-865-633-866",
+      "vehicle_id": "905516568631-905536466329-905516568649-905516568656-905536466337-905516568664",
+      "vehicle_label": "Dunaharaszti külső",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.34163284301758,
+      "lon": 19.048259735107422,
+      "elozo_szoveg": "Dunaharaszti külső (- Közvágóhíd)",
+      "uj_szoveg": "Dunaharaszti külső"
+    },
+    {
+      "idopont": "2026-10-20T22:51:56.815368+02:00",
+      "kulcs": "959-680-960",
+      "rendszam": "959-680-960",
+      "vehicle_id": "905516569597-905536466808-905516569605",
+      "vehicle_label": "Csepel",
+      "vonal_szam": "H7",
+      "route_id": "H7",
+      "lat": 47.47887420654297,
+      "lon": 19.066726684570312,
+      "elozo_szoveg": "Boráros tér",
+      "uj_szoveg": "Csepel"
     }
   ]
 }
