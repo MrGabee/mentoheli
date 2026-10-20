@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T00:45:29.580727+02:00",
+  "frissitve": "2026-10-21T00:46:01.829036+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T14:53:29.547391+02:00",
-      "kulcs": "V1557",
-      "rendszam": "V1557",
-      "vehicle_id": "4609",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.481483459472656,
-      "lon": 19.12691879272461,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-10-20T14:53:29.547518+02:00",
-      "kulcs": "V4006",
-      "rendszam": "V4006",
-      "vehicle_id": "4695",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.498390197753906,
-      "lon": 19.028770446777344,
-      "elozo_szoveg": "Krisztina körút ► Városház tér",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-10-20T14:53:29.547541+02:00",
-      "kulcs": "AAMH627",
-      "rendszam": "AAMH627",
-      "vehicle_id": "470",
-      "vehicle_label": "Árpádföld",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.50447463989258,
-      "lon": 19.136629104614258,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Árpádföld"
-    },
     {
       "idopont": "2026-10-20T14:53:29.548356+02:00",
       "kulcs": "V4327",
@@ -260000,6 +259961,45 @@
       "lon": 19.102060317993164,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-10-21T00:46:01.761340+02:00",
+      "kulcs": "FLR735",
+      "rendszam": "FLR735",
+      "vehicle_id": "3149",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48337936401367,
+      "lon": 19.12821388244629,
+      "elozo_szoveg": "Kőbánya alsó vasútáll.",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T00:46:01.761410+02:00",
+      "kulcs": "AAGL297",
+      "rendszam": "AAGL297",
+      "vehicle_id": "329",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.496185302734375,
+      "lon": 19.057741165161133,
+      "elozo_szoveg": "Üröm ► Pilisborosjenő",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-10-21T00:46:01.762431+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.3795280456543,
+      "lon": 19.104251861572266,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
