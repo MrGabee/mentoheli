@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-20T02:59:16.621908+02:00",
+  "frissitve": "2026-10-20T02:59:45.140539+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:10:02.151643+02:00",
-      "kulcs": "T9135",
-      "rendszam": "T9135",
-      "vehicle_id": "7874",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51923370361328,
-      "lon": 19.090974807739258,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-19T15:10:02.151666+02:00",
-      "kulcs": "T9138",
-      "rendszam": "T9138",
-      "vehicle_id": "7877",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.5052375793457,
-      "lon": 19.136442184448242,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-19T15:10:02.151877+02:00",
-      "kulcs": "AOFL213",
-      "rendszam": "AOFL213",
-      "vehicle_id": "800",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.527000427246094,
-      "lon": 18.978633880615234,
-      "elozo_szoveg": "Kurucles ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-19T15:10:02.152042+02:00",
-      "kulcs": "AADI582",
-      "rendszam": "AADI582",
-      "vehicle_id": "83",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.405967712402344,
-      "lon": 19.01413345336914,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Lomnici utca ► Újbuda-központ M"
-    },
     {
       "idopont": "2026-10-19T15:10:02.152179+02:00",
       "kulcs": "AOIB793",
@@ -260000,6 +259948,58 @@
       "lon": 19.053884506225586,
       "elozo_szoveg": "Békásmegyer H",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-20T02:59:45.056583+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56742858886719,
+      "lon": 19.12492561340332,
+      "elozo_szoveg": "Rákospalota, Mélyfúró utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-20T02:59:45.057280+02:00",
+      "kulcs": "RVY712",
+      "rendszam": "RVY712",
+      "vehicle_id": "7461",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46504211425781,
+      "lon": 19.127338409423828,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-20T02:59:45.057400+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49898147583008,
+      "lon": 19.009328842163086,
+      "elozo_szoveg": "Svábhegy ► Csillebérc",
+      "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-20T02:59:45.057629+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.388824462890625,
+      "lon": 18.958362579345703,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
