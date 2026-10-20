@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-20T02:00:51.682314+02:00",
+  "frissitve": "2026-10-20T02:01:22.707089+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-19T15:04:38.253554+02:00",
-      "kulcs": "925-663-926-915-658-916",
-      "rendszam": "925-663-926-915-658-916",
-      "vehicle_id": "905516569258-905536466634-905516569266-905516569159-905536466584-905516569167",
-      "vehicle_label": "Cinkota",
-      "vonal_szam": "H8",
-      "route_id": "H8",
-      "lat": 47.59371566772461,
-      "lon": 19.357704162597656,
-      "elozo_szoveg": "Gödöllő",
-      "uj_szoveg": "Cinkota"
-    },
-    {
-      "idopont": "2026-10-19T15:04:38.253569+02:00",
-      "kulcs": "933-667-934",
-      "rendszam": "933-667-934",
-      "vehicle_id": "905516569332-905536466675-905516569340",
-      "vehicle_label": "Csömör",
-      "vonal_szam": "H9",
-      "route_id": "H9",
-      "lat": 47.52022171020508,
-      "lon": 19.219039916992188,
-      "elozo_szoveg": "Cinkota",
-      "uj_szoveg": "Csömör"
-    },
-    {
-      "idopont": "2026-10-19T15:04:38.254048+02:00",
-      "kulcs": "AOIM013",
-      "rendszam": "AOIM013",
-      "vehicle_id": "933",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.454803466796875,
-      "lon": 19.18157386779785,
-      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
-    {
-      "idopont": "2026-10-19T15:04:38.254073+02:00",
-      "kulcs": "AOIM016",
-      "rendszam": "AOIM016",
-      "vehicle_id": "936",
-      "vehicle_label": "Soroksár, közp. raktárak",
-      "vonal_szam": "66",
-      "route_id": "0660",
-      "lat": 47.464874267578125,
-      "lon": 19.12704086303711,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Soroksár, központi raktárak"
-    },
     {
       "idopont": "2026-10-19T15:04:38.254543+02:00",
       "kulcs": "815 029",
@@ -260000,6 +259948,58 @@
       "lon": 19.071359634399414,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-20T02:01:22.625641+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464656829833984,
+      "lon": 19.02298927307129,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-20T02:01:22.629105+02:00",
+      "kulcs": "PDB721",
+      "rendszam": "PDB721",
+      "vehicle_id": "7047",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45107650756836,
+      "lon": 19.159875869750977,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-20T02:01:22.629293+02:00",
+      "kulcs": "T8109",
+      "rendszam": "T8109",
+      "vehicle_id": "7346",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49991989135742,
+      "lon": 19.054954528808594,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-20T02:01:22.629489+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48968505859375,
+      "lon": 19.061805725097656,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
     }
   ]
 }
