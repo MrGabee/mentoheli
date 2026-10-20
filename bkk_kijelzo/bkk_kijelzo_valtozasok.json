@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-21T00:55:59.946999+02:00",
+  "frissitve": "2026-10-21T00:56:36.336380+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T14:53:29.555941+02:00",
-      "kulcs": "AOFL235",
-      "rendszam": "AOFL235",
-      "vehicle_id": "823",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.52164077758789,
-      "lon": 18.99049186706543,
-      "elozo_szoveg": "Kurucles",
-      "uj_szoveg": "Kurucles ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-20T14:53:29.556021+02:00",
-      "kulcs": "AOFL247",
-      "rendszam": "AOFL247",
-      "vehicle_id": "835",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.441856384277344,
-      "lon": 19.185632705688477,
-      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-10-20T14:53:29.556207+02:00",
       "kulcs": "AOIB795",
@@ -260000,6 +259974,32 @@
       "lon": 19.090030670166016,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Szob"
+    },
+    {
+      "idopont": "2026-10-21T00:56:36.249836+02:00",
+      "kulcs": "AAGL273",
+      "rendszam": "AAGL273",
+      "vehicle_id": "273",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48820495605469,
+      "lon": 19.059823989868164,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-21T00:56:36.250570+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.49888610839844,
+      "lon": 19.05069923400879,
+      "elozo_szoveg": "Deák Ferenc tér M ► Millenniumtelep H",
+      "uj_szoveg": "Közvágóhíd H ► Millenniumtelep H"
     }
   ]
 }
