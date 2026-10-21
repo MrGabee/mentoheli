@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:36:39.905899+02:00",
+  "frissitve": "2026-10-21T03:37:12.370302+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:08:38.664210+02:00",
-      "kulcs": "PHG621",
-      "rendszam": "PHG621",
-      "vehicle_id": "7145",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.50471496582031,
-      "lon": 19.136898040771484,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákosszentmihály, Mátyás király utca"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.664226+02:00",
-      "kulcs": "PHG623",
-      "rendszam": "PHG623",
-      "vehicle_id": "7147",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "174",
-      "route_id": "1740",
-      "lat": 47.520469665527344,
-      "lon": 19.2186222076416,
-      "elozo_szoveg": "Cinkota H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.664365+02:00",
-      "kulcs": "PHG642",
-      "rendszam": "PHG642",
-      "vehicle_id": "7166",
-      "vehicle_label": "Maglód, Auchan áruház",
-      "vonal_szam": "162",
-      "route_id": "1620",
-      "lat": 47.48385238647461,
-      "lon": 19.127256393432617,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Maglód, Auchan áruház"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.664598+02:00",
-      "kulcs": "T0626",
-      "rendszam": "T0626",
-      "vehicle_id": "720",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.516597747802734,
-      "lon": 19.092548370361328,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.664684+02:00",
-      "kulcs": "PKN622",
-      "rendszam": "PKN622",
-      "vehicle_id": "7211",
-      "vehicle_label": "Kispest, Vas Gereben utca",
-      "vonal_szam": "68",
-      "route_id": "0680",
-      "lat": 47.480777740478516,
-      "lon": 19.2198543548584,
-      "elozo_szoveg": "Akadémiaújtelep, 525. tér",
-      "uj_szoveg": "Kispest, Vas Gereben utca"
-    },
     {
       "idopont": "2026-10-20T15:08:38.665064+02:00",
       "kulcs": "T8104",
@@ -260000,6 +259935,71 @@
       "lon": 19.0456600189209,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T03:37:12.199956+02:00",
+      "kulcs": "AAGL273",
+      "rendszam": "AAGL273",
+      "vehicle_id": "273",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.43122863769531,
+      "lon": 18.92803382873535,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-21T03:37:12.201144+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497413635253906,
+      "lon": 19.054929733276367,
+      "elozo_szoveg": "Deák F. tér (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-21T03:37:12.201333+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.52556228637695,
+      "lon": 19.03798484802246,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-21T03:37:12.201966+02:00",
+      "kulcs": "415 106",
+      "rendszam": "415 106",
+      "vehicle_id": "945514151063",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.34600830078125,
+      "lon": 20.04387092590332,
+      "elozo_szoveg": "Szeged",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-21T03:37:12.202018+02:00",
+      "kulcs": "815 039",
+      "rendszam": "815 039",
+      "vehicle_id": "945518150392",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.81636047363281,
+      "lon": 18.873180389404297,
+      "elozo_szoveg": "Szob",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
