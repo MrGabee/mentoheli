@@ -41,6 +41,19 @@ Kedves szülők: őrizzétek meg a nyugalmatokat, és kövessétek az iskola és
 ❓ Ha tudsz részleteket, írd meg kommentben vagy üzenetben, és frissítem a bejegyzést.
 
 #Csepel #bombariadó #Tejútutca"""),
+    "ecofamily": (date(2026, 10, 21), """🛒 JÖN AZ ECOFAMILY CSEPELRE? 🛒
+
+Egyik olvasóm utánajárt valaminek, ami szerintem sokakat érdekel: lesz-e EcoFamily bolt Csepelen. Ő és több csepeli ismerőse is szereti a láncot, de a meglévő üzleteket csak nagy kerülővel lehet megközelíteni innen.
+
+Írt nekik, és pár levélváltás után a cég hálózatfejlesztési vezetőjétől ezt a választ kapta:
+
+„Szeretném jelezni, hogy dolgozunk a csepeli üzletnyitáson. Addig is várjuk a többi budapesti üzletünkben.”
+
+Konkrét címet és dátumot egyelőre nem írtak, de úgy tűnik, Csepel is szóba került. Ha többet megtudok, szólok!
+
+💬 Ti mit szólnátok egy csepeli EcoFamilyhez? Hová tennétek, hol lenne a legjobb helye? Írjátok meg kommentben!
+
+#Csepel #EcoFamily #boltnyitás #olvasóihír"""),
 }
 
 
