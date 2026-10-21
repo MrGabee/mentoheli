@@ -114,6 +114,7 @@ MENETREND = [
     # Csak kézi indításra (üres napkészlet: ütemezve sosem megy ki)
     ("bombariado", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("bombariado", nap)),
     ("ecofamily", time(15, 5), {SZERDA}, lambda nap, a: egyszeri_posztok.szoveg("ecofamily", nap)),
+    ("dugo_20261021", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("dugo_20261021", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
