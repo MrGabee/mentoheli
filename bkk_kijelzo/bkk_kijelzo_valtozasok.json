@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:57:54.947903+02:00",
+  "frissitve": "2026-10-21T03:58:25.145235+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:11:08.131122+02:00",
-      "kulcs": "MFW515",
-      "rendszam": "MFW515",
-      "vehicle_id": "5064",
-      "vehicle_label": "Rákoscsaba-Újtelep",
-      "vonal_szam": "176E",
-      "route_id": "1765",
-      "lat": 47.50118637084961,
-      "lon": 19.135944366455078,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-20T15:11:08.131696+02:00",
-      "kulcs": "MOS261",
-      "rendszam": "MOS261",
-      "vehicle_id": "5714",
-      "vehicle_label": "Gyál, Bem József utca",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.46426010131836,
-      "lon": 19.12697982788086,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Bem József utca"
-    },
-    {
-      "idopont": "2026-10-20T15:11:08.131853+02:00",
-      "kulcs": "V2276",
-      "rendszam": "V2276",
-      "vehicle_id": "574",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.51909637451172,
-      "lon": 19.09136199951172,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-10-20T15:11:08.132105+02:00",
       "kulcs": "V2206",
@@ -260000,6 +259961,45 @@
       "lon": 19.1200008392334,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-21T03:58:25.068794+02:00",
+      "kulcs": "AADI648",
+      "rendszam": "AADI648",
+      "vehicle_id": "147",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.501522064208984,
+      "lon": 19.13619041442871,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-21T03:58:25.071808+02:00",
+      "kulcs": "415 039",
+      "rendszam": "415 039",
+      "vehicle_id": "945514150396",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G40",
+      "route_id": "G40",
+      "lat": 46.40956115722656,
+      "lon": 18.248199462890625,
+      "elozo_szoveg": "Dombóvár",
+      "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-10-21T03:58:25.072103+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47595977783203,
+      "lon": 19.047090530395508,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
