@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T02:42:43.753104+02:00",
+  "frissitve": "2026-10-21T02:43:10.571707+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:03:11.250310+02:00",
-      "kulcs": "RVY746",
-      "rendszam": "RVY746",
-      "vehicle_id": "7644",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.464229583740234,
-      "lon": 19.127012252807617,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gyál, Vecsési út"
-    },
-    {
-      "idopont": "2026-10-20T15:03:11.250555+02:00",
-      "kulcs": "SKR734",
-      "rendszam": "SKR734",
-      "vehicle_id": "7683",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.462318420410156,
-      "lon": 19.150737762451172,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-20T15:03:11.250623+02:00",
-      "kulcs": "SKR809",
-      "rendszam": "SKR809",
-      "vehicle_id": "7695",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.5077018737793,
-      "lon": 19.024946212768555,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-10-20T15:03:11.250733+02:00",
       "kulcs": "SKR831",
@@ -260000,6 +259961,45 @@
       "lon": 19.151508331298828,
       "elozo_szoveg": "Újpalota",
       "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-21T02:43:10.513168+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.56049346923828,
+      "lon": 19.09044075012207,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-10-21T02:43:10.513481+02:00",
+      "kulcs": "NWB353",
+      "rendszam": "NWB353",
+      "vehicle_id": "6533",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.497032165527344,
+      "lon": 19.055917739868164,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-21T02:43:10.513549+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51158905029297,
+      "lon": 19.056644439697266,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
     }
   ]
 }
