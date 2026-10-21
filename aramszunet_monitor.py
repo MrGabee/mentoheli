@@ -29,6 +29,10 @@ EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
 EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT_ARAM"]
 MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 
+# ⬇️ E-MAIL KAPCSOLÓ: Gábor kérésére (2026.10.21.) az oldalra szánt értesítések
+# nem mennek e-mailben (a kollégája kapta őket). A Facebook-posztolás marad.
+EMAIL_AKTIV = False
+
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
 # True  = automatikusan posztol a Facebook Oldalra is, egy Make.com
 #         automatizáción keresztül (webhook -> Facebook Pages modul) -
@@ -589,9 +593,12 @@ def email_kuldes(uj_esetek, osszes_aktiv_esetek):
     msg["To"]      = EMAIL_CIMZETT
     msg.attach(MIMEText(html, "html", "utf-8"))
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-        smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
-        smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    if EMAIL_AKTIV:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    else:
+        print("ℹ️ E-mail kikapcsolva (EMAIL_AKTIV = False), nem ment ki.")
     print(f"📧 E-mail elküldve: {targy}")
     return fb_szoveg_txt
 
@@ -677,9 +684,12 @@ def emlekezteto_kuldes(emlekezteto_adatok):
     msg.attach(MIMEText(szoveges, "plain", "utf-8"))
     msg.attach(MIMEText(html,     "html",  "utf-8"))
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-        smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
-        smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    if EMAIL_AKTIV:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+    else:
+        print("ℹ️ E-mail kikapcsolva (EMAIL_AKTIV = False), nem ment ki.")
     print(f"⏰ Emlékeztető email elküldve: {targy}")
 
 

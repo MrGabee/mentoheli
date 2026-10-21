@@ -47,6 +47,10 @@ DATA_FAJL = "korozes/data/police_figyelo.json"
 MAX_UJ_RESZLET_LEKERDEZES = 40  # egy futásban max ennyi ÚJ elem részletét kérdezzük le
 HIREK_RIASZTAS_UTANI_FUTAS = 8  # ennyi egymás utáni "mind a 10 hír-kategória üres" futás után figyelmeztető email (~2 óra a 15 perces ütemnél)
 
+# ⬇️ E-MAIL KAPCSOLÓ: Gábor kérésére (2026.10.21.) az oldalra szánt értesítések
+# nem mennek e-mailben (a kollégája kapta őket). A Facebook-posztolás marad.
+EMAIL_AKTIV = False
+
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE A MAKE.COM-ON KERESZTÜLI FACEBOOK-POSZTOLÁST (FŐKAPCSOLÓ) ⬇️⬇️⬇️
 # True  = a lent, kategóriánként "facebook_post": True-ra állított
 #         kategóriák új találatai automatikusan kikerülnek a Facebook
@@ -767,6 +771,9 @@ def lezart_posztok_javitasa(cache):
 # =====================================================================
 
 def smtp_email_kuldes(host, port, felhasznalo, jelszo, cimzett, tema, torzs_html):
+    if not EMAIL_AKTIV:
+        print(f"ℹ️ E-mail kikapcsolva, nem ment ki: {tema}")
+        return
     import smtplib
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
