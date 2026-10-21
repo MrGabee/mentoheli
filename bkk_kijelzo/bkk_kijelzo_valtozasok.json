@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:39:46.769351+02:00",
+  "frissitve": "2026-10-21T03:40:17.947064+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:08:38.666509+02:00",
-      "kulcs": "SKR824",
-      "rendszam": "SKR824",
-      "vehicle_id": "7710",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "93A",
-      "route_id": "0931",
-      "lat": 47.452152252197266,
-      "lon": 19.195396423339844,
-      "elozo_szoveg": "Pestszentlőrinc, Fedezék utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.666646+02:00",
-      "kulcs": "SGY819",
-      "rendszam": "SGY819",
-      "vehicle_id": "7737",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.46247863769531,
-      "lon": 19.14986801147461,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.666726+02:00",
-      "kulcs": "SKN818",
-      "rendszam": "SKN818",
-      "vehicle_id": "7760",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.53004837036133,
-      "lon": 19.008697509765625,
-      "elozo_szoveg": "Verecke lépcső ► Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.666957+02:00",
-      "kulcs": "SVA736",
-      "rendszam": "SVA736",
-      "vehicle_id": "7831",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.484771728515625,
-      "lon": 19.127506256103516,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.667162+02:00",
-      "kulcs": "T9132",
-      "rendszam": "T9132",
-      "vehicle_id": "7871",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489322662353516,
-      "lon": 19.08997344970703,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-10-20T15:08:38.667394+02:00",
       "kulcs": "AOFL209",
@@ -260000,6 +259935,71 @@
       "lon": 19.070999145507812,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-21T03:40:17.864673+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55022048950195,
+      "lon": 19.04202651977539,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-10-21T03:40:17.867028+02:00",
+      "kulcs": "MUU907",
+      "rendszam": "MUU907",
+      "vehicle_id": "5960",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53242874145508,
+      "lon": 19.081201553344727,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-21T03:40:17.867116+02:00",
+      "kulcs": "NGC160",
+      "rendszam": "NGC160",
+      "vehicle_id": "6210",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47780990600586,
+      "lon": 19.046388626098633,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-21T03:40:17.867630+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37953567504883,
+      "lon": 19.10419273376465,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-10-21T03:40:17.867975+02:00",
+      "kulcs": "415 074",
+      "rendszam": "415 074",
+      "vehicle_id": "945514150743",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.771278381347656,
+      "lon": 19.151830673217773,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
