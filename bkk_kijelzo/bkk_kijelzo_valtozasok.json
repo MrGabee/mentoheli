@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T02:09:14.761733+02:00",
+  "frissitve": "2026-10-21T02:09:45.767972+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:00:41.456566+02:00",
-      "kulcs": "V1407",
-      "rendszam": "V1407",
-      "vehicle_id": "4477",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49483108520508,
-      "lon": 19.05966567993164,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-10-20T15:00:41.457309+02:00",
-      "kulcs": "V4010",
-      "rendszam": "V4010",
-      "vehicle_id": "4699",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54723358154297,
-      "lon": 19.031455993652344,
-      "elozo_szoveg": "Lehel tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-20T15:00:41.458168+02:00",
-      "kulcs": "MFW526",
-      "rendszam": "MFW526",
-      "vehicle_id": "5034",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.502506256103516,
-      "lon": 19.136369705200195,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-10-20T15:00:41.458264+02:00",
       "kulcs": "MFW533",
@@ -260000,6 +259961,45 @@
       "lon": 19.201112747192383,
       "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
       "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-10-21T02:09:45.669537+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.48545455932617,
+      "lon": 19.071043014526367,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T02:09:45.670108+02:00",
+      "kulcs": "RVY601",
+      "rendszam": "RVY601",
+      "vehicle_id": "7430",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.47092819213867,
+      "lon": 19.07344627380371,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
+      "uj_szoveg": "Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-10-21T02:09:45.670460+02:00",
+      "kulcs": "AOFL243",
+      "rendszam": "AOFL243",
+      "vehicle_id": "831",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.434635162353516,
+      "lon": 19.20162010192871,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
     }
   ]
 }
