@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:45:29.934520+02:00",
+  "frissitve": "2026-10-21T03:45:59.331905+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:09:50.097034+02:00",
-      "kulcs": "V1356",
-      "rendszam": "V1356",
-      "vehicle_id": "4457",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49927520751953,
-      "lon": 19.08253288269043,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-20T15:09:50.097079+02:00",
-      "kulcs": "V1364",
-      "rendszam": "V1364",
-      "vehicle_id": "4465",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49736785888672,
-      "lon": 19.055465698242188,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-20T15:09:50.097315+02:00",
-      "kulcs": "V1514",
-      "rendszam": "V1514",
-      "vehicle_id": "4566",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.492576599121094,
-      "lon": 19.087623596191406,
-      "elozo_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)",
-      "uj_szoveg": "Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-10-20T15:09:50.097736+02:00",
-      "kulcs": "V4043",
-      "rendszam": "V4043",
-      "vehicle_id": "4732",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "12A",
-      "route_id": "3121",
-      "lat": 47.55952453613281,
-      "lon": 19.08955955505371,
-      "elozo_szoveg": "KOCSISZÍNBE  Tél utca / Pozsonyi utca",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-20T15:09:50.097825+02:00",
-      "kulcs": "AAMH632",
-      "rendszam": "AAMH632",
-      "vehicle_id": "475",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.497005462646484,
-      "lon": 19.055747985839844,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
     {
       "idopont": "2026-10-20T15:09:50.098126+02:00",
       "kulcs": "V4152",
@@ -260000,6 +259935,71 @@
       "lon": 19.0230770111084,
       "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
       "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-21T03:45:59.255133+02:00",
+      "kulcs": "NBW005",
+      "rendszam": "NBW005",
+      "vehicle_id": "5975",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.486026763916016,
+      "lon": 19.1914119720459,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-21T03:45:59.255320+02:00",
+      "kulcs": "AADI580",
+      "rendszam": "AADI580",
+      "vehicle_id": "66",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54856491088867,
+      "lon": 18.952045440673828,
+      "elozo_szoveg": "Máriaremete ► Hűvösvölgy",
+      "uj_szoveg": "Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-21T03:45:59.255404+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Rákoskeresztúr, városkp.",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54684066772461,
+      "lon": 19.14250373840332,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-10-21T03:45:59.255533+02:00",
+      "kulcs": "PHG628",
+      "rendszam": "PHG628",
+      "vehicle_id": "7152",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "161",
+      "route_id": "1610",
+      "lat": 47.4796142578125,
+      "lon": 19.255529403686523,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-10-21T03:45:59.255620+02:00",
+      "kulcs": "RVY602",
+      "rendszam": "RVY602",
+      "vehicle_id": "7431",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.423858642578125,
+      "lon": 19.23461151123047,
+      "elozo_szoveg": "Ady Endre tér",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
     }
   ]
 }
