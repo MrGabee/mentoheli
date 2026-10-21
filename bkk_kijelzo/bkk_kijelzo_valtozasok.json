@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-21T04:05:31.988319+02:00",
+  "frissitve": "2026-10-21T04:06:12.168548+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:12:14.951766+02:00",
-      "kulcs": "T8011",
-      "rendszam": "T8011",
-      "vehicle_id": "6131",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.53544616699219,
-      "lon": 19.0648136138916,
-      "elozo_szoveg": "Dagály utcai lakótelep",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-20T15:12:14.952009+02:00",
-      "kulcs": "NGC150",
-      "rendszam": "NGC150",
-      "vehicle_id": "6197",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.532100677490234,
-      "lon": 18.99580192565918,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-10-20T15:12:14.952150+02:00",
-      "kulcs": "NGC142",
-      "rendszam": "NGC142",
-      "vehicle_id": "6217",
-      "vehicle_label": "Máriaremete",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.542964935302734,
-      "lon": 18.964216232299805,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Máriaremete"
-    },
-    {
-      "idopont": "2026-10-20T15:12:14.952289+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.49979782104492,
-      "lon": 19.035234451293945,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-20T15:12:14.952305+02:00",
-      "kulcs": "NCV292",
-      "rendszam": "NCV292",
-      "vehicle_id": "6257",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50261688232422,
-      "lon": 19.03539276123047,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-20T15:12:14.954307+02:00",
       "kulcs": "NTP545",
@@ -260000,6 +259935,71 @@
       "lon": 18.8729305267334,
       "elozo_szoveg": "Szob",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-21T04:06:12.084978+02:00",
+      "kulcs": "AELD567",
+      "rendszam": "AELD567",
+      "vehicle_id": "620",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "224",
+      "route_id": "2240",
+      "lat": 47.417240142822266,
+      "lon": 19.130695343017578,
+      "elozo_szoveg": "Szentlőrinci úti lakótelep",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-10-21T04:06:12.085298+02:00",
+      "kulcs": "PDB382",
+      "rendszam": "PDB382",
+      "vehicle_id": "7064",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "144",
+      "route_id": "1440",
+      "lat": 47.52806091308594,
+      "lon": 19.180437088012695,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-21T04:06:12.085342+02:00",
+      "kulcs": "PDB388",
+      "rendszam": "PDB388",
+      "vehicle_id": "7070",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.488067626953125,
+      "lon": 19.12295150756836,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-21T04:06:12.086034+02:00",
+      "kulcs": "AOIM025",
+      "rendszam": "AOIM025",
+      "vehicle_id": "945",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "133E",
+      "route_id": "1335",
+      "lat": 47.388038635253906,
+      "lon": 18.97040557861328,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-21T04:06:12.086163+02:00",
+      "kulcs": "415 101",
+      "rendszam": "415 101",
+      "vehicle_id": "945514151014",
+      "vehicle_label": "Vác",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.526771545410156,
+      "lon": 19.090749740600586,
+      "elozo_szoveg": "Esztergom",
+      "uj_szoveg": "Vác"
     }
   ]
 }
