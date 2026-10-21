@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:18:19.560239+02:00",
+  "frissitve": "2026-10-21T03:18:50.586986+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:07:09.826933+02:00",
-      "kulcs": "AAMH624",
-      "rendszam": "AAMH624",
-      "vehicle_id": "467",
-      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.49979019165039,
-      "lon": 19.084218978881836,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
-    },
-    {
-      "idopont": "2026-10-20T15:07:09.826999+02:00",
-      "kulcs": "V4013",
-      "rendszam": "V4013",
-      "vehicle_id": "4702",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.48168182373047,
-      "lon": 18.999021530151367,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
-    {
-      "idopont": "2026-10-20T15:07:09.827070+02:00",
-      "kulcs": "AAMH630",
-      "rendszam": "AAMH630",
-      "vehicle_id": "473",
-      "vehicle_label": "Árpádföld",
-      "vonal_szam": "31",
-      "route_id": "0310",
-      "lat": 47.50415802001953,
-      "lon": 19.13675880432129,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Árpádföld"
-    },
-    {
-      "idopont": "2026-10-20T15:07:09.827237+02:00",
-      "kulcs": "V4104",
-      "rendszam": "V4104",
-      "vehicle_id": "4793",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.50978088378906,
-      "lon": 19.01190948486328,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
-    {
-      "idopont": "2026-10-20T15:07:09.827752+02:00",
-      "kulcs": "V4328",
-      "rendszam": "V4328",
-      "vehicle_id": "4987",
-      "vehicle_label": "Izraelita temető",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49571990966797,
-      "lon": 19.07280158996582,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Kőbányai út ► Izraelita temető"
-    },
     {
       "idopont": "2026-10-20T15:07:09.827781+02:00",
       "kulcs": "V4340",
@@ -260000,6 +259935,71 @@
       "lon": 19.09959602355957,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-21T03:18:50.485667+02:00",
+      "kulcs": "NTM422",
+      "rendszam": "NTM422",
+      "vehicle_id": "6490",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.41421890258789,
+      "lon": 18.996910095214844,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T03:18:50.485838+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.47813034057617,
+      "lon": 19.045242309570312,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-21T03:18:50.486121+02:00",
+      "kulcs": "RVY702",
+      "rendszam": "RVY702",
+      "vehicle_id": "7451",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534149169921875,
+      "lon": 19.08221435546875,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-21T03:18:50.486435+02:00",
+      "kulcs": "903-652-904",
+      "rendszam": "903-652-904",
+      "vehicle_id": "905516569035-905536466527-905516569043",
+      "vehicle_label": "Cinkota",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.593894958496094,
+      "lon": 19.357805252075195,
+      "elozo_szoveg": "Gödöllő",
+      "uj_szoveg": "Cinkota"
+    },
+    {
+      "idopont": "2026-10-21T03:18:50.486512+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.485313415527344,
+      "lon": 19.071435928344727,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
     }
   ]
 }
