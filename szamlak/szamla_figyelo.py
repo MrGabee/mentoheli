@@ -1743,8 +1743,32 @@ def kimeno_naplo_beolvasztasa(allapot: dict) -> None:
     KIMENO_NAPLO_PUFFER.clear()
 
 
+# EGY ESEMÉNY - EGY LEVÉL CÍMENKÉNT (a felhasználó kérése, 2026-10-21): ha
+# egy bérlői kör email-címe megegyezik a tulajdonoséval, ugyanarról a
+# számláról / emlékeztetőről / összesítőről ne kapjon több levelet. Az
+# email_kuldes() "esemeny" kulcsa köti össze az egy eseményhez tartozó
+# leveleket (pl. tulajdonosi értesítő + bérlői értesítő ugyanarról a
+# számláról, vagy bérlői emlékeztető + tulajdonosi másolata): egy cím egy
+# eseményről csak az ELSŐ levelet kapja meg. Futások között is megmarad
+# (allapot["esemeny_cimzettek"]), ESEMENY_MEGORZES_NAP napig.
+ESEMENY_MEGORZES_NAP = 14
+_ESEMENY_CIMZETTEK = {}  # esemeny -> {"cimek": [kisbetűs cím, ...], "ido": iso}
+
+
+def _esemeny_cimzettek_betoltese(allapot: dict):
+    _ESEMENY_CIMZETTEK.clear()
+    _ESEMENY_CIMZETTEK.update(allapot.get("esemeny_cimzettek") or {})
+
+
+def _esemeny_cimzettek_mentese(allapot: dict):
+    hatar = (magyar_ido() - timedelta(days=ESEMENY_MEGORZES_NAP)).isoformat()
+    allapot["esemeny_cimzettek"] = {
+        k: v for k, v in _ESEMENY_CIMZETTEK.items() if str(v.get("ido") or "") >= hatar
+    }
+
+
 def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="kozuzemi",
-                  feladas_cim_felulbiralas=None):
+                  feladas_cim_felulbiralas=None, esemeny=None):
     """csatolmanyok: [(fajlnev, bytes), ...] - lehet üres/None.
     cimzett: ha None, az alapértelmezett EMAIL_CIMZETT-re megy (a szokásos
     értesítők) - a dashboard "dátum-intervallumos küldés" funkciója viszont
@@ -1787,10 +1811,32 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
     valasz_cim = KOZUZEMI_VALASZ_CIM if kategoria != "ceges" else ""
 
     cimzett_vegso = cimzett or EMAIL_CIMZETT
+    if esemeny and cimzett_vegso:
+        mar_kapta = set((_ESEMENY_CIMZETTEK.get(esemeny) or {}).get("cimek") or [])
+        cimek = _cim_lista_szetbontasa(cimzett_vegso)
+        maradek = [c for c in cimek if c.strip().lower() not in mar_kapta]
+        if not maradek:
+            print(f"  🔁 Ugyanerről már kapott levelet minden címzett - kihagyva: {targy!r}")
+            return True
+        if len(maradek) < len(cimek):
+            print(f"  🔁 {len(cimek) - len(maradek)} címzett ugyanerről már kapott levelet - "
+                  f"nekik nem megy újra: {targy!r}")
+        cimzett_vegso = ", ".join(maradek)
+
+    def _esemeny_rogzitese():
+        if not esemeny:
+            return
+        bejegyzes = _ESEMENY_CIMZETTEK.setdefault(esemeny, {"cimek": []})
+        for c in _cim_lista_szetbontasa(cimzett_vegso):
+            if c.strip().lower() not in bejegyzes["cimek"]:
+                bejegyzes["cimek"].append(c.strip().lower())
+        bejegyzes["ido"] = magyar_ido().isoformat()
+
     if DRY_RUN:
         csatolmany_nevek = [fajlnev for fajlnev, _ in (csatolmanyok or [])]
         print(f"  🧪 [DRY RUN] Email KIMENNE (de nem megy ki): {targy!r} -> "
               f"{cimzett_vegso!r} (feladó: {felado_fejlec!r}, válaszcím: {valasz_cim or '-'!r}, csatolmányok: {csatolmany_nevek or 'nincs'})")
+        _esemeny_rogzitese()
         return True
     if not (feladas_cim and feladas_jelszo and cimzett_vegso):
         print(f"  ⚠️  Nincs teljesen beállítva az email-küldés ({kategoria}) - kihagyva.")
@@ -1817,6 +1863,7 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
             server.login(feladas_cim, feladas_jelszo)
             server.send_message(msg)
         print(f"  ✅ Email elküldve: {targy}")
+        _esemeny_rogzitese()
         kimeno_level_naplozasa(kategoria, "automatikus", felado_fejlec, cimzett_vegso, targy,
                                _html_szovegge(html_torzs), csatolmany_nevek)
         return True
@@ -3567,6 +3614,7 @@ def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztik
             kor_uj_szamla_email_html(rekord),
             csatolmanyok or None,
             cimzett=cimzett,
+            esemeny=f"uj_szamla:{rid}",
         ):
             b["statusz"], b["elkuldve"] = "elkuldve", most_iso
 
@@ -3635,12 +3683,13 @@ def hibajavito_ujrakuldes(allapot: dict, szamlak: dict, statisztika: dict):
         )
         csatolmanyok = [(f"{rekord.get('szamlaszam') or 'szamla'}.pdf", pdf_bytes)]
         statisztika["email_ertesitesek"] += 1
-        if email_kuldes(targy, html, csatolmanyok, cimzett=cimzett):
+        if email_kuldes(targy, html, csatolmanyok, cimzett=cimzett, esemeny=f"javitott:{rid}"):
             kesz[rid] = magyar_ido().isoformat()
             print(f"  🔁 Javított bérlői értesítő elküldve: {b.get('kor_nev') or b.get('kor')} – {rekord.get('targy')}")
             tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
             if tulajdonos_cimzett:
-                email_kuldes(f"Másolat: {targy}", html, csatolmanyok, cimzett=tulajdonos_cimzett)
+                email_kuldes(f"Másolat: {targy}", html, csatolmanyok, cimzett=tulajdonos_cimzett,
+                             esemeny=f"javitott:{rid}")
     if hatralevo:
         print(f"  🔁 Javított bérlői értesítő: {hatralevo} db vár a helyes PDF-re.")
 
@@ -3697,13 +3746,15 @@ def kor_hatarido_emlekezteto_kuldese(allapot: dict, szamlak: dict, napok, statis
         html = kor_hatarido_emlekezteto_html(rekordok, napok)
         csatolmanyok = csatolmanyok_osszegyujtese(allapot, esedekes)
         statisztika["email_ertesitesek"] += 1
-        if email_kuldes(targy, html, csatolmanyok or None, cimzett=cimzett):
+        esemeny = f"emlekezteto:{ma.isoformat()}:{kor_kulcs}"
+        if email_kuldes(targy, html, csatolmanyok or None, cimzett=cimzett, esemeny=esemeny):
             for rid, _ in esedekes:
                 kuldve[rid] = ma.isoformat()
             print(f"  ⏰ Bérlői emlékeztető elküldve: {kor_nev} ({len(rekordok)} számla).")
             tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
             if tulajdonos_cimzett:
-                email_kuldes(f"Másolat ({kor_nev}): {targy}", html, None, cimzett=tulajdonos_cimzett)
+                email_kuldes(f"Másolat ({kor_nev}): {targy}", html, None, cimzett=tulajdonos_cimzett,
+                             esemeny=esemeny)
 
 
 # Egyszeri beállítás-csomag (a felhasználó kérése, 2026-10): a dashboardon
@@ -3772,6 +3823,7 @@ def _uj_szamla_ertesites_kuldese(rekord: dict, pdf_bytes, statisztika: dict, all
         uj_szamla_email_html(rekord),
         [(f"{rekord.get('szamlaszam') or rekord['szolgaltato']}.pdf", pdf_bytes)] if pdf_bytes else None,
         cimzett=tulajdonos_cimzett,
+        esemeny=f"uj_szamla:{rid}" if rid else None,
     )
 
 
@@ -3869,7 +3921,7 @@ def csatolmanyok_osszegyujtese(allapot: dict, rid_rekord_lista):
 
 
 def _osszesito_kuldese(allapot: dict, erintett, cim_resz: str, bevezeto: str, cimzett, statisztika: dict, pdf_csatolas: bool = True,
-                      html=None, targy=None):
+                      html=None, targy=None, esemeny=None):
     """Közös segédfüggvény MINDEN "fizetetlen számlák összesítője" jellegű
     emailhez - a küszöb-alapú (2. pont), a fix-napi (2b), és az ÚJ,
     manuális "Küldés most" gombok (2d) is ezt hívják. erintett: [(rid,
@@ -3894,6 +3946,7 @@ def _osszesito_kuldese(allapot: dict, erintett, cim_resz: str, bevezeto: str, ci
         ),
         csatolmanyok,
         cimzett=cimzett,
+        esemeny=esemeny,
     )
     print(f"      📤 Összesítő elküldve{cim_resz} ({len(erintett_rekordok)} számla).")
 
@@ -3914,6 +3967,7 @@ def _tulajdonos_osszesito_masolat(allapot: dict, erintett, cim_resz: str, statis
         "<p>Ez egy bérlői kör összesítőjének MÁSOLATA - a tulajdonos minden "
         "bérlői-kör-összesítőről automatikusan másolatot kap:</p>",
         tulajdonos_cimzett, statisztika, pdf_csatolas,
+        esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
     )
 
 
@@ -3940,6 +3994,7 @@ def _berlo_kor_osszesito_kuldese_most(allapot: dict, szamlak: dict, kor_kulcs: s
         html=kor_havi_osszesito_html([r for _, r in erintett], kor_nev),
         targy=f"Fizetésre váró számlák – {len(erintett)} db – "
               f"{forint(sum(r.get('osszeg') or 0 for _, r in erintett))}",
+        esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
     )
     _tulajdonos_osszesito_masolat(allapot, erintett, cim_resz, statisztika, pdf_csatolas)
 
@@ -6334,6 +6389,7 @@ def main():
     except RuntimeError as e:
         print(f"❌ {e}")
         return
+    _esemeny_cimzettek_betoltese(allapot)
     # Pillanatkép a betöltés pillanatáról - a mentéskor (ld. lentebb,
     # 3. lépés) EHHEZ képest számoljuk ki, mely rekordok/kulcsok
     # változtak a futás alatt, hogy csak a TÉNYLEGES változásokat írjuk
@@ -7154,6 +7210,7 @@ def main():
                         html=kor_havi_osszesito_html([r for _, r in kor_erintett], kor_nev),
                         targy=f"Fizetésre váró számlák – {len(kor_erintett)} db – "
                               f"{forint(sum(r.get('osszeg') or 0 for _, r in kor_erintett))}",
+                        esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
                     )
                     _tulajdonos_osszesito_masolat(allapot, kor_erintett, cim_resz, statisztika, True)
             allapot["utolso_fix_osszesito_datum"] = ma_str
@@ -7324,6 +7381,7 @@ def main():
     # Ld. "TARTALMI DUPLIKÁTUM-VÉDELEM" szekció - a UJJLENYOMAT_MEGORZES_
     # NAP napnál régebbi ujjlenyomat-bejegyzések eldobása.
     _ujjlenyomatok_ritkitasa(allapot)
+    _esemeny_cimzettek_mentese(allapot)
     kimeno_naplo_beolvasztasa(allapot)
 
     if DRY_RUN:
