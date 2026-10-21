@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:36:08.780058+02:00",
+  "frissitve": "2026-10-21T03:36:39.905899+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:08:38.663928+02:00",
-      "kulcs": "PDN619",
-      "rendszam": "PDN619",
-      "vehicle_id": "7090",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.39912796020508,
-      "lon": 19.20562171936035,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-20T15:08:38.664078+02:00",
-      "kulcs": "PDN632",
-      "rendszam": "PDN632",
-      "vehicle_id": "7103",
-      "vehicle_label": "Donát-hegy",
-      "vonal_szam": "213",
-      "route_id": "2130",
-      "lat": 47.477195739746094,
-      "lon": 19.047531127929688,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-10-20T15:08:38.664210+02:00",
       "kulcs": "PHG621",
@@ -260000,6 +259974,32 @@
       "lon": 19.681249618530273,
       "elozo_szoveg": "Nagykáta",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-10-21T03:36:39.810241+02:00",
+      "kulcs": "FLR737",
+      "rendszam": "FLR737",
+      "vehicle_id": "3151",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483924865722656,
+      "lon": 19.12755012512207,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-21T03:36:39.811262+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.478065490722656,
+      "lon": 19.0456600189209,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
     }
   ]
 }
