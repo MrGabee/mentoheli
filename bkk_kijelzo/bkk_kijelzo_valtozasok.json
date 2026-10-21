@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T02:17:36.402456+02:00",
+  "frissitve": "2026-10-21T02:18:08.660061+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:00:41.468015+02:00",
-      "kulcs": "470 007",
-      "rendszam": "470 007",
-      "vehicle_id": "915504700070",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.347408294677734,
-      "lon": 20.042970657348633,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-20T15:00:41.468036+02:00",
-      "kulcs": "480 006",
-      "rendszam": "480 006",
-      "vehicle_id": "915504800060",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.5105094909668,
-      "lon": 19.102380752563477,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
-    {
-      "idopont": "2026-10-20T15:00:41.468323+02:00",
-      "kulcs": "AOIM019",
-      "rendszam": "AOIM019",
-      "vehicle_id": "939",
-      "vehicle_label": "Pestszentlőrinc vasútáll.",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.410282135009766,
-      "lon": 19.060470581054688,
-      "elozo_szoveg": "Csepel, Csillagtelep",
-      "uj_szoveg": "Pestszentlőrinc vasútállomás"
-    },
     {
       "idopont": "2026-10-20T15:00:41.468393+02:00",
       "kulcs": "415 003",
@@ -260000,6 +259961,45 @@
       "lon": 19.10952377319336,
       "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-21T02:18:08.585653+02:00",
+      "kulcs": "SKR734",
+      "rendszam": "SKR734",
+      "vehicle_id": "7683",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.532691955566406,
+      "lon": 19.081464767456055,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-21T02:18:08.585897+02:00",
+      "kulcs": "AADI595",
+      "rendszam": "AADI595",
+      "vehicle_id": "91",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.512508392333984,
+      "lon": 19.11651039123535,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T02:18:08.585956+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54154968261719,
+      "lon": 19.15145492553711,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
     }
   ]
 }
