@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T02:41:39.092500+02:00",
+  "frissitve": "2026-10-21T02:42:12.266554+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:03:11.249087+02:00",
-      "kulcs": "RCT312",
-      "rendszam": "RCT312",
-      "vehicle_id": "7326",
-      "vehicle_label": "Soroksár, IKEA áruház",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.46475601196289,
-      "lon": 19.12613296508789,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Soroksár, IKEA áruház"
-    },
-    {
-      "idopont": "2026-10-20T15:03:11.249102+02:00",
-      "kulcs": "RCT314",
-      "rendszam": "RCT314",
-      "vehicle_id": "7328",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.47980499267578,
-      "lon": 19.06649398803711,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-20T15:03:11.249272+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48929214477539,
-      "lon": 19.09003448486328,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-10-20T15:03:11.249457+02:00",
       "kulcs": "V2242",
@@ -260000,6 +259961,45 @@
       "lon": 19.0501651763916,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T02:42:12.187552+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.4777946472168,
+      "lon": 19.04640007019043,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-21T02:42:12.188271+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.405757904052734,
+      "lon": 19.014188766479492,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-10-21T02:42:12.188318+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475196838378906,
+      "lon": 19.04024887084961,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
