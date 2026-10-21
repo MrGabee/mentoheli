@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:23:52.439597+02:00",
+  "frissitve": "2026-10-21T03:24:28.833621+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:07:09.833850+02:00",
-      "kulcs": "RVY606",
-      "rendszam": "RVY606",
-      "vehicle_id": "7435",
-      "vehicle_label": "Soroksár, IKEA áruház",
-      "vonal_szam": "135",
-      "route_id": "1350",
-      "lat": 47.379512786865234,
-      "lon": 19.1042423248291,
-      "elozo_szoveg": "Millenniumtelep H",
-      "uj_szoveg": "Soroksár, IKEA áruház"
-    },
-    {
-      "idopont": "2026-10-20T15:07:09.834045+02:00",
-      "kulcs": "RVY709",
-      "rendszam": "RVY709",
-      "vehicle_id": "7458",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85E",
-      "route_id": "0855",
-      "lat": 47.46308898925781,
-      "lon": 19.148677825927734,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-20T15:07:09.834433+02:00",
-      "kulcs": "RVY738",
-      "rendszam": "RVY738",
-      "vehicle_id": "7636",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.382808685302734,
-      "lon": 19.229137420654297,
-      "elozo_szoveg": "Vecsési út ► Boráros tér H",
-      "uj_szoveg": "Boráros tér H"
-    },
     {
       "idopont": "2026-10-20T15:07:09.834474+02:00",
       "kulcs": "RVY744",
@@ -260000,6 +259961,45 @@
       "lon": 19.04875946044922,
       "elozo_szoveg": "Hengermalom út ► Budatétény",
       "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-21T03:24:28.741371+02:00",
+      "kulcs": "NGC156",
+      "rendszam": "NGC156",
+      "vehicle_id": "6205",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.569522857666016,
+      "lon": 19.126955032348633,
+      "elozo_szoveg": "Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-21T03:24:28.742149+02:00",
+      "kulcs": "T8113",
+      "rendszam": "T8113",
+      "vehicle_id": "7892",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50399398803711,
+      "lon": 19.13667106628418,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-21T03:24:28.742344+02:00",
+      "kulcs": "415 011",
+      "rendszam": "415 011",
+      "vehicle_id": "945514150115",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G44",
+      "route_id": "G44",
+      "lat": 47.18180847167969,
+      "lon": 18.566089630126953,
+      "elozo_szoveg": "Székesfehérvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
