@@ -46,6 +46,6 @@ jobs:
           git stash pop || true
           [ -f csili_allapot.json ] && git add csili_allapot.json || echo "fájl nem létezik"
           git diff --staged --quiet || git commit -m "csili állapot [skip ci]"
-          git push origin main || true
+          for i in 1 2 3 4 5; do git push origin main && break; echo "push elutasítva, újrapróbálom ($i)"; git pull --rebase -X theirs origin main || git rebase --abort; sleep $((i*3)); done
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
