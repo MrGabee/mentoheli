@@ -54,6 +54,15 @@ Konkrét címet és dátumot egyelőre nem írtak, de úgy tűnik, Csepel is sz�
 💬 Ti mit szólnátok egy csepeli EcoFamilyhez? Hová tennétek, hol lenne a legjobb helye? Írjátok meg kommentben!
 
 #Csepel #EcoFamily #boltnyitás #olvasóihír"""),
+    "dugo_20261021": (date(2026, 10, 21), """🚨 HATALMAS A DUGÓ CSEPEL FELÉ 🚨
+
+Aki teheti, most messziről kerülje el a Csepelre vezető utakat! A bevezető szakaszokon nagy a torlódás, és a buszok is jelentős késéssel közlekednek.
+
+Ha nem muszáj most elindulni, érdemes kicsit várni, a buszra várók pedig számoljanak több idővel.
+
+💬 Ti hol álltok éppen? Írjátok meg kommentben, hol a legrosszabb a helyzet, hogy a többiek is tudják, mire számítsanak!
+
+#Csepel #dugó #közlekedés #torlódás"""),
 }
 
 
