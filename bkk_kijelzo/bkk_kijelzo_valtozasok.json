@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-21T03:51:42.532794+02:00",
+  "frissitve": "2026-10-21T03:52:18.023092+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-20T15:09:50.103627+02:00",
-      "kulcs": "PHG654",
-      "rendszam": "PHG654",
-      "vehicle_id": "7178",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.468379974365234,
-      "lon": 19.245092391967773,
-      "elozo_szoveg": "Rákoshegy vasútállomás",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-20T15:09:50.103663+02:00",
-      "kulcs": "PHG656",
-      "rendszam": "PHG656",
-      "vehicle_id": "7180",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.49992752075195,
-      "lon": 19.135269165039062,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-20T15:09:50.103727+02:00",
-      "kulcs": "PKN604",
-      "rendszam": "PKN604",
-      "vehicle_id": "7193",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.502105712890625,
-      "lon": 19.135793685913086,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-10-20T15:09:50.103829+02:00",
       "kulcs": "PKN616",
@@ -260000,6 +259961,45 @@
       "lon": 19.088857650756836,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-21T03:52:17.880997+02:00",
+      "kulcs": "MOS288",
+      "rendszam": "MOS288",
+      "vehicle_id": "195",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.38334655761719,
+      "lon": 19.228288650512695,
+      "elozo_szoveg": "Vecsési út ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-21T03:52:17.881086+02:00",
+      "kulcs": "FKU945",
+      "rendszam": "FKU945",
+      "vehicle_id": "3101",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "97E",
+      "route_id": "0975",
+      "lat": 47.479610443115234,
+      "lon": 19.25559425354004,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-21T03:52:17.884159+02:00",
+      "kulcs": "418 153",
+      "rendszam": "418 153",
+      "vehicle_id": "925504181536",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S21",
+      "route_id": "S21",
+      "lat": 47.06922912597656,
+      "lon": 19.49822998046875,
+      "elozo_szoveg": "Lajosmizse",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
