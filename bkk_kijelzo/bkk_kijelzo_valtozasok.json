@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-22T00:12:13.786284+02:00",
+  "frissitve": "2026-10-22T00:12:50.213322+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-21T14:48:08.122803+02:00",
-      "kulcs": "STZ850",
-      "rendszam": "STZ850",
-      "vehicle_id": "7805",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.46438217163086,
-      "lon": 19.018558502197266,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budakeszi, Honfoglalás sétány"
-    },
-    {
-      "idopont": "2026-10-21T14:48:08.122932+02:00",
-      "kulcs": "STZ869",
-      "rendszam": "STZ869",
-      "vehicle_id": "7824",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.464561462402344,
-      "lon": 19.018720626831055,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
-    },
     {
       "idopont": "2026-10-21T14:48:08.122969+02:00",
       "kulcs": "AOFL199",
@@ -260000,6 +259974,32 @@
       "lon": 19.142057418823242,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-22T00:12:50.110032+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.478092193603516,
+      "lon": 19.045223236083984,
+      "elozo_szoveg": "Svábhegy",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-22T00:12:50.113346+02:00",
+      "kulcs": "921-661-922",
+      "rendszam": "921-661-922",
+      "vehicle_id": "905516569217-905536466618-905516569225",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.53935241699219,
+      "lon": 19.24956512451172,
+      "elozo_szoveg": "Cinkota",
+      "uj_szoveg": "Gödöllő"
     }
   ]
 }
