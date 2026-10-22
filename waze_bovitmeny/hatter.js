@@ -9,11 +9,16 @@ const TIPUSOK = ["ACCIDENT"];  // ezekről megy levél (a táblázatba minden t�
 const MEGORZES_MS = 3 * 24 * 3600 * 1000;  // ennyi ideig emlékszik egy riasztásra
 const FRISS_MS = 30 * 60 * 1000;           // ennél hosszabb kiesés után újra csak feltölt
 const MAX_SZUNET_PERC = 30;
-const ZOOM = 13;          // csempék nagyítása (a teljes nézet kb. 12 lenne)
+const ZOOM = 13;          // az alap csempék nagyítása (a teljes nézet kb. 12 lenne)
+const MAX_ZOOM = 16;      // eddig felezhető egy csempe
+const PLAFON = 195;       // ennyi riasztásnál a csempe eléri a Waze ~200-as határát: felezzük
+const OSSZEVONAS = 100;   // ha a négy negyed együtt ennyinél kevesebbet ad, újra egy csempe lesz
+const PAROSITAS_MS = 30 * 1000;  // ennyi ideig tartozik egy válasz az utoljára betöltött csempéhez
 const BETOLTES_PERCENKENT = 1;  // percenként egy csempe (6/percnél a Waze letiltotta az oldalt)
 const VALASZ_VARAS_MS = 18 * 1000;  // ha ennyi idő alatt nem jön adat, az oldal nem töltött be
 
-// A csempék a Waze-ablak méretéből: annyi nézet, hogy lefedje Budapestet.
+// Az alap csempék a Waze-ablak méretéből: annyi nézet, hogy lefedje Budapestet.
+// Egy csempe: { id, lat, lon, z, dlat, dlon } (dlat/dlon: a lefedett terület mérete).
 function csempek(szel, mag) {
   const lonPx = 360 / (256 * 2 ** ZOOM);
   const latPx = lonPx * Math.cos(((BBOX.bottom + BBOX.top) / 2) * Math.PI / 180);
@@ -23,12 +28,72 @@ function csempek(szel, mag) {
   for (let i = 0; i < sor; i++) {
     for (let j = 0; j < oszlop; j++) {
       ki.push({
+        id: `${i}.${j}`,
         lat: +(BBOX.bottom + (i + 0.5) * (BBOX.top - BBOX.bottom) / sor).toFixed(5),
         lon: +(BBOX.left + (j + 0.5) * (BBOX.right - BBOX.left) / oszlop).toFixed(5),
+        z: ZOOM,
+        dlat: (BBOX.top - BBOX.bottom) / sor,
+        dlon: (BBOX.right - BBOX.left) / oszlop,
       });
     }
   }
   return ki;
+}
+
+// Egy csempe négy negyede, eggyel nagyobb nagyítással.
+function negyedek(c) {
+  const ki = [];
+  for (const [i, a] of [[0, -1], [1, 1]]) {
+    for (const [j, b] of [[0, -1], [1, 1]]) {
+      ki.push({
+        id: `${c.id}.${i * 2 + j}`,
+        lat: +(c.lat + a * c.dlat / 4).toFixed(5),
+        lon: +(c.lon + b * c.dlon / 4).toFixed(5),
+        z: c.z + 1, dlat: c.dlat / 2, dlon: c.dlon / 2,
+      });
+    }
+  }
+  return ki;
+}
+
+// A csempelista (a felezésekkel együtt) megmarad; ablakméret-változáskor újraépül.
+async function csempeLista() {
+  const { ablak = { szel: 1900, mag: 900 }, lista, listaAblak } =
+    await chrome.storage.local.get(["ablak", "lista", "listaAblak"]);
+  const kulcs = `${ablak.szel}x${ablak.mag}`;
+  if (lista && lista.length && listaAblak === kulcs) return lista;
+  const uj = csempek(ablak.szel, ablak.mag);
+  await chrome.storage.local.set({ lista: uj, listaAblak: kulcs, mutato: 0 });
+  return uj;
+}
+
+// Egy csempe betöltése után: ha elérte a határt, négyfelé osztjuk; ha a
+// negyedek együtt is keveset adnak, visszavonjuk őket egy csempévé.
+function csempeIgazitas(lista, id, darab) {
+  const i = lista.findIndex((c) => c.id === id);
+  if (i < 0) return { lista, valtozas: "" };
+  const c = { ...lista[i], utolso: darab };
+  lista = lista.slice();
+  lista[i] = c;
+  if (darab >= PLAFON && c.z < MAX_ZOOM) {
+    lista.splice(i, 1, ...negyedek(c));
+    return { lista, valtozas: `csempe ${c.id} négyfelé osztva (${darab} riasztás)` };
+  }
+  if (c.z > ZOOM) {
+    const szulo = c.id.slice(0, c.id.lastIndexOf("."));
+    const testverek = lista.filter((t) => t.id.slice(0, t.id.lastIndexOf(".")) === szulo && t.z === c.z);
+    if (testverek.length === 4 && testverek.every((t) => t.utolso != null) &&
+        testverek.reduce((o, t) => o + t.utolso, 0) < OSSZEVONAS) {
+      const elso = lista.findIndex((t) => testverek.includes(t));
+      const lat = testverek.reduce((o, t) => o + t.lat, 0) / 4;
+      const lon = testverek.reduce((o, t) => o + t.lon, 0) / 4;
+      const egy = { id: szulo, lat: +lat.toFixed(5), lon: +lon.toFixed(5), z: c.z - 1, dlat: c.dlat * 2, dlon: c.dlon * 2 };
+      lista = lista.filter((t) => !testverek.includes(t));
+      lista.splice(elso, 0, egy);
+      return { lista, valtozas: `csempe ${szulo} negyedei összevonva` };
+    }
+  }
+  return { lista, valtozas: "" };
 }
 
 const varj = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -56,21 +121,20 @@ async function betoltesek() {
     await chrome.storage.local.set({ allapot: "Nincs nyitott Waze Live Map fül." });
     return;
   }
-  const { ablak = { szel: 1900, mag: 900 }, mutato = 0 } = await chrome.storage.local.get(["ablak", "mutato"]);
-  const lista = csempek(ablak.szel, ablak.mag);
   await kuldesUjraprobalas();
-  let m = mutato % lista.length;
-  for (let k = 0; k < Math.min(BETOLTES_PERCENKENT, lista.length); k++) {
+  for (let k = 0; k < BETOLTES_PERCENKENT; k++) {
     const { szunetIg: sz = 0 } = await chrome.storage.local.get("szunetIg");
     if (Date.now() < sz) return;  // a Waze lassítást kért
+    const lista = await csempeLista();
+    const { mutato = 0 } = await chrome.storage.local.get("mutato");
+    const m = mutato % lista.length;
     // Új csempekör: a kijelzés innen számol.
     if (m === 0) await chrome.storage.local.set({ kor: {}, korCsempek: lista.length });
     const c = lista[m];
     const indulas = Date.now();
-    const url = `https://www.waze.com/ul?ll=${c.lat}%2C${c.lon}&navigate=no&zoom=${ZOOM}`;
+    await chrome.storage.local.set({ aktualis: { id: c.id, ido: indulas, max: 0 }, mutato: m + 1 });
+    const url = `https://www.waze.com/ul?ll=${c.lat}%2C${c.lon}&navigate=no&zoom=${c.z}`;
     try { await chrome.tabs.update(fulek[0].id, { url }); } catch (e) { return; }
-    m = (m + 1) % lista.length;
-    await chrome.storage.local.set({ mutato: m });
     await varj(VALASZ_VARAS_MS);
     // Ha a térkép nem kért adatot, az oldal nem töltött be (pl. 429 az oldalra).
     const { utolsoValasz = 0 } = await chrome.storage.local.get("utolsoValasz");
@@ -126,7 +190,7 @@ function kinyer(adat) {
 
 async function feldolgoz({ status, adat }) {
   const most = Date.now();
-  const t = await chrome.storage.local.get(["latott", "utolsoSiker", "feltoltesIg", "hibaSorozat", "kor", "korUj", "korEmail", "korCsempek", "korMax"]);
+  const t = await chrome.storage.local.get(["latott", "utolsoSiker", "feltoltesIg", "hibaSorozat", "kor", "korUj", "korEmail", "korCsempek", "korMax", "aktualis", "lista", "csempeValtozas"]);
   const ido = new Date().toLocaleTimeString("hu-HU");
 
   await chrome.storage.local.set({ utolsoValasz: most });
@@ -165,11 +229,28 @@ async function feldolgoz({ status, adat }) {
   const korEmail = (ujKor ? 0 : t.korEmail || 0) + emailre.length;
   const nyers = ((adat && adat.alerts) || []).length;
   const korMax = Math.max(ujKor ? 0 : t.korMax || 0, nyers);
+  // A válasz az utoljára betöltött csempéé: ha elérte a határt, felezzük.
+  let csempeValtozas = t.csempeValtozas || "";
+  const csempeAllapot = {};
+  if (t.aktualis && most - t.aktualis.ido < PAROSITAS_MS && t.lista) {
+    const darab = Math.max(t.aktualis.max || 0, nyers);
+    const ig = csempeIgazitas(t.lista, t.aktualis.id, darab);
+    if (ig.valtozas) {
+      csempeValtozas = `${ido}: ${ig.valtozas}, most ${ig.lista.length} csempe.`;
+      // A felezett/összevont csempe azonosítója megszűnt: a további részválaszok már nem módosítanak.
+      csempeAllapot.aktualis = null;
+    } else {
+      csempeAllapot.aktualis = { ...t.aktualis, max: darab };
+    }
+    csempeAllapot.lista = ig.lista;
+  }
   await chrome.storage.local.set({
     latott, feltoltesIg, utolsoSiker: most, hibaSorozat: 0, szunetIg: 0, kor, korUj, korEmail, korMax,
+    ...csempeAllapot, csempeValtozas,
     allapot: `${ido}: ${Object.keys(kor).length} riasztás Budapesten (${t.korCsempek || 1} csempéből, ${BETOLTES_PERCENKENT}/perc), ${korUj} új` +
       (feltolt ? " (első kör: csak táblázatba, levél nélkül)." : `, levélben: ${korEmail}.`) +
-      `\nLegnagyobb csempe: ${korMax} riasztás` + (korMax >= 195 ? " ⚠️ eléri a Waze 200-as határát" : "."),
+      `\nLegnagyobb csempe: ${korMax} riasztás` + (korMax >= PLAFON ? " (a csempét felezi)" : ".") +
+      (csempeValtozas ? `\nUtolsó csempeváltozás: ${csempeValtozas}` : ""),
   });
   if (uj.length) await kuldes(uj);
 }
