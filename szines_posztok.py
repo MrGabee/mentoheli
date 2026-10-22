@@ -116,6 +116,7 @@ MENETREND = [
     ("bombariado", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("bombariado", nap)),
     ("ecofamily", time(15, 5), {SZERDA}, lambda nap, a: egyszeri_posztok.szoveg("ecofamily", nap)),
     ("vallalkozas_20261022", time(13, 25), {CSUTORTOK}, lambda nap, a: vallalkozasok.bemutato_szoveg(nap, a) if nap.isoformat() == "2026-10-22" else ""),
+    ("hev_ajto_20261022", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("hev_ajto_20261022", nap)),
     ("bankkartya_20261022", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("bankkartya_20261022", nap)),
     ("busz159_20261022", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("busz159_20261022", nap)),
     ("dugo_20261021", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("dugo_20261021", nap)),
