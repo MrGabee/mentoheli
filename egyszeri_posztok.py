@@ -54,6 +54,14 @@ Konkrét címet és dátumot egyelőre nem írtak, de úgy tűnik, Csepel is sz�
 💬 Ti mit szólnátok egy csepeli EcoFamilyhez? Hová tennétek, hol lenne a legjobb helye? Írjátok meg kommentben!
 
 #Csepel #EcoFamily #boltnyitás #olvasóihír"""),
+    "bankkartya_20261022": (date(2026, 10, 22), """💳 BANKKÁRTYÁT FELEJTETT VALAKI AZ ATM-BEN 💳
+
+Ma valaki a Zrínyi utcai ATM-ben hagyta a bankkártyáját, és egy becsületes megtaláló keresi a tulajdonost. Ha te voltál, írj neki itt: https://www.facebook.com/profile.php?id=100007173042045
+Addig is érdemes a bankodnál letiltatni a kártyát, a biztonság kedvéért.
+
+🙏 Köszönet a megtalálónak, hogy nem ment el mellette!
+
+#Csepel #elveszett #bankkártya #talált"""),
     "busz159_20261022": (date(2026, 10, 22), """🚍 BALESET A 159-ES BUSZ ÚTVONALÁN 🚍
 
 Úgy értesültem, hogy a 159-es busz érintett volt egy balesetben, amelyben egy embert elütöttek. Hogy pontosan mi történt és hogyan, egyelőre nem tudom.
