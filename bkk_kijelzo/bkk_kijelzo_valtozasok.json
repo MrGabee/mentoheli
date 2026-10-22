@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-23T01:57:17.155872+02:00",
+  "frissitve": "2026-10-23T01:57:45.169053+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-22T12:09:02.557306+02:00",
-      "kulcs": "PDB387",
-      "rendszam": "PDB387",
-      "vehicle_id": "7069",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.49964904785156,
-      "lon": 19.28709602355957,
-      "elozo_szoveg": "Rákoscsaba-Újtelep",
-      "uj_szoveg": "Dél-pesti autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-10-22T12:09:02.557589+02:00",
-      "kulcs": "PDN647",
-      "rendszam": "PDN647",
-      "vehicle_id": "7118",
-      "vehicle_label": "Mindszenty J. bíboros tér",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.474002838134766,
-      "lon": 19.04827117919922,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Mindszenty J. bíboros tér"
-    },
-    {
-      "idopont": "2026-10-22T12:09:02.557616+02:00",
-      "kulcs": "PHG621",
-      "rendszam": "PHG621",
-      "vehicle_id": "7145",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51966857910156,
-      "lon": 19.148242950439453,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa - Auchan Liget"
-    },
     {
       "idopont": "2026-10-22T12:09:02.557641+02:00",
       "kulcs": "PHG624",
@@ -260000,6 +259961,45 @@
       "lon": 19.09421730041504,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-10-23T01:57:45.078290+02:00",
+      "kulcs": "V2009",
+      "rendszam": "V2009",
+      "vehicle_id": "2009",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50740051269531,
+      "lon": 19.023204803466797,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-23T01:57:45.081092+02:00",
+      "kulcs": "415 082",
+      "rendszam": "415 082",
+      "vehicle_id": "945514150826",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.492069244384766,
+      "lon": 19.13306999206543,
+      "elozo_szoveg": "Budapest-Keleti",
+      "uj_szoveg": "Nagykáta"
+    },
+    {
+      "idopont": "2026-10-23T01:57:45.081136+02:00",
+      "kulcs": "415 118",
+      "rendszam": "415 118",
+      "vehicle_id": "945514151188",
+      "vehicle_label": "Vác",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.52608871459961,
+      "lon": 19.090110778808594,
+      "elozo_szoveg": "Monor",
+      "uj_szoveg": "Vác"
     }
   ]
 }
