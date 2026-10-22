@@ -1,0 +1,16 @@
+{
+  "name": "Pályázat-figyelő",
+  "short_name": "Pályázatok",
+  "description": "Pályázati lehetőségek eszközbeszerzésre, vállalkozásnak és nonprofitnak",
+  "lang": "hu",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1f5f8b",
+  "theme_color": "#1f5f8b",
+  "icons": [
+    {"src": "ikon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "ikon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "ikon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

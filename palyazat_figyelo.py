@@ -64,6 +64,7 @@ FORRASOK = [
     {"nev": "Bethlen Gábor Alapkezelő (NEA stb.)", "url": "https://bgazrt.hu/tamogatasok/nemzeti-egyuttmukodesi-alap/",
      "tipus": "html", "profil": "nonprofit", "link_minta": r"felhivas|kiiras|palyazat"},
     {"nev": "Bethlen Gábor Alapkezelő", "url": "https://bgazrt.hu/", "tipus": "html", "link_minta": r"felhivas|kiiras|palyazat"},
+    # --- Fővárosi, kormányzati, uniós ---
     # --- Kultúra, média, oktatás ---
     {"nev": "Nemzeti Kulturális Alap", "url": "https://nka.hu/kiemelt-kategoriak/palyaztatas/kollegiumok-felhivasai/felhivasok/",
      "tipus": "html", "link_minta": r"felhivas"},
@@ -80,7 +81,11 @@ FORRASOK = [
                 "pályázat civil szervezet", "pályázat pedagógus", "pályázat informatika oktatás",
                 "pályázat televízió műsor", "pályázat média tartalomgyártás", "Médiatanács pályázat",
                 "NKA pályázat", "Erasmus+ pályázat", "pályázat munkavédelem", "pályázat repülés",
-                "pályázat felnőttképzés", "pályázat Budapest", "pályázat Csepel"]],
+                "pályázat felnőttképzés", "pályázat Budapest", "pályázat Csepel",
+                "Fővárosi Önkormányzat pályázat", "főváros pályázatot hirdet", "kormány pályázat vállalkozás",
+                "Széchenyi Terv Plusz pályázat", "GINOP Plusz pályázat", "DIMOP Plusz pályázat",
+                "uniós pályázat", "uniós forrás pályázati felhívás", "Kreatív Európa pályázat",
+                "Horizont Európa pályázat", "Demján Sándor program"]],
     # --- Helyi ---
     {"nev": "Csepel.hu", "url": "https://csepel.hu/", "tipus": "html", "profil": "helyi"},
 ]
@@ -92,6 +97,13 @@ PROFILOK = {
         "szavak": ["eszkozbeszerz", "eszkozfejleszt", "eszkoztamogat", "eszkozpark", "gepbeszerz", "gepbeszerzes",
                    "berendezes", "szamitogep", "laptop", "notebook", "kamera", "technikai eszkoz", "muszaki fejlesztes",
                    "technologiai fejleszt", "technologiafejleszt", "beruhazas", "gep-", "gepek", "eszkozok"],
+    },
+    "allami": {
+        "cim": "🏛️ Fővárosi / kormányzati / uniós",
+        "szavak": ["fovarosi onkormanyzat", "fovarosi kozgyules", "fovaros", "kormany", "miniszterium",
+                   "szechenyi terv", "ginop", "dimop", "efop", "kehop", "top plusz", "demjan sandor",
+                   "unios", "europai unio", "eu-s", "horizont europa", "kreativ europa", "cerv",
+                   "interreg", "erasmus", "helyreallitasi"],
     },
     "media": {
         "cim": "🎓 Oktatás / informatika / TV-média",
@@ -142,7 +154,8 @@ KIZARO_SZAVAK = ["eredmeny", "nyertes", "dontes", "lezarult", "kiertekel", "hirl
 NEM_RELEVANS = ["hataron tul", "kulhoni", "karpatalja", "erdely", "felvidek", "vajdasag", "csango", "egyhaz",
                 "nemzetisegi", "magyar falu", "falusi", "kistelepules", "allatved", "vallasturiszt",
                 "mezogazdas", "agrar", "erdeszet", "halasz", "szabolcs", "frekvencia", "mhz",
-                "hatartalanul", "zrinyi ilona", "vinum"]
+                "hatartalanul", "zrinyi ilona", "vinum", "uzemeltetes", "berbead", "berleti",
+                "ingatlan ertekesit", "elado ingatlan", "versenytargyal"]
 
 
 def norm(s):
@@ -339,6 +352,8 @@ def osszefoglalo(szoveg, meta="", leiras=""):
             eredmeny[cimke] = mondat
     if not eredmeny:
         alap = meta or leiras
+        if "google hirek" in norm(alap):
+            alap = leiras if "google hirek" not in norm(leiras) else ""
         if len(alap) >= 30:
             eredmeny["Röviden"] = alap[:300].rsplit(" ", 1)[0] + ("…" if len(alap) > 300 else "")
     return eredmeny

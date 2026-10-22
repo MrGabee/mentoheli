@@ -6,6 +6,13 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Pályázat-figyelő</title>
 <meta name="theme-color" content="#1f5f8b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="ikon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Pályázatok">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
@@ -52,6 +59,7 @@
   #belepes .marad { display: flex; gap: 8px; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; }
   #belepes .marad input { width: auto; padding: 0; }
   #belepes-hiba { color: var(--red); min-height: 22px; font-size: 14px; }
+  .telepites-tipp { margin-top: 14px; font-size: 13px; color: var(--muted, inherit); }
   #belepes-info { color: var(--muted); font-size: 14px; max-width: 360px; }
 
   /* ── Tartalom ── */
@@ -103,6 +111,7 @@
     <button type="submit" id="belepes-gomb">Bejelentkezés</button>
   </form>
   <div id="belepes-hiba"></div>
+  <div id="telepites-tipp" class="telepites-tipp"></div>
 </div>
 
 <div id="tartalom">
@@ -112,6 +121,7 @@
       <div class="alcim" id="frissitve"></div>
     </div>
     <div class="gombok">
+      <button type="button" class="masodlagos" id="telepit-gomb" hidden>📱 Telepítés</button>
       <button type="button" class="masodlagos" id="tema-gomb">Sötét / világos</button>
       <button type="button" class="masodlagos" id="kilepes">Kijelentkezés</button>
     </div>
@@ -273,6 +283,24 @@
       <div class="forras">${esc(t.forras)} · először látva: ${esc(t.elso)}</div>
     </article>`;
   }
+
+  // ── Telepítés telefonra ──
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+  const onalloan = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  let telepitesKeres = null;
+  addEventListener("beforeinstallprompt", (ev) => {
+    ev.preventDefault(); telepitesKeres = ev; $("telepit-gomb").hidden = false;
+    $("telepites-tipp").innerHTML = '<button type="button" class="masodlagos" id="telepit-gomb2">📱 Telepítés a telefonra</button>';
+    $("telepit-gomb2").onclick = telepit;
+  });
+  async function telepit() {
+    if (!telepitesKeres) return;
+    telepitesKeres.prompt(); await telepitesKeres.userChoice; telepitesKeres = null;
+    $("telepit-gomb").hidden = true; $("telepites-tipp").textContent = "";
+  }
+  $("telepit-gomb").onclick = telepit;
+  if (!onalloan && /iphone|ipad|ipod/i.test(navigator.userAgent))
+    $("telepites-tipp").textContent = "Telefonra: Safariban a Megosztás gomb, majd „Főképernyőhöz adás”.";
 
   ["kereses", "onresz-szuro", "rendezes", "lejartak"].forEach((id) => $(id).addEventListener("input", () => adat && lista()));
 })();
