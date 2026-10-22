@@ -122,7 +122,7 @@ async function betoltesek() {
     await chrome.storage.local.set({ allapot: "Nincs nyitott Waze Live Map fül." });
     return;
   }
-  await kuldesUjraprobalas();
+  kuldesUjraprobalas();  // a sorban fut, nem várjuk meg
   for (let k = 0; k < BETOLTES_PERCENKENT; k++) {
     const { szunetIg: sz = 0 } = await chrome.storage.local.get("szunetIg");
     if (Date.now() < sz) return;  // a Waze lassítást kért
@@ -259,42 +259,52 @@ async function feldolgoz({ status, adat }) {
 }
 
 // --- Küldés az Apps Scriptnek --------------------------------------------
+// A küldendő riasztások előbb a tárolt sorba kerülnek, és csak sikeres küldés
+// után törlődnek onnan, így egy hiba vagy a háttér leállása sem veszít el semmit.
 async function kuldes(riasztasok, teszt = false) {
   const { scriptUrl, titok, kuldendo = [] } = await chrome.storage.local.get(["scriptUrl", "titok", "kuldendo"]);
-  const csomag = teszt ? riasztasok : kuldendo.concat(riasztasok);
-  if (!csomag.length) {
-    await chrome.storage.local.set({ kuldendo: [] });
-    return;
-  }
+  const csomag = teszt ? riasztasok : kuldendo.concat(riasztasok).slice(-3000);
+  if (!teszt) await chrome.storage.local.set({ kuldendo: csomag });
+  if (!csomag.length) return;
   if (!scriptUrl) {
-    await chrome.storage.local.set({ kuldendo: csomag.slice(-3000), levelAllapot: "Nincs megadva Apps Script URL." });
+    await chrome.storage.local.set({ levelAllapot: "Nincs megadva Apps Script URL." });
     return;
   }
   const ido = new Date().toLocaleTimeString("hu-HU");
+  const megszakito = new AbortController();
+  const idozites = setTimeout(() => megszakito.abort(), 60000);
   try {
     const v = await fetch(scriptUrl, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({ titok: titok || "", teszt, riasztasok: csomag }),
+      signal: megszakito.signal,
     });
     const szoveg = await v.text();
     if (!v.ok || !szoveg.startsWith("OK")) throw new Error(`${v.status} ${szoveg.slice(0, 80)}`);
+    const elkuldve = new Set(csomag.map((r) => r.id));
+    const { kuldendo: most = [] } = await chrome.storage.local.get("kuldendo");
     await chrome.storage.local.set({
-      ...(teszt ? {} : { kuldendo: [] }),
+      ...(teszt ? {} : { kuldendo: most.filter((r) => !elkuldve.has(r.id)) }),
       levelAllapot: teszt ? `${ido}: teszt e-mail elküldve.`
         : `${ido}: ${csomag.length} riasztás a táblázatba, ebből ${csomag.filter((r) => r.level).length} levélben.`,
     });
   } catch (e) {
     await chrome.storage.local.set({
-      ...(teszt ? {} : { kuldendo: csomag.slice(-3000) }),
-      levelAllapot: `${ido}: küldési hiba (később újrapróbálja): ${e.message}`,
+      levelAllapot: `${ido}: küldési hiba (később újrapróbálja): ${e.name === "AbortError" ? "időtúllépés" : e.message}`,
     });
+  } finally {
+    clearTimeout(idozites);
   }
 }
 
-async function kuldesUjraprobalas() {
-  const { kuldendo = [] } = await chrome.storage.local.get("kuldendo");
-  if (kuldendo.length) await kuldes([]);
+// Az újrapróbálás is a feldolgozási sorba áll, hogy ne fusson egyszerre két küldés.
+function kuldesUjraprobalas() {
+  sor = sor.then(async () => {
+    const { kuldendo = [] } = await chrome.storage.local.get("kuldendo");
+    if (kuldendo.length) await kuldes([]);
+  }).catch((e) => console.error(e));
+  return sor;
 }
 
 async function tesztLevel() {
