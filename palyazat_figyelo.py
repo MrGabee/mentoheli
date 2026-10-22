@@ -64,6 +64,17 @@ FORRASOK = [
     {"nev": "Bethlen Gábor Alapkezelő (NEA stb.)", "url": "https://bgazrt.hu/tamogatasok/nemzeti-egyuttmukodesi-alap/",
      "tipus": "html", "profil": "nonprofit", "link_minta": r"felhivas|kiiras|palyazat"},
     {"nev": "Bethlen Gábor Alapkezelő", "url": "https://bgazrt.hu/", "tipus": "html", "link_minta": r"felhivas|kiiras|palyazat"},
+    # --- Fővárosi, kormányzati, uniós ---
+    {"nev": "Fővárosi Önkormányzat", "url": "https://budapest.hu/palyazatok", "tipus": "html", "profil": "allami",
+     "link_minta": r"palyazat|felhivas|tamogatas"},
+    {"nev": "Pályázat.gov.hu", "url": "https://www.palyazat.gov.hu/", "tipus": "html", "profil": "allami",
+     "link_minta": r"palyazat|felhivas|kiiras"},
+    {"nev": "Széchenyi Terv Plusz", "url": "https://szechenyiterv.gov.hu/", "tipus": "html", "profil": "allami",
+     "link_minta": r"palyazat|felhivas|kiiras"},
+    {"nev": "Tempus Közalapítvány (Erasmus+)", "url": "https://tka.hu/palyazatok", "tipus": "html", "profil": "allami",
+     "link_minta": r"palyazat|felhivas|erasmus"},
+    {"nev": "Kreatív Európa Iroda", "url": "https://www.kreativeuropa.hu/", "tipus": "html", "profil": "allami",
+     "link_minta": r"palyazat|felhivas|kiiras"},
     # --- Kultúra, média, oktatás ---
     {"nev": "Nemzeti Kulturális Alap", "url": "https://nka.hu/kiemelt-kategoriak/palyaztatas/kollegiumok-felhivasai/felhivasok/",
      "tipus": "html", "link_minta": r"felhivas"},
@@ -80,7 +91,11 @@ FORRASOK = [
                 "pályázat civil szervezet", "pályázat pedagógus", "pályázat informatika oktatás",
                 "pályázat televízió műsor", "pályázat média tartalomgyártás", "Médiatanács pályázat",
                 "NKA pályázat", "Erasmus+ pályázat", "pályázat munkavédelem", "pályázat repülés",
-                "pályázat felnőttképzés", "pályázat Budapest", "pályázat Csepel"]],
+                "pályázat felnőttképzés", "pályázat Budapest", "pályázat Csepel",
+                "Fővárosi Önkormányzat pályázat", "főváros pályázatot hirdet", "kormány pályázat vállalkozás",
+                "Széchenyi Terv Plusz pályázat", "GINOP Plusz pályázat", "DIMOP Plusz pályázat",
+                "uniós pályázat", "uniós forrás pályázati felhívás", "Kreatív Európa pályázat",
+                "Horizont Európa pályázat", "Demján Sándor program"]],
     # --- Helyi ---
     {"nev": "Csepel.hu", "url": "https://csepel.hu/", "tipus": "html", "profil": "helyi"},
 ]
@@ -92,6 +107,13 @@ PROFILOK = {
         "szavak": ["eszkozbeszerz", "eszkozfejleszt", "eszkoztamogat", "eszkozpark", "gepbeszerz", "gepbeszerzes",
                    "berendezes", "szamitogep", "laptop", "notebook", "kamera", "technikai eszkoz", "muszaki fejlesztes",
                    "technologiai fejleszt", "technologiafejleszt", "beruhazas", "gep-", "gepek", "eszkozok"],
+    },
+    "allami": {
+        "cim": "🏛️ Fővárosi / kormányzati / uniós",
+        "szavak": ["fovarosi onkormanyzat", "fovarosi kozgyules", "fovaros", "kormany", "miniszterium",
+                   "szechenyi terv", "ginop", "dimop", "efop", "kehop", "top plusz", "demjan sandor",
+                   "unios", "europai unio", "eu-s", "horizont europa", "kreativ europa", "cerv",
+                   "interreg", "erasmus", "helyreallitasi"],
     },
     "media": {
         "cim": "🎓 Oktatás / informatika / TV-média",
