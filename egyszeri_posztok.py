@@ -54,6 +54,15 @@ Konkrét címet és dátumot egyelőre nem írtak, de úgy tűnik, Csepel is sz�
 💬 Ti mit szólnátok egy csepeli EcoFamilyhez? Hová tennétek, hol lenne a legjobb helye? Írjátok meg kommentben!
 
 #Csepel #EcoFamily #boltnyitás #olvasóihír"""),
+    "hev_ajto_20261022": (date(2026, 10, 22), """🚆 OLVASÓI LEVÉL: ORRA ELŐTT CSUKÓDOTT BE A HÉV AJTAJA 🚆
+
+Egy olvasóm írta meg, hogy ma reggel két gyerekkel akart felszállni a HÉV-re a csepeli végállomáson, amikor a kisebbik gyerek előtt becsukódott az ajtó. A kicsi nagyon megijedt.
+
+💛 Szerencsére nem maradt egyedül: a Fornetti dolgozói étellel, itallal kínálták, és több utas is észrevette, mi történt, és mellette maradt. Az olvasóm ezúton is köszöni nekik, és én is csatlakozom: mennyire jó fejek vagytok!
+
+👀 Kérem a HÉV-vezetőket, hogy induláskor különösen figyeljenek a gyerekekkel utazókra, nekünk utasoknak pedig érdemes kézen fogva, egyszerre felszállni a kicsikkel.
+
+#Csepel #HÉV #olvasóilevél #összefogás"""),
     "bankkartya_20261022": (date(2026, 10, 22), """💳 BANKKÁRTYÁT FELEJTETT VALAKI AZ ATM-BEN 💳
 
 Ma valaki a Zrínyi utcai ATM-ben hagyta a bankkártyáját, és egy becsületes megtaláló keresi a tulajdonost. Ha te voltál, írj neki itt: https://www.facebook.com/profile.php?id=100007173042045
