@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Waze Budapest figyelő",
+  "version": "1.0",
+  "description": "A nyitott Waze Live Map fülön látható budapesti riasztásokról e-mailt küld (Apps Scripten keresztül).",
+  "permissions": ["alarms", "storage", "tabs"],
+  "host_permissions": [
+    "https://www.waze.com/*",
+    "https://script.google.com/*",
+    "https://script.googleusercontent.com/*"
+  ],
+  "background": { "service_worker": "hatter.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.waze.com/*live-map*"],
+      "js": ["lehallgato.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.waze.com/*live-map*"],
+      "js": ["tovabbito.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": { "default_popup": "beallitas.html", "default_title": "Waze Budapest figyelő" }
+}
