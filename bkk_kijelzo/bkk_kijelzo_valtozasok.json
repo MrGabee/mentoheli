@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-22T04:08:43.239453+02:00",
+  "frissitve": "2026-10-22T04:09:16.030631+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-21T14:58:50.119283+02:00",
-      "kulcs": "V2106",
-      "rendszam": "V2106",
-      "vehicle_id": "5834",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.548439025878906,
-      "lon": 19.029794692993164,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-21T14:58:50.119358+02:00",
-      "kulcs": "V2206",
-      "rendszam": "V2206",
-      "vehicle_id": "5846",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51632308959961,
-      "lon": 19.03673553466797,
-      "elozo_szoveg": "Bem rakpart ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-21T14:58:50.119397+02:00",
-      "kulcs": "V2210",
-      "rendszam": "V2210",
-      "vehicle_id": "5850",
-      "vehicle_label": "Kispest, Tulipán utca",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.4649543762207,
-      "lon": 19.126150131225586,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Kispest, Tulipán utca"
-    },
-    {
-      "idopont": "2026-10-21T14:58:50.120391+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50608444213867,
-      "lon": 19.024744033813477,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-10-21T14:58:50.120427+02:00",
-      "kulcs": "NCV292",
-      "rendszam": "NCV292",
-      "vehicle_id": "6257",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49772644042969,
-      "lon": 19.053428649902344,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-21T14:58:50.120530+02:00",
       "kulcs": "NGC021",
@@ -260000,6 +259935,71 @@
       "lon": 19.14205551147461,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-22T04:09:15.976365+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "284E",
+      "route_id": "2845",
+      "lat": 47.42326354980469,
+      "lon": 19.18940544128418,
+      "elozo_szoveg": "Ferihegy vasútállomás",
+      "uj_szoveg": "Pestszentimre"
+    },
+    {
+      "idopont": "2026-10-22T04:09:15.978387+02:00",
+      "kulcs": "PDB381",
+      "rendszam": "PDB381",
+      "vehicle_id": "7063",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "67",
+      "route_id": "0670",
+      "lat": 47.48213577270508,
+      "lon": 19.233478546142578,
+      "elozo_szoveg": "XVIII. utca",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-22T04:09:15.978452+02:00",
+      "kulcs": "PDN634",
+      "rendszam": "PDN634",
+      "vehicle_id": "7105",
+      "vehicle_label": "Budatétény vá. (Campona)",
+      "vonal_szam": "138",
+      "route_id": "1380",
+      "lat": 47.43098831176758,
+      "lon": 19.070945739746094,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Budatétény vá. (Campona)"
+    },
+    {
+      "idopont": "2026-10-22T04:09:15.978720+02:00",
+      "kulcs": "RVY739",
+      "rendszam": "RVY739",
+      "vehicle_id": "7637",
+      "vehicle_label": "Szigetszentmiklós",
+      "vonal_szam": "38",
+      "route_id": "0380",
+      "lat": 47.430782318115234,
+      "lon": 19.071069717407227,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Szigetszentmiklós"
+    },
+    {
+      "idopont": "2026-10-22T04:09:15.978924+02:00",
+      "kulcs": "AOFL235",
+      "rendszam": "AOFL235",
+      "vehicle_id": "823",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "102",
+      "route_id": "1020",
+      "lat": 47.491031646728516,
+      "lon": 19.01409149169922,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Mártonhegy"
     }
   ]
 }
