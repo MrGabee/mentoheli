@@ -9,6 +9,7 @@ const TIPUSOK = ["ACCIDENT"];  // ezekről megy levél (a táblázatba minden t�
 const MEGORZES_MS = 3 * 24 * 3600 * 1000;  // ennyi ideig emlékszik egy riasztásra
 const FRISS_MS = 30 * 60 * 1000;           // ennél hosszabb kiesés után újra csak feltölt
 const MAX_SZUNET_PERC = 30;
+const FRISS_RIASZTAS_MS = 15 * 60 * 1000;  // az első körben is levél megy, ha ennél frissebb a bejelentés
 const ZOOM = 13;          // az alap csempék nagyítása (a teljes nézet kb. 12 lenne)
 const MAX_ZOOM = 16;      // eddig felezhető egy csempe
 const PLAFON = 195;       // ennyi riasztásnál a csempe eléri a Waze ~200-as határát: felezzük
@@ -213,11 +214,13 @@ async function feldolgoz({ status, adat }) {
   for (const r of riasztasok) latott[r.id] = most;
   for (const [k, v] of Object.entries(latott)) if (most - v > MEGORZES_MS) delete latott[k];
 
-  // Minden új riasztás a táblázatba megy; levél csak a TIPUSOK-ról, és az
-  // első körben (amikor a már fennálló riasztásokat látja először) nem.
+  // Minden új riasztás a táblázatba megy; levél csak a TIPUSOK-ról. Az első
+  // körben (amikor a már fennálló riasztásokat látja először) csak a 15 percen
+  // belül bejelentettekről.
   for (const r of uj) {
     r.elso_latva_ms = most;
-    r.level = !feltolt && TIPUSOK.includes(r.tipus);
+    const friss = r.bejelentve_ms && most - r.bejelentve_ms < FRISS_RIASZTAS_MS;
+    r.level = TIPUSOK.includes(r.tipus) && (!feltolt || friss);
   }
   const emailre = uj.filter((r) => r.level);
   // A térkép egy betöltésnél több részletben kér adatot; a kijelzés a
@@ -248,7 +251,7 @@ async function feldolgoz({ status, adat }) {
     latott, feltoltesIg, utolsoSiker: most, hibaSorozat: 0, szunetIg: 0, kor, korUj, korEmail, korMax,
     ...csempeAllapot, csempeValtozas,
     allapot: `${ido}: ${Object.keys(kor).length} riasztás Budapesten (${t.korCsempek || 1} csempéből, ${BETOLTES_PERCENKENT}/perc), ${korUj} új` +
-      (feltolt ? " (első kör: csak táblázatba, levél nélkül)." : `, levélben: ${korEmail}.`) +
+      (feltolt ? ` (első kör: levél csak a 15 percen belüli balesetekről, most ${korEmail}).` : `, levélben: ${korEmail}.`) +
       `\nLegnagyobb csempe: ${korMax} riasztás` + (korMax >= PLAFON ? " (a csempét felezi)" : ".") +
       (csempeValtozas ? `\nUtolsó csempeváltozás: ${csempeValtozas}` : ""),
   });
