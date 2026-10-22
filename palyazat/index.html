@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Pályázat-figyelő</title>
+<meta name="theme-color" content="#1f5f8b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Ugyanaz az arculat, mint a Számla áttekintőé (szamlak/szamlak.html). */
+  :root {
+    color-scheme: light;
+    --bg: #f3f5f8; --card: #ffffff; --surface-2: #eef1f6; --border: #dde2ea;
+    --text: #16202e; --muted: #5d6a7c; --blue: #1f5f8b; --blue-soft: #e2edf6;
+    --red: #b3261e; --red-soft: #fbe3e1; --green: #1b7f4b; --green-soft: #e1f3e8;
+    --amber: #a35a00; --amber-soft: #fbefdc; --purple: #8a2f9e; --purple-soft: #f6e6fa;
+    --on-accent: #ffffff;
+    --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --f-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --f-num: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f141b; --card: #161d27; --surface-2: #1c2531; --border: #2a3443;
+    --text: #e6ebf2; --muted: #93a0b2; --blue: #6fb0e0; --blue-soft: #1b2e40;
+    --red: #f2867f; --red-soft: #3a1a18; --green: #5cc98d; --green-soft: #15301f;
+    --amber: #f0b052; --amber-soft: #33260f; --purple: #d79be6; --purple-soft: #33203a; --on-accent: #0f141b;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f141b; --card: #161d27; --surface-2: #1c2531; --border: #2a3443;
+    --text: #e6ebf2; --muted: #93a0b2; --blue: #6fb0e0; --blue-soft: #1b2e40;
+    --red: #f2867f; --red-soft: #3a1a18; --green: #5cc98d; --green-soft: #15301f;
+    --amber: #f0b052; --amber-soft: #33260f; --purple: #d79be6; --purple-soft: #33203a; --on-accent: #0f141b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+  h1 { font: 700 26px/1.15 var(--f-display); margin: 0 0 4px; text-wrap: balance; }
+  h2 { font: 600 18px/1.3 var(--f-display); margin: 0 0 12px; }
+  a { color: var(--blue); }
+  button, input, select { font: inherit; color: var(--text); }
+  input, select { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; }
+  button { background: var(--blue); color: var(--on-accent); border: 0; border-radius: 10px; padding: 10px 16px; font-weight: 600; cursor: pointer; }
+  button.masodlagos { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+
+  /* ── Belépés ── */
+  #belepes { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px; text-align: center; }
+  #belepes form { display: flex; flex-direction: column; gap: 12px; width: min(320px, 100%); margin-top: 16px; }
+  #belepes .marad { display: flex; gap: 8px; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; }
+  #belepes .marad input { width: auto; padding: 0; }
+  #belepes-hiba { color: var(--red); min-height: 22px; font-size: 14px; }
+  #belepes-info { color: var(--muted); font-size: 14px; max-width: 360px; }
+
+  /* ── Tartalom ── */
+  #tartalom { display: none; max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+  .fejlec { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; }
+  .alcim { color: var(--muted); font-size: 14px; }
+  .fejlec .gombok { display: flex; gap: 8px; }
+  .statok { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+  .stat .szam { font: 500 28px/1.1 var(--f-num); }
+  .stat .cimke { color: var(--muted); font-size: 13px; }
+  .stat.zold .szam { color: var(--green); } .stat.piros .szam { color: var(--red); } .stat.kek .szam { color: var(--blue); }
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-bottom: 20px; }
+  #idovonal { width: 100%; height: auto; display: block; }
+  #idovonal text { fill: var(--muted); font: 12px var(--f-body); }
+  #idovonal .oszlop { fill: var(--blue); } #idovonal .oszlop.zold { fill: var(--green); }
+  #idovonal .tengely { stroke: var(--border); }
+  .szurok { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  .chip { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; font-weight: 500; font-size: 14px; }
+  .chip.aktiv { background: var(--blue); color: var(--on-accent); border-color: var(--blue); }
+  #kereses { flex: 1 1 200px; min-width: 0; }
+  .lista { display: grid; gap: 12px; }
+  .tetel { background: var(--card); border: 1px solid var(--border); border-left: 5px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+  .tetel.o0 { border-left-color: var(--green); } .tetel.o1 { border-left-color: var(--amber); } .tetel.o3 { border-left-color: var(--red); }
+  .tetel.lejart { opacity: .55; }
+  .tetel h3 { font: 600 16px/1.35 var(--f-body); margin: 0 0 6px; overflow-wrap: anywhere; }
+  .tetel h3 a { color: var(--text); text-decoration: none; } .tetel h3 a:hover { text-decoration: underline; }
+  .cimkek { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .cimkek span { font-size: 12px; border-radius: 999px; padding: 2px 9px; background: var(--surface-2); color: var(--muted); }
+  .cimkek .o0 { background: var(--green-soft); color: var(--green); } .cimkek .o1 { background: var(--amber-soft); color: var(--amber); }
+  .cimkek .o3 { background: var(--red-soft); color: var(--red); } .cimkek .eszkoz { background: var(--purple-soft); color: var(--purple); }
+  .cimkek .hatarido { background: var(--blue-soft); color: var(--blue); } .cimkek .surgos { background: var(--red-soft); color: var(--red); }
+  .tetel dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 2px 10px; font-size: 14px; }
+  .tetel dt { color: var(--muted); } .tetel dd { margin: 0; overflow-wrap: anywhere; }
+  .tetel .forras { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .ures { color: var(--muted); text-align: center; padding: 24px; }
+  @media (max-width: 560px) { .tetel dl { grid-template-columns: 1fr; } .tetel dt { margin-top: 4px; } }
+</style>
+</head>
+<body>
+
+<div id="belepes">
+  <h1>🔒 Pályázat-figyelő</h1>
+  <p id="belepes-info">Jelentkezz be a felhasználóneveddel és jelszavaddal.</p>
+  <form id="belepes-urlap" autocomplete="on">
+    <input type="text" id="felhasznalonev" name="username" placeholder="Felhasználónév" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+    <input type="password" id="jelszo" name="password" placeholder="Jelszó" autocomplete="current-password" required>
+    <label class="marad"><input type="checkbox" id="maradjak" checked> Maradjak bejelentkezve ezen az eszközön</label>
+    <button type="submit" id="belepes-gomb">Bejelentkezés</button>
+  </form>
+  <div id="belepes-hiba"></div>
+</div>
+
+<div id="tartalom">
+  <div class="fejlec">
+    <div>
+      <h1>Pályázati lehetőségek</h1>
+      <div class="alcim" id="frissitve"></div>
+    </div>
+    <div class="gombok">
+      <button type="button" class="masodlagos" id="tema-gomb">Sötét / világos</button>
+      <button type="button" class="masodlagos" id="kilepes">Kijelentkezés</button>
+    </div>
+  </div>
+
+  <div class="statok" id="statok"></div>
+
+  <div class="panel">
+    <h2>Közelgő határidők (következő 12 hét)</h2>
+    <svg id="idovonal" viewBox="0 0 720 180" role="img" aria-label="Határidők hetenként"></svg>
+  </div>
+
+  <div class="szurok" id="profil-szurok"></div>
+  <div class="szurok">
+    <select id="onresz-szuro" aria-label="Önrész">
+      <option value="">Minden önrész</option>
+      <option value="0">🟢 Csak önrész nélküliek</option>
+      <option value="1">🟢🟡 Önrész nélküli vagy kevés</option>
+    </select>
+    <select id="rendezes" aria-label="Rendezés">
+      <option value="hatarido">Határidő szerint</option>
+      <option value="uj">Legújabb elöl</option>
+      <option value="onresz">Önrész szerint</option>
+    </select>
+    <label class="chip"><input type="checkbox" id="lejartak" style="width:auto;padding:0;margin-right:6px"> Lejártak is</label>
+    <input type="search" id="kereses" placeholder="Keresés a címben, leírásban…">
+  </div>
+  <div class="lista" id="lista"></div>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const TAROLO = "palyazat-belepes";
+  let adat = null, profilSzuro = "";
+
+  // ── Téma ──
+  try { const t = localStorage.getItem("palyazat-tema"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  $("tema-gomb").onclick = () => {
+    const sotet = document.documentElement.dataset.theme === "dark" ||
+      (!document.documentElement.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.dataset.theme = sotet ? "light" : "dark";
+    try { localStorage.setItem("palyazat-tema", document.documentElement.dataset.theme); } catch (e) {}
+  };
+
+  // ── Visszafejtés: felhasználónév+jelszó → titkos RSA-kulcs → adat-kulcs → adat ──
+  async function visszafejt(fh, jelszo) {
+    const [kulcs, csomag] = await Promise.all([
+      fetch("kulcs.json", { cache: "no-store" }).then((r) => r.json()),
+      fetch("adatok.json", { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error("nincs-adat"); return r.json(); }),
+    ]);
+    const alap = await crypto.subtle.importKey("raw", new TextEncoder().encode(fh + ":" + jelszo), "PBKDF2", false, ["deriveKey"]);
+    const jelszoKulcs = await crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt: b64(kulcs.so), iterations: kulcs.iteracio, hash: "SHA-256" },
+      alap, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    let titkosNyers;
+    try {
+      titkosNyers = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(kulcs.iv) }, jelszoKulcs, b64(kulcs.titkos));
+    } catch (e) { throw new Error("rossz-jelszo"); }
+    const rsa = await crypto.subtle.importKey("pkcs8", titkosNyers, { name: "RSA-OAEP", hash: "SHA-256" }, false, ["decrypt"]);
+    const aesNyers = await crypto.subtle.decrypt({ name: "RSA-OAEP" }, rsa, b64(csomag.kulcs));
+    const aes = await crypto.subtle.importKey("raw", aesNyers, "AES-GCM", false, ["decrypt"]);
+    const nyers = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(csomag.iv) }, aes, b64(csomag.adat));
+    return JSON.parse(new TextDecoder().decode(nyers));
+  }
+
+  async function belep(fh, jelszo, marad) {
+    $("belepes-hiba").textContent = ""; $("belepes-gomb").disabled = true; $("belepes-gomb").textContent = "Belépés…";
+    try {
+      adat = await visszafejt(fh, jelszo);
+      try { if (marad) localStorage.setItem(TAROLO, JSON.stringify([fh, jelszo])); } catch (e) {}
+      $("belepes").style.display = "none"; $("tartalom").style.display = "block";
+      megjelenit();
+    } catch (e) {
+      $("belepes-hiba").textContent = e.message === "rossz-jelszo" ? "Hibás felhasználónév vagy jelszó."
+        : e.message === "nincs-adat" ? "Még nincs adat: a figyelő első futása után lesz itt tartalom."
+        : "Nem sikerült betölteni az adatokat (" + e.message + ").";
+      try { localStorage.removeItem(TAROLO); } catch (e2) {}
+    } finally { $("belepes-gomb").disabled = false; $("belepes-gomb").textContent = "Bejelentkezés"; }
+  }
+
+  $("belepes-urlap").onsubmit = (ev) => {
+    ev.preventDefault();
+    belep($("felhasznalonev").value.trim(), $("jelszo").value, $("maradjak").checked);
+  };
+  $("kilepes").onclick = () => { try { localStorage.removeItem(TAROLO); } catch (e) {} location.reload(); };
+  try { const m = JSON.parse(localStorage.getItem(TAROLO) || "null"); if (m) belep(m[0], m[1], true); } catch (e) {}
+
+  // ── Megjelenítés ──
+  const ma = new Date(); ma.setHours(0, 0, 0, 0);
+  const napig = (iso) => iso ? Math.round((new Date(iso + "T00:00:00") - ma) / 864e5) : null;
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const profilNev = (k) => (adat.profilok[k] || k).replace(/^\S+\s/, "");
+
+  function megjelenit() {
+    const f = new Date(adat.frissitve);
+    $("frissitve").textContent = `Frissítve: ${f.toLocaleString("hu-HU", { dateStyle: "medium", timeStyle: "short" })} · ${adat.forrasok} forrás figyelve`;
+    const aktiv = adat.tetelek.filter((t) => !t.lejart);
+    const harminc = aktiv.filter((t) => { const n = napig(t.hatarido_iso); return n !== null && n <= 30; });
+    $("statok").innerHTML = [
+      ["kek", aktiv.length, "aktív felhívás"],
+      ["", aktiv.filter((t) => t.profilok.includes("eszkoz")).length, "eszközbeszerzés"],
+      ["zold", aktiv.filter((t) => t.onresz_sor === 0).length, "önrész nélkül"],
+      ["piros", harminc.length, "30 napon belül lejár"],
+    ].map(([o, sz, c]) => `<div class="stat ${o}"><div class="szam">${sz}</div><div class="cimke">${c}</div></div>`).join("");
+
+    $("profil-szurok").innerHTML = `<button type="button" class="chip${profilSzuro ? "" : " aktiv"}" data-p="">Mind</button>` +
+      Object.entries(adat.profilok).map(([k, v]) => {
+        const db = aktiv.filter((t) => t.profilok.includes(k)).length;
+        return `<button type="button" class="chip${profilSzuro === k ? " aktiv" : ""}" data-p="${k}">${esc(v)} (${db})</button>`;
+      }).join("");
+    $("profil-szurok").querySelectorAll("button").forEach((g) => g.onclick = () => { profilSzuro = g.dataset.p; megjelenit(); });
+
+    idovonal(aktiv);
+    lista();
+  }
+
+  function idovonal(aktiv) {
+    const hetek = Array.from({ length: 12 }, () => ({ db: 0, zold: 0 }));
+    aktiv.forEach((t) => { const n = napig(t.hatarido_iso); if (n !== null && n >= 0 && n < 84) { const h = hetek[Math.floor(n / 7)]; h.db++; if (t.onresz_sor === 0) h.zold++; } });
+    const max = Math.max(1, ...hetek.map((h) => h.db)), W = 720, H = 180, bal = 8, alj = 150, sz = (W - bal * 2) / 12;
+    let svg = `<line class="tengely" x1="${bal}" y1="${alj}" x2="${W - bal}" y2="${alj}"/>`;
+    hetek.forEach((h, i) => {
+      const x = bal + i * sz + 6, w = sz - 12, mag = (h.db / max) * 120, zmag = (h.zold / max) * 120;
+      const kezd = new Date(ma.getTime() + i * 7 * 864e5);
+      if (h.db) {
+        svg += `<rect class="oszlop" x="${x}" y="${alj - mag}" width="${w}" height="${mag}" rx="3"><title>${h.db} határidő ezen a héten</title></rect>`;
+        if (h.zold) svg += `<rect class="oszlop zold" x="${x}" y="${alj - zmag}" width="${w}" height="${zmag}" rx="3"><title>ebből ${h.zold} önrész nélkül</title></rect>`;
+        svg += `<text x="${x + w / 2}" y="${alj - mag - 6}" text-anchor="middle">${h.db}</text>`;
+      }
+      svg += `<text x="${x + w / 2}" y="${alj + 18}" text-anchor="middle">${kezd.getMonth() + 1}.${kezd.getDate()}.</text>`;
+    });
+    $("idovonal").innerHTML = svg;
+  }
+
+  function lista() {
+    const q = $("kereses").value.trim().toLowerCase(), o = $("onresz-szuro").value, lej = $("lejartak").checked;
+    let t = adat.tetelek.filter((x) => (lej || !x.lejart) && (!profilSzuro || x.profilok.includes(profilSzuro))
+      && (o === "" || x.onresz_sor <= Number(o))
+      && (!q || (x.cim + " " + Object.values(x.osszefoglalo || {}).join(" ") + " " + x.forras).toLowerCase().includes(q)));
+    const r = $("rendezes").value;
+    t.sort((a, b) => r === "uj" ? b.elso.localeCompare(a.elso)
+      : r === "onresz" ? a.onresz_sor - b.onresz_sor
+      : (a.hatarido_iso || "9999").localeCompare(b.hatarido_iso || "9999"));
+    $("lista").innerHTML = t.length ? t.map(kartya).join("") : `<div class="ures">Nincs a szűrésnek megfelelő felhívás.</div>`;
+  }
+
+  function kartya(t) {
+    const n = napig(t.hatarido_iso);
+    const hat = t.hatarido_iso ? `<span class="${n !== null && n <= 14 && n >= 0 ? "surgos" : "hatarido"}">⏰ ${esc(t.hatarido_iso.replaceAll("-", ". "))}.${n !== null ? (n >= 0 ? ` · ${n} nap` : " · lejárt") : ""}</span>` : "";
+    const cimkek = [`<span class="o${t.onresz_sor}">${esc(t.onresz)}</span>`, hat,
+      ...t.profilok.map((p) => `<span class="${p === "eszkoz" ? "eszkoz" : ""}">${esc(profilNev(p))}</span>`)].join("");
+    const ossz = Object.entries(t.osszefoglalo || {});
+    return `<article class="tetel o${t.onresz_sor}${t.lejart ? " lejart" : ""}">
+      <h3><a href="${esc(t.link)}" target="_blank" rel="noopener">${esc(t.cim)}</a></h3>
+      <div class="cimkek">${cimkek}</div>
+      ${ossz.length ? `<dl>${ossz.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : ""}
+      <div class="forras">${esc(t.forras)} · először látva: ${esc(t.elso)}</div>
+    </article>`;
+  }
+
+  ["kereses", "onresz-szuro", "rendezes", "lejartak"].forEach((id) => $(id).addEventListener("input", () => adat && lista()));
+})();
+</script>
+</body>
+</html>

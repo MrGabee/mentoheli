@@ -35,6 +35,9 @@ from urllib.parse import quote, urljoin, urlparse
 
 ALLAPOT_FAJL = "palyazat_allapot.json"
 PROBA = os.environ.get("PROBA", "0") == "1"
+UJRAKULD = os.environ.get("UJRAKULD", "") in ("1", "true")
+WEB_MAPPA = "palyazat"
+WEB_CIM = "https://mrgabee.github.io/mentoheli/palyazat/"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 
 # tipus: "rss" vagy "html". profil: ha meg van adva, a forrás minden
@@ -69,7 +72,8 @@ FORRASOK = [
     # --- Google Hírek keresések: bármelyik oldalon megjelent felhívást elkapják ---
     *[{"nev": f"Google Hírek: {k}", "tipus": "rss", "hir": True,
        "url": "https://news.google.com/rss/search?hl=hu&gl=HU&ceid=HU:hu&q=" + quote(k + " when:14d")}
-      for k in ["pályázati felhívás", "pályázat egyéni vállalkozó", "pályázat mikrovállalkozás",
+      for k in ["eszközbeszerzés pályázat", "eszközbeszerzési támogatás", "gépbeszerzés pályázat",
+                "technológiai fejlesztés pályázat", "pályázati felhívás", "pályázat egyéni vállalkozó", "pályázat mikrovállalkozás",
                 "vissza nem térítendő támogatás", "pályázat önrész nélkül", "pályázat nonprofit",
                 "pályázat civil szervezet", "pályázat pedagógus", "pályázat informatika oktatás",
                 "pályázat televízió műsor", "pályázat média tartalomgyártás", "Médiatanács pályázat",
@@ -80,6 +84,13 @@ FORRASOK = [
 ]
 
 PROFILOK = {
+    # elsődleges: eszközbeszerzés (ez van legelöl a levélben és a weboldalon)
+    "eszkoz": {
+        "cim": "🖥️ Eszközbeszerzés",
+        "szavak": ["eszkozbeszerz", "eszkozfejleszt", "eszkoztamogat", "eszkozpark", "gepbeszerz", "gepbeszerzes",
+                   "berendezes", "szamitogep", "laptop", "notebook", "kamera", "technikai eszkoz", "muszaki fejlesztes",
+                   "technologiai fejleszt", "technologiafejleszt", "beruhazas", "gep-", "gepek", "eszkozok"],
+    },
     "media": {
         "cim": "🎓 Oktatás / informatika / TV-média",
         "szavak": ["informatik", "digitalis", "oktat", "pedagogus", "tanar", "kepzes", "felnottkepz",
@@ -99,7 +110,7 @@ PROFILOK = {
     "vallalkozas": {
         "cim": "💼 Vállalkozás (EV, mikro, KKV)",
         "szavak": ["egyeni vallalkoz", "ev", "mikrovallalkoz", "kkv", "kis- es kozepvallalkoz",
-                   "vallalkozasfejleszt", "vallalkozoi", "eszkozbeszerz", "digitalizaci",
+                   "vallalkozasfejleszt", "vallalkozoi", "digitalizaci",
                    "kamatmentes", "visszateritendo"],
     },
     "helyi": {
@@ -288,13 +299,47 @@ def onresz(szoveg):
 
 
 def oldal_szoveg(link):
-    """A felhívás oldalának sima szövege (önrész kereséséhez); hiba esetén üres."""
+    """A felhívás oldalának sima szövege és meta-leírása; hiba esetén üres."""
     try:
         tartalom = letolt(link)
     except Exception:
-        return ""
-    tartalom = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", tartalom)
-    return " ".join(unescape(re.sub(r"<[^>]+>", " ", tartalom)).split())[:60000]
+        return "", ""
+    m = re.search(r'(?is)<meta[^>]+(?:name|property)=["\'](?:og:)?description["\'][^>]*content=["\']([^"\']+)', tartalom)
+    meta = " ".join(unescape(m.group(1)).split()) if m else ""
+    tartalom = re.sub(r"(?is)<(script|style|nav|header|footer)[^>]*>.*?</\1>", " ", tartalom)
+    return " ".join(unescape(re.sub(r"<[^>]+>", " ", tartalom)).split())[:60000], meta
+
+
+# A kiírás szövegéből kivonatolt rövid összefoglaló: a jellegzetes
+# fejezetcímek ("A pályázat célja", "Pályázók köre", ...) utáni első mondat.
+OSSZEFOGLALO_MINTAK = [
+    ("Cél", r"(?:a (?:pályázat|program|felhívás|támogatás)(?:i (?:kiírás|felhívás))? célja|támogatás célja)\s*[:\-–]?\s*"),
+    ("Kik pályázhatnak", r"(?:pályázók köre|pályázni jogosultak?(?: köre)?|kik pályázhatnak\??|pályázatot nyújthatnak be|"
+                         r"támogatást igénylők köre|kedvezményezettek köre|pályázhatnak)\s*[:\-–]?\s*"),
+    ("Mire", r"(?:támogatható tevékenységek?|elszámolható költségek?|támogatható célok?|mire lehet pályázni\??|"
+             r"a támogatás felhasználható)\s*[:\-–]?\s*"),
+    ("Összeg", r"(?:igényelhető támogatás(?: összege)?|a támogatás (?:maximális |legmagasabb |legkisebb )?összege|"
+               r"keretösszeg(?:e)?|rendelkezésre álló forrás)\s*[:\-–]?\s*"),
+]
+
+
+def osszefoglalo(szoveg, meta="", leiras=""):
+    """{"Cél": ..., "Kik pályázhatnak": ..., ...}; ha semmi nem található, a meta-/RSS-leírás."""
+    eredmeny = {}
+    for cimke, minta in OSSZEFOGLALO_MINTAK:
+        m = re.search(minta, szoveg, re.I)
+        if not m:
+            continue
+        resz = szoveg[m.end():m.end() + 400]
+        mondat = re.split(r"(?<=[.!?])\s+(?=[A-ZÁÉÍÓÖŐÚÜŰ])", resz)[0]
+        mondat = mondat[:240].rsplit(" ", 1)[0] + "…" if len(mondat) > 240 else mondat
+        if len(mondat) >= 15:
+            eredmeny[cimke] = mondat
+    if not eredmeny:
+        alap = meta or leiras
+        if len(alap) >= 30:
+            eredmeny["Röviden"] = alap[:300].rsplit(" ", 1)[0] + ("…" if len(alap) > 300 else "")
+    return eredmeny
 
 
 def azonosito(link):
@@ -316,15 +361,18 @@ def mentes(allapot):
 
 
 def level(tema, html_test):
-    kuldo, jelszo, cimzett = (os.environ.get(k, "") for k in ("EMAIL_KULDO", "EMAIL_JELSZO", "EMAIL_CIMZETT"))
-    if not (kuldo and jelszo and cimzett):
+    kuldo, jelszo = os.environ.get("EMAIL_KULDO", ""), os.environ.get("EMAIL_JELSZO", "")
+    # saját címzett(ek) a PALYAZAT_CIMZETT titokban (vesszővel több is), különben a közös cím
+    cimzett = os.environ.get("PALYAZAT_CIMZETT", "").strip() or os.environ.get("EMAIL_CIMZETT", "")
+    cimzettek = [c.strip() for c in cimzett.split(",") if c.strip()]
+    if not (kuldo and jelszo and cimzettek):
         print("  ⚠️ Nincs e-mail beállítás, nem küldök levelet.")
         return
     msg = MIMEText(html_test, "html", "utf-8")
-    msg["Subject"], msg["From"], msg["To"] = tema, kuldo, cimzett
+    msg["Subject"], msg["From"], msg["To"] = tema, kuldo, ", ".join(cimzettek)
     with smtplib.SMTP_SSL(os.environ.get("SMTP_HOST", "smtp.gmail.com"), int(os.environ.get("SMTP_PORT", 465)), timeout=20) as s:
         s.login(kuldo, jelszo)
-        s.sendmail(kuldo, [cimzett], msg.as_string())
+        s.sendmail(kuldo, cimzettek, msg.as_string())
     print("  📧 E-mail elküldve.")
 
 
@@ -335,8 +383,10 @@ def elem_html(e):
     if e["hatarido"]:
         extra.append("dátum: " + e["hatarido"])
     extra.append(e["forras"])
-    return (f'<li><a href="{escape(e["link"])}">{escape(e["cim"])}</a>'
-            f'<br><small>{escape(" · ".join(extra))}</small></li>')
+    kivonat = "".join(f"<br><small><b>{escape(k)}:</b> {escape(v)}</small>"
+                      for k, v in e.get("osszefoglalo", {}).items())
+    return (f'<li style="margin-bottom:10px"><a href="{escape(e["link"])}">{escape(e["cim"])}</a>'
+            f'<br><small>{escape(" · ".join(extra))}</small>{kivonat}</li>')
 
 
 def level_html(ujak, hibas_forrasok, kezdeti):
@@ -344,6 +394,7 @@ def level_html(ujak, hibas_forrasok, kezdeti):
     if kezdeti:
         sorok.append("<p>Ez az első futás: az összes most látható, ránk illő felhívás. "
                      "Ezután csak az újakat küldöm.</p>")
+    sorok.append(f'<p>Grafikus áttekintés, szűrőkkel: <a href="{WEB_CIM}">{WEB_CIM}</a></p>')
     sorok.append("<p><small>🟢 önrész nélkül · 🟡 kevés önrész (≤" + str(ALACSONY_ONRESZ) + "%) · "
                  "⚪ nem derül ki az oldalról · 🔴 magas önrész vagy hitel (a levél végén)</small></p>")
     jok = sorted((e for e in ujak if e["onresz_sor"] < 3), key=lambda e: e["onresz_sor"])
@@ -367,6 +418,10 @@ def main():
     most = datetime.now(timezone.utc)
     print(f"🔎 Pályázat-figyelő – {most.strftime('%Y.%m.%d %H:%M')} UTC{' (PRÓBA)' if PROBA else ''}")
     allapot = betolt_allapot()
+    if UJRAKULD:  # kézi újraküldés: mindent újnak tekintünk, a teljes mostani lista megy ki
+        print("  ↻ Újraküldés: az eddig látott felhívásokat is újra elküldöm.")
+        allapot["latott"], allapot["tetelek"] = {}, {}
+    allapot.setdefault("tetelek", {})
     kezdeti = not allapot["latott"]
     ujak, hibas = [], []
 
@@ -392,7 +447,7 @@ def main():
             cim_azon = "c" + hashlib.sha1(norm(re.sub(r" - [^-]+$", "", elem["cim"])).encode()).hexdigest()[:15]
             if azon in allapot["latott"] or cim_azon in allapot["latott"]:
                 continue
-            elem.update(profilok=prof, forras=forras["nev"])
+            elem.update(profilok=prof, forras=forras["nev"], azon=azon)
             ujak.append(elem)
             bejegyzes = {"cim": elem["cim"][:150], "link": elem["link"], "elso": most.strftime("%Y-%m-%d")}
             allapot["latott"][azon] = bejegyzes
@@ -401,13 +456,19 @@ def main():
 
     # a felhívás oldalát is megnézzük az önrész és a határidő miatt
     for i, e in enumerate(ujak):
-        oldal = oldal_szoveg(e["link"]) if i < MAX_RESZLETES and not e["link"].lower().endswith(".pdf") else ""
+        oldal, meta = (oldal_szoveg(e["link"]) if i < MAX_RESZLETES and not e["link"].lower().endswith(".pdf")
+                       else ("", ""))
         alap = e["cim"] + " " + e["leiras"]
+        e["osszefoglalo"] = osszefoglalo(oldal, meta, e["leiras"])
         e["onresz_sor"], e["onresz"] = onresz(alap + " " + oldal)
         e["hatarido"] = hatarido(alap) or hatarido(oldal, csak_hataridore=True)
     # amelyiknek a határideje már elmúlt, azt nem küldjük (de látottnak számít)
     ma = datetime.now().date()
     ujak = [e for e in ujak if not (datum(e["hatarido"]) and datum(e["hatarido"]) < ma)]
+    for e in ujak:  # a weboldalhoz minden részletet megőrzünk
+        allapot["tetelek"][e["azon"]] = {k: e[k] for k in ("cim", "link", "forras", "profilok", "onresz",
+                                                          "onresz_sor", "hatarido", "osszefoglalo")}
+        allapot["tetelek"][e["azon"]]["elso"] = most.strftime("%Y-%m-%d")
 
     print(f"🆕 Új találat: {len(ujak)}")
     for e in ujak:
@@ -426,6 +487,45 @@ def main():
         level("⚠️ Pályázat-figyelő: elérhetetlen forrás", "<p>Egy hete nem érhető el: "
               + escape(", ".join(tartos)) + ". Lehet, hogy megváltozott a címe.</p>")
     mentes(allapot)
+    weboldal_adatok(allapot, hibas, most)
+
+
+def weboldal_adatok(allapot, hibas, most):
+    """A belépéses weboldal (palyazat/index.html) titkosított adatfájlja.
+
+    Hibrid titkosítás: az adat AES-GCM-mel, az AES-kulcs a palyazat/kulcs.json
+    nyilvános RSA-kulcsával van titkosítva. A titkos RSA-kulcsot csak a
+    felhasználónév + jelszó párosból származtatott kulccsal lehet kinyitni,
+    a böngészőben, így a futtatáshoz nem kell semmilyen titok."""
+    try:
+        from cryptography.hazmat.primitives import hashes, serialization
+        from cryptography.hazmat.primitives.asymmetric import padding
+        from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    except ImportError:
+        print("  ⚠️ Nincs 'cryptography' csomag, a weboldal adatai nem frissülnek.")
+        return
+    import base64
+    with open(os.path.join(WEB_MAPPA, "kulcs.json"), encoding="utf-8") as f:
+        kulcs = json.load(f)
+    nyilvanos = serialization.load_der_public_key(base64.b64decode(kulcs["nyilvanos"]))
+    ma = most.date()
+    tetelek = []
+    for azon, t in allapot["tetelek"].items():
+        d = datum(t.get("hatarido"))
+        tetelek.append({**t, "azon": azon, "lejart": bool(d and d < ma), "hatarido_iso": d.isoformat() if d else ""})
+    adat = json.dumps({"frissitve": most.isoformat(timespec="minutes"), "tetelek": tetelek,
+                       "profilok": {k: p["cim"] for k, p in PROFILOK.items()},
+                       "forrasok": len(FORRASOK), "hibas_forrasok": hibas}, ensure_ascii=False).encode()
+    aes_kulcs, iv = os.urandom(32), os.urandom(12)
+    kimenet = {
+        "kulcs": base64.b64encode(nyilvanos.encrypt(aes_kulcs, padding.OAEP(
+            mgf=padding.MGF1(hashes.SHA256()), algorithm=hashes.SHA256(), label=None))).decode(),
+        "iv": base64.b64encode(iv).decode(),
+        "adat": base64.b64encode(AESGCM(aes_kulcs).encrypt(iv, adat, None)).decode(),
+    }
+    with open(os.path.join(WEB_MAPPA, "adatok.json"), "w", encoding="utf-8") as f:
+        json.dump(kimenet, f)
+    print(f"  🌐 Weboldal adatai frissítve ({len(tetelek)} tétel).")
 
 
 if __name__ == "__main__":
