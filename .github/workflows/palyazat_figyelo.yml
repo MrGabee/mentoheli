@@ -1,0 +1,58 @@
+name: 🔎 Pályázat-figyelő
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Naponta 7:00 körül (magyar idő)
+    - cron: '0 5 * * *'
+  push:
+    # Fejlesztői ágon próbafutás: nem küld levelet, nem ír állapotot
+    branches-ignore: [main]
+    paths:
+      - 'palyazat_figyelo.py'
+      - '.github/workflows/palyazat_figyelo.yml'
+
+concurrency:
+  group: palyazat-figyelo
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 🔎 Pályázatok ellenőrzése
+        env:
+          PROBA: ${{ github.event_name == 'push' && '1' || '0' }}
+          SMTP_HOST: smtp.gmail.com
+          SMTP_PORT: 465
+          EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
+        run: python palyazat_figyelo.py
+
+      - name: 💾 Állapot commitolása
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f palyazat_allapot.json ] || exit 0
+          cp palyazat_allapot.json /tmp/palyazat_allapot.json
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/palyazat_allapot.json palyazat_allapot.json
+            git add palyazat_allapot.json
+            if git diff --staged --quiet; then echo "Nincs változás."; exit 0; fi
+            git commit -m "pályázat-figyelő állapot [skip ci]"
+            if git push origin HEAD:main; then echo "Push sikeres."; exit 0; fi
+            sleep $((RANDOM % 6 + 2))
+          done
+          echo "⚠️ 6 próbálkozás után sem sikerült a push."
