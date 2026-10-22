@@ -54,6 +54,17 @@ Konkrét címet és dátumot egyelőre nem írtak, de úgy tűnik, Csepel is sz�
 💬 Ti mit szólnátok egy csepeli EcoFamilyhez? Hová tennétek, hol lenne a legjobb helye? Írjátok meg kommentben!
 
 #Csepel #EcoFamily #boltnyitás #olvasóihír"""),
+    "busz159_20261022": (date(2026, 10, 22), """🚍 BALESET A 159-ES BUSZ ÚTVONALÁN 🚍
+
+Úgy értesültem, hogy a 159-es busz érintett volt egy balesetben, amelyben egy embert elütöttek. Hogy pontosan mi történt és hogyan, egyelőre nem tudom.
+
+⚠️ A 159-es egy ideig terelve közlekedett, és nem érintette a Kossuth Lajos utca / Erdősor utca megállót. Ha arra vártok buszra, figyeljétek a kiírásokat, még előfordulhat késés!
+
+🙏 Remélem, a sérült mihamarabb rendbe jön.
+
+💬 Ha többet tudsz, láttad, vagy épp a buszon ültél, írd meg kommentben, vagy keress meg az elérhetőségeimen!
+
+#Csepel #Pesterzsébet #159esbusz #baleset #BKV #közlekedés"""),
     "dugo_20261021": (date(2026, 10, 21), """🚨 HATALMAS A DUGÓ CSEPEL FELÉ 🚨
 
 Aki teheti, most messziről kerülje el a Csepelre vezető utakat! A bevezető szakaszokon nagy a torlódás, és a buszok is jelentős késéssel közlekednek.
