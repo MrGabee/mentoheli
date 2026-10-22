@@ -65,16 +65,6 @@ FORRASOK = [
      "tipus": "html", "profil": "nonprofit", "link_minta": r"felhivas|kiiras|palyazat"},
     {"nev": "Bethlen Gábor Alapkezelő", "url": "https://bgazrt.hu/", "tipus": "html", "link_minta": r"felhivas|kiiras|palyazat"},
     # --- Fővárosi, kormányzati, uniós ---
-    {"nev": "Fővárosi Önkormányzat", "url": "https://budapest.hu/palyazatok", "tipus": "html", "profil": "allami",
-     "link_minta": r"palyazat|felhivas|tamogatas"},
-    {"nev": "Pályázat.gov.hu", "url": "https://www.palyazat.gov.hu/", "tipus": "html", "profil": "allami",
-     "link_minta": r"palyazat|felhivas|kiiras"},
-    {"nev": "Széchenyi Terv Plusz", "url": "https://szechenyiterv.gov.hu/", "tipus": "html", "profil": "allami",
-     "link_minta": r"palyazat|felhivas|kiiras"},
-    {"nev": "Tempus Közalapítvány (Erasmus+)", "url": "https://tka.hu/palyazatok", "tipus": "html", "profil": "allami",
-     "link_minta": r"palyazat|felhivas|erasmus"},
-    {"nev": "Kreatív Európa Iroda", "url": "https://www.kreativeuropa.hu/", "tipus": "html", "profil": "allami",
-     "link_minta": r"palyazat|felhivas|kiiras"},
     # --- Kultúra, média, oktatás ---
     {"nev": "Nemzeti Kulturális Alap", "url": "https://nka.hu/kiemelt-kategoriak/palyaztatas/kollegiumok-felhivasai/felhivasok/",
      "tipus": "html", "link_minta": r"felhivas"},
@@ -164,7 +154,8 @@ KIZARO_SZAVAK = ["eredmeny", "nyertes", "dontes", "lezarult", "kiertekel", "hirl
 NEM_RELEVANS = ["hataron tul", "kulhoni", "karpatalja", "erdely", "felvidek", "vajdasag", "csango", "egyhaz",
                 "nemzetisegi", "magyar falu", "falusi", "kistelepules", "allatved", "vallasturiszt",
                 "mezogazdas", "agrar", "erdeszet", "halasz", "szabolcs", "frekvencia", "mhz",
-                "hatartalanul", "zrinyi ilona", "vinum"]
+                "hatartalanul", "zrinyi ilona", "vinum", "uzemeltetes", "berbead", "berleti",
+                "ingatlan ertekesit", "elado ingatlan", "versenytargyal"]
 
 
 def norm(s):
@@ -361,6 +352,8 @@ def osszefoglalo(szoveg, meta="", leiras=""):
             eredmeny[cimke] = mondat
     if not eredmeny:
         alap = meta or leiras
+        if "google hirek" in norm(alap):
+            alap = leiras if "google hirek" not in norm(leiras) else ""
         if len(alap) >= 30:
             eredmeny["Röviden"] = alap[:300].rsplit(" ", 1)[0] + ("…" if len(alap) > 300 else "")
     return eredmeny
