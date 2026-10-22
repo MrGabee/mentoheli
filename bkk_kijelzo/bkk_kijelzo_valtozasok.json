@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-22T23:15:10.561491+02:00",
+  "frissitve": "2026-10-22T23:15:56.064497+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-22T11:42:22.405435+02:00",
-      "kulcs": "NGC025",
-      "rendszam": "NGC025",
-      "vehicle_id": "6324",
-      "vehicle_label": "Fenyves utca",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50764846801758,
-      "lon": 19.024337768554688,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Fenyves utca"
-    },
-    {
-      "idopont": "2026-10-22T11:42:22.405790+02:00",
-      "kulcs": "NTP541",
-      "rendszam": "NTP541",
-      "vehicle_id": "6517",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "156",
-      "route_id": "1560",
-      "lat": 47.512821197509766,
-      "lon": 18.995040893554688,
-      "elozo_szoveg": "Dániel út",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-22T11:42:22.406314+02:00",
-      "kulcs": "PDN605",
-      "rendszam": "PDN605",
-      "vehicle_id": "7077",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.405582427978516,
-      "lon": 19.013761520385742,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-22T11:42:22.406628+02:00",
-      "kulcs": "PHG626",
-      "rendszam": "PHG626",
-      "vehicle_id": "7150",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.52509307861328,
-      "lon": 19.17597198486328,
-      "elozo_szoveg": "Rákosszentmihály",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-22T11:42:22.406724+02:00",
-      "kulcs": "T0624",
-      "rendszam": "T0624",
-      "vehicle_id": "717",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51667404174805,
-      "lon": 19.09265899658203,
-      "elozo_szoveg": "Erzsébet k.né útja, alulj.",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
     {
       "idopont": "2026-10-22T11:42:22.406739+02:00",
       "kulcs": "PHG648",
@@ -260000,6 +259935,71 @@
       "lon": 19.12775993347168,
       "elozo_szoveg": "Kőbánya alsó vasútáll.",
       "uj_szoveg": "Csepel, Határ utca"
+    },
+    {
+      "idopont": "2026-10-22T23:15:55.999609+02:00",
+      "kulcs": "AADR705",
+      "rendszam": "AADR705",
+      "vehicle_id": "173",
+      "vehicle_label": "Ecseri út M - Aszódi utca",
+      "vonal_szam": "181",
+      "route_id": "1810",
+      "lat": 47.46047592163086,
+      "lon": 19.114843368530273,
+      "elozo_szoveg": "Ecseri út M-József A. ltp.",
+      "uj_szoveg": "Ecseri út M - Aszódi utca"
+    },
+    {
+      "idopont": "2026-10-22T23:15:55.999737+02:00",
+      "kulcs": "V2012",
+      "rendszam": "V2012",
+      "vehicle_id": "2012",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.507320404052734,
+      "lon": 19.02497673034668,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-22T23:15:56.001966+02:00",
+      "kulcs": "PHG633",
+      "rendszam": "PHG633",
+      "vehicle_id": "7157",
+      "vehicle_label": "Rákosszentmihály",
+      "vonal_szam": "144",
+      "route_id": "1440",
+      "lat": 47.504695892333984,
+      "lon": 19.136932373046875,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Rákosszentmihály"
+    },
+    {
+      "idopont": "2026-10-22T23:15:56.002231+02:00",
+      "kulcs": "T9110",
+      "rendszam": "T9110",
+      "vehicle_id": "7357",
+      "vehicle_label": "Jászai Mari tér",
+      "vonal_szam": "75",
+      "route_id": "4750",
+      "lat": 47.50128173828125,
+      "lon": 19.107717514038086,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Jászai Mari tér"
+    },
+    {
+      "idopont": "2026-10-22T23:15:56.002847+02:00",
+      "kulcs": "RVY701",
+      "rendszam": "RVY701",
+      "vehicle_id": "7450",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "85",
+      "route_id": "0850",
+      "lat": 47.462913513183594,
+      "lon": 19.148622512817383,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Örs vezér tere M H"
     }
   ]
 }
