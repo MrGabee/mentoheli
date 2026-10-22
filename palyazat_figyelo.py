@@ -473,6 +473,8 @@ def main():
     print(f"🆕 Új találat: {len(ujak)}")
     for e in ujak:
         print(f"   [{','.join(e['profilok'])}] {e['onresz']} | {e['hatarido']} | {e['cim']}  →  {e['link']}")
+        for k, v in e["osszefoglalo"].items():
+            print(f"        {k}: {v}")
 
     if PROBA:
         return
