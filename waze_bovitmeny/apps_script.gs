@@ -1,6 +1,8 @@
-// Waze Budapest figyelő - e-mail küldő (Google Apps Script webalkalmazás)
-// A Chrome-bővítmény ide küldi az új riasztásokat, ez pedig a Gmailedről
-// e-mailt küld róluk. A Waze-t nem olvassa, csak levelet küld.
+// Waze Budapest figyelő - gyűjtő és e-mail küldő (Google Apps Script webalkalmazás)
+// A Chrome-bővítmény ide küldi az összes új riasztást. Ez mindet beírja a
+// "Waze Budapest riasztások" Google Táblázatba (az első riasztásnál magától
+// létrehozza, és e-mailben elküldi a linkjét), a balesetekről pedig e-mailt
+// is küld. A Waze-t nem olvassa.
 //
 // Beállítás: írd át a TITOK és a CIMZETT értékét, majd
 // Telepítés > Új telepítés > Webalkalmazás,
@@ -8,6 +10,10 @@
 
 const TITOK = "ide-irj-egy-hosszu-titkos-szot";
 const CIMZETT = "ide@a-cimed.hu";
+const EMAIL_KULDES = true;            // false: csak gyűjt, levelet nem küld
+const EMAIL_TIPUSOK = ["ACCIDENT"];   // ezekről megy levél
+const FEJLEC = ["Először látva", "Típus", "Altípus", "Utca", "Város", "Leírás", "Szélesség",
+  "Hosszúság", "Megbízhatóság", "Megerősítések", "Waze-ben bejelentve", "Waze link", "Azonosító"];
 
 const TIPUSOK = {
   ACCIDENT: ["💥", "Baleset", "#c62828"],
@@ -45,8 +51,53 @@ function doPost(e) {
   }
   if (adat.titok !== TITOK) return ContentService.createTextOutput("HIBA: rossz titkos kulcs");
   const riasztasok = adat.riasztasok || [];
-  if (riasztasok.length) level(riasztasok, adat.teszt);
+  if (!adat.teszt && riasztasok.length) naplo(riasztasok);
+  // A régebbi bővítmény nem küld "level" mezőt: ott minden elküldött riasztás levélre ment.
+  const levelre = riasztasok.filter(function (r) {
+    return r.level !== false && (adat.teszt || EMAIL_TIPUSOK.indexOf(r.tipus) >= 0);
+  });
+  if (levelre.length && (EMAIL_KULDES || adat.teszt)) level(levelre, adat.teszt);
   return ContentService.createTextOutput("OK " + riasztasok.length);
+}
+
+function datum(ms) {
+  return ms ? Utilities.formatDate(new Date(ms), "Europe/Budapest", "yyyy-MM-dd HH:mm:ss") : "";
+}
+
+function tablazat() {
+  const tul = PropertiesService.getScriptProperties();
+  const id = tul.getProperty("TABLAZAT_ID");
+  if (id) return SpreadsheetApp.openById(id).getSheets()[0];
+  const ss = SpreadsheetApp.create("Waze Budapest riasztások");
+  const lap = ss.getSheets()[0];
+  lap.appendRow(FEJLEC);
+  lap.setFrozenRows(1);
+  lap.getRange(1, 1, 1, FEJLEC.length).setFontWeight("bold");
+  tul.setProperty("TABLAZAT_ID", ss.getId());
+  MailApp.sendEmail(CIMZETT, "Waze Budapest – elkészült a gyűjtő táblázat",
+    "Ide gyűlnek a riasztások: " + ss.getUrl());
+  return lap;
+}
+
+function naplo(riasztasok) {
+  const zar = LockService.getScriptLock();
+  zar.waitLock(30000);
+  try {
+    const lap = tablazat();
+    const sorok = riasztasok.map(function (r) {
+      return [datum(r.elso_latva_ms || Date.now()), r.tipus, r.altipus, r.utca, r.varos, r.leiras,
+        r.lat, r.lon, r.megbizhatosag == null ? "" : r.megbizhatosag, r.megerositesek || 0,
+        datum(r.bejelentve_ms), "https://www.waze.com/ul?ll=" + r.lat + "%2C" + r.lon + "&navigate=no&zoom=17", r.id];
+    });
+    lap.getRange(lap.getLastRow() + 1, 1, sorok.length, FEJLEC.length).setValues(sorok);
+  } finally {
+    zar.releaseLock();
+  }
+}
+
+// Kézzel futtatható: kiírja a naplóba a táblázat linkjét.
+function tablazatLinkje() {
+  Logger.log(tablazat().getParent().getUrl());
 }
 
 function esc(s) {

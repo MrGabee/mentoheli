@@ -1,10 +1,11 @@
 // A bővítmény háttere: a nyitott Waze-fület sorban Budapest csempéire
 // navigálja (a Waze egy betöltésre kb. 200 riasztást ad, ezért egy nézet nem
 // elég; percenként legfeljebb BETOLTES_PERCENKENT betöltés, hogy ne kapjon 429-et), a térkép által betöltött riasztásokból kiválogatja az újakat, és
-// elküldi őket az Apps Scriptnek, ami e-mailt küld róluk.
+// elküldi őket az Apps Scriptnek, ami mindet beírja egy Google Táblázatba,
+// és a balesetekről e-mailt is küld.
 
 const BBOX = { left: 18.90, bottom: 47.35, right: 19.35, top: 47.62 }; // Budapest
-const TIPUSOK = ["ACCIDENT"];  // csak balesetekről megy levél
+const TIPUSOK = ["ACCIDENT"];  // ezekről megy levél (a táblázatba minden típus bekerül)
 const MEGORZES_MS = 3 * 24 * 3600 * 1000;  // ennyi ideig emlékszik egy riasztásra
 const FRISS_MS = 30 * 60 * 1000;           // ennél hosszabb kiesés után újra csak feltölt
 const MAX_SZUNET_PERC = 30;
@@ -116,6 +117,8 @@ function kinyer(adat) {
       leiras: a.reportDescription || "",
       lat, lon,
       bejelentve_ms: a.pubMillis || 0,
+      megbizhatosag: a.reliability ?? "",
+      megerositesek: a.nThumbsUp ?? 0,
     });
   }
   return ki;
@@ -146,7 +149,13 @@ async function feldolgoz({ status, adat }) {
   for (const r of riasztasok) latott[r.id] = most;
   for (const [k, v] of Object.entries(latott)) if (most - v > MEGORZES_MS) delete latott[k];
 
-  const emailre = feltolt ? [] : uj.filter((r) => TIPUSOK.includes(r.tipus));
+  // Minden új riasztás a táblázatba megy; levél csak a TIPUSOK-ról, és az
+  // első körben (amikor a már fennálló riasztásokat látja először) nem.
+  for (const r of uj) {
+    r.elso_latva_ms = most;
+    r.level = !feltolt && TIPUSOK.includes(r.tipus);
+  }
+  const emailre = uj.filter((r) => r.level);
   // A térkép egy betöltésnél több részletben kér adatot; a kijelzés a
   // legutóbbi frissítés óta látott összes riasztást mutatja.
   const ujKor = !Object.keys(t.kor || {}).length;
@@ -159,22 +168,22 @@ async function feldolgoz({ status, adat }) {
   await chrome.storage.local.set({
     latott, feltoltesIg, utolsoSiker: most, hibaSorozat: 0, szunetIg: 0, kor, korUj, korEmail, korMax,
     allapot: `${ido}: ${Object.keys(kor).length} riasztás Budapesten (${t.korCsempek || 1} csempéből, ${BETOLTES_PERCENKENT}/perc), ${korUj} új` +
-      (feltolt ? " (első kör: csak megjegyezve)." : `, levélben: ${korEmail}.`) +
+      (feltolt ? " (első kör: csak táblázatba, levél nélkül)." : `, levélben: ${korEmail}.`) +
       `\nLegnagyobb csempe: ${korMax} riasztás` + (korMax >= 195 ? " ⚠️ eléri a Waze 200-as határát" : "."),
   });
-  if (emailre.length) await kuldes(emailre);
+  if (uj.length) await kuldes(uj);
 }
 
 // --- Küldés az Apps Scriptnek --------------------------------------------
 async function kuldes(riasztasok, teszt = false) {
   const { scriptUrl, titok, kuldendo = [] } = await chrome.storage.local.get(["scriptUrl", "titok", "kuldendo"]);
-  const csomag = teszt ? riasztasok : kuldendo.concat(riasztasok).filter((r) => TIPUSOK.includes(r.tipus));
+  const csomag = teszt ? riasztasok : kuldendo.concat(riasztasok);
   if (!csomag.length) {
     await chrome.storage.local.set({ kuldendo: [] });
     return;
   }
   if (!scriptUrl) {
-    await chrome.storage.local.set({ kuldendo: csomag.slice(-200), levelAllapot: "Nincs megadva Apps Script URL." });
+    await chrome.storage.local.set({ kuldendo: csomag.slice(-3000), levelAllapot: "Nincs megadva Apps Script URL." });
     return;
   }
   const ido = new Date().toLocaleTimeString("hu-HU");
@@ -188,12 +197,13 @@ async function kuldes(riasztasok, teszt = false) {
     if (!v.ok || !szoveg.startsWith("OK")) throw new Error(`${v.status} ${szoveg.slice(0, 80)}`);
     await chrome.storage.local.set({
       ...(teszt ? {} : { kuldendo: [] }),
-      levelAllapot: `${ido}: e-mail elküldve (${csomag.length} esemény).`,
+      levelAllapot: teszt ? `${ido}: teszt e-mail elküldve.`
+        : `${ido}: ${csomag.length} riasztás a táblázatba, ebből ${csomag.filter((r) => r.level).length} levélben.`,
     });
   } catch (e) {
     await chrome.storage.local.set({
-      ...(teszt ? {} : { kuldendo: csomag.slice(-200) }),
-      levelAllapot: `${ido}: e-mail hiba: ${e.message}`,
+      ...(teszt ? {} : { kuldendo: csomag.slice(-3000) }),
+      levelAllapot: `${ido}: küldési hiba (később újrapróbálja): ${e.message}`,
     });
   }
 }
@@ -206,6 +216,6 @@ async function kuldesUjraprobalas() {
 async function tesztLevel() {
   await kuldes([{
     id: "teszt", tipus: "ACCIDENT", altipus: "ACCIDENT_MINOR", utca: "Teszt utca", varos: "Budapest",
-    leiras: "Ez egy teszt levél a bővítményből.", lat: 47.4979, lon: 19.0402, bejelentve_ms: Date.now(),
+    leiras: "Ez egy teszt levél a bővítményből.", lat: 47.4979, lon: 19.0402, bejelentve_ms: Date.now(), level: true,
   }], true);
 }
