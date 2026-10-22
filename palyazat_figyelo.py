@@ -36,6 +36,8 @@ from urllib.parse import quote, urljoin, urlparse
 ALLAPOT_FAJL = "palyazat_allapot.json"
 PROBA = os.environ.get("PROBA", "0") == "1"
 UJRAKULD = os.environ.get("UJRAKULD", "") in ("1", "true")
+# csak a weboldal adatainak teljes újraépítése, levélküldés nélkül
+CSAK_WEB = os.environ.get("CSAK_WEB", "") in ("1", "true")
 WEB_MAPPA = "palyazat"
 WEB_CIM = "https://mrgabee.github.io/mentoheli/palyazat/"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
@@ -418,7 +420,7 @@ def main():
     most = datetime.now(timezone.utc)
     print(f"🔎 Pályázat-figyelő – {most.strftime('%Y.%m.%d %H:%M')} UTC{' (PRÓBA)' if PROBA else ''}")
     allapot = betolt_allapot()
-    if UJRAKULD:  # kézi újraküldés: mindent újnak tekintünk, a teljes mostani lista megy ki
+    if UJRAKULD or CSAK_WEB:  # kézi újraküldés: mindent újnak tekintünk, a teljes mostani lista megy ki
         print("  ↻ Újraküldés: az eddig látott felhívásokat is újra elküldöm.")
         allapot["latott"], allapot["tetelek"] = {}, {}
     allapot.setdefault("tetelek", {})
@@ -478,7 +480,7 @@ def main():
 
     if PROBA:
         return
-    if ujak:
+    if ujak and not CSAK_WEB:
         zold = sum(e["onresz_sor"] == 0 for e in ujak)
         tema = (f"🔎 Pályázatok – kezdeti lista ({len(ujak)})" if kezdeti
                 else f"🔎 {len(ujak)} új pályázati lehetőség") + (f", ebből {zold} önrész nélkül" if zold else "")

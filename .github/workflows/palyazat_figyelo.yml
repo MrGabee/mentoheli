@@ -8,6 +8,11 @@ on:
         required: false
         default: false
         type: boolean
+      csak_weboldal:
+        description: "Csak a weboldal adatainak teljes újraépítése, levél nélkül"
+        required: false
+        default: false
+        type: boolean
   schedule:
     # Naponta 7:00 körül (magyar idő)
     - cron: '0 5 * * *'
@@ -40,6 +45,7 @@ jobs:
         env:
           PROBA: ${{ github.event_name == 'push' && '1' || '0' }}
           UJRAKULD: ${{ inputs.ujrakuldes && '1' || '0' }}
+          CSAK_WEB: ${{ inputs.csak_weboldal && '1' || '0' }}
           SMTP_HOST: smtp.gmail.com
           SMTP_PORT: 465
           EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
