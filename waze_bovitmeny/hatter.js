@@ -1,7 +1,9 @@
-// A bővítmény háttere: a nyitott Waze-fület sorban Budapest csempéire
-// navigálja (a Waze egy betöltésre kb. 200 riasztást ad, ezért egy nézet nem
-// elég; BETOLTES_KOZ_PERC percenként egy betöltés, hogy ne kapjon 429-et), a térkép által betöltött riasztásokból kiválogatja az újakat, és
-// elküldi őket az Apps Scriptnek, ami mindet beírja egy Google Táblázatba,
+// A bővítmény háttere: a nyitott Waze-fülön a térképet sorban Budapest
+// csempéire viszi (a Waze egy nézetre kb. 200 riasztást ad, ezért egy nézet
+// nem elég; BETOLTES_KOZ_PERC percenként egy csempe). Az oldalt csak egyszer
+// tölti be, utána egérhúzással mozgatja a térképet, mert a sok oldalbetöltés
+// 429-et hozott. A térkép által betöltött riasztásokból kiválogatja az újakat,
+// és elküldi őket az Apps Scriptnek, ami mindet beírja egy Google Táblázatba,
 // és a balesetekről e-mailt is küld.
 
 const BBOX = { left: 18.90, bottom: 47.35, right: 19.35, top: 47.62 }; // Budapest
@@ -19,6 +21,7 @@ const BETOLTES_KOZ_PERC = 3;  // ennyi percenként tölt be egy csempét (1 perc
 const BETOLTES_PERCENKENT = 1;
 const SZORAS_MS = 25 * 1000;  // véletlen késleltetés a betöltés előtt, hogy ne pontosan percre jöjjenek
 const VALASZ_VARAS_MS = 18 * 1000;  // ha ennyi idő alatt nem jön adat, az oldal nem töltött be
+const MAX_NAGYITAS_LEPES = 2;  // ennél nagyobb nagyításváltáshoz inkább újratölt
 
 // Az alap csempék a Waze-ablak méretéből: annyi nézet, hogy lefedje Budapestet.
 // Egy csempe: { id, lat, lon, z, dlat, dlon } (dlat/dlon: a lefedett terület mérete).
@@ -80,7 +83,7 @@ function csempeIgazitas(lista, id, darab) {
   lista[i] = c;
   if (darab >= PLAFON && c.z < MAX_ZOOM) {
     lista.splice(i, 1, ...negyedek(c));
-    return { lista, valtozas: `csempe ${c.id} négyfelé osztva (${darab} riasztás)` };
+    return { lista, valtozas: `csempe ${c.id} négyfelé osztva (${darab} riasztás)`, kovetkezo: i };
   }
   if (c.z > ZOOM) {
     const szulo = c.id.slice(0, c.id.lastIndexOf("."));
@@ -93,13 +96,53 @@ function csempeIgazitas(lista, id, darab) {
       const egy = { id: szulo, lat: +lat.toFixed(5), lon: +lon.toFixed(5), z: c.z - 1, dlat: c.dlat * 2, dlon: c.dlon * 2 };
       lista = lista.filter((t) => !testverek.includes(t));
       lista.splice(elso, 0, egy);
-      return { lista, valtozas: `csempe ${szulo} negyedei összevonva` };
+      return { lista, valtozas: `csempe ${szulo} negyedei összevonva`, kovetkezo: elso + 1 };
     }
   }
   return { lista, valtozas: "" };
 }
 
 const varj = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Web Mercator képpont az adott nagyításon (a húzás hosszához).
+function kepont(lat, lon, z) {
+  const w = 256 * 2 ** z, s = Math.sin(lat * Math.PI / 180);
+  return { x: (lon + 180) / 360 * w, y: (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * w };
+}
+
+// A georss kérés a térkép látható területére szól: ennek a közepe.
+function kozepe(url) {
+  try {
+    const p = new URL(url, "https://www.waze.com").searchParams;
+    if (!["top", "bottom", "left", "right"].every((k) => p.has(k))) return null;
+    const lat = (+p.get("top") + +p.get("bottom")) / 2, lon = (+p.get("left") + +p.get("right")) / 2;
+    return isNaN(lat) || isNaN(lon) ? null : { lat, lon };
+  } catch (e) {
+    return null;
+  }
+}
+
+const rajta = (k, c) => Math.abs(k.lat - c.lat) < c.dlat / 4 && Math.abs(k.lon - c.lon) < c.dlon / 4;
+
+async function parancs(tabId, p) {
+  try {
+    const v = await chrome.tabs.sendMessage(tabId, { tipus: "parancs", parancs: p });
+    return !!(v && v.ok);
+  } catch (e) {
+    return false;
+  }
+}
+
+// A térképet a jelenlegi nézetből (n) a c csempére viszi: előbb dupla
+// kattintással a jó nagyításra, aztán egy húzással a helyére.
+async function mozgat(tabId, n, c) {
+  for (let z = n.z; z !== c.z; z += Math.sign(c.z - z)) {
+    if (!await parancs(tabId, { tipus: "nagyit", ki: c.z < z })) return false;
+    await varj(2500);
+  }
+  const a = kepont(n.lat, n.lon, c.z), b = kepont(c.lat, c.lon, c.z);
+  return parancs(tabId, { tipus: "huz", dx: Math.round(a.x - b.x), dy: Math.round(a.y - b.y) });
+}
 
 // --- Időzítő -------------------------------------------------------------
 function idozito() {
@@ -139,13 +182,30 @@ async function betoltesek() {
     // Új csempekör: a kijelzés innen számol.
     if (m === 0) await chrome.storage.local.set({ kor: {}, korCsempek: lista.length });
     const c = lista[m];
+    const tab = fulek[0];
     const indulas = Date.now();
     await chrome.storage.local.set({ aktualis: { id: c.id, ido: indulas, max: 0 }, mutato: m + 1 });
-    const url = `https://www.waze.com/ul?ll=${c.lat}%2C${c.lon}&navigate=no&zoom=${c.z}`;
-    try { await chrome.tabs.update(fulek[0].id, { url }); } catch (e) { return; }
+    // Ha az oldal már be van töltve, csak odahúzzuk a térképet; újratölteni
+    // csak az első alkalommal, nagy nagyításváltásnál vagy sikertelen húzás után kell.
+    const { nezet } = await chrome.storage.local.get("nezet");
+    let huzas = !!nezet && nezet.tab === tab.id && !nezet.ujratolt && /live-map/.test(tab.url || "") &&
+      Math.abs(c.z - nezet.z) <= MAX_NAGYITAS_LEPES;
+    if (huzas) huzas = await mozgat(tab.id, nezet, c);
+    if (huzas) {
+      await chrome.storage.local.set({ nezet: { ...(await chrome.storage.local.get("nezet")).nezet, z: c.z } });
+    } else {
+      await chrome.storage.local.set({ nezet: { tab: tab.id, z: c.z, lat: c.lat, lon: c.lon } });
+      const url = `https://www.waze.com/ul?ll=${c.lat}%2C${c.lon}&navigate=no&zoom=${c.z}`;
+      try { await chrome.tabs.update(tab.id, { url }); } catch (e) { return; }
+    }
     await varj(VALASZ_VARAS_MS);
+    const { utolsoValasz = 0, nezet: most } = await chrome.storage.local.get(["utolsoValasz", "nezet"]);
+    if (huzas && (utolsoValasz < indulas || !rajta(most, c))) {
+      // A húzás nem vitte oda a térképet: legközelebb újratöltéssel megy.
+      await chrome.storage.local.set({ nezet: { ...most, ujratolt: true } });
+      return;
+    }
     // Ha a térkép nem kért adatot, az oldal nem töltött be (pl. 429 az oldalra).
-    const { utolsoValasz = 0 } = await chrome.storage.local.get("utolsoValasz");
     if (utolsoValasz < indulas) {
       await hiba("az oldal nem töltött be (valószínűleg 429)");
       return;
@@ -165,8 +225,8 @@ async function hiba(ok) {
 
 // --- Válaszok feldolgozása (egymás után, hogy ne akadjanak össze) --------
 let sor = Promise.resolve();
-chrome.runtime.onMessage.addListener((uz) => {
-  if (uz && uz.tipus === "georss") sor = sor.then(() => feldolgoz(uz)).catch((e) => console.error(e));
+chrome.runtime.onMessage.addListener((uz, kuldo) => {
+  if (uz && uz.tipus === "georss") sor = sor.then(() => feldolgoz(uz, kuldo.tab && kuldo.tab.id)).catch((e) => console.error(e));
   if (uz && uz.tipus === "ablak") chrome.storage.local.set({ ablak: { szel: uz.szel, mag: uz.mag } });
   if (uz && uz.tipus === "teszt") sor = sor.then(tesztLevel).catch((e) => console.error(e));
 });
@@ -196,12 +256,15 @@ function kinyer(adat) {
   return ki;
 }
 
-async function feldolgoz({ status, adat }) {
+async function feldolgoz({ status, adat, url }, tabId) {
   const most = Date.now();
-  const t = await chrome.storage.local.get(["latott", "utolsoSiker", "feltoltesIg", "hibaSorozat", "kor", "korUj", "korEmail", "korCsempek", "korMax", "aktualis", "lista", "csempeValtozas"]);
+  const t = await chrome.storage.local.get(["latott", "utolsoSiker", "feltoltesIg", "hibaSorozat", "kor", "korUj", "korEmail", "korCsempek", "korMax", "aktualis", "lista", "csempeValtozas", "nezet"]);
   const ido = new Date().toLocaleTimeString("hu-HU");
 
-  await chrome.storage.local.set({ utolsoValasz: most });
+  // A térkép valódi helye a kérésből: a következő húzás innen számol.
+  const kozep = url ? kozepe(url) : null;
+  const nezet = t.nezet && t.nezet.tab === tabId && kozep ? { ...t.nezet, ...kozep } : t.nezet;
+  await chrome.storage.local.set({ utolsoValasz: most, nezet });
   if (status !== 200 || !adat) {
     await hiba(`HTTP ${status}`);
     return;
@@ -242,13 +305,17 @@ async function feldolgoz({ status, adat }) {
   // A válasz az utoljára betöltött csempéé: ha elérte a határt, felezzük.
   let csempeValtozas = t.csempeValtozas || "";
   const csempeAllapot = {};
-  if (t.aktualis && most - t.aktualis.ido < PAROSITAS_MS && t.lista) {
+  // A válasz csak akkor a csempéé, ha a térkép már ott áll (húzás közben jöhet más nézetről is).
+  const aktC = t.aktualis && t.lista && t.lista.find((c) => c.id === t.aktualis.id);
+  if (aktC && most - t.aktualis.ido < PAROSITAS_MS && (!kozep || rajta(kozep, aktC))) {
     const darab = Math.max(t.aktualis.max || 0, nyers);
     const ig = csempeIgazitas(t.lista, t.aktualis.id, darab);
     if (ig.valtozas) {
       csempeValtozas = `${ido}: ${ig.valtozas}, most ${ig.lista.length} csempe.`;
       // A felezett/összevont csempe azonosítója megszűnt: a további részválaszok már nem módosítanak.
       csempeAllapot.aktualis = null;
+      // A következő betöltés az első negyeddel (összevonás után a következő csempével) folytatódik.
+      csempeAllapot.mutato = ig.kovetkezo;
     } else {
       csempeAllapot.aktualis = { ...t.aktualis, max: darab };
     }
