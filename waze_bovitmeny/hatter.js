@@ -202,7 +202,10 @@ async function betoltesek() {
     const { utolsoValasz = 0, nezet: most } = await chrome.storage.local.get(["utolsoValasz", "nezet"]);
     if (huzas && (utolsoValasz < indulas || !rajta(most, c))) {
       // A húzás nem vitte oda a térképet: legközelebb újratöltéssel megy.
-      await chrome.storage.local.set({ nezet: { ...most, ujratolt: true } });
+      await chrome.storage.local.set({
+        nezet: { ...most, ujratolt: true },
+        allapot: `${new Date().toLocaleTimeString("hu-HU")}: a térkép húzása nem sikerült, a következő csempét újratöltéssel nyitja meg.`,
+      });
       return;
     }
     // Ha a térkép nem kért adatot, az oldal nem töltött be (pl. 429 az oldalra).
