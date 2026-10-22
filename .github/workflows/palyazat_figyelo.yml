@@ -2,6 +2,17 @@ name: 🔎 Pályázat-figyelő
 
 on:
   workflow_dispatch:
+    inputs:
+      ujrakuldes:
+        description: "Újraküldés: a teljes mostani listát újra elküldi (az eddig látottakat is)"
+        required: false
+        default: false
+        type: boolean
+      csak_weboldal:
+        description: "Csak a weboldal adatainak teljes újraépítése, levél nélkül"
+        required: false
+        default: false
+        type: boolean
   schedule:
     # Naponta 7:00 körül (magyar idő)
     - cron: '0 5 * * *'
@@ -10,6 +21,7 @@ on:
     branches-ignore: [main]
     paths:
       - 'palyazat_figyelo.py'
+      - 'palyazat/**'
       - '.github/workflows/palyazat_figyelo.yml'
 
 concurrency:
@@ -27,15 +39,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: pip install -q cryptography
 
       - name: 🔎 Pályázatok ellenőrzése
         env:
           PROBA: ${{ github.event_name == 'push' && '1' || '0' }}
+          UJRAKULD: ${{ inputs.ujrakuldes && '1' || '0' }}
+          CSAK_WEB: ${{ inputs.csak_weboldal && '1' || '0' }}
           SMTP_HOST: smtp.gmail.com
           SMTP_PORT: 465
           EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
+          PALYAZAT_CIMZETT: ${{ secrets.PALYAZAT_CIMZETT }}
         run: python palyazat_figyelo.py
 
       - name: 💾 Állapot commitolása
@@ -45,11 +61,13 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           [ -f palyazat_allapot.json ] || exit 0
           cp palyazat_allapot.json /tmp/palyazat_allapot.json
+          cp palyazat/adatok.json /tmp/palyazat_adatok.json 2>/dev/null || true
           for i in 1 2 3 4 5 6; do
             git fetch origin main
             git reset --hard origin/main
             cp /tmp/palyazat_allapot.json palyazat_allapot.json
-            git add palyazat_allapot.json
+            [ -f /tmp/palyazat_adatok.json ] && cp /tmp/palyazat_adatok.json palyazat/adatok.json
+            git add palyazat_allapot.json palyazat/adatok.json 2>/dev/null || git add palyazat_allapot.json
             if git diff --staged --quiet; then echo "Nincs változás."; exit 0; fi
             git commit -m "pályázat-figyelő állapot [skip ci]"
             if git push origin HEAD:main; then echo "Push sikeres."; exit 0; fi
