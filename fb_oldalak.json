@@ -13,6 +13,13 @@
       "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=csepelvizipolgarorseg&format=Atom",
       "csendes_perc": 40,
       "max_szoveg": 1500
+    },
+    {
+      "nev": "Tündérkert",
+      "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=tunderkerthivatalos&format=Atom",
+      "szuro": "(?i)esemény|program|koncert|előadás|fellép|buli|fesztivál|vásár|jegy|belépő|szeretettel várunk|várunk|\\b\\d{1,2}[:.]\\d{2}\\b|hétvég|szombat|vasárnap|péntek",
+      "csendes_perc": 40,
+      "max_szoveg": 1500
     }
   ]
 }
