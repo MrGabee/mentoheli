@@ -4,6 +4,7 @@
   - Csepeli Munkásotthon (Árpád u. 1.) – a jegy.hu helyszínoldala (a saját
     Google-naptáruk nem nyilvános, ezért csak a jegyes programok látszanak)
   - Fedák Sári Színház (Soroksár) – a fedakszinhaz.hu játékterv-oldala
+  - Soroksár eseményei – a soroksar.hu WordPress REST API-ja (esemenyek típus)
   - Müpa – a jegy.hu helyszínoldala (nem kerületi, ezért naponta csak
     néhány programja kerül be, és csak a mai/hétvégi ajánlóba)
 Minden forrás egységes listát ad: {"cim", "nap" (date), "ido", "hely", "link"}.
@@ -181,11 +182,63 @@ def fedak():
         return None
 
 
+SOROKSAR_API = "https://soroksar.hu/wp-json/wp/v2/esemenyek?per_page=50"
+
+HONAP_KIS = {"január": 1, "február": 2, "március": 3, "április": 4, "május": 5, "június": 6,
+             "július": 7, "augusztus": 8, "szeptember": 9, "október": 10, "november": 11, "december": 12}
+
+
+def soroksar_feldolgoz(tetelek):
+    """A tartalomban szabad szöveg a dátum: <p>2026. november 8. 14:00 – 18:00</p>
+    <p>helyszín</p>; több napos: „2026. október 26 – 29. 9:00 – 16:00”."""
+    lista = []
+    for t in tetelek:
+        cim = _szoveg(t.get("title", {}).get("rendered", ""))
+        bekezdesek = [_szoveg(x) for x in re.findall(r"<p[^>]*>(.*?)</p>", t.get("content", {}).get("rendered", ""), re.S)]
+        for i, b in enumerate(bekezdesek):
+            m = re.search(r"(\d{4})\.\s*([a-záéíóöőúüű]+)\s*(\d{1,2})\.?(?:\s*[–-]\s*(\d{1,2})\.)?\s*(\d{1,2}[:.]\d{2})?", b)
+            if not m or m.group(2) not in HONAP_KIS:
+                continue
+            ev, ho, elso = int(m.group(1)), HONAP_KIS[m.group(2)], int(m.group(3))
+            utolso = int(m.group(4)) if m.group(4) else elso
+            hely = next((x for x in bekezdesek[i + 1:] if x and x.upper() != cim.upper()), "")
+            for d in range(elso, min(utolso, elso + 6) + 1):
+                try:
+                    nap = date(ev, ho, d)
+                except ValueError:
+                    continue
+                lista.append({
+                    "cim":  cim,
+                    "nap":  nap,
+                    "ido":  (m.group(5) or "").replace(".", ":"),
+                    "hely": f"{hely} (Soroksár)" if hely else "Soroksár",
+                    "link": t.get("link", "https://soroksar.hu/esemenyek/"),
+                })
+            break
+    lista.sort(key=lambda x: (x["nap"], x["ido"]))
+    return lista
+
+
+def soroksar():
+    try:
+        r = requests.get(SOROKSAR_API, headers=HEADERS, timeout=25)
+        if r.status_code != 200:
+            print(f"  ⚠️ Soroksár események HTTP {r.status_code}")
+            return None
+        lista = soroksar_feldolgoz(r.json())
+        print(f"  📅 Soroksár események: {len(lista)} program")
+        return lista
+    except Exception as ex:
+        print(f"  ❌ Soroksár események: {ex}")
+        return None
+
+
 # (név, lekérdező, kerületi-e, naponta legfeljebb ennyi program)
 FORRASOK = [
     ("Csepeli Munkásotthon", munkasotthon, True,  None),
     ("Barba Negra",          barba_negra,  True,  None),
     ("Fedák Sári Színház",   fedak,        True,  None),
+    ("Soroksár",             soroksar,     True,  None),
     ("Müpa",                 mupa,         False, 3),
 ]
 
