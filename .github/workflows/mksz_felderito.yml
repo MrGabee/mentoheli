@@ -1,0 +1,20 @@
+name: MKSZ felderítő (ideiglenes, nem posztol)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "mksz.hu oldal"
+        default: "https://www.mksz.hu/jegyzokonyv/32021361670"
+
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q requests
+      - run: python eszkozok/mksz_felderito.py "${{ inputs.url }}"
