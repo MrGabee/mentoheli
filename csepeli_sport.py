@@ -1,5 +1,6 @@
 """
-⚽ Csepeli foci – a csepeli csapatok meccsei az MLSZ adatbankból
+⚽ Csepeli sport – a csepeli csapatok meccsei az MLSZ adatbankból,
+a többi sportágé (kézilabda stb.) a mas_sportagak.py-ból
   - elozetes_szoveg: pénteken a hétvégi (péntek–vasárnap) meccsek
   - eredmeny_szoveg: hétfőn az elmúlt hét eredményei
   - hetkoznapi_szoveg: a Csepel SC hétközi meccse előtti napon külön poszt
@@ -24,6 +25,7 @@ from datetime import datetime, date, timedelta
 from zoneinfo import ZoneInfo
 
 from poszt_valtozatos import Stilus
+import mas_sportagak
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 ADATBANK = "https://adatbank.mlsz.hu"
@@ -211,6 +213,10 @@ def osszes_meccs(teljes=True):
     for k in KEZI_MECCSEK:
         if not any(m["nap"] == k["nap"] and m["csapat"] == k["csapat"] for m in meccsek.values()):
             meccsek[f"kezi-{k['nap']}"] = dict(k, id=f"kezi-{k['nap']}", golok=None)
+    if teljes:
+        # a többi sportág (kézilabda stb.) csepeli csapatai
+        for m in mas_sportagak.osszes(datetime.now(MAGYAR_TZ).date()):
+            meccsek.setdefault(m["id"], m)
     return sorted(meccsek.values(), key=lambda m: (m["nap"], m["ido"] or "99", m["bajnoksag"]))
 
 
@@ -231,6 +237,18 @@ def _kiemelt_sorok(lista, eredmennyel=False):
             sorok.append(f"⚽ {_parositas(m)}")
         sorok.append(f"   🏆 {_bajnoksag(m)}  📅 {nap}" + (f"  📍 {m['helyszin']}" if m["helyszin"] and not eredmennyel else ""))
     return sorok
+
+
+def _emoji(m):
+    return mas_sportagak.EMOJI.get(m.get("sport", "foci"), "🏅")
+
+
+def _lablec(lista, *cimkek):
+    """Forrás és hashtagek a posztban szereplő sportágak szerint."""
+    sportok = sorted({m.get("sport", "foci") for m in lista}, key=lambda s: s != "foci")
+    forras = ", ".join(mas_sportagak.FORRAS.get(s, s) for s in sportok)
+    cimkek = ["#Csepel", *(mas_sportagak.HASHTAG.get(s, "") for s in sportok), *cimkek]
+    return [f"Forrás: {forras}", " ".join(c for c in cimkek if c)]
 
 
 def _bajnoksag(m):
@@ -277,13 +295,13 @@ def elozetes_szoveg(ma, meccsek=None):
         sorok.append(f"▶️ {NAPOK[nap.weekday()].upper()} ({nap.strftime('%m.%d.')})")
         for m in [m for m in tobbi if m["nap"] == nap]:
             ido = f"{m['ido']} " if m["ido"] else ""
-            sorok.append(f"⚽ {ido}{_parositas(m)}")
+            sorok.append(f"{_emoji(m)} {ido}{_parositas(m)}")
             sorok.append(f"   🏆 {_bajnoksag(m)}" + (f"  📍 {m['helyszin']}" if m["helyszin"] else ""))
         sorok.append("")
     sorok.append("Hajrá, Csepel! 💪 Ha kimentek, írjátok meg az eredményt kommentben!")
     if st.zaro:
         sorok.append(st.zaro)
-    sorok += ["Forrás: MLSZ adatbank", "#Csepel #foci #CsepelSC #utánpótlás"]
+    sorok += _lablec(lista, "#CsepelSC", "#utánpótlás")
     return "\n".join(sorok)
 
 
@@ -304,14 +322,14 @@ def eredmeny_szoveg(ma, meccsek=None):
     for m in [m for m in lista if not kiemelt(m)]:
         h, v = m["golok"]
         jel = _kimenet(m)
-        sorok.append(f"{jel or '⚽'} {_parositas(m)}  {h}–{v}")
+        sorok.append(f"{jel or _emoji(m)} {_parositas(m)}  {h}–{v}")
         sorok.append(f"   🏆 {_bajnoksag(m)}, {m['nap'].strftime('%m.%d.')} {NAPOK[m['nap'].weekday()]}")
     gyozelem = sum(1 for m in lista if _kimenet(m) == "✅")
     sorok += ["", f"Összesen {len(lista)} meccs, ebből {gyozelem} csepeli győzelem."
               if gyozelem else f"Összesen {len(lista)} meccs. Jövő héten jobban megy majd! 💪"]
     if st.zaro:
         sorok.append(st.zaro)
-    sorok += ["Forrás: MLSZ adatbank", "#Csepel #foci #CsepelSC #eredmények"]
+    sorok += _lablec(lista, "#CsepelSC", "#eredmények")
     return "\n".join(sorok)
 
 

@@ -82,7 +82,7 @@ CIMEK = {
     ],
     "sport_elozetes": [
         "⚽ CSEPELI MECCSEK A HÉTVÉGÉN ⚽",
-        "🏟️ HÉTVÉGI FOCI – SZURKOLJUNK A CSEPELIEKNEK! 🏟️",
+        "🏟️ HÉTVÉGI MECCSEK – SZURKOLJUNK A CSEPELIEKNEK! 🏟️",
         "⚽ KI MIKOR JÁTSZIK? HÉTVÉGI MECCSPROGRAM ⚽",
         "🥅 HÉTVÉGI MENETREND A CSEPELI CSAPATOKNAK 🥅",
     ],
@@ -94,7 +94,7 @@ CIMEK = {
     ],
     "sport_eredmeny": [
         "⚽ ÍGY JÁTSZOTTAK A CSEPELI CSAPATOK ⚽",
-        "📋 HÉTVÉGI EREDMÉNYEK – CSEPELI FOCI 📋",
+        "📋 HÉTVÉGI EREDMÉNYEK – CSEPELI SPORT 📋",
         "🏁 LEFÚJTÁK! A CSEPELI CSAPATOK EREDMÉNYEI 🏁",
         "⚽ EREDMÉNYKÖZLŐ A KÖRNYÉKRŐL ⚽",
     ],
@@ -241,8 +241,8 @@ BEVEZETOK = {
     "sport_elozetes": [
         "Összeszedtem, mikor és hol lépnek pályára a csepeli csapatok a hétvégén, a felnőttektől az utánpótlásig:",
         "Ha kimennétek szurkolni, itt a hétvégi meccsek listája. A fiataloknak is jól jön a biztatás!",
-        "Megnéztem az MLSZ adatbankját, ezek a csepeli meccsek jönnek:",
-        "Hétvégén is lesz foci bőven, a csepeli csapatok így játszanak:",
+        "Megnéztem a szövetségek adatbankjait, ezek a csepeli meccsek jönnek:",
+        "Hétvégén is lesz sport bőven, a csepeli csapatok így játszanak:",
     ],
     "sport_eredmeny": [
         "Lezajlott a hét, összeszedtem, hogy szerepeltek a csepeli csapatok:",
