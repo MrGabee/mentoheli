@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-23T04:14:56.556542+02:00",
+  "frissitve": "2026-10-23T04:15:30.583737+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-22T12:21:28.814246+02:00",
-      "kulcs": "415 018",
-      "rendszam": "415 018",
-      "vehicle_id": "945514150180",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 46.416568756103516,
-      "lon": 18.253219604492188,
-      "elozo_szoveg": "Dombóvár",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-22T12:21:28.814549+02:00",
-      "kulcs": "815 027",
-      "rendszam": "815 027",
-      "vehicle_id": "945518150277",
-      "vehicle_label": "Vác",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.525909423828125,
-      "lon": 19.09004020690918,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Vác"
-    },
-    {
-      "idopont": "2026-10-22T12:22:24.394628+02:00",
-      "kulcs": "AADR703",
-      "rendszam": "AADR703",
-      "vehicle_id": "170",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46306610107422,
-      "lon": 19.149585723876953,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre"
-    },
     {
       "idopont": "2026-10-22T12:22:24.394855+02:00",
       "kulcs": "V2020",
@@ -260000,6 +259961,45 @@
       "lon": 19.254894256591797,
       "elozo_szoveg": "Rákoskert",
       "uj_szoveg": "Kőbánya alsó vasútáll."
+    },
+    {
+      "idopont": "2026-10-23T04:15:30.518408+02:00",
+      "kulcs": "V2110",
+      "rendszam": "V2110",
+      "vehicle_id": "5838",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "1",
+      "route_id": "3010",
+      "lat": 47.46425247192383,
+      "lon": 19.02342414855957,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-23T04:15:30.518784+02:00",
+      "kulcs": "PHG657",
+      "rendszam": "PHG657",
+      "vehicle_id": "7181",
+      "vehicle_label": "Kistarcsa, kórház H",
+      "vonal_szam": "92A",
+      "route_id": "0921",
+      "lat": 47.52024459838867,
+      "lon": 19.149452209472656,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Kistarcsa, kórház H"
+    },
+    {
+      "idopont": "2026-10-23T04:15:30.519175+02:00",
+      "kulcs": "T9145",
+      "rendszam": "T9145",
+      "vehicle_id": "7884",
+      "vehicle_label": "Öv utca / Egressy út",
+      "vonal_szam": "77",
+      "route_id": "4770",
+      "lat": 47.49979019165039,
+      "lon": 19.103687286376953,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Öv utca / Egressy út"
     }
   ]
 }
