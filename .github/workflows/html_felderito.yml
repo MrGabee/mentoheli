@@ -1,0 +1,26 @@
+name: HTML felderítő (ideiglenes, nem posztol)
+
+on:
+  workflow_dispatch:
+    inputs:
+      urlek:
+        description: "URL-ek szóközzel"
+        default: "https://mkosz.hu/csapat-musor/x2627/hun3koa/10837/"
+      minta:
+        description: "Keresett minta (regex)"
+        default: "Csepel"
+
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q requests
+      - run: python eszkozok/html_felderito.py
+        env:
+          URLEK: ${{ inputs.urlek }}
+          MINTA: ${{ inputs.minta }}
