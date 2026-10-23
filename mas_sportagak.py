@@ -122,7 +122,9 @@ def mkosz_meccsek(lap, bajnoksag):
             "vendeg": vendeg,
             "nap": nap,
             "ido": f"{int(ido.group(1))}:{ido.group(2)}" if ido else "",
-            "golok": (int(eredmeny.group(1)), int(eredmeny.group(2))) if eredmeny else None,
+            # a még le nem játszott meccsnél 0 - 0 áll
+            "golok": (int(eredmeny.group(1)), int(eredmeny.group(2)))
+                     if eredmeny and eredmeny.group(1, 2) != ("0", "0") else None,
             "helyszin": html.unescape(helyszin.group(1)).strip() if helyszin else "",
         })
     return meccsek
