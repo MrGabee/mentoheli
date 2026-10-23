@@ -262,8 +262,8 @@ def _parositas(m):
 def _kimenet(m):
     """✅/🤝/❌ a csepeli csapat szemszögéből (csepeli rangadón nincs)."""
     h, v = m["golok"]
-    hazai_csepeli = "CSEPEL" in m["hazai"].upper()
-    vendeg_csepeli = "CSEPEL" in m["vendeg"].upper()
+    hazai_csepeli = bool(CSEPELI_NEV.search(m["hazai"]))
+    vendeg_csepeli = bool(CSEPELI_NEV.search(m["vendeg"]))
     if h == v:
         return "🤝"
     if hazai_csepeli == vendeg_csepeli:
