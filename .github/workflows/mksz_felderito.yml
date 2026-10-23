@@ -17,4 +17,6 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -q requests
-      - run: python eszkozok/mksz_felderito.py ${{ inputs.utak }}
+      - run: python eszkozok/mksz_felderito.py
+        env:
+          UTAK: ${{ inputs.utak }}
