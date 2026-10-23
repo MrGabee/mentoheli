@@ -1,6 +1,7 @@
 """Ideiglenes felderítő: az mksz.hu publikus API-ját vizsgálja
 (a Csepel DSE kézilabda-meccseihez). Csak kiír, nem posztol."""
 import re
+import os
 import sys
 import json
 import requests
@@ -26,9 +27,22 @@ def get(ut, **p):
         r = requests.get(API + ut, headers=H, params=p, timeout=30)
         szoveg = r.text
         print(f"\n### GET {ut} {p} -> {r.status_code} {len(szoveg)}")
-        print(szoveg[:1500])
+        try:
+            adat = r.json()
+        except ValueError:
+            adat = None
+        if isinstance(adat, dict) and isinstance(adat.get("content"), list):
+            adat = adat["content"]
+        if isinstance(adat, list) and adat and "merkozesId" in adat[0]:
+            print(f"{len(adat)} meccs; mezők: {sorted(adat[0].keys())}")
+            for m in adat[:60]:
+                print(f"  {m.get('merkozesDatum')} | {m.get('evadEv')} | {m.get('foversenyRovidNev')} / {m.get('alversenyNev')} | "
+                      f"{m.get('hazaiCsapatNev')} ({m.get('hazaiSportszervezetId')}) – {m.get('vendegCsapatNev')} ({m.get('vendegSportszervezetId')}) "
+                      f"| {m.get('hazaiCsapatGol')}:{m.get('vendegCsapatGol')} | {m.get('letesitmenyNev')} | {m.get('merkozesStatusz')}")
+        else:
+            print(szoveg[:1500])
     except Exception as ex:
         print("hiba", ut, ex)
 
-for ut in sys.argv[1:]:
+for ut in (sys.argv[1:] or os.environ.get("UTAK", "").split()):
     get(ut)
