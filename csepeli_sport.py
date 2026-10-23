@@ -43,7 +43,7 @@ MAX_MECCS = 40
 # amelyiknek a nevében ott van a Csepel (pl. más klubok csepeli csapatai).
 EVAD = 67
 BAJNOKSAG_TARTOMANY = range(33300, 34600)
-CSEPELI_NEV = re.compile(r"CSEPEL|CSFC", re.I)
+CSEPELI_NEV = re.compile(r"CSEPEL|CSFC|CSHC", re.I)   # CsHC 94 SE: Csepel Hungary Club
 
 # A kiemelt csapat: a Csepel SC felnőtt csapata (bajnokság és kupa)
 KIEMELT_CSAPAT = "CSEPEL SC"
