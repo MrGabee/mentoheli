@@ -1,0 +1,20 @@
+name: Csepeli évfordulók próba (nem posztol)
+
+on:
+  workflow_dispatch:
+    inputs:
+      datum:
+        description: "YYYY-MM-DD (üres = ma)"
+        default: ""
+
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q requests tzdata
+      - run: python csepeli_emlekezes.py ${{ inputs.datum }}
