@@ -54,6 +54,24 @@ Konkrét címet és dátumot egyelőre nem írtak, de úgy tűnik, Csepel is sz�
 💬 Ti mit szólnátok egy csepeli EcoFamilyhez? Hová tennétek, hol lenne a legjobb helye? Írjátok meg kommentben!
 
 #Csepel #EcoFamily #boltnyitás #olvasóihír"""),
+    "kaszkador_20261023": (date(2026, 10, 23), """🚗🔥 KASZKADŐR SHOW LESZ CSEPELEN A HÉTVÉGÉN! 🔥🚗
+
+Ha füstös, hangos, látványos családi programot kerestek hétvégére, ezt nem érdemes kihagyni: lángok, csikorgó kerekek, roncsautók és egy hatalmas Monster Truck, mindez pár méterről!
+
+📍 Helyszín: a csepeli Tesco parkolója (II. Rákóczi Ferenc út 191.)
+📅 Szombat (október 24.) és vasárnap (október 25.)
+🚪 Kapunyitás 14:30-kor, a műsor 15:00-kor kezdődik
+
+💥 A programban:
+🦖 Monster Truck, ami simán átgázol a roncsautókon
+🌀 Drift és autós mutatványok, centire pontos pörgésekkel
+🔥 Kaszkadőrakciók: ugrások, esések, lángoló jelenetek
+
+🎁 A gyerekeknek külön meglepetés: az előadás végén mindegyiküket ingyen elviszik egy körre a Monster Truckkal!
+
+🎟️ Jegyet a helyszínen, a kapunál lehet venni.
+
+#Csepel #hétvége #családiprogram #kaszkadőrshow"""),
     "hev_ajto_20261022": (date(2026, 10, 22), """🚆 OLVASÓI LEVÉL: ORRA ELŐTT CSUKÓDOTT BE A HÉV AJTAJA 🚆
 
 Egy olvasóm írta meg, hogy ma reggel két gyerekkel akart felszállni a HÉV-re a csepeli végállomáson, amikor a kisebbik gyerek előtt becsukódott az ajtó. A kicsi nagyon megijedt.
