@@ -1,28 +1,34 @@
-"""Ideiglenes felderítő: az mksz.hu JS-alkalmazásának API-végpontjait keresi
+"""Ideiglenes felderítő: az mksz.hu publikus API-ját vizsgálja
 (a Csepel DSE kézilabda-meccseihez). Csak kiír, nem posztol."""
 import re
 import sys
+import json
 import requests
 
-H = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safari/537.36"}
-URL = sys.argv[1] if len(sys.argv) > 1 else "https://www.mksz.hu/jegyzokonyv/32021361670"
+H = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safari/537.36",
+     "Accept": "application/json", "Origin": "https://www.mksz.hu", "Referer": "https://www.mksz.hu/"}
+API = "https://public.mksz.hu/public/api/v1/"
 
-r = requests.get(URL, headers=H, timeout=30)
-print("HTML", r.status_code, len(r.text))
-scriptek = re.findall(r'<script[^>]+src="([^"]+)"', r.text)
-print("scriptek:", scriptek)
-talalt = set()
-for s in scriptek:
-    u = s if s.startswith("http") else "https://www.mksz.hu" + ("" if s.startswith("/") else "/") + s
+html = requests.get("https://www.mksz.hu/", headers=H, timeout=30).text
+app = next((s for s in re.findall(r'src="(/js/app\.[^"]+)"', html)), None)
+js = requests.get("https://www.mksz.hu" + app, headers=H, timeout=30).text if app else ""
+print("app.js", app, len(js))
+utak = set()
+for m in re.finditer(r'["`]((?:[a-z0-9\-]+/)*(?:[a-z0-9\-]+|\$\{[^}`]{1,40}\})(?:/(?:[a-z0-9\-]+|\$\{[^}`]{1,40}\}))+/?(?:\?[^"`]{0,80})?)["`]', js):
+    u = m.group(1)
+    if not u.startswith(("http", "img", "css", "js/", "fonts")) and len(u) < 140:
+        utak.add(u)
+for u in sorted(utak):
+    print("  UT", u)
+
+def get(ut, **p):
     try:
-        js = requests.get(u, headers=H, timeout=30).text
+        r = requests.get(API + ut, headers=H, params=p, timeout=30)
+        szoveg = r.text
+        print(f"\n### GET {ut} {p} -> {r.status_code} {len(szoveg)}")
+        print(szoveg[:1500])
     except Exception as ex:
-        print("hiba", u, ex)
-        continue
-    print("JS", u, len(js))
-    for m in re.findall(r'["\'`](https?://[^"\'`\s]*(?:api|data|backend|svc)[^"\'`\s]*)["\'`]', js, re.I):
-        talalt.add(m)
-    for m in re.findall(r'["\'`](/(?:api|v\d)[^"\'`\s]{2,120})["\'`]', js):
-        talalt.add(m)
-for t in sorted(talalt)[:300]:
-    print("  ", t)
+        print("hiba", ut, ex)
+
+for ut in sys.argv[1:]:
+    get(ut)
