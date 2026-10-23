@@ -4,11 +4,14 @@ A csepeli_sport.osszes_meccs() ugyanabban a formában kapja meg őket,
 mint az MLSZ-meccseket, csak a "sport" mezőben más áll.
 
   - kézilabda: az MKSZ nyilvános API-ja (public.mksz.hu), sportszervezet szerint
+  - kosárlabda: az mkosz.hu bajnoksági műsora (HTML), a csepeli nevű csapatok meccsei
 
 Kézi próba (nem posztol): python mas_sportagak.py [YYYY-MM-DD]
 """
 
+import html
 import json
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -22,9 +25,18 @@ MKSZ_FEJLEC = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safar
 MKSZ_KLUBOK = {328: "Csepel DSE", 899: "Csepel SZSE", 336: "Csepeli KSE"}
 
 # Sportáganként az emoji és a forrás neve a posztban
-EMOJI = {"foci": "⚽", "kezilabda": "🤾"}
-FORRAS = {"foci": "MLSZ adatbank", "kezilabda": "MKSZ"}
-HASHTAG = {"foci": "#foci", "kezilabda": "#kézilabda"}
+EMOJI = {"foci": "⚽", "kezilabda": "🤾", "kosar": "🏀"}
+FORRAS = {"foci": "MLSZ adatbank", "kezilabda": "MKSZ", "kosar": "MKOSZ"}
+HASHTAG = {"foci": "#foci", "kezilabda": "#kézilabda", "kosar": "#kosárlabda"}
+
+# Kosárlabda: az mkosz.hu bajnokságai, amelyekben csepeli csapat játszik
+# (2026/27: Csepel Basket, férfi NB II Közép A). Új évadnál az évadkódot is frissíteni kell.
+MKOSZ = "https://mkosz.hu"
+MKOSZ_EVAD = "x2627"
+MKOSZ_BAJNOKSAGOK = {"hun3koa": "Férfi NB II Közép A"}
+CSEPELI = re.compile(r"csepel", re.I)
+HONAPOK = ["január", "február", "március", "április", "május", "június", "július",
+           "augusztus", "szeptember", "október", "november", "december"]
 
 
 def _json(url):
@@ -81,10 +93,65 @@ def kezilabda(tol, ig):
     return list(meccsek.values())
 
 
+def _szoveg(t):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", t))).strip()
+
+
+def mkosz_meccsek(lap, bajnoksag):
+    """Az mkosz.hu bajnokság-műsor lapjáról a csepeli csapatok meccsei."""
+    meccsek = []
+    for sor in re.split(r"<tr[\s>]", lap):
+        csapatok = re.findall(r'<a href="[^"]*/csapat/[^"]*" title="([^"]+)" class="hasLogo"', sor)
+        datum = re.search(r"<b>\s*(\d{4})\.\s*([a-záéíóöőúüű]+)\s+(\d{1,2})\.\s*</b>", sor)
+        if len(csapatok) != 2 or not datum or not any(CSEPELI.search(c) for c in csapatok):
+            continue
+        if datum.group(2) not in HONAPOK:
+            continue
+        nap = date(int(datum.group(1)), HONAPOK.index(datum.group(2)) + 1, int(datum.group(3)))
+        ido = re.search(r'<td style="width: 70px">\s*(\d{1,2}):(\d{2})\s*</td>', sor)
+        link = re.search(r'href="[^"]*/merkozes/[^"]*?_(\d+)"', sor)
+        eredmeny = re.search(r'/merkozes/[^"]*">\s*(\d+)\s*-\s*(\d+)\s*</a>', sor)
+        helyszin = re.search(r'non-breaking" title="([^"]*)"', sor)
+        hazai, vendeg = (html.unescape(c).strip() for c in csapatok)
+        meccsek.append({
+            "id": f"mkosz-{link.group(1) if link else f'{nap}-{hazai}'}",
+            "sport": "kosar",
+            "csapat": hazai if CSEPELI.search(hazai) else vendeg,
+            "bajnoksag": bajnoksag,
+            "hazai": hazai,
+            "vendeg": vendeg,
+            "nap": nap,
+            "ido": f"{int(ido.group(1))}:{ido.group(2)}" if ido else "",
+            "golok": (int(eredmeny.group(1)), int(eredmeny.group(2))) if eredmeny else None,
+            "helyszin": html.unescape(helyszin.group(1)).strip() if helyszin else "",
+        })
+    return meccsek
+
+
+def kosar(tol, ig):
+    """A csepeli kosárlabdacsapatok meccsei tol..ig között. Hiba esetén üres lista."""
+    meccsek = {}
+    for kod, nev in MKOSZ_BAJNOKSAGOK.items():
+        url = f"{MKOSZ}/bajnoksag-musor/{MKOSZ_EVAD}/{kod}/"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": MKSZ_FEJLEC["User-Agent"]})
+            with urllib.request.urlopen(req, timeout=25) as f:
+                lap = f.read().decode("utf-8", "replace")
+        except Exception as ex:
+            print(f"  ❌ MKOSZ {nev}: {ex}")
+            continue
+        for m in mkosz_meccsek(lap, nev):
+            if tol <= m["nap"] <= ig:
+                meccsek.setdefault(m["id"], m)
+    print(f"  🏀 {len(meccsek)} kosárlabdameccs")
+    return list(meccsek.values())
+
+
 def osszes(ma=None):
     """Minden nem foci meccs a mai nap körül (2 hét vissza, 2 hét előre)."""
     ma = ma or date.today()
-    return kezilabda(ma - timedelta(days=14), ma + timedelta(days=14))
+    tol, ig = ma - timedelta(days=14), ma + timedelta(days=14)
+    return kezilabda(tol, ig) + kosar(tol, ig)
 
 
 if __name__ == "__main__":
