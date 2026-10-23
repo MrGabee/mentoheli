@@ -5,6 +5,9 @@ Forrás: a magyar Wikipédia
   - azok a szócikkek, amelyek bevezetőjében Csepel a születés vagy a halál helye
 A bevezető zárójeléből olvassa ki a dátumokat:
   „Név (Csepel, 1931. május 5. – Budapest, 2001. október 23.) magyar …”
+Mellettük a jótevők: magyar orvosok, feltalálók, tudósok és mások, akik jobbá
+tették az emberek életét (pl. Heim Pál). Ők a Wikipédia napi oldalának
+(„Október 23.”) Születések / Halálozások szakaszából jönnek, foglalkozás szerint.
 Ha egy nap senkinek nincs évfordulója, nincs poszt.
 Kézzel is felvehetők emberek (KEZI), ha a Wikipédiában nincsenek fent.
 
@@ -18,6 +21,7 @@ import requests
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
+import ezen_a_napon
 from ezen_a_napon import wiki_tiszta
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
@@ -35,6 +39,11 @@ POLITIKA = re.compile(r"politikus|polgármester|képviselő|államtitkár|minisz
 HONAPOK = ["január", "február", "március", "április", "május", "június", "július",
            "augusztus", "szeptember", "október", "november", "december"]
 DATUM = re.compile(r"(\d{3,4})\.\s*(" + "|".join(HONAPOK) + r")\s+(\d{1,2})\.")
+
+MAX_JOTEVO = 2
+JOTEVO = re.compile(r"orvos|sebész|gyógyász|gyógyszerész|ápol|szülész|járványtan|bakteriológus|"
+                    r"fiziológus|biokémikus|biológus|kémikus|fizikus|feltaláló|mérnök|tudós|kutató|"
+                    r"pedagógus|gyógypedagógus|Nobel-díjas|mentő|tűzoltó|egészségügy", re.I)
 
 # Kézzel felvett emberek: {"nev", "szuletett": date|None, "elhunyt": date|None,
 #  "leiras": "magyar …", "kotodes": "Csepelen élt"}
@@ -175,39 +184,77 @@ def evfordulok(nap, lista):
     return valogatott[:MAX_SZEMELY]
 
 
+def jotevok(nap, wikiszoveg=None):
+    """A napi oldal magyar orvosai, feltalálói, tudósai: [(ember, fajta, évek)]."""
+    wikiszoveg = wikiszoveg or ezen_a_napon.lekerdez(nap)
+    if not wikiszoveg:
+        return []
+    talalat = []
+    for szakasz, fajta in (("Halálozások", "halal"), ("Születések", "szuletes")):
+        for ev, t in ezen_a_napon.szakasz(wikiszoveg, szakasz):
+            m = re.match(r"(.+?),?\s+(magyar\b.*)", t)
+            if not m or not JOTEVO.search(m.group(2)) or POLITIKA.search(m.group(2)) or ev >= nap.year:
+                continue
+            leiras = re.sub(r"\s*\((?:\*|†)[^)]*\)\s*$", "", m.group(2)).strip().rstrip(".")
+            elet = re.search(r"\((?:\*|†)\s*(\d{3,4})\)", t)
+            d = date(ev, nap.month, nap.day) if not (nap.month == 2 and nap.day == 29) else None
+            if not d:
+                continue
+            sz = {"nev": m.group(1).strip(), "leiras": leiras, "kotodes": "",
+                  "szuletett": d if fajta == "szuletes" else None, "elhunyt": d if fajta == "halal" else None,
+                  "link": "https://hu.wikipedia.org/wiki/" + m.group(1).strip().replace(" ", "_")}
+            if elet:
+                masik = int(elet.group(1))
+                if fajta == "halal":
+                    sz["szuletett_ev"] = masik
+                else:
+                    sz["elhunyt_ev"] = masik
+            talalat.append((sz, fajta, nap.year - ev))
+    rnd = random.Random(f"jotevok|{nap}")
+    rnd.shuffle(talalat)
+    talalat.sort(key=lambda t: (t[2] % 10 != 0, t[2] % 5 != 0, t[1] != "halal"))
+    return talalat[:MAX_JOTEVO]
+
+
 def _bekezdes(sz, fajta, ev, nap):
     d = sz["elhunyt"] if fajta == "halal" else sz["szuletett"]
     datum = f"{d.year}. {HONAPOK[d.month - 1]} {d.day}."
     leiras = f", {sz['leiras']}" if sz["leiras"] else ""
     if fajta == "halal":
-        elet = f" ({sz['szuletett'].year}–{d.year})" if sz.get("szuletett") else ""
+        szul_ev = sz["szuletett"].year if sz.get("szuletett") else sz.get("szuletett_ev")
+        elet = f" ({szul_ev}–{d.year})" if szul_ev else ""
         sor = f"🕯️ {ev} éve ({datum}) hunyt el {sz['nev']}{elet}{leiras}."
-    elif sz.get("elhunyt"):
+    else:   # születésnap: élőkről sem írok „ma X éves”-t, mert a halálozás hiányozhat a forrásból
         sor = f"🌱 {ev} éve ({datum}) született {sz['nev']}{leiras}."
-    else:
-        sor = f"🎂 Ma {ev} éves {sz['nev']}{leiras}."
-    return [sor, f"📍 {sz['kotodes'][0].upper() + sz['kotodes'][1:]}. Bővebben: {sz['link']}"]
+    if sz["kotodes"]:
+        return [sor, f"📍 {sz['kotodes'][0].upper() + sz['kotodes'][1:]}. Bővebben: {sz['link']}"]
+    return [sor, f"🔗 {sz['link']}"]
 
 
-def szoveg(nap, lista=None):
+def szoveg(nap, lista=None, wikiszoveg=None):
     lista = lista if lista is not None else szemelyek()
-    if lista is None:
+    csepeliek = evfordulok(nap, lista) if lista else []
+    nevek = {sz["nev"] for sz, _, _ in csepeliek}
+    jok = [t for t in jotevok(nap, wikiszoveg) if t[0]["nev"] not in nevek]
+    if lista is None and not jok:
         return None
-    valogatott = evfordulok(nap, lista)
-    if not valogatott:
+    if not (csepeliek or jok):
         return ""
-    sorok = ["🕯️ CSEPELI ÉVFORDULÓ" if len(valogatott) == 1 else "🕯️ CSEPELI ÉVFORDULÓK",
-             f"📅 {HONAPOK[nap.month - 1]} {nap.day}.", "",
-             "Ma olyan emberekre emlékezem, akik kötődnek Csepelhez:" if len(valogatott) > 1
-             else "Ma egy olyan emberre emlékezem, aki kötődik Csepelhez:", ""]
-    for sz, fajta, ev in valogatott:
-        sorok += _bekezdes(sz, fajta, ev, nap) + [""]
-    kerdes = ("Ismertétek őt személyesen, vagy tudtok róla valamit?" if len(valogatott) == 1
-              else "Ismertétek őket személyesen, vagy tudtok róluk valamit?")
-    sorok += [f"💬 {kerdes} Írjátok meg kommentben!",
-              "ℹ️ Forrás: Wikipédia", "", "#Csepel #emlékezés #évforduló #csepeliek"]
+    sorok = ["🕯️ EMLÉKEZZÜNK", f"📅 {HONAPOK[nap.month - 1]} {nap.day}.", ""]
+    if csepeliek:
+        sorok += ["💚 Csepeli kötődésű emberek, akikre ma emlékezem:" if len(csepeliek) > 1
+                  else "💚 Ma egy csepeli kötődésű emberre emlékezem:", ""]
+        for sz, fajta, ev in csepeliek:
+            sorok += _bekezdes(sz, fajta, ev, nap) + [""]
+    if jok:
+        sorok += ["🩺 Akik jobbá tették az életünket:", ""]
+        for sz, fajta, ev in jok:
+            sorok += _bekezdes(sz, fajta, ev, nap) + [""]
+    sorok += ["💬 Ismertétek valamelyiküket, vagy tudtok róluk valamit? Írjátok meg kommentben!"
+              if len(csepeliek) + len(jok) > 1 else
+              "💬 Ismertétek őt, vagy tudtok róla valamit? Írjátok meg kommentben!",
+              "ℹ️ Forrás: Wikipédia", "", "#Csepel #emlékezés #évforduló"]
     return "\n".join(sorok)
-
 
 if __name__ == "__main__":
     nap = date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else datetime.now(MAGYAR_TZ).date()
