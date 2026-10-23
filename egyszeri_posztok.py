@@ -70,6 +70,7 @@ Ha füstös, hangos, látványos családi programot kerestek hétvégére, ezt n
 🎁 A gyerekeknek külön meglepetés: az előadás végén mindegyiküket ingyen elviszik egy körre a Monster Truckkal!
 
 🎟️ Jegyet a helyszínen, a kapunál lehet venni.
+🌐 Részletek: https://kaszkadorshow.hu
 
 #Csepel #hétvége #családiprogram #kaszkadőrshow"""),
     "hev_ajto_20261022": (date(2026, 10, 22), """🚆 OLVASÓI LEVÉL: ORRA ELŐTT CSUKÓDOTT BE A HÉV AJTAJA 🚆
