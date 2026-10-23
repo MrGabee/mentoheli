@@ -3,9 +3,9 @@ name: MKSZ felderítő (ideiglenes, nem posztol)
 on:
   workflow_dispatch:
     inputs:
-      url:
-        description: "mksz.hu oldal"
-        default: "https://www.mksz.hu/jegyzokonyv/32021361670"
+      utak:
+        description: "API-utak szóközzel (public/api/v1 után)"
+        default: "merkozesek/32021361670 versenyek csapatok?nev=Csepel"
 
 jobs:
   proba:
@@ -17,4 +17,4 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -q requests
-      - run: python eszkozok/mksz_felderito.py "${{ inputs.url }}"
+      - run: python eszkozok/mksz_felderito.py ${{ inputs.utak }}
