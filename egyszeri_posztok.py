@@ -54,6 +54,19 @@ Konkrét címet és dátumot egyelőre nem írtak, de úgy tűnik, Csepel is sz�
 💬 Ti mit szólnátok egy csepeli EcoFamilyhez? Hová tennétek, hol lenne a legjobb helye? Írjátok meg kommentben!
 
 #Csepel #EcoFamily #boltnyitás #olvasóihír"""),
+    "heimpal_20261023": (date(2026, 10, 23), """❤️ MA 97 ÉVE HUNYT EL DR. HEIM PÁL ❤️
+
+Ma 97 éve, 1929. október 23-án, mindössze 54 évesen hunyt el Dr. Heim Pál, a magyar csecsemő- és gyermekgyógyászat egyik legnagyobb alakja.
+
+Egész életét a gyerekek gyógyításának szentelte. Számára a beteg gyerek sosem csak egy eset volt, hanem egy egész kis világ, amelynek figyelem, szeretet és remény kell. Fiatalon, 16 évesen veszítette el a húgát agyhártyagyulladásban, és ez a fájdalom vitte arra az útra, amelyen végig haladt: hogy megelőzze a gyermekhalált, enyhítse a kicsik szenvedését, és reményt adjon a szülőknek.
+
+👩‍⚕️ Az általa nevelt „Heim nővérek” generációkon át vitték tovább a szemléletét, és ez ma is él a gyermekellátásban. Az ő mondata ma is érvényes: a gyermek méltósága sérthetetlen!
+
+🏥 A nevét viselő Heim Pál Országos Gyermekgyógyászati Intézet ma is hálával őrzi az emlékét. Sok csepeli és erzsébeti család is köszönhet nekik egy gyógyulást, egy átvirrasztott éjszaka utáni megkönnyebbülést.
+
+🕯️ Tisztelettel emlékezem rá.
+
+#HeimPál #gyermekgyógyászat #emlékezés #Csepel #Pesterzsébet"""),
     "kaszkador_20261023": (date(2026, 10, 23), """🚗🔥 KASZKADŐR SHOW LESZ CSEPELEN A HÉTVÉGÉN! 🔥🚗
 
 Ha füstös, hangos, látványos családi programot kerestek hétvégére, ezt nem érdemes kihagyni: lángok, csikorgó kerekek, roncsautók és egy hatalmas Monster Truck, mindez pár méterről!
