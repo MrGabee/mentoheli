@@ -21,6 +21,7 @@ import idojaras_riasztas_monitor as kuldo
 import kerulet_programok
 import reggeli_osszefoglalo
 import ezen_a_napon
+import csepeli_emlekezes
 import csepeli_erdekesseg
 import kerdes_nektek
 import esti_idojaras
@@ -53,7 +54,7 @@ if SZINES_WEBHOOK:
 def kapcsolat_sor(nap, kulcs):
     return poszt_valtozatos.rovid_kapcsolat(nap, kulcs, allasok.OLVASOI_EMAIL,
                                             "+36 70 754 0254", allasok.KAPCSOLAT_URL)
-KAPCSOLAT_NELKUL = {"rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
+KAPCSOLAT_NELKUL = {"rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
@@ -97,6 +98,7 @@ MENETREND = [
     ("otlet_keres",   time(7, 15),  None,     lambda nap, a: otlet_keres.szoveg(nap)),
     ("programok",     time(8, 5),   None,     lambda nap, a: kerulet_programok.reggeli_szoveg(nap)),
     ("ezen_a_napon",  time(10, 20), None,     lambda nap, a: ezen_a_napon.szoveg(nap)),
+    ("csepeli_emlekezes", time(9, 50), None,  lambda nap, a: csepeli_emlekezes.szoveg(nap)),
     ("olvasoi_level", time(14, 30),  None,     lambda nap, a: "" if nap.isoformat() == "2026-10-22" else olvasoi_level.szoveg(nap, a)),
     ("olvasoi_level_20261022", time(17, 35), {CSUTORTOK}, lambda nap, a: olvasoi_level.szoveg(nap, a) if nap.isoformat() == "2026-10-22" else ""),
     ("erdekesseg",    time(12, 50),  None,     lambda nap, a: csepeli_erdekesseg.szoveg(nap, a.setdefault("erdekesseg_volt", []))),
