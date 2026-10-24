@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-24T23:28:15.138022+02:00",
+  "frissitve": "2026-10-24T23:28:52.486566+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-24T09:09:29.002033+02:00",
-      "kulcs": "415 023",
-      "rendszam": "415 023",
-      "vehicle_id": "945514150230",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 47.37001037597656,
-      "lon": 18.900800704956055,
-      "elozo_szoveg": "Százhalombatta",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-24T09:09:29.002467+02:00",
-      "kulcs": "AOIM043",
-      "rendszam": "AOIM043",
-      "vehicle_id": "964",
-      "vehicle_label": "Rákospatak u./Csömöri út",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.49646759033203,
-      "lon": 18.998109817504883,
-      "elozo_szoveg": "Thomán István utca",
-      "uj_szoveg": "Rákospatak u./Csömöri út"
-    },
-    {
-      "idopont": "2026-10-24T09:10:25.257182+02:00",
-      "kulcs": "FLR725",
-      "rendszam": "FLR725",
-      "vehicle_id": "3139",
-      "vehicle_label": "Cinkota, Lassú utca",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.505157470703125,
-      "lon": 19.136817932128906,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Cinkota, Lassú utca"
-    },
-    {
-      "idopont": "2026-10-24T09:10:25.257338+02:00",
-      "kulcs": "AAGL310",
-      "rendszam": "AAGL310",
-      "vehicle_id": "340",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.433860778808594,
-      "lon": 18.919944763183594,
-      "elozo_szoveg": "Törökbálint, Nyár utca",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-10-24T09:10:25.257392+02:00",
       "kulcs": "AAHY807",
@@ -260000,6 +259948,58 @@
       "lon": 19.04823875427246,
       "elozo_szoveg": "Újbuda-központ M",
       "uj_szoveg": "Gazdagréti tér"
+    },
+    {
+      "idopont": "2026-10-24T23:28:52.390276+02:00",
+      "kulcs": "AOJM881",
+      "rendszam": "AOJM881",
+      "vehicle_id": "1007",
+      "vehicle_label": "Szent László utcai ltp.",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.431060791015625,
+      "lon": 19.070581436157227,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Szent László utcai ltp."
+    },
+    {
+      "idopont": "2026-10-24T23:28:52.392738+02:00",
+      "kulcs": "T8015",
+      "rendszam": "T8015",
+      "vehicle_id": "6135",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "77",
+      "route_id": "4770",
+      "lat": 47.523399353027344,
+      "lon": 19.1319522857666,
+      "elozo_szoveg": "Öv utca / Egressy út",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-10-24T23:28:52.395598+02:00",
+      "kulcs": "1129-765-1130",
+      "rendszam": "1129-765-1130",
+      "vehicle_id": "905516561297-905536467657-905516561305",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.660770416259766,
+      "lon": 19.07535171508789,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
+    },
+    {
+      "idopont": "2026-10-24T23:28:52.395672+02:00",
+      "kulcs": "911-656-912",
+      "rendszam": "911-656-912",
+      "vehicle_id": "905516569118-905536466568-905516569126",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.51979446411133,
+      "lon": 19.218305587768555,
+      "elozo_szoveg": "Cinkota",
+      "uj_szoveg": "Gödöllő"
     }
   ]
 }
