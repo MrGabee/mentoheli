@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-24T04:23:05.506169+02:00",
+  "frissitve": "2026-10-24T04:23:46.747658+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-23T09:11:09.085967+02:00",
-      "kulcs": "AOIA477",
-      "rendszam": "AOIA477",
-      "vehicle_id": "854",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.490989685058594,
-      "lon": 19.013896942138672,
-      "elozo_szoveg": "Apor Vilmos tér",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-10-23T09:11:09.086210+02:00",
-      "kulcs": "AOGL312",
-      "rendszam": "AOGL312",
-      "vehicle_id": "902",
-      "vehicle_label": "Apor Vilmos tér",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.54939270019531,
-      "lon": 19.074220657348633,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Apor Vilmos tér"
-    },
-    {
-      "idopont": "2026-10-23T09:11:09.086341+02:00",
-      "kulcs": "931-666-932",
-      "rendszam": "931-666-932",
-      "vehicle_id": "905516569316-905536466667-905516569324",
-      "vehicle_label": "Boráros tér",
-      "vonal_szam": "H7",
-      "route_id": "H7",
-      "lat": 47.42146682739258,
-      "lon": 19.066131591796875,
-      "elozo_szoveg": "Csepel",
-      "uj_szoveg": "Boráros tér"
-    },
-    {
-      "idopont": "2026-10-23T09:11:09.087543+02:00",
-      "kulcs": "415 081",
-      "rendszam": "415 081",
-      "vehicle_id": "945514150818",
-      "vehicle_label": "Monor",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.511199951171875,
-      "lon": 19.10141944885254,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Monor"
-    },
-    {
-      "idopont": "2026-10-23T09:11:09.087616+02:00",
-      "kulcs": "415 106",
-      "rendszam": "415 106",
-      "vehicle_id": "945514151063",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.37078857421875,
-      "lon": 19.389480590820312,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
     {
       "idopont": "2026-10-23T09:11:09.087799+02:00",
       "kulcs": "AOIM031",
@@ -260000,6 +259935,71 @@
       "lon": 19.172893524169922,
       "elozo_szoveg": "Csepel, Csillagtelep",
       "uj_szoveg": "Gloriett-lakótelep"
+    },
+    {
+      "idopont": "2026-10-24T04:23:46.692083+02:00",
+      "kulcs": "FLR745",
+      "rendszam": "FLR745",
+      "vehicle_id": "3159",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.4880485534668,
+      "lon": 19.24521827697754,
+      "elozo_szoveg": "Rákoshegy",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-24T04:23:46.692724+02:00",
+      "kulcs": "AAHY868",
+      "rendszam": "AAHY868",
+      "vehicle_id": "430",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "231",
+      "route_id": "2310",
+      "lat": 47.55388641357422,
+      "lon": 19.131685256958008,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-24T04:23:46.692747+02:00",
+      "kulcs": "V1313",
+      "rendszam": "V1313",
+      "vehicle_id": "4417",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "47",
+      "route_id": "3470",
+      "lat": 47.42679214477539,
+      "lon": 19.039295196533203,
+      "elozo_szoveg": "Városház tér",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-24T04:23:46.693282+02:00",
+      "kulcs": "T8005",
+      "rendszam": "T8005",
+      "vehicle_id": "6125",
+      "vehicle_label": "Fővám tér M",
+      "vonal_szam": "83",
+      "route_id": "4830",
+      "lat": 47.47591781616211,
+      "lon": 19.099903106689453,
+      "elozo_szoveg": "Népliget M",
+      "uj_szoveg": "Fővám tér M"
+    },
+    {
+      "idopont": "2026-10-24T04:23:46.694189+02:00",
+      "kulcs": "T8111",
+      "rendszam": "T8111",
+      "vehicle_id": "7891",
+      "vehicle_label": "Astoria M",
+      "vonal_szam": "74",
+      "route_id": "4740",
+      "lat": 47.53643035888672,
+      "lon": 19.10721206665039,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Astoria M"
     }
   ]
 }
