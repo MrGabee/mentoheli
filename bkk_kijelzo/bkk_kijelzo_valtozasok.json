@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-24T03:31:13.501727+02:00",
+  "frissitve": "2026-10-24T03:31:40.500652+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-23T08:59:44.443282+02:00",
-      "kulcs": "480 001",
-      "rendszam": "480 001",
-      "vehicle_id": "915504800011",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.3480110168457,
-      "lon": 20.042720794677734,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-23T08:59:44.443668+02:00",
-      "kulcs": "415 004",
-      "rendszam": "415 004",
-      "vehicle_id": "945514150040",
-      "vehicle_label": "Tárnok",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.44078826904297,
-      "lon": 19.033910751342773,
-      "elozo_szoveg": "Budapest-Kelenföld",
-      "uj_szoveg": "Tárnok"
-    },
     {
       "idopont": "2026-10-23T08:59:44.444596+02:00",
       "kulcs": "AOJM864",
@@ -260000,6 +259974,32 @@
       "lon": 19.136211395263672,
       "elozo_szoveg": "Örs vezér tere M H",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-24T03:31:40.409238+02:00",
+      "kulcs": "AAGL280",
+      "rendszam": "AAGL280",
+      "vehicle_id": "315",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45611572265625,
+      "lon": 18.941261291503906,
+      "elozo_szoveg": "Törökbálint",
+      "uj_szoveg": "Budakeszi"
+    },
+    {
+      "idopont": "2026-10-24T03:31:40.409928+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45571517944336,
+      "lon": 18.94084930419922,
+      "elozo_szoveg": "Törökbálint vasútállomás",
+      "uj_szoveg": "Kamaraerdő"
     }
   ]
 }
