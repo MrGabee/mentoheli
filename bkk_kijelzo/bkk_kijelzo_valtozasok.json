@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-24T22:17:30.992718+02:00",
+  "frissitve": "2026-10-24T22:18:25.414325+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-24T08:29:58.939472+02:00",
-      "kulcs": "T9133",
-      "rendszam": "T9133",
-      "vehicle_id": "7872",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48936462402344,
-      "lon": 19.089954376220703,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-24T08:29:58.940000+02:00",
-      "kulcs": "AOFL220",
-      "rendszam": "AOFL220",
-      "vehicle_id": "807",
-      "vehicle_label": "Solymár, Kerekhegy",
-      "vonal_szam": "157",
-      "route_id": "1570",
-      "lat": 47.54292297363281,
-      "lon": 18.964235305786133,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Solymár, Kerekhegy"
-    },
-    {
-      "idopont": "2026-10-24T08:29:58.940147+02:00",
-      "kulcs": "AOFL230",
-      "rendszam": "AOFL230",
-      "vehicle_id": "818",
-      "vehicle_label": "Kurucles",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.50767517089844,
-      "lon": 19.024749755859375,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Kurucles"
-    },
-    {
-      "idopont": "2026-10-24T08:29:58.940689+02:00",
-      "kulcs": "AOIB810",
-      "rendszam": "AOIB810",
-      "vehicle_id": "881",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.479740142822266,
-      "lon": 19.067882537841797,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Normafa"
-    },
-    {
-      "idopont": "2026-10-24T08:29:58.941628+02:00",
-      "kulcs": "AOIM009",
-      "rendszam": "AOIM009",
-      "vehicle_id": "927",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46448516845703,
-      "lon": 19.126768112182617,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-10-24T08:29:58.941872+02:00",
       "kulcs": "415 023",
@@ -260000,6 +259935,71 @@
       "lon": 19.092487335205078,
       "elozo_szoveg": "Erzsébet k.né útja, alulj.",
       "uj_szoveg": "Kossuth Lajos tér M"
+    },
+    {
+      "idopont": "2026-10-24T22:18:25.309310+02:00",
+      "kulcs": "AADI606",
+      "rendszam": "AADI606",
+      "vehicle_id": "103",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "221",
+      "route_id": "2210",
+      "lat": 47.48678970336914,
+      "lon": 18.95491600036621,
+      "elozo_szoveg": "Csillebérc, KFKI",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-24T22:18:25.310664+02:00",
+      "kulcs": "AAHY820",
+      "rendszam": "AAHY820",
+      "vehicle_id": "381",
+      "vehicle_label": "Izzó utcai lakótelep",
+      "vonal_szam": "220",
+      "route_id": "2200",
+      "lat": 47.560482025146484,
+      "lon": 19.090391159057617,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Izzó utcai lakótelep"
+    },
+    {
+      "idopont": "2026-10-24T22:18:25.314471+02:00",
+      "kulcs": "PKN611",
+      "rendszam": "PKN611",
+      "vehicle_id": "7200",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "130",
+      "route_id": "1300",
+      "lat": 47.54935073852539,
+      "lon": 19.131738662719727,
+      "elozo_szoveg": "Újpalota, Sárfű utca",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-10-24T22:18:25.316944+02:00",
+      "kulcs": "AADI587",
+      "rendszam": "AADI587",
+      "vehicle_id": "87",
+      "vehicle_label": "Csillebérc, KFKI",
+      "vonal_szam": "221",
+      "route_id": "2210",
+      "lat": 47.50628662109375,
+      "lon": 19.02451515197754,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Csillebérc, KFKI"
+    },
+    {
+      "idopont": "2026-10-24T22:18:25.316971+02:00",
+      "kulcs": "AOIB799",
+      "rendszam": "AOIB799",
+      "vehicle_id": "870",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "154",
+      "route_id": "1540",
+      "lat": 47.47341537475586,
+      "lon": 18.992568969726562,
+      "elozo_szoveg": "Gazdagréti tér",
+      "uj_szoveg": "Újbuda-központ M"
     }
   ]
 }
