@@ -1,0 +1,40 @@
+name: 🔎 FB kép felderítő (ideiglenes)
+on:
+  workflow_dispatch:
+    inputs:
+      oldal:
+        default: csepeluszas
+permissions:
+  contents: read
+jobs:
+  felderit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: RSS-Bridge + felderítés
+        env:
+          OLDAL: ${{ inputs.oldal }}
+        run: |
+          docker run -d --name rssbridge -p 3000:80 -e RSSBRIDGE_system_enabled_bridges='FacebookBridge' rssbridge/rss-bridge:latest
+          for i in $(seq 1 30); do curl -sf -o /dev/null 'http://localhost:3000/' && break; sleep 1; done
+          F=$(docker exec rssbridge sh -c 'ls /app/bridges/FacebookBridge.php 2>/dev/null || find / -name FacebookBridge.php 2>/dev/null | head -1')
+          docker exec rssbridge grep -n "photo_image\|enclosures = \[\];" "$F"
+          docker exec rssbridge sed -i "s#\$enclosures = \[\];#\$enclosures = []; file_put_contents('/tmp/att.json', json_encode(\$node['attachments'] ?? null) . \"\\\\n\", FILE_APPEND);#" "$F"
+          curl -s "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=$OLDAL&format=Atom" -o feed.xml
+          echo "--- img-ek a feedben:"; grep -o '&lt;img[^&]*src=&quot;[^&]\{0,80\}' feed.xml | head; grep -o '<img[^>]\{0,120\}' feed.xml | head
+          echo "--- enclosure-ök:"; grep -o '<link rel="enclosure"[^>]\{0,120\}' feed.xml | head
+          docker exec rssbridge cat /tmp/att.json > att.json || true
+          python3 - <<'PY'
+          import json
+          for sor in open("att.json"):
+              d = json.loads(sor)
+              def bejar(x, ut=""):
+                  if isinstance(x, dict):
+                      for k, v in x.items():
+                          if "image" in k.lower() or k in ("uri", "__typename", "media"):
+                              print(ut + "/" + k, (str(v)[:70] if not isinstance(v, (dict, list)) else ""))
+                          bejar(v, ut + "/" + k)
+                  elif isinstance(x, list):
+                      for i, v in enumerate(x[:3]):
+                          bejar(v, ut + f"[{i}]")
+              print("=== poszt"); bejar(d)
+          PY
