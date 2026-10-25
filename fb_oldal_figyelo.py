@@ -24,6 +24,8 @@ from poszt_valtozatos import Stilus
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
+# A képes posztokat a színes posztok Make-forgatókönyve teszi ki ("kep" mező)
+KEPES_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL_SZINES", "")
 
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
 FACEBOOK_POSZTOLAS_AKTIV = True
@@ -80,6 +82,14 @@ def _tiszta_szoveg(html):
         szoveg = html
     return " ".join(szoveg.split())
 
+def _elso_kep(html):
+    """Az eredeti poszt első képe (a Facebook-emojik nélkül), vagy ""."""
+    for src in re.findall(r'<img[^>]+src="([^"]+)"', html or ""):
+        src = src.replace("&amp;", "&")
+        if src.startswith("http") and "emoji" not in src and "/images/" not in src:
+            return src
+    return ""
+
 def feldolgoz(xml_szoveg):
     """RSS 2.0 és Atom bejegyzések: [{azonosito, cim, szoveg, link}], legújabb elöl."""
     gyoker = ET.fromstring(xml_szoveg)
@@ -103,6 +113,7 @@ def feldolgoz(xml_szoveg):
             "cim": _tiszta_szoveg(m.get("title", "")),
             "szoveg": _tiszta_szoveg(m.get("description") or m.get("summary") or m.get("content", "")),
             "link": link,
+            "kep": _elso_kep(m.get("content") or m.get("description") or m.get("summary") or ""),
         })
     return bejegyzesek
 
@@ -154,8 +165,18 @@ def csendes_ablak(perc):
             json.dump({"ig": ig}, f, ensure_ascii=False, indent=2)
         print(f"  🤫 Színes posztok szünetelnek eddig: {ig}")
 
-def facebook_poszt_kuldese(szoveg):
-    """Szöveges poszt a Facebook Oldalra a Make.com webhookon keresztül."""
+def facebook_poszt_kuldese(szoveg, kep=""):
+    """Poszt a Facebook Oldalra a Make.com webhookon keresztül. Ha az eredeti
+    posztnak van képe, képes posztként megy ki, hogy látszódjon is."""
+    if kep and KEPES_WEBHOOK_URL:
+        try:
+            resp = requests.post(KEPES_WEBHOOK_URL, json={"message": poszt_valtozatos.atrendez(szoveg), "kep": kep}, timeout=60)
+            if resp.status_code == 200:
+                print("  ✅ Képes Facebook poszt elküldve (Make.com-on keresztül).")
+                return True
+            print(f"  ⚠️  Képes poszt sikertelen (HTTP {resp.status_code}), kép nélkül próbálom.")
+        except Exception as e:
+            print(f"  ⚠️  Képes poszt hiba: {e}, kép nélkül próbálom.")
     if not MAKE_WEBHOOK_URL:
         print("  ⚠️  Nincs beállítva MAKE_WEBHOOK_URL - Facebook-posztolás kihagyva.")
         return False
@@ -213,7 +234,7 @@ def main():
                 continue
             szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG))
             print("\n" + szoveg + "\n")
-            if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg):
+            if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg, b.get("kep", "")):
                 break  # sikertelen: a következő futás újra megpróbálja
             latott.append(b["azonosito"])
             if FACEBOOK_POSZTOLAS_AKTIV and oldal.get("csendes_perc"):

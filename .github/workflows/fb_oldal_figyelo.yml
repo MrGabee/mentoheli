@@ -40,6 +40,7 @@ jobs:
       - name: 📣 Oldal figyelő futtatása
         env:
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          MAKE_WEBHOOK_URL_SZINES: ${{ secrets.MAKE_WEBHOOK_URL_SZINES }}
         run: |
           python fb_oldal_figyelo.py
           sleep 150
