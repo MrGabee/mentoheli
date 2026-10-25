@@ -20,6 +20,13 @@
       "szuro": "(?i)esemény|program|koncert|előadás|fellép|buli|fesztivál|vásár|jegy|belépő|szeretettel várunk|várunk|\\b\\d{1,2}[:.]\\d{2}\\b|hétvég|szombat|vasárnap|péntek",
       "csendes_perc": 40,
       "max_szoveg": 1500
+    },
+    {
+      "nev": "Gazdikereső",
+      "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=100090145591412&format=Atom",
+      "szuro": "(?i)csepel|pesterzsébet|erzsébetfalv|soroksár|ferencváros|\\b(IX|XX|XXI|XXIII)\\.?\\s*(ker|kr\\b)|\\b(9|20|21|23)\\.\\s*ker|\\b1(09\\d|20\\d|21\\d|23\\d)\\b",
+      "csendes_perc": 40,
+      "max_szoveg": 1500
     }
   ]
 }
