@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-25T05:15:27.541969+02:00",
+  "frissitve": "2026-10-25T05:16:01.369285+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-24T09:52:27.576815+02:00",
-      "kulcs": "AADI615",
-      "rendszam": "AADI615",
-      "vehicle_id": "58",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.501220703125,
-      "lon": 19.136320114135742,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Göncz Árpád városkp. M"
-    },
-    {
-      "idopont": "2026-10-24T09:52:27.576858+02:00",
-      "kulcs": "V2104",
-      "rendszam": "V2104",
-      "vehicle_id": "5832",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464698791503906,
-      "lon": 19.02324676513672,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-24T09:52:27.577069+02:00",
-      "kulcs": "V2299",
-      "rendszam": "V2299",
-      "vehicle_id": "597",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.435935974121094,
-      "lon": 19.042112350463867,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-24T09:52:27.577137+02:00",
       "kulcs": "AADI601",
@@ -260000,6 +259961,45 @@
       "lon": 18.99229621887207,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-25T05:16:01.278441+02:00",
+      "kulcs": "V2028",
+      "rendszam": "V2028",
+      "vehicle_id": "2028",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.474021911621094,
+      "lon": 19.047504425048828,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-25T05:16:01.282755+02:00",
+      "kulcs": "AOFL197",
+      "rendszam": "AOFL197",
+      "vehicle_id": "781",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "141",
+      "route_id": "1410",
+      "lat": 47.418460845947266,
+      "lon": 19.032716751098633,
+      "elozo_szoveg": "Városház tér",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-25T05:16:01.283064+02:00",
+      "kulcs": "877-639-878",
+      "rendszam": "877-639-878",
+      "vehicle_id": "905516568771-905536466394-905516568789",
+      "vehicle_label": "Ráckeve",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.466060638427734,
+      "lon": 19.077478408813477,
+      "elozo_szoveg": "Közvágóhíd",
+      "uj_szoveg": "Ráckeve"
     }
   ]
 }
