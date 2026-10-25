@@ -31,7 +31,7 @@
     {
       "nev": "Island Rock Csepel TSE",
       "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=IslandRockCsepelTSE&format=Atom",
-      "szuro": "(?i)eredmény|helyez|\\b[1-6]\\.\\s*hely|arany|ezüst|bronz|érem|érmes|dobogó|győz|bajnok|döntő|döntős|kupa|verseny|\\bEB\\b|\\bVB\\b|világkupa",
+      "szuro": "(?i)eredmény|helyez|\\b[1-6]\\.\\s*hely|arany|ezüst|bronz|érem|érmes|dobogó|győz|bajnok|döntő|döntős|\\bEB\\b|\\bVB\\b|világkupa",
       "csendes_perc": 40,
       "max_szoveg": 1500
     }
