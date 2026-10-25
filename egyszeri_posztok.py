@@ -123,6 +123,20 @@ Ha nem muszáj most elindulni, érdemes kicsit várni, a buszra várók pedig sz
 💬 Ti hol álltok éppen? Írjátok meg kommentben, hol a legrosszabb a helyzet, hogy a többiek is tudják, mire számítsanak!
 
 #Csepel #dugó #közlekedés #torlódás"""),
+    "oraallitas_20261025": (date(2026, 10, 25), """🕒 ÉJJEL VISSZAÁLLT AZ ÓRA – ITT A TÉLI IDŐSZÁMÍTÁS 🕒
+
+Ha ma reggel furcsán korán ébredtél, nem tévedés: hajnali 3 órakor visszaállítottuk az órákat 2 órára, így ma egy órával többet aludhattunk. 😴
+
+📱 A telefon, az okosóra és a számítógép magától átállt.
+⏰ A sütő, a mikró, a falióra és az autó órája viszont valószínűleg még a nyári időt mutatja, ezeket érdemes most átállítani.
+
+🌆 Mostantól jóval korábban sötétedik, délután fél 5 körül már szürkül. Kérlek, figyeljetek jobban egymásra az utakon: gyalogosként és biciklisként érdemes valami világosat vagy fényvisszaverőt viselni, autósként pedig számítsatok rájuk.
+
+A téli időszámítás 2027. március 28-ig tart, akkor tekerjük majd előre az órát.
+
+Szép vasárnapot kívánok mindenkinek! ☕
+
+#Csepel #óraátállítás #téliidőszámítás"""),
 }
 
 
