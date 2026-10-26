@@ -9,6 +9,9 @@ on:
       minta:
         description: "Keresett minta (regex)"
         default: "Csepel"
+      ua:
+        description: "User-Agent (üres = böngésző)"
+        default: ""
 
 jobs:
   proba:
@@ -24,3 +27,4 @@ jobs:
         env:
           URLEK: ${{ inputs.urlek }}
           MINTA: ${{ inputs.minta }}
+          UA: ${{ inputs.ua }}
