@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-26T23:50:23.472297+02:00",
+  "frissitve": "2026-10-26T23:51:06.538612+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-26T12:21:07.895522+02:00",
-      "kulcs": "V2291",
-      "rendszam": "V2291",
-      "vehicle_id": "589",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.43590545654297,
-      "lon": 19.042367935180664,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-26T12:21:07.896170+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50684356689453,
-      "lon": 19.023597717285156,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-26T12:21:07.896224+02:00",
-      "kulcs": "NCV293",
-      "rendszam": "NCV293",
-      "vehicle_id": "6258",
-      "vehicle_label": "Csillaghegy H",
-      "vonal_szam": "219",
-      "route_id": "2190",
-      "lat": 47.58258819580078,
-      "lon": 19.015356063842773,
-      "elozo_szoveg": "Aranyhegy",
-      "uj_szoveg": "Csillaghegy H"
-    },
-    {
-      "idopont": "2026-10-26T12:21:07.896407+02:00",
-      "kulcs": "V2232",
-      "rendszam": "V2232",
-      "vehicle_id": "6443",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.54318618774414,
-      "lon": 18.96432876586914,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-10-26T12:21:07.896742+02:00",
-      "kulcs": "CITY001",
-      "rendszam": "CITY001",
-      "vehicle_id": "656",
-      "vehicle_label": "Árpádföld, Bekecs utca",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.52048873901367,
-      "lon": 19.218839645385742,
-      "elozo_szoveg": "Árpádföld, Bekecs utca",
-      "uj_szoveg": "Malomdomb (áruház)"
-    },
     {
       "idopont": "2026-10-26T12:21:07.897210+02:00",
       "kulcs": "PDN611",
@@ -260000,6 +259935,71 @@
       "lon": 19.10456085205078,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-10-26T23:51:06.428905+02:00",
+      "kulcs": "AAMH634",
+      "rendszam": "AAMH634",
+      "vehicle_id": "477",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.42747116088867,
+      "lon": 19.26589584350586,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák F. tér (City centre)"
+    },
+    {
+      "idopont": "2026-10-26T23:51:06.430022+02:00",
+      "kulcs": "MXJ010",
+      "rendszam": "MXJ010",
+      "vehicle_id": "5883",
+      "vehicle_label": "Baross G.-telep, Ispiláng u.",
+      "vonal_szam": "114",
+      "route_id": "1140",
+      "lat": 47.477176666259766,
+      "lon": 19.0455322265625,
+      "elozo_szoveg": "Móricz Zs. körtér M",
+      "uj_szoveg": "Baross G.-telep, Ispiláng u."
+    },
+    {
+      "idopont": "2026-10-26T23:51:06.431295+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "5",
+      "route_id": "0050",
+      "lat": 47.523677825927734,
+      "lon": 18.994094848632812,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-26T23:51:06.431459+02:00",
+      "kulcs": "PDN616",
+      "rendszam": "PDN616",
+      "vehicle_id": "7087",
+      "vehicle_label": "Szent Imre tér",
+      "vonal_szam": "152",
+      "route_id": "1520",
+      "lat": 47.41650390625,
+      "lon": 19.072162628173828,
+      "elozo_szoveg": "Hollandi út",
+      "uj_szoveg": "Szent Imre tér"
+    },
+    {
+      "idopont": "2026-10-26T23:51:06.431606+02:00",
+      "kulcs": "PHG638",
+      "rendszam": "PHG638",
+      "vehicle_id": "7162",
+      "vehicle_label": "Cinkota H",
+      "vonal_szam": "175",
+      "route_id": "1750",
+      "lat": 47.541893005371094,
+      "lon": 19.151565551757812,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Cinkota H"
     }
   ]
 }
