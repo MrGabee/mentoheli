@@ -48,7 +48,8 @@ def _json(url):
 def mksz_meccs(m, klub):
     """Egy MKSZ-meccs a csepeli_sport formájában."""
     ido = datetime.fromisoformat(m["merkozesDatum"][:19])
-    lezart = m.get("merkozesStatusz") == "JEGYZOK_LEZARVA"
+    # a jegyzőkönyv elfogadása után is végleges az eredmény, csak még nincs lezárva
+    lezart = m.get("merkozesStatusz") in ("JEGYZOK_LEZARVA", "JEGYZOK_ELFOGADVA")
     h, v = m.get("hazaiCsapatGol"), m.get("vendegCsapatGol")
     helyszin = (m.get("letesitmenyNev") or "").strip()
     bajnoksag = (m.get("alversenyNev") or m.get("foversenyRovidNev") or "").strip()
