@@ -5,7 +5,7 @@ import re
 import html
 import requests
 
-H = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safari/537.36"}
+H = {"User-Agent": os.environ.get("UA") or "Mozilla/5.0 (X11; Linux x86_64) Chrome/129.0 Safari/537.36"}
 MINTA = re.compile(os.environ.get("MINTA") or "Csepel", re.I)
 
 for url in os.environ.get("URLEK", "").split():
