@@ -88,7 +88,7 @@ CIMEK = {
     ],
     "sport_hetkoz": [
         "⚽ HOLNAP JÁTSZIK A CSEPEL SC ⚽",
-        "💚 HÉTKÖZI MECCS – HAJRÁ, CSEPEL! 🤍",
+        "❤️ HÉTKÖZI MECCS – HAJRÁ, CSEPEL! 💙",
         "🏟️ MECCSNAP JÖN HÉTKÖZBEN IS 🏟️",
         "⚽ NE FELEDJÉTEK: HOLNAP MECCS! ⚽",
     ],
