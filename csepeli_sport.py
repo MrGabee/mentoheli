@@ -289,7 +289,7 @@ def elozetes_szoveg(ma, meccsek=None):
     sorok = [st.cim, st.vonal(), "", st.bevezeto, ""]
     fo = [m for m in lista if kiemelt(m)]
     if fo:
-        sorok += ["💚🤍 CSEPEL SC – FELNŐTT CSAPAT 💚🤍", *_kiemelt_sorok(fo), "", "👟 A TÖBBI CSEPELI CSAPAT", ""]
+        sorok += ["❤️💙 CSEPEL SC – FELNŐTT CSAPAT ❤️💙", *_kiemelt_sorok(fo), "", "👟 A TÖBBI CSEPELI CSAPAT", ""]
     tobbi = [m for m in lista if not kiemelt(m)]
     for nap in sorted({m["nap"] for m in tobbi}):
         sorok.append(f"▶️ {NAPOK[nap.weekday()].upper()} ({nap.strftime('%m.%d.')})")
@@ -318,7 +318,7 @@ def eredmeny_szoveg(ma, meccsek=None):
     sorok = [st.cim, st.vonal(), "", st.bevezeto, ""]
     fo = [m for m in lista if kiemelt(m)]
     if fo:
-        sorok += ["💚🤍 CSEPEL SC – FELNŐTT CSAPAT 💚🤍", *_kiemelt_sorok(fo, eredmennyel=True), "", "👟 A TÖBBI CSEPELI CSAPAT", ""]
+        sorok += ["❤️💙 CSEPEL SC – FELNŐTT CSAPAT ❤️💙", *_kiemelt_sorok(fo, eredmennyel=True), "", "👟 A TÖBBI CSEPELI CSAPAT", ""]
     for m in [m for m in lista if not kiemelt(m)]:
         h, v = m["golok"]
         jel = _kimenet(m)
@@ -355,7 +355,7 @@ def hetkoznapi_szoveg(ma, meccsek=None):
         return ""
     st = Stilus("sport_hetkoz", ma.isoformat())
     sorok = [st.cim, st.vonal(), "", random.Random(f"{ma}|hetkoz").choice(HETKOZI_MONDATOK), "",
-             *_kiemelt_sorok(lista), "", "Hajrá, Csepel! 💚🤍"]
+             *_kiemelt_sorok(lista), "", "Hajrá, Csepel! ❤️💙"]
     if st.zaro:
         sorok.append(st.zaro)
     sorok += ["Forrás: MLSZ adatbank", "#Csepel #CsepelSC #foci"]
