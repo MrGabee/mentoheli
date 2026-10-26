@@ -322,7 +322,8 @@ def eredmeny_szoveg(ma, meccsek=None):
     for m in [m for m in lista if not kiemelt(m)]:
         h, v = m["golok"]
         jel = _kimenet(m)
-        sorok.append(f"{jel or _emoji(m)} {_parositas(m)}  {h}–{v}")
+        # a sportág jele mindig látszik, hogy a kosár- és kézilabdameccs ne tűnjön focinak
+        sorok.append(f"{_emoji(m)}{jel} {_parositas(m)}  {h}–{v}")
         sorok.append(f"   🏆 {_bajnoksag(m)}, {m['nap'].strftime('%m.%d.')} {NAPOK[m['nap'].weekday()]}")
     gyozelem = sum(1 for m in lista if _kimenet(m) == "✅")
     sorok += ["", f"Összesen {len(lista)} meccs, ebből {gyozelem} csepeli győzelem."
