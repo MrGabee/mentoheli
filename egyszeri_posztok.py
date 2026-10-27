@@ -132,6 +132,24 @@ Ha arra indulsz, számolj több idővel, vagy ha teheted, válassz másik útvon
 💬 Ti most hol jártok? Írjátok meg kommentben, meddig ér a sor, és mikor indul meg, hogy a többiek is tudják, mire számítsanak!
 
 #Csepel #dugó #közlekedés #WeissManfrédút"""),
+    "mentok_20261027": (date(2026, 10, 27), """🚑 A MENTŐS POSZT UTÁN: KÉT ÚJABB OLVASÓI ÜZENET
+
+A mentős várakozásról szóló bejegyzés után valóságos áradatként érkeztek az üzenetek az elérhetőségeimre. Előre szeretnék tisztázni valamit: nagyon sok mentős barátom van, és mindegyiküket úgy szeretem, mintha a testvérem lenne. A bejegyzéssel egy pillanatig sem akartam a mentősöket lejáratni. Minden tiszteletem az övék, és tudom, mekkora terhelés alatt dolgoznak nap mint nap. ❤️
+
+Két üzenetet mégis megosztok név nélkül, mert a téma két különböző oldalát mutatják meg.
+
+✉️ AZ ELSŐ OLVASÓ:
+„Tavaly az apósomhoz hívott mentőt az anyósom. A mentő csak sokára ért ki: a párom közben vidékről hazaért a munkából, és akkor fordult be az utcába a mentőautó. A mentős megkérdezte, hogy már egy lábköröm-beszakadás miatt is mentőt hívnak. A kórháznál az apósomnak nem segítettek kiszállni, majdnem kiesett az autóból, a párom rohant oda, hogy segítsen. Az apósom két hónappal később a kórházban meghalt.
+Maximálisan elhiszem, hogy ők is túl vannak terhelve, de ha már ennyi idő után kiérnek, jó lenne, ha azt, aki fél és fájdalmai vannak, legalább egy kis kedvesség fogadná. Köszönöm, hogy megírhattam.”
+
+✉️ A MÁSODIK OLVASÓ:
+„Sajnos sokan teljesen indokolatlanul hívnak mentőt, és ahová tényleg kellene, oda nem tudnak kimenni. A háromórás várakozás oka sokszor az, hogy a legközelebbi szabad kocsi mondjuk Vácon van, és azt riasztják.”
+
+💡 A két üzenet jól mutatja, hogy a gond nem egy-egy emberen múlik: kevés a szabad mentőautó, sok a nem indokolt hívás, és ennek a sürgős esetekben élők látják kárát. Ezért is fontos, hogy a 112-t és a 104-et csak valódi vészhelyzetben hívjuk. Nem sürgős panasszal az ügyeletet vagy a háziorvost érdemes keresni.
+
+Nektek milyen tapasztalatotok van? Kérlek, írjátok meg kommentben, de tiszteljük egymást és a mentősöket is! 🙏
+
+#Csepel #Pesterzsébet #mentők #olvasóilevél"""),
     "oraallitas_20261025": (date(2026, 10, 25), """🕒 ÉJJEL VISSZAÁLLT AZ ÓRA – ITT A TÉLI IDŐSZÁMÍTÁS 🕒
 
 Ha ma reggel furcsán korán ébredtél, nem tévedés: hajnali 3 órakor visszaállítottuk az órákat 2 órára, így ma egy órával többet aludhattunk. 😴
