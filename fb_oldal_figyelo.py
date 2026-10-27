@@ -145,16 +145,29 @@ def bridge_hiba(b):
 # ════════════════════════════════════════════
 #  📘  FACEBOOK POSZT
 # ════════════════════════════════════════════
-def facebook_szoveg(oldal_nev, b, max_szoveg=MAX_SZOVEG, bevezetok=None):
+def _folytatas(bevezeto, szoveg):
+    """A bevezető után egy mondatba fűzi a szöveget: „… szerint a járat …”."""
+    szoveg = re.sub(r"^(Tisztelt Utasaink!\s*)?Tájékoztatjuk( tisztelt| kedves)? utasainkat, hogy\s+", "",
+                    szoveg, flags=re.I)
+    elso, _, tobbi = szoveg.partition(" ")
+    if elso in ("A", "Az", "Egy"):
+        szoveg = elso.lower() + " " + tobbi
+    return f"{bevezeto} {szoveg}"
+
+def facebook_szoveg(oldal_nev, b, max_szoveg=MAX_SZOVEG, bevezetok=None, folyamatos=False):
     st = Stilus("megosztas")
     if bevezetok:
         st.bevezeto = random.choice(bevezetok)
     szoveg = b["szoveg"] or b["cim"]
     if len(szoveg) > max_szoveg:
         szoveg = szoveg[:max_szoveg].rsplit(" ", 1)[0] + "…"
-    sorok = [st.bevezeto.format(nev=oldal_nev), ""]
-    if szoveg:
-        sorok += [f"„{szoveg}”", ""]
+    bevezeto = st.bevezeto.format(nev=oldal_nev)
+    if folyamatos and szoveg:
+        sorok = [_folytatas(bevezeto, szoveg), ""]
+    else:
+        sorok = [bevezeto, ""]
+        if szoveg:
+            sorok += [f"„{szoveg}”", ""]
     if b["link"]:
         sorok.append(f"👉 {b['link']}")
     return "\n".join(sorok)
@@ -235,7 +248,7 @@ def main():
                 print(f"  ⏭️ Nem illik a szűrőre: {b['cim'][:80]}")
                 latott.append(b["azonosito"])
                 continue
-            szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG), oldal.get("bevezetok"))
+            szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG), oldal.get("bevezetok"), oldal.get("folyamatos", False))
             print("\n" + szoveg + "\n")
             if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg, b.get("kep", "")):
                 break  # sikertelen: a következő futás újra megpróbálja
