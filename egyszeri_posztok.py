@@ -143,7 +143,7 @@ Két üzenetet mégis megosztok név nélkül, mert a téma két különböző o
 Maximálisan elhiszem, hogy ők is túl vannak terhelve, de ha már ennyi idő után kiérnek, jó lenne, ha azt, aki fél és fájdalmai vannak, legalább egy kis kedvesség fogadná. Köszönöm, hogy megírhattam.”
 
 ✉️ A MÁSODIK OLVASÓ:
-„Sajnos sokan teljesen indokolatlanul hívnak mentőt, és ahová tényleg kellene, oda nem tudnak kimenni. A háromórás várakozás oka sokszor az, hogy a legközelebbi szabad kocsi mondjuk Vácon van, és azt riasztják.”
+„Sajnos sokan teljesen indokolatlanul hívnak mentőt, és ahová tényleg kellene, oda nem tudnak kimenni. A háromórás várakozás oka sokszor az, hogy a legközelebbi szabad kocsi mondjuk Vácon van, és azt riasztják. Sokan azt hiszik, hogy ha a közelben van a mentőállomás vagy az ügyelet, onnan azonnal rohannak, de a mentők nem maguktól indulnak, csak ha az irányítás kiküldi őket. Hiába mész oda, hogy most fogsz szülni. Az emberek sokszor az alapokkal sincsenek tisztában: mentőt valódi vészhelyzetben kell hívni, nem akkor, ha éppen fáj a hajszálunk.”
 
 💡 A két üzenet jól mutatja, hogy a gond nem egy-egy emberen múlik: kevés a szabad mentőautó, sok a nem indokolt hívás, és ennek a sürgős esetekben élők látják kárát. Ezért is fontos, hogy a 112-t és a 104-et csak valódi vészhelyzetben hívjuk. Nem sürgős panasszal az ügyeletet vagy a háziorvost érdemes keresni.
 
