@@ -62,6 +62,13 @@
       "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=csepeluszas&format=Atom",
       "csendes_perc": 40,
       "max_szoveg": 1500
+    },
+    {
+      "nev": "Holtankoljak.hu",
+      "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=holtankoljak.hu&format=Atom",
+      "szuro": "(?is)^(?=.*(benzin|gázolaj|dízel|diesel|üzemanyag))(?=.*(emelked|emeli|csökken|csökkent|drágul|olcsóbb|árváltoz|ármódosít|Ft-tal|forinttal|nagykereskedelmi ár)).*",
+      "csendes_perc": 40,
+      "max_szoveg": 1500
     }
   ]
 }
