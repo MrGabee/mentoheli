@@ -1,5 +1,5 @@
 {
-  "_leiras": "A figyelt Facebook-oldalak. 'nev': ahogy a posztban szerepel, 'rss': hírcsatorna-cím (a helyben futó RSS-Bridge: http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=OLDALNEV&format=Atom). 'szuro': csak az ennek megfelelő bejegyzések mennek ki (regex). 'csendes_perc': kiküldés után ennyi percig nem megy ki színes poszt. 'max_szoveg': legfeljebb ennyi karakter kerül a posztba. 'bevezetok': saját bevezető mondatok ehhez az oldalhoz (ha nincs, az általános változatok közül választ). 'folyamatos': true esetén a bevezető és a szöveg egy mondatba fűzve, idézőjel nélkül megy ki.",
+  "_leiras": "A figyelt Facebook-oldalak. 'nev': ahogy a posztban szerepel, 'rss': hírcsatorna-cím (a helyben futó RSS-Bridge: http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=OLDALNEV&format=Atom). 'szuro': csak az ennek megfelelő bejegyzések mennek ki (regex). 'csendes_perc': kiküldés után ennyi percig nem megy ki színes poszt. 'max_szoveg': legfeljebb ennyi karakter kerül a posztba. 'bevezetok': saját bevezető mondatok ehhez az oldalhoz (ha nincs, az általános változatok közül választ). 'folyamatos': true esetén a bevezető és a szöveg egy mondatba fűzve, idézőjel nélkül megy ki. 'napi_zar': állapotfájl; ha aznap már ment poszt ugyanarról a témáról (pl. a weboldal-figyelőtől), kihagyja.",
   "oldalak": [
     {
       "nev": "Volánbusz",
@@ -68,7 +68,11 @@
       "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=holtankoljak.hu&format=Atom",
       "szuro": "(?is)^(?=.*(benzin|gázolaj|dízel|diesel|üzemanyag))(?=.*(emelked|emeli|csökken|csökkent|drágul|olcsóbb|árváltoz|ármódosít|Ft-tal|forinttal|nagykereskedelmi ár)).*",
       "csendes_perc": 40,
-      "max_szoveg": 1500
+      "max_szoveg": 1500,
+      "napi_zar": "holtankoljak_allapot.json",
+      "bevezetok": [
+        "A Holtankoljak.hu tájékoztatása szerint:"
+      ]
     }
   ]
 }

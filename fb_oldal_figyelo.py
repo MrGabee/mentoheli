@@ -209,6 +209,20 @@ def facebook_poszt_kuldese(szoveg, kep=""):
 
 
 # ════════════════════════════════════════════
+#  🔒  NAPI KÖZÖS ZÁR (pl. a Holtankoljak.hu weboldal és FB-oldal ugyanarról
+#      a hírről ne posztoljon kétszer egy nap)
+# ════════════════════════════════════════════
+def napi_zar_volt(fajl):
+    return betolt(fajl, {}).get("posztolt_nap") == magyar_ido().strftime("%Y-%m-%d")
+
+def napi_zar_beallit(fajl):
+    adat = betolt(fajl, {})
+    adat["posztolt_nap"] = magyar_ido().strftime("%Y-%m-%d")
+    with open(fajl, "w", encoding="utf-8") as f:
+        json.dump(adat, f, ensure_ascii=False, indent=2)
+
+
+# ════════════════════════════════════════════
 #  ▶️  FŐPROGRAM
 # ════════════════════════════════════════════
 def main():
@@ -248,11 +262,18 @@ def main():
                 print(f"  ⏭️ Nem illik a szűrőre: {b['cim'][:80]}")
                 latott.append(b["azonosito"])
                 continue
+            zar = oldal.get("napi_zar")
+            if zar and napi_zar_volt(zar):
+                print(f"  ⏭️ Ma már ment erről poszt (napi zár): {b['cim'][:80]}")
+                latott.append(b["azonosito"])
+                continue
             szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG), oldal.get("bevezetok"), oldal.get("folyamatos", False))
             print("\n" + szoveg + "\n")
             if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg, b.get("kep", "")):
                 break  # sikertelen: a következő futás újra megpróbálja
             latott.append(b["azonosito"])
+            if zar and FACEBOOK_POSZTOLAS_AKTIV:
+                napi_zar_beallit(zar)
             if FACEBOOK_POSZTOLAS_AKTIV and oldal.get("csendes_perc"):
                 csendes_ablak(oldal["csendes_perc"])
 
