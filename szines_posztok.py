@@ -125,6 +125,7 @@ MENETREND = [
     ("bankkartya_20261022", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("bankkartya_20261022", nap)),
     ("busz159_20261022", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("busz159_20261022", nap)),
     ("dugo_20261021", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("dugo_20261021", nap)),
+    ("dugo_20261027", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("dugo_20261027", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),

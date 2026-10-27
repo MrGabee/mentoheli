@@ -123,6 +123,15 @@ Ha nem muszáj most elindulni, érdemes kicsit várni, a buszra várók pedig sz
 💬 Ti hol álltok éppen? Írjátok meg kommentben, hol a legrosszabb a helyzet, hogy a többiek is tudják, mire számítsanak!
 
 #Csepel #dugó #közlekedés #torlódás"""),
+    "dugo_20261027": (date(2026, 10, 27), """🚗 ÁLL A SOR A WEISS MANFRÉD ÚTON 🚗
+
+Ma reggel komoly a torlódás Csepelen: a Szent Imre tértől áll a sor a Weiss Manfréd úton a belváros felé.
+
+Ha arra indulsz, számolj több idővel, vagy ha teheted, válassz másik útvonalat. A buszok is késhetnek ezen a szakaszon.
+
+💬 Ti most hol jártok? Írjátok meg kommentben, meddig ér a sor, és mikor indul meg, hogy a többiek is tudják, mire számítsanak!
+
+#Csepel #dugó #közlekedés #WeissManfrédút"""),
     "oraallitas_20261025": (date(2026, 10, 25), """🕒 ÉJJEL VISSZAÁLLT AZ ÓRA – ITT A TÉLI IDŐSZÁMÍTÁS 🕒
 
 Ha ma reggel furcsán korán ébredtél, nem tévedés: hajnali 3 órakor visszaállítottuk az órákat 2 órára, így ma egy órával többet aludhattunk. 😴
