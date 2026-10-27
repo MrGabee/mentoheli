@@ -11,6 +11,7 @@ hogy ne zúdítson ki egyszerre sok régi bejegyzést.
 import os
 import json
 import re
+import random
 import hashlib
 import requests
 
@@ -144,8 +145,10 @@ def bridge_hiba(b):
 # ════════════════════════════════════════════
 #  📘  FACEBOOK POSZT
 # ════════════════════════════════════════════
-def facebook_szoveg(oldal_nev, b, max_szoveg=MAX_SZOVEG):
+def facebook_szoveg(oldal_nev, b, max_szoveg=MAX_SZOVEG, bevezetok=None):
     st = Stilus("megosztas")
+    if bevezetok:
+        st.bevezeto = random.choice(bevezetok)
     szoveg = b["szoveg"] or b["cim"]
     if len(szoveg) > max_szoveg:
         szoveg = szoveg[:max_szoveg].rsplit(" ", 1)[0] + "…"
@@ -232,7 +235,7 @@ def main():
                 print(f"  ⏭️ Nem illik a szűrőre: {b['cim'][:80]}")
                 latott.append(b["azonosito"])
                 continue
-            szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG))
+            szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG), oldal.get("bevezetok"))
             print("\n" + szoveg + "\n")
             if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg, b.get("kep", "")):
                 break  # sikertelen: a következő futás újra megpróbálja
