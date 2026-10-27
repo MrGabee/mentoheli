@@ -1,12 +1,17 @@
 {
-  "_leiras": "A figyelt Facebook-oldalak. 'nev': ahogy a posztban szerepel, 'rss': hírcsatorna-cím (a helyben futó RSS-Bridge: http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=OLDALNEV&format=Atom). 'szuro': csak az ennek megfelelő bejegyzések mennek ki (regex). 'csendes_perc': kiküldés után ennyi percig nem megy ki színes poszt. 'max_szoveg': legfeljebb ennyi karakter kerül a posztba.",
+  "_leiras": "A figyelt Facebook-oldalak. 'nev': ahogy a posztban szerepel, 'rss': hírcsatorna-cím (a helyben futó RSS-Bridge: http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=OLDALNEV&format=Atom). 'szuro': csak az ennek megfelelő bejegyzések mennek ki (regex). 'csendes_perc': kiküldés után ennyi percig nem megy ki színes poszt. 'max_szoveg': legfeljebb ennyi karakter kerül a posztba. 'bevezetok': saját bevezető mondatok ehhez az oldalhoz (ha nincs, az általános változatok közül választ).",
   "oldalak": [
     {
       "nev": "Volánbusz",
       "rss": "http://localhost:3000/?action=display&bridge=FacebookBridge&context=User&u=volaninform&format=Atom",
       "szuro": "\\b(672|673|674|675|676|688|690)\\b|[Cc]sepel",
       "csendes_perc": 40,
-      "max_szoveg": 1500
+      "max_szoveg": 1500,
+      "bevezetok": [
+        "A Volánbusz tájékoztatása szerint:",
+        "A Volánbusz tájékoztatása szerint, ha erre utaztok, érdemes figyelni 👇",
+        "A Volánbusz tájékoztatása szerint erre kell számítani:"
+      ]
     },
     {
       "nev": "Csepeli Vízi Polgárőrség",
