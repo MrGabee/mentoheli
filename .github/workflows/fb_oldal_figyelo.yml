@@ -52,6 +52,11 @@ jobs:
           sleep 150
           python fb_oldal_figyelo.py
 
+      - name: ⛽ Holtankoljak.hu árváltozás-figyelő
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        run: python holtankoljak_monitor.py || true
+
       - name: 💾 Állapot commitolása
         run: |
           git config user.name "github-actions[bot]"
@@ -61,6 +66,7 @@ jobs:
           git stash pop || true
           [ -f fb_oldal_allapot.json ] && git add fb_oldal_allapot.json || echo "fájl nem létezik"
           [ -f csendes_ablak.json ] && git add csendes_ablak.json || true
+          [ -f holtankoljak_allapot.json ] && git add holtankoljak_allapot.json || true
           git diff --staged --quiet || git commit -m "fb oldal figyelő állapot [skip ci]"
           for i in 1 2 3 4 5; do git push origin main && break; echo "push elutasítva, újrapróbálom ($i)"; git pull --rebase -X theirs origin main || git rebase --abort; sleep $((i*3)); done
         env:
