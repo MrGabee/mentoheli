@@ -198,8 +198,8 @@ def egy_futtatas(allapot):
 
                 terkepek = {}
                 for e in esemenyek:
-                    if e["id"] in allapot:
-                        continue  # már ismert esemény - nem kell hozzá újra térkép
+                    if e["id"] in allapot or KIZART_ESEMENY.search(e["cim"]):
+                        continue  # már ismert vagy kizárt esemény - nem kell hozzá térkép
                     try:
                         png_bajtok, koordinata = terkep_adat_egy_esemenyhez(page, e["cim"])
                         if png_bajtok:
@@ -367,6 +367,10 @@ def teszt_futtatas():
     print(szoveg[:8000])
     print("═" * 60)
     print(f"Teljes hossz: {len(szoveg)} karakter")
+
+
+# Ezekről nem kell e-mail (Gábor kérése, 2026.10.28.)
+KIZART_ESEMENY = re.compile(r"műszaki\s*hib", re.I)
 
 
 def esemenyek_kinyerese(szoveg):
@@ -576,7 +580,10 @@ def main():
     uj_esemenyek = []
     for e in esemenyek:
         if e["id"] not in allapot:
-            uj_esemenyek.append(e)
+            if KIZART_ESEMENY.search(e["cim"]):
+                print(f"  ⏭️ Kizárva (nem kell e-mail): {e['cim']}")
+            else:
+                uj_esemenyek.append(e)
             allapot[e["id"]] = {
                 "cim": e["cim"],
                 "kezdes": e["kezdes"],
