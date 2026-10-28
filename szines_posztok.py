@@ -178,6 +178,9 @@ def esedekes(most, allapot):
     ma = most.date().isoformat()
     if csendes(most):
         return []
+    # A jó éjszakát (esti időjárás) után már semmi nem megy ki aznap
+    if allapot.get("kiment", {}).get("esti_idojaras") == ma:
+        return []
     lista = []
     for kulcs, ido, napok, _ in MENETREND:
         if napok is not None and most.weekday() not in napok:

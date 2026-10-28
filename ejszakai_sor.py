@@ -1,5 +1,5 @@
 """
-🌙 Éjszakai várakoztatás: 22:00-tól a reggeli jó reggelt posztig
+🌙 Éjszakai várakoztatás: az esti jó éjszakát posztól (legkésőbb 22:00-tól) a reggeli jó reggelt posztig
 a nem sürgős értesítések (áramszünet, vízművek) nem mennek ki a Facebookra,
 hanem a szkript saját állapotfájljában (az "fb_sor" kulcs alatt) várnak, és a
 reggeli első futáskor mennek ki.
@@ -26,11 +26,21 @@ def reggeli_kiment(nap):
         return False
 
 
+def esti_kiment(nap):
+    try:
+        with open(SZINES_ALLAPOT, encoding="utf-8") as f:
+            return json.load(f).get("kiment", {}).get("esti_idojaras") == nap.isoformat()
+    except Exception:
+        return False
+
+
 def ejszaka(t=None):
     t = t or datetime.now(ZoneInfo("Europe/Budapest"))
     hm = (t.hour, t.minute)
     if hm >= EJSZAKA_TOL or hm < REGGELI_IDO:
         return True
+    if hm >= (12, 0) and esti_kiment(t.date()):
+        return True  # a jó éjszakát poszt után már nem posztolok
     return hm < LEGKESOBB and not reggeli_kiment(t.date())
 
 
