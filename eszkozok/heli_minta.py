@@ -18,9 +18,9 @@ smtplib.SMTP_SSL = Al
 
 most = int(time.time())
 # Kitalált útvonal: Budaörs → Szent Imre kórház környéke
-pontok = [[most - 1500, 47.4507, 18.9617, 0, 0], [most - 1380, 47.4462, 18.9905, 260, 210],
-          [most - 1200, 47.4400, 19.0250, 330, 235], [most - 1020, 47.4360, 19.0650, 300, 225],
-          [most - 900, 47.4500, 19.0400, 150, 140], [most - 840, 47.4627, 19.0255, 50, 60]]
+pontok = [[most - 1100, 47.4507, 18.9617, 0, 0], [most - 1000, 47.4540, 18.9800, 250, 200],
+          [most - 900, 47.4580, 19.0000, 320, 230], [most - 800, 47.4610, 19.0150, 200, 160],
+          [most - 720, 47.4627, 19.0255, 40, 50]]
 nyom = {"ha-hbg": {"pontok": pontok}}
 for tipus in ("FELSZALLAS", "LESZALLAS"):
     m.email_kuldes({"tipus": tipus, "kulcs": "reg:ha-hbg", "adat": {
