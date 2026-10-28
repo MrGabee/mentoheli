@@ -32,6 +32,11 @@ from datetime import datetime, timedelta, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import sys
+
+# A közös e-mail arculat a repó gyökerében van (email_arculat.py)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import email_arculat
 
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
@@ -493,40 +498,48 @@ def formaz_unix_ido(unix_masodperc):
         return "—"
 
 
+def _kijelzo_kartya(t, szoveg, cimke, cim, szin, cimke_szin, extra_sorok=()):
+    gmaps = f"https://www.google.com/maps?q={t['lat']},{t['lon']}&z=17" if t.get("lat") and t.get("lon") else None
+    futar_link = f"https://futar.bkk.hu/?vehicleId={t['vehicle_id']}"
+    vonal = t.get("vonal_szam") or t.get("route_id") or ""
+    tipus_nev = {"BUS": "busz", "TRAM": "villamos", "TROLLEYBUS": "troli", "RAIL": "vonat",
+                 "SUBURBAN_RAILWAY": "HÉV"}.get((t.get("eszkoz_tipus") or "").upper(), t.get("eszkoz_tipus"))
+    tipus_modell = " · ".join(x for x in (tipus_nev, t.get("modell")) if x)
+    sorok = [("Rendszám", t.get("rendszam")),
+             ("Jármű", t.get("vehicle_label") or t.get("vehicle_id")),
+             ("Típus", tipus_modell)] + list(extra_sorok) + [
+             ("Állapot", t.get("statusz")),
+             ("Frissítve", formaz_unix_ido(t.get("utolso_frissites")) if t.get("utolso_frissites") else "")]
+    return email_arculat.kartya(
+        szin=szin, cimke_szin=cimke_szin,
+        jelvenyek=email_arculat.jarat_jelveny(vonal, t.get("eszkoz_tipus")) if vonal else "",
+        cimke=cimke,
+        cim=cim,
+        test=email_arculat.led(szoveg)
+             + email_arculat.adat_tabla(sorok)
+             + email_arculat.gomb("📍 Térkép", gmaps)
+             + email_arculat.gomb("FUTÁR pozíció", futar_link, masodlagos=True),
+        lab="BKK kijelző-figyelő · FUTÁR adatok alapján",
+    )
+
+
 def email_kuldes(talalatok):
     ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db = len(talalatok)
-    targy = f"🚨 BKK kijelző - rendellenes üzenet ({db} db) | {ido}"
+    if db == 1:
+        t0 = talalatok[0]
+        targy = f"🚌 BKK kijelző: {t0.get('vonal_szam') or t0.get('route_id') or '?'} · „{t0['kijelzo_szoveg']}”"
+    else:
+        targy = f"🚌 BKK kijelző: {db} rendellenes üzenet"
 
-    sorok_html = ""
     sorok_txt = ""
-
+    kartyak = []
     for i, t in enumerate(talalatok, 1):
         gmaps = f"https://www.google.com/maps?q={t['lat']},{t['lon']}&z=17" if t["lat"] and t["lon"] else None
         futar_link = f"https://futar.bkk.hu/?vehicleId={t['vehicle_id']}"
-
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:#c0392b;color:#fff;padding:5px 12px;border-radius:4px;
-                         font-size:13px;font-weight:bold">🚨 {t['egyezo_kulcsszo'].upper()}</span>
-            <table style="font-size:13px;width:100%;margin-top:10px">
-              <tr><td style="color:#888;width:140px">🚌 Vonal:</td><td><strong>{t['vonal_szam'] or '—'}</strong> <span style="color:#aaa">({t['route_id'] or '—'})</span></td></tr>
-              <tr><td style="color:#888">💬 Kijelző szövege:</td><td><strong>{t['kijelzo_szoveg']}</strong></td></tr>
-              <tr><td style="color:#888">🔢 Rendszám:</td><td>{t['rendszam'] or '—'}</td></tr>
-              <tr><td style="color:#888">🚐 Jármű típusa:</td><td>{t['eszkoz_tipus'] or '—'} · {t['modell'] or '—'}</td></tr>
-              <tr><td style="color:#888">🆔 Jármű-azonosító:</td><td>{t['vehicle_label'] or t['vehicle_id']}</td></tr>
-              <tr><td style="color:#888">📡 Állapot:</td><td>{t['statusz'] or '—'}</td></tr>
-              <tr><td style="color:#888">🕐 Utolsó frissítés:</td><td>{formaz_unix_ido(t.get('utolso_frissites'))}</td></tr>
-            </table>
-            <div style="margin-top:8px">
-              {f'<a href="{gmaps}" style="background:#4285f4;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold;margin-right:6px">📍 Google Maps</a>' if gmaps else ''}
-              <a href="{futar_link}" style="background:#2c5f6f;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold">🚋 FUTÁR pozíció</a>
-            </div>
-          </td>
-        </tr>"""
-
+        kartyak.append(_kijelzo_kartya(
+            t, t["kijelzo_szoveg"], "Rendellenes kijelzőszöveg", "Kulcsszó: " + t["egyezo_kulcsszo"],
+            email_arculat.SZIN["sarga"], email_arculat.SZIN["sarga_szoveg"]))
         sorok_txt += (
             f"\n{'─'*45}\n{i}. 🚨 {t['egyezo_kulcsszo']}\n"
             f"Vonal: {t['vonal_szam']} ({t['route_id']})\nKijelző: {t['kijelzo_szoveg']}\n"
@@ -535,28 +548,7 @@ def email_kuldes(talalatok):
             f"Maps: {gmaps or '—'}\nFUTÁR: {futar_link}\n"
         )
 
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#c0392b;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>🚨 BKK kijelző - rendellenes üzenet</h1>
-    <small>{ido} | {db} találat</small>
-  </div>
-  <div class="body">
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-  </div>
-  <div class="foot">Automatikus figyelő – GitHub Actions | FUTÁR API adatok alapján</div>
-</div></body></html>"""
+    html = email_arculat.keret("".join(kartyak), "BKK Kijelző Figyelő · automatikus értesítés")
 
     szoveges = f"🚨 BKK kijelző - rendellenes üzenet\nIdőpont: {ido}\n{sorok_txt}"
 
@@ -580,35 +572,21 @@ def flag_email_kuldes(talalatok):
     RENDELLENES_KULCSSZAVAK listán."""
     ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db = len(talalatok)
-    targy = f"🚩 BKK kijelző - megjelölt szöveg újra megjelent ({db} db) | {ido}"
+    if db == 1:
+        t0 = talalatok[0]
+        targy = f"🚩 BKK kijelző: {t0.get('vonal_szam') or t0.get('route_id') or '?'} · megjelölt szöveg: „{t0['uj_szoveg']}”"
+    else:
+        targy = f"🚩 BKK kijelző: {db} megjelölt szöveg újra megjelent"
 
-    sorok_html = ""
     sorok_txt = ""
-
+    kartyak = []
     for i, t in enumerate(talalatok, 1):
         gmaps = f"https://www.google.com/maps?q={t['lat']},{t['lon']}&z=17" if t.get("lat") and t.get("lon") else None
         futar_link = f"https://futar.bkk.hu/?vehicleId={t['vehicle_id']}"
-
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:#b45309;color:#fff;padding:5px 12px;border-radius:4px;
-                         font-size:13px;font-weight:bold">🚩 {t['egyezo_flag'].upper()}</span>
-            <table style="font-size:13px;width:100%;margin-top:10px">
-              <tr><td style="color:#888;width:140px">🚌 Vonal:</td><td><strong>{t['vonal_szam'] or '—'}</strong> <span style="color:#aaa">({t['route_id'] or '—'})</span></td></tr>
-              <tr><td style="color:#888">💬 Új kijelző-szöveg:</td><td><strong>{t['uj_szoveg']}</strong></td></tr>
-              <tr><td style="color:#888">↩️ Előző szöveg:</td><td>{t.get('elozo_szoveg') or '—'}</td></tr>
-              <tr><td style="color:#888">🔢 Rendszám:</td><td>{t.get('rendszam') or '—'}</td></tr>
-              <tr><td style="color:#888">🆔 Jármű-azonosító:</td><td>{t['vehicle_label'] or t['vehicle_id']}</td></tr>
-            </table>
-            <div style="margin-top:8px">
-              {f'<a href="{gmaps}" style="background:#4285f4;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold;margin-right:6px">📍 Google Maps</a>' if gmaps else ''}
-              <a href="{futar_link}" style="background:#2c5f6f;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold">🚋 FUTÁR pozíció</a>
-            </div>
-          </td>
-        </tr>"""
-
+        kartyak.append(_kijelzo_kartya(
+            t, t["uj_szoveg"], "Megjelölt szöveg újra megjelent", "Jelölés: " + t["egyezo_flag"],
+            email_arculat.SZIN["sarga"], email_arculat.SZIN["sarga_szoveg"],
+            extra_sorok=[("Előző szöveg", t.get("elozo_szoveg"))]))
         sorok_txt += (
             f"\n{'─'*45}\n{i}. 🚩 {t['egyezo_flag']}\n"
             f"Vonal: {t['vonal_szam']} ({t['route_id']})\nÚj szöveg: {t['uj_szoveg']}\n"
@@ -617,30 +595,10 @@ def flag_email_kuldes(talalatok):
             f"Maps: {gmaps or '—'}\nFUTÁR: {futar_link}\n"
         )
 
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#b45309;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>🚩 BKK kijelző - megjelölt szöveg újra megjelent</h1>
-    <small>{ido} | {db} találat</small>
-  </div>
-  <div class="body">
-    <p style="font-size:13px;color:#555">Ez a szöveg szerepel az "Előzmények" fülön általad megjelölt listán -
-    most újra megjelent (vagy egy másik járművön jelent meg) a kijelzőn.</p>
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-  </div>
-  <div class="foot">Automatikus figyelő – GitHub Actions | FUTÁR API adatok alapján</div>
-</div></body></html>"""
+    html = email_arculat.keret(
+        '<p style="font-size:14px;color:#55606b;margin:0 0 12px">Ez a szöveg szerepel az „Előzmények” fülön '
+        'általad megjelölt listán, és most újra megjelent egy kijelzőn.</p>' + "".join(kartyak),
+        "BKK Kijelző Figyelő · automatikus értesítés")
 
     szoveges = f"🚩 BKK kijelző - megjelölt szöveg újra megjelent\nIdőpont: {ido}\n{sorok_txt}"
 

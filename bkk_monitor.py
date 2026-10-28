@@ -16,6 +16,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 
+import email_arculat
+
 MAGYAR_TZ = timezone(timedelta(hours=2))
 
 def magyar_ido():
@@ -194,67 +196,61 @@ def lekerdez_bkk():
 # ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
+def erintett_vonalak(szoveg):
+    """A figyelt csepeli vonalak, amelyek a szövegben előfordulnak (sorrendben)."""
+    talalt = []
+    for m in re.finditer(r"(?<![\w])(H\d{1,2}|\d{1,3}[A-Z]?)(?=[-\s,.;:)]|$)", szoveg or ""):
+        v = m.group(1)
+        if v in FIGYELT_VONALAK and v not in talalt:
+            talalt.append(v)
+    return talalt
+
+
 def email_kuldes(uj_esetek, cimzett=None):
     cimzett = cimzett or EMAIL_CIMZETT
-    ido  = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db   = len(uj_esetek)
-    targy = f"🚨 BKK forgalmi esemény – {db} új | {ido}"
 
-    sorok_html = ""
-    for i, e in enumerate(uj_esetek, 1):
-        cim    = e.get("cim", "—")
+    kartyak = []
+    osszes_vonal = []
+    for e in uj_esetek:
+        cim     = e.get("cim", "—")
         reszlet = e.get("reszlet", "")
-        url    = e.get("url", BKK_URL)
-        badge  = e.get("badge", "🚨 FORGALMI ESEMÉNY – TERELÉS")
+        url     = e.get("url", BKK_URL)
+        badge   = e.get("badge", "") or ""
+        vonalak = erintett_vonalak(cim + " " + reszlet)
+        osszes_vonal += [v for v in vonalak if v not in osszes_vonal]
+        # A régi badge emojis felirata („🚑 MENTŐ”) a címke második fele lesz
+        tipus = re.sub(r"^[^\wÁÉÍÓÖŐÚÜŰ]+", "", badge).strip().lower() or "baleset"
+        if tipus == "forgalmi esemény":
+            tipus = "baleset"
+        kartyak.append(email_arculat.kartya(
+            szin=email_arculat.SZIN["piros"],
+            jelvenyek="".join(email_arculat.jarat_jelveny(v) for v in vonalak),
+            cimke="Terelés · " + tipus,
+            cim=cim,
+            test=email_arculat.bekezdes(reszlet)
+                 + email_arculat.gomb("BKK Info", url)
+                 + email_arculat.gomb("m.bkkinfo.hu", BKK_URL, masodlagos=True),
+            lab="BKK zavar-figyelő · csak baleset miatti terelésekről szól",
+        ))
 
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:#c0392b;color:#fff;padding:5px 12px;
-                         border-radius:4px;font-size:13px;font-weight:bold">{badge}</span>
-            <div style="font-size:15px;font-weight:bold;margin:10px 0;color:#2c3e50">{cim}</div>
-            {"<div style='font-size:13px;color:#555;margin-bottom:10px;line-height:1.6'>" + reszlet + "</div>" if reszlet else ""}
-            <a href="{url}" style="background:#2980b9;color:#fff;padding:7px 14px;
-                                    border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold">
-              🔗 BKK INFO oldal
-            </a>
-          </td>
-        </tr>"""
+    if db == 1:
+        elotag = ", ".join(osszes_vonal)
+        cim0 = uj_esetek[0].get("cim", "terelés baleset miatt")
+        if elotag and not cim0.startswith(osszes_vonal[0]):
+            cim0 = f"{elotag} · {cim0}"
+        targy = f"🚨 BKK: {cim0[:100]}"
+    else:
+        targy = f"🚨 BKK: {db} baleset miatti terelés" + (f" ({', '.join(osszes_vonal)})" if osszes_vonal else "")
 
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#c0392b;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>🚨 BKK – Baleset miatti terelés</h1>
-    <small>{ido} | {db} új esemény</small>
-  </div>
-  <div class="body">
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-    <div style="text-align:center;margin-top:16px">
-      <a href="{BKK_URL}" style="background:#c0392b;color:#fff;padding:9px 16px;
-         border-radius:6px;text-decoration:none;font-weight:bold;font-size:12px">
-        🚌 BKK INFO oldal
-      </a>
-    </div>
-  </div>
-  <div class="foot">Automatikus értesítő – GitHub Actions | BKK INFO adatai alapján</div>
-</div></body></html>"""
+    html = email_arculat.keret("".join(kartyak), "BKK Monitor · automatikus értesítés")
+    szoveges = "\n\n".join(f"{e.get('cim', '')}\n{e.get('reszlet', '')}\n{e.get('url', BKK_URL)}" for e in uj_esetek)
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
     msg["From"]    = f"🚨 BKK Monitor <{EMAIL_KULDO}>"
     msg["To"]      = cimzett
+    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
     msg.attach(MIMEText(html, "html", "utf-8"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:

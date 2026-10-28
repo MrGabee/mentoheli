@@ -29,7 +29,10 @@ import json
 import time
 import calendar
 import hashlib
+import re
 import smtplib
+
+import email_arculat
 import traceback
 import logging
 from email.mime.text import MIMEText
@@ -469,13 +472,13 @@ def esemeny_email_kuldes(uj_esemenyek, terkepek):
         return
 
     ido = most().strftime("%Y-%m-%d %H:%M:%S")
-    targy = f"🚧 BKK KÖZÚTi (bal)eset - {len(uj_esemenyek)} új esemény | {ido}"
+    if len(uj_esemenyek) == 1:
+        targy = f"🚧 BKK közút: {uj_esemenyek[0]['cim'][:90]}"
+    else:
+        targy = f"🚧 BKK közút: {len(uj_esemenyek)} új esemény"
 
     szoveg_sorok = [f"BKK közúti baleset-figyelő - {ido} (budapesti idő)", ""]
-    html_reszek = [
-        f'<div style="font-family: Arial, sans-serif; font-size: 14px; color: #1f2d2b;">',
-        f'<p><strong>BKK közúti baleset-figyelő</strong> - {ido} (budapesti idő)</p>',
-    ]
+    kartyak = []
 
     for idx, e in enumerate(uj_esemenyek):
         adat = terkepek.get(e["id"])
@@ -486,25 +489,32 @@ def esemeny_email_kuldes(uj_esemenyek, terkepek):
         if e["befejezes"]:
             szoveg_sorok.append(f"   Vége: {e['befejezes']}")
 
-        html_reszek.append('<hr style="border:none;border-top:1px solid #e4e9e7;margin:16px 0;">')
-        html_reszek.append(f'<p style="font-weight:700;margin:0 0 4px;">{e["cim"]}</p>')
-        html_reszek.append(f'<p style="margin:0 0 4px;color:#55605e;">Kezdete: {e["kezdes"]}</p>')
-        if e["befejezes"]:
-            html_reszek.append(f'<p style="margin:0 0 8px;color:#55605e;">Vége: {e["befejezes"]}</p>')
-
+        test = ""
+        maps_url = None
         if adat:
-            html_reszek.append(f'<img src="cid:{cid}" alt="Térkép" style="max-width:100%;border-radius:8px;border:1px solid #dfe6e4;margin-top:6px;">')
+            test += (f'<img src="cid:{cid}" alt="Térkép" width="556" '
+                     'style="display:block;width:100%;max-width:556px;height:auto;border-radius:8px;border:1px solid #dfe6e4;margin:8px 0">')
             if adat.get("koordinata"):
                 lat, lng = adat["koordinata"]
                 maps_url = f"https://www.google.com/maps?q={lat},{lng}"
                 szoveg_sorok.append(f"   Térkép: {maps_url}")
-                html_reszek.append(f'<p style="margin:6px 0 0;"><a href="{maps_url}">Megnyitás Google Maps-ben ({lat:.5f}, {lng:.5f})</a></p>')
+        test += email_arculat.adat_tabla([("Kezdete", e["kezdes"]), ("Vége", e["befejezes"] or "még tart")])
+        test += email_arculat.gomb("📍 Google Maps", maps_url)
+
+        baleset = re.search(r"baleset|ütköz|gázol|borul", e["cim"], re.I)
+        kartyak.append(email_arculat.kartya(
+            szin=email_arculat.SZIN["piros"] if baleset else email_arculat.SZIN["sarga"],
+            cimke_szin=None if baleset else email_arculat.SZIN["sarga_szoveg"],
+            cimke="Közúti baleset" if baleset else "Közúti esemény",
+            cim=e["cim"],
+            test=test,
+            lab="BKK közúti figyelő · a térkép a levélbe ágyazva",
+        ))
 
         szoveg_sorok.append("")
 
-    html_reszek.append("</div>")
     szoveg = "\n".join(szoveg_sorok)
-    html_szoveg = "\n".join(html_reszek)
+    html_szoveg = email_arculat.keret("".join(kartyak), "BKK Közúti Figyelő · automatikus értesítés")
 
     try:
         msg = MIMEMultipart("related")
