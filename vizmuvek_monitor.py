@@ -14,17 +14,19 @@ import requests
 
 import poszt_valtozatos
 import ejszakai_sor
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 
 from poszt_valtozatos import Stilus
+import email_arculat as ea
 
 # ─────────────────────────────────────────────
 #  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
 # ─────────────────────────────────────────────
-MAGYAR_TZ = timezone(timedelta(hours=2))
+from zoneinfo import ZoneInfo
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
@@ -262,129 +264,47 @@ def facebook_poszt_kuldese(szoveg):
 # ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
-def email_kuldes(uj_esetek):
-    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
-    db    = len(uj_esetek)
-    targy = f"💧 Vízművek (Csepel/Pesterzsébet/Sziget.) – {db} új esemény | {ido}"
+VIZ_JELVENY = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
+               'padding:6px 9px;border-radius:4px;background:#0077c8;color:#ffffff;'
+               'font-family:Arial,sans-serif;letter-spacing:.5px">💧 VÍZ</span>')
 
-    sorok_html = ""
-    sorok_txt  = ""
+# típus: (kártyacímke, csíkszín, címkeszín)
+VIZ_KARTYA = {
+    "geo_0": ("Vízhiány",           ea.SZIN["piros"], None),
+    "geo_1": ("Várható vízhiány",   ea.SZIN["sarga"], ea.SZIN["sarga_szoveg"]),
+    "geo_2": ("Forgalomkorlátozás", ea.SZIN["kek"],   None),
+}
 
-    for i, e in enumerate(uj_esetek, 1):
-        emoji, label, szin = TIPUS_MAP.get(e["tipus"], ("💧", e["tipus"], "#2980b9"))
 
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:{szin};color:#fff;padding:5px 12px;
-                         border-radius:4px;font-size:13px;font-weight:bold">
-              {emoji} {label}
-            </span>
-            <div style="font-size:15px;font-weight:bold;margin:10px 0;color:#2c3e50">
-              {e['cim']}
-            </div>
-            <table style="font-size:13px;width:100%;margin-top:6px">
-              <tr><td style="color:#888;width:160px">📌 Terület:</td>
-                  <td><strong>{e['terulet']}</strong></td></tr>
-              <tr><td style="color:#888">🔧 Munka típusa:</td>
-                  <td>{e['munka'] or '—'}</td></tr>
-              <tr><td style="color:#888">⏰ Kezdés:</td>
-                  <td><strong>{e['kezdes'] or '—'}</strong></td></tr>
-              <tr><td style="color:#888">⏰ Vége:</td>
-                  <td><strong>{e['veg'] or '—'}</strong></td></tr>
-            </table>
-            <div style="margin-top:10px">
-              <a href="{e['gmaps']}" style="background:#4285f4;color:#fff;padding:7px 14px;
-                                            border-radius:4px;text-decoration:none;
-                                            font-size:12px;font-weight:bold">
-                📍 Google Maps
-              </a>
-            </div>
-          </td>
-        </tr>"""
+def email_kuldes(uj_esetek, fb=None):
+    db = len(uj_esetek)
+    rendezett = sorted(uj_esetek, key=lambda e: e["tipus"])   # vízhiány elöl
+    elso = rendezett[0]
+    elso_cimke = VIZ_KARTYA.get(elso["tipus"], ("Vízműves munka",))[0]
+    targy = (f"💧 {elso_cimke} · {elso['terulet']} · {elso['cim']}" if db == 1
+             else f"💧 Vízművek: {db} új munka · {elso['cim']} és még {db - 1}")
 
-        sorok_txt += (
-            f"\n{'─'*45}\n{i}. {emoji} {label}\n"
-            f"Cím:    {e['cim']}\n"
-            f"Munka:  {e['munka']}\n"
-            f"Kezdés: {e['kezdes']}\n"
-            f"Vége:   {e['veg']}\n"
-            f"Maps:   {e['gmaps']}\n"
-        )
-
-    fb_szoveg = facebook_szoveg(uj_esetek)
-
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#2980b9;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .bevezeto{{background:#e8f4fd;border-left:4px solid #2980b9;
-             padding:12px 16px;margin-bottom:16px;
-             font-size:14px;color:#2c3e50;line-height:1.6}}
-  .fb-box{{background:linear-gradient(135deg,#f0f2f5,#e8edf3);
-           border:1px solid #d0d7de;border-radius:12px;
-           padding:18px 20px;margin:22px 0;
-           box-shadow:0 1px 3px rgba(0,0,0,.06)}}
-  .fb-box h3{{margin:0 0 12px;color:#1877f2;font-size:14px;
-              display:flex;align-items:center;gap:6px}}
-  .fb-box pre{{margin:0;font-family:Arial,sans-serif;font-size:13px;
-              white-space:pre-wrap;word-break:break-word;
-              color:#1c1e21;line-height:1.6;background:#fff;
-              border-radius:8px;padding:14px;border:1px solid #e4e6eb}}
-  .fb-allapot{{margin-top:10px;font-size:12px;color:#42b72a;font-weight:bold}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
-         color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>💧 Fővárosi Vízművek – Csepel / Pesterzsébet / Szigetszentmiklós</h1>
-    <small>{ido} | {db} új esemény</small>
-  </div>
-  <div class="body">
-
-    <div class="bevezeto">
-      ℹ️ A Fővárosi Vízművek az alábbi helyszíneken (Csepel, Pesterzsébet,
-      Szigetszentmiklós) végez jelenleg hálózati munkálatokat.
-      A munkák ideje alatt az érintett területeken <strong>vízhiány, nyomáscsökkenés
-      vagy forgalomkorlátozás</strong> tapasztalható.
-    </div>
-
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-
-    <div class="fb-box">
-      <h3>📘 Facebook poszt szövege (tájékoztatásul - ez már automatikusan kiment az Oldalra)</h3>
-      <pre id="fb">{fb_szoveg}</pre>
-      <div class="fb-allapot">✅ Automatikusan posztolva a Facebook Oldalra</div>
-    </div>
-
-    <div style="text-align:center;margin-top:16px">
-      <a href="https://www.vizmuvek.hu/hu/kezdolap/informaciok/munkaterkep-hol-dolgozunk"
-         style="background:#2980b9;color:#fff;padding:9px 16px;border-radius:6px;
-                text-decoration:none;font-weight:bold;font-size:12px">
-        💧 Vízművek munkatérkép
-      </a>
-      <a href="https://www.facebook.com/104411308403346"
-         style="background:#1877f2;color:#fff;padding:9px 16px;border-radius:6px;
-                text-decoration:none;font-weight:bold;font-size:12px;margin-left:8px">
-        📘 Facebook oldal megnyitása
-      </a>
-    </div>
-  </div>
-  <div class="foot">Automatikus értesítő – GitHub Actions | Fővárosi Vízművek adatai alapján</div>
-</div></body></html>"""
-
-    szoveges = f"💧 Fővárosi Vízművek – Csepel/Pesterzsébet/Szigetszentmiklós\nIdőpont: {ido}\n{sorok_txt}"
+    kartyak = ""
+    szoveges = "Vízművek Figyelő – új munkák\n"
+    for e in rendezett:
+        cimke, szin, cimke_szin = VIZ_KARTYA.get(e["tipus"], ("Vízműves munka", ea.SZIN["kek"], None))
+        test = (ea.adat_tabla([("Terület", e["terulet"]), ("Munka", e["munka"]),
+                               ("Kezdés", e["kezdes"]), ("Vége", e["veg"])])
+                + ea.gomb("📍 Térkép", e["gmaps"])
+                + ea.gomb("Vízművek munkatérkép", VIZMUVEK_URL, masodlagos=True))
+        kartyak += ea.kartya(szin, cimke, e["cim"] or e["terulet"], test,
+                             jelvenyek=VIZ_JELVENY, cimke_szin=cimke_szin)
+        szoveges += f"\n{cimke}: {e['cim']} ({e['terulet']})\n  {e['munka']}\n  {e['kezdes']} – {e['veg']}\n"
+    if fb:
+        kartyak += ea.kartya("#1877f2", "Facebook", "Ez a poszt megy ki az oldalra",
+                             '<div style="white-space:pre-wrap;font-size:13px;line-height:1.55;background:#f6f8fa;'
+                             f'border:1px solid #e4e6eb;border-radius:6px;padding:12px">{ea.esc(fb)}</div>')
+    html = ea.keret(kartyak, "Vízművek Figyelő · Csepel, Pesterzsébet, Szigetszentmiklós · a Fővárosi Vízművek adatai alapján")
+    szoveges += f"\nVízművek munkatérkép: {VIZMUVEK_URL}\n"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
-    msg["From"]    = f"💧 Vízművek Monitor <{EMAIL_KULDO}>"
+    msg["From"]    = f"Vízművek Figyelő <{EMAIL_KULDO}>"
     msg["To"]      = EMAIL_CIMZETT
     msg.attach(MIMEText(szoveges, "plain", "utf-8"))
     msg.attach(MIMEText(html,     "html",  "utf-8"))
@@ -393,9 +313,9 @@ def email_kuldes(uj_esetek):
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
             smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
             smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+        print(f"📧 E-mail elküldve: {targy}")
     else:
-        print("ℹ️ E-mail kikapcsolva (EMAIL_AKTIV = False), nem ment ki.")
-    print(f"📧 E-mail elküldve: {targy}")
+        print(f"ℹ️ E-mail kikapcsolva (EMAIL_AKTIV = False), nem ment ki: {targy}")
 
 
 # ════════════════════════════════════════════
@@ -419,11 +339,11 @@ def main():
 
     print(f"\n💧 Új esemény: {len(uj)}")
     if uj:
-        email_kuldes(uj)
+        fb_szoveg = facebook_szoveg(uj) if FACEBOOK_POSZTOLAS_AKTIV else None
+        email_kuldes(uj, fb_szoveg)
 
         if FACEBOOK_POSZTOLAS_AKTIV:
             print("\n📘 Facebook poszt küldése...")
-            fb_szoveg = facebook_szoveg(uj)
             ejszakai_sor.kuld_vagy_sorba(regi, fb_szoveg, facebook_poszt_kuldese)
     else:
         print("✅ Nincs új esemény.")
