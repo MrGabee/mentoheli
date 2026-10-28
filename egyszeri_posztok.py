@@ -208,6 +208,23 @@ Felvettem a kapcsolatot a Csepeli Városrendészeti Igazgatóság munkatársaiva
 💬 Ha erre jártok, írjátok meg kommentben, ti merre jutottatok haza, hátha másnak is segít!
 
 #Csepel #Szigetszentmiklós #útlezárás #olvasóihír"""),
+    "kartya_kulfold_20261031": (date(2026, 10, 31), """💳 KÜLFÖLDRE MÉSZ? ÍGY NE BUKJ A KÁRTYÁS FIZETÉSEN 💳
+
+Sokan nem is tudják, hogy külföldön minden kártyás fizetésnél és készpénzfelvételnél elmegy egy kis pénz a váltáson. Egy hosszabb útnál ez összeadva akár több ezer forint is lehet. Összeszedtem pár egyszerű dolgot, amivel spórolhattok:
+
+1️⃣ Ha a terminál vagy az automata megkérdezi, forintban vagy helyi pénznemben fizetnél-e, mindig a helyi pénznemet válaszd! A „forintban fizetek” gomb kényelmesnek tűnik, de ott a kereskedő bankja vált, általában sokkal rosszabb árfolyamon.
+
+2️⃣ Indulás előtt nézd meg a bankod hirdetményében, mennyi a külföldi kártyás vásárlás és a készpénzfelvétel díja. Bankonként elég nagy a különbség.
+
+3️⃣ Készpénzt inkább ritkábban, egyszerre nagyobb összegben vegyél fel, mert a fix díj minden felvételnél újra lejön.
+
+4️⃣ Ha devizaszámlás vagy többdevizás kártyát használsz, figyelj a hétvégékre: több szolgáltató hétvégén felárat számol, így érdemes pénteken előre váltani.
+
+5️⃣ Útnak indulás előtt nézd meg a banki appban, hogy a kártyád engedélyezve van-e külföldi és internetes használatra, és mekkora a napi limit.
+
+💬 Nektek mi vált be külföldön? Vigyetek készpénzt, vagy mindent kártyával fizettek? Írjátok meg kommentben!
+
+#pénzügy #bankkártya #utazás #spórolás"""),
 }
 
 
