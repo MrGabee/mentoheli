@@ -316,6 +316,8 @@ def eredmeny_szoveg(ma, meccsek=None):
             return None
     napi = ma.weekday() != 0
     tol = ma - timedelta(days=1 if napi else 3)
+    if ma == date(2026, 10, 29):
+        tol = date(2026, 10, 26)  # átállás: a hétfő–keddi eredmények még nem mentek ki
     lista = [m for m in meccsek if tol <= m["nap"] < ma and m["golok"] is not None][:MAX_MECCS]
     if not lista:
         return ""
