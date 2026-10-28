@@ -98,6 +98,12 @@ CIMEK = {
         "🏟️ MECCSNAP JÖN HÉTKÖZBEN IS 🏟️",
         "⚽ NE FELEDJÉTEK: HOLNAP MECCS! ⚽",
     ],
+    "sport_napi_eredmeny": [
+        "⚽ TEGNAPI CSEPELI EREDMÉNYEK ⚽",
+        "🏁 LEFÚJTÁK! ÍGY ZÁRULT A TEGNAPI NAP 🏁",
+        "📋 TEGNAP ÍGY JÁTSZOTTAK A CSEPELIEK 📋",
+        "⚽ EREDMÉNYEK TEGNAPRÓL – CSEPELI SPORT ⚽",
+    ],
     "sport_eredmeny": [
         "⚽ ÍGY JÁTSZOTTAK A CSEPELI CSAPATOK ⚽",
         "📋 HÉTVÉGI EREDMÉNYEK – CSEPELI SPORT 📋",
@@ -257,8 +263,14 @@ BEVEZETOK = {
         "Megnéztem a szövetségek adatbankjait, ezek a csepeli meccsek jönnek:",
         "Hétvégén is lesz sport bőven, a csepeli csapatok így játszanak:",
     ],
+    "sport_napi_eredmeny": [
+        "Tegnap is pályán voltak a csepeli csapatok, ezek lettek az eredmények:",
+        "Összeszedtem, hogy végződtek a tegnapi csepeli meccsek:",
+        "Megnéztem a tegnapi eredményeket, mutatom:",
+        "Így szerepeltek tegnap a csepeli csapatok:",
+    ],
     "sport_eredmeny": [
-        "Lezajlott a hét, összeszedtem, hogy szerepeltek a csepeli csapatok:",
+        "Lezajlott a hétvége, összeszedtem, hogy szerepeltek a csepeli csapatok:",
         "Így végződtek az elmúlt napok meccsei a csepeli csapatoknál:",
         "Megnéztem az eredményeket, mutatom, ki hogy játszott:",
         "Gratulálok mindenkinek, aki pályára lépett! Az eredmények:",
