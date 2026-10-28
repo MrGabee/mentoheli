@@ -6,6 +6,9 @@ on:
       url:
         description: "Betöltendő oldal"
         default: "https://www.utinform.hu/hu/news/balesetek-torlodasok-rendkivuli-kozlekedesi-esemenyek?d=0"
+      fetch:
+        description: "Az oldal kontextusából lekérendő URL-ek (szóközzel)"
+        default: ""
 
 jobs:
   proba:
@@ -19,3 +22,4 @@ jobs:
       - run: python eszkozok/pw_felderito.py
         env:
           URL: ${{ inputs.url }}
+          FETCH: ${{ inputs.fetch }}

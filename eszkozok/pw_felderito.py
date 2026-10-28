@@ -21,4 +21,8 @@ with sync_playwright() as p:
         except Exception as ex:
             print("  (nem olvasható)", ex)
     print("\n### OLDAL SZÖVEGE\n" + page.inner_text("body")[:6000])
+    for u in os.environ.get("FETCH", "").split():
+        res = page.evaluate("""async (u) => { try { const r = await fetch(u);
+            return {s: r.status, t: (await r.text()).slice(0, 4000)}; } catch (e) { return {s: -1, t: String(e)}; } }""", u)
+        print(f"\n### FETCH {u} -> {res['s']}\n{res['t']}")
     b.close()
