@@ -21,11 +21,14 @@ import smtplib
 import requests
 import re
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 
-MAGYAR_TZ = timezone(timedelta(hours=2))
+import email_arculat as ea
+
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
@@ -298,10 +301,7 @@ def email_kuldes(esemeny):
     flight_id = adat["flight_id"]
     aktualis_reg = adat.get("aktualis_reg", "")
 
-    ido      = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
-    emoji    = "🚁⬆️" if tipus == "FELSZALLAS" else "🚁⬇️"
     tipus_hu = "FELSZÁLLÁS" if tipus == "FELSZALLAS" else "LESZÁLLÁS"
-    szin     = "#c0392b" if tipus == "FELSZALLAS" else "#2980b9"
 
     if kulcs.startswith("reg:"):
         reg_upper = azonosito.upper()
@@ -322,94 +322,64 @@ def email_kuldes(esemeny):
         except Exception:
             return d
 
-    def ido_plusz2(ido_str):
+    def helyi_ido(ido_str):
+        """Az FR24 táblázata UTC-ben adja az időt; magyar idő (téli/nyári)."""
         if not ido_str:
-            return "Folyamatban..."
+            return ""
         try:
             h, m = map(int, ido_str.strip().split(":"))
-            h = (h + 2) % 24
-            return f"{h:02d}:{m:02d}"
+            utc = datetime.now(timezone.utc).replace(hour=h, minute=m, second=0, microsecond=0)
+            return utc.astimezone(MAGYAR_TZ).strftime("%H:%M")
         except Exception:
             return ido_str
 
-    datum_hu = datum_magyar(datum) if datum else "Ma"
-    atd_hu   = ido_plusz2(atd)
-    landed_hu = ido_plusz2(landed) if landed else None
+    datum_hu  = datum_magyar(datum) if datum else "Ma"
+    atd_hu    = helyi_ido(atd)
+    landed_hu = helyi_ido(landed) if landed else ""
+    felszallas = tipus == "FELSZALLAS"
+    repult = ""
+    try:
+        if atd_hu and landed_hu:
+            perc = (int(landed_hu[:2]) * 60 + int(landed_hu[3:])) - (int(atd_hu[:2]) * 60 + int(atd_hu[3:]))
+            repult = f"{perc % 1440} perc"
+    except ValueError:
+        pass
 
-    if tipus == "FELSZALLAS":
-        info = f"Felszállás: {datum_hu} {atd_hu}"
-    else:
-        info = f"Felszállás: {datum_hu} {atd_hu} → Leszállás: {landed_hu}"
-
-    gombok = ""
-    if elo and tipus == "FELSZALLAS":
-        gombok += f"""
-      <a href="{fr24_map}"
-         style="display:block;background:#ff6600;color:#fff;padding:15px;
-                border-radius:10px;text-decoration:none;font-size:16px;
-                font-weight:bold;margin-bottom:12px">
-        🔴 Élő követés – Flightradar24 térkép
-      </a>"""
-
+    sorok = [
+        ("Dátum", datum_hu),
+        ("Felszállás", atd_hu or "folyamatban"),
+        ("Leszállás", "" if felszallas else landed_hu),
+        ("Repült idő", "" if felszallas else repult),
+        ("Lajstromjel", "" if reg_upper == "?" else reg_upper),
+        ("Észlelés", f"{figyeles_tipusa} alapján"),
+    ]
+    test = ea.adat_tabla(sorok)
+    if elo and felszallas:
+        test += ea.gomb("🔴 Élő követés", fr24_map)
     if play_url:
-        gombok += f"""
-      <a href="{play_url}"
-         style="display:block;background:#cc4400;color:#fff;padding:14px;
-                border-radius:10px;text-decoration:none;font-size:15px;
-                font-weight:bold;margin-bottom:12px">
-        ▶️ Visszajátszás – Flightradar24
-      </a>"""
+        test += ea.gomb("▶️ Visszajátszás", play_url, masodlagos=not felszallas)
+    test += ea.gomb("Flightradar24 adatlap", fr24_url, masodlagos=True)
 
-    gombok += f"""
-      <a href="{fr24_url}"
-         style="display:block;background:#888;color:#fff;padding:13px;
-                border-radius:10px;text-decoration:none;font-size:14px;
-                font-weight:bold">
-        📋 Flightradar24 adatlap
-      </a>"""
+    jelveny = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
+               'padding:6px 9px;border-radius:4px;background:#c8102e;color:#ffffff;'
+               f'font-family:Arial,sans-serif;letter-spacing:.5px">🚁 {ea.esc(callsign)}</span>')
+    html = ea.keret(
+        ea.kartya(ea.SZIN["piros"] if felszallas else ea.SZIN["kek"],
+                  "⬆️ Felszállt" if felszallas else "⬇️ Leszállt",
+                  f"Mentőhelikopter – {callsign}", test, jelvenyek=jelveny),
+        "Mentőhelikopter Figyelő · Flightradar24 adatai alapján")
 
-    targy = f"{emoji} Mentőhelikopter {tipus_hu} – {callsign} | {ido}"
-
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8"></head>
-<body style="font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:20px">
-  <div style="max-width:480px;margin:0 auto">
-
-    <div style="background:{szin};border-radius:12px 12px 0 0;padding:24px;
-                text-align:center;color:#fff">
-      <div style="font-size:44px;margin-bottom:8px">{emoji}</div>
-      <div style="font-size:22px;font-weight:bold">Mentőhelikopter {tipus_hu}</div>
-      <div style="font-size:13px;opacity:.75;margin-top:6px">{ido}</div>
-      <div style="font-size:11px;opacity:.65;margin-top:4px">
-        Észlelés módja: {figyeles_tipusa}-alapú figyelés
-      </div>
-    </div>
-
-    <div style="background:#fff;padding:24px;text-align:center;
-                border-left:1px solid #ddd;border-right:1px solid #ddd">
-      <div style="font-size:36px;font-weight:bold;color:#2c3e50;
-                  letter-spacing:1px">{callsign}</div>
-      <div style="font-size:16px;color:#888;margin-top:4px;margin-bottom:8px">
-        {reg_upper}
-      </div>
-      <div style="font-size:14px;color:#555;margin-bottom:24px;
-                  background:#f8f8f8;padding:10px;border-radius:8px">
-        {info}
-      </div>
-      {gombok}
-    </div>
-
-    <div style="background:#ecf0f1;border-radius:0 0 12px 12px;padding:12px;
-                text-align:center;font-size:11px;color:#95a5a6">
-      Automatikus értesítő – Baleset-info.hu
-    </div>
-  </div>
-</body></html>"""
+    targy = (f"🚁⬆️ {callsign} felszállt · {atd_hu or 'most'}" if felszallas
+             else f"🚁⬇️ {callsign} leszállt · {landed_hu}")
+    szoveges = (f"Mentőhelikopter {tipus_hu} – {callsign} {reg_upper}\n"
+                f"Felszállás: {datum_hu} {atd_hu}\n" + ("" if felszallas else f"Leszállás: {landed_hu}\n")
+                + f"{play_url or fr24_url}\n")
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
-    msg["From"]    = f"🚁 Mentőhelikopter Monitor <{EMAIL_KULDO}>"
+    msg["From"]    = f"Mentőhelikopter Figyelő <{EMAIL_KULDO}>"
     msg["To"]      = EMAIL_CIMZETT
+    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
     msg.attach(MIMEText(html, "html", "utf-8"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
