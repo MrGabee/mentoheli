@@ -1,0 +1,58 @@
+name: ⏰ Útinform Figyelő ébresztése (percenként)
+
+# Az „UTiNFORM Figyelő” Apps Scriptet percenként meghívja webalkalmazásként.
+# A webalkalmazás-futás nem számít bele az Apps Script időzítőinek napi
+# keretébe, így a percenkénti figyelés nem fogyasztja el a többi szkript elől.
+# A cím a UTINFORM_WEBAPP_URL secretben van, a logba nem kerül ki.
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [utinform_ebreszto_trigger]
+  schedule:
+    # Biztonsági háló, ha az önindító lánc megszakadna.
+    - cron: '7,22,37,52 * * * *'
+
+concurrency:
+  group: utinform-ebreszto
+  cancel-in-progress: false
+
+jobs:
+  ebreszt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - name: ⏰ Percenkénti ébresztés
+        id: ebreszt
+        env:
+          URL: ${{ secrets.UTINFORM_WEBAPP_URL }}
+        run: |
+          if [ -z "$URL" ]; then
+            echo "Nincs beállítva a UTINFORM_WEBAPP_URL secret, a lánc áll."
+            exit 0
+          fi
+          echo "lanc=1" >> "$GITHUB_OUTPUT"
+          for i in 1 2 3 4 5 6; do
+            KEZD=$(date +%s)
+            VALASZ=$(curl -sL --max-time 50 "$URL" | head -c 20)
+            echo "$(date -u +%H:%M:%S) ébresztés $i/6: ${VALASZ:-nincs válasz}"
+            ELTELT=$(( $(date +%s) - KEZD ))
+            [ "$i" -lt 6 ] && [ "$ELTELT" -lt 60 ] && sleep $(( 60 - ELTELT ))
+          done
+          true
+
+      - name: 🔄 Következő futás indítása
+        # A lánc csak beállított címmel megy tovább (különben üresjáratban pörögne).
+        if: always() && steps.ebreszt.outputs.lanc == '1'
+        continue-on-error: true
+        run: |
+          for i in 1 2 3; do
+            KOD=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/dispatches \
+              -d '{"event_type":"utinform_ebreszto_trigger"}')
+            [ "$KOD" = "204" ] && echo "✅ Dispatch sikeres." && break
+            echo "⚠️ Dispatch sikertelen (HTTP $KOD), próbálkozás $i/3..."
+            sleep 5
+          done
