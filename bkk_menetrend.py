@@ -67,9 +67,9 @@ def most():
 
 # ── terület ──────────────────────────────────────────────────────
 def teruleten(lat, lon):
-    """XXI. kerület (Csepel-sziget északi része) és XX. kerület (Pesterzsébet), durva határral.
+    """XXI. kerület (Csepel-sziget északi része, Szigetszentmiklós széléig) és XX. kerület (Pesterzsébet), durva határral.
     Nyugaton a Duna (19.05), északon a Határ út / Kvassay híd vonala, keleten Kispest/Soroksár."""
-    if not (47.35 <= lat <= 47.455 and 19.05 <= lon <= 19.165):
+    if not (47.33 <= lat <= 47.455 and 19.05 <= lon <= 19.165):
         return False
     if lat < 47.405 and lon > 19.105:   # Soroksár
         return False
@@ -99,7 +99,7 @@ def terulet_adatai():
     # A FUTÁR nagy területre nem ad választ, ezért három kisebb ablakból rakom össze
     stops, routes = {}, {}
     for lat, lon, dlat, dlon in ((47.425, 19.075, 0.075, 0.075), (47.425, 19.14, 0.06, 0.06),
-                                 (47.37, 19.07, 0.05, 0.06)):
+                                 (47.36, 19.07, 0.06, 0.06)):
         d = futar("stops-for-location", lat=lat, lon=lon, latSpan=dlat, lonSpan=dlon)
         ref = (d.get("data") or {}).get("references") or {}
         if not ref:
@@ -168,7 +168,12 @@ def riasztasok():
 def helyiek(lista, megallok, helyi_jaratok, jaratok):
     ki = []
     for r in lista:
-        if not (set(r["routes"]) & helyi_jaratok or set(r["stops"]) & megallok):
+        # Ha a riasztás megállókat is megnevez, azok döntenek (pl. egy kispesti megálló
+        # áthelyezése nem csepeli hír, akkor sem, ha a járat erre is jár); ha nem, a járatok.
+        if r["stops"]:
+            if not set(r["stops"]) & megallok:
+                continue
+        elif not set(r["routes"]) & helyi_jaratok:
             continue
         r["vonalak"] = sorted({jaratok[x].get("shortName", x) for x in r["routes"] if x in jaratok},
                               key=lambda v: (len(re.sub(r"\D", "", v) or "999"), v))
