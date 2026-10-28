@@ -2058,7 +2058,7 @@ _KOR_LABJEGYZET = ("Ez egy automatikus értesítő. Ha kérdése van, vagy a sz�
                    "egyszerűen válaszoljon erre a levélre.")
 
 
-def kor_uj_szamla_email_html(rekord: dict, elotag_bekezdes: str = "") -> str:
+def kor_uj_szamla_email_html(rekord: dict, elotag_bekezdes: str = "", gomb_html: str = "") -> str:
     """Bérlői körnek szóló értesítő egy új számláról (a PDF csatolva)."""
     tartalom = (
         _lv_bekezdes("Tisztelt Bérlő!")
@@ -2072,6 +2072,7 @@ def kor_uj_szamla_email_html(rekord: dict, elotag_bekezdes: str = "") -> str:
             ("Számlaszám", _esc(rekord.get("szamlaszam") or "–")),
         ])
         + _lv_bekezdes("Kérjük, a számlát a fizetési határidőig szíveskedjen rendezni. Köszönjük!")
+        + gomb_html
     )
     return level_keret("kek", "Új számla", f"Új számla érkezett – {_esc(rekord.get('szolgaltato_nev') or '')}",
                        tartalom, _KOR_LABJEGYZET,
@@ -3809,7 +3810,7 @@ def kor_ertesito_varolista_feldolgozasa(allapot: dict, szamlak: dict, statisztik
         statisztika["email_ertesitesek"] += 1
         if email_kuldes(
             f"Új számla – {rekord['szolgaltato_nev']} – {osszeg_szoveg(rekord.get('osszeg'), rekord.get('penznem'))}",
-            kor_uj_szamla_email_html(rekord),
+            kor_uj_szamla_email_html(rekord, gomb_html=kor_szamlakero_gomb_html(allapot, b.get("kor"))),
             csatolmanyok or None,
             cimzett=cimzett,
             esemeny=f"uj_szamla:{rid}",
