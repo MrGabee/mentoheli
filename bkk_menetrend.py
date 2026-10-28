@@ -23,6 +23,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 import email_arculat as ea
+import poszt_valtozatos
+from ejszakai_sor import ejszaka
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 KULCS = os.environ.get("BKK_API_KEY", "")
@@ -31,6 +33,7 @@ ALERTS_URL = "https://go.bkk.hu/api/query/v1/ws/gtfs-rt/full/Alerts.pb"
 HEADERS = {"User-Agent": "mentoheli-monitor/1.0 (github.com/MrGabee)"}
 ALLAPOT_FAJL = "bkk_menetrend_allapot.json"
 ELONEZET = os.environ.get("ELONEZET") == "1"
+MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 
 # Este ebben a sávban megy az emlékeztető a holnap induló változásokról (a 21:30-as jó éjszakát előtt)
 ESTI_TOL, ESTI_IG = time(20, 0), time(21, 15)
@@ -218,6 +221,8 @@ def helyiek(lista, megallok, helyi_jaratok, jaratok):
             continue
         r["vonalak"] = sorted({jaratok[x].get("shortName", x) for x in r["routes"] if x in jaratok},
                               key=lambda v: (len(re.sub(r"\D", "", v) or "999"), v))
+        r["helyi_vonalak"] = [v for v in r["vonalak"]
+                              if any(jaratok.get(x, {}).get("shortName") == v for x in helyi_jaratok)]
         r["tipusok"] = {jaratok[x].get("shortName", x): jaratok[x].get("type") for x in r["routes"] if x in jaratok}
         ki.append(r)
     return sorted(ki, key=lambda r: r["kezdet"] or 0)
@@ -248,16 +253,61 @@ def cim(r):
     return c[:1].upper() + c[1:]
 
 
+# Ha egy bekezdés csak távoli járatokról szól (pl. a mindenszentek rendkívüli járatai
+# a város másik végén), kimarad a posztból; a levélben benne marad.
+HELYI_SZAVAK = re.compile(r"Csepel|Pesterzsébet|Erzsébet|Pacsirtatelep|Határ út|Gubacsi|Szent Imre|Királyerdő|"
+                          r"Szabadkikötő|Soroksári út|Weiss Manfréd|Hárosi|Kossuth Lajos utca", re.I)
+JARAT_JEL = re.compile(r"\b(\d{1,3}[A-Z]?)(?:-[a-zéáóöő]+)?\s+(?:autóbusz|villamos|trolibusz|troli)")
+
+
+def helyi_bekezdesek(r):
+    ki = []
+    for p in r["leiras"]:
+        if p.lower().startswith("megjegyzés"):
+            continue
+        jaratok = set(JARAT_JEL.findall(p)) | (set(re.findall(r"\b\d{1,3}[A-Z]?\b", p)) & set(r["vonalak"]))
+        if jaratok and not jaratok & set(r.get("helyi_vonalak") or []) and not HELYI_SZAVAK.search(p):
+            continue
+        ki.append(p)
+    # ha csak a bevezető maradna, inkább a teljes leírás megy
+    return ki if len(ki) > 1 or len(r["leiras"]) <= 1 else [p for p in r["leiras"]
+                                                          if not p.lower().startswith("megjegyzés")]
+
+
 def poszt_szoveg(r):
-    vonalak = ", ".join(r["vonalak"])
+    bekezdesek = helyi_bekezdesek(r)
+    szoveg = "\n".join(bekezdesek)
+    emlitett = [v for v in r["vonalak"] if re.search(rf"\b{re.escape(v)}\b", szoveg)]
+    vonalak = ", ".join(emlitett or r.get("helyi_vonalak") or r["vonalak"])
     bev = BEVEZETOK[int(hashlib.md5(r["id"].encode()).hexdigest(), 16) % len(BEVEZETOK)]
     sorok = [f"🚏 MENETRENDI VÁLTOZÁS{' – ' + vonalak if vonalak else ''} 🚏", "", bev, ""]
-    sorok += [s for s in r["leiras"] if not s.lower().startswith("megjegyzés")]
+    sorok += bekezdesek
     ido = idoszak(r)
     if ido:
         sorok += ["", f"📅 {ido}"]
-    sorok += ["", "Részletek a BKK oldalán.", "", "#Csepel #Pesterzsébet #BKK"]
+    sorok += ["", f"Részletek a BKK oldalán: {r['url']}" if r.get("url") else "Részletek a BKK oldalán.",
+              "", "#Csepel #Pesterzsébet #BKK"]
     return "\n".join(sorok)
+
+
+def jovobeli(r, t):
+    """Csak a még el nem indult változás mehet ki a Facebookra."""
+    return bool(r["kezdet"]) and r["kezdet"] > t.timestamp()
+
+
+def facebook_poszt(szoveg):
+    if not MAKE_WEBHOOK_URL:
+        print("  ⚠️ Nincs beállítva MAKE_WEBHOOK_URL – posztolás kihagyva.")
+        return False
+    try:
+        resp = requests.post(MAKE_WEBHOOK_URL, json={"message": poszt_valtozatos.atrendez(szoveg)}, timeout=20)
+        if resp.status_code == 200:
+            print("  ✅ Facebook poszt elküldve.")
+            return True
+        print(f"  ⚠️ Facebook poszt sikertelen (HTTP {resp.status_code})")
+    except Exception as ex:
+        print(f"  ⚠️ Facebook poszt hiba: {type(ex).__name__}")
+    return False
 
 
 def kartya(r):
@@ -324,6 +374,9 @@ def main():
         print(f"  • {', '.join(r['vonalak']) or '-'} | {cim(r)[:80]} | {idoszak(r)}")
 
     if ELONEZET:
+        for r in sajat:
+            if jovobeli(r, t):
+                print("📘 Facebookra menne:\n" + poszt_szoveg(r) + "\n")
         kuldes(f"🚏 BKK · {len(sajat)} változás Csepelen és Pesterzsébeten (előnézet)", sajat,
                "Ezek a most érvényes vagy bejelentett változások a környékünkön.")
         return
@@ -358,11 +411,27 @@ def main():
                    "Holnap induló változások – ha még nem ment ki, most érdemes megosztani.")
         allapot["esti"] = t.date().isoformat()
 
+    # Facebook: a még el nem indult változások, futásonként legfeljebb egy poszt,
+    # éjszaka és a jó éjszakát után nem (reggel folytatódik)
+    kiment = allapot.setdefault("fb_kiment", {})
+    varo = [r for r in sajat if r["id"] not in kiment and jovobeli(r, t)]
+    if varo and not ejszaka(t):
+        r = varo[0]
+        print(f"📘 Facebook: {', '.join(r['vonalak'])} | {cim(r)[:60]}")
+        try:
+            if facebook_poszt(poszt_szoveg(r)):
+                kiment[r["id"]] = t.isoformat(timespec="minutes")
+        except poszt_valtozatos.poszt_ellenor.HibasPoszt:
+            kiment[r["id"]] = "ellenőrző megállította"
+    elif varo:
+        print(f"🌙 {len(varo)} Facebook-poszt reggelig vár.")
+
     # Régi, már nem szereplő riasztások takarítása (30 nap után)
     aktiv = {r["id"] for r in lista}
     hatar = (t - timedelta(days=30)).isoformat()
     for k in [k for k, v in latott.items() if k not in aktiv and v < hatar]:
         del latott[k]
+        kiment.pop(k, None)
 
     with open(ALLAPOT_FAJL, "w", encoding="utf-8") as f:
         json.dump(allapot, f, ensure_ascii=False, indent=1)
