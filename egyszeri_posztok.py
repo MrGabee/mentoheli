@@ -132,6 +132,21 @@ Ha arra indulsz, számolj több idővel, vagy ha teheted, válassz másik útvon
 💬 Ti most hol jártok? Írjátok meg kommentben, meddig ér a sor, és mikor indul meg, hogy a többiek is tudják, mire számítsanak!
 
 #Csepel #dugó #közlekedés #WeissManfrédút"""),
+    "otp_20261028": (date(2026, 10, 28), """🏦 KÖLTÖZIK AZ OTP FIÓK A KOSSUTH LAJOS UTCÁN
+
+Szólok, mert sokakat érinthet: 2026. november 16-tól megszűnik az OTP Bank Kossuth Lajos utca 86. alatti csepeli fiókja, és összevonják a Kossuth Lajos utca 99. alatti fiókkal.
+
+📍 Új helyszín: 1211 Budapest, Kossuth Lajos utca 99.
+
+A 86. szám alatti fiókhoz tartozó számlák november 16-tól automatikusan átkerülnek a 99. szám alatti fiókba. A bank tájékoztatása szerint ezzel kapcsolatban nincs teendőd, de ha szeretnéd, más fiókba is áthelyeztetheted a számládat.
+
+🕗 A Kossuth Lajos utca 99. nyitvatartása:
+▪️ hétfő: 8:00–17:00
+▪️ kedd–péntek: 8:00–16:00
+
+💡 Ha nem szeretnél sorban állni, érdemes előre időpontot foglalni az OTP InternetBankban, a MobilBankban vagy telefonon (06 1/20/30/70 366 6666).
+
+#Csepel #OTP #bankfiók #KossuthLajosutca"""),
     "mentok_20261027": (date(2026, 10, 27), """🚑 A MENTŐS POSZT UTÁN: KÉT ÚJABB OLVASÓI ÜZENET
 
 A mentős várakozásról szóló bejegyzés után valóságos áradatként érkeztek az üzenetek az elérhetőségeimre. Előre szeretnék tisztázni valamit: nagyon sok mentős barátom van, és mindegyiküket úgy szeretem, mintha a testvérem lenne. A bejegyzéssel egy pillanatig sem akartam a mentősöket lejáratni. Minden tiszteletem az övék, és tudom, mekkora terhelés alatt dolgoznak nap mint nap. ❤️
