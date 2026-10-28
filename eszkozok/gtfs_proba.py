@@ -26,8 +26,14 @@ megallok = ref.get("stops") or {}
 jaratok = ref.get("routes") or {}
 print("Csepeli megállók:", len(megallok), "járatok:", len(jaratok))
 print("Járatok:", sorted({r.get("shortName", "") for r in jaratok.values()}))
-csepeli_route = set(jaratok)
-csepeli_stop = set(megallok)
+# Csak a Csepel-sziget északi része (XXI. ker.), koordinátával szűrve
+bent = {k: m for k, m in megallok.items() if 47.385 <= m.get("lat", 0) <= 47.455 and 19.035 <= m.get("lon", 0) <= 19.115}
+nyers = lambda x: x.split("_", 1)[1] if "_" in x else x
+csepeli_stop = {nyers(k) for k in bent}
+csepeli_route = {nyers(r) for m in bent.values() for r in (m.get("routeIds") or [])}
+jaratok = {nyers(k): v for k, v in jaratok.items()}
+print("Szűrt csepeli megállók:", len(bent), "járatok:", sorted({jaratok[r].get("shortName", r) for r in csepeli_route if r in jaratok}))
+print("Minta megálló-id:", list(megallok)[:3], "route-id:", list(ref.get("routes") or {})[:3])
 
 try:
     r = requests.get("https://go.bkk.hu/api/query/v1/ws/gtfs-rt/full/Alerts.pb",
@@ -50,6 +56,8 @@ def szoveg(ts):
 
 
 print("Összes riasztás:", len(feed.entity))
+for e in feed.entity[:3]:
+    print("Minta informed_entity:", [(i.route_id, i.stop_id, i.agency_id) for i in e.alert.informed_entity][:4], "|", szoveg(e.alert.header_text)[:80])
 talalt = 0
 for e in feed.entity:
     a = e.alert
