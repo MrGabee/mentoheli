@@ -10,12 +10,15 @@ import json
 import hashlib
 import smtplib
 import requests
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 
-MAGYAR_TZ = timezone(timedelta(hours=2))
+import email_arculat as ea
+
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
@@ -210,95 +213,53 @@ def lekerdez_lista():
     return esemenyek
 
 
+# Jelvények: MÁV kék, Volánbusz narancs
+MAV_JELVENY = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
+               'padding:6px 9px;border-radius:4px;background:#003f87;color:#ffffff;'
+               'font-family:Arial,sans-serif;letter-spacing:.5px">🚂 MÁV</span>')
+VOLAN_JELVENY = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
+                 'padding:6px 9px;border-radius:4px;background:#f39200;color:#ffffff;'
+                 'font-family:Arial,sans-serif;letter-spacing:.5px">🚌 VOLÁNBUSZ</span>')
+
+
+def email_kartya(e):
+    volan = e.get("tipus") == "VOLAN"
+    reszlet = e.get("reszlet", "")
+    if len(reszlet) > 800:
+        reszlet = reszlet[:800].rsplit(" ", 1)[0] + " …"
+    test = (ea.adat_tabla([("Utolsó módosítás", "" if e.get("datum") in (None, "—") else e["datum"])])
+            + ea.bekezdes(reszlet)
+            + ea.gomb("Teljes cikk", e.get("url", ""))
+            + ea.gomb("MÁVINFORM", MAV_URL, masodlagos=True))
+    return ea.kartya(ea.SZIN["sarga"] if volan else ea.SZIN["piros"],
+                     "Forgalmi / menetrendi változás" if volan else "Baleset / gázolás",
+                     e.get("cim", "—"), test,
+                     jelvenyek=VOLAN_JELVENY if volan else MAV_JELVENY,
+                     cimke_szin=ea.SZIN["sarga_szoveg"] if volan else None)
+
+
 def email_kuldes(uj_esetek):
-    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
-    db    = len(uj_esetek)
-    targy = f"🚂 MÁV/Volán esemény – {db} új | {ido}"
+    db = len(uj_esetek)
+    elso = uj_esetek[0]
+    elotag = "🚌 Volánbusz" if elso.get("tipus") == "VOLAN" else "🚂 MÁV"
+    if db == 1:
+        targy = f"{elotag} · {elso.get('cim', '')[:90]}"
+    else:
+        targy = f"🚂 MÁV/Volán: {db} új esemény · {elso.get('cim', '')[:60]} és még {db - 1}"
 
-    sorok_html = ""
-    sorok_txt  = ""
+    # a balesetek elöl
+    rendezett = sorted(uj_esetek, key=lambda e: e.get("tipus") == "VOLAN")
+    html = ea.keret("".join(email_kartya(e) for e in rendezett),
+                    "MÁV/Volán Figyelő · MÁVINFORM · ugyanarról a cikkről több levél nem jön")
 
-    for i, e in enumerate(uj_esetek, 1):
-        cim     = e.get("cim", "—")
-        reszlet = e.get("reszlet", "")[:800]
-        url     = e.get("url", "")
-        datum   = e.get("datum", "—")
-        tipus   = e.get("tipus", "BALESET")
-
-        if tipus == "VOLAN":
-            badge = "🚌 VOLÁNBUSZ – FORGALMI/MENETREND"
-            szin  = "#e67e22"
-        else:
-            badge = "🚂 BALESET / GÁZOLÁS"
-            szin  = "#8B0000"
-
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:{szin};color:#fff;padding:5px 12px;
-                         border-radius:4px;font-size:13px;font-weight:bold">
-              {badge}
-            </span>
-            <div style="font-size:15px;font-weight:bold;margin:10px 0;color:#2c3e50">
-              {cim}
-            </div>
-            <div style="font-size:12px;color:#888;margin-bottom:8px">
-              ⏰ Utolsó módosítás: {datum}
-            </div>
-            {"<div style='font-size:13px;color:#555;margin-bottom:10px;line-height:1.6'>" + reszlet + "</div>" if reszlet else ""}
-            <a href="{url}" style="background:#2980b9;color:#fff;padding:7px 14px;
-                                    border-radius:4px;text-decoration:none;
-                                    font-size:12px;font-weight:bold">
-              🔗 MÁVINFORM – Teljes cikk
-            </a>
-          </td>
-        </tr>"""
-
-        sorok_txt += (
-            f"\n{'─'*45}\n"
-            f"{i}. 🚂 {cim}\n"
-            f"Dátum: {datum}\n"
-            f"Link: {url}\n"
-            + (f"{reszlet[:300]}\n" if reszlet else "")
-        )
-
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#8B0000;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
-         color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>🚂 MÁV/Volán – Baleset értesítő</h1>
-    <small>{ido} | {db} új esemény</small>
-  </div>
-  <div class="body">
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-    <div style="text-align:center;margin-top:16px">
-      <a href="https://www.mavcsoport.hu/mavinform"
-         style="background:#8B0000;color:#fff;padding:9px 16px;border-radius:6px;
-                text-decoration:none;font-weight:bold;font-size:12px">
-        🚂 MÁVINFORM oldal
-      </a>
-    </div>
-  </div>
-  <div class="foot">Automatikus értesítő – GitHub Actions | MÁVINFORM adatai alapján</div>
-</div></body></html>"""
-
-    szoveges = f"🚂 MÁV/Volán Baleset\nIdőpont: {ido}\n{sorok_txt}"
+    szoveges = "MÁV/Volán Figyelő – új események\n"
+    for e in rendezett:
+        szoveges += (f"\n{'Volánbusz' if e.get('tipus') == 'VOLAN' else 'MÁV baleset'}: {e.get('cim', '')}\n"
+                     f"  {e.get('datum', '')}\n  {e.get('url', '')}\n")
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
-    msg["From"]    = f"🚂 MÁV Monitor <{EMAIL_KULDO}>"
+    msg["From"]    = f"MÁV/Volán Figyelő <{EMAIL_KULDO}>"
     msg["To"]      = EMAIL_CIMZETT
     msg.attach(MIMEText(szoveges, "plain", "utf-8"))
     msg.attach(MIMEText(html,     "html",  "utf-8"))
