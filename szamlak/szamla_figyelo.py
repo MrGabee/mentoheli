@@ -1209,6 +1209,15 @@ def _allapot_alapertekek() -> dict:
         # Ld. "KIMENŐ LEVELEK NAPLÓJA" - minden ténylegesen elküldött (vagy
         # küldéskor hibára futott) levél, CSAK a script írja.
         "kimeno_levelek": {},
+        # Ld. "SZÁMLAMÁSOLAT-KÉRÉSEK NAPLÓJA" és "FELADÓ-POSTAFIÓK
+        # VÁLASZTÁSA" - a napló, a feladó-lista és a közüzemi keresés
+        # eredménye CSAK a script írja, a választott feladót és a közüzemi
+        # keresésre engedélyezett adószámokat CSAK a dashboard.
+        "nav_masolat_kerelmek": {},
+        "felado_opciok": [],
+        "nav_emlekezteto_felado": None,
+        "nav_kozuzemi_kereses": [],
+        "nav_kozuzemi_kereses_eredmeny": {},
     }
 
 
@@ -1768,7 +1777,7 @@ def _esemeny_cimzettek_mentese(allapot: dict):
 
 
 def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="kozuzemi",
-                  feladas_cim_felulbiralas=None, esemeny=None):
+                  feladas_cim_felulbiralas=None, esemeny=None, felado_fiok=None):
     """csatolmanyok: [(fajlnev, bytes), ...] - lehet üres/None.
     cimzett: ha None, az alapértelmezett EMAIL_CIMZETT-re megy (a szokásos
     értesítők) - a dashboard "dátum-intervallumos küldés" funkciója viszont
@@ -1801,6 +1810,10 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
     else:
         feladas_cim, feladas_jelszo = EMAIL_KULDO, EMAIL_JELSZO_KULDES
         smtp_host, smtp_port = SMTP_HOST, SMTP_PORT
+    # A dashboardon választott feladó-postafiók (ld. _felado_fiok_feloldasa()).
+    if felado_fiok:
+        feladas_cim, feladas_jelszo = felado_fiok["cim"], felado_fiok["jelszo"]
+        smtp_host, smtp_port = felado_fiok["host"], felado_fiok["port"]
 
     # Ld. a fenti docstring - a HITELESÍTÉS (feladas_jelszo) mindig a
     # valódi fiókkal történik, csak a megjelenő "From" fejléc változik.
@@ -5751,6 +5764,94 @@ def _nav_parosithato_rekordok(allapot: dict):
     return eredmeny
 
 
+def _szamlaszam_alfanum(szamlaszam) -> str:
+    return re.sub(r"[^0-9A-Z]", "", str(szamlaszam or "").upper()).lstrip("0")
+
+
+def _kozuzemi_szamlaszam_egyezik(a, b) -> bool:
+    a, b = _szamlaszam_alfanum(a), _szamlaszam_alfanum(b)
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    rovidebb, hosszabb = sorted((a, b), key=len)
+    return len(rovidebb) >= 6 and rovidebb in hosszabb
+
+
+def _kozuzemi_kereses_kore(allapot: dict, nav_tetelek: list, parositott_nav_kulcsok: set, tetel_kulcs):
+    engedelyezett = {str(a).strip() for a in (allapot.get("nav_kozuzemi_kereses") or []) if str(a).strip()}
+    eredmeny = {}
+    # Kikapcsolt szállítónál a korábban így talált párosítások visszavonása.
+    for r in (allapot.get("szamlak") or {}).values():
+        if not r.get("nav_kozuzemi_keresesbol"):
+            continue
+        azonosito = str(r.get("nav_szamla_azonosito") or "")
+        if azonosito.split("|")[0] in engedelyezett:
+            continue
+        parositott_nav_kulcsok.discard(azonosito)
+        for mezo in ("nav_parositva", "nav_szamla_azonosito", "nav_szallito_nev", "nav_osszeg", "nav_datum",
+                     "nav_brutto_osszeg", "nav_kozuzemi_keresesbol"):
+            r.pop(mezo, None)
+    if not engedelyezett:
+        allapot["nav_kozuzemi_kereses_eredmeny"] = eredmeny
+        return
+    for adoszam in engedelyezett:
+        eredmeny[adoszam] = {"ido": magyar_ido().isoformat(), "parositva": 0, "maradt": 0, "talalatok": []}
+
+    def _datum(ertek):
+        try:
+            return date.fromisoformat(str(ertek or "")[:10])
+        except ValueError:
+            return None
+
+    for tetel in nav_tetelek:
+        adoszam = (tetel.get("szallito_adoszam") or "").strip()
+        if adoszam not in engedelyezett:
+            continue
+        kulcs = tetel_kulcs(tetel)
+        if kulcs in parositott_nav_kulcsok:
+            continue
+        jeloltek = [(rid, r) for rid, r in (allapot.get("szamlak") or {}).items() if not r.get("nav_parositva")]
+        talalt = None
+        for rid, r in jeloltek:
+            if _kozuzemi_szamlaszam_egyezik(r.get("szamlaszam"), tetel.get("szamlaszam")):
+                talalt = (rid, r)
+                break
+        if talalt is None:
+            osszeg_egyezok = [(rid, r) for rid, r in jeloltek
+                              if r.get("osszeg") is not None and _nav_osszeg_egyezik_tetellel(r.get("osszeg"), tetel)]
+            nav_datum = _datum(tetel.get("kiallitas_datum"))
+            if osszeg_egyezok:
+                def _tavolsag(par):
+                    d = _datum(par[1].get("erkezett"))
+                    return abs((d - nav_datum).days) if (d and nav_datum) else 10 ** 6
+                talalt = min(osszeg_egyezok, key=_tavolsag)
+        if talalt is None:
+            eredmeny[adoszam]["maradt"] += 1
+            continue
+        rid, rekord = talalt
+        rekord["nav_parositva"] = True
+        rekord["nav_szamla_azonosito"] = kulcs
+        rekord["nav_szallito_nev"] = tetel.get("szallito_nev")
+        rekord["nav_osszeg"] = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
+        rekord["nav_datum"] = tetel.get("kiallitas_datum")
+        rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
+        rekord["nav_kozuzemi_keresesbol"] = True
+        parositott_nav_kulcsok.add(kulcs)
+        eredmeny[adoszam]["parositva"] += 1
+        eredmeny[adoszam]["talalatok"].append({"nav_szamlaszam": tetel.get("szamlaszam"), "szamla_id": rid})
+    for adoszam, e in eredmeny.items():
+        e["parositva_osszesen"] = sum(
+            1 for r in (allapot.get("szamlak") or {}).values()
+            if r.get("nav_kozuzemi_keresesbol") and str(r.get("nav_szamla_azonosito") or "").startswith(adoszam + "|")
+        )
+    allapot["nav_kozuzemi_kereses_eredmeny"] = eredmeny
+    osszes = sum(e["parositva"] for e in eredmeny.values())
+    maradt = sum(e["maradt"] for e in eredmeny.values())
+    print(f"  🔎 Közüzemi keresés ({len(engedelyezett)} szállító): {osszes} NAV-tétel párosítva "
+          f"a Közüzemi fül számláival, {maradt} nem található.")
+
+
 def nav_szamla_parositas(allapot: dict):
     """Összeveti a nav_bejovo_szamlak_lekerese()-vel lekért NAV-tételeket
     MINDKÉT hellyel begyűjtött számla-rekorddal: a "Céges számlák" fülön
@@ -5903,6 +6004,16 @@ def nav_szamla_parositas(allapot: dict):
             rekord["nav_brutto_osszeg"] = _nav_brutto_huf(tetel)
             parositott_nav_kulcsok.add(kulcs)
             break
+
+    # 3. kör - a dashboardon "🔎 Keresés a Közüzemi fülön" gombbal
+    # engedélyezett szállítók (allapot["nav_kozuzemi_kereses"], a
+    # felhasználó kérése 2026-10-28: "MVM és egyéb közüzemi számlákat kér
+    # tőlem a céges oldal") párosítatlan NAV-tételeit LAZÁBB szabállyal
+    # keressük a Közüzemi fül számlái között: számlaszám csak betűk/számok
+    # szerint (vezető nullák nélkül, ill. ha az egyik tartalmazza a
+    # másikat), vagy összeg (±1 Ft) a ±7 napos dátumkorlát NÉLKÜL - több
+    # összeg-egyezésnél a kiállítás dátumához legközelebbit választjuk.
+    _kozuzemi_kereses_kore(allapot, nav_tetelek, parositott_nav_kulcsok, _nav_tetel_kulcs)
 
     csak_navban = [
         tetel for tetel in nav_tetelek if _nav_tetel_kulcs(tetel) not in parositott_nav_kulcsok
@@ -6080,6 +6191,98 @@ def _nav_emlekezteto_email_html(szallito_nev: str, tetelek: list, egyedi_szoveg:
     """
 
 
+# ════════════════════════════════════════════
+#  ✉️  FELADÓ-POSTAFIÓK VÁLASZTÁSA (NAV-emlékeztető)
+# ════════════════════════════════════════════
+# A felhasználó kérésére (2026-10-28) a dashboardon kiválasztható, melyik
+# postafiókról menjen ki a NAV-emlékeztető. A választható fiókok listáját
+# (jelszó NÉLKÜL) a script írja minden futáskor (allapot["felado_opciok"]),
+# a választást a dashboard (allapot["nav_emlekezteto_felado"]). A
+# "További postafiókok"-nál az SMTP-szervert az IMAP-hostból képezzük
+# (imap.x -> smtp.x, egyébként ugyanaz a host, pl. mail.domain.hu), 465-ös
+# SSL-porton - ugyanazzal a felhasználónévvel és jelszóval.
+def _smtp_host_imapbol(imap_host: str) -> str:
+    host = (imap_host or "").strip()
+    if host.lower().startswith("imap."):
+        return "smtp." + host[5:]
+    return host
+
+
+def _felado_fiokok(allapot: dict) -> list:
+    fiokok = []
+    lattak = set()
+
+    def _hozzaad(fid, cim, jelszo, host, port, leiras):
+        cim = (cim or "").strip()
+        if not (cim and jelszo and host) or cim.lower() in lattak:
+            return
+        lattak.add(cim.lower())
+        fiokok.append({"id": fid, "cim": cim, "jelszo": jelszo, "host": host, "port": int(port or 465),
+                       "leiras": leiras})
+
+    _hozzaad("ceges", CEGES_EMAIL_KULDO, CEGES_EMAIL_JELSZO_KULDES, CEGES_SMTP_HOST, CEGES_SMTP_PORT,
+             "Céges feladó (alapértelmezett)")
+    if CEGES_IMAP_HOST:
+        _hozzaad("ceges_postafiok", CEGES_IMAP_USER, CEGES_IMAP_JELSZO, _smtp_host_imapbol(CEGES_IMAP_HOST),
+                 465, "Céges postafiók (Céges levelek)")
+    for pid, b in (allapot.get("tovabbi_postafiokok") or {}).items():
+        if b.get("aktiv") is False:
+            continue
+        _hozzaad(f"pf:{pid}", b.get("user"), b.get("jelszo"), _smtp_host_imapbol(b.get("host")), 465,
+                 b.get("cimke") or "További postafiók")
+    _hozzaad("kozuzemi", EMAIL_KULDO, EMAIL_JELSZO_KULDES, SMTP_HOST, SMTP_PORT, "Közüzemi feladó")
+    return fiokok
+
+
+def felado_opciok_frissitese(allapot: dict):
+    allapot["felado_opciok"] = [
+        {"id": f["id"], "cim": f["cim"], "leiras": f["leiras"]} for f in _felado_fiokok(allapot)
+    ]
+
+
+def _felado_fiok_feloldasa(allapot: dict, felado_id):
+    """None = az alapértelmezett (céges) feladó marad."""
+    if not felado_id or felado_id == "ceges":
+        return None
+    for f in _felado_fiokok(allapot):
+        if f["id"] == felado_id:
+            return f
+    print("  ⚠️  A dashboardon választott feladó-postafiók már nem elérhető - az alapértelmezett "
+          "céges feladóról megy a levél.")
+    return None
+
+
+# ════════════════════════════════════════════
+#  📋  SZÁMLAMÁSOLAT-KÉRÉSEK NAPLÓJA TÉTELENKÉNT
+# ════════════════════════════════════════════
+# A felhasználó kérésére (2026-10-28) a dashboard a NAV-tételek mellett
+# mutatja, mikor és milyen címre ment ki másolat-kérés. Az elküldött
+# emlékeztetők a kimenő naplóban (allapot["kimeno_levelek"]) vannak, a
+# szövegükben a tételenkénti rejtett [[NAVKOD|...]] kóddal - ebből építjük
+# fel a tartós, tételenkénti naplót (így a gomb bevezetése ELŐTT kiment
+# kérések is látszanak). Kulcs: "<adószám>|<normalizált számlaszám>".
+NAV_KEREST_TARGY_ELOTAG = "📄 Hiányzó számla-másolat kérése"
+
+
+def nav_masolat_kerelmek_frissitese(allapot: dict):
+    naplo = dict(allapot.get("nav_masolat_kerelmek") or {})
+    for level in (allapot.get("kimeno_levelek") or {}).values():
+        if not str(level.get("targy") or "").startswith(NAV_KEREST_TARGY_ELOTAG):
+            continue
+        if level.get("statusz") != "elkuldve":
+            continue
+        for kod in _nav_kod_osszes_kinyerese(level.get("szoveg") or ""):
+            kulcs = f"{kod['adoszam']}|{_szamlaszam_normalizalt(kod['szamlaszam'])}"
+            bejegyzesek = list(naplo.get(kulcs) or [])
+            if any(b.get("level_id") == level.get("id") for b in bejegyzesek):
+                continue
+            bejegyzesek.append({"level_id": level.get("id"), "datum": level.get("datum"),
+                                "cimzett": level.get("cimzett"), "felado": level.get("felado")})
+            bejegyzesek.sort(key=lambda b: b.get("datum") or "")
+            naplo[kulcs] = bejegyzesek[-10:]
+    allapot["nav_masolat_kerelmek"] = naplo
+
+
 def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
     """Ld. a szekció elején lévő komment - teljesen no-op, ha a
     SZAMLA_NAV_EMLEKEZTETO_ADOSZAMOK env-változó üres (ez a NORMÁL eset -
@@ -6099,6 +6302,11 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
     szallito_emailek = allapot.get("nav_szallito_emailek", {})
     csak_navban = allapot.get("nav_csak_navban", [])
     egyedi_szoveg = allapot.get("ceges_emlekezteto_szoveg")
+
+    felado_fiok = _felado_fiok_feloldasa(allapot, allapot.get("nav_emlekezteto_felado"))
+    if felado_fiok:
+        print(f"  ✉️  NAV-emlékeztető: a dashboardon választott feladó-postafiókról megy "
+              f"({felado_fiok['id']}).")
 
     kuldott_db = 0
     for adoszam in kijelolt_adoszamok:
@@ -6125,11 +6333,11 @@ def nav_hianyzo_szamla_emlekezteto_kuldese(allapot: dict):
             # használjuk, a válaszokat a szállító így ugyanabba a
             # postafiókba küldi vissza, amit a figyelő olvas.
             kategoria="ceges",
+            felado_fiok=felado_fiok,
         )
         if sikeres:
             kuldott_db += 1
-            print(f"  ✉️  NAV-emlékeztető elküldve: {szallito_nev} ({email_cim}), "
-                  f"{len(sajat_tetelek)} db hiányzó számláról.")
+            print(f"  ✉️  NAV-emlékeztető elküldve: {len(sajat_tetelek)} db hiányzó számláról.")
 
     print(f"  ✉️  NAV-emlékeztető: összesen {kuldott_db} db email elküldve "
           f"{len(kijelolt_adoszamok)} kijelölt szállítóból.")
@@ -7383,6 +7591,8 @@ def main():
     _ujjlenyomatok_ritkitasa(allapot)
     _esemeny_cimzettek_mentese(allapot)
     kimeno_naplo_beolvasztasa(allapot)
+    nav_masolat_kerelmek_frissitese(allapot)
+    felado_opciok_frissitese(allapot)
 
     if DRY_RUN:
         print("  🧪 [DRY RUN] Állapot MENTÉSE kihagyva - a felismerés/lekérdezés lefutott, "
