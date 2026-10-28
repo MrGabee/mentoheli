@@ -179,6 +179,24 @@ A téli időszámítás 2027. március 28-ig tart, akkor tekerjük majd előre a
 Szép vasárnapot kívánok mindenkinek! ☕
 
 #Csepel #óraátállítás #téliidőszámítás"""),
+    "fotav_20261029": (date(2026, 10, 29), """🔥 TÁVHŐSZÜNET CSEPELEN – KÉT CÍMET ÉRINT 🔥
+
+Benéztem a Főtáv térképére, és két csepeli címen is tervezett szünetet jeleznek a következő napokban. Ha valamelyik házban laktok, érdemes előre készülni:
+
+🟠 Kiss János altábornagy utca 10.
+🕐 október 30. (péntek), 8:00–13:00
+ℹ️ Oka: ELMŰ-áramszünet
+
+🟠 Akácfa utca 19/a
+🕐 november 4. (szerda), 8:00–16:00
+
+Ilyenkor a fűtés és a meleg víz is szünetelhet, úgyhogy aki teheti, időzítse a zuhanyt és a mosást ezen kívülre.
+
+🔗 A Főtáv térképe: https://gmp.fotav.hu/mappublic.aspx
+
+💙 Oszd meg, hogy a szomszédaid is tudjanak róla!
+
+#Csepel #távhő #FŐTÁV"""),
 }
 
 
