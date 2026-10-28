@@ -276,6 +276,11 @@ def main():
     if not megallok:
         print("⚠️ Nem jött megállólista – kihagyva, az állapot marad.")
         return
+    if ELONEZET:
+        print("DEBUG terület-megálló minta:", sorted(megallok)[:8])
+        for r in lista:
+            if r["stops"] and set(r["routes"]) & helyi_jaratok:
+                print("DEBUG", r["cim"][:50], r["stops"][:6])
     sajat = helyiek(lista, megallok, helyi_jaratok, jaratok)
     for r in sajat:
         print(f"  • {', '.join(r['vonalak']) or '-'} | {cim(r)[:80]} | {idoszak(r)}")
