@@ -128,7 +128,7 @@ MENETREND = [
     ("dugo_20261027", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("dugo_20261027", nap)),
     ("mentok_20261027", time(19, 10), {KEDD}, lambda nap, a: egyszeri_posztok.szoveg("mentok_20261027", nap)),
     ("otp_20261028", time(16, 50), {SZERDA}, lambda nap, a: egyszeri_posztok.szoveg("otp_20261028", nap)),
-    ("tihanyi_20261028", time(18, 5), {SZERDA}, lambda nap, a: egyszeri_posztok.szoveg("tihanyi_20261028", nap)),
+    ("tihanyi_20261028", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("tihanyi_20261028", nap)),
     ("fotav_20261029", time(7, 45), {CSUTORTOK}, lambda nap, a: egyszeri_posztok.szoveg("fotav_20261029", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
