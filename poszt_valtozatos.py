@@ -106,7 +106,7 @@ CIMEK = {
     ],
     "sport_eredmeny": [
         "⚽ ÍGY JÁTSZOTTAK A CSEPELI CSAPATOK ⚽",
-        "📋 HÉTVÉGI EREDMÉNYEK – CSEPELI SPORT 📋",
+        "📋 EREDMÉNYEK – CSEPELI SPORT 📋",
         "🏁 LEFÚJTÁK! A CSEPELI CSAPATOK EREDMÉNYEI 🏁",
         "⚽ EREDMÉNYKÖZLŐ A KÖRNYÉKRŐL ⚽",
     ],
@@ -270,7 +270,7 @@ BEVEZETOK = {
         "Így szerepeltek tegnap a csepeli csapatok:",
     ],
     "sport_eredmeny": [
-        "Lezajlott a hétvége, összeszedtem, hogy szerepeltek a csepeli csapatok:",
+        "Összeszedtem, hogy szerepeltek a csepeli csapatok:",
         "Így végződtek az elmúlt napok meccsei a csepeli csapatoknál:",
         "Megnéztem az eredményeket, mutatom, ki hogy játszott:",
         "Gratulálok mindenkinek, aki pályára lépett! Az eredmények:",

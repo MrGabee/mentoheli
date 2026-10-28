@@ -314,12 +314,13 @@ def eredmeny_szoveg(ma, meccsek=None):
         meccsek = osszes_meccs()
         if meccsek is None:
             return None
-    napi = ma.weekday() != 0
-    tol = ma - timedelta(days=1 if napi else 3)
+    tol = ma - timedelta(days=1 if ma.weekday() != 0 else 3)
+    if ma == date(2026, 10, 29):
+        tol = date(2026, 10, 26)  # átállás: a hétfő–keddi eredmények még nem mentek ki
     lista = [m for m in meccsek if tol <= m["nap"] < ma and m["golok"] is not None][:MAX_MECCS]
     if not lista:
         return ""
-    st = Stilus("sport_napi_eredmeny" if napi else "sport_eredmeny", ma.isoformat())
+    st = Stilus("sport_napi_eredmeny" if (ma - tol).days == 1 else "sport_eredmeny", ma.isoformat())
     sorok = [st.cim, st.vonal(), "", st.bevezeto, ""]
     fo = [m for m in lista if kiemelt(m)]
     if fo:
