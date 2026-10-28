@@ -80,6 +80,21 @@ def aktualis_ut(nyom, reg, max_perc=UJ_UT_PERC):
     return []
 
 
+def fr24_nyomvonal(flight_id, headers):
+    """Az FR24 visszajátszás pontjai (pontosabb, a leszállásig tart): [[ts, lat, lon, alt_m, kmh], ...]"""
+    if not flight_id:
+        return []
+    try:
+        r = requests.get("https://api.flightradar24.com/common/v1/flight-playback.json",
+                         params={"flightId": flight_id}, headers=headers, timeout=15)
+        track = r.json()["result"]["response"]["data"]["flight"]["track"]
+        return [[p["timestamp"], round(p["latitude"], 5), round(p["longitude"], 5),
+                 round(p["altitude"]["meters"]), round(p["speed"]["kmh"])] for p in track]
+    except Exception as ex:
+        print(f"  ⚠️ FR24 nyomvonal nem elérhető ({flight_id}): {ex}")
+        return []
+
+
 def tavolsag_km(a, b):
     la1, lo1, la2, lo2 = map(math.radians, (a[0], a[1], b[0], b[1]))
     h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2

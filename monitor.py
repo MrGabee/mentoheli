@@ -384,15 +384,19 @@ def email_kuldes(esemeny, nyom=None):
 
     datum_hu  = datum_magyar(datum) if datum else "Ma"
     atd_hu    = helyi_ido(atd)
+    if atd_hu == "—":
+        atd_hu = ""
     landed_hu = helyi_ido(landed) if landed else ""
     felszallas = tipus == "FELSZALLAS"
-    repult = ""
-    try:
-        if atd_hu and landed_hu:
-            perc = (int(landed_hu[:2]) * 60 + int(landed_hu[3:])) - (int(atd_hu[:2]) * 60 + int(atd_hu[3:]))
-            repult = f"{perc % 1440} perc"
-    except ValueError:
-        pass
+    def repult_ido():
+        try:
+            if atd_hu and landed_hu:
+                perc = (int(landed_hu[:2]) * 60 + int(landed_hu[3:])) - (int(atd_hu[:2]) * 60 + int(atd_hu[3:]))
+                return f"{perc % 1440} perc"
+        except ValueError:
+            pass
+        return ""
+    repult = repult_ido()
 
     sorok = [
         ("Dátum", datum_hu),
@@ -404,7 +408,15 @@ def email_kuldes(esemeny, nyom=None):
     ]
     nyom = nyom if nyom is not None else {}
     reg = _gep_reg(kulcs, callsign, aktualis_reg, nyom)
-    poz_sorok, poz_gombok, terkep, poz_szoveg = pozicio_blokk(tipus, hp.aktualis_ut(nyom, reg) if reg else [])
+    pontok = hp.aktualis_ut(nyom, reg) if reg else []
+    if not felszallas:
+        # leszállásnál az FR24 visszajátszás pontosabb (a földig tart), ha elérhető
+        pontok = hp.fr24_nyomvonal(flight_id, HEADERS) or pontok
+    if not atd_hu and pontok and not felszallas:
+        atd_hu = datetime.fromtimestamp(pontok[0][0], MAGYAR_TZ).strftime("%H:%M")
+        sorok[1] = ("Felszállás", atd_hu)
+        sorok[3] = ("Repült idő", repult_ido())
+    poz_sorok, poz_gombok, terkep, poz_szoveg = pozicio_blokk(tipus, pontok)
     sorok += poz_sorok
     nagy_gomb = _nagy
     # A legfontosabbak felül, nagy gombokkal
