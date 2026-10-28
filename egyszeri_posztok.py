@@ -197,6 +197,17 @@ Ilyenkor a fűtés és a meleg víz is szünetelhet, úgyhogy aki teheti, időz�
 💙 Oszd meg, hogy a szomszédaid is tudjanak róla!
 
 #Csepel #távhő #FŐTÁV"""),
+    "tihanyi_20261028": (date(2026, 10, 28), """🚧 LEZÁRTÁK A TIHANYI UTCÁT – HOGY JUTUNK HAZA? 🚧
+
+Egy olvasóm írt nekem ma este. Hazafelé vették észre, hogy a Tihanyi utcát teljesen lezárták, az erdőtől egészen az Erdősorig. Gondolom, az útépítés miatt, de reggel még nem volt lezárva.
+
+A gond az, hogy kitáblázva semmi nincs, és kijelölt kerülőút sincs. Aki a virágneves utcákban lakik a miklósi részen, most nem tudja, merre jusson haza. Többen a lakótelepen keresztül próbálkoztak, de ott meg az egyirányú utcák miatt szinte lehetetlen kikeveredni.
+
+Felvettem a kapcsolatot a Csepeli Városrendészeti Igazgatóság munkatársaival, akik intézik a dolgot. Ha bármi újat megtudok, szólok.
+
+💬 Ha erre jártok, írjátok meg kommentben, ti merre jutottatok haza, hátha másnak is segít!
+
+#Csepel #Szigetszentmiklós #útlezárás #olvasóihír"""),
 }
 
 
