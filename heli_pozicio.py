@@ -107,6 +107,8 @@ def hely_neve(lat, lon):
         c = r.json().get("address", {})
         telepules = c.get("city") or c.get("town") or c.get("village") or c.get("municipality") or ""
         resz = c.get("city_district") or c.get("suburb") or ""
+        if len(resz) > 30:
+            resz = ""
         ut = c.get("road") or c.get("hamlet") or ""
         return ", ".join(x for x in (" ".join(y for y in (telepules, resz) if y), ut) if x)
     except Exception as ex:
@@ -118,16 +120,22 @@ def korhaz_kozel(lat, lon, sugar=500):
     """A közeli kórház vagy helikopter-leszálló neve (Overpass), vagy ""."""
     q = (f'[out:json][timeout:10];(nwr(around:{sugar},{lat},{lon})[amenity=hospital];'
          f'nwr(around:300,{lat},{lon})[aeroway=helipad];);out tags center 5;')
+    for vegpont in ("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"):
+        try:
+            r = requests.post(vegpont, data={"data": q}, headers=UA, timeout=15)
+            elemek = r.json().get("elements", [])
+            break
+        except Exception as ex:
+            print(f"  ⚠️ Overpass hiba ({vegpont}): {ex}")
+    else:
+        return ""
     try:
-        r = requests.post("https://overpass-api.de/api/interpreter", data={"data": q}, headers=UA, timeout=12)
-        elemek = r.json().get("elements", [])
         for e in sorted(elemek, key=lambda e: e.get("tags", {}).get("amenity") != "hospital"):
             nev = e.get("tags", {}).get("name")
             if nev:
                 return nev
         return "helikopter-leszálló" if elemek else ""
-    except Exception as ex:
-        print(f"  ⚠️ Overpass hiba: {ex}")
+    except Exception:
         return ""
 
 

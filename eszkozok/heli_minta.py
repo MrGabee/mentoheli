@@ -16,10 +16,10 @@ class Al:
 smtplib.SMTP_SSL = Al
 
 most = int(time.time())
-# Budaörsi bázisról Csepelre, a Szent Imre kórház mellé (kitalált útvonal)
+# Budaörsi bázisról a pesterzsébeti Jahn Ferenc kórházhoz (kitalált útvonal)
 pontok = [[most - 1500, 47.4507, 18.9617, 0, 0], [most - 1380, 47.4462, 18.9905, 260, 210],
-          [most - 1200, 47.4380, 19.0200, 330, 235], [most - 1020, 47.4300, 19.0450, 280, 220],
-          [most - 900, 47.4232, 19.0610, 150, 140], [most - 840, 47.4190, 19.0700, 60, 70]]
+          [most - 1200, 47.4400, 19.0250, 330, 235], [most - 1020, 47.4360, 19.0650, 300, 225],
+          [most - 900, 47.4345, 19.0950, 150, 140], [most - 840, 47.4338, 19.1090, 50, 60]]
 nyom = {"ha-hbg": {"pontok": pontok}}
 for tipus in ("FELSZALLAS", "LESZALLAS"):
     m.email_kuldes({"tipus": tipus, "kulcs": "reg:ha-hbg", "adat": {
