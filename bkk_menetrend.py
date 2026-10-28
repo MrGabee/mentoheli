@@ -13,8 +13,6 @@ Posztolni nem posztol, a szöveget én nézem át és osztom meg.
 import os
 import re
 import json
-import base64
-import zlib
 import smtplib
 import hashlib
 import requests
@@ -241,9 +239,8 @@ def level(lista, fejlec=""):
 def kuldes(targy, lista, fejlec=""):
     html = level(lista, fejlec)
     if ELONEZET:
-        print("ELONEZET_HTML_START")
-        print(base64.b64encode(zlib.compress(html.encode(), 9)).decode())
-        print("ELONEZET_HTML_END")
+        with open("bkk_menetrend_elonezet.html", "w", encoding="utf-8") as f:
+            f.write(html)
         print(f"(előnézet, nem küldöm) {targy}")
         return
     kuldo, jelszo = os.environ["EMAIL_KULDO"], os.environ["EMAIL_JELSZO"]
