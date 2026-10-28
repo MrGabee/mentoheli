@@ -163,15 +163,27 @@ def riasztasok():
     return ki
 
 
+_HELY = {}
+
+
+def megallo_teruleten(stop_id):
+    """A riasztás megállóit a GTFS-RT más azonosítóval adja, mint a környékbeli lista,
+    ezért a helyüket egyenként kérdezem le a FUTÁR-tól."""
+    if stop_id not in _HELY:
+        d = futar("stop", stopId=f"BKK_{stop_id}")
+        m = ((d.get("data") or {}).get("entry")) or {}
+        _HELY[stop_id] = bool(m) and teruleten(m.get("lat", 0), m.get("lon", 0))
+    return _HELY[stop_id]
+
+
 def helyiek(lista, megallok, helyi_jaratok, jaratok):
     ki = []
     for r in lista:
         # Ha a riasztás megállókat is megnevez, azok döntenek (pl. egy kispesti megálló
         # áthelyezése nem csepeli hír, akkor sem, ha a járat erre is jár); ha nem, a járatok.
-        if r["stops"]:
-            if not set(r["stops"]) & megallok:
-                continue
-        elif not set(r["routes"]) & helyi_jaratok:
+        if not (set(r["routes"]) & helyi_jaratok or set(r["stops"]) & megallok):
+            continue
+        if r["stops"] and not set(r["stops"]) & megallok and not any(megallo_teruleten(m) for m in r["stops"][:15]):
             continue
         r["vonalak"] = sorted({jaratok[x].get("shortName", x) for x in r["routes"] if x in jaratok},
                               key=lambda v: (len(re.sub(r"\D", "", v) or "999"), v))
@@ -276,11 +288,6 @@ def main():
     if not megallok:
         print("⚠️ Nem jött megállólista – kihagyva, az állapot marad.")
         return
-    if ELONEZET:
-        print("DEBUG terület-megálló minta:", sorted(megallok)[:8])
-        for r in lista:
-            if r["stops"] and set(r["routes"]) & helyi_jaratok:
-                print("DEBUG", r["cim"][:50], r["stops"][:6])
     sajat = helyiek(lista, megallok, helyi_jaratok, jaratok)
     for r in sajat:
         print(f"  • {', '.join(r['vonalak']) or '-'} | {cim(r)[:80]} | {idoszak(r)}")
