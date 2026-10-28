@@ -5,7 +5,7 @@ Szűrés: Csepeli irányítószámok (1211-1215)
 Futtatás: GitHub Actions (percenként, self-loop)
 
 Az új csepeli eseményekről:
-- e-mail megy a szerkesztőségnek (EMAIL_CIMZETT_FOTAV, ha nincs: EMAIL_CIMZETT_BKK),
+- e-mail megy a szerkesztőségnek (EMAIL_CIMZETT_FOTAV, ha nincs: EMAIL_CIMZETT_ARAM, mint a Vízműveké és az áramszüneté),
 - és egy összevont Facebook-poszt a Make.com webhookon át (MAKE_WEBHOOK_URL).
   Éjszaka a poszt reggelig vár (ejszakai_sor).
 """
@@ -35,7 +35,7 @@ def magyar_ido():
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_FOTAV") or os.environ["EMAIL_CIMZETT_BKK"]
+EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_FOTAV") or os.environ["EMAIL_CIMZETT_ARAM"]
 MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 FACEBOOK_POSZTOLAS_AKTIV = True
 # Ugyanarról a címről ennyi napon belül nem megy új poszt (e-mail igen).
