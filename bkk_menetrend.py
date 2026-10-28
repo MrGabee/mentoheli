@@ -15,6 +15,7 @@ import re
 import json
 import smtplib
 import hashlib
+import time as ido
 import requests
 from datetime import datetime, timedelta, time
 from zoneinfo import ZoneInfo
@@ -84,12 +85,16 @@ def _nyers(azon):
 
 def futar(vegpont, **p):
     p.update(key=KULCS, version=3, appVersion="mrgabee-1.0")
-    try:
-        r = requests.get(f"{ALAP}/{vegpont}.json", params=p, headers=HEADERS, timeout=25)
-        return r.json()
-    except Exception as ex:
-        print(f"⚠️ FUTÁR hiba ({vegpont}): {type(ex).__name__}")
-        return {}
+    for proba in range(3):
+        try:
+            r = requests.get(f"{ALAP}/{vegpont}.json", params=p, headers=HEADERS, timeout=25)
+            if r.status_code == 200:
+                return r.json()
+            print(f"⚠️ FUTÁR hiba ({vegpont}): HTTP {r.status_code}")
+        except Exception as ex:
+            print(f"⚠️ FUTÁR hiba ({vegpont}): {type(ex).__name__}")
+        ido.sleep(2 * (proba + 1))
+    return None
 
 
 def terulet_adatai():
@@ -99,7 +104,7 @@ def terulet_adatai():
     for lat, lon, dlat, dlon in ((47.425, 19.075, 0.075, 0.075), (47.425, 19.14, 0.06, 0.06),
                                  (47.36, 19.07, 0.06, 0.06)):
         d = futar("stops-for-location", lat=lat, lon=lon, latSpan=dlat, lonSpan=dlon)
-        ref = (d.get("data") or {}).get("references") or {}
+        ref = ((d or {}).get("data") or {}).get("references") or {}
         if not ref:
             print(f"⚠️ Üres FUTÁR válasz ({lat}, {lon}): {str(d)[:200]}")
         stops.update(ref.get("stops") or {})
@@ -171,6 +176,8 @@ def megallo_teruleten(stop_id):
     ezért a helyüket egyenként kérdezem le a FUTÁR-tól."""
     if stop_id not in _HELY:
         d = futar("stop", stopId=f"BKK_{stop_id}")
+        if d is None:
+            return None          # nem sikerült kideríteni: nem dobom el emiatt
         m = ((d.get("data") or {}).get("entry")) or {}
         _HELY[stop_id] = bool(m) and teruleten(m.get("lat", 0), m.get("lon", 0))
     return _HELY[stop_id]
@@ -183,8 +190,11 @@ def helyiek(lista, megallok, helyi_jaratok, jaratok):
         # áthelyezése nem csepeli hír, akkor sem, ha a járat erre is jár); ha nem, a járatok.
         if not (set(r["routes"]) & helyi_jaratok or set(r["stops"]) & megallok):
             continue
-        if r["stops"] and not set(r["stops"]) & megallok and not any(megallo_teruleten(m) for m in r["stops"][:15]):
-            continue
+        if r["stops"] and not set(r["stops"]) & megallok:
+            helyek = [megallo_teruleten(m) for m in r["stops"][:15]]
+            # csak akkor dobom el, ha minden megállóról biztosan tudom, hogy kívül esik
+            if not any(helyek) and None not in helyek:
+                continue
         r["vonalak"] = sorted({jaratok[x].get("shortName", x) for x in r["routes"] if x in jaratok},
                               key=lambda v: (len(re.sub(r"\D", "", v) or "999"), v))
         r["tipusok"] = {jaratok[x].get("shortName", x): jaratok[x].get("type") for x in r["routes"] if x in jaratok}
