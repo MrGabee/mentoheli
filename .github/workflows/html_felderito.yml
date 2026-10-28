@@ -2,26 +2,29 @@ name: HTML felderítő (ideiglenes, nem posztol)
 
 on:
   workflow_dispatch:
+    inputs:
+      urlek:
+        description: "URL-ek szóközzel"
+        default: "https://mkosz.hu/csapat-musor/x2627/hun3koa/10837/"
+      minta:
+        description: "Keresett minta (regex)"
+        default: "Csepel"
+      ua:
+        description: "User-Agent (üres = böngésző)"
+        default: ""
 
 jobs:
   proba:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - run: pip install -q requests gtfs-realtime-bindings
-      - run: python bkk_menetrend.py
+          python-version: "3.11"
+      - run: pip install -q requests
+      - run: python eszkozok/html_felderito.py
         env:
-          ELONEZET: "1"
-          PYTHONUNBUFFERED: "1"
-          BKK_API_KEY: ${{ secrets.BKK_API_KEY }}
-      - run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f bkk_menetrend_elonezet.html
-          git commit --allow-empty -qm "előnézet" && git push -q origin HEAD:claude/project-thread-oeicnh || true
+          URLEK: ${{ inputs.urlek }}
+          MINTA: ${{ inputs.minta }}
+          UA: ${{ inputs.ua }}
