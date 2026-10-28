@@ -412,7 +412,11 @@ def email_kuldes(esemeny, nyom=None):
     if not felszallas:
         # leszállásnál az FR24 visszajátszás pontosabb (a földig tart), ha elérhető
         pontok = hp.fr24_nyomvonal(flight_id, HEADERS) or pontok
-    if not atd_hu and pontok and not felszallas:
+    if not atd_hu and felszallas:
+        # az FR24 nem adott felszállási időt: az első ADS-B pont vagy az észlelés ideje
+        atd_hu = "kb. " + (datetime.fromtimestamp(pontok[0][0], MAGYAR_TZ) if pontok else magyar_ido()).strftime("%H:%M")
+        sorok[1] = ("Felszállás", atd_hu)
+    elif not atd_hu and pontok:
         atd_hu = datetime.fromtimestamp(pontok[0][0], MAGYAR_TZ).strftime("%H:%M")
         sorok[1] = ("Felszállás", atd_hu)
         sorok[3] = ("Repült idő", repult_ido())
@@ -444,7 +448,7 @@ def email_kuldes(esemeny, nyom=None):
                   f"Mentőhelikopter – {callsign}", test, jelvenyek=jelveny),
         "Mentőhelikopter Figyelő · Flightradar24 adatai alapján")
 
-    targy = (f"🚁⬆️ {callsign} felszállt · {atd_hu or 'most'}" if felszallas
+    targy = (f"🚁⬆️ {callsign} felszállt · {atd_hu}" if felszallas
              else f"🚁⬇️ {callsign} leszállt · {landed_hu}")
     szoveges = (f"Mentőhelikopter {tipus_hu} – {callsign} {reg_upper}\n"
                 f"Felszállás: {datum_hu} {atd_hu}\n" + ("" if felszallas else f"Leszállás: {landed_hu}\n")
