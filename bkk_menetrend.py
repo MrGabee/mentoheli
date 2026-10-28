@@ -73,13 +73,15 @@ def teruleten(lat, lon):
         return False
     if lat < 47.405 and lon > 19.105:   # Soroksár
         return False
-    if lat > 47.445 and lon > 19.14:    # Kispest déli széle
+    if lat > 47.44 and lon > 19.13:     # Kispest déli széle (Wekerle, Győri Ottmár tér)
         return False
     return True
 
 
 def _nyers(azon):
-    return azon.split("_", 1)[1] if "_" in azon else azon
+    """A FUTÁR "BKK_0300" azonosítója a GTFS-RT-ben "0300". Más szolgáltatóé (pl. volan_…)
+    nem szerepel a BKK riasztásaiban, azt nem csonkolom, hogy ne ütközzön."""
+    return azon[4:] if azon.startswith("BKK_") else azon
 
 
 def futar(vegpont, **p):
