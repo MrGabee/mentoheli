@@ -22,7 +22,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -q requests
+      - run: pip install -q requests beautifulsoup4 pillow
+      - run: python eszkozok/heli_utolso.py
+        env:
+          EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
       - run: python eszkozok/html_felderito.py
         env:
           URLEK: ${{ inputs.urlek }}
