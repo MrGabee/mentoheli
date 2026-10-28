@@ -633,7 +633,10 @@
 
           <div id="nav-emlekezteto-testreszabas-doboz" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:16px;">
             <h4 style="margin:0 0 10px;font-size:14px;">✉️ Emlékeztető-levél testreszabása (minden kijelölt szállítónak ezzel megy ki)</h4>
-            <p class="panel-info" style="margin:0 0 10px;">Feladó: <strong id="ceges-emlekezteto-felado-cim">a céges postafiók címe</strong>. Az emlékeztető ugyanarról a céges címről megy ki, amelyik postafiókról a Céges levelek menüpont szól és ahonnan a válaszaid is mennek, így a szállító válasza is oda érkezik vissza.</p>
+            <label style="display:block;margin:0 0 10px;">Feladó postafiók (erről a címről megy ki a kérés, és ide érkezik a szállító válasza)
+              <select id="ceges-emlekezteto-felado-select" style="display:block;width:100%;max-width:520px;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;"></select>
+            </label>
+            <p class="panel-info" style="margin:0 0 10px;">Jelenlegi feladó: <strong id="ceges-emlekezteto-felado-cim">a céges postafiók címe</strong>. Ha a választott postafiók nem az, amit a Céges levelek menüpont olvas, a válaszok is abba a postafiókba érkeznek. Változtatáskor azonnal mentődik, a következő kéréstől érvényes.</p>
             <label style="display:block;">Az emlékeztető-levél kérő mondata (ez kerül a tételek listája UTÁN, a levélben)
               <textarea id="ceges-emlekezteto-szoveg-input" rows="4" placeholder="Kérjük, hogy a válaszlevélben konkrétan csatolva küldjék el..." style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;box-sizing:border-box;resize:vertical;"></textarea>
             </label>
@@ -1847,13 +1850,84 @@
   // checkbox-szal - ezekből épül fel a lenti "Emlékeztető küldése a
   // kijelölteknek" gomb (ami a nav_emlekezteto_adoszamok workflow_dispatch
   // inputot indítja el, ld. szamla_figyelo.py nav_hianyzo_szamla_emlekezteto_kuldese()).
-  function navCsakNavbanRenderelese(lista, szallitoEmailek) {
+  // Tételenkénti másolat-kérés napló (szamla_figyelo.py
+  // nav_masolat_kerelmek_frissitese()) - mikor, melyik címre ment kérés.
+  function _navKeresekHtml(kerelmek, t) {
+    const lista = (kerelmek || {})[_navTetelKulcs(t)];
+    if (!Array.isArray(lista) || !lista.length) return '<span style="color:var(--muted);font-size:12px;">még nem kérted</span>';
+    return lista.slice().reverse().map(b => {
+      const ido = b.datum ? new Date(b.datum).toLocaleString("hu-HU", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }) : "?";
+      return `<div style="font-size:12px;white-space:nowrap;">✉️ ${escHtml(ido)} → ${escHtml(b.cimzett || "?")}</div>`;
+    }).join("");
+  }
+
+  // A Közüzemi fülön, a "🔎 Keresés a Közüzemi fülön" gombbal megtalált
+  // NAV-tételek (ezek már nem hiányzók, ezért a fenti listából kikerülnek).
+  function _navKozuzemiTalalatokHtml(adat) {
+    const talalatok = Object.values((adat && adat.szamlak) || {}).filter(r => r.nav_kozuzemi_keresesbol && r.nav_parositva);
+    if (!talalatok.length) return "";
+    const sorok = talalatok.map(r => `
+      <tr>
+        <td>${escHtml(r.nav_szallito_nev || "")}</td>
+        <td>${escHtml(String(r.nav_szamla_azonosito || "").split("|")[1] || "—")}</td>
+        <td>${escHtml(r.szolgaltato_nev || r.szolgaltato || "")}${r.szamlaszam ? " – " + escHtml(r.szamlaszam) : ""}</td>
+        <td>${r.osszeg != null ? forint(Number(r.osszeg)) : "—"}</td>
+      </tr>`).join("");
+    return `
+      <div class="kor-sor" style="flex-direction:column;align-items:stretch;gap:8px;margin-top:16px;">
+        <div class="kor-cim">🔎 A Közüzemi fülön megtalált NAV-tételek (${talalatok.length} db)</div>
+        <div class="kor-info">Ezeket nem kell elkérni, a számla a Közüzemi fülön megvan.</div>
+        <div style="overflow-x:auto;"><table>
+          <thead><tr><th>NAV szállító</th><th>NAV számlaszám</th><th>Közüzemi számla</th><th>Összeg</th></tr></thead>
+          <tbody>${sorok}</tbody>
+        </table></div>
+      </div>`;
+  }
+
+  function _navKozuzemiGombHtml(adoszam, bekapcsolt, eredmeny) {
+    let allapot = "";
+    if (bekapcsolt) {
+      if (eredmeny && eredmeny.ido) {
+        const ido = new Date(eredmeny.ido).toLocaleString("hu-HU");
+        allapot = `Utolsó keresés: ${escHtml(ido)} – ${Number(eredmeny.parositva_osszesen || 0)} db megtalálva, ${Number(eredmeny.maradt || 0)} db nincs a Közüzemi fülön.`;
+      } else {
+        allapot = "Bekapcsolva – a következő futáskor keres (pár perc).";
+      }
+    }
+    return `
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <button type="button" class="nav-kozuzemi-gomb" data-adoszam="${escHtml(adoszam)}" data-bekapcsolt="${bekapcsolt ? "1" : "0"}" style="font-size:13px;padding:6px 10px;">${bekapcsolt ? "✓ Közüzemi keresés bekapcsolva (kikapcsolás)" : "🔎 Keresés a Közüzemi fülön"}</button>
+        <span style="color:var(--muted);font-size:12px;">${allapot || "Ha ez a szállító közüzemi (pl. MVM), a számlája a Közüzemi fülön lehet: bekapcsolva ott is keresi."}</span>
+      </div>`;
+  }
+
+  async function navKozuzemiKeresesValtas(adoszam, bekapcsol) {
+    if (!aktualisApiKulcs) { alert("Előbb nyisd meg a dashboardot az API-kulccsal."); return false; }
+    const jelenlegi = new Set(Array.isArray(legutobbiAdat && legutobbiAdat.nav_kozuzemi_kereses) ? legutobbiAdat.nav_kozuzemi_kereses : []);
+    if (bekapcsol) jelenlegi.add(adoszam); else jelenlegi.delete(adoszam);
+    const ujLista = Array.from(jelenlegi);
+    try {
+      await apiHivas("set_meta", { kulcs: "nav_kozuzemi_kereses", ertek: ujLista });
+      if (legutobbiAdat) legutobbiAdat.nav_kozuzemi_kereses = ujLista;
+      return ujLista;
+    } catch (e) {
+      alert("A mentés sikertelen: " + e.message);
+      return false;
+    }
+  }
+
+  function navCsakNavbanRenderelese(lista, szallitoEmailek, adat) {
     const hely = document.getElementById("nav-csak-navban-hely");
     const gombHely = document.getElementById("nav-emlekezteto-gomb-hely");
     if (!hely) return;
     szallitoEmailek = szallitoEmailek || {};
+    adat = adat || legutobbiAdat || {};
+    const kerelmek = adat.nav_masolat_kerelmek || {};
+    const kozuzemiKereses = new Set(Array.isArray(adat.nav_kozuzemi_kereses) ? adat.nav_kozuzemi_kereses : []);
+    const kozuzemiEredmeny = adat.nav_kozuzemi_kereses_eredmeny || {};
+    const kozuzemiTalalatok = _navKozuzemiTalalatokHtml(adat);
     if (!lista || !lista.length) {
-      hely.innerHTML = '<div class="ures">Minden NAV-on talált bejövő számlához van párosított email-számla (vagy még nem futott/nincs beállítva a NAV-lekérdezés).</div>';
+      hely.innerHTML = '<div class="ures">Minden NAV-on talált bejövő számlához van párosított email-számla (vagy még nem futott/nincs beállítva a NAV-lekérdezés).</div>' + kozuzemiTalalatok;
       if (gombHely) gombHely.innerHTML = "";
       return;
     }
@@ -1896,6 +1970,7 @@
           <td>${escHtml(t.szamlaszam) || "—"}</td>
           <td>${escHtml((t.kiallitas_datum || "").slice(0, 10)) || "—"}</td>
           <td>${(t.netto_osszeg_huf || t.netto_osszeg) ? forint(Number(t.netto_osszeg_huf || t.netto_osszeg)) : "—"}</td>
+          <td>${_navKeresekHtml(kerelmek, t)}</td>
           <td>
             ${t.szamlaszam
               ? `<button type="button" class="nav-hozzaadas-gomb" data-target="${sorId}" style="font-size:12px;padding:4px 8px;">+ Hozzáadás</button>`
@@ -1907,7 +1982,7 @@
         </tr>
         ${t.szamlaszam ? `
         <tr id="${sorId}" class="nav-hozzaadas-kod-sor" style="display:none;">
-          <td colspan="4" style="background:var(--surface-2);border-radius:8px;">
+          <td colspan="5" style="background:var(--surface-2);border-radius:8px;">
             <div style="padding:8px 4px;font-size:13px;">
               <p style="margin:0 0 6px;">Nincs meg emailben ez a számla? Kérd el az eladótól (vagy keresd elő a saját postafiókodból), és küldd/továbbítsd el a <strong>dedikált céges email-címre</strong> - de előtte illeszd be ezt a kódot a levél <strong>tárgyába VAGY a szövegébe, BÁRHOVA (más szöveg előtte/utána, akár ugyanabba a sorba is írhatod, nem kell önálló sorba tenni)</strong>, hogy a script egyből ehhez a NAV-tételhez tudja kötni, extra kézi munka nélkül:</p>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -1930,10 +2005,13 @@
             </div>
             <label class="kor-jeloles nav-emlekezteto-cimke" style="white-space:nowrap;"><input type="checkbox" class="nav-emlekezteto-jelolo" data-adoszam="${escHtml(adoszam)}"> kijelölve emlékeztetőhöz</label>
           </div>
+          <div style="overflow-x:auto;">
           <table>
-            <thead><tr><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th><th></th></tr></thead>
+            <thead><tr><th>Számlaszám</th><th>Kiállítás dátuma</th><th>Nettó összeg</th><th>Másolat-kérés</th><th></th></tr></thead>
             <tbody>${sorok}</tbody>
           </table>
+          </div>
+          ${_navKozuzemiGombHtml(adoszam, kozuzemiKereses.has(adoszam), kozuzemiEredmeny[adoszam])}
           <label class="nav-szallito-email-cimke" style="max-width:420px;">Szállító email-címe (ide megy az emlékeztető, ha kijelölöd fent)
             <input type="email" class="nav-szallito-email-input" data-adoszam="${escHtml(adoszam)}" value="${escHtml(email)}" placeholder="szallito@ceg.hu" style="display:block;width:100%;margin-top:4px;padding:8px 10px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;">
           </label>
@@ -1944,7 +2022,23 @@
     hely.innerHTML = `
       <p style="font-weight:600;color:var(--red);margin-top:16px;">⚠️ ${lista.length} db, a NAV-on megtalált bejövő számla nincs párosítva egy email-begyűjtött számlával sem (${adoszamok.length} db szállítótól):</p>
       ${kartyak}
+      ${kozuzemiTalalatok}
     `;
+    hely.querySelectorAll(".nav-kozuzemi-gomb").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        const bekapcsol = btn.dataset.bekapcsolt !== "1";
+        const siker = await navKozuzemiKeresesValtas(btn.dataset.adoszam, bekapcsol);
+        btn.disabled = false;
+        if (!siker) return;
+        adat.nav_kozuzemi_kereses = siker;
+        navCsakNavbanRenderelese(lista, szallitoEmailek, adat);
+        if (bekapcsol) {
+          const pat = aktualisPat();
+          if (pat) { try { await ghWorkflowInditasa(pat, {}); patMentese(); } catch (e) { /* marad az ütemezett futás */ } }
+        }
+      });
+    });
     // Email-cím mentése csak elhagyáskor (blur), nem minden billentyűre -
     // így gépelés közben nem indul el egy csomó felesleges GitHub-mentés.
     hely.querySelectorAll(".nav-szallito-email-input").forEach(input => {
@@ -3654,7 +3748,7 @@
     beStatuszMutat(statuszId, uzenetek.join(" ") + (sikeres_db ? utoirat : ""), volt_hiba ? "hiba" : "siker");
     keziFeltoltesekRenderelese();
     cegesTablaRenderelese(cegesSzamlak);
-    navCsakNavbanRenderelese(legutobbiAdat.nav_csak_navban, legutobbiAdat.nav_szallito_emailek);
+    navCsakNavbanRenderelese(legutobbiAdat.nav_csak_navban, legutobbiAdat.nav_szallito_emailek, legutobbiAdat);
     return sikertelen;
   }
 
@@ -4086,6 +4180,32 @@
   // szekciója. Ugyanaz az azonnali, mezőnkénti blur-mentés minta, mint a
   // fenti "ceges-email-engedelyezve"-nél - egyetlen meta-kulcsot ír,
   // nincs szükség a teljes allapotFrissitesEsMentese() diff-elésre.
+  (() => {
+    const feladoSelect = document.getElementById("ceges-emlekezteto-felado-select");
+    if (!feladoSelect) return;
+    feladoSelect.addEventListener("change", async () => {
+      if (!aktualisApiKulcs) return;
+      const eredeti = feladoSelect.dataset.eredetiErtek || "ceges";
+      const uj = feladoSelect.value;
+      if (uj === eredeti) return;
+      feladoSelect.disabled = true;
+      beStatuszMutat("ceges-emlekezteto-testreszabas-statusz", "Mentés...", "");
+      try {
+        await apiHivas("set_meta", { kulcs: "nav_emlekezteto_felado", ertek: uj });
+        feladoSelect.dataset.eredetiErtek = uj;
+        if (legutobbiAdat) legutobbiAdat.nav_emlekezteto_felado = uj;
+        const opcio = (legutobbiAdat && Array.isArray(legutobbiAdat.felado_opciok) ? legutobbiAdat.felado_opciok : []).find(o => o.id === uj);
+        if (opcio) document.getElementById("ceges-emlekezteto-felado-cim").textContent = opcio.cim;
+        beStatuszMutat("ceges-emlekezteto-testreszabas-statusz", "✅ Feladó elmentve.", "siker");
+      } catch (err) {
+        feladoSelect.value = eredeti;
+        beStatuszMutat("ceges-emlekezteto-testreszabas-statusz", "❌ Mentés sikertelen: " + err.message, "hiba");
+      } finally {
+        feladoSelect.disabled = false;
+      }
+    });
+  })();
+
   [
     ["ceges-emlekezteto-szoveg-input", "ceges_emlekezteto_szoveg"],
   ].forEach(([inputId, metaKulcs]) => {
@@ -4998,7 +5118,7 @@
     cegesTablaRenderelese(cegesSzamlak);
     cegesBizonytalanTablaRenderelese(cegesSzamlakBizonytalan);
     navAllapotRenderelese(adat.nav_allapot);
-    navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek);
+    navCsakNavbanRenderelese(adat.nav_csak_navban, adat.nav_szallito_emailek, adat);
     keziFeltoltesekLezarasa();
     // ceges_email_kikapcsolva === false az EGYETLEN eset, amikor a céges
     // küldés ténylegesen engedélyezve van (ld. be-email-engedelyezve
@@ -5011,7 +5131,19 @@
     // rákattintás+kikattintás (tényleges szerkesztés nélkül) NE indítson
     // felesleges mentést.
     (() => {
-      document.getElementById("ceges-emlekezteto-felado-cim").textContent = adat.ceges_felado_cim || "a céges postafiók címe";
+      const opciok = Array.isArray(adat.felado_opciok) ? adat.felado_opciok : [];
+      const valasztott = adat.nav_emlekezteto_felado || "ceges";
+      const aktivOpcio = opciok.find(o => o.id === valasztott) || opciok.find(o => o.id === "ceges");
+      document.getElementById("ceges-emlekezteto-felado-cim").textContent =
+        (aktivOpcio && aktivOpcio.cim) || adat.ceges_felado_cim || "a céges postafiók címe";
+      const feladoSelect = document.getElementById("ceges-emlekezteto-felado-select");
+      if (feladoSelect) {
+        feladoSelect.innerHTML = opciok.length
+          ? opciok.map(o => `<option value="${escHtml(o.id)}">${escHtml(o.cim)} – ${escHtml(o.leiras || "")}</option>`).join("")
+          : `<option value="ceges">${escHtml(adat.ceges_felado_cim || "Céges feladó")} – a lista a következő futás után jelenik meg</option>`;
+        feladoSelect.value = opciok.some(o => o.id === valasztott) ? valasztott : (opciok[0] ? opciok[0].id : "ceges");
+        feladoSelect.dataset.eredetiErtek = feladoSelect.value;
+      }
 
       const szovegInput = document.getElementById("ceges-emlekezteto-szoveg-input");
       const szovegErtek = (adat.ceges_emlekezteto_szoveg || "").trim() || NAV_EMLEKEZTETO_SZOVEG_ALAPERTEK_JS;
