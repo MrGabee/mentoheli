@@ -290,9 +290,15 @@ def poszt_szoveg(r):
     return "\n".join(sorok)
 
 
-def jovobeli(r, t):
-    """Csak a még el nem indult változás mehet ki a Facebookra."""
-    return bool(r["kezdet"]) and r["kezdet"] > t.timestamp()
+def jovobeli(r, t, eloszor=None):
+    """Csak a még el nem indult változás mehet ki a Facebookra. Ha éjszaka jött és
+    reggelre már elindult (pl. éjfélkor), még kimegy, amíg tart."""
+    if not r["kezdet"]:
+        return False
+    if r["kezdet"] > t.timestamp():
+        return True
+    return (eloszor is not None and r["kezdet"] > eloszor.timestamp()
+            and (not r["veg"] or r["veg"] > t.timestamp()))
 
 
 def facebook_poszt(szoveg):
@@ -337,7 +343,7 @@ def kuldes(targy, lista, fejlec=""):
         print(f"(előnézet, nem küldöm) {targy}")
         return
     kuldo, jelszo = os.environ["EMAIL_KULDO"], os.environ["EMAIL_JELSZO"]
-    cimzett = os.environ.get("EMAIL_CIMZETT_BKK") or os.environ["EMAIL_CIMZETT"]
+    cimzett = os.environ.get("EMAIL_CIMZETT_ARAM") or os.environ["EMAIL_CIMZETT"]
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
     msg["From"] = f"🚏 BKK változások <{kuldo}>"
@@ -414,7 +420,8 @@ def main():
     # Facebook: a még el nem indult változások, futásonként legfeljebb egy poszt,
     # éjszaka és a jó éjszakát után nem (reggel folytatódik)
     kiment = allapot.setdefault("fb_kiment", {})
-    varo = [r for r in sajat if r["id"] not in kiment and jovobeli(r, t)]
+    varo = [r for r in sajat if r["id"] not in kiment
+            and jovobeli(r, t, datetime.fromisoformat(latott[r["id"]]))]
     if varo and not ejszaka(t):
         r = varo[0]
         print(f"📘 Facebook: {', '.join(r['vonalak'])} | {cim(r)[:60]}")
