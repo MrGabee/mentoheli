@@ -5993,6 +5993,7 @@ def _kozuzemi_kereses_kore(allapot: dict, nav_tetelek: list, parositott_nav_kulc
         adoszam = (tetel.get("szallito_adoszam") or "").strip()
         if adoszam not in engedelyezett:
             continue
+        eredmeny[adoszam]["nav_tetel_db"] = eredmeny[adoszam].get("nav_tetel_db", 0) + 1
         kulcs = tetel_kulcs(tetel)
         if kulcs in parositott_nav_kulcsok:
             continue
@@ -6034,7 +6035,8 @@ def _kozuzemi_kereses_kore(allapot: dict, nav_tetelek: list, parositott_nav_kulc
     osszes = sum(e["parositva"] for e in eredmeny.values())
     maradt = sum(e["maradt"] for e in eredmeny.values())
     print(f"  🔎 Közüzemi keresés ({len(engedelyezett)} szállító): {osszes} NAV-tétel párosítva "
-          f"a Közüzemi fül számláival, {maradt} nem található.")
+          f"a Közüzemi fül számláival, {maradt} nem található. NAV-tételek szállítónként: "
+          f"{[e.get('nav_tetel_db', 0) for e in eredmeny.values()]}")
 
 
 def nav_szamla_parositas(allapot: dict):
