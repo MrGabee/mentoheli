@@ -24,6 +24,12 @@ CIMEK = {
         "🔧 VÍZMŰVEK – ÚJ MUNKÁK A KÖRNYÉKEN 🔧",
         "💧 VÍZHIÁNY / VÍZMŰVES MUNKA 💧",
     ],
+    "fotav": [
+        "🔥 FŐTÁV ÉRTESÍTŐ 🔥",
+        "♨️ TÁVHŐ – ÚJ MUNKA CSEPELEN ♨️",
+        "🔥 FIGYELEM, TÁVHŐ! 🔥",
+        "🛠️ FŐTÁV MUNKÁK A KÖRNYÉKEN 🛠️",
+    ],
     "aramszunet": [
         "⚡ ÁRAMSZÜNET ÉRTESÍTŐ ⚡",
         "🔌 ÁRAMSZÜNET A KÖRNYÉKEN 🔌",
@@ -172,6 +178,13 @@ BEVEZETOK = {
         "Hahó, csepeliek, erzsébetiek, miklósiak! Vízműves munka a környéken 💧",
         "Friss infó a Vízművektől, nézzétek meg, nem a ti utcátokat érinti-e:",
         "Érdemes lehet előre bekészíteni egy kis vizet, mert ezt láttam a Vízműveknél:",
+    ],
+    "fotav": [
+        "Sziasztok! A Főtáv új munkát jelzett Csepelen, nézzétek meg, nem a ti házatokat érinti-e 👇",
+        "Benéztem a Főtáv térképére, ezt találtam a környéken:",
+        "Hahó, csepeliek! Távhős hír jött, érdemes ránézni 🔥",
+        "Ha távhős lakásban laktok, ezt nézzétek meg:",
+        "Szólok előre, mert a Főtáv dolgozik pár csepeli címen:",
     ],
     "aramszunet": [
         "Sziasztok! Az E.ON új áramszünetet jelzett a környéken 👇",

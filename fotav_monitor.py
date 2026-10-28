@@ -1,24 +1,33 @@
 """
 🔥 FŐTÁV Távhő Monitor – Csepel (XXI. kerület)
 Adatforrás: gmp.fotav.hu/KMZ/munkatabl.html
-Szűrés: Csepeli irányítószámok (1211-1221)
+Szűrés: Csepeli irányítószámok (1211-1215)
 Futtatás: GitHub Actions (percenként, self-loop)
+
+Az új csepeli eseményekről:
+- e-mail megy a szerkesztőségnek (EMAIL_CIMZETT_FOTAV, ha nincs: EMAIL_CIMZETT_BKK),
+- és egy összevont Facebook-poszt a Make.com webhookon át (MAKE_WEBHOOK_URL).
+  Éjszaka a poszt reggelig vár (ejszakai_sor).
 """
 
 import os
+import re
 import json
 import hashlib
 import smtplib
 import requests
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 
-# ─────────────────────────────────────────────
-#  🕐  MAGYAR IDŐZÓNA (UTC+2, GitHub Actions UTC-t használ)
-# ─────────────────────────────────────────────
-MAGYAR_TZ = timezone(timedelta(hours=2))
+import email_arculat as ea
+import ejszakai_sor
+import poszt_valtozatos
+from poszt_valtozatos import Stilus
+
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
@@ -26,9 +35,14 @@ def magyar_ido():
 
 EMAIL_KULDO   = os.environ["EMAIL_KULDO"]
 EMAIL_JELSZO  = os.environ["EMAIL_JELSZO"]
-EMAIL_CIMZETT = os.environ["EMAIL_CIMZETT"]
+EMAIL_CIMZETT = os.environ.get("EMAIL_CIMZETT_FOTAV") or os.environ["EMAIL_CIMZETT_BKK"]
+MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
+FACEBOOK_POSZTOLAS_AKTIV = True
+# Ugyanarról a címről ennyi napon belül nem megy új poszt (e-mail igen).
+CIM_ISMETLES_NAP = 7
 
 FOTAV_URL    = "https://gmp.fotav.hu/KMZ/munkatabl.html"
+FOTAV_TERKEP = "https://gmp.fotav.hu/mappublic.aspx"
 ALLAPOT_FAJL = "fotav_allapot.json"
 
 HEADERS = {
@@ -170,111 +184,93 @@ def lekerdez():
 
 
 # ════════════════════════════════════════════
+#  🏠  CÍMEK
+# ════════════════════════════════════════════
+# Az oldal kétféle címformát ad ugyanarra a házra:
+#   "Budapest, Kossuth Lajos u. 105, 1211 Magyarország"
+#   "1211 Budapest, Kossuth Lajos utca 105."
+def szep_cim(cim):
+    c = re.sub(r"\b\d{4}\b", "", cim)
+    c = re.sub(r"\b(Budapest|Magyarország)\b", "", c)
+    c = re.sub(r"\s*,\s*", ", ", c).strip(" ,")
+    c = re.sub(r"\s{2,}", " ", c)
+    if re.search(r"\d[a-zA-Z/-]*$", c):
+        c += "."
+    return c or cim
+
+
+def cim_kulcs(cim):
+    c = szep_cim(cim).lower()
+    c = re.sub(r"\b(utca|u)\b\.?", "u", c)
+    c = re.sub(r"\b(út|ut)\b\.?", "ut", c)
+    return re.sub(r"[^0-9a-záéíóöőúüű]", "", c)
+
+
+# ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
+# típus: (rövid név, kártyaszín, címkeszín, folyamatban-e)
+TIPUSOK = {
+    "JELENLEGI_MUNKA":   ("Munkavégzés",           ea.SZIN["piros"], None, True),
+    "KIESETT_EPULET":    ("Szünetel a szolgáltatás", ea.SZIN["piros"], None, True),
+    "TERVEZETT_MUNKA":   ("Tervezett munkavégzés", ea.SZIN["sarga"], ea.SZIN["sarga_szoveg"], False),
+    "TERVEZETT_KIESETT": ("Tervezett szünet",      ea.SZIN["sarga"], ea.SZIN["sarga_szoveg"], False),
+}
+
+TAVHO_JELVENY = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
+                 'padding:6px 9px;border-radius:4px;background:#e8590c;color:#ffffff;'
+                 'font-family:Arial,sans-serif;letter-spacing:.5px">🔥 TÁVHŐ</span>')
+
+
+def _ures(x):
+    return not x or x.strip() in ("—", "-", "&nbsp;")
+
+
+def gmaps_link(cim):
+    return f"https://www.google.com/maps/search/?api=1&query={requests.utils.quote(cim)}"
+
+
+def email_kartya(e):
+    nev, szin, cimke_szin, _ = TIPUSOK.get(e["tipus"], (e["tipus"], ea.SZIN["kek"], None, False))
+    info = e.get("info", "")
+    if info in ("Kiesett épület", "Tervezett kiesés"):
+        info = ""
+    sorok = [
+        ("Kezdés", e.get("kezdes", "")),
+        ("Vége", e.get("veg", "")),
+        ("Részletek", info),
+        ("Útfelbontás", "" if _ures(e.get("utfelbontas")) else e["utfelbontas"]),
+        ("Teljes cím", e["cim"]),
+    ]
+    test = (ea.adat_tabla(sorok)
+            + ea.gomb("📍 Térkép", gmaps_link(e["cim"]))
+            + ea.gomb("Főtáv térkép", FOTAV_TERKEP, masodlagos=True))
+    return ea.kartya(szin, nev, szep_cim(e["cim"]), test,
+                     jelvenyek=TAVHO_JELVENY, cimke_szin=cimke_szin)
+
+
 def email_kuldes(uj_esetek):
-    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
-    db    = len(uj_esetek)
-    targy = f"🔥 FŐTÁV Csepel – {db} új esemény | {ido}"
+    db = len(uj_esetek)
+    elso = uj_esetek[0]
+    if db == 1:
+        targy = f"🔥 Főtáv · {TIPUSOK.get(elso['tipus'], (elso['tipus'],))[0]} · {szep_cim(elso['cim'])}"
+    else:
+        targy = f"🔥 Főtáv: {db} új csepeli esemény · {szep_cim(elso['cim'])} és még {db - 1}"
 
-    tipus_info = {
-        "JELENLEGI_MUNKA":    ("🔴", "JELENLEGI MUNKAVÉGZÉS",    "#c0392b"),
-        "KIESETT_EPULET":     ("🔴", "KIESETT ÉPÜLET",           "#8B0000"),
-        "TERVEZETT_MUNKA":    ("🟠", "TERVEZETT MUNKAVÉGZÉS",    "#e67e22"),
-        "TERVEZETT_KIESETT":  ("🟠", "TERVEZETT KIESÉS",         "#d35400"),
-    }
+    # A folyamatban lévők elöl, utána a tervezettek
+    rendezett = sorted(uj_esetek, key=lambda e: not TIPUSOK.get(e["tipus"], ("", "", None, False))[3])
+    html = ea.keret("".join(email_kartya(e) for e in rendezett),
+                    "Főtáv Figyelő · Csepel (1211–1215) · ugyanarról a bejegyzésről több levél nem jön")
 
-    sorok_html = ""
-    sorok_txt  = ""
-
-    for i, e in enumerate(uj_esetek, 1):
-        tipus  = e.get("tipus", "")
-        emoji, label, szin = tipus_info.get(tipus, ("🔵", tipus, "#2980b9"))
-        cim    = e.get("cim", "—")
-        kezdes = e.get("kezdes", "—")
-        veg    = e.get("veg", "—")
-        info   = e.get("info", "—")
-        utfelb = e.get("utfelbontas", "—")
-
-        gmaps = f"https://www.google.com/maps/search/?api=1&query={requests.utils.quote(cim)}"
-
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:{szin};color:#fff;padding:5px 12px;
-                         border-radius:4px;font-size:13px;font-weight:bold">
-              {emoji} {label}
-            </span>
-            <div style="font-size:15px;font-weight:bold;margin:10px 0;color:#2c3e50">
-              {cim}
-            </div>
-            <table style="font-size:13px;width:100%;margin-top:6px">
-              <tr><td style="color:#888;width:140px">⏰ Kezdés:</td>
-                  <td><strong>{kezdes}</strong></td></tr>
-              <tr><td style="color:#888">⏰ Vége:</td>
-                  <td><strong>{veg}</strong></td></tr>
-              <tr><td style="color:#888">📋 Információ:</td>
-                  <td>{info}</td></tr>
-              <tr><td style="color:#888">🚧 Útfelbontás:</td>
-                  <td>{utfelb}</td></tr>
-            </table>
-            <div style="margin-top:10px">
-              <a href="{gmaps}" style="background:#4285f4;color:#fff;padding:7px 14px;
-                                       border-radius:4px;text-decoration:none;
-                                       font-size:12px;font-weight:bold">
-                📍 Google Maps
-              </a>
-            </div>
-          </td>
-        </tr>"""
-
-        sorok_txt += (
-            f"\n{'─'*45}\n"
-            f"{i}. {emoji} {label}\n"
-            f"Cím:     {cim}\n"
-            f"Kezdés:  {kezdes}\n"
-            f"Vége:    {veg}\n"
-            f"Info:    {info}\n"
-            f"Útfelb.: {utfelb}\n"
-        )
-
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#c0392b;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
-         color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>🔥 FŐTÁV – Csepeli értesítő</h1>
-    <small>{ido} | {db} új esemény (XXI. kerület)</small>
-  </div>
-  <div class="body">
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-    <div style="text-align:center;margin-top:16px">
-      <a href="https://gmp.fotav.hu/mappublic.aspx"
-         style="background:#c0392b;color:#fff;padding:9px 16px;border-radius:6px;
-                text-decoration:none;font-weight:bold;font-size:12px">
-        🔥 FŐTÁV térkép
-      </a>
-    </div>
-  </div>
-  <div class="foot">Automatikus értesítő – GitHub Actions | FŐTÁV adatai alapján</div>
-</div></body></html>"""
-
-    szoveges = f"🔥 FŐTÁV Csepel értesítő\nIdőpont: {ido}\n{sorok_txt}"
+    szoveges = "Főtáv Figyelő – új csepeli események\n"
+    for e in rendezett:
+        szoveges += (f"\n{TIPUSOK.get(e['tipus'], (e['tipus'],))[0]}: {szep_cim(e['cim'])}\n"
+                     f"  {e.get('kezdes', '')} – {e.get('veg', '')}\n")
+    szoveges += f"\nFőtáv térkép: {FOTAV_TERKEP}\n"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
-    msg["From"]    = f"🔥 FŐTÁV Monitor <{EMAIL_KULDO}>"
+    msg["From"]    = f"Főtáv Figyelő <{EMAIL_KULDO}>"
     msg["To"]      = EMAIL_CIMZETT
     msg.attach(MIMEText(szoveges, "plain", "utf-8"))
     msg.attach(MIMEText(html,     "html",  "utf-8"))
@@ -286,6 +282,89 @@ def email_kuldes(uj_esetek):
 
 
 # ════════════════════════════════════════════
+#  📘  FACEBOOK (Make.com webhookon keresztül)
+# ════════════════════════════════════════════
+FB_CSOPORTOK = [
+    ("KIESETT_EPULET",    "🔴 Most szünetel a távhőszolgáltatás"),
+    ("JELENLEGI_MUNKA",   "🛠️ Most zajló munkák"),
+    ("TERVEZETT_KIESETT", "🟠 Tervezett szünet"),
+    ("TERVEZETT_MUNKA",   "🗓️ Tervezett munkák"),
+]
+
+
+def _ido(e):
+    k, v = e.get("kezdes", ""), e.get("veg", "")
+    if not _ures(k) and not _ures(v):
+        return f"🕐 {k} – {v}"
+    if not _ures(k):
+        return f"🕐 Kezdete: {k}"
+    return f"🕐 Várható vége: {v}" if not _ures(v) else ""
+
+
+def facebook_szoveg(esetek):
+    st = Stilus("fotav")
+    sorok = [st.cim, st.vonal(), "", st.bevezeto]
+    for tipus, felirat in FB_CSOPORTOK:
+        csoport = [e for e in esetek if e["tipus"] == tipus]
+        if not csoport:
+            continue
+        sorok += ["", felirat]
+        for e in csoport:
+            sorok.append(f"📍 {szep_cim(e['cim'])}")
+            ido = _ido(e)
+            if ido:
+                sorok.append(ido)
+            info = (e.get("info") or "").strip()
+            if info and not info.lower().startswith("tel") and info not in ("Kiesett épület", "Tervezett kiesés"):
+                sorok.append(f"ℹ️ Oka: {info}")
+            if not _ures(e.get("utfelbontas")) and e["utfelbontas"].lower().startswith("i"):
+                sorok.append("🚧 Útfelbontással jár")
+    sorok += ["", f"🔗 A Főtáv térképe: {FOTAV_TERKEP}", "Forrás: FŐTÁV"]
+    if st.zaro:
+        sorok += ["", st.zaro]
+    sorok += ["", "#Csepel #távhő #FŐTÁV"]
+    return "\n".join(sorok)
+
+
+def facebook_poszt_kuldese(szoveg):
+    if not MAKE_WEBHOOK_URL:
+        print("  ⚠️  Nincs beállítva MAKE_WEBHOOK_URL - Facebook-posztolás kihagyva.")
+        return False
+    try:
+        resp = requests.post(MAKE_WEBHOOK_URL, json={"message": poszt_valtozatos.atrendez(szoveg)}, timeout=20)
+        if resp.status_code == 200:
+            print("  ✅ Facebook poszt elküldve (Make.com-on keresztül).")
+            return True
+        print(f"  ⚠️  Facebook poszt sikertelen (HTTP {resp.status_code})")
+    except Exception as ex:
+        print(f"  ⚠️  Facebook poszt hiba: {type(ex).__name__}")
+    return False
+
+
+def posztolando(uj, allapot):
+    """Címenként egy bejegyzés (a kiesés erősebb a munkánál), és ami az
+    utóbbi napokban már kiment, az nem megy ki újra."""
+    t = magyar_ido()
+    posztolt = allapot.setdefault("fb_cimek", {})
+    sorrend = [t for t, _ in FB_CSOPORTOK]
+    valasztott = {}
+    for e in sorted(uj, key=lambda e: sorrend.index(e["tipus"]) if e["tipus"] in sorrend else 9):
+        k = cim_kulcs(e["cim"])
+        if k in valasztott:
+            continue
+        try:
+            if (t - datetime.fromisoformat(posztolt[k])).days < CIM_ISMETLES_NAP:
+                print(f"🔁 Nemrég posztolt cím, kihagyva: {szep_cim(e['cim'])}")
+                continue
+        except (KeyError, ValueError):
+            pass
+        valasztott[k] = e
+    for k in valasztott:
+        posztolt[k] = t.isoformat()
+    return list(valasztott.values())
+
+
+# ════════════════════════════════════════════
 #  🚀  FŐPROGRAM
 # ════════════════════════════════════════════
 def main():
@@ -294,6 +373,8 @@ def main():
     print(f"{'='*55}")
 
     regi = betolt_allapot()
+    if FACEBOOK_POSZTOLAS_AKTIV:
+        ejszakai_sor.sor_kiurites(regi, facebook_poszt_kuldese)
     uj   = []
 
     esemenyek = lekerdez()
@@ -310,6 +391,11 @@ def main():
     print(f"\n🔥 Új csepeli FŐTÁV esemény: {len(uj)}")
     if uj:
         email_kuldes(uj)
+        if FACEBOOK_POSZTOLAS_AKTIV:
+            fb = posztolando(uj, regi)
+            if fb:
+                print("\n📘 Facebook poszt küldése...")
+                ejszakai_sor.kuld_vagy_sorba(regi, facebook_szoveg(fb), facebook_poszt_kuldese)
     else:
         print("✅ Nincs új esemény.")
 
