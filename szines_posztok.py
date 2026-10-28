@@ -133,7 +133,7 @@ MENETREND = [
     ("fotav_20261029", time(7, 45), {CSUTORTOK}, lambda nap, a: egyszeri_posztok.szoveg("fotav_20261029", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
-    ("esti_idojaras", time(20, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
+    ("esti_idojaras", time(21, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
 ]
 
 
