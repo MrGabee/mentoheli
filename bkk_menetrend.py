@@ -14,6 +14,7 @@ import os
 import re
 import json
 import base64
+import zlib
 import smtplib
 import hashlib
 import requests
@@ -93,11 +94,19 @@ def futar(vegpont, **p):
 
 def terulet_adatai():
     """(megállók halmaza, járat → rövid név, járat → típus) a területen."""
-    d = futar("stops-for-location", lat=47.415, lon=19.105, latSpan=0.12, lonSpan=0.14)
-    ref = (d.get("data") or {}).get("references") or {}
-    jaratok = {_nyers(k): v for k, v in (ref.get("routes") or {}).items()}
+    # A FUTÁR nagy területre nem ad választ, ezért három kisebb ablakból rakom össze
+    stops, routes = {}, {}
+    for lat, lon, dlat, dlon in ((47.425, 19.075, 0.075, 0.075), (47.425, 19.14, 0.06, 0.06),
+                                 (47.37, 19.07, 0.05, 0.06)):
+        d = futar("stops-for-location", lat=lat, lon=lon, latSpan=dlat, lonSpan=dlon)
+        ref = (d.get("data") or {}).get("references") or {}
+        if not ref:
+            print(f"⚠️ Üres FUTÁR válasz ({lat}, {lon}): {str(d)[:200]}")
+        stops.update(ref.get("stops") or {})
+        routes.update(ref.get("routes") or {})
+    jaratok = {_nyers(k): v for k, v in routes.items()}
     megallok, szamlalo = set(), {}
-    for k, m in (ref.get("stops") or {}).items():
+    for k, m in stops.items():
         if teruleten(m.get("lat", 0), m.get("lon", 0)):
             megallok.add(_nyers(k))
             for r in m.get("routeIds") or []:
@@ -226,7 +235,7 @@ def kuldes(targy, lista, fejlec=""):
     html = level(lista, fejlec)
     if ELONEZET:
         print("ELONEZET_HTML_START")
-        print(base64.b64encode(html.encode()).decode())
+        print(base64.b64encode(zlib.compress(html.encode(), 9)).decode())
         print("ELONEZET_HTML_END")
         print(f"(előnézet, nem küldöm) {targy}")
         return
