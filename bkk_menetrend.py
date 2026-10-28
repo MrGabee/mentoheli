@@ -7,7 +7,7 @@ A BKK riasztásaiból (terelés, pótlóbusz, megállóáthelyezés, ideiglenes 
 csak azokat tartja meg, amelyek csepeli vagy pesterzsébeti megállót érintenek.
 Minden új változásról kártyás levél megy, alatta kész posztszöveggel; este
 (a jó éjszakát előtt) emlékeztető a másnap induló változásokról.
-Posztolni nem posztol, a szöveget én nézem át és osztom meg.
+A még el nem indult változások a Facebookra is kimennek (futásonként egy, éjszaka nem).
 """
 
 import os
