@@ -116,27 +116,9 @@ def hely_neve(lat, lon):
         return ""
 
 
-def korhaz_kozel(lat, lon, sugar=500):
-    """A közeli kórház vagy helikopter-leszálló neve (Overpass), vagy ""."""
-    q = (f'[out:json][timeout:10];(nwr(around:{sugar},{lat},{lon})[amenity=hospital];'
-         f'nwr(around:300,{lat},{lon})[aeroway=helipad];);out tags center 5;')
-    for vegpont in ("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"):
-        try:
-            r = requests.post(vegpont, data={"data": q}, headers=UA, timeout=15)
-            elemek = r.json().get("elements", [])
-            break
-        except Exception as ex:
-            print(f"  ⚠️ Overpass hiba ({vegpont}): {ex}")
-    else:
-        return _korhaz_nominatim(lat, lon)
-    try:
-        for e in sorted(elemek, key=lambda e: e.get("tags", {}).get("amenity") != "hospital"):
-            nev = e.get("tags", {}).get("name")
-            if nev:
-                return nev
-        return "helikopter-leszálló" if elemek else ""
-    except Exception:
-        return ""
+def korhaz_kozel(lat, lon):
+    """A közeli kórház neve (Nominatim), vagy ""."""
+    return _korhaz_nominatim(lat, lon)
 
 
 def _korhaz_nominatim(lat, lon):

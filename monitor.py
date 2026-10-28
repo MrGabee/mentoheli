@@ -298,6 +298,12 @@ def _gep_reg(kulcs, callsign, aktualis_reg, nyom):
     return jeloltek[0] if jeloltek else ""
 
 
+def _nagy(szoveg, url, szin):
+    return (f'<a href="{ea.esc(url)}" style="display:block;text-align:center;background:{szin};color:#ffffff;'
+            f'text-decoration:none;font-weight:bold;font-size:17px;padding:15px 12px;border-radius:8px;'
+            f'margin:0 0 10px">{szoveg}</a>') if url else ""
+
+
 def pozicio_blokk(tipus, pontok):
     """(adatsorok, gombok HTML, térkép PNG, szöveges sorok) a nyomvonalból."""
     if not pontok:
@@ -308,7 +314,7 @@ def pozicio_blokk(tipus, pontok):
     hely = hp.hely_neve(elso[1], elso[2])
     sorok.append(("Felszállás helye", f"{hely} ({elso[1]:.5f}, {elso[2]:.5f})" if hely else f"{elso[1]:.5f}, {elso[2]:.5f}"))
     szoveg.append(f"Felszállás helye: {hely} {elso[1]:.5f}, {elso[2]:.5f}")
-    gombok = ea.gomb("📍 Felszállás helye", hp.gmaps(elso[1], elso[2]), masodlagos=not felszallas)
+    gombok = _nagy("📍 Felszállás helye – térkép", hp.gmaps(elso[1], elso[2]), "#16a34a" if felszallas else "#5b6b7b")
     if felszallas:
         if len(pontok) > 1:
             sorok.append(("Most", f"{utolso[3]} m magasan, {utolso[4]} km/h"))
@@ -324,7 +330,7 @@ def pozicio_blokk(tipus, pontok):
         if st:
             sorok.append(("Repült táv", f"{st['km']} km (legmagasabban {st['max_m']} m, max. {st['max_kmh']} km/h)"))
         szoveg.append(f"Utolsó ismert pont: {uhely} {utolso[1]:.5f}, {utolso[2]:.5f}" + (f" ({korhaz})" if korhaz else ""))
-        gombok = ea.gomb("📍 Utolsó ismert pont", hp.gmaps(utolso[1], utolso[2])) + gombok
+        gombok = _nagy("📍 Utolsó ismert pont – térkép", hp.gmaps(utolso[1], utolso[2]), "#dc2626") + gombok
     return sorok, gombok, hp.terkep_png(pontok), szoveg
 
 
@@ -400,18 +406,20 @@ def email_kuldes(esemeny, nyom=None):
     reg = _gep_reg(kulcs, callsign, aktualis_reg, nyom)
     poz_sorok, poz_gombok, terkep, poz_szoveg = pozicio_blokk(tipus, hp.aktualis_ut(nyom, reg) if reg else [])
     sorok += poz_sorok
-    test = ea.adat_tabla(sorok)
-    if terkep:
-        test += ('<img src="cid:terkep" width="100%" alt="Térkép" style="display:block;width:100%;'
-                 'max-width:556px;border-radius:6px;margin:6px 0 4px">'
-                 '<div style="font-size:12px;color:#8a949e;margin-bottom:6px">🟢 felszállás · 🔴 utolsó ismert pont '
-                 '(alacsonyan elveszhet a jel, ezért a leszállóhely pár száz méterrel arrébb is lehet)</div>')
-    test += poz_gombok
+    nagy_gomb = _nagy
+    # A legfontosabbak felül, nagy gombokkal
+    gombok = ""
     if elo and felszallas:
-        test += ea.gomb("🔴 Élő követés", fr24_map)
+        gombok += nagy_gomb("🔴 Élő követés – Flightradar24", fr24_map, "#dc2626")
+    gombok += poz_gombok
     if play_url:
-        test += ea.gomb("▶️ Visszajátszás", play_url, masodlagos=not felszallas)
-    test += ea.gomb("Flightradar24 adatlap", fr24_url, masodlagos=True)
+        gombok += nagy_gomb("▶️ Visszajátszás – Flightradar24", play_url, "#1f5fae" if not felszallas else "#b45309")
+    test = (gombok + ea.adat_tabla(sorok)
+            + ('<img src="cid:terkep" width="100%" alt="Térkép" style="display:block;width:100%;'
+               'max-width:556px;border-radius:6px;margin:6px 0 4px">'
+               '<div style="font-size:12px;color:#8a949e;margin-bottom:6px">🟢 felszállás · 🔴 utolsó ismert pont '
+               '(alacsonyan elveszhet a jel, ezért a leszállóhely pár száz méterrel arrébb is lehet)</div>' if terkep else "")
+            + ea.gomb("Flightradar24 adatlap", fr24_url, masodlagos=True))
 
     jelveny = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
                'padding:6px 9px;border-radius:4px;background:#c8102e;color:#ffffff;'

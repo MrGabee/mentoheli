@@ -6,7 +6,6 @@ os.environ.setdefault("EMAIL_JELSZO", "x")
 os.environ.setdefault("EMAIL_CIMZETT", "minta@pelda.hu")
 import monitor as m
 import heli_pozicio as hp
-print("KORHAZ_TESZT:", hp.korhaz_kozel(47.4338, 19.1090), "|", hp._korhaz_nominatim(47.4338, 19.1090), "|", hp._korhaz_nominatim(47.4627, 19.0255))
 
 kuldott = []
 class Al:
@@ -18,10 +17,10 @@ class Al:
 smtplib.SMTP_SSL = Al
 
 most = int(time.time())
-# Budaörsi bázisról a pesterzsébeti Jahn Ferenc kórházhoz (kitalált útvonal)
+# Kitalált útvonal: Budaörs → Szent Imre kórház környéke
 pontok = [[most - 1500, 47.4507, 18.9617, 0, 0], [most - 1380, 47.4462, 18.9905, 260, 210],
           [most - 1200, 47.4400, 19.0250, 330, 235], [most - 1020, 47.4360, 19.0650, 300, 225],
-          [most - 900, 47.4345, 19.0950, 150, 140], [most - 840, 47.4338, 19.1090, 50, 60]]
+          [most - 900, 47.4500, 19.0400, 150, 140], [most - 840, 47.4627, 19.0255, 50, 60]]
 nyom = {"ha-hbg": {"pontok": pontok}}
 for tipus in ("FELSZALLAS", "LESZALLAS"):
     m.email_kuldes({"tipus": tipus, "kulcs": "reg:ha-hbg", "adat": {
