@@ -129,6 +129,10 @@ def friss_e(datum_str):
         return True
 
 
+HONAPOK = {"január": 1, "február": 2, "március": 3, "április": 4, "május": 5, "június": 6,
+           "július": 7, "augusztus": 8, "szeptember": 9, "október": 10, "november": 11, "december": 12}
+
+
 def lekerdez_cikk_datuma(url):
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
@@ -144,7 +148,17 @@ def lekerdez_cikk_datuma(url):
 
         cimke_pattern = r'(?:Utolsó módosítás|Közzétéve|Frissítve|Megjelenés)[:\s]*' + pattern
         cimke_match = re.search(cimke_pattern, teljes_szoveg, re.IGNORECASE)
-        if cimke_match:
+        # A MÁVINFORM cikkein a dátum betűs hónappal áll a node-date dobozban:
+        # "2026. október 28. szerda, 19.12 / Utolsó módosítás: 2026. október 28. szerda, 20.29"
+        node_datum = soup.find(class_="node-date")
+        betus = re.findall(r"(\d{4})\.\s*([a-záéíóöőúüű]+)\s+(\d{1,2})\.[^,\d]*,\s*(\d{1,2})[.:](\d{2})",
+                           node_datum.get_text(" ", strip=True).lower()) if node_datum else []
+        betus = [d for d in betus if d[1] in HONAPOK]
+        if betus:
+            ev, ho, nap, ora, perc = betus[-1]
+            datum = f"{ev}.{HONAPOK[ho]:02d}.{int(nap):02d}. {int(ora):02d}:{perc}"
+            print(f"    📅 Dátum (node-date): {datum}")
+        elif cimke_match:
             datum = cimke_match.group(1).strip()
             print(f"    📅 Dátum (címke alapján): {datum}")
         else:
@@ -158,12 +172,17 @@ def lekerdez_cikk_datuma(url):
         for zavaro in soup.find_all(class_=re.compile(r"cookie|suti|gdpr|consent", re.I)):
             zavaro.decompose()
 
-        tartalom_div = (
+        # A MÁVINFORM cikk szövege: sárga doboz (összefoglaló), kék doboz(ok) (részletek).
+        dobozok = [d.get_text(" ", strip=True) for d in soup.find_all("div", class_=["yellowbox", "bluebox"])]
+        dobozok = [d for d in dobozok if d]
+        tartalom_div = None if dobozok else (
             soup.find("div", class_="field-type-text-with-summary") or
             soup.find("div", class_="field-name-body") or
             soup.find("article")
         )
-        if tartalom_div:
+        if dobozok:
+            reszlet = "\n\n".join(dobozok)[:1500]
+        elif tartalom_div:
             reszlet = tartalom_div.get_text(separator=" ", strip=True)[:1500]
         else:
             paragrafusok = soup.find_all("p")
@@ -228,7 +247,7 @@ def email_kartya(e):
     if len(reszlet) > 800:
         reszlet = reszlet[:800].rsplit(" ", 1)[0] + " …"
     test = (ea.adat_tabla([("Utolsó módosítás", "" if e.get("datum") in (None, "—") else e["datum"])])
-            + ea.bekezdes(reszlet)
+            + "".join(ea.bekezdes(b) for b in reszlet.split("\n\n"))
             + ea.gomb("Teljes cikk", e.get("url", ""))
             + ea.gomb("MÁVINFORM", MAV_URL, masodlagos=True))
     return ea.kartya(ea.SZIN["sarga"] if volan else ea.SZIN["piros"],
