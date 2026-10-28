@@ -13,6 +13,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q requests gtfs-realtime-bindings
-      - run: python eszkozok/gtfs_proba.py
+      - run: python bkk_menetrend.py
         env:
+          ELONEZET: "1"
           BKK_API_KEY: ${{ secrets.BKK_API_KEY }}

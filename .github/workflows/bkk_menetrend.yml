@@ -1,0 +1,58 @@
+name: 🚏 BKK menetrendi változások (Csepel, Pesterzsébet)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Félóránként, :10 és :40 perckor
+    - cron: '10,40 * * * *'
+
+concurrency:
+  group: bkk-menetrend
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests gtfs-realtime-bindings
+
+      - name: 🚏 Változások figyelése
+        env:
+          BKK_API_KEY: ${{ secrets.BKK_API_KEY }}
+          EMAIL_KULDO: ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
+          EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
+        run: python bkk_menetrend.py
+
+      - name: 💾 Állapot commitolása
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f bkk_menetrend_allapot.json ] || exit 0
+          cp bkk_menetrend_allapot.json /tmp/allapot.json
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            cp /tmp/allapot.json bkk_menetrend_allapot.json
+            git add bkk_menetrend_allapot.json
+            git diff --staged --quiet && break
+            git commit -qm "bkk menetrend állapot [skip ci]"
+            git push -q origin HEAD:main && break
+            sleep $((i*3))
+          done
