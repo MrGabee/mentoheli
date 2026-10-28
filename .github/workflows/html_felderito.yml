@@ -18,9 +18,10 @@ jobs:
       - run: python bkk_menetrend.py
         env:
           ELONEZET: "1"
+          PYTHONUNBUFFERED: "1"
           BKK_API_KEY: ${{ secrets.BKK_API_KEY }}
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f bkk_menetrend_elonezet.html
-          git commit -qm "előnézet" && git push -q origin HEAD:claude/project-thread-oeicnh || true
+          git commit --allow-empty -qm "előnézet" && git push -q origin HEAD:claude/project-thread-oeicnh || true

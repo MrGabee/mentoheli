@@ -38,19 +38,21 @@ jobs:
           EMAIL_JELSZO: ${{ secrets.EMAIL_JELSZO }}
           EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
           EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
+          PYTHONUNBUFFERED: '1'
         run: python bkk_menetrend.py
 
       - name: 💾 Állapot commitolása
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          [ -f bkk_menetrend_allapot.json ] || exit 0
-          cp bkk_menetrend_allapot.json /tmp/allapot.json
+          FAJLOK=$(ls bkk_menetrend_allapot.json bkk_menetrend_megallok.json 2>/dev/null) || true
+          [ -n "$FAJLOK" ] || exit 0
+          mkdir -p /tmp/allapot && cp $FAJLOK /tmp/allapot/
           for i in 1 2 3 4 5; do
             git fetch -q origin main
             git reset -q --hard origin/main
-            cp /tmp/allapot.json bkk_menetrend_allapot.json
-            git add bkk_menetrend_allapot.json
+            cp /tmp/allapot/* .
+            git add $FAJLOK
             git diff --staged --quiet && break
             git commit -qm "bkk menetrend állapot [skip ci]"
             git push -q origin HEAD:main && break

@@ -168,19 +168,41 @@ def riasztasok():
     return ki
 
 
-_HELY = {}
+GTFS_ZIP = "https://go.bkk.hu/api/static/v1/public-gtfs/budapest_gtfs.zip"
+MEGALLO_FAJL = "bkk_menetrend_megallok.json"
+_BENT = None
 
 
-def megallo_teruleten(stop_id):
-    """A riasztás megállóit a GTFS-RT más azonosítóval adja, mint a környékbeli lista,
-    ezért a helyüket egyenként kérdezem le a FUTÁR-tól."""
-    if stop_id not in _HELY:
-        d = futar("stop", stopId=f"BKK_{stop_id}")
-        if d is None:
-            return None          # nem sikerült kideríteni: nem dobom el emiatt
-        m = ((d.get("data") or {}).get("entry")) or {}
-        _HELY[stop_id] = bool(m) and teruleten(m.get("lat", 0), m.get("lon", 0))
-    return _HELY[stop_id]
+def teruleti_megallok():
+    """A területre eső összes GTFS megálló azonosítója. A riasztások ezekkel az
+    azonosítókkal adják a megállókat; a menetrendi zipből naponta egyszer frissítem."""
+    global _BENT
+    if _BENT is not None:
+        return _BENT
+    try:
+        with open(MEGALLO_FAJL, encoding="utf-8") as f:
+            tar = json.load(f)
+        if tar.get("datum") == datetime.now(MAGYAR_TZ).strftime("%Y-%m-%d"):
+            _BENT = set(tar["bent"])
+            return _BENT
+    except (OSError, ValueError, KeyError):
+        tar = None
+    try:
+        import csv, io, zipfile
+        r = requests.get(GTFS_ZIP, headers=HEADERS, timeout=120)
+        r.raise_for_status()
+        with zipfile.ZipFile(io.BytesIO(r.content)) as z, z.open("stops.txt") as f:
+            sorok = csv.DictReader(io.TextIOWrapper(f, encoding="utf-8-sig"))
+            bent = sorted(s["stop_id"] for s in sorok
+                          if s.get("stop_lat") and teruleten(float(s["stop_lat"]), float(s["stop_lon"])))
+        with open(MEGALLO_FAJL, "w", encoding="utf-8") as f:
+            json.dump({"datum": datetime.now(MAGYAR_TZ).strftime("%Y-%m-%d"), "bent": bent}, f)
+        print(f"🗺️ GTFS megállók frissítve: {len(bent)} a területen")
+        _BENT = set(bent)
+    except Exception as ex:
+        print(f"⚠️ GTFS megállólista hiba: {type(ex).__name__}: {ex}")
+        _BENT = set(tar["bent"]) if tar else set()
+    return _BENT
 
 
 def helyiek(lista, megallok, helyi_jaratok, jaratok):
@@ -190,11 +212,10 @@ def helyiek(lista, megallok, helyi_jaratok, jaratok):
         # áthelyezése nem csepeli hír, akkor sem, ha a járat erre is jár); ha nem, a járatok.
         if not (set(r["routes"]) & helyi_jaratok or set(r["stops"]) & megallok):
             continue
-        if r["stops"] and not set(r["stops"]) & megallok:
-            helyek = [megallo_teruleten(m) for m in r["stops"][:15]]
-            # csak akkor dobom el, ha minden megállóról biztosan tudom, hogy kívül esik
-            if not any(helyek) and None not in helyek:
-                continue
+        bent = teruleti_megallok()
+        # ha nincs megállólista (letöltési hiba), nem dobok el semmit a megállók miatt
+        if r["stops"] and bent and not set(r["stops"]) & (bent | megallok):
+            continue
         r["vonalak"] = sorted({jaratok[x].get("shortName", x) for x in r["routes"] if x in jaratok},
                               key=lambda v: (len(re.sub(r"\D", "", v) or "999"), v))
         r["tipusok"] = {jaratok[x].get("shortName", x): jaratok[x].get("type") for x in r["routes"] if x in jaratok}
