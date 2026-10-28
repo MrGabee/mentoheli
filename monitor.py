@@ -417,8 +417,10 @@ def email_kuldes(esemeny, nyom=None):
     test = (gombok + ea.adat_tabla(sorok)
             + ('<img src="cid:terkep" width="100%" alt="Térkép" style="display:block;width:100%;'
                'max-width:556px;border-radius:6px;margin:6px 0 4px">'
-               '<div style="font-size:12px;color:#8a949e;margin-bottom:6px">🟢 felszállás · 🔴 utolsó ismert pont '
-               '(alacsonyan elveszhet a jel, ezért a leszállóhely pár száz méterrel arrébb is lehet)</div>' if terkep else "")
+               '<div style="font-size:12px;color:#8a949e;margin-bottom:6px">'
+               + ("🟢 felszállás · 🔴 jelenlegi helyzet</div>" if felszallas else
+                  "🟢 felszállás · 🔴 utolsó ismert pont (alacsonyan elveszhet a jel, ezért a leszállóhely "
+                  "pár száz méterrel arrébb is lehet)</div>") if terkep else "")
             + ea.gomb("Flightradar24 adatlap", fr24_url, masodlagos=True))
 
     jelveny = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
