@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-29T01:38:43.091810+02:00",
+  "frissitve": "2026-10-29T01:39:17.599816+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T12:32:42.934117+02:00",
-      "kulcs": "V1581",
-      "rendszam": "V1581",
-      "vehicle_id": "4633",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.468055725097656,
-      "lon": 19.07571792602539,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-28T12:32:42.939294+02:00",
-      "kulcs": "PDB730",
-      "rendszam": "PDB730",
-      "vehicle_id": "7056",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.523353576660156,
-      "lon": 18.99474334716797,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-28T12:32:42.939652+02:00",
-      "kulcs": "PDN635",
-      "rendszam": "PDN635",
-      "vehicle_id": "7106",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.43000030517578,
-      "lon": 19.067459106445312,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
     {
       "idopont": "2026-10-28T12:32:42.940134+02:00",
       "kulcs": "PKN617",
@@ -260000,6 +259961,45 @@
       "lon": 19.041162490844727,
       "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
       "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-29T01:39:17.522828+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49894332885742,
+      "lon": 19.051116943359375,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-29T01:39:17.526999+02:00",
+      "kulcs": "NTM435",
+      "rendszam": "NTM435",
+      "vehicle_id": "6503",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51986312866211,
+      "lon": 19.14788246154785,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-29T01:39:17.527357+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.379547119140625,
+      "lon": 19.10420799255371,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
