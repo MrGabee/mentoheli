@@ -17,8 +17,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from poszt_valtozatos import Stilus
+import email_arculat as ea
 
-MAGYAR_TZ = timezone(timedelta(hours=2))
+from zoneinfo import ZoneInfo
+MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
 def magyar_ido():
     return datetime.now(MAGYAR_TZ)
@@ -497,109 +499,85 @@ def facebook_poszt_kuldese(szoveg):
 # ════════════════════════════════════════════
 #  📧  E-MAIL
 # ════════════════════════════════════════════
+ARAM_JELVENY = ('<span style="display:inline-block;font-weight:bold;font-size:13px;line-height:1;'
+                'padding:6px 9px;border-radius:4px;background:#f2b705;color:#1b232c;'
+                'font-family:Arial,sans-serif;letter-spacing:.5px">⚡ ÁRAM</span>')
+EON_TERKEP = "https://www.eon.hu/hu/lakossagi/aram/aramszunet-informaciok.html"
+
+
+def _helyszin(f):
+    """Az érintett címek: első utca a kártya címének, a teljes lista a törzsbe."""
+    lista = f["utcak_lista"] or [f["utcak"]]
+    elso = lista[0]
+    cim = f"{f['kerulet']} · {elso}" + (f" és még {len(lista) - 1} cím" if len(lista) > 1 else "")
+    sorok = "".join(f'<div style="padding:2px 0">• {ea.esc(u)}</div>' for u in lista)
+    return cim, f'<div style="margin:8px 0 4px;font-size:14px">{sorok}</div>'
+
+
+def _aram_kartya(f, szin, cimke, cimke_szin=None):
+    cim, cimek_html = _helyszin(f)
+    test = (cimek_html
+            + ea.adat_tabla([("Kezdés", f["kezdes"]), ("Várható vége", f["veg"]),
+                             ("Érintett", f"{f['fogyaszto']} fogyasztó" if f["fogyaszto"] not in ("", "—", "None") else ""),
+                             ("Azonosító", f["azonosito"] if f["azonosito"] != "—" else "")])
+            + ea.gomb("📍 Térkép", f["gmaps"])
+            + ea.gomb("E.ON áramszünet-térkép", EON_TERKEP, masodlagos=True))
+    return ea.kartya(szin, cimke, cim, test, jelvenyek=ARAM_JELVENY, cimke_szin=cimke_szin)
+
+
+def _fb_kartya(szoveg, felirat):
+    test = ('<div style="white-space:pre-wrap;font-size:13px;line-height:1.55;background:#f6f8fa;'
+            f'border:1px solid #e4e6eb;border-radius:6px;padding:12px">{ea.esc(szoveg)}</div>')
+    return ea.kartya("#1877f2", "Facebook", felirat, test)
+
+
+def _kuld(targy, felado, szoveges, html):
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = targy
+    msg["From"]    = f"{felado} <{EMAIL_KULDO}>"
+    msg["To"]      = EMAIL_CIMZETT
+    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
+    msg.attach(MIMEText(html,     "html",  "utf-8"))
+    if EMAIL_AKTIV:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
+            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
+        print(f"📧 E-mail elküldve: {targy}")
+    else:
+        print(f"ℹ️ E-mail kikapcsolva (EMAIL_AKTIV = False), nem ment ki: {targy}")
+
+
 def email_kuldes(uj_esetek, osszes_aktiv_esetek):
     ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(uj_esetek)
-    targy = f"⚡ Áramszünet (Csepel/Pesterzsébet/Sziget.) – {db} új esemény | {ido}"
 
     uj_adatok      = [kinyert_adatok(e) for e in uj_esetek]
     aktiv_adatok   = [kinyert_adatok(e) for e in osszes_aktiv_esetek]
     fb_szoveg_txt  = facebook_szoveg(uj_adatok, aktiv_adatok, ido)
 
-    sorok_html = ""
-    for i, f in enumerate(uj_adatok, 1):
-        szin  = "#c0392b" if f["tipus"] == "UZEMZAVAR" else "#e67e22"
-        badge = "🔴 ÉLŐ ÜZEMZAVAR" if f["tipus"] == "UZEMZAVAR" else "📋 TERVEZETT ÁRAMSZÜNET"
+    # Az élő üzemzavarok elöl
+    uj_adatok.sort(key=lambda f: f["tipus"] != "UZEMZAVAR")
+    elso = uj_adatok[0]
+    fajta = "Üzemzavar" if elso["tipus"] == "UZEMZAVAR" else "Áramszünet"
+    hely = _helyszin(elso)[0]
+    targy = (f"⚡ {fajta} · {hely}" if db == 1
+             else f"⚡ E.ON: {db} új áramszünet · {elso['kerulet']} és környéke")
 
-        cimek_html = "".join(f"<div>• {c}</div>" for c in f["utcak_lista"]) if f["utcak_lista"] else f["utcak"]
+    kartyak = "".join(
+        _aram_kartya(f, ea.SZIN["piros"], "Élő üzemzavar") if f["tipus"] == "UZEMZAVAR"
+        else _aram_kartya(f, ea.SZIN["sarga"], "Tervezett áramszünet", ea.SZIN["sarga_szoveg"])
+        for f in uj_adatok)
+    if FACEBOOK_POSZTOLAS_AKTIV:
+        kartyak += _fb_kartya(fb_szoveg_txt, "Ez a poszt megy ki az oldalra")
+    html = ea.keret(kartyak, "Áramszünet Figyelő · Csepel, Pesterzsébet, Szigetszentmiklós · E.ON adatai alapján")
 
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:{szin};color:#fff;padding:5px 12px;
-                         border-radius:4px;font-size:13px;font-weight:bold">{badge}</span>
-            <table style="font-size:13px;width:100%;margin-top:10px">
-              <tr><td style="color:#888;width:140px">📌 Kerület:</td><td><strong>{f['kerulet']}</strong></td></tr>
-              <tr><td style="color:#888">🔢 Azonosító:</td><td>{f['azonosito']}</td></tr>
-              <tr><td style="color:#888">⏰ Kezdés:</td><td><strong>{f['kezdes']}</strong></td></tr>
-              <tr><td style="color:#888">⏰ Vége:</td><td><strong>{f['veg']}</strong></td></tr>
-              <tr><td style="color:#888;vertical-align:top">🏘️ Helyszín:</td><td>{cimek_html}</td></tr>
-              <tr><td style="color:#888">👥 Érintett:</td><td>{f['fogyaszto']} fogyasztó</td></tr>
-            </table>
-            {"<div style='margin-top:10px'><a href='" + f['gmaps'] + "' style='background:#4285f4;color:#fff;padding:7px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold'>📍 Google Maps</a></div>" if f['gmaps'] else ""}
-          </td>
-        </tr>"""
+    szoveges = "Áramszünet Figyelő – új események\n"
+    for f in uj_adatok:
+        szoveges += (f"\n{'Élő üzemzavar' if f['tipus'] == 'UZEMZAVAR' else 'Tervezett áramszünet'}: {f['kerulet']}\n"
+                     f"  {f['kezdes']} – {f['veg']}\n  {f['utcak']}\n")
+    szoveges += f"\nE.ON áramszünet-térkép: {EON_TERKEP}\n"
 
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#c0392b;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .fb-box{{background:linear-gradient(135deg,#f0f2f5,#e8edf3);
-           border:1px solid #d0d7de;border-radius:12px;
-           padding:18px 20px;margin:22px 0;
-           box-shadow:0 1px 3px rgba(0,0,0,.06)}}
-  .fb-box h3{{margin:0 0 12px;color:#1877f2;font-size:14px;
-              display:flex;align-items:center;gap:6px}}
-  .fb-box pre{{margin:0;font-family:Arial,sans-serif;font-size:13px;
-              white-space:pre-wrap;word-break:break-word;
-              color:#1c1e21;line-height:1.6;background:#fff;
-              border-radius:8px;padding:14px;border:1px solid #e4e6eb}}
-  .fb-kep-elonezet{{margin-top:12px;text-align:center}}
-  .fb-kep-elonezet img{{max-width:100%;max-height:220px;border-radius:8px;
-                        box-shadow:0 2px 6px rgba(0,0,0,.15)}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;
-         color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>⚡ Áramszünet értesítő – Csepel / Pesterzsébet / Szigetszentmiklós</h1>
-    <small>{ido} | {db} új esemény</small>
-  </div>
-  <div class="body">
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-
-    <div class="fb-box">
-      <h3>📘 Facebook poszt szövege — jelöld ki és másold (Ctrl+A majd Ctrl+C)</h3>
-      <pre>{fb_szoveg_txt}</pre>
-      {f'<div class="fb-kep-elonezet"><img src="{KEP_URL}" alt="Facebook poszt kép"></div>' if KEP_URL else ''}
-    </div>
-
-    <div style="text-align:center;margin-top:16px">
-      <a href="https://www.eon.hu/hu/lakossagi/aram/aramszunet-informaciok.html"
-         style="background:#c0392b;color:#fff;padding:9px 16px;border-radius:6px;
-                text-decoration:none;font-weight:bold;font-size:12px">
-        ⚡ E.ON térkép
-      </a>
-      <a href="https://www.facebook.com/104411308403346"
-         style="background:#1877f2;color:#fff;padding:9px 16px;border-radius:6px;
-                text-decoration:none;font-weight:bold;font-size:12px;margin-left:8px">
-        📘 Facebook oldal
-      </a>
-    </div>
-  </div>
-  <div class="foot">Automatikus értesítő – GitHub Actions | E.ON adatai alapján</div>
-</div></body></html>"""
-
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = targy
-    msg["From"]    = f"⚡ Áramszünet Monitor <{EMAIL_KULDO}>"
-    msg["To"]      = EMAIL_CIMZETT
-    msg.attach(MIMEText(html, "html", "utf-8"))
-
-    if EMAIL_AKTIV:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
-            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
-    else:
-        print("ℹ️ E-mail kikapcsolva (EMAIL_AKTIV = False), nem ment ki.")
-    print(f"📧 E-mail elküldve: {targy}")
+    _kuld(targy, "Áramszünet Figyelő", szoveges, html)
     return fb_szoveg_txt
 
 
@@ -610,87 +588,21 @@ EMLEKEZTETO_NAPOK_ELOTTE = [7, 1]  # több érték is megadható - mindegyikhez 
 
 
 def emlekezteto_kuldes(emlekezteto_adatok):
-    ido   = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
     db    = len(emlekezteto_adatok)
-    targy = f"⏰ Emlékeztető - közelgő áramszünet – {db} esemény | {ido}"
+    elso  = emlekezteto_adatok[0]
+    targy = (f"⏰ Emlékeztető · áramszünet {elso['kezdes']} · {_helyszin(elso)[0]}" if db == 1
+             else f"⏰ Emlékeztető: {db} közelgő áramszünet")
 
-    sorok_html = ""
-    sorok_txt  = ""
-    for i, f in enumerate(emlekezteto_adatok, 1):
-        szin = "#e67e22"
-        cimek_html = "".join(f"<div>• {c}</div>" for c in f["utcak_lista"]) if f["utcak_lista"] else f["utcak"]
+    kartyak = ""
+    szoveges = "Emlékeztető – közelgő áramszünet\n"
+    for f in emlekezteto_adatok:
         nap = f.get("emlekezteto_nap")
-        nap_cimke = f"{nap} napon belül esedékes" if nap else "közelgő"
+        cimke = "Holnap esedékes" if nap == 1 else (f"{nap} napon belül esedékes" if nap else "Közelgő áramszünet")
+        kartyak += _aram_kartya(f, ea.SZIN["sarga"], cimke, ea.SZIN["sarga_szoveg"])
+        szoveges += f"\n{cimke}: {f['kerulet']}\n  {f['kezdes']} – {f['veg']}\n  {f['utcak']}\n"
+    html = ea.keret(kartyak, "Áramszünet Figyelő · emlékeztető a korábban bejelentett tervezett áramszünetekről")
 
-        sorok_html += f"""
-        <tr style="border-bottom:2px solid #eee">
-          <td style="padding:14px;vertical-align:top;color:#999;width:24px">{i}.</td>
-          <td style="padding:14px">
-            <span style="background:{szin};color:#fff;padding:5px 12px;
-                         border-radius:4px;font-size:13px;font-weight:bold">⏰ {nap_cimke.upper()}</span>
-            <table style="font-size:13px;width:100%;margin-top:10px">
-              <tr><td style="color:#888;width:110px">📌 Terület:</td><td><strong>{f['kerulet']}</strong></td></tr>
-              <tr><td style="color:#888">📍 Érintett utcák:</td><td>{cimek_html}</td></tr>
-              <tr><td style="color:#888">⏰ Kezdés:</td><td><strong>{f['kezdes']}</strong></td></tr>
-              <tr><td style="color:#888">⏰ Várható vége:</td><td>{f['veg']}</td></tr>
-              <tr><td style="color:#888">👥 Érintett fogyasztók:</td><td>{f['fogyaszto']}</td></tr>
-            </table>
-            {f'<div style="margin-top:8px"><a href="{f["gmaps"]}" style="background:#4285f4;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold">📍 Google Maps</a></div>' if f['gmaps'] else ''}
-          </td>
-        </tr>"""
-
-        sorok_txt += (
-            f"\n{'─'*45}\n{i}. ⏰ {nap_cimke.upper()}\n"
-            f"Terület: {f['kerulet']}\nUtcák: {f['utcak']}\n"
-            f"Kezdés: {f['kezdes']}\nVége: {f['veg']}\nFogyasztók: {f['fogyaszto']}\n"
-        )
-
-    html = f"""<!DOCTYPE html>
-<html lang="hu"><head><meta charset="UTF-8">
-<style>
-  body{{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0}}
-  .wrap{{max-width:650px;margin:20px auto;background:#fff;border-radius:10px;
-         overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15)}}
-  .hdr{{background:#e67e22;color:#fff;padding:22px 28px}}
-  .hdr h1{{margin:0;font-size:20px}}
-  .hdr small{{opacity:.85;font-size:13px}}
-  .body{{padding:20px 28px}}
-  .bevezeto{{background:#fef3e8;border-left:4px solid #e67e22;
-             padding:12px 16px;margin-bottom:16px;
-             font-size:14px;color:#2c3e50;line-height:1.6}}
-  .foot{{background:#ecf0f1;padding:12px 28px;font-size:11px;color:#95a5a6;text-align:center}}
-</style>
-</head><body><div class="wrap">
-  <div class="hdr">
-    <h1>⏰ Emlékeztető - közelgő áramszünet</h1>
-    <small>{ido} | {db} esemény</small>
-  </div>
-  <div class="body">
-    <div class="bevezeto">
-      ℹ️ Ez egy emlékeztető korábban már bejelentett, tervezett áramszünet(ek)ről,
-      amik hamarosan esedékesek (lásd az egyes tételeknél, mennyi nap van hátra).
-    </div>
-    <table style="width:100%;border-collapse:collapse">{sorok_html}</table>
-  </div>
-  <div class="foot">Automatikus emlékeztető – GitHub Actions | E.ON adatok alapján</div>
-</div></body></html>"""
-
-    szoveges = f"⏰ Emlékeztető - közelgő áramszünet\nIdőpont: {ido}\n{sorok_txt}"
-
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = targy
-    msg["From"]    = f"⏰ Áramszünet Emlékeztető <{EMAIL_KULDO}>"
-    msg["To"]      = EMAIL_CIMZETT
-    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
-    msg.attach(MIMEText(html,     "html",  "utf-8"))
-
-    if EMAIL_AKTIV:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
-            smtp.sendmail(EMAIL_KULDO, EMAIL_CIMZETT, msg.as_string())
-    else:
-        print("ℹ️ E-mail kikapcsolva (EMAIL_AKTIV = False), nem ment ki.")
-    print(f"⏰ Emlékeztető email elküldve: {targy}")
+    _kuld(targy, "Áramszünet Figyelő", szoveges, html)
 
 
 AKTIV_JSON_FAJL = "aramszunet_aktiv.json"
