@@ -39,7 +39,10 @@ jobs:
         env:
           EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
           EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
-          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
+          # A szerkesztőségi cím: ha van külön Főtáv-címzett, az; ha nincs, a BKK-leveleké.
+          EMAIL_CIMZETT_FOTAV: ${{ secrets.EMAIL_CIMZETT_FOTAV }}
+          EMAIL_CIMZETT_BKK: ${{ secrets.EMAIL_CIMZETT_BKK }}
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
         run: python fotav_monitor.py
 
       - name: 💾 Állapot commitolása
