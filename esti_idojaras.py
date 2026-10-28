@@ -6,6 +6,7 @@ import requests
 from datetime import timedelta
 
 from poszt_valtozatos import Stilus
+import arfolyam
 
 URL = "https://api.open-meteo.com/v1/forecast"
 CSEPEL = {"latitude": 47.43, "longitude": 19.07}
@@ -91,6 +92,9 @@ def szoveg(nap, adat=None):
              f"🌅 Napkelte {d['kel']}, 🌇 napnyugta {d['nyugszik']}",
              ""]
     sorok += tanacsok(d)
+    arf = arfolyam.sorok(nap) if adat is None else []
+    if arf:
+        sorok += ["", "💱 Árfolyam"] + arf
     sorok += ["", "🌙 Jó éjszakát mindenkinek!", "ℹ️ Előrejelzés: Open-Meteo"]
     if st.zaro:
         sorok.append(st.zaro)

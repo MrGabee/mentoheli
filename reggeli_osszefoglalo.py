@@ -24,6 +24,7 @@ import vizmuvek_monitor as vizmuvek
 from poszt_valtozatos import Stilus
 from nevnap import nevnap
 import levego
+import arfolyam
 
 # Valódi budapesti időzóna, nyári/téli időszámítással
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
@@ -97,7 +98,7 @@ def mai_riasztasok(ma):
 # ════════════════════════════════════════════
 #  📘  POSZT SZÖVEG
 # ════════════════════════════════════════════
-def facebook_szoveg(aram, viz, idojaras, levego_sorok=()):
+def facebook_szoveg(aram, viz, idojaras, levego_sorok=(), arfolyam_sorok=()):
     st = Stilus("reggeli")
     sorok = [
         st.cim,
@@ -144,12 +145,16 @@ def facebook_szoveg(aram, viz, idojaras, levego_sorok=()):
     if levego_sorok:
         sorok += list(levego_sorok) + [""]
 
+    if arfolyam_sorok:
+        sorok += ["💱 ÁRFOLYAM"] + list(arfolyam_sorok) + [""]
+
     if not (idojaras or aram or viz):
         sorok += ["✅ Ma nem tudok áramszünetről, vízhiányról vagy időjárási riasztásról a környéken. Nyugis napot! 😊", ""]
 
     sorok += [
         "ℹ️ Részletek a korábbi posztjaimban. Források: E.ON, Fővárosi Vízművek, HungaroMet"
-        + (", Copernicus (CAMS)" if levego_sorok else ""),
+        + (", Copernicus (CAMS)" if levego_sorok else "")
+        + (", EKB" if arfolyam_sorok else ""),
     ]
     if st.zaro:
         sorok.append(st.zaro)
@@ -175,7 +180,8 @@ def most_kell_futni(utemezes):
 def szoveg(nap):
     """A színes posztok menetrendjéből (5:50) hívva: a nap összefoglalója."""
     ma = nap.strftime("%Y-%m-%d")
-    return facebook_szoveg(mai_aramszunetek(ma), vizhianyok(), mai_riasztasok(ma), levego.sorok())
+    return facebook_szoveg(mai_aramszunetek(ma), vizhianyok(), mai_riasztasok(ma), levego.sorok(),
+                           arfolyam.sorok(nap))
 
 
 def main():
@@ -193,7 +199,7 @@ def main():
     idojaras = mai_riasztasok(ma)
     print(f"⚡ {len(aram)}  💧 {len(viz)}  ⚠️ {len(idojaras)}")
 
-    szoveg = facebook_szoveg(aram, viz, idojaras, levego.sorok())
+    szoveg = facebook_szoveg(aram, viz, idojaras, levego.sorok(), arfolyam.sorok(magyar_ido().date()))
     print("\n" + szoveg + "\n")
 
     if not FACEBOOK_POSZTOLAS_AKTIV:
