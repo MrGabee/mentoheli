@@ -79,7 +79,7 @@ def bemutato_szoveg(nap, allapot):
             sorok += ["", v["leiras"].strip()]
         sorok += [
             "",
-            "💬 Jártatok már náluk? Írjátok meg kommentben a tapasztalatotokat!",
+            v.get("kerdes") or "💬 Jártatok már náluk? Írjátok meg kommentben a tapasztalatotokat!",
             "",
             "🤝 Csepeli vállalkozásod van? Várlak! Szívesen bemutatlak téged is, ingyen. Írj Messengeren, WhatsAppon (+36 70 754 0254), e-mailben (olvaso@mrgabee.hu), vagy jelentkezz az űrlapon: https://kozles.github.io/posztol/kapcsolat.html",
             "ℹ️ Ez nem fizetett hirdetés.",
