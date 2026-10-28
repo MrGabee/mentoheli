@@ -24,9 +24,11 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 from bs4 import BeautifulSoup
 
 import email_arculat as ea
+import heli_pozicio as hp
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 
@@ -285,7 +287,48 @@ def osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo):
 # ════════════════════════════════════════════
 #  📧  E-MAIL KÜLDÉS
 # ════════════════════════════════════════════
-def email_kuldes(esemeny):
+def _gep_reg(kulcs, callsign, aktualis_reg, nyom):
+    """Melyik géphez tartozik az esemény (a nyomvonalhoz kell)."""
+    if kulcs.startswith("reg:"):
+        return kulcs[4:]
+    if aktualis_reg:
+        return aktualis_reg.lower()
+    jeloltek = [r for r, cs in MENTO_GEPEK.items() if cs.upper() == (callsign or "").upper()]
+    jeloltek.sort(key=lambda r: -((nyom.get(r) or {}).get("pontok") or [[0]])[-1][0])
+    return jeloltek[0] if jeloltek else ""
+
+
+def pozicio_blokk(tipus, pontok):
+    """(adatsorok, gombok HTML, térkép PNG, szöveges sorok) a nyomvonalból."""
+    if not pontok:
+        return [], "", None, []
+    felszallas = tipus == "FELSZALLAS"
+    elso, utolso = pontok[0], pontok[-1]
+    sorok, szoveg = [], []
+    hely = hp.hely_neve(elso[1], elso[2])
+    sorok.append(("Felszállás helye", f"{hely} ({elso[1]:.5f}, {elso[2]:.5f})" if hely else f"{elso[1]:.5f}, {elso[2]:.5f}"))
+    szoveg.append(f"Felszállás helye: {hely} {elso[1]:.5f}, {elso[2]:.5f}")
+    gombok = ea.gomb("📍 Felszállás helye", hp.gmaps(elso[1], elso[2]), masodlagos=not felszallas)
+    if felszallas:
+        if len(pontok) > 1:
+            sorok.append(("Most", f"{utolso[3]} m magasan, {utolso[4]} km/h"))
+    else:
+        uhely = hp.hely_neve(utolso[1], utolso[2])
+        korhaz = hp.korhaz_kozel(utolso[1], utolso[2])
+        sorok.append(("Utolsó ismert pont", f"{uhely} ({utolso[1]:.5f}, {utolso[2]:.5f})" if uhely
+                      else f"{utolso[1]:.5f}, {utolso[2]:.5f}"))
+        if korhaz:
+            sorok.append(("Közelben", f"🏥 {korhaz}"))
+        sorok.append(("Csepeltől", f"{hp.tavolsag_km(hp.CSEPEL, utolso[1:3]):.1f} km"))
+        st = hp.statisztika(pontok)
+        if st:
+            sorok.append(("Repült táv", f"{st['km']} km (legmagasabban {st['max_m']} m, max. {st['max_kmh']} km/h)"))
+        szoveg.append(f"Utolsó ismert pont: {uhely} {utolso[1]:.5f}, {utolso[2]:.5f}" + (f" ({korhaz})" if korhaz else ""))
+        gombok = ea.gomb("📍 Utolsó ismert pont", hp.gmaps(utolso[1], utolso[2])) + gombok
+    return sorok, gombok, hp.terkep_png(pontok), szoveg
+
+
+def email_kuldes(esemeny, nyom=None):
     tipus     = esemeny["tipus"]
     kulcs     = esemeny["kulcs"]
     adat      = esemeny["adat"]
@@ -353,7 +396,17 @@ def email_kuldes(esemeny):
         ("Lajstromjel", "" if reg_upper == "?" else reg_upper),
         ("Észlelés", f"{figyeles_tipusa} alapján"),
     ]
+    nyom = nyom if nyom is not None else {}
+    reg = _gep_reg(kulcs, callsign, aktualis_reg, nyom)
+    poz_sorok, poz_gombok, terkep, poz_szoveg = pozicio_blokk(tipus, hp.aktualis_ut(nyom, reg) if reg else [])
+    sorok += poz_sorok
     test = ea.adat_tabla(sorok)
+    if terkep:
+        test += ('<img src="cid:terkep" width="100%" alt="Térkép" style="display:block;width:100%;'
+                 'max-width:556px;border-radius:6px;margin:6px 0 4px">'
+                 '<div style="font-size:12px;color:#8a949e;margin-bottom:6px">🟢 felszállás · 🔴 utolsó ismert pont '
+                 '(alacsonyan elveszhet a jel, ezért a leszállóhely pár száz méterrel arrébb is lehet)</div>')
+    test += poz_gombok
     if elo and felszallas:
         test += ea.gomb("🔴 Élő követés", fr24_map)
     if play_url:
@@ -373,14 +426,23 @@ def email_kuldes(esemeny):
              else f"🚁⬇️ {callsign} leszállt · {landed_hu}")
     szoveges = (f"Mentőhelikopter {tipus_hu} – {callsign} {reg_upper}\n"
                 f"Felszállás: {datum_hu} {atd_hu}\n" + ("" if felszallas else f"Leszállás: {landed_hu}\n")
-                + f"{play_url or fr24_url}\n")
+                + "".join(f"{x}\n" for x in poz_szoveg) + f"{play_url or fr24_url}\n")
 
-    msg = MIMEMultipart("alternative")
+    valtozatok = MIMEMultipart("alternative")
+    valtozatok.attach(MIMEText(szoveges, "plain", "utf-8"))
+    valtozatok.attach(MIMEText(html, "html", "utf-8"))
+    if terkep:
+        msg = MIMEMultipart("related")
+        msg.attach(valtozatok)
+        kep = MIMEImage(terkep, "png")
+        kep.add_header("Content-ID", "<terkep>")
+        kep.add_header("Content-Disposition", "inline", filename="terkep.png")
+        msg.attach(kep)
+    else:
+        msg = valtozatok
     msg["Subject"] = targy
     msg["From"]    = f"Mentőhelikopter Figyelő <{EMAIL_KULDO}>"
     msg["To"]      = EMAIL_CIMZETT
-    msg.attach(MIMEText(szoveges, "plain", "utf-8"))
-    msg.attach(MIMEText(html, "html", "utf-8"))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
         smtp.login(EMAIL_KULDO, EMAIL_JELSZO)
@@ -432,11 +494,23 @@ def main():
         print(f"\n🔍 Lekérdezés (hívójel): {hivojel}")
         uj_adatok[f"cs:{hivojel.lower()}"] = lekerdez_fr24_hivojel(hivojel)
 
+    # ---- 3. Pozíciók (adsb.lol / adsb.fi) a nyomvonalhoz ----
+    print("\n🛰️ Pozíciók...")
+    nyom = regi_allapot.get("_nyom", {})
+    for reg in MENTO_GEPEK:
+        hp.frissit(nyom, reg)
+
     esemenyek = osszehasonlit(regi_allapot, uj_adatok, esemeny_naplo)
 
     print(f"\n⚡ Változások: {len(esemenyek)}")
     for e in esemenyek:
-        email_kuldes(e)
+        email_kuldes(e, nyom)
+    for e in esemenyek:
+        if e["tipus"] == "LESZALLAS":
+            reg = _gep_reg(e["kulcs"], e["adat"].get("callsign"), e["adat"].get("aktualis_reg", ""), nyom)
+            if reg:
+                hp.lezar(nyom, reg)
+    regi_allapot["_nyom"] = nyom
 
     # Állapot frissítése
     for kulcs, adat in uj_adatok.items():
