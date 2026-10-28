@@ -151,6 +151,9 @@ import copy
 import time
 import base64
 import hashlib
+import hmac
+import secrets
+from urllib.parse import quote as _url_quote
 import uuid
 import calendar
 import imaplib
@@ -2075,7 +2078,7 @@ def kor_uj_szamla_email_html(rekord: dict, elotag_bekezdes: str = "") -> str:
                        f"{osszeg_szoveg(rekord.get('osszeg'), rekord.get('penznem'))}, határidő: {_datum_hu(rekord.get('hatarido'))}")
 
 
-def kor_hatarido_emlekezteto_html(rekordok: list, napok: int) -> str:
+def kor_hatarido_emlekezteto_html(rekordok: list, napok: int, gomb_html: str = "") -> str:
     """Bérlői emlékeztető: ezeknek a számláknak a határideje napok-on belül lejár."""
     egy = len(rekordok) == 1
     if egy:
@@ -2099,9 +2102,191 @@ def kor_hatarido_emlekezteto_html(rekordok: list, napok: int) -> str:
         )
     tartalom += _lv_bekezdes("Kérjük, rendezze a határidőig. A számlá" + ("t" if egy else "kat")
                              + " ismét csatoltuk. Ha már kifizette, kérjük, tekintse ezt a levelet tárgytalannak.")
+    tartalom += gomb_html
     cim = "Hamarosan lejár egy számla" if egy else f"Hamarosan lejár {len(rekordok)} számla"
     return level_keret("borostyan", "Fizetési emlékeztető", cim, tartalom, _KOR_LABJEGYZET,
                        f"Határidő: {_datum_hu(min((r.get('hatarido') or '9999') for r in rekordok))}")
+
+
+def kor_lejart_ertesito_html(rekordok: list, gomb_html: str = "") -> str:
+    """Bérlői értesítő: ezeknek a számláknak a fizetési határideje lejárt."""
+    egy = len(rekordok) == 1
+    if egy:
+        r = rekordok[0]
+        tartalom = (
+            _lv_bekezdes("Tisztelt Bérlő!")
+            + _lv_bekezdes("Tájékoztatjuk, hogy az alábbi számla fizetési határideje lejárt, "
+                           "és nyilvántartásunk szerint még nincs kiegyenlítve.")
+            + _lv_osszeg_blokk(osszeg_szoveg(r.get("osszeg"), r.get("penznem")), r.get("hatarido"), "piros")
+            + _lv_reszletek([
+                ("Szolgáltató", _esc(r.get("szolgaltato_nev") or "")),
+                ("Megnevezés", _esc(r.get("targy") or "")),
+                ("Számlaszám", _esc(r.get("szamlaszam") or "–")),
+            ])
+        )
+    else:
+        tartalom = (
+            _lv_bekezdes("Tisztelt Bérlő!")
+            + _lv_bekezdes(f"Tájékoztatjuk, hogy az alábbi {len(rekordok)} számla fizetési határideje lejárt, "
+                           "és nyilvántartásunk szerint még nincsenek kiegyenlítve.")
+            + _lv_szamla_tabla(rekordok)
+        )
+    tartalom += _lv_bekezdes("Kérjük, rendezze mielőbb. A számlá" + ("t" if egy else "kat")
+                             + " ismét csatoltuk. Ha közben már kifizette, kérjük, tekintse ezt a levelet tárgytalannak.")
+    tartalom += gomb_html
+    cim = "Lejárt egy számla" if egy else f"Lejárt {len(rekordok)} számla"
+    return level_keret("piros", "Lejárt határidő", cim, tartalom, _KOR_LABJEGYZET,
+                       f"Határidő: {_datum_hu(min((r.get('hatarido') or '9999') for r in rekordok))}")
+
+
+# ════════════════════════════════════════════
+#  📨  SZÁMLAKÉRŐ GOMB A BÉRLŐI LEVELEKBEN
+# ════════════════════════════════════════════
+# A felhasználó kérésére (2026-10-28): a fizetési emlékeztetőben és a
+# lejárt-értesítőben egy gomb, amivel a bérlő a kör ÖSSZES még fizetetlen
+# számláját elkérheti emailben (PDF-ekkel). A gomb egy előre kitöltött
+# levelet nyit (mailto) a figyelt közüzemi postafiókba, a tárgyában egy
+# [[SZAMLAKERES|<kör>|<aláírás>]] kóddal. A script a következő futáskor
+# felismeri, és CSAK akkor küld, ha az aláírás érvényes a körre ÉS a feladó
+# címe szerepel annak a körnek a címlistáján - így mindenki csak a saját
+# köre számláit kaphatja meg, és csak a saját címére.
+SZAMLAKERES_MINTA = re.compile(r"\[\[SZAMLAKERES\|(kor_[ab])\|([0-9a-f]{12})\]\]")
+SZAMLAKERES_MIN_ORA = 1  # ugyanarra a címre legfeljebb óránként egy válasz
+
+
+def _szamlakeres_titok(allapot: dict) -> str:
+    titok = allapot.get("szamlakeres_titok")
+    if not titok:
+        titok = secrets.token_hex(16)
+        allapot["szamlakeres_titok"] = titok
+    return titok
+
+
+def _szamlakeres_alairas(allapot: dict, kor_kulcs: str) -> str:
+    return hmac.new(_szamlakeres_titok(allapot).encode(), kor_kulcs.encode(), hashlib.sha256).hexdigest()[:12]
+
+
+def kor_szamlakero_gomb_html(allapot: dict, kor_kulcs: str) -> str:
+    if not IMAP_USER or kor_kulcs not in ("kor_a", "kor_b"):
+        return ""
+    kod = f"[[SZAMLAKERES|{kor_kulcs}|{_szamlakeres_alairas(allapot, kor_kulcs)}]]"
+    targy = f"Kérem a fizetetlen számláimat {kod}"
+    torzs = ("Kérem, küldjék el a még ki nem fizetett számláimat (PDF-ben).\n\n"
+             f"{kod}\n\n(Ezt a levelet elég elküldeni, a választ automatikusan kapja meg.)")
+    href = f"mailto:{IMAP_USER}?subject={_url_quote(targy)}&body={_url_quote(torzs)}"
+    eros, halvany = LEVEL_SZINEK["kek"]
+    return (
+        f'<div style="margin:6px 0 16px;padding:16px 18px;border-radius:12px;background:{halvany};">'
+        f'<p style="margin:0 0 12px;font-size:14px;line-height:1.6;color:{_LV_SZOVEG};font-family:{_LV_BETU};">'
+        "<strong>Szüksége van az összes még fizetetlen számlájára?</strong> Egy gombnyomással elkérheti "
+        "őket: a gomb egy előre megírt levelet nyit meg, ezt kell elküldenie, és rövidesen megkapja a "
+        "számlákat PDF-ben csatolva.</p>"
+        f'<a href="{_esc(href)}" style="display:inline-block;padding:11px 20px;border-radius:9px;'
+        f'background:{eros};color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;'
+        f'font-family:{_LV_BETU};">📨 Fizetetlen számláim elkérése</a>'
+        f'<p style="margin:10px 0 0;font-size:12px;line-height:1.5;color:{_LV_HALVANY};font-family:{_LV_BETU};">'
+        f"Ha a gomb nem működik, írjon a(z) {_esc(IMAP_USER)} címre, a tárgyba másolja be ezt: "
+        f"{_esc(kod)}</p></div>"
+    )
+
+
+def _szamlakeres_kinyerese(targy: str, szoveg: str):
+    talalat = SZAMLAKERES_MINTA.search(f"{targy or ''}\n{szoveg or ''}")
+    return (talalat.group(1), talalat.group(2)) if talalat else None
+
+
+def szamlakeresek_feldolgozasa(allapot: dict, szamlak: dict, keresek: list, statisztika: dict):
+    """keresek: [(feladó, kor_kulcs, aláírás), ...] - ld. a szekció-komment."""
+    if not keresek:
+        return
+    naplo = allapot.setdefault("szamlakeres_naplo", {})
+    kuldott = elutasitott = 0
+    for felado, kor_kulcs, alairas in keresek:
+        felado = (felado or "").strip().lower()
+        kor_cimek = {c.strip().lower() for c in _kor_cimzettek(allapot, kor_kulcs)}
+        if not felado or felado not in kor_cimek or not hmac.compare_digest(alairas, _szamlakeres_alairas(allapot, kor_kulcs)):
+            elutasitott += 1
+            continue
+        utolso = naplo.get(felado)
+        if utolso:
+            try:
+                if magyar_ido() - datetime.fromisoformat(utolso) < timedelta(hours=SZAMLAKERES_MIN_ORA):
+                    continue
+            except (TypeError, ValueError):
+                pass
+        erintett = _fizetetlen_szamlak_korhoz(szamlak, kor_kulcs)
+        kor_nev = _kor_nev_megjeleniteshez(allapot, kor_kulcs)
+        if erintett:
+            rekordok = sorted((r for _, r in erintett), key=lambda r: r.get("hatarido") or "")
+            html = kor_havi_osszesito_html(rekordok, kor_nev)
+            targy = (f"Fizetésre váró számlák – {len(rekordok)} db – "
+                     f"{forint(sum(r.get('osszeg') or 0 for r in rekordok))}")
+            csatolmanyok = csatolmanyok_osszegyujtese(allapot, erintett)
+        else:
+            html = level_keret("zold", "Számlakérés", "Nincs fizetetlen számla",
+                               _lv_bekezdes("Tisztelt Bérlő!")
+                               + _lv_bekezdes("Nyilvántartásunk szerint jelenleg nincs fizetésre váró számlája. Köszönjük!"),
+                               _KOR_LABJEGYZET)
+            targy = "Nincs fizetésre váró számla"
+            csatolmanyok = None
+        statisztika["email_ertesitesek"] += 1
+        if email_kuldes(targy, html, csatolmanyok or None, cimzett=felado):
+            naplo[felado] = magyar_ido().isoformat()
+            kuldott += 1
+            tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+            if tulajdonos_cimzett:
+                email_kuldes(f"Másolat ({kor_nev}, a bérlő kérte): {targy}", html, None,
+                             cimzett=tulajdonos_cimzett, esemeny=f"szamlakeres:{magyar_ido().isoformat()}")
+    print(f"  📨 Számlakérés a bérlői levél gombjával: {kuldott} kiszolgálva, {elutasitott} elutasítva "
+          f"(nem a kör címéről jött, vagy érvénytelen kód).")
+
+
+KOR_LEJART_ERTESITO_NAPOK = 7   # legfeljebb ennyi napja lejárt számláról megy értesítő (egyszer)
+KOR_LEJART_ORAK = (8, 20)       # csak napközben
+
+
+def kor_lejart_ertesito_kuldese(allapot: dict, szamlak: dict, statisztika: dict):
+    kuldve = allapot.setdefault("kor_lejart_kuldve", {})
+    for rid in [r for r in kuldve if r not in szamlak or szamlak[r].get("fizetve")]:
+        del kuldve[rid]
+    if EMAIL_KIKAPCSOLVA or not (KOR_LEJART_ORAK[0] <= magyar_ido().hour < KOR_LEJART_ORAK[1]):
+        return
+    ma = magyar_ma()
+    for kor_kulcs in ("kor_a", "kor_b"):
+        cimzett = _cimzett_string(_kor_cimzettek(allapot, kor_kulcs))
+        if not cimzett:
+            continue
+        esedekes = []
+        for rid, r in _fizetetlen_szamlak_korhoz(szamlak, kor_kulcs):
+            if rid in kuldve or not r.get("hatarido"):
+                continue
+            try:
+                lejart_napja = (ma - date.fromisoformat(str(r["hatarido"])[:10])).days
+            except ValueError:
+                continue
+            if 1 <= lejart_napja <= KOR_LEJART_ERTESITO_NAPOK:
+                esedekes.append((rid, r))
+        if not esedekes:
+            continue
+        rekordok = sorted((r for _, r in esedekes), key=lambda r: r.get("hatarido") or "")
+        kor_nev = _kor_nev_megjeleniteshez(allapot, kor_kulcs)
+        if len(rekordok) == 1:
+            targy = (f"Lejárt számla – {rekordok[0].get('szolgaltato_nev')} – "
+                     f"határidő: {_datum_hu(rekordok[0].get('hatarido'))}")
+        else:
+            targy = f"Lejárt számlák – {len(rekordok)} db"
+        html = kor_lejart_ertesito_html(rekordok, kor_szamlakero_gomb_html(allapot, kor_kulcs))
+        csatolmanyok = csatolmanyok_osszegyujtese(allapot, esedekes)
+        statisztika["email_ertesitesek"] += 1
+        esemeny = f"lejart:{ma.isoformat()}:{kor_kulcs}"
+        if email_kuldes(targy, html, csatolmanyok or None, cimzett=cimzett, esemeny=esemeny):
+            for rid, _ in esedekes:
+                kuldve[rid] = ma.isoformat()
+            print(f"  🔴 Lejárt-értesítő elküldve: {kor_nev} ({len(rekordok)} számla).")
+            tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+            if tulajdonos_cimzett:
+                email_kuldes(f"Másolat ({kor_nev}): {targy}", html, None, cimzett=tulajdonos_cimzett,
+                             esemeny=esemeny)
 
 
 def kor_havi_osszesito_html(rekordok: list, kor_nev: str = "") -> str:
@@ -3756,7 +3941,7 @@ def kor_hatarido_emlekezteto_kuldese(allapot: dict, szamlak: dict, napok, statis
                      f"határidő: {_datum_hu(rekordok[0].get('hatarido'))}")
         else:
             targy = f"Fizetési emlékeztető – {len(rekordok)} számla határideje közeleg"
-        html = kor_hatarido_emlekezteto_html(rekordok, napok)
+        html = kor_hatarido_emlekezteto_html(rekordok, napok, kor_szamlakero_gomb_html(allapot, kor_kulcs))
         csatolmanyok = csatolmanyok_osszegyujtese(allapot, esedekes)
         statisztika["email_ertesitesek"] += 1
         esemeny = f"emlekezteto:{ma.isoformat()}:{kor_kulcs}"
@@ -6722,6 +6907,7 @@ def main():
     }
 
     # ---- 1. Új emailek beolvasása ----
+    szamlakeresek = []
     try:
         conn = imap_kapcsolat()
     except Exception as e:
@@ -6740,6 +6926,11 @@ def main():
                 continue
 
             feladó = _feladó_cim(msg)
+            # Számlakérés a bérlői levél gombjával (ld. "SZÁMLAKÉRŐ GOMB" szekció).
+            keres = _szamlakeres_kinyerese(_fejlec_dekodolas(msg.get("Subject", "")), email_szoveg_kinyerese(msg))
+            if keres:
+                szamlakeresek.append((feladó, keres[0], keres[1]))
+                continue
             szolgaltato = szolgaltato_azonositasa(feladó)
             if not szolgaltato:
                 continue  # nem a figyelt szolgáltatók egyikétől jött
@@ -7427,8 +7618,11 @@ def main():
     kor_ertesito_varolista_feldolgozasa(allapot, szamlak, statisztika)
     hibajavito_ujrakuldes(allapot, szamlak, statisztika)
 
-    # ---- 2b-3. Bérlői körök - határidő előtti emlékeztető ----
+    # ---- 2b-3. Bérlői körök - határidő előtti emlékeztető, lejárt-értesítő
+    # és a levelek gombjával kért számlák ----
     kor_hatarido_emlekezteto_kuldese(allapot, szamlak, beallitasok["kor_emlekezteto_napok"], statisztika)
+    kor_lejart_ertesito_kuldese(allapot, szamlak, statisztika)
+    szamlakeresek_feldolgozasa(allapot, szamlak, szamlakeresek, statisztika)
 
     # ---- 2c. Dátum-intervallumos, eseti küldés egy megadott email-címre ----
     # Ezt a dashboard "Számlák küldése emailben" panelje indítja el egy
