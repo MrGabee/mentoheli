@@ -5,6 +5,8 @@ os.environ.setdefault("EMAIL_KULDO", "minta@pelda.hu")
 os.environ.setdefault("EMAIL_JELSZO", "x")
 os.environ.setdefault("EMAIL_CIMZETT", "minta@pelda.hu")
 import monitor as m
+import heli_pozicio as hp
+print("KORHAZ_TESZT:", hp.korhaz_kozel(47.4338, 19.1090), "|", hp._korhaz_nominatim(47.4338, 19.1090), "|", hp._korhaz_nominatim(47.4627, 19.0255))
 
 kuldott = []
 class Al:

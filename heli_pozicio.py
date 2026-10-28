@@ -128,7 +128,7 @@ def korhaz_kozel(lat, lon, sugar=500):
         except Exception as ex:
             print(f"  ⚠️ Overpass hiba ({vegpont}): {ex}")
     else:
-        return ""
+        return _korhaz_nominatim(lat, lon)
     try:
         for e in sorted(elemek, key=lambda e: e.get("tags", {}).get("amenity") != "hospital"):
             nev = e.get("tags", {}).get("name")
@@ -136,6 +136,21 @@ def korhaz_kozel(lat, lon, sugar=500):
                 return nev
         return "helikopter-leszálló" if elemek else ""
     except Exception:
+        return ""
+
+
+def _korhaz_nominatim(lat, lon):
+    """Tartalék: kórház keresése a pont körüli kis téglalapban (Nominatim)."""
+    d = 0.006
+    try:
+        r = requests.get("https://nominatim.openstreetmap.org/search",
+                         params={"q": "kórház", "format": "jsonv2", "limit": 1, "bounded": 1,
+                                 "viewbox": f"{lon - d},{lat + d * 0.7},{lon + d},{lat - d * 0.7}",
+                                 "accept-language": "hu"}, headers=UA, timeout=8)
+        talalat = r.json()
+        return talalat[0].get("name", "") if talalat else ""
+    except Exception as ex:
+        print(f"  ⚠️ Nominatim kórházkeresés hiba: {ex}")
         return ""
 
 
