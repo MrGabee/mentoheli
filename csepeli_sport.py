@@ -1,9 +1,9 @@
 """
 ⚽ Csepeli sport – a csepeli csapatok meccsei az MLSZ adatbankból,
 a többi sportágé (kézilabda stb.) a mas_sportagak.py-ból
-  - elozetes_szoveg: pénteken a hétvégi (péntek–vasárnap) meccsek
-  - eredmeny_szoveg: hétfőn az elmúlt hét eredményei
-  - hetkoznapi_szoveg: a csepeli felnőtt csapatok hétközi meccse előtti napon külön poszt
+  - elozetes_szoveg: pénteken a hétvégi (szombat–vasárnap) meccsek
+  - eredmeny_szoveg: hétfőn a péntek–vasárnapi, kedden–pénteken az előző napi eredmények
+  - hetkoznapi_szoveg: vasárnaptól csütörtökig a másnapi (hétfő–pénteki) meccsek
 A Csepel SC felnőtt csapatának (NB III, kupa) meccsei mindig a poszt elején,
 kiemelve szerepelnek.
 
@@ -175,7 +175,7 @@ def bajnoksag_csepeli_csapatai(azon):
 
 def osszes_meccs(teljes=True):
     """Minden csepeli csapat minden meccse. None, ha az adatbank nem elérhető.
-    teljes=False: csak a klubok csapatlistája (gyors, a hétközi poszthoz elég)."""
+    teljes=False: csak a klubok csapatlistája (gyors)."""
     csapatok = {}
     for kezdo in KLUB_KEZDOLAPOK:
         try:
@@ -281,7 +281,9 @@ def elozetes_szoveg(ma, meccsek=None):
     most = datetime.now(MAGYAR_TZ)
     # A mai, már elkezdődött meccsek kimaradnak
     elmult = most.strftime("%H:%M") if ma == most.date() else ""
-    lista = [m for m in meccsek if ma <= m["nap"] <= vasarnap and m["golok"] is None
+    # a pénteki meccsek csütörtökön külön posztban mennek
+    kezdo = ma + timedelta(days=1) if ma.weekday() == 4 else ma
+    lista = [m for m in meccsek if kezdo <= m["nap"] <= vasarnap and m["golok"] is None
              and not (m["nap"] == ma and m["ido"] and m["ido"].zfill(5) < elmult)][:MAX_MECCS]
     if not lista:
         return ""
@@ -306,15 +308,18 @@ def elozetes_szoveg(ma, meccsek=None):
 
 
 def eredmeny_szoveg(ma, meccsek=None):
-    """Az elmúlt 7 nap eredményei. None = nem elérhető, "" = nincs eredmény."""
+    """Hétfőn a péntek–vasárnapi, más napokon az előző napi eredmények.
+    None = nem elérhető, "" = nincs eredmény."""
     if meccsek is None:
         meccsek = osszes_meccs()
         if meccsek is None:
             return None
-    lista = [m for m in meccsek if ma - timedelta(days=7) <= m["nap"] < ma and m["golok"] is not None][:MAX_MECCS]
+    napi = ma.weekday() != 0
+    tol = ma - timedelta(days=1 if napi else 3)
+    lista = [m for m in meccsek if tol <= m["nap"] < ma and m["golok"] is not None][:MAX_MECCS]
     if not lista:
         return ""
-    st = Stilus("sport_eredmeny", ma.isoformat())
+    st = Stilus("sport_napi_eredmeny" if napi else "sport_eredmeny", ma.isoformat())
     sorok = [st.cim, st.vonal(), "", st.bevezeto, ""]
     fo = [m for m in lista if kiemelt(m)]
     if fo:
@@ -327,7 +332,7 @@ def eredmeny_szoveg(ma, meccsek=None):
         sorok.append(f"   🏆 {_bajnoksag(m)}, {m['nap'].strftime('%m.%d.')} {NAPOK[m['nap'].weekday()]}")
     gyozelem = sum(1 for m in lista if _kimenet(m) == "✅")
     sorok += ["", f"Összesen {len(lista)} meccs, ebből {gyozelem} csepeli győzelem."
-              if gyozelem else f"Összesen {len(lista)} meccs. Jövő héten jobban megy majd! 💪"]
+              if gyozelem else f"Összesen {len(lista)} meccs. Legközelebb jobban megy majd! 💪"]
     if st.zaro:
         sorok.append(st.zaro)
     sorok += _lablec(lista, "#CsepelSC", "#eredmények")
@@ -341,45 +346,46 @@ HETKOZI_MONDATOK = [
     "Szólok előre, holnap játszik a Csepel SC:",
 ]
 HETKOZI_MONDATOK_MAS = [
-    "Hétközben is van csepeli meccs, holnap ez jön:",
-    "Nem kell hétvégéig várni, holnap is pályára lép egy csepeli csapat.",
-    "Szólok előre, holnap hétközi meccs lesz:",
-    "Aki holnap ráér, kimehet szurkolni, csepeli csapat játszik:",
+    "Hétközben is van csepeli meccs, holnap ezek jönnek:",
+    "Nem kell hétvégéig várni, holnap is pályára lépnek a csepeli csapatok:",
+    "Szólok előre, holnap ezek a csepeli meccsek lesznek:",
+    "Aki holnap ráér, kimehet szurkolni, ezek a csepeli csapatok játszanak:",
 ]
 
 
-# Utánpótlás és szenior bajnokságok: ezek hétközi meccséről nem írok külön
-NEM_FELNOTT = re.compile(r"U-?\d|IFJÚSÁGI|SERDÜLŐ|OGYB|LEÁNY|OLD BOYS|VETERÁN|ÖREGFIÚK|^[FL]U\d", re.I)
-
-
-def felnott(m):
-    """Csepeli felnőtt csapat meccse (a Csepel SC mellett pl. a Csepel UFC is)."""
-    return (m.get("sport", "foci") == "foci" and not NEM_FELNOTT.search(m["bajnoksag"])
-            and bool(CSEPELI_NEV.search(m["hazai"] + " " + m["vendeg"])))
-
-
 def hetkoznapi_szoveg(ma, meccsek=None):
-    """A csepeli felnőtt csapatok holnapi hétközi (hétfő–csütörtöki) meccsei. "" = nincs ilyen."""
+    """A csepeli csapatok holnapi hétközi (hétfő–pénteki) meccsei. "" = nincs ilyen."""
     holnap = ma + timedelta(days=1)
-    if holnap.weekday() > 3:
-        return ""  # a péntek–vasárnapi meccsek a pénteki beharangozóban vannak
+    if holnap.weekday() > 4:
+        return ""  # a hétvégi meccsek a pénteki beharangozóban vannak
     if meccsek is None:
-        meccsek = osszes_meccs(teljes=False)
+        meccsek = osszes_meccs()
         if meccsek is None:
             return None
-    lista = [m for m in meccsek if m["nap"] == holnap and felnott(m) and m["golok"] is None]
+    lista = [m for m in meccsek if m["nap"] == holnap and m["golok"] is None][:MAX_MECCS]
     if not lista:
         return ""
-    lista.sort(key=lambda m: not kiemelt(m))
     st = Stilus("sport_hetkoz", ma.isoformat())
-    bevezeto = (random.Random(f"{ma}|hetkoz").choice(HETKOZI_MONDATOK) if kiemelt(lista[0])
-                else random.Random(f"{ma}|hetkoz").choice(HETKOZI_MONDATOK_MAS))
-    sorok = [st.cim, st.vonal(), "", bevezeto, "", *_kiemelt_sorok(lista), "", "Hajrá, Csepel! ❤️💙"]
+    fo = [m for m in lista if kiemelt(m)]
+    tobbi = [m for m in lista if not kiemelt(m)]
+    mondatok = HETKOZI_MONDATOK if fo else HETKOZI_MONDATOK_MAS
+    sorok = [st.cim, st.vonal(), "", random.Random(f"{ma}|hetkoz").choice(mondatok), ""]
+    if fo:
+        sorok += ["❤️💙 CSEPEL SC – FELNŐTT CSAPAT ❤️💙", *_kiemelt_sorok(fo), ""]
+        if tobbi:
+            sorok += ["👟 A TÖBBI CSEPELI CSAPAT", ""]
+    if tobbi:
+        sorok.append(f"▶️ {NAPOK[holnap.weekday()].upper()} ({holnap.strftime('%m.%d.')})")
+        for m in tobbi:
+            ido = f"{m['ido']} " if m["ido"] else ""
+            sorok.append(f"{_emoji(m)} {ido}{_parositas(m)}")
+            sorok.append(f"   🏆 {_bajnoksag(m)}" + (f"  📍 {m['helyszin']}" if m["helyszin"] else ""))
+        sorok.append("")
+    sorok.append("Hajrá, Csepel! ❤️💙")
     if st.zaro:
         sorok.append(st.zaro)
-    sorok += ["Forrás: MLSZ adatbank", "#Csepel #CsepelSC #foci"]
+    sorok += _lablec(lista, "#CsepelSC")
     return "\n".join(sorok)
-
 
 if __name__ == "__main__":
     ma = date.fromisoformat(sys.argv[2]) if len(sys.argv) > 2 else datetime.now(MAGYAR_TZ).date()
