@@ -175,6 +175,13 @@ def lekerdez_cikk_datuma(url):
         # A MÁVINFORM cikk szövege: sárga doboz (összefoglaló), kék doboz(ok) (részletek).
         dobozok = [d.get_text(" ", strip=True) for d in soup.find_all("div", class_=["yellowbox", "bluebox"])]
         dobozok = [d for d in dobozok if d]
+        # Rövid (pl. baleseti) cikkeknél nincs doboz, a szöveg a field-body soraiban van
+        if not dobozok:
+            torzs = soup.find("div", class_="field-body")
+            if torzs:
+                sorok = [d.get_text(" ", strip=True) for d in torzs.find_all(["div", "p"], recursive=False)]
+                dobozok = [s for s in sorok if s] or [torzs.get_text(" ", strip=True)]
+                dobozok = [d for d in dobozok if d]
         tartalom_div = None if dobozok else (
             soup.find("div", class_="field-type-text-with-summary") or
             soup.find("div", class_="field-name-body") or
