@@ -39,7 +39,8 @@ MAKE_WEBHOOK_URL = os.environ.get("MAKE_WEBHOOK_URL", "")
 
 # ⬇️ E-MAIL KAPCSOLÓ: Gábor kérésére (2026.10.21.) az oldalra szánt értesítések
 # nem mennek e-mailben (a kollégája kapta őket). A Facebook-posztolás marad.
-EMAIL_AKTIV = False
+# 2026.10.28.: Gábor kérésére újra megy, a kollégának (EMAIL_CIMZETT_ARAM).
+EMAIL_AKTIV = True
 
 # ⬇️⬇️⬇️ ITT KAPCSOLOD KI/BE AZ AUTOMATA FACEBOOK-POSZTOLÁST ⬇️⬇️⬇️
 # True  = automatikusan posztol a Facebook Oldalra is, egy Make.com
