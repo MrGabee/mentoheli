@@ -7162,6 +7162,14 @@ def ceges_level_linkek_potlasa(allapot: dict) -> None:
                 if not isinstance(l.get("pdf_allapot"), dict):
                     l["pdf_allapot"] = {}
                 l["pdf_allapot"].setdefault(str(i), "mentve")
+            else:
+                arch = [r for r in (allapot.get("torolt_szamlak_archivum") or {}).values() if isinstance(r, dict)]
+                print(f"  🔬 link-diag: név-egyezés aktív: {sum(1 for r in rekordok if t and t in str(r.get('drive_fajlnev') or '').lower())}, "
+                      f"archívum: {sum(1 for r in arch if t and t in str((r.get('rekord') or r).get('drive_fajlnev') or '').lower())}, "
+                      f"tárgy: {sum(1 for r in rekordok if r.get('targy') == l.get('targy'))}, "
+                      f"dátum: {sum(1 for r in rekordok if r.get('erkezett') == l.get('datum'))}, "
+                      f"feladó: {sum(1 for r in rekordok if r.get('feladó_email') and r.get('feladó_email') == l.get('feladó_email'))}, "
+                      f"drive_url nélküli rekord: {sum(1 for r in list((allapot.get('ceges_szamlak') or {}).values()) if isinstance(r, dict) and not r.get('drive_url'))}")
         if linkek:
             l["pdf_linkek"] = linkek
 
