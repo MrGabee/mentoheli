@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-30T01:57:00.479641+02:00",
+  "frissitve": "2026-10-30T01:57:33.487561+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:14:36.898398+02:00",
-      "kulcs": "NBW011",
-      "rendszam": "NBW011",
-      "vehicle_id": "5981",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.501773834228516,
-      "lon": 19.135921478271484,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba"
-    },
-    {
-      "idopont": "2026-10-29T15:14:36.898634+02:00",
-      "kulcs": "T8017",
-      "rendszam": "T8017",
-      "vehicle_id": "6137",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.53654479980469,
-      "lon": 19.065031051635742,
-      "elozo_szoveg": "Dagály utcai lakótelep",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-29T15:14:36.898737+02:00",
-      "kulcs": "AELD564",
-      "rendszam": "AELD564",
-      "vehicle_id": "617",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.46335983276367,
-      "lon": 19.147462844848633,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-29T15:14:36.898870+02:00",
-      "kulcs": "NGC165",
-      "rendszam": "NGC165",
-      "vehicle_id": "6207",
-      "vehicle_label": "Szemlőhegy",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.51077651977539,
-      "lon": 19.05638313293457,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Szemlőhegy"
-    },
-    {
-      "idopont": "2026-10-29T15:14:36.898961+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50594711303711,
-      "lon": 19.02859115600586,
-      "elozo_szoveg": "Budai Vár ► Deák Ferenc tér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-29T15:14:36.898975+02:00",
       "kulcs": "NCV288",
@@ -260000,6 +259935,71 @@
       "lon": 19.101661682128906,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T01:57:33.426300+02:00",
+      "kulcs": "AAGL275",
+      "rendszam": "AAGL275",
+      "vehicle_id": "275",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48701477050781,
+      "lon": 19.057600021362305,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-10-30T01:57:33.427246+02:00",
+      "kulcs": "NGC152",
+      "rendszam": "NGC152",
+      "vehicle_id": "6198",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.504661560058594,
+      "lon": 19.024694442749023,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-30T01:57:33.427310+02:00",
+      "kulcs": "NTM437",
+      "rendszam": "NTM437",
+      "vehicle_id": "6505",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.56804656982422,
+      "lon": 19.026111602783203,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-30T01:57:33.427350+02:00",
+      "kulcs": "NWB357",
+      "rendszam": "NWB357",
+      "vehicle_id": "6537",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.501365661621094,
+      "lon": 19.1201114654541,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-30T01:57:33.427368+02:00",
+      "kulcs": "NWB358",
+      "rendszam": "NWB358",
+      "vehicle_id": "6538",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50746536254883,
+      "lon": 19.024982452392578,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
     }
   ]
 }
