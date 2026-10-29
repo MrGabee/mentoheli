@@ -1,0 +1,78 @@
+name: Weboldal telepítése (mrgabee.hu)
+
+# A weboldal/mrgabee.hu/sablon.php az oldal új HTML része. Az élő index.php PHP-s
+# eleje (beállítások, feltöltés, levélküldés) a szerveren marad változatlanul:
+# a workflow letölti, levágja a régi HTML-t, és az új sablont teszi mögé.
+# A weboldal/mrgabee.hu/mod.txt dönti el, mi történik:
+#   proba  -> index_proba.php néven kerül fel, az élő oldal nem változik
+#   eles   -> az index.php-t cseréli (előtte a régit index_elozo.php-ként menti)
+#   torles -> leszedi az index_proba.php-t
+on:
+  push:
+    branches: [claude/project-thread-qh8yy9]
+    paths: [weboldal/mrgabee.hu/**, .github/workflows/weboldal_telepites.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  telepites:
+    runs-on: ubuntu-latest
+    env:
+      SZERVER: ${{ secrets.MRGABEE_FTP_SERVER }}
+      FELHASZNALO: ${{ secrets.MRGABEE_FTP_USER }}
+      JELSZO: ${{ secrets.MRGABEE_FTP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp php-cli
+      - name: Összeállítás és feltöltés
+        run: |
+          set -e
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          ftp() { lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; $1; bye"; }
+          mod=$(tr -d '[:space:]' < weboldal/mrgabee.hu/mod.txt)
+          echo "Mód: $mod"
+          cd /tmp
+          if [ "$mod" = "torles" ]; then ftp "rm -f index_proba.php"; exit 0; fi
+          ftp "get index.php -o elo_index.php"
+          python3 - <<'PY'
+          import re
+          elo = open('elo_index.php', encoding='utf-8').read()
+          i = elo.find('<!DOCTYPE html>')
+          if i < 0: raise SystemExit('Nem találom a <!DOCTYPE html> sort az élő index.php-ban')
+          fej = elo[:i]
+          if '<!DOCTYPE' in fej or '<html' in fej.lower(): raise SystemExit('Váratlan HTML a PHP részben')
+          sablon = open(__import__('os').environ['GITHUB_WORKSPACE'] + '/weboldal/mrgabee.hu/sablon.php', encoding='utf-8').read()
+          open('uj_index.php', 'w', encoding='utf-8').write(fej + sablon)
+          print('PHP rész:', len(fej), 'bájt, új HTML:', len(sablon), 'bájt')
+          PY
+          php -l uj_index.php
+          if [ "$mod" = "proba" ]; then
+            ftp "put uj_index.php -o index_proba.php"
+          elif [ "$mod" = "eles" ]; then
+            if ! grep -q "Bricolage" elo_index.php; then ftp "put elo_index.php -o index_elozo.php"; fi
+            ftp "put uj_index.php -o index.php"
+          else
+            echo "Ismeretlen mód: $mod"; exit 1
+          fi
+          ftp "cls -l index*.php"
+      - name: baloghgabor.hu – melyik mappa az élő oldal?
+        run: |
+          for u in licenc.txt olvasdel.html logo.gif profilkep.jpg oneletrajz.pdf index.html index.php; do printf '%s ' $u; curl -s -o /dev/null -w '%{http_code} %{size_download}\n' https://baloghgabor.hu/$u; done
+      - name: Ellenőrzés a szerveren
+        if: always()
+        run: |
+          mod=$(tr -d '[:space:]' < weboldal/mrgabee.hu/mod.txt)
+          [ "$mod" = "torles" ] && exit 0
+          [ "$mod" = "proba" ] && url=https://mrgabee.hu/index_proba.php || url=https://mrgabee.hu/
+          npm i --no-save playwright@1.48.2 >/dev/null 2>&1 && npx playwright install --with-deps chromium >/dev/null 2>&1
+          cp weboldal/mrgabee.hu/teszt.js /tmp/teszt.js && cd /tmp && ln -sf $GITHUB_WORKSPACE/node_modules node_modules
+          set +e
+          node /tmp/teszt.js "$url" "$GITHUB_WORKSPACE/weboldal/mrgabee.hu/teszt_eredmeny" "$(tr -d '[:space:]' < $GITHUB_WORKSPACE/weboldal/mrgabee.hu/valodi_teszt.txt)" | tee $GITHUB_WORKSPACE/weboldal/mrgabee.hu/teszt_eredmeny.txt
+          kod=${PIPESTATUS[0]}
+          cd $GITHUB_WORKSPACE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add weboldal/mrgabee.hu/teszt_eredmeny* && git commit -m "Teszt eredmény: mrgabee.hu ($mod)" && git push
+          exit $kod
