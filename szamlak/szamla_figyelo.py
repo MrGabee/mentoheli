@@ -1228,6 +1228,7 @@ def _allapot_alapertekek() -> dict:
         "konyvelo_csomag_kerelem": None,
         "konyvelo_csomag_eredmeny": {},
         "drive_letoltes_be": False,
+        "konyvelo_max_email_mb": None,
     }
 
 
@@ -6308,7 +6309,27 @@ def ceges_duplikatumok_megszuntetese(allapot: dict):
 # vannak: ha a dashboardon be van kapcsolva a "drive_letoltes_be", a Drive
 # Web App "letoltes" műveletével töltjük le őket, egyébként (vagy ha a
 # letöltés nem sikerül) a csomagban a Drive-linkjük szerepel.
-KONYVELO_ZIP_RESZ_MAX_BAJT = 15 * 1024 * 1024  # emailenként (a base64 miatt ~20 MB lesz)
+KONYVELO_EMAIL_ALAP_MB = 20  # ha a dashboardon nincs megadva méretkorlát
+
+
+def _drive_zip_feltoltese(fajlnev: str, zip_bajtok: bytes):
+    """A ZIP feltöltése a Drive Web App-pal (ugyanaz a hívás, mint a
+    PDF-eknél, a "Könyvelő" mappába) - a megosztási linket adja vissza,
+    vagy None-t hiba esetén."""
+    if not (SZAMLA_DRIVE_WEBAPP_URL and SZAMLA_DRIVE_WEBAPP_TOKEN):
+        return None
+    try:
+        valasz = requests.post(SZAMLA_DRIVE_WEBAPP_URL, json={
+            "token": SZAMLA_DRIVE_WEBAPP_TOKEN, "forras": "Könyvelő", "szolgaltato_nev": "",
+            "fajlnev": fajlnev, "pdf_base64": base64.b64encode(zip_bajtok).decode("ascii"),
+        }, timeout=120).json()
+    except Exception:
+        print("  ⚠️  Könyvelői ZIP: a Drive-feltöltés sikertelen (hálózati hiba).")
+        return None
+    if isinstance(valasz, dict) and valasz.get("ok") and valasz.get("url"):
+        return valasz["url"]
+    print("  ⚠️  Könyvelői ZIP: a Drive Web App hibát jelzett vagy nem adott linket.")
+    return None
 
 
 def _zip_nev(szoveg: str, max_hossz: int = 80) -> str:
@@ -6340,13 +6361,21 @@ def _drive_pdf_letoltese(drive_url: str):
     return None
 
 
-def _konyvelo_email_html(nev: str, statisztika: dict, resz: int, reszek: int) -> str:
+def _konyvelo_email_html(nev: str, statisztika: dict, link: str = None) -> str:
     megszolitas = f"Kedves {_esc(nev)}!" if nev else "Kedves Könyvelő!"
-    resz_mondat = (f" A csomag mérete miatt {reszek} részletben érkezik, ez a(z) {resz}. rész - "
-                   "mindegyik rész ugyanezt a mappaszerkezetet követi." if reszek > 1 else "")
+    if link:
+        eros, _ = LEVEL_SZINEK["kek"]
+        bevezeto = (_lv_bekezdes("A számlákat egy tömörített (ZIP) fájlban küldjük. A fájl mérete miatt nem "
+                                 "csatoltuk, hanem a Google Drive-ról töltheti le:")
+                    + f'<p style="margin:0 0 16px;"><a href="{_esc(link)}" style="display:inline-block;padding:11px 20px;'
+                      f'border-radius:9px;background:{eros};color:#ffffff;text-decoration:none;font-weight:700;'
+                      f'font-size:14px;font-family:{_LV_BETU};">⬇️ ZIP letöltése a Drive-ról</a></p>'
+                    + _lv_bekezdes(f'Ha a gomb nem működik: <a href="{_esc(link)}">{_esc(link)}</a>'))
+    else:
+        bevezeto = _lv_bekezdes("Csatolva küldjük a számlákat egy tömörített (ZIP) fájlban.")
     tartalom = (
         _lv_bekezdes(megszolitas)
-        + _lv_bekezdes("Csatolva küldjük a számlákat egy tömörített (ZIP) fájlban." + resz_mondat)
+        + bevezeto
         + _lv_bekezdes("<strong>A ZIP felépítése:</strong>")
         + _lv_bekezdes("📁 <strong>1_Kozuzemi</strong> – a közüzemi számlák, szolgáltatónként (kategóriánként) "
                        "külön mappában.")
@@ -6367,7 +6396,7 @@ def _konyvelo_email_html(nev: str, statisztika: dict, resz: int, reszek: int) ->
     )
     return level_keret("kek", "Számlacsomag", "Számlák a könyveléshez", tartalom,
                        "Ez egy automatikus levél a számlakezelő rendszerből.",
-                       "ZIP csatolva: közüzemi és céges számlák")
+                       "Számlacsomag: közüzemi és céges számlák")
 
 
 def konyvelo_csomag_feldolgozasa(allapot: dict):
@@ -6451,39 +6480,48 @@ def konyvelo_csomag_feldolgozasa(allapot: dict):
         if sorok:
             szoveges[f"{mappa}/hianyzo_pdf.txt"] = "Ezeknek a számláknak a PDF-je nem volt elérhető:\n\n" + "\n".join(sorok) + "\n"
 
-    # Részekre bontás: minden rész önálló ZIP, a szöveges fájlok az elsőbe kerülnek.
-    reszek, aktualis, meret = [], [], 0
-    for utvonal, adat in fajlok:
-        if aktualis and meret + len(adat) > KONYVELO_ZIP_RESZ_MAX_BAJT:
-            reszek.append(aktualis)
-            aktualis, meret = [], 0
-        aktualis.append((utvonal, adat))
-        meret += len(adat)
-    reszek.append(aktualis)
-
+    puffer = io.BytesIO()
+    with zipfile.ZipFile(puffer, "w", zipfile.ZIP_DEFLATED) as zf:
+        for utvonal, adat in fajlok:
+            zf.writestr(utvonal, adat)
+        for utvonal, szoveg in szoveges.items():
+            zf.writestr(utvonal, szoveg.encode("utf-8"))
+    zip_bajtok = puffer.getvalue()
     datum = magyar_ma().isoformat()
+    zip_nev = f"szamlak_{datum}.zip"
     nev = (allapot.get("konyvelo_nev") or "").strip()
-    elkuldve = 0
-    for i, resz in enumerate(reszek, start=1):
-        puffer = io.BytesIO()
-        with zipfile.ZipFile(puffer, "w", zipfile.ZIP_DEFLATED) as zf:
-            for utvonal, adat in resz:
-                zf.writestr(utvonal, adat)
-            if i == 1:
-                for utvonal, szoveg in szoveges.items():
-                    zf.writestr(utvonal, szoveg.encode("utf-8"))
-        zip_nev = f"szamlak_{datum}" + (f"_{i}_of_{len(reszek)}" if len(reszek) > 1 else "") + ".zip"
-        targy = f"📦 Számlacsomag – {datum}" + (f" ({i}/{len(reszek)})" if len(reszek) > 1 else "")
-        if email_kuldes(targy, _konyvelo_email_html(nev, stat, i, len(reszek)),
-                        [(zip_nev, puffer.getvalue())], cimzett=cimzett):
-            elkuldve += 1
+    targy = f"📦 Számlacsomag – {datum}"
+
+    # A dashboardon megadott méretkorlát (MB) a TELJES levélre (szöveg +
+    # csatolmány, a csatolmány base64-ben kb. 4/3-szoros) vonatkozik - ha a
+    # levél ennél nagyobb lenne, a ZIP a Drive-ra kerül, és a levélben a
+    # linkje megy.
+    try:
+        korlat_mb = float(allapot.get("konyvelo_max_email_mb") or KONYVELO_EMAIL_ALAP_MB)
+    except (TypeError, ValueError):
+        korlat_mb = KONYVELO_EMAIL_ALAP_MB
+    html_csatolt = _konyvelo_email_html(nev, stat)
+    becsult_meret = len(html_csatolt.encode("utf-8")) + len(zip_bajtok) * 4 // 3
+    link, hiba = None, None
+    if becsult_meret > korlat_mb * 1024 * 1024:
+        link = _drive_zip_feltoltese(zip_nev, zip_bajtok)
+        if not link:
+            hiba = "A csomag nagyobb a megadott méretkorlátnál, és a Drive-feltöltése nem sikerült."
+    sikeres = False
+    if not hiba:
+        if link:
+            sikeres = email_kuldes(targy, _konyvelo_email_html(nev, stat, link), None, cimzett=cimzett)
+        else:
+            sikeres = email_kuldes(targy, html_csatolt, [(zip_nev, zip_bajtok)], cimzett=cimzett)
+        if not sikeres:
+            hiba = "Az email küldése nem sikerült."
     allapot["konyvelo_csomag_eredmeny"] = {
         "id": kerelem["id"], "ido": magyar_ido().isoformat(),
-        "statusz": "kesz" if elkuldve == len(reszek) else "hiba",
-        "hiba": None if elkuldve == len(reszek) else f"{len(reszek) - elkuldve} rész küldése nem sikerült.",
-        "reszek": len(reszek), **stat,
+        "statusz": "kesz" if sikeres else "hiba", "hiba": hiba,
+        "meret_mb": round(len(zip_bajtok) / 1024 / 1024, 1), "drive_link": link, **stat,
     }
-    print(f"  📦 Könyvelői csomag: {elkuldve}/{len(reszek)} rész elküldve ({stat['kozuzemi']} közüzemi, "
+    print(f"  📦 Könyvelői csomag: {'elküldve' if sikeres else 'SIKERTELEN'} "
+          f"({'Drive-linkkel' if link else 'csatolva'}, {len(zip_bajtok) // 1024} KB; {stat['kozuzemi']} közüzemi, "
           f"{stat['ceges_nincs'] + stat['ceges_kotott']} céges számla, {stat['hianyzo']} hiányzó PDF).")
 
 

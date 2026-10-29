@@ -888,7 +888,9 @@
         <div class="panel-statusz" id="kv-mentes-statusz"></div>
 
         <h4 style="margin:22px 0 8px;font-size:14px;">📦 Számlacsomag küldése</h4>
-        <p class="panel-info">A gomb az összes számlát egy ZIP-fájlba tömöríti, és emailben elküldi a könyvelőnek. A ZIP-ben az <strong>1_Kozuzemi</strong> mappa szolgáltatónként (kategóriánként) tartalmazza a közüzemi számlákat. A <strong>2_Ceges</strong> mappán belül az <strong>1_Nincs_osszekotve</strong> almappába kerülnek azok a céges számlák, amelyek sem a NAV-val, sem az OTP-vel nincsenek összekötve, a <strong>2_Osszekotve</strong> almappába pedig az összekötöttek, egy <strong>osszerendeles.txt</strong> fájllal, ami megmutatja, melyik PDF melyik tételhez tartozik. Ugyanezt a leírást a könyvelő a levél szövegében is megkapja. Nagy csomag több részletben (több levélben) megy ki.</p>
+        <p class="panel-info">A gomb az összes számlát egy ZIP-fájlba tömöríti, és emailben elküldi a könyvelőnek. A ZIP-ben az <strong>1_Kozuzemi</strong> mappa szolgáltatónként (kategóriánként) tartalmazza a közüzemi számlákat. A <strong>2_Ceges</strong> mappán belül az <strong>1_Nincs_osszekotve</strong> almappába kerülnek azok a céges számlák, amelyek sem a NAV-val, sem az OTP-vel nincsenek összekötve, a <strong>2_Osszekotve</strong> almappába pedig az összekötöttek, egy <strong>osszerendeles.txt</strong> fájllal, ami megmutatja, melyik PDF melyik tételhez tartozik. Ugyanezt a leírást a könyvelő a levél szövegében is megkapja.</p>
+        <label>Legnagyobb levélméret (MB) – ha a levél (szöveg + csatolmány) ennél nagyobb lenne, a ZIP a Drive-ra kerül, és a levélben a letöltési link megy
+          <input type="number" id="kv-max-mb" min="1" max="50" step="1" placeholder="20"></label>
         <label style="display:flex;align-items:center;gap:10px;margin:0 0 12px;">
           <input type="checkbox" id="kv-drive-letoltes" style="width:auto;flex:none;">
           <span>A céges PDF-ek letöltése a Drive-ról (csak akkor kapcsold be, ha a Drive Web App már tudja a „letoltes” műveletet - enélkül a céges számláknál a Drive-link kerül a csomagba)</span>
@@ -4288,6 +4290,7 @@
     nevInput.value = adat.konyvelo_nev || "";
     emailInput.value = (adat.konyvelo_emailek || []).join(", ");
     document.getElementById("kv-drive-letoltes").checked = !!adat.drive_letoltes_be;
+    document.getElementById("kv-max-mb").value = adat.konyvelo_max_email_mb || "";
     const e = adat.konyvelo_csomag_eredmeny || {};
     const k = adat.konyvelo_csomag_kerelem || {};
     const hely = document.getElementById("kv-csomag-eredmeny");
@@ -4296,7 +4299,7 @@
     } else if (e.id) {
       const ido = e.ido ? new Date(e.ido).toLocaleString("hu-HU") : "";
       hely.textContent = e.statusz === "kesz"
-        ? `✅ Utoljára elküldve: ${ido} – ${e.reszek || 1} levélben, ${e.kozuzemi || 0} közüzemi és ${(e.ceges_nincs || 0) + (e.ceges_kotott || 0)} céges számla (${e.ceges_kotott || 0} összekötött), ${e.hianyzo || 0} hiányzó PDF.`
+        ? `✅ Utoljára elküldve: ${ido} – ${e.drive_link ? "Drive-linkkel" : "csatolva"} (${e.meret_mb || 0} MB), ${e.kozuzemi || 0} közüzemi és ${(e.ceges_nincs || 0) + (e.ceges_kotott || 0)} céges számla (${e.ceges_kotott || 0} összekötött), ${e.hianyzo || 0} hiányzó PDF.`
         : `❌ Sikertelen (${ido}): ${e.hiba || "ismeretlen hiba"}`;
     } else {
       hely.textContent = "";
@@ -4312,7 +4315,9 @@
     try {
       await apiHivas("set_meta", { kulcs: "konyvelo_nev", ertek: nev });
       await apiHivas("set_meta", { kulcs: "konyvelo_emailek", ertek: emailek });
-      if (legutobbiAdat) { legutobbiAdat.konyvelo_nev = nev; legutobbiAdat.konyvelo_emailek = emailek; }
+      const maxMb = Number(document.getElementById("kv-max-mb").value) || null;
+      await apiHivas("set_meta", { kulcs: "konyvelo_max_email_mb", ertek: maxMb });
+      if (legutobbiAdat) { legutobbiAdat.konyvelo_nev = nev; legutobbiAdat.konyvelo_emailek = emailek; legutobbiAdat.konyvelo_max_email_mb = maxMb; }
       const cimMezo = document.getElementById("cim-konyvelo-emailek");
       if (cimMezo) cimMezo.value = emailek.join("\n");
       beStatuszMutat("kv-mentes-statusz", "✅ Elmentve.", "siker");
