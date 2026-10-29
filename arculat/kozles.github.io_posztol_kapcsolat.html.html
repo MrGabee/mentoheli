@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="hu"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Írj nekem – Mr.Gabee</title>
+<meta name="description" content="Üzenet, ötlet, álláshirdetés vagy vállalkozás bemutatása a Mr.Gabee oldalon.">
+<meta property="og:title" content="Írj nekem – Mr.Gabee">
+<meta property="og:description" content="Üzenet, ötlet, álláshirdetés vagy vállalkozás bemutatása: itt gyorsan elérsz.">
+<meta property="og:image" content="https://kozles.github.io/posztol/kepek/otlet_keres.png">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#071a22;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.14);--teal:#2ee6d6;--muted:#9fc1c7}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:#fff;min-height:100vh;
+       background-image:radial-gradient(600px 500px at 90% -10%,rgba(15,185,177,.45),transparent 70%),
+                        radial-gradient(500px 400px at -10% 110%,rgba(29,78,216,.40),transparent 70%)}
+  main{max-width:560px;margin:0 auto;padding:28px 18px 48px}
+  .top{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+  .logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#2ee6d6,#0e8fa3);display:flex;align-items:center;justify-content:center}
+  .logo span{width:26px;height:20px;background:#fff;border-radius:10px;display:flex;gap:3px;align-items:center;justify-content:center}
+  .logo i{width:4px;height:4px;border-radius:50%;background:#0e8fa3;display:block}
+  .top b{font-weight:800;letter-spacing:2px}
+  h1{font-size:clamp(30px,8vw,44px);line-height:1.05;font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#2ee6d6,#7cf3a8 60%,#ffe27a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  p.lead{color:var(--muted);font-size:17px;line-height:1.5;margin-bottom:26px}
+  a.card{display:flex;align-items:center;gap:16px;padding:16px 18px;margin-bottom:12px;border-radius:20px;background:var(--card);
+         border:1px solid var(--line);color:#fff;text-decoration:none;transition:transform .15s,border-color .15s}
+  a.card:hover,a.card:focus{transform:translateY(-2px);border-color:var(--teal)}
+  .ic{width:48px;height:48px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center}
+  .card small{display:block;font-size:12px;letter-spacing:2px;color:var(--muted);font-weight:600}
+  .card strong{font-size:18px}
+  .arrow{margin-left:auto;color:var(--teal);font-size:22px}
+  .hirdetes{background:linear-gradient(135deg,rgba(46,230,214,.22),rgba(124,243,168,.12));border-color:rgba(46,230,214,.5)}
+  h2{font-size:14px;letter-spacing:3px;color:var(--teal);margin:26px 0 12px}
+  footer{margin-top:30px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><div class="logo"><span><i></i><i></i><i></i></span></div><b>MR.GABEE</b></div>
+  <h1>Írj nekem, <em>gyorsan elérsz!</em></h1>
+  <p class="lead">Kérdésed, ötleted vagy hírod van? Válaszd, ahol neked kényelmes. Minden üzenetet elolvasok.</p>
+
+  <h2>ÁLLÁSHIRDETÉS</h2>
+  <a class="card hirdetes" id="hirdetes" href="mailto:olvaso@mrgabee.hu?subject=%C3%81ll%C3%A1shirdet%C3%A9s%20%E2%80%93%20Mr.Gabee" rel="noopener">
+    <div class="ic" style="background:linear-gradient(135deg,#2ee6d6,#0e8fa3)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"></path></svg></div>
+    <div><small>INGYENES</small><strong>Álláshirdetés feladása</strong></div><span class="arrow">→</span>
+  </a>
+
+  <h2>VÁLLALKOZÁS BEMUTATÁSA</h2>
+  <a class="card hirdetes" id="vallalkozas" href="mailto:olvaso@mrgabee.hu?subject=V%C3%A1llalkoz%C3%A1s%20bemutat%C3%A1sa%20%E2%80%93%20Mr.Gabee&amp;body=V%C3%A1llalkoz%C3%A1s%20neve%3A%0AMivel%20foglalkoztok%3A%0AC%C3%ADm%3A%0ANyitvatart%C3%A1s%3A%0ATelefon%20%2F%20weboldal%20%2F%20Facebook%3A%0AP%C3%A1r%20mondat%20r%C3%B3latok%3A%0A%0A(Ha%20van%2C%20csatolj%20egy-k%C3%A9t%20fot%C3%B3t%20is!)" rel="noopener">
+    <div class="ic" style="background:linear-gradient(135deg,#ffe27a,#f29a2e)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9h18M3 9v11h18V9M9 20v-6h6v6"></path></svg></div>
+    <div><small>INGYENES</small><strong>Vállalkozás bemutatása</strong></div><span class="arrow">→</span>
+  </a>
+
+  <h2>ÜZENET</h2>
+  <a class="card" href="https://m.me/104411308403346" rel="noopener">
+    <div class="ic" style="background:linear-gradient(135deg,#00b2ff,#006aff)"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.4 2 2 6.1 2 11.7c0 2.9 1.2 5.5 3.2 7.2V22l3-1.6c1.1.3 2.3.5 3.8.5 5.6 0 10-4.1 10-9.7S17.6 2 12 2zm1 13-2.6-2.7L5.4 15l5.5-5.8 2.6 2.7 5-2.7L13 15z"></path></svg></div>
+    <div><small>MESSENGER</small><strong>Üzenet a Facebook-oldalnak</strong></div><span class="arrow">→</span>
+  </a>
+  <a class="card" href="https://wa.me/36707540254" rel="noopener">
+    <div class="ic" style="background:linear-gradient(135deg,#4ee97a,#1aa64a)"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 13.9c-.2.6-1.3 1.2-1.8 1.2s-1 .2-3.3-.7a11.6 11.6 0 0 1-4.6-4.1c-.3-.5-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"></path></svg></div>
+    <div><small>WHATSAPP</small><strong>+36 70 754 0254</strong></div><span class="arrow">→</span>
+  </a>
+  <a class="card" href="mailto:olvaso@mrgabee.hu" rel="noopener">
+    <div class="ic" style="background:linear-gradient(135deg,#2ee6d6,#0e8fa3)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="m4 7 8 6 8-6"></path></svg></div>
+    <div><small>E-MAIL</small><strong>olvaso@mrgabee.hu</strong></div><span class="arrow">→</span>
+  </a>
+  <footer>Mr.Gabee · Csepel és környéke</footer>
+</main>
+<script>
+  // A hirdetésfeladó Google űrlap linkje (amíg nincs meg, e-mailre visz)
+  var URLAP = "";
+  document.getElementById("hirdetes").href = URLAP ||
+    "mailto:olvaso@mrgabee.hu?subject=" + encodeURIComponent("Álláshirdetés – Mr.Gabee");
+  // Vállalkozás bemutatása: e-mail előre kitöltött adatlappal
+  document.getElementById("vallalkozas").href =
+    "mailto:olvaso@mrgabee.hu?subject=" + encodeURIComponent("Vállalkozás bemutatása – Mr.Gabee") +
+    "&body=" + encodeURIComponent(
+      "Vállalkozás neve:\nMivel foglalkoztok:\nCím:\nNyitvatartás:\n" +
+      "Telefon / weboldal / Facebook:\nPár mondat rólatok:\n\n(Ha van, csatolj egy-két fotót is!)");
+</script>
+
+
+</body></html>
