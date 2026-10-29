@@ -7147,7 +7147,8 @@ def ceges_level_linkek_potlasa(allapot: dict) -> None:
         linkek = l.get("pdf_linkek") if isinstance(l.get("pdf_linkek"), dict) else {}
         if not nevek or len(linkek) >= len(nevek):
             continue
-        jeloltek = [r for r in rekordok if r.get("targy") == l.get("targy") and r.get("erkezett") == l.get("datum")]
+        jeloltek = [r for r in rekordok if r.get("targy") == l.get("targy") or r.get("erkezett") == l.get("datum")
+                    or (r.get("feladó_email") and r.get("feladó_email") == l.get("feladó_email"))]
         hasznalt = set(linkek.values())
         for i, nev in enumerate(nevek):
             if str(i) in linkek:
@@ -7158,6 +7159,9 @@ def ceges_level_linkek_potlasa(allapot: dict) -> None:
             if talalat:
                 linkek[str(i)] = talalat
                 hasznalt.add(talalat)
+                if not isinstance(l.get("pdf_allapot"), dict):
+                    l["pdf_allapot"] = {}
+                l["pdf_allapot"].setdefault(str(i), "mentve")
         if linkek:
             l["pdf_linkek"] = linkek
 
