@@ -485,6 +485,13 @@
   .szk-fej b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .szk-ablak iframe { flex: 1; border: 0; width: 100%; background: #fff; }
   .lv-csatolmanyok { display: flex; flex-wrap: wrap; gap: 6px; }
+  .lv-csat { position: relative; display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .lv-csat-nev { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 600; cursor: pointer; }
+  .lv-csat-menu { display: none; position: absolute; top: 100%; left: 0; z-index: 50; min-width: 230px; padding: 4px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.15); flex-direction: column; }
+  .lv-csat:hover .lv-csat-menu, .lv-csat:focus-within .lv-csat-menu { display: flex; }
+  .lv-csat-menu > button, .lv-csat-menu > a { all: unset; display: block; padding: 7px 10px; border-radius: 6px; font-size: 13px; color: var(--text); cursor: pointer; }
+  .lv-csat-menu > button:hover, .lv-csat-menu > a:hover { background: var(--blue-soft); }
+  .lv-csat-ures { padding: 7px 10px; font-size: 12px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -1389,15 +1396,14 @@
           </div>
           <div class="ceges-egyeztetes-statusz" data-id="${escHtml(r.id)}" style="font-size:11px;margin-top:4px;"></div>
         </td>`);
-        cellak.push(`<td style="min-width:220px;">${cegesKeziParositasSelectHtml(r)}</td>`);
-        cellak.push(`<td><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
+        cellak.push(`<td><div style="display:flex;gap:6px;align-items:center;"><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>${cegesKeziParositasSelectHtml(r)}</div></td>`);
       }
       return `<tr>${cellak.join("")}</tr>`;
     }).join("");
     const megjegyzes = csakOlvas
       ? '<p class="panel-info">Csak olvasási nézet - a mezők és a törlés admin-jogosultságot igényelnek.</p>'
       : '<p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>';
-    const fejlecVegek = csakOlvas ? "" : "<th></th><th>Párosítás kézzel</th><th></th>";
+    const fejlecVegek = csakOlvas ? "" : "<th></th><th>Törlés / párosítás kézzel</th>";
     hely.innerHTML = `
       ${megjegyzes}
       <table>
@@ -1486,7 +1492,7 @@
         + (osszeg ? ` · ${forint(Number(osszeg))}` : "") + (t.kiallitas_datum ? ` · ${String(t.kiallitas_datum).slice(0, 10)}` : "");
       return `<option value="${i}">${escHtml(felirat)}</option>`;
     }).join("");
-    return `<select class="ceges-kezi-parositas" data-id="${escHtml(r.id)}" style="width:100%;max-width:320px;font-size:12px;padding:4px;border:1px solid var(--border);border-radius:6px;" title="Válaszd ki, melyik NAV-tételhez tartozik ez a számla (★ = valószínű szállító)">
+    return `<select class="ceges-kezi-parositas" data-id="${escHtml(r.id)}" style="width:200px;font-size:12px;padding:4px;border:1px solid var(--border);border-radius:6px;" title="Válaszd ki, melyik NAV-tételhez tartozik ez a számla (★ = valószínű szállító)">
         <option value="">Párosítás NAV-tétellel…</option>${opciok}</select>`;
   }
   async function cegesKeziParositas(sel) {
@@ -3195,16 +3201,59 @@
 
   // A csatolmányok kattintható linkjei (a script a feldolgozáskor tölti ki a
   // Drive-linket csatolmányonként, "pdf_linkek": index -> url).
+  // Csatolmány-menü (ráállva / kattintva nyílik): megtekintés, Drive,
+  // és a ki nem került csatolmányoknál áthelyezés a párosítatlanok közé
+  // vagy elvetés. A kérést a "ceges_csatolmany_muveletek"-be írjuk, a
+  // script a következő futáskor hajtja végre.
+  const LV_CSAT_ALLAPOT = { mentve: ["ok", "bekerült"], duplikatum: ["sor", "duplikátum"], torolt: ["hiba", "korábban törölt"], elvetve: ["nincspdf", "elvetve"] };
   function lvCsatolmanyokHtml(l) {
     const nevek = l.pdf_nevek || [];
     if (!nevek.length) return "nincs PDF";
     const linkek = lvObjektum(l.pdf_linkek);
+    const allapotok = lvObjektum(l.pdf_allapot);
+    const kerelmek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_csatolmany_muveletek);
+    const eredmenyek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_csatolmany_muvelet_eredmenyek);
+    const admin = szerepkor === "admin";
     return '<span class="lv-csatolmanyok">' + nevek.map((nev, i) => {
       const url = linkek[String(i)];
-      return url
-        ? `<a class="drive-link" href="${escHtml(url)}" target="_blank" rel="noopener" data-szamlakep="${escHtml(url)}" data-szamlakep-cim="${escHtml(nev)}">📎 ${escHtml(nev)}</a>`
-        : `<span class="lv-cimke" title="Még nincs a Drive-on (a következő futás tölti fel, ha számla)">📎 ${escHtml(nev)}</span>`;
+      const allapot = allapotok[String(i)];
+      const fuggo = Object.entries(kerelmek).find(([kid, k]) => k && k.level_id === l.id && String(k.idx) === String(i) && !eredmenyek[kid]);
+      const hibas = Object.entries(kerelmek).filter(([kid, k]) => k && k.level_id === l.id && String(k.idx) === String(i) && (eredmenyek[kid] || {}).statusz === "hiba").map(([kid]) => eredmenyek[kid].hiba).pop();
+      const [cimkeOsztaly, cimkeSzoveg] = LV_CSAT_ALLAPOT[allapot] || ["", url ? "" : "feldolgozás alatt"];
+      const tetelek = [];
+      if (url) {
+        tetelek.push(`<button type="button" data-szamlakep="${escHtml(url)}" data-szamlakep-cim="${escHtml(nev)}">👁 Megtekintés</button>`);
+        tetelek.push(`<a href="${escHtml(url)}" target="_blank" rel="noopener">⬇ Megnyitás / letöltés (Drive)</a>`);
+      }
+      if (admin && allapot && allapot !== "mentve" && !fuggo) {
+        tetelek.push(`<button type="button" data-lv-csat-muvelet="parositatlanba" data-idx="${i}">➕ Áthelyezés a párosítatlanok közé</button>`);
+        if (allapot !== "elvetve") tetelek.push(`<button type="button" data-lv-csat-muvelet="elvet" data-idx="${i}">🚫 Elvetés (nem számla)</button>`);
+      }
+      if (!tetelek.length) tetelek.push(`<span class="lv-csat-ures">${url ? "" : "Még nincs a Drive-on - a következő futás feltölti."}</span>`);
+      return `<span class="lv-csat" tabindex="0">
+          <span class="lv-csat-nev">📎 ${escHtml(nev)} ▾</span>
+          ${cimkeSzoveg ? `<span class="lv-cimke ${cimkeOsztaly}">${escHtml(cimkeSzoveg)}</span>` : ""}
+          ${fuggo ? '<span class="lv-cimke sor">sorban áll</span>' : ""}
+          ${hibas ? `<span class="lv-cimke hiba" title="${escHtml(hibas)}">hiba</span>` : ""}
+          <span class="lv-csat-menu" role="menu">${tetelek.join("")}</span>
+        </span>`;
     }).join("") + "</span>";
+  }
+
+  async function lvCsatolmanyMuvelet(l, idx, muvelet) {
+    const kid = "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    try {
+      const { ertek } = await apiHivas("get_meta", { kulcs: "ceges_csatolmany_muveletek" });
+      const kerelmek = Object.assign({}, lvObjektum(ertek));
+      kerelmek[kid] = { level_id: l.id, idx, muvelet, letrehozva: new Date().toISOString() };
+      const kulcsok = Object.keys(kerelmek).sort((a, b) => String(kerelmek[a].letrehozva || "").localeCompare(String(kerelmek[b].letrehozva || "")));
+      kulcsok.slice(0, Math.max(0, kulcsok.length - 300)).forEach(k => delete kerelmek[k]);
+      await apiHivas("set_meta", { kulcs: "ceges_csatolmany_muveletek", ertek: kerelmek });
+      legutobbiAdat.ceges_csatolmany_muveletek = kerelmek;
+      levelOlvasoRenderelese(l);
+    } catch (e) {
+      alert("A kérés mentése nem sikerült - próbáld újra.");
+    }
   }
 
   function levelOlvasoRenderelese(l) {
@@ -3243,6 +3292,10 @@
           </div>
         </form>` : `<div class="lv-gombsor" style="margin-top:16px;"><button type="button" class="lv-gomb fo" id="lv-valasz-gomb">Válasz</button><span class="panel-statusz" id="lv-v-statusz" style="margin:0;"></span></div>`}
       </div>`;
+    hely.querySelectorAll("[data-lv-csat-muvelet]").forEach(b => b.addEventListener("click", () => {
+      b.disabled = true;
+      lvCsatolmanyMuvelet(l, Number(b.dataset.idx), b.dataset.lvCsatMuvelet);
+    }));
     const valaszGomb = document.getElementById("lv-valasz-gomb");
     if (valaszGomb) valaszGomb.addEventListener("click", () => {
       lvValaszNyitva = true;

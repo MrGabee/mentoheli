@@ -1209,6 +1209,11 @@ def _allapot_alapertekek() -> dict:
         "kor_lejart_kuldve": {},
         "szamlakeres_naplo": {},
         "ceges_kezi_feltoltes_eredmenyek": {},
+        # Postafiók csatolmány-menü: kérések (dashboard), eredmények és
+        # az elvetett csatolmányok cid-jei (script).
+        "ceges_csatolmany_muveletek": {},
+        "ceges_csatolmany_muvelet_eredmenyek": {},
+        "ceges_elvetett_csatolmanyok": [],
         "dijnet_pdf_igazolt": [],
         # Ld. "CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ" szekció.
         # A naplót és az eredményeket CSAK a script írja, a válasz-kérelmeket
@@ -4720,6 +4725,34 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                         naplo_bejegyzes["pdf_linkek"] = {}
                     naplo_bejegyzes["pdf_linkek"][str(idx)] = url
 
+            def _csatolmany_allapot_rogzitese(idx, cimke, meta=None):
+                if naplo_bejegyzes is None:
+                    return
+                if not isinstance(naplo_bejegyzes.get("pdf_allapot"), dict):
+                    naplo_bejegyzes["pdf_allapot"] = {}
+                naplo_bejegyzes["pdf_allapot"][str(idx)] = cimke
+                if meta is not None:
+                    if not isinstance(naplo_bejegyzes.get("pdf_meta"), dict):
+                        naplo_bejegyzes["pdf_meta"] = {}
+                    naplo_bejegyzes["pdf_meta"][str(idx)] = meta
+
+            def _feldolgozatlan_csatolmany(idx, cimke, cid, kuldo_nev, pdf_nev, pdf_bytes,
+                                           osszeg, penznem, szamlaszam):
+                # A ki nem került csatolmány is legyen megtekinthető: egyszer
+                # feltöltjük a Drive "Feldolgozatlan" almappájába, és a
+                # dashboard menüjéből áthelyezhető a párosítatlanok közé.
+                meta = ((naplo_bejegyzes or {}).get("pdf_meta") or {}).get(str(idx))
+                if not (isinstance(meta, dict) and meta.get("drive_url")):
+                    url = _ceges_drive_feltoltes(_ceges_fajlnev(cid, kuldo_nev, pdf_nev), "Feldolgozatlan",
+                                                 base64.b64encode(pdf_bytes).decode("ascii")) \
+                        if SZAMLA_DRIVE_WEBAPP_URL and not DRY_RUN else None
+                    meta = {"cid": cid, "drive_url": url, "kuldo_nev": kuldo_nev, "fajlnev": pdf_nev,
+                            "kinyert_osszeg": osszeg, "penznem": penznem, "kinyert_szamlaszam": szamlaszam,
+                            "pdf_hash": hashlib.md5(pdf_bytes).hexdigest()}
+                _csatolmany_allapot_rogzitese(idx, cimke, meta)
+                if meta.get("drive_url"):
+                    _csatolmany_link_rogzitese(idx, meta["drive_url"])
+
             if not pdf_csatolmanyok_listaja:
                 # Nincs PDF-csatolmány (pl. az eladó csak egy sima
                 # visszaigazolást küldött, PDF nélkül) - ezt a levelet
@@ -4871,6 +4904,11 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     # Ezt a csatolmányt egy korábbi futás már elmentette
                     # (a levél egy másik csatolmány miatt maradt bent).
                     _csatolmany_link_rogzitese(pdf_idx, sajat_korabbi.get("drive_url"))
+                    _csatolmany_allapot_rogzitese(pdf_idx, "mentve")
+                    continue
+                if cid in set(allapot.get("ceges_elvetett_csatolmanyok") or []):
+                    # A dashboardon "nem számla"-ként elvetett csatolmány.
+                    _csatolmany_allapot_rogzitese(pdf_idx, "elvetve")
                     continue
                 torolt_ujjlenyomatok = set(allapot.get("ceges_torolt_ujjlenyomatok") or [])
                 letezo_ujjlenyomatok = {
@@ -4885,11 +4923,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                           f"{targy[:60]}")
                     hiba_db += 1
                     uzenet_osszes_csatolmany_rendben = False
+                    _feldolgozatlan_csatolmany(pdf_idx, "torolt", cid, kuldo_nev, pdf_nev, pdf_bytes,
+                                               kinyert_osszeg, kinyert_penznem, kinyert_szamlaszam)
                     continue
                 if ceges_ujjlenyomat in letezo_ujjlenyomatok:
-                    _csatolmany_link_rogzitese(pdf_idx, next(
-                        (r.get("drive_url") for r in list(ceges_szamlak.values()) + list(ceges_szamlak_bizonytalan.values())
-                         if r.get("tartalmi_ujjlenyomat") == ceges_ujjlenyomat and r.get("drive_url")), None))
+                    _feldolgozatlan_csatolmany(pdf_idx, "duplikatum", cid, kuldo_nev, pdf_nev, pdf_bytes,
+                                               kinyert_osszeg, kinyert_penznem, kinyert_szamlaszam)
                     print(f"      🔁 {csatolmany_jelzo}Tartalmilag megegyezik egy MÁR RÖGZÍTETT "
                           f"céges számlával (valószínűleg másik postafiókból/csatolmányból is "
                           f"megérkezett) - ez a csatolmány (és vele a teljes levél) a "
@@ -4990,6 +5029,7 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     jelzo_ikon = "❓"
                 feltoltve_db += 1
                 _csatolmany_link_rogzitese(pdf_idx, drive_url)
+                _csatolmany_allapot_rogzitese(pdf_idx, "mentve")
                 print(f"      {jelzo_ikon} {csatolmany_jelzo}{allapot_szoveg} "
                       f"(Drive-ra feltöltve): {kuldo_nev} – {targy[:60]}")
 
@@ -7005,6 +7045,70 @@ def _ceges_level_naplozasa(allapot: dict, msg, uid_str: str, targy: str, kuldo_n
     return level_id
 
 
+def ceges_csatolmany_muveletek_feldolgozasa(allapot: dict) -> None:
+    """A dashboard postafiók-nézetének csatolmány-menüjéből kért
+    műveletek ("ceges_csatolmany_muveletek", CSAK a dashboard írja):
+    "parositatlanba" - a ki nem került csatolmányból párosítatlan céges
+    számla lesz; "elvet" - a csatolmány nem számla, a levél törölhető."""
+    kerelmek = allapot.get("ceges_csatolmany_muveletek") or {}
+    if not isinstance(kerelmek, dict) or not kerelmek:
+        return
+    eredmenyek = allapot.setdefault("ceges_csatolmany_muvelet_eredmenyek", {})
+    if not isinstance(eredmenyek, dict):
+        eredmenyek = allapot["ceges_csatolmany_muvelet_eredmenyek"] = {}
+    naplo = allapot.get("ceges_bejovo_levelek") or {}
+    ceges_szamlak = allapot.setdefault("ceges_szamlak", {})
+    for kid, k in kerelmek.items():
+        if not isinstance(k, dict) or kid in eredmenyek:
+            continue
+        level = naplo.get(k.get("level_id")) or {}
+        idx = str(k.get("idx"))
+        meta = (level.get("pdf_meta") or {}).get(idx)
+        if not isinstance(meta, dict) or not meta.get("cid"):
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(),
+                               "hiba": "A csatolmány adatai még nincsenek meg - a következő futás után próbáld újra."}
+            continue
+        cid = meta["cid"]
+        if k.get("muvelet") == "elvet":
+            elvetett = allapot.setdefault("ceges_elvetett_csatolmanyok", [])
+            if cid not in elvetett:
+                elvetett.append(cid)
+            level.setdefault("pdf_allapot", {})[idx] = "elvetve"
+        elif k.get("muvelet") == "parositatlanba":
+            if not meta.get("drive_url"):
+                eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(),
+                                   "hiba": "A csatolmány még nincs a Drive-on - a következő futás után próbáld újra."}
+                continue
+            if cid not in ceges_szamlak:
+                ceges_szamlak[cid] = {
+                    "kuldo_nev": meta.get("kuldo_nev") or level.get("feladó_nev") or "",
+                    "feladó_email": level.get("feladó_email"),
+                    "forras_postafiok": "Dedikált céges postafiók",
+                    "biztos_szamla": True,
+                    "targy": level.get("targy"),
+                    "erkezett": level.get("datum"),
+                    "drive_url": meta["drive_url"],
+                    "drive_fajlnev": meta.get("fajlnev"),
+                    "rogzitve": magyar_ido().isoformat(),
+                    "kinyert_osszeg": meta.get("kinyert_osszeg"),
+                    "penznem": meta.get("penznem") or "HUF",
+                    "kinyert_szamlaszam": meta.get("kinyert_szamlaszam"),
+                    "tartalmi_ujjlenyomat": hashlib.md5(f"kezi|{meta.get('pdf_hash')}|{cid}".encode("utf-8")).hexdigest()[:20],
+                    "adoszam": None,
+                    "nav_szamla_azonosito": None,
+                    "nav_parositva": False,
+                    "nav_szallito_nev": None,
+                    "nav_osszeg": None,
+                    "nav_datum": None,
+                }
+            level.setdefault("pdf_allapot", {})[idx] = "mentve"
+        else:
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(), "hiba": "Ismeretlen művelet."}
+            continue
+        eredmenyek[kid] = {"statusz": "kesz", "idopont": magyar_ido().isoformat()}
+        print(f"  📎 Csatolmány-művelet végrehajtva: {k.get('muvelet')}")
+
+
 def ceges_level_linkek_potlasa(allapot: dict) -> None:
     """A régebben naplózott levelek csatolmány-linkjeinek pótlása a már
     rögzített céges számlákból (azonos tárgy + érkezés, és a Drive-
@@ -8165,6 +8269,7 @@ def main():
     # kettő egymástól teljesen független), a titkosított állapot mentése
     # ELŐTT, hogy az ebben a futásban feldolgozott/törölt céges számlák
     # metaadata is bekerüljön a lentebbi mentésbe.
+    ceges_csatolmany_muveletek_feldolgozasa(allapot)
     ceges_szamlak_feldolgozasa(allapot)
     ceges_kezi_feltoltesek_feldolgozasa(allapot)
     allapot["ceges_felado_cim"] = CEGES_EMAIL_KULDO or ""
