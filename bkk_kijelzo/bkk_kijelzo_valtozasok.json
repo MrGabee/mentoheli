@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-29T04:33:00.276961+02:00",
+  "frissitve": "2026-10-29T04:33:31.200549+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T13:01:27.257177+02:00",
-      "kulcs": "FLR741",
-      "rendszam": "FLR741",
-      "vehicle_id": "3155",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.46282196044922,
-      "lon": 19.148452758789062,
-      "elozo_szoveg": "R.csaba - Kőbánya-Kisp.M",
-      "uj_szoveg": "Rákoscsaba"
-    },
-    {
-      "idopont": "2026-10-28T13:01:27.258084+02:00",
-      "kulcs": "V1352",
-      "rendszam": "V1352",
-      "vehicle_id": "4453",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.46816635131836,
-      "lon": 19.075536727905273,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-28T13:01:27.258134+02:00",
-      "kulcs": "V1362",
-      "rendszam": "V1362",
-      "vehicle_id": "4463",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.512821197509766,
-      "lon": 19.0477237701416,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-28T13:01:27.258379+02:00",
       "kulcs": "V1557",
@@ -260000,6 +259961,45 @@
       "lon": 19.06728172302246,
       "elozo_szoveg": "Boráros tér H",
       "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-10-29T04:33:31.096965+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.513999938964844,
+      "lon": 19.07792854309082,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-29T04:33:31.100201+02:00",
+      "kulcs": "T8103",
+      "rendszam": "T8103",
+      "vehicle_id": "7340",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49711227416992,
+      "lon": 19.05555534362793,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-29T04:33:31.100709+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.442832946777344,
+      "lon": 19.179229736328125,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
     }
   ]
 }
