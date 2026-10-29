@@ -1389,6 +1389,7 @@
           </div>
           <div class="ceges-egyeztetes-statusz" data-id="${escHtml(r.id)}" style="font-size:11px;margin-top:4px;"></div>
         </td>`);
+        cellak.push(`<td style="min-width:220px;">${cegesKeziParositasSelectHtml(r)}</td>`);
         cellak.push(`<td><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`);
       }
       return `<tr>${cellak.join("")}</tr>`;
@@ -1396,7 +1397,7 @@
     const megjegyzes = csakOlvas
       ? '<p class="panel-info">Csak olvasási nézet - a mezők és a törlés admin-jogosultságot igényelnek.</p>'
       : '<p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>';
-    const fejlecVegek = csakOlvas ? "" : "<th></th><th></th>";
+    const fejlecVegek = csakOlvas ? "" : "<th></th><th>Párosítás kézzel</th><th></th>";
     hely.innerHTML = `
       ${megjegyzes}
       <table>
@@ -1457,6 +1458,54 @@
     hely.querySelectorAll(".ceges-torles-gomb").forEach(btn => {
       btn.addEventListener("click", () => torlesVegrehajtasaCeges(btn.dataset.id));
     });
+    hely.querySelectorAll(".ceges-kezi-parositas").forEach(sel => {
+      sel.addEventListener("change", () => cegesKeziParositas(sel));
+    });
+  }
+
+  // ── Kézi párosítás: a még párosítatlan céges számla sorának végén egy
+  // legördülő a NAV-on talált, párosítatlan tételekkel. A választás
+  // ugyanazt a NAVKOD-alapú kitöltést/mentést használja, mint a kód
+  // beillesztése (ld. _cegesSorNavKodAlkalmazasa()).
+  function _navTetelKodja(t) {
+    const adoszam = t.szallito_adoszam || t.szallito_nev || "ismeretlen";
+    const osszeg = t.netto_osszeg_huf || t.netto_osszeg || "";
+    return `[[NAVKOD|${adoszam}|${t.szamlaszam || ""}|${osszeg}|${(t.kiallitas_datum || "").slice(0, 10)}|${t.szallito_nev || ""}]]`;
+  }
+  function cegesKeziParositasSelectHtml(r) {
+    const nav = ((legutobbiAdat || {}).nav_csak_navban) || [];
+    if (!nav.length) return '<span style="color:var(--muted);font-size:12px;">nincs párosítatlan NAV-tétel</span>';
+    const nev = String(r.kuldo_nev || "").toLowerCase();
+    const hasonlo = t => (r.adoszam && t.szallito_adoszam === r.adoszam)
+      || (nev && String(t.szallito_nev || "").toLowerCase().split(/\s+/).some(sz => sz.length > 3 && nev.includes(sz)));
+    const sorrend = nav.map((t, i) => ({ t, i, h: hasonlo(t) ? 0 : 1 }))
+      .sort((a, b) => a.h - b.h || String(b.t.kiallitas_datum || "").localeCompare(String(a.t.kiallitas_datum || "")));
+    const opciok = sorrend.map(({ t, i, h }) => {
+      const osszeg = t.netto_osszeg_huf || t.netto_osszeg;
+      const felirat = `${h ? "" : "★ "}${t.szallito_nev || t.szallito_adoszam || "?"} · ${t.szamlaszam || "?"}`
+        + (osszeg ? ` · ${forint(Number(osszeg))}` : "") + (t.kiallitas_datum ? ` · ${String(t.kiallitas_datum).slice(0, 10)}` : "");
+      return `<option value="${i}">${escHtml(felirat)}</option>`;
+    }).join("");
+    return `<select class="ceges-kezi-parositas" data-id="${escHtml(r.id)}" style="width:100%;max-width:320px;font-size:12px;padding:4px;border:1px solid var(--border);border-radius:6px;" title="Válaszd ki, melyik NAV-tételhez tartozik ez a számla (★ = valószínű szállító)">
+        <option value="">Párosítás NAV-tétellel…</option>${opciok}</select>`;
+  }
+  async function cegesKeziParositas(sel) {
+    if (sel.value === "") return;
+    const t = (((legutobbiAdat || {}).nav_csak_navban) || [])[Number(sel.value)];
+    const tr = sel.closest("tr");
+    if (!t || !tr) return;
+    const mezok = _cegesSorNavKodAlkalmazasa(tr, _navTetelKodja(t));
+    if (!mezok) return;
+    sel.disabled = true;
+    const friss = await cegesSorMezoinekMentese(sel.dataset.id, mezok);
+    if (friss) {
+      legutobbiAdat.nav_csak_navban = (legutobbiAdat.nav_csak_navban || []).filter(x => x !== t);
+      cegesKartyakRenderelese(cegesSzamlak);
+      cegesTablaRenderelese(cegesSzamlak);
+    } else {
+      sel.disabled = false;
+      sel.value = "";
+    }
   }
 
   // ── "✅ Párosítva a NAV-val" (ld. "ceges-parositott-szekcio" a HTML-ben,
