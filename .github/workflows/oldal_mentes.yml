@@ -27,7 +27,7 @@ jobs:
         run: |
           host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
           mkdir -p /tmp/mentes/mrgabee.hu && cd /tmp/mentes/mrgabee.hu
-          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; cls -la > _lista.txt; mget -E -c * 2>/dev/null; mget .htaccess .user.ini 2>/dev/null; bye" || true
+          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; cls -la > _lista.txt; mget -c * 2>/dev/null; mget .htaccess .user.ini 2>/dev/null; bye" || true
           lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -1 -d */ > _mappak.txt; bye" || true
           for d in $(cat _mappak.txt | tr -d '/'); do lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -la $d/ > \"_lista_$d.txt\"; bye" || true; done
           ls -la | head -50
@@ -39,7 +39,7 @@ jobs:
         run: |
           host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
           mkdir -p /tmp/mentes/baloghgabor.hu && cd /tmp/mentes/baloghgabor.hu
-          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; cls -la > _lista.txt; mget -E -c * 2>/dev/null; mget .htaccess .user.ini 2>/dev/null; bye" || true
+          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; cls -la > _lista.txt; mget -c * 2>/dev/null; mget .htaccess .user.ini 2>/dev/null; bye" || true
           lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -1 -d */ > _mappak.txt; bye" || true
           for d in $(cat _mappak.txt | tr -d '/'); do lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -la $d/ > \"_lista_$d.txt\"; bye" || true; done
           ls -la | head -50
