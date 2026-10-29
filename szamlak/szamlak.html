@@ -513,6 +513,7 @@
       <div class="om-cimke" data-csak-admin>Kezelés</div>
       <button type="button" class="om-pont" data-oldal="berlok" data-csak-admin>Bérlők és értesítések</button>
       <button type="button" class="om-pont" data-oldal="kuldes" data-csak-admin>Küldés dátum szerint</button>
+      <button type="button" class="om-pont" data-oldal="konyvelo" data-csak-admin>Könyvelő</button>
       <button type="button" class="om-pont" data-oldal="postafiokok" data-csak-admin>Postafiókok</button>
       <button type="button" class="om-pont" data-oldal="beallitasok" data-csak-admin>Beállítások</button>
       <div class="om-lab">
@@ -830,7 +831,7 @@
     <div class="panel" id="cimzettek-panel">
       <button type="button" class="panel-toggle" id="cimzettek-toggle">📮 Címzettek és azonnali küldés (könyvelő / bérlők / tulajdonos) ▾</button>
       <div class="panel-tartalom" id="cimzettek-tartalom" style="display:none;">
-        <p class="panel-info">Három, egymástól független email-kör: a <strong>könyvelő</strong> SOSEM kap innen számla-adatot/csatolmányt - a tulajdonos azt egy külön, kézzel megosztott Google Drive mappán keresztül adja át neki, ő csak egy havi, hónap-végi emlékeztetőt kap. A <strong>bérlő</strong> (1./2. kör) a jelenleg fizetetlen számláinak időszakos/kézi összesítőjét kapja - NEM azonnali, számlánkénti értesítőt. A <strong>tulajdonos</strong> minden új számláról azonnali értesítést kap, és minden bérlői-összesítő másolatát is megkapja. Soronként egy email-cím - a listák MENTÉSÉHEZ a bejelentkezéskor megadott API-kulcs elég, a "Küldés MOST" gombok a Beállításokban bekapcsolt azonnali indítással működnek.</p>
+        <p class="panel-info">Három, egymástól független email-kör: a <strong>könyvelő</strong> innen automatikusan csak egy havi, hónap-végi emlékeztetőt kap - a számlákat a Könyvelő menüpont „Számlacsomag küldése” gombjával kézzel küldheted el neki. A <strong>bérlő</strong> (1./2. kör) a jelenleg fizetetlen számláinak időszakos/kézi összesítőjét kapja - NEM azonnali, számlánkénti értesítőt. A <strong>tulajdonos</strong> minden új számláról azonnali értesítést kap, és minden bérlői-összesítő másolatát is megkapja. Soronként egy email-cím - a listák MENTÉSÉHEZ a bejelentkezéskor megadott API-kulcs elég, a "Küldés MOST" gombok a Beállításokban bekapcsolt azonnali indítással működnek.</p>
 
         <h3 style="font-size:14px;margin:6px 0 6px;">📁 Könyvelő</h3>
         <label>Email-cím(ek), soronként egy
@@ -875,6 +876,26 @@
         <label>Célcím <input type="email" id="ku-email" placeholder="pl. sajat@email.hu"></label>
         <button type="button" id="ku-inditas-gomb">Küldés indítása</button>
         <div class="panel-statusz" id="ku-statusz"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="konyvelo-panel">
+      <button type="button" class="panel-toggle" id="konyvelo-toggle">🧾 Könyvelő ▾</button>
+      <div class="panel-tartalom" id="konyvelo-tartalom" style="display:none;">
+        <label>Könyvelő neve <input type="text" id="kv-nev" placeholder="pl. Kiss Anna"></label>
+        <label>Könyvelő email-címe <input type="email" id="kv-email" placeholder="pl. konyvelo@iroda.hu"></label>
+        <button type="button" id="kv-mentes-gomb">💾 Mentés</button>
+        <div class="panel-statusz" id="kv-mentes-statusz"></div>
+
+        <h4 style="margin:22px 0 8px;font-size:14px;">📦 Számlacsomag küldése</h4>
+        <p class="panel-info">A gomb az összes számlát egy ZIP-fájlba tömöríti, és emailben elküldi a könyvelőnek. A ZIP-ben az <strong>1_Kozuzemi</strong> mappa szolgáltatónként (kategóriánként) tartalmazza a közüzemi számlákat. A <strong>2_Ceges</strong> mappán belül az <strong>1_Nincs_osszekotve</strong> almappába kerülnek azok a céges számlák, amelyek sem a NAV-val, sem az OTP-vel nincsenek összekötve, a <strong>2_Osszekotve</strong> almappába pedig az összekötöttek, egy <strong>osszerendeles.txt</strong> fájllal, ami megmutatja, melyik PDF melyik tételhez tartozik. Ugyanezt a leírást a könyvelő a levél szövegében is megkapja. Nagy csomag több részletben (több levélben) megy ki.</p>
+        <label style="display:flex;align-items:center;gap:10px;margin:0 0 12px;">
+          <input type="checkbox" id="kv-drive-letoltes" style="width:auto;flex:none;">
+          <span>A céges PDF-ek letöltése a Drive-ról (csak akkor kapcsold be, ha a Drive Web App már tudja a „letoltes” műveletet - enélkül a céges számláknál a Drive-link kerül a csomagba)</span>
+        </label>
+        <button type="button" id="kv-csomag-gomb">📦 Számlák tömörítése és küldése a könyvelőnek</button>
+        <div class="panel-statusz" id="kv-csomag-statusz"></div>
+        <div class="panel-info" id="kv-csomag-eredmeny" style="margin-top:10px;"></div>
       </div>
     </div>
 
@@ -4258,8 +4279,93 @@
     }
   });
 
+  // ── Könyvelő menüpont (ld. szamla_figyelo.py "KÖNYVELŐI SZÁMLACSOMAG") ──
+  function konyveloPanelRenderelese(adat) {
+    adat = adat || {};
+    const nevInput = document.getElementById("kv-nev");
+    const emailInput = document.getElementById("kv-email");
+    if (!nevInput) return;
+    nevInput.value = adat.konyvelo_nev || "";
+    emailInput.value = (adat.konyvelo_emailek || []).join(", ");
+    document.getElementById("kv-drive-letoltes").checked = !!adat.drive_letoltes_be;
+    const e = adat.konyvelo_csomag_eredmeny || {};
+    const k = adat.konyvelo_csomag_kerelem || {};
+    const hely = document.getElementById("kv-csomag-eredmeny");
+    if (k.id && e.id !== k.id) {
+      hely.textContent = "⏳ A csomag összeállítása folyamatban (a következő futáskor megy ki, pár perc).";
+    } else if (e.id) {
+      const ido = e.ido ? new Date(e.ido).toLocaleString("hu-HU") : "";
+      hely.textContent = e.statusz === "kesz"
+        ? `✅ Utoljára elküldve: ${ido} – ${e.reszek || 1} levélben, ${e.kozuzemi || 0} közüzemi és ${(e.ceges_nincs || 0) + (e.ceges_kotott || 0)} céges számla (${e.ceges_kotott || 0} összekötött), ${e.hianyzo || 0} hiányzó PDF.`
+        : `❌ Sikertelen (${ido}): ${e.hiba || "ismeretlen hiba"}`;
+    } else {
+      hely.textContent = "";
+    }
+  }
+
+  document.getElementById("kv-mentes-gomb").addEventListener("click", async () => {
+    if (!aktualisApiKulcs) return;
+    const nev = document.getElementById("kv-nev").value.trim();
+    const emailek = document.getElementById("kv-email").value.split(/[,;\s]+/).map(x => x.trim()).filter(Boolean);
+    if (emailek.some(x => !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x))) { beStatuszMutat("kv-mentes-statusz", "Érvénytelen email-cím.", "hiba"); return; }
+    beStatuszMutat("kv-mentes-statusz", "Mentés...", "");
+    try {
+      await apiHivas("set_meta", { kulcs: "konyvelo_nev", ertek: nev });
+      await apiHivas("set_meta", { kulcs: "konyvelo_emailek", ertek: emailek });
+      if (legutobbiAdat) { legutobbiAdat.konyvelo_nev = nev; legutobbiAdat.konyvelo_emailek = emailek; }
+      const cimMezo = document.getElementById("cim-konyvelo-emailek");
+      if (cimMezo) cimMezo.value = emailek.join("\n");
+      beStatuszMutat("kv-mentes-statusz", "✅ Elmentve.", "siker");
+    } catch (err) {
+      beStatuszMutat("kv-mentes-statusz", "❌ Mentés sikertelen: " + err.message, "hiba");
+    }
+  });
+
+  document.getElementById("kv-drive-letoltes").addEventListener("change", async (ev) => {
+    if (!aktualisApiKulcs) return;
+    try {
+      await apiHivas("set_meta", { kulcs: "drive_letoltes_be", ertek: ev.target.checked });
+      if (legutobbiAdat) legutobbiAdat.drive_letoltes_be = ev.target.checked;
+    } catch (err) {
+      ev.target.checked = !ev.target.checked;
+      beStatuszMutat("kv-csomag-statusz", "❌ Mentés sikertelen: " + err.message, "hiba");
+    }
+  });
+
+  document.getElementById("kv-csomag-gomb").addEventListener("click", async () => {
+    if (!aktualisApiKulcs) return;
+    const gomb = document.getElementById("kv-csomag-gomb");
+    if (!((legutobbiAdat && legutobbiAdat.konyvelo_emailek) || []).length) {
+      beStatuszMutat("kv-csomag-statusz", "Előbb add meg és mentsd el a könyvelő email-címét.", "hiba");
+      return;
+    }
+    gomb.disabled = true;
+    beStatuszMutat("kv-csomag-statusz", "Indítás...", "");
+    try {
+      // Az OTP-párosítás csak itt, a dashboardon számolódik - a pillanatképét átadjuk.
+      bankSzamitas();
+      const bank = {};
+      Object.entries(bankEredmeny.szamlaTetel || {}).forEach(([rid, v]) => {
+        const t = v.tetel || {};
+        bank[rid] = { datum: t.tranzakcio_datum || t.konyveles || "", osszeg: t.osszeg, partner: t.partner || t.leiras || "" };
+      });
+      const kerelem = { id: Date.now().toString(36), ido: new Date().toISOString(), bank_parositasok: bank };
+      await apiHivas("set_meta", { kulcs: "konyvelo_csomag_kerelem", ertek: kerelem });
+      if (legutobbiAdat) legutobbiAdat.konyvelo_csomag_kerelem = kerelem;
+      konyveloPanelRenderelese(legutobbiAdat);
+      let utoirat = " A következő ütemezett futáskor megy ki.";
+      const pat = aktualisPat();
+      if (pat) { try { await ghWorkflowInditasa(pat, {}); patMentese(); utoirat = " Pár percen belül kimegy."; } catch (e) { /* marad az ütemezett futás */ } }
+      beStatuszMutat("kv-csomag-statusz", "✅ Kérés elküldve." + utoirat, "siker");
+    } catch (err) {
+      beStatuszMutat("kv-csomag-statusz", "❌ " + err.message, "hiba");
+    } finally {
+      gomb.disabled = false;
+    }
+  });
+
   // Panelek nyitása/csukása (mindegyik ugyanazt a mintát követi).
-  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["kor-ertesito-toggle", "kor-ertesito-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
+  [["beallitasok-toggle", "beallitasok-tartalom"], ["torolt-szamlak-toggle", "torolt-szamlak-tartalom"], ["kor-ertesito-toggle", "kor-ertesito-tartalom"], ["felhasznalok-toggle", "felhasznalok-tartalom"], ["korok-toggle", "korok-tartalom"], ["cimzettek-toggle", "cimzettek-tartalom"], ["kuldes-toggle", "kuldes-tartalom"], ["konyvelo-toggle", "konyvelo-tartalom"], ["postafiok-toggle", "postafiok-tartalom"]].forEach(([toggleId, tartalomId]) => {
     document.getElementById(toggleId).addEventListener("click", () => {
       const tartalom = document.getElementById(tartalomId);
       const nyitva = tartalom.style.display !== "none";
@@ -5153,6 +5259,7 @@
       szovegInput.dataset.eredetiErtek = szovegErtek;
     })();
     postafiokListaRenderelese(adat.tovabbi_postafiokok);
+    konyveloPanelRenderelese(adat);
     helyilegVisszaallitott = new Set(); // új betöltés - a korábbi munkamenetbeli optimista elrejtés már nem releváns
     toroltSzamlakRenderelese(adat.torolt_szamlak_archivum);
     keAllapotBetoltes(adat);
@@ -5314,10 +5421,11 @@
     levelek:     { sajat: "levelek-tartalom", cim: "Céges levelek", alcim: "Beérkezett és elküldött levelek, válaszolási lehetőséggel" },
     berlok:      { panelek: ["korok-panel", "kor-ertesito-panel", "cimzettek-panel"], cim: "Bérlők és értesítések", alcim: "Bérlői körök, címzettek, azonnali küldés" },
     kuldes:      { panelek: ["kuldes-panel"], cim: "Küldés dátum szerint", alcim: "Számlák PDF-fel egy megadott címre" },
+    konyvelo:    { panelek: ["konyvelo-panel"], cim: "Könyvelő", alcim: "A könyvelő adatai és a számlacsomag (ZIP) küldése" },
     postafiokok: { panelek: ["postafiok-panel"], cim: "Postafiókok", alcim: "További figyelt email-fiókok" },
     beallitasok: { panelek: ["beallitasok-panel", "felhasznalok-panel", "torolt-szamlak-panel"], cim: "Beállítások", alcim: "Emlékeztetők, felhasználók, törölt számlák" },
   };
-  const KEZELESI_PANELEK = ["beallitasok-panel", "torolt-szamlak-panel", "kor-ertesito-panel", "felhasznalok-panel", "korok-panel", "cimzettek-panel", "kuldes-panel", "postafiok-panel"];
+  const KEZELESI_PANELEK = ["beallitasok-panel", "torolt-szamlak-panel", "kor-ertesito-panel", "felhasznalok-panel", "korok-panel", "cimzettek-panel", "kuldes-panel", "konyvelo-panel", "postafiok-panel"];
   const $ = id => document.getElementById(id);
 
   function tarol(kulcs, ertek) { try { localStorage.setItem(kulcs, ertek); } catch (e) { /* ignorálható */ } }
