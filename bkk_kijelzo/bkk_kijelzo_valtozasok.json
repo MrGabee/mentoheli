@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-30T01:49:07.901697+02:00",
+  "frissitve": "2026-10-30T01:49:37.634298+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:13:32.763470+02:00",
-      "kulcs": "AOFL232",
-      "rendszam": "AOFL232",
-      "vehicle_id": "820",
-      "vehicle_label": "Kissvábhegy",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.50592041015625,
-      "lon": 19.039012908935547,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-10-29T15:13:32.764221+02:00",
-      "kulcs": "AOGL320",
-      "rendszam": "AOGL320",
-      "vehicle_id": "911",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.416622161865234,
-      "lon": 19.00147247314453,
-      "elozo_szoveg": "Baross Gábor-telep, Ispiláng utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-29T15:13:32.764241+02:00",
-      "kulcs": "AOGL321",
-      "rendszam": "AOGL321",
-      "vehicle_id": "912",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "213",
-      "route_id": "2130",
-      "lat": 47.404449462890625,
-      "lon": 18.991531372070312,
-      "elozo_szoveg": "Donát-hegy",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-10-29T15:13:32.764549+02:00",
-      "kulcs": "AOIM003",
-      "rendszam": "AOIM003",
-      "vehicle_id": "920",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.45484161376953,
-      "lon": 19.1815128326416,
-      "elozo_szoveg": "Pestszentlőrinc vasútáll.",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
     {
       "idopont": "2026-10-29T15:13:32.764743+02:00",
       "kulcs": "AOIM025",
@@ -260000,6 +259948,58 @@
       "lon": 19.05061149597168,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-30T01:49:37.565508+02:00",
+      "kulcs": "FKU932",
+      "rendszam": "FKU932",
+      "vehicle_id": "3088",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.480613708496094,
+      "lon": 19.1422061920166,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-30T01:49:37.566877+02:00",
+      "kulcs": "RVY607",
+      "rendszam": "RVY607",
+      "vehicle_id": "7436",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48750305175781,
+      "lon": 19.058406829833984,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-30T01:49:37.567020+02:00",
+      "kulcs": "SKR803",
+      "rendszam": "SKR803",
+      "vehicle_id": "7689",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50397491455078,
+      "lon": 19.137094497680664,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-30T01:49:37.567040+02:00",
+      "kulcs": "SKR808",
+      "rendszam": "SKR808",
+      "vehicle_id": "7694",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.500343322753906,
+      "lon": 19.110027313232422,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
