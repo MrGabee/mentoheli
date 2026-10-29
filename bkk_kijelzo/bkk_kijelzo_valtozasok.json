@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-29T03:39:39.907447+02:00",
+  "frissitve": "2026-10-29T03:40:16.517519+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T12:51:54.959555+02:00",
-      "kulcs": "V1351",
-      "rendszam": "V1351",
-      "vehicle_id": "5069",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.5128173828125,
-      "lon": 19.047605514526367,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-28T12:51:54.959749+02:00",
-      "kulcs": "MPW601",
-      "rendszam": "MPW601",
-      "vehicle_id": "5588",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "236A",
-      "route_id": "2361",
-      "lat": 47.43828582763672,
-      "lon": 19.172744750976562,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Ferihegy vá. - Ganztelep"
-    },
-    {
-      "idopont": "2026-10-28T12:51:54.960897+02:00",
-      "kulcs": "MXJ008",
-      "rendszam": "MXJ008",
-      "vehicle_id": "5885",
-      "vehicle_label": "Nagytétény-Diósd vá.",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.47737121582031,
-      "lon": 19.048784255981445,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Nagytétény-Diósd vá."
-    },
     {
       "idopont": "2026-10-28T12:51:54.961162+02:00",
       "kulcs": "T8000",
@@ -260000,6 +259961,45 @@
       "lon": 19.081192016601562,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-29T03:40:16.443851+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.499088287353516,
+      "lon": 19.052621841430664,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-29T03:40:16.445830+02:00",
+      "kulcs": "MUT890",
+      "rendszam": "MUT890",
+      "vehicle_id": "5943",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48554992675781,
+      "lon": 19.072757720947266,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-29T03:40:16.446513+02:00",
+      "kulcs": "415 062",
+      "rendszam": "415 062",
+      "vehicle_id": "945514150628",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.51084899902344,
+      "lon": 19.101869583129883,
+      "elozo_szoveg": "Óbuda",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
