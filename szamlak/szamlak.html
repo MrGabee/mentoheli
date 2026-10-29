@@ -487,6 +487,18 @@
   .lv-csatolmanyok { display: flex; flex-wrap: wrap; gap: 6px; }
   /* A széles céges táblákban a sor végi műveletek (törlés, NAV-párosítás,
      számlakép) mindig látszanak, vízszintes görgetés nélkül is. */
+  .lv-kezeles-sor { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; font-size: 13px; }
+  .lv-kezeles-sor select { padding: 6px 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); font: inherit; }
+  body.szerepkor-user .lv-kezeles-sor { display: none !important; }
+  .ceges-tabla td { vertical-align: middle; }
+  .ceges-muvelet-gomb { white-space: nowrap; border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 8px; padding: 6px 10px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .ceges-muvelet-gomb[aria-expanded="true"] { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
+  tr.ceges-reszlet > td { background: var(--bg); padding: 12px 14px; }
+  .ceges-reszlet-racs { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px 16px; }
+  .ceges-reszlet-mezo { min-width: 0; font-size: 13px; overflow-wrap: anywhere; }
+  .ceges-reszlet-cimke { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; }
+  .ceges-reszlet-gombok { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+  .ceges-reszlet-gombok select { max-width: 100%; }
   td.sor-vege, th.sor-vege { position: sticky; right: 0; background: var(--card); box-shadow: -6px 0 8px -6px rgba(0,0,0,.25); z-index: 1; }
   .lv-csat { position: relative; display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
   .lv-csat-nev { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 600; cursor: pointer; }
@@ -696,6 +708,15 @@
       <div class="lv-racs">
         <div class="lv-lista" id="lv-lista" role="list"></div>
         <article class="lv-olvaso" id="lv-olvaso" aria-live="polite"></article>
+      </div>
+      <div class="lv-kezeles-sor" id="lv-kezeles-sor">
+        <label for="lv-feldolgozott-kezeles">Mi legyen a feldolgozott (Drive-ra mentett) levelekkel a postafiókban?</label>
+        <select id="lv-feldolgozott-kezeles">
+          <option value="torles">Végleges törlés</option>
+          <option value="kuka">Áthelyezés a Kukába</option>
+          <option value="marad">Maradjon a postafiókban</option>
+        </select>
+        <span class="panel-statusz" id="lv-kezeles-statusz" style="margin:0;"></span>
       </div>
       <p class="panel-info" style="margin-top:12px;">Az Elküldött fül a rendszer által kiküldött összes levelet mutatja (értesítők, összesítők, NAV-emlékeztetők és a válaszaid), pontos szöveggel és címzettel. A Beérkezett fül a céges postafiókba érkezett leveleket mutatja, ahogy a figyelő a futásai során (20 percenként) beolvasta őket. A válasz a céges feladó-címről megy ki, a következő futáskor, vagy azonnal, ha a Beállításokban be van kapcsolva az azonnali indítás.</p>
     </div>
@@ -1314,6 +1335,63 @@
   // párosításban is részt vesz (ld. _nav_parosithato_rekordok() a
   // Python-oldalon), tehát egy kézzel kijavított mező ténylegesen javítja
   // a párosítás esélyét is, nem csak megjelenítési célú.
+  // ── Céges táblák: a sor végén egy "Műveletek" gomb, ami alatta lenyitja
+  // az alapból nem látszó oszlopokat és a sor műveleteit (minden
+  // képernyőméreten ugyanígy). Egy számla = egy <tbody> (fő sor + részlet
+  // sor), így a mező-kezelők a closest("tbody")-val mindkét sort elérik.
+  const cegesNyitottSorok = new Set();
+  function cegesMuveletGombHtml(id) {
+    const nyitva = cegesNyitottSorok.has(String(id));
+    return `<button type="button" class="ceges-muvelet-gomb" data-id="${escHtml(id)}" aria-expanded="${nyitva}">Műveletek ${nyitva ? "▴" : "▾"}</button>`;
+  }
+  function cegesSzamlaLinkekHtml(r) {
+    if (!r.drive_url) return "—";
+    return `<button type="button" class="drive-link" data-szamlakep="${escHtml(r.drive_url)}" data-szamlakep-cim="${escHtml((r.kuldo_nev || "") + (r.kinyert_szamlaszam ? " – " + r.kinyert_szamlaszam : ""))}" title="A számla képének megtekintése">👁 Megtekintés</button>`
+      + ` <a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>`;
+  }
+  function cegesSorCsoportHtml(id, foCellak, reszlet, muveletek, sorStilus) {
+    const nyitva = cegesNyitottSorok.has(String(id));
+    const mezok = reszlet.map(([cimke, ertek]) => `<div class="ceges-reszlet-mezo"><span class="ceges-reszlet-cimke">${cimke}</span><div>${ertek}</div></div>`).join("");
+    return `<tbody class="ceges-sor-csoport" data-id="${escHtml(id)}">
+      <tr style="${sorStilus}">${foCellak}</tr>
+      <tr class="ceges-reszlet"${nyitva ? "" : " hidden"}><td colspan="5"><div class="ceges-reszlet-racs">${mezok}</div>${muveletek}</td></tr>
+    </tbody>`;
+  }
+  document.addEventListener("click", (e) => {
+    const gomb = e.target.closest(".ceges-muvelet-gomb");
+    if (!gomb) return;
+    const csoport = gomb.closest("tbody.ceges-sor-csoport");
+    const reszletSor = csoport && csoport.querySelector("tr.ceges-reszlet");
+    if (!reszletSor) return;
+    const id = String(gomb.dataset.id);
+    const nyit = reszletSor.hidden;
+    reszletSor.hidden = !nyit;
+    if (nyit) cegesNyitottSorok.add(id); else cegesNyitottSorok.delete(id);
+    gomb.setAttribute("aria-expanded", String(nyit));
+    gomb.textContent = `Műveletek ${nyit ? "▴" : "▾"}`;
+  });
+
+  // A NAV-párosítás bontása: a mezők törlése, és a NAV-kulcs felvétele a
+  // rekord tiltólistájára (nav_tiltott_kulcsok), hogy a script ugyanezzel a
+  // tétellel ne párosítsa újra. A számla azonnal a párosítatlanok közé kerül.
+  async function cegesParositasBontasa(id, gomb) {
+    const r = cegesSzamlak.find(x => String(x.id) === String(id));
+    if (!r) return false;
+    const tiltott = Array.isArray(r.nav_tiltott_kulcsok) ? r.nav_tiltott_kulcsok.slice() : [];
+    if (r.nav_szamla_azonosito && !tiltott.includes(r.nav_szamla_azonosito)) tiltott.push(r.nav_szamla_azonosito);
+    if (gomb) gomb.disabled = true;
+    const friss = await cegesSorMezoinekMentese(id, {
+      nav_parositva: false, nav_szamla_azonosito: null, nav_szallito_nev: null, nav_osszeg: null,
+      nav_datum: null, nav_brutto_osszeg: null, nav_tiltott_kulcsok: tiltott,
+    });
+    if (!friss) { if (gomb) gomb.disabled = false; return false; }
+    cegesNyitottSorok.add(String(id));
+    cegesKartyakRenderelese(cegesSzamlak);
+    cegesTablaRenderelese(cegesSzamlak);
+    if (typeof levelekRenderelese === "function") { try { levelekRenderelese(); } catch (e) {} }
+    return true;
+  }
+
   function cegesTablaRenderelese(lista) {
     const hely = document.getElementById("ceges-tabla-hely");
     bankSzamitas();
@@ -1346,7 +1424,6 @@
     // minta, mint a lakossági tablaRenderelese()-nél a "Kör"/"✕" oszlopoknál.
     const csakOlvas = szerepkor !== "admin";
     const sorok = rendezett.map(r => {
-      const cellak = [];
       // A "forras_postafiok" mező CSAK az ettől a javítástól kezdve
       // feldolgozott/áthelyezett tételeknél van kitöltve - egy RÉGEBBI
       // rekordnál hiányzik, de ott a "kuldo_nev" (a javítás ELŐTTI
@@ -1363,59 +1440,55 @@
         ? (escHtml(r.kuldo_nev) || "—")
         : (escHtml(r.adoszam) || "Ismeretlen");
       const forrasMegjelenitett = vanForrasPostafiok ? r.forras_postafiok : (r.kuldo_nev || null);
-      cellak.push(csakOlvas
+      const id = escHtml(r.id);
+      const fo = [];
+      fo.push(csakOlvas
         ? `<td>${cegNevOlvasva}</td>`
-        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kuldo_nev" value="${escHtml(cegNevMezoErtek)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>`);
-      cellak.push(`<td style="color:var(--muted);font-size:12px;">${escHtml(forrasMegjelenitett) || "—"}</td>`);
-      cellak.push(`<td>${escHtml(r.targy) || "—"}</td>`);
-      cellak.push(`<td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>`);
-      cellak.push(csakOlvas
+        : `<td><input type="text" class="ceges-mezo-input" data-id="${id}" data-mezo="kuldo_nev" value="${escHtml(cegNevMezoErtek)}" placeholder="Cégnév" style="${mezoInputStyle}"></td>`);
+      fo.push(`<td style="white-space:nowrap;">${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>`);
+      fo.push(csakOlvas
         ? `<td>${escHtml(r.kinyert_szamlaszam) || "—"}</td>`
-        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_szamlaszam" value="${escHtml(r.kinyert_szamlaszam)}" placeholder="pl. AB-2026-123" style="${mezoInputStyle}"></td>`);
-      cellak.push(csakOlvas
+        : `<td><input type="text" class="ceges-mezo-input" data-id="${id}" data-mezo="kinyert_szamlaszam" value="${escHtml(r.kinyert_szamlaszam)}" placeholder="pl. AB-2026-123" style="${mezoInputStyle}"></td>`);
+      fo.push(csakOlvas
         ? `<td>${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "—" : r.kinyert_osszeg}</td>`
-        : `<td><input type="number" step="0.01" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="kinyert_osszeg" value="${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "" : r.kinyert_osszeg}" placeholder="Összeg" style="${mezoInputStyle}"></td>`);
-      cellak.push(csakOlvas
-        ? `<td>${(r.penznem || "HUF").toUpperCase() === "EUR" ? "€ (EUR)" : "Ft (HUF)"}</td>`
-        : `<td>
-          <select class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="penznem" title="Pénznem - a script best-effort felismeri (EUR-jel/'EUR' szó a szövegben), de itt kézzel is átállítható." style="${mezoInputStyle}">
+        : `<td><input type="number" step="0.01" class="ceges-mezo-input" data-id="${id}" data-mezo="kinyert_osszeg" value="${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "" : r.kinyert_osszeg}" placeholder="Összeg" style="${mezoInputStyle}"></td>`);
+      fo.push(`<td class="sor-vege">${cegesMuveletGombHtml(r.id)}</td>`);
+      const reszlet = [
+        ["Forrás / postafiók", escHtml(forrasMegjelenitett) || "—"],
+        ["Tárgy", escHtml(r.targy) || "—"],
+        ["Pénznem", csakOlvas
+          ? ((r.penznem || "HUF").toUpperCase() === "EUR" ? "€ (EUR)" : "Ft (HUF)")
+          : `<select class="ceges-mezo-input" data-id="${id}" data-mezo="penznem" title="Pénznem - a script best-effort felismeri (EUR-jel/'EUR' szó a szövegben), de itt kézzel is átállítható." style="${mezoInputStyle}">
             <option value="HUF" ${(r.penznem || "HUF").toUpperCase() === "HUF" ? "selected" : ""}>Ft (HUF)</option>
             <option value="EUR" ${(r.penznem || "HUF").toUpperCase() === "EUR" ? "selected" : ""}>€ (EUR)</option>
-          </select>
-        </td>`);
-      cellak.push(csakOlvas
-        ? `<td>${escHtml(r.adoszam) || "—"}</td>`
-        : `<td><input type="text" class="ceges-mezo-input" data-id="${escHtml(r.id)}" data-mezo="adoszam" value="${escHtml(r.adoszam)}" placeholder="12345678-1-42" style="${mezoInputStyle}"></td>`);
-      cellak.push(`<td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>`);
-      cellak.push(`<td>${r.nav_parositva
-        ? `<span style="color:var(--green);">✅ Párosítva</span>`
-          + (r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : "")
-        : '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'}</td>`);
-      cellak.push(`<td>${bankCellaHtml(r)}</td>`);
-      if (!csakOlvas) {
-        cellak.push(`<td class="sor-vege" style="min-width:230px;">
-          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
-            <button type="button" class="ceges-mentes-gomb" data-id="${escHtml(r.id)}" title="Elmenti a fenti mezőket, ha kézzel változtattál rajtuk.">💾 Mentés</button>
-            <button type="button" class="ceges-egyeztetes-gomb" data-id="${escHtml(r.id)}" title="Mentés NÉLKÜL megnézi, van-e egyező, még párosítatlan NAV-tétel a legutóbbi NAV-lekérdezésből, a mezőkben jelenleg látható értékek alapján.">🔍 Egyeztetés</button>
-            <button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>
+          </select>`],
+        ["Adószám", csakOlvas
+          ? (escHtml(r.adoszam) || "—")
+          : `<input type="text" class="ceges-mezo-input" data-id="${id}" data-mezo="adoszam" value="${escHtml(r.adoszam)}" placeholder="12345678-1-42" style="${mezoInputStyle}">`],
+        ["Számla", cegesSzamlaLinkekHtml(r)],
+        ["NAV-párosítás", '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'],
+        ["Bank", bankCellaHtml(r)],
+      ];
+      const muveletek = csakOlvas ? "" : `
+          <div class="ceges-reszlet-gombok">
+            <button type="button" class="ceges-mentes-gomb" data-id="${id}" title="Elmenti a mezőket, ha kézzel változtattál rajtuk.">💾 Mentés</button>
+            <button type="button" class="ceges-egyeztetes-gomb" data-id="${id}" title="Mentés NÉLKÜL megnézi, van-e egyező, még párosítatlan NAV-tétel a legutóbbi NAV-lekérdezésből, a mezőkben jelenleg látható értékek alapján.">🔍 Egyeztetés</button>
+            ${cegesKeziParositasSelectHtml(r)}
+            <button type="button" class="ceges-torles-gomb torles-gomb" data-id="${id}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕ Elrejtés</button>
           </div>
-          <div style="margin-top:6px;">${cegesKeziParositasSelectHtml(r)}</div>
-          <div class="ceges-egyeztetes-statusz" data-id="${escHtml(r.id)}" style="font-size:11px;margin-top:4px;"></div>
-        </td>`);
-      }
-      return `<tr>${cellak.join("")}</tr>`;
+          <div class="ceges-egyeztetes-statusz" data-id="${id}" style="font-size:12px;margin-top:6px;"></div>`;
+      return cegesSorCsoportHtml(r.id, fo.join(""), reszlet, muveletek, "");
     }).join("");
     const megjegyzes = csakOlvas
       ? '<p class="panel-info">Csak olvasási nézet - a mezők és a törlés admin-jogosultságot igényelnek.</p>'
       : '<p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>';
-    const fejlecVegek = csakOlvas ? "" : '<th class="sor-vege">Műveletek</th>';
     hely.innerHTML = `
       ${megjegyzes}
-      <table>
+      <table class="ceges-tabla">
         <thead>
-          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th>Bank</th>${fejlecVegek}</tr>
+          <tr><th>Eladó / cég</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th class="sor-vege">Műveletek</th></tr>
         </thead>
-        <tbody>${sorok}</tbody>
+        ${sorok}
       </table>
     `;
     hely.querySelectorAll(".ceges-mezo-input").forEach(input => {
@@ -1428,7 +1501,7 @@
         // ba) illesztette be a "[[NAVKOD|...]]" kódot, itt, kilépéskor
         // azonnal felismerjük, és a sor ÖSSZES érintett mezőjét egyszerre
         // kitöltjük/párosítjuk - nem csak ezt az egyet.
-        const tr = input.closest("tr");
+        const tr = input.closest("tbody.ceges-sor-csoport") || input.closest("tr");
         const navKodMezok = tr ? _cegesSorNavKodAlkalmazasa(tr, nyersErtek) : null;
         if (navKodMezok) {
           tr.querySelectorAll(".ceges-mezo-input").forEach(el => { el.disabled = true; });
@@ -1503,7 +1576,7 @@
   async function cegesKeziParositas(sel) {
     if (sel.value === "") return;
     const t = (((legutobbiAdat || {}).nav_csak_navban) || [])[Number(sel.value)];
-    const tr = sel.closest("tr");
+    const tr = sel.closest("tbody.ceges-sor-csoport") || sel.closest("tr");
     if (!t || !tr) return;
     const mezok = _cegesSorNavKodAlkalmazasa(tr, _navTetelKodja(t));
     if (!mezok) return;
@@ -1545,32 +1618,39 @@
       const vanForrasPostafiok = !!r.forras_postafiok;
       const cegNev = vanForrasPostafiok ? (escHtml(r.kuldo_nev) || "—") : (escHtml(r.adoszam) || "Ismeretlen");
       const forras = escHtml(vanForrasPostafiok ? r.forras_postafiok : (r.kuldo_nev || null)) || "—";
-      const kepGomb = r.drive_url ? `<button type="button" class="drive-link" data-szamlakep="${escHtml(r.drive_url)}" data-szamlakep-cim="${escHtml((r.kuldo_nev || "") + (r.kinyert_szamlaszam ? " – " + r.kinyert_szamlaszam : ""))}" title="A számla képének megtekintése">👁 Számla</button>` : "";
-      const vegoszlop = `<td class="sor-vege" style="white-space:nowrap;">${kepGomb}${csakOlvas ? "" : ` <button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>`}</td>`;
-      return `<tr style="background:var(--green-soft);">
-        <td>${cegNev}</td>
-        <td style="color:var(--muted);font-size:12px;">${forras}</td>
-        <td>${escHtml(r.targy) || "—"}</td>
-        <td>${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
+      const id = escHtml(r.id);
+      const fo = `<td>${cegNev}</td>
+        <td style="white-space:nowrap;">${escHtml((r.erkezett || "").slice(0, 10)) || "ismeretlen"}</td>
         <td>${escHtml(r.kinyert_szamlaszam) || "—"}</td>
         <td>${r.kinyert_osszeg === null || r.kinyert_osszeg === undefined ? "—" : r.kinyert_osszeg}</td>
-        <td>${(r.penznem || "HUF").toUpperCase() === "EUR" ? "€ (EUR)" : "Ft (HUF)"}</td>
-        <td>${escHtml(r.adoszam) || "—"}</td>
-        <td>${r.drive_url ? `<a class="drive-link" href="${escHtml(r.drive_url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Drive</a>` : "—"}</td>
-        <td><span style="color:var(--green);">✅ Párosítva</span>${r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : ""}</td>
-        <td>${bankCellaHtml(r)}</td>
-        ${vegoszlop}
-      </tr>`;
+        <td class="sor-vege" style="white-space:nowrap;">${r.drive_url ? `<button type="button" class="drive-link" data-szamlakep="${escHtml(r.drive_url)}" data-szamlakep-cim="${escHtml((r.kuldo_nev || "") + (r.kinyert_szamlaszam ? " – " + r.kinyert_szamlaszam : ""))}" title="A számla képének megtekintése">👁</button> ` : ""}${cegesMuveletGombHtml(r.id)}</td>`;
+      const reszlet = [
+        ["Forrás / postafiók", forras],
+        ["Tárgy", escHtml(r.targy) || "—"],
+        ["Pénznem", (r.penznem || "HUF").toUpperCase() === "EUR" ? "€ (EUR)" : "Ft (HUF)"],
+        ["Adószám", escHtml(r.adoszam) || "—"],
+        ["Számla", cegesSzamlaLinkekHtml(r)],
+        ["NAV-párosítás", `<span style="color:var(--green);">✅ Párosítva</span>${r.nav_szallito_nev ? " · " + escHtml(r.nav_szallito_nev) : ""}${r.nav_osszeg ? `<br><span style="color:var(--muted);font-size:12px;">${forint(Number(r.nav_osszeg))}${r.nav_datum ? ", " + escHtml(r.nav_datum.slice(0, 10)) : ""}</span>` : ""}`],
+        ["Bank", bankCellaHtml(r)],
+      ];
+      const muveletek = csakOlvas ? "" : `
+          <div class="ceges-reszlet-gombok">
+            <button type="button" class="ceges-parositas-bontas-gomb" data-id="${id}" title="Megszünteti a NAV-párosítást: a számla azonnal visszakerül a párosítatlanok közé, és a script ezzel a NAV-tétellel többé nem párosítja újra.">🔓 Párosítás bontása</button>
+            <button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${id}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕ Elrejtés</button>
+          </div>`;
+      return cegesSorCsoportHtml(r.id, fo, reszlet, muveletek, "background:var(--green-soft);");
     }).join("");
-    const fejlecVege = '<th class="sor-vege"></th>';
     hely.innerHTML = `
-      <table>
+      <table class="ceges-tabla">
         <thead>
-          <tr><th>Eladó / cég</th><th>Forrás / postafiók</th><th>Tárgy</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th>Pénznem</th><th>Adószám</th><th>Számla (Drive)</th><th>NAV-párosítás</th><th>Bank</th>${fejlecVege}</tr>
+          <tr><th>Eladó / cég</th><th>Érkezett</th><th>Számlaszám</th><th>Összeg</th><th class="sor-vege">Műveletek</th></tr>
         </thead>
-        <tbody>${sorok}</tbody>
+        ${sorok}
       </table>
     `;
+    hely.querySelectorAll(".ceges-parositas-bontas-gomb").forEach(btn => {
+      btn.addEventListener("click", () => cegesParositasBontasa(btn.dataset.id, btn));
+    });
     hely.querySelectorAll(".ceges-parositott-torles-gomb").forEach(btn => {
       btn.addEventListener("click", () => torlesVegrehajtasaCeges(btn.dataset.id));
     });
@@ -3150,9 +3230,33 @@
       .sort((a, b) => String(a.letrehozva || "").localeCompare(String(b.letrehozva || "")));
   }
 
+  // A feldolgozott levelek kezelése (ld. szamla_figyelo.py
+  // "ceges_feldolgozott_level_kezeles"): végleges törlés, Kuka vagy marad.
+  document.addEventListener("change", async (e) => {
+    if (!e.target || e.target.id !== "lv-feldolgozott-kezeles") return;
+    const sel = e.target;
+    const statusz = document.getElementById("lv-kezeles-statusz");
+    sel.disabled = true;
+    try {
+      await apiHivas("set_meta", { kulcs: "ceges_feldolgozott_level_kezeles", ertek: sel.value });
+      legutobbiAdat.ceges_feldolgozott_level_kezeles = sel.value;
+      statusz.className = "panel-statusz siker";
+      statusz.textContent = "✅ Elmentve - a következő futástól így kezeli.";
+    } catch (err) {
+      statusz.className = "panel-statusz hiba";
+      statusz.textContent = "❌ A mentés nem sikerült - próbáld újra.";
+      sel.value = (legutobbiAdat && legutobbiAdat.ceges_feldolgozott_level_kezeles) || "torles";
+    }
+    sel.disabled = false;
+  });
+
   function levelekRenderelese() {
     const listaHely = document.getElementById("lv-lista");
     if (!listaHely) return;
+    const kezelesSel = document.getElementById("lv-feldolgozott-kezeles");
+    if (kezelesSel && document.activeElement !== kezelesSel) {
+      kezelesSel.value = (legutobbiAdat && legutobbiAdat.ceges_feldolgozott_level_kezeles) || "torles";
+    }
     const levelek = Object.values(lvObjektum(legutobbiAdat && legutobbiAdat.ceges_bejovo_levelek))
       .sort((a, b) => String(b.datum || b.naplozva || "").localeCompare(String(a.datum || a.naplozva || "")));
     const omSzam = document.getElementById("om-szam-levelek");
@@ -3210,7 +3314,7 @@
   // és a ki nem került csatolmányoknál áthelyezés a párosítatlanok közé
   // vagy elvetés. A kérést a "ceges_csatolmany_muveletek"-be írjuk, a
   // script a következő futáskor hajtja végre.
-  const LV_CSAT_ALLAPOT = { mentve: ["ok", "bekerült"], duplikatum: ["sor", "duplikátum"], torolt: ["hiba", "korábban törölt"], elvetve: ["nincspdf", "elvetve"] };
+  const LV_CSAT_ALLAPOT = { mentve: ["ok", "bekerült"], duplikatum: ["sor", "duplikátum"], torolt: ["hiba", "korábban törölt"], archivalt: ["hiba", "törölve"], elvetve: ["nincspdf", "elvetve"] };
   // A régebben feldolgozott (és a postafiókból már törölt) levelek
   // csatolmányainál nincs mentett link - ilyenkor a céges számlák között
   // keressük meg: a Drive-fájlnévben benne van a csatolmány neve, és a
@@ -3222,9 +3326,14 @@
   function lvCsatolmanyRekordja(l, nev) {
     const t = _lvFajlnevTiszta(nev);
     if (!t) return null;
-    return cegesSzamlak.concat(cegesSzamlakBizonytalan || []).find(r =>
-      String(r.drive_fajlnev || "").toLowerCase().includes(t)
-      && (r.targy === l.targy || r.erkezett === l.datum || (r["feladó_email"] && r["feladó_email"] === l["feladó_email"]))) || null;
+    const rekordok = cegesSzamlak.concat(cegesSzamlakBizonytalan || []).filter(r => r.drive_url);
+    const nevSzerint = rekordok.find(r =>
+      String(r.drive_fajlnev || "").toLowerCase().includes("_" + t + "_")
+      && (r.targy === l.targy || r.erkezett === l.datum || (r["feladó_email"] && r["feladó_email"] === l["feladó_email"])));
+    if (nevSzerint) return nevSzerint;
+    if ((l.pdf_nevek || []).length !== 1) return null;
+    const szigoru = rekordok.filter(r => r.targy === l.targy && r.erkezett === l.datum);
+    return szigoru.length === 1 ? szigoru[0] : null;
   }
   function lvCsatolmanyokHtml(l) {
     const nevek = l.pdf_nevek || [];
@@ -3246,7 +3355,10 @@
       const allapot = allapotok[String(i)];
       const fuggo = Object.entries(kerelmek).find(([kid, k]) => k && k.level_id === l.id && String(k.idx) === String(i) && !eredmenyek[kid]);
       const hibas = Object.entries(kerelmek).filter(([kid, k]) => k && k.level_id === l.id && String(k.idx) === String(i) && (eredmenyek[kid] || {}).statusz === "hiba").map(([kid]) => eredmenyek[kid].hiba).pop();
-      const [cimkeOsztaly, cimkeSzoveg] = LV_CSAT_ALLAPOT[allapot] || ["", url ? "" : "feldolgozás alatt"];
+      // Állapot nélküli, link nélküli csatolmány: friss levélnél még
+      // feldolgozás alatt van, a régebbinél nincs nyoma a számlák között.
+      const regi = !allapot && !url && (Date.now() - Date.parse(l.naplozva || l.datum || "")) > 3 * 3600 * 1000;
+      const [cimkeOsztaly, cimkeSzoveg] = LV_CSAT_ALLAPOT[allapot] || ["", url ? "" : (regi ? "nem található" : "feldolgozás alatt")];
       const tetelek = [];
       if (url) {
         tetelek.push(`<button type="button" data-szamlakep="${escHtml(url)}" data-szamlakep-cim="${escHtml(nev)}">👁 Megtekintés</button>`);
@@ -3256,9 +3368,15 @@
         tetelek.push(`<button type="button" data-lv-csat-muvelet="parositatlanba" data-idx="${i}">➕ Áthelyezés a párosítatlanok közé</button>`);
         if (allapot !== "elvetve") tetelek.push(`<button type="button" data-lv-csat-muvelet="elvet" data-idx="${i}">🚫 Elvetés (nem számla)</button>`);
       }
+      const metaCid = lvObjektum(lvObjektum(l.pdf_meta)[String(i)]).cid;
+      const parRekord = (allapot === "mentve" || (!allapot && url))
+        ? cegesSzamlak.find(r => r.nav_parositva && ((metaCid && r.id === metaCid) || (url && r.drive_url === url))) : null;
+      if (admin && parRekord) {
+        tetelek.push(`<button type="button" data-lv-csat-bontas="${escHtml(parRekord.id)}">🔓 NAV-párosítás bontása</button>`);
+      }
       const hol = lvCsatolmanyHelye(l, i, url, allapot);
       if (hol) tetelek.unshift(`<span class="lv-csat-hol">${hol}</span>`);
-      if (!tetelek.length) tetelek.push(`<span class="lv-csat-ures">${url ? "" : "Még nincs a Drive-on - a következő futás feltölti."}</span>`);
+      if (!tetelek.length) tetelek.push(`<span class="lv-csat-ures">${url ? "" : (regi ? "Ez a csatolmány nem található a céges számlák között (a levelet még a csatolmány-követés előtt dolgozta fel a figyelő). Ha kell, töltsd fel kézzel." : "Még nincs a Drive-on - a következő futás feltölti.")}</span>`);
       return `<span class="lv-csat" tabindex="0">
           <span class="lv-csat-nev">📎 ${escHtml(nev)} ▾</span>
           ${cimkeSzoveg ? `<span class="lv-cimke ${cimkeOsztaly}">${escHtml(cimkeSzoveg)}</span>` : ""}
@@ -3285,6 +3403,7 @@
       const t = osszes.find(x => x.r.id === meta.duplikatum_id);
       return `📂 Feldolgozatlan mappa (Drive)<br>🔁 Ugyanez a számla már szerepel: ${t ? leiras(t) : "a céges számlák között"}`;
     }
+    if (allapot === "archivalt") return `✅ Feldolgozva, de azóta törölve: ${escHtml(meta.kuldo_nev || "ismeretlen cég")}${meta.kinyert_szamlaszam ? " · " + escHtml(meta.kinyert_szamlaszam) : ""}<br>🗑️ A Törölt számlák között visszaállítható`;
     if (allapot === "torolt") return "📂 Feldolgozatlan mappa (Drive)<br>🗑️ Egy korábban törölt számlával egyezik";
     if (allapot === "elvetve") return "🚫 Elvetve (nem számla) · Feldolgozatlan mappa (Drive)";
     return "";
@@ -3345,6 +3464,9 @@
     hely.querySelectorAll("[data-lv-csat-muvelet]").forEach(b => b.addEventListener("click", () => {
       b.disabled = true;
       lvCsatolmanyMuvelet(l, Number(b.dataset.idx), b.dataset.lvCsatMuvelet);
+    }));
+    hely.querySelectorAll("[data-lv-csat-bontas]").forEach(b => b.addEventListener("click", async () => {
+      if (await cegesParositasBontasa(b.dataset.lvCsatBontas, b)) levelOlvasoRenderelese(l);
     }));
     const valaszGomb = document.getElementById("lv-valasz-gomb");
     if (valaszGomb) valaszGomb.addEventListener("click", () => {
@@ -5015,7 +5137,7 @@
   // (cegesSorEgyeztetese() lentebb).
   async function cegesSorMentese(id) {
     const gomb = document.querySelector(`.ceges-mentes-gomb[data-id="${CSS.escape(id)}"]`);
-    const tr = gomb ? gomb.closest("tr") : null;
+    const tr = gomb ? (gomb.closest("tbody.ceges-sor-csoport") || gomb.closest("tr")) : null;
     if (!tr) return;
     const statuszHelyNavKod = document.querySelector(`.ceges-egyeztetes-statusz[data-id="${CSS.escape(id)}"]`);
     // ld. a blur-eseménykezelő (cegesTablaRenderelese() fent) kommentje -
@@ -5103,7 +5225,7 @@
   // menti a mezőket.
   function cegesSorEgyeztetese(id) {
     const gomb = document.querySelector(`.ceges-egyeztetes-gomb[data-id="${CSS.escape(id)}"]`);
-    const tr = gomb ? gomb.closest("tr") : null;
+    const tr = gomb ? (gomb.closest("tbody.ceges-sor-csoport") || gomb.closest("tr")) : null;
     if (!tr) return;
     const eredetiRekord = cegesSzamlak.find(r => String(r.id) === String(id)) || {};
     const ertekek = {};
