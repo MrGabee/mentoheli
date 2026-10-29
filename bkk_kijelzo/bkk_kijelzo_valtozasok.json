@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T01:02:25.108278+02:00",
+  "frissitve": "2026-10-30T01:02:59.592412+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:09:53.182112+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.5178108215332,
-      "lon": 19.106515884399414,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-29T15:09:53.182145+02:00",
-      "kulcs": "T9135",
-      "rendszam": "T9135",
-      "vehicle_id": "7874",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51398849487305,
-      "lon": 19.049381256103516,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-29T15:09:53.182292+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.478092193603516,
-      "lon": 19.045621871948242,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Citadella ► Sánc utca"
-    },
     {
       "idopont": "2026-10-29T15:09:53.182401+02:00",
       "kulcs": "T8118",
@@ -260000,6 +259961,45 @@
       "lon": 19.159259796142578,
       "elozo_szoveg": "Soroksár, IKEA áruház",
       "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-10-30T01:02:59.489436+02:00",
+      "kulcs": "AAGL275",
+      "rendszam": "AAGL275",
+      "vehicle_id": "275",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45075225830078,
+      "lon": 18.904905319213867,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-30T01:02:59.489701+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.565940856933594,
+      "lon": 19.0230655670166,
+      "elozo_szoveg": "Nagybányai út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-30T01:02:59.490067+02:00",
+      "kulcs": "PKN616",
+      "rendszam": "PKN616",
+      "vehicle_id": "7205",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52353286743164,
+      "lon": 18.992918014526367,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
     }
   ]
 }
