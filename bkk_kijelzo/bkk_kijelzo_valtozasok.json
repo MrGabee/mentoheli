@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-29T04:02:12.542739+02:00",
+  "frissitve": "2026-10-29T04:02:45.175805+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T12:55:50.393429+02:00",
-      "kulcs": "T9104",
-      "rendszam": "T9104",
-      "vehicle_id": "7351",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.50129318237305,
-      "lon": 19.10770606994629,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-28T12:55:50.394001+02:00",
-      "kulcs": "AADI576",
-      "rendszam": "AADI576",
-      "vehicle_id": "75",
-      "vehicle_label": "Nagybányai út",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.506683349609375,
-      "lon": 19.038867950439453,
-      "elozo_szoveg": "Batthyány tér M H",
-      "uj_szoveg": "Nagybányai út"
-    },
-    {
-      "idopont": "2026-10-28T12:55:50.394291+02:00",
-      "kulcs": "SKR727",
-      "rendszam": "SKR727",
-      "vehicle_id": "7676",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4327278137207,
-      "lon": 19.261577606201172,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-10-28T12:55:50.394402+02:00",
       "kulcs": "SKR805",
@@ -260000,6 +259961,45 @@
       "lon": 19.10011100769043,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-29T04:02:45.081704+02:00",
+      "kulcs": "NWB357",
+      "rendszam": "NWB357",
+      "vehicle_id": "6537",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5076789855957,
+      "lon": 19.0239200592041,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-29T04:02:45.081890+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52354431152344,
+      "lon": 18.992895126342773,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-29T04:02:45.082475+02:00",
+      "kulcs": "AOIM031",
+      "rendszam": "AOIM031",
+      "vehicle_id": "951",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.510196685791016,
+      "lon": 19.09715461730957,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
