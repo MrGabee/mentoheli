@@ -113,6 +113,7 @@ footer a:hover{text-decoration:underline}
 .c-blue{background:linear-gradient(135deg,#3aa0ff,#2b6bff)}
 .c-green{background:linear-gradient(135deg,#4cd964,#22a843)}
 .c-teal{background:linear-gradient(135deg,#2ee6d6,#12a39a)}
+.c-viber{background:linear-gradient(135deg,#8f5db7,#665cac)}
 .label{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 </style>
 </head>
@@ -188,6 +189,7 @@ footer a:hover{text-decoration:underline}
     <div class="chan">
       <a href="https://m.me/104411308403346" target="_blank" rel="noopener"><span class="ci c-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C7 3 3 6.7 3 11.3c0 2.6 1.3 4.9 3.3 6.4V21l3-1.7c.9.3 1.8.4 2.7.4 5 0 9-3.7 9-8.3S17 3 12 3z"/><path d="m7 13 3.5-3.5 2.5 2.5 4-4"/></svg></span><span class="t"><small>Messenger</small><b>Üzenet a Facebook-oldalnak</b></span><i aria-hidden="true">→</i></a>
       <a href="https://wa.me/36707540254" target="_blank" rel="noopener"><span class="ci c-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.4-4A8 8 0 1 1 8.2 19z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2z"/></svg></span><span class="t"><small>WhatsApp</small><b>+36 70 754 0254</b></span><i aria-hidden="true">→</i></a>
+      <a href="viber://chat?number=%2B36707540254"><span class="ci c-viber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c5 0 8 2.5 8 7.5S17 18 12 18l-4 3v-3.5C5.5 16.5 4 14 4 10.5 4 5.5 7 3 12 3z"/><path d="M9.5 8.5c.3 2.4 1.6 3.7 4 4l1-1.2 1.6.8-.6 1.6c-3.5-.2-6.2-2.9-6.4-6.4l1.6-.6.8 1.6z"/></svg></span><span class="t"><small>Viber</small><b>+36 70 754 0254</b></span><i aria-hidden="true">→</i></a>
       <a href="mailto:olvaso@mrgabee.hu"><span class="ci c-teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="t"><small>E-mail</small><b>olvaso@mrgabee.hu</b></span><i aria-hidden="true">→</i></a>
     </div>
     <p class="hint">A beküldött anyagokat névtelenül teszem ki, a durva szavakat finomítom.</p>
