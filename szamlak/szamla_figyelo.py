@@ -1203,6 +1203,13 @@ def _allapot_alapertekek() -> dict:
         "ceges_pdf_nelkuli_uidok": {},
         # Bérlői határidő-emlékeztető: rid -> küldés dátuma, CSAK a script írja.
         "kor_emlekezteto_kuldve": {},
+        # Ezek is dict/list típusúak - alapérték nélkül egy üresen mentett
+        # dict listaként ("[]") jönne vissza, és a futás elszállna (ld.
+        # VÉDŐHÁLÓ lent) - így mentés nélkül minden futás újraküldött.
+        "kor_lejart_kuldve": {},
+        "szamlakeres_naplo": {},
+        "ceges_kezi_feltoltes_eredmenyek": {},
+        "dijnet_pdf_igazolt": [],
         # Ld. "CÉGES LEVELEK - BEÉRKEZETT LEVELEK NAPLÓJA ÉS VÁLASZ" szekció.
         # A naplót és az eredményeket CSAK a script írja, a válasz-kérelmeket
         # CSAK a dashboard - így a futás végi mentés sosem írja felül a
@@ -1855,6 +1862,17 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
             if c.strip().lower() not in bejegyzes["cimek"]:
                 bejegyzes["cimek"].append(c.strip().lower())
         bejegyzes["ido"] = magyar_ido().isoformat()
+        if DRY_RUN:
+            return
+        # Azonnal mentjük (nem csak a futás végén): ha a futás később
+        # elszáll, a következő futás akkor is tudja, hogy ez már kiment -
+        # különben minden futás újra elküldené ugyanazt.
+        try:
+            hatar = (magyar_ido() - timedelta(days=ESEMENY_MEGORZES_NAP)).isoformat()
+            _api_hivas("set_meta", {"kulcs": "esemeny_cimzettek", "ertek": {
+                k: v for k, v in _ESEMENY_CIMZETTEK.items() if str(v.get("ido") or "") >= hatar}})
+        except Exception as hiba:
+            print(f"  ⚠️  Az esemény-napló azonnali mentése nem sikerült: {type(hiba).__name__}")
 
     if DRY_RUN:
         csatolmany_nevek = [fajlnev for fajlnev, _ in (csatolmanyok or [])]
@@ -2256,6 +2274,8 @@ KOR_LEJART_ORAK = (8, 20)       # csak napközben
 
 def kor_lejart_ertesito_kuldese(allapot: dict, szamlak: dict, statisztika: dict):
     kuldve = allapot.setdefault("kor_lejart_kuldve", {})
+    if not isinstance(kuldve, dict):
+        kuldve = allapot["kor_lejart_kuldve"] = {}
     for rid in [r for r in kuldve if r not in szamlak or szamlak[r].get("fizetve")]:
         del kuldve[rid]
     if EMAIL_KIKAPCSOLVA or not (KOR_LEJART_ORAK[0] <= magyar_ido().hour < KOR_LEJART_ORAK[1]):
