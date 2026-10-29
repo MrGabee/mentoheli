@@ -151,6 +151,7 @@ import copy
 import time
 import base64
 import hashlib
+import zipfile
 import hmac
 import secrets
 from urllib.parse import quote as _url_quote
@@ -1221,6 +1222,13 @@ def _allapot_alapertekek() -> dict:
         "nav_emlekezteto_felado": None,
         "nav_kozuzemi_kereses": [],
         "nav_kozuzemi_kereses_eredmeny": {},
+        # Ld. "KÖNYVELŐI SZÁMLACSOMAG" - a kérelmet, a könyvelő nevét és a
+        # Drive-letöltés kapcsolót a dashboard írja, az eredményt a script.
+        "konyvelo_nev": "",
+        "konyvelo_csomag_kerelem": None,
+        "konyvelo_csomag_eredmeny": {},
+        "drive_letoltes_be": False,
+        "konyvelo_max_email_mb": None,
     }
 
 
@@ -1869,7 +1877,7 @@ def email_kuldes(targy, html_torzs, csatolmanyok=None, cimzett=None, kategoria="
     for fajlnev, tartalom in (csatolmanyok or []):
         if not tartalom:
             continue
-        resz = MIMEApplication(tartalom, _subtype="pdf")
+        resz = MIMEApplication(tartalom, _subtype="zip" if fajlnev.lower().endswith(".zip") else "pdf")
         resz.add_header("Content-Disposition", "attachment", filename=fajlnev)
         msg.attach(resz)
 
@@ -6214,6 +6222,309 @@ def nav_szamla_parositas(allapot: dict):
           f"még nem érkezett meg emailben, vagy nem egy figyelt postafiókba jött).")
 
 
+
+# ════════════════════════════════════════════
+#  🧹  CÉGES DUPLIKÁTUMOK (párosított + nem párosított példány)
+# ════════════════════════════════════════════
+# A felhasználó kérésére (2026-10-29): ha ugyanaz a számla kétszer van a
+# Céges listában - egyszer NAV-párosítva, egyszer párosítatlanul (pl.
+# emailből is beérkezett, és kézzel is feltöltötték egy NAV-tételhez) -,
+# a párosítatlan példányt eltávolítjuk. Visszaállíthatóan: a "Törölt
+# számlák" archívumba kerül, ugyanúgy, mint a dashboard "✕" gombjánál.
+# Egyezésnek számít: azonos tartalmi ujjlenyomat, VAGY azonos számlaszám
+# (a NAV-tétel számlaszámával is összevetve), VAGY azonos küldő + azonos
+# összeg legfeljebb 7 nap eltéréssel.
+def _ceges_szoveg_norm(ertek) -> str:
+    return re.sub(r"[^0-9A-ZÁÉÍÓÖŐÚÜŰ]", "", str(ertek or "").upper())
+
+
+def ceges_duplikatumok_megszuntetese(allapot: dict):
+    ceges = allapot.get("ceges_szamlak") or {}
+    parositott = [(cid, r) for cid, r in ceges.items() if r.get("nav_parositva")]
+    if not parositott:
+        return
+
+    def _datum(r):
+        try:
+            return date.fromisoformat(str(r.get("nav_datum") or r.get("erkezett") or "")[:10])
+        except ValueError:
+            return None
+
+    def _osszegek(r):
+        return {round(float(v)) for v in (r.get("kinyert_osszeg"), r.get("nav_brutto_osszeg"))
+                if isinstance(v, (int, float)) or (isinstance(v, str) and re.fullmatch(r"-?\d+(\.\d+)?", v))}
+
+    torlendo = {}
+    for cid, r in ceges.items():
+        if r.get("nav_parositva"):
+            continue
+        ujj = r.get("tartalmi_ujjlenyomat")
+        szsz = _szamlaszam_alfanum(r.get("kinyert_szamlaszam"))
+        kuldo = _ceges_szoveg_norm(r.get("kuldo_nev"))
+        osszegek = _osszegek(r)
+        d = _datum(r)
+        for pid, p in parositott:
+            if pid == cid:
+                continue
+            if ujj and ujj == p.get("tartalmi_ujjlenyomat"):
+                torlendo[cid] = pid
+                break
+            p_szamok = {_szamlaszam_alfanum(p.get("kinyert_szamlaszam")),
+                        _szamlaszam_alfanum(str(p.get("nav_szamla_azonosito") or "").split("|")[-1])} - {""}
+            if len(szsz) >= 5 and szsz in p_szamok:
+                torlendo[cid] = pid
+                break
+            pd = _datum(p)
+            if (kuldo and kuldo == _ceges_szoveg_norm(p.get("kuldo_nev")) and osszegek & _osszegek(p)
+                    and d and pd and abs((d - pd).days) <= 7):
+                torlendo[cid] = pid
+                break
+    if not torlendo:
+        return
+    archivum = allapot.setdefault("torolt_szamlak_archivum", {})
+    for cid, pid in torlendo.items():
+        rekord = ceges.pop(cid)
+        archivum[f"ceges_szamlak:{cid}"] = {
+            "kollekcio": "ceges_szamlak",
+            "eredeti_id": cid,
+            "rekord": rekord,
+            "torolve_amikor": magyar_ido().isoformat(),
+            "ok": f"duplikátum (a NAV-párosított példány: {pid})",
+        }
+    print(f"  🧹 Céges duplikátumok: {len(torlendo)} db párosítatlan példány eltávolítva (a NAV-párosított "
+          f"példány megmaradt; a Törölt számlák között visszaállítható).")
+
+
+# ════════════════════════════════════════════
+#  📦  KÖNYVELŐI SZÁMLACSOMAG (ZIP emailben)
+# ════════════════════════════════════════════
+# A dashboard "Könyvelő" menüpontjának gombja a "konyvelo_csomag_kerelem"
+# meta-kulcsba ír egy kérelmet ({id, ido, bank_parositasok}) - a
+# bank-párosítás (OTP) CSAK a dashboardon számolódik, ezért a gomb
+# megnyomásakor annak pillanatképét is átadja. A script a következő
+# futáskor összeállítja a ZIP-et, elküldi a könyvelőnek, és az eredményt a
+# "konyvelo_csomag_eredmeny" kulcsba írja (ezt csak a script írja).
+#
+# A közüzemi PDF-ek az adatbázisból jönnek. A céges PDF-ek csak a Drive-on
+# vannak: ha a dashboardon be van kapcsolva a "drive_letoltes_be", a Drive
+# Web App "letoltes" műveletével töltjük le őket, egyébként (vagy ha a
+# letöltés nem sikerül) a csomagban a Drive-linkjük szerepel.
+KONYVELO_EMAIL_ALAP_MB = 20  # ha a dashboardon nincs megadva méretkorlát
+
+
+def _drive_zip_feltoltese(fajlnev: str, zip_bajtok: bytes):
+    """A ZIP feltöltése a Drive Web App-pal (ugyanaz a hívás, mint a
+    PDF-eknél, a "Könyvelő" mappába) - a megosztási linket adja vissza,
+    vagy None-t hiba esetén."""
+    if not (SZAMLA_DRIVE_WEBAPP_URL and SZAMLA_DRIVE_WEBAPP_TOKEN):
+        return None
+    try:
+        valasz = requests.post(SZAMLA_DRIVE_WEBAPP_URL, json={
+            "token": SZAMLA_DRIVE_WEBAPP_TOKEN, "forras": "Könyvelő", "szolgaltato_nev": "",
+            "fajlnev": fajlnev, "pdf_base64": base64.b64encode(zip_bajtok).decode("ascii"),
+        }, timeout=120).json()
+    except Exception:
+        print("  ⚠️  Könyvelői ZIP: a Drive-feltöltés sikertelen (hálózati hiba).")
+        return None
+    if isinstance(valasz, dict) and valasz.get("ok") and valasz.get("url"):
+        return valasz["url"]
+    print("  ⚠️  Könyvelői ZIP: a Drive Web App hibát jelzett vagy nem adott linket.")
+    return None
+
+
+def _zip_nev(szoveg: str, max_hossz: int = 80) -> str:
+    import unicodedata
+    nyers = "".join(ch for ch in unicodedata.normalize("NFD", str(szoveg or ""))
+                    if not unicodedata.combining(ch))
+    tiszta = re.sub(r"[^A-Za-z0-9._ -]+", "_", nyers).strip(" ._") or "egyeb"
+    return tiszta[:max_hossz]
+
+
+def _drive_fajl_id(url: str):
+    talalat = re.search(r"/d/([A-Za-z0-9_-]{10,})", url or "") or re.search(r"[?&]id=([A-Za-z0-9_-]{10,})", url or "")
+    return talalat.group(1) if talalat else None
+
+
+def _drive_pdf_letoltese(drive_url: str):
+    fid = _drive_fajl_id(drive_url)
+    if not (fid and SZAMLA_DRIVE_WEBAPP_URL and SZAMLA_DRIVE_WEBAPP_TOKEN):
+        return None
+    try:
+        valasz = requests.post(SZAMLA_DRIVE_WEBAPP_URL,
+                               json={"token": SZAMLA_DRIVE_WEBAPP_TOKEN, "muvelet": "letoltes", "file_id": fid},
+                               timeout=30).json()
+        if isinstance(valasz, dict) and valasz.get("ok") and valasz.get("pdf_base64"):
+            adat = base64.b64decode(valasz["pdf_base64"])
+            return adat if adat[:5] == b"%PDF-" else None
+    except Exception:
+        pass
+    return None
+
+
+def _konyvelo_email_html(nev: str, statisztika: dict, link: str = None) -> str:
+    megszolitas = f"Kedves {_esc(nev)}!" if nev else "Kedves Könyvelő!"
+    if link:
+        eros, _ = LEVEL_SZINEK["kek"]
+        bevezeto = (_lv_bekezdes("A számlákat egy tömörített (ZIP) fájlban küldjük. A fájl mérete miatt nem "
+                                 "csatoltuk, hanem a Google Drive-ról töltheti le:")
+                    + f'<p style="margin:0 0 16px;"><a href="{_esc(link)}" style="display:inline-block;padding:11px 20px;'
+                      f'border-radius:9px;background:{eros};color:#ffffff;text-decoration:none;font-weight:700;'
+                      f'font-size:14px;font-family:{_LV_BETU};">⬇️ ZIP letöltése a Drive-ról</a></p>'
+                    + _lv_bekezdes(f'Ha a gomb nem működik: <a href="{_esc(link)}">{_esc(link)}</a>'))
+    else:
+        bevezeto = _lv_bekezdes("Csatolva küldjük a számlákat egy tömörített (ZIP) fájlban.")
+    tartalom = (
+        _lv_bekezdes(megszolitas)
+        + bevezeto
+        + _lv_bekezdes("<strong>A ZIP felépítése:</strong>")
+        + _lv_bekezdes("📁 <strong>1_Kozuzemi</strong> – a közüzemi számlák, szolgáltatónként (kategóriánként) "
+                       "külön mappában.")
+        + _lv_bekezdes("📁 <strong>2_Ceges</strong> – a céges számlák, két almappában:<br>"
+                       "&nbsp;&nbsp;📁 <strong>1_Nincs_osszekotve</strong> – amelyek még nincsenek összekötve sem a NAV "
+                       "Online Számla tételével, sem az OTP bankszámla terhelésével.<br>"
+                       "&nbsp;&nbsp;📁 <strong>2_Osszekotve</strong> – amelyek össze vannak kötve a NAV-val és/vagy az "
+                       "OTP-vel. Ebben a mappában az <strong>osszerendeles.txt</strong> szöveges fájl soronként "
+                       "megmutatja, melyik PDF melyik NAV-tételhez, illetve banki terheléshez tartozik.")
+        + _lv_bekezdes("Ha egy számla PDF-je nem volt elérhető, a mappában lévő <strong>hianyzo_pdf.txt</strong> "
+                       "sorolja fel (a céges számláknál a Drive-linkjével).")
+        + _lv_reszletek([
+            ("Közüzemi számla", str(statisztika["kozuzemi"])),
+            ("Céges, nincs összekötve", str(statisztika["ceges_nincs"])),
+            ("Céges, összekötve", str(statisztika["ceges_kotott"])),
+            ("Hiányzó PDF", str(statisztika["hianyzo"])),
+        ])
+    )
+    return level_keret("kek", "Számlacsomag", "Számlák a könyveléshez", tartalom,
+                       "Ez egy automatikus levél a számlakezelő rendszerből.",
+                       "Számlacsomag: közüzemi és céges számlák")
+
+
+def konyvelo_csomag_feldolgozasa(allapot: dict):
+    kerelem = allapot.get("konyvelo_csomag_kerelem")
+    if not isinstance(kerelem, dict) or not kerelem.get("id"):
+        return
+    eredmeny = allapot.get("konyvelo_csomag_eredmeny") or {}
+    if eredmeny.get("id") == kerelem["id"]:
+        return
+    cimzett = _cimzett_string(allapot.get("konyvelo_emailek"))
+    if not cimzett:
+        allapot["konyvelo_csomag_eredmeny"] = {"id": kerelem["id"], "ido": magyar_ido().isoformat(),
+                                               "statusz": "hiba", "hiba": "Nincs megadva a könyvelő email-címe."}
+        return
+    bank = kerelem.get("bank_parositasok") if isinstance(kerelem.get("bank_parositasok"), dict) else {}
+    drive_letoltes = bool(allapot.get("drive_letoltes_be"))
+    pdf_tar = allapot.get("pdf_adatok") or {}
+    fajlok = []  # (zip-útvonal, bytes)
+    hianyzo = {"1_Kozuzemi": [], "2_Ceges/1_Nincs_osszekotve": [], "2_Ceges/2_Osszekotve": []}
+    osszerendeles = []
+    stat = {"kozuzemi": 0, "ceges_nincs": 0, "ceges_kotott": 0, "hianyzo": 0}
+    hasznalt = set()
+
+    def _egyedi(utvonal):
+        alap, kit = utvonal[:-4], utvonal[-4:]
+        n, jelolt = 1, utvonal
+        while jelolt in hasznalt:
+            n += 1
+            jelolt = f"{alap}_{n}{kit}"
+        hasznalt.add(jelolt)
+        return jelolt
+
+    for rid, r in sorted((allapot.get("szamlak") or {}).items(), key=lambda kv: kv[1].get("erkezett") or ""):
+        mappa = f"1_Kozuzemi/{_zip_nev(r.get('szolgaltato_nev') or _drive_forras_meghatarozasa(r))}"
+        nev = _zip_nev(f"{(r.get('erkezett') or '')[:10]}_{r.get('szamlaszam') or r.get('targy') or rid}")
+        b64 = pdf_tar.get(rid)
+        if b64:
+            fajlok.append((_egyedi(f"{mappa}/{nev}.pdf"), base64.b64decode(b64)))
+            stat["kozuzemi"] += 1
+        else:
+            hianyzo["1_Kozuzemi"].append(f"{mappa}/{nev}: {r.get('szolgaltato_nev') or ''}, "
+                                         f"{osszeg_szoveg(r.get('osszeg'), r.get('penznem'))}")
+            stat["hianyzo"] += 1
+
+    for cid, r in sorted((allapot.get("ceges_szamlak") or {}).items(), key=lambda kv: kv[1].get("erkezett") or ""):
+        nav = bool(r.get("nav_parositva"))
+        otp = bank.get(cid) if isinstance(bank.get(cid), dict) else None
+        kotott = nav or bool(otp)
+        mappa = "2_Ceges/2_Osszekotve" if kotott else "2_Ceges/1_Nincs_osszekotve"
+        nev = _zip_nev(f"{(r.get('erkezett') or '')[:10]}_{r.get('kuldo_nev') or ''}_{r.get('kinyert_szamlaszam') or cid}")
+        adat = None
+        b64 = pdf_tar.get(cid)
+        if b64:
+            adat = base64.b64decode(b64)
+        elif drive_letoltes and r.get("drive_url"):
+            adat = _drive_pdf_letoltese(r["drive_url"])
+        utvonal = _egyedi(f"{mappa}/{nev}.pdf")
+        if adat:
+            fajlok.append((utvonal, adat))
+        else:
+            hianyzo[mappa].append(f"{utvonal.split('/')[-1]}: {r.get('kuldo_nev') or ''} – {r.get('drive_url') or 'nincs link'}")
+            stat["hianyzo"] += 1
+        stat["ceges_kotott" if kotott else "ceges_nincs"] += 1
+        if kotott:
+            reszek = []
+            if nav:
+                nav_szsz = str(r.get("nav_szamla_azonosito") or "").split("|")[-1]
+                reszek.append(f"NAV: {r.get('nav_szallito_nev') or ''}, számlaszám {nav_szsz or '?'}, "
+                              f"kelt {(r.get('nav_datum') or '')[:10] or '?'}, "
+                              f"bruttó {forint(r['nav_brutto_osszeg']) if isinstance(r.get('nav_brutto_osszeg'), (int, float)) else '?'}")
+            if otp:
+                reszek.append(f"OTP: {str(otp.get('datum') or '')[:10]}, {otp.get('osszeg')} Ft, {otp.get('partner') or ''}")
+            osszerendeles.append(f"{utvonal.split('/')[-1]}{'' if adat else ' (PDF hiányzik)'}\n    " + "\n    ".join(reszek))
+
+    szoveges = {}
+    if osszerendeles:
+        szoveges["2_Ceges/2_Osszekotve/osszerendeles.txt"] = (
+            "Melyik PDF melyik tételhez tartozik (NAV Online Számla és/vagy OTP banki terhelés)\n\n"
+            + "\n\n".join(osszerendeles) + "\n")
+    for mappa, sorok in hianyzo.items():
+        if sorok:
+            szoveges[f"{mappa}/hianyzo_pdf.txt"] = "Ezeknek a számláknak a PDF-je nem volt elérhető:\n\n" + "\n".join(sorok) + "\n"
+
+    puffer = io.BytesIO()
+    with zipfile.ZipFile(puffer, "w", zipfile.ZIP_DEFLATED) as zf:
+        for utvonal, adat in fajlok:
+            zf.writestr(utvonal, adat)
+        for utvonal, szoveg in szoveges.items():
+            zf.writestr(utvonal, szoveg.encode("utf-8"))
+    zip_bajtok = puffer.getvalue()
+    datum = magyar_ma().isoformat()
+    zip_nev = f"szamlak_{datum}.zip"
+    nev = (allapot.get("konyvelo_nev") or "").strip()
+    targy = f"📦 Számlacsomag – {datum}"
+
+    # A dashboardon megadott méretkorlát (MB) a TELJES levélre (szöveg +
+    # csatolmány, a csatolmány base64-ben kb. 4/3-szoros) vonatkozik - ha a
+    # levél ennél nagyobb lenne, a ZIP a Drive-ra kerül, és a levélben a
+    # linkje megy.
+    try:
+        korlat_mb = float(allapot.get("konyvelo_max_email_mb") or KONYVELO_EMAIL_ALAP_MB)
+    except (TypeError, ValueError):
+        korlat_mb = KONYVELO_EMAIL_ALAP_MB
+    html_csatolt = _konyvelo_email_html(nev, stat)
+    becsult_meret = len(html_csatolt.encode("utf-8")) + len(zip_bajtok) * 4 // 3
+    link, hiba = None, None
+    if becsult_meret > korlat_mb * 1024 * 1024:
+        link = _drive_zip_feltoltese(zip_nev, zip_bajtok)
+        if not link:
+            hiba = "A csomag nagyobb a megadott méretkorlátnál, és a Drive-feltöltése nem sikerült."
+    sikeres = False
+    if not hiba:
+        if link:
+            sikeres = email_kuldes(targy, _konyvelo_email_html(nev, stat, link), None, cimzett=cimzett)
+        else:
+            sikeres = email_kuldes(targy, html_csatolt, [(zip_nev, zip_bajtok)], cimzett=cimzett)
+        if not sikeres:
+            hiba = "Az email küldése nem sikerült."
+    allapot["konyvelo_csomag_eredmeny"] = {
+        "id": kerelem["id"], "ido": magyar_ido().isoformat(),
+        "statusz": "kesz" if sikeres else "hiba", "hiba": hiba,
+        "meret_mb": round(len(zip_bajtok) / 1024 / 1024, 1), "drive_link": link, **stat,
+    }
+    print(f"  📦 Könyvelői csomag: {'elküldve' if sikeres else 'SIKERTELEN'} "
+          f"({'Drive-linkkel' if link else 'csatolva'}, {len(zip_bajtok) // 1024} KB; {stat['kozuzemi']} közüzemi, "
+          f"{stat['ceges_nincs'] + stat['ceges_kotott']} céges számla, {stat['hianyzo']} hiányzó PDF).")
+
+
 def _ceges_bizonytalan_athelyezese_biztosba(allapot: dict):
     """A nav_szamla_parositas() UTÁN hívandó (ld. a hívási helyet a
     main()-ben) - a felhasználó kifejezett kérése szerint ("vagy
@@ -7749,6 +8060,8 @@ def main():
     # valódi NAV-tétellel, átsoroljuk a fő Céges számlák listába - ld. a
     # felhasználó kifejezett kérését ("vagy sikerült összekötni, akkor ok").
     _ceges_bizonytalan_athelyezese_biztosba(allapot)
+    ceges_duplikatumok_megszuntetese(allapot)
+    konyvelo_csomag_feldolgozasa(allapot)
 
     # ---- 2h. NAV-on talált, de emailben meg nem érkezett számlák
     # szállítóihoz sablon-emlékeztető küldése (ld. "NAV-ON TALÁLT,
