@@ -1,0 +1,56 @@
+name: Weboldal mentése (titkosítva)
+
+# Az élő oldal gyökérmappájának fájljait (almappák nélkül, azoknak csak a
+# listáját) letölti FTP-n, és titkosítva menti ide. Csak a
+# .github/mentes/nyilvanos_kulcs.pem párjával nyitható ki, így a nyilvános
+# repóban sem látszik belőle semmi. Az élő oldalt nem módosítja.
+on:
+  push:
+    branches: [claude/project-thread-qh8yy9]
+    paths: [.github/workflows/oldal_mentes.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  mentes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+      - name: mrgabee.hu letöltése
+        env:
+          SZERVER: ${{ secrets.MRGABEE_FTP_SERVER }}
+          FELHASZNALO: ${{ secrets.MRGABEE_FTP_USER }}
+          JELSZO: ${{ secrets.MRGABEE_FTP_PASSWORD }}
+        run: |
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          mkdir -p /tmp/mentes/mrgabee.hu && cd /tmp/mentes/mrgabee.hu
+          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; cls -la > _lista.txt; mget -E -c * 2>/dev/null; mget .htaccess .user.ini 2>/dev/null; bye" || true
+          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -1 -d */ > _mappak.txt; bye" || true
+          for d in $(cat _mappak.txt | tr -d '/'); do lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -la $d/ > \"_lista_$d.txt\"; bye" || true; done
+          ls -la | head -50
+      - name: baloghgabor.hu letöltése
+        env:
+          SZERVER: ${{ secrets.BALOGHGABOR_FTP_SERVER }}
+          FELHASZNALO: ${{ secrets.BALOGHGABOR_FTP_USER }}
+          JELSZO: ${{ secrets.BALOGHGABOR_FTP_PASSWORD }}
+        run: |
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          mkdir -p /tmp/mentes/baloghgabor.hu && cd /tmp/mentes/baloghgabor.hu
+          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; cls -la > _lista.txt; mget -E -c * 2>/dev/null; mget .htaccess .user.ini 2>/dev/null; bye" || true
+          lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -1 -d */ > _mappak.txt; bye" || true
+          for d in $(cat _mappak.txt | tr -d '/'); do lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; cls -la $d/ > \"_lista_$d.txt\"; bye" || true; done
+          ls -la | head -50
+      - name: Titkosítás és mentés
+        run: |
+          nap=$(date +%Y%m%d-%H%M)
+          tar -czf /tmp/mentes.tgz -C /tmp mentes
+          openssl rand -hex 32 > /tmp/k.txt
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/mentes.tgz -out "mentes_$nap.tgz.enc" -pass file:/tmp/k.txt
+          openssl pkeyutl -encrypt -pubin -inkey .github/mentes/nyilvanos_kulcs.pem -in /tmp/k.txt -out "mentes_$nap.kulcs.enc"
+          mkdir -p .github/mentes && mv mentes_$nap.* .github/mentes/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/mentes && git commit -m "Titkosított weboldal-mentés $nap" && git push
