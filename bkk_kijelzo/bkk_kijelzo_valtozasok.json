@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-29T05:02:13.836204+02:00",
+  "frissitve": "2026-10-29T05:02:44.615731+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T13:07:11.392028+02:00",
-      "kulcs": "RCT309",
-      "rendszam": "RCT309",
-      "vehicle_id": "7323",
-      "vehicle_label": "Soroksár, IKEA áruház",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.464935302734375,
-      "lon": 19.12596321105957,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Soroksár, IKEA áruház"
-    },
-    {
-      "idopont": "2026-10-28T13:07:11.392635+02:00",
-      "kulcs": "RVY708",
-      "rendszam": "RVY708",
-      "vehicle_id": "7457",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41694259643555,
-      "lon": 19.13130760192871,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-28T13:07:11.392692+02:00",
-      "kulcs": "RVY718",
-      "rendszam": "RVY718",
-      "vehicle_id": "7467",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46449661254883,
-      "lon": 19.126806259155273,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-10-28T13:07:11.392907+02:00",
-      "kulcs": "RVY748",
-      "rendszam": "RVY748",
-      "vehicle_id": "7646",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.50151062011719,
-      "lon": 19.13628387451172,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Pécel, Kun József utca"
-    },
-    {
-      "idopont": "2026-10-28T13:07:11.392929+02:00",
-      "kulcs": "SCD591",
-      "rendszam": "SCD591",
-      "vehicle_id": "7652",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "VP2B",
-      "route_id": "VP2B",
-      "lat": 47.422183990478516,
-      "lon": 19.1224422454834,
-      "elozo_szoveg": "P.erzsébet, Pacsirtatelep",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-10-28T13:07:11.393086+02:00",
       "kulcs": "SKR805",
@@ -260000,6 +259935,71 @@
       "lon": 19.038013458251953,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-29T05:02:44.517624+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.56710433959961,
+      "lon": 19.024824142456055,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-29T05:02:44.517690+02:00",
+      "kulcs": "AADI626",
+      "rendszam": "AADI626",
+      "vehicle_id": "121",
+      "vehicle_label": "R.csaba - Kőbánya-Kisp.M",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.47711181640625,
+      "lon": 19.263919830322266,
+      "elozo_szoveg": "Kucorgó tér ► Rákoscsaba",
+      "uj_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-29T05:02:44.517927+02:00",
+      "kulcs": "FJX187",
+      "rendszam": "FJX187",
+      "vehicle_id": "3007",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.49106979370117,
+      "lon": 19.243043899536133,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
+      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-29T05:02:44.520566+02:00",
+      "kulcs": "PDN640",
+      "rendszam": "PDN640",
+      "vehicle_id": "7111",
+      "vehicle_label": "Városház tér",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.44105529785156,
+      "lon": 19.022706985473633,
+      "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
+      "uj_szoveg": "Városház tér"
+    },
+    {
+      "idopont": "2026-10-29T05:02:44.520590+02:00",
+      "kulcs": "PKN601",
+      "rendszam": "PKN601",
+      "vehicle_id": "7190",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.5263671875,
+      "lon": 19.038171768188477,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
