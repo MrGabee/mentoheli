@@ -491,6 +491,7 @@
   .lv-csat:hover .lv-csat-menu, .lv-csat:focus-within .lv-csat-menu { display: flex; }
   .lv-csat-menu > button, .lv-csat-menu > a { all: unset; display: block; padding: 7px 10px; border-radius: 6px; font-size: 13px; color: var(--text); cursor: pointer; }
   .lv-csat-menu > button:hover, .lv-csat-menu > a:hover { background: var(--blue-soft); }
+  .lv-csat-hol { padding: 7px 10px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--border); margin-bottom: 2px; line-height: 1.5; }
   .lv-csat-ures { padding: 7px 10px; font-size: 12px; color: var(--muted); }
 </style>
 </head>
@@ -3229,6 +3230,8 @@
         tetelek.push(`<button type="button" data-lv-csat-muvelet="parositatlanba" data-idx="${i}">➕ Áthelyezés a párosítatlanok közé</button>`);
         if (allapot !== "elvetve") tetelek.push(`<button type="button" data-lv-csat-muvelet="elvet" data-idx="${i}">🚫 Elvetés (nem számla)</button>`);
       }
+      const hol = lvCsatolmanyHelye(l, i, url, allapot);
+      if (hol) tetelek.unshift(`<span class="lv-csat-hol">${hol}</span>`);
       if (!tetelek.length) tetelek.push(`<span class="lv-csat-ures">${url ? "" : "Még nincs a Drive-on - a következő futás feltölti."}</span>`);
       return `<span class="lv-csat" tabindex="0">
           <span class="lv-csat-nev">📎 ${escHtml(nev)} ▾</span>
@@ -3238,6 +3241,27 @@
           <span class="lv-csat-menu" role="menu">${tetelek.join("")}</span>
         </span>`;
     }).join("") + "</span>";
+  }
+
+  // Hol van most a csatolmány: melyik céges kategóriában, kinél, vagy a
+  // Drive ideiglenes "Feldolgozatlan" mappájában.
+  function lvCsatolmanyHelye(l, i, url, allapot) {
+    const meta = lvObjektum(lvObjektum(l.pdf_meta)[String(i)]);
+    const bizonytalan = cegesSzamlakBizonytalan || [];
+    const osszes = cegesSzamlak.map(r => ({ r, kat: r.nav_parositva ? "Párosítva a NAV-val" : "Párosítatlan céges számlák" }))
+      .concat(bizonytalan.map(r => ({ r, kat: "Nem biztos" })));
+    const leiras = t => `<b>${escHtml(t.kat)}</b> · ${escHtml(t.r.kuldo_nev || "ismeretlen cég")}${t.r.kinyert_szamlaszam ? " · " + escHtml(t.r.kinyert_szamlaszam) : ""}`;
+    if (allapot === "mentve" || (!allapot && url)) {
+      const t = osszes.find(x => (meta.cid && x.r.id === meta.cid) || (url && x.r.drive_url === url));
+      return t ? `✅ Feldolgozva: ${leiras(t)}` : "✅ Feldolgozva (a céges számlák között)";
+    }
+    if (allapot === "duplikatum") {
+      const t = osszes.find(x => x.r.id === meta.duplikatum_id);
+      return `📂 Feldolgozatlan mappa (Drive)<br>🔁 Ugyanez a számla már szerepel: ${t ? leiras(t) : "a céges számlák között"}`;
+    }
+    if (allapot === "torolt") return "📂 Feldolgozatlan mappa (Drive)<br>🗑️ Egy korábban törölt számlával egyezik";
+    if (allapot === "elvetve") return "🚫 Elvetve (nem számla) · Feldolgozatlan mappa (Drive)";
+    return "";
   }
 
   async function lvCsatolmanyMuvelet(l, idx, muvelet) {
