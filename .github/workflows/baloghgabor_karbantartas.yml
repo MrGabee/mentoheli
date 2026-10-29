@@ -1,0 +1,81 @@
+name: baloghgabor.hu – WordPress törlése
+
+# Gábor kérésére törli a régi WordPress maradványait a baloghgabor FTP-gyökérből.
+# Sorrend: az uj/index.html forrásának lementése, titkosított mentés a WordPress
+# fájlokról, a Wordfence betöltés kivétele a .user.ini-ből és a .htaccess-ből,
+# 6 perc várakozás (a PHP .user.ini gyorsítótára miatt), csak utána törlés,
+# végül ellenőrzés. Az uj/ és a többi mappa érintetlen marad.
+on:
+  push:
+    branches: [claude/project-thread-qh8yy9]
+    paths: [.github/workflows/baloghgabor_karbantartas.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  wordpress_torles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      SZERVER: ${{ secrets.BALOGHGABOR_FTP_SERVER }}
+      FELHASZNALO: ${{ secrets.BALOGHGABOR_FTP_USER }}
+      JELSZO: ${{ secrets.BALOGHGABOR_FTP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+      - name: Állapot előtte
+        run: for u in https://baloghgabor.hu/ https://baloghgabor.hu/waze.php; do printf '%s ' $u; curl -s -o /dev/null -w '%{http_code}\n' $u; done
+      - name: Mentés (uj/index.html forrás + titkosított WordPress mentés)
+        run: |
+          set -e
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          L() { lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; $1; bye"; }
+          mkdir -p /tmp/wp && cd /tmp/wp
+          L "mirror --no-perms --parallel=4 wp-content wp-content; mirror --no-perms wpfm-private-backups wpfm-private-backups; mget wordfence-waf.php _index.php licenc.txt olvasdel.html .htaccess .user.ini"
+          du -sh /tmp/wp
+          mkdir -p $GITHUB_WORKSPACE/weboldal/baloghgabor.hu && cd $GITHUB_WORKSPACE/weboldal/baloghgabor.hu
+          L "cd uj; mget index.html" && mv index.html eredeti_index.html
+          cd $GITHUB_WORKSPACE
+          tar -czf /tmp/wp.tgz -C /tmp wp
+          openssl rand -hex 32 > /tmp/k.txt
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/wp.tgz -out .github/mentes/baloghgabor_wordpress.tgz.enc -pass file:/tmp/k.txt
+          openssl pkeyutl -encrypt -pubin -inkey .github/mentes/nyilvanos_kulcs.pem -in /tmp/k.txt -out .github/mentes/baloghgabor_wordpress.kulcs.enc
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/mentes weboldal/baloghgabor.hu
+          git commit -m "baloghgabor.hu: index.html forrás és titkosított WordPress mentés"
+          git pull --rebase -q origin claude/project-thread-qh8yy9 && git push
+      - name: Wordfence betöltés kivétele
+        run: |
+          set -e
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          L() { lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; $1; bye"; }
+          cd /tmp/wp
+          python3 - <<'PY'
+          import re
+          u = open('.user.ini').read()
+          u2 = re.sub(r'; Wordfence WAF.*?; END Wordfence WAF\n?', '', u, flags=re.S)
+          h = open('.htaccess').read()
+          h2 = re.sub(r'# BEGIN WordPress.*?# END WordPress\n?', '', h, flags=re.S)
+          h2 = re.sub(r'# Wordfence WAF.*?# END Wordfence WAF\n?', '', h2, flags=re.S)
+          assert 'wordfence-waf' not in u2 and 'wordfence-waf' not in h2
+          assert 'Really Simple Security Redirect' in h2
+          open('uj.user.ini', 'w').write(u2); open('uj.htaccess', 'w').write(h2)
+          print('--- új .user.ini ---'); print(u2); print('--- új .htaccess ---'); print(h2)
+          PY
+          L "put uj.user.ini -o .user.ini; put uj.htaccess -o .htaccess"
+      - name: Várakozás a PHP gyorsítótár miatt
+        run: sleep 380
+      - name: Ellenőrzés törlés előtt
+        run: for u in https://baloghgabor.hu/ https://baloghgabor.hu/waze.php; do printf '%s ' $u; curl -s -o /dev/null -w '%{http_code}\n' $u; done
+      - name: WordPress törlése
+        run: |
+          set -e
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          L() { lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; $1; bye"; }
+          L "rm -r -f wp-content; rm -r -f wpfm-private-backups; rm -f wordfence-waf.php _index.php licenc.txt olvasdel.html; cls -la"
+      - name: Ellenőrzés törlés után
+        run: |
+          sleep 20
+          for u in https://baloghgabor.hu/ https://baloghgabor.hu/waze.php https://baloghgabor.hu/profilkep.jpg https://baloghgabor.hu/oneletrajz.pdf; do printf '%s ' $u; curl -s -o /dev/null -w '%{http_code}\n' $u; done
