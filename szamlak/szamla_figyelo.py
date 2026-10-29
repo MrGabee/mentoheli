@@ -1166,6 +1166,7 @@ def _allapot_alapertekek() -> dict:
         # "<kollekcio>:<eredeti_id>" (a két kollekció id-tere elméletben
         # ütközhetne, ezért a kollekció-nevet is a kulcsba tesszük).
         "torolt_szamlak_archivum": {},
+        "ceges_feldolgozott_uidok": {},
         # ld. "BÉRLŐI KÖR - AZONNALI ÚJ-SZÁMLA EMAIL, JÓVÁHAGYÁSI (TESZT)
         # FÁZISSAL" szekció (_kor_ertesito_sorba_allitasa()) - a dashboard
         # "📨 Bérlői értesítők" paneljén állítható. A két kapcsoló és a
@@ -4540,6 +4541,34 @@ def ceges_osszes_uid_lekerese(conn, max_db=40, kihagyando=None):
     return [u for u in osszes if u.decode() not in kihagyando][:max_db], osszes
 
 
+def _imap_kuka_mappa(conn):
+    """A postafiók Kuka mappájának neve (IMAP-parancsba illeszthető
+    formában): elsőként a \\Trash jelzésű mappa, különben a szokásos nevek
+    valamelyike. Ha nincs ilyen, None."""
+    try:
+        tipus, adat = conn.list()
+    except Exception:
+        return None
+    if tipus != "OK":
+        return None
+    nevek = []
+    for sor in adat or []:
+        szoveg = sor.decode(errors="replace") if isinstance(sor, bytes) else str(sor or "")
+        m = re.match(r'\((?P<jelek>[^)]*)\)\s+(?:"[^"]*"|NIL)\s+(?P<nev>.+)$', szoveg)
+        if not m:
+            continue
+        nev = m.group("nev").strip()
+        if "\\trash" in m.group("jelek").lower():
+            return nev
+        nevek.append(nev)
+    szokasos = {"trash", "kuka", "deleted items", "deleted messages", "torolt elemek", "törölt elemek"}
+    for nev in nevek:
+        utolso = re.split(r"[/.]", nev.strip('"'))[-1].strip().lower()
+        if utolso in szokasos:
+            return nev
+    return None
+
+
 def _imap_uidvalidity(conn) -> str:
     """A kiválasztott mappa UIDVALIDITY értéke (a SELECT válaszából) - ha
     megváltozik, a korábban eltárolt uid-ok már más levelekre mutathatnak."""
@@ -4683,8 +4712,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
         if not isinstance(pdf_nelkuli, dict) or not uidvalidity or pdf_nelkuli.get("uidvalidity") != uidvalidity:
             pdf_nelkuli = {"uidvalidity": uidvalidity, "uidok": []}
         pdf_nelkuli_uidok = set(pdf_nelkuli.get("uidok") or [])
+        feldolgozott = allapot.get("ceges_feldolgozott_uidok") or {}
+        if not isinstance(feldolgozott, dict) or not uidvalidity or feldolgozott.get("uidvalidity") != uidvalidity:
+            feldolgozott = {"uidvalidity": uidvalidity, "uidok": []}
+        feldolgozott_uidok = set(feldolgozott.get("uidok") or [])
         uidok, osszes_uid = ceges_osszes_uid_lekerese(conn, CEGES_MAX_FELDOLGOZAS_FUTASONKENT,
-                                                      pdf_nelkuli_uidok)
+                                                      pdf_nelkuli_uidok | feldolgozott_uidok)
         print(f"  🏢 Céges számlák postafiók: {len(uidok)} feldolgozandó levél (sapka: "
               f"{CEGES_MAX_FELDOLGOZAS_FUTASONKENT}/futás), további {len(pdf_nelkuli_uidok)} "
               f"korábbról ismert, PDF nélküli levél a postafiókban.")
@@ -5051,23 +5084,51 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                       f"sikertelen csatolmány(oka)t újra megpróbálja (a már feltöltöttek nem "
                       f"duplázódnak, a tartalmi ujjlenyomat megvédi): {kuldo_nev} – {targy[:60]}")
 
+        # A dashboard Beállításaiban választható, mi legyen a feldolgozott
+        # levelekkel: "torles" (végleges törlés, az alapértelmezés), "kuka"
+        # (áthelyezés a postafiók Kuka mappájába) vagy "marad" (a levél a
+        # postafiókban marad, és a "ceges_feldolgozott_uidok" listára kerül,
+        # hogy a következő futások ne dolgozzák fel újra).
+        kezeles = str(allapot.get("ceges_feldolgozott_level_kezeles") or "torles")
+        kuka = None
+        if kezeles == "kuka" and torlendo_uidok:
+            kuka = _imap_kuka_mappa(conn)
+            if not kuka:
+                print("  ⚠️  Céges postafiók: nem található Kuka mappa - a feldolgozott levelek a postafiókban maradnak.")
+                kezeles = "marad"
+        if kezeles == "marad":
+            feldolgozott_uidok.update(u.decode() if isinstance(u, bytes) else str(u) for u in torlendo_uidok)
+            torlendo_uidok = []
         for uid in torlendo_uidok:
             try:
+                if kuka:
+                    tipus, _ = conn.uid("MOVE", uid, kuka)
+                    if tipus == "OK":
+                        continue
+                    tipus, _ = conn.uid("COPY", uid, kuka)
+                    if tipus != "OK":
+                        raise RuntimeError("a Kukába másolás sikertelen")
                 conn.uid("store", uid, "+FLAGS", "(\\Deleted)")
             except Exception as e:
-                print(f"      ⚠️  Egy feldolgozott céges számla email törlése (jelölése) "
+                print(f"      ⚠️  Egy feldolgozott céges számla email törlése/áthelyezése "
                       f"sikertelen (a Drive-mentés megvolt, csak a postafiókban marad): {e}")
         if torlendo_uidok:
             try:
                 conn.expunge()
             except Exception as e:
                 print(f"  ⚠️  Céges számlák postafiók végleges törlése (expunge) sikertelen: {e}")
+        if kezeles == "kuka" and torlendo_uidok:
+            print(f"  🗑️  Céges postafiók: {len(torlendo_uidok)} feldolgozott levél a Kukába helyezve.")
         # Csak a még a mappában lévő uid-okat őrizzük meg (a kézzel törölt
         # levelek kikerülnek a listából).
         mappaban = {u.decode() for u in osszes_uid}
         allapot["ceges_pdf_nelkuli_uidok"] = {
             "uidvalidity": uidvalidity,
             "uidok": sorted(pdf_nelkuli_uidok & mappaban, key=lambda u: int(u) if u.isdigit() else 0),
+        }
+        allapot["ceges_feldolgozott_uidok"] = {
+            "uidvalidity": uidvalidity,
+            "uidok": sorted(feldolgozott_uidok & mappaban, key=lambda u: int(u) if u.isdigit() else 0),
         }
     finally:
         try:
@@ -6177,6 +6238,16 @@ def _kozuzemi_kereses_kore(allapot: dict, nav_tetelek: list, parositott_nav_kulc
           f"{[e.get('nav_tetel_db', 0) for e in eredmeny.values()]}")
 
 
+def _nav_kulcs_tiltott(rekord: dict, kulcs: str) -> bool:
+    """A dashboardon "🔓 Párosítás bontása" gombbal szétválasztott
+    párosítás NAV-kulcsa a rekord "nav_tiltott_kulcsok" listájára kerül -
+    ezzel a tétellel a script többé nem párosítja automatikusan."""
+    tiltott = rekord.get("nav_tiltott_kulcsok") or []
+    if isinstance(tiltott, str):
+        tiltott = [t for t in tiltott.split("\n") if t]
+    return isinstance(tiltott, list) and kulcs in tiltott
+
+
 def nav_szamla_parositas(allapot: dict):
     """Összeveti a nav_bejovo_szamlak_lekerese()-vel lekért NAV-tételeket
     MINDKÉT hellyel begyűjtött számla-rekorddal: a "Céges számlák" fülön
@@ -6236,7 +6307,7 @@ def nav_szamla_parositas(allapot: dict):
             if not nav_szamlaszam or nav_szamlaszam != sajat_szamlaszam:
                 continue
             kulcs = _nav_tetel_kulcs(tetel)
-            if kulcs in parositott_nav_kulcsok:
+            if kulcs in parositott_nav_kulcsok or _nav_kulcs_tiltott(rekord, kulcs):
                 continue
             rekord["nav_parositva"] = True
             # ld. _nav_parosithato_rekordok() komment - egy sikeres
@@ -6269,7 +6340,7 @@ def nav_szamla_parositas(allapot: dict):
             if (tetel.get("szallito_adoszam") or "").strip() != adoszam_tiszta:
                 continue
             kulcs = _nav_tetel_kulcs(tetel)
-            if kulcs in parositott_nav_kulcsok:
+            if kulcs in parositott_nav_kulcsok or _nav_kulcs_tiltott(rekord, kulcs):
                 continue
             nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
             if not _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel):
@@ -6304,7 +6375,7 @@ def nav_szamla_parositas(allapot: dict):
 
         for tetel in nav_tetelek:
             kulcs = _nav_tetel_kulcs(tetel)
-            if kulcs in parositott_nav_kulcsok:
+            if kulcs in parositott_nav_kulcsok or _nav_kulcs_tiltott(rekord, kulcs):
                 continue
             nav_osszeg = tetel.get("netto_osszeg_huf") or tetel.get("netto_osszeg")
             if not _nav_osszeg_egyezik_tetellel(sajat_osszeg, tetel):
@@ -7123,8 +7194,9 @@ def ceges_csatolmany_muveletek_feldolgozasa(allapot: dict) -> None:
 
 def ceges_level_linkek_potlasa(allapot: dict) -> None:
     """A régebben naplózott levelek csatolmány-linkjeinek pótlása a már
-    rögzített céges számlákból (azonos tárgy + érkezés, és a Drive-
-    fájlnévben szerepel a csatolmány neve)."""
+    rögzített céges számlákból: a Drive-fájlnévben szerepel a csatolmány
+    neve, vagy (egycsatolmányos levélnél) pontosan egyezik a tárgy és az
+    érkezés. Az azóta törölt rekordokat "archivalt" állapottal jelöli."""
     import unicodedata
     naplo = allapot.get("ceges_bejovo_levelek") or {}
     rekordok = [r for r in list((allapot.get("ceges_szamlak") or {}).values())
@@ -7140,36 +7212,58 @@ def ceges_level_linkek_potlasa(allapot: dict) -> None:
         alap = "".join(ch for ch in unicodedata.normalize("NFD", alap) if not unicodedata.combining(ch))
         return re.sub(r"^_+|_+$", "", re.sub(r"[^a-zA-Z0-9._-]+", "_", alap)).lower()
 
+    archiv = [a.get("rekord") for a in (allapot.get("torolt_szamlak_archivum") or {}).values()
+              if isinstance(a, dict) and a.get("kollekcio") == "ceges_szamlak" and isinstance(a.get("rekord"), dict)
+              and a["rekord"].get("drive_url")]
+
     for l in naplo.values():
-        nevek = l.get("pdf_nevek") or []
         if not isinstance(l, dict):
             continue
+        nevek = l.get("pdf_nevek") or []
         linkek = l.get("pdf_linkek") if isinstance(l.get("pdf_linkek"), dict) else {}
+        if not isinstance(l.get("pdf_allapot"), dict):
+            l["pdf_allapot"] = {}
+        allapotok = l["pdf_allapot"]
         if not nevek or len(linkek) >= len(nevek):
             continue
-        jeloltek = [r for r in rekordok if r.get("targy") == l.get("targy") or r.get("erkezett") == l.get("datum")
-                    or (r.get("feladó_email") and r.get("feladó_email") == l.get("feladó_email"))]
+
+        def _jelolt(r):
+            return (r.get("targy") == l.get("targy") or r.get("erkezett") == l.get("datum")
+                    or (r.get("feladó_email") and r.get("feladó_email") == l.get("feladó_email")))
+
+        def _szigoru(r):
+            return r.get("targy") == l.get("targy") and r.get("erkezett") == l.get("datum")
+
         hasznalt = set(linkek.values())
-        for i, nev in enumerate(nevek):
-            if str(i) in linkek:
-                continue
-            t = _tiszta(nev)
-            talalat = next((r["drive_url"] for r in jeloltek if r["drive_url"] not in hasznalt
-                            and t and t in str(r.get("drive_fajlnev") or "").lower()), None)
+        hianyzo = [i for i in range(len(nevek)) if str(i) not in linkek and str(i) not in allapotok]
+        for i in hianyzo:
+            t = _tiszta(nevek[i])
+            # 1. a Drive-fájlnévben szerepel a csatolmány neve
+            talalat = next((r for r in rekordok if r["drive_url"] not in hasznalt and _jelolt(r)
+                            and t and f"_{t}_" in str(r.get("drive_fajlnev") or "").lower()), None)
+            # 2. egycsatolmányos levélnél elég a pontos tárgy + érkezés
+            if not talalat and len(hianyzo) == 1:
+                szigoru = [r for r in rekordok if r["drive_url"] not in hasznalt and _szigoru(r)]
+                talalat = szigoru[0] if len(szigoru) == 1 else None
             if talalat:
-                linkek[str(i)] = talalat
-                hasznalt.add(talalat)
-                if not isinstance(l.get("pdf_allapot"), dict):
-                    l["pdf_allapot"] = {}
-                l["pdf_allapot"].setdefault(str(i), "mentve")
-            else:
-                arch = [r for r in (allapot.get("torolt_szamlak_archivum") or {}).values() if isinstance(r, dict)]
-                print(f"  🔬 link-diag: név-egyezés aktív: {sum(1 for r in rekordok if t and t in str(r.get('drive_fajlnev') or '').lower())}, "
-                      f"archívum: {sum(1 for r in arch if t and t in str((r.get('rekord') or r).get('drive_fajlnev') or '').lower())}, "
-                      f"tárgy: {sum(1 for r in rekordok if r.get('targy') == l.get('targy'))}, "
-                      f"dátum: {sum(1 for r in rekordok if r.get('erkezett') == l.get('datum'))}, "
-                      f"feladó: {sum(1 for r in rekordok if r.get('feladó_email') and r.get('feladó_email') == l.get('feladó_email'))}, "
-                      f"drive_url nélküli rekord: {sum(1 for r in list((allapot.get('ceges_szamlak') or {}).values()) if isinstance(r, dict) and not r.get('drive_url'))}")
+                linkek[str(i)] = talalat["drive_url"]
+                hasznalt.add(talalat["drive_url"])
+                allapotok[str(i)] = "mentve"
+                continue
+            # 3. azóta törölt (a Törölt számlák között visszaállítható) rekord
+            torolt = next((r for r in archiv if r["drive_url"] not in hasznalt and _jelolt(r)
+                           and t and f"_{t}_" in str(r.get("drive_fajlnev") or "").lower()), None)
+            if not torolt and len(hianyzo) == 1:
+                szigoru = [r for r in archiv if r["drive_url"] not in hasznalt and _szigoru(r)]
+                torolt = szigoru[0] if len(szigoru) == 1 else None
+            if torolt:
+                linkek[str(i)] = torolt["drive_url"]
+                hasznalt.add(torolt["drive_url"])
+                allapotok[str(i)] = "archivalt"
+                if not isinstance(l.get("pdf_meta"), dict):
+                    l["pdf_meta"] = {}
+                l["pdf_meta"][str(i)] = {"kuldo_nev": torolt.get("kuldo_nev"),
+                                         "kinyert_szamlaszam": torolt.get("kinyert_szamlaszam")}
         if linkek:
             l["pdf_linkek"] = linkek
 
