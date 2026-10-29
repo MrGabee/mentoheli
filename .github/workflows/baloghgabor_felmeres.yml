@@ -1,0 +1,40 @@
+name: baloghgabor.hu felmérés
+
+# Csak olvas: méretek, az uj/ mappa tartalma, és az uj/ titkosított mentése
+# (letöltés, a szerveren semmi nem törlődik és nem változik).
+on:
+  push:
+    branches: [claude/project-thread-qh8yy9]
+    paths: [.github/workflows/baloghgabor_felmeres.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  felmeres:
+    runs-on: ubuntu-latest
+    env:
+      SZERVER: ${{ secrets.BALOGHGABOR_FTP_SERVER }}
+      FELHASZNALO: ${{ secrets.BALOGHGABOR_FTP_USER }}
+      JELSZO: ${{ secrets.BALOGHGABOR_FTP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+      - name: Felmérés és mentés
+        run: |
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          L() { lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; $1; bye"; }
+          mkdir -p /tmp/mentes/baloghgabor_uj && cd /tmp/mentes
+          L "du -hs wp-content wpfm-private-backups uj hirbekuldes kina felnottkepzes kepesites" 2>&1 | tee meretek.txt
+          L "cls -laR uj" 2>&1 | head -300 | tee uj_lista.txt
+          L "mirror --no-perms --parallel=4 uj baloghgabor_uj" 2>&1 | tail -5
+          du -sh baloghgabor_uj; find baloghgabor_uj -maxdepth 2 | head -50
+          cd $GITHUB_WORKSPACE
+          tar -czf /tmp/m.tgz -C /tmp mentes
+          openssl rand -hex 32 > /tmp/k.txt
+          mkdir -p .github/mentes
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/m.tgz -out .github/mentes/baloghgabor_uj.tgz.enc -pass file:/tmp/k.txt
+          openssl pkeyutl -encrypt -pubin -inkey .github/mentes/nyilvanos_kulcs.pem -in /tmp/k.txt -out .github/mentes/baloghgabor_uj.kulcs.enc
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/mentes && git commit -m "baloghgabor.hu felmérés és titkosított mentés" && git push
