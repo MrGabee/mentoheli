@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-29T02:20:27.924107+02:00",
+  "frissitve": "2026-10-29T02:20:58.457995+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T12:38:43.645068+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Mártonhegy",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.50712585449219,
-      "lon": 19.02307891845703,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Mártonhegy"
-    },
-    {
-      "idopont": "2026-10-28T12:38:43.647749+02:00",
-      "kulcs": "815 031",
-      "rendszam": "815 031",
-      "vehicle_id": "945518150319",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.76676940917969,
-      "lon": 19.154510498046875,
-      "elozo_szoveg": "Vác",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-28T12:39:59.391977+02:00",
-      "kulcs": "V2011",
-      "rendszam": "V2011",
-      "vehicle_id": "2011",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47396469116211,
-      "lon": 19.047088623046875,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-28T12:39:59.393317+02:00",
       "kulcs": "FLR714",
@@ -260000,6 +259961,45 @@
       "lon": 19.054264068603516,
       "elozo_szoveg": "Nagybányai út",
       "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-29T02:20:58.360653+02:00",
+      "kulcs": "AAGL292",
+      "rendszam": "AAGL292",
+      "vehicle_id": "325",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.476722717285156,
+      "lon": 19.047414779663086,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-29T02:20:58.361378+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.525699615478516,
+      "lon": 19.038084030151367,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-10-29T02:20:58.361468+02:00",
+      "kulcs": "RVY604",
+      "rendszam": "RVY604",
+      "vehicle_id": "7433",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48746109008789,
+      "lon": 19.058345794677734,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
     }
   ]
 }
