@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-29T02:58:57.146244+02:00",
+  "frissitve": "2026-10-29T02:59:30.541287+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T12:45:01.001065+02:00",
-      "kulcs": "T9113",
-      "rendszam": "T9113",
-      "vehicle_id": "7754",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.51071548461914,
-      "lon": 19.097211837768555,
-      "elozo_szoveg": "Zugló vasútállomás",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-10-28T12:45:01.001130+02:00",
-      "kulcs": "AOFL194",
-      "rendszam": "AOFL194",
-      "vehicle_id": "778",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.478050231933594,
-      "lon": 19.04560089111328,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Citadella - Sánc utca"
-    },
-    {
-      "idopont": "2026-10-28T12:45:01.002039+02:00",
-      "kulcs": "AOFL219",
-      "rendszam": "AOFL219",
-      "vehicle_id": "806",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53542709350586,
-      "lon": 19.027250289916992,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-10-28T12:45:01.002519+02:00",
-      "kulcs": "AOIB792",
-      "rendszam": "AOIB792",
-      "vehicle_id": "863",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.48646926879883,
-      "lon": 18.99216079711914,
-      "elozo_szoveg": "Mindszenty J. bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-10-28T12:45:01.002733+02:00",
-      "kulcs": "AOIB811",
-      "rendszam": "AOIB811",
-      "vehicle_id": "882",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "212",
-      "route_id": "2120",
-      "lat": 47.50050735473633,
-      "lon": 18.96965217590332,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Boráros tér H"
-    },
     {
       "idopont": "2026-10-28T12:45:01.002857+02:00",
       "kulcs": "AOGL315",
@@ -260000,6 +259935,71 @@
       "lon": 18.95836067199707,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-29T02:59:30.441777+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498939514160156,
+      "lon": 19.009319305419922,
+      "elozo_szoveg": "Svábhegy ► Csillebérc",
+      "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-10-29T02:59:30.445876+02:00",
+      "kulcs": "AAGL317",
+      "rendszam": "AAGL317",
+      "vehicle_id": "345",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.456077575683594,
+      "lon": 18.94072151184082,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-10-29T02:59:30.445933+02:00",
+      "kulcs": "AADI572",
+      "rendszam": "AADI572",
+      "vehicle_id": "43",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52642059326172,
+      "lon": 19.038188934326172,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-29T02:59:30.446560+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.477909088134766,
+      "lon": 19.045700073242188,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-10-29T02:59:30.446598+02:00",
+      "kulcs": "PMP914",
+      "rendszam": "PMP914",
+      "vehicle_id": "7232",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50153732299805,
+      "lon": 19.136178970336914,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
     }
   ]
 }
