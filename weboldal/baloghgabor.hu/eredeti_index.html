@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balogh Gábor - Szakmai Portfólió</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React és ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- EmailJS SDK (Szükséges az email küldéshez) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Babel a kód fordításához -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        html { scroll-behavior: smooth; }
+        /* Scrollbar styling for modal */
+        .modal-scroll::-webkit-scrollbar { width: 8px; }
+        .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- Ikon komponensek ---
+        const Icon = ({ path, size = 24, className = "", ...rest }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...rest}>
+                {path}
+            </svg>
+        );
+
+        const Menu = (props) => <Icon {...props} path={<><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></>} />;
+        const X = (props) => <Icon {...props} path={<><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>} />;
+        const Monitor = (props) => <Icon {...props} path={<><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></>} />;
+        const Tv = (props) => <Icon {...props} path={<><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></>} />;
+        const Mail = (props) => <Icon {...props} path={<><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>} />;
+        const FileText = (props) => <Icon {...props} path={<><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></>} />;
+        const Download = (props) => <Icon {...props} path={<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></>} />;
+        const ChevronDown = (props) => <Icon {...props} path={<polyline points="6 9 12 15 18 9"/>} />;
+        const Facebook = (props) => <Icon {...props} path={<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>} />;
+        const Linkedin = (props) => <Icon {...props} path={<><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></>} />;
+        const User = (props) => <Icon {...props} path={<><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></>} />;
+        const Server = (props) => <Icon {...props} path={<><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></>} />;
+        const GraduationCap = (props) => <Icon {...props} path={<><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></>} />;
+        const Moon = (props) => <Icon {...props} path={<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>} />;
+        const Sun = (props) => <Icon {...props} path={<><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></>} />;
+        const Briefcase = (props) => <Icon {...props} path={<><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></>} />;
+        const Award = (props) => <Icon {...props} path={<><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></>} />;
+        const Eye = (props) => <Icon {...props} path={<><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></>} />;
+        const ClipboardCheck = (props) => <Icon {...props} path={<><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></>} />;
+
+        // --- Fő Applikáció ---
+        const App = () => {
+          const [isMenuOpen, setIsMenuOpen] = useState(false);
+          const [scrolled, setScrolled] = useState(false);
+          const [activeTab, setActiveTab] = useState('teaching');
+          const [theme, setTheme] = useState('light');
+          
+          // CV Modal állapot
+          const [isCvOpen, setIsCvOpen] = useState(false);
+          // Image Error állapot
+          const [imgError, setImgError] = useState(false);
+          // Űrlap referencia
+          const form = useRef();
+
+          useEffect(() => {
+            const handleScroll = () => {
+              setScrolled(window.scrollY > 50);
+            };
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+          }, []);
+
+          // Modal kezelése - body scroll tiltása ha nyitva
+          useEffect(() => {
+             if (isCvOpen) {
+                 document.body.style.overflow = 'hidden';
+             } else {
+                 document.body.style.overflow = 'unset';
+             }
+          }, [isCvOpen]);
+
+          const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+          const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+
+          // EmailJS Küldés Kezelése
+          const handleContactSubmit = (e) => {
+              e.preventDefault();
+
+              // BEÁLLÍTOTT ADATOK:
+              // Service ID: 'service_22q0fkl'
+              // Template ID: 'template_faye78z'
+              // Public Key: 'zf1eShmsbysxQbYtF'
+              
+              emailjs.sendForm('service_22q0fkl', 'template_faye78z', form.current, 'zf1eShmsbysxQbYtF')
+                .then((result) => {
+                    alert("Köszönöm az üzenetet! Hamarosan felveszem Önnel a kapcsolatot.");
+                    e.target.reset(); // Űrlap törlése sikeres küldés után
+                }, (error) => {
+                    console.log(error.text);
+                    alert("Hiba történt az üzenet küldésekor. Kérlek próbáld újra később, vagy írj közvetlenül az email címemre.");
+                });
+          };
+
+          const isDark = theme === 'dark';
+
+          const colors = {
+            bg: isDark ? 'bg-slate-900' : 'bg-slate-50',
+            cardBg: isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-100',
+            textMain: isDark ? 'text-white' : 'text-slate-900',
+            textMuted: isDark ? 'text-slate-400' : 'text-slate-600',
+            primary: isDark ? 'text-amber-400' : 'text-blue-600',
+            primaryBg: isDark ? 'bg-amber-500 hover:bg-amber-600 text-slate-900' : 'bg-blue-600 hover:bg-blue-700 text-white',
+            accentBg: isDark ? 'bg-slate-800' : 'bg-blue-50',
+            navBg: isDark 
+              ? (scrolled ? 'bg-slate-900/95 border-slate-800 shadow-slate-900/50' : 'bg-slate-900/50 border-slate-800') 
+              : (scrolled ? 'bg-white/95 border-slate-200 shadow-lg' : 'bg-white/80 border-slate-200'),
+            gradient: isDark 
+              ? 'from-amber-200 to-yellow-500' 
+              : 'from-blue-600 to-indigo-600'
+          };
+
+          const navLinks = [
+            { name: 'Kezdőlap', href: '#home' },
+            { name: 'Tevékenységek', href: '#activities' },
+            { name: 'Szakmai Önéletrajz', href: '#cv' },
+            { name: 'Írjon nekem', href: '#contact' },
+          ];
+
+          const activities = [
+            {
+              id: 'teaching',
+              title: 'Tanítási tevékenység',
+              icon: <GraduationCap size={24} />,
+              content: 'Több éves oktatói tapasztalattal rendelkezem. Célom a tudás átadása gyakorlatias, érthető formában, legyen szó informatikáról vagy szakmai tárgyakról. Fontosnak tartom a tehetséggondozást és a naprakész ismeretek közvetítését.',
+              color: isDark ? 'bg-blue-900/30 text-blue-300' : 'bg-blue-100 text-blue-600'
+            },
+            {
+              id: 'exam',
+              title: 'Vizsgáztatási tevékenység',
+              icon: <FileText size={24} />,
+              content: 'Akkreditált vizsgáztatóként részt veszek szakmai vizsgák lebonyolításában. A precizitás és a szabályok pontos betartása mellett törekszem a vizsgázók számára nyugodt légkört biztosítani a tudásuk legjobb bemutatásához.',
+              color: isDark ? 'bg-green-900/30 text-green-300' : 'bg-green-100 text-green-600'
+            },
+            {
+              id: 'sysadmin',
+              title: 'Rendszergazdai tevékenység',
+              icon: <Server size={24} />,
+              content: 'Komplex informatikai rendszerek üzemeltetése, karbantartása és fejlesztése. Hálózatépítés, szervermenedzsment és felhasználói támogatás. Megbízható IT hátteret biztosítok intézmények és vállalkozások számára.',
+              color: isDark ? 'bg-indigo-900/30 text-indigo-300' : 'bg-indigo-100 text-indigo-600'
+            },
+            {
+              id: 'tv',
+              title: 'Televíziós műsorgyártás',
+              icon: <Tv size={24} />,
+              content: 'Kreatív tartalomgyártás és technikai megvalósítás a televíziós iparban. Tapasztalat a műsorkészítés különböző fázisaiban, a tervezéstől az utómunkáig, biztosítva a magas színvonalú vizuális élményt.',
+              color: isDark ? 'bg-purple-900/30 text-purple-300' : 'bg-purple-100 text-purple-600'
+            }
+          ];
+
+          return (
+            <div className={`font-sans transition-colors duration-500 min-h-screen ${colors.bg} ${colors.textMain}`}>
+              
+              {/* --- NAVIGATION --- */}
+              <nav className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-md border-b py-3 ${colors.navBg}`}>
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="flex justify-between items-center">
+                    <a href="#home" className="flex items-center group">
+                      <img 
+                        src="logo.png" 
+                        alt="BG Logo" 
+                        className="h-10 w-auto object-contain"
+                      />
+                    </a>
+
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex space-x-8 items-center">
+                      {navLinks.map((link) => (
+                        <a 
+                          key={link.name} 
+                          href={link.href} 
+                          className={`text-sm font-semibold uppercase tracking-wide transition-colors ${isDark ? 'text-slate-300 hover:text-amber-400' : 'text-slate-600 hover:text-blue-600'}`}
+                        >
+                          {link.name}
+                        </a>
+                      ))}
+                      
+                      <button 
+                        onClick={toggleTheme}
+                        className={`p-2 rounded-full transition-colors ${isDark ? 'bg-slate-800 text-amber-400 hover:bg-slate-700' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                        title="Stílus váltása"
+                      >
+                        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                      </button>
+
+                      <a href="#contact" className={`px-5 py-2 rounded-md font-medium transition-colors shadow-md ${colors.primaryBg}`}>
+                        Kapcsolat
+                      </a>
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden flex items-center gap-4">
+                       <button 
+                        onClick={toggleTheme}
+                        className={`p-2 rounded-full transition-colors ${isDark ? 'bg-slate-800 text-amber-400' : 'bg-slate-100 text-slate-600'}`}
+                      >
+                        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                      </button>
+                      <button onClick={toggleMenu} className={`${colors.textMuted} p-2`}>
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Menu Dropdown */}
+                {isMenuOpen && (
+                  <div className={`md:hidden shadow-xl border-t absolute w-full ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
+                    <div className="px-4 py-4 space-y-3">
+                      {navLinks.map((link) => (
+                        <a
+                          key={link.name}
+                          href={link.href}
+                          className={`block px-4 py-3 rounded-lg font-medium border-l-4 border-transparent transition-all ${
+                            isDark 
+                            ? 'text-slate-300 hover:bg-slate-800 hover:text-amber-400 hover:border-amber-400' 
+                            : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600 hover:border-blue-600'
+                          }`}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {link.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </nav>
+
+              {/* --- HERO SECTION --- */}
+              <section id="home" className={`pt-32 pb-20 lg:pt-48 lg:pb-32 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
+                <div className={`absolute top-0 right-0 w-1/3 h-full skew-x-12 translate-x-20 z-0 transition-colors duration-500 ${isDark ? 'bg-slate-800/50' : 'bg-slate-50'}`}></div>
+                <div className={`absolute bottom-0 left-0 w-64 h-64 rounded-full blur-3xl opacity-60 z-0 transition-colors duration-500 ${isDark ? 'bg-amber-500/10' : 'bg-blue-50'}`}></div>
+
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="order-2 lg:order-1">
+                      <div className={`inline-block px-3 py-1 mb-6 text-xs font-bold tracking-widest uppercase rounded-full ${isDark ? 'bg-amber-500/10 text-amber-400' : 'bg-blue-100 text-blue-600'}`}>
+                        Üdvözlöm a weboldalamon
+                      </div>
+                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                        Megbízhatóság.<br/>
+                        <span className={`text-transparent bg-clip-text bg-gradient-to-r ${colors.gradient}`}>Szakértelem.</span>
+                        <br/>Tapasztalat.
+                      </h1>
+                      <p className={`text-lg mb-8 max-w-lg leading-relaxed ${colors.textMuted}`}>
+                        Balogh Gábor vagyok. Tevékenységem szerteágazó, mégis egy irányba mutat: 
+                        a tudás átadása és a technológia professzionális alkalmazása.
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-4">
+                        <a href="#activities" className={`px-7 py-3 rounded-lg font-semibold transition-all transform hover:-translate-y-0.5 shadow-lg ${isDark ? 'bg-amber-500 text-slate-900 hover:bg-amber-400 shadow-amber-500/20' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-slate-200'}`}>
+                          Tevékenységeim
+                        </a>
+                        <button onClick={() => setIsCvOpen(true)} className={`px-7 py-3 border rounded-lg font-semibold transition-all flex items-center ${isDark ? 'border-slate-700 text-slate-300 hover:bg-slate-800' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>
+                          Szakmai Önéletrajz
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+                      <div className="relative w-72 h-72 md:w-96 md:h-96">
+                        <div className={`absolute inset-0 bg-gradient-to-tr rounded-2xl rotate-6 opacity-20 ${colors.gradient}`}></div>
+                        <div className={`absolute inset-0 rounded-2xl -rotate-3 overflow-hidden shadow-2xl flex items-center justify-center transition-colors duration-500 ${isDark ? 'bg-slate-800' : 'bg-slate-800'}`}>
+                           {/* MÓDOSÍTVA: Helyi profilkép betöltése + Fallback ha nincs feltöltve */}
+                           {imgError ? (
+                                <div className="flex flex-col items-center justify-center h-full w-full">
+                                    <User size={120} className="text-slate-600 opacity-50" />
+                                    <span className="text-slate-500 mt-4 text-sm px-8 text-center">A kép megjelenítéséhez töltsd fel a "profilkep.jpg" fájlt.</span>
+                                </div>
+                           ) : (
+                               <img 
+                                 src="profilkep.jpg" 
+                                 alt="Balogh Gábor" 
+                                 onError={() => setImgError(true)}
+                                 className="w-full h-full object-cover"
+                               />
+                           )}
+                           <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                             <p className="text-white font-bold text-xl">Balogh Gábor József</p>
+                             <p className="text-slate-300 text-sm">Szakmai Portfólió</p>
+                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* --- ACTIVITIES SECTION --- */}
+              <section id="activities" className={`py-24 transition-colors duration-500 ${colors.bg}`}>
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold mb-4">Mivel foglalkozom?</h2>
+                    <div className={`w-20 h-1 mx-auto rounded-full ${isDark ? 'bg-amber-500' : 'bg-blue-600'}`}></div>
+                    <p className={`mt-4 max-w-2xl mx-auto ${colors.textMuted}`}>
+                      Szakmai életutam során négy fő területen mélyítettem el tudásomat, melyek mindegyike kiegészíti egymást.
+                    </p>
+                  </div>
+
+                  {/* MOBIL NÉZET: HARMONIKA (ACCORDION) */}
+                  <div className="lg:hidden space-y-4">
+                     {activities.map((act) => (
+                        <div key={act.id} className={`rounded-xl border overflow-hidden transition-all duration-300 ${activeTab === act.id ? colors.cardBg + ' shadow-lg border-transparent' : (isDark ? 'bg-transparent border-slate-700' : 'bg-transparent border-slate-200')}`}>
+                           {/* Gomb (Fejléc) */}
+                           <button
+                              onClick={() => setActiveTab(activeTab === act.id ? null : act.id)}
+                              className={`w-full text-left px-5 py-4 flex items-center justify-between transition-colors ${activeTab === act.id ? '' : (isDark ? 'hover:bg-slate-800' : 'hover:bg-slate-50')}`}
+                           >
+                              <div className="flex items-center">
+                                 <div className={`p-2 rounded-lg mr-3 ${activeTab === act.id ? act.color : (isDark ? 'bg-slate-800 text-slate-500' : 'bg-slate-100 text-slate-500')}`}>
+                                    {act.icon}
+                                 </div>
+                                 <span className={`font-bold ${activeTab === act.id ? colors.textMain : colors.textMuted}`}>
+                                    {act.title}
+                                 </span>
+                              </div>
+                              <ChevronDown size={20} className={`transform transition-transform duration-300 ${activeTab === act.id ? 'rotate-180 ' + (isDark ? 'text-amber-500' : 'text-blue-500') : 'text-slate-400'}`} />
+                           </button>
+
+                           {/* Tartalom (Lenyíló rész) */}
+                           <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeTab === act.id ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                              <div className="px-5 pb-6 pt-2">
+                                 <p className={`leading-relaxed mb-4 ${colors.textMuted}`}>
+                                    {act.content}
+                                 </p>
+                                 <ul className="space-y-2">
+                                    {['Szakmai tapasztalat és elkötelezettség', 'Naprakész ismeretek', 'Precíz munkavégzés'].map((item, i) => (
+                                       <li key={i} className="flex items-start">
+                                          <div className={`mt-1.5 min-w-[6px] h-[6px] rounded-full mr-3 ${isDark ? 'bg-amber-500' : 'bg-blue-500'}`}></div>
+                                          <span className={`text-sm ${colors.textMuted}`}>{item}</span>
+                                       </li>
+                                    ))}
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+
+                  {/* DESKTOP NÉZET: EREDETI (FÜLEK + KÁRTYA) */}
+                  <div className="hidden lg:flex flex-row gap-8">
+                    <div className="w-1/3 space-y-3">
+                      {activities.map((act) => (
+                        <button
+                          key={act.id}
+                          onClick={() => setActiveTab(act.id)}
+                          className={`w-full text-left px-6 py-4 rounded-xl flex items-center transition-all duration-300 border ${
+                            activeTab === act.id 
+                              ? `${colors.cardBg} shadow-md transform scale-105 z-10` 
+                              : `bg-transparent border-transparent hover:${isDark ? 'bg-slate-800' : 'bg-white/50'} ${colors.textMuted}`
+                          }`}
+                        >
+                          <div className={`p-2 rounded-lg mr-4 ${activeTab === act.id ? act.color : (isDark ? 'bg-slate-800 text-slate-500' : 'bg-slate-200 text-slate-500')}`}>
+                            {act.icon}
+                          </div>
+                          <span className={`font-bold ${activeTab === act.id ? colors.textMain : colors.textMuted}`}>
+                            {act.title}
+                          </span>
+                          {activeTab === act.id && <ChevronDown className={`ml-auto transform -rotate-90 ${isDark ? 'text-amber-500' : 'text-blue-500'}`} size={20} />}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className={`w-2/3 rounded-2xl p-8 md:p-12 shadow-xl border min-h-[300px] flex flex-col justify-center relative overflow-hidden transition-colors duration-500 ${colors.cardBg}`}>
+                      <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+                        {activities.find(a => a.id === activeTab)?.icon}
+                      </div>
+                      
+                      {activities.map((act) => (
+                        activeTab === act.id && (
+                          <div key={act.id} className="animate-fade-in relative z-10">
+                            <div className={`inline-flex items-center justify-center p-3 rounded-xl mb-6 ${act.color}`}>
+                              {act.icon}
+                            </div>
+                            <h3 className="text-2xl font-bold mb-6">{act.title}</h3>
+                            <p className={`text-lg leading-relaxed mb-8 ${colors.textMuted}`}>
+                              {act.content}
+                            </p>
+                            <ul className="space-y-3 mb-8">
+                              {['Szakmai tapasztalat és elkötelezettség', 'Naprakész technológiai és módszertani ismeretek', 'Precíz, megbízható munkavégzés'].map((item, i) => (
+                                <li key={i} className="flex items-start">
+                                  <div className={`mt-1.5 min-w-[6px] h-[6px] rounded-full mr-3 ${isDark ? 'bg-amber-500' : 'bg-blue-500'}`}></div>
+                                  <span className={colors.textMuted}>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* --- CV SECTION (SIMPLIFIED) --- */}
+              <section id="cv" className={`py-20 relative transition-colors duration-500 ${isDark ? 'bg-slate-950 text-slate-200' : 'bg-slate-900 text-white'}`}>
+                <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+                <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                  <FileText size={48} className={`mx-auto mb-6 ${isDark ? 'text-amber-500' : 'text-blue-400'}`} />
+                  <h2 className="text-3xl font-bold mb-6">Szakmai Önéletrajz</h2>
+                  <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+                    Tanulmányaim, szakmai tapasztalataim, kompetenciáim és munkahelyeim részletes áttekintése.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                     {/* Megtekintés Gomb */}
+                     <div onClick={() => setIsCvOpen(true)} className={`p-6 rounded-xl border transition-all cursor-pointer group ${isDark ? 'bg-slate-900 border-slate-800 hover:border-amber-500' : 'bg-slate-800 border-slate-700 hover:border-blue-500'}`}>
+                        <div className="flex flex-col items-center justify-center h-full">
+                            <Eye size={32} className={`mb-4 ${isDark ? 'text-amber-500' : 'text-blue-400'}`} />
+                            {/* MÓDOSÍTVA: Gomb szövege és elrendezés */}
+                            <h3 className={`font-bold text-xl text-center transition-colors ${isDark ? 'group-hover:text-amber-400' : 'group-hover:text-blue-400'}`}>Fontosabb pontok megtekintése</h3>
+                            {/* KIVÉVE: Részletes önéletrajz szöveg */}
+                        </div>
+                     </div>
+                     
+                     {/* Letöltés Gomb */}
+                     <a href="oneletrajz.pdf" target="_blank" className={`p-6 rounded-xl border transition-all cursor-pointer group block ${isDark ? 'bg-slate-900 border-slate-800 hover:border-amber-500' : 'bg-slate-800 border-slate-700 hover:border-blue-500'}`}>
+                        <div className="flex flex-col items-center">
+                            <Download size={32} className={`mb-4 ${isDark ? 'text-amber-500' : 'text-blue-400'}`} />
+                            <h3 className={`font-bold text-xl mb-2 transition-colors ${isDark ? 'group-hover:text-amber-400' : 'group-hover:text-blue-400'}`}>Letöltés PDF-ben</h3>
+                            <p className="text-slate-500 text-sm">A teljes dokumentum letöltése (oneletrajz.pdf)</p>
+                        </div>
+                     </a>
+                  </div>
+                </div>
+              </section>
+
+              {/* --- CONTACT SECTION --- */}
+              <section id="contact" className={`py-24 transition-colors duration-500 ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div>
+                      <h2 className={`text-3xl font-bold mb-6 ${colors.textMain}`}>Írjon nekem</h2>
+                      <p className={`mb-8 leading-relaxed ${colors.textMuted}`}>
+                        Amennyiben felkeltettem érdeklődését, kérem, lépjen velem kapcsolatba az alábbi elérhetőségeken.
+                      </p>
+                      
+                      <div className="space-y-6">
+                        <div className="flex items-start">
+                          <div className={`w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 ${isDark ? 'bg-amber-500/10 text-amber-500' : 'bg-blue-50 text-blue-600'}`}>
+                            <Mail size={24} />
+                          </div>
+                          <div>
+                            <h4 className={`font-bold ${colors.textMain}`}>Email cím</h4>
+                            <p className={colors.textMuted}>uzenet@baloghgabor.hu</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className={`w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 ${isDark ? 'bg-amber-500/10 text-amber-500' : 'bg-blue-50 text-blue-600'}`}>
+                            <Monitor size={24} />
+                          </div>
+                          <div>
+                            <h4 className={`font-bold ${colors.textMain}`}>Weboldal</h4>
+                            <p className={colors.textMuted}>www.baloghgabor.hu</p>
+                          </div>
+                        </div>
+
+                         <div className="pt-8 flex space-x-4">
+                          {/* MÓDOSÍTVA: Facebook link és Mail ikon */}
+                          <a href="https://www.facebook.com/profile.php?id=100064068214889" target="_blank" rel="noreferrer" className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${isDark ? 'bg-slate-800 text-slate-400 hover:bg-amber-500 hover:text-slate-900' : 'bg-slate-100 text-slate-600 hover:bg-blue-600 hover:text-white'}`}>
+                            <Facebook size={20} />
+                          </a>
+                          <a href="mailto:uzenet@baloghgabor.hu" className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${isDark ? 'bg-slate-800 text-slate-400 hover:bg-amber-500 hover:text-slate-900' : 'bg-slate-100 text-slate-600 hover:bg-blue-700 hover:text-white'}`}>
+                            <Mail size={20} />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className={`p-8 rounded-2xl border shadow-sm transition-colors duration-500 ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-100'}`}>
+                      {/* Javítás: onSubmit hozzáadása a formhoz */}
+                      <form ref={form} className="space-y-5" onSubmit={handleContactSubmit}>
+                        <div>
+                          <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Név</label>
+                          <input required name="from_name" type="text" className={`w-full px-4 py-3 rounded-lg border outline-none transition-all ${isDark ? 'bg-slate-900 border-slate-700 text-white focus:border-amber-500' : 'bg-white border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200'}`} placeholder="Az Ön neve" />
+                        </div>
+                        <div>
+                          <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Email cím</label>
+                          <input required name="reply_to" type="email" className={`w-full px-4 py-3 rounded-lg border outline-none transition-all ${isDark ? 'bg-slate-900 border-slate-700 text-white focus:border-amber-500' : 'bg-white border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200'}`} placeholder="pelda@email.hu" />
+                        </div>
+                        <div>
+                          <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Üzenet tárgya</label>
+                          {/* MÓDOSÍTVA: Select helyett Input */}
+                          <input name="subject" type="text" className={`w-full px-4 py-3 rounded-lg border outline-none transition-all ${isDark ? 'bg-slate-900 border-slate-700 text-white focus:border-amber-500' : 'bg-white border-slate-200 text-slate-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200'}`} placeholder="Üzenet tárgya" />
+                        </div>
+                        <div>
+                          <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Üzenet szövege</label>
+                          <textarea required name="message" className={`w-full px-4 py-3 rounded-lg border outline-none transition-all h-32 resize-none ${isDark ? 'bg-slate-900 border-slate-700 text-white focus:border-amber-500' : 'bg-white border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200'}`} placeholder="Írja le röviden, miben segíthetek..."></textarea>
+                        </div>
+                        <button type="submit" className={`w-full font-bold py-4 rounded-lg transition-all shadow-lg ${isDark ? 'bg-amber-500 text-slate-900 hover:bg-amber-400 hover:shadow-amber-500/30' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-blue-500/30'}`}>
+                          Üzenet küldése
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* --- FOOTER --- */}
+              <footer className={`py-12 border-t transition-colors duration-500 ${isDark ? 'bg-slate-950 text-slate-500 border-slate-900' : 'bg-slate-900 text-slate-400 border-slate-800'}`}>
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+                  <div className="mb-4 md:mb-0 text-center md:text-left">
+                    <span className="text-xl font-bold text-white tracking-tight">Balogh Gábor</span>
+                    <p className="text-sm mt-2">Minden jog fenntartva. © {new Date().getFullYear()}</p>
+                  </div>
+                  
+                  <div className="flex space-x-6 text-sm font-medium">
+                     <a href="#home" className="hover:text-white transition-colors">Kezdőlap</a>
+                     <a href="#activities" className="hover:text-white transition-colors">Tevékenységek</a>
+                     <a href="#cv" className="hover:text-white transition-colors">Önéletrajz</a>
+                  </div>
+                </div>
+              </footer>
+
+              {/* --- MODAL (CV Részletező) --- */}
+              {isCvOpen && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+                    <div className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl modal-scroll ${isDark ? 'bg-slate-900 text-white border border-slate-700' : 'bg-white text-slate-900'}`}>
+                        {/* MÓDOSÍTVA: Sticky Close Button */}
+                        <div className="sticky top-0 right-0 z-50 flex justify-end p-4 pointer-events-none">
+                            <button 
+                                onClick={() => setIsCvOpen(false)} 
+                                className={`pointer-events-auto p-2 rounded-full transition-colors shadow-lg border ${isDark ? 'bg-slate-800 border-slate-700 hover:bg-slate-700 text-slate-300' : 'bg-white border-slate-200 hover:bg-slate-100 text-slate-600'}`}
+                                title="Bezárás"
+                            >
+                                <X size={24} />
+                            </button>
+                        </div>
+
+                        <div className="px-8 md:px-12 pb-12 -mt-10"> {/* -mt-10 a sticky header miatt */}
+                            <div className="text-center mb-10 pt-4">
+                                <h2 className="text-3xl font-bold mb-2">Szakmai Önéletrajz</h2>
+                                <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>Balogh Gábor József</p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                {/* Bal oszlop: Munkahelyek és Vizsgáztatás */}
+                                <div>
+                                    {/* MUNKAHELYEK */}
+                                    <div className="flex items-center mb-6 border-b pb-2 border-slate-200 dark:border-slate-700">
+                                        <Briefcase className={`mr-3 ${isDark ? 'text-amber-500' : 'text-blue-600'}`} />
+                                        <h3 className="text-2xl font-bold">Munkahelyek</h3>
+                                    </div>
+                                    <div className="space-y-8 pl-2 mb-10">
+                                         {/* Módosítva: Minden pötty egységes aktív színű */}
+                                         <div className="relative pl-6 border-l-2 border-slate-300 dark:border-slate-700">
+                                            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full ${isDark ? 'bg-amber-500' : 'bg-blue-600'}`}></div>
+                                            <h4 className="text-lg font-bold">TV2 Zrt.</h4>
+                                            <p className={`mt-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                A Tények című műsor baleseti tudósítója, külsős szerződött munkatársa (beszállítója).
+                                            </p>
+                                        </div>
+                                        <div className="relative pl-6 border-l-2 border-slate-300 dark:border-slate-700">
+                                            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full ${isDark ? 'bg-amber-500' : 'bg-blue-600'}`}></div>
+                                            <h4 className="text-lg font-bold">Budapesti Komplex SZC Szamos Mátyás Technikum és Szakképző Iskola</h4>
+                                            <p className={`mt-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                Informatika szakos oktató, informatikus – rendszergazda.
+                                            </p>
+                                        </div>
+                                        <div className="relative pl-6 border-l-2 border-slate-300 dark:border-slate-700">
+                                            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full ${isDark ? 'bg-amber-500' : 'bg-blue-600'}`}></div>
+                                            <h4 className="text-lg font-bold">REIL-VIOLIN Zeneművészeti Közhasznú Nonprofit Kft.</h4>
+                                            <p className={`mt-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                Informatikus-rendszergazda.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* VIZSGÁZTATÁSI TEVÉKENYSÉG - Külön kategória */}
+                                    <div className="flex items-center mb-6 border-b pb-2 border-slate-200 dark:border-slate-700">
+                                        <ClipboardCheck className={`mr-3 ${isDark ? 'text-amber-500' : 'text-blue-600'}`} />
+                                        <h3 className="text-2xl font-bold">Vizsgáztatási tevékenység</h3>
+                                    </div>
+                                    <div className="space-y-4 pl-2">
+                                        <p className={`mb-3 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                            Szakmai vizsgabizottságban vizsgafelügyelői, értékelői és mérési feladatok ellátása.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Jobb oszlop: Tanulmányok & Kompetenciák */}
+                                <div>
+                                    <div className="flex items-center mb-6 border-b pb-2 border-slate-200 dark:border-slate-700">
+                                        <GraduationCap className={`mr-3 ${isDark ? 'text-amber-500' : 'text-blue-600'}`} />
+                                        <h3 className="text-2xl font-bold">Tanulmányok</h3>
+                                    </div>
+                                    {/* Módosítva: Idővonalas pöttyök hozzáadása */}
+                                    <div className="space-y-8 pl-2 mb-10">
+                                        <div className="relative pl-6 border-l-2 border-slate-300 dark:border-slate-700">
+                                            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full ${isDark ? 'bg-amber-500' : 'bg-blue-600'}`}></div>
+                                            <h4 className="text-lg font-bold">Okleveles informatikatanár (Master)</h4>
+                                            <span className={`text-sm block mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>2013 - Pannon Egyetem Modern Filológiai és Társadalomtudományi Kar</span>
+                                        </div>
+                                        <div className="relative pl-6 border-l-2 border-slate-300 dark:border-slate-700">
+                                            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full ${isDark ? 'bg-amber-500' : 'bg-blue-600'}`}></div>
+                                            <h4 className="text-lg font-bold">Okleveles klarinéttanár (Master)</h4>
+                                            <span className={`text-sm block mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>2010 - Miskolci Egyetem, Bartók Béla Zeneművészeti Intézet</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center mb-6 border-b pb-2 border-slate-200 dark:border-slate-700">
+                                        <Award className={`mr-3 ${isDark ? 'text-amber-500' : 'text-blue-600'}`} />
+                                        <h3 className="text-2xl font-bold">Kompetenciák</h3>
+                                    </div>
+                                    <ul className="space-y-3 pl-2">
+                                        {[
+                                            "Magabiztos MS Office / Google Workspace használat",
+                                            "Kiváló problémamegoldó képesség",
+                                            "Önálló és felelősségteljes munkavégzés",
+                                            "Csapatmunkában való hatékony együttműködés",
+                                            "Kreatív tartalomgyártás"
+                                        ].map((skill, idx) => (
+                                            <li key={idx} className={`flex items-center ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                <div className={`w-2 h-2 rounded-full mr-3 ${isDark ? 'bg-amber-500' : 'bg-blue-600'}`}></div>
+                                                {skill}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div className="mt-12 text-center">
+                                <a href="oneletrajz.pdf" target="_blank" className={`inline-flex items-center px-6 py-3 rounded-lg font-bold transition-all ${isDark ? 'bg-amber-500 text-slate-900 hover:bg-amber-400' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
+                                    <Download size={20} className="mr-2" />
+                                    Teljes önéletrajz letöltése (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              )}
+
+            </div>
+          );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
