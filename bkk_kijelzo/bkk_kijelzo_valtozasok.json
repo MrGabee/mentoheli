@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-29T03:20:49.806792+02:00",
+  "frissitve": "2026-10-29T03:21:21.566541+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T12:48:19.299045+02:00",
-      "kulcs": "415 062",
-      "rendszam": "415 062",
-      "vehicle_id": "945514150628",
-      "vehicle_label": "Pilisvörösvár",
-      "vonal_szam": "S76",
-      "route_id": "S76",
-      "lat": 47.53211975097656,
-      "lon": 19.123689651489258,
-      "elozo_szoveg": "Rákos",
-      "uj_szoveg": "Pilisvörösvár"
-    },
-    {
-      "idopont": "2026-10-28T12:48:19.299383+02:00",
-      "kulcs": "AADI599",
-      "rendszam": "AADI599",
-      "vehicle_id": "96",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.407249450683594,
-      "lon": 19.015090942382812,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-10-28T12:49:30.163180+02:00",
-      "kulcs": "V2003",
-      "rendszam": "V2003",
-      "vehicle_id": "2003",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47404861450195,
-      "lon": 19.047082901000977,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-28T12:49:30.163416+02:00",
       "kulcs": "V2040",
@@ -260000,6 +259961,45 @@
       "lon": 19.054285049438477,
       "elozo_szoveg": "Békásmegyer H",
       "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-29T03:21:21.483758+02:00",
+      "kulcs": "AAGL265",
+      "rendszam": "AAGL265",
+      "vehicle_id": "265",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.455928802490234,
+      "lon": 18.9404239654541,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-10-29T03:21:21.485692+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.507240295410156,
+      "lon": 18.921600341796875,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-29T03:21:21.486720+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.47636413574219,
+      "lon": 19.04714012145996,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
