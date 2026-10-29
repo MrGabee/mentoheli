@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-29T04:42:15.154937+02:00",
+  "frissitve": "2026-10-29T04:42:48.826679+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T13:02:29.154360+02:00",
-      "kulcs": "SKR721",
-      "rendszam": "SKR721",
-      "vehicle_id": "7670",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46323776245117,
-      "lon": 19.14788818359375,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-28T13:02:29.155124+02:00",
-      "kulcs": "T9131",
-      "rendszam": "T9131",
-      "vehicle_id": "7870",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48939514160156,
-      "lon": 19.08991050720215,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-28T13:02:29.155235+02:00",
-      "kulcs": "T9143",
-      "rendszam": "T9143",
-      "vehicle_id": "7882",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.519248962402344,
-      "lon": 19.09096908569336,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-28T13:02:29.155363+02:00",
-      "kulcs": "T8116",
-      "rendszam": "T8116",
-      "vehicle_id": "7895",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50199508666992,
-      "lon": 19.08209991455078,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
     {
       "idopont": "2026-10-28T13:02:29.155406+02:00",
       "kulcs": "AOFL206",
@@ -260000,6 +259948,58 @@
       "lon": 19.151180267333984,
       "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-29T04:42:48.761767+02:00",
+      "kulcs": "FLR737",
+      "rendszam": "FLR737",
+      "vehicle_id": "3151",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483924865722656,
+      "lon": 19.12754249572754,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-29T04:42:48.763002+02:00",
+      "kulcs": "NWB352",
+      "rendszam": "NWB352",
+      "vehicle_id": "6532",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49729919433594,
+      "lon": 19.05524444580078,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-29T04:42:48.763127+02:00",
+      "kulcs": "PKN629",
+      "rendszam": "PKN629",
+      "vehicle_id": "7218",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47977066040039,
+      "lon": 19.25550079345703,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-29T04:42:48.763512+02:00",
+      "kulcs": "885-643-886",
+      "rendszam": "885-643-886",
+      "vehicle_id": "905516568854-905536466436-905516568862",
+      "vehicle_label": "Ráckeve",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.36081314086914,
+      "lon": 19.086868286132812,
+      "elozo_szoveg": "Dunaharaszti külső",
+      "uj_szoveg": "Ráckeve"
     }
   ]
 }
