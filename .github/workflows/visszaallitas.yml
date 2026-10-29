@@ -22,6 +22,9 @@ jobs:
       - name: Kulcs közzététele, csomag megvárása
         run: |
           set -e
+          mkdir -p .github/visszaallitas
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out /tmp/priv.pem 2>/dev/null
           openssl pkey -in /tmp/priv.pem -pubout -out .github/visszaallitas/kulcs.pem
           rm -f .github/visszaallitas/csomag.enc .github/visszaallitas/csomag.kulcs.enc
