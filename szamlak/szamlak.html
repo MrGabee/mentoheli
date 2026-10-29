@@ -485,6 +485,9 @@
   .szk-fej b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .szk-ablak iframe { flex: 1; border: 0; width: 100%; background: #fff; }
   .lv-csatolmanyok { display: flex; flex-wrap: wrap; gap: 6px; }
+  /* A széles céges táblákban a sor végi műveletek (törlés, NAV-párosítás,
+     számlakép) mindig látszanak, vízszintes görgetés nélkül is. */
+  td.sor-vege, th.sor-vege { position: sticky; right: 0; background: var(--card); box-shadow: -6px 0 8px -6px rgba(0,0,0,.25); z-index: 1; }
   .lv-csat { position: relative; display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
   .lv-csat-nev { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 600; cursor: pointer; }
   .lv-csat-menu { display: none; position: absolute; top: 100%; left: 0; z-index: 50; min-width: 230px; padding: 4px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.15); flex-direction: column; }
@@ -1397,14 +1400,14 @@
           </div>
           <div class="ceges-egyeztetes-statusz" data-id="${escHtml(r.id)}" style="font-size:11px;margin-top:4px;"></div>
         </td>`);
-        cellak.push(`<td><div style="display:flex;gap:6px;align-items:center;"><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>${cegesKeziParositasSelectHtml(r)}</div></td>`);
+        cellak.push(`<td class="sor-vege"><div style="display:flex;gap:6px;align-items:center;"><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>${cegesKeziParositasSelectHtml(r)}</div></td>`);
       }
       return `<tr>${cellak.join("")}</tr>`;
     }).join("");
     const megjegyzes = csakOlvas
       ? '<p class="panel-info">Csak olvasási nézet - a mezők és a törlés admin-jogosultságot igényelnek.</p>'
       : '<p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>';
-    const fejlecVegek = csakOlvas ? "" : "<th></th><th>Törlés / párosítás kézzel</th>";
+    const fejlecVegek = csakOlvas ? "" : '<th></th><th class="sor-vege">Törlés / NAV-párosítás</th>';
     hely.innerHTML = `
       ${megjegyzes}
       <table>
@@ -1542,7 +1545,7 @@
       const cegNev = vanForrasPostafiok ? (escHtml(r.kuldo_nev) || "—") : (escHtml(r.adoszam) || "Ismeretlen");
       const forras = escHtml(vanForrasPostafiok ? r.forras_postafiok : (r.kuldo_nev || null)) || "—";
       const kepGomb = r.drive_url ? `<button type="button" class="drive-link" data-szamlakep="${escHtml(r.drive_url)}" data-szamlakep-cim="${escHtml((r.kuldo_nev || "") + (r.kinyert_szamlaszam ? " – " + r.kinyert_szamlaszam : ""))}" title="A számla képének megtekintése">👁 Számla</button>` : "";
-      const vegoszlop = `<td style="white-space:nowrap;">${kepGomb}${csakOlvas ? "" : ` <button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>`}</td>`;
+      const vegoszlop = `<td class="sor-vege" style="white-space:nowrap;">${kepGomb}${csakOlvas ? "" : ` <button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>`}</td>`;
       return `<tr style="background:var(--green-soft);">
         <td>${cegNev}</td>
         <td style="color:var(--muted);font-size:12px;">${forras}</td>
@@ -1558,7 +1561,7 @@
         ${vegoszlop}
       </tr>`;
     }).join("");
-    const fejlecVege = "<th></th>";
+    const fejlecVege = '<th class="sor-vege"></th>';
     hely.innerHTML = `
       <table>
         <thead>
