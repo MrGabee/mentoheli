@@ -3211,10 +3211,32 @@
   // vagy elvetés. A kérést a "ceges_csatolmany_muveletek"-be írjuk, a
   // script a következő futáskor hajtja végre.
   const LV_CSAT_ALLAPOT = { mentve: ["ok", "bekerült"], duplikatum: ["sor", "duplikátum"], torolt: ["hiba", "korábban törölt"], elvetve: ["nincspdf", "elvetve"] };
+  // A régebben feldolgozott (és a postafiókból már törölt) levelek
+  // csatolmányainál nincs mentett link - ilyenkor a céges számlák között
+  // keressük meg: a Drive-fájlnévben benne van a csatolmány neve, és a
+  // tárgy, az érkezés vagy a feladó egyezik.
+  function _lvFajlnevTiszta(nev) {
+    return String(nev || "").replace(/\.pdf$/i, "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9._-]+/g, "_").replace(/^_+|_+$/g, "").toLowerCase();
+  }
+  function lvCsatolmanyRekordja(l, nev) {
+    const t = _lvFajlnevTiszta(nev);
+    if (!t) return null;
+    return cegesSzamlak.concat(cegesSzamlakBizonytalan || []).find(r =>
+      String(r.drive_fajlnev || "").toLowerCase().includes(t)
+      && (r.targy === l.targy || r.erkezett === l.datum || (r["feladó_email"] && r["feladó_email"] === l["feladó_email"]))) || null;
+  }
   function lvCsatolmanyokHtml(l) {
     const nevek = l.pdf_nevek || [];
     if (!nevek.length) return "nincs PDF";
-    const linkek = lvObjektum(l.pdf_linkek);
+    const linkek = Object.assign({}, lvObjektum(l.pdf_linkek));
+    const pdfAllapot = Object.assign({}, lvObjektum(l.pdf_allapot));
+    nevek.forEach((nev, i) => {
+      if (linkek[String(i)]) return;
+      const r = lvCsatolmanyRekordja(l, nev);
+      if (r && r.drive_url) { linkek[String(i)] = r.drive_url; pdfAllapot[String(i)] = pdfAllapot[String(i)] || "mentve"; }
+    });
+    l = Object.assign({}, l, { pdf_linkek: linkek, pdf_allapot: pdfAllapot });
     const allapotok = lvObjektum(l.pdf_allapot);
     const kerelmek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_csatolmany_muveletek);
     const eredmenyek = lvObjektum(legutobbiAdat && legutobbiAdat.ceges_csatolmany_muvelet_eredmenyek);
