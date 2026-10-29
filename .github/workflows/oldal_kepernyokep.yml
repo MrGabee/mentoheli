@@ -1,0 +1,60 @@
+name: Weboldalak képernyőképe
+
+# Képet és szöveget ment a három oldalról az arculati javaslathoz,
+# és visszateszi ide az ágra (arculat/). Csak olvas, az oldalakat nem módosítja.
+on:
+  push:
+    branches: [claude/project-thread-qh8yy9]
+    paths: [.github/workflows/oldal_kepernyokep.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  kepek:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
+      - run: |
+          mkdir -p arculat
+          cat > /tmp/kep.js <<'JS'
+          const { chromium } = require(process.cwd() + '/node_modules/playwright');
+          const fs = require('fs');
+          (async () => {
+            const b = await chromium.launch();
+            for (const site of ['baleset-info.hu', 'mrgabee.hu', 'baloghgabor.hu']) {
+              for (const [n, vp] of [['gep', { width: 1440, height: 900 }], ['tel', { width: 390, height: 844 }]]) {
+                const p = await b.newPage({ viewport: vp, ignoreHTTPSErrors: true });
+                try {
+                  await p.goto('https://' + site, { waitUntil: 'networkidle', timeout: 60000 });
+                  await p.waitForTimeout(1500);
+                  await p.screenshot({ path: `arculat/${site}-${n}.png`, fullPage: true });
+                  if (n === 'gep') {
+                    const info = await p.evaluate(() => {
+                      const cs = el => el ? getComputedStyle(el) : null;
+                      const b = cs(document.body), h = cs(document.querySelector('h1,h2'));
+                      return { title: document.title, url: location.href,
+                        body: { font: b.fontFamily, bg: b.backgroundColor, color: b.color, size: b.fontSize },
+                        heading: h && { font: h.fontFamily, color: h.color, size: h.fontSize },
+                        text: document.body.innerText.slice(0, 4000) };
+                    });
+                    fs.writeFileSync(`arculat/${site}.json`, JSON.stringify(info, null, 2));
+                    fs.writeFileSync(`arculat/${site}.html`, await p.content());
+                  }
+                } catch (e) { fs.writeFileSync(`arculat/${site}-${n}.hiba.txt`, String(e)); }
+                await p.close();
+              }
+            }
+            await b.close();
+          })();
+          JS
+          node /tmp/kep.js
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add arculat && git commit -m "Képernyőképek az arculati javaslathoz" && git push
