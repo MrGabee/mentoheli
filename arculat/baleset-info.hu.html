@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="hu"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balesetinfo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; display: flex; justify-content: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .container { width: 100%; max-width: 800px; text-align: center; }
+        .banner-box { width: 40%; margin: 0 auto 20px auto; overflow: hidden; border-radius: 10px; }
+        .banner-img { width: 100%; height: auto; display: block; }
+        h1 { font-size: 2.5rem; font-weight: 900; margin: 15px 0 5px 0; color: #ff4747; text-transform: uppercase; }
+        .subtitle { color: #888; margin-bottom: 30px; font-size: 0.9rem; }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 600px; margin: 0 auto; }
+        .btn { border: none; padding: 18px; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.3s; font-size: 1rem; }
+        .btn-upload { background: #ff4747; }
+        .btn-msg { background: #2ecc71; }
+        .btn-fb { background: #1877f2; grid-column: 1 / -1; }
+        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .section { display: none; background: #111; padding: 25px; border-radius: 15px; margin-top: 25px; text-align: left; border: 1px solid #222; max-width: 600px; margin: 25px auto 0 auto; }
+        .active { display: block; }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; font-family: inherit; }
+        .submit-btn { background: #ff4747; color: white; border: none; padding: 15px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
+        .alert { padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; text-align:center; }
+        .success { border: 1px solid #00ff00; color: #00ff00; background: rgba(0,255,0,0.1); }
+        .error   { border: 1px solid #ff0000; color: #ff0000; background: rgba(255,0,0,0.1); }
+        @media (max-width: 600px) { .banner-box { width: 80%; } .btn-grid { grid-template-columns: 1fr; } .btn-fb { grid-column: auto; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="banner-box"><img src="banner.png" class="banner-img" alt="Banner" onerror="this.style.display='none'"></div>
+    <p class="subtitle">Balesetinfo - Beküldés</p>
+    
+    <div class="btn-grid" id="mainMenu">
+        <button class="btn btn-upload" onclick="openBox('uploadBox')">🎬 FELVÉTEL BEKÜLDÉSE</button>
+        <button class="btn btn-msg" onclick="openBox('msgBox')">✉️ ÜZENET KÜLDÉSE</button>
+        <a href="https://www.facebook.com/groups/balesetinfo" target="_blank" class="btn btn-fb">🔵 FACEBOOK CSOPORTUNK</a>
+    </div>
+
+    <div id="uploadBox" class="section">
+        <h3 style="color:#ff4747; margin-top: 0;">Feltöltés (Max 2GB)</h3>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="form_ido" value="1793300660" style="">
+            <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+                <label>Weboldal (hagyd üresen)<input type="text" name="weboldal" tabindex="-1" autocomplete="off" style=""></label>
+            </div>
+            <input type="text" name="nev" placeholder="Neved" required="" style="">
+            <input type="email" name="u_email" placeholder="E-mail címed (ha választ vársz)" style="">
+            <input type="text" name="helyszin" placeholder="Helyszín" required="" style="">
+            <textarea name="leiras" placeholder="Üzenet a videóhoz..." style=""></textarea>
+            <input type="file" id="fileInput" name="media_file[]" multiple="" required="" style="">
+            <button type="submit" class="submit-btn">KÜLDÉS INDÍTÁSA</button>
+            <button type="button" onclick="closeBox()" style="background:none; border:none; color:#555; width:100%; margin-top:10px; cursor:pointer;">Vissza</button>
+        </form>
+    </div>
+
+    <div id="msgBox" class="section">
+        <h3 style="color:#2ecc71; margin-top: 0;">Üzenet írása</h3>
+        <form method="POST">
+            <input type="hidden" name="uzenet_kuldes" value="1" style="">
+            <input type="hidden" name="form_ido" value="1793300660" style="">
+            <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+                <label>Weboldal (hagyd üresen)<input type="text" name="weboldal" tabindex="-1" autocomplete="off" style=""></label>
+            </div>
+            <input type="text" name="u_nev" placeholder="Neved" required="" style="">
+            <input type="text" name="u_tel" placeholder="Telefonszám" style="">
+            <input type="email" name="u_email" placeholder="Email címed" style="">
+            <textarea name="u_szoveg" placeholder="Üzenet..." required="" style="height: 150px;"></textarea>
+            <button type="submit" class="submit-btn" style="background:#2ecc71">ÜZENET ELKÜLDÉSE</button>
+            <button type="button" onclick="closeBox()" style="background:none; border:none; color:#555; width:100%; margin-top:10px; cursor:pointer;">Vissza</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('uploadForm').onsubmit = function() {
+    var files = document.getElementById('fileInput').files;
+    var limit = 2147483648;
+    var totalSize = 0;
+    for(var i=0; i<files.length; i++) { totalSize += files[i].size; }
+    if(totalSize > limit) {
+        alert("A fájlok összmérete túl nagy! Max: 2 GB.");
+        return false;
+    }
+    document.querySelector('#uploadBox .submit-btn').innerText = "FELTÖLTÉS: " + files.length + " FÁJL...";
+    return true;
+};
+
+function openBox(id) {
+    document.getElementById('uploadBox').classList.remove('active');
+    document.getElementById('msgBox').classList.remove('active');
+    document.getElementById(id).classList.add('active');
+}
+function closeBox() {
+    document.getElementById('uploadBox').classList.remove('active');
+    document.getElementById('msgBox').classList.remove('active');
+}
+</script>
+
+</body></html>

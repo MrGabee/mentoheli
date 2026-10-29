@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="hu"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Gabee Portál</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; display: flex; justify-content: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .container { width: 100%; max-width: 800px; text-align: center; }
+        .banner-box { width: 70%; margin: 0 auto 20px auto; overflow: hidden; border-radius: 10px; }
+        .banner-img { width: 100%; height: auto; display: block; }
+        h1 { font-size: 2.5rem; font-weight: 900; margin: 15px 0 5px 0; color: #ff4747; text-transform: uppercase; }
+        .subtitle { color: #888; margin-bottom: 30px; font-size: 0.9rem; }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 600px; margin: 0 auto; }
+        .btn { border: none; padding: 18px; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.3s; font-size: 1rem; display: block; }
+        .btn-upload { background: #ff4747; }
+        .btn-msg { background: #2ecc71; }
+        .btn-fb { background: #1877f2; grid-column: 1 / -1; }
+        .btn-hirlevel { background: #e67e22; grid-column: 1 / -1; }
+        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .section { display: none; background: #111; padding: 25px; border-radius: 15px; margin-top: 25px; text-align: left; border: 1px solid #222; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .active { display: block; }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; font-family: inherit; }
+        ::placeholder { color: #555; }
+        .submit-btn { color: white; border: none; padding: 15px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
+        .alert { padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; border: 1px solid #00ff00; color: #00ff00; background: rgba(0,255,0,0.1); text-align: center; }
+        .error { border-color: #ff4747; color: #ff4747; background: rgba(255,0,0,0.1); }
+        label { font-size: 0.8rem; color: #888; margin-left: 5px; }
+        .hirlevel-info { font-size: 0.85rem; color: #888; margin: 10px 0 15px; line-height: 1.5; }
+        @media (max-width: 600px) { .banner-box { width: 70%; } .btn-grid { grid-template-columns: 1fr; } .btn-fb, .btn-hirlevel { grid-column: auto; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="banner-box"><img src="banner.jpg" class="banner-img" alt="Banner"></div>
+    <h1>Mr. Gabee</h1>
+    <p class="subtitle">mrgabee.hu - Tartalombeküldés</p>
+
+    
+    <div class="btn-grid" id="mainMenu">
+        <button class="btn btn-upload" onclick="openBox('uploadBox')">🎬 FELVÉTEL BEKÜLDÉSE</button>
+        <button class="btn btn-msg" onclick="openBox('msgBox')">✉️ ÜZENET KÜLDÉSE</button>
+        <a href="https://www.facebook.com/mrgabeeee" target="_blank" class="btn btn-fb">🔵 FACEBOOK OLDALAM</a>
+        <button class="btn btn-hirlevel" onclick="openBox('hirlevelBox')">📧 HÍRLEVÉL FELIRATKOZÁS</button>
+    </div>
+
+    <!-- FELTÖLTÉS -->
+    <div id="uploadBox" class="section">
+        <h3 style="color:#ff4747; margin-top: 0;">Média feltöltése</h3>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <input type="text" name="nev" placeholder="Neved (Kötelező)" required="" style="">
+            <input type="text" name="helyszin" placeholder="Helyszín (Hol történt?)" required="" style="">
+            <textarea name="leiras" placeholder="Rövid leírás az esetről..." style=""></textarea>
+            <label>Fájl kiválasztása (Max 2GB):</label>
+            <input type="file" id="fileInput" name="media_file" required="" style="">
+            <button type="submit" class="submit-btn" style="background:#ff4747">KÜLDÉS INDÍTÁSA</button>
+            <button type="button" onclick="closeBox()" style="background:none; border:none; color:#555; width:100%; margin-top:10px; cursor:pointer;">Vissza</button>
+        </form>
+    </div>
+
+    <!-- ÜZENET -->
+    <div id="msgBox" class="section">
+        <h3 style="color:#2ecc71; margin-top: 0;">Üzenet küldése</h3>
+        <form method="POST">
+            <input type="hidden" name="uzenet_kuldes" value="1" style="">
+            <input type="text" name="u_nev" placeholder="Neved (Kötelező)" required="" style="">
+            <label>Opcionális adatok (ha szeretnéd, hogy visszahívjunk):</label>
+            <input type="text" name="u_tel" placeholder="Telefonszám (Nem kötelező)" style="">
+            <input type="email" name="u_email" placeholder="E-mail cím (Nem kötelező)" style="">
+            <textarea name="u_szoveg" placeholder="Üzeneted szövege..." required="" style="height: 150px;"></textarea>
+            <button type="submit" class="submit-btn" style="background:#2ecc71">ÜZENET ELKÜLDÉSE</button>
+            <button type="button" onclick="closeBox()" style="background:none; border:none; color:#555; width:100%; margin-top:10px; cursor:pointer;">Vissza</button>
+        </form>
+    </div>
+
+    <!-- HÍRLEVÉL -->
+    <div id="hirlevelBox" class="section">
+        <h3 style="color:#e67e22; margin-top: 0;">📧 Hírlevél feliratkozás</h3>
+        <p class="hirlevel-info">
+            Iratkozz fel és értesítést kapsz a Mr. Gabee Facebook oldal új bejegyzéseiről közvetlenül az e-mail fiókodba!
+        </p>
+        <form method="POST">
+            <input type="hidden" name="hirlevel_feliratkozas" value="1" style="">
+            <input type="text" name="h_nev" placeholder="Neved (Kötelező)" required="" style="">
+            <input type="email" name="h_email" placeholder="E-mail cím (Kötelező)" required="" style="">
+            <button type="submit" class="submit-btn" style="background:#e67e22">📧 FELIRATKOZÁS</button>
+            <button type="button" onclick="closeBox()" style="background:none; border:none; color:#555; width:100%; margin-top:10px; cursor:pointer;">Vissza</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('uploadForm').onsubmit = function() {
+    var file = document.getElementById('fileInput').files[0];
+    var limit = 2147483648;
+    if(file && file.size > limit) {
+        alert("A fájl túl nagy! Maximum 2 GB engedélyezett.");
+        return false;
+    }
+    document.querySelector('.submit-btn').innerText = "FELTÖLTÉS FOLYAMATBAN...";
+    return true;
+};
+function openBox(id) {
+    ['uploadBox','msgBox','hirlevelBox'].forEach(function(b){ document.getElementById(b).classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+function closeBox() {
+    ['uploadBox','msgBox','hirlevelBox'].forEach(function(b){ document.getElementById(b).classList.remove('active'); });
+}
+</script>
+
+</body></html>
