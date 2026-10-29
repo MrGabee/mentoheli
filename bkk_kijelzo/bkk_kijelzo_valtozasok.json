@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-30T01:37:50.115011+02:00",
+  "frissitve": "2026-10-30T01:38:19.480850+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:12:21.470670+02:00",
-      "kulcs": "T9128",
-      "rendszam": "T9128",
-      "vehicle_id": "7867",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50397872924805,
-      "lon": 19.136754989624023,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-29T15:12:21.470912+02:00",
-      "kulcs": "T8121",
-      "rendszam": "T8121",
-      "vehicle_id": "7900",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51861572265625,
-      "lon": 19.079833984375,
-      "elozo_szoveg": "Hősök tere M ► Dózsa György út M",
-      "uj_szoveg": "Dózsa György út M"
-    },
     {
       "idopont": "2026-10-29T15:12:21.470967+02:00",
       "kulcs": "AOFL214",
@@ -260000,6 +259974,32 @@
       "lon": 19.112838745117188,
       "elozo_szoveg": "Bökényföldi út",
       "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T01:38:19.379199+02:00",
+      "kulcs": "PDB715",
+      "rendszam": "PDB715",
+      "vehicle_id": "7041",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53438949584961,
+      "lon": 19.08230972290039,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-30T01:38:19.379674+02:00",
+      "kulcs": "SKR822",
+      "rendszam": "SKR822",
+      "vehicle_id": "7708",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.379539489746094,
+      "lon": 19.104177474975586,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
