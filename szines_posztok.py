@@ -131,6 +131,7 @@ MENETREND = [
     ("tihanyi_20261028", time(0, 0), set(), lambda nap, a: egyszeri_posztok.szoveg("tihanyi_20261028", nap)),
     ("kartya_kulfold_20261031", time(13, 40), {SZOMBAT}, lambda nap, a: egyszeri_posztok.szoveg("kartya_kulfold_20261031", nap)),
     ("fotav_20261029", time(7, 45), {CSUTORTOK}, lambda nap, a: egyszeri_posztok.szoveg("fotav_20261029", nap)),
+    ("stewart_20261030", time(7, 35), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("stewart_20261030", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     ("esti_idojaras", time(21, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),

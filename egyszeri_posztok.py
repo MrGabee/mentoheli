@@ -225,6 +225,19 @@ Sokan nem is tudják, hogy külföldön minden kártyás fizetésnél és készp
 💬 Nektek mi vált be külföldön? Vigyetek készpénzt, vagy mindent kártyával fizettek? Írjátok meg kommentben!
 
 #pénzügy #bankkártya #utazás #spórolás"""),
+    "stewart_20261030": (date(2026, 10, 30), """🖖 ELHUNYT SIR PATRICK STEWART
+
+Szomorú hírrel ébredtem: 86 éves korában szerdán elhunyt Sir Patrick Stewart, a Star Trek: Az új nemzedék Picard kapitánya. Szóvivője szerint utolsó időszakát családja és barátai szeretetteljes körében töltötte.
+
+Pályáját a Royal Shakespeare Company színpadán kezdte 1966-ban, a világhírt pedig 1987-ben hozta el számára Jean-Luc Picard szerepe, amelyet később több filmben is eljátszott. Sokunknak ő volt Charles Xavier professzor is az X-Men filmekből. A Moby Dick tévéváltozatáért Golden Globe-ra jelölték, 2010-ben pedig lovaggá ütötték a színművészetért.
+
+Nekem az a hang és az a nyugalom marad meg, amivel kimondta: „Engage!”
+
+Nyugodjon békében, kapitány. 🖤
+
+Nektek melyik szerepe a kedvencetek? 👇
+
+#PatrickStewart #StarTrek #Picard"""),
 }
 
 
