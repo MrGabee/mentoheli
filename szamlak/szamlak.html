@@ -1393,21 +1393,22 @@
         : '<span style="color:var(--muted);font-size:12px;">még nincs párosítva</span>'}</td>`);
       cellak.push(`<td>${bankCellaHtml(r)}</td>`);
       if (!csakOlvas) {
-        cellak.push(`<td style="min-width:170px;">
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        cellak.push(`<td class="sor-vege" style="min-width:230px;">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
             <button type="button" class="ceges-mentes-gomb" data-id="${escHtml(r.id)}" title="Elmenti a fenti mezőket, ha kézzel változtattál rajtuk.">💾 Mentés</button>
             <button type="button" class="ceges-egyeztetes-gomb" data-id="${escHtml(r.id)}" title="Mentés NÉLKÜL megnézi, van-e egyező, még párosítatlan NAV-tétel a legutóbbi NAV-lekérdezésből, a mezőkben jelenleg látható értékek alapján.">🔍 Egyeztetés</button>
+            <button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>
           </div>
+          <div style="margin-top:6px;">${cegesKeziParositasSelectHtml(r)}</div>
           <div class="ceges-egyeztetes-statusz" data-id="${escHtml(r.id)}" style="font-size:11px;margin-top:4px;"></div>
         </td>`);
-        cellak.push(`<td class="sor-vege"><div style="display:flex;gap:6px;align-items:center;"><button type="button" class="ceges-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>${cegesKeziParositasSelectHtml(r)}</div></td>`);
       }
       return `<tr>${cellak.join("")}</tr>`;
     }).join("");
     const megjegyzes = csakOlvas
       ? '<p class="panel-info">Csak olvasási nézet - a mezők és a törlés admin-jogosultságot igényelnek.</p>'
       : '<p class="panel-info">A "Cégnév" / "Számlaszám" / "Összeg" / "Pénznem" / "Adószám" mezők szerkeszthetők - ha a script nem ismerte fel (vagy rosszul ismerte fel) automatikusan, írd be/javítsd kézzel, elhagyáskor (a mezőből kikattintva) automatikusan elmenti (ugyanezt csinálja a "💾 Mentés" gomb is, egyszerre az összes mezőre). A "Pénznem" alapból Ft (HUF), de a script EUR-számlánál (ha felismeri a "€"/"EUR" jelölést) automatikusan EUR-ra állítja - itt bármikor kézzel átállítható, ha rosszul sikerülne a felismerés. Az Adószám a NAV-eladó adószáma (pl. "12345678-1-42") - NEM a cégvezető neve -, ha ezt tudod és a Számlaszám/Összeg alapján nem sikerült a párosítás, ez egy külön, célzott párosítási kört indít. A "🔍 Egyeztetés" gomb - mentés NÉLKÜL - azonnal megnézi (a legutóbbi NAV-lekérdezés alapján), van-e a mezőkben jelenleg látható adatokhoz egyező, párosítatlan NAV-tétel - ez csak tájékoztató előrejelzés, a végleges párosítást mindig a legközelebbi script-futás végzi el.</p>';
-    const fejlecVegek = csakOlvas ? "" : '<th></th><th class="sor-vege">Törlés / NAV-párosítás</th>';
+    const fejlecVegek = csakOlvas ? "" : '<th class="sor-vege">Műveletek</th>';
     hely.innerHTML = `
       ${megjegyzes}
       <table>
