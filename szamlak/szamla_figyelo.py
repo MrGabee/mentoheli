@@ -4876,6 +4876,14 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     uzenet_osszes_csatolmany_rendben = False
                     continue
                 if ceges_ujjlenyomat in letezo_ujjlenyomatok:
+                    if uzenet_csatolmany_szama > 1:
+                        _hashek = [hashlib.md5(b).hexdigest() for _, b in pdf_csatolmanyok_listaja]
+                        _szszek = [_szamlaszam_normalizalt(e[2]) if e[2] else "" for e in elozetes]
+                        print(f"      🔬 {csatolmany_jelzo}diag: azonos PDF-bájt a levélben: "
+                              f"{_hashek.count(_hashek[pdf_idx])}/{uzenet_csatolmany_szama}, "
+                              f"azonos kinyert számlaszám: {_szszek.count(_szszek[pdf_idx]) if _szszek[pdf_idx] else 0}/"
+                              f"{uzenet_csatolmany_szama}, van számlaszám: {bool(kinyert_szamlaszam)}, "
+                              f"NAV-kód: {bool(nav_kod_talalat)}, szöveg: {bool(ceges_pdf_szoveg)}")
                     _csatolmany_link_rogzitese(pdf_idx, next(
                         (r.get("drive_url") for r in list(ceges_szamlak.values()) + list(ceges_szamlak_bizonytalan.values())
                          if r.get("tartalmi_ujjlenyomat") == ceges_ujjlenyomat and r.get("drive_url")), None))
