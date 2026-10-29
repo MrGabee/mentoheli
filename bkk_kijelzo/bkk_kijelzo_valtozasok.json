@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-30T01:42:05.003942+02:00",
+  "frissitve": "2026-10-30T01:42:35.649535+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:13:32.755399+02:00",
-      "kulcs": "V1439",
-      "rendszam": "V1439",
-      "vehicle_id": "4509",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.467857360839844,
-      "lon": 19.075490951538086,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-29T15:13:32.755980+02:00",
-      "kulcs": "V4125",
-      "rendszam": "V4125",
-      "vehicle_id": "4813",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.47917556762695,
-      "lon": 19.177898406982422,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Kőbányai út ► Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-10-29T15:13:32.756343+02:00",
-      "kulcs": "V4282",
-      "rendszam": "V4282",
-      "vehicle_id": "4941",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "14",
-      "route_id": "3140",
-      "lat": 47.59225082397461,
-      "lon": 19.120101928710938,
-      "elozo_szoveg": "Káposztásmegyer, Megyeri út",
-      "uj_szoveg": "Káp.megyer, Megyeri út"
-    },
-    {
-      "idopont": "2026-10-29T15:13:32.757031+02:00",
-      "kulcs": "MOS261",
-      "rendszam": "MOS261",
-      "vehicle_id": "5714",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.3846321105957,
-      "lon": 19.204235076904297,
-      "elozo_szoveg": "Gyál, Bem József utca",
-      "uj_szoveg": "Bem József utca ► Határ út M"
-    },
     {
       "idopont": "2026-10-29T15:13:32.758032+02:00",
       "kulcs": "V2218",
@@ -260000,6 +259948,58 @@
       "lon": 19.131961822509766,
       "elozo_szoveg": "Határ út M ► Csepel-Királyerdő",
       "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-10-30T01:42:35.571780+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.525543212890625,
+      "lon": 19.063825607299805,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-10-30T01:42:35.572341+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.508033752441406,
+      "lon": 19.027786254882812,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-30T01:42:35.573217+02:00",
+      "kulcs": "AOIM006",
+      "rendszam": "AOIM006",
+      "vehicle_id": "924",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46240997314453,
+      "lon": 19.133298873901367,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-10-30T01:42:35.573329+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46464920043945,
+      "lon": 19.022953033447266,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
