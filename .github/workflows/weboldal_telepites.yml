@@ -35,7 +35,9 @@ jobs:
           echo "Mód: $mod"
           cd /tmp
           if [ "$mod" = "torles" ]; then ftp "rm -f index_proba.php"; exit 0; fi
-          ftp "get index.php -o elo_index.php"
+          ftp "pwd; cls -la index*"
+          ftp "mget index.php"
+          mv index.php elo_index.php
           python3 - <<'PY'
           import re
           elo = open('elo_index.php', encoding='utf-8').read()
