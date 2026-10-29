@@ -4716,6 +4716,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 _lid = _ceges_level_naplozasa(allapot, msg, uid_str, targy, kuldo_nev_feladobol,
                                               feladó_email, pdf_csatolmanyok_listaja)
                 naplo_bejegyzes = (allapot.get("ceges_bejovo_levelek") or {}).get(_lid)
+                # Az adatbázisból egy üresen mentett dict listaként ("[]")
+                # jön vissza - itt mindhárom csatolmány-mezőt dict-re állítjuk.
+                if isinstance(naplo_bejegyzes, dict):
+                    for _m in ("pdf_linkek", "pdf_allapot", "pdf_meta"):
+                        if not isinstance(naplo_bejegyzes.get(_m), dict):
+                            naplo_bejegyzes[_m] = {}
             except Exception as e:
                 print(f"      ⚠️  A levél naplózása a 'Céges levelek' nézethez sikertelen: {e}")
 
@@ -7065,8 +7071,11 @@ def ceges_csatolmany_muveletek_feldolgozasa(allapot: dict) -> None:
         if not isinstance(k, dict) or kid in eredmenyek:
             continue
         level = naplo.get(k.get("level_id")) or {}
+        for _m in ("pdf_allapot", "pdf_meta"):
+            if not isinstance(level.get(_m), dict):
+                level[_m] = {}
         idx = str(k.get("idx"))
-        meta = (level.get("pdf_meta") or {}).get(idx)
+        meta = level["pdf_meta"].get(idx)
         if not isinstance(meta, dict) or not meta.get("cid"):
             eredmenyek[kid] = {"statusz": "hiba", "idopont": magyar_ido().isoformat(),
                                "hiba": "A csatolmány adatai még nincsenek meg - a következő futás után próbáld újra."}
@@ -7133,6 +7142,8 @@ def ceges_level_linkek_potlasa(allapot: dict) -> None:
 
     for l in naplo.values():
         nevek = l.get("pdf_nevek") or []
+        if not isinstance(l, dict):
+            continue
         linkek = l.get("pdf_linkek") if isinstance(l.get("pdf_linkek"), dict) else {}
         if not nevek or len(linkek) >= len(nevek):
             continue
