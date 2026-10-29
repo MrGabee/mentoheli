@@ -1,0 +1,55 @@
+name: Weboldal telepítése (baloghgabor.hu)
+
+# A weboldal/baloghgabor.hu/index.html kerül az FTP uj/ mappájába (ez a baloghgabor.hu).
+# mod.txt: proba -> uj/index_proba.html | eles -> uj/index.html (az eredetit egyszer
+# index_elozo.html-ként elmenti) | torles -> leszedi a próbaoldalt.
+on:
+  push:
+    branches: [claude/project-thread-qh8yy9]
+    paths: [weboldal/baloghgabor.hu/index.html, weboldal/baloghgabor.hu/mod.txt, weboldal/baloghgabor.hu/teszt.js, .github/workflows/baloghgabor_telepites.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  telepites:
+    runs-on: ubuntu-latest
+    env:
+      SZERVER: ${{ secrets.BALOGHGABOR_FTP_SERVER }}
+      FELHASZNALO: ${{ secrets.BALOGHGABOR_FTP_USER }}
+      JELSZO: ${{ secrets.BALOGHGABOR_FTP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+      - name: Feltöltés
+        run: |
+          set -e
+          host="${SZERVER#ftp://}"; host="${host#ftps://}"; host="${host%/}"
+          L() { lftp -u "$FELHASZNALO","$JELSZO" "$host" -e "set ftp:ssl-allow no; set net:max-retries 2; $1; bye"; }
+          mod=$(tr -d '[:space:]' < weboldal/baloghgabor.hu/mod.txt); echo "Mód: $mod"
+          cp weboldal/baloghgabor.hu/index.html /tmp/uj_index.html; cd /tmp
+          case "$mod" in
+            proba) L "cd uj; put uj_index.html -o index_proba.html" ;;
+            eles)
+              L "cd uj; mget index.html" && mv index.html elo_index.html
+              if ! grep -q "Bricolage" elo_index.html; then L "cd uj; put elo_index.html -o index_elozo.html"; fi
+              L "cd uj; put uj_index.html -o index.html" ;;
+            torles) L "cd uj; rm -f index_proba.html"; exit 0 ;;
+            *) echo "Ismeretlen mód"; exit 1 ;;
+          esac
+          L "cd uj; cls -l"
+      - name: Ellenőrzés a szerveren
+        run: |
+          mod=$(tr -d '[:space:]' < weboldal/baloghgabor.hu/mod.txt)
+          [ "$mod" = "torles" ] && exit 0
+          [ "$mod" = "proba" ] && url=https://baloghgabor.hu/index_proba.html || url=https://baloghgabor.hu/
+          npm i --no-save playwright@1.48.2 >/dev/null 2>&1 && npx playwright install --with-deps chromium >/dev/null 2>&1
+          cp weboldal/baloghgabor.hu/teszt.js /tmp/teszt.js && cd /tmp && ln -sf $GITHUB_WORKSPACE/node_modules node_modules
+          set +e
+          node /tmp/teszt.js "$url" "$GITHUB_WORKSPACE/weboldal/baloghgabor.hu/teszt_eredmeny" "$(tr -d '[:space:]' < $GITHUB_WORKSPACE/weboldal/baloghgabor.hu/valodi_teszt.txt)" | tee $GITHUB_WORKSPACE/weboldal/baloghgabor.hu/teszt_eredmeny.txt
+          kod=${PIPESTATUS[0]}
+          cd $GITHUB_WORKSPACE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add weboldal/baloghgabor.hu/teszt_eredmeny* && git commit -q -m "Teszt eredmény: baloghgabor.hu ($mod)" && git pull -q --rebase origin claude/project-thread-qh8yy9 && git push
+          exit $kod
