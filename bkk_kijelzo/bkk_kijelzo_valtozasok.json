@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-29T05:17:30.578284+02:00",
+  "frissitve": "2026-10-29T05:18:07.879988+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-28T13:12:26.158891+02:00",
-      "kulcs": "PHG621",
-      "rendszam": "PHG621",
-      "vehicle_id": "7145",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.523902893066406,
-      "lon": 19.173315048217773,
-      "elozo_szoveg": "Rákosszentmihály",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-28T13:12:26.158981+02:00",
-      "kulcs": "PHG641",
-      "rendszam": "PHG641",
-      "vehicle_id": "7165",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.54179382324219,
-      "lon": 19.151762008666992,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Cinkota H"
-    },
-    {
-      "idopont": "2026-10-28T13:12:26.159472+02:00",
-      "kulcs": "T8108",
-      "rendszam": "T8108",
-      "vehicle_id": "7345",
-      "vehicle_label": "Dagály utcai lakótelep",
-      "vonal_szam": "79",
-      "route_id": "4790",
-      "lat": 47.50115203857422,
-      "lon": 19.08264923095703,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Dagály utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-28T13:12:26.161157+02:00",
-      "kulcs": "T8110",
-      "rendszam": "T8110",
-      "vehicle_id": "7889",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.478111267089844,
-      "lon": 19.100448608398438,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-10-28T13:12:26.161273+02:00",
-      "kulcs": "T8120",
-      "rendszam": "T8120",
-      "vehicle_id": "7899",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49584197998047,
-      "lon": 19.060287475585938,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
     {
       "idopont": "2026-10-28T13:12:26.161379+02:00",
       "kulcs": "AOFL219",
@@ -260000,6 +259935,71 @@
       "lon": 19.049114227294922,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
       "uj_szoveg": "Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-10-29T05:18:07.780546+02:00",
+      "kulcs": "FKU927",
+      "rendszam": "FKU927",
+      "vehicle_id": "3083",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "85",
+      "route_id": "0850",
+      "lat": 47.50175094604492,
+      "lon": 19.135602951049805,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-29T05:18:07.782436+02:00",
+      "kulcs": "AAHY813",
+      "rendszam": "AAHY813",
+      "vehicle_id": "373",
+      "vehicle_label": "Újpest-városkapu M",
+      "vonal_szam": "122E",
+      "route_id": "1225",
+      "lat": 47.598548889160156,
+      "lon": 19.120941162109375,
+      "elozo_szoveg": "Káp.megyer, Mogyoródi-p.",
+      "uj_szoveg": "Újpest-városkapu M"
+    },
+    {
+      "idopont": "2026-10-29T05:18:07.783171+02:00",
+      "kulcs": "NTM425",
+      "rendszam": "NTM425",
+      "vehicle_id": "6493",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "58",
+      "route_id": "0580",
+      "lat": 47.4321403503418,
+      "lon": 19.005210876464844,
+      "elozo_szoveg": "Nagytétény-Diósd vá.",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-29T05:18:07.783764+02:00",
+      "kulcs": "SKR737",
+      "rendszam": "SKR737",
+      "vehicle_id": "7686",
+      "vehicle_label": "Cargo C.-Liszt F. Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46508026123047,
+      "lon": 19.127338409423828,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Cargo City ► Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-29T05:18:07.783957+02:00",
+      "kulcs": "T8118",
+      "rendszam": "T8118",
+      "vehicle_id": "7897",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.500213623046875,
+      "lon": 19.109575271606445,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
