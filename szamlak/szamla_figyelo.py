@@ -4737,7 +4737,7 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     naplo_bejegyzes["pdf_meta"][str(idx)] = meta
 
             def _feldolgozatlan_csatolmany(idx, cimke, cid, kuldo_nev, pdf_nev, pdf_bytes,
-                                           osszeg, penznem, szamlaszam):
+                                           osszeg, penznem, szamlaszam, dup_rid=None):
                 # A ki nem került csatolmány is legyen megtekinthető: egyszer
                 # feltöltjük a Drive "Feldolgozatlan" almappájába, és a
                 # dashboard menüjéből áthelyezhető a párosítatlanok közé.
@@ -4749,6 +4749,7 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     meta = {"cid": cid, "drive_url": url, "kuldo_nev": kuldo_nev, "fajlnev": pdf_nev,
                             "kinyert_osszeg": osszeg, "penznem": penznem, "kinyert_szamlaszam": szamlaszam,
                             "pdf_hash": hashlib.md5(pdf_bytes).hexdigest()}
+                meta = dict(meta, duplikatum_id=dup_rid)
                 _csatolmany_allapot_rogzitese(idx, cimke, meta)
                 if meta.get("drive_url"):
                     _csatolmany_link_rogzitese(idx, meta["drive_url"])
@@ -4928,7 +4929,9 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     continue
                 if ceges_ujjlenyomat in letezo_ujjlenyomatok:
                     _feldolgozatlan_csatolmany(pdf_idx, "duplikatum", cid, kuldo_nev, pdf_nev, pdf_bytes,
-                                               kinyert_osszeg, kinyert_penznem, kinyert_szamlaszam)
+                                               kinyert_osszeg, kinyert_penznem, kinyert_szamlaszam,
+                                               next((rid for rid, r in list(ceges_szamlak.items()) + list(ceges_szamlak_bizonytalan.items())
+                                                     if r.get("tartalmi_ujjlenyomat") == ceges_ujjlenyomat), None))
                     print(f"      🔁 {csatolmany_jelzo}Tartalmilag megegyezik egy MÁR RÖGZÍTETT "
                           f"céges számlával (valószínűleg másik postafiókból/csatolmányból is "
                           f"megérkezett) - ez a csatolmány (és vele a teljes levél) a "
