@@ -27,13 +27,13 @@ jobs:
           const fs = require('fs');
           (async () => {
             const b = await chromium.launch();
-            for (const site of ['baleset-info.hu', 'mrgabee.hu', 'baloghgabor.hu']) {
+            for (const site of ['kozles.github.io/posztol/kapcsolat.html', 'kozles.github.io/posztol/']) {
               for (const [n, vp] of [['gep', { width: 1440, height: 900 }], ['tel', { width: 390, height: 844 }]]) {
                 const p = await b.newPage({ viewport: vp, ignoreHTTPSErrors: true });
                 try {
                   await p.goto('https://' + site, { waitUntil: 'networkidle', timeout: 60000 });
                   await p.waitForTimeout(1500);
-                  await p.screenshot({ path: `arculat/${site}-${n}.png`, fullPage: true });
+                  await p.screenshot({ path: `arculat/${site.replace(/[\/]/g, '_')}-${n}.png`, fullPage: true });
                   if (n === 'gep') {
                     const info = await p.evaluate(() => {
                       const cs = el => el ? getComputedStyle(el) : null;
@@ -43,10 +43,10 @@ jobs:
                         heading: h && { font: h.fontFamily, color: h.color, size: h.fontSize },
                         text: document.body.innerText.slice(0, 4000) };
                     });
-                    fs.writeFileSync(`arculat/${site}.json`, JSON.stringify(info, null, 2));
-                    fs.writeFileSync(`arculat/${site}.html`, await p.content());
+                    fs.writeFileSync(`arculat/${site.replace(/[\/]/g, '_')}.json`, JSON.stringify(info, null, 2));
+                    fs.writeFileSync(`arculat/${site.replace(/[\/]/g, '_')}.html`, await p.content());
                   }
-                } catch (e) { fs.writeFileSync(`arculat/${site}-${n}.hiba.txt`, String(e)); }
+                } catch (e) { fs.writeFileSync(`arculat/${site.replace(/[\/]/g, '_')}-${n}.hiba.txt`, String(e)); }
                 await p.close();
               }
             }
@@ -57,4 +57,4 @@ jobs:
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add arculat && git commit -m "Képernyőképek az arculati javaslathoz" && git push
+          git add arculat && git commit -m "Képernyőképek: posztol oldal" && git push
