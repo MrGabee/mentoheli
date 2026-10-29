@@ -4706,11 +4706,19 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
             # esünk vissza erre.
             kuldo_nev_feladobol = _ceges_kuldo_nev_kinyerese(msg)
             pdf_csatolmanyok_listaja = pdf_csatolmanyok(msg)
+            naplo_bejegyzes = None
             try:
-                _ceges_level_naplozasa(allapot, msg, uid_str, targy, kuldo_nev_feladobol,
-                                       feladó_email, pdf_csatolmanyok_listaja)
+                _lid = _ceges_level_naplozasa(allapot, msg, uid_str, targy, kuldo_nev_feladobol,
+                                              feladó_email, pdf_csatolmanyok_listaja)
+                naplo_bejegyzes = (allapot.get("ceges_bejovo_levelek") or {}).get(_lid)
             except Exception as e:
                 print(f"      ⚠️  A levél naplózása a 'Céges levelek' nézethez sikertelen: {e}")
+
+            def _csatolmany_link_rogzitese(idx, url):
+                if naplo_bejegyzes is not None and url:
+                    if not isinstance(naplo_bejegyzes.get("pdf_linkek"), dict):
+                        naplo_bejegyzes["pdf_linkek"] = {}
+                    naplo_bejegyzes["pdf_linkek"][str(idx)] = url
 
             if not pdf_csatolmanyok_listaja:
                 # Nincs PDF-csatolmány (pl. az eladó csak egy sima
@@ -4739,6 +4747,30 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
             uzenet_csatolmany_szama = len(pdf_csatolmanyok_listaja)
             uzenet_osszes_csatolmany_rendben = True
 
+            # Több csatolmánynál a levél szövegében lévő NAV-kód(ok)
+            # legfeljebb EGY csatolmányra vonatkozhatnak: arra, amelyiknek a
+            # saját (PDF-ből kinyert) számlaszáma/összege illik rá. Korábban
+            # ugyanaz a kód mindegyik PDF-re ráíródott, így mind ugyanazt az
+            # ujjlenyomatot kapta, és a 2-3. csatolmány "duplikátumként"
+            # kimaradt. Ha egyik sem illik rá, az első csatolmányé.
+            elozetes = []
+            for _nev, _bytes in pdf_csatolmanyok_listaja:
+                _sz = pdf_szoveg_kinyerese(_bytes)
+                _o = osszeg_es_penznem_kinyerese(_sz)[0] if _sz else None
+                _szsz = szamlaszam_kinyerese_altalanos(_sz) if _sz else None
+                elozetes.append((_sz, _o, _szsz))
+            kod_gazdaja = {}
+            if uzenet_csatolmany_szama > 1:
+                for _k in _nav_kod_osszes_kinyerese(f"{targy}\n{szoveg}"):
+                    _kulcs = f"{_k['adoszam']}|{_szamlaszam_normalizalt(_k['szamlaszam'])}"
+                    illik = [
+                        i for i, (_, _o, _szsz) in enumerate(elozetes)
+                        if (_szsz and _szamlaszam_normalizalt(_szsz) == _szamlaszam_normalizalt(_k["szamlaszam"]))
+                        or (_o is not None and _k["osszeg"] is not None and _nav_osszeg_egyezik(_o, _k["osszeg"]))
+                    ]
+                    kod_gazdaja[_kulcs] = illik[0] if illik else 0
+            hasznalt_nav_kodok = set()
+
             for pdf_idx, (pdf_nev, pdf_bytes) in enumerate(pdf_csatolmanyok_listaja):
                 csatolmany_jelzo = (
                     f"[{pdf_idx + 1}/{uzenet_csatolmany_szama}] " if uzenet_csatolmany_szama > 1 else ""
@@ -4750,12 +4782,12 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # ETTŐL FÜGGETLENÜL NEM tároljuk (ld. a szekció elején
                 # lévő komment), csak ezt a néhány kinyert szöveges
                 # mezőt, ami elenyésző helyet foglal.
-                ceges_pdf_szoveg = pdf_szoveg_kinyerese(pdf_bytes)
+                ceges_pdf_szoveg = elozetes[pdf_idx][0]
                 if ceges_pdf_szoveg:
                     kinyert_osszeg, kinyert_penznem = osszeg_es_penznem_kinyerese(ceges_pdf_szoveg)
                 else:
                     kinyert_osszeg, kinyert_penznem = None, "HUF"
-                kinyert_szamlaszam = szamlaszam_kinyerese_altalanos(ceges_pdf_szoveg) if ceges_pdf_szoveg else None
+                kinyert_szamlaszam = elozetes[pdf_idx][2]
 
                 # Ld. az ELADO_NEV_MINTA_* komment fent - ELSŐDLEGESEN a
                 # PDF szövegéből próbáljuk kinyerni a valódi eladó/cég
@@ -4797,6 +4829,13 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 nav_kod_talalat = _nav_kod_valasztasa(
                     f"{targy}\n{szoveg}\n{ceges_pdf_szoveg}", kinyert_szamlaszam, kinyert_osszeg
                 )
+                if nav_kod_talalat and uzenet_csatolmany_szama > 1:
+                    _kulcs = (f"{nav_kod_talalat['adoszam']}|"
+                              f"{_szamlaszam_normalizalt(nav_kod_talalat['szamlaszam'])}")
+                    if _kulcs in hasznalt_nav_kodok or kod_gazdaja.get(_kulcs, pdf_idx) != pdf_idx:
+                        nav_kod_talalat = None
+                    else:
+                        hasznalt_nav_kodok.add(_kulcs)
                 if nav_kod_talalat:
                     nav_kod_adoszam = nav_kod_talalat["adoszam"]
                     kinyert_szamlaszam = nav_kod_talalat["szamlaszam"]
@@ -4815,6 +4854,13 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                 # keresésbe, hogy egy oda már felvett tétel ne kerüljön be
                 # MÉGEGYSZER, ha a levelet valamiért újra feldolgoznánk.
                 ceges_ujjlenyomat = _szamla_tartalmi_ujjlenyomat(kuldo_nev, kinyert_szamlaszam, kinyert_osszeg, pdf_bytes)
+                cid = hashlib.md5(f"{CEGES_IMAP_USER}|{uid_str}|ceges|{pdf_idx}".encode("utf-8")).hexdigest()[:16]
+                sajat_korabbi = ceges_szamlak.get(cid) or ceges_szamlak_bizonytalan.get(cid)
+                if sajat_korabbi:
+                    # Ezt a csatolmányt egy korábbi futás már elmentette
+                    # (a levél egy másik csatolmány miatt maradt bent).
+                    _csatolmany_link_rogzitese(pdf_idx, sajat_korabbi.get("drive_url"))
+                    continue
                 torolt_ujjlenyomatok = set(allapot.get("ceges_torolt_ujjlenyomatok") or [])
                 letezo_ujjlenyomatok = {
                     r.get("tartalmi_ujjlenyomat")
@@ -4830,6 +4876,9 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     uzenet_osszes_csatolmany_rendben = False
                     continue
                 if ceges_ujjlenyomat in letezo_ujjlenyomatok:
+                    _csatolmany_link_rogzitese(pdf_idx, next(
+                        (r.get("drive_url") for r in list(ceges_szamlak.values()) + list(ceges_szamlak_bizonytalan.values())
+                         if r.get("tartalmi_ujjlenyomat") == ceges_ujjlenyomat and r.get("drive_url")), None))
                     print(f"      🔁 {csatolmany_jelzo}Tartalmilag megegyezik egy MÁR RÖGZÍTETT "
                           f"céges számlával (valószínűleg másik postafiókból/csatolmányból is "
                           f"megérkezett) - ez a csatolmány (és vele a teljes levél) a "
@@ -4839,7 +4888,6 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     uzenet_osszes_csatolmany_rendben = False
                     continue
 
-                cid = hashlib.md5(f"{CEGES_IMAP_USER}|{uid_str}|ceges|{pdf_idx}".encode("utf-8")).hexdigest()[:16]
                 fajlnev = _ceges_fajlnev(cid, kuldo_nev, pdf_nev)
                 pdf_b64 = base64.b64encode(pdf_bytes).decode("ascii")
                 drive_url = _ceges_drive_feltoltes(fajlnev, kuldo_nev, pdf_b64)
@@ -4930,6 +4978,7 @@ def ceges_szamlak_feldolgozasa(allapot: dict):
                     allapot_szoveg = "PDF mentve, de nem találtunk 'számla' szót - Nem biztos kategória"
                     jelzo_ikon = "❓"
                 feltoltve_db += 1
+                _csatolmany_link_rogzitese(pdf_idx, drive_url)
                 print(f"      {jelzo_ikon} {csatolmany_jelzo}{allapot_szoveg} "
                       f"(Drive-ra feltöltve): {kuldo_nev} – {targy[:60]}")
 
@@ -6920,7 +6969,7 @@ def _ceges_level_naplozasa(allapot: dict, msg, uid_str: str, targy: str, kuldo_n
     level_id = hashlib.md5((message_id or f"{CEGES_IMAP_USER}|{uid_str}|{targy}").encode("utf-8")).hexdigest()[:16]
     naplo = allapot.setdefault("ceges_bejovo_levelek", {})
     if level_id in naplo:
-        return
+        return level_id
     _, valasz_cim = parseaddr(msg.get("Reply-To", "") or "")
     naplo[level_id] = {
         "id": level_id,
@@ -6933,12 +6982,55 @@ def _ceges_level_naplozasa(allapot: dict, msg, uid_str: str, targy: str, kuldo_n
         "references": (msg.get("References") or "").strip()[:2000],
         "szoveg": _level_olvashato_szoveg(msg)[:CEGES_LEVEL_SZOVEG_MAX_KAR],
         "pdf_nevek": [nev for nev, _ in (pdf_lista or [])],
+        # A csatolmányok Drive-linkjei, a pdf_nevek sorrendjében (index ->
+        # url) - a feldolgozás tölti ki, a dashboard ebből tölt le.
+        "pdf_linkek": {},
         "naplozva": magyar_ido().isoformat(),
     }
     if len(naplo) > CEGES_LEVEL_NAPLO_MAX_DB:
         sorrend = sorted(naplo.values(), key=lambda r: (r.get("datum") or "", r.get("naplozva") or ""))
         for regi in sorrend[: len(naplo) - CEGES_LEVEL_NAPLO_MAX_DB]:
             naplo.pop(regi["id"], None)
+    return level_id
+
+
+def ceges_level_linkek_potlasa(allapot: dict) -> None:
+    """A régebben naplózott levelek csatolmány-linkjeinek pótlása a már
+    rögzített céges számlákból (azonos tárgy + érkezés, és a Drive-
+    fájlnévben szerepel a csatolmány neve)."""
+    import unicodedata
+    naplo = allapot.get("ceges_bejovo_levelek") or {}
+    rekordok = [r for r in list((allapot.get("ceges_szamlak") or {}).values())
+                + list((allapot.get("ceges_szamlak_bizonytalan") or {}).values())
+                if isinstance(r, dict) and r.get("drive_url")]
+    if not isinstance(naplo, dict) or not rekordok:
+        return
+
+    def _tiszta(nev):
+        alap = nev or ""
+        if alap.lower().endswith(".pdf"):
+            alap = alap[:-4]
+        alap = "".join(ch for ch in unicodedata.normalize("NFD", alap) if not unicodedata.combining(ch))
+        return re.sub(r"^_+|_+$", "", re.sub(r"[^a-zA-Z0-9._-]+", "_", alap)).lower()
+
+    for l in naplo.values():
+        nevek = l.get("pdf_nevek") or []
+        linkek = l.get("pdf_linkek") if isinstance(l.get("pdf_linkek"), dict) else {}
+        if not nevek or len(linkek) >= len(nevek):
+            continue
+        jeloltek = [r for r in rekordok if r.get("targy") == l.get("targy") and r.get("erkezett") == l.get("datum")]
+        hasznalt = set(linkek.values())
+        for i, nev in enumerate(nevek):
+            if str(i) in linkek:
+                continue
+            t = _tiszta(nev)
+            talalat = next((r["drive_url"] for r in jeloltek if r["drive_url"] not in hasznalt
+                            and t and t in str(r.get("drive_fajlnev") or "").lower()), None)
+            if talalat:
+                linkek[str(i)] = talalat
+                hasznalt.add(talalat)
+        if linkek:
+            l["pdf_linkek"] = linkek
 
 
 def _ceges_valasz_kuldese(cimzett: str, targy: str, szoveg: str, eredeti: dict) -> None:
@@ -8065,6 +8157,7 @@ def main():
     ceges_szamlak_feldolgozasa(allapot)
     ceges_kezi_feltoltesek_feldolgozasa(allapot)
     allapot["ceges_felado_cim"] = CEGES_EMAIL_KULDO or ""
+    ceges_level_linkek_potlasa(allapot)
     ceges_level_valaszok_feldolgozasa(allapot)
 
     # ---- 2g. NAV Online Számla - bejövő számlák lekérdezése/párosítás

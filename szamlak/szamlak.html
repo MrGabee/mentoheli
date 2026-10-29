@@ -243,6 +243,7 @@
   }
   .drive-link:hover { background: var(--blue); color: var(--on-accent); border-color: var(--blue); }
   .drive-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+  button.drive-link { cursor: pointer; font-family: inherit; }
 
   /* ── "user" (korlátozott) szerepkör - admin-csak szekciók elrejtése ──
      Egyetlen forrás-igazság: a JS a body-ra teszi/veszi ezt a class-t a
@@ -477,6 +478,13 @@
   #telepites-sav button { border: 0; border-radius: 9px; padding: 8px 14px; font-weight: 600; font-size: 13px; cursor: pointer; }
   #telepites-gomb { background: var(--blue); color: var(--on-accent); }
   #telepites-bezar { background: transparent; color: var(--muted); padding: 8px !important; }
+  /* ── Számlakép-előnézet (Drive "preview" beágyazva) ── */
+  .szk-hatter { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .szk-ablak { background: var(--card); border-radius: 10px; width: min(900px, 100%); height: min(90vh, 1100px); display: flex; flex-direction: column; overflow: hidden; }
+  .szk-fej { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .szk-fej b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .szk-ablak iframe { flex: 1; border: 0; width: 100%; background: #fff; }
+  .lv-csatolmanyok { display: flex; flex-wrap: wrap; gap: 6px; }
 </style>
 </head>
 <body>
@@ -1027,6 +1035,33 @@
   // adatnézegető oldal, de a "targy"/"szolgaltato_nev" stb. mezők végső
   // soron bejövő emailek tartalmából származnak, amit soha nem szabad
   // csendben, escape-elés nélkül a DOM-ba engedni (XSS-védelem).
+  // Számla képe: a Drive-fájl beágyazott előnézete egy felugró ablakban.
+  function driveElonezetUrl(url) {
+    const m = String(url || "").match(/\/d\/([\w-]{10,})/) || String(url || "").match(/[?&]id=([\w-]{10,})/);
+    return m ? `https://drive.google.com/file/d/${m[1]}/preview` : null;
+  }
+  function szamlaKepMegnyitasa(url, cim) {
+    const elonezet = driveElonezetUrl(url);
+    if (!elonezet) { window.open(url, "_blank", "noopener"); return; }
+    const hatter = document.createElement("div");
+    hatter.className = "szk-hatter";
+    hatter.innerHTML = `<div class="szk-ablak" role="dialog" aria-modal="true">
+        <div class="szk-fej"><b>${escHtml(cim || "Számla")}</b>
+          <a class="drive-link" href="${escHtml(url)}" target="_blank" rel="noopener">${KULSO_LINK_IKON_SVG} Megnyitás / letöltés</a>
+          <button type="button" class="torles-gomb" aria-label="Bezárás">✕</button></div>
+        <iframe src="${escHtml(elonezet)}" allow="autoplay"></iframe></div>`;
+    const bezar = () => { hatter.remove(); document.removeEventListener("keydown", esc); };
+    const esc = e => { if (e.key === "Escape") bezar(); };
+    hatter.addEventListener("click", e => { if (e.target === hatter) bezar(); });
+    hatter.querySelector("button").addEventListener("click", bezar);
+    document.addEventListener("keydown", esc);
+    document.body.appendChild(hatter);
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest && e.target.closest("[data-szamlakep]");
+    if (b) { e.preventDefault(); szamlaKepMegnyitasa(b.dataset.szamlakep, b.dataset.szamlakepCim); }
+  });
+
   function escHtml(s) {
     if (s === null || s === undefined) return "";
     return String(s)
@@ -1450,7 +1485,8 @@
       const vanForrasPostafiok = !!r.forras_postafiok;
       const cegNev = vanForrasPostafiok ? (escHtml(r.kuldo_nev) || "—") : (escHtml(r.adoszam) || "Ismeretlen");
       const forras = escHtml(vanForrasPostafiok ? r.forras_postafiok : (r.kuldo_nev || null)) || "—";
-      const vegoszlop = csakOlvas ? "" : `<td><button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button></td>`;
+      const kepGomb = r.drive_url ? `<button type="button" class="drive-link" data-szamlakep="${escHtml(r.drive_url)}" data-szamlakep-cim="${escHtml((r.kuldo_nev || "") + (r.kinyert_szamlaszam ? " – " + r.kinyert_szamlaszam : ""))}" title="A számla képének megtekintése">👁 Számla</button>` : "";
+      const vegoszlop = `<td style="white-space:nowrap;">${kepGomb}${csakOlvas ? "" : ` <button type="button" class="ceges-parositott-torles-gomb torles-gomb" data-id="${escHtml(r.id)}" title="Végleges elrejtés - ez a számla soha többé nem jelenik meg">✕</button>`}</td>`;
       return `<tr style="background:var(--green-soft);">
         <td>${cegNev}</td>
         <td style="color:var(--muted);font-size:12px;">${forras}</td>
@@ -1466,7 +1502,7 @@
         ${vegoszlop}
       </tr>`;
     }).join("");
-    const fejlecVege = csakOlvas ? "" : "<th></th>";
+    const fejlecVege = "<th></th>";
     hely.innerHTML = `
       <table>
         <thead>
@@ -3108,6 +3144,20 @@
     levelOlvasoRenderelese(levelek.find(l => l.id === lvKivalasztott) || null);
   }
 
+  // A csatolmányok kattintható linkjei (a script a feldolgozáskor tölti ki a
+  // Drive-linket csatolmányonként, "pdf_linkek": index -> url).
+  function lvCsatolmanyokHtml(l) {
+    const nevek = l.pdf_nevek || [];
+    if (!nevek.length) return "nincs PDF";
+    const linkek = lvObjektum(l.pdf_linkek);
+    return '<span class="lv-csatolmanyok">' + nevek.map((nev, i) => {
+      const url = linkek[String(i)];
+      return url
+        ? `<a class="drive-link" href="${escHtml(url)}" target="_blank" rel="noopener" data-szamlakep="${escHtml(url)}" data-szamlakep-cim="${escHtml(nev)}">📎 ${escHtml(nev)}</a>`
+        : `<span class="lv-cimke" title="Még nincs a Drive-on (a következő futás tölti fel, ha számla)">📎 ${escHtml(nev)}</span>`;
+    }).join("") + "</span>";
+  }
+
   function levelOlvasoRenderelese(l) {
     const hely = document.getElementById("lv-olvaso");
     if (!l) { hely.innerHTML = '<div class="ures">Válassz egy levelet a listából.</div>'; return; }
@@ -3126,7 +3176,7 @@
       <div class="lv-meta">
         <span>Feladó</span><span>${escHtml(l["feladó_nev"] || "")} &lt;${escHtml(l["feladó_email"] || "")}&gt;</span>
         <span>Érkezett</span><span>${escHtml(lvDatum(l.datum || l.naplozva))}</span>
-        <span>Csatolmány</span><span>${(l.pdf_nevek || []).length ? escHtml(l.pdf_nevek.join(", ")) : "nincs PDF"}</span>
+        <span>Csatolmány</span><span>${lvCsatolmanyokHtml(l)}</span>
       </div>
       <div class="lv-szoveg">${escHtml(l.szoveg || "(üres levél)")}</div>
       ${valaszok.length ? `<div class="lv-valaszok"><h3 style="font-size:15px;margin:0;">Válaszok</h3>${valaszHtml}</div>` : ""}
