@@ -46,7 +46,7 @@ jobs:
           npm i --no-save playwright@1.48.2 >/dev/null 2>&1 && npx playwright install --with-deps chromium >/dev/null 2>&1
           cp weboldal/baloghgabor.hu/teszt.js /tmp/teszt.js && cd /tmp && ln -sf $GITHUB_WORKSPACE/node_modules node_modules
           set +e
-          node /tmp/teszt.js "$url" "$GITHUB_WORKSPACE/weboldal/baloghgabor.hu/teszt_eredmeny" "$(tr -d '[:space:]' < $GITHUB_WORKSPACE/weboldal/baloghgabor.hu/valodi_teszt.txt)" | tee $GITHUB_WORKSPACE/weboldal/baloghgabor.hu/teszt_eredmeny.txt
+          REGI_URL=https://baloghgabor.hu/ node /tmp/teszt.js "$url" "$GITHUB_WORKSPACE/weboldal/baloghgabor.hu/teszt_eredmeny" "$(tr -d '[:space:]' < $GITHUB_WORKSPACE/weboldal/baloghgabor.hu/valodi_teszt.txt)" | tee $GITHUB_WORKSPACE/weboldal/baloghgabor.hu/teszt_eredmeny.txt
           kod=${PIPESTATUS[0]}
           cd $GITHUB_WORKSPACE
           git config user.name "github-actions[bot]"

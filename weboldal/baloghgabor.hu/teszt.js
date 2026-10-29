@@ -18,7 +18,9 @@ const [url, ki, valodi] = process.argv.slice(2);
   }
   const pdf = await (await b.newPage()).request.get(new URL('oneletrajz.pdf', url).href); console.log('PDF HTTP', pdf.status()); if (pdf.status() !== 200) hiba('PDF');
   if (valodi === 'igen') {
-    const p = await b.newPage({ viewport: { width: 390, height: 844 } }); await p.goto(url, { waitUntil: 'networkidle' });
+    const p = await b.newPage({ viewport: { width: 390, height: 844 } });
+    p.on('response', async r => { if (r.url().includes('emailjs')) console.log('EmailJS válasz:', r.status(), (await r.text().catch(() => '')).slice(0, 300)); });
+    await p.goto(url, { waitUntil: 'networkidle' });
     await p.fill('[name=from_name]', 'TESZT – arculatcsere ellenőrzés (törölhető)');
     await p.fill('[name=reply_to]', 'uzenet@baloghgabor.hu');
     await p.fill('[name=subject]', 'TESZT – az új weboldal űrlapja');
@@ -26,6 +28,16 @@ const [url, ki, valodi] = process.argv.slice(2);
     await p.click('#kuldes'); await p.waitForSelector('#urlapUzenet:not([hidden])', { timeout: 30000 });
     const v = (await p.textContent('#urlapUzenet')).trim(); console.log('ŰRLAP válasz:', v); if (!/Köszönöm/.test(v)) hiba('űrlap: ' + v);
     await p.screenshot({ path: `${ki}/urlap_valasz.png` });
+  }
+  if (valodi === 'igen' && process.env.REGI_URL) {
+    const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+    p.on('response', async r => { if (r.url().includes('emailjs')) console.log('RÉGI oldal EmailJS válasz:', r.status(), (await r.text().catch(() => '')).slice(0, 300)); });
+    p.on('dialog', async d => { console.log('RÉGI oldal üzenete:', d.message()); await d.dismiss(); });
+    await p.goto(process.env.REGI_URL, { waitUntil: 'networkidle' });
+    await p.fill('[name=from_name]', 'TESZT – régi oldal összehasonlítás (törölhető)');
+    await p.fill('[name=reply_to]', 'uzenet@baloghgabor.hu');
+    await p.fill('[name=message]', 'Összehasonlító teszt a régi oldal űrlapjával. Nyugodtan töröld.');
+    await p.click('form button[type=submit]'); await p.waitForTimeout(8000);
   }
   await b.close(); console.log(ok ? 'EREDMÉNY: MINDEN RENDBEN' : 'EREDMÉNY: HIBA'); process.exit(ok ? 0 : 1);
 })();
