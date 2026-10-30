@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-30T04:38:52.193565+02:00",
+  "frissitve": "2026-10-30T04:39:22.986354+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:31:45.712205+02:00",
-      "kulcs": "V1503",
-      "rendszam": "V1503",
-      "vehicle_id": "4555",
-      "vehicle_label": "Sörgyár",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.491859436035156,
-      "lon": 19.089406967163086,
-      "elozo_szoveg": "Salgótarjáni utca ► Sörgyár",
-      "uj_szoveg": "Sörgyár"
-    },
-    {
-      "idopont": "2026-10-29T15:31:45.712311+02:00",
-      "kulcs": "V1576",
-      "rendszam": "V1576",
-      "vehicle_id": "4628",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.467559814453125,
-      "lon": 19.07595443725586,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-10-29T15:31:45.712389+02:00",
       "kulcs": "AAMH626",
@@ -260000,6 +259974,32 @@
       "lon": 19.050151824951172,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T04:39:22.928523+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42124938964844,
+      "lon": 19.04108428955078,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-30T04:39:22.929743+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475730895996094,
+      "lon": 19.041610717773438,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
