@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T01:02:27.273934+02:00",
+  "frissitve": "2026-10-31T01:03:02.560619+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:05:37.774063+02:00",
-      "kulcs": "RVY725",
-      "rendszam": "RVY725",
-      "vehicle_id": "7623",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.501495361328125,
-      "lon": 19.135581970214844,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-30T15:05:37.774186+02:00",
-      "kulcs": "RVY741",
-      "rendszam": "RVY741",
-      "vehicle_id": "7639",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.39305114746094,
-      "lon": 19.22351837158203,
-      "elozo_szoveg": "Gyál, Deák Ferenc utca",
-      "uj_szoveg": "Deák Ferenc utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-10-30T15:05:37.774579+02:00",
-      "kulcs": "SKR805",
-      "rendszam": "SKR805",
-      "vehicle_id": "7691",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "VP52",
-      "route_id": "VP52",
-      "lat": 47.422183990478516,
-      "lon": 19.12240982055664,
-      "elozo_szoveg": "Pesterzsébet, Pacsirtatelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-10-30T15:05:37.774939+02:00",
       "kulcs": "SKN818",
@@ -260000,6 +259961,45 @@
       "lon": 18.99288558959961,
       "elozo_szoveg": "Kőbánya-Kispest M",
       "uj_szoveg": "Nyugati pályaudvar M"
+    },
+    {
+      "idopont": "2026-10-31T01:03:02.461389+02:00",
+      "kulcs": "AADI577",
+      "rendszam": "AADI577",
+      "vehicle_id": "68",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.56832504272461,
+      "lon": 19.027488708496094,
+      "elozo_szoveg": "Nagybányai út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-31T01:03:02.461491+02:00",
+      "kulcs": "PKN619",
+      "rendszam": "PKN619",
+      "vehicle_id": "7208",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.49864959716797,
+      "lon": 19.23773193359375,
+      "elozo_szoveg": "Akadémiaújtelep, 525. tér",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-31T01:03:02.461631+02:00",
+      "kulcs": "SKR830",
+      "rendszam": "SKR830",
+      "vehicle_id": "7716",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.44165802001953,
+      "lon": 19.186176300048828,
+      "elozo_szoveg": "Pestszentimre, Benjámin utca",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
     }
   ]
 }
