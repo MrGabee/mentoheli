@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T03:02:20.568188+02:00",
+  "frissitve": "2026-10-30T03:03:01.491257+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:21:22.332337+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50661849975586,
-      "lon": 19.023967742919922,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-10-29T15:21:22.332358+02:00",
-      "kulcs": "NCV292",
-      "rendszam": "NCV292",
-      "vehicle_id": "6257",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.502254486083984,
-      "lon": 19.0353946685791,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-29T15:21:22.332912+02:00",
-      "kulcs": "V1614",
-      "rendszam": "V1614",
-      "vehicle_id": "6475",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.54169464111328,
-      "lon": 19.121122360229492,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-10-29T15:21:22.333600+02:00",
       "kulcs": "PDB704",
@@ -260000,6 +259961,45 @@
       "lon": 19.02960968017578,
       "elozo_szoveg": "Bécsi út / Vörösvári út",
       "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-10-30T03:03:01.397367+02:00",
+      "kulcs": "AAGL303",
+      "rendszam": "AAGL303",
+      "vehicle_id": "333",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45513916015625,
+      "lon": 18.907878875732422,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-10-30T03:03:01.397716+02:00",
+      "kulcs": "NGC152",
+      "rendszam": "NGC152",
+      "vehicle_id": "6198",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50749206542969,
+      "lon": 19.02585792541504,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-30T03:03:01.397824+02:00",
+      "kulcs": "PDB714",
+      "rendszam": "PDB714",
+      "vehicle_id": "7040",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45012283325195,
+      "lon": 19.1615047454834,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
