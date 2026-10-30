@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T03:57:06.997405+02:00",
+  "frissitve": "2026-10-30T03:57:36.016315+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:26:58.279849+02:00",
-      "kulcs": "NLE848",
-      "rendszam": "NLE848",
-      "vehicle_id": "6400",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.4996337890625,
-      "lon": 19.03558349609375,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-29T15:26:58.279865+02:00",
-      "kulcs": "NLE856",
-      "rendszam": "NLE856",
-      "vehicle_id": "6408",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.507080078125,
-      "lon": 19.023235321044922,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-10-29T15:26:58.280316+02:00",
-      "kulcs": "NTP540",
-      "rendszam": "NTP540",
-      "vehicle_id": "6516",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50661087036133,
-      "lon": 19.024078369140625,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
     {
       "idopont": "2026-10-29T15:26:58.280406+02:00",
       "kulcs": "CITY001",
@@ -260000,6 +259961,45 @@
       "lon": 19.04676055908203,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-30T03:57:35.937330+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.507476806640625,
+      "lon": 19.024978637695312,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-10-30T03:57:35.939182+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40445327758789,
+      "lon": 19.18583106994629,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-10-30T03:57:35.939874+02:00",
+      "kulcs": "SKR728",
+      "rendszam": "SKR728",
+      "vehicle_id": "7677",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46419906616211,
+      "lon": 19.126766204833984,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
     }
   ]
 }
