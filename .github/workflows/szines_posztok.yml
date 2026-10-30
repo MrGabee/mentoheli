@@ -13,7 +13,8 @@ on:
     - cron: '10,40 * * * *'
 
 concurrency:
-  group: szines-posztok
+  # a kézi egyedi poszt nem áll be a 40 perces menetrendi figyelő mögé
+  group: szines-posztok-${{ github.event.inputs.poszt || 'menetrend' }}
   cancel-in-progress: false
 
 jobs:

@@ -249,6 +249,15 @@ Feljelentés egyelőre nem történt. A család bízik benne, hogy aki elvitte, 
 Ha valaki látott valamit ebben az időben, vagy előkerül a telefon, írjatok nekem privátban, és továbbítom.
 
 #Csepel #figyelmeztetés #gyerekek"""),
+    "tesco_mentok_20261030": (date(2026, 10, 30), """🚑 SOK MENTŐ A RÁKÓCZI ÚTI TESCÓNÁL – TUDJÁTOK, MI TÖRTÉNT?
+
+Most írt egy olvasóm: Csepelen, a II. Rákóczi Ferenc úti Tescónál több mentőautó is áll, és egyelőre senki sem tudja, miért.
+
+Ha a környéken vagy, vagy tudod, mi történt, kérlek, írd meg kommentben vagy privátban. Amint kiderül valami, frissítem a posztot.
+
+Remélem, nincs nagy baj. 🙏
+
+#Csepel #mentők"""),
 }
 
 
