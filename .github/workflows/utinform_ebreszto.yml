@@ -4,6 +4,7 @@ name: ⏰ Útinform Figyelő ébresztése (percenként)
 # A webalkalmazás-futás nem számít bele az Apps Script időzítőinek napi
 # keretébe, így a percenkénti figyelés nem fogyasztja el a többi szkript elől.
 # A cím a UTINFORM_WEBAPP_URL secretben van, a logba nem kerül ki.
+# Ugyanez a lánc ébreszti a BKK Zavar Monitort is (BKK_WEBAPP_URL secret).
 
 on:
   workflow_dispatch:
@@ -26,6 +27,8 @@ jobs:
         id: ebreszt
         env:
           URL: ${{ secrets.UTINFORM_WEBAPP_URL }}
+          # A BKK Zavar Monitor webalkalmazása; ha be van állítva, azt is ébresztem.
+          BKK_URL: ${{ secrets.BKK_WEBAPP_URL }}
         run: |
           if [ -z "$URL" ]; then
             echo "Nincs beállítva a UTINFORM_WEBAPP_URL secret, a lánc áll."
@@ -34,8 +37,10 @@ jobs:
           echo "lanc=1" >> "$GITHUB_OUTPUT"
           for i in 1 2 3 4 5 6; do
             KEZD=$(date +%s)
+            [ -n "$BKK_URL" ] && { curl -sL --max-time 50 -o /dev/null "$BKK_URL" & }
             VALASZ=$(curl -sL --max-time 50 "$URL" | head -c 400)
             echo "$(date -u +%H:%M:%S) ébresztés $i/6: ${VALASZ:-nincs válasz}"
+            wait
             ELTELT=$(( $(date +%s) - KEZD ))
             [ "$i" -lt 6 ] && [ "$ELTELT" -lt 60 ] && sleep $(( 60 - ELTELT ))
           done
