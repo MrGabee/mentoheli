@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-10-30T04:43:02.007225+02:00",
+  "frissitve": "2026-10-30T04:43:32.256059+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:31:45.715949+02:00",
-      "kulcs": "T9103",
-      "rendszam": "T9103",
-      "vehicle_id": "7350",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51548385620117,
-      "lon": 19.050886154174805,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-29T15:31:45.716733+02:00",
-      "kulcs": "V2251",
-      "rendszam": "V2251",
-      "vehicle_id": "7383",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.495140075683594,
-      "lon": 19.042911529541016,
-      "elozo_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-29T15:31:45.716895+02:00",
       "kulcs": "RVY610",
@@ -260000,6 +259974,32 @@
       "lon": 19.067087173461914,
       "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-30T04:43:32.156784+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.56050491333008,
+      "lon": 19.090412139892578,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-10-30T04:43:32.158485+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54705810546875,
+      "lon": 19.14203643798828,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
