@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-30T05:19:05.483597+02:00",
+  "frissitve": "2026-10-30T05:19:38.074218+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:39:34.845525+02:00",
-      "kulcs": "PKD001",
-      "rendszam": "PKD001",
-      "vehicle_id": "5626",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.49013137817383,
-      "lon": 19.060976028442383,
-      "elozo_szoveg": "Nagytétény-Diósd vá.",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-10-29T15:39:34.845589+02:00",
-      "kulcs": "MOS257",
-      "rendszam": "MOS257",
-      "vehicle_id": "5710",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "84E",
-      "route_id": "0845",
-      "lat": 47.388126373291016,
-      "lon": 19.231115341186523,
-      "elozo_szoveg": "Deák Ferenc utca ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-29T15:39:34.845819+02:00",
-      "kulcs": "V2215",
-      "rendszam": "V2215",
-      "vehicle_id": "5855",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.429473876953125,
-      "lon": 19.21746253967285,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-29T15:39:34.845916+02:00",
-      "kulcs": "MXJ012",
-      "rendszam": "MXJ012",
-      "vehicle_id": "5888",
-      "vehicle_label": "Csillebérc, KFKI",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.50663375854492,
-      "lon": 19.023963928222656,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Csillebérc, KFKI"
-    },
-    {
-      "idopont": "2026-10-29T15:39:34.846175+02:00",
-      "kulcs": "AELD560",
-      "rendszam": "AELD560",
-      "vehicle_id": "611",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.41684341430664,
-      "lon": 19.13574981689453,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Boráros tér H"
-    },
     {
       "idopont": "2026-10-29T15:39:34.846257+02:00",
       "kulcs": "T8013",
@@ -260000,6 +259935,71 @@
       "lon": 19.099609375,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-30T05:19:38.010315+02:00",
+      "kulcs": "AELD556",
+      "rendszam": "AELD556",
+      "vehicle_id": "630",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "194",
+      "route_id": "1940",
+      "lat": 47.42945861816406,
+      "lon": 19.16866683959961,
+      "elozo_szoveg": "Gilice tér (Varjú utca)",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-10-30T05:19:38.010357+02:00",
+      "kulcs": "NNE053",
+      "rendszam": "NNE053",
+      "vehicle_id": "6449",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59850311279297,
+      "lon": 19.054275512695312,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-30T05:19:38.010523+02:00",
+      "kulcs": "PDN615",
+      "rendszam": "PDN615",
+      "vehicle_id": "7086",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "152",
+      "route_id": "1520",
+      "lat": 47.38862991333008,
+      "lon": 19.101486206054688,
+      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
+      "uj_szoveg": "Csepel, Szent Imre tér"
+    },
+    {
+      "idopont": "2026-10-30T05:19:38.010889+02:00",
+      "kulcs": "RVY619",
+      "rendszam": "RVY619",
+      "vehicle_id": "7448",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "284E",
+      "route_id": "2845",
+      "lat": 47.399139404296875,
+      "lon": 19.2055721282959,
+      "elozo_szoveg": "Pestszentimre",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-30T05:19:38.011086+02:00",
+      "kulcs": "SKR730",
+      "rendszam": "SKR730",
+      "vehicle_id": "7679",
+      "vehicle_label": "Cargo C.-Liszt F. Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.465065002441406,
+      "lon": 19.127304077148438,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Cargo City ► Liszt Ferenc Airport 2"
     }
   ]
 }
