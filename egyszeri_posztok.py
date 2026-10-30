@@ -238,6 +238,17 @@ Nyugodjon békében, kapitány. 🖤
 Nektek melyik szerepe a kedvencetek? 👇
 
 #PatrickStewart #StarTrek #Picard"""),
+    "telefon_meki_20261030": (date(2026, 10, 30), """📱 ELLOPTÁK EGY 16 ÉVES LÁNY TELEFONJÁT A CSEPELI McDONALD'S-BAN
+
+Egy követőm keresett meg: ma 13:00 és 13:40 között a csepeli McDonald's mosdójából eltűnt a 16 éves húga telefonja. Az értéke nem nagy, és a család sem igazán reménykedik, hogy visszakerül, de szeretnék mindenkit figyelmeztetni.
+
+Nem mindig a pénztárcánkra vagy a nagy értékekre fáj a foguk, egy gyerektől is elveszik, ami a keze ügyébe kerül. Kérlek, beszéljetek a gyerekeitekkel arról, hogy a telefonjukat még egy pillanatra se hagyják a mosdóban, az asztalon vagy a pulton.
+
+Feljelentés egyelőre nem történt. A család bízik benne, hogy aki elvitte, még meggondolja magát, és visszaviszi a telefont az étterembe, mielőtt erre sor kerülne. 🙏
+
+Ha valaki látott valamit ebben az időben, vagy előkerül a telefon, írjatok nekem privátban, és továbbítom.
+
+#Csepel #figyelmeztetés #gyerekek"""),
 }
 
 
