@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T03:22:25.798424+02:00",
+  "frissitve": "2026-10-30T03:22:53.936236+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:22:22.746754+02:00",
-      "kulcs": "415 027",
-      "rendszam": "415 027",
-      "vehicle_id": "945514150271",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 46.41584014892578,
-      "lon": 18.25274085998535,
-      "elozo_szoveg": "Dombóvár",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-29T15:22:22.747275+02:00",
-      "kulcs": "416 012",
-      "rendszam": "416 012",
-      "vehicle_id": "955514160121",
-      "vehicle_label": "Lajosmizse",
-      "vonal_szam": "S21",
-      "route_id": "S21",
-      "lat": 47.51081085205078,
-      "lon": 19.101959228515625,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Lajosmizse"
-    },
-    {
-      "idopont": "2026-10-29T15:23:26.417338+02:00",
-      "kulcs": "AADI608",
-      "rendszam": "AADI608",
-      "vehicle_id": "105",
-      "vehicle_label": "Savoyai Jenő tér",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.46446228027344,
-      "lon": 19.018829345703125,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Regényes utca ► Savoyai Jenő tér"
-    },
     {
       "idopont": "2026-10-29T15:23:26.417372+02:00",
       "kulcs": "AADI609",
@@ -260000,6 +259961,45 @@
       "lon": 19.04722023010254,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-10-30T03:22:53.837857+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.498931884765625,
+      "lon": 19.050933837890625,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-30T03:22:53.838395+02:00",
+      "kulcs": "PDB730",
+      "rendszam": "PDB730",
+      "vehicle_id": "7056",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.485145568847656,
+      "lon": 19.072494506835938,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T03:22:53.838647+02:00",
+      "kulcs": "RVY607",
+      "rendszam": "RVY607",
+      "vehicle_id": "7436",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.5198974609375,
+      "lon": 19.03809356689453,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
