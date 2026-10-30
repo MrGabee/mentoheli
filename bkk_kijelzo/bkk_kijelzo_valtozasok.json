@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-30T03:56:28.302740+02:00",
+  "frissitve": "2026-10-30T03:57:06.997405+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:26:58.277688+02:00",
-      "kulcs": "V4274",
-      "rendszam": "V4274",
-      "vehicle_id": "4933",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.54331588745117,
-      "lon": 18.964202880859375,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Krisztina körút ► Városház tér"
-    },
-    {
-      "idopont": "2026-10-29T15:26:58.277725+02:00",
-      "kulcs": "V4285",
-      "rendszam": "V4285",
-      "vehicle_id": "4944",
-      "vehicle_label": "Izraelita temető",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49576950073242,
-      "lon": 19.072954177856445,
-      "elozo_szoveg": "Izraelita temető",
-      "uj_szoveg": "Kőbányai út ► Izraelita temető"
-    },
-    {
-      "idopont": "2026-10-29T15:26:58.279050+02:00",
-      "kulcs": "AADI601",
-      "rendszam": "AADI601",
-      "vehicle_id": "61",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "187",
-      "route_id": "1870",
-      "lat": 47.435707092285156,
-      "lon": 18.978599548339844,
-      "elozo_szoveg": "Kamaraerdő",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-29T15:26:58.279439+02:00",
-      "kulcs": "NCV290",
-      "rendszam": "NCV290",
-      "vehicle_id": "6255",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50654602050781,
-      "lon": 19.023967742919922,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-29T15:26:58.279849+02:00",
       "kulcs": "NLE848",
@@ -260000,6 +259948,58 @@
       "lon": 19.10310935974121,
       "elozo_szoveg": "Astoria M ► Budatétény",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T03:57:06.938458+02:00",
+      "kulcs": "AADI607",
+      "rendszam": "AADI607",
+      "vehicle_id": "104",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.464637756347656,
+      "lon": 19.022932052612305,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-30T03:57:06.938915+02:00",
+      "kulcs": "AAGL275",
+      "rendszam": "AAGL275",
+      "vehicle_id": "275",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49895477294922,
+      "lon": 19.051206588745117,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-30T03:57:06.940017+02:00",
+      "kulcs": "NWB357",
+      "rendszam": "NWB357",
+      "vehicle_id": "6537",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.50137710571289,
+      "lon": 19.120161056518555,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
+      "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-30T03:57:06.940561+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47468948364258,
+      "lon": 19.04676055908203,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
