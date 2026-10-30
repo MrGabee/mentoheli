@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-30T03:38:46.560698+02:00",
+  "frissitve": "2026-10-30T03:39:16.829907+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:24:48.871426+02:00",
-      "kulcs": "RCT316",
-      "rendszam": "RCT316",
-      "vehicle_id": "7330",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.50170135498047,
-      "lon": 19.135608673095703,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-29T15:24:48.871568+02:00",
-      "kulcs": "T9102",
-      "rendszam": "T9102",
-      "vehicle_id": "7349",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48932647705078,
-      "lon": 19.090049743652344,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-29T15:24:48.871683+02:00",
-      "kulcs": "T9107",
-      "rendszam": "T9107",
-      "vehicle_id": "7354",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50406265258789,
-      "lon": 19.136810302734375,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-29T15:24:48.873849+02:00",
-      "kulcs": "STZ840",
-      "rendszam": "STZ840",
-      "vehicle_id": "7795",
-      "vehicle_label": "Törökbálint, Márta utca",
-      "vonal_szam": "272",
-      "route_id": "2720",
-      "lat": 47.464149475097656,
-      "lon": 19.018522262573242,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint, Márta utca"
-    },
     {
       "idopont": "2026-10-29T15:24:48.873878+02:00",
       "kulcs": "STZ843",
@@ -260000,6 +259948,58 @@
       "lon": 19.055662155151367,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-30T03:39:16.730391+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498779296875,
+      "lon": 19.050107955932617,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T03:39:16.730465+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50185012817383,
+      "lon": 19.023826599121094,
+      "elozo_szoveg": "Savoya Park",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-30T03:39:16.730517+02:00",
+      "kulcs": "AADI652",
+      "rendszam": "AADI652",
+      "vehicle_id": "151",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47537612915039,
+      "lon": 19.040403366088867,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-10-30T03:39:16.733590+02:00",
+      "kulcs": "SKN819",
+      "rendszam": "SKN819",
+      "vehicle_id": "7788",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.491493225097656,
+      "lon": 19.04316520690918,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX"
     }
   ]
 }
