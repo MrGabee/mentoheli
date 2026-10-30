@@ -14,6 +14,7 @@ futásonként legfeljebb egy, hogy ne egyszerre jöjjenek.
 import os
 import json
 import re
+import subprocess
 import requests
 from datetime import datetime, time, timedelta
 from zoneinfo import ZoneInfo
@@ -225,7 +226,23 @@ def kovetkezo_slot(most, allapot):
     return min(idok) if idok else None
 
 
+def mainen_kiment(kulcs, nap):
+    """Kiment-e már ma a poszt egy másik futásban (a main legfrissebb állapota szerint)."""
+    try:
+        subprocess.run(["git", "fetch", "-q", "origin", "main"], timeout=30, capture_output=True)
+        r = subprocess.run(["git", "show", f"origin/main:{ALLAPOT_FAJL}"], timeout=15, capture_output=True)
+        tiszta = re.sub(r"^(<<<<<<<|=======|>>>>>>>).*\n", "", r.stdout.decode("utf-8"), flags=re.M)
+        return json.loads(tiszta, object_pairs_hook=_max_kulcs).get("kiment", {}).get(kulcs) == nap.isoformat()
+    except Exception:
+        return False
+
+
 def egy_poszt(most, allapot, kulcs, kenyszeritett):
+    # Egy korábbi futás már kitehette (a sorban álló futás régi állapotot lát)
+    if not kenyszeritett and mainen_kiment(kulcs, most.date()):
+        print(f"ℹ️ {kulcs}: egy másik futás ma már kitette, kihagyom.")
+        allapot.setdefault("kiment", {})[kulcs] = most.date().isoformat()
+        return True
     keszito = next(m[3] for m in MENETREND if m[0] == kulcs)
     szoveg = keszito(most.date(), allapot)
     if szoveg is None:
