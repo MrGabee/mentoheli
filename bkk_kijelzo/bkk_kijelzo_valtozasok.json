@@ -1,19 +1,6 @@
 {
-  "frissitve": "2026-10-30T03:07:08.192479+02:00",
+  "frissitve": "2026-10-30T03:07:49.342646+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:21:22.338115+02:00",
-      "kulcs": "AOFL251",
-      "rendszam": "AOFL251",
-      "vehicle_id": "840",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217",
-      "route_id": "2170",
-      "lat": 47.483150482177734,
-      "lon": 19.128286361694336,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
     {
       "idopont": "2026-10-29T15:21:22.338375+02:00",
       "kulcs": "AOIB811",
@@ -260000,6 +259987,19 @@
       "lon": 19.069276809692383,
       "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
       "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-30T03:07:49.258105+02:00",
+      "kulcs": "SKR820",
+      "rendszam": "SKR820",
+      "vehicle_id": "7706",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.485530853271484,
+      "lon": 19.124847412109375,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
