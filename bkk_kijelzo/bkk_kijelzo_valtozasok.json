@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T02:06:47.112658+02:00",
+  "frissitve": "2026-10-30T02:07:20.382108+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:15:58.026363+02:00",
-      "kulcs": "AAHY802",
-      "rendszam": "AAHY802",
-      "vehicle_id": "362",
-      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
-      "vonal_szam": "122E",
-      "route_id": "1225",
-      "lat": 47.55910873413086,
-      "lon": 19.07876968383789,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
-    },
-    {
-      "idopont": "2026-10-29T15:15:58.026597+02:00",
-      "kulcs": "AAHY823",
-      "rendszam": "AAHY823",
-      "vehicle_id": "384",
-      "vehicle_label": "Izzó utcai lakótelep",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.56047821044922,
-      "lon": 19.09040069580078,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Izzó utcai lakótelep"
-    },
-    {
-      "idopont": "2026-10-29T15:15:58.026611+02:00",
-      "kulcs": "AAHY824",
-      "rendszam": "AAHY824",
-      "vehicle_id": "385",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57659912109375,
-      "lon": 19.10544776916504,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
     {
       "idopont": "2026-10-29T15:15:58.026632+02:00",
       "kulcs": "AAHY828",
@@ -260000,6 +259961,45 @@
       "lon": 19.057458877563477,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-30T02:07:20.303625+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53841781616211,
+      "lon": 19.0690975189209,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-10-30T02:07:20.303922+02:00",
+      "kulcs": "PKN610",
+      "rendszam": "PKN610",
+      "vehicle_id": "7199",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.489723205566406,
+      "lon": 19.074586868286133,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-10-30T02:07:20.303953+02:00",
+      "kulcs": "PKN628",
+      "rendszam": "PKN628",
+      "vehicle_id": "7217",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.49977111816406,
+      "lon": 19.287189483642578,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
     }
   ]
 }
