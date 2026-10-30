@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T02:53:32.763600+02:00",
+  "frissitve": "2026-10-30T02:54:00.146168+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:19:57.474647+02:00",
-      "kulcs": "V1623",
-      "rendszam": "V1623",
-      "vehicle_id": "7292",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.539669036865234,
-      "lon": 19.1446475982666,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-29T15:19:57.474685+02:00",
-      "kulcs": "PDZ831",
-      "rendszam": "PDZ831",
-      "vehicle_id": "7294",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.50254440307617,
-      "lon": 19.136327743530273,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-29T15:19:57.474746+02:00",
-      "kulcs": "RCT308",
-      "rendszam": "RCT308",
-      "vehicle_id": "7322",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.41279220581055,
-      "lon": 19.161312103271484,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-10-29T15:19:57.475027+02:00",
       "kulcs": "T9109",
@@ -260000,6 +259961,45 @@
       "lon": 19.054317474365234,
       "elozo_szoveg": "Békásmegyer H",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-30T02:54:00.079991+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.498870849609375,
+      "lon": 19.050613403320312,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-10-30T02:54:00.080271+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.500511169433594,
+      "lon": 19.135480880737305,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-10-30T02:54:00.080934+02:00",
+      "kulcs": "SXE203",
+      "rendszam": "SXE203",
+      "vehicle_id": "7840",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.461097717285156,
+      "lon": 19.136432647705078,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
