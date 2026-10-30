@@ -37,10 +37,12 @@ jobs:
           echo "lanc=1" >> "$GITHUB_OUTPUT"
           for i in 1 2 3 4 5 6; do
             KEZD=$(date +%s)
-            [ -n "$BKK_URL" ] && { curl -sL --max-time 50 -o /dev/null "$BKK_URL" & }
+            rm -f /tmp/bkk.txt
+            [ -n "$BKK_URL" ] && { curl -sL --max-time 50 "$BKK_URL" 2>/dev/null | head -c 20 > /tmp/bkk.txt & }
             VALASZ=$(curl -sL --max-time 50 "$URL" | head -c 400)
             echo "$(date -u +%H:%M:%S) ébresztés $i/6: ${VALASZ:-nincs válasz}"
             wait
+            [ -n "$BKK_URL" ] && echo "   BKK: $(cat /tmp/bkk.txt 2>/dev/null || echo 'nincs válasz')"
             ELTELT=$(( $(date +%s) - KEZD ))
             [ "$i" -lt 6 ] && [ "$ELTELT" -lt 60 ] && sleep $(( 60 - ELTELT ))
           done
