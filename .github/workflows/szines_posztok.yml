@@ -8,8 +8,8 @@ on:
         required: false
         default: ''
   schedule:
-    # Félóránként nézi, melyik színes poszt esedékes (a menetrend a
-    # szines_posztok.py elején van, helyi idő szerint)
+    # Félóránként indul, és 40 percig figyel: a poszt percre pontosan megy ki
+    # (a menetrend a szines_posztok.py elején van, helyi idő szerint)
     - cron: '10,40 * * * *'
 
 concurrency:
@@ -19,7 +19,7 @@ concurrency:
 jobs:
   posztol:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 50
     permissions:
       contents: write
 

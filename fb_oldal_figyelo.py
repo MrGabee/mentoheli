@@ -16,6 +16,7 @@ import hashlib
 import requests
 
 import poszt_valtozatos
+import poszt_utem
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
@@ -236,6 +237,8 @@ def main():
         return
 
     allapot = betolt(ALLAPOT_FAJL, {})
+    # Egy futásban legfeljebb egy megosztás, és csak szabad sávban (poszt_utem)
+    mehet = poszt_utem.raeros_mehet(allapot)
 
     for oldal in oldalak:
         nev, rss = oldal.get("nev", ""), oldal.get("rss", "")
@@ -267,11 +270,16 @@ def main():
                 print(f"  ⏭️ Ma már ment erről poszt (napi zár): {b['cim'][:80]}")
                 latott.append(b["azonosito"])
                 continue
+            if FACEBOOK_POSZTOLAS_AKTIV and not mehet:
+                break  # most nincs szabad sáv: a következő futás osztja meg
             szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG), oldal.get("bevezetok"), oldal.get("folyamatos", False))
             print("\n" + szoveg + "\n")
             if FACEBOOK_POSZTOLAS_AKTIV and not facebook_poszt_kuldese(szoveg, b.get("kep", "")):
                 break  # sikertelen: a következő futás újra megpróbálja
             latott.append(b["azonosito"])
+            if FACEBOOK_POSZTOLAS_AKTIV:
+                poszt_utem.jegyez(allapot)
+                mehet = False
             if zar and FACEBOOK_POSZTOLAS_AKTIV:
                 napi_zar_beallit(zar)
             if FACEBOOK_POSZTOLAS_AKTIV and oldal.get("csendes_perc"):

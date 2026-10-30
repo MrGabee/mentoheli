@@ -390,12 +390,21 @@ def main():
 
     print(f"\n🔥 Új csepeli FŐTÁV esemény: {len(uj)}")
     if uj:
-        email_kuldes(uj)
+        # Most zajló munka/kiesés: azonnal posztolok és levél is megy. Tervezett:
+        # a poszt a következő szabad sávba kerül, levél nem jön róla.
+        surgos = [e for e in uj if not e["tipus"].startswith("TERVEZETT")]
+        if surgos:
+            email_kuldes(surgos)
         if FACEBOOK_POSZTOLAS_AKTIV:
             fb = posztolando(uj, regi)
-            if fb:
+            fb_surgos = [e for e in fb if not e["tipus"].startswith("TERVEZETT")]
+            fb_raeros = [e for e in fb if e["tipus"].startswith("TERVEZETT")]
+            if fb_surgos:
                 print("\n📘 Facebook poszt küldése...")
-                ejszakai_sor.kuld_vagy_sorba(regi, facebook_szoveg(fb), facebook_poszt_kuldese)
+                ejszakai_sor.kuld_vagy_sorba(regi, facebook_szoveg(fb_surgos), facebook_poszt_kuldese, surgos=True)
+            if fb_raeros:
+                print("\n🗓️ Tervezett munka: a poszt sorba kerül...")
+                ejszakai_sor.kuld_vagy_sorba(regi, facebook_szoveg(fb_raeros), facebook_poszt_kuldese, surgos=False)
     else:
         print("✅ Nincs új esemény.")
 

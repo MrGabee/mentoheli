@@ -340,12 +340,19 @@ def main():
 
     print(f"\n💧 Új esemény: {len(uj)}")
     if uj:
-        fb_szoveg = facebook_szoveg(uj) if FACEBOOK_POSZTOLAS_AKTIV else None
-        email_kuldes(uj, fb_szoveg)
-
-        if FACEBOOK_POSZTOLAS_AKTIV:
-            print("\n📘 Facebook poszt küldése...")
-            ejszakai_sor.kuld_vagy_sorba(regi, fb_szoveg, facebook_poszt_kuldese)
+        # Vízhiány (geo_0): azonnal posztolok és levél is megy. Várható vízhiány,
+        # forgalomkorlátozás: a poszt a következő szabad sávba kerül, levél nélkül.
+        surgos = [e for e in uj if e["tipus"] == "geo_0"]
+        raeros = [e for e in uj if e["tipus"] != "geo_0"]
+        if surgos:
+            fb_szoveg = facebook_szoveg(surgos) if FACEBOOK_POSZTOLAS_AKTIV else None
+            email_kuldes(surgos, fb_szoveg)
+            if FACEBOOK_POSZTOLAS_AKTIV:
+                print("\n📘 Facebook poszt küldése...")
+                ejszakai_sor.kuld_vagy_sorba(regi, fb_szoveg, facebook_poszt_kuldese, surgos=True)
+        if raeros and FACEBOOK_POSZTOLAS_AKTIV:
+            print("\n🗓️ Előre bejelentett munka: a poszt sorba kerül...")
+            ejszakai_sor.kuld_vagy_sorba(regi, facebook_szoveg(raeros), facebook_poszt_kuldese, surgos=False)
     else:
         print("✅ Nincs új esemény.")
 

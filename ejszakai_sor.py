@@ -10,6 +10,8 @@ from zoneinfo import ZoneInfo
 
 import json
 
+import poszt_utem
+
 # 22:00-tól a jó reggelt kimeneteléig várnak a posztok. Ha a jó reggelt
 # valamiért késik, legkésőbb LEGKESOBB-kor akkor is kimennek.
 EJSZAKA_TOL = (22, 0)
@@ -44,21 +46,30 @@ def ejszaka(t=None):
     return hm < LEGKESOBB and not reggeli_kiment(t.date())
 
 
-def kuld_vagy_sorba(allapot, szoveg, kuldo):
+def kuld_vagy_sorba(allapot, szoveg, kuldo, surgos=True):
+    """Sürgős poszt: azonnal kimegy (éjszaka reggelig vár). Ráérős poszt
+    (előre bejelentett esemény): sorba kerül, és a következő szabad sávban
+    megy ki (poszt_utem), hogy ne menjen két bejegyzés egyszerre."""
     if ejszaka():
         allapot.setdefault("fb_sor", []).append(szoveg)
         print("  🌙 Éjszaka van, a poszt reggelig vár.")
         return
-    kuldo(szoveg)
+    if not surgos:
+        allapot.setdefault("fb_sor", []).append(szoveg)
+        print("  🗓️ Előre bejelentett esemény: a poszt a következő szabad sávban megy ki.")
+        sor_kiurites(allapot, kuldo)
+        return
+    if kuldo(szoveg) is not False:
+        poszt_utem.jegyez(allapot)
 
 
 def sor_kiurites(allapot, kuldo):
-    """Reggel kiküldi az éjszaka félretett posztokat; ami nem ment ki, marad."""
+    """A félretett posztokból egyet küld ki, ha van szabad sáv; a többi vár."""
     if ejszaka() or not allapot.get("fb_sor"):
         return
-    maradt = []
-    for szoveg in allapot["fb_sor"]:
-        print("📘 Éjszaka félretett poszt küldése...")
-        if kuldo(szoveg) is False:
-            maradt.append(szoveg)
-    allapot["fb_sor"] = maradt
+    if not poszt_utem.raeros_mehet(allapot):
+        return
+    print("📘 Félretett poszt küldése...")
+    if kuldo(allapot["fb_sor"][0]) is not False:
+        allapot["fb_sor"] = allapot["fb_sor"][1:]
+        poszt_utem.jegyez(allapot)

@@ -34,6 +34,8 @@ import olvasoi_level
 import csepeli_sport
 import vallalkozasok
 import egyszeri_posztok
+import poszt_utem
+import time as time_mod
 import poszt_valtozatos
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
@@ -192,26 +194,25 @@ def esedekes(most, allapot):
     return lista
 
 
-def main():
-    most = datetime.now(MAGYAR_TZ)
-    if os.environ.get("KENYSZERITETT"):          # kézi indítás: egy adott poszt azonnal
-        most_kulcsok = [os.environ["KENYSZERITETT"]]
-    else:
-        most_kulcsok = None
-    print(f"🌈 Színes posztok – {most.strftime('%Y.%m.%d %H:%M:%S')}")
+def kovetkezo_slot(most, allapot):
+    """A ma még hátralévő, ki nem ment menetrendi posztok közül a legkorábbi időpont."""
+    ma = most.date().isoformat()
+    idok = []
+    for kulcs, ido, napok, _ in MENETREND:
+        if napok is not None and most.weekday() not in napok:
+            continue
+        kezd = datetime.combine(most.date(), ido, MAGYAR_TZ)
+        if kezd > most and allapot.get("kiment", {}).get(kulcs) != ma:
+            idok.append(kezd)
+    return min(idok) if idok else None
 
-    allapot = betolt_allapot()
-    kulcsok = most_kulcsok or esedekes(most, allapot)
-    if not kulcsok:
-        print("⏭️ Most nincs esedékes poszt.")
-        return
 
-    kulcs = kulcsok[0]
+def egy_poszt(most, allapot, kulcs, kenyszeritett):
     keszito = next(m[3] for m in MENETREND if m[0] == kulcs)
     szoveg = keszito(most.date(), allapot)
     if szoveg is None:
         print(f"⚠️ {kulcs}: a forrás most nem elérhető, a következő futás újrapróbálja.")
-        return
+        return False
 
     if szoveg == "":
         print(f"ℹ️ {kulcs}: ma nincs miről írni, kihagyva.")
@@ -223,10 +224,58 @@ def main():
             print("ℹ️ Facebook-posztolás kikapcsolva.")
         elif not (kepes_poszt_kuldese(szoveg, KEPEK[kulcs]) if kulcs in KEPEK
                   else kuldo.facebook_poszt_kuldese(szoveg)):
-            return  # sikertelen küldés: a következő futás újrapróbálja
+            return False  # sikertelen küldés: a következő futás újrapróbálja
+        else:
+            poszt_utem.jegyez(allapot)
 
-    if not most_kulcsok:
+    if not kenyszeritett:
         allapot.setdefault("kiment", {})[kulcs] = most.date().isoformat()
+    return True
+
+
+# Egy futás eddig figyel: a félóránkénti indítások így átfedik egymást, és a
+# poszt akkor is percre pontosan megy ki, ha a GitHub késve indítja a futást.
+FIGYELES_PERC = 40
+
+
+def main():
+    most = datetime.now(MAGYAR_TZ)
+    print(f"🌈 Színes posztok – {most.strftime('%Y.%m.%d %H:%M:%S')}")
+    allapot = betolt_allapot()
+
+    if os.environ.get("KENYSZERITETT"):          # kézi indítás: egy adott poszt azonnal
+        egy_poszt(most, allapot, os.environ["KENYSZERITETT"], True)
+        ment_allapot(allapot)
+        return
+
+    vege = most + timedelta(minutes=FIGYELES_PERC)
+    while True:
+        most = datetime.now(MAGYAR_TZ)
+        kulcsok = esedekes(most, allapot)
+        if kulcsok:
+            # Ha közben egy másik figyelő azonnali posztot tett ki, a menetrend
+            # utána MIN_TAV-val folytatódik ("onnantól mindent pakolj át").
+            masik = poszt_utem.utolso_poszt(kiveve=ALLAPOT_FAJL)
+            if masik and most - masik < poszt_utem.MIN_TAV:
+                varj = (masik + poszt_utem.MIN_TAV - most).total_seconds()
+                print(f"⏳ {masik:%H:%M}-kor ment ki egy másik poszt, {varj / 60:.0f} percet várok.")
+            else:
+                if not egy_poszt(most, allapot, kulcsok[0], False):
+                    break
+                ment_allapot(allapot)
+                poszt_utem.allapot_feltoltes(ALLAPOT_FAJL, "színes posztok állapot")
+                continue
+        else:
+            kov = kovetkezo_slot(most, allapot)
+            allapot["kovetkezo_slot"] = kov.isoformat() if kov else ""
+            ment_allapot(allapot)
+            if not kov or kov > vege:
+                print("⏭️ A figyelési időn belül nincs több esedékes poszt.")
+                break
+            varj = (kov - most).total_seconds()
+            print(f"⏰ Következő poszt {kov:%H:%M}-kor, addig várok.")
+        time_mod.sleep(max(5, min(varj, 300)))
+
     ment_allapot(allapot)
     print("💾 Állapot mentve. ✅ Kész.\n")
 

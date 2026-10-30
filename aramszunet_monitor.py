@@ -669,11 +669,22 @@ def main():
 
     print(f"\n⚡ Új események: {len(uj)} | Összes aktív: {len(osszes_aktiv)}")
     if uj:
-        fb_szoveg_txt = email_kuldes(uj, osszes_aktiv)
-
-        if FACEBOOK_POSZTOLAS_AKTIV:
-            print("\n📘 Facebook poszt küldése...")
-            ejszakai_sor.kuld_vagy_sorba(regi, fb_szoveg_txt, facebook_poszt_kuldese)
+        # Élő üzemzavar: azonnal posztolok, és levél is megy. Előre bejelentett
+        # áramszünet: a poszt a következő szabad sávba kerül, levél nem jön róla.
+        surgos = [e for e in uj if e["tipus"] == "UZEMZAVAR"]
+        raeros = [e for e in uj if e["tipus"] != "UZEMZAVAR"]
+        ido = magyar_ido().strftime("%Y.%m.%d %H:%M:%S")
+        aktiv_adatok = [kinyert_adatok(e) for e in osszes_aktiv]
+        if surgos:
+            fb_szoveg_txt = email_kuldes(surgos, osszes_aktiv)
+            if FACEBOOK_POSZTOLAS_AKTIV:
+                print("\n📘 Facebook poszt küldése (üzemzavar)...")
+                ejszakai_sor.kuld_vagy_sorba(regi, fb_szoveg_txt, facebook_poszt_kuldese, surgos=True)
+        if raeros and FACEBOOK_POSZTOLAS_AKTIV:
+            print("\n🗓️ Tervezett áramszünet: a poszt sorba kerül...")
+            ejszakai_sor.kuld_vagy_sorba(
+                regi, facebook_szoveg([kinyert_adatok(e) for e in raeros], aktiv_adatok, ido),
+                facebook_poszt_kuldese, surgos=False)
     else:
         print("✅ Nincs új esemény.")
 
@@ -720,15 +731,15 @@ def main():
                 break  # eseményenként csak egy emlékeztető megy ki egy körben
 
     if emlekezteto_kuldendo:
-        print(f"\n⏰ Emlékeztető küldése {len(emlekezteto_kuldendo)} közelgő eseményről...")
-        emlekezteto_kuldes(emlekezteto_kuldendo)
+        # Közelgő eseményről levél nem megy (Gábor kérése), csak a poszt, szabad sávban
+        print(f"\n⏰ Emlékeztető {len(emlekezteto_kuldendo)} közelgő eseményről...")
 
         if FACEBOOK_POSZTOLAS_AKTIV:
             print("\n📘 Emlékeztető Facebook poszt küldése...")
             fb_emlekezteto_szoveg = facebook_szoveg_emlekezteto(
                 emlekezteto_kuldendo, most.strftime("%Y.%m.%d %H:%M:%S")
             )
-            ejszakai_sor.kuld_vagy_sorba(regi, fb_emlekezteto_szoveg, facebook_poszt_kuldese)
+            ejszakai_sor.kuld_vagy_sorba(regi, fb_emlekezteto_szoveg, facebook_poszt_kuldese, surgos=False)
     else:
         print("⏰ Nincs a beállított küszöbök egyikén belül sem esedékes, még nem jelzett tervezett esemény.")
 
