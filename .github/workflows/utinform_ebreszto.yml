@@ -38,7 +38,7 @@ jobs:
           for i in 1 2 3 4 5 6; do
             KEZD=$(date +%s)
             rm -f /tmp/bkk.txt
-            [ -n "$BKK_URL" ] && { curl -sL --max-time 50 -o /tmp/bkk.html -w '%{http_code} %{url_effective}' "$BKK_URL" 2>/dev/null | sed -E 's#^([0-9]+) https?://([^/]+).*#\1 \2#' > /tmp/bkk.txt; { echo -n ' | '; grep -oE '<title>[^<]{0,80}' /tmp/bkk.html | head -1 | sed 's/<title>//'; echo -n ' | '; grep -oE '(ok$|Script function not found[^<]{0,40}|[A-Z][^<>{};=]{0,60}(rror|uthoriz|hiba)[^<>{};=]{0,80})' /tmp/bkk.html | head -1; } >> /tmp/bkk.txt & }
+            [ -n "$BKK_URL" ] && { curl -sL --max-time 50 -o /tmp/bkk.html -w '%{http_code} %{url_effective}' "$BKK_URL" 2>/dev/null | sed -E 's#^([0-9]+) https?://([^/]+).*#\1 \2#' > /tmp/bkk.txt; { echo -n ' | '; grep -oE '<title>[^<]{0,80}' /tmp/bkk.html | head -1 | sed 's/<title>//'; echo -n ' | '; grep -oE '(ok$|[^<>{};="]{0,80}(doGet|található|not found|Exception|kivétel|TypeError|ReferenceError|engedély|jogosult)[^<>{};="]{0,80})' /tmp/bkk.html | head -2; } >> /tmp/bkk.txt & }
             VALASZ=$(curl -sL --max-time 50 "$URL" | head -c 400)
             echo "$(date -u +%H:%M:%S) ébresztés $i/6: ${VALASZ:-nincs válasz}"
             wait
