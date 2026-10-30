@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T04:52:46.709088+02:00",
+  "frissitve": "2026-10-30T04:53:14.739729+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:32:56.684439+02:00",
-      "kulcs": "AOCT674",
-      "rendszam": "AOCT674",
-      "vehicle_id": "705",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.524620056152344,
-      "lon": 19.117210388183594,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
-    {
-      "idopont": "2026-10-29T15:32:56.684877+02:00",
-      "kulcs": "PHG658",
-      "rendszam": "PHG658",
-      "vehicle_id": "7182",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.52001190185547,
-      "lon": 19.14822769165039,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Rákosszentmihály vá."
-    },
-    {
-      "idopont": "2026-10-29T15:32:56.685396+02:00",
-      "kulcs": "V2115",
-      "rendszam": "V2115",
-      "vehicle_id": "7365",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464149475097656,
-      "lon": 19.02336311340332,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-29T15:32:56.685498+02:00",
       "kulcs": "V2249",
@@ -260000,6 +259961,45 @@
       "lon": 19.255598068237305,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-10-30T04:53:14.674922+02:00",
+      "kulcs": "AADR716",
+      "rendszam": "AADR716",
+      "vehicle_id": "184",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5040397644043,
+      "lon": 19.13671112060547,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-10-30T04:53:14.677316+02:00",
+      "kulcs": "418 148",
+      "rendszam": "418 148",
+      "vehicle_id": "925504181486",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S21",
+      "route_id": "S21",
+      "lat": 47.07048034667969,
+      "lon": 19.497650146484375,
+      "elozo_szoveg": "Lajosmizse",
+      "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-10-30T04:53:14.677431+02:00",
+      "kulcs": "415 034",
+      "rendszam": "415 034",
+      "vehicle_id": "945514150347",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S30",
+      "route_id": "S30",
+      "lat": 47.18170166015625,
+      "lon": 18.565900802612305,
+      "elozo_szoveg": "Veszprém",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
