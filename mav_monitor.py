@@ -191,12 +191,24 @@ def lekerdez_cikk_datuma(url):
         for zavaro in soup.find_all(class_=re.compile(r"cookie|suti|gdpr|consent", re.I)):
             zavaro.decompose()
 
-        # A MÁVINFORM cikk szövege: sárga doboz (összefoglaló), kék doboz(ok) (részletek).
-        dobozok = [d.get_text(" ", strip=True) for d in soup.find_all("div", class_=["yellowbox", "bluebox"])]
-        dobozok = [d for d in dobozok if d]
+        # A MÁVINFORM cikk szövege a field-body-ban: sárga doboz (összefoglaló), kék
+        # doboz(ok), alatta címek és felsorolások (pl. a kimaradó járatok listája).
+        dobozok = []
+        torzs = soup.find("div", class_="field-body")
+        if torzs:
+            for elem in torzs.find_all(["div", "p", "h2", "h3", "h4", "li"]):
+                if elem.name == "div" and not set(elem.get("class") or []) & {"yellowbox", "bluebox"}:
+                    continue
+                if elem.find_parent(class_=["yellowbox", "bluebox"]) or (elem.name == "p" and elem.find_parent("li")):
+                    continue
+                t = elem.get_text(" ", strip=True)
+                if t:
+                    dobozok.append(("• " + t) if elem.name == "li" else t)
+        if not dobozok:
+            dobozok = [d.get_text(" ", strip=True) for d in soup.find_all("div", class_=["yellowbox", "bluebox"])]
+            dobozok = [d for d in dobozok if d]
         # Rövid (pl. baleseti) cikkeknél nincs doboz, a szöveg a field-body soraiban van
         if not dobozok:
-            torzs = soup.find("div", class_="field-body")
             if torzs:
                 sorok = [d.get_text(" ", strip=True) for d in torzs.find_all(["div", "p"], recursive=False)]
                 dobozok = [s for s in sorok if s] or [torzs.get_text(" ", strip=True)]
@@ -207,7 +219,7 @@ def lekerdez_cikk_datuma(url):
             soup.find("article")
         )
         if dobozok:
-            reszlet = "\n\n".join(dobozok)[:1500]
+            reszlet = "\n\n".join(dobozok)[:3000]
         elif tartalom_div:
             reszlet = tartalom_div.get_text(separator=" ", strip=True)[:1500]
         else:
@@ -275,8 +287,8 @@ def email_kartya(e):
     reszlet = e.get("reszlet", "")
     if volan and reszlet:
         reszlet = VOLAN_BEVEZETO + reszlet
-    if len(reszlet) > 800:
-        reszlet = reszlet[:800].rsplit(" ", 1)[0] + " …"
+    if len(reszlet) > 2500:
+        reszlet = reszlet[:2500].rsplit(" ", 1)[0] + " …"
     test = (ea.adat_tabla([("Utolsó módosítás", "" if e.get("datum") in (None, "—") else e["datum"])])
             + "".join(ea.bekezdes(b) for b in reszlet.split("\n\n"))
             + ea.gomb("Teljes cikk", e.get("url", ""))
