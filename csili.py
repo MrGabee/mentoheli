@@ -17,6 +17,7 @@ import html
 import requests
 
 import poszt_valtozatos
+import poszt_utem
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -232,7 +233,7 @@ def main():
         if most.hour >= EMLEKEZTETO_ORA:
             szoveg = emlekezteto_szoveg(esedekes)
             print("\n" + szoveg + "\n")
-            if not FACEBOOK_POSZTOLAS_AKTIV or facebook_poszt_kuldese(szoveg):
+            if not FACEBOOK_POSZTOLAS_AKTIV or (poszt_utem.mehet() and facebook_poszt_kuldese(szoveg) and poszt_utem.jegyez() is None):
                 emlekeztetve |= {e["id"] for e in esedekes}
                 mai_poszt = ma.isoformat()
         else:
@@ -241,7 +242,7 @@ def main():
         e = varo[0]
         szoveg = facebook_szoveg(e)
         print("\n" + szoveg + "\n")
-        if not FACEBOOK_POSZTOLAS_AKTIV or facebook_poszt_kuldese(szoveg):
+        if not FACEBOOK_POSZTOLAS_AKTIV or (poszt_utem.mehet() and facebook_poszt_kuldese(szoveg) and poszt_utem.jegyez() is None):
             bejelentett[e["id"]] = ma.isoformat()
             mai_poszt = ma.isoformat()
     elif varo:

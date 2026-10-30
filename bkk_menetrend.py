@@ -24,6 +24,7 @@ from email.mime.text import MIMEText
 
 import email_arculat as ea
 import poszt_valtozatos
+import poszt_utem
 from ejszakai_sor import ejszaka
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
@@ -426,7 +427,8 @@ def main():
         r = varo[0]
         print(f"📘 Facebook: {', '.join(r['vonalak'])} | {cim(r)[:60]}")
         try:
-            if facebook_poszt(poszt_szoveg(r)):
+            if poszt_utem.mehet() and facebook_poszt(poszt_szoveg(r)):
+                poszt_utem.jegyez()
                 kiment[r["id"]] = t.isoformat(timespec="minutes")
         except poszt_valtozatos.poszt_ellenor.HibasPoszt:
             kiment[r["id"]] = "ellenőrző megállította"

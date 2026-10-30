@@ -21,6 +21,7 @@ import requests
 from datetime import datetime
 
 import poszt_valtozatos
+import poszt_utem
 from ejszakai_sor import ejszaka
 from bkk_kozut_playwright_monitor import (
     sync_playwright, cookie_sav_elfogadasa, esemenyek_kinyerese, most,
@@ -217,7 +218,10 @@ def main():
     elif ujak:
         for e in ujak:
             print(f"🆕 {e['cim']}")
-        if facebook_poszt(poszt_szoveg(ujak)):
+        # Sürgős poszt, de két poszt között így is eltelik legalább 10 perc;
+        # ha most nem mehet, az események nem kerülnek be, a következő futás küldi.
+        if poszt_utem.mehet(surgos=True) and facebook_poszt(poszt_szoveg(ujak)):
+            poszt_utem.jegyez()
             for e in ujak:
                 allapot[e["id"]] = {"cim": e["cim"], "eloszor_latva": t.isoformat(), "posztolva": True}
 

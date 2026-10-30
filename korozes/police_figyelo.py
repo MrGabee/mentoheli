@@ -37,6 +37,7 @@ from bs4 import BeautifulSoup
 # A közös poszt-stílusok (poszt_valtozatos.py) a repó gyökerében vannak
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from poszt_valtozatos import Stilus, ZAROK as ZARO_SOROK, atrendez  # noqa: E402
+import poszt_utem  # noqa: E402
 
 # =====================================================================
 # BEÁLLÍTÁS
@@ -541,6 +542,8 @@ def szabad_ablak(most, cache):
     nem_elotte = cache.get("_lecsenges", {}).get("nem_elotte")
     if nem_elotte and most < datetime.fromisoformat(nem_elotte):
         return False, f"lecsengés, legkorábban {datetime.fromisoformat(nem_elotte).astimezone(ZoneInfo('Europe/Budapest')).strftime('%H:%M')}"
+    if not poszt_utem.mehet():
+        return False, "a közös posztnapló szerint túl közel az előző vagy a következő poszt"
     utolso = utolso_poszt_ideje()
     if utolso is None:
         return True, ""   # a Make-lekérdezés nem működik: a fenti szabályok elegendők
@@ -570,6 +573,7 @@ def varolista_kuldese(cache):
     post_id = facebook_post(tetel["fb_szoveg"], tetel["kep"], link=tetel.get("link"))
     if not post_id:
         return   # sikertelen: a következő futás újrapróbálja
+    poszt_utem.jegyez()
     lista.pop(0)
     cache["_lecsenges"] = {"nem_elotte": (most + timedelta(minutes=LECSENGES_PERC)).isoformat()}
     if isinstance(post_id, str) and tetel.get("kovetes"):

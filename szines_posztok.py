@@ -226,7 +226,7 @@ def egy_poszt(most, allapot, kulcs, kenyszeritett):
                   else kuldo.facebook_poszt_kuldese(szoveg)):
             return False  # sikertelen küldés: a következő futás újrapróbálja
         else:
-            poszt_utem.jegyez(allapot)
+            poszt_utem.jegyez()
 
     if not kenyszeritett:
         allapot.setdefault("kiment", {})[kulcs] = most.date().isoformat()
@@ -255,20 +255,18 @@ def main():
         if kulcsok:
             # Ha közben egy másik figyelő azonnali posztot tett ki, a menetrend
             # utána MIN_TAV-val folytatódik ("onnantól mindent pakolj át").
-            masik = poszt_utem.utolso_poszt(kiveve=ALLAPOT_FAJL)
+            masik = poszt_utem.utolso_poszt()
             if masik and most - masik < poszt_utem.MIN_TAV:
                 varj = (masik + poszt_utem.MIN_TAV - most).total_seconds()
-                print(f"⏳ {masik:%H:%M}-kor ment ki egy másik poszt, {varj / 60:.0f} percet várok.")
+                print(f"⏳ {masik:%H:%M}-kor ment ki az előző poszt, {varj / 60:.0f} percet várok.")
             else:
                 if not egy_poszt(most, allapot, kulcsok[0], False):
                     break
                 ment_allapot(allapot)
-                poszt_utem.allapot_feltoltes(ALLAPOT_FAJL, "színes posztok állapot")
                 continue
         else:
             kov = kovetkezo_slot(most, allapot)
-            allapot["kovetkezo_slot"] = kov.isoformat() if kov else ""
-            ment_allapot(allapot)
+            poszt_utem.kovetkezo_slot_beallit(kov)
             if not kov or kov > vege:
                 print("⏭️ A figyelési időn belül nincs több esedékes poszt.")
                 break

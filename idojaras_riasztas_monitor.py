@@ -12,6 +12,7 @@ import re
 import requests
 
 import poszt_valtozatos
+import poszt_utem
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 
@@ -260,9 +261,11 @@ def main():
 
         if not FACEBOOK_POSZTOLAS_AKTIV:
             print("ℹ️ Facebook-posztolás kikapcsolva.")
-        elif not facebook_poszt_kuldese(szoveg):
-            # Sikertelen küldés: a következő futás újra megpróbálja.
+        elif not (poszt_utem.mehet(surgos=True) and facebook_poszt_kuldese(szoveg)):
+            # Sikertelen küldés vagy túl közel az előző poszthoz: a következő futás újra megpróbálja.
             return
+        else:
+            poszt_utem.jegyez()
 
         for r in uj:
             allapot[kulcs(r)] = {"szint": r["szint"], "lejar": r["lejar"]}

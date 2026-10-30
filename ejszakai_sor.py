@@ -47,29 +47,35 @@ def ejszaka(t=None):
 
 
 def kuld_vagy_sorba(allapot, szoveg, kuldo, surgos=True):
-    """Sürgős poszt: azonnal kimegy (éjszaka reggelig vár). Ráérős poszt
-    (előre bejelentett esemény): sorba kerül, és a következő szabad sávban
-    megy ki (poszt_utem), hogy ne menjen két bejegyzés egyszerre."""
+    """Sürgős poszt: azonnal kimegy, ha az előző óta eltelt a minimális idő,
+    különben a sor elejére kerül. Ráérős poszt (előre bejelentett esemény):
+    sorba kerül, és a következő szabad sávban megy ki (poszt_utem)."""
+    sor = allapot.setdefault("fb_sor", [])
     if ejszaka():
-        allapot.setdefault("fb_sor", []).append(szoveg)
+        sor.append({"szoveg": szoveg, "surgos": surgos})
         print("  🌙 Éjszaka van, a poszt reggelig vár.")
         return
-    if not surgos:
-        allapot.setdefault("fb_sor", []).append(szoveg)
+    if surgos and poszt_utem.mehet(surgos=True) and kuldo(szoveg) is not False:
+        poszt_utem.jegyez()
+        return
+    if surgos:
+        sor.insert(0, {"szoveg": szoveg, "surgos": True})
+        print("  ⏳ A sürgős poszt a sor elejére került.")
+    else:
+        sor.append({"szoveg": szoveg, "surgos": False})
         print("  🗓️ Előre bejelentett esemény: a poszt a következő szabad sávban megy ki.")
         sor_kiurites(allapot, kuldo)
-        return
-    if kuldo(szoveg) is not False:
-        poszt_utem.jegyez(allapot)
 
 
 def sor_kiurites(allapot, kuldo):
     """A félretett posztokból egyet küld ki, ha van szabad sáv; a többi vár."""
-    if ejszaka() or not allapot.get("fb_sor"):
+    sor = allapot.get("fb_sor") or []
+    if ejszaka() or not sor:
         return
-    if not poszt_utem.raeros_mehet(allapot):
+    elem = sor[0] if isinstance(sor[0], dict) else {"szoveg": sor[0], "surgos": False}
+    if not poszt_utem.mehet(surgos=elem["surgos"]):
         return
     print("📘 Félretett poszt küldése...")
-    if kuldo(allapot["fb_sor"][0]) is not False:
-        allapot["fb_sor"] = allapot["fb_sor"][1:]
-        poszt_utem.jegyez(allapot)
+    if kuldo(elem["szoveg"]) is not False:
+        allapot["fb_sor"] = sor[1:]
+        poszt_utem.jegyez()

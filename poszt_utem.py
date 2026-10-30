@@ -1,15 +1,16 @@
 """
-🗓️ Közös posztütemező: ne menjen ki két bejegyzés egyszerre.
+🗓️ Közös posztütemező: ne menjen ki két bejegyzés egyszerre, és két poszt
+között mindig teljen el elég idő.
 
-Minden posztoló szkript a saját állapotfájljába írja az utolsó posztja
-idejét ("utolso_poszt"), innen olvassa ki mindegyik, mikor ment ki legutóbb
-bármi az oldalra. A színes posztok menetrendje a következő esedékes poszt
-idejét is beírja ("kovetkezo_slot"), hogy a ráérős posztok ne kerüljenek
-közvetlenül elé.
+Minden posztoló a közös poszt_naplo.json-ba írja (és azonnal feltölti) az
+utolsó poszt idejét; posztolás előtt mindegyik a main legfrissebb naplóját
+nézi meg. A színes posztok menetrendje a következő esedékes poszt idejét is
+beírja, hogy a ráérős posztok ne kerüljenek közvetlenül elé.
 
-- Azonnali (sürgős) poszt: rögtön kimegy, utána a többi MIN_TAV percet vár.
-- Ráérős (előre bejelentett, megosztás): csak akkor megy ki, ha az előző
-  poszt óta és a következő menetrendi posztig is van legalább MIN_TAV perc.
+- Sürgős poszt (élő üzemzavar, baleset, riasztás): ha az előző óta eltelt
+  SURGOS_TAV, rögtön kimegy; ha nem, kivárja.
+- Minden más poszt: csak ha az előző óta eltelt MIN_TAV, és a következő
+  menetrendi posztig is van legalább MIN_TAV.
 """
 
 import json
@@ -19,38 +20,35 @@ from zoneinfo import ZoneInfo
 
 MAGYAR_TZ = ZoneInfo("Europe/Budapest")
 MIN_TAV = timedelta(minutes=20)
-KULCS = "utolso_poszt"
-ALLAPOT_FAJLOK = [
-    "szines_allapot.json", "aramszunet_allapot.json", "fotav_allapot.json",
-    "vizmuvek_allapot.json", "fb_oldal_allapot.json",
-]
-SZINES = "szines_allapot.json"
+SURGOS_TAV = timedelta(minutes=10)
+NAPLO = "poszt_naplo.json"
+
+GIT = ["git", "-c", "user.name=github-actions[bot]",
+       "-c", "user.email=github-actions[bot]@users.noreply.github.com"]
 
 
 def most():
     return datetime.now(MAGYAR_TZ)
 
 
-def _friss_main():
-    """A többi workflow közben commitolhatott: a main legfrissebb állapotát nézzük."""
+def _run(args, timeout=60):
     try:
-        subprocess.run(["git", "fetch", "-q", "origin", "main"], timeout=20, check=False,
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        return True
+        return subprocess.run(args, capture_output=True, timeout=timeout)
     except Exception:
-        return False
+        return None
 
 
-def _beolvas(fajl, frissit):
-    if frissit:
+def naplo():
+    """A közös napló a main legfrissebb állapotából (ha nem érhető el, a helyiből)."""
+    _run(["git", "fetch", "-q", "origin", "main"], 30)
+    r = _run(["git", "show", f"origin/main:{NAPLO}"], 15)
+    if r is not None and r.returncode == 0:
         try:
-            r = subprocess.run(["git", "show", f"origin/main:{fajl}"], capture_output=True, timeout=10)
-            if r.returncode == 0:
-                return json.loads(r.stdout.decode("utf-8"))
+            return json.loads(r.stdout.decode("utf-8"))
         except Exception:
             pass
     try:
-        with open(fajl, encoding="utf-8") as f:
+        with open(NAPLO, encoding="utf-8") as f:
             return json.load(f)
     except Exception:
         return {}
@@ -63,52 +61,75 @@ def _ido(s):
         return None
 
 
-def utolso_poszt(sajat=None, kiveve=None):
-    """A legutóbbi poszt ideje az összes posztoló szkriptből (kiveve: ezt a fájlt kihagyja)."""
-    frissit = _friss_main()
-    idok = [_ido(_beolvas(f, frissit).get(KULCS, "")) for f in ALLAPOT_FAJLOK if f != kiveve]
-    if sajat:
-        idok.append(_ido(sajat.get(KULCS, "")))
-    idok = [t for t in idok if t]
-    return max(idok) if idok else None
+def utolso_poszt():
+    return _ido(naplo().get("utolso", ""))
 
 
-def kovetkezo_menetrendi():
-    t = _ido(_beolvas(SZINES, True).get("kovetkezo_slot", ""))
-    return t
-
-
-def raeros_mehet(sajat=None):
-    """Ráérős poszt most kimehet-e."""
+def mehet(surgos=False):
+    """Kimehet-e most egy poszt. Ha nem, kiírja, miért."""
     t = most()
-    utolso = utolso_poszt(sajat)
-    if utolso and t - utolso < MIN_TAV:
-        print(f"  ⏳ Az előző poszt {utolso:%H:%M}-kor ment ki, a ráérős poszt még vár.")
+    n = naplo()
+    utolso = _ido(n.get("utolso", ""))
+    tav = SURGOS_TAV if surgos else MIN_TAV
+    if utolso and t - utolso < tav:
+        print(f"  ⏳ Az előző poszt {utolso:%H:%M}-kor ment ki, ez a poszt "
+              f"{(utolso + tav):%H:%M} után megy.")
         return False
-    kov = kovetkezo_menetrendi()
-    if kov and timedelta(0) <= kov - t < MIN_TAV:
-        print(f"  ⏳ {kov:%H:%M}-kor menetrendi poszt jön, a ráérős poszt utána megy.")
+    kov = _ido(n.get("kovetkezo_slot", ""))
+    if not surgos and kov and timedelta(0) <= kov - t < MIN_TAV:
+        print(f"  ⏳ {kov:%H:%M}-kor menetrendi poszt jön, ez a poszt utána megy.")
         return False
     return True
 
 
-def jegyez(allapot):
-    allapot[KULCS] = most().isoformat()
+def _feltolt(adat, uzenet):
+    """A naplót a main legfrissebb változatára írja és feltölti."""
+    for _ in range(4):
+        _run(["git", "fetch", "-q", "origin", "main"], 30)
+        r = _run(["git", "show", f"origin/main:{NAPLO}"], 15)
+        try:
+            alap = json.loads(r.stdout.decode("utf-8")) if r is not None and r.returncode == 0 else {}
+        except Exception:
+            alap = {}
+        alap.update(adat)
+        # Csak a naplót commitoljuk, közvetlenül a main tetejére: a munkakönyvtárat
+        # és a helyi ágat nem bolygatjuk, hogy a workflow saját commitja zavartalan legyen.
+        try:
+            blob = subprocess.run(["git", "hash-object", "-w", "--stdin"], capture_output=True, timeout=15,
+                                  input=json.dumps(alap, ensure_ascii=False, indent=2).encode("utf-8"))
+        except Exception:
+            blob = None
+        if blob is None or blob.returncode != 0:
+            return False
+        sha = blob.stdout.decode().strip()
+        idx = ["env", "GIT_INDEX_FILE=.git/poszt_naplo_index"]
+        _run(idx + ["git", "read-tree", "origin/main"], 15)
+        _run(idx + ["git", "update-index", "--add", "--cacheinfo", f"100644,{sha},{NAPLO}"], 15)
+        fa = _run(idx + ["git", "write-tree"], 15)
+        if fa is None or fa.returncode != 0:
+            return False
+        c = _run(GIT + ["commit-tree", fa.stdout.decode().strip(), "-p", "origin/main",
+                        "-m", f"{uzenet} [skip ci]"], 15)
+        if c is None or c.returncode != 0:
+            return False
+        p = _run(["git", "push", "-q", "origin", f"{c.stdout.decode().strip()}:refs/heads/main"], 60)
+        if p is not None and p.returncode == 0:
+            return True
+    print("  ⚠️ A posztnaplót nem sikerült feltölteni.")
+    return False
 
 
-def allapot_feltoltes(fajl, uzenet):
-    """Hosszan futó szkriptnél a poszt után rögtön feltölti az állapotot, hogy a
-    többi figyelő azonnal lássa (a futás végi commit is megmarad)."""
-    git = ["git", "-c", "user.name=github-actions[bot]",
-           "-c", "user.email=github-actions[bot]@users.noreply.github.com"]
-    try:
-        subprocess.run(git + ["add", fajl], check=False, timeout=20)
-        subprocess.run(git + ["commit", "-q", "-m", f"{uzenet} [skip ci]", "--", fajl], check=False, timeout=20)
-        for _ in range(3):
-            subprocess.run(git + ["pull", "-q", "--rebase", "-X", "theirs", "origin", "main"], check=False, timeout=60)
-            if subprocess.run(git + ["push", "-q", "origin", "HEAD:main"], check=False, timeout=60).returncode == 0:
-                return True
-        return False
-    except Exception as ex:
-        print(f"  ⚠️ Állapot feltöltése nem sikerült: {ex}")
-        return False
+def jegyez(_allapot=None):
+    """Feljegyzi, hogy most ment ki egy poszt (régi hívások kompatibilitásáért
+    egy állapot-dictet is elfogad, de nem használja)."""
+    _feltolt({"utolso": most().isoformat()}, "posztnapló")
+
+
+def kovetkezo_slot_beallit(ido):
+    ertek = ido.isoformat() if ido else ""
+    if naplo().get("kovetkezo_slot", "") != ertek:
+        _feltolt({"kovetkezo_slot": ertek}, "posztnapló: következő menetrendi poszt")
+
+
+def raeros_mehet(_allapot=None):
+    return mehet(surgos=False)
