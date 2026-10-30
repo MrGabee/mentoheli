@@ -109,6 +109,25 @@ def esemeny_tipus(url, cim, reszlet=""):
 
     return None
 
+def jovobeli_e(cim, reszlet=""):
+    """Igaz, ha a cikk egy mai napnál későbbi dátumról szól (pl. „november 3. és 5. között”).
+    Gábor kérése: jövőbeli tervről, előre bejelentett változásról nem kell levél."""
+    import re
+    ma = magyar_ido().date()
+    for ev, ho, nap in re.findall(r"(?:(\d{4})\.\s*)?(" + "|".join(HONAPOK) + r")\s+(\d{1,2})\b",
+                                   (cim + " " + reszlet).lower()):
+        try:
+            datum = datetime(int(ev) if ev else ma.year, HONAPOK[ho], int(nap)).date()
+        except ValueError:
+            continue
+        # Év nélküli dátumnál az év eleji dátum decemberben már jövő évet jelent
+        if not ev and (ma - datum).days > 180:
+            datum = datum.replace(year=ma.year + 1)
+        if datum > ma:
+            return True
+    return False
+
+
 def baleset_e(url, cim, reszlet=""):
     return esemeny_tipus(url, cim, reszlet) is not None
 
@@ -248,9 +267,14 @@ VOLAN_JELVENY = ('<span style="display:inline-block;font-weight:bold;font-size:1
                  'font-family:Arial,sans-serif;letter-spacing:.5px">🚌 VOLÁNBUSZ</span>')
 
 
+VOLAN_BEVEZETO = "A Volánbusz tájékoztatása szerint: "
+
+
 def email_kartya(e):
     volan = e.get("tipus") == "VOLAN"
     reszlet = e.get("reszlet", "")
+    if volan and reszlet:
+        reszlet = VOLAN_BEVEZETO + reszlet
     if len(reszlet) > 800:
         reszlet = reszlet[:800].rsplit(" ", 1)[0] + " …"
     test = (ea.adat_tabla([("Utolsó módosítás", "" if e.get("datum") in (None, "—") else e["datum"])])
@@ -281,7 +305,10 @@ def email_kuldes(uj_esetek):
     szoveges = "MÁV/Volán Figyelő – új események\n"
     for e in rendezett:
         szoveges += (f"\n{'Volánbusz' if e.get('tipus') == 'VOLAN' else 'MÁV baleset'}: {e.get('cim', '')}\n"
-                     f"  {e.get('datum', '')}\n  {e.get('url', '')}\n")
+                     f"  {e.get('datum', '')}\n")
+        if e.get("tipus") == "VOLAN" and e.get("reszlet"):
+            szoveges += f"  {VOLAN_BEVEZETO}{e['reszlet'][:400]}\n"
+        szoveges += f"  {e.get('url', '')}\n"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = targy
@@ -347,6 +374,11 @@ def main():
 
         if not friss_e(datum):
             print(f"    ⏩ Régi cikk ({datum}), kihagyva.")
+            regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
+            continue
+
+        if jovobeli_e(e["cim"], reszlet):
+            print("    ⏩ Jövőbeli változásról szól, kihagyva.")
             regi[rid] = {"cim": e["cim"][:100], "talalt": magyar_ido().isoformat()}
             continue
 
