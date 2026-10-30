@@ -258,6 +258,25 @@ Ha a környéken vagy, vagy tudod, mi történt, kérlek, írd meg kommentben va
 Remélem, nincs nagy baj. 🙏
 
 #Csepel #mentők"""),
+    "nyitvatartas_mindenszentek_20261030": (date(2026, 10, 30), """🛒 BOLTOK NYITVATARTÁSA A HOSSZÚ HÉTVÉGÉN CSEPELEN
+
+Összeszedtem, mikor tudtok vásárolni szombaton, mindenszentekkor és hétfőn.
+
+📅 Szombat (10.31.) / vasárnap (11.01.) / hétfő (11.02.)
+
+🔹 ALDI, Szent Imre tér 6–8.: 6:00–21:00 / zárva / 6:00–21:00
+🔹 ALDI, II. Rákóczi Ferenc út 257.: 7:00–20:00 / zárva / 7:00–20:00
+🔹 Tesco Csepel, II. Rákóczi Ferenc út 191.: 6:00–22:00 / zárva / 6:00–22:00
+🔹 Csepeli Piac: 6:00–14:00 / zárva / 7:00–16:00
+   Szombaton 7 és 12 óra között bolhapiac is lesz az Átrium-udvarban.
+
+A LIDL, a PENNY, a SPAR, a Reál, a CBA Prémium és a szigetszentmiklósi Auchan úgy tudom, szombaton és hétfőn a rendes nyitvatartás szerint van nyitva, mindenszentek napján pedig zárva.
+
+🕯️ Vasárnap csak a benzinkutak, az ügyeletes gyógyszertárak és a virágárusok lehetnek nyitva.
+
+Ha tudjátok a kisebb csepeli boltok, pékségek, zöldségesek ünnepi nyitvatartását, írjátok meg kommentben, hogy mások is lássák! 👇
+
+#Csepel #nyitvatartás #mindenszentek"""),
 }
 
 
