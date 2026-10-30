@@ -1,0 +1,25 @@
+name: Bolt-nyitvatartás felderítő (ideiglenes, nem posztol)
+
+on:
+  workflow_dispatch:
+    inputs:
+      urlek:
+        description: "Betöltendő boltkereső-oldalak (szóközzel)"
+        required: true
+      minta:
+        description: "Keresett minta (regex)"
+        default: "Csepel|121[1-5]|Szigetszentmikl"
+
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.61.0-jammy
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install playwright==1.61.0
+      - run: python eszkozok/bolt_nyitvatartas.py
+        env:
+          URLEK: ${{ inputs.urlek }}
+          MINTA: ${{ inputs.minta }}
