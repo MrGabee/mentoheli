@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-10-30T02:45:23.313809+02:00",
+  "frissitve": "2026-10-30T02:45:59.919100+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:19:57.465851+02:00",
-      "kulcs": "FLR740",
-      "rendszam": "FLR740",
-      "vehicle_id": "3154",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.55026626586914,
-      "lon": 19.042062759399414,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-10-29T15:19:57.466031+02:00",
-      "kulcs": "AAGL316",
-      "rendszam": "AAGL316",
-      "vehicle_id": "344",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "64",
-      "route_id": "0640",
-      "lat": 47.599708557128906,
-      "lon": 18.961029052734375,
-      "elozo_szoveg": "Solymár, Auchan áruház",
-      "uj_szoveg": "Solymár vasútállomás ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-10-29T15:19:57.466128+02:00",
-      "kulcs": "AAHY806",
-      "rendszam": "AAHY806",
-      "vehicle_id": "366",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "231",
-      "route_id": "2310",
-      "lat": 47.50471115112305,
-      "lon": 19.136526107788086,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-10-29T15:19:57.466474+02:00",
-      "kulcs": "AAHY851",
-      "rendszam": "AAHY851",
-      "vehicle_id": "412",
-      "vehicle_label": "Dunakeszi, Auchan áruház",
-      "vonal_szam": "126",
-      "route_id": "1260",
-      "lat": 47.57762145996094,
-      "lon": 19.114498138427734,
-      "elozo_szoveg": "Káp.megyer, Szilas-patak",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-10-29T15:19:57.466493+02:00",
       "kulcs": "MDD721",
@@ -260000,6 +259948,58 @@
       "lon": 19.045917510986328,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-10-30T02:45:59.821100+02:00",
+      "kulcs": "AAGL276",
+      "rendszam": "AAGL276",
+      "vehicle_id": "276",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.54478073120117,
+      "lon": 18.719207763671875,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-10-30T02:45:59.822486+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50132369995117,
+      "lon": 19.1197566986084,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-10-30T02:45:59.823132+02:00",
+      "kulcs": "RVY714",
+      "rendszam": "RVY714",
+      "vehicle_id": "7463",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51133728027344,
+      "lon": 19.056411743164062,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-10-30T02:45:59.823246+02:00",
+      "kulcs": "SKR814",
+      "rendszam": "SKR814",
+      "vehicle_id": "7700",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.54961395263672,
+      "lon": 19.043216705322266,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
