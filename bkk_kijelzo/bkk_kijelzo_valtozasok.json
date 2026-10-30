@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-30T03:13:51.258877+02:00",
+  "frissitve": "2026-10-30T03:14:26.173215+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:22:22.737242+02:00",
-      "kulcs": "V4115",
-      "rendszam": "V4115",
-      "vehicle_id": "4804",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.5098876953125,
-      "lon": 19.009397506713867,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
-    {
-      "idopont": "2026-10-29T15:22:22.737831+02:00",
-      "kulcs": "MFW508",
-      "rendszam": "MFW508",
-      "vehicle_id": "5076",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.502098083496094,
-      "lon": 19.135717391967773,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-10-29T15:22:22.737953+02:00",
-      "kulcs": "AADI565",
-      "rendszam": "AADI565",
-      "vehicle_id": "55",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.54264831542969,
-      "lon": 18.964845657348633,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-10-29T15:22:22.738153+02:00",
-      "kulcs": "V2272",
-      "rendszam": "V2272",
-      "vehicle_id": "570",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46513366699219,
-      "lon": 19.127370834350586,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-10-29T15:22:22.739864+02:00",
-      "kulcs": "MXJ008",
-      "rendszam": "MXJ008",
-      "vehicle_id": "5885",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49936294555664,
-      "lon": 19.035964965820312,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-29T15:22:22.740241+02:00",
       "kulcs": "V2300",
@@ -260000,6 +259935,71 @@
       "lon": 19.055709838867188,
       "elozo_szoveg": "Deák F. tér (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-30T03:14:26.073282+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49765396118164,
+      "lon": 18.963783264160156,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T03:14:26.075398+02:00",
+      "kulcs": "AAMH632",
+      "rendszam": "AAMH632",
+      "vehicle_id": "475",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.497501373291016,
+      "lon": 19.05539894104004,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-10-30T03:14:26.075737+02:00",
+      "kulcs": "NWB355",
+      "rendszam": "NWB355",
+      "vehicle_id": "6535",
+      "vehicle_label": "Rákoskeresztúr, városkp.",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.547298431396484,
+      "lon": 19.14219856262207,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Rákoskeresztúr, városközpont"
+    },
+    {
+      "idopont": "2026-10-30T03:14:26.075837+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56767654418945,
+      "lon": 19.127206802368164,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-10-30T03:14:26.075955+02:00",
+      "kulcs": "PKN607",
+      "rendszam": "PKN607",
+      "vehicle_id": "7196",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50162887573242,
+      "lon": 19.122541427612305,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
     }
   ]
 }
