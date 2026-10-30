@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-10-30T02:24:43.114425+02:00",
+  "frissitve": "2026-10-30T02:25:10.784619+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:17:18.990877+02:00",
-      "kulcs": "T9129",
-      "rendszam": "T9129",
-      "vehicle_id": "7868",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.494014739990234,
-      "lon": 19.060527801513672,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-29T15:17:18.990950+02:00",
-      "kulcs": "T9138",
-      "rendszam": "T9138",
-      "vehicle_id": "7877",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.50053024291992,
-      "lon": 19.054819107055664,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-10-29T15:17:18.990983+02:00",
-      "kulcs": "T9140",
-      "rendszam": "T9140",
-      "vehicle_id": "7879",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.518310546875,
-      "lon": 19.1057071685791,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-10-29T15:17:18.991346+02:00",
-      "kulcs": "AOFL217",
-      "rendszam": "AOFL217",
-      "vehicle_id": "804",
-      "vehicle_label": "Regőczi István tér",
-      "vonal_szam": "128",
-      "route_id": "1280",
-      "lat": 47.507713317871094,
-      "lon": 19.024639129638672,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Regőczi István tér"
-    },
-    {
-      "idopont": "2026-10-29T15:17:18.991598+02:00",
-      "kulcs": "AOFL245",
-      "rendszam": "AOFL245",
-      "vehicle_id": "833",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "117",
-      "route_id": "1170",
-      "lat": 47.47186279296875,
-      "lon": 19.15936851501465,
-      "elozo_szoveg": "Újhegyi lakótelep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-10-29T15:17:18.991617+02:00",
       "kulcs": "AOFL247",
@@ -260000,6 +259935,71 @@
       "lon": 19.095497131347656,
       "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
       "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-30T02:25:10.686699+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51072311401367,
+      "lon": 19.097291946411133,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-10-30T02:25:10.689086+02:00",
+      "kulcs": "NTM439",
+      "rendszam": "NTM439",
+      "vehicle_id": "6507",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47701644897461,
+      "lon": 19.049922943115234,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T02:25:10.689379+02:00",
+      "kulcs": "PCC930",
+      "rendszam": "PCC930",
+      "vehicle_id": "7269",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.507972717285156,
+      "lon": 19.02924156188965,
+      "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
+      "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-10-30T02:25:10.689568+02:00",
+      "kulcs": "SKR803",
+      "rendszam": "SKR803",
+      "vehicle_id": "7689",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.500179290771484,
+      "lon": 19.109519958496094,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-30T02:25:10.689700+02:00",
+      "kulcs": "SKR822",
+      "rendszam": "SKR822",
+      "vehicle_id": "7708",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.487003326416016,
+      "lon": 19.057579040527344,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
     }
   ]
 }
