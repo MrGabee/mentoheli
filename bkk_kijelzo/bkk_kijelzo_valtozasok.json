@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-30T04:45:37.682665+02:00",
+  "frissitve": "2026-10-30T04:46:16.422883+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-29T15:31:45.719965+02:00",
-      "kulcs": "815 032",
-      "rendszam": "815 032",
-      "vehicle_id": "945518150327",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z50",
-      "route_id": "Z50",
-      "lat": 47.20845031738281,
-      "lon": 19.730749130249023,
-      "elozo_szoveg": "Cegléd",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-29T15:31:45.720157+02:00",
-      "kulcs": "AOJM864",
-      "rendszam": "AOJM864",
-      "vehicle_id": "987",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.46733474731445,
-      "lon": 19.076494216918945,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-10-29T15:32:56.677504+02:00",
-      "kulcs": "AADI621",
-      "rendszam": "AADI621",
-      "vehicle_id": "117",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "202E",
-      "route_id": "2025",
-      "lat": 47.46279525756836,
-      "lon": 19.148700714111328,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Kucorgó tér ► Rákoscsaba"
-    },
     {
       "idopont": "2026-10-29T15:32:56.677597+02:00",
       "kulcs": "AADI631",
@@ -260000,6 +259961,45 @@
       "lon": 19.234622955322266,
       "elozo_szoveg": "Gubacsi út / Határ út",
       "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-10-30T04:46:16.323916+02:00",
+      "kulcs": "FLR709",
+      "rendszam": "FLR709",
+      "vehicle_id": "3123",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48344039916992,
+      "lon": 19.127452850341797,
+      "elozo_szoveg": "Kőbánya alsó vasútáll.",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-10-30T04:46:16.324761+02:00",
+      "kulcs": "AOGF661",
+      "rendszam": "AOGF661",
+      "vehicle_id": "743",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "148",
+      "route_id": "1480",
+      "lat": 47.39842987060547,
+      "lon": 19.106163024902344,
+      "elozo_szoveg": "Csepel, Soroksári rév",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-10-30T04:46:16.325112+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48701858520508,
+      "lon": 19.0672550201416,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
