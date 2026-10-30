@@ -13,6 +13,7 @@ futásonként legfeljebb egy, hogy ne egyszerre jöjjenek.
 
 import os
 import json
+import re
 import requests
 from datetime import datetime, time, timedelta
 from zoneinfo import ZoneInfo
@@ -142,12 +143,26 @@ MENETREND = [
 ]
 
 
+def _max_kulcs(parok):
+    # Ütközésből maradt kettőzött kulcsnál a későbbi dátum számít.
+    d = {}
+    for k, v in parok:
+        d[k] = max(d[k], v) if isinstance(v, str) and isinstance(d.get(k), str) else v
+    return d
+
+
 def betolt_allapot():
-    try:
-        with open(ALLAPOT_FAJL, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
+    if not os.path.exists(ALLAPOT_FAJL):
         return {}
+    with open(ALLAPOT_FAJL, encoding="utf-8") as f:
+        nyers = f.read()
+    # Egy félresikerült git-összefésülés ütközésjelei ne nullázzák az állapotot
+    # (üres állapottal a mai posztok újra kimennének).
+    tiszta = re.sub(r"^(<<<<<<<|=======|>>>>>>>).*\n", "", nyers, flags=re.M)
+    try:
+        return json.loads(tiszta, object_pairs_hook=_max_kulcs)
+    except Exception as e:
+        raise SystemExit(f"❌ A {ALLAPOT_FAJL} sérült ({e}), nem posztolok, nehogy kettőzés legyen.")
 
 
 def ment_allapot(allapot):

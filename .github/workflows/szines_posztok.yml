@@ -49,11 +49,32 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git stash
-          git pull --rebase -X ours origin main || (git rebase --abort; git pull origin main --no-rebase -X ours)
-          git stash pop || true
-          [ -f szines_allapot.json ] && git add szines_allapot.json || echo "fájl nem létezik"
-          git diff --staged --quiet || git commit -m "színes posztok állapot [skip ci]"
-          for i in 1 2 3 4 5; do git push origin main && break; echo "push elutasítva, újrapróbálom ($i)"; git pull --rebase -X theirs origin main || git rebase --abort; sleep $((i*3)); done
+          # A saját állapotot félreteszem, a main legfrissebb állapotára állok,
+          # és azzal fésülöm össze (a „kiment” dátumoknál a későbbi marad), így
+          # ütközésjel soha nem kerülhet a fájlba. Elutasított push után újra.
+          [ -f szines_allapot.json ] || exit 0
+          cp szines_allapot.json /tmp/sajat.json
+          cat > /tmp/fesul.py <<'PY'
+          import json
+          sajat = json.load(open("/tmp/sajat.json", encoding="utf-8"))
+          try:
+              fo = json.load(open("szines_allapot.json", encoding="utf-8"))
+          except Exception:
+              fo = {}
+          k = dict(fo.get("kiment", {}))
+          for kulcs, d in sajat.get("kiment", {}).items():
+              k[kulcs] = max(k.get(kulcs, ""), d)
+          sajat["kiment"] = k
+          json.dump(sajat, open("szines_allapot.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+          PY
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python /tmp/fesul.py
+            git add szines_allapot.json
+            git diff --staged --quiet && break
+            git commit -qm "színes posztok állapot [skip ci]"
+            git push origin HEAD:main && break
+            echo "push elutasítva, újrapróbálom ($i)"; sleep $((i*3))
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
