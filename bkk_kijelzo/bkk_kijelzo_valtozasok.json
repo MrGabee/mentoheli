@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-01T01:52:51.025659+02:00",
+  "frissitve": "2026-11-01T01:53:22.865244+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:30:28.873709+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49432373046875,
-      "lon": 19.06003189086914,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.874204+02:00",
-      "kulcs": "RVY710",
-      "rendszam": "RVY710",
-      "vehicle_id": "7459",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.48135757446289,
-      "lon": 19.06488037109375,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-10-31T13:30:28.874538+02:00",
       "kulcs": "SCD595",
@@ -260000,6 +259974,32 @@
       "lon": 19.09575080871582,
       "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
       "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-01T01:53:22.772335+02:00",
+      "kulcs": "V2019",
+      "rendszam": "V2019",
+      "vehicle_id": "2019",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50729751586914,
+      "lon": 19.02507781982422,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-01T01:53:22.774963+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57988357543945,
+      "lon": 19.088470458984375,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
     }
   ]
 }
