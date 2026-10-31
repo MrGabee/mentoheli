@@ -1,0 +1,48 @@
+name: 📰 Közlöny figyelő (Dél-Pesti Tankerület)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 10 percenként, a kerek óra elkerülésével; a név megtalálása után magától leáll
+    - cron: '3,13,23,33,43,53 * * * *'
+
+concurrency:
+  group: kozlony-figyelo
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q pypdf
+      - name: 📰 Friss közlönyök átnézése
+        env:
+          EMAIL_KULDO:   ${{ secrets.EMAIL_KULDO }}
+          EMAIL_JELSZO:  ${{ secrets.EMAIL_JELSZO }}
+          EMAIL_CIMZETT: ${{ secrets.EMAIL_CIMZETT }}
+        run: python kozlony_figyelo.py
+      - name: 💾 Állapot mentése
+        if: always()
+        run: |
+          [ -f kozlony_allapot.json ] || exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cp kozlony_allapot.json /tmp/kozlony_sajat.json
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            cp /tmp/kozlony_sajat.json kozlony_allapot.json
+            git add kozlony_allapot.json
+            git diff --staged --quiet && break
+            git commit -qm "közlöny állapot [skip ci]"
+            git push -q origin HEAD:main && break
+            sleep $((RANDOM % 5 + 2))
+          done

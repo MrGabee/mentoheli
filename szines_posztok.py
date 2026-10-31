@@ -36,6 +36,7 @@ import olvasoi_level
 import csepeli_sport
 import vallalkozasok
 import egyszeri_posztok
+import kozlony_figyelo
 import poszt_utem
 import time as time_mod
 import poszt_valtozatos
@@ -58,7 +59,7 @@ if SZINES_WEBHOOK:
 def kapcsolat_sor(nap, kulcs):
     return poszt_valtozatos.rovid_kapcsolat(nap, kulcs, allasok.OLVASOI_EMAIL,
                                             "+36 70 754 0254", allasok.KAPCSOLAT_URL)
-KAPCSOLAT_NELKUL = {"rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
+KAPCSOLAT_NELKUL = {"tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
@@ -142,6 +143,9 @@ MENETREND = [
     ("telefon_meki_20261030", time(17, 5), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("telefon_meki_20261030", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
+    # Dél-Pesti Tankerület új igazgatója: a kozlony_figyelo.py dönti el, melyik sávba kerül (éjjeli találat reggel, nappali este)
+    ("tankerulet_reggel", time(7, 40), None, lambda nap, a: kozlony_figyelo.poszt_szoveg(nap, "reggel")),
+    ("tankerulet_este", time(21, 5), None, lambda nap, a: kozlony_figyelo.poszt_szoveg(nap, "este")),
     ("esti_idojaras", time(21, 30), None,     lambda nap, a: esti_idojaras.szoveg(nap)),
 ]
 
