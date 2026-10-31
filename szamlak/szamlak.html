@@ -340,6 +340,24 @@
   .szurok button { color: var(--muted); font-family: inherit; }
   .szurok button.aktiv { background: var(--text); border-color: var(--text); color: var(--card); }
   .kor-tabla-cim { font-family: var(--f-display); }
+  /* Közüzemi körök: gépen sima címsor, telefonon (és a telepített appban)
+     lenyitható szekció kiemelt fejléccel, alapból becsukva. */
+  .kor-szekcio > summary { list-style: none; cursor: default; margin: 24px 0 8px; }
+  .kor-szekcio > summary::-webkit-details-marker { display: none; }
+  .kor-szekcio > summary .kor-tabla-cim { font-size: 16px; margin: 0; }
+  @media (max-width: 700px), (display-mode: standalone) {
+    .kor-szekcio { margin: 12px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--blue); background: var(--card); }
+    .kor-szekcio-b { border-color: var(--green); }
+    .kor-szekcio-f { border-color: var(--amber-line); }
+    .kor-szekcio > summary { cursor: pointer; margin: 0; padding: 14px 16px; display: flex; align-items: center; gap: 10px; background: var(--blue-soft); color: var(--blue); border-left: 5px solid var(--blue); }
+    .kor-szekcio-b > summary { background: var(--green-soft); color: var(--green); border-left-color: var(--green); }
+    .kor-szekcio-f > summary { background: var(--amber-soft); color: var(--text); border-left-color: var(--amber-line); }
+    .kor-szekcio > summary .kor-tabla-cim { flex: 1 1 auto; font-size: 16px; font-weight: 700; color: inherit; }
+    .kor-szekcio > summary::after { content: "▾"; font-size: 18px; transition: transform .15s ease; }
+    .kor-szekcio[open] > summary::after { transform: rotate(180deg); }
+    .kor-szekcio[open] > summary { border-bottom: 1px solid var(--border); }
+    .kor-szekcio > div { padding: 10px 8px 2px; }
+  }
 
   /* bérlői körök tartozása */
   .kor-tartozasok { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 14px; }
@@ -600,14 +618,20 @@
 
     <div class="szurok" id="szolgaltato-szurok" style="display:none;"></div>
 
-    <h3 id="kor-a-tabla-cim" class="kor-tabla-cim" style="font-size:16px;margin:24px 0 8px;">1. kör</h3>
-    <div id="kor-a-tabla-hely"></div>
+    <details class="kor-szekcio kor-szekcio-a" open>
+      <summary><h3 id="kor-a-tabla-cim" class="kor-tabla-cim">1. kör</h3></summary>
+      <div id="kor-a-tabla-hely"></div>
+    </details>
 
-    <h3 id="kor-b-tabla-cim" class="kor-tabla-cim" style="font-size:16px;margin:24px 0 8px;">2. kör</h3>
-    <div id="kor-b-tabla-hely"></div>
+    <details class="kor-szekcio kor-szekcio-b" open>
+      <summary><h3 id="kor-b-tabla-cim" class="kor-tabla-cim">2. kör</h3></summary>
+      <div id="kor-b-tabla-hely"></div>
+    </details>
 
-    <h3 id="fuggoben-tabla-cim" class="kor-tabla-cim" style="font-size:16px;margin:24px 0 8px;">❔ Nincs bérlői körbe sorolva</h3>
-    <div id="fuggoben-tabla-hely"></div>
+    <details class="kor-szekcio kor-szekcio-f" open>
+      <summary><h3 id="fuggoben-tabla-cim" class="kor-tabla-cim">❔ Nincs bérlői körbe sorolva</h3></summary>
+      <div id="fuggoben-tabla-hely"></div>
+    </details>
 
     <h2 id="meroallas-cim" style="font-size:18px;margin:32px 0 10px;display:none;">🔢 Mérőállások / mérő-események</h2>
     <div id="meroallas-hely"></div>
@@ -2817,6 +2841,18 @@
     }
     return lista.filter(r => r.kor === korKulcs);
   }
+
+  // Telefonon a körök lenyitható szekciók, és minden betöltéskor becsukva
+  // indulnak; gépen mindig nyitva vannak, a címsorra kattintás nem csukja be.
+  const korMobilNezet = window.matchMedia("(max-width: 700px), (display-mode: standalone)");
+  function korSzekciokAlapallapota() {
+    document.querySelectorAll("details.kor-szekcio").forEach(d => { d.open = !korMobilNezet.matches; });
+  }
+  korSzekciokAlapallapota();
+  if (korMobilNezet.addEventListener) korMobilNezet.addEventListener("change", korSzekciokAlapallapota);
+  document.querySelectorAll("details.kor-szekcio > summary").forEach(sum => {
+    sum.addEventListener("click", (e) => { if (!korMobilNezet.matches) e.preventDefault(); });
+  });
 
   function korTablaCimFrissitese(elemId, alapNev, korKulcs, db) {
     const el = document.getElementById(elemId);
