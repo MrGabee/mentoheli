@@ -1071,17 +1071,32 @@ def _api_hivas(action: str, parameterek: dict = None, idokorlat: int = 30) -> di
     if parameterek:
         torzs.update(parameterek)
 
-    try:
-        valasz = requests.post(SZAMLA_API_URL, json=torzs, timeout=idokorlat)
-    except requests.RequestException as e:
-        raise RuntimeError(
-            f"Nem sikerült elérni az adatbázis API-t ({SZAMLA_API_URL}) - "
-            f"'{action}' művelet közben: {e}"
-        ) from None
-
-    try:
-        adat = valasz.json()
-    except ValueError:
+    # Olvasó műveletnél egy átmeneti tárhely-hiba (nem JSON válasz, kapcsolat-
+    # hiba) miatt ne álljon le az egész futás - pl. egy dashboardról indított
+    # "küldés most" ilyenkor levél nélkül ért véget. Két újrapróba, 5 és 15 mp.
+    probak = 3 if action in ("get_all", "get_meta") else 1
+    for proba in range(probak):
+        try:
+            valasz = requests.post(SZAMLA_API_URL, json=torzs, timeout=idokorlat)
+        except requests.RequestException as e:
+            if proba < probak - 1:
+                time.sleep(5 if proba == 0 else 15)
+                continue
+            raise RuntimeError(
+                f"Nem sikerült elérni az adatbázis API-t ({SZAMLA_API_URL}) - "
+                f"'{action}' művelet közben: {e}"
+            ) from None
+        try:
+            adat = valasz.json()
+            break
+        except ValueError:
+            if proba < probak - 1:
+                print(f"  ⚠️  Az adatbázis API nem JSON választ adott '{action}' műveletre "
+                      f"(HTTP {valasz.status_code}) - újrapróbálom.")
+                time.sleep(5 if proba == 0 else 15)
+                continue
+            adat = None
+    if adat is None:
         raise RuntimeError(
             f"Az adatbázis API ({SZAMLA_API_URL}) nem JSON választ adott '{action}' "
             f"műveletre (HTTP {valasz.status_code}) - ellenőrizd, hogy az URL "
