@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T02:53:34.847326+02:00",
+  "frissitve": "2026-10-31T02:54:08.398014+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:18:01.231966+02:00",
-      "kulcs": "V1353",
-      "rendszam": "V1353",
-      "vehicle_id": "4454",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49890899658203,
-      "lon": 19.08269691467285,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-30T15:18:01.232132+02:00",
-      "kulcs": "V1437",
-      "rendszam": "V1437",
-      "vehicle_id": "4507",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49747085571289,
-      "lon": 19.055261611938477,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-10-30T15:18:01.237316+02:00",
-      "kulcs": "AAMH646",
-      "rendszam": "AAMH646",
-      "vehicle_id": "489",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.432193756103516,
-      "lon": 19.260833740234375,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
     {
       "idopont": "2026-10-30T15:18:01.237513+02:00",
       "kulcs": "V4276",
@@ -260000,6 +259961,45 @@
       "lon": 19.10460662841797,
       "elozo_szoveg": "Pesterzsébeti lakótelep",
       "uj_szoveg": "Pesterzsébet"
+    },
+    {
+      "idopont": "2026-10-31T02:54:08.311459+02:00",
+      "kulcs": "RVY704",
+      "rendszam": "RVY704",
+      "vehicle_id": "7453",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.56040954589844,
+      "lon": 19.09124183654785,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-10-31T02:54:08.311999+02:00",
+      "kulcs": "AOIM041",
+      "rendszam": "AOIM041",
+      "vehicle_id": "962",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.388736724853516,
+      "lon": 18.958232879638672,
+      "elozo_szoveg": "Nagytétény, ipartelep",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-31T02:54:08.312048+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47954559326172,
+      "lon": 19.05105209350586,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
