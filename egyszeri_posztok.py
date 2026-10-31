@@ -277,6 +277,15 @@ A LIDL, a PENNY, a SPAR, a Reál, a CBA Prémium és a szigetszentmiklósi Aucha
 Ha tudjátok a kisebb csepeli boltok, pékségek, zöldségesek ünnepi nyitvatartását, írjátok meg kommentben, hogy mások is lássák! 👇
 
 #Csepel #nyitvatartás #mindenszentek"""),
+    "arpad_utca_tabla_20261031": (date(2026, 10, 31), """❓ OLVASÓI KÉRDÉS – MIÉRT VAN MEGÁLLNI TILOS TÁBLA AZ ÁRPÁD UTCA 6. ELŐTT?
+
+Egy olvasóm kérdezte tőlem, és én sem tudom rá a választ:
+
+„Miért került ki a megállni tilos tábla az Árpád utca 6. elé?”
+
+Ha valaki tudja, mi az oka (építkezés, rakodás, kapubehajtó vagy valami más), írja meg kommentben, hogy mindenki lássa! Arra is kíváncsi vagyok, mióta van kint, és hogy ideiglenes-e. 👇
+
+#Csepel #ÁrpádUtca #közlekedés #olvasóikérdés"""),
     "parkolas_szentimre_20261031": (date(2026, 10, 31), """✉️ OLVASÓI LEVÉL – PARKOLÁS A SZENT IMRE TÉR KÖRNYÉKÉN
 
 Egy olvasóm írt nekem egy gondolatot, ami szerintem sokunkat érint:
