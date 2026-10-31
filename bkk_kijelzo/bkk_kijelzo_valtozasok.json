@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-01T01:45:20.376974+02:00",
+  "frissitve": "2026-11-01T01:45:48.483992+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:29:31.465374+02:00",
-      "kulcs": "415 053",
-      "rendszam": "415 053",
-      "vehicle_id": "945514150537",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S40",
-      "route_id": "S40",
-      "lat": 46.4182014465332,
-      "lon": 18.254480361938477,
-      "elozo_szoveg": "Dombóvár",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-10-31T13:29:31.465723+02:00",
-      "kulcs": "815 031",
-      "rendszam": "815 031",
-      "vehicle_id": "945518150319",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z50",
-      "route_id": "Z50",
-      "lat": 47.20846176147461,
-      "lon": 19.731359481811523,
-      "elozo_szoveg": "Cegléd",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.865967+02:00",
-      "kulcs": "AOJM876",
-      "rendszam": "AOJM876",
-      "vehicle_id": "1000",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.406795501708984,
-      "lon": 19.014650344848633,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.866922+02:00",
-      "kulcs": "V2002",
-      "rendszam": "V2002",
-      "vehicle_id": "2002",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.473846435546875,
-      "lon": 19.047405242919922,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.867044+02:00",
-      "kulcs": "V2020",
-      "rendszam": "V2020",
-      "vehicle_id": "2020",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46430587768555,
-      "lon": 19.023418426513672,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-10-31T13:30:28.867321+02:00",
       "kulcs": "AAGL275",
@@ -260000,6 +259935,71 @@
       "lon": 19.09004783630371,
       "elozo_szoveg": "Újpest-központ M",
       "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-11-01T01:45:48.381936+02:00",
+      "kulcs": "FLR722",
+      "rendszam": "FLR722",
+      "vehicle_id": "3136",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47978973388672,
+      "lon": 19.255525588989258,
+      "elozo_szoveg": "Cinkota, Lassú utca",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-01T01:45:48.383808+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50798034667969,
+      "lon": 19.029287338256836,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-01T01:45:48.384128+02:00",
+      "kulcs": "PKN612",
+      "rendszam": "PKN612",
+      "vehicle_id": "7201",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.5471076965332,
+      "lon": 19.142173767089844,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-01T01:45:48.384296+02:00",
+      "kulcs": "SKR728",
+      "rendszam": "SKR728",
+      "vehicle_id": "7677",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46332931518555,
+      "lon": 19.1475830078125,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-01T01:45:48.384352+02:00",
+      "kulcs": "SKR813",
+      "rendszam": "SKR813",
+      "vehicle_id": "7699",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.48606872558594,
+      "lon": 19.190969467163086,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
     }
   ]
 }
