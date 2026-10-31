@@ -59,7 +59,7 @@ if SZINES_WEBHOOK:
 def kapcsolat_sor(nap, kulcs):
     return poszt_valtozatos.rovid_kapcsolat(nap, kulcs, allasok.OLVASOI_EMAIL,
                                             "+36 70 754 0254", allasok.KAPCSOLAT_URL)
-KAPCSOLAT_NELKUL = {"tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
+KAPCSOLAT_NELKUL = {"tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "zsido_temeto_20261101", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
@@ -141,6 +141,7 @@ MENETREND = [
     ("nyitvatartas_mindenszentek_20261030", time(19, 5), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("nyitvatartas_mindenszentek_20261030", nap)),
     ("parkolas_szentimre_20261031", time(11, 5), {SZOMBAT}, lambda nap, a: egyszeri_posztok.szoveg("parkolas_szentimre_20261031", nap)),
     ("arpad_utca_tabla_20261031", time(20, 20), {SZOMBAT}, lambda nap, a: egyszeri_posztok.szoveg("arpad_utca_tabla_20261031", nap)),
+    ("zsido_temeto_20261101", time(13, 35), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("zsido_temeto_20261101", nap)),
     ("telefon_meki_20261030", time(17, 5), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("telefon_meki_20261030", nap)),
     ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),

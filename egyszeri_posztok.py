@@ -277,6 +277,21 @@ A LIDL, a PENNY, a SPAR, a Reál, a CBA Prémium és a szigetszentmiklósi Aucha
 Ha tudjátok a kisebb csepeli boltok, pékségek, zöldségesek ünnepi nyitvatartását, írjátok meg kommentben, hogy mások is lássák! 👇
 
 #Csepel #nyitvatartás #mindenszentek"""),
+    "zsido_temeto_20261101": (date(2026, 11, 1), """🕯️ A CSEPELI ZSIDÓ TEMETŐ
+
+A tegnapi temetős posztom alatt többen kérdeztétek, hogy mit lehet tudni a csepeli zsidó temetőről. Utánanéztem, és most összegyűjtöm, amit találtam.
+
+📍 A temető a Nefelejcs utcában van (Nefelejcs utca 11.), a Duna-part és a II. Rákóczi Ferenc út közötti részen, amit régen Rózsa-dombnak hívtak.
+
+📜 Csepelen a 19. század végén még csak néhány zsidó család élt. A Weiss Manfréd-gyár megnyitása (1893) után a közösség gyorsan nőtt: 1910-ben 269-en, az 1920-as években már több mint 600-an voltak. A Chevra Kadisa (szentegylet) 1908-ban, a hitközség 1910-ben alakult. Az imaház az akkori Erzsébet utcában, a mai Kossuth Lajos utca 84. alatt volt. Eleinte Szigetcsúcson temetkeztek. A két világháború között a hitközség telket vásárolt a Nefelejcs utcában, ennek egy részén alakult ki a mai temető.
+
+🕊️ 1944-ben a csepeli zsidóságot gettóba zárták, majd június végén Auschwitzba deportálták. A temetőben 1946-ban emlékművet állítottak, a márványba vésett nevekkel őrzi az áldozatok emlékét. Itt nyugszanak az 1944. július 27-i bombázás azonosított munkaszolgálatos áldozatai is: őket nem engedték be az óvóhelyre a gyárban.
+
+A helytörténeti adatokat dr. Bolla Dezső csepeli helytörténész írásából vettem.
+
+Ha valaki többet tud a temetőről, vagy van régi fényképe, írja meg kommentben! Ha arra jártok, egy szál virággal vagy egy kis kővel is emlékezhetünk. 🤍
+
+#Csepel #emlékezés #zsidótemető #helytörténet"""),
     "arpad_utca_tabla_20261031": (date(2026, 10, 31), """❓ OLVASÓI KÉRDÉS – MIÉRT VAN MEGÁLLNI TILOS TÁBLA AZ ÁRPÁD UTCA 6. ELŐTT?
 
 Egy olvasóm kérdezte tőlem, és én sem tudom rá a választ:
