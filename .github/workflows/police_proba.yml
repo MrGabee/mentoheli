@@ -1,0 +1,18 @@
+name: police.hu lista próba (ideiglenes)
+on: workflow_dispatch
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
+          for u in "https://www.police.hu/hu/hirek-es-informaciok/legfrissebb-hireink" "https://www.police.hu/hu/hirek-es-informaciok/utinfo/baleseti-hirek" "https://www.police.hu/hu/rss/feed"; do
+            echo "=================== $u"
+            curl -sL -A "$UA" -D /tmp/h -o /tmp/o -w "HTTP %{http_code} %{size_download}\n" "$u"
+            grep -iE "^(cache-control|age|last-modified|expires|x-cache|date):" /tmp/h
+            grep -oE 'href="/hu/hirek-es-informaciok/[^"]+/[^"/]+-?[0-9]*"' /tmp/o | sort -u | head -15
+            grep -oE '<pubDate>[^<]+' /tmp/o | head -3
+            grep -oE '[0-9]{4}\. [0-9]{2}\. [0-9]{2}\., [a-z]+ - [0-9:]+' /tmp/o | head -5
+          done
+          python3 -c "import re;h=open('/tmp/o').read()" 
+          curl -sL -A "$UA" https://www.police.hu/hu/hirek-es-informaciok/legfrissebb-hireink | python3 -c "import sys,re;h=sys.stdin.read();i=h.find('views-row');print(re.sub(r'\s+',' ',h[i-300:i+2500]))"
