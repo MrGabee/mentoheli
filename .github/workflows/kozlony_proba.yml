@@ -1,0 +1,16 @@
+name: Közlöny próba (ideiglenes)
+on: workflow_dispatch
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
+          curl -sL -A "$UA" -o /tmp/f.html -w "HTTP %{http_code} %{size_download}\n" https://magyarkozlony.hu/
+          grep -oE 'href="[^"]*"' /tmp/f.html | sort -u | grep -iE 'dokument|kozlony|letolt|pdf|hivatalos' | head -40
+          python3 -c "import re;h=open('/tmp/f.html',encoding='utf-8',errors='ignore').read();i=h.find('Magyar Közlöny 2026');print(re.sub(r'\s+',' ',h[i-1500:i+2500]))"
+          L=$(grep -oE 'href="[^"]*dokumentumok/[^"]*"' /tmp/f.html | head -1 | sed 's/href="//;s/"$//')
+          echo "ELSO: $L"
+          case "$L" in http*) ;; *) L="https://magyarkozlony.hu$L";; esac
+          curl -sL -A "$UA" -o /tmp/d -w "HTTP %{http_code} %{content_type} %{size_download} %{url_effective}\n" "$L"
+          file /tmp/d; grep -oE 'href="[^"]*(letoltes|pdf)[^"]*"' /tmp/d | head
