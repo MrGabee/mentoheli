@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-01T01:52:18.209901+02:00",
+  "frissitve": "2026-11-01T01:52:51.025659+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:30:28.872798+02:00",
-      "kulcs": "PDB704",
-      "rendszam": "PDB704",
-      "vehicle_id": "7030",
-      "vehicle_label": "Óbudai autóbuszgarázs",
-      "vonal_szam": "218A",
-      "route_id": "2181",
-      "lat": 47.54023361206055,
-      "lon": 19.045915603637695,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Óbudai autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.873055+02:00",
-      "kulcs": "PDN601",
-      "rendszam": "PDN601",
-      "vehicle_id": "7073",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.46403121948242,
-      "lon": 19.018779754638672,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.873090+02:00",
-      "kulcs": "PDN604",
-      "rendszam": "PDN604",
-      "vehicle_id": "7076",
-      "vehicle_label": "Mindszenty J. bíboros tér",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.47397232055664,
-      "lon": 19.0491886138916,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Mindszenty József bíboros tér"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.873647+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.499794006347656,
-      "lon": 19.081363677978516,
-      "elozo_szoveg": "Keleti pályaudvar M ► Kápolna tér",
-      "uj_szoveg": "Kápolna tér"
-    },
     {
       "idopont": "2026-10-31T13:30:28.873709+02:00",
       "kulcs": "T9100",
@@ -260000,6 +259948,58 @@
       "lon": 19.075775146484375,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-01T01:52:50.925636+02:00",
+      "kulcs": "AADI656",
+      "rendszam": "AADI656",
+      "vehicle_id": "155",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.5021858215332,
+      "lon": 19.136343002319336,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-01T01:52:50.926552+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.54962158203125,
+      "lon": 19.043222427368164,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-01T01:52:50.928600+02:00",
+      "kulcs": "NNE054",
+      "rendszam": "NNE054",
+      "vehicle_id": "6450",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.51058578491211,
+      "lon": 19.05598258972168,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-01T01:52:50.928831+02:00",
+      "kulcs": "PDZ837",
+      "rendszam": "PDZ837",
+      "vehicle_id": "7300",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50905227661133,
+      "lon": 19.09575080871582,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
     }
   ]
 }
