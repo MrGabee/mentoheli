@@ -4244,7 +4244,7 @@ def _osszesito_kuldese(allapot: dict, erintett, cim_resz: str, bevezeto: str, ci
 
 
 def _tulajdonos_osszesito_masolat(allapot: dict, erintett, cim_resz: str, statisztika: dict, pdf_csatolas: bool,
-                                  esemeny: str = None):
+                                  esemeny: str = None, kor_cimzett: str = None, html: str = None, targy: str = None):
     """A tulajdonos MINDEN bérlői-kör-összesítőről automatikus MÁSOLATOT
     kap (ld. "3 CÍMZETTI KÖR" szekció, 2. pont/b) - ezt hívjuk MINDEN
     olyan helyen, ahol egy bérlői körnek tényleg kiment egy összesítő
@@ -4252,7 +4252,12 @@ def _tulajdonos_osszesito_masolat(allapot: dict, erintett, cim_resz: str, statis
     jutunk el - "erintett" ilyenkor üres, vagy a hívó ezt már kiszűrte)."""
     if not erintett:
         return
-    tulajdonos_cimzett = _cimzett_string(allapot.get("tulajdonos_emailek"))
+    # Aki a kör címzettjei között már megkapta a levelet, ne kapja meg
+    # másolatként még egyszer.
+    mar_kapta = {c.strip().lower() for c in str(kor_cimzett or "").split(",") if c.strip()}
+    tulajdonos_cimek = [c for c in _emailek_egyesitese(allapot.get("tulajdonos_emailek"))
+                        if c.strip().lower() not in mar_kapta]
+    tulajdonos_cimzett = _cimzett_string(tulajdonos_cimek)
     if not tulajdonos_cimzett:
         return
     _osszesito_kuldese(
@@ -4260,6 +4265,7 @@ def _tulajdonos_osszesito_masolat(allapot: dict, erintett, cim_resz: str, statis
         "<p>Ez egy bérlői kör összesítőjének MÁSOLATA - a tulajdonos minden "
         "bérlői-kör-összesítőről automatikusan másolatot kap:</p>",
         tulajdonos_cimzett, statisztika, pdf_csatolas,
+        html=html, targy=targy,
         esemeny=esemeny or f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
     )
 
@@ -4283,18 +4289,21 @@ def _berlo_kor_osszesito_kuldese_most(allapot: dict, szamlak: dict, kor_kulcs: s
     kor_nev = (allapot.get("kor_nevek") or {}).get(kor_kulcs) or ("1. kör" if kor_kulcs == "kor_a" else "2. kör")
     cim_resz = f" – {kor_nev} (azonnali, dashboard)"
     kezi_esemeny = f"kor_osszesito_kezi:{magyar_ido().isoformat()}:{kor_kulcs}"
+    kor_html = kor_havi_osszesito_html([r for _, r in erintett], kor_nev,
+                                       _feldolgozas_alatti_szamlak_korhoz(szamlak, kor_kulcs))
+    kor_targy = (f"Fizetésre váró számlák – {len(erintett)} db – "
+                 f"{forint(sum(r.get('osszeg') or 0 for _, r in erintett))}")
     _osszesito_kuldese(
         allapot, erintett, cim_resz, "", cimzett, statisztika, pdf_csatolas,
-        html=kor_havi_osszesito_html([r for _, r in erintett], kor_nev,
-                                     _feldolgozas_alatti_szamlak_korhoz(szamlak, kor_kulcs)),
-        targy=f"Fizetésre váró számlák – {len(erintett)} db – "
-              f"{forint(sum(r.get('osszeg') or 0 for _, r in erintett))}",
+        html=kor_html,
+        targy=kor_targy,
         # A gombnyomás kifejezett kérés: minden kézi küldés saját eseményt
         # kap, így a napi ismétlés-szűrő nem nyeli el az újraküldést.
         esemeny=kezi_esemeny,
     )
     _tulajdonos_osszesito_masolat(allapot, erintett, cim_resz, statisztika, pdf_csatolas,
-                                  esemeny=kezi_esemeny + ":masolat")
+                                  esemeny=kezi_esemeny + ":masolat", kor_cimzett=cimzett,
+                                  html=kor_html, targy=f"Másolat ({kor_nev}): {kor_targy}")
 
 
 def _tulajdonos_osszesito_kuldese_most(allapot: dict, szamlak: dict, statisztika: dict, pdf_csatolas: bool):
@@ -8338,7 +8347,8 @@ def main():
                               f"{forint(sum(r.get('osszeg') or 0 for _, r in kor_erintett))}",
                         esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
                     )
-                    _tulajdonos_osszesito_masolat(allapot, kor_erintett, cim_resz, statisztika, True)
+                    _tulajdonos_osszesito_masolat(allapot, kor_erintett, cim_resz, statisztika, True,
+                                                  kor_cimzett=cimzett)
             allapot["utolso_fix_osszesito_datum"] = ma_str
 
     # ---- 2b-2. Bérlői körök - azonnali új-számla emailek (jóváhagyási fázissal) ----
