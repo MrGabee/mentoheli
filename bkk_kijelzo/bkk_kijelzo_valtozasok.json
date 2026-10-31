@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T02:31:44.358236+02:00",
+  "frissitve": "2026-10-31T02:32:22.453515+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:15:54.682880+02:00",
-      "kulcs": "AORS275",
-      "rendszam": "AORS275",
-      "vehicle_id": "1121",
-      "vehicle_label": "Óbudai autóbuszgarázs",
-      "vonal_szam": "118",
-      "route_id": "1180",
-      "lat": 47.53988265991211,
-      "lon": 19.0459041595459,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Óbudai autóbuszgarázs"
-    },
-    {
-      "idopont": "2026-10-30T15:15:54.683147+02:00",
-      "kulcs": "AADI654",
-      "rendszam": "AADI654",
-      "vehicle_id": "153",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.547447204589844,
-      "lon": 19.141517639160156,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Kelenföld vasútállomás M ► Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-10-30T15:15:54.683268+02:00",
-      "kulcs": "AADR705",
-      "rendszam": "AADR705",
-      "vehicle_id": "173",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.39910888671875,
-      "lon": 19.205631256103516,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-10-30T15:15:54.683282+02:00",
       "kulcs": "AADR706",
@@ -260000,6 +259961,45 @@
       "lon": 19.022689819335938,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-10-31T02:32:22.352301+02:00",
+      "kulcs": "V2013",
+      "rendszam": "V2013",
+      "vehicle_id": "2013",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50739669799805,
+      "lon": 19.025941848754883,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-31T02:32:22.356257+02:00",
+      "kulcs": "FKU933",
+      "rendszam": "FKU933",
+      "vehicle_id": "3089",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51441192626953,
+      "lon": 19.0975341796875,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-10-31T02:32:22.357236+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48652648925781,
+      "lon": 19.06818389892578,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
