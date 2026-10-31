@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T02:52:29.602765+02:00",
+  "frissitve": "2026-10-31T02:52:59.249794+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:18:01.230866+02:00",
-      "kulcs": "AAGL292",
-      "rendszam": "AAGL292",
-      "vehicle_id": "325",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.507301330566406,
-      "lon": 18.921594619750977,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Budakeszi, Dózsa Gy. tér"
-    },
-    {
-      "idopont": "2026-10-30T15:18:01.230896+02:00",
-      "kulcs": "AAGL296",
-      "rendszam": "AAGL296",
-      "vehicle_id": "328",
-      "vehicle_label": "Diósd, Búzavirág u.",
-      "vonal_szam": "287",
-      "route_id": "2870",
-      "lat": 47.40571975708008,
-      "lon": 19.014280319213867,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
-    {
-      "idopont": "2026-10-30T15:18:01.231017+02:00",
-      "kulcs": "AAGL319",
-      "rendszam": "AAGL319",
-      "vehicle_id": "348",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "113A",
-      "route_id": "1131",
-      "lat": 47.39442825317383,
-      "lon": 18.978689193725586,
-      "elozo_szoveg": "Angeli utca / Nagytétényi út",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
     {
       "idopont": "2026-10-30T15:18:01.231208+02:00",
       "kulcs": "AAHY817",
@@ -260000,6 +259961,45 @@
       "lon": 19.15091323852539,
       "elozo_szoveg": "Rákosszentmihály vasútállomás",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-10-31T02:52:59.193917+02:00",
+      "kulcs": "V2011",
+      "rendszam": "V2011",
+      "vehicle_id": "2011",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.473934173583984,
+      "lon": 19.047086715698242,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-31T02:52:59.195211+02:00",
+      "kulcs": "MUT887",
+      "rendszam": "MUT887",
+      "vehicle_id": "5940",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.517704010009766,
+      "lon": 19.03870964050293,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-31T02:52:59.195336+02:00",
+      "kulcs": "PDB702",
+      "rendszam": "PDB702",
+      "vehicle_id": "7028",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598472595214844,
+      "lon": 19.12129783630371,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
