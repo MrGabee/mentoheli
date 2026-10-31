@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-01T01:19:27.862849+02:00",
+  "frissitve": "2026-11-01T01:20:03.102368+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:27:23.846498+02:00",
-      "kulcs": "V2105",
-      "rendszam": "V2105",
-      "vehicle_id": "5833",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46323013305664,
-      "lon": 19.023069381713867,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-10-31T13:27:23.846618+02:00",
-      "kulcs": "V2217",
-      "rendszam": "V2217",
-      "vehicle_id": "5857",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46504592895508,
-      "lon": 19.12761878967285,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
     {
       "idopont": "2026-10-31T13:27:23.846943+02:00",
       "kulcs": "T8016",
@@ -260000,6 +259974,32 @@
       "lon": 18.928146362304688,
       "elozo_szoveg": "Márta utca ► Budaörsi lakótelep",
       "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-01T01:20:03.011360+02:00",
+      "kulcs": "PDZ837",
+      "rendszam": "PDZ837",
+      "vehicle_id": "7300",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.523643493652344,
+      "lon": 18.994108200073242,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-01T01:20:03.011614+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.512428283691406,
+      "lon": 19.116426467895508,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
     }
   ]
 }
