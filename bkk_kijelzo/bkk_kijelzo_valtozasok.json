@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T03:59:25.593320+02:00",
+  "frissitve": "2026-10-31T03:59:54.772265+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:26:31.906731+02:00",
-      "kulcs": "T0606",
-      "rendszam": "T0606",
-      "vehicle_id": "4290",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50193405151367,
-      "lon": 19.08188819885254,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-10-30T15:26:31.906805+02:00",
-      "kulcs": "AAHY871",
-      "rendszam": "AAHY871",
-      "vehicle_id": "433",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.60317611694336,
-      "lon": 19.066402435302734,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Káposztásmegyer ► Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-10-30T15:26:31.907076+02:00",
-      "kulcs": "V1361",
-      "rendszam": "V1361",
-      "vehicle_id": "4462",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.426692962646484,
-      "lon": 19.039445877075195,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-10-30T15:26:31.908236+02:00",
       "kulcs": "AAMH668",
@@ -260000,6 +259961,45 @@
       "lon": 19.078401565551758,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-31T03:59:54.672802+02:00",
+      "kulcs": "FKU933",
+      "rendszam": "FKU933",
+      "vehicle_id": "3089",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5074577331543,
+      "lon": 19.025182723999023,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-10-31T03:59:54.673794+02:00",
+      "kulcs": "RVY714",
+      "rendszam": "RVY714",
+      "vehicle_id": "7463",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59779739379883,
+      "lon": 19.05386734008789,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-31T03:59:54.674279+02:00",
+      "kulcs": "AADI598",
+      "rendszam": "AADI598",
+      "vehicle_id": "95",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51081466674805,
+      "lon": 19.097253799438477,
+      "elozo_szoveg": "Zugló vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
     }
   ]
 }
