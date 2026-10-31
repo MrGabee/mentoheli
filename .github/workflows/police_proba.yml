@@ -1,38 +1,25 @@
-name: Police.hu hírlista próba (nem posztol)
-
-on:
-  workflow_dispatch:
-    inputs:
-      szerv:
-        description: "feltöltő szerv azonosító"
-        default: "108"
-
+name: police.hu próba (ideiglenes)
+on: workflow_dispatch
 jobs:
   proba:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install -q requests beautifulsoup4
-      - name: Lista
-        working-directory: korozes
-        env:
-          SZERV: ${{ inputs.szerv }}
-        run: |
-          cat > /tmp/proba.py <<'PY'
-          import os, requests
-          from bs4 import BeautifulSoup
-          import police_figyelo as p
-          szerv = os.environ["SZERV"]
-          r = requests.get(p.BASE_URL + "/hu/hirek-es-informaciok/legfrissebb-hireink?field_feltolto_szerv_target_id=" + szerv, headers=p.HEADERS, timeout=30)
-          print("HTTP", r.status_code)
-          s = BeautifulSoup(r.text, "html.parser")
-          o = s.select_one(f'option[value="{szerv}"]')
-          print("Szerv:", o.get_text(strip=True) if o else "?")
-          for c in (p._hirek_foszelektor(s) or p._hirek_tartalek(s)):
-              print("-", c["cim"][:100], "|", c["osszefoglalo"][:80])
-          PY
-          PYTHONPATH=. python /tmp/proba.py
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
+          for u in "https://www.police.hu/hu/rss" \
+                   "https://www.police.hu/hu/rss/Baleseti%20h%C3%ADrek" \
+                   "https://www.police.hu/hu/rss/Legfrissebb%20h%C3%ADreink" \
+                   "https://www.police.hu/hu/hirek-es-informaciok/legfrissebb-hireink" \
+                   "https://www.police.hu/hu/hirek-es-informaciok/legfrissebb-hireink/baleseti-hirek"; do
+            echo "=================== $u"
+            curl -sL -A "$UA" -o /tmp/o -w "HTTP %{http_code} %{size_download}\n" "$u"
+            grep -oE 'href="[^"]*rss[^"]*"[^<]*' /tmp/o | sort -u | head -40
+            head -c 1500 /tmp/o | tr '\n' ' '; echo
+          done
+          echo "=================== cikk"
+          L=$(curl -sL -A "$UA" "https://www.police.hu/hu/rss/Baleseti%20h%C3%ADrek" | grep -oE '<link>[^<]+' | sed -n 2p | sed 's/<link>//')
+          echo "$L"; curl -sL -A "$UA" "$L" -o /tmp/c; grep -nE 'class="[^"]*(field|body|content|article|node)[^"]*"' /tmp/c | head -40
+          python3 - <<'P'
+          import re;h=open('/tmp/c',encoding='utf-8',errors='ignore').read()
+          i=h.find('<h1');print(re.sub(r'\s+',' ',h[i:i+6000]))
+          P
