@@ -279,7 +279,7 @@ Ha tudjátok a kisebb csepeli boltok, pékségek, zöldségesek ünnepi nyitvata
 #Csepel #nyitvatartás #mindenszentek"""),
     "zsido_temeto_20261101": (date(2026, 11, 1), """🕯️ A CSEPELI ZSIDÓ TEMETŐ
 
-A tegnapi temetős posztom alatt többen kérdeztétek, hogy mit lehet tudni a csepeli zsidó temetőről. Utánanéztem, és most összegyűjtöm, amit találtam.
+A tegnapi temetős posztom alatt szóba került a csepeli zsidó temető is. Utánanéztem, és összegyűjtöttem, amit találtam.
 
 📍 A temető a Nefelejcs utcában van (Nefelejcs utca 11.), a Duna-part és a II. Rákóczi Ferenc út közötti részen, amit régen Rózsa-dombnak hívtak.
 
@@ -289,7 +289,7 @@ A tegnapi temetős posztom alatt többen kérdeztétek, hogy mit lehet tudni a c
 
 A helytörténeti adatokat dr. Bolla Dezső csepeli helytörténész írásából vettem.
 
-Ha valaki többet tud a temetőről, vagy van régi fényképe, írja meg kommentben! Ha arra jártok, egy szál virággal vagy egy kis kővel is emlékezhetünk. 🤍
+Ha valaki többet tud a temetőről, vagy van régi fényképe, írja meg kommentben! Aki arra jár, a zsidó hagyomány szerint egy kis kő elhelyezésével emlékezhet. 🤍
 
 #Csepel #emlékezés #zsidótemető #helytörténet"""),
     "arpad_utca_tabla_20261031": (date(2026, 10, 31), """❓ OLVASÓI KÉRDÉS – MIÉRT VAN MEGÁLLNI TILOS TÁBLA AZ ÁRPÁD UTCA 6. ELŐTT?
