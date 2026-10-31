@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T02:30:35.725144+02:00",
+  "frissitve": "2026-10-31T02:31:08.768086+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:14:35.221411+02:00",
-      "kulcs": "AOIM025",
-      "rendszam": "AOIM025",
-      "vehicle_id": "945",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.3888053894043,
-      "lon": 18.958301544189453,
-      "elozo_szoveg": "Nagytétény, ipartelep",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-10-30T15:15:54.682643+02:00",
-      "kulcs": "AONW959",
-      "rendszam": "AONW959",
-      "vehicle_id": "1026",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.524234771728516,
-      "lon": 19.11802101135254,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Thomán István utca"
-    },
-    {
-      "idopont": "2026-10-30T15:15:54.682776+02:00",
-      "kulcs": "AOLH515",
-      "rendszam": "AOLH515",
-      "vehicle_id": "1045",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196",
-      "route_id": "1960",
-      "lat": 47.5772819519043,
-      "lon": 19.11509132385254,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
     {
       "idopont": "2026-10-30T15:15:54.682817+02:00",
       "kulcs": "AADI609",
@@ -260000,6 +259961,45 @@
       "lon": 19.04676055908203,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-10-31T02:31:08.662692+02:00",
+      "kulcs": "V2008",
+      "rendszam": "V2008",
+      "vehicle_id": "2008",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47398376464844,
+      "lon": 19.047012329101562,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-10-31T02:31:08.667348+02:00",
+      "kulcs": "SKR829",
+      "rendszam": "SKR829",
+      "vehicle_id": "7715",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.430912017822266,
+      "lon": 19.070337295532227,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-10-31T02:31:08.667726+02:00",
+      "kulcs": "415 087",
+      "rendszam": "415 087",
+      "vehicle_id": "945514150875",
+      "vehicle_label": "Esztergom",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.527679443359375,
+      "lon": 19.091279983520508,
+      "elozo_szoveg": "Óbuda",
+      "uj_szoveg": "Esztergom"
     }
   ]
 }
