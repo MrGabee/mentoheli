@@ -11,6 +11,7 @@ import re
 import requests
 
 import fb_oldal_figyelo as fb
+from ejszakai_sor import ejszaka
 
 URL = "https://holtankoljak.hu/"
 ALLAPOT_FAJL = "holtankoljak_allapot.json"
@@ -66,9 +67,20 @@ def main():
     if allapot.get("utolso_datum") == datum:
         print(f"  ✔️ A {datum} napi kártyát már láttam.")
         return
+    ma = fb.magyar_ido().strftime("%Y-%m-%d")
+    if datum != ma:
+        # Régi kártya (a szövegben "a mai napon" áll): másnap már nem posztoljuk
+        print(f"  ⏭️ A kártya {datum} napi, ma {ma} van: elavult, nem posztolok.")
+        bekezdesek = []
+    elif ejszaka():
+        # A jó éjszakát poszt után csak azonnali közmű-szünet mehet ki
+        print("  🌙 A jó éjszakát poszt után vagyunk, nem posztolok.")
+        return
     szoveg = "\n".join(bekezdesek)
     print(f"  🆕 {datum}: {szoveg[:200]}")
-    if not VALTOZAS.search(szoveg):
+    if not bekezdesek:
+        pass
+    elif not VALTOZAS.search(szoveg):
         print("  ⏭️ Nincs árváltozás, nem posztolok.")
     elif fb.napi_zar_volt(ALLAPOT_FAJL):
         print("  ⏭️ Ma már ment üzemanyagár-poszt (FB-oldalról).")

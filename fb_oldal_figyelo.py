@@ -17,6 +17,7 @@ import requests
 
 import poszt_valtozatos
 import poszt_utem
+import ejszakai_sor
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
@@ -239,6 +240,10 @@ def main():
     allapot = betolt(ALLAPOT_FAJL, {})
     # Egy futásban legfeljebb egy megosztás, és csak szabad sávban (poszt_utem)
     mehet = poszt_utem.raeros_mehet(allapot)
+    if ejszakai_sor.ejszaka():
+        # A jó éjszakát poszt után semmi nem megy ki, a megosztások reggelig várnak
+        print("🌙 Éjszaka van, a megosztások reggelig várnak.")
+        mehet = False
 
     for oldal in oldalak:
         nev, rss = oldal.get("nev", ""), oldal.get("rss", "")
