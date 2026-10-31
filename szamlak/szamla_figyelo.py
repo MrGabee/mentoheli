@@ -146,6 +146,7 @@ Szükséges GitHub Secretek:
 
 import os
 import re
+import json
 import io
 import copy
 import time
@@ -1050,6 +1051,20 @@ def tartalom_tipus_azonositas(targy: str, teljes_szoveg: str) -> str:
 # ezredmásodperces, nem több-másodperces git-push.
 
 
+def _api_valasz_jellege(valasz) -> str:
+    """Egy nem-JSON API-válasz szerkezeti leírása a (nyilvános) naplóba -
+    a válasz szövegét nem írjuk ki, csak a hossza, típusa és a felismert
+    PHP-hibafajta látszik."""
+    szoveg = valasz.text or ""
+    minta = re.search(r"Allowed memory size|Maximum execution time|Fatal error|Parse error|Warning|Notice|"
+                      r"Deprecated|Too many connections|max_user_connections|gone away|Uncaught|"
+                      r"503|502|504|captcha|cloudflare|<html|<!DOCTYPE", szoveg[:4000], re.I)
+    eleje = szoveg.lstrip()[:1]
+    return (f"hossz {len(szoveg)}, content-type {valasz.headers.get('Content-Type', '?')}, "
+            f"első karakter {eleje!r}, felismert jel: {minta.group(0) if minta else 'nincs'}, "
+            f"JSON-kezdet a szövegben: {'igen' if re.search(r'[{]\s*\x22ok\x22', szoveg) else 'nem'}")
+
+
 def _api_hivas(action: str, parameterek: dict = None, idokorlat: int = 30) -> dict:
     """Egy hívás az api.php-hoz (ld. szamlak/mysql/api.php). A "action"
     mellett bármilyen extra kulcsot a parameterek dict-ből egyszerűen
@@ -1090,6 +1105,17 @@ def _api_hivas(action: str, parameterek: dict = None, idokorlat: int = 30) -> di
             adat = valasz.json()
             break
         except ValueError:
+            # Ha a PHP egy figyelmeztetést írt a JSON elé, a JSON-t kivágjuk.
+            kezdet = re.search(r'[{]\s*"ok"', valasz.text or "")
+            if kezdet:
+                try:
+                    adat = json.loads(valasz.text[kezdet.start():])
+                    print(f"  ⚠️  Az adatbázis API a JSON elé egyéb szöveget is írt ('{action}') - "
+                          f"a JSON-részt használom. {_api_valasz_jellege(valasz)}")
+                    break
+                except ValueError:
+                    pass
+            print(f"  🔬 api-diag: {_api_valasz_jellege(valasz)}")
             if proba < probak - 1:
                 print(f"  ⚠️  Az adatbázis API nem JSON választ adott '{action}' műveletre "
                       f"(HTTP {valasz.status_code}) - újrapróbálom.")
@@ -2043,12 +2069,13 @@ def _lv_osszeg_blokk(osszeg_html, hatarido, szin_kulcs):
       </table>"""
 
 
-def _lv_szamla_tabla(rekordok, osszesen=True):
+def _lv_szamla_tabla(rekordok, osszesen=True, allapot_chip=None):
     """Számlalista (összesítő/emlékeztető) - soronként szolgáltató + tárgy,
-    jobbra összeg és határidő-chip."""
+    jobbra összeg és határidő-chip (vagy az allapot_chip=(felirat, szín)
+    szerinti fix állapot, pl. "feldolgozás alatt")."""
     sorok = ""
     for r in rekordok:
-        felirat, szin = _hatarido_allapot(r.get("hatarido"))
+        felirat, szin = allapot_chip or _hatarido_allapot(r.get("hatarido"))
         al = _esc(r.get("targy") or "")
         if r.get("szamlaszam"):
             al += f' · <span style="font-family:{_LV_SZAM_BETU};">{_esc(r["szamlaszam"])}</span>'
@@ -2266,7 +2293,7 @@ def szamlakeresek_feldolgozasa(allapot: dict, szamlak: dict, keresek: list, stat
         kor_nev = _kor_nev_megjeleniteshez(allapot, kor_kulcs)
         if erintett:
             rekordok = sorted((r for _, r in erintett), key=lambda r: r.get("hatarido") or "")
-            html = kor_havi_osszesito_html(rekordok, kor_nev)
+            html = kor_havi_osszesito_html(rekordok, kor_nev, _feldolgozas_alatti_szamlak_korhoz(szamlak, kor_kulcs))
             targy = (f"Fizetésre váró számlák – {len(rekordok)} db – "
                      f"{forint(sum(r.get('osszeg') or 0 for r in rekordok))}")
             csatolmanyok = csatolmanyok_osszegyujtese(allapot, erintett)
@@ -2339,13 +2366,23 @@ def kor_lejart_ertesito_kuldese(allapot: dict, szamlak: dict, statisztika: dict)
                              esemeny=esemeny)
 
 
-def kor_havi_osszesito_html(rekordok: list, kor_nev: str = "") -> str:
-    """Bérlői kör havi összesítője a még fizetetlen számlákról."""
+def kor_havi_osszesito_html(rekordok: list, kor_nev: str = "", feldolgozas_alatt: list = None) -> str:
+    """Bérlői kör havi összesítője a még fizetetlen számlákról. A
+    "feldolgozás alatt" (már befizetett, még le nem könyvelt) tételek a
+    dashboardhoz hasonlóan külön, a végösszegbe nem számolva jelennek meg."""
+    feldolgozas_resz = ""
+    if feldolgozas_alatt:
+        feldolgozas_resz = (
+            _lv_bekezdes("<strong>Feldolgozás alatt</strong> – ezeket a befizetéseket a szolgáltató már "
+                         "megkapta, csak még nem könyvelte le, teendő velük nincs:")
+            + _lv_szamla_tabla(feldolgozas_alatt, osszesen=False, allapot_chip=("feldolgozás alatt", "zold"))
+        )
     tartalom = (
         _lv_bekezdes("Tisztelt Bérlő!")
         + _lv_bekezdes("Az alábbiakban összefoglaltuk a jelenleg fizetésre váró számlákat. "
                        "A számlákat csatoltuk ehhez a levélhez.")
         + _lv_szamla_tabla(rekordok)
+        + feldolgozas_resz
         + _lv_bekezdes("Kérjük, a még nyitott tételeket a határidőig szíveskedjen rendezni. Köszönjük!")
     )
     honapok = ["január", "február", "március", "április", "május", "június", "július",
@@ -4123,6 +4160,11 @@ def _fizetetlen_szamlak_korhoz(szamlak: dict, kor_kulcs):
     ]
 
 
+def _feldolgozas_alatti_szamlak_korhoz(szamlak: dict, kor_kulcs) -> list:
+    return [r for r in szamlak.values()
+            if not r.get("fizetve") and _feldolgozas_alatt(r) and r.get("kor") == kor_kulcs]
+
+
 def _feldolgozas_alatt(r: dict) -> bool:
     """A Vízművek portál "Feldolgozás alatt" állapota: a befizetés már
     megtörtént, csak még nincs lekönyvelve - ezért nem kerül bele a körök
@@ -4239,7 +4281,8 @@ def _berlo_kor_osszesito_kuldese_most(allapot: dict, szamlak: dict, kor_kulcs: s
     cim_resz = f" – {kor_nev} (azonnali, dashboard)"
     _osszesito_kuldese(
         allapot, erintett, cim_resz, "", cimzett, statisztika, pdf_csatolas,
-        html=kor_havi_osszesito_html([r for _, r in erintett], kor_nev),
+        html=kor_havi_osszesito_html([r for _, r in erintett], kor_nev,
+                                     _feldolgozas_alatti_szamlak_korhoz(szamlak, kor_kulcs)),
         targy=f"Fizetésre váró számlák – {len(erintett)} db – "
               f"{forint(sum(r.get('osszeg') or 0 for _, r in erintett))}",
         esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
@@ -8282,7 +8325,8 @@ def main():
                     cim_resz = f" – {kor_nev} ({_osszesito_nap_felirat(beallitasok['osszesito_honap_nap'])})"
                     _osszesito_kuldese(
                         allapot, kor_erintett, cim_resz, "", cimzett, statisztika,
-                        html=kor_havi_osszesito_html([r for _, r in kor_erintett], kor_nev),
+                        html=kor_havi_osszesito_html([r for _, r in kor_erintett], kor_nev,
+                                                     _feldolgozas_alatti_szamlak_korhoz(szamlak, kor_kulcs)),
                         targy=f"Fizetésre váró számlák – {len(kor_erintett)} db – "
                               f"{forint(sum(r.get('osszeg') or 0 for _, r in kor_erintett))}",
                         esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
