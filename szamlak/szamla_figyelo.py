@@ -1264,6 +1264,10 @@ def _allapot_alapertekek() -> dict:
         "ceges_bejovo_levelek": {},
         "ceges_level_valasz_kerelmek": {},
         "ceges_level_valasz_eredmenyek": {},
+        # Ld. "EGYÉNI KÜLDÉS" - a kérelmeket CSAK a dashboard írja, az
+        # eredményeket CSAK a script.
+        "egyeni_kuldes_kerelmek": {},
+        "egyeni_kuldes_eredmenyek": {},
         # Ld. "KIMENŐ LEVELEK NAPLÓJA" - minden ténylegesen elküldött (vagy
         # küldéskor hibára futott) levél, CSAK a script írja.
         "kimeno_levelek": {},
@@ -2074,10 +2078,14 @@ def _lv_osszeg_blokk(osszeg_html, hatarido, szin_kulcs):
 def _lv_szamla_tabla(rekordok, osszesen=True, allapot_chip=None):
     """Számlalista (összesítő/emlékeztető) - soronként szolgáltató + tárgy,
     jobbra összeg és határidő-chip (vagy az allapot_chip=(felirat, szín)
-    szerinti fix állapot, pl. "feldolgozás alatt")."""
+    szerinti fix állapot, pl. "feldolgozás alatt"; függvény is lehet, ami
+    rekordonként adja vissza a chipet)."""
     sorok = ""
     for r in rekordok:
-        felirat, szin = allapot_chip or _hatarido_allapot(r.get("hatarido"))
+        if callable(allapot_chip):
+            felirat, szin = allapot_chip(r)
+        else:
+            felirat, szin = allapot_chip or _hatarido_allapot(r.get("hatarido"))
         al = _esc(r.get("targy") or "")
         if r.get("szamlaszam"):
             al += f' · <span style="font-family:{_LV_SZAM_BETU};">{_esc(r["szamlaszam"])}</span>'
@@ -2393,6 +2401,33 @@ def kor_havi_osszesito_html(rekordok: list, kor_nev: str = "", feldolgozas_alatt
     return level_keret("kek", f"Havi összesítő · {ma.year}. {honapok[ma.month - 1]}",
                        "Fizetésre váró számlák", tartalom, _KOR_LABJEGYZET,
                        f"{len(rekordok)} számla, összesen {forint(sum(r.get('osszeg') or 0 for r in rekordok))}")
+
+
+def _rekord_allapot_chip(r: dict):
+    """A dashboard állapot-jelvényeivel azonos chip: fizetve = zöld,
+    feldolgozás alatt = kék, egyébként a határidő szerinti."""
+    if r.get("fizetve"):
+        return "fizetve", "zold"
+    if _feldolgozas_alatt(r):
+        return "feldolgozás alatt", "kek"
+    return _hatarido_allapot(r.get("hatarido"))
+
+
+def egyeni_kuldes_html(rekordok: list, szoveg: str) -> str:
+    """A dashboard "Egyéni küldés" levele: a felhasználó saját szövege,
+    alatta a kijelölt számlák listája (a végösszegben csak a még
+    fizetendők szerepelnek)."""
+    bekezdesek = "".join(
+        _lv_bekezdes(_esc(b.strip()).replace("\n", "<br>"))
+        for b in re.split(r"\n\s*\n", szoveg or "") if b.strip()
+    )
+    fizetendo = [r for r in rekordok if not r.get("fizetve") and not _feldolgozas_alatt(r)]
+    tabla = _lv_szamla_tabla(rekordok, osszesen=False, allapot_chip=_rekord_allapot_chip)
+    if fizetendo:
+        tabla += _lv_bekezdes(f"<strong>Fizetendő összesen: {forint(sum(r.get('osszeg') or 0 for r in fizetendo))}</strong>"
+                              f" ({len(fizetendo)} db)")
+    return level_keret("kek", "Értesítő", "Számlák", bekezdesek + tabla, _KOR_LABJEGYZET,
+                       f"{len(rekordok)} számla")
 
 
 def uj_szamla_email_html(rekord):
@@ -4304,6 +4339,60 @@ def _berlo_kor_osszesito_kuldese_most(allapot: dict, szamlak: dict, kor_kulcs: s
     _tulajdonos_osszesito_masolat(allapot, erintett, cim_resz, statisztika, pdf_csatolas,
                                   esemeny=kezi_esemeny + ":masolat", kor_cimzett=cimzett,
                                   html=kor_html, targy=f"Másolat ({kor_nev}): {kor_targy}")
+
+
+def egyeni_kuldesek_feldolgozasa(allapot: dict, szamlak: dict, statisztika: dict) -> None:
+    """A dashboard "Egyéni küldés" kérelmei: kijelölt számlák + saját szöveg,
+    a kiválasztott címzetti köröknek és/vagy megadott címeknek. A
+    kérelmeket CSAK a dashboard írja ("egyeni_kuldes_kerelmek"), az
+    eredményt CSAK a script ("egyeni_kuldes_eredmenyek"). A naplóba csak
+    darabszámok kerülnek (nyilvános Actions-log)."""
+    kerelmek = allapot.get("egyeni_kuldes_kerelmek") or {}
+    if not isinstance(kerelmek, dict) or not kerelmek:
+        return
+    eredmenyek = allapot.get("egyeni_kuldes_eredmenyek")
+    if not isinstance(eredmenyek, dict):
+        eredmenyek = allapot["egyeni_kuldes_eredmenyek"] = {}
+    for kid, k in kerelmek.items():
+        if not isinstance(k, dict) or kid in eredmenyek:
+            continue
+        cim_listak = []
+        for kor in (k.get("korok") or []):
+            if kor in ("kor_a", "kor_b"):
+                cim_listak.append(_kor_cimzettek(allapot, kor))
+            elif kor == "tulajdonos":
+                cim_listak.append(allapot.get("tulajdonos_emailek") or [])
+            elif kor == "konyvelo":
+                cim_listak.append(allapot.get("konyvelo_emailek") or [])
+        extra = [c for c in (k.get("cimek") or [])
+                 if isinstance(c, str) and re.fullmatch(r"[^@\s,;]+@[^@\s,;]+\.[^@\s,;]+", c.strip())]
+        cim_listak.append(extra)
+        cimek = _emailek_egyesitese(*cim_listak)
+        erintett = [(rid, szamlak[rid]) for rid in (k.get("szamla_idk") or []) if rid in szamlak]
+        idopont = magyar_ido().isoformat()
+        if not cimek or not erintett:
+            eredmenyek[kid] = {"statusz": "hiba", "idopont": idopont,
+                               "hiba": "Nincs címzett." if not cimek else "Egyik kijelölt számla sem található."}
+            print(f"  ⚠️  Egyéni küldés kihagyva ({len(cimek)} címzett, {len(erintett)} számla).")
+            continue
+        rekordok = [r for _, r in erintett]
+        csatolmanyok = csatolmanyok_osszegyujtese(allapot, erintett) if k.get("pdf") else None
+        statisztika["email_ertesitesek"] += 1
+        sikeres = email_kuldes(
+            f"Számlák – {len(rekordok)} db",
+            egyeni_kuldes_html(rekordok, str(k.get("szoveg") or "")),
+            csatolmanyok,
+            cimzett=_cimzett_string(cimek),
+            esemeny=f"egyeni_kuldes:{kid}",
+        )
+        eredmenyek[kid] = {"statusz": "elkuldve" if sikeres else "hiba", "idopont": idopont,
+                           "cimzett_db": len(cimek), "szamla_db": len(rekordok),
+                           "hiba": None if sikeres else "A levél küldése nem sikerült (ld. Elküldött levelek)."}
+        print(f"  ✉️  Egyéni küldés: {len(rekordok)} számla, {len(cimek)} címzett - "
+              f"{'elküldve' if sikeres else 'HIBA'}.")
+    for kid in list(eredmenyek.keys()):
+        if kid not in kerelmek:
+            eredmenyek.pop(kid, None)
 
 
 def _tulajdonos_osszesito_kuldese_most(allapot: dict, szamlak: dict, statisztika: dict, pdf_csatolas: bool):
@@ -8434,6 +8523,8 @@ def main():
                 print(f"  ⚠️  Ismeretlen kör-azonosító a manuális küldéshez: {kor_kulcs!r} - kihagyva.")
                 continue
             _berlo_kor_osszesito_kuldese_most(allapot, szamlak, kor_kulcs, statisztika, SZAMLA_PDF_CSATOLAS_MANUALIS)
+
+    egyeni_kuldesek_feldolgozasa(allapot, szamlak, statisztika)
 
     if SZAMLA_TULAJDONOS_OSSZESITO_MOST:
         _tulajdonos_osszesito_kuldese_most(allapot, szamlak, statisztika, SZAMLA_PDF_CSATOLAS_MANUALIS)
