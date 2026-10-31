@@ -2016,7 +2016,9 @@ def _datum_hu(iso) -> str:
 
 
 def _hatarido_allapot(hatarido):
-    """(felirat, szín-kulcs) a határidő chiphez."""
+    """(felirat, szín-kulcs) a határidő chiphez - ugyanazokkal a színekkel,
+    mint a dashboard állapot-jelvényei: fizetetlen = borostyán, lejárt =
+    piros (fizetve = zöld, feldolgozás alatt = kék)."""
     if not hatarido:
         return "határidő ismeretlen", "borostyan"
     try:
@@ -2026,10 +2028,10 @@ def _hatarido_allapot(hatarido):
     if hatra < 0:
         return f"lejárt {-hatra} napja", "piros"
     if hatra == 0:
-        return "ma jár le", "piros"
+        return "ma jár le", "borostyan"
     if hatra <= 7:
         return f"{hatra} nap múlva jár le", "borostyan"
-    return f"{hatra} nap van hátra", "zold"
+    return f"{hatra} nap van hátra", "borostyan"
 
 
 def _lv_chip(szoveg, szin_kulcs):
@@ -2375,7 +2377,7 @@ def kor_havi_osszesito_html(rekordok: list, kor_nev: str = "", feldolgozas_alatt
         feldolgozas_resz = (
             _lv_bekezdes("<strong>Feldolgozás alatt</strong> – ezeket a befizetéseket a szolgáltató már "
                          "megkapta, csak még nem könyvelte le, teendő velük nincs:")
-            + _lv_szamla_tabla(feldolgozas_alatt, osszesen=False, allapot_chip=("feldolgozás alatt", "zold"))
+            + _lv_szamla_tabla(feldolgozas_alatt, osszesen=False, allapot_chip=("feldolgozás alatt", "kek"))
         )
     tartalom = (
         _lv_bekezdes("Tisztelt Bérlő!")
