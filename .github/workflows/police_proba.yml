@@ -6,8 +6,7 @@ jobs:
     steps:
       - run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
-          for u in "https://www.police.hu/hu/hirek-es-informaciok/legfrissebb-hireink" "https://www.police.hu/hu/hirek-es-informaciok/utinfo/baleseti-hirek"; do
+          for u in "https://www.police.hu/hu/rss/feed" "https://www.police.hu/hu/rss/feed?_=$(date +%s%N)"; do
             echo "=================== $u"
-            curl -sL -A "$UA" -D /tmp/h -o /tmp/o "$u"; grep -iE "^(last-modified|date|x-drupal-cache|age):" /tmp/h
-            python3 -c "import re;h=open('/tmp/o',encoding='utf-8').read();i=h.find('2026. 10.');print(re.sub(r'\s+',' ',h[i-2500:i+1500]))"
+            curl -sL -A "$UA" -H "Cache-Control: no-cache" -D /tmp/h -o /tmp/o "$u"; grep -iE "^(last-modified|x-drupal-cache|x-drupal-dynamic-cache):" /tmp/h; grep -c "<item>" /tmp/o; grep -oE '<pubDate>[^<]+' /tmp/o | head -2
           done
