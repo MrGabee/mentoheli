@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T04:00:49.742507+02:00",
+  "frissitve": "2026-10-31T04:01:21.569745+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:26:31.910973+02:00",
-      "kulcs": "NHB034",
-      "rendszam": "NHB034",
-      "vehicle_id": "6333",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.43032455444336,
-      "lon": 19.006284713745117,
-      "elozo_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-30T15:26:31.911335+02:00",
-      "kulcs": "AADI580",
-      "rendszam": "AADI580",
-      "vehicle_id": "66",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.533668518066406,
-      "lon": 18.993444442749023,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-10-30T15:26:31.911547+02:00",
-      "kulcs": "PDB710",
-      "rendszam": "PDB710",
-      "vehicle_id": "7036",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.51156234741211,
-      "lon": 19.056655883789062,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Margitsziget ► Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-10-30T15:26:31.911675+02:00",
       "kulcs": "PDB379",
@@ -260000,6 +259961,45 @@
       "lon": 19.022703170776367,
       "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
       "uj_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H"
+    },
+    {
+      "idopont": "2026-10-31T04:01:21.470183+02:00",
+      "kulcs": "V2023",
+      "rendszam": "V2023",
+      "vehicle_id": "2023",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50742721557617,
+      "lon": 19.023574829101562,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-10-31T04:01:21.472155+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.522830963134766,
+      "lon": 19.170852661132812,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-10-31T04:01:21.472189+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52376937866211,
+      "lon": 18.993183135986328,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
     }
   ]
 }
