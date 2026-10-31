@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-10-31T04:09:16.706285+02:00",
+  "frissitve": "2026-10-31T04:09:58.657249+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-30T15:27:54.348848+02:00",
-      "kulcs": "AAMH641",
-      "rendszam": "AAMH641",
-      "vehicle_id": "484",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.432376861572266,
-      "lon": 19.260868072509766,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-10-30T15:27:54.349264+02:00",
-      "kulcs": "V4343",
-      "rendszam": "V4343",
-      "vehicle_id": "5002",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.48163986206055,
-      "lon": 18.999034881591797,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
-    {
-      "idopont": "2026-10-30T15:27:54.349388+02:00",
-      "kulcs": "MFW530",
-      "rendszam": "MFW530",
-      "vehicle_id": "5063",
-      "vehicle_label": "Hungexpo",
-      "vonal_szam": "10",
-      "route_id": "0100",
-      "lat": 47.501426696777344,
-      "lon": 19.136661529541016,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Hungexpo"
-    },
     {
       "idopont": "2026-10-30T15:27:54.349767+02:00",
       "kulcs": "V2262",
@@ -260000,6 +259961,45 @@
       "lon": 19.080659866333008,
       "elozo_szoveg": "Csepel-Királyerdő",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-10-31T04:09:58.558547+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.5169677734375,
+      "lon": 19.004770278930664,
+      "elozo_szoveg": "Rózsadomb ► Árpádföld",
+      "uj_szoveg": "Nyugati pályaudvar M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-10-31T04:09:58.558682+02:00",
+      "kulcs": "RVY730",
+      "rendszam": "RVY730",
+      "vehicle_id": "7628",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.497013092041016,
+      "lon": 19.05573844909668,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-10-31T04:09:58.558890+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.549156188964844,
+      "lon": 19.028898239135742,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
     }
   ]
 }
