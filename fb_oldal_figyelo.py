@@ -227,6 +227,19 @@ def napi_zar_beallit(fajl):
 # ════════════════════════════════════════════
 #  ▶️  FŐPROGRAM
 # ════════════════════════════════════════════
+# Jövőbeli / előre bejelentett eset jele: ez ráér reggelig.
+TERVEZETT = re.compile(r"(?i)holnap|hétvég|jövő hét|\b\d{1,2}\.\s*-?(tól|től|ig|án|én|jén|ján|i)\b|naptól|napjától|202\d\.\s*[a-zé]|[a-zé]+\s+\d{1,2}\.\s*(és|-)|menetrend")
+
+
+def azonnali(oldal, b):
+    """Éjjel is kimehet-e: az oldal "ejjel_azonnali" mintájára illik, és nem előre bejelentett."""
+    minta = oldal.get("ejjel_azonnali")
+    if not minta:
+        return False
+    szoveg = f"{b['cim']} {b['szoveg']}"
+    return bool(re.search(minta, szoveg)) and not TERVEZETT.search(szoveg)
+
+
 def main():
     print(f"\n{'='*55}")
     print(f"📣 Facebook-oldal figyelő – {magyar_ido().strftime('%Y.%m.%d %H:%M:%S')}")
@@ -240,10 +253,11 @@ def main():
     allapot = betolt(ALLAPOT_FAJL, {})
     # Egy futásban legfeljebb egy megosztás, és csak szabad sávban (poszt_utem)
     mehet = poszt_utem.raeros_mehet(allapot)
-    if ejszakai_sor.ejszaka():
-        # A jó éjszakát poszt után semmi nem megy ki, a megosztások reggelig várnak
-        print("🌙 Éjszaka van, a megosztások reggelig várnak.")
-        mehet = False
+    # A jó éjszakát poszt után csak az azonnali eset megy ki (pl. Volánbusz-baleset,
+    # járatkimaradás most); a ráérős megosztások reggelig várnak.
+    ejjel = ejszakai_sor.ejszaka()
+    if ejjel:
+        print("🌙 Éjszaka van: csak az azonnali eseteket osztom meg, a többi reggelig vár.")
 
     for oldal in oldalak:
         nev, rss = oldal.get("nev", ""), oldal.get("rss", "")
@@ -275,6 +289,9 @@ def main():
                 print(f"  ⏭️ Ma már ment erről poszt (napi zár): {b['cim'][:80]}")
                 latott.append(b["azonosito"])
                 continue
+            if ejjel and not azonnali(oldal, b):
+                print(f"  🌙 Ráér reggelig: {b['cim'][:80]}")
+                break  # reggel a következő futások osztják meg
             if FACEBOOK_POSZTOLAS_AKTIV and not mehet:
                 break  # most nincs szabad sáv: a következő futás osztja meg
             szoveg = facebook_szoveg(nev, b, oldal.get("max_szoveg", MAX_SZOVEG), oldal.get("bevezetok"), oldal.get("folyamatos", False))

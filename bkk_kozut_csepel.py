@@ -41,7 +41,11 @@ TESZT_MOD = os.environ.get("TESZT_MOD", "0") == "1"
 # Ugyanazzal a címmel ennyi napon belül nem posztolunk újra (a naponta
 # ismétlődő éjszakai korlátozások minden nap új azonosítót kapnak).
 CIM_ISMETLES_NAP = 14
-# Éjszaka nem posztolunk: az új események a jó reggelt posztig várnak (ejszakai_sor).
+# Éjszaka csak a váratlan, azonnali esetek mennek ki; a tervezett lezárások
+# a jó reggelt posztig várnak (ejszakai_sor).
+AZONNALI = re.compile(r"(?i)csőtörés|műszaki hiba|meghibásod|elakadt|forgalmi akadály|akadály miatt|"
+                      r"kidőlt|tűz|beszakad|úthiba|útbeszakadás|olajfolt|rendőri intézkedés|"
+                      r"műszaki mentés|vízátfolyás|elárasztott|baleset")
 
 # A cím elején álló kerületjelzés ("XXI., Szent István úton") a legbiztosabb.
 KERULET_MINTA = re.compile(r"(?<![IVX])(XXI|XX)\.\s*,")
@@ -214,8 +218,12 @@ def main():
         ujak.append(e)
 
     if ujak and ejszaka(t):
-        print(f"🌙 Éjszaka van, {len(ujak)} új esemény reggelig vár.")
-    elif ujak:
+        # Éjjel csak a váratlan, azonnali eset megy ki; a tervezett lezárások reggelig várnak
+        varo = [e for e in ujak if not AZONNALI.search(e["cim"])]
+        ujak = [e for e in ujak if AZONNALI.search(e["cim"])]
+        if varo:
+            print(f"🌙 Éjszaka van, {len(varo)} tervezett esemény reggelig vár.")
+    if ujak:
         for e in ujak:
             print(f"🆕 {e['cim']}")
         # Sürgős poszt, de két poszt között így is eltelik legalább 10 perc;
