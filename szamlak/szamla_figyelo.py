@@ -4243,7 +4243,8 @@ def _osszesito_kuldese(allapot: dict, erintett, cim_resz: str, bevezeto: str, ci
     print(f"      📤 Összesítő elküldve{cim_resz} ({len(erintett_rekordok)} számla).")
 
 
-def _tulajdonos_osszesito_masolat(allapot: dict, erintett, cim_resz: str, statisztika: dict, pdf_csatolas: bool):
+def _tulajdonos_osszesito_masolat(allapot: dict, erintett, cim_resz: str, statisztika: dict, pdf_csatolas: bool,
+                                  esemeny: str = None):
     """A tulajdonos MINDEN bérlői-kör-összesítőről automatikus MÁSOLATOT
     kap (ld. "3 CÍMZETTI KÖR" szekció, 2. pont/b) - ezt hívjuk MINDEN
     olyan helyen, ahol egy bérlői körnek tényleg kiment egy összesítő
@@ -4259,7 +4260,7 @@ def _tulajdonos_osszesito_masolat(allapot: dict, erintett, cim_resz: str, statis
         "<p>Ez egy bérlői kör összesítőjének MÁSOLATA - a tulajdonos minden "
         "bérlői-kör-összesítőről automatikusan másolatot kap:</p>",
         tulajdonos_cimzett, statisztika, pdf_csatolas,
-        esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
+        esemeny=esemeny or f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
     )
 
 
@@ -4281,15 +4282,19 @@ def _berlo_kor_osszesito_kuldese_most(allapot: dict, szamlak: dict, kor_kulcs: s
         return
     kor_nev = (allapot.get("kor_nevek") or {}).get(kor_kulcs) or ("1. kör" if kor_kulcs == "kor_a" else "2. kör")
     cim_resz = f" – {kor_nev} (azonnali, dashboard)"
+    kezi_esemeny = f"kor_osszesito_kezi:{magyar_ido().isoformat()}:{kor_kulcs}"
     _osszesito_kuldese(
         allapot, erintett, cim_resz, "", cimzett, statisztika, pdf_csatolas,
         html=kor_havi_osszesito_html([r for _, r in erintett], kor_nev,
                                      _feldolgozas_alatti_szamlak_korhoz(szamlak, kor_kulcs)),
         targy=f"Fizetésre váró számlák – {len(erintett)} db – "
               f"{forint(sum(r.get('osszeg') or 0 for _, r in erintett))}",
-        esemeny=f"kor_osszesito:{magyar_ma().isoformat()}:{cim_resz}",
+        # A gombnyomás kifejezett kérés: minden kézi küldés saját eseményt
+        # kap, így a napi ismétlés-szűrő nem nyeli el az újraküldést.
+        esemeny=kezi_esemeny,
     )
-    _tulajdonos_osszesito_masolat(allapot, erintett, cim_resz, statisztika, pdf_csatolas)
+    _tulajdonos_osszesito_masolat(allapot, erintett, cim_resz, statisztika, pdf_csatolas,
+                                  esemeny=kezi_esemeny + ":masolat")
 
 
 def _tulajdonos_osszesito_kuldese_most(allapot: dict, szamlak: dict, statisztika: dict, pdf_csatolas: bool):
