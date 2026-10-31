@@ -1,0 +1,16 @@
+name: katasztrófavédelem próba (ideiglenes)
+on: workflow_dispatch
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
+          curl -sL -A "$UA" -o /tmp/f.html -w "HTTP %{http_code} %{size_download} %{url_effective}\n" https://www.katasztrofavedelem.hu/30/tegnap-tortent
+          grep -oiE '<link[^>]*(rss|atom)[^>]*>' /tmp/f.html | head
+          grep -oE 'href="[^"]*"' /tmp/f.html | sort -u | grep -iE 'rss|feed|/30/|hir' | head -40
+          python3 -c "import re;h=open('/tmp/f.html',encoding='utf-8',errors='ignore').read();i=h.find('<main');i=i if i>0 else h.find('tegnap');print(re.sub(r'\s+',' ',h[i:i+7000]))"
+          for u in https://www.katasztrofavedelem.hu/rss https://www.katasztrofavedelem.hu/feed https://www.katasztrofavedelem.hu/30/tegnap-tortent/rss; do curl -sL -A "$UA" -o /tmp/r -w "$u HTTP %{http_code} %{content_type}\n" "$u"; head -c 300 /tmp/r; echo; done
+          L=$(grep -oE 'href="[^"]*/30/[0-9]+[^"]*"' /tmp/f.html | head -1 | sed 's/href="//;s/"$//'); echo "CIKK: $L"
+          case "$L" in http*) ;; *) L="https://www.katasztrofavedelem.hu$L";; esac
+          curl -sL -A "$UA" "$L" -o /tmp/c; python3 -c "import re;h=open('/tmp/c',encoding='utf-8',errors='ignore').read();i=h.find('<h1');print(re.sub(r'\s+',' ',h[i:i+5000]))"
