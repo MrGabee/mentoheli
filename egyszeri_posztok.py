@@ -277,6 +277,17 @@ A LIDL, a PENNY, a SPAR, a Reál, a CBA Prémium és a szigetszentmiklósi Aucha
 Ha tudjátok a kisebb csepeli boltok, pékségek, zöldségesek ünnepi nyitvatartását, írjátok meg kommentben, hogy mások is lássák! 👇
 
 #Csepel #nyitvatartás #mindenszentek"""),
+    "parkolas_szentimre_20261031": (date(2026, 10, 31), """✉️ OLVASÓI LEVÉL – PARKOLÁS A SZENT IMRE TÉR KÖRNYÉKÉN
+
+Egy olvasóm írt nekem egy gondolatot, ami szerintem sokunkat érint:
+
+„Sokunk gondja a parkolás a Szent Imre tér környékén, főleg most, hogy hamarosan megnyit a korcsolyapálya. A HÉV-megállónál, a Volánbusz-végállomással szemben van egy régóta kihasználatlan, elhanyagolt terület. Szerintem remek P+R parkoló lehetne belőle, és sok ember mindennapjait könnyítené meg.”
+
+Én is úgy látom, hogy a tér környékén főleg csúcsidőben és rendezvények idején nehéz helyet találni. Jó lenne, ha erre idővel megoldás születne.
+
+Mit gondoltok? Ti is nehezen találtok helyet arrafelé? Szerintetek jó ötlet lenne itt egy P+R parkoló? Írjátok meg kommentben! 👇
+
+#Csepel #parkolás #SzentImretér #olvasóilevél"""),
 }
 
 
