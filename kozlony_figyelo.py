@@ -71,15 +71,20 @@ def ment(a):
 
 
 def lapok():
-    """[(azonosító, lap neve, megjelenés napja, pdf-link)] a nyitóoldalról."""
+    """[(azonosító, lap neve, megjelenés napja, pdf-link)] a nyitóoldal összes PDF-jéről."""
     h = letolt(FOOLDAL).decode("utf-8", "ignore")
-    ki = []
-    for blokk in h.split('class="fresh-row"')[1:]:
-        nev = re.search(r'itemprop="name"\s*>([^<]+)<', blokk)
-        pdf = re.search(r'href="([^"]+/dokumentumok/([0-9a-f]{20,})/letoltes)"', blokk)
-        nap = re.search(r'itemprop="datePublished" content="([^"]+)"', blokk)
-        if nev and pdf:
-            ki.append((pdf.group(2), unescape(nev.group(1)).strip(), nap.group(1) if nap else "", pdf.group(1)))
+    ki, volt = [], set()
+    for m in re.finditer(r'href="([^"]+/dokumentumok/([0-9a-f]{20,})/letoltes)"', h):
+        azon = m.group(2)
+        if azon in volt:
+            continue
+        volt.add(azon)
+        elotte = h[max(0, m.start() - 2500): m.start()]
+        utana = h[m.end(): m.end() + 600]
+        nevek = re.findall(r'itemprop="name"\s*>([^<]+)<', elotte + utana)
+        nevek = [n for n in nevek if "Kiadó" not in n]
+        nap = re.findall(r'itemprop="datePublished" content="([^"]+)"', elotte + utana)
+        ki.append((azon, unescape(nevek[-1] if nevek else "Magyar Közlöny").strip(), nap[-1] if nap else "", m.group(1)))
     return ki
 
 
@@ -185,6 +190,7 @@ def main():
         except Exception as e:
             print(f"⚠️ Nem sikerült feldolgozni: {e}")
             continue
+        print(f"   {len(szoveg)} karakter szöveg")
         latott.add(azon)
         a["latott"] = sorted(latott)
         ment(a)
