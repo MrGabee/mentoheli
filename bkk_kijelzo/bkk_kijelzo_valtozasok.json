@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-01T01:48:31.043779+02:00",
+  "frissitve": "2026-11-01T01:49:04.514044+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:30:28.868890+02:00",
-      "kulcs": "V1586",
-      "rendszam": "V1586",
-      "vehicle_id": "4638",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "28E",
-      "route_id": "3285",
-      "lat": 47.474666595458984,
-      "lon": 19.178207397460938,
-      "elozo_szoveg": "Új köztemető",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.869135+02:00",
-      "kulcs": "V4136",
-      "rendszam": "V4136",
-      "vehicle_id": "4824",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.48171615600586,
-      "lon": 18.999040603637695,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
-    {
-      "idopont": "2026-10-31T13:30:28.869205+02:00",
-      "kulcs": "V4160",
-      "rendszam": "V4160",
-      "vehicle_id": "4848",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49591827392578,
-      "lon": 19.07286834716797,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)"
-    },
     {
       "idopont": "2026-10-31T13:30:28.869301+02:00",
       "kulcs": "V4238",
@@ -260000,6 +259961,45 @@
       "lon": 19.136669158935547,
       "elozo_szoveg": "Erzsébet k.né útja, alulj.",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-01T01:49:04.411909+02:00",
+      "kulcs": "V2007",
+      "rendszam": "V2007",
+      "vehicle_id": "2007",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47410202026367,
+      "lon": 19.047313690185547,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-01T01:49:04.412109+02:00",
+      "kulcs": "AAGL250",
+      "rendszam": "AAGL250",
+      "vehicle_id": "250",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.507179260253906,
+      "lon": 18.921642303466797,
+      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-01T01:49:04.412850+02:00",
+      "kulcs": "AAGL283",
+      "rendszam": "AAGL283",
+      "vehicle_id": "318",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45575714111328,
+      "lon": 18.9410343170166,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Kamaraerdő"
     }
   ]
 }
