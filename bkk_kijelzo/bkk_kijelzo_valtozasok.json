@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-01T05:00:29.838235+02:00",
+  "frissitve": "2026-11-01T05:01:01.743199+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:59:27.598010+02:00",
-      "kulcs": "PDB724",
-      "rendszam": "PDB724",
-      "vehicle_id": "7050",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.59848403930664,
-      "lon": 19.0543270111084,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
-    {
-      "idopont": "2026-10-31T13:59:27.600506+02:00",
-      "kulcs": "V2237",
-      "rendszam": "V2237",
-      "vehicle_id": "7369",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.548309326171875,
-      "lon": 19.02908706665039,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-10-31T13:59:27.600615+02:00",
-      "kulcs": "V2248",
-      "rendszam": "V2248",
-      "vehicle_id": "7380",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.4769401550293,
-      "lon": 19.047218322753906,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-10-31T13:59:27.600788+02:00",
-      "kulcs": "RVY607",
-      "rendszam": "RVY607",
-      "vehicle_id": "7436",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.39913558959961,
-      "lon": 19.20563316345215,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-31T13:59:27.601320+02:00",
-      "kulcs": "SKR723",
-      "rendszam": "SKR723",
-      "vehicle_id": "7672",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4327392578125,
-      "lon": 19.261594772338867,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-10-31T13:59:27.601635+02:00",
       "kulcs": "T9112",
@@ -260000,6 +259935,71 @@
       "lon": 19.00870704650879,
       "elozo_szoveg": "Svábhegy ► Csillebérc",
       "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-11-01T05:01:01.667229+02:00",
+      "kulcs": "AADR706",
+      "rendszam": "AADR706",
+      "vehicle_id": "174",
+      "vehicle_label": "Ültetvény utca",
+      "vonal_szam": "54",
+      "route_id": "0540",
+      "lat": 47.42463302612305,
+      "lon": 19.158817291259766,
+      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
+      "uj_szoveg": "Pestszentimre, Ültetvény utca"
+    },
+    {
+      "idopont": "2026-11-01T05:01:01.667866+02:00",
+      "kulcs": "FLR710",
+      "rendszam": "FLR710",
+      "vehicle_id": "3124",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "97E",
+      "route_id": "0975",
+      "lat": 47.46904373168945,
+      "lon": 19.294931411743164,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-01T05:01:01.667940+02:00",
+      "kulcs": "FLR725",
+      "rendszam": "FLR725",
+      "vehicle_id": "3139",
+      "vehicle_label": "R.csaba - Kőbánya-Kisp.M",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.4796142578125,
+      "lon": 19.255537033081055,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Kucorgó tér ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-11-01T05:01:01.669711+02:00",
+      "kulcs": "SKR728",
+      "rendszam": "SKR728",
+      "vehicle_id": "7677",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.46506881713867,
+      "lon": 19.127309799194336,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-01T05:01:01.670127+02:00",
+      "kulcs": "415 088",
+      "rendszam": "415 088",
+      "vehicle_id": "945514150883",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S72",
+      "route_id": "S72",
+      "lat": 47.742759704589844,
+      "lon": 18.71725082397461,
+      "elozo_szoveg": "Esztergom",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
