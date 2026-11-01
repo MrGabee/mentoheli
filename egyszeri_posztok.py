@@ -277,6 +277,22 @@ A LIDL, a PENNY, a SPAR, a Reál, a CBA Prémium és a szigetszentmiklósi Aucha
 Ha tudjátok a kisebb csepeli boltok, pékségek, zöldségesek ünnepi nyitvatartását, írjátok meg kommentben, hogy mások is lássák! 👇
 
 #Csepel #nyitvatartás #mindenszentek"""),
+    "birkozo_vb_20261101": (date(2026, 11, 1), """🤼 VÉGET ÉRT AZ ASZTANAI BIRKÓZÓ-VB – KÉT CSEPELI IS OTT VOLT
+
+A kazahsztáni világbajnokságon a Csepel SC két birkózója, Fritsch Róbert és Bajcajev Vlagyiszlav képviselte Magyarországot.
+
+💪 Fritsch Róbert (kötöttfogás, 77 kg) remekül kezdett: a nyolcaddöntőben 6:1-re legyőzte a francia világbajnok Ibrahim Ghanemet. Ezután az iráni Ali Osku állította meg, aki végül bronzérmes lett. Mivel az iráni nem jutott döntőbe, Robinak nem nyílt lehetősége a vigaszágon javítani.
+
+💪 Bajcajev Vlagyiszlav (szabadfogás, 125 kg) az első körben venezuelai ellenfelét győzte le, majd az orosz Abdulla Kurbanov ellen kikapott. A vigaszágon nagyszerű birkózással 4:2-re legyőzte a lengyel Robert Barant, és bronzmérkőzést vívhatott. Ott az idei Európa-bajnoki döntő visszavágójában az azeri Giorgi Meshvildishvili bizonyult jobbnak, így Vlagyiszlav az előkelő 5. helyen zárt!
+
+🇭🇺 A magyar csapat összesen két ezüstéremmel és egy 5. hellyel zárta a vb-t.
+
+Gratulálok mindkettőjüknek! Hajrá, Csepel! ❤️💙
+
+ℹ️ Forrás: Csepel SC
+👉 https://www.csepelsc.com/post/birk%C3%B3z%C3%A1s-v%C3%A9get-%C3%A9rt-az-asztanai-vb
+
+#Csepel #CsepelSC #birkózás #vb"""),
     "zsido_temeto_20261101": (date(2026, 11, 1), """🕯️ A CSEPELI ZSIDÓ TEMETŐ
 
 A tegnapi temetős posztom alatt szóba került a csepeli zsidó temető is. Utánanéztem, és összegyűjtöttem, amit találtam.
