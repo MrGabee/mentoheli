@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:44:50.124347+02:00",
+  "frissitve": "2026-11-01T04:45:25.394562+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:56:10.473439+02:00",
-      "kulcs": "415 123",
-      "rendszam": "415 123",
-      "vehicle_id": "945514151238",
-      "vehicle_label": "Budapest-Keleti",
-      "vonal_szam": "S80",
-      "route_id": "S80",
-      "lat": 47.546791076660156,
-      "lon": 19.384639739990234,
-      "elozo_szoveg": "Gödöllő",
-      "uj_szoveg": "Budapest-Keleti"
-    },
-    {
-      "idopont": "2026-10-31T13:56:10.473906+02:00",
-      "kulcs": "AADI602",
-      "rendszam": "AADI602",
-      "vehicle_id": "99",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.49347686767578,
-      "lon": 19.032533645629883,
-      "elozo_szoveg": "Naphegy tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-10-31T13:57:13.910534+02:00",
-      "kulcs": "AADI651",
-      "rendszam": "AADI651",
-      "vehicle_id": "150",
-      "vehicle_label": "Albertfalva vasútállomás",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.546905517578125,
-      "lon": 19.142332077026367,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Albertfalva vasútállomás"
-    },
     {
       "idopont": "2026-10-31T13:57:13.910577+02:00",
       "kulcs": "AADI656",
@@ -260000,6 +259961,45 @@
       "lon": 19.028749465942383,
       "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
       "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-01T04:45:25.296303+02:00",
+      "kulcs": "V2008",
+      "rendszam": "V2008",
+      "vehicle_id": "2008",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.507328033447266,
+      "lon": 19.0250186920166,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-01T04:45:25.298871+02:00",
+      "kulcs": "AAMH680",
+      "rendszam": "AAMH680",
+      "vehicle_id": "523",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48420333862305,
+      "lon": 19.12731170654297,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-01T04:45:25.299388+02:00",
+      "kulcs": "SKR831",
+      "rendszam": "SKR831",
+      "vehicle_id": "7717",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.424888610839844,
+      "lon": 19.232534408569336,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
     }
   ]
 }
