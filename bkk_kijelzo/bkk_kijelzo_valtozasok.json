@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-01T02:31:46.611442+02:00",
+  "frissitve": "2026-11-01T02:32:17.114413+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:36:10.053108+02:00",
-      "kulcs": "SKR723",
-      "rendszam": "SKR723",
-      "vehicle_id": "7672",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46296310424805,
-      "lon": 19.15001678466797,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-31T13:36:10.053172+02:00",
-      "kulcs": "SKR737",
-      "rendszam": "SKR737",
-      "vehicle_id": "7686",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.43276596069336,
-      "lon": 19.2615966796875,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-10-31T13:36:10.053276+02:00",
-      "kulcs": "SKR829",
-      "rendszam": "SKR829",
-      "vehicle_id": "7715",
-      "vehicle_label": "Zodony utca",
-      "vonal_szam": "119",
-      "route_id": "1190",
-      "lat": 47.444583892822266,
-      "lon": 19.09747886657715,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Zodony utca"
-    },
-    {
-      "idopont": "2026-10-31T13:36:10.053476+02:00",
-      "kulcs": "STZ868",
-      "rendszam": "STZ868",
-      "vehicle_id": "7823",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "140A",
-      "route_id": "1401",
-      "lat": 47.50642395019531,
-      "lon": 19.02430534362793,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
     {
       "idopont": "2026-10-31T13:36:10.053705+02:00",
       "kulcs": "T9135",
@@ -260000,6 +259948,58 @@
       "lon": 19.070348739624023,
       "elozo_szoveg": "Soroksár, IKEA áruház",
       "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-11-01T02:32:17.022124+02:00",
+      "kulcs": "V2019",
+      "rendszam": "V2019",
+      "vehicle_id": "2019",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.474090576171875,
+      "lon": 19.047073364257812,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-01T02:32:17.024742+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699783325195,
+      "lon": 19.055740356445312,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-01T02:32:17.025265+02:00",
+      "kulcs": "RVY613",
+      "rendszam": "RVY613",
+      "vehicle_id": "7442",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.4267578125,
+      "lon": 19.15921401977539,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-01T02:32:17.025482+02:00",
+      "kulcs": "AOFL193",
+      "rendszam": "AOFL193",
+      "vehicle_id": "777",
+      "vehicle_label": "Kőérberek",
+      "vonal_szam": "987",
+      "route_id": "9870",
+      "lat": 47.464073181152344,
+      "lon": 19.018768310546875,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Kőérberek"
     }
   ]
 }
