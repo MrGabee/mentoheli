@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:33:09.243541+02:00",
+  "frissitve": "2026-11-01T04:33:39.443451+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:55:04.785158+02:00",
-      "kulcs": "AADI619",
-      "rendszam": "AADI619",
-      "vehicle_id": "59",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.50120544433594,
-      "lon": 19.13630485534668,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-10-31T13:55:04.785383+02:00",
-      "kulcs": "AELD565",
-      "rendszam": "AELD565",
-      "vehicle_id": "618",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.48125457763672,
-      "lon": 19.065330505371094,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-10-31T13:55:04.785475+02:00",
-      "kulcs": "AELD552",
-      "rendszam": "AELD552",
-      "vehicle_id": "625",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "194B",
-      "route_id": "1942",
-      "lat": 47.424110412597656,
-      "lon": 19.171192169189453,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-10-31T13:55:04.785487+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.500389099121094,
-      "lon": 19.035846710205078,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-31T13:55:04.785551+02:00",
-      "kulcs": "NCV296",
-      "rendszam": "NCV296",
-      "vehicle_id": "6261",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50685119628906,
-      "lon": 19.023561477661133,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-10-31T13:55:04.785568+02:00",
       "kulcs": "NCV300",
@@ -260000,6 +259935,71 @@
       "lon": 19.038719177246094,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-01T04:33:39.386548+02:00",
+      "kulcs": "MUT896",
+      "rendszam": "MUT896",
+      "vehicle_id": "5949",
+      "vehicle_label": "Pesterzsébeti lakótelep",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48845291137695,
+      "lon": 19.064659118652344,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-01T04:33:39.386577+02:00",
+      "kulcs": "MUU904",
+      "rendszam": "MUU904",
+      "vehicle_id": "5957",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.426597595214844,
+      "lon": 19.160846710205078,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-01T04:33:39.386709+02:00",
+      "kulcs": "PDN604",
+      "rendszam": "PDN604",
+      "vehicle_id": "7076",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.47949981689453,
+      "lon": 19.067317962646484,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-11-01T04:33:39.387047+02:00",
+      "kulcs": "AADI597",
+      "rendszam": "AADI597",
+      "vehicle_id": "93",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.51211929321289,
+      "lon": 19.079864501953125,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-11-01T04:33:39.387093+02:00",
+      "kulcs": "AOIM025",
+      "rendszam": "AOIM025",
+      "vehicle_id": "945",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.40549087524414,
+      "lon": 19.01432991027832,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
