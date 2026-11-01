@@ -277,6 +277,16 @@ A LIDL, a PENNY, a SPAR, a Reál, a CBA Prémium és a szigetszentmiklósi Aucha
 Ha tudjátok a kisebb csepeli boltok, pékségek, zöldségesek ünnepi nyitvatartását, írjátok meg kommentben, hogy mások is lássák! 👇
 
 #Csepel #nyitvatartás #mindenszentek"""),
+    "talalt_berlet_20261101": (date(2026, 11, 1), """🔎 GAZDÁJÁT KERESI EGY BÉRLET ÉS TÖBB IGAZOLVÁNY
+
+Oláh Bianka bérlete és egyéb igazolványai ma (vasárnap) reggel a 138-as buszon maradtak.
+
+🚌 Ma 18 óráig közvetlenül az AOJM-876 rendszámú buszon lehet átvenni őket.
+🏢 18 óra után a csepeli buszgarázsba kerülnek, onnan pedig a BKV Akácfa utcai talált tárgyak osztályára.
+
+Ha ismeritek Biankát, jelöljétek meg vagy szóljatok neki, hogy minél előbb visszakapja a holmiját! Osszátok, hogy eljusson hozzá! 🙏
+
+#Csepel #találttárgy #138 #BKV"""),
     "birkozo_vb_20261101": (date(2026, 11, 1), """🤼 VÉGET ÉRT AZ ASZTANAI BIRKÓZÓ-VB – KÉT CSEPELI IS OTT VOLT
 
 A kazahsztáni világbajnokságon a Csepel SC két birkózója, Fritsch Róbert és Bajcajev Vlagyiszlav képviselte Magyarországot.
