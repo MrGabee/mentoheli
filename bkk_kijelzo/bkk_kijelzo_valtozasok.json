@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T01:33:10.381570+02:00",
+  "frissitve": "2026-11-02T01:34:07.076233+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:07:32.217776+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.53328323364258,
-      "lon": 19.105754852294922,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-01T13:07:32.217802+02:00",
-      "kulcs": "T8111",
-      "rendszam": "T8111",
-      "vehicle_id": "7891",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.524925231933594,
-      "lon": 19.12497901916504,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-11-01T13:07:32.219287+02:00",
-      "kulcs": "AOGL323",
-      "rendszam": "AOGL323",
-      "vehicle_id": "914",
-      "vehicle_label": "Baross G.-telep, Ispiláng u.",
-      "vonal_szam": "114",
-      "route_id": "1140",
-      "lat": 47.477027893066406,
-      "lon": 19.047496795654297,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
     {
       "idopont": "2026-11-01T13:07:32.219517+02:00",
       "kulcs": "AOGL325",
@@ -260000,6 +259961,45 @@
       "lon": 19.020740509033203,
       "elozo_szoveg": "Budapest-Déli",
       "uj_szoveg": "Székesfehérvár"
+    },
+    {
+      "idopont": "2026-11-02T01:34:06.982910+02:00",
+      "kulcs": "T8104",
+      "rendszam": "T8104",
+      "vehicle_id": "7341",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49744415283203,
+      "lon": 19.054973602294922,
+      "elozo_szoveg": "Népliget M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-02T01:34:06.983052+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.512447357177734,
+      "lon": 19.079561233520508,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-11-02T01:34:06.983454+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.46297073364258,
+      "lon": 19.006643295288086,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
     }
   ]
 }
