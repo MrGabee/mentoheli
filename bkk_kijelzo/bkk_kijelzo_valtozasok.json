@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T01:46:51.959554+02:00",
+  "frissitve": "2026-11-02T01:47:25.100195+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:09:42.650991+02:00",
-      "kulcs": "V1355",
-      "rendszam": "V1355",
-      "vehicle_id": "4456",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.5125617980957,
-      "lon": 19.047725677490234,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-01T13:09:42.651568+02:00",
-      "kulcs": "V4139",
-      "rendszam": "V4139",
-      "vehicle_id": "4827",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.481956481933594,
-      "lon": 18.9993896484375,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
-    {
-      "idopont": "2026-11-01T13:09:42.651800+02:00",
-      "kulcs": "V4287",
-      "rendszam": "V4287",
-      "vehicle_id": "4946",
-      "vehicle_label": "Izraelita temető",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49583435058594,
-      "lon": 19.072784423828125,
-      "elozo_szoveg": "Izraelita temető",
-      "uj_szoveg": "Kőbányai út ► Izraelita temető"
-    },
     {
       "idopont": "2026-11-01T13:09:42.651909+02:00",
       "kulcs": "AAMH657",
@@ -260000,6 +259961,45 @@
       "lon": 19.069568634033203,
       "elozo_szoveg": "Astoria M ► Pestszentimre vasútállomás",
       "uj_szoveg": "Határ út M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-02T01:47:25.012215+02:00",
+      "kulcs": "AUAN756",
+      "rendszam": "AUAN756",
+      "vehicle_id": "1130",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43233108520508,
+      "lon": 19.261016845703125,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-11-02T01:47:25.018922+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.486976623535156,
+      "lon": 19.067224502563477,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-02T01:47:25.019331+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48373031616211,
+      "lon": 19.022634506225586,
+      "elozo_szoveg": "Astoria M ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep"
     }
   ]
 }
