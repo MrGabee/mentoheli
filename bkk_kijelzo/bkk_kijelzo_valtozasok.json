@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-01T02:30:06.902550+02:00",
+  "frissitve": "2026-11-01T02:30:34.442429+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:36:10.048287+02:00",
-      "kulcs": "NCV300",
-      "rendszam": "NCV300",
-      "vehicle_id": "6265",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.497703552246094,
-      "lon": 19.053443908691406,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-31T13:36:10.048504+02:00",
-      "kulcs": "NNE065",
-      "rendszam": "NNE065",
-      "vehicle_id": "6461",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.54355239868164,
-      "lon": 19.0319881439209,
-      "elozo_szoveg": "Szent Margit Kórház ► Harsánylejtő",
-      "uj_szoveg": "Harsánylejtő"
-    },
-    {
-      "idopont": "2026-10-31T13:36:10.048715+02:00",
-      "kulcs": "NTP538",
-      "rendszam": "NTP538",
-      "vehicle_id": "6514",
-      "vehicle_label": "Mindszenty J. bíboros tér",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.47408676147461,
-      "lon": 19.04823112487793,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Mindszenty József bíboros tér"
-    },
-    {
-      "idopont": "2026-10-31T13:36:10.048757+02:00",
-      "kulcs": "NTP541",
-      "rendszam": "NTP541",
-      "vehicle_id": "6517",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.4873046875,
-      "lon": 18.989810943603516,
-      "elozo_szoveg": "Mindszenty József bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-10-31T13:36:10.048886+02:00",
       "kulcs": "NWB363",
@@ -260000,6 +259948,58 @@
       "lon": 19.12798500061035,
       "elozo_szoveg": "Szentlőrinci úti lakótelep",
       "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-01T02:30:34.364330+02:00",
+      "kulcs": "AAGL250",
+      "rendszam": "AAGL250",
+      "vehicle_id": "250",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4988899230957,
+      "lon": 19.050853729248047,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-01T02:30:34.365343+02:00",
+      "kulcs": "FLR716",
+      "rendszam": "FLR716",
+      "vehicle_id": "3130",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.48170471191406,
+      "lon": 19.08169174194336,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-01T02:30:34.365389+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48389434814453,
+      "lon": 19.12753677368164,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-01T02:30:34.366507+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47715377807617,
+      "lon": 19.049562454223633,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
     }
   ]
 }
