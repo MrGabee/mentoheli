@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-01T03:38:33.504347+02:00",
+  "frissitve": "2026-11-01T03:39:06.120539+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:47:45.241433+02:00",
-      "kulcs": "AADI650",
-      "rendszam": "AADI650",
-      "vehicle_id": "149",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44160461425781,
-      "lon": 19.034221649169922,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-10-31T13:47:45.241535+02:00",
-      "kulcs": "AADR702",
-      "rendszam": "AADR702",
-      "vehicle_id": "169",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.43341827392578,
-      "lon": 19.22075080871582,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca",
-      "uj_szoveg": "Ganztelep, Mednyánszky utca"
-    },
     {
       "idopont": "2026-10-31T13:47:45.241561+02:00",
       "kulcs": "AADR706",
@@ -260000,6 +259974,32 @@
       "lon": 19.01399803161621,
       "elozo_szoveg": "Budatétény",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-01T03:39:06.059827+02:00",
+      "kulcs": "AAGL291",
+      "rendszam": "AAGL291",
+      "vehicle_id": "324",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.59352111816406,
+      "lon": 19.357547760009766,
+      "elozo_szoveg": "Gödöllő H",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-01T03:39:06.060635+02:00",
+      "kulcs": "MUT888",
+      "rendszam": "MUT888",
+      "vehicle_id": "5941",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.525367736816406,
+      "lon": 19.03783416748047,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
     }
   ]
 }
