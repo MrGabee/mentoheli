@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:37:53.225124+02:00",
+  "frissitve": "2026-11-01T04:38:21.717159+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:55:04.788840+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "251A",
-      "route_id": "2511",
-      "lat": 47.46480178833008,
-      "lon": 19.017578125,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Lomnici utca ► Városház tér"
-    },
-    {
-      "idopont": "2026-10-31T13:55:04.788953+02:00",
-      "kulcs": "AOFL207",
-      "rendszam": "AOFL207",
-      "vehicle_id": "793",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.483436584472656,
-      "lon": 19.043445587158203,
-      "elozo_szoveg": "Citadella ► Sánc utca",
-      "uj_szoveg": "Sánc utca"
-    },
-    {
-      "idopont": "2026-10-31T13:55:04.789017+02:00",
-      "kulcs": "AOFL222",
-      "rendszam": "AOFL222",
-      "vehicle_id": "809",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.49355697631836,
-      "lon": 19.011913299560547,
-      "elozo_szoveg": "Mártonhegy",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-31T13:55:04.789092+02:00",
-      "kulcs": "AOFL242",
-      "rendszam": "AOFL242",
-      "vehicle_id": "830",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "121",
-      "route_id": "1210",
-      "lat": 47.559410095214844,
-      "lon": 19.0826473236084,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-10-31T13:55:04.789374+02:00",
       "kulcs": "1107-754-1108-1109-755-1110",
@@ -260000,6 +259948,58 @@
       "lon": 19.118606567382812,
       "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-01T04:38:21.624972+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.598384857177734,
+      "lon": 19.12141990661621,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-11-01T04:38:21.625036+02:00",
+      "kulcs": "AAMH640",
+      "rendszam": "AAMH640",
+      "vehicle_id": "483",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.432281494140625,
+      "lon": 19.2608699798584,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-11-01T04:38:21.625225+02:00",
+      "kulcs": "AILJ862",
+      "rendszam": "AILJ862",
+      "vehicle_id": "669",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266357421875,
+      "lon": 19.161060333251953,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-01T04:38:21.625874+02:00",
+      "kulcs": "415 081",
+      "rendszam": "415 081",
+      "vehicle_id": "945514150818",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.7734489440918,
+      "lon": 19.149539947509766,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
