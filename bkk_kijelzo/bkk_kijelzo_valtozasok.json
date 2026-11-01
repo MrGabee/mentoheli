@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-02T01:58:50.230992+02:00",
+  "frissitve": "2026-11-02T01:59:21.413563+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:10:39.983334+02:00",
-      "kulcs": "T9123",
-      "rendszam": "T9123",
-      "vehicle_id": "7862",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.5158576965332,
-      "lon": 19.051219940185547,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.983533+02:00",
-      "kulcs": "T8110",
-      "rendszam": "T8110",
-      "vehicle_id": "7889",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50935363769531,
-      "lon": 19.057552337646484,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.984034+02:00",
-      "kulcs": "AADI587",
-      "rendszam": "AADI587",
-      "vehicle_id": "87",
-      "vehicle_label": "Savoyai Jenő tér",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.46439743041992,
-      "lon": 19.018817901611328,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Regényes utca ► Savoyai Jenő tér"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.984926+02:00",
-      "kulcs": "AOIM014",
-      "rendszam": "AOIM014",
-      "vehicle_id": "934",
-      "vehicle_label": "Csepel, Határ utca",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.483943939208984,
-      "lon": 19.12752342224121,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Csepel, Határ utca"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.985260+02:00",
-      "kulcs": "415 088",
-      "rendszam": "415 088",
-      "vehicle_id": "945514150883",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.742740631103516,
-      "lon": 18.7172794342041,
-      "elozo_szoveg": "Esztergom",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
     {
       "idopont": "2026-11-01T13:10:39.985275+02:00",
       "kulcs": "415 089",
@@ -260000,6 +259935,71 @@
       "lon": 19.0471134185791,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-02T01:59:21.318727+02:00",
+      "kulcs": "AADI566",
+      "rendszam": "AADI566",
+      "vehicle_id": "42",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.5004997253418,
+      "lon": 19.135589599609375,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-02T01:59:21.319279+02:00",
+      "kulcs": "PKN602",
+      "rendszam": "PKN602",
+      "vehicle_id": "7191",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52100372314453,
+      "lon": 19.167007446289062,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-02T01:59:21.319577+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49922561645508,
+      "lon": 19.009050369262695,
+      "elozo_szoveg": "Svábhegy ► Csillebérc",
+      "uj_szoveg": "Csillebérc, Gyermekvasút"
+    },
+    {
+      "idopont": "2026-11-02T01:59:21.319867+02:00",
+      "kulcs": "AOFL250",
+      "rendszam": "AOFL250",
+      "vehicle_id": "838",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.44170379638672,
+      "lon": 19.18587303161621,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
+    },
+    {
+      "idopont": "2026-11-02T01:59:21.320153+02:00",
+      "kulcs": "AOIM036",
+      "rendszam": "AOIM036",
+      "vehicle_id": "956",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.38920593261719,
+      "lon": 18.959266662597656,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
