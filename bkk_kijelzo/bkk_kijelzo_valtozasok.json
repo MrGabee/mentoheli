@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-01T03:56:31.376724+02:00",
+  "frissitve": "2026-11-01T03:56:57.658410+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:49:36.509890+02:00",
-      "kulcs": "T9104",
-      "rendszam": "T9104",
-      "vehicle_id": "7351",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.50126266479492,
-      "lon": 19.10782241821289,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-10-31T13:49:36.509944+02:00",
-      "kulcs": "T9110",
-      "rendszam": "T9110",
-      "vehicle_id": "7357",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.50028610229492,
-      "lon": 19.05507469177246,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
     {
       "idopont": "2026-10-31T13:49:36.510304+02:00",
       "kulcs": "RVY613",
@@ -260000,6 +259974,32 @@
       "lon": 19.141796112060547,
       "elozo_szoveg": "Astoria M ► Móricz Zsigmond körtér M",
       "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-01T03:56:57.564581+02:00",
+      "kulcs": "LRV480",
+      "rendszam": "LRV480",
+      "vehicle_id": "3676",
+      "vehicle_label": "Tábor-hegy",
+      "vonal_szam": "937",
+      "route_id": "9370",
+      "lat": 47.55054473876953,
+      "lon": 19.042098999023438,
+      "elozo_szoveg": "Tábor-hegy",
+      "uj_szoveg": "Testvér-hegy ► Tábor-hegy"
+    },
+    {
+      "idopont": "2026-11-01T03:56:57.565704+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51325988769531,
+      "lon": 19.101747512817383,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
