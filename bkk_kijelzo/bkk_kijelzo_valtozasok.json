@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-02T01:43:31.380167+02:00",
+  "frissitve": "2026-11-02T01:44:03.511192+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:08:37.213058+02:00",
-      "kulcs": "918071938891",
-      "rendszam": "918071938891",
-      "vehicle_id": "918071938891",
-      "vehicle_label": "Szombathely",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.46345138549805,
-      "lon": 19.020889282226562,
-      "elozo_szoveg": "Budapest-Déli",
-      "uj_szoveg": "Szombathely"
-    },
-    {
-      "idopont": "2026-11-01T13:08:37.213854+02:00",
-      "kulcs": "815 008",
-      "rendszam": "815 008",
-      "vehicle_id": "945518150087",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S70",
-      "route_id": "S70",
-      "lat": 47.77241134643555,
-      "lon": 19.150400161743164,
-      "elozo_szoveg": "Vác",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-11-01T13:08:37.214112+02:00",
-      "kulcs": "AOIM032",
-      "rendszam": "AOIM032",
-      "vehicle_id": "952",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.547096252441406,
-      "lon": 19.141990661621094,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
-    {
-      "idopont": "2026-11-01T13:08:37.214392+02:00",
-      "kulcs": "AOJM864",
-      "rendszam": "AOJM864",
-      "vehicle_id": "987",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.4448356628418,
-      "lon": 19.0978946685791,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Kálvin tér M"
-    },
     {
       "idopont": "2026-11-01T13:09:42.648920+02:00",
       "kulcs": "AADI635",
@@ -260000,6 +259948,58 @@
       "lon": 19.136432647705078,
       "elozo_szoveg": "Astoria M ► Újpalota",
       "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-02T01:44:03.427679+02:00",
+      "kulcs": "AUAN756",
+      "rendszam": "AUAN756",
+      "vehicle_id": "1130",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.429569244384766,
+      "lon": 19.263416290283203,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-02T01:44:03.432506+02:00",
+      "kulcs": "AADI583",
+      "rendszam": "AADI583",
+      "vehicle_id": "62",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.52003860473633,
+      "lon": 19.148143768310547,
+      "elozo_szoveg": "Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-11-02T01:44:03.432708+02:00",
+      "kulcs": "PKN602",
+      "rendszam": "PKN602",
+      "vehicle_id": "7191",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.50138854980469,
+      "lon": 19.120182037353516,
+      "elozo_szoveg": "Örs vezér tere M+H ► Árpádföld",
+      "uj_szoveg": "Árpádföld"
+    },
+    {
+      "idopont": "2026-11-02T01:44:03.432946+02:00",
+      "kulcs": "SKR809",
+      "rendszam": "SKR809",
+      "vehicle_id": "7695",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.501766204833984,
+      "lon": 19.135581970214844,
+      "elozo_szoveg": "Nyugati pályaudvar M",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
     }
   ]
 }
