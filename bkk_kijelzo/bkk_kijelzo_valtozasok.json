@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:43:53.002383+02:00",
+  "frissitve": "2026-11-01T04:44:21.001843+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:56:10.469544+02:00",
-      "kulcs": "AOGF659",
-      "rendszam": "AOGF659",
-      "vehicle_id": "741",
-      "vehicle_label": "Csepel, Határ utca",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.483848571777344,
-      "lon": 19.127620697021484,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Csepel, Határ utca"
-    },
-    {
-      "idopont": "2026-10-31T13:56:10.469597+02:00",
-      "kulcs": "RVY602",
-      "rendszam": "RVY602",
-      "vehicle_id": "7431",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41678237915039,
-      "lon": 19.130666732788086,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
-    {
-      "idopont": "2026-10-31T13:56:10.470298+02:00",
-      "kulcs": "SKR721",
-      "rendszam": "SKR721",
-      "vehicle_id": "7670",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.463417053222656,
-      "lon": 19.14760398864746,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-10-31T13:56:10.470424+02:00",
-      "kulcs": "SKR803",
-      "rendszam": "SKR803",
-      "vehicle_id": "7689",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51465606689453,
-      "lon": 19.036649703979492,
-      "elozo_szoveg": "Rózsadomb ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-31T13:56:10.472349+02:00",
-      "kulcs": "953-677-954",
-      "rendszam": "953-677-954",
-      "vehicle_id": "905516569530-905536466774-905516569548",
-      "vehicle_label": "Közvágóhíd",
-      "vonal_szam": "H6",
-      "route_id": "H6",
-      "lat": 47.17560958862305,
-      "lon": 18.941667556762695,
-      "elozo_szoveg": "Ráckeve",
-      "uj_szoveg": "Közvágóhíd"
-    },
     {
       "idopont": "2026-10-31T13:56:10.472856+02:00",
       "kulcs": "AOIM004",
@@ -260000,6 +259935,71 @@
       "lon": 18.96480369567871,
       "elozo_szoveg": "Hűvösvölgy",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-01T04:44:20.909136+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.44815444946289,
+      "lon": 19.038455963134766,
+      "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-01T04:44:20.911570+02:00",
+      "kulcs": "AAGL315",
+      "rendszam": "AAGL315",
+      "vehicle_id": "343",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.43597412109375,
+      "lon": 18.97853660583496,
+      "elozo_szoveg": "Kamaraerdő",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-01T04:44:20.912040+02:00",
+      "kulcs": "PDZ830",
+      "rendszam": "PDZ830",
+      "vehicle_id": "7293",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.514427185058594,
+      "lon": 19.058717727661133,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-11-01T04:44:20.912497+02:00",
+      "kulcs": "415 027",
+      "rendszam": "415 027",
+      "vehicle_id": "945514150271",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.73554992675781,
+      "lon": 18.179309844970703,
+      "elozo_szoveg": "Komárom",
+      "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-11-01T04:44:20.912715+02:00",
+      "kulcs": "AOIM049",
+      "rendszam": "AOIM049",
+      "vehicle_id": "970",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.54729461669922,
+      "lon": 19.141828536987305,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
     }
   ]
 }
