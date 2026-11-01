@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:01:26.261328+02:00",
+  "frissitve": "2026-11-01T04:01:55.149411+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:50:50.279575+02:00",
-      "kulcs": "PHG641",
-      "rendszam": "PHG641",
-      "vehicle_id": "7165",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.54196548461914,
-      "lon": 19.151477813720703,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Cinkota H"
-    },
-    {
-      "idopont": "2026-10-31T13:50:50.279638+02:00",
-      "kulcs": "PHG652",
-      "rendszam": "PHG652",
-      "vehicle_id": "7176",
-      "vehicle_label": "Kistarcsa, kórház H",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.520042419433594,
-      "lon": 19.148212432861328,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Rákosszentmihály vá."
-    },
-    {
-      "idopont": "2026-10-31T13:50:50.279800+02:00",
-      "kulcs": "PKN619",
-      "rendszam": "PKN619",
-      "vehicle_id": "7208",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92A",
-      "route_id": "0921",
-      "lat": 47.53987121582031,
-      "lon": 19.252565383911133,
-      "elozo_szoveg": "Kistarcsa, kórház H",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
-    {
-      "idopont": "2026-10-31T13:50:50.280093+02:00",
-      "kulcs": "T8102",
-      "rendszam": "T8102",
-      "vehicle_id": "7339",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.475921630859375,
-      "lon": 19.100006103515625,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
     {
       "idopont": "2026-10-31T13:50:50.280296+02:00",
       "kulcs": "T9109",
@@ -260000,6 +259948,58 @@
       "lon": 19.170434951782227,
       "elozo_szoveg": "Árpádföld",
       "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-01T04:01:55.056938+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Rákospalota, Mélyfúró u.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56913375854492,
+      "lon": 19.12650489807129,
+      "elozo_szoveg": "Rákospalota",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-01T04:01:55.056982+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48277282714844,
+      "lon": 19.127016067504883,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-01T04:01:55.057735+02:00",
+      "kulcs": "PDB725",
+      "rendszam": "PDB725",
+      "vehicle_id": "7051",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48894119262695,
+      "lon": 19.06316566467285,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-01T04:01:55.057779+02:00",
+      "kulcs": "PDB389",
+      "rendszam": "PDB389",
+      "vehicle_id": "7071",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51446533203125,
+      "lon": 19.035600662231445,
+      "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
+      "uj_szoveg": "Pasaréti tér"
     }
   ]
 }
