@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-01T03:18:31.071725+02:00",
+  "frissitve": "2026-11-01T03:18:56.557365+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:43:33.115731+02:00",
-      "kulcs": "PKN621",
-      "rendszam": "PKN621",
-      "vehicle_id": "7210",
-      "vehicle_label": "Madárdomb",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.50008773803711,
-      "lon": 19.135330200195312,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-31T13:43:33.115746+02:00",
-      "kulcs": "PKN622",
-      "rendszam": "PKN622",
-      "vehicle_id": "7211",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.539852142333984,
-      "lon": 19.251371383666992,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
-    {
-      "idopont": "2026-10-31T13:43:33.115760+02:00",
-      "kulcs": "PKN623",
-      "rendszam": "PKN623",
-      "vehicle_id": "7212",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51968002319336,
-      "lon": 19.14832878112793,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
     {
       "idopont": "2026-10-31T13:43:33.117458+02:00",
       "kulcs": "RVY615",
@@ -260000,6 +259961,45 @@
       "lon": 19.038007736206055,
       "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-11-01T03:18:56.464745+02:00",
+      "kulcs": "AAMH604",
+      "rendszam": "AAMH604",
+      "vehicle_id": "447",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.465057373046875,
+      "lon": 19.127357482910156,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-01T03:18:56.464918+02:00",
+      "kulcs": "MUT888",
+      "rendszam": "MUT888",
+      "vehicle_id": "5941",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48727798461914,
+      "lon": 19.05806541442871,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-01T03:18:56.465103+02:00",
+      "kulcs": "PDB721",
+      "rendszam": "PDB721",
+      "vehicle_id": "7047",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.567440032958984,
+      "lon": 19.124906539916992,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota"
     }
   ]
 }
