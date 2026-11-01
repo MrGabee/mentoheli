@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:20:56.099765+02:00",
+  "frissitve": "2026-11-01T04:21:26.887870+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:53:08.173030+02:00",
-      "kulcs": "RVY719",
-      "rendszam": "RVY719",
-      "vehicle_id": "7468",
-      "vehicle_label": "Szent Lőrinc-telep",
-      "vonal_szam": "132E",
-      "route_id": "1325",
-      "lat": 47.4633903503418,
-      "lon": 19.14735984802246,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Havanna-lakótelep ► Szent Lőrinc-telep"
-    },
-    {
-      "idopont": "2026-10-31T13:53:08.173684+02:00",
-      "kulcs": "RVY726",
-      "rendszam": "RVY726",
-      "vehicle_id": "7624",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "294E",
-      "route_id": "2945",
-      "lat": 47.3892822265625,
-      "lon": 19.219087600708008,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
     {
       "idopont": "2026-10-31T13:53:08.173713+02:00",
       "kulcs": "RVY732",
@@ -260000,6 +259974,32 @@
       "lon": 19.136137008666992,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-01T04:21:26.816034+02:00",
+      "kulcs": "FLR721",
+      "rendszam": "FLR721",
+      "vehicle_id": "3135",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.550296783447266,
+      "lon": 19.04204559326172,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-01T04:21:26.816894+02:00",
+      "kulcs": "AAGL323",
+      "rendszam": "AAGL323",
+      "vehicle_id": "353",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46249008178711,
+      "lon": 19.005359649658203,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
     }
   ]
 }
