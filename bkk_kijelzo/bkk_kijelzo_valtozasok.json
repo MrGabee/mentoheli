@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-01T02:53:31.070866+02:00",
+  "frissitve": "2026-11-01T02:54:02.854846+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:39:07.831918+02:00",
-      "kulcs": "V2224",
-      "rendszam": "V2224",
-      "vehicle_id": "5864",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.46501159667969,
-      "lon": 19.127574920654297,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
-    {
-      "idopont": "2026-10-31T13:39:07.832122+02:00",
-      "kulcs": "T8006",
-      "rendszam": "T8006",
-      "vehicle_id": "6126",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.4869499206543,
-      "lon": 19.05742645263672,
-      "elozo_szoveg": "Fővám tér M",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-10-31T13:39:07.832248+02:00",
-      "kulcs": "NGC153",
-      "rendszam": "NGC153",
-      "vehicle_id": "6201",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.514469146728516,
-      "lon": 19.0353946685791,
-      "elozo_szoveg": "Rózsadomb ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-10-31T13:39:07.833011+02:00",
       "kulcs": "AOCT676",
@@ -260000,6 +259961,45 @@
       "lon": 19.07577133178711,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-01T02:54:02.761475+02:00",
+      "kulcs": "V2034",
+      "rendszam": "V2034",
+      "vehicle_id": "2034",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.474029541015625,
+      "lon": 19.047176361083984,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-01T02:54:02.763893+02:00",
+      "kulcs": "PDB725",
+      "rendszam": "PDB725",
+      "vehicle_id": "7051",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60275650024414,
+      "lon": 19.06631088256836,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer"
+    },
+    {
+      "idopont": "2026-11-01T02:54:02.764084+02:00",
+      "kulcs": "RVY613",
+      "rendszam": "RVY613",
+      "vehicle_id": "7442",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.47856140136719,
+      "lon": 19.256113052368164,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
