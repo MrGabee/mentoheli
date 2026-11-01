@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:45:25.394562+02:00",
+  "frissitve": "2026-11-01T04:45:54.861618+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:57:13.910577+02:00",
-      "kulcs": "AADI656",
-      "rendszam": "AADI656",
-      "vehicle_id": "155",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.483707427978516,
-      "lon": 19.1279239654541,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-10-31T13:57:13.910813+02:00",
-      "kulcs": "V2007",
-      "rendszam": "V2007",
-      "vehicle_id": "2007",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50737762451172,
-      "lon": 19.024742126464844,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-10-31T13:57:13.910891+02:00",
-      "kulcs": "V2019",
-      "rendszam": "V2019",
-      "vehicle_id": "2019",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47415542602539,
-      "lon": 19.04707908630371,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-10-31T13:57:13.911275+02:00",
-      "kulcs": "FJX197",
-      "rendszam": "FJX197",
-      "vehicle_id": "3017",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.533294677734375,
-      "lon": 19.06729507446289,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-31T13:57:13.911344+02:00",
-      "kulcs": "FKU912",
-      "rendszam": "FKU912",
-      "vehicle_id": "3068",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.50356674194336,
-      "lon": 19.13996124267578,
-      "elozo_szoveg": "Veres Péter út ► Centenáriumi lakótelep",
-      "uj_szoveg": "Centenáriumi lakótelep"
-    },
     {
       "idopont": "2026-10-31T13:57:13.911360+02:00",
       "kulcs": "FKU916",
@@ -260000,6 +259935,71 @@
       "lon": 19.232534408569336,
       "elozo_szoveg": "Pestszentimre vasútállomás",
       "uj_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-01T04:45:54.769783+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Keleti pályaudvar M",
+      "vonal_szam": "20E",
+      "route_id": "0205",
+      "lat": 47.577510833740234,
+      "lon": 19.114648818969727,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-11-01T04:45:54.769905+02:00",
+      "kulcs": "AAMH654",
+      "rendszam": "AAMH654",
+      "vehicle_id": "497",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49699020385742,
+      "lon": 19.055688858032227,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-01T04:45:54.770338+02:00",
+      "kulcs": "RVY715",
+      "rendszam": "RVY715",
+      "vehicle_id": "7464",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48539352416992,
+      "lon": 19.0714168548584,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-01T04:45:54.770391+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.54887771606445,
+      "lon": 19.04327964782715,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-01T04:45:54.770517+02:00",
+      "kulcs": "AADI587",
+      "rendszam": "AADI587",
+      "vehicle_id": "87",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.421512603759766,
+      "lon": 19.040081024169922,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
     }
   ]
 }
