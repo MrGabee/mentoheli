@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-01T04:39:58.824471+02:00",
+  "frissitve": "2026-11-01T04:40:30.914056+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-10-31T13:56:10.462335+02:00",
-      "kulcs": "AADI643",
-      "rendszam": "AADI643",
-      "vehicle_id": "142",
-      "vehicle_label": "Új köztemető",
-      "vonal_szam": "68B",
-      "route_id": "0682",
-      "lat": 47.46294403076172,
-      "lon": 19.148984909057617,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Új köztemető"
-    },
-    {
-      "idopont": "2026-10-31T13:56:10.464726+02:00",
-      "kulcs": "FKU945",
-      "rendszam": "FKU945",
-      "vehicle_id": "3101",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.46950912475586,
-      "lon": 19.237079620361328,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-10-31T13:56:10.465112+02:00",
-      "kulcs": "AAHY814",
-      "rendszam": "AAHY814",
-      "vehicle_id": "375",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.58919906616211,
-      "lon": 19.12216567993164,
-      "elozo_szoveg": "Rákospalota, Csömöri-patak",
-      "uj_szoveg": "Újpest-központ M"
-    },
     {
       "idopont": "2026-10-31T13:56:10.465158+02:00",
       "kulcs": "AAHY821",
@@ -260000,6 +259961,45 @@
       "lon": 19.124492645263672,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-01T04:40:30.839766+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498905181884766,
+      "lon": 19.050739288330078,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-01T04:40:30.841913+02:00",
+      "kulcs": "PDB709",
+      "rendszam": "PDB709",
+      "vehicle_id": "7035",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56768798828125,
+      "lon": 19.127195358276367,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-01T04:40:30.842493+02:00",
+      "kulcs": "415 084",
+      "rendszam": "415 084",
+      "vehicle_id": "945514150842",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.173301696777344,
+      "lon": 20.01774024963379,
+      "elozo_szoveg": "Szolnok",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
