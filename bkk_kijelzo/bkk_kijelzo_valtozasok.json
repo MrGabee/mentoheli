@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-02T01:57:20.519950+02:00",
+  "frissitve": "2026-11-02T01:57:52.551973+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:10:39.979345+02:00",
-      "kulcs": "NTM430",
-      "rendszam": "NTM430",
-      "vehicle_id": "6498",
-      "vehicle_label": "Budafoki temető",
-      "vonal_szam": "158B",
-      "route_id": "1582",
-      "lat": 47.43659591674805,
-      "lon": 19.039579391479492,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Budafoki temető"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.979442+02:00",
-      "kulcs": "NTP544",
-      "rendszam": "NTP544",
-      "vehicle_id": "6520",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.523460388183594,
-      "lon": 19.001832962036133,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.979498+02:00",
-      "kulcs": "NWB363",
-      "rendszam": "NWB363",
-      "vehicle_id": "6543",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.468711853027344,
-      "lon": 19.236751556396484,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.979629+02:00",
-      "kulcs": "PDB709",
-      "rendszam": "PDB709",
-      "vehicle_id": "7035",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.543521881103516,
-      "lon": 19.031471252441406,
-      "elozo_szoveg": "Szent Margit Kórház ► Békásmegyer H",
-      "uj_szoveg": "Békásmegyer H"
-    },
-    {
-      "idopont": "2026-11-01T13:10:39.979638+02:00",
-      "kulcs": "PDB711",
-      "rendszam": "PDB711",
-      "vehicle_id": "7037",
-      "vehicle_label": "Római úti lakótelep",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.53240203857422,
-      "lon": 19.067523956298828,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Római úti lakótelep"
-    },
     {
       "idopont": "2026-11-01T13:10:39.979959+02:00",
       "kulcs": "PHG625",
@@ -260000,6 +259935,71 @@
       "lon": 19.161067962646484,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-02T01:57:52.475000+02:00",
+      "kulcs": "AADI652",
+      "rendszam": "AADI652",
+      "vehicle_id": "151",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50153732299805,
+      "lon": 19.136213302612305,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-02T01:57:52.475066+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.52462387084961,
+      "lon": 19.037805557250977,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-02T01:57:52.479583+02:00",
+      "kulcs": "AAGL323",
+      "rendszam": "AAGL323",
+      "vehicle_id": "353",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48749542236328,
+      "lon": 19.05841827392578,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-02T01:57:52.479610+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58433532714844,
+      "lon": 19.0927791595459,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-02T01:57:52.479847+02:00",
+      "kulcs": "AADI601",
+      "rendszam": "AADI601",
+      "vehicle_id": "61",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39961624145508,
+      "lon": 18.990924835205078,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
