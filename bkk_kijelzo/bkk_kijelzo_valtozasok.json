@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T05:03:32.331871+02:00",
+  "frissitve": "2026-11-02T05:04:25.373952+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:36:18.412320+02:00",
-      "kulcs": "415 084",
-      "rendszam": "415 084",
-      "vehicle_id": "945514150842",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "S50",
-      "route_id": "S50",
-      "lat": 47.37068176269531,
-      "lon": 19.38953971862793,
-      "elozo_szoveg": "Monor",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-11-01T13:36:18.412742+02:00",
-      "kulcs": "AOIM026",
-      "rendszam": "AOIM026",
-      "vehicle_id": "946",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.4307746887207,
-      "lon": 19.070924758911133,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-11-01T13:36:18.413003+02:00",
-      "kulcs": "AADI600",
-      "rendszam": "AADI600",
-      "vehicle_id": "98",
-      "vehicle_label": "Nagytétény-Diósd vá.",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.477054595947266,
-      "lon": 19.047456741333008,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
     {
       "idopont": "2026-11-01T13:37:23.830022+02:00",
       "kulcs": "AONW967",
@@ -260000,6 +259961,45 @@
       "lon": 19.014074325561523,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-02T05:04:25.290791+02:00",
+      "kulcs": "PDN610",
+      "rendszam": "PDN610",
+      "vehicle_id": "7081",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "154",
+      "route_id": "1540",
+      "lat": 47.47335433959961,
+      "lon": 18.99256706237793,
+      "elozo_szoveg": "Mindszenty J. bíboros tér",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-02T05:04:25.291320+02:00",
+      "kulcs": "AOIB824",
+      "rendszam": "AOIB824",
+      "vehicle_id": "889",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464622497558594,
+      "lon": 19.022972106933594,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-02T05:04:25.291440+02:00",
+      "kulcs": "AOIM003",
+      "rendszam": "AOIM003",
+      "vehicle_id": "920",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "36",
+      "route_id": "0360",
+      "lat": 47.45466995239258,
+      "lon": 19.18183708190918,
+      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
