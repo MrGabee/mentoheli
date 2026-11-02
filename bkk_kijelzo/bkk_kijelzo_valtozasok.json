@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T04:02:05.405343+02:00",
+  "frissitve": "2026-11-02T04:02:31.637265+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:27:05.629205+02:00",
-      "kulcs": "AADI649",
-      "rendszam": "AADI649",
-      "vehicle_id": "148",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.5503044128418,
-      "lon": 19.042055130004883,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-11-01T13:27:05.629595+02:00",
-      "kulcs": "V2029",
-      "rendszam": "V2029",
-      "vehicle_id": "2029",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50729751586914,
-      "lon": 19.025022506713867,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-01T13:27:05.629874+02:00",
-      "kulcs": "FJX190",
-      "rendszam": "FJX190",
-      "vehicle_id": "3010",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.48923110961914,
-      "lon": 19.244043350219727,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-01T13:27:05.630376+02:00",
       "kulcs": "AAHY820",
@@ -260000,6 +259961,45 @@
       "lon": 19.15831184387207,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-02T04:02:31.583562+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.483917236328125,
+      "lon": 19.127559661865234,
+      "elozo_szoveg": "Kőbánya alsó vasútáll.",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-02T04:02:31.583681+02:00",
+      "kulcs": "NBW010",
+      "rendszam": "NBW010",
+      "vehicle_id": "5980",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50746154785156,
+      "lon": 19.025089263916016,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-02T04:02:31.583708+02:00",
+      "kulcs": "AADI601",
+      "rendszam": "AADI601",
+      "vehicle_id": "61",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.50526428222656,
+      "lon": 19.09865951538086,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
     }
   ]
 }
