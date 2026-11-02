@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T03:42:02.680432+02:00",
+  "frissitve": "2026-11-02T03:42:34.931529+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:24:09.417748+02:00",
-      "kulcs": "T8019",
-      "rendszam": "T8019",
-      "vehicle_id": "6139",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52558517456055,
-      "lon": 19.06307601928711,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-01T13:24:09.418271+02:00",
-      "kulcs": "NTM434",
-      "rendszam": "NTM434",
-      "vehicle_id": "6502",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.48545455932617,
-      "lon": 18.99374771118164,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-01T13:24:09.418288+02:00",
-      "kulcs": "NTM435",
-      "rendszam": "NTM435",
-      "vehicle_id": "6503",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49784469604492,
-      "lon": 19.054119110107422,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-11-01T13:24:09.419837+02:00",
       "kulcs": "T0623",
@@ -260000,6 +259961,45 @@
       "lon": 19.067705154418945,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-02T03:42:34.856416+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.602630615234375,
+      "lon": 19.066036224365234,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Astoria M ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-11-02T03:42:34.857615+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46660614013672,
+      "lon": 19.15377426147461,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-02T03:42:34.858035+02:00",
+      "kulcs": "RVY707",
+      "rendszam": "RVY707",
+      "vehicle_id": "7456",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.485435485839844,
+      "lon": 19.07094955444336,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
