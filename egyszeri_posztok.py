@@ -338,6 +338,17 @@ Egy olvasóm írt nekem egy gondolatot, ami szerintem sokunkat érint:
 Mit gondoltok? Ti is nehezen találtok helyet arrafelé? Szerintetek jó ötlet lenne itt egy P+R parkoló? Írjátok meg kommentben! 👇
 
 #Csepel #parkolás #SzentImretér #olvasóilevél"""),
+    "kozvilagitas_bajcsy_20261102": (date(2026, 11, 2), """✉️ OLVASÓI LEVÉL – NAPPAL IS ÉG A KÖZVILÁGÍTÁS A BAJCSY-ZSILINSZKY ÚTNÁL
+
+Egy olvasóm jelezte:
+
+„A Bajcsy-Zsilinszky útnál a közvilágítás jó pár napja folyamatosan, nappal is világít. Lehet, hogy beragadt az időzítő? Jó lenne, ha nem fogyasztanánk feleslegesen az áramot.”
+
+💡 Továbbítottam a jelzést a közvilágításért felelős BDK-nak (Budapesti Dísz- és Közvilágítási Kft.), és bízom benne, hogy hamarosan rendbe teszik.
+
+Ha ti is láttok nappal égő vagy éppen éjjel sötét lámpákat a környéken, írjátok meg kommentben, hol, és azt is továbbítom! 👇
+
+#Csepel #közvilágítás #BajcsyZsilinszkyút #olvasóilevél"""),
 }
 
 
