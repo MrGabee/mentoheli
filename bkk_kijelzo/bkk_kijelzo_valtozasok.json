@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-02T04:03:02.271160+02:00",
+  "frissitve": "2026-11-02T04:03:31.732309+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:27:05.632137+02:00",
-      "kulcs": "V4005",
-      "rendszam": "V4005",
-      "vehicle_id": "4694",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.48168182373047,
-      "lon": 18.99909782409668,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
-    {
-      "idopont": "2026-11-01T13:27:05.633278+02:00",
-      "kulcs": "MOS287",
-      "rendszam": "MOS287",
-      "vehicle_id": "5740",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "238",
-      "route_id": "2380",
-      "lat": 47.34975051879883,
-      "lon": 19.025997161865234,
-      "elozo_szoveg": "Szigetszentmiklós, kertváros",
-      "uj_szoveg": "Szebeni utca ► Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-11-01T13:27:05.633445+02:00",
       "kulcs": "V2210",
@@ -260000,6 +259974,32 @@
       "lon": 19.16083526611328,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-02T04:03:31.669891+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.513343811035156,
+      "lon": 19.09902572631836,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-11-02T04:03:31.669943+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.51129150390625,
+      "lon": 19.0564022064209,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
     }
   ]
 }
