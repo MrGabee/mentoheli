@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-02T03:13:28.596731+02:00",
+  "frissitve": "2026-11-02T03:14:01.235048+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:20:29.010247+02:00",
-      "kulcs": "AAHY805",
-      "rendszam": "AAHY805",
-      "vehicle_id": "365",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.504459381103516,
-      "lon": 19.136890411376953,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-11-01T13:20:29.010285+02:00",
-      "kulcs": "AAHY809",
-      "rendszam": "AAHY809",
-      "vehicle_id": "369",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.60324478149414,
-      "lon": 19.066516876220703,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-11-01T13:20:29.010369+02:00",
-      "kulcs": "AAHY824",
-      "rendszam": "AAHY824",
-      "vehicle_id": "385",
-      "vehicle_label": "Megyer, Julianus barát u.",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.56048583984375,
-      "lon": 19.091249465942383,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Megyer, Julianus barát utca"
-    },
-    {
-      "idopont": "2026-11-01T13:20:29.010738+02:00",
-      "kulcs": "V1329",
-      "rendszam": "V1329",
-      "vehicle_id": "4432",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.468074798583984,
-      "lon": 19.075706481933594,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-01T13:20:29.011100+02:00",
-      "kulcs": "V1587",
-      "rendszam": "V1587",
-      "vehicle_id": "4639",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.4984016418457,
-      "lon": 19.08258628845215,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
     {
       "idopont": "2026-11-01T13:20:29.011371+02:00",
       "kulcs": "V4144",
@@ -260000,6 +259935,71 @@
       "lon": 19.14189910888672,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-11-02T03:14:01.159696+02:00",
+      "kulcs": "AAGL279",
+      "rendszam": "AAGL279",
+      "vehicle_id": "279",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.430694580078125,
+      "lon": 18.92851448059082,
+      "elozo_szoveg": "Márta utca ► Budaörsi lakótelep",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-02T03:14:01.160485+02:00",
+      "kulcs": "NBW014",
+      "rendszam": "NBW014",
+      "vehicle_id": "5984",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.479774475097656,
+      "lon": 19.25551414489746,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-11-02T03:14:01.160531+02:00",
+      "kulcs": "NGC155",
+      "rendszam": "NGC155",
+      "vehicle_id": "6204",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.5179328918457,
+      "lon": 19.038604736328125,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-11-02T03:14:01.161046+02:00",
+      "kulcs": "SKR824",
+      "rendszam": "SKR824",
+      "vehicle_id": "7710",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.487003326416016,
+      "lon": 19.067180633544922,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-02T03:14:01.161208+02:00",
+      "kulcs": "AOHZ844",
+      "rendszam": "AOHZ844",
+      "vehicle_id": "856",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542659759521484,
+      "lon": 18.96479034423828,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota, MEDIMPEX"
     }
   ]
 }
