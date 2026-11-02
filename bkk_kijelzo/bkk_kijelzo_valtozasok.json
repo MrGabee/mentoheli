@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T02:11:41.162819+02:00",
+  "frissitve": "2026-11-02T02:12:10.983279+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:12:34.050419+02:00",
-      "kulcs": "V1328",
-      "rendszam": "V1328",
-      "vehicle_id": "4431",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49934768676758,
-      "lon": 19.082487106323242,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-01T13:12:34.052395+02:00",
-      "kulcs": "V4078",
-      "rendszam": "V4078",
-      "vehicle_id": "4767",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "12A",
-      "route_id": "3121",
-      "lat": 47.550838470458984,
-      "lon": 19.091224670410156,
-      "elozo_szoveg": "Tél utca / Pozsonyi utca",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-11-01T13:12:34.052823+02:00",
-      "kulcs": "V1609",
-      "rendszam": "V1609",
-      "vehicle_id": "5081",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.465755462646484,
-      "lon": 19.08170509338379,
-      "elozo_szoveg": "Koppány utca",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
     {
       "idopont": "2026-11-01T13:12:34.053346+02:00",
       "kulcs": "V2217",
@@ -260000,6 +259961,45 @@
       "lon": 19.1420955657959,
       "elozo_szoveg": "Gazdagréti tér",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-11-02T02:12:10.889693+02:00",
+      "kulcs": "MOS268",
+      "rendszam": "MOS268",
+      "vehicle_id": "5721",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49705123901367,
+      "lon": 19.055688858032227,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-11-02T02:12:10.889800+02:00",
+      "kulcs": "AADI601",
+      "rendszam": "AADI601",
+      "vehicle_id": "61",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.4052734375,
+      "lon": 19.014265060424805,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-02T02:12:10.890106+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.5208625793457,
+      "lon": 19.03800392150879,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
