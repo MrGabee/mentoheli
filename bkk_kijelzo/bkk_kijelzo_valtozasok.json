@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-02T04:48:03.230969+02:00",
+  "frissitve": "2026-11-02T04:48:43.682876+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:33:19.941426+02:00",
-      "kulcs": "V4238",
-      "rendszam": "V4238",
-      "vehicle_id": "4897",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "37",
-      "route_id": "3370",
-      "lat": 47.49604415893555,
-      "lon": 19.071949005126953,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Salgótarjáni utca ► Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-11-01T13:33:19.942044+02:00",
-      "kulcs": "PKD003",
-      "rendszam": "PKD003",
-      "vehicle_id": "5813",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "107",
-      "route_id": "1070",
-      "lat": 47.469322204589844,
-      "lon": 19.053531646728516,
-      "elozo_szoveg": "Infopark ► BudaPart",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-11-01T13:33:19.942205+02:00",
       "kulcs": "V2221",
@@ -260000,6 +259974,32 @@
       "lon": 19.100509643554688,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-02T04:48:43.619208+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.55034637451172,
+      "lon": 19.028608322143555,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-02T04:48:43.619938+02:00",
+      "kulcs": "MOS260",
+      "rendszam": "MOS260",
+      "vehicle_id": "5713",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.385494232177734,
+      "lon": 19.21021270751953,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Vecsési út ► Határ út M"
     }
   ]
 }
