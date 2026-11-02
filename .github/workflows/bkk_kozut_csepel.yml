@@ -7,6 +7,10 @@ on:
         description: 'Teszt: csak kiírja a találatokat, nem posztol, nem ment'
         required: false
         default: '0'
+  # A GitHub ütemezője sokszor órákig kihagyja a futást, ezért a percenkénti
+  # ébresztő lánc is elindítja ~20 percenként.
+  repository_dispatch:
+    types: [bkk_kozut_trigger]
   schedule:
     # 20 percenként, félúton a kerek idők között
     - cron: '7,27,47 * * * *'

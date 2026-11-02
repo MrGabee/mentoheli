@@ -48,6 +48,20 @@ jobs:
           done
           true
 
+      - name: 🚧 Csepeli közúti figyelő indítása (~20 percenként)
+        if: always() && steps.ebreszt.outputs.lanc == '1'
+        continue-on-error: true
+        run: |
+          PERC=$(( 10#$(date -u +%M) % 20 ))
+          if [ "$PERC" -lt 6 ]; then
+            KOD=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/dispatches \
+              -d '{"event_type":"bkk_kozut_trigger"}')
+            echo "Közúti figyelő indítása: HTTP $KOD"
+          fi
+
       - name: 🔄 Következő futás indítása
         # A lánc csak beállított címmel megy tovább (különben üresjáratban pörögne).
         if: always() && steps.ebreszt.outputs.lanc == '1'
