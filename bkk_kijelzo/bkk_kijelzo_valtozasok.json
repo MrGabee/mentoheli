@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-03T01:27:37.238321+02:00",
+  "frissitve": "2026-11-03T01:28:16.776405+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:35:34.691103+02:00",
-      "kulcs": "SKR736",
-      "rendszam": "SKR736",
-      "vehicle_id": "7685",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.432743072509766,
-      "lon": 19.26155662536621,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-02T15:35:34.691165+02:00",
-      "kulcs": "SKR805",
-      "rendszam": "SKR805",
-      "vehicle_id": "7691",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.51819610595703,
-      "lon": 19.03331184387207,
-      "elozo_szoveg": "Szemlőhegy",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-02T15:35:34.691685+02:00",
-      "kulcs": "STZ873",
-      "rendszam": "STZ873",
-      "vehicle_id": "7828",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.51784896850586,
-      "lon": 18.92395782470703,
-      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-11-02T15:35:34.692129+02:00",
       "kulcs": "T9142",
@@ -260000,6 +259961,45 @@
       "lon": 19.127620697021484,
       "elozo_szoveg": "Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-03T01:28:16.681154+02:00",
+      "kulcs": "AADR707",
+      "rendszam": "AADR707",
+      "vehicle_id": "175",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52776336669922,
+      "lon": 19.036724090576172,
+      "elozo_szoveg": "Havanna-lakótelep ► Szent Lőrinc-telep",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-11-03T01:28:16.681357+02:00",
+      "kulcs": "AAGL317",
+      "rendszam": "AAGL317",
+      "vehicle_id": "345",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50729751586914,
+      "lon": 18.921539306640625,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-03T01:28:16.681407+02:00",
+      "kulcs": "AAGL323",
+      "rendszam": "AAGL323",
+      "vehicle_id": "353",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45574188232422,
+      "lon": 18.94088363647461,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
     }
   ]
 }
