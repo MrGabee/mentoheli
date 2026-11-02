@@ -58,7 +58,7 @@ jobs:
               -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
               https://api.github.com/repos/${{ github.repository }}/dispatches \
-              -d '{"event_type":"bkk_kozut_trigger"}')
+              -d '{"event_type":"bkk_kozut_csepel_trigger"}')
             echo "Közúti figyelő indítása: HTTP $KOD"
           fi
 
