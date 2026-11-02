@@ -29,6 +29,8 @@ jobs:
           URL: ${{ secrets.UTINFORM_WEBAPP_URL }}
           # A BKK Zavar Monitor webalkalmazása; ha be van állítva, azt is ébresztem.
           BKK_URL: ${{ secrets.BKK_WEBAPP_URL }}
+          PAT: ${{ secrets.PAT_TOKEN }}
+          REPO: ${{ github.repository }}
         run: |
           if [ -z "$URL" ]; then
             echo "Nincs beállítva a UTINFORM_WEBAPP_URL secret, a lánc áll."
@@ -37,6 +39,9 @@ jobs:
           echo "lanc=1" >> "$GITHUB_OUTPUT"
           for i in 1 2 3 4 5 6; do
             KEZD=$(date +%s)
+            # Csepeli közúti figyelő percenkénti indítása (a GitHub ütemezője órákig kihagyta)
+            curl -s -o /dev/null -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/$REPO/dispatches" -d '{"event_type":"bkk_kozut_csepel_trigger"}' &
             rm -f /tmp/bkk.txt
             [ -n "$BKK_URL" ] && { curl -sL --max-time 50 -o /tmp/bkk.html -w '%{http_code} %{url_effective}' "$BKK_URL" 2>/dev/null | sed -E 's#^([0-9]+) https?://([^/]+).*#\1 \2#' > /tmp/bkk.txt; { echo -n ' | '; grep -oE '<title>[^<]{0,80}' /tmp/bkk.html | head -1 | sed 's/<title>//'; echo -n ' | '; grep -oE '(ok$|police: [^<>{}]{0,120}|[^<>{};="]{0,80}(doGet|található|not found|Exception|kivétel|TypeError|ReferenceError|engedély|jogosult)[^<>{};="]{0,80})' /tmp/bkk.html | head -2; } >> /tmp/bkk.txt & }
             VALASZ=$(curl -sL --max-time 50 "$URL" | head -c 400)
@@ -47,20 +52,6 @@ jobs:
             [ "$i" -lt 6 ] && [ "$ELTELT" -lt 60 ] && sleep $(( 60 - ELTELT ))
           done
           true
-
-      - name: 🚧 Csepeli közúti figyelő indítása (~20 percenként)
-        if: always() && steps.ebreszt.outputs.lanc == '1'
-        continue-on-error: true
-        run: |
-          PERC=$(( 10#$(date -u +%M) % 20 ))
-          if [ "$PERC" -lt 6 ]; then
-            KOD=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
-              -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              https://api.github.com/repos/${{ github.repository }}/dispatches \
-              -d '{"event_type":"bkk_kozut_csepel_trigger"}')
-            echo "Közúti figyelő indítása: HTTP $KOD"
-          fi
 
       - name: 🔄 Következő futás indítása
         # A lánc csak beállított címmel megy tovább (különben üresjáratban pörögne).
