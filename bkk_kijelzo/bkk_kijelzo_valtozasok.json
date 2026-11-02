@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T03:40:00.161628+02:00",
+  "frissitve": "2026-11-02T03:40:32.833746+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:23:13.489763+02:00",
-      "kulcs": "AOJM871",
-      "rendszam": "AOJM871",
-      "vehicle_id": "994",
-      "vehicle_label": "Rákoskert sugárút",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.502132415771484,
-      "lon": 19.135730743408203,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-01T13:24:09.412990+02:00",
-      "kulcs": "AADI616",
-      "rendszam": "AADI616",
-      "vehicle_id": "113",
-      "vehicle_label": "Új köztemető",
-      "vonal_szam": "68B",
-      "route_id": "0682",
-      "lat": 47.46330261230469,
-      "lon": 19.14954948425293,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Új köztemető"
-    },
-    {
-      "idopont": "2026-11-01T13:24:09.413101+02:00",
-      "kulcs": "AADI626",
-      "rendszam": "AADI626",
-      "vehicle_id": "121",
-      "vehicle_label": "Felsőcsatári köz",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.49987030029297,
-      "lon": 19.104877471923828,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Felsőcsatári köz"
-    },
     {
       "idopont": "2026-11-01T13:24:09.413687+02:00",
       "kulcs": "V2038",
@@ -260000,6 +259961,45 @@
       "lon": 19.0505428314209,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-02T03:40:32.738417+02:00",
+      "kulcs": "NBW006",
+      "rendszam": "NBW006",
+      "vehicle_id": "5976",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49700164794922,
+      "lon": 19.05572509765625,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-11-02T03:40:32.739006+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49770736694336,
+      "lon": 19.05474281311035,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-02T03:40:32.740084+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475364685058594,
+      "lon": 19.04070281982422,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
