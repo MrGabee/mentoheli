@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T02:56:04.530046+02:00",
+  "frissitve": "2026-11-02T02:56:34.574718+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:17:51.087897+02:00",
-      "kulcs": "SGY822",
-      "rendszam": "SGY822",
-      "vehicle_id": "7740",
-      "vehicle_label": "Szent László utcai ltp.",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.430809020996094,
-      "lon": 19.070575714111328,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Szent László utcai lakótelep"
-    },
-    {
-      "idopont": "2026-11-01T13:17:51.088353+02:00",
-      "kulcs": "T9118",
-      "rendszam": "T9118",
-      "vehicle_id": "7856",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.50148010253906,
-      "lon": 19.107742309570312,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-01T13:17:51.088389+02:00",
-      "kulcs": "T9121",
-      "rendszam": "T9121",
-      "vehicle_id": "7860",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51416015625,
-      "lon": 19.04952621459961,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-11-01T13:17:51.088450+02:00",
       "kulcs": "T9132",
@@ -260000,6 +259961,45 @@
       "lon": 19.04705238342285,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-02T02:56:34.484438+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.536521911621094,
+      "lon": 19.107057571411133,
+      "elozo_szoveg": "Csáktornya park",
+      "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-11-02T02:56:34.484692+02:00",
+      "kulcs": "RVY618",
+      "rendszam": "RVY618",
+      "vehicle_id": "7447",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.3793830871582,
+      "lon": 19.104286193847656,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-11-02T02:56:34.485271+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.514549255371094,
+      "lon": 19.103925704956055,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás"
     }
   ]
 }
