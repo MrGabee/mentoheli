@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T05:05:31.975750+02:00",
+  "frissitve": "2026-11-02T05:06:02.871286+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:37:23.832145+02:00",
-      "kulcs": "V4059",
-      "rendszam": "V4059",
-      "vehicle_id": "4748",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.47700119018555,
-      "lon": 19.177988052368164,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Kőbányai út ► Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-11-01T13:37:23.832203+02:00",
-      "kulcs": "V4072",
-      "rendszam": "V4072",
-      "vehicle_id": "4761",
-      "vehicle_label": "Szent János Kórház",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.481666564941406,
-      "lon": 18.9990177154541,
-      "elozo_szoveg": "Márton Áron tér",
-      "uj_szoveg": "Szent János Kórház"
-    },
-    {
-      "idopont": "2026-11-01T13:37:23.832292+02:00",
-      "kulcs": "V4139",
-      "rendszam": "V4139",
-      "vehicle_id": "4827",
-      "vehicle_label": "Márton Áron tér",
-      "vonal_szam": "59",
-      "route_id": "3590",
-      "lat": 47.50932312011719,
-      "lon": 19.00966453552246,
-      "elozo_szoveg": "Szent János Kórház",
-      "uj_szoveg": "Márton Áron tér"
-    },
     {
       "idopont": "2026-11-01T13:37:23.832406+02:00",
       "kulcs": "AAMH646",
@@ -260000,6 +259961,45 @@
       "lon": 19.12466812133789,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-02T05:06:02.817771+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint, Nyár utca",
+      "vonal_szam": "172",
+      "route_id": "1720",
+      "lat": 47.433929443359375,
+      "lon": 18.91984748840332,
+      "elozo_szoveg": "Nyár utca ► Kelenföld vasútállomás M",
+      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
+    },
+    {
+      "idopont": "2026-11-02T05:06:02.818295+02:00",
+      "kulcs": "V1503",
+      "rendszam": "V1503",
+      "vehicle_id": "4555",
+      "vehicle_label": "Újpalota, Erdőkerülő utca",
+      "vonal_szam": "69",
+      "route_id": "3690",
+      "lat": 47.52251052856445,
+      "lon": 19.102460861206055,
+      "elozo_szoveg": "Ecseri út M",
+      "uj_szoveg": "Újpalota, Erdőkerülő utca"
+    },
+    {
+      "idopont": "2026-11-02T05:06:02.819177+02:00",
+      "kulcs": "415 088",
+      "rendszam": "415 088",
+      "vehicle_id": "945514150883",
+      "vehicle_label": "Vác",
+      "vonal_szam": "S71",
+      "route_id": "S71",
+      "lat": 47.526390075683594,
+      "lon": 19.09041976928711,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Vác"
     }
   ]
 }
