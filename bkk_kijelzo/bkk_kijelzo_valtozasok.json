@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-02T03:57:10.407791+02:00",
+  "frissitve": "2026-11-02T03:57:39.522734+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:26:02.205135+02:00",
-      "kulcs": "V2105",
-      "rendszam": "V2105",
-      "vehicle_id": "5833",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.54838562011719,
-      "lon": 19.029747009277344,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-01T13:26:02.205753+02:00",
-      "kulcs": "NCV296",
-      "rendszam": "NCV296",
-      "vehicle_id": "6261",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50654220581055,
-      "lon": 19.023923873901367,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-11-01T13:26:02.205972+02:00",
       "kulcs": "NNE066",
@@ -260000,6 +259974,32 @@
       "lon": 19.12734031677246,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-02T03:57:39.423640+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.58416748046875,
+      "lon": 19.092592239379883,
+      "elozo_szoveg": "Megyer, Szondi utca ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-02T03:57:39.424161+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.4871826171875,
+      "lon": 19.057823181152344,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
     }
   ]
 }
