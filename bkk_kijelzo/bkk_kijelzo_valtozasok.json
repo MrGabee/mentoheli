@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T03:32:06.416649+02:00",
+  "frissitve": "2026-11-02T03:32:41.619833+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:22:20.250738+02:00",
-      "kulcs": "815 002",
-      "rendszam": "815 002",
-      "vehicle_id": "945518150020",
-      "vehicle_label": "Szolnok",
-      "vonal_szam": "Z60",
-      "route_id": "Z60",
-      "lat": 47.49203109741211,
-      "lon": 19.133150100708008,
-      "elozo_szoveg": "Budapest-Keleti",
-      "uj_szoveg": "Szolnok"
-    },
-    {
-      "idopont": "2026-11-01T13:23:13.481506+02:00",
-      "kulcs": "AADR702",
-      "rendszam": "AADR702",
-      "vehicle_id": "169",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "266",
-      "route_id": "2660",
-      "lat": 47.40446853637695,
-      "lon": 19.185880661010742,
-      "elozo_szoveg": "Pestszentimre vasútállomás",
-      "uj_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca"
-    },
-    {
-      "idopont": "2026-11-01T13:23:13.481596+02:00",
-      "kulcs": "AADR710",
-      "rendszam": "AADR710",
-      "vehicle_id": "178",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.43844985961914,
-      "lon": 19.135150909423828,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-11-01T13:23:13.481675+02:00",
       "kulcs": "V2007",
@@ -260000,6 +259961,45 @@
       "lon": 19.055011749267578,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-02T03:32:41.523947+02:00",
+      "kulcs": "AADI566",
+      "rendszam": "AADI566",
+      "vehicle_id": "42",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.517547607421875,
+      "lon": 19.038719177246094,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-02T03:32:41.524598+02:00",
+      "kulcs": "SKR823",
+      "rendszam": "SKR823",
+      "vehicle_id": "7709",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.43087387084961,
+      "lon": 19.0705623626709,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-11-02T03:32:41.524739+02:00",
+      "kulcs": "AOHZ844",
+      "rendszam": "AOHZ844",
+      "vehicle_id": "856",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50765609741211,
+      "lon": 19.02557945251465,
+      "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
