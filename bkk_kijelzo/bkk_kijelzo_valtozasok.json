@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-03T01:00:39.075748+02:00",
+  "frissitve": "2026-11-03T01:01:11.922326+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:34:10.204893+02:00",
-      "kulcs": "NWB355",
-      "rendszam": "NWB355",
-      "vehicle_id": "6535",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.47993469238281,
-      "lon": 19.254798889160156,
-      "elozo_szoveg": "Rákoskeresztúr, városközpont",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-02T15:34:10.204979+02:00",
-      "kulcs": "CITY001",
-      "rendszam": "CITY001",
-      "vehicle_id": "656",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "274",
-      "route_id": "2740",
-      "lat": 47.53346252441406,
-      "lon": 19.20762062072754,
-      "elozo_szoveg": "Honfoglalás park",
-      "uj_szoveg": "Cinkota H"
-    },
     {
       "idopont": "2026-11-02T15:34:10.205546+02:00",
       "kulcs": "PDN605",
@@ -260000,6 +259974,32 @@
       "lon": 19.148000717163086,
       "elozo_szoveg": "Rákoskeresztúr, városközpont",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-03T01:01:11.825070+02:00",
+      "kulcs": "FKU933",
+      "rendszam": "FKU933",
+      "vehicle_id": "3089",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.466346740722656,
+      "lon": 19.123455047607422,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-03T01:01:11.825809+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46234893798828,
+      "lon": 19.15079116821289,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
     }
   ]
 }
