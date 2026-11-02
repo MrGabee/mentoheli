@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T04:12:16.495585+02:00",
+  "frissitve": "2026-11-02T04:12:47.577572+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:28:01.952167+02:00",
-      "kulcs": "T8101",
-      "rendszam": "T8101",
-      "vehicle_id": "7338",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.533302307128906,
-      "lon": 19.10569190979004,
-      "elozo_szoveg": "Miskolci utca ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-01T13:28:01.952312+02:00",
-      "kulcs": "V2239",
-      "rendszam": "V2239",
-      "vehicle_id": "7371",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47536087036133,
-      "lon": 19.046632766723633,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Alkotás utca ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-11-01T13:28:01.952443+02:00",
-      "kulcs": "RVY608",
-      "rendszam": "RVY608",
-      "vehicle_id": "7437",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.4633903503418,
-      "lon": 19.147537231445312,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
     {
       "idopont": "2026-11-01T13:28:01.952510+02:00",
       "kulcs": "RVY618",
@@ -260000,6 +259961,45 @@
       "lon": 19.135549545288086,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-02T04:12:47.504702+02:00",
+      "kulcs": "RVY730",
+      "rendszam": "RVY730",
+      "vehicle_id": "7628",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49712371826172,
+      "lon": 19.055479049682617,
+      "elozo_szoveg": "Pécel, Kun József utca",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-11-02T04:12:47.504747+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49763870239258,
+      "lon": 18.96375274658203,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-02T04:12:47.504763+02:00",
+      "kulcs": "SKR805",
+      "rendszam": "SKR805",
+      "vehicle_id": "7691",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.479759216308594,
+      "lon": 19.25547981262207,
+      "elozo_szoveg": "Rákoscsaba",
+      "uj_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M"
     }
   ]
 }
