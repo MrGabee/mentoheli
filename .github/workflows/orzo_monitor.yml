@@ -114,6 +114,28 @@ jobs:
             echo ""
           done
 
+      - name: 🛡️ A felügyelő (balesetinfo) ellenőrzése
+        # Kölcsönös figyelés: a balesetinfo felügyelője figyeli az Őrzőt,
+        # az Őrző pedig a felügyelőt. Ha 12 percnél régebben indult, újraindítja.
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          FR="MrGabee/balesetinfo"
+          LETREHOZVA=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            "https://api.github.com/repos/$FR/actions/workflows/felugyelo.yml/runs?per_page=1" \
+            | jq -r '.workflow_runs[0].created_at // empty')
+          if [ -z "$LETREHOZVA" ]; then echo "Nincs felügyelő-futás, kihagyva."; exit 0; fi
+          PERC=$(( ($(date -u +%s) - $(date -u -d "$LETREHOZVA" +%s)) / 60 ))
+          echo "Felügyelő utolsó indulása: $LETREHOZVA ($PERC perce)"
+          if [ "$PERC" -ge 12 ]; then
+            KOD=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+              -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/$FR/dispatches" -d '{"event_type":"felugyelo_lanc"}')
+            echo "❌ A felügyelő leállt - újraindítás: HTTP $KOD"
+          fi
+
       - name: ⏱️ Várakozás
         if: always()
         run: sleep 100
