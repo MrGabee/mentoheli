@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-02T02:22:30.453284+02:00",
+  "frissitve": "2026-11-02T02:23:00.920457+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:13:28.112298+02:00",
-      "kulcs": "T8105",
-      "rendszam": "T8105",
-      "vehicle_id": "7342",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51921844482422,
-      "lon": 19.09087562561035,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-01T13:13:28.113020+02:00",
-      "kulcs": "SKR804",
-      "rendszam": "SKR804",
-      "vehicle_id": "7690",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51357650756836,
-      "lon": 19.002960205078125,
-      "elozo_szoveg": "Rózsadomb ► Nyugati pályaudvar M",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-01T13:13:28.113151+02:00",
-      "kulcs": "SKR829",
-      "rendszam": "SKR829",
-      "vehicle_id": "7715",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "54",
-      "route_id": "0540",
-      "lat": 47.389259338378906,
-      "lon": 19.16201400756836,
-      "elozo_szoveg": "Péterimajor, Víztorony tér",
-      "uj_szoveg": "Boráros tér H"
-    },
     {
       "idopont": "2026-11-01T13:13:28.113299+02:00",
       "kulcs": "STZ860",
@@ -260000,6 +259961,45 @@
       "lon": 19.075775146484375,
       "elozo_szoveg": "Közvágóhíd H",
       "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-02T02:23:00.782800+02:00",
+      "kulcs": "AADI567",
+      "rendszam": "AADI567",
+      "vehicle_id": "65",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59973907470703,
+      "lon": 19.055395126342773,
+      "elozo_szoveg": "Batthyány tér M H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-02T02:23:00.782926+02:00",
+      "kulcs": "PDB721",
+      "rendszam": "PDB721",
+      "vehicle_id": "7047",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45138168334961,
+      "lon": 19.159141540527344,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-02T02:23:00.786505+02:00",
+      "kulcs": "SKR832",
+      "rendszam": "SKR832",
+      "vehicle_id": "7718",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51929473876953,
+      "lon": 19.038225173950195,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
