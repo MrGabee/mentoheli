@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-02T03:28:37.638656+02:00",
+  "frissitve": "2026-11-02T03:29:06.506313+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-01T13:22:20.245075+02:00",
-      "kulcs": "PDN601",
-      "rendszam": "PDN601",
-      "vehicle_id": "7073",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.40552520751953,
-      "lon": 19.01426887512207,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-01T13:22:20.245089+02:00",
-      "kulcs": "PDN602",
-      "rendszam": "PDN602",
-      "vehicle_id": "7074",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.47401428222656,
-      "lon": 19.048599243164062,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-11-01T13:22:20.245129+02:00",
-      "kulcs": "PDN611",
-      "rendszam": "PDN611",
-      "vehicle_id": "7082",
-      "vehicle_label": "Hollandi út",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.43079376220703,
-      "lon": 19.070682525634766,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Királyerdő út ► Hollandi út"
-    },
-    {
-      "idopont": "2026-11-01T13:22:20.245421+02:00",
-      "kulcs": "PKN604",
-      "rendszam": "PKN604",
-      "vehicle_id": "7193",
-      "vehicle_label": "Rákoscsaba-Újtelep",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.4266242980957,
-      "lon": 19.161088943481445,
-      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
-    },
     {
       "idopont": "2026-11-01T13:22:20.245774+02:00",
       "kulcs": "V2115",
@@ -260000,6 +259948,58 @@
       "lon": 19.02297019958496,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-11-02T03:29:06.410855+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.60283660888672,
+      "lon": 19.066495895385742,
+      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "B.megyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-11-02T03:29:06.412160+02:00",
+      "kulcs": "AAGL317",
+      "rendszam": "AAGL317",
+      "vehicle_id": "345",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.455989837646484,
+      "lon": 18.94091796875,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-02T03:29:06.412704+02:00",
+      "kulcs": "RVY734",
+      "rendszam": "RVY734",
+      "vehicle_id": "7632",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.501304626464844,
+      "lon": 19.119647979736328,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-11-02T03:29:06.412797+02:00",
+      "kulcs": "SKR824",
+      "rendszam": "SKR824",
+      "vehicle_id": "7710",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44405746459961,
+      "lon": 19.092754364013672,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
