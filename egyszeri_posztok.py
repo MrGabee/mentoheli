@@ -349,6 +349,17 @@ Egy olvasóm jelezte:
 Ha ti is láttok nappal égő vagy éppen éjjel sötét lámpákat a környéken, írjátok meg kommentben, hol, és azt is továbbítom! 👇
 
 #Csepel #közvilágítás #BajcsyZsilinszkyút #olvasóilevél"""),
+    "szemeszet_csillagtelep_20261102": (date(2026, 11, 2), """❓ OLVASÓI KÉRDÉS – MI VAN A CSILLAGTELEPI SZEMÉSZETTEL?
+
+Egy olvasóm kérdezi:
+
+„Mit lehet tudni a csillagtelepi szemészetről? Nem veszik fel a telefont. Van valami friss infó?”
+
+👁️ Ha valaki az utóbbi napokban járt ott, vagy tud bármit a rendelésről (rendel-e most, változott-e az időpont, hogyan lehet időpontot kérni), írja meg kommentben, hogy minél többen tudjanak róla! 👇
+
+Köszönöm mindenkinek a segítséget! 🙏
+
+#Csepel #Csillagtelep #szemészet #egészség #olvasóikérdés"""),
 }
 
 
