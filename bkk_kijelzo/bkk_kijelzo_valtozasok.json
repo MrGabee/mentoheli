@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-03T04:21:54.050379+02:00",
+  "frissitve": "2026-11-03T04:22:26.166408+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:51:45.022318+02:00",
-      "kulcs": "NCV299",
-      "rendszam": "NCV299",
-      "vehicle_id": "6264",
-      "vehicle_label": "Aranyhegy",
-      "vonal_szam": "219",
-      "route_id": "2190",
-      "lat": 47.58436965942383,
-      "lon": 19.044193267822266,
-      "elozo_szoveg": "Csillaghegy H",
-      "uj_szoveg": "Aranyhegy"
-    },
-    {
-      "idopont": "2026-11-02T15:51:45.022498+02:00",
-      "kulcs": "V2229",
-      "rendszam": "V2229",
-      "vehicle_id": "6440",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.429325103759766,
-      "lon": 19.217750549316406,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-02T15:51:45.022586+02:00",
-      "kulcs": "NNE061",
-      "rendszam": "NNE061",
-      "vehicle_id": "6457",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.483699798583984,
-      "lon": 19.127918243408203,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-11-02T15:51:45.022818+02:00",
-      "kulcs": "NTP542",
-      "rendszam": "NTP542",
-      "vehicle_id": "6518",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.464027404785156,
-      "lon": 19.018766403198242,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Jégmadár utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-11-02T15:51:45.023500+02:00",
-      "kulcs": "AOCT659",
-      "rendszam": "AOCT659",
-      "vehicle_id": "689",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.46476364135742,
-      "lon": 19.0178279876709,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-11-02T15:51:45.023585+02:00",
       "kulcs": "AOCT670",
@@ -260000,6 +259935,71 @@
       "lon": 19.055679321289062,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-03T04:22:26.067989+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48276901245117,
+      "lon": 19.12712860107422,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-03T04:22:26.069236+02:00",
+      "kulcs": "FLR717",
+      "rendszam": "FLR717",
+      "vehicle_id": "3131",
+      "vehicle_label": "Pestszentlőrinc, Béke tér",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54154968261719,
+      "lon": 19.151405334472656,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Pestszentlőrinc, Béke tér"
+    },
+    {
+      "idopont": "2026-11-03T04:22:26.070578+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47636795043945,
+      "lon": 19.052215576171875,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-11-03T04:22:26.070646+02:00",
+      "kulcs": "PDB390",
+      "rendszam": "PDB390",
+      "vehicle_id": "7072",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50883865356445,
+      "lon": 19.095436096191406,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-03T04:22:26.070939+02:00",
+      "kulcs": "RVY617",
+      "rendszam": "RVY617",
+      "vehicle_id": "7446",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.486934661865234,
+      "lon": 19.258895874023438,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
