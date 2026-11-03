@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-03T05:01:03.241576+02:00",
+  "frissitve": "2026-11-03T05:01:38.938951+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:55:15.164166+02:00",
-      "kulcs": "STZ851",
-      "rendszam": "STZ851",
-      "vehicle_id": "7806",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40E",
-      "route_id": "0405",
-      "lat": 47.464691162109375,
-      "lon": 19.018550872802734,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-11-02T15:55:15.164182+02:00",
-      "kulcs": "STZ852",
-      "rendszam": "STZ852",
-      "vehicle_id": "7807",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "40",
-      "route_id": "0400",
-      "lat": 47.45574951171875,
-      "lon": 18.941192626953125,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-02T15:55:15.164328+02:00",
-      "kulcs": "STZ870",
-      "rendszam": "STZ870",
-      "vehicle_id": "7825",
-      "vehicle_label": "Budakeszi, Honfoglalás s.",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.51755905151367,
-      "lon": 18.923748016357422,
-      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
-      "uj_szoveg": "Budakeszi, Honfoglalás s."
-    },
     {
       "idopont": "2026-11-02T15:55:15.164624+02:00",
       "kulcs": "T9135",
@@ -260000,6 +259961,45 @@
       "lon": 18.71800994873047,
       "elozo_szoveg": "Esztergom",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-11-03T05:01:38.866522+02:00",
+      "kulcs": "PDN640",
+      "rendszam": "PDN640",
+      "vehicle_id": "7111",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.44281768798828,
+      "lon": 19.015443801879883,
+      "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
+      "uj_szoveg": "Arany János utcai ltp."
+    },
+    {
+      "idopont": "2026-11-03T05:01:38.866695+02:00",
+      "kulcs": "V2239",
+      "rendszam": "V2239",
+      "vehicle_id": "7371",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.44157028198242,
+      "lon": 19.036325454711914,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-11-03T05:01:38.866972+02:00",
+      "kulcs": "SKR828",
+      "rendszam": "SKR828",
+      "vehicle_id": "7714",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.44355773925781,
+      "lon": 19.09295654296875,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
