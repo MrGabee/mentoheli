@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-03T01:59:45.621067+02:00",
+  "frissitve": "2026-11-03T02:00:20.475200+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:37:53.258484+02:00",
-      "kulcs": "T9141",
-      "rendszam": "T9141",
-      "vehicle_id": "7880",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50509262084961,
-      "lon": 19.13648223876953,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-02T15:37:53.258538+02:00",
-      "kulcs": "T9147",
-      "rendszam": "T9147",
-      "vehicle_id": "7886",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.519065856933594,
-      "lon": 19.091148376464844,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-02T15:37:53.258596+02:00",
-      "kulcs": "T8113",
-      "rendszam": "T8113",
-      "vehicle_id": "7892",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51863098144531,
-      "lon": 19.085529327392578,
-      "elozo_szoveg": "Mexikói út M ► Örs vezér tere M+H",
-      "uj_szoveg": "Miskolci utca ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-02T15:37:53.259015+02:00",
       "kulcs": "AOFL248",
@@ -260000,6 +259961,45 @@
       "lon": 19.02608871459961,
       "elozo_szoveg": "Óbudai autóbuszgarázs",
       "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-03T02:00:20.392931+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.50749969482422,
+      "lon": 19.02472496032715,
+      "elozo_szoveg": "Rákoshegy vasútállomás",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-11-03T02:00:20.393102+02:00",
+      "kulcs": "PDN609",
+      "rendszam": "PDN609",
+      "vehicle_id": "7122",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.44176483154297,
+      "lon": 19.020469665527344,
+      "elozo_szoveg": "Rózsavölgy ► Arany János utcai lakótelep",
+      "uj_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H"
+    },
+    {
+      "idopont": "2026-11-03T02:00:20.393419+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.441097259521484,
+      "lon": 19.0935001373291,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
