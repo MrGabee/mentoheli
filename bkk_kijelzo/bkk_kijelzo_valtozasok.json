@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-03T03:33:42.624260+02:00",
+  "frissitve": "2026-11-03T03:34:15.053623+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:46:38.774103+02:00",
-      "kulcs": "PKN625",
-      "rendszam": "PKN625",
-      "vehicle_id": "7214",
-      "vehicle_label": "Felsőcsatári köz",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.49988555908203,
-      "lon": 19.104921340942383,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Felsőcsatári köz"
-    },
-    {
-      "idopont": "2026-11-02T15:46:38.775421+02:00",
-      "kulcs": "V1622",
-      "rendszam": "V1622",
-      "vehicle_id": "7291",
-      "vehicle_label": "Mester utca/Ferenc körút",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.46599197387695,
-      "lon": 19.081457138061523,
-      "elozo_szoveg": "Koppány utca",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
-    {
-      "idopont": "2026-11-02T15:46:38.775608+02:00",
-      "kulcs": "T8107",
-      "rendszam": "T8107",
-      "vehicle_id": "7344",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.48130416870117,
-      "lon": 19.136205673217773,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-02T15:46:38.775633+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48932647705078,
-      "lon": 19.090293884277344,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
     {
       "idopont": "2026-11-02T15:46:38.777542+02:00",
       "kulcs": "V2247",
@@ -260000,6 +259948,58 @@
       "lon": 19.02296257019043,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-03T03:34:14.982908+02:00",
+      "kulcs": "AADR701",
+      "rendszam": "AADR701",
+      "vehicle_id": "168",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.4307861328125,
+      "lon": 19.070575714111328,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-11-03T03:34:14.984658+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.479217529296875,
+      "lon": 19.050474166870117,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-11-03T03:34:14.984739+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46211624145508,
+      "lon": 19.13401222229004,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-03T03:34:14.985110+02:00",
+      "kulcs": "PKN625",
+      "rendszam": "PKN625",
+      "vehicle_id": "7214",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48964309692383,
+      "lon": 19.07624053955078,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
     }
   ]
 }
