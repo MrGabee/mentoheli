@@ -360,6 +360,15 @@ Egy olvasóm kérdezi:
 Köszönöm mindenkinek a segítséget! 🙏
 
 #Csepel #Csillagtelep #szemészet #egészség #olvasóikérdés"""),
+    "gubacsi_csavar_20261103": (date(2026, 11, 3), """⚠️ VIGYÁZAT, KILÓG EGY VASCSAVAR A GUBACSI ÁTJÁRÓNÁL!
+
+Egy olvasóm jelezte, hogy a Gubacsi átjárón, Csepel felől az első dilatációs ráépítménynél egy nagy vascsavar áll ki az útból. Aki ráhajt, könnyen defektet kaphat.
+
+🚗 Arra járva vezessetek óvatosan, és ha lehet, kerüljétek ki!
+
+A hibát már bejelentették, remélhetőleg hamar kijavítják. Ha láttok rajta változást, írjátok meg kommentben! 👇
+
+#Csepel #GubacsiÁtjáró #közlekedés #balesetveszély"""),
 }
 
 
