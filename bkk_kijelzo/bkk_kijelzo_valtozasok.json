@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-03T04:44:31.405246+02:00",
+  "frissitve": "2026-11-03T04:45:03.670866+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:54:04.453236+02:00",
-      "kulcs": "AAGL275",
-      "rendszam": "AAGL275",
-      "vehicle_id": "275",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40",
-      "route_id": "0400",
-      "lat": 47.46434783935547,
-      "lon": 19.01858901977539,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-11-02T15:54:04.453250+02:00",
-      "kulcs": "AAGL276",
-      "rendszam": "AAGL276",
-      "vehicle_id": "276",
-      "vehicle_label": "Törökbálint, Nyár utca",
-      "vonal_szam": "172",
-      "route_id": "1720",
-      "lat": 47.46476364135742,
-      "lon": 19.01848030090332,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Törökbálint vasútállomás ► Nyár utca"
-    },
-    {
-      "idopont": "2026-11-02T15:54:04.453399+02:00",
-      "kulcs": "FJX234",
-      "rendszam": "FJX234",
-      "vehicle_id": "3054",
-      "vehicle_label": "R.csaba-Újtelep, Naplás út",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.50120162963867,
-      "lon": 19.135940551757812,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Naplás út"
-    },
     {
       "idopont": "2026-11-02T15:54:04.454147+02:00",
       "kulcs": "AAHY832",
@@ -260000,6 +259961,45 @@
       "lon": 19.0141544342041,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-11-03T04:45:03.578754+02:00",
+      "kulcs": "LYH119",
+      "rendszam": "LYH119",
+      "vehicle_id": "3708",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.567691802978516,
+      "lon": 19.127197265625,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-03T04:45:03.578810+02:00",
+      "kulcs": "AADI562",
+      "rendszam": "AADI562",
+      "vehicle_id": "41",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.54328155517578,
+      "lon": 18.96462059020996,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-03T04:45:03.579771+02:00",
+      "kulcs": "PDB387",
+      "rendszam": "PDB387",
+      "vehicle_id": "7069",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.4859733581543,
+      "lon": 19.192041397094727,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
     }
   ]
 }
