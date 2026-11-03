@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-03T03:11:25.985476+02:00",
+  "frissitve": "2026-11-03T03:11:56.917967+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:44:00.879301+02:00",
-      "kulcs": "AOIM055",
-      "rendszam": "AOIM055",
-      "vehicle_id": "976",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.50636672973633,
-      "lon": 19.024309158325195,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-11-02T15:44:00.879348+02:00",
-      "kulcs": "AOJM864",
-      "rendszam": "AOJM864",
-      "vehicle_id": "987",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.44493103027344,
-      "lon": 19.098031997680664,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-11-02T15:45:26.312569+02:00",
-      "kulcs": "AADI604",
-      "rendszam": "AADI604",
-      "vehicle_id": "101",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "250",
-      "route_id": "2500",
-      "lat": 47.43655776977539,
-      "lon": 19.03974151611328,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Regényes utca ► Kelenföld vasútállomás M"
-    },
     {
       "idopont": "2026-11-02T15:45:26.313431+02:00",
       "kulcs": "V2022",
@@ -260000,6 +259961,45 @@
       "lon": 19.067649841308594,
       "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-03T03:11:56.814054+02:00",
+      "kulcs": "PKN630",
+      "rendszam": "PKN630",
+      "vehicle_id": "7219",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52323913574219,
+      "lon": 19.018104553222656,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-03T03:11:56.814436+02:00",
+      "kulcs": "AADI582",
+      "rendszam": "AADI582",
+      "vehicle_id": "83",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.5477294921875,
+      "lon": 19.02878761291504,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-03T03:11:56.814599+02:00",
+      "kulcs": "AADI598",
+      "rendszam": "AADI598",
+      "vehicle_id": "95",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.478126525878906,
+      "lon": 19.046308517456055,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
     }
   ]
 }
