@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-03T04:01:57.961756+02:00",
+  "frissitve": "2026-11-03T04:02:26.976554+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:48:52.649141+02:00",
-      "kulcs": "415 028",
-      "rendszam": "415 028",
-      "vehicle_id": "945514150289",
-      "vehicle_label": "Budapest-Kelenföld",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.380069732666016,
-      "lon": 18.925060272216797,
-      "elozo_szoveg": "Tárnok",
-      "uj_szoveg": "Budapest-Kelenföld"
-    },
-    {
-      "idopont": "2026-11-02T15:48:52.649177+02:00",
-      "kulcs": "415 038",
-      "rendszam": "415 038",
-      "vehicle_id": "945514150388",
-      "vehicle_label": "Martonvásár",
-      "vonal_szam": "Z30",
-      "route_id": "Z30",
-      "lat": 47.464080810546875,
-      "lon": 19.02100944519043,
-      "elozo_szoveg": "Pusztaszabolcs",
-      "uj_szoveg": "Martonvásár"
-    },
-    {
-      "idopont": "2026-11-02T15:48:52.649687+02:00",
-      "kulcs": "AOIM036",
-      "rendszam": "AOIM036",
-      "vehicle_id": "956",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52473068237305,
-      "lon": 19.117027282714844,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Rákospatak u./Csömöri út"
-    },
     {
       "idopont": "2026-11-02T15:50:22.508849+02:00",
       "kulcs": "AADI659",
@@ -260000,6 +259961,45 @@
       "lon": 19.12133026123047,
       "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-03T04:02:26.881539+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.51102066040039,
+      "lon": 19.056243896484375,
+      "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-03T04:02:26.881628+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51454162597656,
+      "lon": 19.097368240356445,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-11-03T04:02:26.881931+02:00",
+      "kulcs": "PDB390",
+      "rendszam": "PDB390",
+      "vehicle_id": "7072",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5074577331543,
+      "lon": 19.025728225708008,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
     }
   ]
 }
