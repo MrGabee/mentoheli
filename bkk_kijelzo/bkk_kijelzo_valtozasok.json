@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-03T02:09:36.524562+02:00",
+  "frissitve": "2026-11-03T02:10:08.614027+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:38:53.588863+02:00",
-      "kulcs": "PDN622",
-      "rendszam": "PDN622",
-      "vehicle_id": "7093",
-      "vehicle_label": "Gilice tér (Varjú utca)",
-      "vonal_szam": "182A",
-      "route_id": "1821",
-      "lat": 47.46305465698242,
-      "lon": 19.148956298828125,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Gilice tér (Varjú utca)"
-    },
-    {
-      "idopont": "2026-11-02T15:38:53.588899+02:00",
-      "kulcs": "PDN625",
-      "rendszam": "PDN625",
-      "vehicle_id": "7096",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.41650390625,
-      "lon": 19.07219696044922,
-      "elozo_szoveg": "Királyerdő út ► Hollandi út",
-      "uj_szoveg": "Hollandi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-11-02T15:38:53.589076+02:00",
-      "kulcs": "PDN609",
-      "rendszam": "PDN609",
-      "vehicle_id": "7122",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.405696868896484,
-      "lon": 19.01372718811035,
-      "elozo_szoveg": "Budatétény vasútáll. (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-02T15:38:53.589154+02:00",
-      "kulcs": "T0623",
-      "rendszam": "T0623",
-      "vehicle_id": "716",
-      "vehicle_label": "Astoria M",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.53651428222656,
-      "lon": 19.107135772705078,
-      "elozo_szoveg": "Csáktornya park",
-      "uj_szoveg": "Astoria M"
-    },
-    {
-      "idopont": "2026-11-02T15:38:53.589454+02:00",
-      "kulcs": "PKN627",
-      "rendszam": "PKN627",
-      "vehicle_id": "7216",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51966857910156,
-      "lon": 19.148357391357422,
-      "elozo_szoveg": "Rákosszentmihály vá.",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
     {
       "idopont": "2026-11-02T15:38:53.589569+02:00",
       "kulcs": "PMP918",
@@ -260000,6 +259935,71 @@
       "lon": 19.04237937927246,
       "elozo_szoveg": "Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-03T02:10:08.518856+02:00",
+      "kulcs": "AADI649",
+      "rendszam": "AADI649",
+      "vehicle_id": "148",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475120544433594,
+      "lon": 19.039989471435547,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-03T02:10:08.520626+02:00",
+      "kulcs": "AAGL323",
+      "rendszam": "AAGL323",
+      "vehicle_id": "353",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50798416137695,
+      "lon": 19.028766632080078,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-03T02:10:08.521060+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.4987907409668,
+      "lon": 19.05014991760254,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-11-03T02:10:08.521135+02:00",
+      "kulcs": "AADI592",
+      "rendszam": "AADI592",
+      "vehicle_id": "69",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40562057495117,
+      "lon": 19.013784408569336,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-03T02:10:08.521205+02:00",
+      "kulcs": "PDB390",
+      "rendszam": "PDB390",
+      "vehicle_id": "7072",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56767654418945,
+      "lon": 19.127208709716797,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
