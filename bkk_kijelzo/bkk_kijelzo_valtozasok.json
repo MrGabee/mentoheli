@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-03T04:38:29.718852+02:00",
+  "frissitve": "2026-11-03T04:38:56.143378+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:53:00.400932+02:00",
-      "kulcs": "NWB360",
-      "rendszam": "NWB360",
-      "vehicle_id": "6540",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.46294021606445,
-      "lon": 19.149293899536133,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
-    {
-      "idopont": "2026-11-02T15:53:00.401155+02:00",
-      "kulcs": "PDB710",
-      "rendszam": "PDB710",
-      "vehicle_id": "7036",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.602813720703125,
-      "lon": 19.066511154174805,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-11-02T15:53:00.401209+02:00",
       "kulcs": "PDB725",
@@ -260000,6 +259974,32 @@
       "lon": 19.040128707885742,
       "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
       "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-03T04:38:56.075532+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52463150024414,
+      "lon": 19.063446044921875,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-11-03T04:38:56.076148+02:00",
+      "kulcs": "SKR821",
+      "rendszam": "SKR821",
+      "vehicle_id": "7707",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498817443847656,
+      "lon": 19.05013084411621,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
