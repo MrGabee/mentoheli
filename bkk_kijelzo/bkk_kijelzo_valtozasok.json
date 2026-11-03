@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-03T03:53:53.218140+02:00",
+  "frissitve": "2026-11-03T03:54:23.632725+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:48:52.630933+02:00",
-      "kulcs": "AONW956",
-      "rendszam": "AONW956",
-      "vehicle_id": "1023",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.54706573486328,
-      "lon": 19.14206314086914,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-02T15:48:52.631070+02:00",
-      "kulcs": "LMG123",
-      "rendszam": "LMG123",
-      "vehicle_id": "1112",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.489524841308594,
-      "lon": 19.24395179748535,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-02T15:48:52.631163+02:00",
-      "kulcs": "AORS278",
-      "rendszam": "AORS278",
-      "vehicle_id": "1122",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.60283660888672,
-      "lon": 19.06653594970703,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-11-02T15:48:52.631478+02:00",
-      "kulcs": "SKN831",
-      "rendszam": "SKN831",
-      "vehicle_id": "164",
-      "vehicle_label": "Békásmegyer H",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.54542541503906,
-      "lon": 19.033809661865234,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Szent Margit Kórház ► Békásmegyer H"
-    },
     {
       "idopont": "2026-11-02T15:48:52.631867+02:00",
       "kulcs": "V2030",
@@ -260000,6 +259948,58 @@
       "lon": 18.958450317382812,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-03T03:54:23.571666+02:00",
+      "kulcs": "FLR732",
+      "rendszam": "FLR732",
+      "vehicle_id": "3146",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.5113639831543,
+      "lon": 19.056373596191406,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-03T03:54:23.571771+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.57980728149414,
+      "lon": 19.08858299255371,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-03T03:54:23.571825+02:00",
+      "kulcs": "AAMH650",
+      "rendszam": "AAMH650",
+      "vehicle_id": "493",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43246078491211,
+      "lon": 19.26119613647461,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-11-03T03:54:23.572458+02:00",
+      "kulcs": "AADI585",
+      "rendszam": "AADI585",
+      "vehicle_id": "86",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.475067138671875,
+      "lon": 19.0467586517334,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
     }
   ]
 }
