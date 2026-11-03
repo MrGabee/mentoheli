@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-03T04:33:24.882058+02:00",
+  "frissitve": "2026-11-03T04:33:58.199679+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:53:00.396148+02:00",
-      "kulcs": "AAHY855",
-      "rendszam": "AAHY855",
-      "vehicle_id": "417",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.533592224121094,
-      "lon": 19.067426681518555,
-      "elozo_szoveg": "Göncz Árpád városkp. M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-11-02T15:53:00.396194+02:00",
-      "kulcs": "AAHY860",
-      "rendszam": "AAHY860",
-      "vehicle_id": "422",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.51996612548828,
-      "lon": 19.091266632080078,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-11-02T15:53:00.396284+02:00",
-      "kulcs": "AAHY867",
-      "rendszam": "AAHY867",
-      "vehicle_id": "429",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57532501220703,
-      "lon": 19.10430145263672,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-11-02T15:53:00.396447+02:00",
-      "kulcs": "V1330",
-      "rendszam": "V1330",
-      "vehicle_id": "4433",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.499427795410156,
-      "lon": 19.08256721496582,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-02T15:53:00.396575+02:00",
-      "kulcs": "V1354",
-      "rendszam": "V1354",
-      "vehicle_id": "4455",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.513370513916016,
-      "lon": 19.047739028930664,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
     {
       "idopont": "2026-11-02T15:53:00.396586+02:00",
       "kulcs": "V1355",
@@ -260000,6 +259935,71 @@
       "lon": 19.038211822509766,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-03T04:33:58.125223+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48933410644531,
+      "lon": 19.078489303588867,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-03T04:33:58.126148+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.47806167602539,
+      "lon": 19.04561996459961,
+      "elozo_szoveg": "Törökbálint vasútállomás",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-11-03T04:33:58.126953+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46464920043945,
+      "lon": 19.02292823791504,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-03T04:33:58.127776+02:00",
+      "kulcs": "AADI588",
+      "rendszam": "AADI588",
+      "vehicle_id": "88",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.512630462646484,
+      "lon": 19.079273223876953,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-11-03T04:33:58.127925+02:00",
+      "kulcs": "AOIM021",
+      "rendszam": "AOIM021",
+      "vehicle_id": "941",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.442649841308594,
+      "lon": 19.179584503173828,
+      "elozo_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
     }
   ]
 }
