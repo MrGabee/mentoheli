@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-03T04:54:59.842026+02:00",
+  "frissitve": "2026-11-03T04:55:30.438105+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:54:04.467760+02:00",
-      "kulcs": "AADI602",
-      "rendszam": "AADI602",
-      "vehicle_id": "99",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "58",
-      "route_id": "0580",
-      "lat": 47.432151794433594,
-      "lon": 19.00520896911621,
-      "elozo_szoveg": "Balatoni út / Háros utca",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-02T15:55:15.147273+02:00",
-      "kulcs": "AOJM876",
-      "rendszam": "AOJM876",
-      "vehicle_id": "1000",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.39857482910156,
-      "lon": 19.106220245361328,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-02T15:55:15.147804+02:00",
-      "kulcs": "AADI606",
-      "rendszam": "AADI606",
-      "vehicle_id": "103",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "150B",
-      "route_id": "1502",
-      "lat": 47.436607360839844,
-      "lon": 19.018062591552734,
-      "elozo_szoveg": "Lomnici utca ► Újbuda-központ M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-02T15:55:15.147835+02:00",
-      "kulcs": "AONW963",
-      "rendszam": "AONW963",
-      "vehicle_id": "1031",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.38890075683594,
-      "lon": 18.95855712890625,
-      "elozo_szoveg": "Gazdagréti tér",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-11-02T15:55:15.148002+02:00",
       "kulcs": "AORS275",
@@ -260000,6 +259948,58 @@
       "lon": 19.07465362548828,
       "elozo_szoveg": "Szentendre",
       "uj_szoveg": "Batthyány tér"
+    },
+    {
+      "idopont": "2026-11-03T04:55:30.361431+02:00",
+      "kulcs": "AAGL308",
+      "rendszam": "AAGL308",
+      "vehicle_id": "338",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4875373840332,
+      "lon": 19.05845832824707,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-03T04:55:30.361923+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.585697174072266,
+      "lon": 19.094154357910156,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-03T04:55:30.363032+02:00",
+      "kulcs": "415 008",
+      "rendszam": "415 008",
+      "vehicle_id": "945514150081",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G40",
+      "route_id": "G40",
+      "lat": 46.41579818725586,
+      "lon": 18.252750396728516,
+      "elozo_szoveg": "Dombóvár",
+      "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-11-03T04:55:30.363131+02:00",
+      "kulcs": "415 072",
+      "rendszam": "415 072",
+      "vehicle_id": "945514150727",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "S80",
+      "route_id": "S80",
+      "lat": 47.62635040283203,
+      "lon": 19.597909927368164,
+      "elozo_szoveg": "Gödöllő",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
