@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-03T04:16:51.092844+02:00",
+  "frissitve": "2026-11-03T04:17:18.998821+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-02T15:51:45.017327+02:00",
-      "kulcs": "FJX198",
-      "rendszam": "FJX198",
-      "vehicle_id": "3018",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161E",
-      "route_id": "1615",
-      "lat": 47.486812591552734,
-      "lon": 19.286388397216797,
-      "elozo_szoveg": "Rákoscsaba",
-      "uj_szoveg": "Kucorgó tér ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-02T15:51:45.017459+02:00",
-      "kulcs": "FKU930",
-      "rendszam": "FKU930",
-      "vehicle_id": "3086",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.52614974975586,
-      "lon": 19.18233299255371,
-      "elozo_szoveg": "Rákosi út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-02T15:51:45.017560+02:00",
-      "kulcs": "FLR710",
-      "rendszam": "FLR710",
-      "vehicle_id": "3124",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.50457763671875,
-      "lon": 19.136913299560547,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákosi út ► Centenáriumi lakótelep"
-    },
     {
       "idopont": "2026-11-02T15:51:45.017702+02:00",
       "kulcs": "FLR741",
@@ -260000,6 +259961,45 @@
       "lon": 19.04298973083496,
       "elozo_szoveg": "Óbudai autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-03T04:17:18.946302+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48676300048828,
+      "lon": 19.05708885192871,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-03T04:17:18.946429+02:00",
+      "kulcs": "PDB707",
+      "rendszam": "PDB707",
+      "vehicle_id": "7033",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.598541259765625,
+      "lon": 19.12090492248535,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-03T04:17:18.946672+02:00",
+      "kulcs": "RVY738",
+      "rendszam": "RVY738",
+      "vehicle_id": "7636",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.496280670166016,
+      "lon": 19.057485580444336,
+      "elozo_szoveg": "Boráros tér H",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
     }
   ]
 }
