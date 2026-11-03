@@ -59,7 +59,7 @@ if SZINES_WEBHOOK:
 def kapcsolat_sor(nap, kulcs):
     return poszt_valtozatos.rovid_kapcsolat(nap, kulcs, allasok.OLVASOI_EMAIL,
                                             "+36 70 754 0254", allasok.KAPCSOLAT_URL)
-KAPCSOLAT_NELKUL = {"tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "zsido_temeto_20261101", "birkozo_vb_20261101", "talalt_berlet_20261101", "kozvilagitas_bajcsy_20261102", "szemeszet_csillagtelep_20261102", "gubacsi_csavar_20261103", "szabotelep_tabla_20261103", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
+KAPCSOLAT_NELKUL = {"tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "zsido_temeto_20261101", "birkozo_vb_20261101", "talalt_berlet_20261101", "kozvilagitas_bajcsy_20261102", "szemeszet_csillagtelep_20261102", "gubacsi_csavar_20261103", "szabotelep_tabla_20261103", "m0_ko_tanu_20261103", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
@@ -147,6 +147,7 @@ MENETREND = [
     ("szemeszet_csillagtelep_20261102", time(12, 10), {HETFO}, lambda nap, a: egyszeri_posztok.szoveg("szemeszet_csillagtelep_20261102", nap)),
     ("gubacsi_csavar_20261103", time(12, 15), {KEDD}, lambda nap, a: egyszeri_posztok.szoveg("gubacsi_csavar_20261103", nap)),
     ("szabotelep_tabla_20261103", time(15, 5), {KEDD}, lambda nap, a: egyszeri_posztok.szoveg("szabotelep_tabla_20261103", nap)),
+    ("m0_ko_tanu_20261103", time(20, 45), {KEDD}, lambda nap, a: egyszeri_posztok.szoveg("m0_ko_tanu_20261103", nap)),
     ("zsido_temeto_20261101", time(13, 35), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("zsido_temeto_20261101", nap)),
     ("birkozo_vb_20261101", time(16, 50), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("birkozo_vb_20261101", nap)),
     ("telefon_meki_20261030", time(17, 5), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("telefon_meki_20261030", nap)),

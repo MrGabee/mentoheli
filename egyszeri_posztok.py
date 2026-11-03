@@ -380,6 +380,19 @@ Egy olvasóm írt nekem:
 Ti hogy látjátok? A környéken lakók közül kinek okozott ez gondot, és hol látjátok indokoltnak vagy feleslegesnek? Írjátok meg kommentben! 👇
 
 #Pesterzsébet #Szabótelep #parkolás #olvasóilevél"""),
+    "m0_ko_tanu_20261103": (date(2026, 11, 3), """🔎 SZEMTANÚKAT, KAMERAFELVÉTELT KERESNEK – KŐ HULLOTT AZ M0-RA
+
+Egy olvasóm kért meg, hogy segítsek neki:
+
+Ma (november 3., kedd) 16:14 körül az M0-son, a Deák Ferenc híd előtt, az M5-ös felé tartó oldalon egy platós kisteherautóról, furgonról vagy kamionról nagyobb kövek estek le az útra. Egy hatalmas kő négy autóban tett kárt, ebből háromban komolyabban.
+
+🚗 Aki ekkor arra járt, látta, honnan estek le a kövek, vagy van fedélzeti kamerás (menetrögzítő) felvétele erről az időszakról, kérem, írjon nekem privát üzenetben, és továbbítom a károsultnak! A felvételt a rendőrségnek is át lehet adni.
+
+A rendőrség már kikérte az M0 kameráinak felvételeit, de nem biztos, hogy azokon látszik a jármű, ezért minden segítség számít.
+
+Kérlek, osszátok meg, hogy minél több autóshoz eljusson! 🙏
+
+#Csepel #M0 #DeákFerenchíd #szemtanú #közlekedés"""),
 }
 
 
