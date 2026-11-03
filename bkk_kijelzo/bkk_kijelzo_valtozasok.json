@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-04T01:34:21.464792+02:00",
+  "frissitve": "2026-11-04T01:34:56.453705+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:37:59.358057+02:00",
-      "kulcs": "SKR824",
-      "rendszam": "SKR824",
-      "vehicle_id": "7710",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.47400665283203,
-      "lon": 19.0484619140625,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-11-03T15:37:59.358217+02:00",
-      "kulcs": "SGY819",
-      "rendszam": "SGY819",
-      "vehicle_id": "7737",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "282E",
-      "route_id": "2825",
-      "lat": 47.41318893432617,
-      "lon": 19.20152473449707,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-11-03T15:37:59.358290+02:00",
       "kulcs": "SKN818",
@@ -260000,6 +259974,32 @@
       "lon": 19.058673858642578,
       "elozo_szoveg": "Dózsa György út M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-04T01:34:56.361541+02:00",
+      "kulcs": "AADI651",
+      "rendszam": "AADI651",
+      "vehicle_id": "150",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50880813598633,
+      "lon": 19.09544563293457,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-04T01:34:56.362814+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.46323776245117,
+      "lon": 19.131343841552734,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
