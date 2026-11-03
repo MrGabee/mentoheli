@@ -369,6 +369,17 @@ Egy olvasóm jelezte, hogy a Gubacsi átjárón, Csepel felől az első dilatác
 A hibát már bejelentették, remélhetőleg hamar kijavítják. Ha láttok rajta változást, írjátok meg kommentben! 👇
 
 #Csepel #GubacsiÁtjáró #közlekedés #balesetveszély"""),
+    "szabotelep_tabla_20261103": (date(2026, 11, 3), """✉️ OLVASÓI LEVÉL – MIÉRT TILOS A JÁRDÁN VÁRAKOZNI SZABÓTELEPEN?
+
+Egy olvasóm írt nekem:
+
+„Szabótelepen, a Popieluszko utcában és környékén kitették a »járdán várakozni tilos« táblákat, holott sok helyen szerintem nem indokolt. Sok helyen van kapubeálló, ahol az autó sem a járdán, sem az úttesten közlekedőket nem zavarja. Így csak a már amúgy is leterhelt környező utcák terhelődnek tovább. A táblákat láttam a Popieluszko utcában, a Katona József utcában és a Széchenyi István úton is. Rákérdeztem, de eddig nem kaptam választ, miért volt erre szükség.”
+
+🚗 Utánajárok, mi indokolta a táblák kihelyezését, és ha választ kapok, megírom.
+
+Ti hogy látjátok? A környéken lakók közül kinek okozott ez gondot, és hol látjátok indokoltnak vagy feleslegesnek? Írjátok meg kommentben! 👇
+
+#Pesterzsébet #Szabótelep #parkolás #olvasóilevél"""),
 }
 
 
