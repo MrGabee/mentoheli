@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-05T01:32:16.767633+02:00",
+  "frissitve": "2026-11-05T01:32:49.622277+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:38:59.479199+02:00",
-      "kulcs": "V2290",
-      "rendszam": "V2290",
-      "vehicle_id": "588",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.48690414428711,
-      "lon": 19.024660110473633,
-      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-04T15:38:59.479289+02:00",
-      "kulcs": "V2294",
-      "rendszam": "V2294",
-      "vehicle_id": "592",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.54810333251953,
-      "lon": 19.029542922973633,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-11-04T15:38:59.479357+02:00",
-      "kulcs": "MUT895",
-      "rendszam": "MUT895",
-      "vehicle_id": "5948",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85E",
-      "route_id": "0855",
-      "lat": 47.50170135498047,
-      "lon": 19.13560676574707,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-11-04T15:38:59.479613+02:00",
       "kulcs": "T8015",
@@ -260000,6 +259961,45 @@
       "lon": 19.022991180419922,
       "elozo_szoveg": "Rákospatak u./Csömöri út",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-05T01:32:49.513981+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45619583129883,
+      "lon": 18.94137954711914,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-05T01:32:49.514548+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.507476806640625,
+      "lon": 19.025333404541016,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-05T01:32:49.515294+02:00",
+      "kulcs": "415 014",
+      "rendszam": "415 014",
+      "vehicle_id": "945514150149",
+      "vehicle_label": "Komárom",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.46417999267578,
+      "lon": 19.020490646362305,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Komárom"
     }
   ]
 }
