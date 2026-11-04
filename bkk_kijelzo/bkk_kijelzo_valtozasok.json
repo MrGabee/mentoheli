@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-04T04:25:52.842637+02:00",
+  "frissitve": "2026-11-04T04:26:24.756481+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:53:17.709219+02:00",
-      "kulcs": "RVY722",
-      "rendszam": "RVY722",
-      "vehicle_id": "7620",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.38859176635742,
-      "lon": 19.216711044311523,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-11-03T15:53:17.709355+02:00",
-      "kulcs": "SGY983",
-      "rendszam": "SGY983",
-      "vehicle_id": "7663",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.46500015258789,
-      "lon": 19.023649215698242,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-03T15:53:17.709388+02:00",
-      "kulcs": "SKR721",
-      "rendszam": "SKR721",
-      "vehicle_id": "7670",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.437889099121094,
-      "lon": 19.169504165649414,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-11-03T15:53:17.709399+02:00",
       "kulcs": "SKR722",
@@ -260000,6 +259961,45 @@
       "lon": 19.238750457763672,
       "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
       "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-11-04T04:26:24.660584+02:00",
+      "kulcs": "AADR711",
+      "rendszam": "AADR711",
+      "vehicle_id": "179",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59780502319336,
+      "lon": 19.05386734008789,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-04T04:26:24.661396+02:00",
+      "kulcs": "AAGL297",
+      "rendszam": "AAGL297",
+      "vehicle_id": "329",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.48833084106445,
+      "lon": 19.0599422454834,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-04T04:26:24.662467+02:00",
+      "kulcs": "AADI581",
+      "rendszam": "AADI581",
+      "vehicle_id": "81",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.508766174316406,
+      "lon": 19.027469635009766,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
