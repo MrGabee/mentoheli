@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-04T03:13:13.242420+02:00",
+  "frissitve": "2026-11-04T03:13:39.283096+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:46:45.420277+02:00",
-      "kulcs": "PKN620",
-      "rendszam": "PKN620",
-      "vehicle_id": "7209",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "161A",
-      "route_id": "1611",
-      "lat": 47.50178527832031,
-      "lon": 19.13593292236328,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
-    {
-      "idopont": "2026-11-03T15:46:45.420325+02:00",
-      "kulcs": "PKN622",
-      "rendszam": "PKN622",
-      "vehicle_id": "7211",
-      "vehicle_label": "Rákoshegy vasútállomás",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.46297836303711,
-      "lon": 19.149354934692383,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoshegy vasútállomás"
-    },
     {
       "idopont": "2026-11-03T15:46:45.420630+02:00",
       "kulcs": "V1622",
@@ -260000,6 +259974,32 @@
       "lon": 19.040090560913086,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-04T03:13:39.227799+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.550289154052734,
+      "lon": 19.042068481445312,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-04T03:13:39.228529+02:00",
+      "kulcs": "NGC141",
+      "rendszam": "NGC141",
+      "vehicle_id": "6216",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.51996612548828,
+      "lon": 19.03809356689453,
+      "elozo_szoveg": "Astoria M ► Pesterzsébet",
+      "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
     }
   ]
 }
