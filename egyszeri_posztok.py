@@ -393,6 +393,15 @@ A rendőrség már kikérte az M0 kameráinak felvételeit, de nem biztos, hogy 
 Kérlek, osszátok meg, hogy minél több autóshoz eljusson! 🙏
 
 #Csepel #M0 #DeákFerenchíd #szemtanú #közlekedés"""),
+    "szomszed_zaj_20261104": (date(2026, 11, 4), """❓ OLVASÓI KÉRDÉS – MIT LEHET TENNI, HA ÉJJEL ZAJONGANAK A SZOMSZÉDOK?
+
+Egy csepeli olvasóm kért tanácsot:
+
+„Társasházban élünk, a falszomszédunkban albérlők laknak. Szinte minden este 11-12 óra körül elkezdenek hangosan veszekedni, kiabálni, csapkodni, és ez legalább hajnali 1-ig, néha fél 3-ig is eltart. A közös képviselettel már beszéltünk, elvileg értesítették a tulajdonost, és a rendőrséget is kihívtuk már néhányszor. A közös képviselet azt mondja, hívjunk rendőrt, a rendőrség azt mondja, szóljunk a közös képviseletnek, így érdemi változás nem történt. Mivel a lakás a szomszéd lépcsőházban van, bekopogni sem tudunk. Mit tehetnénk, ami kulturált, de hatásos?”
+
+🌙 Sokan ismerjük ezt a helyzetet. Akinek volt már hasonló gondja, és sikerült megoldania, ossza meg, mi segített! Minden jó tanácsot továbbítok. 👇
+
+#Csepel #társasház #szomszédok #olvasóikérdés"""),
 }
 
 
