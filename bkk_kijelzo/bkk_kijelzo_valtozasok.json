@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-05T01:39:13.811596+02:00",
+  "frissitve": "2026-11-05T01:39:47.792677+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:38:59.481532+02:00",
-      "kulcs": "PDN609",
-      "rendszam": "PDN609",
-      "vehicle_id": "7122",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.40570068359375,
-      "lon": 19.013713836669922,
-      "elozo_szoveg": "Budatétény vá. (Campona)",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-04T15:38:59.482488+02:00",
-      "kulcs": "PHG657",
-      "rendszam": "PHG657",
-      "vehicle_id": "7181",
-      "vehicle_label": "Rákosszentmihály",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.50468063354492,
-      "lon": 19.136905670166016,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákosszentmihály, Mátyás király utca"
-    },
-    {
-      "idopont": "2026-11-04T15:38:59.482524+02:00",
-      "kulcs": "PKN602",
-      "rendszam": "PKN602",
-      "vehicle_id": "7191",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.47169494628906,
-      "lon": 19.294973373413086,
-      "elozo_szoveg": "Kucorgó tér ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-04T15:38:59.482802+02:00",
       "kulcs": "PON993",
@@ -260000,6 +259961,45 @@
       "lon": 19.027393341064453,
       "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
       "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-05T01:39:47.699037+02:00",
+      "kulcs": "AAGL311",
+      "rendszam": "AAGL311",
+      "vehicle_id": "282",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.43115234375,
+      "lon": 18.928081512451172,
+      "elozo_szoveg": "Márta utca ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-05T01:39:47.699466+02:00",
+      "kulcs": "NGC153",
+      "rendszam": "NGC153",
+      "vehicle_id": "6201",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.50980758666992,
+      "lon": 19.0571346282959,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-11-05T01:39:47.699708+02:00",
+      "kulcs": "PKN603",
+      "rendszam": "PKN603",
+      "vehicle_id": "7192",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.438880920410156,
+      "lon": 19.103214263916016,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
     }
   ]
 }
