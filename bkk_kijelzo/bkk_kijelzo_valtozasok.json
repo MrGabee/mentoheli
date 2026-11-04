@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-05T01:40:25.245625+02:00",
+  "frissitve": "2026-11-05T01:40:56.107753+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:38:59.483250+02:00",
-      "kulcs": "T9108",
-      "rendszam": "T9108",
-      "vehicle_id": "7355",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50389862060547,
-      "lon": 19.1369686126709,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-04T15:38:59.483270+02:00",
-      "kulcs": "T9109",
-      "rendszam": "T9109",
-      "vehicle_id": "7356",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.513938903808594,
-      "lon": 19.049671173095703,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-04T15:38:59.483428+02:00",
-      "kulcs": "AOGF656",
-      "rendszam": "AOGF656",
-      "vehicle_id": "738",
-      "vehicle_label": "Soroksár, BILK",
-      "vonal_szam": "66E",
-      "route_id": "0665",
-      "lat": 47.46489334106445,
-      "lon": 19.127042770385742,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Soroksár, BILK"
-    },
     {
       "idopont": "2026-11-04T15:38:59.484299+02:00",
       "kulcs": "SCD592",
@@ -260000,6 +259961,45 @@
       "lon": 19.051034927368164,
       "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
       "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-05T01:40:56.049279+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597835540771484,
+      "lon": 19.053993225097656,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-05T01:40:56.049465+02:00",
+      "kulcs": "SKR822",
+      "rendszam": "SKR822",
+      "vehicle_id": "7708",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50175857543945,
+      "lon": 19.135581970214844,
+      "elozo_szoveg": "Rákospalota, Székely Elek út",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-05T01:40:56.049788+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.54729461669922,
+      "lon": 19.14183807373047,
+      "elozo_szoveg": "Gazdagréti tér",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
