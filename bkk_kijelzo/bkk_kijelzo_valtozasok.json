@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-04T04:54:12.414370+02:00",
+  "frissitve": "2026-11-04T04:54:40.595339+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:57:04.055658+02:00",
-      "kulcs": "AOJM876",
-      "rendszam": "AOJM876",
-      "vehicle_id": "1000",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.3985710144043,
-      "lon": 19.106201171875,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-03T15:57:04.055752+02:00",
-      "kulcs": "AOJM881",
-      "rendszam": "AOJM881",
-      "vehicle_id": "1007",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40695571899414,
-      "lon": 19.08043098449707,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-11-03T15:57:04.056067+02:00",
-      "kulcs": "AORS275",
-      "rendszam": "AORS275",
-      "vehicle_id": "1121",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.57133865356445,
-      "lon": 19.053712844848633,
-      "elozo_szoveg": "Római úti lakótelep",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-11-03T15:57:04.056404+02:00",
-      "kulcs": "AADI654",
-      "rendszam": "AADI654",
-      "vehicle_id": "153",
-      "vehicle_label": "Albertfalva vasútállomás",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.54685974121094,
-      "lon": 19.142377853393555,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Albertfalva vasútállomás"
-    },
     {
       "idopont": "2026-11-03T15:57:04.056502+02:00",
       "kulcs": "AADR705",
@@ -260000,6 +259948,58 @@
       "lon": 19.056385040283203,
       "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
       "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-04T04:54:40.503434+02:00",
+      "kulcs": "AAGL299",
+      "rendszam": "AAGL299",
+      "vehicle_id": "331",
+      "vehicle_label": "Gödöllő H",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.598785400390625,
+      "lon": 19.35160255432129,
+      "elozo_szoveg": "Gödöllő, autóbusz-állomás",
+      "uj_szoveg": "Gödöllő H"
+    },
+    {
+      "idopont": "2026-11-04T04:54:40.504245+02:00",
+      "kulcs": "AADI575",
+      "rendszam": "AADI575",
+      "vehicle_id": "78",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50899887084961,
+      "lon": 19.095643997192383,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-04T04:54:40.504355+02:00",
+      "kulcs": "995-698-996-997-699-998",
+      "rendszam": "995-698-996-997-699-998",
+      "vehicle_id": "905516569951-905536466980-905516569969-905516569977-905536466998-905516569985",
+      "vehicle_label": "Batthyány tér",
+      "vonal_szam": "H5",
+      "route_id": "H5",
+      "lat": 47.66048049926758,
+      "lon": 19.074668884277344,
+      "elozo_szoveg": "Szentendre",
+      "uj_szoveg": "Batthyány tér"
+    },
+    {
+      "idopont": "2026-11-04T04:54:40.504514+02:00",
+      "kulcs": "415 033",
+      "rendszam": "415 033",
+      "vehicle_id": "945514150339",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "G40",
+      "route_id": "G40",
+      "lat": 46.41651153564453,
+      "lon": 18.253210067749023,
+      "elozo_szoveg": "Dombóvár",
+      "uj_szoveg": "Budapest-Déli"
     }
   ]
 }
