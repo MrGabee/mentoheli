@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-04T04:16:51.536605+02:00",
+  "frissitve": "2026-11-04T04:17:21.360429+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:53:17.700499+02:00",
-      "kulcs": "FJX198",
-      "rendszam": "FJX198",
-      "vehicle_id": "3018",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161E",
-      "route_id": "1615",
-      "lat": 47.48274230957031,
-      "lon": 19.290149688720703,
-      "elozo_szoveg": "Rákoscsaba",
-      "uj_szoveg": "Kucorgó tér ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-03T15:53:17.700652+02:00",
-      "kulcs": "FKU940",
-      "rendszam": "FKU940",
-      "vehicle_id": "3096",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.50108337402344,
-      "lon": 19.136701583862305,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-11-03T15:53:17.700733+02:00",
-      "kulcs": "FLR710",
-      "rendszam": "FLR710",
-      "vehicle_id": "3124",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.504859924316406,
-      "lon": 19.136791229248047,
-      "elozo_szoveg": "Rákosi út ► Centenáriumi lakótelep",
-      "uj_szoveg": "Centenáriumi lakótelep"
-    },
     {
       "idopont": "2026-11-03T15:53:17.700816+02:00",
       "kulcs": "FLR732",
@@ -260000,6 +259961,45 @@
       "lon": 19.127349853515625,
       "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
       "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-04T04:17:21.288741+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.54973602294922,
+      "lon": 19.042949676513672,
+      "elozo_szoveg": "Óbudai autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-04T04:17:21.289872+02:00",
+      "kulcs": "PKN619",
+      "rendszam": "PKN619",
+      "vehicle_id": "7208",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.513702392578125,
+      "lon": 19.03433609008789,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-04T04:17:21.289891+02:00",
+      "kulcs": "PKN621",
+      "rendszam": "PKN621",
+      "vehicle_id": "7210",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.478126525878906,
+      "lon": 19.04521942138672,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
     }
   ]
 }
