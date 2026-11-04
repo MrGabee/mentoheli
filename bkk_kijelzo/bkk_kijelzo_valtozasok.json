@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-04T02:14:45.312088+02:00",
+  "frissitve": "2026-11-04T02:15:15.560079+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:41:57.698573+02:00",
-      "kulcs": "AUAN751",
-      "rendszam": "AUAN751",
-      "vehicle_id": "1125",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49702072143555,
-      "lon": 19.05574607849121,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-11-03T15:41:57.698681+02:00",
-      "kulcs": "AORS279",
-      "rendszam": "AORS279",
-      "vehicle_id": "1169",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.60282897949219,
-      "lon": 19.066526412963867,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-11-03T15:41:57.698968+02:00",
-      "kulcs": "SKN829",
-      "rendszam": "SKN829",
-      "vehicle_id": "162",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.52375793457031,
-      "lon": 18.99323272705078,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-11-03T15:41:57.699422+02:00",
-      "kulcs": "V2040",
-      "rendszam": "V2040",
-      "vehicle_id": "2040",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50737762451172,
-      "lon": 19.024736404418945,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-03T15:41:57.699732+02:00",
-      "kulcs": "FJX197",
-      "rendszam": "FJX197",
-      "vehicle_id": "3017",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "161E",
-      "route_id": "1615",
-      "lat": 47.48566436767578,
-      "lon": 19.287918090820312,
-      "elozo_szoveg": "Rákoscsaba",
-      "uj_szoveg": "Kucorgó tér ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-03T15:41:57.699899+02:00",
       "kulcs": "FKU930",
@@ -260000,6 +259935,71 @@
       "lon": 18.963762283325195,
       "elozo_szoveg": "Csillebérc, Gyermekvasút",
       "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-04T02:15:15.456453+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.5502815246582,
+      "lon": 19.042085647583008,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-04T02:15:15.456680+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.478065490722656,
+      "lon": 19.045289993286133,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep"
+    },
+    {
+      "idopont": "2026-11-04T02:15:15.456723+02:00",
+      "kulcs": "PKN631",
+      "rendszam": "PKN631",
+      "vehicle_id": "7220",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51371383666992,
+      "lon": 19.034250259399414,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-04T02:15:15.456820+02:00",
+      "kulcs": "RVY701",
+      "rendszam": "RVY701",
+      "vehicle_id": "7450",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4624137878418,
+      "lon": 19.133255004882812,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-04T02:15:15.457011+02:00",
+      "kulcs": "AADI594",
+      "rendszam": "AADI594",
+      "vehicle_id": "90",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.501365661621094,
+      "lon": 19.120140075683594,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
     }
   ]
 }
