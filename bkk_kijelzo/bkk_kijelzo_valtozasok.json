@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-04T02:31:09.517804+02:00",
+  "frissitve": "2026-11-04T02:31:35.726966+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:43:19.165393+02:00",
-      "kulcs": "AAMH659",
-      "rendszam": "AAMH659",
-      "vehicle_id": "502",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.5987663269043,
-      "lon": 19.121322631835938,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-03T15:43:19.165661+02:00",
-      "kulcs": "AAMH669",
-      "rendszam": "AAMH669",
-      "vehicle_id": "512",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.577518463134766,
-      "lon": 19.114397048950195,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Káp.megyer, Szilas-patak"
-    },
-    {
-      "idopont": "2026-11-03T15:43:19.165898+02:00",
-      "kulcs": "MPW623",
-      "rendszam": "MPW623",
-      "vehicle_id": "5611",
-      "vehicle_label": "P.erzsébet, Pacsirtatelep",
-      "vonal_szam": "VP52",
-      "route_id": "VP52",
-      "lat": 47.46451950073242,
-      "lon": 19.127342224121094,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pesterzsébet, Pacsirtatelep"
-    },
-    {
-      "idopont": "2026-11-03T15:43:19.166530+02:00",
-      "kulcs": "MXJ002",
-      "rendszam": "MXJ002",
-      "vehicle_id": "5828",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "269",
-      "route_id": "2690",
-      "lat": 47.490875244140625,
-      "lon": 19.30655288696289,
-      "elozo_szoveg": "Színes utca",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-11-03T15:43:19.166744+02:00",
       "kulcs": "MXJ007",
@@ -260000,6 +259948,58 @@
       "lon": 19.02463150024414,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Fácános tér"
+    },
+    {
+      "idopont": "2026-11-04T02:31:35.651963+02:00",
+      "kulcs": "AADI656",
+      "rendszam": "AADI656",
+      "vehicle_id": "155",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50897979736328,
+      "lon": 19.09563446044922,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-04T02:31:35.652336+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.465087890625,
+      "lon": 19.022705078125,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-04T02:31:35.652495+02:00",
+      "kulcs": "NGC164",
+      "rendszam": "NGC164",
+      "vehicle_id": "6213",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542686462402344,
+      "lon": 18.96478843688965,
+      "elozo_szoveg": "Máriaremete",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-04T02:31:35.652604+02:00",
+      "kulcs": "PDB389",
+      "rendszam": "PDB389",
+      "vehicle_id": "7071",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51449203491211,
+      "lon": 19.097461700439453,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
     }
   ]
 }
