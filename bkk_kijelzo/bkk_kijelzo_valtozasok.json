@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-04T03:51:47.742332+02:00",
+  "frissitve": "2026-11-04T03:52:17.218172+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:50:47.644995+02:00",
-      "kulcs": "AEGB791",
-      "rendszam": "AEGB791",
-      "vehicle_id": "546",
-      "vehicle_label": "Nem szállít utasokat",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.506690979003906,
-      "lon": 19.038490295410156,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M H"
-    },
-    {
-      "idopont": "2026-11-03T15:50:47.645124+02:00",
-      "kulcs": "MPW633",
-      "rendszam": "MPW633",
-      "vehicle_id": "5621",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.4644660949707,
-      "lon": 19.1263484954834,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-11-03T15:50:47.645299+02:00",
-      "kulcs": "MOS273",
-      "rendszam": "MOS273",
-      "vehicle_id": "5726",
-      "vehicle_label": "Pécel, Kun József utca",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.502113342285156,
-      "lon": 19.1357421875,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-11-03T15:50:47.645354+02:00",
       "kulcs": "V2278",
@@ -260000,6 +259961,45 @@
       "lon": 19.130395889282227,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-04T03:52:17.126361+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.467918395996094,
+      "lon": 19.075775146484375,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-04T03:52:17.127715+02:00",
+      "kulcs": "AAMH635",
+      "rendszam": "AAMH635",
+      "vehicle_id": "478",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49706268310547,
+      "lon": 19.055715560913086,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-04T03:52:17.127736+02:00",
+      "kulcs": "AAMH641",
+      "rendszam": "AAMH641",
+      "vehicle_id": "484",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43235397338867,
+      "lon": 19.26081085205078,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
     }
   ]
 }
