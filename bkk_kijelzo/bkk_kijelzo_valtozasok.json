@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-04T03:31:05.505094+02:00",
+  "frissitve": "2026-11-04T03:31:34.236553+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:48:07.703028+02:00",
-      "kulcs": "415 002",
-      "rendszam": "415 002",
-      "vehicle_id": "945514150024",
-      "vehicle_label": "Budapest-Kelenföld",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.380088806152344,
-      "lon": 18.925159454345703,
-      "elozo_szoveg": "Tárnok",
-      "uj_szoveg": "Budapest-Kelenföld"
-    },
-    {
-      "idopont": "2026-11-03T15:48:07.703543+02:00",
-      "kulcs": "AOIM036",
-      "rendszam": "AOIM036",
-      "vehicle_id": "956",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52470397949219,
-      "lon": 19.11703109741211,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Rákospatak u./Csömöri út"
-    },
-    {
-      "idopont": "2026-11-03T15:48:07.703584+02:00",
-      "kulcs": "AOIM046",
-      "rendszam": "AOIM046",
-      "vehicle_id": "967",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.54751205444336,
-      "lon": 19.141939163208008,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
     {
       "idopont": "2026-11-03T15:48:07.703726+02:00",
       "kulcs": "AOJM866",
@@ -260000,6 +259961,45 @@
       "lon": 19.121274948120117,
       "elozo_szoveg": "Káposztásmegyer",
       "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-04T03:31:34.177079+02:00",
+      "kulcs": "AAGL317",
+      "rendszam": "AAGL317",
+      "vehicle_id": "345",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4556770324707,
+      "lon": 18.940500259399414,
+      "elozo_szoveg": "Törökbálint vasútállomás",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-04T03:31:34.177360+02:00",
+      "kulcs": "NGC141",
+      "rendszam": "NGC141",
+      "vehicle_id": "6216",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.488914489746094,
+      "lon": 19.06328010559082,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-04T03:31:34.177678+02:00",
+      "kulcs": "RVY714",
+      "rendszam": "RVY714",
+      "vehicle_id": "7463",
+      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.58073806762695,
+      "lon": 19.106958389282227,
+      "elozo_szoveg": "Kordován tér ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
