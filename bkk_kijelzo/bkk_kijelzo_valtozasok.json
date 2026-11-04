@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-04T02:57:35.134103+02:00",
+  "frissitve": "2026-11-04T02:58:02.135490+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-03T15:45:40.802709+02:00",
-      "kulcs": "T9000",
-      "rendszam": "T9000",
-      "vehicle_id": "6116",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.503997802734375,
-      "lon": 19.136821746826172,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-03T15:45:40.803086+02:00",
-      "kulcs": "NGC149",
-      "rendszam": "NGC149",
-      "vehicle_id": "6200",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.542747497558594,
-      "lon": 18.964763641357422,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-11-03T15:45:40.803143+02:00",
-      "kulcs": "NGC165",
-      "rendszam": "NGC165",
-      "vehicle_id": "6207",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.543373107910156,
-      "lon": 19.030725479125977,
-      "elozo_szoveg": "Szent Margit Kórház ► Harsánylejtő",
-      "uj_szoveg": "Harsánylejtő"
-    },
     {
       "idopont": "2026-11-03T15:45:40.803185+02:00",
       "kulcs": "NGC144",
@@ -260000,6 +259961,45 @@
       "lon": 19.024993896484375,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-11-04T02:58:02.078144+02:00",
+      "kulcs": "AADR709",
+      "rendszam": "AADR709",
+      "vehicle_id": "177",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597869873046875,
+      "lon": 19.05390167236328,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-04T02:58:02.078270+02:00",
+      "kulcs": "AAGL284",
+      "rendszam": "AAGL284",
+      "vehicle_id": "308",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.48727798461914,
+      "lon": 19.058027267456055,
+      "elozo_szoveg": "Astoria M ► Budakeszi",
+      "uj_szoveg": "Széll Kálmán tér M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-04T02:58:02.078629+02:00",
+      "kulcs": "NTM431",
+      "rendszam": "NTM431",
+      "vehicle_id": "6499",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.399620056152344,
+      "lon": 18.99053192138672,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
