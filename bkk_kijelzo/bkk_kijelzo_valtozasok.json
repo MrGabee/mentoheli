@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-05T04:17:47.932999+02:00",
+  "frissitve": "2026-11-05T04:18:15.857220+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:53:44.066459+02:00",
-      "kulcs": "SKR732",
-      "rendszam": "SKR732",
-      "vehicle_id": "7681",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.43278503417969,
-      "lon": 19.261470794677734,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-04T15:53:44.066505+02:00",
-      "kulcs": "SKR737",
-      "rendszam": "SKR737",
-      "vehicle_id": "7686",
-      "vehicle_label": "Cargo C.-Liszt F. Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46354293823242,
-      "lon": 19.147703170776367,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Cargo City ► Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-11-04T15:53:44.066518+02:00",
-      "kulcs": "SKR803",
-      "rendszam": "SKR803",
-      "vehicle_id": "7689",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.43533706665039,
-      "lon": 19.13964080810547,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-11-04T15:53:44.066591+02:00",
       "kulcs": "SKR819",
@@ -260000,6 +259961,45 @@
       "lon": 19.121164321899414,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-05T04:18:15.763097+02:00",
+      "kulcs": "T8114",
+      "rendszam": "T8114",
+      "vehicle_id": "7893",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5003662109375,
+      "lon": 19.110557556152344,
+      "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-05T04:18:15.763325+02:00",
+      "kulcs": "415 051",
+      "rendszam": "415 051",
+      "vehicle_id": "945514150511",
+      "vehicle_label": "Győr",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.46432113647461,
+      "lon": 19.02075958251953,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Győr"
+    },
+    {
+      "idopont": "2026-11-05T04:18:15.763390+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51254653930664,
+      "lon": 19.100513458251953,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
