@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-05T03:24:31.122727+02:00",
+  "frissitve": "2026-11-05T03:25:01.067376+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:49:26.014640+02:00",
-      "kulcs": "V4221",
-      "rendszam": "V4221",
-      "vehicle_id": "4881",
-      "vehicle_label": "Izraelita temető",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49607849121094,
-      "lon": 19.07180404663086,
-      "elozo_szoveg": "Új köztemető (Kozma utca)",
-      "uj_szoveg": "Kőbányai út ► Izraelita temető"
-    },
-    {
-      "idopont": "2026-11-04T15:49:26.014752+02:00",
-      "kulcs": "V4260",
-      "rendszam": "V4260",
-      "vehicle_id": "4919",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49217224121094,
-      "lon": 19.143712997436523,
-      "elozo_szoveg": "Kőbányai út ► Blaha Lujza tér M",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-11-04T15:49:26.017376+02:00",
-      "kulcs": "MPW621",
-      "rendszam": "MPW621",
-      "vehicle_id": "5609",
-      "vehicle_label": "Pestszentimre",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.46298599243164,
-      "lon": 19.14967918395996,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Pestszentimre, Benjámin utca"
-    },
     {
       "idopont": "2026-11-04T15:49:26.017446+02:00",
       "kulcs": "MPW637",
@@ -260000,6 +259961,45 @@
       "lon": 19.027996063232422,
       "elozo_szoveg": "Széll Kálmán tér M ► Mártonhegy",
       "uj_szoveg": "Mártonhegy"
+    },
+    {
+      "idopont": "2026-11-05T03:25:01.004012+02:00",
+      "kulcs": "AAGL250",
+      "rendszam": "AAGL250",
+      "vehicle_id": "250",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45594024658203,
+      "lon": 18.94038963317871,
+      "elozo_szoveg": "Solymár, PEMÜ",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-11-05T03:25:01.004498+02:00",
+      "kulcs": "FLR728",
+      "rendszam": "FLR728",
+      "vehicle_id": "3142",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46247863769531,
+      "lon": 19.133148193359375,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-05T03:25:01.004805+02:00",
+      "kulcs": "NGC162",
+      "rendszam": "NGC162",
+      "vehicle_id": "6202",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50909423828125,
+      "lon": 19.095766067504883,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
     }
   ]
 }
