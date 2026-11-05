@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-05T03:49:41.602258+02:00",
+  "frissitve": "2026-11-05T03:50:13.297406+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:50:50.664183+02:00",
-      "kulcs": "415 025",
-      "rendszam": "415 025",
-      "vehicle_id": "945514150255",
-      "vehicle_label": "Budapest-Kelenföld",
-      "vonal_szam": "S36",
-      "route_id": "S36",
-      "lat": 47.384071350097656,
-      "lon": 18.95030975341797,
-      "elozo_szoveg": "Tárnok",
-      "uj_szoveg": "Budapest-Kelenföld"
-    },
-    {
-      "idopont": "2026-11-04T15:50:50.664338+02:00",
-      "kulcs": "415 058",
-      "rendszam": "415 058",
-      "vehicle_id": "945514150586",
-      "vehicle_label": "Martonvásár",
-      "vonal_szam": "Z30",
-      "route_id": "Z30",
-      "lat": 47.463321685791016,
-      "lon": 19.020849227905273,
-      "elozo_szoveg": "Pusztaszabolcs",
-      "uj_szoveg": "Martonvásár"
-    },
-    {
-      "idopont": "2026-11-04T15:50:50.664956+02:00",
-      "kulcs": "AOIM036",
-      "rendszam": "AOIM036",
-      "vehicle_id": "956",
-      "vehicle_label": "Üres kijelző",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52459716796875,
-      "lon": 19.117223739624023,
-      "elozo_szoveg": "Rákospatak u./Csömöri út",
-      "uj_szoveg": "Rákospatak utca / Csömöri út"
-    },
-    {
-      "idopont": "2026-11-04T15:50:50.665020+02:00",
-      "kulcs": "AOIM042",
-      "rendszam": "AOIM042",
-      "vehicle_id": "963",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.3889274597168,
-      "lon": 18.958499908447266,
-      "elozo_szoveg": "Nagytétény, ipartelep",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-11-04T15:52:22.085816+02:00",
       "kulcs": "AADI607",
@@ -260000,6 +259948,58 @@
       "lon": 19.06059455871582,
       "elozo_szoveg": "Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-05T03:50:13.207474+02:00",
+      "kulcs": "AADI647",
+      "rendszam": "AADI647",
+      "vehicle_id": "146",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40446472167969,
+      "lon": 19.185876846313477,
+      "elozo_szoveg": "Pestszentimre vá.",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-11-05T03:50:13.209972+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55029296875,
+      "lon": 19.04203987121582,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-05T03:50:13.210036+02:00",
+      "kulcs": "NBW002",
+      "rendszam": "NBW002",
+      "vehicle_id": "5972",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.47893524169922,
+      "lon": 19.256303787231445,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-05T03:50:13.210801+02:00",
+      "kulcs": "416 040",
+      "rendszam": "416 040",
+      "vehicle_id": "955514160402",
+      "vehicle_label": "Kőbánya-Kispest",
+      "vonal_szam": "S21",
+      "route_id": "S21",
+      "lat": 47.06890106201172,
+      "lon": 19.498390197753906,
+      "elozo_szoveg": "Lajosmizse",
+      "uj_szoveg": "Kőbánya-Kispest"
     }
   ]
 }
