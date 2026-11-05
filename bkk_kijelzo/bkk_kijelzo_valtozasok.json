@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-05T02:51:16.036076+02:00",
+  "frissitve": "2026-11-05T02:51:42.329466+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:45:25.100996+02:00",
-      "kulcs": "V2113",
-      "rendszam": "V2113",
-      "vehicle_id": "7363",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.545345306396484,
-      "lon": 19.034387588500977,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-04T15:45:25.101127+02:00",
-      "kulcs": "V2246",
-      "rendszam": "V2246",
-      "vehicle_id": "7378",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.54850387573242,
-      "lon": 19.029085159301758,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
     {
       "idopont": "2026-11-04T15:45:25.101180+02:00",
       "kulcs": "V2249",
@@ -260000,6 +259974,32 @@
       "lon": 19.12554168701172,
       "elozo_szoveg": "Rákospalota",
       "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-05T02:51:42.270360+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50874710083008,
+      "lon": 19.095346450805664,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-05T02:51:42.270488+02:00",
+      "kulcs": "AAMH665",
+      "rendszam": "AAMH665",
+      "vehicle_id": "508",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.4854736328125,
+      "lon": 19.07097053527832,
+      "elozo_szoveg": "Határ út M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
     }
   ]
 }
