@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-05T03:05:24.353317+02:00",
+  "frissitve": "2026-11-05T03:05:53.619579+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:46:50.571769+02:00",
-      "kulcs": "415 115",
-      "rendszam": "415 115",
-      "vehicle_id": "945514151154",
-      "vehicle_label": "Pilisvörösvár",
-      "vonal_szam": "S76",
-      "route_id": "S76",
-      "lat": 47.53137969970703,
-      "lon": 19.127389907836914,
-      "elozo_szoveg": "Rákos",
-      "uj_szoveg": "Pilisvörösvár"
-    },
-    {
-      "idopont": "2026-11-04T15:46:50.571900+02:00",
-      "kulcs": "815 030",
-      "rendszam": "815 030",
-      "vehicle_id": "945518150301",
-      "vehicle_label": "Szob",
-      "vonal_szam": "G70",
-      "route_id": "G70",
-      "lat": 47.5260009765625,
-      "lon": 19.090139389038086,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szob"
-    },
-    {
-      "idopont": "2026-11-04T15:47:56.095647+02:00",
-      "kulcs": "LMG123",
-      "rendszam": "LMG123",
-      "vehicle_id": "1112",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.48811340332031,
-      "lon": 19.244831085205078,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Naplás út",
-      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-04T15:47:56.096487+02:00",
       "kulcs": "AADR718",
@@ -260000,6 +259961,45 @@
       "lon": 19.13556480407715,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-05T03:05:53.558909+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.462501525878906,
+      "lon": 19.133113861083984,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-05T03:05:53.559110+02:00",
+      "kulcs": "AADI577",
+      "rendszam": "AADI577",
+      "vehicle_id": "68",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42576599121094,
+      "lon": 19.159496307373047,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-05T03:05:53.559499+02:00",
+      "kulcs": "T8112",
+      "rendszam": "T8112",
+      "vehicle_id": "7890",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49449920654297,
+      "lon": 19.059791564941406,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
