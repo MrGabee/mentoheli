@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-05T02:49:43.698363+02:00",
+  "frissitve": "2026-11-05T02:50:15.957703+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:45:25.099371+02:00",
-      "kulcs": "PDB390",
-      "rendszam": "PDB390",
-      "vehicle_id": "7072",
-      "vehicle_label": "Rákoshegy vasútállomás",
-      "vonal_szam": "98E",
-      "route_id": "0985",
-      "lat": 47.46304702758789,
-      "lon": 19.148666381835938,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoshegy vasútállomás"
-    },
-    {
-      "idopont": "2026-11-04T15:45:25.099404+02:00",
-      "kulcs": "PDN606",
-      "rendszam": "PDN606",
-      "vehicle_id": "7078",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.404563903808594,
-      "lon": 19.000587463378906,
-      "elozo_szoveg": "Baross Gábor-telep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-04T15:45:25.099723+02:00",
-      "kulcs": "PDN636",
-      "rendszam": "PDN636",
-      "vehicle_id": "7107",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.405662536621094,
-      "lon": 19.014375686645508,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Budatétény vá. (Campona)"
-    },
-    {
-      "idopont": "2026-11-04T15:45:25.100390+02:00",
-      "kulcs": "PKN626",
-      "rendszam": "PKN626",
-      "vehicle_id": "7215",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.47943115234375,
-      "lon": 19.256206512451172,
-      "elozo_szoveg": "Rákoskeresztúr, városközpont",
-      "uj_szoveg": "Rákoskeresztúr, városkp."
-    },
-    {
-      "idopont": "2026-11-04T15:45:25.100442+02:00",
-      "kulcs": "PKN630",
-      "rendszam": "PKN630",
-      "vehicle_id": "7219",
-      "vehicle_label": "Felsőcsatári köz",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.4998779296875,
-      "lon": 19.104907989501953,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Felsőcsatári köz"
-    },
     {
       "idopont": "2026-11-04T15:45:25.100919+02:00",
       "kulcs": "T9107",
@@ -260000,6 +259935,71 @@
       "lon": 19.14182472229004,
       "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
       "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-05T02:50:15.866179+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.47964859008789,
+      "lon": 19.256746292114258,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-05T02:50:15.866376+02:00",
+      "kulcs": "FLR728",
+      "rendszam": "FLR728",
+      "vehicle_id": "3142",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40443420410156,
+      "lon": 19.185941696166992,
+      "elozo_szoveg": "Pestszentimre vá.",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-11-05T02:50:15.866700+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48277282714844,
+      "lon": 19.130386352539062,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-05T02:50:15.867400+02:00",
+      "kulcs": "SKR822",
+      "rendszam": "SKR822",
+      "vehicle_id": "7708",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.5503044128418,
+      "lon": 19.042041778564453,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-05T02:50:15.867541+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57954406738281,
+      "lon": 19.109634399414062,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
