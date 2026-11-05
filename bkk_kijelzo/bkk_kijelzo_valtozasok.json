@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-05T03:16:10.319851+02:00",
+  "frissitve": "2026-11-05T03:17:09.845948+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:47:56.108169+02:00",
-      "kulcs": "T9124",
-      "rendszam": "T9124",
-      "vehicle_id": "7863",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.503929138183594,
-      "lon": 19.136831283569336,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-04T15:47:56.108229+02:00",
-      "kulcs": "T9130",
-      "rendszam": "T9130",
-      "vehicle_id": "7869",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.5051383972168,
-      "lon": 19.13642692565918,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
-    {
-      "idopont": "2026-11-04T15:47:56.108256+02:00",
-      "kulcs": "T9132",
-      "rendszam": "T9132",
-      "vehicle_id": "7871",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.4893913269043,
-      "lon": 19.090017318725586,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-11-04T15:47:56.108360+02:00",
-      "kulcs": "T9142",
-      "rendszam": "T9142",
-      "vehicle_id": "7881",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.517024993896484,
-      "lon": 19.107633590698242,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-11-04T15:47:56.108394+02:00",
       "kulcs": "T9146",
@@ -260000,6 +259948,58 @@
       "lon": 19.03428840637207,
       "elozo_szoveg": "Astoria M ► Árpádföld",
       "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-05T03:17:09.773434+02:00",
+      "kulcs": "AAGL324",
+      "rendszam": "AAGL324",
+      "vehicle_id": "354",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50800323486328,
+      "lon": 19.028600692749023,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-05T03:17:09.773866+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.485931396484375,
+      "lon": 19.06956672668457,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-05T03:17:09.774051+02:00",
+      "kulcs": "RVY718",
+      "rendszam": "RVY718",
+      "vehicle_id": "7467",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.529544830322266,
+      "lon": 19.08020782470703,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-05T03:17:09.774328+02:00",
+      "kulcs": "AOFL250",
+      "rendszam": "AOFL250",
+      "vehicle_id": "838",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.43408203125,
+      "lon": 19.198423385620117,
+      "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
+      "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
     }
   ]
 }
