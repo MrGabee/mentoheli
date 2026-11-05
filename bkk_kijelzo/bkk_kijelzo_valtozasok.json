@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-05T02:16:56.986931+02:00",
+  "frissitve": "2026-11-05T02:17:27.601816+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:42:46.225441+02:00",
-      "kulcs": "V1356",
-      "rendszam": "V1356",
-      "vehicle_id": "4457",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.51215362548828,
-      "lon": 19.047536849975586,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-04T15:42:46.225572+02:00",
-      "kulcs": "V1440",
-      "rendszam": "V1440",
-      "vehicle_id": "4510",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.427650451660156,
-      "lon": 19.03885841369629,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-11-04T15:42:46.225640+02:00",
-      "kulcs": "V1511",
-      "rendszam": "V1511",
-      "vehicle_id": "4563",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.541717529296875,
-      "lon": 19.121082305908203,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-11-04T15:42:46.225657+02:00",
-      "kulcs": "V1518",
-      "rendszam": "V1518",
-      "vehicle_id": "4570",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51797866821289,
-      "lon": 19.09474754333496,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
     {
       "idopont": "2026-11-04T15:42:46.225683+02:00",
       "kulcs": "V1532",
@@ -260000,6 +259948,58 @@
       "lon": 19.261119842529297,
       "elozo_szoveg": "Liszt Ferenc Airport 2",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-11-05T02:17:27.547173+02:00",
+      "kulcs": "AADI601",
+      "rendszam": "AADI601",
+      "vehicle_id": "61",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.46381759643555,
+      "lon": 19.008975982666016,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-11-05T02:17:27.547348+02:00",
+      "kulcs": "PKN603",
+      "rendszam": "PKN603",
+      "vehicle_id": "7192",
+      "vehicle_label": "B.megyer, Újmegyeri tér",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.52437973022461,
+      "lon": 19.03766632080078,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-11-05T02:17:27.547526+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.4984245300293,
+      "lon": 18.963972091674805,
+      "elozo_szoveg": "Csillebérc, Gyermekvasút",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-05T02:17:27.547915+02:00",
+      "kulcs": "AOIM043",
+      "rendszam": "AOIM043",
+      "vehicle_id": "964",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.511905670166016,
+      "lon": 19.099634170532227,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
