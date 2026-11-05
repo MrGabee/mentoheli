@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-06T01:40:58.924229+02:00",
+  "frissitve": "2026-11-06T01:41:32.712641+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:43:21.704337+02:00",
-      "kulcs": "T8019",
-      "rendszam": "T8019",
-      "vehicle_id": "6139",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.51799392700195,
-      "lon": 19.094816207885742,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-11-05T15:43:21.704416+02:00",
-      "kulcs": "T9015",
-      "rendszam": "T9015",
-      "vehicle_id": "6154",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50395965576172,
-      "lon": 19.13684844970703,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-05T15:43:21.704594+02:00",
-      "kulcs": "NCV290",
-      "rendszam": "NCV290",
-      "vehicle_id": "6255",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50658416748047,
-      "lon": 19.02394676208496,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-11-05T15:43:21.704774+02:00",
       "kulcs": "NGC033",
@@ -260000,6 +259961,45 @@
       "lon": 19.04020881652832,
       "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-06T01:41:32.637267+02:00",
+      "kulcs": "NBW009",
+      "rendszam": "NBW009",
+      "vehicle_id": "5979",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.4970817565918,
+      "lon": 19.055557250976562,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-11-06T01:41:32.637910+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46243667602539,
+      "lon": 19.13322639465332,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-06T01:41:32.638015+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.4763298034668,
+      "lon": 19.04332733154297,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
