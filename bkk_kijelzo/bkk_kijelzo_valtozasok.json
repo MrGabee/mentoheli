@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-05T03:58:46.860893+02:00",
+  "frissitve": "2026-11-05T03:59:19.438503+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-04T15:52:22.097732+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.501216888427734,
-      "lon": 19.107824325561523,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-04T15:52:22.097920+02:00",
-      "kulcs": "V2239",
-      "rendszam": "V2239",
-      "vehicle_id": "7371",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.47843933105469,
-      "lon": 19.049528121948242,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-04T15:52:22.098063+02:00",
-      "kulcs": "V2248",
-      "rendszam": "V2248",
-      "vehicle_id": "7380",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.477569580078125,
-      "lon": 19.046663284301758,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-11-04T15:52:22.098474+02:00",
       "kulcs": "RVY616",
@@ -260000,6 +259961,45 @@
       "lon": 19.055143356323242,
       "elozo_szoveg": "Deák Ferenc tér M (City centre)",
       "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-05T03:59:19.345201+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4551887512207,
+      "lon": 18.907854080200195,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-05T03:59:19.345871+02:00",
+      "kulcs": "PKN622",
+      "rendszam": "PKN622",
+      "vehicle_id": "7211",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52204132080078,
+      "lon": 19.169116973876953,
+      "elozo_szoveg": "Árpádföld",
+      "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-05T03:59:19.345932+02:00",
+      "kulcs": "PKN626",
+      "rendszam": "PKN626",
+      "vehicle_id": "7215",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.514705657958984,
+      "lon": 19.037883758544922,
+      "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
+      "uj_szoveg": "Pasaréti tér"
     }
   ]
 }
