@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-06T05:19:29.697908+02:00",
+  "frissitve": "2026-11-06T05:20:06.199292+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T16:05:31.539045+02:00",
-      "kulcs": "T8110",
-      "rendszam": "T8110",
-      "vehicle_id": "7889",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49661636352539,
-      "lon": 19.066377639770508,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-11-05T16:05:31.539162+02:00",
-      "kulcs": "T8118",
-      "rendszam": "T8118",
-      "vehicle_id": "7897",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50907897949219,
-      "lon": 19.05837059020996,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-11-05T16:05:31.539262+02:00",
-      "kulcs": "AOFL209",
-      "rendszam": "AOFL209",
-      "vehicle_id": "795",
-      "vehicle_label": "Szemeretelep vasútáll.",
-      "vonal_szam": "183",
-      "route_id": "1830",
-      "lat": 47.441619873046875,
-      "lon": 19.186189651489258,
-      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
-      "uj_szoveg": "Szemeretelep vasútállomás"
-    },
     {
       "idopont": "2026-11-05T16:05:31.539687+02:00",
       "kulcs": "AOFL239",
@@ -260000,6 +259961,45 @@
       "lon": 19.100568771362305,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-06T05:20:06.097735+02:00",
+      "kulcs": "AADI616",
+      "rendszam": "AADI616",
+      "vehicle_id": "113",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.491031646728516,
+      "lon": 19.2430477142334,
+      "elozo_szoveg": "Madárdomb",
+      "uj_szoveg": "Naplás út ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-06T05:20:06.100073+02:00",
+      "kulcs": "AAMH671",
+      "rendszam": "AAMH671",
+      "vehicle_id": "514",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "31",
+      "route_id": "0310",
+      "lat": 47.52949142456055,
+      "lon": 19.19493865966797,
+      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-06T05:20:06.100338+02:00",
+      "kulcs": "NGC158",
+      "rendszam": "NGC158",
+      "vehicle_id": "6208",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "29",
+      "route_id": "0290",
+      "lat": 47.539947509765625,
+      "lon": 19.04671287536621,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Hűvösvölgy"
     }
   ]
 }
