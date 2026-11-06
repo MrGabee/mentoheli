@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-06T03:28:58.073803+02:00",
+  "frissitve": "2026-11-06T03:29:38.861747+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:53:00.964571+02:00",
-      "kulcs": "RVY617",
-      "rendszam": "RVY617",
-      "vehicle_id": "7446",
-      "vehicle_label": "Soroksár, IKEA áruház",
-      "vonal_szam": "135",
-      "route_id": "1350",
-      "lat": 47.37949752807617,
-      "lon": 19.10425567626953,
-      "elozo_szoveg": "Millenniumtelep H",
-      "uj_szoveg": "Soroksár, IKEA áruház"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.964774+02:00",
-      "kulcs": "AOGF665",
-      "rendszam": "AOGF665",
-      "vehicle_id": "747",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.39324188232422,
-      "lon": 19.107166290283203,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.965085+02:00",
-      "kulcs": "SCD593",
-      "rendszam": "SCD593",
-      "vehicle_id": "7654",
-      "vehicle_label": "Szemeretelep vasútáll.",
-      "vonal_szam": "93",
-      "route_id": "0930",
-      "lat": 47.46305465698242,
-      "lon": 19.148283004760742,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Szemeretelep vasútállomás"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.965172+02:00",
-      "kulcs": "SKR722",
-      "rendszam": "SKR722",
-      "vehicle_id": "7671",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.43167495727539,
-      "lon": 19.26109504699707,
-      "elozo_szoveg": "Cargo City ► Liszt Ferenc Airport 2",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.965304+02:00",
-      "kulcs": "SKR809",
-      "rendszam": "SKR809",
-      "vehicle_id": "7695",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.51148986816406,
-      "lon": 19.052907943725586,
-      "elozo_szoveg": "Margitsziget ► Göncz Árpád városközpont M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-11-05T15:53:00.965345+02:00",
       "kulcs": "SKR814",
@@ -260000,6 +259935,71 @@
       "lon": 18.96449851989746,
       "elozo_szoveg": "Hűvösvölgy",
       "uj_szoveg": "Máriaremete"
+    },
+    {
+      "idopont": "2026-11-06T03:29:38.763309+02:00",
+      "kulcs": "AADR701",
+      "rendszam": "AADR701",
+      "vehicle_id": "168",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.427146911621094,
+      "lon": 19.15745735168457,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-11-06T03:29:38.765740+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50154495239258,
+      "lon": 19.136201858520508,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-06T03:29:38.765877+02:00",
+      "kulcs": "NBW003",
+      "rendszam": "NBW003",
+      "vehicle_id": "5973",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.42649459838867,
+      "lon": 19.161237716674805,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-06T03:29:38.766251+02:00",
+      "kulcs": "RVY620",
+      "rendszam": "RVY620",
+      "vehicle_id": "7449",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.427093505859375,
+      "lon": 19.159894943237305,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-06T03:29:38.766497+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59787368774414,
+      "lon": 19.053842544555664,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
