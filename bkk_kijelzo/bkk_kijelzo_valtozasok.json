@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-06T03:32:40.190730+02:00",
+  "frissitve": "2026-11-06T03:33:13.477187+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:53:00.967538+02:00",
-      "kulcs": "480 006",
-      "rendszam": "480 006",
-      "vehicle_id": "915504800060",
-      "vehicle_label": "Szeged",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.509159088134766,
-      "lon": 19.104299545288086,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Szeged"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.968109+02:00",
-      "kulcs": "415 034",
-      "rendszam": "415 034",
-      "vehicle_id": "945514150347",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S12",
-      "route_id": "S12",
-      "lat": 47.52476119995117,
-      "lon": 18.31928062438965,
-      "elozo_szoveg": "Oroszlány",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.968446+02:00",
-      "kulcs": "AOIM031",
-      "rendszam": "AOIM031",
-      "vehicle_id": "951",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "139",
-      "route_id": "1390",
-      "lat": 47.50642395019531,
-      "lon": 19.024322509765625,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.968470+02:00",
-      "kulcs": "AOIM034",
-      "rendszam": "AOIM034",
-      "vehicle_id": "954",
-      "vehicle_label": "Nagytétény, ipartelep",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.49833297729492,
-      "lon": 19.074462890625,
-      "elozo_szoveg": "Újpalota, Nyírpalota út",
-      "uj_szoveg": "Nagytétény, ipartelep"
-    },
-    {
-      "idopont": "2026-11-05T15:54:29.349474+02:00",
-      "kulcs": "AOJM881",
-      "rendszam": "AOJM881",
-      "vehicle_id": "1007",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "159",
-      "route_id": "1590",
-      "lat": 47.40688705444336,
-      "lon": 19.07875633239746,
-      "elozo_szoveg": "Szent László utcai lakótelep",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-11-05T15:54:29.349966+02:00",
       "kulcs": "AADI635",
@@ -260000,6 +259935,71 @@
       "lon": 19.09895896911621,
       "elozo_szoveg": "Astoria M ► Hűvösvölgy",
       "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-06T03:33:13.384737+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51032257080078,
+      "lon": 19.097429275512695,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-06T03:33:13.387039+02:00",
+      "kulcs": "AADI566",
+      "rendszam": "AADI566",
+      "vehicle_id": "42",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51997375488281,
+      "lon": 19.038053512573242,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-06T03:33:13.387100+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.44114685058594,
+      "lon": 19.183259963989258,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-11-06T03:33:13.387248+02:00",
+      "kulcs": "NGC151",
+      "rendszam": "NGC151",
+      "vehicle_id": "6193",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48912811279297,
+      "lon": 19.062807083129883,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-06T03:33:13.387430+02:00",
+      "kulcs": "PKN619",
+      "rendszam": "PKN619",
+      "vehicle_id": "7208",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48952102661133,
+      "lon": 19.076082229614258,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
     }
   ]
 }
