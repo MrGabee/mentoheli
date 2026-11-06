@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T01:43:29.846673+02:00",
+  "frissitve": "2026-11-07T01:44:01.746225+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:41:46.064838+02:00",
-      "kulcs": "SRN170",
-      "rendszam": "SRN170",
-      "vehicle_id": "7764",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.464561462402344,
-      "lon": 19.018251419067383,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.064933+02:00",
-      "kulcs": "AADI575",
-      "rendszam": "AADI575",
-      "vehicle_id": "78",
-      "vehicle_label": "Nem szállít utasokat",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.50667190551758,
-      "lon": 19.038909912109375,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Batthyány tér M H"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.065138+02:00",
-      "kulcs": "STZ869",
-      "rendszam": "STZ869",
-      "vehicle_id": "7824",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50740051269531,
-      "lon": 19.025562286376953,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
     {
       "idopont": "2026-11-06T15:41:46.065441+02:00",
       "kulcs": "T9130",
@@ -260000,6 +259961,45 @@
       "lon": 19.04151153564453,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-07T01:44:01.675859+02:00",
+      "kulcs": "NGC157",
+      "rendszam": "NGC157",
+      "vehicle_id": "6206",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.47782897949219,
+      "lon": 19.046369552612305,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-07T01:44:01.676407+02:00",
+      "kulcs": "415 086",
+      "rendszam": "415 086",
+      "vehicle_id": "945514150867",
+      "vehicle_label": "Szolnok",
+      "vonal_szam": "S50",
+      "route_id": "S50",
+      "lat": 47.51131057739258,
+      "lon": 19.101259231567383,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szolnok"
+    },
+    {
+      "idopont": "2026-11-07T01:44:01.676484+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.54706954956055,
+      "lon": 19.142024993896484,
+      "elozo_szoveg": "Gazdagréti tér",
+      "uj_szoveg": "Astoria M ► Budatétény"
     }
   ]
 }
