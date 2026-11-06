@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-06T02:15:24.355617+02:00",
+  "frissitve": "2026-11-06T02:16:00.684592+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:46:51.259729+02:00",
-      "kulcs": "AAGL317",
-      "rendszam": "AAGL317",
-      "vehicle_id": "345",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50741958618164,
-      "lon": 19.025615692138672,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-11-05T15:46:51.259901+02:00",
-      "kulcs": "AAHY810",
-      "rendszam": "AAHY810",
-      "vehicle_id": "370",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.602718353271484,
-      "lon": 19.066204071044922,
-      "elozo_szoveg": "B.megyer, Újmegyeri tér",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
-    {
-      "idopont": "2026-11-05T15:46:51.259951+02:00",
-      "kulcs": "AAHY814",
-      "rendszam": "AAHY814",
-      "vehicle_id": "375",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "147",
-      "route_id": "1470",
-      "lat": 47.579795837402344,
-      "lon": 19.088624954223633,
-      "elozo_szoveg": "Megyer, Julianus barát utca",
-      "uj_szoveg": "Újpest-központ M"
-    },
     {
       "idopont": "2026-11-05T15:46:51.260036+02:00",
       "kulcs": "AAHY824",
@@ -260000,6 +259961,45 @@
       "lon": 19.127517700195312,
       "elozo_szoveg": "Kőbánya-Kispest M",
       "uj_szoveg": "Kőbánya-Kispest M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-06T02:16:00.613550+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.514461517333984,
+      "lon": 19.033126831054688,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-06T02:16:00.613743+02:00",
+      "kulcs": "RVY715",
+      "rendszam": "RVY715",
+      "vehicle_id": "7464",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.463768005371094,
+      "lon": 19.130064010620117,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-06T02:16:00.613865+02:00",
+      "kulcs": "SKR814",
+      "rendszam": "SKR814",
+      "vehicle_id": "7700",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.486820220947266,
+      "lon": 19.067750930786133,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
