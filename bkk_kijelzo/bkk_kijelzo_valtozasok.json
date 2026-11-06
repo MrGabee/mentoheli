@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-07T01:33:04.397021+02:00",
+  "frissitve": "2026-11-07T01:33:34.280928+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:41:46.052596+02:00",
-      "kulcs": "AAHY810",
-      "rendszam": "AAHY810",
-      "vehicle_id": "370",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "134",
-      "route_id": "1340",
-      "lat": 47.60310363769531,
-      "lon": 19.06629180908203,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.052671+02:00",
-      "kulcs": "AAHY818",
-      "rendszam": "AAHY818",
-      "vehicle_id": "379",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "170",
-      "route_id": "1700",
-      "lat": 47.59012985229492,
-      "lon": 19.122493743896484,
-      "elozo_szoveg": "Rákospalota, Csömöri-patak",
-      "uj_szoveg": "Újpest-központ M"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.053212+02:00",
-      "kulcs": "V1301",
-      "rendszam": "V1301",
-      "vehicle_id": "4406",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.428131103515625,
-      "lon": 19.038511276245117,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.053226+02:00",
-      "kulcs": "AAHY879",
-      "rendszam": "AAHY879",
-      "vehicle_id": "441",
-      "vehicle_label": "B.megyer, Újmegyeri tér",
-      "vonal_szam": "296",
-      "route_id": "2960",
-      "lat": 47.574466705322266,
-      "lon": 19.114826202392578,
-      "elozo_szoveg": "Káposztásmegyer ► Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Békásmegyer, Újmegyeri tér"
-    },
     {
       "idopont": "2026-11-06T15:41:46.053300+02:00",
       "kulcs": "V1330",
@@ -260000,6 +259948,58 @@
       "lon": 19.09752655029297,
       "elozo_szoveg": "Astoria M ► Máriaremete",
       "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-11-07T01:33:34.184313+02:00",
+      "kulcs": "FKU926",
+      "rendszam": "FKU926",
+      "vehicle_id": "3082",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46565246582031,
+      "lon": 19.1252498626709,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-07T01:33:34.185732+02:00",
+      "kulcs": "FLR730",
+      "rendszam": "FLR730",
+      "vehicle_id": "3144",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.511009216308594,
+      "lon": 19.05623435974121,
+      "elozo_szoveg": "Béke tér ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-07T01:33:34.188155+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Pécel, Kun József utca",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.503108978271484,
+      "lon": 19.13585662841797,
+      "elozo_szoveg": "Gyál, Vecsési út",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-11-07T01:33:34.188286+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519264221191406,
+      "lon": 19.038223266601562,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
