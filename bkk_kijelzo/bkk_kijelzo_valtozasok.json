@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-06T02:02:58.484912+02:00",
+  "frissitve": "2026-11-06T02:03:30.155252+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:45:43.275188+02:00",
-      "kulcs": "V4339",
-      "rendszam": "V4339",
-      "vehicle_id": "4998",
-      "vehicle_label": "Izraelita temető",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.49055862426758,
-      "lon": 19.089815139770508,
-      "elozo_szoveg": "Kőbányai út ► Izraelita temető",
-      "uj_szoveg": "Izraelita temető"
-    },
-    {
-      "idopont": "2026-11-05T15:45:43.275238+02:00",
-      "kulcs": "AAMH658",
-      "rendszam": "AAMH658",
-      "vehicle_id": "501",
-      "vehicle_label": "Megyer, Szondi utca",
-      "vonal_szam": "30A",
-      "route_id": "0301",
-      "lat": 47.49983596801758,
-      "lon": 19.083908081054688,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Megyer, Szondi utca"
-    },
-    {
-      "idopont": "2026-11-05T15:45:43.275253+02:00",
-      "kulcs": "AAMH659",
-      "rendszam": "AAMH659",
-      "vehicle_id": "502",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "30",
-      "route_id": "0300",
-      "lat": 47.59876251220703,
-      "lon": 19.121313095092773,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-05T15:45:43.275277+02:00",
-      "kulcs": "V1607",
-      "rendszam": "V1607",
-      "vehicle_id": "5035",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62",
-      "route_id": "3620",
-      "lat": 47.49510192871094,
-      "lon": 19.07543182373047,
-      "elozo_szoveg": "KOCSISZÍNBE  Orczy tér",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-11-05T15:45:43.275767+02:00",
-      "kulcs": "V1603",
-      "rendszam": "V1603",
-      "vehicle_id": "5093",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.541709899902344,
-      "lon": 19.121084213256836,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
     {
       "idopont": "2026-11-05T15:45:43.275862+02:00",
       "kulcs": "MKL981",
@@ -260000,6 +259935,71 @@
       "lon": 19.133880615234375,
       "elozo_szoveg": "Budapest-Keleti",
       "uj_szoveg": "Hatvan"
+    },
+    {
+      "idopont": "2026-11-06T02:03:30.066170+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39960479736328,
+      "lon": 18.99087905883789,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-06T02:03:30.069584+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48883056640625,
+      "lon": 19.06332778930664,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-11-06T02:03:30.069776+02:00",
+      "kulcs": "SKR804",
+      "rendszam": "SKR804",
+      "vehicle_id": "7690",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.489585876464844,
+      "lon": 19.07611083984375,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-06T02:03:30.069808+02:00",
+      "kulcs": "SKR805",
+      "rendszam": "SKR805",
+      "vehicle_id": "7691",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49702072143555,
+      "lon": 19.05572509765625,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-06T02:03:30.070212+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.51103591918945,
+      "lon": 19.056243896484375,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Kordován tér ► Mogyoródi-patak"
     }
   ]
 }
