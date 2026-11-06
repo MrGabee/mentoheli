@@ -402,6 +402,17 @@ Egy csepeli olvasóm kért tanácsot:
 🌙 Sokan ismerjük ezt a helyzetet. Akinek volt már hasonló gondja, és sikerült megoldania, ossza meg, mi segített! Minden jó tanácsot továbbítok. 👇
 
 #Csepel #társasház #szomszédok #olvasóikérdés"""),
+    "betoro_kiralyerdo_20261106": ("2026-11-06", """⚠️ FIGYELMEZTETÉS – Gyanús alak Királyerdőben
+
+Egyik olvasóm jelezte az imént: a Topotyán utca környékén valaki lámpával világít be a házakhoz és udvarokra. Betörőre gyanakszanak.
+
+Kérlek, figyeljetek egymásra és a szomszédokra! Zárjátok be a kaput, az ajtót és az ablakokat, a kerékpárokat és értékeket ne hagyjátok kint.
+
+Ha gyanús személyt láttok, ne menjetek oda, hanem azonnal hívjátok a 112-t! 🚔
+
+Osszátok meg, hogy minél több környékbeli lássa! 🙏
+
+#Csepel #Királyerdő #figyelmeztetés"""),
 }
 
 
