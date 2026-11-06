@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-06T04:32:43.820773+02:00",
+  "frissitve": "2026-11-06T04:33:15.012813+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:58:47.028998+02:00",
-      "kulcs": "T9108",
-      "rendszam": "T9108",
-      "vehicle_id": "7355",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.514041900634766,
-      "lon": 19.04913902282715,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-11-05T15:58:47.029785+02:00",
-      "kulcs": "RVY712",
-      "rendszam": "RVY712",
-      "vehicle_id": "7461",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41691589355469,
-      "lon": 19.131330490112305,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-05T15:58:47.029819+02:00",
-      "kulcs": "RVY714",
-      "rendszam": "RVY714",
-      "vehicle_id": "7463",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46452713012695,
-      "lon": 19.126771926879883,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-11-05T15:58:47.030182+02:00",
-      "kulcs": "RVY731",
-      "rendszam": "RVY731",
-      "vehicle_id": "7629",
-      "vehicle_label": "Gyál, Vecsési út",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.47999572753906,
-      "lon": 19.0675048828125,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Gyál, Vecsési út"
-    },
     {
       "idopont": "2026-11-05T15:58:47.030610+02:00",
       "kulcs": "AADI570",
@@ -260000,6 +259948,58 @@
       "lon": 19.14811134338379,
       "elozo_szoveg": "Rákosszentmihály vasútállomás",
       "uj_szoveg": "Városház tér"
+    },
+    {
+      "idopont": "2026-11-06T04:33:14.925283+02:00",
+      "kulcs": "SKR804",
+      "rendszam": "SKR804",
+      "vehicle_id": "7690",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48954772949219,
+      "lon": 19.076671600341797,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-06T04:33:14.925457+02:00",
+      "kulcs": "SKR831",
+      "rendszam": "SKR831",
+      "vehicle_id": "7717",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48915100097656,
+      "lon": 19.06270980834961,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-06T04:33:14.925519+02:00",
+      "kulcs": "SKN818",
+      "rendszam": "SKN818",
+      "vehicle_id": "7760",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.51524353027344,
+      "lon": 19.096389770507812,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-06T04:33:14.925769+02:00",
+      "kulcs": "415 079",
+      "rendszam": "415 079",
+      "vehicle_id": "945514150792",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.3466796875,
+      "lon": 20.04344940185547,
+      "elozo_szoveg": "Szeged",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
