@@ -402,7 +402,7 @@ Egy csepeli olvasóm kért tanácsot:
 🌙 Sokan ismerjük ezt a helyzetet. Akinek volt már hasonló gondja, és sikerült megoldania, ossza meg, mi segített! Minden jó tanácsot továbbítok. 👇
 
 #Csepel #társasház #szomszédok #olvasóikérdés"""),
-    "betoro_kiralyerdo_20261106": ("2026-11-06", """⚠️ FIGYELMEZTETÉS – Gyanús alak Királyerdőben
+    "betoro_kiralyerdo_20261106": (date(2026, 11, 6), """⚠️ FIGYELMEZTETÉS – Gyanús alak Királyerdőben
 
 Egyik olvasóm jelezte az imént: a Topotyán utca környékén valaki lámpával világít be a házakhoz és udvarokra. Betörőre gyanakszanak.
 
