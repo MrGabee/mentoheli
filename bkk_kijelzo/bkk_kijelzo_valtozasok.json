@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-06T04:58:09.440938+02:00",
+  "frissitve": "2026-11-06T04:58:41.079459+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T16:01:37.993691+02:00",
-      "kulcs": "PKN609",
-      "rendszam": "PKN609",
-      "vehicle_id": "7198",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.527408599853516,
-      "lon": 19.181034088134766,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-05T16:01:37.994078+02:00",
-      "kulcs": "RCT309",
-      "rendszam": "RCT309",
-      "vehicle_id": "7323",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.41307067871094,
-      "lon": 19.201894760131836,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-11-05T16:01:37.994275+02:00",
-      "kulcs": "T9100",
-      "rendszam": "T9100",
-      "vehicle_id": "7347",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49563217163086,
-      "lon": 19.05934715270996,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-11-05T16:01:37.994577+02:00",
       "kulcs": "V2239",
@@ -260000,6 +259961,45 @@
       "lon": 18.992591857910156,
       "elozo_szoveg": "Mindszenty József bíboros tér",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-06T04:58:40.986497+02:00",
+      "kulcs": "918071936432",
+      "rendszam": "918071936432",
+      "vehicle_id": "918071936432",
+      "vehicle_label": "Pusztaszabolcs",
+      "vonal_szam": "S40",
+      "route_id": "S40",
+      "lat": 47.46366882324219,
+      "lon": 19.020919799804688,
+      "elozo_szoveg": "Budapest-Déli",
+      "uj_szoveg": "Pusztaszabolcs"
+    },
+    {
+      "idopont": "2026-11-06T04:58:40.986797+02:00",
+      "kulcs": "AOIM029",
+      "rendszam": "AOIM029",
+      "vehicle_id": "949",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.513145446777344,
+      "lon": 19.101530075073242,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-11-06T04:58:40.986979+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.473716735839844,
+      "lon": 19.046262741088867,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
