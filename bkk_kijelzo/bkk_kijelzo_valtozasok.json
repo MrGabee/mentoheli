@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-06T04:28:02.435111+02:00",
+  "frissitve": "2026-11-06T04:28:29.810773+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:58:47.019781+02:00",
-      "kulcs": "T0237",
-      "rendszam": "T0237",
-      "vehicle_id": "4219",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50426483154297,
-      "lon": 19.136676788330078,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-05T15:58:47.019842+02:00",
-      "kulcs": "AAHY861",
-      "rendszam": "AAHY861",
-      "vehicle_id": "423",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.55992126464844,
-      "lon": 19.08942985534668,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-11-05T15:58:47.020154+02:00",
-      "kulcs": "V1327",
-      "rendszam": "V1327",
-      "vehicle_id": "4430",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.49896240234375,
-      "lon": 19.08254623413086,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-05T15:58:47.020218+02:00",
-      "kulcs": "V1339",
-      "rendszam": "V1339",
-      "vehicle_id": "4442",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.50859069824219,
-      "lon": 19.047016143798828,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-11-05T15:58:47.020295+02:00",
       "kulcs": "V1349",
@@ -260000,6 +259948,58 @@
       "lon": 19.11994171142578,
       "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
       "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-11-06T04:28:29.720942+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.42716979980469,
+      "lon": 19.159765243530273,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-06T04:28:29.722980+02:00",
+      "kulcs": "AAMH639",
+      "rendszam": "AAMH639",
+      "vehicle_id": "482",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49703598022461,
+      "lon": 19.055728912353516,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-06T04:28:29.723501+02:00",
+      "kulcs": "SKR729",
+      "rendszam": "SKR729",
+      "vehicle_id": "7678",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.465057373046875,
+      "lon": 19.127290725708008,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-06T04:28:29.723706+02:00",
+      "kulcs": "SKR827",
+      "rendszam": "SKR827",
+      "vehicle_id": "7713",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59783172607422,
+      "lon": 19.053850173950195,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
