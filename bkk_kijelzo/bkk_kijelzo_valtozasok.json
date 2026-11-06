@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T01:03:31.722480+02:00",
+  "frissitve": "2026-11-07T01:04:06.615992+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:39:02.130680+02:00",
-      "kulcs": "PKN614",
-      "rendszam": "PKN614",
-      "vehicle_id": "7203",
-      "vehicle_label": "Rákoscsaba-Újtelep",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.42654800415039,
-      "lon": 19.161161422729492,
-      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
-      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
-    },
-    {
-      "idopont": "2026-11-06T15:39:02.130773+02:00",
-      "kulcs": "PKN628",
-      "rendszam": "PKN628",
-      "vehicle_id": "7217",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.45804977416992,
-      "lon": 19.177053451538086,
-      "elozo_szoveg": "Felsőcsatári köz",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-11-06T15:39:02.130795+02:00",
-      "kulcs": "PMP912",
-      "rendszam": "PMP912",
-      "vehicle_id": "7229",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "108E",
-      "route_id": "1085",
-      "lat": 47.46724319458008,
-      "lon": 19.0166072845459,
-      "elozo_szoveg": "Kelenföld vasútállomás M ► Gazdagréti tér",
-      "uj_szoveg": "Gazdagréti tér"
-    },
     {
       "idopont": "2026-11-06T15:39:02.131021+02:00",
       "kulcs": "T8102",
@@ -260000,6 +259961,45 @@
       "lon": 19.1861515045166,
       "elozo_szoveg": "Pestszentlőrinc, Béke tér",
       "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
+    },
+    {
+      "idopont": "2026-11-07T01:04:06.555737+02:00",
+      "kulcs": "AADI649",
+      "rendszam": "AADI649",
+      "vehicle_id": "148",
+      "vehicle_label": "Astoria M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.478126525878906,
+      "lon": 19.0452823638916,
+      "elozo_szoveg": "Albertfalva vasútállomás",
+      "uj_szoveg": "Astoria M"
+    },
+    {
+      "idopont": "2026-11-07T01:04:06.555777+02:00",
+      "kulcs": "AADI653",
+      "rendszam": "AADI653",
+      "vehicle_id": "152",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46465301513672,
+      "lon": 19.022724151611328,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-07T01:04:06.559112+02:00",
+      "kulcs": "AAGL323",
+      "rendszam": "AAGL323",
+      "vehicle_id": "353",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45072555541992,
+      "lon": 18.9049129486084,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
     }
   ]
 }
