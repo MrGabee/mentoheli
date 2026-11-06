@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-06T02:20:38.550266+02:00",
+  "frissitve": "2026-11-06T02:21:11.850575+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:46:51.267624+02:00",
-      "kulcs": "PDN606",
-      "rendszam": "PDN606",
-      "vehicle_id": "7078",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "101B",
-      "route_id": "1012",
-      "lat": 47.40585708618164,
-      "lon": 18.999300003051758,
-      "elozo_szoveg": "Baross Gábor-telep",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-05T15:46:51.267742+02:00",
-      "kulcs": "PDN625",
-      "rendszam": "PDN625",
-      "vehicle_id": "7096",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.38897705078125,
-      "lon": 19.100683212280273,
-      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-11-05T15:46:51.268282+02:00",
-      "kulcs": "PKN623",
-      "rendszam": "PKN623",
-      "vehicle_id": "7212",
-      "vehicle_label": "Kisszentmihály, Baross u.",
-      "vonal_szam": "131",
-      "route_id": "1310",
-      "lat": 47.504737854003906,
-      "lon": 19.136558532714844,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kisszentmihály, Baross utca"
-    },
     {
       "idopont": "2026-11-05T15:46:51.268434+02:00",
       "kulcs": "V1623",
@@ -260000,6 +259961,45 @@
       "lon": 19.046621322631836,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-06T02:21:11.752060+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.41544723510742,
+      "lon": 18.99888038635254,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-06T02:21:11.754899+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.41061782836914,
+      "lon": 19.061573028564453,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-06T02:21:11.755289+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.550315856933594,
+      "lon": 19.04204750061035,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
