@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T01:57:53.575634+02:00",
+  "frissitve": "2026-11-07T01:58:22.951893+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:43:01.325858+02:00",
-      "kulcs": "PDN620",
-      "rendszam": "PDN620",
-      "vehicle_id": "7091",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "184",
-      "route_id": "1840",
-      "lat": 47.40165328979492,
-      "lon": 19.202476501464844,
-      "elozo_szoveg": "Pestszentimre, Benjámin utca",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-06T15:43:01.326380+02:00",
-      "kulcs": "PHG641",
-      "rendszam": "PHG641",
-      "vehicle_id": "7165",
-      "vehicle_label": "Cinkota H",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.54196548461914,
-      "lon": 19.15149688720703,
-      "elozo_szoveg": "Újpalota, Szentmihályi út",
-      "uj_szoveg": "Cinkota H"
-    },
-    {
-      "idopont": "2026-11-06T15:43:01.326953+02:00",
-      "kulcs": "PMP921",
-      "rendszam": "PMP921",
-      "vehicle_id": "7239",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.464839935302734,
-      "lon": 19.02301597595215,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-11-06T15:43:01.327125+02:00",
       "kulcs": "RCT312",
@@ -260000,6 +259961,45 @@
       "lon": 19.0209903717041,
       "elozo_szoveg": "Budapest-Kelenföld",
       "uj_szoveg": "Dunaújváros"
+    },
+    {
+      "idopont": "2026-11-07T01:58:22.876263+02:00",
+      "kulcs": "AAMH613",
+      "rendszam": "AAMH613",
+      "vehicle_id": "456",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.53362274169922,
+      "lon": 19.081937789916992,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-07T01:58:22.876420+02:00",
+      "kulcs": "NNE052",
+      "rendszam": "NNE052",
+      "vehicle_id": "6448",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.487003326416016,
+      "lon": 19.05759620666504,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-11-07T01:58:22.877052+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.475093841552734,
+      "lon": 19.04682159423828,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
