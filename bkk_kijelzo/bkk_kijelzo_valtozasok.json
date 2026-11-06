@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T01:51:12.122874+02:00",
+  "frissitve": "2026-11-07T01:51:43.753974+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:43:01.314807+02:00",
-      "kulcs": "V2017",
-      "rendszam": "V2017",
-      "vehicle_id": "2017",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47489547729492,
-      "lon": 19.055498123168945,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-06T15:43:01.314907+02:00",
-      "kulcs": "V2028",
-      "rendszam": "V2028",
-      "vehicle_id": "2028",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47385025024414,
-      "lon": 19.04911231994629,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-06T15:43:01.314961+02:00",
-      "kulcs": "V2033",
-      "rendszam": "V2033",
-      "vehicle_id": "2033",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.507320404052734,
-      "lon": 19.02533531188965,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-11-06T15:43:01.315464+02:00",
       "kulcs": "FJX214",
@@ -260000,6 +259961,45 @@
       "lon": 19.02499771118164,
       "elozo_szoveg": "Széll Kálmán tér M",
       "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-07T01:51:43.673646+02:00",
+      "kulcs": "AADI622",
+      "rendszam": "AADI622",
+      "vehicle_id": "50",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55029296875,
+      "lon": 19.04204750061035,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-07T01:51:43.673822+02:00",
+      "kulcs": "PDB704",
+      "rendszam": "PDB704",
+      "vehicle_id": "7030",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.519954681396484,
+      "lon": 19.038087844848633,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-07T01:51:43.674180+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40448760986328,
+      "lon": 19.185871124267578,
+      "elozo_szoveg": "Pestszentimre vasútállomás",
+      "uj_szoveg": "Astoria M ► Újpalota"
     }
   ]
 }
