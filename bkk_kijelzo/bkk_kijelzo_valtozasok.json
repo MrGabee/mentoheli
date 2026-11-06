@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-06T03:26:25.407276+02:00",
+  "frissitve": "2026-11-06T03:26:53.011306+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:53:00.962853+02:00",
-      "kulcs": "PDB710",
-      "rendszam": "PDB710",
-      "vehicle_id": "7036",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.483680725097656,
-      "lon": 19.12789535522461,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.962885+02:00",
-      "kulcs": "PDB721",
-      "rendszam": "PDB721",
-      "vehicle_id": "7047",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "32",
-      "route_id": "0320",
-      "lat": 47.50120162963867,
-      "lon": 19.136253356933594,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-11-05T15:53:00.962987+02:00",
-      "kulcs": "PDB381",
-      "rendszam": "PDB381",
-      "vehicle_id": "7063",
-      "vehicle_label": "Rákoscsaba vasútállomás",
-      "vonal_szam": "98",
-      "route_id": "0980",
-      "lat": 47.462947845458984,
-      "lon": 19.149072647094727,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Rákoscsaba vasútállomás"
-    },
     {
       "idopont": "2026-11-05T15:53:00.963125+02:00",
       "kulcs": "PDN612",
@@ -260000,6 +259961,45 @@
       "lon": 19.103670120239258,
       "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
       "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-11-06T03:26:52.912624+02:00",
+      "kulcs": "MOS270",
+      "rendszam": "MOS270",
+      "vehicle_id": "5723",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.50177001953125,
+      "lon": 19.12368392944336,
+      "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
+      "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-11-06T03:26:52.912752+02:00",
+      "kulcs": "AADI579",
+      "rendszam": "AADI579",
+      "vehicle_id": "63",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50465774536133,
+      "lon": 19.02466583251953,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-06T03:26:52.913330+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.526302337646484,
+      "lon": 19.0382022857666,
+      "elozo_szoveg": "Kolosy tér ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Óbuda, Bogdáni út"
     }
   ]
 }
