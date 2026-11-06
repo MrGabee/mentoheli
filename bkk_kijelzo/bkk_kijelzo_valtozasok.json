@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-06T05:02:48.359321+02:00",
+  "frissitve": "2026-11-06T05:03:20.351983+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T16:02:50.941940+02:00",
-      "kulcs": "V1567",
-      "rendszam": "V1567",
-      "vehicle_id": "4619",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.499359130859375,
-      "lon": 19.082538604736328,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-11-05T16:02:50.942162+02:00",
-      "kulcs": "V4060",
-      "rendszam": "V4060",
-      "vehicle_id": "4749",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.477596282958984,
-      "lon": 19.046892166137695,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-11-05T16:02:50.942675+02:00",
       "kulcs": "V4066",
@@ -260000,6 +259974,32 @@
       "lon": 19.04349708557129,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-06T05:03:20.278998+02:00",
+      "kulcs": "LYH122",
+      "rendszam": "LYH122",
+      "vehicle_id": "3711",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.5152473449707,
+      "lon": 19.09642219543457,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-06T05:03:20.279996+02:00",
+      "kulcs": "AOIB820",
+      "rendszam": "AOIB820",
+      "vehicle_id": "883",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.46515655517578,
+      "lon": 19.022743225097656,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
