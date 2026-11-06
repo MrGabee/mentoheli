@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T01:32:35.853189+02:00",
+  "frissitve": "2026-11-07T01:33:04.397021+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:41:46.051897+02:00",
-      "kulcs": "FKU950",
-      "rendszam": "FKU950",
-      "vehicle_id": "3106",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.49916458129883,
-      "lon": 19.26893424987793,
-      "elozo_szoveg": "Naplás út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.052090+02:00",
-      "kulcs": "FLR735",
-      "rendszam": "FLR735",
-      "vehicle_id": "3149",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.515869140625,
-      "lon": 19.190404891967773,
-      "elozo_szoveg": "Veres Péter út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.052312+02:00",
-      "kulcs": "AAGL303",
-      "rendszam": "AAGL303",
-      "vehicle_id": "333",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22",
-      "route_id": "0220",
-      "lat": 47.50249481201172,
-      "lon": 18.91716957092285,
-      "elozo_szoveg": "Budakeszi, Tesco áruház",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-06T15:41:46.052596+02:00",
       "kulcs": "AAHY810",
@@ -260000,6 +259961,45 @@
       "lon": 19.025041580200195,
       "elozo_szoveg": "Astoria M ► Rákospalota",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-07T01:33:04.341308+02:00",
+      "kulcs": "FKU939",
+      "rendszam": "FKU939",
+      "vehicle_id": "3095",
+      "vehicle_label": "Centenáriumi lakótelep",
+      "vonal_szam": "44",
+      "route_id": "0440",
+      "lat": 47.5042724609375,
+      "lon": 19.13703727722168,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Veres Péter út ► Centenáriumi lakótelep"
+    },
+    {
+      "idopont": "2026-11-07T01:33:04.342073+02:00",
+      "kulcs": "FLR728",
+      "rendszam": "FLR728",
+      "vehicle_id": "3142",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.56097412109375,
+      "lon": 19.091474533081055,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Astoria M ► Határ út M"
+    },
+    {
+      "idopont": "2026-11-07T01:33:04.343521+02:00",
+      "kulcs": "PDB714",
+      "rendszam": "PDB714",
+      "vehicle_id": "7040",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51445770263672,
+      "lon": 19.09752655029297,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
     }
   ]
 }
