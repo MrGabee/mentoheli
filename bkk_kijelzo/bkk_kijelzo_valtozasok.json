@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T01:38:57.660398+02:00",
+  "frissitve": "2026-11-07T01:39:31.185211+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:41:46.059079+02:00",
-      "kulcs": "NGC163",
-      "rendszam": "NGC163",
-      "vehicle_id": "6212",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.53207015991211,
-      "lon": 19.068016052246094,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.059207+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50661087036133,
-      "lon": 19.023944854736328,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-11-06T15:41:46.059629+02:00",
-      "kulcs": "V2229",
-      "rendszam": "V2229",
-      "vehicle_id": "6440",
-      "vehicle_label": "Pestszentlőrinc, Béke tér",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.465049743652344,
-      "lon": 19.127586364746094,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Pestszentlőrinc, Béke tér"
-    },
     {
       "idopont": "2026-11-06T15:41:46.059654+02:00",
       "kulcs": "V2232",
@@ -260000,6 +259961,45 @@
       "lon": 19.160842895507812,
       "elozo_szoveg": "Alacskai úti lakótelep",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-07T01:39:31.093076+02:00",
+      "kulcs": "V2003",
+      "rendszam": "V2003",
+      "vehicle_id": "2003",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47401428222656,
+      "lon": 19.047359466552734,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-07T01:39:31.093160+02:00",
+      "kulcs": "V2032",
+      "rendszam": "V2032",
+      "vehicle_id": "2032",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.507362365722656,
+      "lon": 19.02505874633789,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-07T01:39:31.094124+02:00",
+      "kulcs": "FKU939",
+      "rendszam": "FKU939",
+      "vehicle_id": "3095",
+      "vehicle_label": "Centenáriumi lakótelep",
+      "vonal_szam": "44",
+      "route_id": "0440",
+      "lat": 47.5037841796875,
+      "lon": 19.14190673828125,
+      "elozo_szoveg": "Veres Péter út ► Centenáriumi lakótelep",
+      "uj_szoveg": "Centenáriumi lakótelep"
     }
   ]
 }
