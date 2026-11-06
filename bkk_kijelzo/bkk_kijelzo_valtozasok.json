@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-06T02:52:43.784680+02:00",
+  "frissitve": "2026-11-06T02:53:15.356116+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:50:06.684758+02:00",
-      "kulcs": "MXJ010",
-      "rendszam": "MXJ010",
-      "vehicle_id": "5883",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "87A",
-      "route_id": "0871",
-      "lat": 47.43594741821289,
-      "lon": 18.978557586669922,
-      "elozo_szoveg": "Kamaraerdő",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-05T15:50:06.684877+02:00",
-      "kulcs": "MUT894",
-      "rendszam": "MUT894",
-      "vehicle_id": "5947",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.41660690307617,
-      "lon": 19.131040573120117,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
-    {
-      "idopont": "2026-11-05T15:50:06.684927+02:00",
-      "kulcs": "MUT898",
-      "rendszam": "MUT898",
-      "vehicle_id": "5951",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.44168472290039,
-      "lon": 19.159914016723633,
-      "elozo_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-11-05T15:50:06.685828+02:00",
-      "kulcs": "AELD563",
-      "rendszam": "AELD563",
-      "vehicle_id": "615",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.47982406616211,
-      "lon": 19.06653594970703,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-11-05T15:50:06.685932+02:00",
       "kulcs": "NGC147",
@@ -260000,6 +259948,58 @@
       "lon": 19.038101196289062,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-06T02:53:15.305010+02:00",
+      "kulcs": "AADI580",
+      "rendszam": "AADI580",
+      "vehicle_id": "66",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.467933654785156,
+      "lon": 19.075767517089844,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-06T02:53:15.305065+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.498619079589844,
+      "lon": 19.054697036743164,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-06T02:53:15.305144+02:00",
+      "kulcs": "PON993",
+      "rendszam": "PON993",
+      "vehicle_id": "7260",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.40443420410156,
+      "lon": 19.18596649169922,
+      "elozo_szoveg": "Pestszentimre vá.",
+      "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-11-06T02:53:15.305173+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37955856323242,
+      "lon": 19.10418701171875,
+      "elozo_szoveg": "Millenniumtelep H",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
     }
   ]
 }
