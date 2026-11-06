@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-06T03:11:49.650413+02:00",
+  "frissitve": "2026-11-06T03:12:25.968942+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:51:39.822741+02:00",
-      "kulcs": "PHG630",
-      "rendszam": "PHG630",
-      "vehicle_id": "7154",
-      "vehicle_label": "Rákoscsaba",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.50171661376953,
-      "lon": 19.135944366455078,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoscsaba"
-    },
-    {
-      "idopont": "2026-11-05T15:51:39.823070+02:00",
-      "kulcs": "PKN615",
-      "rendszam": "PKN615",
-      "vehicle_id": "7204",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "176E",
-      "route_id": "1765",
-      "lat": 47.499698638916016,
-      "lon": 19.2869873046875,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-05T15:51:39.823341+02:00",
-      "kulcs": "PON993",
-      "rendszam": "PON993",
-      "vehicle_id": "7260",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "244",
-      "route_id": "2440",
-      "lat": 47.504234313964844,
-      "lon": 19.136674880981445,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-11-05T15:51:39.823560+02:00",
-      "kulcs": "AOGF651",
-      "rendszam": "AOGF651",
-      "vehicle_id": "733",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "66E",
-      "route_id": "0665",
-      "lat": 47.3779182434082,
-      "lon": 19.119932174682617,
-      "elozo_szoveg": "Soroksár, BILK",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-05T15:51:39.823960+02:00",
-      "kulcs": "V2240",
-      "rendszam": "V2240",
-      "vehicle_id": "7372",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.47753143310547,
-      "lon": 19.046369552612305,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
     {
       "idopont": "2026-11-05T15:51:39.824085+02:00",
       "kulcs": "V2249",
@@ -260000,6 +259935,71 @@
       "lon": 19.051477432250977,
       "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
       "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-11-06T03:12:25.878795+02:00",
+      "kulcs": "AADI657",
+      "rendszam": "AADI657",
+      "vehicle_id": "156",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.475643157958984,
+      "lon": 19.041370391845703,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-06T03:12:25.881321+02:00",
+      "kulcs": "MUT899",
+      "rendszam": "MUT899",
+      "vehicle_id": "5952",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59849548339844,
+      "lon": 19.12134552001953,
+      "elozo_szoveg": "Káposztásmegyer",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-06T03:12:25.881550+02:00",
+      "kulcs": "PKN623",
+      "rendszam": "PKN623",
+      "vehicle_id": "7212",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52347946166992,
+      "lon": 19.01991844177246,
+      "elozo_szoveg": "Nyugati pályaudvar M ► Árpádföld",
+      "uj_szoveg": "Astoria M ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-06T03:12:25.881792+02:00",
+      "kulcs": "AADI576",
+      "rendszam": "AADI576",
+      "vehicle_id": "75",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56769561767578,
+      "lon": 19.127193450927734,
+      "elozo_szoveg": "Rákospalota",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-06T03:12:25.881957+02:00",
+      "kulcs": "SKR819",
+      "rendszam": "SKR819",
+      "vehicle_id": "7705",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.5503044128418,
+      "lon": 19.042055130004883,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
