@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-06T04:10:32.607150+02:00",
+  "frissitve": "2026-11-06T04:10:59.252977+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-05T15:57:23.146051+02:00",
-      "kulcs": "AADR707",
-      "rendszam": "AADR707",
-      "vehicle_id": "175",
-      "vehicle_label": "Szarvas csárda tér",
-      "vonal_szam": "217E",
-      "route_id": "2175",
-      "lat": 47.49607467651367,
-      "lon": 19.07152557373047,
-      "elozo_szoveg": "Gyömrői út 132.",
-      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
-    },
-    {
-      "idopont": "2026-11-05T15:57:23.146326+02:00",
-      "kulcs": "AADR756",
-      "rendszam": "AADR756",
-      "vehicle_id": "205",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "107",
-      "route_id": "1070",
-      "lat": 47.469242095947266,
-      "lon": 19.053817749023438,
-      "elozo_szoveg": "Infopark ► BudaPart",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-05T15:57:23.146357+02:00",
-      "kulcs": "AADR761",
-      "rendszam": "AADR761",
-      "vehicle_id": "210",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "85E",
-      "route_id": "0855",
-      "lat": 47.46277618408203,
-      "lon": 19.149826049804688,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-05T15:57:23.146384+02:00",
       "kulcs": "AAGL250",
@@ -260000,6 +259961,45 @@
       "lon": 19.072608947753906,
       "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
       "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-06T04:10:59.175415+02:00",
+      "kulcs": "AUAN755",
+      "rendszam": "AUAN755",
+      "vehicle_id": "1129",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49720001220703,
+      "lon": 19.055274963378906,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-06T04:10:59.177365+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.48394775390625,
+      "lon": 19.127527236938477,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-06T04:10:59.178211+02:00",
+      "kulcs": "815 011",
+      "rendszam": "815 011",
+      "vehicle_id": "945518150111",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "G60",
+      "route_id": "G60",
+      "lat": 47.245079040527344,
+      "lon": 20.096839904785156,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
