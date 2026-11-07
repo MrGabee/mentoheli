@@ -413,6 +413,14 @@ Ha gyanús személyt láttok, ne menjetek oda, hanem azonnal hívjátok a 112-t!
 Osszátok meg, hogy minél több környékbeli lássa! 🙏
 
 #Csepel #Királyerdő #figyelmeztetés"""),
+    "mvm_befizetes_20261107": (date(2026, 11, 7), """❓ OLVASÓI KÉRDÉS – Nem dolgozza fel az MVM a befizetéseket?
+
+Egyik olvasóm kért segítséget. Két napja nem tudja kinyomtatni a „0”-s igazolását, mert az MVM oldalán a befizetése még nincs feldolgozva. A telefonos ügyfélszolgálatot nem éri el, az oldalon pedig folyamatosan rendszerfrissítést jeleznek. Mások is panaszkodnak visszautalásokra, és arra, hogy a fizetendő összeg több lett, mint a bediktált mérőállás alapján várható.
+
+Nálatok is volt hasonló az utóbbi napokban? 🤔
+Ha valaki tudja, mi az oka, vagy hogyan sikerült elintéznie (online ügyfélszolgálat, személyes ügyintézés), írja meg kommentben, hogy másoknak is segítsen! 👇
+
+#Csepel #olvasóikérdés #MVM"""),
 }
 
 
