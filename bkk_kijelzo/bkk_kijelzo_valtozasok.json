@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T03:41:21.957234+02:00",
+  "frissitve": "2026-11-07T03:41:51.540943+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:54:01.549534+02:00",
-      "kulcs": "AOGF651",
-      "rendszam": "AOGF651",
-      "vehicle_id": "733",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "66E",
-      "route_id": "0665",
-      "lat": 47.375003814697266,
-      "lon": 19.119646072387695,
-      "elozo_szoveg": "Soroksár, BILK",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-06T15:54:01.549610+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.525901794433594,
-      "lon": 19.129934310913086,
-      "elozo_szoveg": "Miskolci utca ► Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-11-06T15:54:01.549633+02:00",
-      "kulcs": "T8106",
-      "rendszam": "T8106",
-      "vehicle_id": "7343",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.50514221191406,
-      "lon": 19.13645362854004,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
     {
       "idopont": "2026-11-06T15:54:01.549752+02:00",
       "kulcs": "T9110",
@@ -260000,6 +259961,45 @@
       "lon": 19.043624877929688,
       "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-11-07T03:41:51.477447+02:00",
+      "kulcs": "AAMH610",
+      "rendszam": "AAMH610",
+      "vehicle_id": "453",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.464900970458984,
+      "lon": 19.152240753173828,
+      "elozo_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-07T03:41:51.478190+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.40576171875,
+      "lon": 19.014156341552734,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-11-07T03:41:51.478243+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.47520065307617,
+      "lon": 19.040250778198242,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
