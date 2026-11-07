@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-07T04:19:52.406647+02:00",
+  "frissitve": "2026-11-07T04:20:25.786584+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:57:50.483286+02:00",
-      "kulcs": "T9116",
-      "rendszam": "T9116",
-      "vehicle_id": "7854",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51395034790039,
-      "lon": 19.049890518188477,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-06T15:57:50.483354+02:00",
-      "kulcs": "T9121",
-      "rendszam": "T9121",
-      "vehicle_id": "7860",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.50124740600586,
-      "lon": 19.107759475708008,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-06T15:57:50.483412+02:00",
-      "kulcs": "T9129",
-      "rendszam": "T9129",
-      "vehicle_id": "7868",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.506011962890625,
-      "lon": 19.137767791748047,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-11-06T15:57:50.483553+02:00",
-      "kulcs": "T9142",
-      "rendszam": "T9142",
-      "vehicle_id": "7881",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52294921875,
-      "lon": 19.131181716918945,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-11-06T15:57:50.483625+02:00",
-      "kulcs": "T9149",
-      "rendszam": "T9149",
-      "vehicle_id": "7888",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51803970336914,
-      "lon": 19.105928421020508,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-11-06T15:57:50.483694+02:00",
       "kulcs": "T8116",
@@ -260000,6 +259935,71 @@
       "lon": 19.107765197753906,
       "elozo_szoveg": "Puskás Ferenc Stadion M",
       "uj_szoveg": "Helikopter lakópark ► Rákoscsaba"
+    },
+    {
+      "idopont": "2026-11-07T04:20:25.702309+02:00",
+      "kulcs": "V2025",
+      "rendszam": "V2025",
+      "vehicle_id": "2025",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.50737762451172,
+      "lon": 19.024017333984375,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-07T04:20:25.703794+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.59849166870117,
+      "lon": 19.054250717163086,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-07T04:20:25.704294+02:00",
+      "kulcs": "T9145",
+      "rendszam": "T9145",
+      "vehicle_id": "7884",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.5026741027832,
+      "lon": 19.076879501342773,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-07T04:20:25.704413+02:00",
+      "kulcs": "AOIM014",
+      "rendszam": "AOIM014",
+      "vehicle_id": "934",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.40987777709961,
+      "lon": 19.062654495239258,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-07T04:20:25.704601+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény vá. (Campona)",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.475425720214844,
+      "lon": 19.046762466430664,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
