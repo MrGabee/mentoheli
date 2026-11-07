@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T03:44:56.865043+02:00",
+  "frissitve": "2026-11-07T03:45:25.731032+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:54:01.555102+02:00",
-      "kulcs": "T8120",
-      "rendszam": "T8120",
-      "vehicle_id": "7899",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50988006591797,
-      "lon": 19.056962966918945,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-11-06T15:54:01.555183+02:00",
-      "kulcs": "AOFL210",
-      "rendszam": "AOFL210",
-      "vehicle_id": "796",
-      "vehicle_label": "Kolosy tér",
-      "vonal_szam": "165",
-      "route_id": "1650",
-      "lat": 47.53553771972656,
-      "lon": 19.026899337768555,
-      "elozo_szoveg": "Remetehegyi út",
-      "uj_szoveg": "Kolosy tér"
-    },
-    {
-      "idopont": "2026-11-06T15:54:01.555206+02:00",
-      "kulcs": "AOFL211",
-      "rendszam": "AOFL211",
-      "vehicle_id": "798",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "121",
-      "route_id": "1210",
-      "lat": 47.5597038269043,
-      "lon": 19.082517623901367,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-11-06T15:54:01.555484+02:00",
       "kulcs": "AOFL238",
@@ -260000,6 +259961,45 @@
       "lon": 19.014293670654297,
       "elozo_szoveg": "Budatétény",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-07T03:45:25.677333+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483943939208984,
+      "lon": 19.12750816345215,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-07T03:45:25.677693+02:00",
+      "kulcs": "SKR811",
+      "rendszam": "SKR811",
+      "vehicle_id": "7697",
+      "vehicle_label": "Rákoscsaba",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.486106872558594,
+      "lon": 19.1906795501709,
+      "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
+      "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-11-07T03:45:25.677771+02:00",
+      "kulcs": "879-640-880",
+      "rendszam": "879-640-880",
+      "vehicle_id": "905516568797-905536466402-905516568805",
+      "vehicle_label": "Közvágóhíd",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.17463684082031,
+      "lon": 18.94175148010254,
+      "elozo_szoveg": "Ráckeve",
+      "uj_szoveg": "Közvágóhíd"
     }
   ]
 }
