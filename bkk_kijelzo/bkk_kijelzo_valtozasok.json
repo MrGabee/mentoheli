@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T02:56:17.260476+02:00",
+  "frissitve": "2026-11-07T02:56:47.556783+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:49:57.929325+02:00",
-      "kulcs": "V1564",
-      "rendszam": "V1564",
-      "vehicle_id": "4616",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.499263763427734,
-      "lon": 19.08258628845215,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Közvágóhíd H"
-    },
-    {
-      "idopont": "2026-11-06T15:49:57.929560+02:00",
-      "kulcs": "V4056",
-      "rendszam": "V4056",
-      "vehicle_id": "4745",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.47547912597656,
-      "lon": 19.046979904174805,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-06T15:49:57.929635+02:00",
-      "kulcs": "V4074",
-      "rendszam": "V4074",
-      "vehicle_id": "4763",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.47469711303711,
-      "lon": 19.178178787231445,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Kőbányai út ► Blaha Lujza tér M"
-    },
     {
       "idopont": "2026-11-06T15:49:57.929729+02:00",
       "kulcs": "V4115",
@@ -260000,6 +259961,45 @@
       "lon": 19.04684829711914,
       "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-07T02:56:47.485976+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Telki-Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.53752899169922,
+      "lon": 18.84327507019043,
+      "elozo_szoveg": "Telki ► Zsámbék",
+      "uj_szoveg": "Zsámbék"
+    },
+    {
+      "idopont": "2026-11-07T02:56:47.486578+02:00",
+      "kulcs": "T9148",
+      "rendszam": "T9148",
+      "vehicle_id": "7887",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50390625,
+      "lon": 19.136991500854492,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-07T02:56:47.486782+02:00",
+      "kulcs": "415 120",
+      "rendszam": "415 120",
+      "vehicle_id": "945514151204",
+      "vehicle_label": "Nagykáta",
+      "vonal_szam": "S60",
+      "route_id": "S60",
+      "lat": 47.492191314697266,
+      "lon": 19.135639190673828,
+      "elozo_szoveg": "Esztergom",
+      "uj_szoveg": "Nagykáta"
     }
   ]
 }
