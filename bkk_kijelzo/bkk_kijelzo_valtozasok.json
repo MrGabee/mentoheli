@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T05:08:23.813992+02:00",
+  "frissitve": "2026-11-07T05:08:56.171224+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T16:04:27.253684+02:00",
-      "kulcs": "AAMH670",
-      "rendszam": "AAMH670",
-      "vehicle_id": "513",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.57735061645508,
-      "lon": 19.11444854736328,
-      "elozo_szoveg": "Káp.megyer, Szilas-patak",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-06T16:04:27.253802+02:00",
-      "kulcs": "MMM137",
-      "rendszam": "MMM137",
-      "vehicle_id": "5408",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "11",
-      "route_id": "0110",
-      "lat": 47.53099822998047,
-      "lon": 18.997941970825195,
-      "elozo_szoveg": "Nagybányai út",
-      "uj_szoveg": "Batthyány tér M+H"
-    },
-    {
-      "idopont": "2026-11-06T16:04:27.255602+02:00",
-      "kulcs": "V2213",
-      "rendszam": "V2213",
-      "vehicle_id": "5853",
-      "vehicle_label": "Újpalota, Erdőkerülő utca",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.51781463623047,
-      "lon": 19.0930233001709,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpalota, Erdőkerülő utca"
-    },
     {
       "idopont": "2026-11-06T16:04:27.255634+02:00",
       "kulcs": "V2215",
@@ -260000,6 +259961,45 @@
       "lon": 19.126083374023438,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-07T05:08:56.095144+02:00",
+      "kulcs": "AUAN763",
+      "rendszam": "AUAN763",
+      "vehicle_id": "1139",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43286895751953,
+      "lon": 19.26141357421875,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-11-07T05:08:56.095223+02:00",
+      "kulcs": "AADI635",
+      "rendszam": "AADI635",
+      "vehicle_id": "133",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "276E",
+      "route_id": "2765",
+      "lat": 47.49820327758789,
+      "lon": 19.2663631439209,
+      "elozo_szoveg": "Naplás út ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-07T05:08:56.096891+02:00",
+      "kulcs": "AOGF655",
+      "rendszam": "AOGF655",
+      "vehicle_id": "737",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "66",
+      "route_id": "0660",
+      "lat": 47.37831497192383,
+      "lon": 19.13046646118164,
+      "elozo_szoveg": "Soroksár, központi raktárak",
+      "uj_szoveg": "Határ út M"
     }
   ]
 }
