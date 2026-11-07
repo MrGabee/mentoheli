@@ -51,7 +51,9 @@ def kuld_vagy_sorba(allapot, szoveg, kuldo, surgos=True):
     különben a sor elejére kerül. Ráérős poszt (előre bejelentett esemény):
     sorba kerül, és a következő szabad sávban megy ki (poszt_utem)."""
     sor = allapot.setdefault("fb_sor", [])
-    if ejszaka():
+    # Gábor kérése: a jó éjszakát után is kimegy az azonnali (most kezdődő)
+    # áram-, víz- és távhőszünet; csak az előre bejelentettek várnak reggelig.
+    if ejszaka() and not surgos:
         sor.append({"szoveg": szoveg, "surgos": surgos})
         print("  🌙 Éjszaka van, a poszt reggelig vár.")
         return
@@ -69,13 +71,18 @@ def kuld_vagy_sorba(allapot, szoveg, kuldo, surgos=True):
 
 def sor_kiurites(allapot, kuldo):
     """A félretett posztokból egyet küld ki, ha van szabad sáv; a többi vár."""
-    sor = allapot.get("fb_sor") or []
-    if ejszaka() or not sor:
+    sor = [x if isinstance(x, dict) else {"szoveg": x, "surgos": False}
+           for x in (allapot.get("fb_sor") or [])]
+    if not sor:
         return
-    elem = sor[0] if isinstance(sor[0], dict) else {"szoveg": sor[0], "surgos": False}
+    # Éjszaka csak a sürgős (azonnali) posztok mehetnek ki
+    i = next((n for n, x in enumerate(sor) if x["surgos"]), None) if ejszaka() else 0
+    if i is None:
+        return
+    elem = sor[i]
     if not poszt_utem.mehet(surgos=elem["surgos"]):
         return
     print("📘 Félretett poszt küldése...")
     if kuldo(elem["szoveg"]) is not False:
-        allapot["fb_sor"] = sor[1:]
+        allapot["fb_sor"] = sor[:i] + sor[i + 1:]
         poszt_utem.jegyez()
