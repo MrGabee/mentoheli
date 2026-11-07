@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-07T04:29:21.272865+02:00",
+  "frissitve": "2026-11-07T04:29:53.245366+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:58:58.970287+02:00",
-      "kulcs": "NCV289",
-      "rendszam": "NCV289",
-      "vehicle_id": "6254",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50654220581055,
-      "lon": 19.02393341064453,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-11-06T15:58:58.970303+02:00",
-      "kulcs": "NCV291",
-      "rendszam": "NCV291",
-      "vehicle_id": "6256",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.499794006347656,
-      "lon": 19.035205841064453,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-06T15:58:58.970366+02:00",
-      "kulcs": "NCV300",
-      "rendszam": "NCV300",
-      "vehicle_id": "6265",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49774169921875,
-      "lon": 19.053443908691406,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-06T15:58:58.970710+02:00",
       "kulcs": "V1619",
@@ -260000,6 +259961,45 @@
       "lon": 19.022932052612305,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Göncz Árpád városközpont M"
+    },
+    {
+      "idopont": "2026-11-07T04:29:53.154175+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Kamaraerdő",
+      "vonal_szam": "940",
+      "route_id": "9400",
+      "lat": 47.45563888549805,
+      "lon": 18.940448760986328,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Kamaraerdő"
+    },
+    {
+      "idopont": "2026-11-07T04:29:53.155126+02:00",
+      "kulcs": "PDZ836",
+      "rendszam": "PDZ836",
+      "vehicle_id": "7299",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50748825073242,
+      "lon": 19.02491569519043,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-07T04:29:53.155636+02:00",
+      "kulcs": "AOIM035",
+      "rendszam": "AOIM035",
+      "vehicle_id": "955",
+      "vehicle_label": "Üres kijelző",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.40571212768555,
+      "lon": 19.01432991027832,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény"
     }
   ]
 }
