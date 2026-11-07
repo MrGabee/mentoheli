@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-07T04:52:53.313694+02:00",
+  "frissitve": "2026-11-07T04:53:25.037207+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T16:01:40.980828+02:00",
-      "kulcs": "PHG654",
-      "rendszam": "PHG654",
-      "vehicle_id": "7178",
-      "vehicle_label": "Maglód, Auchan áruház",
-      "vonal_szam": "162",
-      "route_id": "1620",
-      "lat": 47.483642578125,
-      "lon": 19.12740707397461,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Maglód, Auchan áruház"
-    },
-    {
-      "idopont": "2026-11-06T16:01:40.981202+02:00",
-      "kulcs": "PMP921",
-      "rendszam": "PMP921",
-      "vehicle_id": "7239",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.477561950683594,
-      "lon": 19.046316146850586,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-06T16:01:40.981255+02:00",
-      "kulcs": "V1620",
-      "rendszam": "V1620",
-      "vehicle_id": "7289",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.48176193237305,
-      "lon": 19.069246292114258,
-      "elozo_szoveg": "Mester utca/Ferenc körút",
-      "uj_szoveg": "Koppány utca"
-    },
-    {
-      "idopont": "2026-11-06T16:01:40.981572+02:00",
-      "kulcs": "T9109",
-      "rendszam": "T9109",
-      "vehicle_id": "7356",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.495018005371094,
-      "lon": 19.059654235839844,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
     {
       "idopont": "2026-11-06T16:01:40.981945+02:00",
       "kulcs": "RVY601",
@@ -260000,6 +259948,58 @@
       "lon": 19.28635025024414,
       "elozo_szoveg": "Rákoscsaba",
       "uj_szoveg": "Kucorgó tér ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-07T04:53:24.945490+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47494125366211,
+      "lon": 19.04671859741211,
+      "elozo_szoveg": "Astoria M ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-07T04:53:24.948092+02:00",
+      "kulcs": "MOS269",
+      "rendszam": "MOS269",
+      "vehicle_id": "5722",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.382442474365234,
+      "lon": 19.22964859008789,
+      "elozo_szoveg": "Vecsési út ► Határ út M",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-11-07T04:53:24.948342+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50048828125,
+      "lon": 19.135587692260742,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-07T04:53:24.948801+02:00",
+      "kulcs": "182 568",
+      "rendszam": "182 568",
+      "vehicle_id": "918061825686",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "IC",
+      "route_id": "IC",
+      "lat": 47.51042175292969,
+      "lon": 19.102550506591797,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
