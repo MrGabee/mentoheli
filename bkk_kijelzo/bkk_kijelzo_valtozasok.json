@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-07T03:48:49.099665+02:00",
+  "frissitve": "2026-11-07T03:49:18.808886+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:55:17.595870+02:00",
-      "kulcs": "LYH107",
-      "rendszam": "LYH107",
-      "vehicle_id": "3696",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.542667388916016,
-      "lon": 18.964773178100586,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-11-06T15:55:17.595965+02:00",
-      "kulcs": "AAHY820",
-      "rendszam": "AAHY820",
-      "vehicle_id": "381",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "125",
-      "route_id": "1250",
-      "lat": 47.58682632446289,
-      "lon": 19.13325309753418,
-      "elozo_szoveg": "Rákospalota, MEDIMPEX",
-      "uj_szoveg": "Bosnyák tér"
-    },
-    {
-      "idopont": "2026-11-06T15:55:17.596168+02:00",
-      "kulcs": "AAHY845",
-      "rendszam": "AAHY845",
-      "vehicle_id": "406",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57547378540039,
-      "lon": 19.104400634765625,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-11-06T15:55:17.596839+02:00",
-      "kulcs": "T0260",
-      "rendszam": "T0260",
-      "vehicle_id": "4242",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.499752044677734,
-      "lon": 19.083255767822266,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-06T15:55:17.596915+02:00",
-      "kulcs": "T0607",
-      "rendszam": "T0607",
-      "vehicle_id": "4291",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50199508666992,
-      "lon": 19.08199119567871,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
     {
       "idopont": "2026-11-06T15:55:17.597297+02:00",
       "kulcs": "V1365",
@@ -260000,6 +259935,71 @@
       "lon": 19.060317993164062,
       "elozo_szoveg": "Csepel, Csillagtelep",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-07T03:49:18.717112+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46274185180664,
+      "lon": 19.005844116210938,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-11-07T03:49:18.717309+02:00",
+      "kulcs": "MXJ017",
+      "rendszam": "MXJ017",
+      "vehicle_id": "5893",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.54910659790039,
+      "lon": 19.028888702392578,
+      "elozo_szoveg": "Bécsi út / Vörösvári út",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-07T03:49:18.717508+02:00",
+      "kulcs": "PDB714",
+      "rendszam": "PDB714",
+      "vehicle_id": "7040",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.567806243896484,
+      "lon": 19.125375747680664,
+      "elozo_szoveg": "Rákospalota",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-07T03:49:18.717540+02:00",
+      "kulcs": "PDB388",
+      "rendszam": "PDB388",
+      "vehicle_id": "7070",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.47955322265625,
+      "lon": 19.256662368774414,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-07T03:49:18.718033+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.5134162902832,
+      "lon": 19.10206413269043,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
