@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-07T04:25:17.060872+02:00",
+  "frissitve": "2026-11-07T04:25:48.810278+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:58:58.965358+02:00",
-      "kulcs": "V1343",
-      "rendszam": "V1343",
-      "vehicle_id": "4446",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.498897552490234,
-      "lon": 19.082693099975586,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-06T15:58:58.965516+02:00",
-      "kulcs": "V1365",
-      "rendszam": "V1365",
-      "vehicle_id": "4466",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.47747802734375,
-      "lon": 19.04652214050293,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-11-06T15:58:58.967075+02:00",
-      "kulcs": "V4013",
-      "rendszam": "V4013",
-      "vehicle_id": "4702",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.542823791503906,
-      "lon": 18.964534759521484,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-06T15:58:58.967115+02:00",
-      "kulcs": "V4025",
-      "rendszam": "V4025",
-      "vehicle_id": "4714",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.50074768066406,
-      "lon": 19.023962020874023,
-      "elozo_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-11-06T15:58:58.967459+02:00",
       "kulcs": "V4139",
@@ -260000,6 +259948,58 @@
       "lon": 19.097291946411133,
       "elozo_szoveg": "Zugló vasútállomás",
       "uj_szoveg": "Deák Ferenc tér M ► Csillebérc"
+    },
+    {
+      "idopont": "2026-11-07T04:25:48.726248+02:00",
+      "kulcs": "AADI608",
+      "rendszam": "AADI608",
+      "vehicle_id": "105",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.47712326049805,
+      "lon": 19.049602508544922,
+      "elozo_szoveg": "Hengermalom út ► Budatétény",
+      "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-11-07T04:25:48.726431+02:00",
+      "kulcs": "AADR705",
+      "rendszam": "AADR705",
+      "vehicle_id": "173",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.487586975097656,
+      "lon": 19.058597564697266,
+      "elozo_szoveg": "Astoria M ► Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-11-07T04:25:48.728445+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46794509887695,
+      "lon": 19.07577896118164,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-07T04:25:48.728506+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.597816467285156,
+      "lon": 19.053865432739258,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
