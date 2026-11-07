@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-08T01:54:44.347756+02:00",
+  "frissitve": "2026-11-08T01:55:12.603113+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:01:02.244926+02:00",
-      "kulcs": "T9143",
-      "rendszam": "T9143",
-      "vehicle_id": "7882",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.521385192871094,
-      "lon": 19.101383209228516,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-07T13:01:02.244946+02:00",
-      "kulcs": "T9144",
-      "rendszam": "T9144",
-      "vehicle_id": "7883",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49443435668945,
-      "lon": 19.060197830200195,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-11-07T13:01:02.245037+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.519386291503906,
-      "lon": 19.096904754638672,
-      "elozo_szoveg": "Mexikói út M ► Dózsa György út M",
-      "uj_szoveg": "Hősök tere M ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-11-07T13:01:02.245368+02:00",
-      "kulcs": "AOFL225",
-      "rendszam": "AOFL225",
-      "vehicle_id": "812",
-      "vehicle_label": "Harsánylejtő",
-      "vonal_szam": "260",
-      "route_id": "2600",
-      "lat": 47.54497146606445,
-      "lon": 19.034420013427734,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Szent Margit Kórház ► Harsánylejtő"
-    },
     {
       "idopont": "2026-11-07T13:01:02.247247+02:00",
       "kulcs": "AOIM026",
@@ -260000,6 +259948,58 @@
       "lon": 18.97854995727539,
       "elozo_szoveg": "Kamaraerdő",
       "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-08T01:55:12.544812+02:00",
+      "kulcs": "AAGL290",
+      "rendszam": "AAGL290",
+      "vehicle_id": "323",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49879837036133,
+      "lon": 19.050140380859375,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-08T01:55:12.544846+02:00",
+      "kulcs": "AAGL297",
+      "rendszam": "AAGL297",
+      "vehicle_id": "329",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50715255737305,
+      "lon": 18.92142105102539,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-08T01:55:12.544873+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.48748016357422,
+      "lon": 19.058429718017578,
+      "elozo_szoveg": "Astoria M ► Zsámbék",
+      "uj_szoveg": "Széll Kálmán tér M ► Zsámbék"
+    },
+    {
+      "idopont": "2026-11-08T01:55:12.545569+02:00",
+      "kulcs": "415 079",
+      "rendszam": "415 079",
+      "vehicle_id": "945514150792",
+      "vehicle_label": "Szob",
+      "vonal_szam": "S70",
+      "route_id": "S70",
+      "lat": 47.52606964111328,
+      "lon": 19.090030670166016,
+      "elozo_szoveg": "Budapest-Nyugati",
+      "uj_szoveg": "Szob"
     }
   ]
 }
