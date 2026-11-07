@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-07T02:25:26.256022+02:00",
+  "frissitve": "2026-11-07T02:25:55.506918+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-06T15:46:59.378607+02:00",
-      "kulcs": "AAGL256",
-      "rendszam": "AAGL256",
-      "vehicle_id": "256",
-      "vehicle_label": "Nagykovácsi, Tisza I. tér",
-      "vonal_szam": "63",
-      "route_id": "0630",
-      "lat": 47.54270553588867,
-      "lon": 18.964393615722656,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Nagykovácsi, Tisza István tér"
-    },
-    {
-      "idopont": "2026-11-06T15:46:59.378631+02:00",
-      "kulcs": "AAGL258",
-      "rendszam": "AAGL258",
-      "vehicle_id": "258",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.507076263427734,
-      "lon": 18.921489715576172,
-      "elozo_szoveg": "Budakeszi, Dózsa György tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-06T15:46:59.378697+02:00",
       "kulcs": "AAGL267",
@@ -260000,6 +259974,32 @@
       "lon": 19.133249282836914,
       "elozo_szoveg": "Astoria M ► Újpalota",
       "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-07T02:25:55.416198+02:00",
+      "kulcs": "PDB708",
+      "rendszam": "PDB708",
+      "vehicle_id": "7034",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.504608154296875,
+      "lon": 19.024709701538086,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-07T02:25:55.416517+02:00",
+      "kulcs": "AADI593",
+      "rendszam": "AADI593",
+      "vehicle_id": "89",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.5080680847168,
+      "lon": 19.02662467956543,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
     }
   ]
 }
