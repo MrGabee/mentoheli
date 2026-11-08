@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-08T03:06:14.492893+02:00",
+  "frissitve": "2026-11-08T03:06:45.317835+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:12:54.715927+02:00",
-      "kulcs": "FLR705",
-      "rendszam": "FLR705",
-      "vehicle_id": "3119",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.520816802978516,
-      "lon": 19.227100372314453,
-      "elozo_szoveg": "Cinkota, Lassú utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-07T13:12:54.715978+02:00",
-      "kulcs": "FLR724",
-      "rendszam": "FLR724",
-      "vehicle_id": "3138",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.501495361328125,
-      "lon": 19.136945724487305,
-      "elozo_szoveg": "Zugló vasútállomás (Hermina út)",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-11-07T13:12:54.716300+02:00",
-      "kulcs": "AAHY823",
-      "rendszam": "AAHY823",
-      "vehicle_id": "384",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.519989013671875,
-      "lon": 19.09125518798828,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Újpest-központ M"
-    },
     {
       "idopont": "2026-11-07T13:12:54.716525+02:00",
       "kulcs": "AAHY861",
@@ -260000,6 +259961,45 @@
       "lon": 18.90703773498535,
       "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
       "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-08T03:06:45.261603+02:00",
+      "kulcs": "AADI637",
+      "rendszam": "AADI637",
+      "vehicle_id": "135",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48353958129883,
+      "lon": 19.126262664794922,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-08T03:06:45.263000+02:00",
+      "kulcs": "PDB728",
+      "rendszam": "PDB728",
+      "vehicle_id": "7054",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48969650268555,
+      "lon": 19.07451057434082,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-08T03:06:45.263066+02:00",
+      "kulcs": "PKN627",
+      "rendszam": "PKN627",
+      "vehicle_id": "7216",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.51779556274414,
+      "lon": 19.077682495117188,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
     }
   ]
 }
