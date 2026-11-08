@@ -421,6 +421,15 @@ Nálatok is volt hasonló az utóbbi napokban? 🤔
 Ha valaki tudja, mi az oka, vagy hogyan sikerült elintéznie (online ügyfélszolgálat, személyes ügyintézés), írja meg kommentben, hogy másoknak is segítsen! 👇
 
 #Csepel #olvasóikérdés #MVM"""),
+    "tejut_kut_20261108": (date(2026, 11, 8), """💧 Folyamatosan folyik a víz a Tejút parki közkútból
+
+Egyik olvasóm jelezte, hogy a Tejút parkban lévő köztéri kútból megállás nélkül folyik a víz, a „szájából” és az „orrából” is.
+
+Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani. 🔧
+
+Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
+
+#Csepel #olvasóilevél #Tejútpark"""),
 }
 
 
