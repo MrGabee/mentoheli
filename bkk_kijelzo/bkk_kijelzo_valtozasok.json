@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-09T01:55:23.317977+02:00",
+  "frissitve": "2026-11-09T01:55:52.669260+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T12:46:33.704103+02:00",
-      "kulcs": "T8005",
-      "rendszam": "T8005",
-      "vehicle_id": "6125",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "70",
-      "route_id": "4700",
-      "lat": 47.51662063598633,
-      "lon": 19.092670440673828,
-      "elozo_szoveg": "Erzsébet királyné útja, aluljáró",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-11-08T12:46:33.704185+02:00",
-      "kulcs": "T8015",
-      "rendszam": "T8015",
-      "vehicle_id": "6135",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.48128890991211,
-      "lon": 19.136028289794922,
-      "elozo_szoveg": "Kápolna tér",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-08T12:46:33.704218+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.501808166503906,
-      "lon": 19.08190155029297,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
     {
       "idopont": "2026-11-08T12:46:33.705008+02:00",
       "kulcs": "V2235",
@@ -260000,6 +259961,45 @@
       "lon": 19.024154663085938,
       "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
       "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-09T01:55:52.615901+02:00",
+      "kulcs": "FLR716",
+      "rendszam": "FLR716",
+      "vehicle_id": "3130",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.5113525390625,
+      "lon": 19.05643653869629,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-09T01:55:52.616550+02:00",
+      "kulcs": "SKR801",
+      "rendszam": "SKR801",
+      "vehicle_id": "7687",
+      "vehicle_label": "Kolosy tér",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.37938690185547,
+      "lon": 19.104373931884766,
+      "elozo_szoveg": "Gyöngyösi utca M",
+      "uj_szoveg": "Astoria M ► Kolosy tér"
+    },
+    {
+      "idopont": "2026-11-09T01:55:52.616641+02:00",
+      "kulcs": "SIF015",
+      "rendszam": "SIF015",
+      "vehicle_id": "7750",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46247863769531,
+      "lon": 19.133190155029297,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
