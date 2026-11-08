@@ -158,7 +158,7 @@ MENETREND = [
     ("zsido_temeto_20261101", time(13, 35), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("zsido_temeto_20261101", nap)),
     ("birkozo_vb_20261101", time(16, 50), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("birkozo_vb_20261101", nap)),
     ("telefon_meki_20261030", time(17, 5), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("telefon_meki_20261030", nap)),
-    ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: vallalkozasok.velemeny_szoveg(nap)),
+    ("vallalkozas_velemeny", time(11, 5), {VASARNAP}, lambda nap, a: ""),  # Gábor kérésére szünetel (2026-11-08), nem jön rá komment
     ("veradas_holnap", VERADAS_IDO, None,     lambda nap, a: veradas.emlekezteto_szoveg(nap)),
     # Dél-Pesti Tankerület új igazgatója: a kozlony_figyelo.py dönti el, melyik sávba kerül (éjjeli találat reggel, nappali este)
     ("tankerulet_reggel", time(7, 40), None, lambda nap, a: kozlony_figyelo.poszt_szoveg(nap, "reggel")),
