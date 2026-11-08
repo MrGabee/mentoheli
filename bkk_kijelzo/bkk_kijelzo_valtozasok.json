@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-08T05:39:43.947850+02:00",
+  "frissitve": "2026-11-08T05:40:22.265309+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:44:39.087504+02:00",
-      "kulcs": "PHG635",
-      "rendszam": "PHG635",
-      "vehicle_id": "7159",
-      "vehicle_label": "Rákosszentmihály vá.",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.54054260253906,
-      "lon": 19.252506256103516,
-      "elozo_szoveg": "Kistarcsa, kórház H ► Auchan Liget",
-      "uj_szoveg": "Rákosszentmihály vasútállomás"
-    },
-    {
-      "idopont": "2026-11-07T13:44:39.087560+02:00",
-      "kulcs": "PHG651",
-      "rendszam": "PHG651",
-      "vehicle_id": "7175",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.51966094970703,
-      "lon": 19.14827537536621,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Kistarcsa, kórház H ► Auchan Liget"
-    },
-    {
-      "idopont": "2026-11-07T13:44:39.087752+02:00",
-      "kulcs": "PKN623",
-      "rendszam": "PKN623",
-      "vehicle_id": "7212",
-      "vehicle_label": "Bosnyák tér",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.50135803222656,
-      "lon": 19.136009216308594,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Bosnyák tér"
-    },
     {
       "idopont": "2026-11-07T13:44:39.088224+02:00",
       "kulcs": "AOGF659",
@@ -260000,6 +259961,45 @@
       "lon": 18.992738723754883,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-08T05:40:22.162249+02:00",
+      "kulcs": "V1352",
+      "rendszam": "V1352",
+      "vehicle_id": "4453",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "2",
+      "route_id": "3020",
+      "lat": 47.512718200683594,
+      "lon": 19.04766273498535,
+      "elozo_szoveg": "Jászai Mari tér",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-08T05:40:22.162519+02:00",
+      "kulcs": "AADI568",
+      "rendszam": "AADI568",
+      "vehicle_id": "53",
+      "vehicle_label": "Fenyőgyöngye",
+      "vonal_szam": "65A",
+      "route_id": "0651",
+      "lat": 47.527748107910156,
+      "lon": 19.03668975830078,
+      "elozo_szoveg": "Fenyves utca",
+      "uj_szoveg": "Fenyőgyöngye"
+    },
+    {
+      "idopont": "2026-11-08T05:40:22.166188+02:00",
+      "kulcs": "AOIM041",
+      "rendszam": "AOIM041",
+      "vehicle_id": "962",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "8E",
+      "route_id": "0085",
+      "lat": 47.47361755371094,
+      "lon": 18.996402740478516,
+      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
