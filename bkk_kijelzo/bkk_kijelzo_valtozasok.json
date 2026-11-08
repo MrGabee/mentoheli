@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-08T03:33:33.410307+02:00",
+  "frissitve": "2026-11-08T03:34:04.962804+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:17:26.991978+02:00",
-      "kulcs": "V2005",
-      "rendszam": "V2005",
-      "vehicle_id": "2005",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46263885498047,
-      "lon": 19.048694610595703,
-      "elozo_szoveg": "Etele út / Fehérvári út",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-07T13:17:26.992126+02:00",
-      "kulcs": "V2035",
-      "rendszam": "V2035",
-      "vehicle_id": "2035",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.5073127746582,
-      "lon": 19.025041580200195,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-07T13:17:26.992201+02:00",
-      "kulcs": "AAGL257",
-      "rendszam": "AAGL257",
-      "vehicle_id": "257",
-      "vehicle_label": "Pilisborosjenő",
-      "vonal_szam": "218",
-      "route_id": "2180",
-      "lat": 47.54019546508789,
-      "lon": 19.045948028564453,
-      "elozo_szoveg": "Szentlélek tér H",
-      "uj_szoveg": "Üröm ► Pilisborosjenő"
-    },
     {
       "idopont": "2026-11-07T13:17:26.992906+02:00",
       "kulcs": "AAHY857",
@@ -260000,6 +259961,45 @@
       "lon": 19.151391983032227,
       "elozo_szoveg": "Újpalota",
       "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-11-08T03:34:04.870413+02:00",
+      "kulcs": "AADI631",
+      "rendszam": "AADI631",
+      "vehicle_id": "127",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48953628540039,
+      "lon": 19.076051712036133,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-08T03:34:04.870606+02:00",
+      "kulcs": "V2030",
+      "rendszam": "V2030",
+      "vehicle_id": "2030",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47401428222656,
+      "lon": 19.04714012145996,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-08T03:34:04.872979+02:00",
+      "kulcs": "AOIM047",
+      "rendszam": "AOIM047",
+      "vehicle_id": "968",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47508239746094,
+      "lon": 19.046859741210938,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
