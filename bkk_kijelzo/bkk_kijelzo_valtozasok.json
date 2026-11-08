@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-08T02:49:24.873754+02:00",
+  "frissitve": "2026-11-08T02:49:54.704243+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:09:07.884864+02:00",
-      "kulcs": "AOFL227",
-      "rendszam": "AOFL227",
-      "vehicle_id": "814",
-      "vehicle_label": "Jablonka út",
-      "vonal_szam": "237",
-      "route_id": "2370",
-      "lat": 47.540157318115234,
-      "lon": 19.046268463134766,
-      "elozo_szoveg": "Kolosy tér",
-      "uj_szoveg": "Jablonka út"
-    },
-    {
-      "idopont": "2026-11-07T13:09:07.884981+02:00",
-      "kulcs": "AOFL240",
-      "rendszam": "AOFL240",
-      "vehicle_id": "828",
-      "vehicle_label": "Óbudai rendelőintézet",
-      "vonal_szam": "160",
-      "route_id": "1600",
-      "lat": 47.59879684448242,
-      "lon": 19.054534912109375,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Óbudai rendelőintézet"
-    },
-    {
-      "idopont": "2026-11-07T13:09:07.885084+02:00",
-      "kulcs": "AOFL249",
-      "rendszam": "AOFL249",
-      "vehicle_id": "837",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "236",
-      "route_id": "2360",
-      "lat": 47.41677474975586,
-      "lon": 19.25172233581543,
-      "elozo_szoveg": "Vecsés, Market Central Ferihegy",
-      "uj_szoveg": "Ferihegy vasútállomás ► Havanna-lakótelep"
-    },
-    {
-      "idopont": "2026-11-07T13:09:07.885122+02:00",
-      "kulcs": "AADI584",
-      "rendszam": "AADI584",
-      "vehicle_id": "84",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.497657775878906,
-      "lon": 19.053081512451172,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
     {
       "idopont": "2026-11-07T13:09:07.885173+02:00",
       "kulcs": "AOFL253",
@@ -260000,6 +259948,58 @@
       "lon": 19.05697250366211,
       "elozo_szoveg": "Béke tér ► Újpest-központ M",
       "uj_szoveg": "Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-08T02:49:54.649314+02:00",
+      "kulcs": "FLR717",
+      "rendszam": "FLR717",
+      "vehicle_id": "3131",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.465049743652344,
+      "lon": 19.12734031677246,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Béke tér ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-08T02:49:54.649354+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.4805793762207,
+      "lon": 19.142141342163086,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-08T02:49:54.649857+02:00",
+      "kulcs": "T9109",
+      "rendszam": "T9109",
+      "vehicle_id": "7356",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50376510620117,
+      "lon": 19.075885772705078,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-08T02:49:54.650098+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.410430908203125,
+      "lon": 19.060579299926758,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
