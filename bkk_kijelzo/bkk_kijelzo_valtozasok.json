@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-09T01:42:26.076619+02:00",
+  "frissitve": "2026-11-09T01:42:55.550542+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T12:44:23.496906+02:00",
-      "kulcs": "991-696-992",
-      "rendszam": "991-696-992",
-      "vehicle_id": "905516569910-905536466964-905516569928",
-      "vehicle_label": "Békásmegyer",
-      "vonal_szam": "H5",
-      "route_id": "H5",
-      "lat": 47.507171630859375,
-      "lon": 19.039480209350586,
-      "elozo_szoveg": "Batthyány tér",
-      "uj_szoveg": "Békásmegyer"
-    },
-    {
-      "idopont": "2026-11-08T12:44:23.497609+02:00",
-      "kulcs": "415 041",
-      "rendszam": "415 041",
-      "vehicle_id": "945514150412",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "S10",
-      "route_id": "S10",
-      "lat": 47.68437957763672,
-      "lon": 17.66534996032715,
-      "elozo_szoveg": "Győr",
-      "uj_szoveg": "Budapest-Déli"
-    },
-    {
-      "idopont": "2026-11-08T12:44:23.497774+02:00",
-      "kulcs": "415 082",
-      "rendszam": "415 082",
-      "vehicle_id": "945514150826",
-      "vehicle_label": "Pilisvörösvár",
-      "vonal_szam": "S76",
-      "route_id": "S76",
-      "lat": 47.53157043457031,
-      "lon": 19.126220703125,
-      "elozo_szoveg": "Rákos",
-      "uj_szoveg": "Pilisvörösvár"
-    },
-    {
-      "idopont": "2026-11-08T12:45:32.404638+02:00",
-      "kulcs": "AADI605",
-      "rendszam": "AADI605",
-      "vehicle_id": "102",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "221",
-      "route_id": "2210",
-      "lat": 47.48680877685547,
-      "lon": 18.953983306884766,
-      "elozo_szoveg": "Csillebérc, KFKI",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-08T12:45:32.405213+02:00",
       "kulcs": "AADI659",
@@ -260000,6 +259948,58 @@
       "lon": 19.046390533447266,
       "elozo_szoveg": "Szentlélek tér H",
       "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-09T01:42:55.479665+02:00",
+      "kulcs": "FLR703",
+      "rendszam": "FLR703",
+      "vehicle_id": "3117",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.483909606933594,
+      "lon": 19.127521514892578,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-09T01:42:55.480108+02:00",
+      "kulcs": "AADI577",
+      "rendszam": "AADI577",
+      "vehicle_id": "68",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486793518066406,
+      "lon": 19.067771911621094,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-09T01:42:55.480165+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49710464477539,
+      "lon": 19.055618286132812,
+      "elozo_szoveg": "Kőbánya-Kispest M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-11-09T01:42:55.480474+02:00",
+      "kulcs": "SKR816",
+      "rendszam": "SKR816",
+      "vehicle_id": "7703",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50168991088867,
+      "lon": 19.135601043701172,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
     }
   ]
 }
