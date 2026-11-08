@@ -430,6 +430,15 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "vedgat_vasas_szemet_20261108": (date(2026, 11, 8), """🗑️ OLVASÓI LEVÉL – Újra és újra szemét a Védgát és a Vasas utca sarkán
+
+Egyik olvasóm írt nekem a Védgát utca és a Vasas utca sarkáról. Ha jól tudja, tegnap ismét takarítottak ott, de pár óra múlva minden kezdődik elölről: a szemét újra felgyűlik, és az emberi ürülék a takarítás után is ott marad. Ez sok környéken élőt zavar, köztük őt is. Már több helyen jelezte a problémát, de tartós megoldás eddig nem született.
+
+Ti is tapasztaljátok ezt a környéken? Szerintetek mi segíthetne, hogy ne essen vissza minden pár óra alatt? 👇
+
+Kérlek, kommentben is maradjunk tisztelettudóak egymással. 🙏
+
+#Csepel #olvasóilevél #tisztaság"""),
 }
 
 
