@@ -1,0 +1,25 @@
+name: tmp sport proba
+on: workflow_dispatch
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q requests beautifulsoup4
+      - run: python mas_sportagak.py 2026-11-08
+      - run: python csepeli_sport.py hetkoz 2026-11-08 | tail -60
+      - run: |
+          python - <<'PY'
+          import mas_sportagak as m, urllib.parse
+          for q in ["sportszervezetek?nev.contains=Csepel&size=50","sportszervezetek?nev.contains=DSE&size=50"]:
+              try:
+                  d=m._json(m.MKSZ_API+q)
+                  d=d.get("content",d) if isinstance(d,dict) else d
+                  for x in d: print(q, x.get("id"), x.get("nev") or x.get("teljesNev") or x)
+              except Exception as e: print(q, e)
+          p={"sportszervezetId.equals":328,"merkozesDatum.greaterThanOrEqual":"2026-11-01T00:00:00.000","merkozesDatum.lessThanOrEqual":"2026-11-20T23:59:59.000","size":50,"page":0}
+          d=m._json(m.MKSZ_API+"versenyek/program?"+urllib.parse.urlencode(p))
+          print(type(d), str(d)[:1500])
+          PY
