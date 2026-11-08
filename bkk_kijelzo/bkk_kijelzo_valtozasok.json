@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-08T03:01:19.536446+02:00",
+  "frissitve": "2026-11-08T03:01:48.252314+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:10:55.627809+02:00",
-      "kulcs": "415 103",
-      "rendszam": "415 103",
-      "vehicle_id": "945514151030",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.74263000488281,
-      "lon": 18.717199325561523,
-      "elozo_szoveg": "Esztergom",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-11-07T13:11:59.103218+02:00",
-      "kulcs": "AUAN768",
-      "rendszam": "AUAN768",
-      "vehicle_id": "1146",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.432525634765625,
-      "lon": 19.260955810546875,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-11-07T13:11:59.103881+02:00",
-      "kulcs": "AAGL251",
-      "rendszam": "AAGL251",
-      "vehicle_id": "251",
-      "vehicle_label": "Pilisborosjenő",
-      "vonal_szam": "218",
-      "route_id": "2180",
-      "lat": 47.58858871459961,
-      "lon": 19.008737564086914,
-      "elozo_szoveg": "Üröm ► Pilisborosjenő",
-      "uj_szoveg": "Pilisborosjenő"
-    },
-    {
-      "idopont": "2026-11-07T13:11:59.103961+02:00",
-      "kulcs": "AAGL266",
-      "rendszam": "AAGL266",
-      "vehicle_id": "266",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40",
-      "route_id": "0400",
-      "lat": 47.464454650878906,
-      "lon": 19.018604278564453,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
     {
       "idopont": "2026-11-07T13:11:59.104023+02:00",
       "kulcs": "AAGL279",
@@ -260000,6 +259948,58 @@
       "lon": 19.0361385345459,
       "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
       "uj_szoveg": "Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-08T03:01:48.180498+02:00",
+      "kulcs": "PDB712",
+      "rendszam": "PDB712",
+      "vehicle_id": "7038",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.485313415527344,
+      "lon": 19.07135009765625,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-08T03:01:48.180554+02:00",
+      "kulcs": "PDB727",
+      "rendszam": "PDB727",
+      "vehicle_id": "7053",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.489173889160156,
+      "lon": 19.062788009643555,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-08T03:01:48.180595+02:00",
+      "kulcs": "PKN608",
+      "rendszam": "PKN608",
+      "vehicle_id": "7197",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.52353286743164,
+      "lon": 18.992897033691406,
+      "elozo_szoveg": "Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-08T03:01:48.180753+02:00",
+      "kulcs": "SKR722",
+      "rendszam": "SKR722",
+      "vehicle_id": "7671",
+      "vehicle_label": "Újpest-központ M",
+      "vonal_szam": "914A",
+      "route_id": "9141",
+      "lat": 47.512001037597656,
+      "lon": 19.056880950927734,
+      "elozo_szoveg": "Béke tér ► Újpest-központ M",
+      "uj_szoveg": "Újpest-központ M"
     }
   ]
 }
