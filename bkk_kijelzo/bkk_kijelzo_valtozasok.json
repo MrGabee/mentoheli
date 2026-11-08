@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-08T03:25:11.553040+02:00",
+  "frissitve": "2026-11-08T03:25:44.370385+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:15:47.410640+02:00",
-      "kulcs": "V1362",
-      "rendszam": "V1362",
-      "vehicle_id": "4463",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.46799087524414,
-      "lon": 19.075714111328125,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-07T13:15:47.411000+02:00",
-      "kulcs": "V4102",
-      "rendszam": "V4102",
-      "vehicle_id": "4791",
-      "vehicle_label": "Kamaraerdei Ifj. Park",
-      "vonal_szam": "41",
-      "route_id": "3410",
-      "lat": 47.51569747924805,
-      "lon": 19.036672592163086,
-      "elozo_szoveg": "Bem rakpart ► Kamaraerdei Ifjúsági Park",
-      "uj_szoveg": "Kamaraerdei Ifjúsági Park"
-    },
-    {
-      "idopont": "2026-11-07T13:15:47.411313+02:00",
-      "kulcs": "AAMH664",
-      "rendszam": "AAMH664",
-      "vehicle_id": "507",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "196A",
-      "route_id": "1961",
-      "lat": 47.55965042114258,
-      "lon": 19.08241844177246,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
     {
       "idopont": "2026-11-07T13:15:47.411475+02:00",
       "kulcs": "AADI571",
@@ -260000,6 +259961,45 @@
       "lon": 19.099971771240234,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-08T03:25:44.314609+02:00",
+      "kulcs": "AUAN761",
+      "rendszam": "AUAN761",
+      "vehicle_id": "1135",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49701690673828,
+      "lon": 19.055709838867188,
+      "elozo_szoveg": "Deák F. tér (City centre)",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-11-08T03:25:44.315900+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.498958587646484,
+      "lon": 19.05116081237793,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-08T03:25:44.316097+02:00",
+      "kulcs": "NBW013",
+      "rendszam": "NBW013",
+      "vehicle_id": "5983",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.42665100097656,
+      "lon": 19.16104507446289,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
     }
   ]
 }
