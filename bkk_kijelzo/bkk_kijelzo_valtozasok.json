@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-09T01:41:32.148515+02:00",
+  "frissitve": "2026-11-09T01:41:59.106444+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T12:44:23.496056+02:00",
-      "kulcs": "AOFL236",
-      "rendszam": "AOFL236",
-      "vehicle_id": "824",
-      "vehicle_label": "Pince köz-Donát utca",
-      "vonal_szam": "243",
-      "route_id": "2430",
-      "lat": 47.59524154663086,
-      "lon": 19.05182456970215,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Donát utca ► Békásmegyer H"
-    },
-    {
-      "idopont": "2026-11-08T12:44:23.496109+02:00",
-      "kulcs": "AOFL241",
-      "rendszam": "AOFL241",
-      "vehicle_id": "829",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "121",
-      "route_id": "1210",
-      "lat": 47.57742691040039,
-      "lon": 19.114944458007812,
-      "elozo_szoveg": "Káposztásmegyer, Szilas-patak",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
-    {
-      "idopont": "2026-11-08T12:44:23.496141+02:00",
-      "kulcs": "AOFL242",
-      "rendszam": "AOFL242",
-      "vehicle_id": "830",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "121",
-      "route_id": "1210",
-      "lat": 47.55772399902344,
-      "lon": 19.081768035888672,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-11-08T12:44:23.496555+02:00",
       "kulcs": "AOIB820",
@@ -260000,6 +259961,45 @@
       "lon": 19.26165008544922,
       "elozo_szoveg": "Liszt Ferenc Airport 2",
       "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-11-09T01:41:59.015209+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49716567993164,
+      "lon": 19.055442810058594,
+      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-09T01:41:59.015278+02:00",
+      "kulcs": "911-656-912",
+      "rendszam": "911-656-912",
+      "vehicle_id": "905516569118-905536466568-905516569126",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.55299758911133,
+      "lon": 19.270679473876953,
+      "elozo_szoveg": "Kerepes",
+      "uj_szoveg": "Gödöllő"
+    },
+    {
+      "idopont": "2026-11-09T01:41:59.015341+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.462432861328125,
+      "lon": 19.133207321166992,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
