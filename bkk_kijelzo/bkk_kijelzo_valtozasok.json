@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-08T04:09:45.246195+02:00",
+  "frissitve": "2026-11-08T04:10:16.577255+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:23:13.515643+02:00",
-      "kulcs": "NCV295",
-      "rendszam": "NCV295",
-      "vehicle_id": "6260",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.497711181640625,
-      "lon": 19.05340003967285,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-07T13:23:13.515767+02:00",
-      "kulcs": "NNE053",
-      "rendszam": "NNE053",
-      "vehicle_id": "6449",
-      "vehicle_label": "Pasaréti tér",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.567665100097656,
-      "lon": 19.127208709716797,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Pasaréti tér"
-    },
-    {
-      "idopont": "2026-11-07T13:23:13.515790+02:00",
-      "kulcs": "NNE061",
-      "rendszam": "NNE061",
-      "vehicle_id": "6457",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "5",
-      "route_id": "0050",
-      "lat": 47.523651123046875,
-      "lon": 18.994150161743164,
-      "elozo_szoveg": "Pasaréti tér",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
     {
       "idopont": "2026-11-07T13:23:13.515985+02:00",
       "kulcs": "AOCT660",
@@ -260000,6 +259961,45 @@
       "lon": 19.110198974609375,
       "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
       "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-11-08T04:10:16.505356+02:00",
+      "kulcs": "FLR733",
+      "rendszam": "FLR733",
+      "vehicle_id": "3147",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.56745529174805,
+      "lon": 19.1248836517334,
+      "elozo_szoveg": "Rákospalota, Mélyfúró utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-08T04:10:16.505923+02:00",
+      "kulcs": "SKR733",
+      "rendszam": "SKR733",
+      "vehicle_id": "7682",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.43288803100586,
+      "lon": 19.261831283569336,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-11-08T04:10:16.506176+02:00",
+      "kulcs": "815 002",
+      "rendszam": "815 002",
+      "vehicle_id": "945518150020",
+      "vehicle_label": "Budapest-Keleti",
+      "vonal_szam": "G60",
+      "route_id": "G60",
+      "lat": 47.24525833129883,
+      "lon": 20.096750259399414,
+      "elozo_szoveg": "Szolnok",
+      "uj_szoveg": "Budapest-Keleti"
     }
   ]
 }
