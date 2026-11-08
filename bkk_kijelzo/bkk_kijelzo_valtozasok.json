@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-08T04:33:23.355373+02:00",
+  "frissitve": "2026-11-08T04:33:55.630307+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:26:59.822779+02:00",
-      "kulcs": "V2209",
-      "rendszam": "V2209",
-      "vehicle_id": "5849",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.47749710083008,
-      "lon": 19.04684066772461,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-07T13:26:59.823092+02:00",
-      "kulcs": "T8013",
-      "rendszam": "T8013",
-      "vehicle_id": "6133",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.502010345458984,
-      "lon": 19.081960678100586,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-11-07T13:26:59.823185+02:00",
-      "kulcs": "NGC163",
-      "rendszam": "NGC163",
-      "vehicle_id": "6212",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.532135009765625,
-      "lon": 19.067947387695312,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-11-07T13:26:59.823214+02:00",
       "kulcs": "V2203",
@@ -260000,6 +259961,45 @@
       "lon": 19.02311897277832,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-08T04:33:55.574853+02:00",
+      "kulcs": "NNE067",
+      "rendszam": "NNE067",
+      "vehicle_id": "6463",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.43888473510742,
+      "lon": 19.103187561035156,
+      "elozo_szoveg": "Pesterzsébeti lakótelep",
+      "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-11-08T04:33:55.575184+02:00",
+      "kulcs": "AADI584",
+      "rendszam": "AADI584",
+      "vehicle_id": "84",
+      "vehicle_label": "Csillebérc",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.512630462646484,
+      "lon": 19.07925033569336,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
+      "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-11-08T04:33:55.575504+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.40597152709961,
+      "lon": 19.014118194580078,
+      "elozo_szoveg": "Budatétény",
+      "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
     }
   ]
 }
