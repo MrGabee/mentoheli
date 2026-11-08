@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-08T03:22:37.885692+02:00",
+  "frissitve": "2026-11-08T03:23:07.731762+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-07T13:14:59.122953+02:00",
-      "kulcs": "415 101",
-      "rendszam": "415 101",
-      "vehicle_id": "945514151014",
-      "vehicle_label": "Pilisvörösvár",
-      "vonal_szam": "S76",
-      "route_id": "S76",
-      "lat": 47.53279113769531,
-      "lon": 19.12019920349121,
-      "elozo_szoveg": "Rákos",
-      "uj_szoveg": "Pilisvörösvár"
-    },
-    {
-      "idopont": "2026-11-07T13:14:59.123253+02:00",
-      "kulcs": "AADI600",
-      "rendszam": "AADI600",
-      "vehicle_id": "98",
-      "vehicle_label": "Normafa",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.506683349609375,
-      "lon": 19.023963928222656,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Normafa"
-    },
-    {
-      "idopont": "2026-11-07T13:14:59.123340+02:00",
-      "kulcs": "AOJM872",
-      "rendszam": "AOJM872",
-      "vehicle_id": "995",
-      "vehicle_label": "Rákoskert sugárút",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.501953125,
-      "lon": 19.136215209960938,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Rákoskert sugárút"
-    },
     {
       "idopont": "2026-11-07T13:15:47.408413+02:00",
       "kulcs": "AADI649",
@@ -260000,6 +259961,45 @@
       "lon": 19.049402236938477,
       "elozo_szoveg": "Hengermalom út ► Budatétény",
       "uj_szoveg": "Budatétény ► Barosstelep vasútállomás"
+    },
+    {
+      "idopont": "2026-11-08T03:23:07.645132+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.5418815612793,
+      "lon": 19.15087890625,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-08T03:23:07.645383+02:00",
+      "kulcs": "SKN830",
+      "rendszam": "SKN830",
+      "vehicle_id": "545",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50873565673828,
+      "lon": 19.095325469970703,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-08T03:23:07.645812+02:00",
+      "kulcs": "SKR819",
+      "rendszam": "SKR819",
+      "vehicle_id": "7705",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.529151916503906,
+      "lon": 19.07200050354004,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
     }
   ]
 }
