@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-09T04:38:10.037056+02:00",
+  "frissitve": "2026-11-09T04:38:42.664343+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T13:12:10.574666+02:00",
-      "kulcs": "AEHE426",
-      "rendszam": "AEHE426",
-      "vehicle_id": "623",
-      "vehicle_label": "Blaha Lujza tér M",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.437156677246094,
-      "lon": 19.13709831237793,
-      "elozo_szoveg": "Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-11-08T13:12:10.574681+02:00",
-      "kulcs": "AEHE427",
-      "rendszam": "AEHE427",
-      "vehicle_id": "624",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.495849609375,
-      "lon": 19.072141647338867,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-11-08T13:12:10.575005+02:00",
-      "kulcs": "NTP543",
-      "rendszam": "NTP543",
-      "vehicle_id": "6519",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49898147583008,
-      "lon": 19.03618812561035,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-11-08T13:12:10.575101+02:00",
-      "kulcs": "NWB365",
-      "rendszam": "NWB365",
-      "vehicle_id": "6545",
-      "vehicle_label": "Újpalota, Sárfű utca",
-      "vonal_szam": "130",
-      "route_id": "1300",
-      "lat": 47.50013732910156,
-      "lon": 19.10348892211914,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Újpalota, Sárfű utca"
-    },
-    {
-      "idopont": "2026-11-08T13:12:10.575775+02:00",
-      "kulcs": "PDB727",
-      "rendszam": "PDB727",
-      "vehicle_id": "7053",
-      "vehicle_label": "Római úti lakótelep",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.53236770629883,
-      "lon": 19.067581176757812,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Római úti lakótelep"
-    },
     {
       "idopont": "2026-11-08T13:12:10.576009+02:00",
       "kulcs": "PDN617",
@@ -260000,6 +259935,71 @@
       "lon": 19.082246780395508,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-09T04:38:42.585885+02:00",
+      "kulcs": "AADR706",
+      "rendszam": "AADR706",
+      "vehicle_id": "174",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.4226188659668,
+      "lon": 19.080585479736328,
+      "elozo_szoveg": "Csepel-Királyerdő",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-09T04:38:42.585955+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.499046325683594,
+      "lon": 19.052274703979492,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-09T04:38:42.586648+02:00",
+      "kulcs": "AAGL314",
+      "rendszam": "AAGL314",
+      "vehicle_id": "342",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.5080680847168,
+      "lon": 19.02737808227539,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-09T04:38:42.587482+02:00",
+      "kulcs": "T8100",
+      "rendszam": "T8100",
+      "vehicle_id": "7337",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50150680541992,
+      "lon": 19.115203857421875,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-09T04:38:42.587670+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.410186767578125,
+      "lon": 19.060415267944336,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
     }
   ]
 }
