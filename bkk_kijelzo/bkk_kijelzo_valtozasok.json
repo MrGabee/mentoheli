@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-09T04:31:52.586075+02:00",
+  "frissitve": "2026-11-09T04:32:19.158548+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T13:11:11.751261+02:00",
-      "kulcs": "PDB385",
-      "rendszam": "PDB385",
-      "vehicle_id": "7067",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.46566390991211,
-      "lon": 19.233793258666992,
-      "elozo_szoveg": "Rákoshegy",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-08T13:11:11.751510+02:00",
-      "kulcs": "PDN634",
-      "rendszam": "PDN634",
-      "vehicle_id": "7105",
-      "vehicle_label": "Csepel, Szent Imre tér",
-      "vonal_szam": "138",
-      "route_id": "1380",
-      "lat": 47.38631057739258,
-      "lon": 19.022424697875977,
-      "elozo_szoveg": "Auchan Sziget ► Csepel, Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
     {
       "idopont": "2026-11-08T13:11:11.751627+02:00",
       "kulcs": "PHG638",
@@ -260000,6 +259974,32 @@
       "lon": 19.0972900390625,
       "elozo_szoveg": "Astoria M ► Hűvösvölgy",
       "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-09T04:32:19.066475+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Nem szállít utasokat",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47782516479492,
+      "lon": 19.04785919189453,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-11-09T04:32:19.067534+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52778625488281,
+      "lon": 19.03690528869629,
+      "elozo_szoveg": "Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
     }
   ]
 }
