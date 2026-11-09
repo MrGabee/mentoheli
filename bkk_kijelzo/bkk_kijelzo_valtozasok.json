@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-09T04:25:17.083515+02:00",
+  "frissitve": "2026-11-09T04:25:47.109794+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T13:10:07.246622+02:00",
-      "kulcs": "193 246",
-      "rendszam": "193 246",
-      "vehicle_id": "918061932466",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 47.506229400634766,
-      "lon": 21.59575080871582,
-      "elozo_szoveg": "Nyíregyháza",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.246690+02:00",
-      "kulcs": "918061939404",
-      "rendszam": "918061939404",
-      "vehicle_id": "918061939404",
-      "vehicle_label": "Chop",
-      "vonal_szam": "EC",
-      "route_id": "EC",
-      "lat": 47.87348175048828,
-      "lon": 17.223499298095703,
-      "elozo_szoveg": "Wien Westbf",
-      "uj_szoveg": "Chop"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.246722+02:00",
-      "kulcs": "918071936291",
-      "rendszam": "918071936291",
-      "vehicle_id": "918071936291",
-      "vehicle_label": "Budapest-Déli",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.961971282958984,
-      "lon": 16.999340057373047,
-      "elozo_szoveg": "Zalaegerszeg",
-      "uj_szoveg": "Budapest-Déli"
-    },
     {
       "idopont": "2026-11-08T13:10:07.246739+02:00",
       "kulcs": "918071936333",
@@ -260000,6 +259961,45 @@
       "lon": 19.59697914123535,
       "elozo_szoveg": "Hatvan",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-11-09T04:25:47.021775+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46245193481445,
+      "lon": 19.133214950561523,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-09T04:25:47.022098+02:00",
+      "kulcs": "PDB385",
+      "rendszam": "PDB385",
+      "vehicle_id": "7067",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54683303833008,
+      "lon": 19.142498016357422,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Cinkotai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-09T04:25:47.023940+02:00",
+      "kulcs": "AOIM040",
+      "rendszam": "AOIM040",
+      "vehicle_id": "960",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.513954162597656,
+      "lon": 19.102924346923828,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
