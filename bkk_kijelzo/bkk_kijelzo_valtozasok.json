@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-09T04:43:40.130579+02:00",
+  "frissitve": "2026-11-09T04:44:09.711085+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T13:13:15.477016+02:00",
-      "kulcs": "AADI652",
-      "rendszam": "AADI652",
-      "vehicle_id": "151",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.441593170166016,
-      "lon": 19.03421401977539,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-11-08T13:13:15.477137+02:00",
-      "kulcs": "AADR708",
-      "rendszam": "AADR708",
-      "vehicle_id": "176",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.41315460205078,
-      "lon": 19.201547622680664,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-08T13:13:15.477161+02:00",
-      "kulcs": "AADR711",
-      "rendszam": "AADR711",
-      "vehicle_id": "179",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.44365692138672,
-      "lon": 19.186697006225586,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-11-08T13:13:15.477231+02:00",
-      "kulcs": "AADR719",
-      "rendszam": "AADR719",
-      "vehicle_id": "188",
-      "vehicle_label": "Rákoskeresztúr, városkp.",
-      "vonal_szam": "195",
-      "route_id": "1950",
-      "lat": 47.499855041503906,
-      "lon": 19.10491180419922,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Rákoskeresztúr, városközpont"
-    },
-    {
-      "idopont": "2026-11-08T13:13:15.477751+02:00",
-      "kulcs": "FLR717",
-      "rendszam": "FLR717",
-      "vehicle_id": "3131",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "85",
-      "route_id": "0850",
-      "lat": 47.501708984375,
-      "lon": 19.135601043701172,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-11-08T13:13:15.477821+02:00",
       "kulcs": "AAGL281",
@@ -260000,6 +259935,71 @@
       "lon": 19.056873321533203,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-11-09T04:44:09.620737+02:00",
+      "kulcs": "FLR716",
+      "rendszam": "FLR716",
+      "vehicle_id": "3130",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46240234375,
+      "lon": 19.133319854736328,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-09T04:44:09.621843+02:00",
+      "kulcs": "RTA297",
+      "rendszam": "RTA297",
+      "vehicle_id": "7413",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.542667388916016,
+      "lon": 18.96476936340332,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-09T04:44:09.622082+02:00",
+      "kulcs": "SKN819",
+      "rendszam": "SKN819",
+      "vehicle_id": "7788",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.50194549560547,
+      "lon": 19.135639190673828,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-09T04:44:09.623106+02:00",
+      "kulcs": "415 012",
+      "rendszam": "415 012",
+      "vehicle_id": "945514150123",
+      "vehicle_label": "Budapest-Déli",
+      "vonal_szam": "S10",
+      "route_id": "S10",
+      "lat": 47.73556900024414,
+      "lon": 18.178909301757812,
+      "elozo_szoveg": "Komárom",
+      "uj_szoveg": "Budapest-Déli"
+    },
+    {
+      "idopont": "2026-11-09T04:44:09.623355+02:00",
+      "kulcs": "H2500_31",
+      "rendszam": "H2500_31",
+      "vehicle_id": "H2500_31",
+      "vehicle_label": "Tököl",
+      "vonal_szam": "H6",
+      "route_id": "H6",
+      "lat": 47.36111068725586,
+      "lon": 19.087081909179688,
+      "elozo_szoveg": null,
+      "uj_szoveg": "Tököl"
     }
   ]
 }
