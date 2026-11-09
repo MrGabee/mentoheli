@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-09T04:13:22.400526+02:00",
+  "frissitve": "2026-11-09T04:13:52.452200+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T13:10:07.244881+02:00",
-      "kulcs": "AOFL205",
-      "rendszam": "AOFL205",
-      "vehicle_id": "789",
-      "vehicle_label": "Kamaraerdő",
-      "vonal_szam": "187",
-      "route_id": "1870",
-      "lat": 47.46403503417969,
-      "lon": 19.01880645751953,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Kamaraerdő"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.244898+02:00",
-      "kulcs": "T8112",
-      "rendszam": "T8112",
-      "vehicle_id": "7890",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.51921081542969,
-      "lon": 19.090927124023438,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.244936+02:00",
-      "kulcs": "T8114",
-      "rendszam": "T8114",
-      "vehicle_id": "7893",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.499794006347656,
-      "lon": 19.079418182373047,
-      "elozo_szoveg": "Keleti pályaudvar M ► Kápolna tér",
-      "uj_szoveg": "Kápolna tér"
-    },
     {
       "idopont": "2026-11-08T13:10:07.244976+02:00",
       "kulcs": "T8117",
@@ -260000,6 +259961,45 @@
       "lon": 20.095779418945312,
       "elozo_szoveg": "Szolnok",
       "uj_szoveg": "Budapest-Keleti"
+    },
+    {
+      "idopont": "2026-11-09T04:13:52.359861+02:00",
+      "kulcs": "SKN825",
+      "rendszam": "SKN825",
+      "vehicle_id": "161",
+      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57874298095703,
+      "lon": 19.112091064453125,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-11-09T04:13:52.361765+02:00",
+      "kulcs": "NTM430",
+      "rendszam": "NTM430",
+      "vehicle_id": "6498",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.40579605102539,
+      "lon": 19.014148712158203,
+      "elozo_szoveg": "Budatétény",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-09T04:13:52.361927+02:00",
+      "kulcs": "PDB378",
+      "rendszam": "PDB378",
+      "vehicle_id": "7060",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.50139236450195,
+      "lon": 19.120189666748047,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
     }
   ]
 }
