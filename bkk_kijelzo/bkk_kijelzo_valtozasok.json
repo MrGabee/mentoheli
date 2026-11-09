@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-09T04:40:07.442290+02:00",
+  "frissitve": "2026-11-09T04:40:34.788228+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T13:12:10.577052+02:00",
-      "kulcs": "RVY619",
-      "rendszam": "RVY619",
-      "vehicle_id": "7448",
-      "vehicle_label": "Boráros tér H",
-      "vonal_szam": "54",
-      "route_id": "0540",
-      "lat": 47.38929748535156,
-      "lon": 19.16197395324707,
-      "elozo_szoveg": "Péterimajor, Víztorony tér",
-      "uj_szoveg": "Boráros tér H"
-    },
-    {
-      "idopont": "2026-11-08T13:12:10.577296+02:00",
-      "kulcs": "SCD596",
-      "rendszam": "SCD596",
-      "vehicle_id": "7658",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.44302749633789,
-      "lon": 19.157533645629883,
-      "elozo_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-11-08T13:12:10.577550+02:00",
-      "kulcs": "SKR825",
-      "rendszam": "SKR825",
-      "vehicle_id": "7711",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.41273498535156,
-      "lon": 19.16093635559082,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-11-08T13:12:10.577644+02:00",
       "kulcs": "SGY805",
@@ -260000,6 +259961,45 @@
       "lon": 19.04204559326172,
       "elozo_szoveg": "Óbudai autóbuszgarázs",
       "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-09T04:40:34.700117+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Rákoscsaba vasútállomás",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.491729736328125,
+      "lon": 19.263320922851562,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Rákoscsaba vasútállomás"
+    },
+    {
+      "idopont": "2026-11-09T04:40:34.700206+02:00",
+      "kulcs": "PKN609",
+      "rendszam": "PKN609",
+      "vehicle_id": "7198",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.498600006103516,
+      "lon": 19.054702758789062,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-11-09T04:40:34.700450+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49713134765625,
+      "lon": 19.055465698242188,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
     }
   ]
 }
