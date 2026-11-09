@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-09T02:52:51.782390+02:00",
+  "frissitve": "2026-11-09T02:53:24.069142+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T12:54:59.948404+02:00",
-      "kulcs": "MOS260",
-      "rendszam": "MOS260",
-      "vehicle_id": "5713",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "294E",
-      "route_id": "2945",
-      "lat": 47.385101318359375,
-      "lon": 19.22553825378418,
-      "elozo_szoveg": "Vecsési út ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-08T12:54:59.949136+02:00",
-      "kulcs": "V2212",
-      "rendszam": "V2212",
-      "vehicle_id": "5852",
-      "vehicle_label": "Kispest, Tulipán utca",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.464473724365234,
-      "lon": 19.126583099365234,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Kispest, Tulipán utca"
-    },
     {
       "idopont": "2026-11-08T12:54:59.950082+02:00",
       "kulcs": "AOCT668",
@@ -260000,6 +259974,32 @@
       "lon": 19.088563919067383,
       "elozo_szoveg": "Megyer, Szondi utca",
       "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-09T02:53:23.978864+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.49887466430664,
+      "lon": 19.050033569335938,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-09T02:53:23.980129+02:00",
+      "kulcs": "SIF015",
+      "rendszam": "SIF015",
+      "vehicle_id": "7750",
+      "vehicle_label": "Káp.megyer, Mogyoródi-p.",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.57984924316406,
+      "lon": 19.108766555786133,
+      "elozo_szoveg": "Bőröndös utca ► Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer, Mogyoródi-patak"
     }
   ]
 }
