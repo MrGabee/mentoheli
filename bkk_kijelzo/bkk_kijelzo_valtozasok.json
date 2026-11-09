@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T01:37:20.206820+02:00",
+  "frissitve": "2026-11-10T01:37:55.975804+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T13:52:37.795106+02:00",
-      "kulcs": "V2265",
-      "rendszam": "V2265",
-      "vehicle_id": "563",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "50",
-      "route_id": "3500",
-      "lat": 47.43046569824219,
-      "lon": 19.21465492248535,
-      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-09T13:52:37.795542+02:00",
-      "kulcs": "V2109",
-      "rendszam": "V2109",
-      "vehicle_id": "5837",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.548431396484375,
-      "lon": 19.029804229736328,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-09T13:52:37.796062+02:00",
-      "kulcs": "MUU901",
-      "rendszam": "MUU901",
-      "vehicle_id": "5954",
-      "vehicle_label": "Szentlőrinci úti ltp.",
-      "vonal_szam": "224",
-      "route_id": "2240",
-      "lat": 47.479820251464844,
-      "lon": 19.066513061523438,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
     {
       "idopont": "2026-11-09T13:52:37.796338+02:00",
       "kulcs": "T8011",
@@ -260000,6 +259961,45 @@
       "lon": 18.94799041748047,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Márta utca ► Törökbálint vasútállomás"
+    },
+    {
+      "idopont": "2026-11-10T01:37:55.901783+02:00",
+      "kulcs": "AADR722",
+      "rendszam": "AADR722",
+      "vehicle_id": "191",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.56831359863281,
+      "lon": 19.027395248413086,
+      "elozo_szoveg": "Blaha Lujza tér M",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-10T01:37:55.902089+02:00",
+      "kulcs": "AAKM017",
+      "rendszam": "AAKM017",
+      "vehicle_id": "536",
+      "vehicle_label": "Harsánylejtő",
+      "vonal_szam": "960",
+      "route_id": "9600",
+      "lat": 47.540103912353516,
+      "lon": 19.046293258666992,
+      "elozo_szoveg": "Testvér-hegy ► Tábor-hegy",
+      "uj_szoveg": "Harsánylejtő"
+    },
+    {
+      "idopont": "2026-11-10T01:37:55.902378+02:00",
+      "kulcs": "PDB723",
+      "rendszam": "PDB723",
+      "vehicle_id": "7049",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.53436279296875,
+      "lon": 19.082298278808594,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
