@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-09T04:30:19.025760+02:00",
+  "frissitve": "2026-11-09T04:30:50.395358+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T13:10:07.247846+02:00",
-      "kulcs": "AOIM051",
-      "rendszam": "AOIM051",
-      "vehicle_id": "972",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "133E",
-      "route_id": "1335",
-      "lat": 47.38873291015625,
-      "lon": 18.95826530456543,
-      "elozo_szoveg": "Nagytétény, ipartelep",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.247896+02:00",
-      "kulcs": "AOJM861",
-      "rendszam": "AOJM861",
-      "vehicle_id": "984",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.4394645690918,
-      "lon": 19.10466194152832,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.247915+02:00",
-      "kulcs": "AOJM862",
-      "rendszam": "AOJM862",
-      "vehicle_id": "985",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.48530960083008,
-      "lon": 19.0696964263916,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.247935+02:00",
-      "kulcs": "AADI602",
-      "rendszam": "AADI602",
-      "vehicle_id": "99",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.50817108154297,
-      "lon": 19.024063110351562,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-08T13:10:07.247988+02:00",
-      "kulcs": "AOJM872",
-      "rendszam": "AOJM872",
-      "vehicle_id": "995",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.468666076660156,
-      "lon": 19.29551124572754,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-08T13:10:07.248015+02:00",
       "kulcs": "AOJM874",
@@ -260000,6 +259935,71 @@
       "lon": 19.136198043823242,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-09T04:30:50.303301+02:00",
+      "kulcs": "FLR704",
+      "rendszam": "FLR704",
+      "vehicle_id": "3118",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.54193115234375,
+      "lon": 19.151336669921875,
+      "elozo_szoveg": "Újpalota, Szentmihályi út",
+      "uj_szoveg": "Határ út M"
+    },
+    {
+      "idopont": "2026-11-09T04:30:50.303381+02:00",
+      "kulcs": "AAGL298",
+      "rendszam": "AAGL298",
+      "vehicle_id": "330",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.455692291259766,
+      "lon": 18.94057846069336,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-09T04:30:50.304202+02:00",
+      "kulcs": "PDB383",
+      "rendszam": "PDB383",
+      "vehicle_id": "7065",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.46902847290039,
+      "lon": 19.295055389404297,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-09T04:30:50.305513+02:00",
+      "kulcs": "AOIM013",
+      "rendszam": "AOIM013",
+      "vehicle_id": "933",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.48542022705078,
+      "lon": 19.07093620300293,
+      "elozo_szoveg": "Határ út M ► Pestszentlőrinc",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-11-09T04:30:50.305659+02:00",
+      "kulcs": "415 117",
+      "rendszam": "415 117",
+      "vehicle_id": "945514151170",
+      "vehicle_label": "Budapest-Nyugati",
+      "vonal_szam": "S",
+      "route_id": "S",
+      "lat": 46.34645080566406,
+      "lon": 20.043630599975586,
+      "elozo_szoveg": "Szeged",
+      "uj_szoveg": "Budapest-Nyugati"
     }
   ]
 }
