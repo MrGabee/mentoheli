@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T01:21:41.415017+02:00",
+  "frissitve": "2026-11-10T01:22:12.086564+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T13:51:28.705512+02:00",
-      "kulcs": "MFW523",
-      "rendszam": "MFW523",
-      "vehicle_id": "5053",
-      "vehicle_label": "Hungexpo",
-      "vonal_szam": "10",
-      "route_id": "0100",
-      "lat": 47.50249099731445,
-      "lon": 19.136394500732422,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Hungexpo"
-    },
-    {
-      "idopont": "2026-11-09T13:51:28.705849+02:00",
-      "kulcs": "MPW603",
-      "rendszam": "MPW603",
-      "vehicle_id": "5590",
-      "vehicle_label": "Teleki László tér",
-      "vonal_szam": "VP28",
-      "route_id": "VP28",
-      "lat": 47.499114990234375,
-      "lon": 19.07766342163086,
-      "elozo_szoveg": "Teleki László tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-11-09T13:51:28.705893+02:00",
-      "kulcs": "MPW616",
-      "rendszam": "MPW616",
-      "vehicle_id": "5604",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.465084075927734,
-      "lon": 19.127286911010742,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-11-09T13:51:28.705964+02:00",
       "kulcs": "MPV999",
@@ -260000,6 +259961,45 @@
       "lon": 19.090059280395508,
       "elozo_szoveg": "Budapest-Nyugati",
       "uj_szoveg": "Vác"
+    },
+    {
+      "idopont": "2026-11-10T01:22:12.034130+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.56786346435547,
+      "lon": 19.125518798828125,
+      "elozo_szoveg": "Hűvösvölgy",
+      "uj_szoveg": "Astoria M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-10T01:22:12.034489+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.519317626953125,
+      "lon": 19.038183212280273,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-10T01:22:12.034534+02:00",
+      "kulcs": "RVY717",
+      "rendszam": "RVY717",
+      "vehicle_id": "7466",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.451560974121094,
+      "lon": 19.158706665039062,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
