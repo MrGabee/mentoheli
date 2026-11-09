@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-09T02:31:12.774124+02:00",
+  "frissitve": "2026-11-09T02:31:47.828777+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-08T12:52:02.252201+02:00",
-      "kulcs": "AUAN765",
-      "rendszam": "AUAN765",
-      "vehicle_id": "1141",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.4323844909668,
-      "lon": 19.261167526245117,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-11-08T12:52:02.252457+02:00",
-      "kulcs": "AADI657",
-      "rendszam": "AADI657",
-      "vehicle_id": "156",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.477542877197266,
-      "lon": 19.046323776245117,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-08T12:52:02.254456+02:00",
-      "kulcs": "V1362",
-      "rendszam": "V1362",
-      "vehicle_id": "4463",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.468441009521484,
-      "lon": 19.075227737426758,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-08T12:52:02.254521+02:00",
-      "kulcs": "V1511",
-      "rendszam": "V1511",
-      "vehicle_id": "4563",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "69",
-      "route_id": "3690",
-      "lat": 47.53938293457031,
-      "lon": 19.14552116394043,
-      "elozo_szoveg": "Újpalota, Erdőkerülő utca",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-11-08T12:52:02.254899+02:00",
       "kulcs": "V4204",
@@ -260000,6 +259948,58 @@
       "lon": 18.940916061401367,
       "elozo_szoveg": "Budaörsi lakótelep",
       "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-09T02:31:47.756641+02:00",
+      "kulcs": "AUAN756",
+      "rendszam": "AUAN756",
+      "vehicle_id": "1130",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49748229980469,
+      "lon": 19.054824829101562,
+      "elozo_szoveg": "Deák F. tér (City centre)",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-11-09T02:31:47.759977+02:00",
+      "kulcs": "AADI567",
+      "rendszam": "AADI567",
+      "vehicle_id": "65",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48917770385742,
+      "lon": 19.062768936157227,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-09T02:31:47.760153+02:00",
+      "kulcs": "PDN640",
+      "rendszam": "PDN640",
+      "vehicle_id": "7111",
+      "vehicle_label": "Arany János utcai ltp.",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.47962188720703,
+      "lon": 19.067211151123047,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Rózsavölgy ► Arany János utcai lakótelep"
+    },
+    {
+      "idopont": "2026-11-09T02:31:47.760213+02:00",
+      "kulcs": "PKN626",
+      "rendszam": "PKN626",
+      "vehicle_id": "7215",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.464656829833984,
+      "lon": 19.02294158935547,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
