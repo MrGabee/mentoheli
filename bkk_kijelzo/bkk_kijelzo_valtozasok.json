@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T02:45:42.582116+02:00",
+  "frissitve": "2026-11-10T02:46:18.709896+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:00:18.029358+02:00",
-      "kulcs": "480 007",
-      "rendszam": "480 007",
-      "vehicle_id": "915504800078",
-      "vehicle_label": "Budapest-Nyugati",
-      "vonal_szam": "IC",
-      "route_id": "IC",
-      "lat": 46.34756088256836,
-      "lon": 20.042909622192383,
-      "elozo_szoveg": "Szeged",
-      "uj_szoveg": "Budapest-Nyugati"
-    },
-    {
-      "idopont": "2026-11-09T14:01:41.546946+02:00",
-      "kulcs": "AADI609",
-      "rendszam": "AADI609",
-      "vehicle_id": "106",
-      "vehicle_label": "Máriaremete",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.54296875,
-      "lon": 18.964168548583984,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Máriaremete"
-    },
-    {
-      "idopont": "2026-11-09T14:01:41.547018+02:00",
-      "kulcs": "AORS262",
-      "rendszam": "AORS262",
-      "vehicle_id": "1118",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.60285186767578,
-      "lon": 19.06647300720215,
-      "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
     {
       "idopont": "2026-11-09T14:01:41.547257+02:00",
       "kulcs": "AADI639",
@@ -260000,6 +259961,45 @@
       "lon": 19.142133712768555,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Budatétény"
+    },
+    {
+      "idopont": "2026-11-10T02:46:18.619696+02:00",
+      "kulcs": "AADI646",
+      "rendszam": "AADI646",
+      "vehicle_id": "145",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.502628326416016,
+      "lon": 19.13628578186035,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
+    },
+    {
+      "idopont": "2026-11-10T02:46:18.622052+02:00",
+      "kulcs": "SKR830",
+      "rendszam": "SKR830",
+      "vehicle_id": "7716",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.45825958251953,
+      "lon": 19.11861801147461,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-10T02:46:18.622099+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48579025268555,
+      "lon": 19.069721221923828,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
