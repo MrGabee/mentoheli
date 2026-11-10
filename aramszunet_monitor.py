@@ -128,7 +128,10 @@ def kerulet_cimke(city):
     c_lower = c.lower()
     import re
     for minta, kulcsszo, cimke in TERULETEK:
-        if (minta and re.search(minta, c)) or kulcsszo in c_lower:
+        # A kulcsszónak önálló szóként kell szerepelnie, különben pl. a
+        # baranyai „Drávacsepely” is Csepelnek számítana.
+        szo = re.search(r'(?<!\w)' + re.escape(kulcsszo) + r'(?![\w-])', c_lower)
+        if (minta and re.search(minta, c)) or szo:
             return cimke
     return None
 
