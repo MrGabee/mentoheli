@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-11T01:15:05.250353+02:00",
+  "frissitve": "2026-11-11T01:15:35.302521+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:45:16.750867+02:00",
-      "kulcs": "V1623",
-      "rendszam": "V1623",
-      "vehicle_id": "7292",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.48580551147461,
-      "lon": 19.132017135620117,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-11-10T15:45:16.750981+02:00",
-      "kulcs": "RCT317",
-      "rendszam": "RCT317",
-      "vehicle_id": "7331",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123",
-      "route_id": "1230",
-      "lat": 47.41275405883789,
-      "lon": 19.160888671875,
-      "elozo_szoveg": "Soroksár, IKEA áruház",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-10T15:45:16.751417+02:00",
-      "kulcs": "RVY611",
-      "rendszam": "RVY611",
-      "vehicle_id": "7440",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "166",
-      "route_id": "1660",
-      "lat": 47.4367790222168,
-      "lon": 19.222623825073242,
-      "elozo_szoveg": "Ferihegy vasútállomás",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-11-10T15:45:16.751550+02:00",
-      "kulcs": "RVY707",
-      "rendszam": "RVY707",
-      "vehicle_id": "7456",
-      "vehicle_label": "Péterimajor, Víztorony tér",
-      "vonal_szam": "54",
-      "route_id": "0540",
-      "lat": 47.479637145996094,
-      "lon": 19.067228317260742,
-      "elozo_szoveg": "Boráros tér H",
-      "uj_szoveg": "Péterimajor, Víztorony tér"
-    },
     {
       "idopont": "2026-11-10T15:45:16.751562+02:00",
       "kulcs": "RVY708",
@@ -260000,6 +259948,58 @@
       "lon": 19.135574340820312,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-11T01:15:35.247417+02:00",
+      "kulcs": "AADI607",
+      "rendszam": "AADI607",
+      "vehicle_id": "104",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.477783203125,
+      "lon": 19.046417236328125,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-11T01:15:35.248430+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49049758911133,
+      "lon": 18.961240768432617,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-11T01:15:35.248517+02:00",
+      "kulcs": "PKN612",
+      "rendszam": "PKN612",
+      "vehicle_id": "7201",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51362228393555,
+      "lon": 19.03436279296875,
+      "elozo_szoveg": "Astoria M ► Árpádföld",
+      "uj_szoveg": "Örs vezér tere M+H ► Árpádföld"
+    },
+    {
+      "idopont": "2026-11-11T01:15:35.248842+02:00",
+      "kulcs": "983-692-984",
+      "rendszam": "983-692-984",
+      "vehicle_id": "905516569837-905536466923-905516569845",
+      "vehicle_label": "Gödöllő",
+      "vonal_szam": "H8",
+      "route_id": "H8",
+      "lat": 47.50373077392578,
+      "lon": 19.137672424316406,
+      "elozo_szoveg": "Cinkota",
+      "uj_szoveg": "Gödöllő"
     }
   ]
 }
