@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-11T01:50:28.761072+02:00",
+  "frissitve": "2026-11-11T01:50:55.028585+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:47:50.153445+02:00",
-      "kulcs": "NAE996",
-      "rendszam": "NAE996",
-      "vehicle_id": "6024",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "251E",
-      "route_id": "2515",
-      "lat": 47.464534759521484,
-      "lon": 19.01885414123535,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-11-10T15:47:50.154282+02:00",
-      "kulcs": "NCV299",
-      "rendszam": "NCV299",
-      "vehicle_id": "6264",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49771499633789,
-      "lon": 19.053455352783203,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár ► Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-10T15:47:50.157165+02:00",
       "kulcs": "CITY001",
@@ -260000,6 +259974,32 @@
       "lon": 19.256282806396484,
       "elozo_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-11T01:50:54.973911+02:00",
+      "kulcs": "FLR701",
+      "rendszam": "FLR701",
+      "vehicle_id": "3115",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.480567932128906,
+      "lon": 19.142147064208984,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-11T01:50:54.974621+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48253631591797,
+      "lon": 19.129121780395508,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
