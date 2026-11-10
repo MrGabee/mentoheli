@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T01:31:21.015717+02:00",
+  "frissitve": "2026-11-11T01:31:52.921931+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:46:35.023366+02:00",
-      "kulcs": "V2111",
-      "rendszam": "V2111",
-      "vehicle_id": "5839",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46414566040039,
-      "lon": 19.028263092041016,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-10T15:46:35.024382+02:00",
-      "kulcs": "V2223",
-      "rendszam": "V2223",
-      "vehicle_id": "5863",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.5477294921875,
-      "lon": 19.02898597717285,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Bem rakpart ► Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-10T15:46:35.024402+02:00",
-      "kulcs": "MXJ004",
-      "rendszam": "MXJ004",
-      "vehicle_id": "5866",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "149",
-      "route_id": "1490",
-      "lat": 47.52326965332031,
-      "lon": 19.002391815185547,
-      "elozo_szoveg": "Fenyves utca",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-10T15:46:35.024540+02:00",
       "kulcs": "MXJ014",
@@ -260000,6 +259961,45 @@
       "lon": 19.103200912475586,
       "elozo_szoveg": "Puskás Ferenc Stadion M",
       "uj_szoveg": "Astoria M ► Békásmegyer"
+    },
+    {
+      "idopont": "2026-11-11T01:31:52.830499+02:00",
+      "kulcs": "LYH107",
+      "rendszam": "LYH107",
+      "vehicle_id": "3696",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.51496505737305,
+      "lon": 19.09676170349121,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-11-11T01:31:52.831240+02:00",
+      "kulcs": "SGY986",
+      "rendszam": "SGY986",
+      "vehicle_id": "7666",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50874710083008,
+      "lon": 19.095386505126953,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-11T01:31:52.831483+02:00",
+      "kulcs": "T8115",
+      "rendszam": "T8115",
+      "vehicle_id": "7894",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49778747558594,
+      "lon": 19.05484962463379,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
     }
   ]
 }
