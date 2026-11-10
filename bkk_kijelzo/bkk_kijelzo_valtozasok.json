@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T04:41:27.619274+02:00",
+  "frissitve": "2026-11-10T04:41:59.742869+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:14:31.609227+02:00",
-      "kulcs": "T9003",
-      "rendszam": "T9003",
-      "vehicle_id": "6142",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51380157470703,
-      "lon": 19.049358367919922,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-09T14:14:31.609278+02:00",
-      "kulcs": "T9015",
-      "rendszam": "T9015",
-      "vehicle_id": "6154",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52284622192383,
-      "lon": 19.131072998046875,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-11-09T14:14:31.609368+02:00",
-      "kulcs": "NGC149",
-      "rendszam": "NGC149",
-      "vehicle_id": "6200",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.542667388916016,
-      "lon": 18.964811325073242,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
     {
       "idopont": "2026-11-09T14:14:31.609447+02:00",
       "kulcs": "NGC141",
@@ -260000,6 +259961,45 @@
       "lon": 19.041568756103516,
       "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
       "uj_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-10T04:41:59.683933+02:00",
+      "kulcs": "AADR710",
+      "rendszam": "AADR710",
+      "vehicle_id": "178",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48676300048828,
+      "lon": 19.06778335571289,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-10T04:41:59.685148+02:00",
+      "kulcs": "V4309",
+      "rendszam": "V4309",
+      "vehicle_id": "4968",
+      "vehicle_label": "Káp.megyer, Megyeri út",
+      "vonal_szam": "14",
+      "route_id": "3140",
+      "lat": 47.556182861328125,
+      "lon": 19.08877944946289,
+      "elozo_szoveg": "Lehel tér M",
+      "uj_szoveg": "Káposztásmegyer, Megyeri út"
+    },
+    {
+      "idopont": "2026-11-10T04:41:59.685603+02:00",
+      "kulcs": "RVY606",
+      "rendszam": "RVY606",
+      "vehicle_id": "7435",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.6026496887207,
+      "lon": 19.066068649291992,
+      "elozo_szoveg": "Békásmegyer",
+      "uj_szoveg": "Astoria M ► Pesterzsébet"
     }
   ]
 }
