@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-10T03:26:51.962819+02:00",
+  "frissitve": "2026-11-10T03:27:21.243164+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:05:13.671364+02:00",
-      "kulcs": "NBW005",
-      "rendszam": "NBW005",
-      "vehicle_id": "5975",
-      "vehicle_label": "Nem szállít utasokat",
-      "vonal_szam": "161",
-      "route_id": "1610",
-      "lat": 47.50210952758789,
-      "lon": 19.13577651977539,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
-    {
-      "idopont": "2026-11-09T14:05:13.671529+02:00",
-      "kulcs": "T8013",
-      "rendszam": "T8013",
-      "vehicle_id": "6133",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50971984863281,
-      "lon": 19.05695152282715,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
     {
       "idopont": "2026-11-09T14:05:13.671788+02:00",
       "kulcs": "NCV286",
@@ -260000,6 +259974,32 @@
       "lon": 19.13667869567871,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-10T03:27:21.144989+02:00",
+      "kulcs": "FLR703",
+      "rendszam": "FLR703",
+      "vehicle_id": "3117",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.538787841796875,
+      "lon": 19.06926155090332,
+      "elozo_szoveg": "Astoria M ► Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Határ út M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-10T03:27:21.145626+02:00",
+      "kulcs": "SKR821",
+      "rendszam": "SKR821",
+      "vehicle_id": "7707",
+      "vehicle_label": "Óbudai autóbuszgarázs",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.46699142456055,
+      "lon": 19.076852798461914,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Óbudai autóbuszgarázs"
     }
   ]
 }
