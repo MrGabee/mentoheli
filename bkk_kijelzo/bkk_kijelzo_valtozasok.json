@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T03:18:23.932251+02:00",
+  "frissitve": "2026-11-10T03:18:54.118383+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:04:08.007648+02:00",
-      "kulcs": "RVY613",
-      "rendszam": "RVY613",
-      "vehicle_id": "7442",
-      "vehicle_label": "Ferencvárosi rendelőint.",
-      "vonal_szam": "281",
-      "route_id": "2810",
-      "lat": 47.47406005859375,
-      "lon": 19.0792179107666,
-      "elozo_szoveg": "Ferencvárosi rendelőintézet",
-      "uj_szoveg": "Aszódi utca"
-    },
-    {
-      "idopont": "2026-11-09T14:04:08.008018+02:00",
-      "kulcs": "RVY724",
-      "rendszam": "RVY724",
-      "vehicle_id": "7622",
-      "vehicle_label": "Vecsési út-Boráros tér H",
-      "vonal_szam": "55",
-      "route_id": "0550",
-      "lat": 47.387699127197266,
-      "lon": 19.215456008911133,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Boráros tér H"
-    },
-    {
-      "idopont": "2026-11-09T14:04:08.008964+02:00",
-      "kulcs": "AOFL199",
-      "rendszam": "AOFL199",
-      "vehicle_id": "783",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.47805404663086,
-      "lon": 19.045671463012695,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Citadella ► Sánc utca"
-    },
     {
       "idopont": "2026-11-09T14:04:08.009013+02:00",
       "kulcs": "T9114",
@@ -260000,6 +259961,45 @@
       "lon": 19.047218322753906,
       "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
       "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-10T03:18:54.044242+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48834228515625,
+      "lon": 19.0599422454834,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-10T03:18:54.045513+02:00",
+      "kulcs": "AAGL323",
+      "rendszam": "AAGL323",
+      "vehicle_id": "353",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50712585449219,
+      "lon": 18.921428680419922,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-10T03:18:54.046335+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51249313354492,
+      "lon": 19.10043716430664,
+      "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
