@@ -303,7 +303,16 @@ def _ido(e):
 
 def facebook_szoveg(esetek):
     st = Stilus("fotav")
-    sorok = [st.cim, st.vonal(), "", st.bevezeto]
+    # Gábor kérése: a címsorban látsszon, ha szünetel a szolgáltatás (a többit
+    # csak a „Továbbiak” után látják)
+    tipusok = {e["tipus"] for e in esetek}
+    if "KIESETT_EPULET" in tipusok:
+        cim = f"🔴 SZÜNETEL A TÁVHŐSZOLGÁLTATÁS – {st.cim}"
+    elif "TERVEZETT_KIESETT" in tipusok:
+        cim = f"🟠 TERVEZETT TÁVHŐSZÜNET – {st.cim}"
+    else:
+        cim = st.cim
+    sorok = [cim, st.vonal(), "", st.bevezeto]
     for tipus, felirat in FB_CSOPORTOK:
         csoport = [e for e in esetek if e["tipus"] == tipus]
         if not csoport:
