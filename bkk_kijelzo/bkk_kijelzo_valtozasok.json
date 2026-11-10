@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T04:23:29.139670+02:00",
+  "frissitve": "2026-11-10T04:23:57.549367+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:12:11.503502+02:00",
-      "kulcs": "PHG647",
-      "rendszam": "PHG647",
-      "vehicle_id": "7171",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "144",
-      "route_id": "1440",
-      "lat": 47.52532958984375,
-      "lon": 19.17647933959961,
-      "elozo_szoveg": "Rákosszentmihály, Mátyás király utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-09T14:12:11.503964+02:00",
-      "kulcs": "V2116",
-      "rendszam": "V2116",
-      "vehicle_id": "7366",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46326446533203,
-      "lon": 19.023021697998047,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-09T14:12:11.504096+02:00",
-      "kulcs": "V2254",
-      "rendszam": "V2254",
-      "vehicle_id": "7386",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.51688003540039,
-      "lon": 19.036502838134766,
-      "elozo_szoveg": "Bem rakpart ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-11-09T14:12:11.504265+02:00",
       "kulcs": "RVY614",
@@ -260000,6 +259961,45 @@
       "lon": 19.054594039916992,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-10T04:23:57.460928+02:00",
+      "kulcs": "AADI566",
+      "rendszam": "AADI566",
+      "vehicle_id": "42",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.504005432128906,
+      "lon": 19.025245666503906,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-10T04:23:57.461539+02:00",
+      "kulcs": "SKR810",
+      "rendszam": "SKR810",
+      "vehicle_id": "7696",
+      "vehicle_label": "Puskás Ferenc Stadion M",
+      "vonal_szam": "995",
+      "route_id": "9950",
+      "lat": 47.47074890136719,
+      "lon": 19.238765716552734,
+      "elozo_szoveg": "Helikopter lakópark ► Puskás Ferenc Stadion M",
+      "uj_szoveg": "Puskás Ferenc Stadion M"
+    },
+    {
+      "idopont": "2026-11-10T04:23:57.461813+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.501708984375,
+      "lon": 19.136112213134766,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M H"
     }
   ]
 }
