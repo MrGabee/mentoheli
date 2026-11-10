@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T03:01:17.379810+02:00",
+  "frissitve": "2026-11-10T03:01:50.566865+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:02:59.461564+02:00",
-      "kulcs": "V1354",
-      "rendszam": "V1354",
-      "vehicle_id": "4455",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.498817443847656,
-      "lon": 19.082550048828125,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-09T14:02:59.462260+02:00",
-      "kulcs": "V1532",
-      "rendszam": "V1532",
-      "vehicle_id": "4584",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.54073715209961,
-      "lon": 19.120464324951172,
-      "elozo_szoveg": "Rákospalota, MÁV-telep",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-11-09T14:02:59.462317+02:00",
-      "kulcs": "V1564",
-      "rendszam": "V1564",
-      "vehicle_id": "4616",
-      "vehicle_label": "Koppány utca",
-      "vonal_szam": "51A",
-      "route_id": "3511",
-      "lat": 47.48171615600586,
-      "lon": 19.068967819213867,
-      "elozo_szoveg": "Mester utca/Ferenc körút",
-      "uj_szoveg": "Mester utca / Ferenc körút"
-    },
     {
       "idopont": "2026-11-09T14:02:59.462332+02:00",
       "kulcs": "V1577",
@@ -260000,6 +259961,45 @@
       "lon": 19.092924118041992,
       "elozo_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-10T03:01:50.473490+02:00",
+      "kulcs": "AADR713",
+      "rendszam": "AADR713",
+      "vehicle_id": "181",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.489295959472656,
+      "lon": 19.062679290771484,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-11-10T03:01:50.475238+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.51022720336914,
+      "lon": 19.0972900390625,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-10T03:01:50.476038+02:00",
+      "kulcs": "AOFL254",
+      "rendszam": "AOFL254",
+      "vehicle_id": "843",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.44163131713867,
+      "lon": 19.18614959716797,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
     }
   ]
 }
