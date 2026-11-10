@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-11T01:23:47.005290+02:00",
+  "frissitve": "2026-11-11T01:24:17.368550+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:46:35.017336+02:00",
-      "kulcs": "AORS274",
-      "rendszam": "AORS274",
-      "vehicle_id": "1120",
-      "vehicle_label": "Római úti lakótelep",
-      "vonal_szam": "106",
-      "route_id": "1060",
-      "lat": 47.53252029418945,
-      "lon": 19.067363739013672,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Római úti lakótelep"
-    },
-    {
-      "idopont": "2026-11-10T15:46:35.017583+02:00",
-      "kulcs": "AADI641",
-      "rendszam": "AADI641",
-      "vehicle_id": "140",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.515201568603516,
-      "lon": 19.185306549072266,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Veres Péter út ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-10T15:46:35.017640+02:00",
       "kulcs": "AADI653",
@@ -260000,6 +259974,32 @@
       "lon": 19.142772674560547,
       "elozo_szoveg": "Astoria M ► Pasaréti tér",
       "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-11T01:24:17.310129+02:00",
+      "kulcs": "FKU907",
+      "rendszam": "FKU907",
+      "vehicle_id": "3063",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54088592529297,
+      "lon": 19.150344848632812,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-11T01:24:17.310206+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.465087890625,
+      "lon": 19.12729263305664,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
