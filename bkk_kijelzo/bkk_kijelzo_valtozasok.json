@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-10T05:12:09.314610+02:00",
+  "frissitve": "2026-11-10T05:12:39.697998+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:20:05.813997+02:00",
-      "kulcs": "AADI572",
-      "rendszam": "AADI572",
-      "vehicle_id": "43",
-      "vehicle_label": "Szentlélek tér H",
-      "vonal_szam": "29",
-      "route_id": "0290",
-      "lat": 47.542667388916016,
-      "lon": 18.964815139770508,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Szentlélek tér H"
-    },
-    {
-      "idopont": "2026-11-09T14:20:05.815029+02:00",
-      "kulcs": "V1562",
-      "rendszam": "V1562",
-      "vehicle_id": "4614",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "24",
-      "route_id": "3240",
-      "lat": 47.46757888793945,
-      "lon": 19.075904846191406,
-      "elozo_szoveg": "Közvágóhíd H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-09T14:20:05.815551+02:00",
-      "kulcs": "V4287",
-      "rendszam": "V4287",
-      "vehicle_id": "4946",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.49753952026367,
-      "lon": 19.08259391784668,
-      "elozo_szoveg": "Izraelita temető",
-      "uj_szoveg": "Kőbányai út ► Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-11-09T14:20:05.815563+02:00",
-      "kulcs": "V4291",
-      "rendszam": "V4291",
-      "vehicle_id": "4950",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.42636489868164,
-      "lon": 19.039499282836914,
-      "elozo_szoveg": "Városház tér",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-11-09T14:20:05.815802+02:00",
-      "kulcs": "AAMH664",
-      "rendszam": "AAMH664",
-      "vehicle_id": "507",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "196",
-      "route_id": "1960",
-      "lat": 47.541717529296875,
-      "lon": 19.15110969543457,
-      "elozo_szoveg": "Újpest-városkapu M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-11-09T14:20:05.815938+02:00",
       "kulcs": "V1348",
@@ -260000,6 +259935,71 @@
       "lon": 19.127695083618164,
       "elozo_szoveg": "Kőbánya alsó vasútállomás",
       "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-11-10T05:12:39.618389+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.486976623535156,
+      "lon": 19.067285537719727,
+      "elozo_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-10T05:12:39.620369+02:00",
+      "kulcs": "V2207",
+      "rendszam": "V2207",
+      "vehicle_id": "5847",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "19",
+      "route_id": "3190",
+      "lat": 47.548492431640625,
+      "lon": 19.028926849365234,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Bem rakpart ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-10T05:12:39.620741+02:00",
+      "kulcs": "PDB384",
+      "rendszam": "PDB384",
+      "vehicle_id": "7066",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "198",
+      "route_id": "1980",
+      "lat": 47.499603271484375,
+      "lon": 19.28717041015625,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-10T05:12:39.621226+02:00",
+      "kulcs": "SKR734",
+      "rendszam": "SKR734",
+      "vehicle_id": "7683",
+      "vehicle_label": "Cargo C.-Liszt F. Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.465057373046875,
+      "lon": 19.127304077148438,
+      "elozo_szoveg": "Péterimajor, Víztorony tér",
+      "uj_szoveg": "Cargo City ► Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-10T05:12:39.621611+02:00",
+      "kulcs": "AOGL302",
+      "rendszam": "AOGL302",
+      "vehicle_id": "892",
+      "vehicle_label": "Apor Vilmos tér",
+      "vonal_szam": "105",
+      "route_id": "1050",
+      "lat": 47.54914855957031,
+      "lon": 19.0736141204834,
+      "elozo_szoveg": "Gyöngyösi utca M",
+      "uj_szoveg": "Apor Vilmos tér"
     }
   ]
 }
