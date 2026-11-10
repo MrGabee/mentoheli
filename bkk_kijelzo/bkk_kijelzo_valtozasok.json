@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T02:58:29.012602+02:00",
+  "frissitve": "2026-11-10T02:58:58.809723+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:01:41.559197+02:00",
-      "kulcs": "415 103",
-      "rendszam": "415 103",
-      "vehicle_id": "945514151030",
-      "vehicle_label": "Esztergom",
-      "vonal_szam": "Z72",
-      "route_id": "Z72",
-      "lat": 47.558170318603516,
-      "lon": 19.080230712890625,
-      "elozo_szoveg": "Budapest-Nyugati",
-      "uj_szoveg": "Esztergom"
-    },
-    {
-      "idopont": "2026-11-09T14:01:41.559357+02:00",
-      "kulcs": "815 030",
-      "rendszam": "815 030",
-      "vehicle_id": "945518150301",
-      "vehicle_label": "Budapest-Keleti",
-      "vonal_szam": "S60",
-      "route_id": "S60",
-      "lat": 47.43832015991211,
-      "lon": 19.46463966369629,
-      "elozo_szoveg": "Sülysáp",
-      "uj_szoveg": "Budapest-Keleti"
-    },
-    {
-      "idopont": "2026-11-09T14:01:41.559440+02:00",
-      "kulcs": "AADI599",
-      "rendszam": "AADI599",
-      "vehicle_id": "96",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "178",
-      "route_id": "1780",
-      "lat": 47.49345397949219,
-      "lon": 19.03252410888672,
-      "elozo_szoveg": "Naphegy tér",
-      "uj_szoveg": "Deák Ferenc tér M"
-    },
     {
       "idopont": "2026-11-09T14:02:59.459031+02:00",
       "kulcs": "AOJM882",
@@ -260000,6 +259961,45 @@
       "lon": 19.172256469726562,
       "elozo_szoveg": "Árpádföld",
       "uj_szoveg": "Astoria M ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-10T02:58:58.720679+02:00",
+      "kulcs": "NGC146",
+      "rendszam": "NGC146",
+      "vehicle_id": "6199",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.507476806640625,
+      "lon": 19.024784088134766,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Csáktornya park"
+    },
+    {
+      "idopont": "2026-11-10T02:58:58.721035+02:00",
+      "kulcs": "T8109",
+      "rendszam": "T8109",
+      "vehicle_id": "7346",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.49782943725586,
+      "lon": 19.054718017578125,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-10T02:58:58.721083+02:00",
+      "kulcs": "RVY606",
+      "rendszam": "RVY606",
+      "vehicle_id": "7435",
+      "vehicle_label": "Békásmegyer",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48688507080078,
+      "lon": 19.057281494140625,
+      "elozo_szoveg": "Astoria M ► Békásmegyer",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer, Újmegyeri tér"
     }
   ]
 }
