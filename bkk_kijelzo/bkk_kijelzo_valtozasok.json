@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-10T03:37:51.887178+02:00",
+  "frissitve": "2026-11-10T03:38:27.079980+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:07:26.500394+02:00",
-      "kulcs": "AAGL322",
-      "rendszam": "AAGL322",
-      "vehicle_id": "352",
-      "vehicle_label": "Törökbálint, bevásárlókp.",
-      "vonal_szam": "140",
-      "route_id": "1400",
-      "lat": 47.507286071777344,
-      "lon": 19.022804260253906,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Törökbálint, bevásárlóközpont"
-    },
-    {
-      "idopont": "2026-11-09T14:07:26.500560+02:00",
-      "kulcs": "AAHY824",
-      "rendszam": "AAHY824",
-      "vehicle_id": "385",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57569122314453,
-      "lon": 19.104591369628906,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
     {
       "idopont": "2026-11-09T14:07:26.500658+02:00",
       "kulcs": "AADI561",
@@ -260000,6 +259974,32 @@
       "lon": 19.04090690612793,
       "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
       "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-10T03:38:26.980880+02:00",
+      "kulcs": "PDB712",
+      "rendszam": "PDB712",
+      "vehicle_id": "7038",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.426639556884766,
+      "lon": 19.161048889160156,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-10T03:38:26.981537+02:00",
+      "kulcs": "415 110",
+      "rendszam": "415 110",
+      "vehicle_id": "945514151105",
+      "vehicle_label": "Debrecen",
+      "vonal_szam": "Sz",
+      "route_id": "Sz",
+      "lat": 47.5112190246582,
+      "lon": 19.10141944885254,
+      "elozo_szoveg": "Vác",
+      "uj_szoveg": "Debrecen"
     }
   ]
 }
