@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T03:43:36.669662+02:00",
+  "frissitve": "2026-11-10T03:44:07.418935+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:07:26.506536+02:00",
-      "kulcs": "SKR824",
-      "rendszam": "SKR824",
-      "vehicle_id": "7710",
-      "vehicle_label": "Havanna-lakótelep",
-      "vonal_szam": "236A",
-      "route_id": "2361",
-      "lat": 47.43534851074219,
-      "lon": 19.221837997436523,
-      "elozo_szoveg": "Ferihegy vasútállomás ► Havanna-lakótelep",
-      "uj_szoveg": "Havanna-lakótelep"
-    },
-    {
-      "idopont": "2026-11-09T14:07:26.506740+02:00",
-      "kulcs": "SIF015",
-      "rendszam": "SIF015",
-      "vehicle_id": "7750",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "136",
-      "route_id": "1360",
-      "lat": 47.43730926513672,
-      "lon": 19.170869827270508,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-09T14:07:26.506872+02:00",
-      "kulcs": "AOFL201",
-      "rendszam": "AOFL201",
-      "vehicle_id": "785",
-      "vehicle_label": "Madárhegy",
-      "vonal_szam": "253",
-      "route_id": "2530",
-      "lat": 47.464473724365234,
-      "lon": 19.01866340637207,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Madárhegy"
-    },
     {
       "idopont": "2026-11-09T14:07:26.507373+02:00",
       "kulcs": "AADI581",
@@ -260000,6 +259961,45 @@
       "lon": 19.150707244873047,
       "elozo_szoveg": "Újpalota",
       "uj_szoveg": "Astoria M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-11-10T03:44:07.332907+02:00",
+      "kulcs": "AADI604",
+      "rendszam": "AADI604",
+      "vehicle_id": "101",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.44758605957031,
+      "lon": 19.037559509277344,
+      "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-10T03:44:07.334311+02:00",
+      "kulcs": "AAGL319",
+      "rendszam": "AAGL319",
+      "vehicle_id": "348",
+      "vehicle_label": "Törökbálint vasútállomás",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.46261215209961,
+      "lon": 19.005741119384766,
+      "elozo_szoveg": "Budaörsi lakótelep ► Törökbálint vasútállomás",
+      "uj_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-11-10T03:44:07.334428+02:00",
+      "kulcs": "AAMH664",
+      "rendszam": "AAMH664",
+      "vehicle_id": "507",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46205520629883,
+      "lon": 19.13414764404297,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
