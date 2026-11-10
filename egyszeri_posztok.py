@@ -430,6 +430,20 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "telefon_148_20261110": (date(2026, 11, 10), """📱 ELVESZETT TELEFON A 148-AS BUSZON – SEGÍTSETEK! 🙏
+
+Egy olvasóm édesanyja ma (november 10., kedd) a 148-as buszon utazott Csepelről Pesterzsébet Városközpont felé. A buszon még nála volt a telefonja, de amikor leszállt, és később odaért, ahová indult, már nem találta.
+
+A telefon azóta is kicseng, nincs kikapcsolva, így bízunk benne, hogy valaki megtalálta, és még nála van.
+
+A család számára nem maga a készülék a fontos, hanem ami rajta van: a fényképek, a videók, az emlékek. Ezeket nem lehet pótolni. 💙
+
+👉 Ha te találtad meg, vagy láttad, hogy valaki felvett egy telefont a 148-ason, kérlek, írj nekem üzenetet, és továbbítom a családnak.
+👉 Ha a buszvezetőnek vagy a BKK-nak adták le, a BKK talált tárgyak ügyfélszolgálatán érdemes rákérdezni.
+
+Kérlek, osszátok meg, hátha pont ahhoz jut el, akinél a telefon van! 🙏
+
+#Csepel #Pesterzsébet #148 #ElveszettTelefon"""),
     "vedgat_vasas_szemet_20261108": (date(2026, 11, 8), """🗑️ OLVASÓI LEVÉL – Újra és újra szemét a Védgát és a Vasas utca sarkán
 
 Egyik olvasóm írt nekem a Védgát utca és a Vasas utca sarkáról. Ha jól tudja, tegnap ismét takarítottak ott, de pár óra múlva minden kezdődik elölről: a szemét újra felgyűlik, és az emberi ürülék a takarítás után is ott marad. Ez sok környéken élőt zavar, köztük őt is. Már több helyen jelezte a problémát, de tartós megoldás eddig nem született.
