@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T02:34:33.065753+02:00",
+  "frissitve": "2026-11-10T02:35:07.871979+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T13:59:13.973829+02:00",
-      "kulcs": "T8103",
-      "rendszam": "T8103",
-      "vehicle_id": "7340",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.52528381347656,
-      "lon": 19.063156127929688,
-      "elozo_szoveg": "Dózsa György út M",
-      "uj_szoveg": "Mexikói út M ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-09T13:59:13.973848+02:00",
-      "kulcs": "T8104",
-      "rendszam": "T8104",
-      "vehicle_id": "7341",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.47592544555664,
-      "lon": 19.099842071533203,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-11-09T13:59:13.973968+02:00",
-      "kulcs": "AOGF655",
-      "rendszam": "AOGF655",
-      "vehicle_id": "737",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "66",
-      "route_id": "0660",
-      "lat": 47.37827682495117,
-      "lon": 19.130517959594727,
-      "elozo_szoveg": "Soroksár, központi raktárak",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-11-09T13:59:13.974213+02:00",
       "kulcs": "RVY714",
@@ -260000,6 +259961,45 @@
       "lon": 19.133207321166992,
       "elozo_szoveg": "Astoria M ► Káposztásmegyer",
       "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-10T02:35:07.776779+02:00",
+      "kulcs": "AADR718",
+      "rendszam": "AADR718",
+      "vehicle_id": "186",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.426334381103516,
+      "lon": 19.160972595214844,
+      "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-10T02:35:07.778629+02:00",
+      "kulcs": "AAGL310",
+      "rendszam": "AAGL310",
+      "vehicle_id": "340",
+      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.54443359375,
+      "lon": 18.719987869262695,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-10T02:35:07.779100+02:00",
+      "kulcs": "NWB351",
+      "rendszam": "NWB351",
+      "vehicle_id": "6531",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.46470260620117,
+      "lon": 19.005451202392578,
+      "elozo_szoveg": "Gazdagréti tér ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Astoria M ► Rákoscsaba-Újtelep"
     }
   ]
 }
