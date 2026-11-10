@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T05:05:02.656027+02:00",
+  "frissitve": "2026-11-10T05:05:32.882947+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:17:47.765802+02:00",
-      "kulcs": "PDB381",
-      "rendszam": "PDB381",
-      "vehicle_id": "7063",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.51974105834961,
-      "lon": 19.11148452758789,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-09T14:17:47.765949+02:00",
-      "kulcs": "AOCT677",
-      "rendszam": "AOCT677",
-      "vehicle_id": "708",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "110",
-      "route_id": "1100",
-      "lat": 47.52473068237305,
-      "lon": 19.116987228393555,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Rákospatak u./Csömöri út"
-    },
-    {
-      "idopont": "2026-11-09T14:17:47.765971+02:00",
-      "kulcs": "PDN608",
-      "rendszam": "PDN608",
-      "vehicle_id": "7080",
-      "vehicle_label": "Donát-hegy",
-      "vonal_szam": "213",
-      "route_id": "2130",
-      "lat": 47.477203369140625,
-      "lon": 19.047521591186523,
-      "elozo_szoveg": "Csepel, Szent Imre tér",
-      "uj_szoveg": "Donát-hegy"
-    },
     {
       "idopont": "2026-11-09T14:17:47.766171+02:00",
       "kulcs": "PDN634",
@@ -260000,6 +259961,45 @@
       "lon": 18.87302017211914,
       "elozo_szoveg": "Budapest-Keleti",
       "uj_szoveg": "Budapest-Nyugati"
+    },
+    {
+      "idopont": "2026-11-10T05:05:32.824760+02:00",
+      "kulcs": "AADR703",
+      "rendszam": "AADR703",
+      "vehicle_id": "170",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "284E",
+      "route_id": "2845",
+      "lat": 47.42990493774414,
+      "lon": 19.182903289794922,
+      "elozo_szoveg": "Kispest, Vas Gereben utca",
+      "uj_szoveg": "Pestszentimre, Benjámin utca"
+    },
+    {
+      "idopont": "2026-11-10T05:05:32.825158+02:00",
+      "kulcs": "AAGL263",
+      "rendszam": "AAGL263",
+      "vehicle_id": "263",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "40",
+      "route_id": "0400",
+      "lat": 47.455814361572266,
+      "lon": 18.94119644165039,
+      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-10T05:05:32.825449+02:00",
+      "kulcs": "FLR703",
+      "rendszam": "FLR703",
+      "vehicle_id": "3117",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46236801147461,
+      "lon": 19.133405685424805,
+      "elozo_szoveg": "Astoria M ► Rákospalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Rákospalota"
     }
   ]
 }
