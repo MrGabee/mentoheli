@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-10T02:23:23.679578+02:00",
+  "frissitve": "2026-11-10T02:23:59.123687+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T13:58:07.720114+02:00",
-      "kulcs": "V1547",
-      "rendszam": "V1547",
-      "vehicle_id": "4599",
-      "vehicle_label": "Sörgyár",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.492919921875,
-      "lon": 19.08591079711914,
-      "elozo_szoveg": "Teleki László tér",
-      "uj_szoveg": "Salgótarjáni utca ► Sörgyár"
-    },
-    {
-      "idopont": "2026-11-09T13:58:07.720587+02:00",
-      "kulcs": "V4157",
-      "rendszam": "V4157",
-      "vehicle_id": "4845",
-      "vehicle_label": "Új köztemető (Kozma u.)",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.49915313720703,
-      "lon": 19.08271026611328,
-      "elozo_szoveg": "Izraelita temető",
-      "uj_szoveg": "Kőbányai út ► Új köztemető (Kozma utca)"
-    },
-    {
-      "idopont": "2026-11-09T13:58:07.720677+02:00",
-      "kulcs": "AAMH651",
-      "rendszam": "AAMH651",
-      "vehicle_id": "494",
-      "vehicle_label": "Deák F. tér (City centre)",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.432132720947266,
-      "lon": 19.260913848876953,
-      "elozo_szoveg": "Liszt Ferenc Airport 2",
-      "uj_szoveg": "Deák Ferenc tér M (City centre)"
-    },
-    {
-      "idopont": "2026-11-09T13:58:07.721082+02:00",
-      "kulcs": "SKN832",
-      "rendszam": "SKN832",
-      "vehicle_id": "544",
-      "vehicle_label": "Római úti lakótelep",
-      "vonal_szam": "34",
-      "route_id": "0340",
-      "lat": 47.53239822387695,
-      "lon": 19.067520141601562,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Göncz Árpád városkp. M"
-    },
-    {
-      "idopont": "2026-11-09T13:58:07.721204+02:00",
-      "kulcs": "MPW618",
-      "rendszam": "MPW618",
-      "vehicle_id": "5606",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "194",
-      "route_id": "1940",
-      "lat": 47.42892074584961,
-      "lon": 19.16982078552246,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
     {
       "idopont": "2026-11-09T13:58:07.721359+02:00",
       "kulcs": "MOS295",
@@ -260000,6 +259935,71 @@
       "lon": 19.15577507019043,
       "elozo_szoveg": "Szentlőrinci úti lakótelep",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-10T02:23:59.023825+02:00",
+      "kulcs": "AADR702",
+      "rendszam": "AADR702",
+      "vehicle_id": "169",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59783172607422,
+      "lon": 19.05388069152832,
+      "elozo_szoveg": "Havanna-lakótelep",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-10T02:23:59.027550+02:00",
+      "kulcs": "NTM430",
+      "rendszam": "NTM430",
+      "vehicle_id": "6498",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.4999885559082,
+      "lon": 19.02416229248047,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-11-10T02:23:59.027628+02:00",
+      "kulcs": "NWB365",
+      "rendszam": "NWB365",
+      "vehicle_id": "6545",
+      "vehicle_label": "Pasaréti tér",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.504032135009766,
+      "lon": 19.142791748046875,
+      "elozo_szoveg": "Astoria M ► Pasaréti tér",
+      "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-10T02:23:59.028091+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49858093261719,
+      "lon": 19.0546875,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-10T02:23:59.028432+02:00",
+      "kulcs": "AOJM871",
+      "rendszam": "AOJM871",
+      "vehicle_id": "994",
+      "vehicle_label": "Újpalota",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.46240997314453,
+      "lon": 19.133268356323242,
+      "elozo_szoveg": "Astoria M ► Újpalota",
+      "uj_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út"
     }
   ]
 }
