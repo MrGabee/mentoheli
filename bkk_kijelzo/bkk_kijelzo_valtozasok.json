@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-10T03:41:05.393153+02:00",
+  "frissitve": "2026-11-10T03:41:37.882247+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T14:07:26.503957+02:00",
-      "kulcs": "NLE856",
-      "rendszam": "NLE856",
-      "vehicle_id": "6408",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.50135040283203,
-      "lon": 19.03388786315918,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-09T14:07:26.504172+02:00",
-      "kulcs": "NTM429",
-      "rendszam": "NTM429",
-      "vehicle_id": "6497",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.462257385253906,
-      "lon": 19.01880645751953,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Jégmadár utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-11-09T14:07:26.504200+02:00",
-      "kulcs": "NTM438",
-      "rendszam": "NTM438",
-      "vehicle_id": "6506",
-      "vehicle_label": "Dániel út",
-      "vonal_szam": "156",
-      "route_id": "1560",
-      "lat": 47.507537841796875,
-      "lon": 19.02363395690918,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Dániel út"
-    },
     {
       "idopont": "2026-11-09T14:07:26.504822+02:00",
       "kulcs": "PDN614",
@@ -260000,6 +259961,45 @@
       "lon": 19.046361923217773,
       "elozo_szoveg": "Móricz Zsigmond körtér M",
       "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-10T03:41:37.797788+02:00",
+      "kulcs": "AAGL322",
+      "rendszam": "AAGL322",
+      "vehicle_id": "352",
+      "vehicle_label": "Gödöllő, autóbusz-áll.",
+      "vonal_szam": "992",
+      "route_id": "9920",
+      "lat": 47.49856185913086,
+      "lon": 19.054611206054688,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gödöllő, autóbusz-állomás"
+    },
+    {
+      "idopont": "2026-11-10T03:41:37.798376+02:00",
+      "kulcs": "PKN612",
+      "rendszam": "PKN612",
+      "vehicle_id": "7201",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.478515625,
+      "lon": 19.26044273376465,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-10T03:41:37.798852+02:00",
+      "kulcs": "T8120",
+      "rendszam": "T8120",
+      "vehicle_id": "7899",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50110626220703,
+      "lon": 19.114519119262695,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
