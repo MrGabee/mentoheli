@@ -349,11 +349,16 @@ def posztolando(uj, allapot):
     sorrend = [t for t, _ in FB_CSOPORTOK]
     valasztott = {}
     for e in sorted(uj, key=lambda e: sorrend.index(e["tipus"]) if e["tipus"] in sorrend else 9):
-        k = cim_kulcs(e["cim"])
+        # A most zajló hiba/kiesés és a tervezett munka külön számít: ha egy
+        # címről korábban tervezett munka ment ki, a mostani hiba attól még kimegy
+        # (2026-11-10: a Kozmosz/Rakéta/Vénusz utcai hiba emiatt maradt ki).
+        tervezett = e["tipus"].startswith("TERVEZETT")
+        k = ("T:" if tervezett else "S:") + cim_kulcs(e["cim"])
         if k in valasztott:
             continue
         try:
-            if (t - datetime.fromisoformat(posztolt[k])).days < CIM_ISMETLES_NAP:
+            nap = CIM_ISMETLES_NAP if tervezett else 1
+            if (t - datetime.fromisoformat(posztolt[k])).days < nap:
                 print(f"🔁 Nemrég posztolt cím, kihagyva: {szep_cim(e['cim'])}")
                 continue
         except (KeyError, ValueError):
@@ -373,6 +378,9 @@ def main():
     print(f"{'='*55}")
 
     regi = betolt_allapot()
+    csak_fb = set(regi.pop("csak_fb", []))
+    for rid in csak_fb:
+        regi.pop(rid, None)
     if FACEBOOK_POSZTOLAS_AKTIV:
         ejszakai_sor.sor_kiurites(regi, facebook_poszt_kuldese)
     uj   = []
@@ -392,7 +400,8 @@ def main():
     if uj:
         # Most zajló munka/kiesés: azonnal posztolok és levél is megy. Tervezett:
         # a poszt a következő szabad sávba kerül, levél nem jön róla.
-        surgos = [e for e in uj if not e["tipus"].startswith("TERVEZETT")]
+        surgos = [e for e in uj if not e["tipus"].startswith("TERVEZETT")
+                  and hash_id(e["tipus"] + e["cim"] + e["kezdes"]) not in csak_fb]
         if surgos:
             email_kuldes(surgos)
         if FACEBOOK_POSZTOLAS_AKTIV:
