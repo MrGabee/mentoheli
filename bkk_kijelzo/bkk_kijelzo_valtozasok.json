@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-10T02:27:10.034519+02:00",
+  "frissitve": "2026-11-10T02:27:42.989579+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-09T13:58:07.725355+02:00",
-      "kulcs": "RVY707",
-      "rendszam": "RVY707",
-      "vehicle_id": "7456",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41689682006836,
-      "lon": 19.1304874420166,
-      "elozo_szoveg": "Szentlőrinci úti ltp.",
-      "uj_szoveg": "Szentlőrinci úti lakótelep"
-    },
-    {
-      "idopont": "2026-11-09T13:58:07.725673+02:00",
-      "kulcs": "SCD593",
-      "rendszam": "SCD593",
-      "vehicle_id": "7654",
-      "vehicle_label": "Szent Lőrinc-telep",
-      "vonal_szam": "132E",
-      "route_id": "1325",
-      "lat": 47.46342849731445,
-      "lon": 19.147388458251953,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Havanna-lakótelep ► Szent Lőrinc-telep"
-    },
     {
       "idopont": "2026-11-09T13:58:07.725727+02:00",
       "kulcs": "SGY987",
@@ -260000,6 +259974,32 @@
       "lon": 19.10715675354004,
       "elozo_szoveg": "XVIII. utca",
       "uj_szoveg": "Deák Ferenc tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-11-10T02:27:42.902566+02:00",
+      "kulcs": "RVY710",
+      "rendszam": "RVY710",
+      "vehicle_id": "7459",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "200E",
+      "route_id": "2005",
+      "lat": 47.464447021484375,
+      "lon": 19.12651252746582,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-10T02:27:42.902876+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.51325607299805,
+      "lon": 19.101686477661133,
+      "elozo_szoveg": "Astoria M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep"
     }
   ]
 }
