@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T02:04:05.837625+02:00",
+  "frissitve": "2026-11-11T02:04:37.178623+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:49:04.112622+02:00",
-      "kulcs": "T8013",
-      "rendszam": "T8013",
-      "vehicle_id": "6133",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49549102783203,
-      "lon": 19.06048011779785,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-11-10T15:49:04.112668+02:00",
-      "kulcs": "T8018",
-      "rendszam": "T8018",
-      "vehicle_id": "6138",
-      "vehicle_label": "Kápolna tér",
-      "vonal_szam": "73",
-      "route_id": "4730",
-      "lat": 47.50962448120117,
-      "lon": 19.057262420654297,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Keleti pályaudvar M ► Kápolna tér"
-    },
-    {
-      "idopont": "2026-11-10T15:49:04.113403+02:00",
-      "kulcs": "NCV286",
-      "rendszam": "NCV286",
-      "vehicle_id": "6251",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16A",
-      "route_id": "0161",
-      "lat": 47.500328063964844,
-      "lon": 19.034547805786133,
-      "elozo_szoveg": "Budai Vár (Dísz tér)",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-10T15:49:04.113461+02:00",
       "kulcs": "NCV293",
@@ -260000,6 +259961,45 @@
       "lon": 19.054189682006836,
       "elozo_szoveg": "Ady Endre tér",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-11T02:04:37.086512+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Budatétény",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.50645065307617,
+      "lon": 19.096996307373047,
+      "elozo_szoveg": "Astoria M ► Budatétény",
+      "uj_szoveg": "Hengermalom út ► Budatétény"
+    },
+    {
+      "idopont": "2026-11-11T02:04:37.088619+02:00",
+      "kulcs": "AAGL297",
+      "rendszam": "AAGL297",
+      "vehicle_id": "329",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.47999572753906,
+      "lon": 19.051490783691406,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-11-11T02:04:37.089361+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48970413208008,
+      "lon": 19.074567794799805,
+      "elozo_szoveg": "Astoria M ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Kolosy tér ► Óbuda, Bogdáni út"
     }
   ]
 }
