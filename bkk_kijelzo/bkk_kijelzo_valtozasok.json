@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T03:13:54.186032+02:00",
+  "frissitve": "2026-11-11T03:14:23.481200+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:56:18.285848+02:00",
-      "kulcs": "V2011",
-      "rendszam": "V2011",
-      "vehicle_id": "2011",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47373962402344,
-      "lon": 19.047941207885742,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-10T15:56:18.286012+02:00",
-      "kulcs": "AADR755",
-      "rendszam": "AADR755",
-      "vehicle_id": "204",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.389286041259766,
-      "lon": 19.219078063964844,
-      "elozo_szoveg": "Gyál, Vecsési út",
-      "uj_szoveg": "Vecsési út ► Határ út M"
-    },
-    {
-      "idopont": "2026-11-10T15:56:18.286173+02:00",
-      "kulcs": "AAGL260",
-      "rendszam": "AAGL260",
-      "vehicle_id": "260",
-      "vehicle_label": "Angeli u. / Nagytétényi út",
-      "vonal_szam": "113A",
-      "route_id": "1131",
-      "lat": 47.40529251098633,
-      "lon": 19.014263153076172,
-      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
-      "uj_szoveg": "Angeli utca / Nagytétényi út"
-    },
     {
       "idopont": "2026-11-10T15:56:18.286304+02:00",
       "kulcs": "AAGL313",
@@ -260000,6 +259961,45 @@
       "lon": 19.203628540039062,
       "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
       "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-11-11T03:14:23.424889+02:00",
+      "kulcs": "AUAN760",
+      "rendszam": "AUAN760",
+      "vehicle_id": "1134",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49701690673828,
+      "lon": 19.055696487426758,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-11T03:14:23.425863+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.51103210449219,
+      "lon": 19.056217193603516,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-11T03:14:23.426226+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46244430541992,
+      "lon": 19.133237838745117,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
