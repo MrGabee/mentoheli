@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T02:01:30.453301+02:00",
+  "frissitve": "2026-11-11T02:02:02.834861+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:49:04.111527+02:00",
-      "kulcs": "AAMD173",
-      "rendszam": "AAMD173",
-      "vehicle_id": "533",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "158",
-      "route_id": "1580",
-      "lat": 47.43246841430664,
-      "lon": 19.00531768798828,
-      "elozo_szoveg": "Balatoni út / Háros utca",
-      "uj_szoveg": "Savoya Park"
-    },
-    {
-      "idopont": "2026-11-10T15:49:04.111562+02:00",
-      "kulcs": "SKN832",
-      "rendszam": "SKN832",
-      "vehicle_id": "544",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.55030822753906,
-      "lon": 19.042064666748047,
-      "elozo_szoveg": "Óbudai rendelőintézet",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-11-10T15:49:04.111580+02:00",
-      "kulcs": "AADI565",
-      "rendszam": "AADI565",
-      "vehicle_id": "55",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "57",
-      "route_id": "0570",
-      "lat": 47.54563903808594,
-      "lon": 18.9633846282959,
-      "elozo_szoveg": "Máriaremete",
-      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
-    },
     {
       "idopont": "2026-11-10T15:49:04.111600+02:00",
       "kulcs": "V2257",
@@ -260000,6 +259961,45 @@
       "lon": 19.15123176574707,
       "elozo_szoveg": "Újpalota, Szentmihályi út",
       "uj_szoveg": "Astoria M ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-11T02:02:02.743252+02:00",
+      "kulcs": "AADI571",
+      "rendszam": "AADI571",
+      "vehicle_id": "56",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905A",
+      "route_id": "9051",
+      "lat": 47.51347732543945,
+      "lon": 19.098833084106445,
+      "elozo_szoveg": "Astoria M ► Hűvösvölgy",
+      "uj_szoveg": "Széll Kálmán tér M ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-11T02:02:02.743569+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48497772216797,
+      "lon": 19.07260513305664,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-11T02:02:02.744273+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50886917114258,
+      "lon": 19.095491409301758,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
