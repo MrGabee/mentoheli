@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-11T03:46:21.261756+02:00",
+  "frissitve": "2026-11-11T03:46:51.419534+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:58:50.087974+02:00",
-      "kulcs": "V2033",
-      "rendszam": "V2033",
-      "vehicle_id": "2033",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.47347640991211,
-      "lon": 19.051834106445312,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-10T15:58:50.088027+02:00",
-      "kulcs": "AADR755",
-      "rendszam": "AADR755",
-      "vehicle_id": "204",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "94E",
-      "route_id": "0945",
-      "lat": 47.382389068603516,
-      "lon": 19.229799270629883,
-      "elozo_szoveg": "Vecsési út ► Határ út M",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-10T15:58:50.088146+02:00",
-      "kulcs": "AAGL253",
-      "rendszam": "AAGL253",
-      "vehicle_id": "253",
-      "vehicle_label": "Budakeszi, Dózsa Gy. tér",
-      "vonal_szam": "22A",
-      "route_id": "0221",
-      "lat": 47.50766372680664,
-      "lon": 19.024629592895508,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budakeszi, Dózsa György tér"
-    },
-    {
-      "idopont": "2026-11-10T15:58:50.088532+02:00",
-      "kulcs": "FKU909",
-      "rendszam": "FKU909",
-      "vehicle_id": "3065",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "276E",
-      "route_id": "2765",
-      "lat": 47.499027252197266,
-      "lon": 19.269269943237305,
-      "elozo_szoveg": "Naplás út ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-10T15:58:50.088565+02:00",
       "kulcs": "FKU916",
@@ -260000,6 +259948,58 @@
       "lon": 19.192119598388672,
       "elozo_szoveg": "Helikopter lakópark ► Rákoscsaba",
       "uj_szoveg": "Rákoscsaba"
+    },
+    {
+      "idopont": "2026-11-11T03:46:51.326298+02:00",
+      "kulcs": "AADI561",
+      "rendszam": "AADI561",
+      "vehicle_id": "40",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5662841796875,
+      "lon": 19.129222869873047,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Astoria M ► Máriaremete"
+    },
+    {
+      "idopont": "2026-11-11T03:46:51.326658+02:00",
+      "kulcs": "AADI569",
+      "rendszam": "AADI569",
+      "vehicle_id": "67",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.48688507080078,
+      "lon": 19.0572566986084,
+      "elozo_szoveg": "Astoria M ► Békásmegyer H",
+      "uj_szoveg": "Kolosy tér ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-11T03:46:51.326693+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.51216506958008,
+      "lon": 19.05711555480957,
+      "elozo_szoveg": "Béke tér ► Káposztásmegyer",
+      "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-11-11T03:46:51.327322+02:00",
+      "kulcs": "SGY815",
+      "rendszam": "SGY815",
+      "vehicle_id": "7733",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48699951171875,
+      "lon": 19.06731414794922,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
