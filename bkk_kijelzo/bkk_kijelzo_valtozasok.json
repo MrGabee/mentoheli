@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T03:07:48.827450+02:00",
+  "frissitve": "2026-11-11T03:08:16.855590+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:54:46.820315+02:00",
-      "kulcs": "PMP912",
-      "rendszam": "PMP912",
-      "vehicle_id": "7229",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "VP19",
-      "route_id": "VP19",
-      "lat": 47.464786529541016,
-      "lon": 19.023025512695312,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.820705+02:00",
-      "kulcs": "T8106",
-      "rendszam": "T8106",
-      "vehicle_id": "7343",
-      "vehicle_label": "Dózsa György út M",
-      "vonal_szam": "81",
-      "route_id": "4810",
-      "lat": 47.505157470703125,
-      "lon": 19.136449813842773,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Miskolci utca ► Dózsa György út M"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.820809+02:00",
-      "kulcs": "T9105",
-      "rendszam": "T9105",
-      "vehicle_id": "7352",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.52173614501953,
-      "lon": 19.132253646850586,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-11-10T15:54:46.820872+02:00",
       "kulcs": "T9110",
@@ -260000,6 +259961,45 @@
       "lon": 19.124618530273438,
       "elozo_szoveg": "Rákospalota, Kossuth utca",
       "uj_szoveg": "Astoria M ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-11T03:08:16.756056+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Pestszentlőrinc",
+      "vonal_szam": "950A",
+      "route_id": "9501",
+      "lat": 47.53875732421875,
+      "lon": 19.069259643554688,
+      "elozo_szoveg": "Astoria M ► Pestszentlőrinc",
+      "uj_szoveg": "Határ út M ► Pestszentlőrinc"
+    },
+    {
+      "idopont": "2026-11-11T03:08:16.757094+02:00",
+      "kulcs": "AOFL255",
+      "rendszam": "AOFL255",
+      "vehicle_id": "844",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.4345588684082,
+      "lon": 19.201160430908203,
+      "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
+      "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-11-11T03:08:16.757245+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.499732971191406,
+      "lon": 19.287126541137695,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Rákoscsaba-Újtelep"
     }
   ]
 }
