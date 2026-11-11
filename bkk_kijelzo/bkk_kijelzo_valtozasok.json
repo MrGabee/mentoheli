@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T03:10:40.171275+02:00",
+  "frissitve": "2026-11-11T03:11:12.955903+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:54:46.823227+02:00",
-      "kulcs": "T9114",
-      "rendszam": "T9114",
-      "vehicle_id": "7852",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.49948501586914,
-      "lon": 19.083845138549805,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.823251+02:00",
-      "kulcs": "T9116",
-      "rendszam": "T9116",
-      "vehicle_id": "7854",
-      "vehicle_label": "Orczy tér",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49997329711914,
-      "lon": 19.05508804321289,
-      "elozo_szoveg": "Deák Ferenc tér M ► Orczy tér",
-      "uj_szoveg": "Orczy tér"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.823489+02:00",
-      "kulcs": "T9149",
-      "rendszam": "T9149",
-      "vehicle_id": "7888",
-      "vehicle_label": "Öv utca / Egressy út",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.49982833862305,
-      "lon": 19.103784561157227,
-      "elozo_szoveg": "Puskás Ferenc Stadion M",
-      "uj_szoveg": "Öv utca / Egressy út"
-    },
     {
       "idopont": "2026-11-10T15:54:46.823507+02:00",
       "kulcs": "T8110",
@@ -260000,6 +259961,45 @@
       "lon": 19.135517120361328,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-11T03:11:12.866838+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.405765533447266,
+      "lon": 19.014188766479492,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-11T03:11:12.868637+02:00",
+      "kulcs": "AAMH666",
+      "rendszam": "AAMH666",
+      "vehicle_id": "509",
+      "vehicle_label": "Pestszentimre vá.",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.48487854003906,
+      "lon": 19.072656631469727,
+      "elozo_szoveg": "Határ út M ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Szarvas csárda tér  ► Pestszentimre vasútállomás"
+    },
+    {
+      "idopont": "2026-11-11T03:11:12.868694+02:00",
+      "kulcs": "MOS263",
+      "rendszam": "MOS263",
+      "vehicle_id": "5716",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.4977912902832,
+      "lon": 19.054819107055664,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
     }
   ]
 }
