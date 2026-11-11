@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T03:23:03.740860+02:00",
+  "frissitve": "2026-11-11T03:23:39.053257+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:56:18.294475+02:00",
-      "kulcs": "NTM439",
-      "rendszam": "NTM439",
-      "vehicle_id": "6507",
-      "vehicle_label": "Mechanikai Művek",
-      "vonal_szam": "87",
-      "route_id": "0870",
-      "lat": 47.464317321777344,
-      "lon": 19.018787384033203,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Mechanikai Művek"
-    },
-    {
-      "idopont": "2026-11-10T15:56:18.294489+02:00",
-      "kulcs": "NTM441",
-      "rendszam": "NTM441",
-      "vehicle_id": "6509",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "21",
-      "route_id": "0210",
-      "lat": 47.50065994262695,
-      "lon": 18.9679012298584,
-      "elozo_szoveg": "Normafa",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-10T15:56:18.294503+02:00",
-      "kulcs": "NTP537",
-      "rendszam": "NTP537",
-      "vehicle_id": "6513",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "33",
-      "route_id": "0330",
-      "lat": 47.397918701171875,
-      "lon": 18.973011016845703,
-      "elozo_szoveg": "Nagytétény-Diósd vasútállomás",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
     {
       "idopont": "2026-11-10T15:56:18.294718+02:00",
       "kulcs": "CITY001",
@@ -260000,6 +259961,45 @@
       "lon": 19.100252151489258,
       "elozo_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-11T03:23:38.952957+02:00",
+      "kulcs": "AADI607",
+      "rendszam": "AADI607",
+      "vehicle_id": "104",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.49927520751953,
+      "lon": 19.02414894104004,
+      "elozo_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-11-11T03:23:38.955033+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.4989128112793,
+      "lon": 19.050716400146484,
+      "elozo_szoveg": "Deák Ferenc tér M ► Törökbálint",
+      "uj_szoveg": "Móricz Zsigmond körtér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-11T03:23:38.955892+02:00",
+      "kulcs": "SKN819",
+      "rendszam": "SKN819",
+      "vehicle_id": "7788",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.54994201660156,
+      "lon": 19.042051315307617,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
