@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-11T03:01:12.504203+02:00",
+  "frissitve": "2026-11-11T03:01:42.984813+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T15:54:46.814745+02:00",
-      "kulcs": "V1602",
-      "rendszam": "V1602",
-      "vehicle_id": "5101",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.48179626464844,
-      "lon": 19.127056121826172,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.815099+02:00",
-      "kulcs": "V2260",
-      "rendszam": "V2260",
-      "vehicle_id": "558",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.519386291503906,
-      "lon": 19.091161727905273,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.815161+02:00",
-      "kulcs": "MPW606",
-      "rendszam": "MPW606",
-      "vehicle_id": "5593",
-      "vehicle_label": "Teleki László tér",
-      "vonal_szam": "VP28",
-      "route_id": "VP28",
-      "lat": 47.495906829833984,
-      "lon": 19.07147979736328,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Teleki László tér"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.816205+02:00",
-      "kulcs": "MUM643",
-      "rendszam": "MUM643",
-      "vehicle_id": "5881",
-      "vehicle_label": "Teleki László tér",
-      "vonal_szam": "VP28",
-      "route_id": "VP28",
-      "lat": 47.499000549316406,
-      "lon": 19.0773983001709,
-      "elozo_szoveg": "Teleki László tér",
-      "uj_szoveg": "Blaha Lujza tér M"
-    },
-    {
-      "idopont": "2026-11-10T15:54:46.816255+02:00",
-      "kulcs": "MXJ006",
-      "rendszam": "MXJ006",
-      "vehicle_id": "5886",
-      "vehicle_label": "Savoyai J. tér (Törley tér)",
-      "vonal_szam": "250B",
-      "route_id": "2502",
-      "lat": 47.429962158203125,
-      "lon": 19.01959228515625,
-      "elozo_szoveg": "Regényes utca ► Savoyai Jenő tér",
-      "uj_szoveg": "Savoyai Jenő tér (Törley tér)"
-    },
     {
       "idopont": "2026-11-10T15:54:46.816905+02:00",
       "kulcs": "T8015",
@@ -260000,6 +259935,71 @@
       "lon": 19.038005828857422,
       "elozo_szoveg": "Rózsadomb ► Pasaréti tér",
       "uj_szoveg": "Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-11T03:01:42.893728+02:00",
+      "kulcs": "SKN825",
+      "rendszam": "SKN825",
+      "vehicle_id": "161",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.485416412353516,
+      "lon": 19.070955276489258,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-11T03:01:42.893781+02:00",
+      "kulcs": "AADR721",
+      "rendszam": "AADR721",
+      "vehicle_id": "190",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.527740478515625,
+      "lon": 19.036849975585938,
+      "elozo_szoveg": "Kolosy tér",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-11-11T03:01:42.894787+02:00",
+      "kulcs": "AAGL295",
+      "rendszam": "AAGL295",
+      "vehicle_id": "310",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.479190826416016,
+      "lon": 19.050445556640625,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Törökbálint",
+      "uj_szoveg": "Budaörsi lakótelep ► Törökbálint, Márta utca"
+    },
+    {
+      "idopont": "2026-11-11T03:01:42.894982+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.5099983215332,
+      "lon": 19.096946716308594,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-11T03:01:42.895538+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.48832702636719,
+      "lon": 19.064470291137695,
+      "elozo_szoveg": "Közvágóhíd H ► Millenniumtelep H",
+      "uj_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H"
     }
   ]
 }
