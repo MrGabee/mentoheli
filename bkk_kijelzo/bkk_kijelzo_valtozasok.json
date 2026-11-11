@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-12T01:31:32.703321+02:00",
+  "frissitve": "2026-11-12T01:32:05.174516+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:03:31.904134+02:00",
-      "kulcs": "PDN648",
-      "rendszam": "PDN648",
-      "vehicle_id": "7119",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.487300872802734,
-      "lon": 18.989776611328125,
-      "elozo_szoveg": "Mindszenty József bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-11T15:03:31.904314+02:00",
-      "kulcs": "PHG645",
-      "rendszam": "PHG645",
-      "vehicle_id": "7169",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "277",
-      "route_id": "2770",
-      "lat": 47.51974868774414,
-      "lon": 19.111541748046875,
-      "elozo_szoveg": "Bosnyák tér",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-11T15:03:31.904560+02:00",
       "kulcs": "PKN620",
@@ -260000,6 +259974,32 @@
       "lon": 19.055530548095703,
       "elozo_szoveg": "Kápolna tér",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-12T01:32:05.122651+02:00",
+      "kulcs": "NGC158",
+      "rendszam": "NGC158",
+      "vehicle_id": "6208",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.51926040649414,
+      "lon": 19.038211822509766,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-12T01:32:05.122902+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.42662811279297,
+      "lon": 19.160865783691406,
+      "elozo_szoveg": "Blaha Lujza tér M",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
     }
   ]
 }
