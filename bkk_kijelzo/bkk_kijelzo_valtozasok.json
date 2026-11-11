@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-11T04:39:47.501189+02:00",
+  "frissitve": "2026-11-11T04:40:18.421867+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T16:03:02.012489+02:00",
-      "kulcs": "STZ847",
-      "rendszam": "STZ847",
-      "vehicle_id": "7802",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "188E",
-      "route_id": "1885",
-      "lat": 47.51792526245117,
-      "lon": 18.923988342285156,
-      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
-      "uj_szoveg": "Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-10T16:03:02.012679+02:00",
-      "kulcs": "AOFL199",
-      "rendszam": "AOFL199",
-      "vehicle_id": "783",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.47804641723633,
-      "lon": 19.045663833618164,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Citadella ► Sánc utca"
-    },
-    {
-      "idopont": "2026-11-10T16:03:02.012746+02:00",
-      "kulcs": "T9117",
-      "rendszam": "T9117",
-      "vehicle_id": "7855",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.505401611328125,
-      "lon": 19.13633155822754,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M"
-    },
-    {
-      "idopont": "2026-11-10T16:03:02.012929+02:00",
-      "kulcs": "T9142",
-      "rendszam": "T9142",
-      "vehicle_id": "7881",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.519290924072266,
-      "lon": 19.09090805053711,
-      "elozo_szoveg": "Mexikói út M",
-      "uj_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-10T16:03:02.012954+02:00",
       "kulcs": "T9146",
@@ -260000,6 +259948,58 @@
       "lon": 19.07097816467285,
       "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-11T04:40:18.330941+02:00",
+      "kulcs": "AAGL314",
+      "rendszam": "AAGL314",
+      "vehicle_id": "342",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.50800323486328,
+      "lon": 19.02887535095215,
+      "elozo_szoveg": "Széll Kálmán tér M ► Budakeszi",
+      "uj_szoveg": "Budakeszi, Dózsa György tér"
+    },
+    {
+      "idopont": "2026-11-11T04:40:18.331196+02:00",
+      "kulcs": "NBW010",
+      "rendszam": "NBW010",
+      "vehicle_id": "5980",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.49715805053711,
+      "lon": 19.05543327331543,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-11-11T04:40:18.331277+02:00",
+      "kulcs": "NWB359",
+      "rendszam": "NWB359",
+      "vehicle_id": "6539",
+      "vehicle_label": "Rákoskert sugárút",
+      "vonal_szam": "997",
+      "route_id": "9970",
+      "lat": 47.47159957885742,
+      "lon": 19.282426834106445,
+      "elozo_szoveg": "Rákoskert sugárút",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-11T04:40:18.331567+02:00",
+      "kulcs": "RVY711",
+      "rendszam": "RVY711",
+      "vehicle_id": "7460",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.48543167114258,
+      "lon": 19.070993423461914,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
