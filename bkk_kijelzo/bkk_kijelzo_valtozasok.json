@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-11T04:21:00.446842+02:00",
+  "frissitve": "2026-11-11T04:21:33.357921+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T16:01:22.746896+02:00",
-      "kulcs": "SGY805",
-      "rendszam": "SGY805",
-      "vehicle_id": "7723",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "152",
-      "route_id": "1520",
-      "lat": 47.38935852050781,
-      "lon": 19.099506378173828,
-      "elozo_szoveg": "Hollandi út ► Szent Imre tér",
-      "uj_szoveg": "Csepel, Szent Imre tér"
-    },
-    {
-      "idopont": "2026-11-10T16:01:22.747045+02:00",
-      "kulcs": "SGY820",
-      "rendszam": "SGY820",
-      "vehicle_id": "7738",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.46304702758789,
-      "lon": 19.147350311279297,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
-    {
-      "idopont": "2026-11-10T16:01:22.747293+02:00",
-      "kulcs": "STZ861",
-      "rendszam": "STZ861",
-      "vehicle_id": "7816",
-      "vehicle_label": "Budaörsi lakótelep",
-      "vonal_szam": "40B",
-      "route_id": "0402",
-      "lat": 47.464393615722656,
-      "lon": 19.01856231689453,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budaörsi lakótelep"
-    },
-    {
-      "idopont": "2026-11-10T16:01:22.747398+02:00",
-      "kulcs": "AOFL199",
-      "rendszam": "AOFL199",
-      "vehicle_id": "783",
-      "vehicle_label": "Citadella - Sánc utca",
-      "vonal_szam": "27",
-      "route_id": "0270",
-      "lat": 47.477882385253906,
-      "lon": 19.04559898376465,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zs. körtér M"
-    },
-    {
-      "idopont": "2026-11-10T16:01:22.747634+02:00",
-      "kulcs": "T9136",
-      "rendszam": "T9136",
-      "vehicle_id": "7875",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "77",
-      "route_id": "4770",
-      "lat": 47.524173736572266,
-      "lon": 19.132783889770508,
-      "elozo_szoveg": "Öv utca / Egressy út",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
     {
       "idopont": "2026-11-10T16:01:22.747648+02:00",
       "kulcs": "T9137",
@@ -260000,6 +259935,71 @@
       "lon": 18.95810317993164,
       "elozo_szoveg": "Nagytétény, ipartelep",
       "uj_szoveg": "Keleti pályaudvar M"
+    },
+    {
+      "idopont": "2026-11-11T04:21:33.288590+02:00",
+      "kulcs": "FLR738",
+      "rendszam": "FLR738",
+      "vehicle_id": "3152",
+      "vehicle_label": "Pestszentlőrinc, Béke tér",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.54199981689453,
+      "lon": 19.151287078857422,
+      "elozo_szoveg": "Újpalota",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
+    },
+    {
+      "idopont": "2026-11-11T04:21:33.288986+02:00",
+      "kulcs": "PKN608",
+      "rendszam": "PKN608",
+      "vehicle_id": "7197",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50862503051758,
+      "lon": 19.095136642456055,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-11T04:21:33.289229+02:00",
+      "kulcs": "SKR812",
+      "rendszam": "SKR812",
+      "vehicle_id": "7698",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48273468017578,
+      "lon": 19.130271911621094,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-11T04:21:33.289324+02:00",
+      "kulcs": "SKR832",
+      "rendszam": "SKR832",
+      "vehicle_id": "7718",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.486209869384766,
+      "lon": 19.25872039794922,
+      "elozo_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-11T04:21:33.289415+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.47691345214844,
+      "lon": 19.047250747680664,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Budatétény vasútállomás",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
     }
   ]
 }
