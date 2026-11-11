@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-12T01:30:00.683355+02:00",
+  "frissitve": "2026-11-12T01:30:31.885345+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:03:31.903035+02:00",
-      "kulcs": "NTM426",
-      "rendszam": "NTM426",
-      "vehicle_id": "6494",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "141",
-      "route_id": "1410",
-      "lat": 47.43659973144531,
-      "lon": 19.039627075195312,
-      "elozo_szoveg": "Savoya Park",
-      "uj_szoveg": "Jégmadár utca ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-11T15:03:31.903346+02:00",
-      "kulcs": "NWB365",
-      "rendszam": "NWB365",
-      "vehicle_id": "6545",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "67",
-      "route_id": "0670",
-      "lat": 47.4793586730957,
-      "lon": 19.23403549194336,
-      "elozo_szoveg": "Madárdomb",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-11T15:03:31.903666+02:00",
-      "kulcs": "PDB725",
-      "rendszam": "PDB725",
-      "vehicle_id": "7051",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.48408889770508,
-      "lon": 19.127647399902344,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
     {
       "idopont": "2026-11-11T15:03:31.903924+02:00",
       "kulcs": "PDN611",
@@ -260000,6 +259961,45 @@
       "lon": 19.11947250366211,
       "elozo_szoveg": "Örs vezér tere M+H ► Pécel",
       "uj_szoveg": "Pécel, Kun József utca"
+    },
+    {
+      "idopont": "2026-11-12T01:30:31.830240+02:00",
+      "kulcs": "NGC147",
+      "rendszam": "NGC147",
+      "vehicle_id": "6195",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.596920013427734,
+      "lon": 19.053213119506836,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-12T01:30:31.830645+02:00",
+      "kulcs": "SKR826",
+      "rendszam": "SKR826",
+      "vehicle_id": "7712",
+      "vehicle_label": "Csepel-Királyerdő",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.42646789550781,
+      "lon": 19.161312103271484,
+      "elozo_szoveg": "Ady Endre tér",
+      "uj_szoveg": "Határ út M ► Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-11-12T01:30:31.830659+02:00",
+      "kulcs": "SKR827",
+      "rendszam": "SKR827",
+      "vehicle_id": "7713",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.52776336669922,
+      "lon": 19.036712646484375,
+      "elozo_szoveg": "Villamospótló",
+      "uj_szoveg": "Verecke lépcső ► Millenniumtelep H"
     }
   ]
 }
