@@ -156,6 +156,7 @@ MENETREND = [
     ("mvm_befizetes_20261107", time(15, 5), {SZOMBAT}, lambda nap, a: egyszeri_posztok.szoveg("mvm_befizetes_20261107", nap)),
     ("tejut_kut_20261108", time(12, 5), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("tejut_kut_20261108", nap)),
     ("vedgat_vasas_szemet_20261108", time(18, 5), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("vedgat_vasas_szemet_20261108", nap)),
+    ("erdosor_frissites_20261111", time(22, 35), set(), lambda nap, a: egyszeri_posztok.szoveg("erdosor_frissites_20261111", nap)),  # csak kézi
     ("zsido_temeto_20261101", time(13, 35), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("zsido_temeto_20261101", nap)),
     ("birkozo_vb_20261101", time(16, 50), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("birkozo_vb_20261101", nap)),
     ("telefon_meki_20261030", time(17, 5), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("telefon_meki_20261030", nap)),
