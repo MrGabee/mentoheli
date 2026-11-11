@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-11T04:19:28.979004+02:00",
+  "frissitve": "2026-11-11T04:19:58.908090+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-10T16:01:22.745175+02:00",
-      "kulcs": "RCT312",
-      "rendszam": "RCT312",
-      "vehicle_id": "7326",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.429161071777344,
-      "lon": 19.175931930541992,
-      "elozo_szoveg": "Gloriett-lakótelep",
-      "uj_szoveg": "Határ út M"
-    },
-    {
-      "idopont": "2026-11-10T16:01:22.745336+02:00",
-      "kulcs": "T9104",
-      "rendszam": "T9104",
-      "vehicle_id": "7351",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "75",
-      "route_id": "4750",
-      "lat": 47.51552963256836,
-      "lon": 19.050973892211914,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-11-10T16:01:22.746351+02:00",
-      "kulcs": "SCD590",
-      "rendszam": "SCD590",
-      "vehicle_id": "7651",
-      "vehicle_label": "Dél-pesti autóbuszgarázs",
-      "vonal_szam": "198",
-      "route_id": "1980",
-      "lat": 47.49753189086914,
-      "lon": 19.286808013916016,
-      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
-      "uj_szoveg": "Dél-pesti autóbuszgarázs"
-    },
     {
       "idopont": "2026-11-10T16:01:22.746631+02:00",
       "kulcs": "SKR802",
@@ -260000,6 +259961,45 @@
       "lon": 19.081928253173828,
       "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-11T04:19:58.809295+02:00",
+      "kulcs": "AADI605",
+      "rendszam": "AADI605",
+      "vehicle_id": "102",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.51242446899414,
+      "lon": 19.116378784179688,
+      "elozo_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-11T04:19:58.811045+02:00",
+      "kulcs": "AADI574",
+      "rendszam": "AADI574",
+      "vehicle_id": "47",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.54814529418945,
+      "lon": 19.029138565063477,
+      "elozo_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-11T04:19:58.811360+02:00",
+      "kulcs": "PKN607",
+      "rendszam": "PKN607",
+      "vehicle_id": "7196",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.55029296875,
+      "lon": 19.042055130004883,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Örs vezér tere M+H"
     }
   ]
 }
