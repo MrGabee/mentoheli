@@ -430,6 +430,21 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "erdosor_frissites_20261111": (date(2026, 11, 11), """🔄 FRISSÍTÉS – Erdősor utca / Festő utca: jó hírek a kisfiúról 💙
+
+A délutáni baleset után valósággal elleptek az üzenetek és a telefonhívások. Rengetegen kerestetek, és mindenki a kisfiú állapota felől érdeklődött. Köszönöm, hogy ennyien aggódtatok érte! 🙏
+
+Jelentkezett nálam egy szemtanú, aki elsőként ért oda a kisfiúhoz. Korábban mentősként dolgozott, ezért meg is tudta vizsgálni.
+
+A kisfiú eszméleténél volt, mindenre jól reagált, csak egy horzsolást talált a térdén. Ezt később a kiérkező gyermekorvos is megerősítette. Könnyű végtagsérülés gyanújával vitték kórházba. 🙏
+
+A szemtanú elmondása szerint az autó lassan haladt. A sötét ruhás kisfiú egy másik, éppen kanyarodó autó takarásából, az anyukája kezét elengedve futott ki, és az autó bal elejének ütközött. A szemtanú szerint ilyen helyzetben, sötétben nagyon nehéz időben észrevenni egy kisgyereket.
+
+🚸 Ami ebből mindannyiunknak tanulság: sötétedés után a gyerekeken legyen valami fényvisszaverő, az úttest mellett pedig fogjuk erősen a kezüket. Sofőrként pedig zebra előtt, főleg kanyarodó autó mellett, mindig számítsunk arra, hogy kiléphet valaki.
+
+Nagyon örülök, hogy a kisfiú megúszta ennyivel. Gyógyulást kívánok neki! 💙
+
+#Csepel #baleset #frissítés #Erdősorutca"""),
     "telefon_148_20261110": (date(2026, 11, 10), """📱 ELVESZETT TELEFON A 148-AS BUSZON – SEGÍTSETEK! 🙏
 
 Egy olvasóm édesanyja ma (november 10., kedd) a 148-as buszon utazott Csepelről Pesterzsébet Városközpont felé. A buszon még nála volt a telefonja, de amikor leszállt, és később odaért, ahová indult, már nem találta.

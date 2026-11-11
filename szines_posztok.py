@@ -60,9 +60,9 @@ def kapcsolat_sor(nap, kulcs):
     return poszt_valtozatos.rovid_kapcsolat(nap, kulcs, allasok.OLVASOI_EMAIL,
                                             "+36 70 754 0254", allasok.KAPCSOLAT_URL)
 # Ezek a jó éjszakát után is kimennek (azonnali, sürgős olvasói figyelmeztetés)
-EJJEL_IS = {"betoro_kiralyerdo_20261106"}
+EJJEL_IS = {"erdosor_frissites_20261111", "betoro_kiralyerdo_20261106"}
 
-KAPCSOLAT_NELKUL = {"telefon_148_20261110", "vedgat_vasas_szemet_20261108", "tejut_kut_20261108", "mvm_befizetes_20261107", "tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "zsido_temeto_20261101", "birkozo_vb_20261101", "talalt_berlet_20261101", "kozvilagitas_bajcsy_20261102", "szemeszet_csillagtelep_20261102", "gubacsi_csavar_20261103", "szabotelep_tabla_20261103", "m0_ko_tanu_20261103", "szomszed_zaj_20261104", "betoro_kiralyerdo_20261106", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
+KAPCSOLAT_NELKUL = {"erdosor_frissites_20261111", "telefon_148_20261110", "vedgat_vasas_szemet_20261108", "tejut_kut_20261108", "mvm_befizetes_20261107", "tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "zsido_temeto_20261101", "birkozo_vb_20261101", "talalt_berlet_20261101", "kozvilagitas_bajcsy_20261102", "szemeszet_csillagtelep_20261102", "gubacsi_csavar_20261103", "szabotelep_tabla_20261103", "m0_ko_tanu_20261103", "szomszed_zaj_20261104", "betoro_kiralyerdo_20261106", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
