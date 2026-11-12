@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-12T03:53:46.742309+02:00",
+  "frissitve": "2026-11-12T03:54:15.228927+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:16:31.358519+02:00",
-      "kulcs": "AOJM870",
-      "rendszam": "AOJM870",
-      "vehicle_id": "993",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "151",
-      "route_id": "1510",
-      "lat": 47.41922378540039,
-      "lon": 19.091136932373047,
-      "elozo_szoveg": "Csepel, Határ utca",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-11-11T15:17:50.650823+02:00",
-      "kulcs": "AADI624",
-      "rendszam": "AADI624",
-      "vehicle_id": "119",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.520809173583984,
-      "lon": 19.22713279724121,
-      "elozo_szoveg": "Cinkota, Lassú utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-11T15:17:50.650961+02:00",
-      "kulcs": "AADI652",
-      "rendszam": "AADI652",
-      "vehicle_id": "151",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44159698486328,
-      "lon": 19.03420066833496,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
     {
       "idopont": "2026-11-11T15:17:50.651125+02:00",
       "kulcs": "AADR712",
@@ -260000,6 +259961,45 @@
       "lon": 19.18622398376465,
       "elozo_szoveg": "Pestszentlőrinc, Szarvas csárda tér",
       "uj_szoveg": "Pestszentimre"
+    },
+    {
+      "idopont": "2026-11-12T03:54:15.133735+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.503746032714844,
+      "lon": 19.140106201171875,
+      "elozo_szoveg": "Astoria M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-12T03:54:15.136641+02:00",
+      "kulcs": "RVY715",
+      "rendszam": "RVY715",
+      "vehicle_id": "7464",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.59849166870117,
+      "lon": 19.121259689331055,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-12T03:54:15.136889+02:00",
+      "kulcs": "SIF013",
+      "rendszam": "SIF013",
+      "vehicle_id": "7752",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46249771118164,
+      "lon": 19.13309669494629,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
