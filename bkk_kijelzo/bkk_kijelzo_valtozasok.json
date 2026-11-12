@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-12T05:09:52.039365+02:00",
+  "frissitve": "2026-11-12T05:10:24.074441+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:26:09.353620+02:00",
-      "kulcs": "AAHY840",
-      "rendszam": "AAHY840",
-      "vehicle_id": "401",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "25",
-      "route_id": "0250",
-      "lat": 47.55958938598633,
-      "lon": 19.089418411254883,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-11-11T15:26:09.353733+02:00",
-      "kulcs": "AAHY855",
-      "rendszam": "AAHY855",
-      "vehicle_id": "417",
-      "vehicle_label": "Göncz Árpád városkp. M",
-      "vonal_szam": "120",
-      "route_id": "1200",
-      "lat": 47.559844970703125,
-      "lon": 19.093990325927734,
-      "elozo_szoveg": "Újpest-központ M",
-      "uj_szoveg": "Göncz Árpád városközpont M"
-    },
-    {
-      "idopont": "2026-11-11T15:26:09.355116+02:00",
-      "kulcs": "V1353",
-      "rendszam": "V1353",
-      "vehicle_id": "4454",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.499244689941406,
-      "lon": 19.08258628845215,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
     {
       "idopont": "2026-11-11T15:26:09.355693+02:00",
       "kulcs": "AAMH629",
@@ -260000,6 +259961,45 @@
       "lon": 19.216938018798828,
       "elozo_szoveg": "Gyál, Vecsési út",
       "uj_szoveg": "Vecsési út ► Boráros tér H"
+    },
+    {
+      "idopont": "2026-11-12T05:10:24.014998+02:00",
+      "kulcs": "FLR746",
+      "rendszam": "FLR746",
+      "vehicle_id": "3160",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "202E",
+      "route_id": "2025",
+      "lat": 47.48546600341797,
+      "lon": 19.288084030151367,
+      "elozo_szoveg": "Csaba vezér tér ► Kőbánya-Kispest M",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-11-12T05:10:24.015811+02:00",
+      "kulcs": "V2281",
+      "rendszam": "V2281",
+      "vehicle_id": "579",
+      "vehicle_label": "Gubacsi út / Határ út",
+      "vonal_szam": "3",
+      "route_id": "3030",
+      "lat": 47.45530319213867,
+      "lon": 19.113880157470703,
+      "elozo_szoveg": "Pestszentlőrinc, Béke tér",
+      "uj_szoveg": "Gubacsi út / Határ út"
+    },
+    {
+      "idopont": "2026-11-12T05:10:24.016159+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Szent Imre tér",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49816131591797,
+      "lon": 19.054725646972656,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Csepel, Szent Imre tér"
     }
   ]
 }
