@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-12T02:09:30.507542+02:00",
+  "frissitve": "2026-11-12T02:10:05.061187+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:06:44.272550+02:00",
-      "kulcs": "V2220",
-      "rendszam": "V2220",
-      "vehicle_id": "5860",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.47755813598633,
-      "lon": 19.046737670898438,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-11T15:06:44.272677+02:00",
-      "kulcs": "MXJ012",
-      "rendszam": "MXJ012",
-      "vehicle_id": "5888",
-      "vehicle_label": "Budai Vár (Dísz tér)",
-      "vonal_szam": "216",
-      "route_id": "2160",
-      "lat": 47.49766540527344,
-      "lon": 19.053054809570312,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Budai Vár (Dísz tér)"
-    },
-    {
-      "idopont": "2026-11-11T15:06:44.272739+02:00",
-      "kulcs": "MUT885",
-      "rendszam": "MUT885",
-      "vehicle_id": "5938",
-      "vehicle_label": "Alacskai úti lakótelep",
-      "vonal_szam": "254E",
-      "route_id": "2545",
-      "lat": 47.47591018676758,
-      "lon": 19.10051155090332,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Alacskai úti lakótelep"
-    },
     {
       "idopont": "2026-11-11T15:06:44.273788+02:00",
       "kulcs": "NCV288",
@@ -260000,6 +259961,45 @@
       "lon": 19.201200485229492,
       "elozo_szoveg": "Alacskai úti lakótelep ► Pestszentimre",
       "uj_szoveg": "Pestszentimre ► Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-11-12T02:10:04.989687+02:00",
+      "kulcs": "MOS295",
+      "rendszam": "MOS295",
+      "vehicle_id": "5748",
+      "vehicle_label": "Pécel",
+      "vonal_szam": "969",
+      "route_id": "9690",
+      "lat": 47.49704360961914,
+      "lon": 19.0556640625,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-11-12T02:10:04.990234+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.49715042114258,
+      "lon": 19.055450439453125,
+      "elozo_szoveg": "Deák Ferenc tér M",
+      "uj_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-12T02:10:04.990457+02:00",
+      "kulcs": "AOFL251",
+      "rendszam": "AOFL251",
+      "vehicle_id": "840",
+      "vehicle_label": "Pestszentimre",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.435054779052734,
+      "lon": 19.20197105407715,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Alacskai úti lakótelep ► Pestszentimre"
     }
   ]
 }
