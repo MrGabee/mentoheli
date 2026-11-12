@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-12T02:45:22.506035+02:00",
+  "frissitve": "2026-11-12T02:45:54.587219+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:10:24.300868+02:00",
-      "kulcs": "T8009",
-      "rendszam": "T8009",
-      "vehicle_id": "6129",
-      "vehicle_label": "Népliget M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.48726272583008,
-      "lon": 19.057504653930664,
-      "elozo_szoveg": "Fővám tér M",
-      "uj_szoveg": "Népliget M"
-    },
-    {
-      "idopont": "2026-11-11T15:10:24.301054+02:00",
-      "kulcs": "T9009",
-      "rendszam": "T9009",
-      "vehicle_id": "6148",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.51408004760742,
-      "lon": 19.049591064453125,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-11T15:10:24.301526+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.50667953491211,
-      "lon": 19.023866653442383,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-11-11T15:10:24.302069+02:00",
-      "kulcs": "NTP541",
-      "rendszam": "NTP541",
-      "vehicle_id": "6517",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "155",
-      "route_id": "1550",
-      "lat": 47.51115036010742,
-      "lon": 18.97211265563965,
-      "elozo_szoveg": "Fácános tér",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-11T15:10:24.302349+02:00",
       "kulcs": "AADI591",
@@ -260000,6 +259948,58 @@
       "lon": 19.01419448852539,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Budatétény"
+    },
+    {
+      "idopont": "2026-11-12T02:45:54.516528+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.484519958496094,
+      "lon": 19.126739501953125,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-12T02:45:54.516736+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "917A",
+      "route_id": "9171",
+      "lat": 47.478126525878906,
+      "lon": 19.04517936706543,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-11-12T02:45:54.517045+02:00",
+      "kulcs": "SKR832",
+      "rendszam": "SKR832",
+      "vehicle_id": "7718",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54678726196289,
+      "lon": 19.142559051513672,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-12T02:45:54.517058+02:00",
+      "kulcs": "SGY814",
+      "rendszam": "SGY814",
+      "vehicle_id": "7732",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.487213134765625,
+      "lon": 19.066856384277344,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
