@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T01:01:03.877345+02:00",
+  "frissitve": "2026-11-13T01:01:43.351645+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:37:59.417299+02:00",
-      "kulcs": "FLR702",
-      "rendszam": "FLR702",
-      "vehicle_id": "3116",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.441593170166016,
-      "lon": 19.03420066833496,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-11-12T15:37:59.417314+02:00",
-      "kulcs": "FLR703",
-      "rendszam": "FLR703",
-      "vehicle_id": "3117",
-      "vehicle_label": "Cinkota, Lassú utca",
-      "vonal_szam": "45",
-      "route_id": "0450",
-      "lat": 47.50567626953125,
-      "lon": 19.136632919311523,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Cinkota, Lassú utca"
-    },
-    {
-      "idopont": "2026-11-12T15:37:59.417415+02:00",
-      "kulcs": "FLR735",
-      "rendszam": "FLR735",
-      "vehicle_id": "3149",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "97E",
-      "route_id": "0975",
-      "lat": 47.46780014038086,
-      "lon": 19.302440643310547,
-      "elozo_szoveg": "Rákoskert sugárút",
-      "uj_szoveg": "Rákoskert sugárút ► Örs vezér tere M+H"
-    },
     {
       "idopont": "2026-11-12T15:37:59.417573+02:00",
       "kulcs": "AAGL289",
@@ -260000,6 +259961,45 @@
       "lon": 19.159252166748047,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-13T01:01:43.276915+02:00",
+      "kulcs": "FKU901",
+      "rendszam": "FKU901",
+      "vehicle_id": "3057",
+      "vehicle_label": "Kőbánya alsó vasútáll.",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.46474075317383,
+      "lon": 19.127769470214844,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Újhegyi lakótelep ► Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-13T01:01:43.277693+02:00",
+      "kulcs": "PKN610",
+      "rendszam": "PKN610",
+      "vehicle_id": "7199",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.49770736694336,
+      "lon": 19.235942840576172,
+      "elozo_szoveg": "Puskás Ferenc Stadion M",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-13T01:01:43.277967+02:00",
+      "kulcs": "AADI595",
+      "rendszam": "AADI595",
+      "vehicle_id": "91",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.49930953979492,
+      "lon": 19.07756233215332,
+      "elozo_szoveg": "Solymári elágazás",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
     }
   ]
 }
