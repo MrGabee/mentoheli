@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-12T05:19:41.083837+02:00",
+  "frissitve": "2026-11-12T05:20:12.641538+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:27:08.116952+02:00",
-      "kulcs": "AOFL221",
-      "rendszam": "AOFL221",
-      "vehicle_id": "808",
-      "vehicle_label": "Kurucles",
-      "vonal_szam": "129",
-      "route_id": "1290",
-      "lat": 47.50768280029297,
-      "lon": 19.024477005004883,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Kurucles"
-    },
-    {
-      "idopont": "2026-11-11T15:27:08.116987+02:00",
-      "kulcs": "AOFL226",
-      "rendszam": "AOFL226",
-      "vehicle_id": "813",
-      "vehicle_label": "Kissvábhegy",
-      "vonal_szam": "39",
-      "route_id": "0390",
-      "lat": 47.505897521972656,
-      "lon": 19.03886604309082,
-      "elozo_szoveg": "Batthyány tér M+H",
-      "uj_szoveg": "Kissvábhegy"
-    },
-    {
-      "idopont": "2026-11-11T15:27:08.117053+02:00",
-      "kulcs": "AOFL234",
-      "rendszam": "AOFL234",
-      "vehicle_id": "822",
-      "vehicle_label": "Mártonhegy",
-      "vonal_szam": "102",
-      "route_id": "1020",
-      "lat": 47.50716018676758,
-      "lon": 19.023130416870117,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Mártonhegy"
-    },
-    {
-      "idopont": "2026-11-11T15:27:08.117313+02:00",
-      "kulcs": "AOIB794",
-      "rendszam": "AOIB794",
-      "vehicle_id": "865",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "153",
-      "route_id": "1530",
-      "lat": 47.471553802490234,
-      "lon": 19.06389617919922,
-      "elozo_szoveg": "Infopark",
-      "uj_szoveg": "Gazdagréti tér"
-    },
-    {
-      "idopont": "2026-11-11T15:27:08.117352+02:00",
-      "kulcs": "AOIB798",
-      "rendszam": "AOIB798",
-      "vehicle_id": "869",
-      "vehicle_label": "Gazdagréti tér",
-      "vonal_szam": "154",
-      "route_id": "1540",
-      "lat": 47.46876525878906,
-      "lon": 19.056175231933594,
-      "elozo_szoveg": "Infopark ► BudaPart",
-      "uj_szoveg": "Újbuda-központ M ► Gazdagréti tér"
-    },
     {
       "idopont": "2026-11-11T15:27:08.117745+02:00",
       "kulcs": "915-658-916-943-672-944",
@@ -260000,6 +259935,71 @@
       "lon": 18.99551010131836,
       "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
       "uj_szoveg": "Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-12T05:20:12.582900+02:00",
+      "kulcs": "V2019",
+      "rendszam": "V2019",
+      "vehicle_id": "2019",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.496421813964844,
+      "lon": 19.070817947387695,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-12T05:20:12.584299+02:00",
+      "kulcs": "V1439",
+      "rendszam": "V1439",
+      "vehicle_id": "4509",
+      "vehicle_label": "Jászai Mari tér",
+      "vonal_szam": "2",
+      "route_id": "3020",
+      "lat": 47.46747970581055,
+      "lon": 19.075891494750977,
+      "elozo_szoveg": "Közvágóhíd H",
+      "uj_szoveg": "Jászai Mari tér"
+    },
+    {
+      "idopont": "2026-11-12T05:20:12.584775+02:00",
+      "kulcs": "NWB359",
+      "rendszam": "NWB359",
+      "vehicle_id": "6539",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "198",
+      "route_id": "1980",
+      "lat": 47.499732971191406,
+      "lon": 19.28699493408203,
+      "elozo_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-12T05:20:12.585005+02:00",
+      "kulcs": "PKN631",
+      "rendszam": "PKN631",
+      "vehicle_id": "7220",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "98",
+      "route_id": "0980",
+      "lat": 47.493736267089844,
+      "lon": 19.278261184692383,
+      "elozo_szoveg": "Rákoscsaba vasútállomás",
+      "uj_szoveg": "Kőbánya-Kispest M"
+    },
+    {
+      "idopont": "2026-11-12T05:20:12.585101+02:00",
+      "kulcs": "RVY603",
+      "rendszam": "RVY603",
+      "vehicle_id": "7432",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "284E",
+      "route_id": "2845",
+      "lat": 47.399147033691406,
+      "lon": 19.205608367919922,
+      "elozo_szoveg": "Pestszentimre, Benjámin utca",
+      "uj_szoveg": "Kőbánya-Kispest M"
     }
   ]
 }
