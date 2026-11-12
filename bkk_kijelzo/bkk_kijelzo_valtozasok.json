@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-12T03:18:48.171949+02:00",
+  "frissitve": "2026-11-12T03:19:24.578871+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:14:11.583026+02:00",
-      "kulcs": "FKU933",
-      "rendszam": "FKU933",
-      "vehicle_id": "3089",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "7",
-      "route_id": "0070",
-      "lat": 47.44157409667969,
-      "lon": 19.034217834472656,
-      "elozo_szoveg": "Albertfalva vasútállomás",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-11-11T15:14:11.583068+02:00",
-      "kulcs": "FKU943",
-      "rendszam": "FKU943",
-      "vehicle_id": "3099",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "168E",
-      "route_id": "1685",
-      "lat": 47.466617584228516,
-      "lon": 19.234670639038086,
-      "elozo_szoveg": "Rákoshegy ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-11T15:14:11.583144+02:00",
-      "kulcs": "FLR705",
-      "rendszam": "FLR705",
-      "vehicle_id": "3119",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.51625442504883,
-      "lon": 19.18804168701172,
-      "elozo_szoveg": "Centenáriumi lakótelep",
-      "uj_szoveg": "Veres Péter út ► Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-11T15:14:11.583280+02:00",
-      "kulcs": "FLR737",
-      "rendszam": "FLR737",
-      "vehicle_id": "3151",
-      "vehicle_label": "Centenáriumi lakótelep",
-      "vonal_szam": "44",
-      "route_id": "0440",
-      "lat": 47.503414154052734,
-      "lon": 19.138591766357422,
-      "elozo_szoveg": "Veres Péter út ► Centenáriumi lakótelep",
-      "uj_szoveg": "Centenáriumi lakótelep"
-    },
-    {
-      "idopont": "2026-11-11T15:14:11.583536+02:00",
-      "kulcs": "LOV865",
-      "rendszam": "LOV865",
-      "vehicle_id": "3657",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46451950073242,
-      "lon": 19.12676239013672,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-11-11T15:14:11.583627+02:00",
       "kulcs": "AAHY813",
@@ -260000,6 +259935,71 @@
       "lon": 19.0662899017334,
       "elozo_szoveg": "Békásmegyer, Újmegyeri tér",
       "uj_szoveg": "B.megyer, Újmegyeri tér"
+    },
+    {
+      "idopont": "2026-11-12T03:19:24.520462+02:00",
+      "kulcs": "T8104",
+      "rendszam": "T8104",
+      "vehicle_id": "7341",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50372314453125,
+      "lon": 19.07587432861328,
+      "elozo_szoveg": "Rózsa utca ► Deák Ferenc tér M",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-12T03:19:24.520597+02:00",
+      "kulcs": "SKR807",
+      "rendszam": "SKR807",
+      "vehicle_id": "7693",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.410465240478516,
+      "lon": 19.060543060302734,
+      "elozo_szoveg": "Csepel, Csillagtelep",
+      "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-12T03:19:24.520612+02:00",
+      "kulcs": "SKR808",
+      "rendszam": "SKR808",
+      "vehicle_id": "7694",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.49983215332031,
+      "lon": 19.135574340820312,
+      "elozo_szoveg": "Örs vezér tere M H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-12T03:19:24.520770+02:00",
+      "kulcs": "AOFL251",
+      "rendszam": "AOFL251",
+      "vehicle_id": "840",
+      "vehicle_label": "Szarvas csárda tér",
+      "vonal_szam": "983",
+      "route_id": "9830",
+      "lat": 47.41569519042969,
+      "lon": 19.20438575744629,
+      "elozo_szoveg": "Pestszentimre ► Szarvas csárda tér",
+      "uj_szoveg": "Pestszentlőrinc, Szarvas csárda tér"
+    },
+    {
+      "idopont": "2026-11-12T03:19:24.520853+02:00",
+      "kulcs": "AADI602",
+      "rendszam": "AADI602",
+      "vehicle_id": "99",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.414180755615234,
+      "lon": 18.99681282043457,
+      "elozo_szoveg": "Baross Gábor-telep ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás"
     }
   ]
 }
