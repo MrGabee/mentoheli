@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-12T02:52:06.765250+02:00",
+  "frissitve": "2026-11-12T02:52:35.603587+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:12:02.159406+02:00",
-      "kulcs": "AAHY825",
-      "rendszam": "AAHY825",
-      "vehicle_id": "386",
-      "vehicle_label": "Újpest-központ M",
-      "vonal_szam": "220",
-      "route_id": "2200",
-      "lat": 47.57749557495117,
-      "lon": 19.106393814086914,
-      "elozo_szoveg": "Izzó utcai lakótelep",
-      "uj_szoveg": "Izzó utcai lakótelep ► Újpest-központ M"
-    },
-    {
-      "idopont": "2026-11-11T15:12:02.159702+02:00",
-      "kulcs": "T0607",
-      "rendszam": "T0607",
-      "vehicle_id": "4291",
-      "vehicle_label": "Kossuth Lajos tér M",
-      "vonal_szam": "78",
-      "route_id": "4780",
-      "lat": 47.50197219848633,
-      "lon": 19.082021713256836,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kossuth Lajos tér M"
-    },
-    {
-      "idopont": "2026-11-11T15:12:02.159764+02:00",
-      "kulcs": "T0705",
-      "rendszam": "T0705",
-      "vehicle_id": "4307",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.49563980102539,
-      "lon": 19.06167221069336,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
     {
       "idopont": "2026-11-11T15:12:02.159875+02:00",
       "kulcs": "V1327",
@@ -260000,6 +259961,45 @@
       "lon": 19.007352828979492,
       "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
       "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-11-12T02:52:35.544696+02:00",
+      "kulcs": "MUT884",
+      "rendszam": "MUT884",
+      "vehicle_id": "5937",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.46326446533203,
+      "lon": 19.131330490112305,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-12T02:52:35.545158+02:00",
+      "kulcs": "SKR825",
+      "rendszam": "SKR825",
+      "vehicle_id": "7711",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.52008819580078,
+      "lon": 19.038043975830078,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-12T02:52:35.545327+02:00",
+      "kulcs": "AOIM034",
+      "rendszam": "AOIM034",
+      "vehicle_id": "954",
+      "vehicle_label": "Nagytétény, ipartelep",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.479164123535156,
+      "lon": 19.050527572631836,
+      "elozo_szoveg": "Móricz Zsigmond körtér M ► Nagytétény, ipartelep",
+      "uj_szoveg": "Nagytétény, ipartelep"
     }
   ]
 }
