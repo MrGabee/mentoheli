@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-12T04:27:04.050945+02:00",
+  "frissitve": "2026-11-12T04:27:34.437826+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:19:59.036930+02:00",
-      "kulcs": "PMP921",
-      "rendszam": "PMP921",
-      "vehicle_id": "7239",
-      "vehicle_label": "Óbuda, Bogdáni út",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.4838752746582,
-      "lon": 19.127775192260742,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Óbuda, Bogdáni út"
-    },
-    {
-      "idopont": "2026-11-11T15:19:59.036971+02:00",
-      "kulcs": "V1621",
-      "rendszam": "V1621",
-      "vehicle_id": "7290",
-      "vehicle_label": "Sörgyár",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.49288558959961,
-      "lon": 19.085872650146484,
-      "elozo_szoveg": "Teleki László tér",
-      "uj_szoveg": "Salgótarjáni utca ► Sörgyár"
-    },
-    {
-      "idopont": "2026-11-11T15:19:59.037067+02:00",
-      "kulcs": "RCT314",
-      "rendszam": "RCT314",
-      "vehicle_id": "7328",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "123A",
-      "route_id": "1231",
-      "lat": 47.41660690307617,
-      "lon": 19.131132125854492,
-      "elozo_szoveg": "Szentlőrinci úti lakótelep",
-      "uj_szoveg": "Szentlőrinci úti ltp."
-    },
-    {
-      "idopont": "2026-11-11T15:19:59.037137+02:00",
-      "kulcs": "T8103",
-      "rendszam": "T8103",
-      "vehicle_id": "7340",
-      "vehicle_label": "Fővám tér M",
-      "vonal_szam": "83",
-      "route_id": "4830",
-      "lat": 47.475955963134766,
-      "lon": 19.10006332397461,
-      "elozo_szoveg": "Népliget M",
-      "uj_szoveg": "Fővám tér M"
-    },
-    {
-      "idopont": "2026-11-11T15:19:59.037398+02:00",
-      "kulcs": "V2251",
-      "rendszam": "V2251",
-      "vehicle_id": "7383",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "19",
-      "route_id": "3190",
-      "lat": 47.47759246826172,
-      "lon": 19.04743003845215,
-      "elozo_szoveg": "KOCSISZÍNBE  Móricz Zs. körtér M",
-      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-11-11T15:19:59.037477+02:00",
       "kulcs": "DPI206",
@@ -260000,6 +259935,71 @@
       "lon": 19.055482864379883,
       "elozo_szoveg": "Deák Ferenc tér M",
       "uj_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-12T04:27:34.347873+02:00",
+      "kulcs": "AADI591",
+      "rendszam": "AADI591",
+      "vehicle_id": "70",
+      "vehicle_label": "Móricz Zsigmond körtér M",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50864028930664,
+      "lon": 19.02726936340332,
+      "elozo_szoveg": "Széll Kálmán tér M ► Móricz Zsigmond körtér M",
+      "uj_szoveg": "Móricz Zsigmond körtér M"
+    },
+    {
+      "idopont": "2026-11-12T04:27:34.347988+02:00",
+      "kulcs": "PKN608",
+      "rendszam": "PKN608",
+      "vehicle_id": "7197",
+      "vehicle_label": "Cinkotai autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.54684829711914,
+      "lon": 19.142547607421875,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Cinkotai autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-12T04:27:34.348358+02:00",
+      "kulcs": "SKR819",
+      "rendszam": "SKR819",
+      "vehicle_id": "7705",
+      "vehicle_label": "Göncz Árpád városkp. M",
+      "vonal_szam": "901",
+      "route_id": "9010",
+      "lat": 47.46464920043945,
+      "lon": 19.022968292236328,
+      "elozo_szoveg": "Kelenföld vasútállomás M",
+      "uj_szoveg": "Göncz Árpád városközpont M"
+    },
+    {
+      "idopont": "2026-11-12T04:27:34.348430+02:00",
+      "kulcs": "SKR832",
+      "rendszam": "SKR832",
+      "vehicle_id": "7718",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.426658630371094,
+      "lon": 19.16107749938965,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-12T04:27:34.348507+02:00",
+      "kulcs": "JARMU1",
+      "rendszam": "JARMU1",
+      "vehicle_id": "7834",
+      "vehicle_label": "Szentlélek tér H",
+      "vonal_szam": "218",
+      "route_id": "2180",
+      "lat": 47.60909652709961,
+      "lon": 18.98974609375,
+      "elozo_szoveg": "Üröm ► Pilisborosjenő",
+      "uj_szoveg": "Szentlélek tér H"
     }
   ]
 }
