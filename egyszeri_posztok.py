@@ -430,6 +430,17 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "erdosor_rakoczi_baleset_20261112": (date(2026, 11, 12), """🚨 BALESET CSEPELEN – Erdősor utca / II. Rákóczi Ferenc út
+
+Egy olvasóm jelezte, hogy az Erdősor utca és a II. Rákóczi Ferenc út kereszteződésében két személyautó ütközött.
+
+⚠️ Arra járva lassítsatok, figyeljetek a helyszínen dolgozókra, és számítsatok torlódásra. Ha tehetitek, kerüljétek el a kereszteződést.
+
+Remélem, senki nem sérült meg komolyan. 🙏
+
+Köszönöm az olvasónak a jelzést! Ha többet tudtok, írjatok nyugodtan.
+
+#Csepel #baleset #Erdősorutca #RákócziFerencút"""),
     "erdosor_frissites_20261111": (date(2026, 11, 11), """🔄 FRISSÍTÉS – Erdősor utca / Festő utca: jó hírek a kisfiúról 💙
 
 A délutáni baleset után valósággal elleptek az üzenetek és a telefonhívások. Rengetegen kerestetek, és mindenki a kisfiú állapota felől érdeklődött. Köszönöm, hogy ennyien aggódtatok érte! 🙏

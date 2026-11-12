@@ -62,7 +62,7 @@ def kapcsolat_sor(nap, kulcs):
 # Ezek a jó éjszakát után is kimennek (azonnali, sürgős olvasói figyelmeztetés)
 EJJEL_IS = {"erdosor_frissites_20261111", "betoro_kiralyerdo_20261106"}
 
-KAPCSOLAT_NELKUL = {"erdosor_frissites_20261111", "telefon_148_20261110", "vedgat_vasas_szemet_20261108", "tejut_kut_20261108", "mvm_befizetes_20261107", "tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "zsido_temeto_20261101", "birkozo_vb_20261101", "talalt_berlet_20261101", "kozvilagitas_bajcsy_20261102", "szemeszet_csillagtelep_20261102", "gubacsi_csavar_20261103", "szabotelep_tabla_20261103", "m0_ko_tanu_20261103", "szomszed_zaj_20261104", "betoro_kiralyerdo_20261106", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
+KAPCSOLAT_NELKUL = {"erdosor_rakoczi_baleset_20261112", "erdosor_frissites_20261111", "telefon_148_20261110", "vedgat_vasas_szemet_20261108", "tejut_kut_20261108", "mvm_befizetes_20261107", "tankerulet_reggel", "tankerulet_este", "rovat_vallalkozas", "vallalkozas", "vallalkozas_20261022", "olvasoi_level_20261022", "kaszkador_20261023", "heimpal_20261023", "oraallitas_20261025", "mentok_20261027", "telefon_meki_20261030", "tesco_mentok_20261030", "nyitvatartas_mindenszentek_20261030", "parkolas_szentimre_20261031", "arpad_utca_tabla_20261031", "zsido_temeto_20261101", "birkozo_vb_20261101", "talalt_berlet_20261101", "kozvilagitas_bajcsy_20261102", "szemeszet_csillagtelep_20261102", "gubacsi_csavar_20261103", "szabotelep_tabla_20261103", "m0_ko_tanu_20261103", "szomszed_zaj_20261104", "betoro_kiralyerdo_20261106", "csepeli_emlekezes", "allasok", "otlet_keres", "olvasoi_level", "kerulet_problema"}
 
 # Ezekhez a posztokhoz kép is megy (a Make letölti és fotós posztként teszi ki)
 KEP_ALAP = "https://raw.githubusercontent.com/MrGabee/mentoheli/main/kepek/"
@@ -157,6 +157,7 @@ MENETREND = [
     ("tejut_kut_20261108", time(12, 5), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("tejut_kut_20261108", nap)),
     ("vedgat_vasas_szemet_20261108", time(18, 5), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("vedgat_vasas_szemet_20261108", nap)),
     ("erdosor_frissites_20261111", time(22, 35), set(), lambda nap, a: egyszeri_posztok.szoveg("erdosor_frissites_20261111", nap)),  # csak kézi
+    ("erdosor_rakoczi_baleset_20261112", time(12, 35), set(), lambda nap, a: egyszeri_posztok.szoveg("erdosor_rakoczi_baleset_20261112", nap)),  # csak kézi
     ("zsido_temeto_20261101", time(13, 35), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("zsido_temeto_20261101", nap)),
     ("birkozo_vb_20261101", time(16, 50), {VASARNAP}, lambda nap, a: egyszeri_posztok.szoveg("birkozo_vb_20261101", nap)),
     ("telefon_meki_20261030", time(17, 5), {PENTEK}, lambda nap, a: egyszeri_posztok.szoveg("telefon_meki_20261030", nap)),
