@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T01:16:50.049719+02:00",
+  "frissitve": "2026-11-13T01:17:20.740473+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:37:59.427196+02:00",
-      "kulcs": "PDN649",
-      "rendszam": "PDN649",
-      "vehicle_id": "7120",
-      "vehicle_label": "Infopark - BudaPart",
-      "vonal_szam": "154",
-      "route_id": "1540",
-      "lat": 47.473388671875,
-      "lon": 18.99260711669922,
-      "elozo_szoveg": "Gazdagréti tér",
-      "uj_szoveg": "Infopark ► BudaPart"
-    },
-    {
-      "idopont": "2026-11-12T15:37:59.427266+02:00",
-      "kulcs": "PHG630",
-      "rendszam": "PHG630",
-      "vehicle_id": "7154",
-      "vehicle_label": "Újpalota, Szentmihályi út",
-      "vonal_szam": "175",
-      "route_id": "1750",
-      "lat": 47.52048873901367,
-      "lon": 19.21857261657715,
-      "elozo_szoveg": "Cinkota H",
-      "uj_szoveg": "Újpalota, Szentmihályi út"
-    },
-    {
-      "idopont": "2026-11-12T15:37:59.427289+02:00",
-      "kulcs": "PHG633",
-      "rendszam": "PHG633",
-      "vehicle_id": "7157",
-      "vehicle_label": "Akadémiaújtelep, 525. tér",
-      "vonal_szam": "268",
-      "route_id": "2680",
-      "lat": 47.441524505615234,
-      "lon": 19.14056396484375,
-      "elozo_szoveg": "Kispest, Vas Gereben utca",
-      "uj_szoveg": "Akadémiaújtelep, 525. tér"
-    },
     {
       "idopont": "2026-11-12T15:37:59.427638+02:00",
       "kulcs": "PMP920",
@@ -260000,6 +259961,45 @@
       "lon": 19.18614959716797,
       "elozo_szoveg": "Határ út M",
       "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-11-13T01:17:20.668073+02:00",
+      "kulcs": "AADI580",
+      "rendszam": "AADI580",
+      "vehicle_id": "66",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.498573303222656,
+      "lon": 18.96394920349121,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
+    },
+    {
+      "idopont": "2026-11-13T01:17:20.668118+02:00",
+      "kulcs": "PDN627",
+      "rendszam": "PDN627",
+      "vehicle_id": "7098",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48670196533203,
+      "lon": 19.067890167236328,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
+    },
+    {
+      "idopont": "2026-11-13T01:17:20.668319+02:00",
+      "kulcs": "AOHZ844",
+      "rendszam": "AOHZ844",
+      "vehicle_id": "856",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56707763671875,
+      "lon": 19.12824821472168,
+      "elozo_szoveg": "Szentlélek tér H",
+      "uj_szoveg": "Astoria M ► Máriaremete"
     }
   ]
 }
