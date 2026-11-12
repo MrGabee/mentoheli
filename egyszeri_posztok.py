@@ -430,6 +430,17 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "busz_baleset_erdoalja_20261112": (date(2026, 11, 12), """🚨 BUSZ ÉS AUTÓ ÜTKÖZÖTT CSEPELEN – Szent István út / Erdőalja utca
+
+Menetrend szerint közlekedő autóbusz ütközött egy személyautóval Csepelen, a Szent István út és az Erdőalja utca kereszteződésében.
+
+Helyszíni információim szerint az autó az Erdőalja utcán haladt a Völgy utca felől. A Szent István úti kereszteződéshez érve észrevette a balról érkező 148-as buszt, de a sofőr úgy látta, hogy egy 152-es érkezik, amely jobbra kanyarodik. A busz azonban nem fordult be, és a két jármű összeütközött. Az ütközés erejétől az autó felcsapódott a járdára.
+
+🙏 A buszon szerencsére senki nem sérült meg, az utasok épségben szálltak le. Az autóban csak a sofőr ült, ő a baleset után sokkos állapotba került.
+
+⚠️ Arra járva lassítsatok, és számítsatok torlódásra, amíg a helyszínelés tart.
+
+#Csepel #baleset #SzentIstvánút #148"""),
     "sakk_klub_20261112": (date(2026, 11, 12), """♟️ OLVASÓI KÉRDÉS – Van működő sakkklub a kerületben?
 
 Egy olvasóm azt kérdezi, van-e Csepelen ténylegesen működő sakkklub, ahová nem csak profik járhatnak, hanem kezdők, hobbisakkozók is.
