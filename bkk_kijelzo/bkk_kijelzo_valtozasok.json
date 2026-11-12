@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T01:32:56.367170+02:00",
+  "frissitve": "2026-11-13T01:33:28.669370+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:39:57.058437+02:00",
-      "kulcs": "V1321",
-      "rendszam": "V1321",
-      "vehicle_id": "4425",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "23",
-      "route_id": "3230",
-      "lat": 47.512420654296875,
-      "lon": 19.04769515991211,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-12T15:39:57.058687+02:00",
-      "kulcs": "V1433",
-      "rendszam": "V1433",
-      "vehicle_id": "4503",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "49",
-      "route_id": "3490",
-      "lat": 47.49736785888672,
-      "lon": 19.055410385131836,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-12T15:39:57.058746+02:00",
-      "kulcs": "AAMH611",
-      "rendszam": "AAMH611",
-      "vehicle_id": "454",
-      "vehicle_label": "Káp.megyer, Szilas-patak",
-      "vonal_szam": "20E",
-      "route_id": "0205",
-      "lat": 47.49961471557617,
-      "lon": 19.08307456970215,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
-    },
     {
       "idopont": "2026-11-12T15:39:57.058860+02:00",
       "kulcs": "V1577",
@@ -260000,6 +259961,45 @@
       "lon": 19.079757690429688,
       "elozo_szoveg": "Deák Ferenc tér M ► Csillebérc",
       "uj_szoveg": "Svábhegy ► Csillebérc"
+    },
+    {
+      "idopont": "2026-11-13T01:33:28.576932+02:00",
+      "kulcs": "AEGB791",
+      "rendszam": "AEGB791",
+      "vehicle_id": "546",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.519203186035156,
+      "lon": 19.0382022857666,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-13T01:33:28.578414+02:00",
+      "kulcs": "RVY608",
+      "rendszam": "RVY608",
+      "vehicle_id": "7437",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.4266242980957,
+      "lon": 19.160839080810547,
+      "elozo_szoveg": "József Attila lakótelep, Távíró utca",
+      "uj_szoveg": "Astoria M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-13T01:33:28.578720+02:00",
+      "kulcs": "AOHZ844",
+      "rendszam": "AOHZ844",
+      "vehicle_id": "856",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.514408111572266,
+      "lon": 19.097522735595703,
+      "elozo_szoveg": "Astoria M ► Máriaremete",
+      "uj_szoveg": "Széll Kálmán tér M ► Máriaremete"
     }
   ]
 }
