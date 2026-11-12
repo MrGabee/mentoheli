@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-12T03:27:35.281981+02:00",
+  "frissitve": "2026-11-12T03:28:02.610242+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:14:11.594641+02:00",
-      "kulcs": "STZ866",
-      "rendszam": "STZ866",
-      "vehicle_id": "7821",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "287",
-      "route_id": "2870",
-      "lat": 47.45586395263672,
-      "lon": 18.94022560119629,
-      "elozo_szoveg": "Budaörsi lakótelep",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-11-11T15:14:11.594744+02:00",
-      "kulcs": "T9114",
-      "rendszam": "T9114",
-      "vehicle_id": "7852",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48960494995117,
-      "lon": 19.089920043945312,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-11-11T15:14:11.594914+02:00",
-      "kulcs": "T9137",
-      "rendszam": "T9137",
-      "vehicle_id": "7876",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.52145004272461,
-      "lon": 19.100915908813477,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-11T15:14:11.595003+02:00",
-      "kulcs": "T9147",
-      "rendszam": "T9147",
-      "vehicle_id": "7886",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.50553894042969,
-      "lon": 19.136308670043945,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Örs vezér tere M H"
-    },
     {
       "idopont": "2026-11-11T15:14:11.595105+02:00",
       "kulcs": "T8118",
@@ -260000,6 +259948,58 @@
       "lon": 19.031755447387695,
       "elozo_szoveg": "Bécsi út / Vörösvári út",
       "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-12T03:28:02.539814+02:00",
+      "kulcs": "AAGL297",
+      "rendszam": "AAGL297",
+      "vehicle_id": "329",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45590591430664,
+      "lon": 18.9404354095459,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-12T03:28:02.539919+02:00",
+      "kulcs": "AAMH614",
+      "rendszam": "AAMH614",
+      "vehicle_id": "457",
+      "vehicle_label": "Kelenföld vasútállomás M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50151824951172,
+      "lon": 19.13615608215332,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-12T03:28:02.540348+02:00",
+      "kulcs": "RVY614",
+      "rendszam": "RVY614",
+      "vehicle_id": "7443",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.59788131713867,
+      "lon": 19.054014205932617,
+      "elozo_szoveg": "Békásmegyer H",
+      "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-12T03:28:02.540644+02:00",
+      "kulcs": "AOIM037",
+      "rendszam": "AOIM037",
+      "vehicle_id": "957",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "933",
+      "route_id": "9330",
+      "lat": 47.47511291503906,
+      "lon": 19.046815872192383,
+      "elozo_szoveg": "Astoria M ► Újpalota, Nyírpalota út",
+      "uj_szoveg": "Zugló vasútállomás ► Újpalota, Nyírpalota út"
     }
   ]
 }
