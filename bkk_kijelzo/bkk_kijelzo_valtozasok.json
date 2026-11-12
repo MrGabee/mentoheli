@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-13T01:53:16.353602+02:00",
+  "frissitve": "2026-11-13T01:53:43.556525+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:39:57.071756+02:00",
-      "kulcs": "AOGL323",
-      "rendszam": "AOGL323",
-      "vehicle_id": "914",
-      "vehicle_label": "Apor Vilmos tér",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.54832458496094,
-      "lon": 19.079299926757812,
-      "elozo_szoveg": "Gyöngyösi utca M",
-      "uj_szoveg": "Apor Vilmos tér"
-    },
-    {
-      "idopont": "2026-11-12T15:39:57.072045+02:00",
-      "kulcs": "AOIM012",
-      "rendszam": "AOIM012",
-      "vehicle_id": "931",
-      "vehicle_label": "Csepel, Csillagtelep",
-      "vonal_szam": "36",
-      "route_id": "0360",
-      "lat": 47.454715728759766,
-      "lon": 19.18183135986328,
-      "elozo_szoveg": "Pestszentlőrinc vasútállomás",
-      "uj_szoveg": "Csepel, Csillagtelep"
-    },
     {
       "idopont": "2026-11-12T15:39:57.072498+02:00",
       "kulcs": "AOIM053",
@@ -260000,6 +259974,32 @@
       "lon": 19.25551986694336,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Deák Ferenc tér M"
+    },
+    {
+      "idopont": "2026-11-13T01:53:43.469415+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.579803466796875,
+      "lon": 19.08860969543457,
+      "elozo_szoveg": "Megyer, Szondi utca",
+      "uj_szoveg": "Megyer, Szondi utca ► Újpest-központ M"
+    },
+    {
+      "idopont": "2026-11-13T01:53:43.469987+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4620475769043,
+      "lon": 19.134109497070312,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
