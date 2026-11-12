@@ -430,6 +430,17 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "sakk_klub_20261112": (date(2026, 11, 12), """♟️ OLVASÓI KÉRDÉS – Van működő sakkklub a kerületben?
+
+Egy olvasóm azt kérdezi, van-e Csepelen ténylegesen működő sakkklub, ahová nem csak profik járhatnak, hanem kezdők, hobbisakkozók is.
+
+Utánanéztem: a Csepeli TK sakk-klub (Csepeli Testedző Kör) ma is aktív, a felnőtt csapatuk a budapesti bajnokságban is játszik. A klub honlapja szerint a Templom utca 38.-ban edzenek, főleg gyerekcsoportokkal, hétköznap délutánonként. Hogy kezdő felnőtteket is fogadnak-e, és pontosan mikor, azt érdemes náluk megkérdezni, például a Facebook-oldalukon (Csepeli TK).
+
+👉 Ti tudtok még más helyet a környéken, ahol lehet sakkozni? Klub, szakkör, kávézó, közösségi ház, akár egy baráti társaság, ahol szívesen látnak új játékost? Írjátok meg kommentben! 👇
+
+Köszönöm az olvasónak a kérdést! 🙏
+
+#Csepel #sakk #olvasóikérdés"""),
     "erdosor_rakoczi_baleset_20261112": (date(2026, 11, 12), """🚨 BALESET CSEPELEN – Erdősor utca / II. Rákóczi Ferenc út
 
 Egy olvasóm jelezte, hogy az Erdősor utca és a II. Rákóczi Ferenc út kereszteződésében két személyautó ütközött.
