@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-12T03:03:38.638151+02:00",
+  "frissitve": "2026-11-12T03:04:12.268707+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:13:08.131463+02:00",
-      "kulcs": "AADR719",
-      "rendszam": "AADR719",
-      "vehicle_id": "188",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "26",
-      "route_id": "0260",
-      "lat": 47.532161712646484,
-      "lon": 19.0678653717041,
-      "elozo_szoveg": "Göncz Árpád városközpont M",
-      "uj_szoveg": "Margitsziget ► Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-11T15:13:08.131501+02:00",
-      "kulcs": "V2005",
-      "rendszam": "V2005",
-      "vehicle_id": "2005",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.507328033447266,
-      "lon": 19.025026321411133,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-11T15:13:08.131918+02:00",
-      "kulcs": "AAGL275",
-      "rendszam": "AAGL275",
-      "vehicle_id": "275",
-      "vehicle_label": "Szigetszentmiklós",
-      "vonal_szam": "279B",
-      "route_id": "2792",
-      "lat": 47.38436508178711,
-      "lon": 19.025894165039062,
-      "elozo_szoveg": "Auchan Sziget ► Szigetszentmiklós",
-      "uj_szoveg": "Szigetszentmiklós, Szabadság utca"
-    },
     {
       "idopont": "2026-11-11T15:13:08.131939+02:00",
       "kulcs": "AAGL277",
@@ -260000,6 +259961,45 @@
       "lon": 19.142066955566406,
       "elozo_szoveg": "Újpalota, Nyírpalota út",
       "uj_szoveg": "Astoria M ► Nagytétény, ipartelep"
+    },
+    {
+      "idopont": "2026-11-12T03:04:12.197598+02:00",
+      "kulcs": "AAGL303",
+      "rendszam": "AAGL303",
+      "vehicle_id": "333",
+      "vehicle_label": "Törökbálint, Márta utca",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.45341491699219,
+      "lon": 18.90807342529297,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Törökbálint, Márta utca",
+      "uj_szoveg": "Márta utca ► Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-12T03:04:12.198040+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Mártonhegy",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.5174674987793,
+      "lon": 19.07761001586914,
+      "elozo_szoveg": "Deák Ferenc tér M ► Mártonhegy",
+      "uj_szoveg": "Széll Kálmán tér M ► Mártonhegy"
+    },
+    {
+      "idopont": "2026-11-12T03:04:12.198486+02:00",
+      "kulcs": "SIF013",
+      "rendszam": "SIF013",
+      "vehicle_id": "7752",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.45054244995117,
+      "lon": 19.161073684692383,
+      "elozo_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Dél-pesti autóbuszgarázs"
     }
   ]
 }
