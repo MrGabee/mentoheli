@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-12T04:09:25.151285+02:00",
+  "frissitve": "2026-11-12T04:09:56.973189+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:18:53.141500+02:00",
-      "kulcs": "V4050",
-      "rendszam": "V4050",
-      "vehicle_id": "4739",
-      "vehicle_label": "Móricz Zs. körtér M",
-      "vonal_szam": "61",
-      "route_id": "3610",
-      "lat": 47.50017547607422,
-      "lon": 19.023887634277344,
-      "elozo_szoveg": "Alkotás utca ► Móricz Zsigmond körtér M",
-      "uj_szoveg": "Móricz Zsigmond körtér M"
-    },
-    {
-      "idopont": "2026-11-11T15:18:53.141571+02:00",
-      "kulcs": "V4099",
-      "rendszam": "V4099",
-      "vehicle_id": "4788",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.43637466430664,
-      "lon": 19.038288116455078,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-11T15:18:53.141595+02:00",
-      "kulcs": "AAMH637",
-      "rendszam": "AAMH637",
-      "vehicle_id": "480",
-      "vehicle_label": "Újpest-városkapu M",
-      "vonal_szam": "122E",
-      "route_id": "1225",
-      "lat": 47.59856033325195,
-      "lon": 19.12092399597168,
-      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
-      "uj_szoveg": "Újpest-városkapu M"
-    },
-    {
-      "idopont": "2026-11-11T15:18:53.141643+02:00",
-      "kulcs": "V4133",
-      "rendszam": "V4133",
-      "vehicle_id": "4821",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "56A",
-      "route_id": "3561",
-      "lat": 47.475364685058594,
-      "lon": 19.047182083129883,
-      "elozo_szoveg": "Móricz Zs. körtér M",
-      "uj_szoveg": "Krisztina körút ► Hűvösvölgy"
-    },
-    {
-      "idopont": "2026-11-11T15:18:53.141696+02:00",
-      "kulcs": "AAMH642",
-      "rendszam": "AAMH642",
-      "vehicle_id": "485",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49702835083008,
-      "lon": 19.05573844909668,
-      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
     {
       "idopont": "2026-11-11T15:18:53.141869+02:00",
       "kulcs": "AAMH653",
@@ -260000,6 +259935,71 @@
       "lon": 19.135581970214844,
       "elozo_szoveg": "Örs vezér tere M H",
       "uj_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-12T04:09:56.901158+02:00",
+      "kulcs": "MMM137",
+      "rendszam": "MMM137",
+      "vehicle_id": "5408",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.48552703857422,
+      "lon": 19.12485694885254,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-12T04:09:56.901388+02:00",
+      "kulcs": "AADI567",
+      "rendszam": "AADI567",
+      "vehicle_id": "65",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.525428771972656,
+      "lon": 19.03788948059082,
+      "elozo_szoveg": "Kolosy tér ► Békásmegyer H",
+      "uj_szoveg": "Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-12T04:09:56.901453+02:00",
+      "kulcs": "PDB376",
+      "rendszam": "PDB376",
+      "vehicle_id": "7058",
+      "vehicle_label": "Csáktornya park",
+      "vonal_szam": "912",
+      "route_id": "9120",
+      "lat": 47.499053955078125,
+      "lon": 19.05061149597168,
+      "elozo_szoveg": "Deák Ferenc tér M ► Csáktornya park",
+      "uj_szoveg": "Csáktornya park"
+    },
+    {
+      "idopont": "2026-11-12T04:09:56.901474+02:00",
+      "kulcs": "PDN645",
+      "rendszam": "PDN645",
+      "vehicle_id": "7116",
+      "vehicle_label": "Boráros tér H",
+      "vonal_szam": "958",
+      "route_id": "9580",
+      "lat": 47.423744201660156,
+      "lon": 19.025623321533203,
+      "elozo_szoveg": "Arany Jánoss utcai lakótelep ► Boráros tér H",
+      "uj_szoveg": "Boráros tér H"
+    },
+    {
+      "idopont": "2026-11-12T04:09:56.901549+02:00",
+      "kulcs": "PKN614",
+      "rendszam": "PKN614",
+      "vehicle_id": "7203",
+      "vehicle_label": "Árpádföld",
+      "vonal_szam": "931",
+      "route_id": "9310",
+      "lat": 47.51691436767578,
+      "lon": 19.004749298095703,
+      "elozo_szoveg": "Rózsadomb ► Árpádföld",
+      "uj_szoveg": "Nyugati pályaudvar M ► Árpádföld"
     }
   ]
 }
