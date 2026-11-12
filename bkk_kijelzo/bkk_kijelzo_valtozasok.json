@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-12T04:39:32.600712+02:00",
+  "frissitve": "2026-11-12T04:40:06.505846+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-11T15:21:12.754049+02:00",
-      "kulcs": "RRH130",
-      "rendszam": "RRH130",
-      "vehicle_id": "7405",
-      "vehicle_label": "Piski utca",
-      "vonal_szam": "275",
-      "route_id": "2750",
-      "lat": 47.491634368896484,
-      "lon": 19.2827091217041,
-      "elozo_szoveg": "Rákoscsaba vasútállomás",
-      "uj_szoveg": "Piski utca"
-    },
-    {
-      "idopont": "2026-11-11T15:21:12.754264+02:00",
-      "kulcs": "AOGF663",
-      "rendszam": "AOGF663",
-      "vehicle_id": "745",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "148",
-      "route_id": "1480",
-      "lat": 47.398681640625,
-      "lon": 19.105911254882812,
-      "elozo_szoveg": "Csepel, Soroksári rév",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
     {
       "idopont": "2026-11-11T15:21:12.754287+02:00",
       "kulcs": "RVY703",
@@ -260000,6 +259974,32 @@
       "lon": 19.260765075683594,
       "elozo_szoveg": "XVIII. utca",
       "uj_szoveg": "Rákoscsaba vasútállomás"
+    },
+    {
+      "idopont": "2026-11-12T04:40:06.428411+02:00",
+      "kulcs": "NTM431",
+      "rendszam": "NTM431",
+      "vehicle_id": "6499",
+      "vehicle_label": "Barosstelep vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.42129898071289,
+      "lon": 19.041181564331055,
+      "elozo_szoveg": "Budatétény ► Barosstelep vasútállomás",
+      "uj_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-12T04:40:06.428952+02:00",
+      "kulcs": "SKR821",
+      "rendszam": "SKR821",
+      "vehicle_id": "7707",
+      "vehicle_label": "Zugló vasútállomás",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.49906539916992,
+      "lon": 19.052520751953125,
+      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
+      "uj_szoveg": "Zugló vasútállomás"
     }
   ]
 }
