@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T04:43:21.340775+02:00",
+  "frissitve": "2026-11-13T04:43:51.146318+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:56:10.839288+02:00",
-      "kulcs": "SKR733",
-      "rendszam": "SKR733",
-      "vehicle_id": "7682",
-      "vehicle_label": "Cargo C.-Liszt F. Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.4633903503418,
-      "lon": 19.147449493408203,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Cargo City ► Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-11-12T15:56:10.839317+02:00",
-      "kulcs": "SKR735",
-      "rendszam": "SKR735",
-      "vehicle_id": "7684",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "200E",
-      "route_id": "2005",
-      "lat": 47.46287536621094,
-      "lon": 19.149526596069336,
-      "elozo_szoveg": "Kőbánya-Kispest M",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-11-12T15:56:10.839579+02:00",
-      "kulcs": "SKR832",
-      "rendszam": "SKR832",
-      "vehicle_id": "7718",
-      "vehicle_label": "Ferihegy vá. - Ganztelep",
-      "vonal_szam": "236A",
-      "route_id": "2361",
-      "lat": 47.43617248535156,
-      "lon": 19.173912048339844,
-      "elozo_szoveg": "Havanna-lakótelep",
-      "uj_szoveg": "Ferihegy vasútállomás ► Ganztelep, Mednyánszky utca"
-    },
     {
       "idopont": "2026-11-12T15:56:10.839656+02:00",
       "kulcs": "SGY806",
@@ -260000,6 +259961,45 @@
       "lon": 19.05636978149414,
       "elozo_szoveg": "Béke tér ► Káposztásmegyer",
       "uj_szoveg": "Bőröndös utca ► Mogyoródi-patak"
+    },
+    {
+      "idopont": "2026-11-13T04:43:51.063582+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.44694137573242,
+      "lon": 19.03748893737793,
+      "elozo_szoveg": "Hengermalom út ► Rákosszentmihály vasútállomás",
+      "uj_szoveg": "Astoria M ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-13T04:43:51.065659+02:00",
+      "kulcs": "AAHY823",
+      "rendszam": "AAHY823",
+      "vehicle_id": "384",
+      "vehicle_label": "Megyer, Szondi utca",
+      "vonal_szam": "930",
+      "route_id": "9300",
+      "lat": 47.560455322265625,
+      "lon": 19.09042739868164,
+      "elozo_szoveg": "Újpest-központ M",
+      "uj_szoveg": "Megyer, Szondi utca"
+    },
+    {
+      "idopont": "2026-11-13T04:43:51.066247+02:00",
+      "kulcs": "SKR803",
+      "rendszam": "SKR803",
+      "vehicle_id": "7689",
+      "vehicle_label": "Deák Ferenc tér M",
+      "vonal_szam": "980",
+      "route_id": "9800",
+      "lat": 47.50153350830078,
+      "lon": 19.11508560180664,
+      "elozo_szoveg": "Keleti pályaudvar M ► Deák Ferenc tér M",
+      "uj_szoveg": "Rózsa utca ► Deák Ferenc tér M"
     }
   ]
 }
