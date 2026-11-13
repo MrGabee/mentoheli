@@ -512,6 +512,13 @@
     padding: 14px 16px 16px;
   }
 
+  .uj-cimke {
+    display: inline-block; margin: 0 6px 4px 0; padding: 2px 8px; border-radius: 100px;
+    background: #d6332a; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; vertical-align: middle;
+  }
+  .cam-card.uj-kamera { box-shadow: 0 0 0 2px #d6332a; }
+
   .cam-title {
     font-family: var(--f-display);
     font-weight: 500;
@@ -732,6 +739,7 @@
   <button id="loadBtn">Frissítés</button>
   <select id="sourceFilterSelect" class="filter-select">
     <option value="">Összes forrás</option>
+    <option value="uj">🆕 Csak új kamerák</option>
     <option value="windy">Csak Windy kamerák</option>
     <option value="utinform">Csak Útinform kamerák</option>
     <option value="kozutfigyelo">Csak Közút Figyelő (Budapest) kamerák</option>
@@ -796,6 +804,10 @@
   // fejlécet (lásd: .htaccess a tárhelyen), különben a böngésző blokkolná
   // a választ.
   const DATA_URL_WINDY = 'data/webcams_hu.json';
+  // Az új kamerák nyilvántartása (windy/kamera_nyilvantarto.py, óránként):
+  // melyik kamerát mikor láttuk először. Ennyi napig jelöljük "ÚJ"-nak.
+  const DATA_URL_NYILVANTARTAS = 'data/kamera_nyilvantartas.json';
+  const UJ_KAMERA_NAPOK = 14;
   const DATA_URL_UTINFORM = 'https://baleset-info.hu/tv2/utinform/serve_utinform_webcams.php';
 
   // A Közút Figyelő (Budapest Közút Zrt. fővárosi kameráit mutató saját
@@ -1078,6 +1090,7 @@
   function webcamsForSelectedSource() {
     const source = sourceFilterSelect.value;
     if (!source) return allWebcams;
+    if (source === 'uj') return allWebcams.filter(cam => cam.ujKamera);
     return allWebcams.filter(cam => cam.source === source);
   }
 
@@ -1100,6 +1113,12 @@
     const webcams = [...webcamsIn].sort((a, b) => {
       const labelA = a.title || [a.city, a.region].filter(Boolean).join(', ') || '';
       const labelB = b.title || [b.city, b.region].filter(Boolean).join(', ') || '';
+      // Az új kamerák kerülnek előre, legfrissebb elöl.
+      if (a.ujKamera || b.ujKamera) {
+        if (!a.ujKamera) return 1;
+        if (!b.ujKamera) return -1;
+        if (a.ujKamera !== b.ujKamera) return b.ujKamera.localeCompare(a.ujKamera);
+      }
       return labelA.localeCompare(labelB, 'hu', { sensitivity: 'base' });
     });
 
@@ -1135,7 +1154,7 @@
         : '';
 
       return `
-        <div class="cam-card">
+        <div class="cam-card${cam.ujKamera ? ' uj-kamera' : ''}">
           <div class="cam-image-wrap" data-idx="${idx}" data-media-slot="${idx}" ${isKf ? `data-kf-id="${escapeHtml(String(cam.kfExternalId))}"` : ''}>
             ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
             ${(!imgUrl && isKf) ? `<div class="cam-kf-loading">Kamera kép betöltése…</div>` : ''}
@@ -1144,7 +1163,7 @@
             <div class="source-badge source-${source}">${escapeHtml(sourceLabel)}</div>
           </div>
           <div class="cam-body">
-            <div class="cam-title">${title}</div>
+            <div class="cam-title">${cam.ujKamera ? `<span class="uj-cimke">Új · ${new Date(cam.ujKamera).toLocaleDateString('hu-HU', { month: 'short', day: 'numeric' })}</span>` : ''}${title}</div>
             <div class="cam-location">${escapeHtml(locationLine)}${roadLine ? ` · ${escapeHtml(roadLine)}` : ''}</div>
             <div class="cam-coords">${lat}, ${lon}</div>
             ${mapsUrl ? `<div class="cam-exact-location">📍 ${escapeHtml(locationLine || 'Ismeretlen helyszín')}</div><a href="${mapsUrl}" target="_blank" rel="noopener" class="cam-maps-link">Pontos helyszín Google Mapsen →</a>` : ''}
@@ -1301,7 +1320,9 @@
     const windyCount = webcams.filter(c => c.source === 'windy').length;
     const utinformCount = webcams.filter(c => c.source === 'utinform').length;
     const kozutfigyeloCount = webcams.filter(c => c.source === 'kozutfigyelo').length;
-    const breakdown = `(windy: ${windyCount} · útinform: ${utinformCount} · közútfigyelő: ${kozutfigyeloCount})`;
+    const ujCount = webcams.filter(c => c.ujKamera).length;
+    const breakdown = `(windy: ${windyCount} · útinform: ${utinformCount} · közútfigyelő: ${kozutfigyeloCount})`
+      + (ujCount ? ` · 🆕 új: ${ujCount}` : '');
 
     if (updatedAt) {
       const dt = new Date(updatedAt);
@@ -1358,10 +1379,11 @@
     renderLoading();
 
     try {
-      const [windyResult, utinformResult, kozutfigyeloResult] = await Promise.all([
+      const [windyResult, utinformResult, kozutfigyeloResult, nyilvantartas] = await Promise.all([
         loadOneSource(DATA_URL_WINDY, 'windy'),
         loadOneSource(DATA_URL_UTINFORM, 'utinform'),
         loadKozutfigyeloSource(),
+        fetch(DATA_URL_NYILVANTARTAS, { cache: 'no-store' }).then(r => (r.ok ? r.json() : null)).catch(() => null),
       ]);
 
       if (!windyResult && !utinformResult && !kozutfigyeloResult && !STATIC_WEBCAMS.length) {
@@ -1376,6 +1398,15 @@
         ...(kozutfigyeloResult ? kozutfigyeloResult.webcams : []),
         ...STATIC_WEBCAMS,
       ];
+
+      // "ÚJ" jelölés: a nyilvántartás szerint az utóbbi napokban felbukkant kamerák.
+      const ujHatar = Date.now() - UJ_KAMERA_NAPOK * 24 * 3600 * 1000;
+      const nyKamerak = (nyilvantartas && nyilvantartas.kamerak) || {};
+      allWebcams.forEach(cam => {
+        const bejegyzes = nyKamerak[`${cam.source}:${cam.id}`];
+        const elso = bejegyzes && bejegyzes.elso !== 'alap' ? bejegyzes.elso : null;
+        cam.ujKamera = elso && new Date(elso).getTime() >= ujHatar ? elso : null;
+      });
 
       // A státuszsorban a HÁROM forrás közül a KÉSŐBBI "utoljára frissítve"
       // időpontot mutatjuk - ha valamelyik forrás épp nem töltött be, csak
