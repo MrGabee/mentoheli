@@ -39,8 +39,9 @@ with sync_playwright() as p:
 print('státuszok:', collections.Counter(v['s'] for v in reszl.values()))
 for id_ in ids[:3]:
     print('MINTA', id_, reszl[id_]['t'][:1500])
+json.dump({'hu': hu, 'reszl': reszl}, open('windy/szonda/argos_hu.json', 'w'), ensure_ascii=False)
 print('#### LISTA')
-for e in hu:
+for e in hu[:5]:
     r = reszl.get(e['id'], {})
     urls = sorted(set(re.findall(r'https?://[^"\\\s]+', r.get('t', '').replace('\\/', '/'))))
     print('K|' + '|'.join([e['id'], e['category'], e['media_type'], e['name'], f"{e['lat']:.5f},{e['lon']:.5f}", str(r.get('s'))] + urls[:4]))
