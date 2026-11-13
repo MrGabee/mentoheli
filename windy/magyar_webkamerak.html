@@ -452,6 +452,13 @@
     background: var(--jb-green);
   }
 
+  .argos-link {
+    display: inline-block; justify-self: start; width: fit-content;
+    font-size: 13px; font-weight: 600; color: #c2410c; text-decoration: none;
+    border: 1px solid rgba(194, 65, 12, 0.4); border-radius: 999px; padding: 4px 12px;
+  }
+  .argos-link:hover { background: rgba(194, 65, 12, 0.08); }
+
   .source-pill {
     display: inline-flex;
     align-items: center;
@@ -781,6 +788,7 @@
 <header>
   <div class="eyebrow">Windy Webcams API + Útinform (Magyar Közút) + Közút Figyelő (Budapest Közút)</div>
   <h1>Magyar<span>·</span>Webkamerák</h1>
+  <a class="argos-link" href="argos_valogato.html">ARGOS kamerák válogatása →</a>
   <p class="subtitle">Élő webkamera-előnézetek Magyarországról, három forrásból: a Windy közösségi kameráiból, az Útinform hivatalos országos közútfigyelő kameráiból, és a Budapest Közút "Közút Figyelő" fővárosi kameráiból. A Windy és az Útinform adatait GitHub Actions workflow-k frissítik a szerver oldalon; a Közút Figyelő kamerák képei viszont közvetlenül, a te böngésződben töltődnek be, ahogy görgetsz - ezért néhány ilyen kártyán rövid ideig "Kamera kép betöltése…" felirat látszik, mielőtt megjelenik a kép.</p>
 </header>
 
