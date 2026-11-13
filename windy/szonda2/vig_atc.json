@@ -1,0 +1,112 @@
+{
+ "netindex_hu": [
+  {
+   "n": "hu_kozut",
+   "tag": "HU",
+   "name": "Ungarn – Straßenkameras (Magyar Közút)",
+   "attr": "Magyar Közút – Útinform"
+  }
+ ],
+ "netindex_db": 296,
+ "netindex_minta": [
+  {
+   "n": "caltrans",
+   "tag": "CA",
+   "name": "Kalifornien, USA",
+   "attr": "Caltrans"
+  },
+  {
+   "n": "colorado",
+   "tag": "CO",
+   "name": "Colorado, USA",
+   "attr": "CDOT"
+  },
+  {
+   "n": "wsdot",
+   "tag": "WA",
+   "name": "Washington, USA",
+   "attr": "WSDOT"
+  }
+ ],
+ "netindex_kulcsok": [
+  "nets"
+ ],
+ "pts_kulcsok": [
+  "t",
+  "na",
+  "wt",
+  "wn",
+  "cats",
+  "M",
+  "g",
+  "la",
+  "lo",
+  "f"
+ ],
+ "pts_M_hu": [
+  [
+   "hu_kozut",
+   "HU",
+   "Ungarn – Straßenkameras (Magyar Közút)"
+  ]
+ ],
+ "pts_listak": {
+  "M": [
+   296,
+   [
+    [
+     "colorado",
+     "CO",
+     "Colorado, USA"
+    ],
+    [
+     "caltrans",
+     "CA",
+     "Kalifornien, USA"
+    ],
+    [
+     "wsdot",
+     "WA",
+     "Washington, USA"
+    ]
+   ]
+  ],
+  "g": [
+   296,
+   [
+    820,
+    3432,
+    1668
+   ]
+  ],
+  "la": [
+   173157,
+   [
+    397249,
+    159,
+    71
+   ]
+  ],
+  "lo": [
+   173157,
+   [
+    -1050124,
+    -5083,
+    5030
+   ]
+  ],
+  "f": [
+   173157,
+   [
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "pts_hu_db": 0,
+ "pts_hu_minta": [],
+ "https://alltrafficcams.com/live/border-crossings/serbia/hungary/roszke-horgos/": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://alltrafficcams.com/live/border-crossings/serbia/hungary/roszke-horgos/\", waiting until \"domcontentloaded\"\n",
+ "https://alltrafficcams.com/live/border-crossings/serbia/hungary/tompa-kelebija/": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://alltrafficcams.com/live/border-crossings/serbia/hungary/tompa-kelebija/\", waiting until \"domcontentloaded\"\n",
+ "https://alltrafficcams.com/live/border-crossings/austria/hungary/nickelsdorf-hegyeshalom/": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://alltrafficcams.com/live/border-crossings/austria/hungary/nickelsdorf-hegyeshalom/\nCall log:\n  - navigating to \"https://alltrafficcams.com/live/border-crossings/austria/hungary/nickelsdorf-hegyeshalom/\", waiting until \"domcontentloaded\"\n"
+}
