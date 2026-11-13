@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-13T03:58:58.610892+02:00",
+  "frissitve": "2026-11-13T03:59:31.677450+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:52:02.215417+02:00",
-      "kulcs": "SKR803",
-      "rendszam": "SKR803",
-      "vehicle_id": "7689",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.51359939575195,
-      "lon": 19.002944946289062,
-      "elozo_szoveg": "Rózsadomb ► Nyugati pályaudvar M",
-      "uj_szoveg": "Nyugati pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-12T15:52:02.215470+02:00",
-      "kulcs": "SKR810",
-      "rendszam": "SKR810",
-      "vehicle_id": "7696",
-      "vehicle_label": "Nyugati pályaudvar M",
-      "vonal_szam": "91",
-      "route_id": "0910",
-      "lat": 47.507667541503906,
-      "lon": 19.024959564208984,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Rózsadomb ► Nyugati pályaudvar M"
-    },
     {
       "idopont": "2026-11-12T15:52:02.216005+02:00",
       "kulcs": "STZ844",
@@ -260000,6 +259974,32 @@
       "lon": 19.119543075561523,
       "elozo_szoveg": "Örs vezér tere M+H ► Rákoskert sugárút",
       "uj_szoveg": "Rákoskert sugárút"
+    },
+    {
+      "idopont": "2026-11-13T03:59:31.618998+02:00",
+      "kulcs": "AADI603",
+      "rendszam": "AADI603",
+      "vehicle_id": "100",
+      "vehicle_label": "Budatétény vasútállomás",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.39960479736328,
+      "lon": 18.990503311157227,
+      "elozo_szoveg": "Barosstelep vasútállomás ► Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-13T03:59:31.619182+02:00",
+      "kulcs": "AADR719",
+      "rendszam": "AADR719",
+      "vehicle_id": "188",
+      "vehicle_label": "Csillebérc, Gyermekvasút",
+      "vonal_szam": "910",
+      "route_id": "9100",
+      "lat": 47.500484466552734,
+      "lon": 19.008140563964844,
+      "elozo_szoveg": "Svábhegy ► Csillebérc",
+      "uj_szoveg": "Csillebérc, Gyermekvasút"
     }
   ]
 }
