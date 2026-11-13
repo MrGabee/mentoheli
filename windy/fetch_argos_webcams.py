@@ -15,6 +15,8 @@ tartjuk, így csak az új kamerákat kell egyenként lekérdezni.
 """
 import base64
 import json
+import unicodedata
+from math import asin, cos, radians, sin, sqrt
 import os
 import re
 import sys
@@ -27,7 +29,11 @@ CACHE_FILE = 'windy/data/argos_forras.json'
 BASE = 'https://www.argosatlas.com'
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36')
+NYILVANTARTAS = 'windy/data/kamera_nyilvantartas.json'
 MAX_UJ_LEKERES = int(os.environ.get('ARGOS_MAX_UJ', '1200'))
+# Ennyi méteren belül egy saját közúti kamera = ugyanaz az Útinform-kép
+# (az Argos közúti kamerái az Útinform képei, a Windy ugyanezeket adja).
+KOZUTI_EGYEZES_M = 50
 
 # Magyarország durva határpoligonja (lon, lat)
 HU = [(16.11,46.87),(16.37,46.64),(16.6,46.47),(16.88,46.33),(17.25,46.11),(17.66,45.86),(18.2,45.78),(18.56,45.8),(18.83,45.91),(19.42,46.05),(20.05,46.14),(20.26,46.11),(20.72,46.17),(21.2,46.4),(21.29,46.62),(21.5,46.9),(21.67,47.0),(22.0,47.37),(22.18,47.6),(22.6,47.76),(22.9,48.0),(22.7,48.12),(22.2,48.42),(21.72,48.35),(21.45,48.58),(20.8,48.58),(20.47,48.47),(19.97,48.17),(19.5,48.2),(19.0,48.07),(18.82,47.83),(18.6,47.76),(17.86,47.75),(17.48,47.88),(17.17,48.02),(17.05,47.7),(16.68,47.6),(16.5,47.42),(16.45,47.15),(16.11,46.87)]
@@ -41,6 +47,43 @@ def magyar(la, lo):
         if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1:
             c = not c
     return c
+
+
+def normal(s):
+    s = unicodedata.normalize('NFKD', s or '').encode('ascii', 'ignore').decode().lower()
+    return re.sub(r'[^a-z0-9]+', ' ', s).strip()
+
+
+def tav_m(a, b):
+    la1, lo1, la2, lo2 = map(radians, (a[0], a[1], b[0], b[1]))
+    h = sin((la2 - la1) / 2) ** 2 + cos(la1) * cos(la2) * sin((lo2 - lo1) / 2) ** 2
+    return 2 * 6371000 * asin(sqrt(h))
+
+
+def sajat_kamerak():
+    """A saját forrásaink (Windy, Útinform, Közút Figyelő) nevei és helyei
+    a kamera-nyilvántartásból."""
+    try:
+        ny = json.load(open(NYILVANTARTAS, encoding='utf-8')).get('kamerak', {})
+    except (FileNotFoundError, json.JSONDecodeError):
+        return set(), []
+    nevek = {normal(v.get('nev')) for k, v in ny.items() if not k.startswith('argos:')}
+    helyek = [(v['lat'], v['lon']) for k, v in ny.items()
+              if not k.startswith('argos:') and v.get('lat') is not None]
+    return nevek, helyek
+
+
+def megvan_nalunk(e, kulcs, nevek, helyek):
+    """Igaz, ha ennek az Argos-kamerának a képe a saját forrásainkban is megvan."""
+    if kulcs and re.search(r'windy|utinform|kozut|ikszr', kulcs, re.I):
+        return True
+    if kulcs:  # ismert, más eredeti forrás (worldcam, YouTube, ...)
+        return False
+    if normal(e.get('name')) in nevek:
+        return True
+    if e.get('category') == 'trafico' and helyek:
+        return min(tav_m((e['lat'], e['lon']), h) for h in helyek) <= KOZUTI_EGYEZES_M
+    return False
 
 
 def forraskulcs(stream):
@@ -100,6 +143,25 @@ def main():
                     continue  # következő futáskor újra próbáljuk
                 cache[i] = {'kulcs': forraskulcs(v.get('stream')), 'kind': v.get('kind'),
                             'stream': v.get('stream') if v.get('kind') == 'youtube' else None}
+
+        # Képellenőrzés: van-e állókép (ha nincs és YouTube sem, nem mutatjuk).
+        nevek, helyek = sajat_kamerak()
+        jeloltek = [e for e in hu if not megvan_nalunk(e, cache.get(e['id'], {}).get('kulcs'), nevek, helyek)]
+        ellenorizendo = [e['id'] for e in jeloltek if e['id'] in cache and not cache[e['id']].get('kep_ok')]
+        print(f'{len(jeloltek)} kamera képe nincs meg nálunk; képellenőrzés: {len(ellenorizendo)}')
+        if ellenorizendo:
+            kep = page.evaluate("""async (ids) => {
+                const out = {}; const varj = ms => new Promise(r => setTimeout(r, ms));
+                for (const id of ids) {
+                    try { const r = await fetch('/api/cam/' + id + '/image', {method: 'GET'});
+                          out[id] = r.ok && (r.headers.get('content-type') || '').startsWith('image'); }
+                    catch (e) { out[id] = false; }
+                    await varj(500);
+                }
+                return out;
+            }""", ellenorizendo)
+            for i, ok in kep.items():
+                cache[i]['kep_ok'] = bool(ok)
         b.close()
 
     os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
@@ -111,8 +173,10 @@ def main():
         (cache.get(e['id'], {}).get('kulcs') or 'ismeretlen').rsplit(':', 1)[0] for e in hu).most_common(40))
 
     kamerak = []
-    for e in hu:
+    for e in jeloltek:
         c = cache.get(e['id'], {})
+        if not c.get('kep_ok') and c.get('kind') != 'youtube':
+            continue
         kamerak.append({
             'id': e['id'],
             'source': 'argos',
@@ -123,12 +187,18 @@ def main():
             'eredeti': c.get('kulcs'),
             'latitude': e['lat'],
             'longitude': e['lon'],
-            'image_preview': f"{BASE}/api/cam/{e['id']}/image",
-            'image_thumbnail': f"{BASE}/api/cam/{e['id']}/image",
+            'image_preview': f"{BASE}/api/cam/{e['id']}/image" if c.get('kep_ok') else None,
+            'image_thumbnail': f"{BASE}/api/cam/{e['id']}/image" if c.get('kep_ok') else None,
             'player_embed': c.get('stream'),
         })
+    # Csak akkor frissül az időbélyeg (és lesz commit), ha a lista változott.
+    try:
+        regi = json.load(open(OUTPUT_FILE, encoding='utf-8'))
+    except (FileNotFoundError, json.JSONDecodeError):
+        regi = {}
+    idopont = regi.get('updated_at') if regi.get('webcams') == kamerak else None
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        json.dump({'updated_at': datetime.now(timezone.utc).isoformat(), 'count': len(kamerak),
+        json.dump({'updated_at': idopont or datetime.now(timezone.utc).isoformat(), 'count': len(kamerak),
                    'webcams': kamerak}, f, ensure_ascii=False, indent=1)
     print(f'Elmentve: {OUTPUT_FILE} ({len(kamerak)} kamera)')
 

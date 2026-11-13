@@ -1225,7 +1225,7 @@
       return `
         <div class="cam-card${cam.ujKamera ? ' uj-kamera' : ''}">
           <div class="cam-image-wrap" data-idx="${idx}" data-media-slot="${idx}" ${isKf ? `data-kf-id="${escapeHtml(String(cam.kfExternalId))}"` : ''}>
-            ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
+            ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy"${source === 'argos' ? ' referrerpolicy="no-referrer"' : ''}>` : ''}
             ${(!imgUrl && isKf) ? `<div class="cam-kf-loading">Kamera kép betöltése…</div>` : ''}
             ${(!imgUrl && cam.external_url) ? `<a class="cam-external-link" href="${escapeHtml(cam.external_url)}" target="_blank" rel="noopener">▶ Élő adás a ${escapeHtml(sourceLabel)} oldalán →</a>` : ''}
             <div class="live-dot">élő</div>
@@ -1404,6 +1404,8 @@
 
   function openLightbox(imgUrl, caption) {
     if (!imgUrl) return;
+    // Az ARGOS képei csak hivatkozó (Referer) fejléc nélkül töltődnek be.
+    lightboxImg.referrerPolicy = imgUrl.includes('argosatlas.com') ? 'no-referrer' : '';
     lightboxImg.src = imgUrl;
     lightboxCaption.textContent = caption;
     lightbox.classList.add('open');
