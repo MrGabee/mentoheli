@@ -1,0 +1,22 @@
+name: Forrás szonda 3 (ideiglenes)
+on:
+  push:
+    branches: [claude/project-thread-6wmvph]
+    paths: ['windy/szonda3/**.py', '.github/workflows/forras_szonda3.yml']
+permissions:
+  contents: write
+jobs:
+  szonda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install playwright && python -m playwright install --with-deps chromium
+      - run: python windy/szonda3/regi.py
+        timeout-minutes: 20
+      - if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add windy/szonda3 && git commit -m "szonda3 eredmény [skip ci]" && git pull --rebase origin claude/project-thread-6wmvph && git push
