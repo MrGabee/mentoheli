@@ -4,7 +4,6 @@ from playwright.sync_api import sync_playwright
 
 OLDALAK = sys.argv[1:] or [
     'https://www.argosatlas.com/map/?lat=47.2&lng=19.4&zoom=7',
-    'https://www.argosatlas.com/',
 ]
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
 
@@ -24,7 +23,24 @@ with sync_playwright() as p:
             page.goto(url, wait_until='networkidle', timeout=45000)
         except Exception as e:
             print('goto hiba:', e)
-        page.wait_for_timeout(5000)
+        page.wait_for_timeout(3000)
+        for felirat in ('Enter the map', 'Entrar al mapa', 'Essential only'):
+            try:
+                page.get_by_text(felirat, exact=False).first.click(timeout=3000)
+                print('kattintva:', felirat)
+                break
+            except Exception:
+                pass
+        page.wait_for_timeout(15000)
+        # API-útvonalak a betöltött JS-ekből
+        for r in list(valaszok):
+            if 'argosatlas.com/assets/' in r.url and r.url.endswith('.js'):
+                try:
+                    utak = sorted(set(re.findall(r'["`\'](/api/[A-Za-z0-9_/\-${}.?=&]+)', r.text())))
+                    if utak:
+                        print('  API a JS-ben', r.url.rsplit('/',1)[-1], utak[:80])
+                except Exception:
+                    pass
         print('cím:', page.title())
         print('szöveg:', re.sub(r'\s+', ' ', page.inner_text('body'))[:800])
         hrefs = page.eval_on_selector_all('a[href]', 'els => els.map(e => e.href)')
