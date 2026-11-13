@@ -73,7 +73,7 @@ def kozeli_regi(kulcs, hely, ny):
         return None  # az ARGOS listája eleve csak a nálunk hiányzó képeket tartalmazza
     legjobb = None
     for k, v in ny['kamerak'].items():
-        if k.split(':', 1)[0] == forras or v.get('lat') is None:
+        if k.split(':', 1)[0] in (forras, 'argos') or v.get('lat') is None:
             continue
         if v.get('elso') != 'alap':
             continue  # csak a már korábban ismert kamerákhoz mérünk
