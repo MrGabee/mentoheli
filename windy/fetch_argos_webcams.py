@@ -179,6 +179,12 @@ def main():
         c = cache.get(e['id'], {})
         if not c.get('kep_ok') and c.get('kind') != 'youtube':
             continue
+        kep = f"{BASE}/api/cam/{e['id']}/image" if c.get('kep_ok') else None
+        kulcs = c.get('kulcs') or ''
+        if kulcs.startswith('youtube:'):
+            # Az Argos a YouTube-adásoknál egy régi, rögzített képet ad; a YouTube
+            # „_live” bélyegképe az adás aktuális képkockája.
+            kep = f"https://i.ytimg.com/vi/{kulcs.split(':', 1)[1]}/hqdefault_live.jpg"
         kamerak.append({
             'id': e['id'],
             'source': 'argos',
@@ -189,8 +195,8 @@ def main():
             'eredeti': c.get('kulcs'),
             'latitude': e['lat'],
             'longitude': e['lon'],
-            'image_preview': f"{BASE}/api/cam/{e['id']}/image" if c.get('kep_ok') else None,
-            'image_thumbnail': f"{BASE}/api/cam/{e['id']}/image" if c.get('kep_ok') else None,
+            'image_preview': kep,
+            'image_thumbnail': kep,
             'player_embed': c.get('stream'),
         })
     try:
