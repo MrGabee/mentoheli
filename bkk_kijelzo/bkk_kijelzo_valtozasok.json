@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-13T05:20:35.976362+02:00",
+  "frissitve": "2026-11-13T05:21:08.752108+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T16:02:19.124869+02:00",
-      "kulcs": "MOS269",
-      "rendszam": "MOS269",
-      "vehicle_id": "5722",
-      "vehicle_label": "Határ út M",
-      "vonal_szam": "89E",
-      "route_id": "0895",
-      "lat": 47.38304138183594,
-      "lon": 19.201980590820312,
-      "elozo_szoveg": "Gyál, Bem József utca",
-      "uj_szoveg": "Bem József utca ► Határ út M"
-    },
-    {
-      "idopont": "2026-11-12T16:02:19.125087+02:00",
-      "kulcs": "V2104",
-      "rendszam": "V2104",
-      "vehicle_id": "5832",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.464256286621094,
-      "lon": 19.023515701293945,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-12T16:02:19.125402+02:00",
-      "kulcs": "V2220",
-      "rendszam": "V2220",
-      "vehicle_id": "5860",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "3",
-      "route_id": "3030",
-      "lat": 47.44359588623047,
-      "lon": 19.096532821655273,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Mexikói út M"
-    },
-    {
-      "idopont": "2026-11-12T16:02:19.125828+02:00",
-      "kulcs": "MUU903",
-      "rendszam": "MUU903",
-      "vehicle_id": "5956",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46454620361328,
-      "lon": 19.12673568725586,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
     {
       "idopont": "2026-11-12T16:02:19.126068+02:00",
       "kulcs": "T8000",
@@ -260000,6 +259948,58 @@
       "lon": 19.093223571777344,
       "elozo_szoveg": "Csepel, Határ utca",
       "uj_szoveg": "Kőbánya alsó vasútállomás"
+    },
+    {
+      "idopont": "2026-11-13T05:21:08.653891+02:00",
+      "kulcs": "AAGL293",
+      "rendszam": "AAGL293",
+      "vehicle_id": "326",
+      "vehicle_label": "Budatétény vá. (Campona)",
+      "vonal_szam": "13A",
+      "route_id": "0131",
+      "lat": 47.40743637084961,
+      "lon": 18.951929092407227,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Budatétény vasútállomás (Campona)"
+    },
+    {
+      "idopont": "2026-11-13T05:21:08.655148+02:00",
+      "kulcs": "AAMH668",
+      "rendszam": "AAMH668",
+      "vehicle_id": "511",
+      "vehicle_label": "Káp.megyer, Szilas-patak",
+      "vonal_szam": "196",
+      "route_id": "1960",
+      "lat": 47.54172134399414,
+      "lon": 19.151134490966797,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Káposztásmegyer, Szilas-patak"
+    },
+    {
+      "idopont": "2026-11-13T05:21:08.655495+02:00",
+      "kulcs": "AEHE427",
+      "rendszam": "AEHE427",
+      "vehicle_id": "624",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "948",
+      "route_id": "9480",
+      "lat": 47.460411071777344,
+      "lon": 19.121864318847656,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-13T05:21:08.655662+02:00",
+      "kulcs": "PDB377",
+      "rendszam": "PDB377",
+      "vehicle_id": "7059",
+      "vehicle_label": "Rákoscsaba-Újtelep",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.501277923583984,
+      "lon": 19.119564056396484,
+      "elozo_szoveg": "Örs vezér tere M+H ► Rákoscsaba-Újtelep",
+      "uj_szoveg": "Rákoscsaba-Újtelep, Tóalmás utca"
     }
   ]
 }
