@@ -436,7 +436,7 @@ Egy olvasóm írta:
 
 „Bocs, hogy ilyennel zavarlak, de senkinek se furcsa, hogy Csepelen mindenhol még kint vannak az ünnepi zászlók? November 13-a van.”
 
-Az októberi ünnep óta valóban eltelt már néhány hét, a zászlók pedig sok helyen még mindig lengenek. 🤔
+Az ünnep óta valóban eltelt már jó néhány hét, a zászlók pedig sok helyen még mindig lengenek. 🤔
 
 👉 Ti mit gondoltok? Zavar titeket, vagy nem baj, ha még egy ideig kint maradnak? Ti is láttatok még ilyet a környéken? Írjátok meg kommentben! 👇
 
