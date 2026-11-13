@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T04:26:09.285605+02:00",
+  "frissitve": "2026-11-13T04:26:38.531157+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:54:47.662267+02:00",
-      "kulcs": "PDB710",
-      "rendszam": "PDB710",
-      "vehicle_id": "7036",
-      "vehicle_label": "Kőbánya alsó vasútáll.",
-      "vonal_szam": "9",
-      "route_id": "0090",
-      "lat": 47.550289154052734,
-      "lon": 19.042085647583008,
-      "elozo_szoveg": "Óbuda, Bogdáni út",
-      "uj_szoveg": "Kőbánya alsó vasútállomás"
-    },
-    {
-      "idopont": "2026-11-12T15:54:47.662636+02:00",
-      "kulcs": "PDN601",
-      "rendszam": "PDN601",
-      "vehicle_id": "7073",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "101E",
-      "route_id": "1015",
-      "lat": 47.46418380737305,
-      "lon": 19.018795013427734,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Budatétény vasútáll. (Campona)"
-    },
-    {
-      "idopont": "2026-11-12T15:54:47.663197+02:00",
-      "kulcs": "PHG629",
-      "rendszam": "PHG629",
-      "vehicle_id": "7153",
-      "vehicle_label": "Kistarcsa - Auchan Liget",
-      "vonal_szam": "92",
-      "route_id": "0920",
-      "lat": 47.520057678222656,
-      "lon": 19.148191452026367,
-      "elozo_szoveg": "Rákosszentmihály vasútállomás",
-      "uj_szoveg": "Rákosszentmihály vá."
-    },
     {
       "idopont": "2026-11-12T15:54:47.664323+02:00",
       "kulcs": "T9104",
@@ -260000,6 +259961,45 @@
       "lon": 19.140422821044922,
       "elozo_szoveg": "Astoria M ► Pasaréti tér",
       "uj_szoveg": "Rózsadomb ► Pasaréti tér"
+    },
+    {
+      "idopont": "2026-11-13T04:26:38.459466+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Hűvösvölgy",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.56745147705078,
+      "lon": 19.12493133544922,
+      "elozo_szoveg": "Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-11-13T04:26:38.459565+02:00",
+      "kulcs": "AADI578",
+      "rendszam": "AADI578",
+      "vehicle_id": "79",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50481414794922,
+      "lon": 19.024484634399414,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-13T04:26:38.459636+02:00",
+      "kulcs": "AADI594",
+      "rendszam": "AADI594",
+      "vehicle_id": "90",
+      "vehicle_label": "Móricz Zs. körtér M",
+      "vonal_szam": "908",
+      "route_id": "9080",
+      "lat": 47.48701095581055,
+      "lon": 19.023269653320312,
+      "elozo_szoveg": "Gazdagréti tér ► Móricz Zs. körtér M",
+      "uj_szoveg": "Gazdagréti tér ► Móricz Zsigmond körtér M"
     }
   ]
 }
