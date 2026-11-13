@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T02:13:48.641240+02:00",
+  "frissitve": "2026-11-13T02:14:16.241284+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:42:36.585184+02:00",
-      "kulcs": "V4022",
-      "rendszam": "V4022",
-      "vehicle_id": "4711",
-      "vehicle_label": "Lehel tér M",
-      "vonal_szam": "12",
-      "route_id": "3120",
-      "lat": 47.56739044189453,
-      "lon": 19.12508773803711,
-      "elozo_szoveg": "Angyalföld kocsiszín",
-      "uj_szoveg": "Lehel tér M"
-    },
-    {
-      "idopont": "2026-11-12T15:42:36.585320+02:00",
-      "kulcs": "V4071",
-      "rendszam": "V4071",
-      "vehicle_id": "4760",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1A",
-      "route_id": "3011",
-      "lat": 47.474910736083984,
-      "lon": 19.09807586669922,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
-    {
-      "idopont": "2026-11-12T15:42:36.585335+02:00",
-      "kulcs": "V4074",
-      "rendszam": "V4074",
-      "vehicle_id": "4763",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "28A",
-      "route_id": "3281",
-      "lat": 47.47559356689453,
-      "lon": 19.17814064025879,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kőbányai út ► Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-11-12T15:42:36.586478+02:00",
       "kulcs": "AADI622",
@@ -260000,6 +259961,45 @@
       "lon": 19.038076400756836,
       "elozo_szoveg": "Astoria M ► Pesterzsébet",
       "uj_szoveg": "Közvágóhíd H ► Pesterzsébet"
+    },
+    {
+      "idopont": "2026-11-13T02:14:16.185031+02:00",
+      "kulcs": "AADI563",
+      "rendszam": "AADI563",
+      "vehicle_id": "74",
+      "vehicle_label": "Közvágóhíd H",
+      "vonal_szam": "918",
+      "route_id": "9180",
+      "lat": 47.55027770996094,
+      "lon": 19.042041778564453,
+      "elozo_szoveg": "Óbuda, Bogdáni út",
+      "uj_szoveg": "Közvágóhíd H"
+    },
+    {
+      "idopont": "2026-11-13T02:14:16.185072+02:00",
+      "kulcs": "RVY611",
+      "rendszam": "RVY611",
+      "vehicle_id": "7440",
+      "vehicle_label": "Millenniumtelep H",
+      "vonal_szam": "966",
+      "route_id": "9660",
+      "lat": 47.47099304199219,
+      "lon": 19.073396682739258,
+      "elozo_szoveg": "Pesterzsébeti lakótelep ► Millenniumtelep H",
+      "uj_szoveg": "Millenniumtelep H"
+    },
+    {
+      "idopont": "2026-11-13T02:14:16.185325+02:00",
+      "kulcs": "AOIM015",
+      "rendszam": "AOIM015",
+      "vehicle_id": "935",
+      "vehicle_label": "Újpalota, Szentmihályi út",
+      "vonal_szam": "950",
+      "route_id": "9500",
+      "lat": 47.5109977722168,
+      "lon": 19.056211471557617,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Újpalota, Szentmihályi út",
+      "uj_szoveg": "Újpalota, Szentmihályi út"
     }
   ]
 }
