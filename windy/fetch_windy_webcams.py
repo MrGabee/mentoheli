@@ -229,8 +229,35 @@ def fetch_hungarian_webcams():
         if cam.get("webcamId") in orszagos_ids
         or (cam.get("location", {}) or {}).get("country_code") == "HU"
     ]
-    deduped_by_content = hungarian_only
-    print(f"   -> {len(all_webcams)} kamera összesen lekérve, ebből {len(hungarian_only)} magyarországi.")
+    # A Windy ugyanazt a fizikai kamerát néha két külön azonosítóval is
+    # listázza (azonos cím és koordináta). Ezekből egyet tartunk meg: azt,
+    # amelyiket a nyilvántartás szerint legkorábban láttuk, így a régi kamera nem lesz
+    # "új", és nem jelenik meg kétszer.
+    # Melyik kamerát mikor láttuk először (kamera_nyilvantarto.py írja).
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "kamera_nyilvantartas.json"), encoding="utf-8") as f:
+            nyilv = json.load(f).get("kamerak", {})
+    except Exception:
+        nyilv = {}
+
+    def kor(cam):
+        e = (nyilv.get(f"windy:{cam.get('webcamId')}") or {}).get("elso")
+        return "0" if e == "alap" else (e or "9")
+
+    csoportok = {}
+    for cam in hungarian_only:
+        loc = cam.get("location", {}) or {}
+        kulcs = (
+            (cam.get("title") or "").strip().lower(),
+            round(loc.get("latitude", 0) or 0, 4),
+            round(loc.get("longitude", 0) or 0, 4),
+        )
+        csoportok.setdefault(kulcs, []).append(cam)
+    deduped_by_content = []
+    for tagok in csoportok.values():
+        deduped_by_content.append(min(tagok, key=kor))
+    print(f"   -> {len(all_webcams)} kamera összesen lekérve, ebből {len(hungarian_only)} magyarországi, "
+          f"{len(hungarian_only) - len(deduped_by_content)} dupla kiszűrve -> {len(deduped_by_content)}.")
 
     if all_webcams and not hungarian_only:
         # Ha a szűrés váratlanul 0-t adna, valószínűleg a "country" mező
