@@ -6,9 +6,9 @@
 <title>ARGOS kamerák válogatása</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: light; --bg:#f3f5f8; --lap:#ffffff; --fg:#16202e; --halvany:#5d6a7c; --vonal:#dde2ea; --argos:#c2410c; --piros:#d0021b; --kek:#1f5f8b;
+  :root { color-scheme: light; --bg:#f3f5f8; --lap:#ffffff; --fg:#16202e; --halvany:#5d6a7c; --vonal:#dde2ea; --argos:#c2410c; --piros:#d0021b; --kek:#1f5f8b; --zold:#1f8a55;
     --f-cim:'Bricolage Grotesque',system-ui,sans-serif; --f-test:'Figtree',system-ui,sans-serif; }
-  @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --bg:#0f1620; --lap:#18222e; --fg:#e6edf4; --halvany:#93a2b3; --vonal:#273444; --argos:#ff8a5c; --piros:#ff4d5e; --kek:#6aa8d8; } }
+  @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --bg:#0f1620; --lap:#18222e; --fg:#e6edf4; --halvany:#93a2b3; --vonal:#273444; --argos:#ff8a5c; --piros:#ff4d5e; --kek:#6aa8d8; --zold:#5cc48c; } }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--f-test); padding:20px max(16px,env(safe-area-inset-right)) 40px max(16px,env(safe-area-inset-left)); }
   header { max-width:1300px; margin:0 auto 12px; display:grid; gap:8px; }
@@ -29,18 +29,18 @@
   .kartya { background:var(--lap); border:1px solid var(--vonal); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; min-width:0; }
   .kep { position:relative; aspect-ratio:16/9; background:var(--vonal); cursor:zoom-in; }
   .kep img { width:100%; height:100%; object-fit:cover; display:block; }
-  .cimke, .elo, .kizart-jel { position:absolute; font-size:10px; font-weight:700; letter-spacing:.08em; padding:3px 7px; border-radius:6px; color:#fff; }
+  .cimke, .elo, .kell-jel { position:absolute; font-size:10px; font-weight:700; letter-spacing:.08em; padding:3px 7px; border-radius:6px; color:#fff; }
   .cimke { left:8px; top:8px; background:var(--argos); } .elo { right:8px; top:8px; background:var(--piros); }
-  .kizart-jel { display:none; right:8px; bottom:8px; background:var(--piros); }
+  .kell-jel { display:none; right:8px; bottom:8px; background:var(--zold); }
   .szoveg { padding:10px 12px 12px; display:grid; gap:4px; min-width:0; }
   h3 { font-size:14px; margin:0; font-weight:600; overflow-wrap:anywhere; }
   .meta { margin:0; font-size:12px; color:var(--halvany); display:flex; flex-wrap:wrap; gap:4px 10px; }
   .szoveg a { font-size:12px; color:var(--halvany); }
   .nemkell { justify-self:start; margin-top:4px; font:inherit; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px; border:1px solid var(--vonal); background:transparent; color:var(--fg); cursor:pointer; }
-  .nemkell:hover { border-color:var(--piros); color:var(--piros); }
-  .kartya.kizart { opacity:.5; } .kartya.kizart img { filter:grayscale(1); }
-  .kartya.kizart .kizart-jel { display:block; }
-  .kartya.kizart .nemkell { color:var(--argos); border-color:var(--argos); }
+  .nemkell:hover { border-color:var(--zold); color:var(--zold); }
+  .kartya.kell { border-color:var(--zold); box-shadow:0 0 0 2px var(--zold); }
+  .kartya.kell .kell-jel { display:block; }
+  .kartya.kell .nemkell { background:var(--zold); border-color:var(--zold); color:#fff; }
   .ures { text-align:center; color:var(--halvany); padding:40px 0; }
   #nagy { position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:20; padding:16px; }
   #nagy.nyitva { display:flex; } #nagy img { max-width:100%; max-height:90vh; border-radius:8px; }
@@ -51,28 +51,28 @@
 <header>
   <a class="vissza" href="magyar_webkamerak.html">← Vissza a webkamerákhoz</a>
   <h1><em>ARGOS</em> kamerák válogatása</h1>
-  <p class="leiras">Az Argos Atlas magyarországi kamerái, amelyek képe a Windy, az Útinform és a Közút Figyelő forrásokban nincs meg. A „Nem kell” gombbal jelöld, amelyiket ne kössük be. A jelölés ebben a böngészőben megmarad; ha végeztél, nyomd meg a „Jelölések beküldése” gombot, ami egy kitöltött GitHub-bejegyzést nyit meg, azt kell elküldeni.</p>
+  <p class="leiras">Az Argos Atlas magyarországi kamerái, amelyek képe a Windy, az Útinform és a Közút Figyelő forrásokban nincs meg. A „Kell” gombbal jelöld azokat, amelyeket be akarsz köttetni; csak a megjelöltek kerülnek a webkamera-oldalra. A jelölés ebben a böngészőben megmarad; ha végeztél, nyomd meg a „Kiválasztottak beküldése” gombot, ami egy kitöltött GitHub-bejegyzést nyit meg, azt kell elküldeni.</p>
 </header>
 <div class="sav">
   <span id="szurok"></span>
   <input id="kereso" type="search" placeholder="Keresés: település, helyszín…" aria-label="Keresés">
-  <label class="mutat"><input type="checkbox" id="mutatKizart" checked> Kizártak is látszanak</label>
+  <label class="mutat"><input type="checkbox" id="csakKell"> Csak a kiválasztottak</label>
   <span class="allapot" id="allapot">Betöltés…</span>
-  <button class="bekuld" id="bekuld" type="button" disabled>Jelölések beküldése</button>
+  <button class="bekuld" id="bekuld" type="button" disabled>Kiválasztottak beküldése</button>
 </div>
 <main class="racs" id="racs"></main>
 <p class="ures" id="ures" hidden>Nincs találat.</p>
 <div id="nagy" role="dialog" aria-label="Nagy kép"><img alt=""></div>
 <script>
   const KAT = { trafico: 'Közlekedés', urbanas: 'Város', medioambientales: 'Táj, időjárás', costa: 'Tópart', montana: 'Hegy' };
-  const TAROLO = 'argos_kizart_v1';
+  const TAROLO = 'argos_kell_v1';
   const ISSUE_URL = 'https://github.com/MrGabee/mentoheli/issues/new';
   let kamerak = [], kat = '';
-  const kizart = new Set((() => { try { return JSON.parse(localStorage.getItem(TAROLO) || '[]'); } catch (e) { return []; } })());
+  const kell = new Set((() => { try { return JSON.parse(localStorage.getItem(TAROLO) || '[]'); } catch (e) { return []; } })());
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const forras = k => { const e = k.eredeti || ''; if (e.startsWith('youtube:')) return 'YouTube'; if (e.includes('worldcam')) return 'worldcam.eu'; return e ? e.split(':')[0] : 'ismeretlen'; };
-  function ment() { try { localStorage.setItem(TAROLO, JSON.stringify([...kizart])); } catch (e) {} }
+  function ment() { try { localStorage.setItem(TAROLO, JSON.stringify([...kell])); } catch (e) {} }
   function render() {
     const db = {}; kamerak.forEach(k => { const n = KAT[k.category] || k.category; db[n] = (db[n] || 0) + 1; });
     $('szurok').innerHTML = [['', 'Összes', kamerak.length], ...Object.entries(db).sort((a, b) => b[1] - a[1]).map(([n, d]) => [n, n, d])]
@@ -82,43 +82,43 @@
       const n = KAT[k.category] || k.category;
       const img = k.image_preview ? `<img src="${esc(k.image_preview)}?cb=${cb}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '';
       return `<article class="kartya" data-id="${esc(k.id)}" data-kat="${esc(n)}" data-q="${esc((k.title || '').toLowerCase())}">
-        <div class="kep">${img}<span class="cimke">ARGOS</span>${['stream', 'youtube'].includes(k.media_type) ? '<span class="elo">élő</span>' : ''}<span class="kizart-jel">NEM KELL</span></div>
+        <div class="kep">${img}<span class="cimke">ARGOS</span>${['stream', 'youtube'].includes(k.media_type) ? '<span class="elo">élő</span>' : ''}<span class="kell-jel">KELL</span></div>
         <div class="szoveg"><h3>${esc(k.title)}</h3>
           <p class="meta"><span>${esc(n)}</span><span>eredeti: ${esc(forras(k))}</span></p>
           <a href="https://www.google.com/maps/search/?api=1&query=${k.latitude},${k.longitude}" target="_blank" rel="noopener">${(+k.latitude).toFixed(4)}, ${(+k.longitude).toFixed(4)} ↗</a>
-          <button class="nemkell" type="button" data-id="${esc(k.id)}">Nem kell</button></div></article>`;
+          <button class="nemkell" type="button" data-id="${esc(k.id)}">Kell</button></div></article>`;
     }).join('');
     szur();
   }
   function szur() {
     const q = $('kereso').value.trim().toLowerCase(); let db = 0;
     document.querySelectorAll('.kartya').forEach(el => {
-      const x = kizart.has(el.dataset.id);
-      el.classList.toggle('kizart', x);
-      el.querySelector('.nemkell').textContent = x ? 'Visszaállít' : 'Nem kell';
-      const l = (!kat || el.dataset.kat === kat) && (!q || el.dataset.q.includes(q)) && ($('mutatKizart').checked || !x);
+      const x = kell.has(el.dataset.id);
+      el.classList.toggle('kell', x);
+      el.querySelector('.nemkell').textContent = x ? '✓ Kell (visszavon)' : 'Kell';
+      const l = (!kat || el.dataset.kat === kat) && (!q || el.dataset.q.includes(q)) && (!$('csakKell').checked || x);
       el.hidden = !l; if (l) db++;
     });
     $('ures').hidden = db > 0;
-    const n = [...kizart].filter(id => kamerak.some(k => k.id === id)).length;
-    $('allapot').textContent = n ? `${n} kamera jelölve: nem kell` : 'Még nincs jelölt kamera';
+    const n = [...kell].filter(id => kamerak.some(k => k.id === id)).length;
+    $('allapot').textContent = n ? `${n} kamera kiválasztva` : 'Még nincs kiválasztott kamera';
     $('bekuld').disabled = !n;
   }
   $('szurok').addEventListener('click', e => { const b = e.target.closest('.szuro'); if (!b) return; kat = b.dataset.kat; document.querySelectorAll('.szuro').forEach(x => x.setAttribute('aria-pressed', x === b)); szur(); });
   $('kereso').addEventListener('input', szur);
-  $('mutatKizart').addEventListener('change', szur);
+  $('csakKell').addEventListener('change', szur);
   $('racs').addEventListener('click', e => {
     const b = e.target.closest('.nemkell');
-    if (b) { const id = b.dataset.id; kizart.has(id) ? kizart.delete(id) : kizart.add(id); ment(); szur(); return; }
+    if (b) { const id = b.dataset.id; kell.has(id) ? kell.delete(id) : kell.add(id); ment(); szur(); return; }
     const kep = e.target.closest('.kep img');
     if (kep) { const n = $('nagy'); n.querySelector('img').referrerPolicy = 'no-referrer'; n.querySelector('img').src = kep.src; n.classList.add('nyitva'); }
   });
   $('nagy').addEventListener('click', () => $('nagy').classList.remove('nyitva'));
   $('bekuld').addEventListener('click', () => {
-    const ids = [...kizart].filter(id => kamerak.some(k => k.id === id));
+    const ids = [...kell].filter(id => kamerak.some(k => k.id === id));
     const sorok = ids.map(id => { const k = kamerak.find(x => x.id === id); return `- ${id} | ${k.title}`; });
-    const body = `ARGOS kamerák, amelyek nem kellenek (${ids.length} db):\n\n${sorok.join('\n')}\n\n<!-- argos-kizart: ${ids.join(',')} -->`;
-    window.open(`${ISSUE_URL}?title=${encodeURIComponent('ARGOS kamerák kizárása')}&body=${encodeURIComponent(body)}`, '_blank', 'noopener');
+    const body = `ARGOS kamerák, amelyek kellenek (${ids.length} db):\n\n${sorok.join('\n')}\n\n<!-- argos-kell: ${ids.join(',')} -->`;
+    window.open(`${ISSUE_URL}?title=${encodeURIComponent('ARGOS kamerák kiválasztása')}&body=${encodeURIComponent(body)}`, '_blank', 'noopener');
   });
   fetch('data/webcams_argos.json', { cache: 'no-store' }).then(r => r.json()).then(d => {
     kamerak = (d.webcams || []).slice().sort((a, b) => (a.title || '').localeCompare(b.title || '', 'hu'));
