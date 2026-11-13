@@ -27,16 +27,23 @@
   .allapot { font-size:13px; color:var(--halvany); }
   .racs { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
   .kartya { background:var(--lap); border:1px solid var(--vonal); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; min-width:0; }
+  .kartya[hidden] { display:none; }
   .kep { position:relative; aspect-ratio:16/9; background:var(--vonal); cursor:zoom-in; }
   .kep img { width:100%; height:100%; object-fit:cover; display:block; }
   .cimke, .elo, .kell-jel { position:absolute; font-size:10px; font-weight:700; letter-spacing:.08em; padding:3px 7px; border-radius:6px; color:#fff; }
   .cimke { left:8px; top:8px; background:var(--argos); } .elo { right:8px; top:8px; background:var(--piros); }
   .kell-jel { display:none; right:8px; bottom:8px; background:var(--zold); }
+  .regi-jel { position:absolute; font-size:10px; font-weight:700; letter-spacing:.08em; padding:3px 7px; border-radius:6px; color:#fff; display:none; left:8px; bottom:8px; background:#b45309; }
+  .gombok { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+  .regi { font:inherit; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px; border:1px solid var(--vonal); background:transparent; color:var(--fg); cursor:pointer; }
+  .regi:hover { border-color:#b45309; color:#b45309; }
+  .kartya.regikep .regi-jel { display:block; }
+  .kartya.regikep .regi { background:#b45309; border-color:#b45309; color:#fff; }
   .szoveg { padding:10px 12px 12px; display:grid; gap:4px; min-width:0; }
   h3 { font-size:14px; margin:0; font-weight:600; overflow-wrap:anywhere; }
   .meta { margin:0; font-size:12px; color:var(--halvany); display:flex; flex-wrap:wrap; gap:4px 10px; }
   .szoveg a { font-size:12px; color:var(--halvany); }
-  .nemkell { justify-self:start; margin-top:4px; font:inherit; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px; border:1px solid var(--vonal); background:transparent; color:var(--fg); cursor:pointer; }
+  .nemkell { font:inherit; font-size:13px; font-weight:600; padding:6px 12px; border-radius:8px; border:1px solid var(--vonal); background:transparent; color:var(--fg); cursor:pointer; }
   .nemkell:hover { border-color:var(--zold); color:var(--zold); }
   .kartya.kell { border-color:var(--zold); box-shadow:0 0 0 2px var(--zold); }
   .kartya.kell .kell-jel { display:block; }
@@ -51,12 +58,13 @@
 <header>
   <a class="vissza" href="magyar_webkamerak.html">← Vissza a webkamerákhoz</a>
   <h1><em>ARGOS</em> kamerák válogatása</h1>
-  <p class="leiras">Az Argos Atlas magyarországi kamerái, amelyek képe a Windy, az Útinform és a Közút Figyelő forrásokban nincs meg. A „Kell” gombbal jelöld azokat, amelyeket be akarsz köttetni; csak a megjelöltek kerülnek a webkamera-oldalra. A jelölés ebben a böngészőben megmarad; ha végeztél, nyomd meg a „Kiválasztottak beküldése” gombot, ami egy kitöltött GitHub-bejegyzést nyit meg, azt kell elküldeni.</p>
+  <p class="leiras">Az Argos Atlas magyarországi kamerái, amelyek képe a Windy, az Útinform és a Közút Figyelő forrásokban nincs meg. A „Kell” gombbal jelöld azokat, amelyeket be akarsz köttetni; csak a megjelöltek kerülnek a webkamera-oldalra. A „Régi kép” gombbal jelöld azokat, amelyeknek a képe nem friss (például éjjel világos); ezeket megvizsgálom. A jelölés ebben a böngészőben megmarad; ha végeztél, nyomd meg a „Kiválasztottak beküldése” gombot, ami egy kitöltött GitHub-bejegyzést nyit meg, azt kell elküldeni.</p>
 </header>
 <div class="sav">
   <span id="szurok"></span>
   <input id="kereso" type="search" placeholder="Keresés: település, helyszín…" aria-label="Keresés">
   <label class="mutat"><input type="checkbox" id="csakKell"> Csak a kiválasztottak</label>
+  <label class="mutat"><input type="checkbox" id="csakRegi"> Csak a régi képesek</label>
   <span class="allapot" id="allapot">Betöltés…</span>
   <button class="bekuld" id="bekuld" type="button" disabled>Kiválasztottak beküldése</button>
 </div>
@@ -68,11 +76,13 @@
   const TAROLO = 'argos_kell_v1';
   const ISSUE_URL = 'https://github.com/MrGabee/mentoheli/issues/new';
   let kamerak = [], kat = '';
-  const kell = new Set((() => { try { return JSON.parse(localStorage.getItem(TAROLO) || '[]'); } catch (e) { return []; } })());
+  const TAROLO_REGI = 'argos_regi_v1';
+  const betolt = t => new Set((() => { try { return JSON.parse(localStorage.getItem(t) || '[]'); } catch (e) { return []; } })());
+  const kell = betolt(TAROLO), regi = betolt(TAROLO_REGI);
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const forras = k => { const e = k.eredeti || ''; if (e.startsWith('youtube:')) return 'YouTube'; if (e.includes('worldcam')) return 'worldcam.eu'; return e ? e.split(':')[0] : 'ismeretlen'; };
-  function ment() { try { localStorage.setItem(TAROLO, JSON.stringify([...kell])); } catch (e) {} }
+  function ment() { try { localStorage.setItem(TAROLO, JSON.stringify([...kell])); localStorage.setItem(TAROLO_REGI, JSON.stringify([...regi])); } catch (e) {} }
   function render() {
     const db = {}; kamerak.forEach(k => { const n = KAT[k.category] || k.category; db[n] = (db[n] || 0) + 1; });
     $('szurok').innerHTML = [['', 'Összes', kamerak.length], ...Object.entries(db).sort((a, b) => b[1] - a[1]).map(([n, d]) => [n, n, d])]
@@ -82,11 +92,11 @@
       const n = KAT[k.category] || k.category;
       const img = k.image_preview ? `<img src="${esc(k.image_preview)}?cb=${cb}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '';
       return `<article class="kartya" data-id="${esc(k.id)}" data-kat="${esc(n)}" data-q="${esc((k.title || '').toLowerCase())}">
-        <div class="kep">${img}<span class="cimke">ARGOS</span>${['stream', 'youtube'].includes(k.media_type) ? '<span class="elo">élő</span>' : ''}<span class="kell-jel">KELL</span></div>
+        <div class="kep">${img}<span class="cimke">ARGOS</span>${['stream', 'youtube'].includes(k.media_type) ? '<span class="elo">élő</span>' : ''}<span class="kell-jel">KELL</span><span class="regi-jel">RÉGI KÉP</span></div>
         <div class="szoveg"><h3>${esc(k.title)}</h3>
           <p class="meta"><span>${esc(n)}</span><span>eredeti: ${esc(forras(k))}</span></p>
           <a href="https://www.google.com/maps/search/?api=1&query=${k.latitude},${k.longitude}" target="_blank" rel="noopener">${(+k.latitude).toFixed(4)}, ${(+k.longitude).toFixed(4)} ↗</a>
-          <button class="nemkell" type="button" data-id="${esc(k.id)}">Kell</button></div></article>`;
+          <div class="gombok"><button class="nemkell" type="button" data-id="${esc(k.id)}">Kell</button><button class="regi" type="button" data-id="${esc(k.id)}">Régi kép</button></div></div></article>`;
     }).join('');
     szur();
   }
@@ -96,28 +106,38 @@
       const x = kell.has(el.dataset.id);
       el.classList.toggle('kell', x);
       el.querySelector('.nemkell').textContent = x ? '✓ Kell (visszavon)' : 'Kell';
-      const l = (!kat || el.dataset.kat === kat) && (!q || el.dataset.q.includes(q)) && (!$('csakKell').checked || x);
+      const r = regi.has(el.dataset.id);
+      el.classList.toggle('regikep', r);
+      el.querySelector('.regi').textContent = r ? '✓ Régi kép (visszavon)' : 'Régi kép';
+      const l = (!kat || el.dataset.kat === kat) && (!q || el.dataset.q.includes(q)) && (!$('csakKell').checked || x) && (!$('csakRegi').checked || r);
       el.hidden = !l; if (l) db++;
     });
     $('ures').hidden = db > 0;
     const n = [...kell].filter(id => kamerak.some(k => k.id === id)).length;
-    $('allapot').textContent = n ? `${n} kamera kiválasztva` : 'Még nincs kiválasztott kamera';
-    $('bekuld').disabled = !n;
+    const m = [...regi].filter(id => kamerak.some(k => k.id === id)).length;
+    $('allapot').textContent = (n ? `${n} kamera kiválasztva` : 'Még nincs kiválasztott kamera') + (m ? `, ${m} régi képes` : '');
+    $('bekuld').disabled = !n && !m;
   }
   $('szurok').addEventListener('click', e => { const b = e.target.closest('.szuro'); if (!b) return; kat = b.dataset.kat; document.querySelectorAll('.szuro').forEach(x => x.setAttribute('aria-pressed', x === b)); szur(); });
   $('kereso').addEventListener('input', szur);
   $('csakKell').addEventListener('change', szur);
+  $('csakRegi').addEventListener('change', szur);
   $('racs').addEventListener('click', e => {
     const b = e.target.closest('.nemkell');
     if (b) { const id = b.dataset.id; kell.has(id) ? kell.delete(id) : kell.add(id); ment(); szur(); return; }
+    const rb = e.target.closest('.regi');
+    if (rb) { const id = rb.dataset.id; regi.has(id) ? regi.delete(id) : regi.add(id); ment(); szur(); return; }
     const kep = e.target.closest('.kep img');
     if (kep) { const n = $('nagy'); n.querySelector('img').referrerPolicy = 'no-referrer'; n.querySelector('img').src = kep.src; n.classList.add('nyitva'); }
   });
   $('nagy').addEventListener('click', () => $('nagy').classList.remove('nyitva'));
   $('bekuld').addEventListener('click', () => {
-    const ids = [...kell].filter(id => kamerak.some(k => k.id === id));
-    const sorok = ids.map(id => { const k = kamerak.find(x => x.id === id); return `- ${id} | ${k.title}`; });
-    const body = `ARGOS kamerák, amelyek kellenek (${ids.length} db):\n\n${sorok.join('\n')}\n\n<!-- argos-kell: ${ids.join(',')} -->`;
+    const lista = h => [...h].filter(id => kamerak.some(k => k.id === id));
+    const sor = id => { const k = kamerak.find(x => x.id === id); return `- ${id} | ${k.title}`; };
+    const ids = lista(kell), rids = lista(regi);
+    const body = `ARGOS kamerák, amelyek kellenek (${ids.length} db):\n\n${ids.map(sor).join('\n')}\n\n`
+      + `Régi (nem friss) képű kamerák (${rids.length} db):\n\n${rids.map(sor).join('\n')}\n\n`
+      + `<!-- argos-kell: ${ids.join(',')} -->\n<!-- argos-regi: ${rids.join(',')} -->`;
     window.open(`${ISSUE_URL}?title=${encodeURIComponent('ARGOS kamerák kiválasztása')}&body=${encodeURIComponent(body)}`, '_blank', 'noopener');
   });
   fetch('data/webcams_argos.json', { cache: 'no-store' }).then(r => r.json()).then(d => {

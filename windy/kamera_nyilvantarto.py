@@ -21,7 +21,6 @@ import requests
 ITT = os.path.dirname(os.path.abspath(__file__))
 NYILVANTARTAS = os.path.join(ITT, 'data', 'kamera_nyilvantartas.json')
 WINDY_JSON = os.path.join(ITT, 'data', 'webcams_hu.json')
-ARGOS_JSON = os.path.join(ITT, 'data', 'webcams_argos.json')
 UTINFORM_URL = 'https://baleset-info.hu/tv2/utinform/serve_utinform_webcams.php'
 KF_LIST_URL = 'https://kozutfigyelo-back.budapestkozut.hu/api/ikszr/list'
 FEJLEC = {'User-Agent': 'Mozilla/5.0 (balesetinfo kamera-nyilvantarto)'}
@@ -31,12 +30,6 @@ def windy_kamerak():
     with open(WINDY_JSON, encoding='utf-8') as f:
         adat = json.load(f)
     return {f"windy:{c['id']}": (c.get('title') or '', c.get('latitude'), c.get('longitude')) for c in adat.get('webcams', [])}
-
-
-def argos_kamerak():
-    with open(ARGOS_JSON, encoding='utf-8') as f:
-        adat = json.load(f)
-    return {f"argos:{c['id']}": (c.get('title') or '', c.get('latitude'), c.get('longitude')) for c in adat.get('webcams', [])}
 
 
 def utinform_kamerak():
@@ -69,11 +62,9 @@ def kozeli_regi(kulcs, hely, ny):
     if hely[0] is None or hely[1] is None:
         return None
     forras = kulcs.split(':', 1)[0]
-    if forras == 'argos':
-        return None  # az ARGOS listája eleve csak a nálunk hiányzó képeket tartalmazza
     legjobb = None
     for k, v in ny['kamerak'].items():
-        if k.split(':', 1)[0] in (forras, 'argos') or v.get('lat') is None:
+        if k.split(':', 1)[0] == forras or v.get('lat') is None:
             continue
         if v.get('elso') != 'alap':
             continue  # csak a már korábban ismert kamerákhoz mérünk
@@ -103,7 +94,6 @@ FORRASOK = {
     'windy': windy_kamerak,
     'utinform': utinform_kamerak,
     'kozutfigyelo': kozutfigyelo_kamerak,
-    'argos': argos_kamerak,
 }
 
 
