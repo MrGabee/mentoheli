@@ -8,7 +8,8 @@ with sync_playwright() as p:
     page = b.new_context(user_agent=UA, locale='hu-HU').new_page()
     halo = []
     page.on('response', lambda r: halo.append([r.status, r.headers.get('content-type', ''), r.url]))
-    page.goto('https://onlinecamera.net/elo-webkamerak', wait_until='networkidle', timeout=60000)
+    page.goto('https://onlinecamera.net/elo-webkamerak', wait_until='domcontentloaded', timeout=60000)
+    page.wait_for_timeout(6000)
     page.wait_for_timeout(4000)
     for _ in range(10):
         page.mouse.wheel(0, 4000); page.wait_for_timeout(700)
@@ -22,7 +23,7 @@ with sync_playwright() as p:
     for u in kamera:
         halo.clear()
         try:
-            page.goto(u, wait_until='networkidle', timeout=45000); page.wait_for_timeout(3000)
+            page.goto(u, wait_until='domcontentloaded', timeout=45000); page.wait_for_timeout(5000); page.wait_for_timeout(3000)
         except Exception as e:
             ki['oldalak'][u] = str(e); continue
         ki['oldalak'][u] = {
