@@ -337,7 +337,9 @@ def eredmeny_szoveg(ma, meccsek=None, allapot=None):
             if m["golok"] is not None and regi <= m["nap"] < ma and (m in lista or kiment is None):
                 uj[m["id"]] = m["nap"].isoformat()
         allapot["sport_eredmeny_kiment"] = uj
-    if not lista:
+    # a lejátszott, de még hivatalos eredmény nélküli meccsek (a jegyzőkönyv még nincs lezárva)
+    nyitott = [m for m in meccsek if m["golok"] is None and tol <= m["nap"] < ma][:MAX_MECCS]
+    if not lista and not nyitott:
         return ""
     st = Stilus("sport_napi_eredmeny" if (ma - tol).days == 1 else "sport_eredmeny", ma.isoformat())
     sorok = [st.cim, st.vonal(), "", st.bevezeto, ""]
@@ -350,12 +352,23 @@ def eredmeny_szoveg(ma, meccsek=None, allapot=None):
         # a sportág jele mindig látszik, hogy a kosár- és kézilabdameccs ne tűnjön focinak
         sorok.append(f"{_emoji(m)}{jel} {_parositas(m)}  {h}–{v}")
         sorok.append(f"   🏆 {_bajnoksag(m)}, {m['nap'].strftime('%m.%d.')} {NAPOK[m['nap'].weekday()]}")
-    gyozelem = sum(1 for m in lista if _kimenet(m) == "✅")
-    sorok += ["", f"Összesen {len(lista)} meccs, ebből {gyozelem} csepeli győzelem."
-              if gyozelem else f"Összesen {len(lista)} meccs. Legközelebb jobban megy majd! 💪"]
+    if nyitott:
+        if lista:
+            sorok.append("")
+        sorok += ["⏳ MÉG NINCS HIVATALOS EREDMÉNY", ""]
+        for m in nyitott:
+            ig = m.get("ideiglenes")
+            allas = f"  {ig[0]}–{ig[1]} (nem végleges)" if ig else ""
+            sorok.append(f"{_emoji(m)} {_parositas(m)}{allas}")
+            sorok.append(f"   🏆 {_bajnoksag(m)}, {m['nap'].strftime('%m.%d.')} {NAPOK[m['nap'].weekday()]}")
+        sorok.append("A jegyzőkönyvet még nem zárták le, a végeredményt a következő eredményközlőben hozom. Ha ott voltatok, írjátok meg kommentben! 👇")
+    if lista:
+        gyozelem = sum(1 for m in lista if _kimenet(m) == "✅")
+        sorok += ["", f"Összesen {len(lista)} meccs, ebből {gyozelem} csepeli győzelem."
+                  if gyozelem else f"Összesen {len(lista)} meccs. Legközelebb jobban megy majd! 💪"]
     if st.zaro:
         sorok.append(st.zaro)
-    sorok += _lablec(lista, "#CsepelSC", "#eredmények")
+    sorok += _lablec(lista + nyitott, "#CsepelSC", "#eredmények")
     return "\n".join(sorok)
 
 

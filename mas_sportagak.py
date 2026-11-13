@@ -66,6 +66,8 @@ def mksz_meccs(m, klub):
         "nap": ido.date(),
         "ido": "" if (ido.hour, ido.minute) == (0, 0) else f"{ido.hour}:{ido.minute:02d}",
         "golok": (int(h), int(v)) if lezart and h is not None and v is not None else None,
+        # a még le nem zárt jegyzőkönyv állása (nem hivatalos)
+        "ideiglenes": (int(h), int(v)) if not lezart and h is not None and v is not None else None,
         "helyszin": "" if helyszin in ("", "Nincs megadva") else helyszin,
     }
 
