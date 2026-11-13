@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-14T01:47:57.683590+02:00",
+  "frissitve": "2026-11-14T01:48:44.156314+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:39:43.964575+02:00",
-      "kulcs": "V1547",
-      "rendszam": "V1547",
-      "vehicle_id": "4599",
-      "vehicle_label": "Teleki László tér",
-      "vonal_szam": "37A",
-      "route_id": "3371",
-      "lat": 47.491966247558594,
-      "lon": 19.14432716369629,
-      "elozo_szoveg": "Sörgyár",
-      "uj_szoveg": "Teleki László tér"
-    },
-    {
-      "idopont": "2026-11-13T15:39:43.964617+02:00",
-      "kulcs": "V1551",
-      "rendszam": "V1551",
-      "vehicle_id": "4603",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.48133850097656,
-      "lon": 19.12689208984375,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-11-13T15:39:43.964701+02:00",
-      "kulcs": "V1584",
-      "rendszam": "V1584",
-      "vehicle_id": "4636",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.48256301879883,
-      "lon": 19.129018783569336,
-      "elozo_szoveg": "Kőbánya alsó vasútállomás",
-      "uj_szoveg": "Kőbánya alsó vasútáll."
-    },
     {
       "idopont": "2026-11-13T15:39:43.965040+02:00",
       "kulcs": "V4115",
@@ -260000,6 +259961,45 @@
       "lon": 19.121313095092773,
       "elozo_szoveg": "Keleti pályaudvar M",
       "uj_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-14T01:48:44.091871+02:00",
+      "kulcs": "NWB358",
+      "rendszam": "NWB358",
+      "vehicle_id": "6538",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.547367095947266,
+      "lon": 19.142183303833008,
+      "elozo_szoveg": "Újpalota, Nyírpalota út",
+      "uj_szoveg": "Rákoskeresztúr, városközpont ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-14T01:48:44.092027+02:00",
+      "kulcs": "T9109",
+      "rendszam": "T9109",
+      "vehicle_id": "7356",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "80",
+      "route_id": "4800",
+      "lat": 47.49980926513672,
+      "lon": 19.083242416381836,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-14T01:48:44.092142+02:00",
+      "kulcs": "SKR732",
+      "rendszam": "SKR732",
+      "vehicle_id": "7681",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48590087890625,
+      "lon": 19.0694580078125,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
