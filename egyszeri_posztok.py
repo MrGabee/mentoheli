@@ -430,6 +430,30 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "downdetector_20261113": (date(2026, 11, 13), """💻 NEM MŰKÖDIK VALAMI? ÍGY NÉZHETED MEG, HOGY NÁLAD VAN-E A HIBA!
+
+Ismered a Downdetectort? Ha nem, érdemes elmenteni! 👇
+🔗 downdetector.hu
+
+🔎 Mit tud?
+A felhasználók bejelentései alapján percre pontosan mutatja, ha egy szolgáltatás leállt vagy akadozik. Megtalálod rajta többek között:
+📱 a mobil- és internetszolgáltatókat (Telekom, One, Digi, Yettel…)
+💬 a Facebookot, Messengert, Instagramot, WhatsAppot
+📧 a Microsoftot, Outlookot, Gmailt, Google-t
+🏦 a bankokat és a fizetési szolgáltatásokat
+🎬 a streaming-szolgáltatókat (Netflix, YouTube…)
+
+✅ Hogyan használd?
+1️⃣ Nyisd meg a downdetector.hu oldalt.
+2️⃣ Írd be a keresőbe a szolgáltatás nevét.
+3️⃣ Ha a grafikonon hirtelen kiugrás látszik, és sokan jelentenek hibát, akkor nem nálad van a gond, hanem a szolgáltatónál. Ilyenkor nincs más dolgod, mint várni.
+4️⃣ Ha a grafikon nyugodt, a hiba valószínűleg nálad van: érdemes újraindítani a routert, a telefont vagy a gépet.
+
+💡 Tipp: te is bejelentheted, ha valami nem működik nálad. Így mások is hamarabb látják, hogy baj van.
+
+⚠️ Ma éppen jól jöhet: a Microsoft szolgáltatásai akadoznak, sokan tapasztalnak hibát. Ha neked sem működik valami, nem a te géped vagy a te interneted a hibás!
+
+#Csepel #hasznos #Downdetector #Microsoft"""),
     "zaszlok_20261113": (date(2026, 11, 13), """🇭🇺 OLVASÓI LEVÉL – Még mindig kint vannak az ünnepi zászlók
 
 Egy olvasóm írta:
