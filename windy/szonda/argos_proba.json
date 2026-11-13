@@ -1,0 +1,146 @@
+{
+ "/api/cam/ab046e8c8b3d73495d/feature": [
+  200,
+  "application/json",
+  "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.0946513,47.5049263]},\"properties\":{\"id\":\"ab046e8c8b3d73495d\",\"name\":\"Budapest - Kisstadion\",\"road\":null,\"province\":\"Hungary\",\"direction\":null,\"media_type\":\"stream\",\"category\":\"urbanas\",\"rank\":380}}",
+  "https://www.argosatlas.com/api/cam/ab046e8c8b3d73495d/feature"
+ ],
+ "/api/cam/ab046e8c8b3d73495d/stream": [
+  200,
+  "application/json",
+  "{\"stream\":\"/api/sp/c6f364ce7cdee7d1/ZHluOndvcmxkY2FtX2V1cm9wZTI6MzAzMjU?c=ab046e8c8b3d73495d\",\"kind\":\"hls\",\"viewer\":null,\"licensed\":false}",
+  "https://www.argosatlas.com/api/cam/ab046e8c8b3d73495d/stream"
+ ],
+ "/api/cam/ab046e8c8b3d73495d/image": [
+  404,
+  "application/json",
+  "{\"detail\":\"camera image unavailable\"}",
+  "https://www.argosatlas.com/api/cam/ab046e8c8b3d73495d/image"
+ ],
+ "/api/cam/ab046e8c8b3d73495d/eta": [
+  200,
+  "application/json",
+  "{\"kind\":\"video\",\"server_ms\":1538,\"basis\":\"source\",\"n\":10470,\"busy\":false}",
+  "https://www.argosatlas.com/api/cam/ab046e8c8b3d73495d/eta"
+ ],
+ "/api/cam/84c35988b535734fc6/feature": [
+  200,
+  "application/json",
+  "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.691792,46.907254]},\"properties\":{\"id\":\"84c35988b535734fc6\",\"name\":\"Kecskemét - Traffic\",\"road\":null,\"province\":\"Hungary\",\"direction\":null,\"media_type\":\"image\",\"category\":\"urbanas\",\"rank\":952,\"img\":\"/api/cam/84c35988b535734fc6/image\"}}",
+  "https://www.argosatlas.com/api/cam/84c35988b535734fc6/feature"
+ ],
+ "/api/cam/84c35988b535734fc6/stream": [
+  200,
+  "application/json",
+  "{\"stream\":\"/api/sp/735e18efc956eba9/ZHluOndvcmxkY2FtX2V1cm9wZTI6ODM2?c=84c35988b535734fc6\",\"kind\":\"hls\",\"viewer\":null,\"licensed\":false}",
+  "https://www.argosatlas.com/api/cam/84c35988b535734fc6/stream"
+ ],
+ "/api/cam/84c35988b535734fc6/image": [
+  200,
+  "image/jpeg",
+  "KÉP 13390 B",
+  "https://www.argosatlas.com/api/cam/84c35988b535734fc6/image"
+ ],
+ "/api/cam/84c35988b535734fc6/eta": [
+  200,
+  "application/json",
+  "{\"kind\":\"photo\",\"server_ms\":80,\"bytes\":19912,\"basis\":\"cache\",\"n\":10,\"busy\":false}",
+  "https://www.argosatlas.com/api/cam/84c35988b535734fc6/eta"
+ ],
+ "/api/cam/8844a34c51fe0be9b3/feature": [
+  200,
+  "application/json",
+  "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[22.1720423,48.4110868]},\"properties\":{\"id\":\"8844a34c51fe0be9b3\",\"name\":\"Záhony - Border checkpoint\",\"road\":null,\"province\":\"Hungary\",\"direction\":null,\"media_type\":\"image\",\"category\":\"urbanas\",\"rank\":628,\"img\":\"/api/cam/8844a34c51fe0be9b3/image\"}}",
+  "https://www.argosatlas.com/api/cam/8844a34c51fe0be9b3/feature"
+ ],
+ "/api/cam/8844a34c51fe0be9b3/stream": [
+  200,
+  "application/json",
+  "{\"stream\":\"/api/sp/fa78cf96500d63be/ZHluOndvcmxkY2FtX2V1cm9wZTI6Mzc4NTU?c=8844a34c51fe0be9b3\",\"kind\":\"hls\",\"viewer\":null,\"licensed\":false}",
+  "https://www.argosatlas.com/api/cam/8844a34c51fe0be9b3/stream"
+ ],
+ "/api/cam/8844a34c51fe0be9b3/image": [
+  200,
+  "image/jpeg",
+  "KÉP 17745 B",
+  "https://www.argosatlas.com/api/cam/8844a34c51fe0be9b3/image"
+ ],
+ "/api/cam/8844a34c51fe0be9b3/eta": [
+  200,
+  "application/json",
+  "{\"kind\":\"photo\",\"server_ms\":80,\"bytes\":19026,\"basis\":\"cache\",\"n\":7,\"busy\":false}",
+  "https://www.argosatlas.com/api/cam/8844a34c51fe0be9b3/eta"
+ ],
+ "/api/cam/fa0833734ca541ee2d/feature": [
+  200,
+  "application/json",
+  "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[17.026011,47.593076]},\"properties\":{\"id\":\"fa0833734ca541ee2d\",\"name\":\"Kapuvár - Damjanich utca\",\"road\":null,\"province\":\"Hungary\",\"direction\":null,\"media_type\":\"image\",\"category\":\"urbanas\",\"rank\":459,\"img\":\"/api/cam/fa0833734ca541ee2d/image\"}}",
+  "https://www.argosatlas.com/api/cam/fa0833734ca541ee2d/feature"
+ ],
+ "/api/cam/fa0833734ca541ee2d/stream": [
+  200,
+  "application/json",
+  "{\"stream\":\"/api/sp/859aeeda87ea16eb/ZHluOndvcmxkY2FtX2V1cm9wZTI6MTE3MTI?c=fa0833734ca541ee2d\",\"kind\":\"hls\",\"viewer\":null,\"licensed\":false}",
+  "https://www.argosatlas.com/api/cam/fa0833734ca541ee2d/stream"
+ ],
+ "/api/cam/fa0833734ca541ee2d/image": [
+  200,
+  "image/jpeg",
+  "KÉP 23095 B",
+  "https://www.argosatlas.com/api/cam/fa0833734ca541ee2d/image"
+ ],
+ "/api/cam/fa0833734ca541ee2d/eta": [
+  200,
+  "application/json",
+  "{\"kind\":\"photo\",\"server_ms\":80,\"bytes\":17982,\"basis\":\"cache\",\"n\":4,\"busy\":false}",
+  "https://www.argosatlas.com/api/cam/fa0833734ca541ee2d/eta"
+ ],
+ "/api/cam/6e4196574452431ab0/feature": [
+  200,
+  "application/json",
+  "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[20.378029,47.899326]},\"properties\":{\"id\":\"6e4196574452431ab0\",\"name\":\"Eger - Dobó István tér\",\"road\":null,\"province\":\"Hungary\",\"direction\":null,\"media_type\":\"youtube\",\"category\":\"urbanas\",\"rank\":87}}",
+  "https://www.argosatlas.com/api/cam/6e4196574452431ab0/feature"
+ ],
+ "/api/cam/6e4196574452431ab0/stream": [
+  200,
+  "application/json",
+  "{\"stream\":\"https://www.youtube-nocookie.com/embed/HKVZx5EdnIs?autoplay=1&mute=1&playsinline=1\",\"embed\":\"https://www.youtube-nocookie.com/embed/HKVZx5EdnIs?autoplay=1&mute=1&playsinline=1\",\"kind\":\"youtube\",\"viewer\":null,\"licensed\":false}",
+  "https://www.argosatlas.com/api/cam/6e4196574452431ab0/stream"
+ ],
+ "/api/cam/6e4196574452431ab0/image": [
+  200,
+  "image/jpeg",
+  "KÉP 16512 B",
+  "https://www.argosatlas.com/api/cam/6e4196574452431ab0/image"
+ ],
+ "/api/cam/6e4196574452431ab0/eta": [
+  200,
+  "application/json",
+  "{\"kind\":\"video\",\"server_ms\":1538,\"basis\":\"source\",\"n\":10470,\"busy\":false}",
+  "https://www.argosatlas.com/api/cam/6e4196574452431ab0/eta"
+ ],
+ "/api/cam/a8709bc993b71f6845/feature": [
+  200,
+  "application/json",
+  "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[16.4142,46.69267]},\"properties\":{\"id\":\"a8709bc993b71f6845\",\"name\":\"Kobilje: R2-439 - Dobrovnik, prehod\",\"road\":null,\"province\":\"unknown\",\"direction\":null,\"media_type\":\"image\",\"category\":\"medioambientales\",\"rank\":201,\"img\":\"/api/cam/a8709bc993b71f6845/image\"}}",
+  "https://www.argosatlas.com/api/cam/a8709bc993b71f6845/feature"
+ ],
+ "/api/cam/a8709bc993b71f6845/stream": [
+  200,
+  "application/json",
+  "{\"stream\":null,\"kind\":null,\"viewer\":null,\"licensed\":false}",
+  "https://www.argosatlas.com/api/cam/a8709bc993b71f6845/stream"
+ ],
+ "/api/cam/a8709bc993b71f6845/image": [
+  200,
+  "image/jpeg",
+  "KÉP 13764 B",
+  "https://www.argosatlas.com/api/cam/a8709bc993b71f6845/image"
+ ],
+ "/api/cam/a8709bc993b71f6845/eta": [
+  200,
+  "application/json",
+  "{\"kind\":\"photo\",\"server_ms\":80,\"bytes\":13988,\"basis\":\"cache\",\"n\":472,\"busy\":false}",
+  "https://www.argosatlas.com/api/cam/a8709bc993b71f6845/eta"
+ ]
+}
