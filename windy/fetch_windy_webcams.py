@@ -131,12 +131,49 @@ def fetch_hungarian_webcams():
     ]
 
     page_size = 50
-    max_pages_per_region = 4  # 4 x 50 = 200 kamera / régió - bőven elég
+    # Régiónként legfeljebb ennyi oldal. A régi 4 oldal (200 kamera) kevés
+    # volt: a 6 régióból 4 elérte a plafont, így kamerák maradtak ki.
+    max_pages_per_region = 20
 
     seen_ids = set()
     all_webcams = []
 
-    for region in regions:
+    # 1) Elsőként országra szűrve kérjük le (countries=HU): így nem függ a
+    #    körök sugarától és a régiónkénti plafontól.
+    print("🔍 Országos lekérdezés (countries=HU)...")
+    offset = 0
+    orszagos_kesz = False
+    for page in range(40):
+        params = {
+            "countries": "HU",
+            "limit": page_size,
+            "offset": offset,
+            "include": "images,location,player",
+        }
+        response = windy_get(url, params, headers)
+        if response is None:
+            print("   ⚠️  Az országos lekérdezés megszakadt - a régiós lekérdezéssel pótoljuk.")
+            break
+        page_data = response.json().get("webcams", [])
+        if not page_data:
+            orszagos_kesz = True
+            break
+        uj = 0
+        for cam in page_data:
+            cam_id = cam.get("webcamId")
+            if cam_id not in seen_ids:
+                seen_ids.add(cam_id)
+                all_webcams.append(cam)
+                uj += 1
+        print(f"   -> {page + 1}. oldal: {len(page_data)} kamera ({uj} új).")
+        if len(page_data) < page_size:
+            orszagos_kesz = True
+            break
+        offset += page_size
+
+    # 2) Kiegészítésként a régiós körök (ha az országos lekérdezés nem ment
+    #    végig, ezek pótolják a hiányt).
+    for region in ([] if orszagos_kesz else regions):
         print(f"🔍 Régió: {region['name']}...")
         offset = 0
 
