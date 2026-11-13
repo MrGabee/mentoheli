@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-14T01:53:35.650855+02:00",
+  "frissitve": "2026-11-14T01:54:03.761908+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:39:43.969569+02:00",
-      "kulcs": "PKN628",
-      "rendszam": "PKN628",
-      "vehicle_id": "7217",
-      "vehicle_label": "Puskás Ferenc Stadion M",
-      "vonal_szam": "95",
-      "route_id": "0950",
-      "lat": 47.4580078125,
-      "lon": 19.176429748535156,
-      "elozo_szoveg": "Felsőcsatári köz",
-      "uj_szoveg": "Puskás Ferenc Stadion M"
-    },
-    {
-      "idopont": "2026-11-13T15:39:43.969960+02:00",
-      "kulcs": "T9106",
-      "rendszam": "T9106",
-      "vehicle_id": "7353",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.49330139160156,
-      "lon": 19.06037139892578,
-      "elozo_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás",
-      "uj_szoveg": "Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-11-13T15:39:43.970013+02:00",
-      "kulcs": "V2116",
-      "rendszam": "V2116",
-      "vehicle_id": "7366",
-      "vehicle_label": "Bécsi út / Vörösvári út",
-      "vonal_szam": "1",
-      "route_id": "3010",
-      "lat": 47.46345138549805,
-      "lon": 19.023120880126953,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Bécsi út / Vörösvári út"
-    },
     {
       "idopont": "2026-11-13T15:39:43.970205+02:00",
       "kulcs": "RVY601",
@@ -260000,6 +259961,45 @@
       "lon": 19.18584442138672,
       "elozo_szoveg": "Pestszentimre vasútállomás",
       "uj_szoveg": "Astoria M ► Újpalota"
+    },
+    {
+      "idopont": "2026-11-14T01:54:03.639522+02:00",
+      "kulcs": "AUAN761",
+      "rendszam": "AUAN761",
+      "vehicle_id": "1135",
+      "vehicle_label": "Liszt Ferenc Airport 2",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.49778747558594,
+      "lon": 19.054777145385742,
+      "elozo_szoveg": "Deák Ferenc tér M (City centre)",
+      "uj_szoveg": "Liszt Ferenc Airport 2"
+    },
+    {
+      "idopont": "2026-11-14T01:54:03.639574+02:00",
+      "kulcs": "AADI621",
+      "rendszam": "AADI621",
+      "vehicle_id": "117",
+      "vehicle_label": "Márton Áron tér",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.46470642089844,
+      "lon": 19.018484115600586,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Márton Áron tér"
+    },
+    {
+      "idopont": "2026-11-14T01:54:03.643253+02:00",
+      "kulcs": "SXE202",
+      "rendszam": "SXE202",
+      "vehicle_id": "7839",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4622688293457,
+      "lon": 19.133609771728516,
+      "elozo_szoveg": "Astoria M ► Káposztásmegyer",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
     }
   ]
 }
