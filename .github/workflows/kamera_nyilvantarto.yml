@@ -1,0 +1,50 @@
+name: 🆕 Új webkamerák figyelése
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Óránként végignézi a kameraforrásokat, és feljegyzi az új kamerákat.
+    - cron: '7 * * * *'
+
+concurrency:
+  group: kamera-nyilvantarto
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 🐍 Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 📦 Függőségek telepítése
+        run: pip install requests
+
+      - name: 🆕 Új kamerák keresése
+        run: python windy/kamera_nyilvantarto.py
+
+      - name: 💾 Nyilvántartás mentése
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cp windy/data/kamera_nyilvantartas.json /tmp/nyilv.json
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/nyilv.json windy/data/kamera_nyilvantartas.json
+            git add windy/data/kamera_nyilvantartas.json
+            if git diff --staged --quiet; then echo "Nincs változás."; break; fi
+            git commit -m "kamera-nyilvántartás frissítve [skip ci]"
+            if git push origin HEAD:main; then echo "Push sikeres."; break; fi
+            sleep $((RANDOM % 6 + 2))
+          done
