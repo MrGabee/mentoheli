@@ -91,7 +91,7 @@ def main():
                         } catch (e) { out[id] = {hiba: String(e)}; }
                         break;
                     }
-                    await varj(900);
+                    await varj(600);
                 }
                 return out;
             }""", hianyzik)
