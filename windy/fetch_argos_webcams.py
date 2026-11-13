@@ -24,7 +24,9 @@ from datetime import datetime, timezone
 
 from playwright.sync_api import sync_playwright
 
-OUTPUT_FILE = 'windy/data/webcams_argos.json'
+OUTPUT_FILE = 'windy/data/webcams_argos.json'          # a webkamera-oldalra: csak a kiválasztottak
+JELOLTEK_FILE = 'windy/data/webcams_argos_jeloltek.json'  # a válogató oldalra: minden jelölt
+KELL_FILE = 'windy/data/argos_kell.json'               # Gábor kiválasztása
 CACHE_FILE = 'windy/data/argos_forras.json'
 BASE = 'https://www.argosatlas.com'
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
@@ -191,16 +193,25 @@ def main():
             'image_thumbnail': f"{BASE}/api/cam/{e['id']}/image" if c.get('kep_ok') else None,
             'player_embed': c.get('stream'),
         })
+    try:
+        kell = set(json.load(open(KELL_FILE, encoding='utf-8')).get('ids', []))
+    except (FileNotFoundError, json.JSONDecodeError):
+        kell = set()
+    kiir(JELOLTEK_FILE, kamerak)
+    kiir(OUTPUT_FILE, [k for k in kamerak if k['id'] in kell])
+
+
+def kiir(fajl, kamerak):
     # Csak akkor frissül az időbélyeg (és lesz commit), ha a lista változott.
     try:
-        regi = json.load(open(OUTPUT_FILE, encoding='utf-8'))
+        regi = json.load(open(fajl, encoding='utf-8'))
     except (FileNotFoundError, json.JSONDecodeError):
         regi = {}
     idopont = regi.get('updated_at') if regi.get('webcams') == kamerak else None
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+    with open(fajl, 'w', encoding='utf-8') as f:
         json.dump({'updated_at': idopont or datetime.now(timezone.utc).isoformat(), 'count': len(kamerak),
                    'webcams': kamerak}, f, ensure_ascii=False, indent=1)
-    print(f'Elmentve: {OUTPUT_FILE} ({len(kamerak)} kamera)')
+    print(f'Elmentve: {fajl} ({len(kamerak)} kamera)')
 
 
 if __name__ == '__main__':

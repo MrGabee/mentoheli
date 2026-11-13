@@ -52,6 +52,7 @@ jobs:
           fi
           cp windy/data/webcams_argos.json /tmp/webcams_argos.json
           cp windy/data/argos_forras.json /tmp/argos_forras.json
+          cp windy/data/webcams_argos_jeloltek.json /tmp/webcams_argos_jeloltek.json
 
           for i in 1 2 3 4 5 6; do
             echo "Push kísérlet $i/6..."
@@ -60,7 +61,8 @@ jobs:
             mkdir -p windy/data
             cp /tmp/webcams_argos.json windy/data/webcams_argos.json
             cp /tmp/argos_forras.json windy/data/argos_forras.json
-            git add windy/data/webcams_argos.json windy/data/argos_forras.json
+            cp /tmp/webcams_argos_jeloltek.json windy/data/webcams_argos_jeloltek.json
+            git add windy/data/webcams_argos.json windy/data/argos_forras.json windy/data/webcams_argos_jeloltek.json
             if git diff --staged --quiet; then
               echo "Nincs változás, kész."
               exit 0
