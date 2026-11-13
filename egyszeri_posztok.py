@@ -430,6 +430,27 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "viz_alatt_20261113": (date(2026, 11, 13), """🌊 VÍZ ALATT CSEPEL TÖBB UTCÁJA – csak az induljon, akinek muszáj!
+
+Szép reggelt! Gyors helyzetjelentés: helyszíni információim szerint ma csak az induljon útnak, akinek van „vízi jártassága”. 🚣
+
+Teljesen járhatatlan vagy alig járható:
+📍 Csepeli út
+📍 Plútó utca
+📍 Szabadság utca
+📍 Orion utca
+📍 a Tavakhoz vezető utak
+📍 az Erdősor utca egy része (a Szabadság utca és a Költsey utca között)
+
+Néhol alvázig ér a víz, még magasabb autóval is.
+
+⚠️ Ha tehetitek, kerüljétek ezeket a szakaszokat! Mély vízbe ne hajtsatok bele, mert nem látszik, mi van alatta, és a motor is könnyen vizet kaphat. Gyalog is óvatosan, a víz alatt nyitott akna vagy kátyú is lehet.
+
+🚗 Ma biztosan nagy lesz a káosz, számoljatok több idővel!
+
+Ha napközben újabb hírt kapok, azonnal jelentkezem. Ti is írjátok meg, merre milyen a helyzet! 👇
+
+#Csepel #víz #közlekedés"""),
     "busz_baleset_erdoalja_20261112": (date(2026, 11, 12), """🚨 BUSZ ÉS AUTÓ ÜTKÖZÖTT CSEPELEN – Szent István út / Erdőalja utca
 
 Menetrend szerint közlekedő autóbusz ütközött egy személyautóval Csepelen, a Szent István út és az Erdőalja utca kereszteződésében.
