@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T03:40:19.403266+02:00",
+  "frissitve": "2026-11-13T03:40:51.338961+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:50:57.941519+02:00",
-      "kulcs": "NCV287",
-      "rendszam": "NCV287",
-      "vehicle_id": "6252",
-      "vehicle_label": "Deák Ferenc tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.506996154785156,
-      "lon": 19.023283004760742,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Budai Vár ► Deák Ferenc tér M"
-    },
-    {
-      "idopont": "2026-11-12T15:50:57.941620+02:00",
-      "kulcs": "NCV297",
-      "rendszam": "NCV297",
-      "vehicle_id": "6262",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "16",
-      "route_id": "0160",
-      "lat": 47.49953842163086,
-      "lon": 19.03682518005371,
-      "elozo_szoveg": "Budai Vár ► Széll Kálmán tér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-12T15:50:57.941635+02:00",
-      "kulcs": "NCV299",
-      "rendszam": "NCV299",
-      "vehicle_id": "6264",
-      "vehicle_label": "Aranyhegy",
-      "vonal_szam": "219",
-      "route_id": "2190",
-      "lat": 47.58437728881836,
-      "lon": 19.044198989868164,
-      "elozo_szoveg": "Csillaghegy H",
-      "uj_szoveg": "Aranyhegy"
-    },
     {
       "idopont": "2026-11-12T15:50:57.942053+02:00",
       "kulcs": "AADI567",
@@ -260000,6 +259961,45 @@
       "lon": 19.045982360839844,
       "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
       "uj_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-11-13T03:40:51.259555+02:00",
+      "kulcs": "AAMH668",
+      "rendszam": "AAMH668",
+      "vehicle_id": "511",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.52610778808594,
+      "lon": 19.064023971557617,
+      "elozo_szoveg": "Göncz Árpád városközpont M ► Rákospalota",
+      "uj_szoveg": "Rákospalota, Mélyfúró utca"
+    },
+    {
+      "idopont": "2026-11-13T03:40:51.259622+02:00",
+      "kulcs": "AADI565",
+      "rendszam": "AADI565",
+      "vehicle_id": "55",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.477783203125,
+      "lon": 19.046323776245117,
+      "elozo_szoveg": "Móricz Zsigmond körtér M",
+      "uj_szoveg": "Széll Kálmán tér M ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-13T03:40:51.259682+02:00",
+      "kulcs": "MUT898",
+      "rendszam": "MUT898",
+      "vehicle_id": "5951",
+      "vehicle_label": "Kőbánya-Kispest M",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.59882736206055,
+      "lon": 19.121337890625,
+      "elozo_szoveg": "Káposztásmegyer, Mogyoródi-patak",
+      "uj_szoveg": "Káposztásmegyer"
     }
   ]
 }
