@@ -1,58 +1,6 @@
 {
-  "frissitve": "2026-11-13T03:51:30.610210+02:00",
+  "frissitve": "2026-11-13T03:51:55.663376+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:52:02.205382+02:00",
-      "kulcs": "AAGL313",
-      "rendszam": "AAGL313",
-      "vehicle_id": "283",
-      "vehicle_label": "Törökbálint vasútállomás",
-      "vonal_szam": "173",
-      "route_id": "1730",
-      "lat": 47.46442794799805,
-      "lon": 19.01875114440918,
-      "elozo_szoveg": "Kelenföld vasútállomás M",
-      "uj_szoveg": "Nyár utca ► Törökbálint vasútállomás"
-    },
-    {
-      "idopont": "2026-11-12T15:52:02.205517+02:00",
-      "kulcs": "AAGL284",
-      "rendszam": "AAGL284",
-      "vehicle_id": "308",
-      "vehicle_label": "Solymár, Auchan áruház",
-      "vonal_szam": "64",
-      "route_id": "0640",
-      "lat": 47.543243408203125,
-      "lon": 18.96401596069336,
-      "elozo_szoveg": "Hűvösvölgy",
-      "uj_szoveg": "Solymár vasútállomás ► Solymár, Auchan áruház"
-    },
-    {
-      "idopont": "2026-11-12T15:52:02.205652+02:00",
-      "kulcs": "FLR715",
-      "rendszam": "FLR715",
-      "vehicle_id": "3129",
-      "vehicle_label": "Kelenföld vasútállomás M",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.54749298095703,
-      "lon": 19.14195442199707,
-      "elozo_szoveg": "Blaha Lujza tér M",
-      "uj_szoveg": "Gazdagréti tér ► Kelenföld vasútállomás M"
-    },
-    {
-      "idopont": "2026-11-12T15:52:02.205795+02:00",
-      "kulcs": "AAGL281",
-      "rendszam": "AAGL281",
-      "vehicle_id": "316",
-      "vehicle_label": "Hűvösvölgy",
-      "vonal_szam": "164B",
-      "route_id": "1642",
-      "lat": 47.595516204833984,
-      "lon": 18.949665069580078,
-      "elozo_szoveg": "Solymár vasútállomás ► Hűvösvölgy",
-      "uj_szoveg": "Hűvösvölgy"
-    },
     {
       "idopont": "2026-11-12T15:52:02.205917+02:00",
       "kulcs": "AAGL310",
@@ -260000,6 +259948,58 @@
       "lon": 19.006792068481445,
       "elozo_szoveg": "Verecke lépcső ► Kolosy tér",
       "uj_szoveg": "Kolosy tér"
+    },
+    {
+      "idopont": "2026-11-13T03:51:55.575465+02:00",
+      "kulcs": "AAMH667",
+      "rendszam": "AAMH667",
+      "vehicle_id": "510",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48090362548828,
+      "lon": 19.142539978027344,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-13T03:51:55.575909+02:00",
+      "kulcs": "RVY608",
+      "rendszam": "RVY608",
+      "vehicle_id": "7437",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.51999282836914,
+      "lon": 19.038084030151367,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-13T03:51:55.576005+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.5094108581543,
+      "lon": 19.09617805480957,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Rákospalota, MEDIMPEX"
+    },
+    {
+      "idopont": "2026-11-13T03:51:55.576022+02:00",
+      "kulcs": "SKR815",
+      "rendszam": "SKR815",
+      "vehicle_id": "7701",
+      "vehicle_label": "Óbuda, Bogdáni út",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.482810974121094,
+      "lon": 19.13041114807129,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
+      "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
     }
   ]
 }
