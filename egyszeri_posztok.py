@@ -430,6 +430,21 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "zene_plaza_20261113": (date(2026, 11, 13), """🔊 OLVASÓI LEVÉL – Dübörgő zene éjjel a pláza környékén
+
+Egy olvasóm írta késő este:
+
+„Irgalmatlan hangos, dübörgő zene jön valahonnan, Csepelen a plázánál lakom, és nem lehet tőle aludni. Lassan fél 11 van, és nem úgy tűnik, mintha abba akarnák hagyni. Régebben is előfordult már ilyen este. Kihez lehetne fordulni?”
+
+👉 Ti is hallottátok? Tudjátok, honnan jön a zene, és mi lehet ez?
+
+ℹ️ Ha éjjel zavaró zaj tart vissza az alvástól, és a forrását nem tudjátok megszüntetni, a rendőrséget a 112-n lehet hívni. Ha rendszeresen ismétlődik, érdemes jelezni az önkormányzatnál is, mert nekik lehet lehetőségük a visszatérő zajforrással foglalkozni.
+
+Ha tudtok valami hasznosat, írjátok meg kommentben! 👇
+
+Köszönöm az olvasónak a levelet! 🙏
+
+#Csepel #olvasóilevél #zaj"""),
     "csengeto_raketa_20261113": (date(2026, 11, 13), """⚠️ FIGYELEM – Ismeretlen személy csönget be a társasházakba!
 
 Egy olvasóm jelezte, hogy a Rakéta utcában egy társasházba ismeretlen személy csengetett be, és „ingyenes tanfolyamot” kínált. Valószínűleg a környéken máshol is próbálkozik.
