@@ -11,4 +11,4 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install playwright && python -m playwright install --with-deps chromium
-      - run: python windy/szonda/forras_szonda.py
+      - run: python windy/szonda/argos_elemzes.py
