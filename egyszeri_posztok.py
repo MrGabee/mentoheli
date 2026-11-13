@@ -430,6 +430,22 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "csengeto_raketa_20261113": (date(2026, 11, 13), """⚠️ FIGYELEM – Ismeretlen személy csönget be a társasházakba!
+
+Egy olvasóm jelezte, hogy a Rakéta utcában egy társasházba ismeretlen személy csengetett be, és „ingyenes tanfolyamot” kínált. Valószínűleg a környéken máshol is próbálkozik.
+
+Az olvasóm udvariasan, de elküldte, mondván, hogy nem érdekli őket.
+
+Nem minősítünk senkit, de kérlek, legyetek fokozottan óvatosak:
+🔒 Rutinból, ellenőrizetlenül senkit ne engedjetek be a házba vagy a lakásba!
+👵 Figyeljünk idős lakótársainkra, szüleinkre, nagyszüleinkre is, és hívjuk fel erre a figyelmüket. Sajnos őket célozzák meg a legtöbbször.
+📞 Ha valaki gyanúsan viselkedik vagy erőszakos, nyugodtan hívjátok a 112-t.
+
+Ti is találkoztatok hasonlóval? Írjátok meg kommentben! 👇
+
+Köszönöm az olvasónak a jelzést! 🙏
+
+#Csepel #figyelem #biztonság #olvasóilevél"""),
     "downdetector_20261113": (date(2026, 11, 13), """💻 NEM MŰKÖDIK VALAMI? ÍGY NÉZHETED MEG, HOGY NÁLAD VAN-E A HIBA!
 
 Ismered a Downdetectort? Ha nem, érdemes elmenteni! 👇
