@@ -72,6 +72,7 @@ def main():
     ny.setdefault('alap_kesz', {})
 
     ujak = []
+    elotte = json.dumps(ny, sort_keys=True)
     for forras, lekeres in FORRASOK.items():
         try:
             kamerak = lekeres()
@@ -91,6 +92,9 @@ def main():
         ny['alap_kesz'][forras] = True
         print(f'[{forras}] {len(kamerak)} kamera' + (' – alapállapot rögzítve' if alap else ''))
 
+    if json.dumps(ny, sort_keys=True) == elotte:
+        print('Nincs új kamera, a nyilvántartás változatlan.')
+        return 0
     ny['frissitve'] = most
     os.makedirs(os.path.dirname(NYILVANTARTAS), exist_ok=True)
     with open(NYILVANTARTAS, 'w', encoding='utf-8') as f:
