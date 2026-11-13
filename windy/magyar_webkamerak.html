@@ -1457,7 +1457,7 @@
       const nyKamerak = (nyilvantartas && nyilvantartas.kamerak) || {};
       allWebcams.forEach(cam => {
         const bejegyzes = nyKamerak[`${cam.source}:${cam.id}`];
-        const elso = bejegyzes && bejegyzes.elso !== 'alap' ? bejegyzes.elso : null;
+        const elso = bejegyzes && bejegyzes.elso !== 'alap' && !bejegyzes.hasonlo ? bejegyzes.elso : null;
         cam.ujKamera = elso && new Date(elso).getTime() >= ujHatar ? elso : null;
       });
 
