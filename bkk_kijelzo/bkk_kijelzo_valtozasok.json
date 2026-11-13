@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-13T03:31:37.019990+02:00",
+  "frissitve": "2026-11-13T03:32:05.639435+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-12T15:49:34.391977+02:00",
-      "kulcs": "T9134",
-      "rendszam": "T9134",
-      "vehicle_id": "7873",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.48897933959961,
-      "lon": 19.085847854614258,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-11-12T15:49:34.392022+02:00",
-      "kulcs": "AOFL204",
-      "rendszam": "AOFL204",
-      "vehicle_id": "788",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "15",
-      "route_id": "0150",
-      "lat": 47.49007797241211,
-      "lon": 19.060747146606445,
-      "elozo_szoveg": "Kálvin tér M",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
-    {
-      "idopont": "2026-11-12T15:49:34.392042+02:00",
-      "kulcs": "T9142",
-      "rendszam": "T9142",
-      "vehicle_id": "7881",
-      "vehicle_label": "Mexikói út M",
-      "vonal_szam": "82",
-      "route_id": "4820",
-      "lat": 47.517242431640625,
-      "lon": 19.10729217529297,
-      "elozo_szoveg": "Uzsoki Utcai Kórház ► Mexikói út M",
-      "uj_szoveg": "Mexikói út M"
-    },
     {
       "idopont": "2026-11-12T15:49:34.392083+02:00",
       "kulcs": "T9146",
@@ -260000,6 +259961,45 @@
       "lon": 19.07063102722168,
       "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Csepel-Királyerdő"
+    },
+    {
+      "idopont": "2026-11-13T03:32:05.561729+02:00",
+      "kulcs": "AADI653",
+      "rendszam": "AADI653",
+      "vehicle_id": "152",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.509437561035156,
+      "lon": 19.096221923828125,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-13T03:32:05.564198+02:00",
+      "kulcs": "AADI570",
+      "rendszam": "AADI570",
+      "vehicle_id": "77",
+      "vehicle_label": "Rákospalota, MEDIMPEX",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50747299194336,
+      "lon": 19.025026321411133,
+      "elozo_szoveg": "Astoria M ► Rákospalota, MEDIMPEX",
+      "uj_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-13T03:32:05.564341+02:00",
+      "kulcs": "SKN819",
+      "rendszam": "SKN819",
+      "vehicle_id": "7788",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "909",
+      "route_id": "9090",
+      "lat": 47.520050048828125,
+      "lon": 19.03807258605957,
+      "elozo_szoveg": "Astoria M ► Örs vezér tere M+H",
+      "uj_szoveg": "Kőbánya alsó vasútállomás ► Örs vezér tere M+H"
     }
   ]
 }
