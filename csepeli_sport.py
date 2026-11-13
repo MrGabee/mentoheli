@@ -252,11 +252,11 @@ def _lablec(lista, *cimkek):
 
 
 def _bajnoksag(m):
-    return szep_nev(m["bajnoksag"])
+    return html.unescape(szep_nev(m["bajnoksag"]))
 
 
 def _parositas(m):
-    return f"{szep_nev(m['hazai'])} – {szep_nev(m['vendeg'])}"
+    return html.unescape(f"{szep_nev(m['hazai'])} – {szep_nev(m['vendeg'])}")
 
 
 def _kimenet(m):
@@ -307,8 +307,14 @@ def elozetes_szoveg(ma, meccsek=None):
     return "\n".join(sorok)
 
 
-def eredmeny_szoveg(ma, meccsek=None):
+KESO_EREDMENY_NAP = 5   # ennyi napra visszamenőleg pótoljuk a később lezárt meccseket
+
+
+def eredmeny_szoveg(ma, meccsek=None, allapot=None):
     """Hétfőn a péntek–vasárnapi, más napokon az előző napi eredmények.
+    A korábbi napok olyan meccsei is bekerülnek, amelyek eredménye csak később
+    lett végleges (pl. esti meccs, másnap reggel még nem volt lezárva a
+    jegyzőkönyv), és ezért még nem mentek ki.
     None = nem elérhető, "" = nincs eredmény."""
     if meccsek is None:
         meccsek = osszes_meccs()
@@ -317,7 +323,20 @@ def eredmeny_szoveg(ma, meccsek=None):
     tol = ma - timedelta(days=1 if ma.weekday() != 0 else 3)
     if ma == date(2026, 10, 29):
         tol = date(2026, 10, 26)  # átállás: a hétfő–keddi eredmények még nem mentek ki
-    lista = [m for m in meccsek if tol <= m["nap"] < ma and m["golok"] is not None][:MAX_MECCS]
+    kiment = None if allapot is None else allapot.get("sport_eredmeny_kiment")
+    regi = ma - timedelta(days=KESO_EREDMENY_NAP)
+    lista = [m for m in meccsek if m["golok"] is not None and (
+        tol <= m["nap"] < ma
+        or (kiment is not None and regi <= m["nap"] < tol and m["id"] not in kiment))]
+    lista.sort(key=lambda m: (m["nap"], m["ido"] or ""))
+    lista = lista[-MAX_MECCS:] if len(lista) > MAX_MECCS else lista
+    if allapot is not None:
+        # a kiírt (és a most lezárt) meccseket megjegyezzük, a régieket elfelejtjük
+        uj = {k: v for k, v in (kiment or {}).items() if v >= regi.isoformat()}
+        for m in meccsek:
+            if m["golok"] is not None and regi <= m["nap"] < ma and (m in lista or kiment is None):
+                uj[m["id"]] = m["nap"].isoformat()
+        allapot["sport_eredmeny_kiment"] = uj
     if not lista:
         return ""
     st = Stilus("sport_napi_eredmeny" if (ma - tol).days == 1 else "sport_eredmeny", ma.isoformat())
