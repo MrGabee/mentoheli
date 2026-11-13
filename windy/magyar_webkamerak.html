@@ -15,7 +15,7 @@
     --bg: #f3f5f8; --bg-card: #ffffff; --bg-card-hover: #eef1f6; --surface-2: #eef1f6; --border: #dde2ea;
     --text: #16202e; --text-muted: #5d6a7c; --blue: #1f5f8b; --blue-soft: #e2edf6; --blue-hover: #174a6d;
     --amber: var(--blue); --turquoise: var(--blue); --red: #b3261e; --green: #1b7f4b; --on-accent: #ffffff;
-    --mk-blue: #2f6fc0; --bkk-violet: #7a4fc4; --jb-green: #1f8a55; --line-blue: #1976d2;
+    --mk-blue: #2f6fc0; --bkk-violet: #7a4fc4; --jb-green: #1f8a55; --argos: #c2410c; --line-blue: #1976d2;
     --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
     --f-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
@@ -24,7 +24,7 @@
     --bg: #0f141b; --bg-card: #161d27; --bg-card-hover: #1c2531; --surface-2: #1c2531; --border: #2a3443;
     --text: #e6ebf2; --text-muted: #93a0b2; --blue: #6fb0e0; --blue-soft: #1b2e40; --blue-hover: #8cc3ea;
     --red: #f2867f; --green: #5cc98d; --on-accent: #0f141b;
-    --mk-blue: #4f8fe0; --bkk-violet: #b384f0; --jb-green: #5cc48c;
+    --mk-blue: #4f8fe0; --bkk-violet: #b384f0; --jb-green: #5cc48c; --argos: #ff8a5c;
   } }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -452,6 +452,15 @@
     background: var(--jb-green);
   }
 
+  .source-badge.source-argos {
+    color: var(--argos);
+    border-color: rgba(255, 138, 92, 0.45);
+  }
+
+  .source-badge.source-argos::before {
+    background: var(--argos);
+  }
+
   .argos-link {
     display: inline-block; justify-self: start; width: fit-content;
     font-size: 13px; font-weight: 600; color: #c2410c; text-decoration: none;
@@ -484,6 +493,8 @@
   .source-pill.source-kozutfigyelo::before { background: var(--bkk-violet); }
   .source-pill.source-justbudapest { color: var(--jb-green); }
   .source-pill.source-justbudapest::before { background: var(--jb-green); }
+  .source-pill.source-argos { color: var(--argos); }
+  .source-pill.source-argos::before { background: var(--argos); }
 
   .cam-external-link {
     position: absolute;
@@ -801,6 +812,7 @@
     <option value="utinform">Csak Útinform kamerák</option>
     <option value="kozutfigyelo">Csak Közút Figyelő (Budapest) kamerák</option>
     <option value="justbudapest">Csak JustBudapest kamerák</option>
+    <option value="argos">Csak ARGOS kamerák</option>
   </select>
   <select id="filterSelect" class="filter-select">
     <option value="">Összes helyszín</option>
@@ -833,7 +845,7 @@
 </main>
 
 <footer>
-  Adatforrás: Windy Webcams API (api.windy.com), Útinform / Magyar Közút (utinform.hu) Közút Figyelő / Budapest Közút Zrt. (kozutfigyelo.budapestkozut.hu) és JustBudapest (justbudapest.com, csak link a forrásoldalra) · A Windy és az Útinform adatokat GitHub Actions frissíti rendszeresen; a Közút Figyelő kamerák mindig élőben, közvetlenül a látogató böngészőjéből töltődnek be · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
+  Adatforrás: Windy Webcams API (api.windy.com), Útinform / Magyar Közút (utinform.hu) Közút Figyelő / Budapest Közút Zrt. (kozutfigyelo.budapestkozut.hu), ARGOS ATLAS (argosatlas.com) és JustBudapest (justbudapest.com, csak link a forrásoldalra) · A Windy és az Útinform adatokat GitHub Actions frissíti rendszeresen; a Közút Figyelő kamerák mindig élőben, közvetlenül a látogató böngészőjéből töltődnek be · Az előnézeti képek a Windy free tier-jén 10 perc után lejárhatnak.
 </footer>
 
 <div class="lightbox" id="lightbox">
@@ -867,6 +879,9 @@
   // melyik kamerát mikor láttuk először. Ennyi napig jelöljük "ÚJ"-nak.
   const DATA_URL_NYILVANTARTAS = 'data/kamera_nyilvantartas.json';
   const UJ_KAMERA_NAPOK = 14;
+  // ARGOS ATLAS (argosatlas.com) kamerák, amelyek képe a többi forrásban
+  // nincs meg (windy/fetch_argos_webcams.py, GitHub Actions).
+  const DATA_URL_ARGOS = 'data/webcams_argos.json';
   const DATA_URL_UTINFORM = 'https://baleset-info.hu/tv2/utinform/serve_utinform_webcams.php';
 
   // A Közút Figyelő (Budapest Közút Zrt. fővárosi kameráit mutató saját
@@ -897,6 +912,7 @@
     utinform: 'Útinform',
     kozutfigyelo: 'Közút Figyelő',
     justbudapest: 'JustBudapest',
+    argos: 'ARGOS',
   };
 
   // Kézzel felvett, nyilvánosan közzétett útkamerák, amelyeknek nincs
@@ -1217,7 +1233,7 @@
       return `
         <div class="cam-card${cam.ujKamera ? ' uj-kamera' : ''}">
           <div class="cam-image-wrap" data-idx="${idx}" data-media-slot="${idx}" ${isKf ? `data-kf-id="${escapeHtml(String(cam.kfExternalId))}"` : ''}>
-            ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy">` : ''}
+            ${imgUrl ? `<img src="${imgUrl}" alt="${title}" loading="lazy"${source === 'argos' ? ' referrerpolicy="no-referrer"' : ''}>` : ''}
             ${(!imgUrl && isKf) ? `<div class="cam-kf-loading">Kamera kép betöltése…</div>` : ''}
             ${(!imgUrl && cam.external_url) ? `<a class="cam-external-link" href="${escapeHtml(cam.external_url)}" target="_blank" rel="noopener">▶ Élő adás a ${escapeHtml(sourceLabel)} oldalán →</a>` : ''}
             <div class="live-dot">élő</div>
@@ -1228,7 +1244,7 @@
             <div class="cam-location">${escapeHtml(locationLine)}${roadLine ? ` · ${escapeHtml(roadLine)}` : ''}</div>
             <div class="cam-coords">${lat}, ${lon}</div>
             ${mapsUrl ? `<div class="cam-exact-location">📍 ${escapeHtml(locationLine || 'Ismeretlen helyszín')}</div><a href="${mapsUrl}" target="_blank" rel="noopener" class="cam-maps-link">Pontos helyszín Google Mapsen →</a>` : ''}
-            ${cam.player_embed ? `<button class="cam-playback-btn" data-player-idx="${idx}">▶ Visszajátszás</button>` : ''}
+            ${cam.player_embed ? `<button class="cam-playback-btn" data-player-idx="${idx}">${source === 'argos' ? '▶ Élő adás' : '▶ Visszajátszás'}</button>` : ''}
             ${isKf ? `
               <button class="cam-timeline-btn" data-timeline-idx="${idx}">🕐 Idővonal (2 óra)</button>
               <div class="cam-timeline" data-timeline-panel="${idx}" hidden>
@@ -1381,8 +1397,9 @@
     const windyCount = webcams.filter(c => c.source === 'windy').length;
     const utinformCount = webcams.filter(c => c.source === 'utinform').length;
     const kozutfigyeloCount = webcams.filter(c => c.source === 'kozutfigyelo').length;
+    const argosCount = webcams.filter(c => c.source === 'argos').length;
     const ujCount = webcams.filter(c => c.ujKamera).length;
-    const breakdown = `(windy: ${windyCount} · útinform: ${utinformCount} · közútfigyelő: ${kozutfigyeloCount})`
+    const breakdown = `(windy: ${windyCount} · útinform: ${utinformCount} · közútfigyelő: ${kozutfigyeloCount}${argosCount ? ` · argos: ${argosCount}` : ''})`
       + (ujCount ? ` · 🆕 új: ${ujCount}` : '');
 
     if (updatedAt) {
@@ -1395,6 +1412,8 @@
 
   function openLightbox(imgUrl, caption) {
     if (!imgUrl) return;
+    // Az ARGOS képei csak hivatkozó (Referer) fejléc nélkül töltődnek be.
+    lightboxImg.referrerPolicy = imgUrl.includes('argosatlas.com') ? 'no-referrer' : '';
     lightboxImg.src = imgUrl;
     lightboxCaption.textContent = caption;
     lightbox.classList.add('open');
@@ -1440,11 +1459,12 @@
     renderLoading();
 
     try {
-      const [windyResult, utinformResult, kozutfigyeloResult, nyilvantartas] = await Promise.all([
+      const [windyResult, utinformResult, kozutfigyeloResult, nyilvantartas, argosResult] = await Promise.all([
         loadOneSource(DATA_URL_WINDY, 'windy'),
         loadOneSource(DATA_URL_UTINFORM, 'utinform'),
         loadKozutfigyeloSource(),
         fetch(DATA_URL_NYILVANTARTAS, { cache: 'no-store' }).then(r => (r.ok ? r.json() : null)).catch(() => null),
+        loadOneSource(DATA_URL_ARGOS, 'argos'),
       ]);
 
       if (!windyResult && !utinformResult && !kozutfigyeloResult && !STATIC_WEBCAMS.length) {
@@ -1457,6 +1477,7 @@
         ...(windyResult ? windyResult.webcams : []),
         ...(utinformResult ? utinformResult.webcams : []),
         ...(kozutfigyeloResult ? kozutfigyeloResult.webcams : []),
+        ...(argosResult ? argosResult.webcams : []),
         ...STATIC_WEBCAMS,
       ];
 
