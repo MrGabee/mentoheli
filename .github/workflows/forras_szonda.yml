@@ -11,4 +11,4 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install playwright && python -m playwright install --with-deps chromium
-      - run: python windy/szonda/argos_elemzes.py
+      - run: git fetch --depth=1 origin main && git checkout FETCH_HEAD -- windy/data/kamera_nyilvantartas.json && python windy/szonda/argos_elemzes.py
