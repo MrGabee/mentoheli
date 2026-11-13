@@ -154,7 +154,10 @@ def fetch_hungarian_webcams():
         if response is None:
             print("   ⚠️  Az országos lekérdezés megszakadt - a régiós lekérdezéssel pótoljuk.")
             break
-        page_data = response.json().get("webcams", [])
+        valasz = response.json()
+        if page == 0:
+            print(f"   (a Windy szerint összesen: {valasz.get('total')})")
+        page_data = valasz.get("webcams", [])
         if not page_data:
             orszagos_kesz = True
             break
@@ -173,7 +176,14 @@ def fetch_hungarian_webcams():
 
     # 2) Kiegészítésként a régiós körök (ha az országos lekérdezés nem ment
     #    végig, ezek pótolják a hiányt).
-    for region in ([] if orszagos_kesz else regions):
+    # Az országos lekérdezés kamerái mind magyarok (a Windy szűrt rájuk),
+    # ezeket szűrés nélkül megtartjuk.
+    orszagos_ids = set(seen_ids)
+    print(f"   -> országosan {len(orszagos_ids)} kamera" + ("" if orszagos_kesz else " (nem ment végig)"))
+
+    # 2) A régiós körökkel is végigmegyünk, hátha így előkerül olyan magyar
+    #    kamera is, amit az országos lista nem adott vissza.
+    for region in regions:
         print(f"🔍 Régió: {region['name']}...")
         offset = 0
 
@@ -212,35 +222,15 @@ def fetch_hungarian_webcams():
 
             offset += page_size
 
+    # MINDEN kamerát megtartunk: az országos lista összesét, a régiós
+    # körökből pedig a magyar (HU) kamerákat. Nincs további kiszűrés.
     hungarian_only = [
         cam for cam in all_webcams
-        if (cam.get("location", {}) or {}).get("country_code") == "HU"
+        if cam.get("webcamId") in orszagos_ids
+        or (cam.get("location", {}) or {}).get("country_code") == "HU"
     ]
-
-    # A Windy saját katalógusában időnként UGYANAZ a fizikai kamera két
-    # külön webcamId-vel is szerepel, azonos címmel és koordinátával
-    # (pl. két "Abda: Bécs" bejegyzés). Az id-alapú deduplikálás ezeket
-    # nem szűri ki, mert technikailag különböző ID-k - ezért itt még
-    # egyszer, cím+koordináta alapján is deduplikálunk, az elsőt tartva meg.
-    deduped_by_content = []
-    seen_content_keys = set()
-    for cam in hungarian_only:
-        loc = cam.get("location", {}) or {}
-        content_key = (
-            cam.get("title", "").strip().lower(),
-            round(loc.get("latitude", 0) or 0, 4),
-            round(loc.get("longitude", 0) or 0, 4),
-        )
-        if content_key in seen_content_keys:
-            continue
-        seen_content_keys.add(content_key)
-        deduped_by_content.append(cam)
-
-    duplicates_removed = len(hungarian_only) - len(deduped_by_content)
-    if duplicates_removed:
-        print(f"   -> {duplicates_removed} valódi duplikátum (azonos cím+koordináta) eltávolítva.")
-
-    print(f"   -> {len(all_webcams)} kamera a 250 km-es körben, ebből {len(deduped_by_content)} egyedi magyarországi.")
+    deduped_by_content = hungarian_only
+    print(f"   -> {len(all_webcams)} kamera összesen lekérve, ebből {len(hungarian_only)} magyarországi.")
 
     if all_webcams and not hungarian_only:
         # Ha a szűrés váratlanul 0-t adna, valószínűleg a "country" mező
