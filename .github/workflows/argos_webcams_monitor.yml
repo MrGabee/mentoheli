@@ -1,0 +1,76 @@
+name: 📹 ARGOS kamerák frissítése (HU)
+
+# Az Argos Atlas (argosatlas.com) magyarországi kamerái közül azokat
+# gyűjti ki, amelyek képe a saját forrásainkban (Windy, Útinform, Közút
+# Figyelő) nincs meg. A kameránkénti forrást gyorsítótárazza
+# (windy/data/argos_forras.json), így futásonként csak az új kamerákat
+# kell egyenként lekérdezni. A képeket a látogató böngészője közvetlenül
+# az Argostól tölti be.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 * * * *'
+
+concurrency:
+  group: argos-webcams-hu
+  cancel-in-progress: false
+
+jobs:
+  frissit:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/python:v1.61.0-jammy
+    timeout-minutes: 40
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Kód letöltése
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: 📦 Függőségek telepítése
+        run: python -m pip install playwright==1.61.0
+
+      - name: 📹 ARGOS kamerák lekérdezése
+        run: python windy/fetch_argos_webcams.py
+
+      - name: 💾 Adat commitolása
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ ! -f windy/data/webcams_argos.json ]; then
+            echo "Nincs adatfájl, nincs mit commitolni."
+            exit 0
+          fi
+          cp windy/data/webcams_argos.json /tmp/webcams_argos.json
+          cp windy/data/argos_forras.json /tmp/argos_forras.json
+
+          for i in 1 2 3 4 5 6; do
+            echo "Push kísérlet $i/6..."
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p windy/data
+            cp /tmp/webcams_argos.json windy/data/webcams_argos.json
+            cp /tmp/argos_forras.json windy/data/argos_forras.json
+            git add windy/data/webcams_argos.json windy/data/argos_forras.json
+            if git diff --staged --quiet; then
+              echo "Nincs változás, kész."
+              exit 0
+            fi
+            git commit -m "argos webkamerák frissítve [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Sikeres push."
+              exit 0
+            fi
+            sleep $((i * 5))
+          done
+          echo "Nem sikerült pusholni 6 próbálkozás után."
+          exit 1
