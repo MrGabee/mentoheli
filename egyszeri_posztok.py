@@ -430,6 +430,17 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "taj_beketer_20261114": (date(2026, 11, 14), """🪪 TALÁLT TAJ-KÁRTYA – KERESSÜK A GAZDÁJÁT!
+
+Egy olvasóm a Béke tér 12. közelében talált egy TAJ-kártyát, amely Takács Henrik nevére szól.
+
+A kártyát leadta a csepeli rendőrségen, így a gazdája ott át tudja venni. 👮
+
+👉 Ha te vagy az, vagy ismered őt, kérlek, szólj neki! Osszátok meg, hátha eljut hozzá. 🙏
+
+Köszönöm a becsületes megtalálónak! 💙
+
+#Csepel #talált #Béketér"""),
     "iratok_gyuru_20261114": (date(2026, 11, 14), """🔎 ELVESZETT IRATOK ÉS PECSÉTGYŰRŰ – SEGÍTSÜNK MEGTALÁLNI!
 
 Egy olvasóm kért meg, hogy osszam meg:
