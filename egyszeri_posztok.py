@@ -430,6 +430,17 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "iskolakezdesi_tamogatas_20261114": (date(2026, 11, 14), """🎒 OLVASÓI KÉRDÉS – Hol lehet felhasználni az iskolakezdési támogatást a kerületben?
+
+Egy olvasóm tette fel a kérdést, hogy az iskolakezdési támogatást a kerületben hol lehet felhasználni. Így most hozzátok fordulok! 🙏
+
+👉 Kérlek, kommentben írjátok le a helyszíneket, ahol fel lehet használni: üzletek, papírboltok, ruházati boltok, bármi, ahol nálatok bevált.
+
+Ha azt is tudjátok, mire lehet költeni (tanszer, ruha, cipő…), azt is írjátok meg, sokaknak segítség lehet! 👇
+
+Köszönöm előre is mindenkinek! 💙
+
+#Csepel #iskolakezdés #olvasóikérdés"""),
     "taj_beketer_20261114": (date(2026, 11, 14), """🪪 TALÁLT TAJ-KÁRTYA – KERESSÜK A GAZDÁJÁT!
 
 Egy olvasóm a Béke tér 12. közelében talált egy TAJ-kártyát, amely Takács Henrik nevére szól.
