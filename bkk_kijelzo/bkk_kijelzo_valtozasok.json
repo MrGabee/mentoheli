@@ -1,32 +1,6 @@
 {
-  "frissitve": "2026-11-14T05:18:41.638680+02:00",
+  "frissitve": "2026-11-14T05:19:09.421374+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T16:03:04.611226+02:00",
-      "kulcs": "PDN611",
-      "rendszam": "PDN611",
-      "vehicle_id": "7082",
-      "vehicle_label": "Szent Imre tér",
-      "vonal_szam": "71",
-      "route_id": "0710",
-      "lat": 47.42409133911133,
-      "lon": 19.07809829711914,
-      "elozo_szoveg": "Horgásztanya ► Szentmiklósi út",
-      "uj_szoveg": "Szentmiklósi út ► Szent Imre tér"
-    },
-    {
-      "idopont": "2026-11-13T16:03:04.612157+02:00",
-      "kulcs": "PDN648",
-      "rendszam": "PDN648",
-      "vehicle_id": "7119",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "53",
-      "route_id": "0530",
-      "lat": 47.487308502197266,
-      "lon": 18.989791870117188,
-      "elozo_szoveg": "Mindszenty József bíboros tér",
-      "uj_szoveg": "Újbuda-központ M"
-    },
     {
       "idopont": "2026-11-13T16:03:04.612316+02:00",
       "kulcs": "PHG635",
@@ -260000,6 +259974,32 @@
       "lon": 19.064395904541016,
       "elozo_szoveg": "Csepel",
       "uj_szoveg": "Boráros tér"
+    },
+    {
+      "idopont": "2026-11-14T05:19:09.361017+02:00",
+      "kulcs": "V4065",
+      "rendszam": "V4065",
+      "vehicle_id": "4754",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "41",
+      "route_id": "3410",
+      "lat": 47.44120788574219,
+      "lon": 18.979591369628906,
+      "elozo_szoveg": "Kamaraerdei Ifjúsági Park",
+      "uj_szoveg": "Bem rakpart ► Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-11-14T05:19:09.361242+02:00",
+      "kulcs": "V2285",
+      "rendszam": "V2285",
+      "vehicle_id": "583",
+      "vehicle_label": "Bécsi út / Vörösvári út",
+      "vonal_szam": "17",
+      "route_id": "3170",
+      "lat": 47.48442459106445,
+      "lon": 19.02631950378418,
+      "elozo_szoveg": "Alkotás utca ► Bécsi út / Vörösvári út",
+      "uj_szoveg": "Bécsi út / Vörösvári út"
     }
   ]
 }
