@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-14T02:03:26.928194+02:00",
+  "frissitve": "2026-11-14T02:03:58.375073+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:41:00.491449+02:00",
-      "kulcs": "T9004",
-      "rendszam": "T9004",
-      "vehicle_id": "6143",
-      "vehicle_label": "Jászai Mari tér",
-      "vonal_szam": "76",
-      "route_id": "4760",
-      "lat": 47.49919509887695,
-      "lon": 19.083580017089844,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Jászai Mari tér"
-    },
-    {
-      "idopont": "2026-11-13T15:41:00.491562+02:00",
-      "kulcs": "NGC146",
-      "rendszam": "NGC146",
-      "vehicle_id": "6199",
-      "vehicle_label": "Szemlőhegy",
-      "vonal_szam": "191",
-      "route_id": "1910",
-      "lat": 47.51059341430664,
-      "lon": 19.056318283081055,
-      "elozo_szoveg": "Nyugati pályaudvar M",
-      "uj_szoveg": "Szemlőhegy"
-    },
-    {
-      "idopont": "2026-11-13T15:41:00.491631+02:00",
-      "kulcs": "AELD568",
-      "rendszam": "AELD568",
-      "vehicle_id": "621",
-      "vehicle_label": "Gubacsi út / Határ út",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.467979431152344,
-      "lon": 19.075754165649414,
-      "elozo_szoveg": "Pesterzsébeti lakótelep ► Gubacsi út / Határ út",
-      "uj_szoveg": "Gubacsi út / Határ út"
-    },
     {
       "idopont": "2026-11-13T15:41:00.491688+02:00",
       "kulcs": "NCV287",
@@ -260000,6 +259961,45 @@
       "lon": 19.054786682128906,
       "elozo_szoveg": "Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H ► Pécel"
+    },
+    {
+      "idopont": "2026-11-14T02:03:58.279600+02:00",
+      "kulcs": "AADR757",
+      "rendszam": "AADR757",
+      "vehicle_id": "206",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "984",
+      "route_id": "9840",
+      "lat": 47.511016845703125,
+      "lon": 19.05622100830078,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Béke tér ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-14T02:03:58.285412+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48923110961914,
+      "lon": 19.062528610229492,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
+    },
+    {
+      "idopont": "2026-11-14T02:03:58.286068+02:00",
+      "kulcs": "AOIM045",
+      "rendszam": "AOIM045",
+      "vehicle_id": "966",
+      "vehicle_label": "Örs vezér tere M H",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50873565673828,
+      "lon": 19.095365524291992,
+      "elozo_szoveg": "Zugló vasútállomás ► Örs vezér tere M+H",
+      "uj_szoveg": "Örs vezér tere M+H"
     }
   ]
 }
