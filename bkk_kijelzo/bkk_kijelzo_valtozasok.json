@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-14T04:52:20.500752+02:00",
+  "frissitve": "2026-11-14T04:52:45.182542+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:58:59.134374+02:00",
-      "kulcs": "MUT894",
-      "rendszam": "MUT894",
-      "vehicle_id": "5947",
-      "vehicle_label": "Gloriett-lakótelep",
-      "vonal_szam": "142E",
-      "route_id": "1425",
-      "lat": 47.46455001831055,
-      "lon": 19.126766204833984,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Havanna-lakótelep ► Gloriett-lakótelep"
-    },
-    {
-      "idopont": "2026-11-13T15:58:59.134832+02:00",
-      "kulcs": "T9005",
-      "rendszam": "T9005",
-      "vehicle_id": "6144",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "80",
-      "route_id": "4800",
-      "lat": 47.50396728515625,
-      "lon": 19.136798858642578,
-      "elozo_szoveg": "Örs vezér tere M+H",
-      "uj_szoveg": "Keleti pályaudvar M"
-    },
-    {
-      "idopont": "2026-11-13T15:58:59.135046+02:00",
-      "kulcs": "NGC156",
-      "rendszam": "NGC156",
-      "vehicle_id": "6205",
-      "vehicle_label": "Batthyány tér M H",
-      "vonal_szam": "111",
-      "route_id": "1110",
-      "lat": 47.55070114135742,
-      "lon": 19.042144775390625,
-      "elozo_szoveg": "Békásmegyer H",
-      "uj_szoveg": "Verecke lépcső ► Batthyány tér M+H"
-    },
     {
       "idopont": "2026-11-13T15:58:59.135205+02:00",
       "kulcs": "NCV290",
@@ -260000,6 +259961,45 @@
       "lon": 19.129413604736328,
       "elozo_szoveg": "Kőbánya alsó vasútállomás ► Óbuda, Bogdáni út",
       "uj_szoveg": "Astoria M ► Óbuda, Bogdáni út"
+    },
+    {
+      "idopont": "2026-11-14T04:52:45.127785+02:00",
+      "kulcs": "V2007",
+      "rendszam": "V2007",
+      "vehicle_id": "2007",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.4739875793457,
+      "lon": 19.047096252441406,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-14T04:52:45.129653+02:00",
+      "kulcs": "AILJ863",
+      "rendszam": "AILJ863",
+      "vehicle_id": "670",
+      "vehicle_label": "Rákospalota, Kossuth utca",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50875473022461,
+      "lon": 19.095378875732422,
+      "elozo_szoveg": "Zugló vasútállomás ► Rákospalota, Kossuth utca",
+      "uj_szoveg": "Rákospalota, Kossuth utca"
+    },
+    {
+      "idopont": "2026-11-14T04:52:45.129839+02:00",
+      "kulcs": "SXE201",
+      "rendszam": "SXE201",
+      "vehicle_id": "7838",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "923",
+      "route_id": "9230",
+      "lat": 47.5194091796875,
+      "lon": 19.03819465637207,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Közvágóhíd H ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
