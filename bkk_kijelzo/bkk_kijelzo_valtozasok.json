@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-15T01:00:35.942094+02:00",
+  "frissitve": "2026-11-15T01:01:13.967257+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-14T12:52:16.727792+02:00",
-      "kulcs": "AUAN768",
-      "rendszam": "AUAN768",
-      "vehicle_id": "1146",
-      "vehicle_label": "Liszt Ferenc Airport 2",
-      "vonal_szam": "100E",
-      "route_id": "1005",
-      "lat": 47.49702072143555,
-      "lon": 19.055767059326172,
-      "elozo_szoveg": "Deák F. tér (City centre)",
-      "uj_szoveg": "Liszt Ferenc Airport 2"
-    },
-    {
-      "idopont": "2026-11-14T12:52:16.728169+02:00",
-      "kulcs": "AADR710",
-      "rendszam": "AADR710",
-      "vehicle_id": "178",
-      "vehicle_label": "Mátyás király tér",
-      "vonal_szam": "99",
-      "route_id": "0990",
-      "lat": 47.4984016418457,
-      "lon": 19.0812931060791,
-      "elozo_szoveg": "Fiumei út ► Pesterzsébet, Mátyás király tér",
-      "uj_szoveg": "Pesterzsébet, Mátyás király tér"
-    },
-    {
-      "idopont": "2026-11-14T12:52:16.728230+02:00",
-      "kulcs": "AADR716",
-      "rendszam": "AADR716",
-      "vehicle_id": "184",
-      "vehicle_label": "Kőbánya-Kispest M",
-      "vonal_szam": "182",
-      "route_id": "1820",
-      "lat": 47.41320037841797,
-      "lon": 19.20148468017578,
-      "elozo_szoveg": "Alacskai úti lakótelep",
-      "uj_szoveg": "Kőbánya-Kispest M"
-    },
-    {
-      "idopont": "2026-11-14T12:52:16.728412+02:00",
-      "kulcs": "V2024",
-      "rendszam": "V2024",
-      "vehicle_id": "2024",
-      "vehicle_label": "Újbuda-központ M",
-      "vonal_szam": "4-6",
-      "route_id": "3046",
-      "lat": 47.50740051269531,
-      "lon": 19.023517608642578,
-      "elozo_szoveg": "Széll Kálmán tér M",
-      "uj_szoveg": "Újbuda-központ M"
-    },
-    {
-      "idopont": "2026-11-14T12:52:16.728536+02:00",
-      "kulcs": "AAGL251",
-      "rendszam": "AAGL251",
-      "vehicle_id": "251",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "222",
-      "route_id": "2220",
-      "lat": 47.51573944091797,
-      "lon": 18.922353744506836,
-      "elozo_szoveg": "Budakeszi, Honfoglalás sétány",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
     {
       "idopont": "2026-11-14T12:52:16.728596+02:00",
       "kulcs": "AAGL263",
@@ -260000,6 +259935,71 @@
       "lon": 19.090890884399414,
       "elozo_szoveg": "Örs vezér tere M H",
       "uj_szoveg": "Nyugati pályaudvar M"
+    },
+    {
+      "idopont": "2026-11-15T01:01:13.871186+02:00",
+      "kulcs": "AUAN760",
+      "rendszam": "AUAN760",
+      "vehicle_id": "1134",
+      "vehicle_label": "Deák F. tér (City centre)",
+      "vonal_szam": "100E",
+      "route_id": "1005",
+      "lat": 47.43244934082031,
+      "lon": 19.261396408081055,
+      "elozo_szoveg": "Liszt Ferenc Airport 2",
+      "uj_szoveg": "Deák Ferenc tér M (City centre)"
+    },
+    {
+      "idopont": "2026-11-15T01:01:13.871854+02:00",
+      "kulcs": "AADI653",
+      "rendszam": "AADI653",
+      "vehicle_id": "152",
+      "vehicle_label": "Astoria M",
+      "vonal_szam": "908A",
+      "route_id": "9081",
+      "lat": 47.478092193603516,
+      "lon": 19.045307159423828,
+      "elozo_szoveg": "Kőbánya alsó vasútállomás",
+      "uj_szoveg": "Astoria M"
+    },
+    {
+      "idopont": "2026-11-15T01:01:13.872629+02:00",
+      "kulcs": "AAGL321",
+      "rendszam": "AAGL321",
+      "vehicle_id": "351",
+      "vehicle_label": "Budakeszi",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.45597457885742,
+      "lon": 18.94040870666504,
+      "elozo_szoveg": "Budaörsi lakótelep",
+      "uj_szoveg": "Astoria M ► Budakeszi"
+    },
+    {
+      "idopont": "2026-11-15T01:01:13.872879+02:00",
+      "kulcs": "AADI583",
+      "rendszam": "AADI583",
+      "vehicle_id": "62",
+      "vehicle_label": "Rákosszentmihály vá.",
+      "vonal_szam": "941",
+      "route_id": "9410",
+      "lat": 47.500526428222656,
+      "lon": 19.081928253173828,
+      "elozo_szoveg": "Keleti pályaudvar M",
+      "uj_szoveg": "Egressy tér ► Rákosszentmihály vasútállomás"
+    },
+    {
+      "idopont": "2026-11-15T01:01:13.872963+02:00",
+      "kulcs": "NWB363",
+      "rendszam": "NWB363",
+      "vehicle_id": "6543",
+      "vehicle_label": "Újpalota, Nyírpalota út",
+      "vonal_szam": "946",
+      "route_id": "9460",
+      "lat": 47.498878479003906,
+      "lon": 19.236221313476562,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Újpalota, Nyírpalota út"
     }
   ]
 }
