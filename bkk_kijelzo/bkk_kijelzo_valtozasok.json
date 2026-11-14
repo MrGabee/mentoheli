@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-14T04:35:51.203987+02:00",
+  "frissitve": "2026-11-14T04:36:16.742226+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:56:03.641301+02:00",
-      "kulcs": "AOIM040",
-      "rendszam": "AOIM040",
-      "vehicle_id": "960",
-      "vehicle_label": "Újpalota, Nyírpalota út",
-      "vonal_szam": "8E",
-      "route_id": "0085",
-      "lat": 47.4741325378418,
-      "lon": 18.995384216308594,
-      "elozo_szoveg": "Gazdagréti tér ► Újpalota, Nyírpalota út",
-      "uj_szoveg": "Újpalota, Nyírpalota út"
-    },
-    {
-      "idopont": "2026-11-13T15:56:03.641632+02:00",
-      "kulcs": "AOJM867",
-      "rendszam": "AOJM867",
-      "vehicle_id": "990",
-      "vehicle_label": "Kálvin tér M",
-      "vonal_szam": "223E",
-      "route_id": "2235",
-      "lat": 47.44485092163086,
-      "lon": 19.09791374206543,
-      "elozo_szoveg": "Gubacsi út / Határ út",
-      "uj_szoveg": "Kálvin tér M"
-    },
-    {
-      "idopont": "2026-11-13T15:57:29.145480+02:00",
-      "kulcs": "AONW964",
-      "rendszam": "AONW964",
-      "vehicle_id": "1032",
-      "vehicle_label": "Thomán István utca",
-      "vonal_szam": "112",
-      "route_id": "1120",
-      "lat": 47.524810791015625,
-      "lon": 19.116830825805664,
-      "elozo_szoveg": "Rákospatak utca / Csömöri út",
-      "uj_szoveg": "Rákospatak u./Csömöri út"
-    },
     {
       "idopont": "2026-11-13T15:57:29.146440+02:00",
       "kulcs": "AADI636",
@@ -260000,6 +259961,45 @@
       "lon": 19.014150619506836,
       "elozo_szoveg": "Budatétény vasútállomás (Campona)",
       "uj_szoveg": "Astoria M ► Újpalota, Nyírpalota út"
+    },
+    {
+      "idopont": "2026-11-14T04:36:16.669813+02:00",
+      "kulcs": "V2040",
+      "rendszam": "V2040",
+      "vehicle_id": "2040",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47397994995117,
+      "lon": 19.047101974487305,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-14T04:36:16.671163+02:00",
+      "kulcs": "AAGL303",
+      "rendszam": "AAGL303",
+      "vehicle_id": "333",
+      "vehicle_label": "Telki-Zsámbék",
+      "vonal_szam": "922B",
+      "route_id": "9222",
+      "lat": 47.53754806518555,
+      "lon": 18.843082427978516,
+      "elozo_szoveg": "Telki ► Zsámbék",
+      "uj_szoveg": "Zsámbék"
+    },
+    {
+      "idopont": "2026-11-14T04:36:16.671352+02:00",
+      "kulcs": "MUT889",
+      "rendszam": "MUT889",
+      "vehicle_id": "5942",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.534889221191406,
+      "lon": 19.082592010498047,
+      "elozo_szoveg": "Astoria M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs"
     }
   ]
 }
