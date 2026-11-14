@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-14T02:51:57.605023+02:00",
+  "frissitve": "2026-11-14T02:52:31.872503+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:46:18.267661+02:00",
-      "kulcs": "V1584",
-      "rendszam": "V1584",
-      "vehicle_id": "4636",
-      "vehicle_label": "Rákospalota, MÁV-telep",
-      "vonal_szam": "62A",
-      "route_id": "3621",
-      "lat": 47.48176574707031,
-      "lon": 19.127084732055664,
-      "elozo_szoveg": "Kőbánya alsó vasútáll.",
-      "uj_szoveg": "Rákospalota, MÁV-telep"
-    },
-    {
-      "idopont": "2026-11-13T15:46:18.267985+02:00",
-      "kulcs": "V4066",
-      "rendszam": "V4066",
-      "vehicle_id": "4755",
-      "vehicle_label": "Széll Kálmán tér M",
-      "vonal_szam": "56",
-      "route_id": "3560",
-      "lat": 47.542728424072266,
-      "lon": 18.964576721191406,
-      "elozo_szoveg": "Móricz Zsigmond körtér M",
-      "uj_szoveg": "Széll Kálmán tér M"
-    },
-    {
-      "idopont": "2026-11-13T15:46:18.268013+02:00",
-      "kulcs": "V4074",
-      "rendszam": "V4074",
-      "vehicle_id": "4763",
-      "vehicle_label": "Keleti pályaudvar M",
-      "vonal_szam": "28",
-      "route_id": "3280",
-      "lat": 47.47913360595703,
-      "lon": 19.17787742614746,
-      "elozo_szoveg": "Keleti pályaudvar M",
-      "uj_szoveg": "Kőbányai út ► Keleti pályaudvar M"
-    },
     {
       "idopont": "2026-11-13T15:46:18.268312+02:00",
       "kulcs": "V4141",
@@ -260000,6 +259961,45 @@
       "lon": 19.159757614135742,
       "elozo_szoveg": "Dél-pesti autóbuszgarázs",
       "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-14T02:52:31.798213+02:00",
+      "kulcs": "LMG140",
+      "rendszam": "LMG140",
+      "vehicle_id": "1093",
+      "vehicle_label": "Rákospalota",
+      "vonal_szam": "985",
+      "route_id": "9850",
+      "lat": 47.48031234741211,
+      "lon": 19.141822814941406,
+      "elozo_szoveg": "Kőbánya-Kispest M ► Rákospalota",
+      "uj_szoveg": "Astoria M ► Rákospalota"
+    },
+    {
+      "idopont": "2026-11-14T02:52:31.798468+02:00",
+      "kulcs": "V2029",
+      "rendszam": "V2029",
+      "vehicle_id": "2029",
+      "vehicle_label": "Széll Kálmán tér M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.47397232055664,
+      "lon": 19.047075271606445,
+      "elozo_szoveg": "Újbuda-központ M",
+      "uj_szoveg": "Széll Kálmán tér M"
+    },
+    {
+      "idopont": "2026-11-14T02:52:31.800214+02:00",
+      "kulcs": "SKR732",
+      "rendszam": "SKR732",
+      "vehicle_id": "7681",
+      "vehicle_label": "Csepel, Csillagtelep",
+      "vonal_szam": "979",
+      "route_id": "9790",
+      "lat": 47.48678207397461,
+      "lon": 19.06776237487793,
+      "elozo_szoveg": "Közvágóhíd H ► Csepel, Csillagtelep",
+      "uj_szoveg": "Csepel, Csillagtelep"
     }
   ]
 }
