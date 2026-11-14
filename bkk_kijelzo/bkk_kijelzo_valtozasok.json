@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-14T04:49:19.809001+02:00",
+  "frissitve": "2026-11-14T04:49:54.357513+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:58:59.130843+02:00",
-      "kulcs": "T0602",
-      "rendszam": "T0602",
-      "vehicle_id": "4286",
-      "vehicle_label": "Csáktornya park",
-      "vonal_szam": "74",
-      "route_id": "4740",
-      "lat": 47.495548248291016,
-      "lon": 19.060083389282227,
-      "elozo_szoveg": "Astoria M",
-      "uj_szoveg": "Csáktornya park"
-    },
-    {
-      "idopont": "2026-11-13T15:58:59.130946+02:00",
-      "kulcs": "AAHY868",
-      "rendszam": "AAHY868",
-      "vehicle_id": "430",
-      "vehicle_label": "Rákospalota, Kossuth utca",
-      "vonal_szam": "231",
-      "route_id": "2310",
-      "lat": 47.50471115112305,
-      "lon": 19.13654327392578,
-      "elozo_szoveg": "Örs vezér tere M H",
-      "uj_szoveg": "Rákospalota, Kossuth utca"
-    },
-    {
-      "idopont": "2026-11-13T15:58:59.131042+02:00",
-      "kulcs": "AAHY880",
-      "rendszam": "AAHY880",
-      "vehicle_id": "442",
-      "vehicle_label": "Dunakeszi, Auchan áruház",
-      "vonal_szam": "104",
-      "route_id": "1040",
-      "lat": 47.56733703613281,
-      "lon": 19.127880096435547,
-      "elozo_szoveg": "Rákospalota, Kossuth utca",
-      "uj_szoveg": "Dunakeszi, Auchan áruház"
-    },
-    {
-      "idopont": "2026-11-13T15:58:59.131350+02:00",
-      "kulcs": "V1366",
-      "rendszam": "V1366",
-      "vehicle_id": "4467",
-      "vehicle_label": "Városház tér",
-      "vonal_szam": "47",
-      "route_id": "3470",
-      "lat": 47.49562454223633,
-      "lon": 19.05900764465332,
-      "elozo_szoveg": "Deák Ferenc tér M",
-      "uj_szoveg": "Városház tér"
-    },
-    {
-      "idopont": "2026-11-13T15:58:59.131496+02:00",
-      "kulcs": "V1444",
-      "rendszam": "V1444",
-      "vehicle_id": "4514",
-      "vehicle_label": "Közvágóhíd H",
-      "vonal_szam": "2",
-      "route_id": "3020",
-      "lat": 47.51291275024414,
-      "lon": 19.047651290893555,
-      "elozo_szoveg": "Jászai Mari tér",
-      "uj_szoveg": "Közvágóhíd H"
-    },
     {
       "idopont": "2026-11-13T15:58:59.131678+02:00",
       "kulcs": "V1547",
@@ -260000,6 +259935,71 @@
       "lon": 19.11071014404297,
       "elozo_szoveg": "Füredi utcai lakótelep ► Örs vezér tere M+H",
       "uj_szoveg": "Örs vezér tere M+H"
+    },
+    {
+      "idopont": "2026-11-14T04:49:54.289736+02:00",
+      "kulcs": "V2029",
+      "rendszam": "V2029",
+      "vehicle_id": "2029",
+      "vehicle_label": "Újbuda-központ M",
+      "vonal_szam": "4-6",
+      "route_id": "3046",
+      "lat": 47.507408142089844,
+      "lon": 19.023792266845703,
+      "elozo_szoveg": "Széll Kálmán tér M",
+      "uj_szoveg": "Újbuda-központ M"
+    },
+    {
+      "idopont": "2026-11-14T04:49:54.289878+02:00",
+      "kulcs": "AAGL263",
+      "rendszam": "AAGL263",
+      "vehicle_id": "263",
+      "vehicle_label": "Törökbálint",
+      "vonal_szam": "988",
+      "route_id": "9880",
+      "lat": 47.50729751586914,
+      "lon": 18.92156410217285,
+      "elozo_szoveg": "Budakeszi, Dózsa György tér",
+      "uj_szoveg": "Deák Ferenc tér M ► Törökbálint"
+    },
+    {
+      "idopont": "2026-11-14T04:49:54.290954+02:00",
+      "kulcs": "AAGL323",
+      "rendszam": "AAGL323",
+      "vehicle_id": "353",
+      "vehicle_label": "Budaörsi lakótelep",
+      "vonal_szam": "922",
+      "route_id": "9220",
+      "lat": 47.44729995727539,
+      "lon": 18.909120559692383,
+      "elozo_szoveg": "Törökbálint vasútállomás ► Budaörsi lakótelep",
+      "uj_szoveg": "Budaörsi lakótelep"
+    },
+    {
+      "idopont": "2026-11-14T04:49:54.291096+02:00",
+      "kulcs": "MOS260",
+      "rendszam": "MOS260",
+      "vehicle_id": "5713",
+      "vehicle_label": "Határ út M",
+      "vonal_szam": "294E",
+      "route_id": "2945",
+      "lat": 47.388580322265625,
+      "lon": 19.216691970825195,
+      "elozo_szoveg": "Határ út M",
+      "uj_szoveg": "Vecsési út ► Határ út M"
+    },
+    {
+      "idopont": "2026-11-14T04:49:54.291828+02:00",
+      "kulcs": "RVY616",
+      "rendszam": "RVY616",
+      "vehicle_id": "7445",
+      "vehicle_label": "Ferihegy vá.-Pszt.imre vá.",
+      "vonal_szam": "266",
+      "route_id": "2660",
+      "lat": 47.433170318603516,
+      "lon": 19.22056007385254,
+      "elozo_szoveg": "Ferihegy vasútállomás ► Pestszentimre vasútállomás",
+      "uj_szoveg": "Pestszentimre vasútállomás"
     }
   ]
 }
