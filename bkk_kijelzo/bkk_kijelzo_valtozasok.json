@@ -1,45 +1,6 @@
 {
-  "frissitve": "2026-11-14T05:01:06.686382+02:00",
+  "frissitve": "2026-11-14T05:01:42.682439+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T16:00:13.556875+02:00",
-      "kulcs": "MOS264",
-      "rendszam": "MOS264",
-      "vehicle_id": "5717",
-      "vehicle_label": "Örs vezér tere M H",
-      "vonal_szam": "169E",
-      "route_id": "1695",
-      "lat": 47.47758865356445,
-      "lon": 19.343154907226562,
-      "elozo_szoveg": "Pécel, Kun József utca",
-      "uj_szoveg": "Örs vezér tere M+H"
-    },
-    {
-      "idopont": "2026-11-13T16:00:13.557044+02:00",
-      "kulcs": "V2284",
-      "rendszam": "V2284",
-      "vehicle_id": "582",
-      "vehicle_label": "Savoya Park",
-      "vonal_szam": "17",
-      "route_id": "3170",
-      "lat": 47.54792785644531,
-      "lon": 19.028911590576172,
-      "elozo_szoveg": "Bécsi út / Vörösvári út",
-      "uj_szoveg": "Alkotás utca ► Savoya Park"
-    },
-    {
-      "idopont": "2026-11-13T16:00:13.557261+02:00",
-      "kulcs": "V2217",
-      "rendszam": "V2217",
-      "vehicle_id": "5857",
-      "vehicle_label": "Kispest, Tulipán utca",
-      "vonal_szam": "42",
-      "route_id": "3420",
-      "lat": 47.46465301513672,
-      "lon": 19.126455307006836,
-      "elozo_szoveg": "Határ út M",
-      "uj_szoveg": "Kispest, Tulipán utca"
-    },
     {
       "idopont": "2026-11-13T16:00:13.557275+02:00",
       "kulcs": "V2218",
@@ -260000,6 +259961,45 @@
       "lon": 19.070714950561523,
       "elozo_szoveg": "Pestszentimre",
       "uj_szoveg": "Királyerdő út ► Hollandi út"
+    },
+    {
+      "idopont": "2026-11-14T05:01:42.608229+02:00",
+      "kulcs": "AOJM881",
+      "rendszam": "AOJM881",
+      "vehicle_id": "1007",
+      "vehicle_label": "Szent László utcai ltp.",
+      "vonal_szam": "159",
+      "route_id": "1590",
+      "lat": 47.43119812011719,
+      "lon": 19.070621490478516,
+      "elozo_szoveg": "Csepel, Szent Imre tér",
+      "uj_szoveg": "Szent László utcai lakótelep"
+    },
+    {
+      "idopont": "2026-11-14T05:01:42.610026+02:00",
+      "kulcs": "MUT889",
+      "rendszam": "MUT889",
+      "vehicle_id": "5942",
+      "vehicle_label": "Dél-pesti autóbuszgarázs",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.485721588134766,
+      "lon": 19.071060180664062,
+      "elozo_szoveg": "Határ út M ► Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Havanna-lakótelep ► Dél-pesti autóbuszgarázs"
+    },
+    {
+      "idopont": "2026-11-14T05:01:42.610189+02:00",
+      "kulcs": "PDB718",
+      "rendszam": "PDB718",
+      "vehicle_id": "7044",
+      "vehicle_label": "Pesterzsébet",
+      "vonal_szam": "934",
+      "route_id": "9340",
+      "lat": 47.48918914794922,
+      "lon": 19.062742233276367,
+      "elozo_szoveg": "Közvágóhíd H ► Pesterzsébet",
+      "uj_szoveg": "Pesterzsébeti lakótelep"
     }
   ]
 }
