@@ -430,6 +430,20 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "rendszam_20261114": (date(2026, 11, 14), """🚗 RENDSZÁMVADÁSZAT A TEGNAPI ÁRADÁS UTÁN
+
+A tegnapi esőzés és a víz alá került utak után sokan nemcsak a cipőjüket, hanem az autójuk rendszámát is elhagyták valahol. 💦 A mély vízben a rendszámtáblák könnyen leesnek, a víz pedig messzire is elsodorhatja őket.
+
+👉 Ha elveszett a rendszámod, írd meg kommentben, és azt is, merre jártál vele!
+👉 Ha találtál egy gazdátlan rendszámot, írd meg kommentben, hol bukkantál rá, és milyen rendszám (pl. „ABC-123, Plútó utca”)!
+
+Így hátha gyorsan egymásra találnak a táblák és a gazdáik. 🙏
+
+ℹ️ Tipp: ha nem kerül elő a rendszámod, a pótlásáról a kormányablakban tudsz érdeklődni. Előtte azért érdemes itt is körülnézni, hátha valaki megtalálta.
+
+Osszátok meg, hogy minél többen lássák! 💙
+
+#Csepel #rendszám #talált #elveszett"""),
     "zene_plaza_20261113": (date(2026, 11, 13), """🔊 OLVASÓI LEVÉL – Dübörgő zene éjjel a pláza környékén
 
 Egy olvasóm írta késő este:
