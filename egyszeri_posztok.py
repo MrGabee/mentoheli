@@ -430,6 +430,20 @@ Szóltam az illetékeseknek, és már intézik, hamarosan kimennek megjavítani.
 Köszönöm az olvasónak, hogy jelezte! Ha ti is láttok hasonlót a környéken, írjatok nyugodtan, továbbítom. 🙏
 
 #Csepel #olvasóilevél #Tejútpark"""),
+    "iratok_gyuru_20261114": (date(2026, 11, 14), """🔎 ELVESZETT IRATOK ÉS PECSÉTGYŰRŰ – SEGÍTSÜNK MEGTALÁLNI!
+
+Egy olvasóm kért meg, hogy osszam meg:
+
+Ma (november 14-én, szombaton) az édesapja Csepelen elhagyott egy kis zacskót, benne az irataival (T. Tibor néven), mellette pedig egy egyedi pecsétgyűrűt.
+
+A család számára nagyon fontos lenne, hogy előkerüljenek, a gyűrű egyedi, pótolhatatlan darab. 💍
+
+👉 Ha te találtad meg, vagy láttál valahol egy ilyen zacskót, kérlek, hívd a családot ezen a számon: 06 30 680 4468
+👉 Az esetet a rendőrségen is bejelentették.
+
+Kérlek, osszátok meg, hátha pont ahhoz jut el, aki megtalálta! 🙏
+
+#Csepel #elveszett #talált #segítség"""),
     "rendszam_20261114": (date(2026, 11, 14), """🚗 RENDSZÁMVADÁSZAT A TEGNAPI ÁRADÁS UTÁN
 
 A tegnapi esőzés és a víz alá került utak után sokan nemcsak a cipőjüket, hanem az autójuk rendszámát is elhagyták valahol. 💦 A mély vízben a rendszámtáblák könnyen leesnek, a víz pedig messzire is elsodorhatja őket.
