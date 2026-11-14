@@ -1,71 +1,6 @@
 {
-  "frissitve": "2026-11-14T03:55:34.169512+02:00",
+  "frissitve": "2026-11-14T03:56:04.571443+02:00",
   "valtozasok": [
-    {
-      "idopont": "2026-11-13T15:52:39.005568+02:00",
-      "kulcs": "T9128",
-      "rendszam": "T9128",
-      "vehicle_id": "7867",
-      "vehicle_label": "Zugló vasútállomás",
-      "vonal_szam": "72",
-      "route_id": "4720",
-      "lat": 47.489139556884766,
-      "lon": 19.089920043945312,
-      "elozo_szoveg": "Orczy tér",
-      "uj_szoveg": "Deák Ferenc tér M ► Zugló vasútállomás"
-    },
-    {
-      "idopont": "2026-11-13T15:52:39.005931+02:00",
-      "kulcs": "AOFL226",
-      "rendszam": "AOFL226",
-      "vehicle_id": "813",
-      "vehicle_label": "Erdőalja út-Máramaros út",
-      "vonal_szam": "137",
-      "route_id": "1370",
-      "lat": 47.55608367919922,
-      "lon": 19.0112361907959,
-      "elozo_szoveg": "Erdőalja út ► Máramaros út",
-      "uj_szoveg": "Máramaros út"
-    },
-    {
-      "idopont": "2026-11-13T15:52:39.006024+02:00",
-      "kulcs": "AOFL241",
-      "rendszam": "AOFL241",
-      "vehicle_id": "829",
-      "vehicle_label": "Sáránd utca-Kucorgó tér",
-      "vonal_szam": "197",
-      "route_id": "1970",
-      "lat": 47.45963668823242,
-      "lon": 19.300594329833984,
-      "elozo_szoveg": "Sáránd utca ► Kucorgó tér",
-      "uj_szoveg": "Rákoskert vasútállomás"
-    },
-    {
-      "idopont": "2026-11-13T15:52:39.006344+02:00",
-      "kulcs": "AADI593",
-      "rendszam": "AADI593",
-      "vehicle_id": "89",
-      "vehicle_label": "Budatétény vá. (Campona)",
-      "vonal_szam": "150",
-      "route_id": "1500",
-      "lat": 47.47391891479492,
-      "lon": 19.04865264892578,
-      "elozo_szoveg": "Újbuda-központ M",
-      "uj_szoveg": "Budatétény vasútállomás (Campona)"
-    },
-    {
-      "idopont": "2026-11-13T15:52:39.006364+02:00",
-      "kulcs": "AOGL302",
-      "rendszam": "AOGL302",
-      "vehicle_id": "892",
-      "vehicle_label": "Gyöngyösi utca M",
-      "vonal_szam": "105",
-      "route_id": "1050",
-      "lat": 47.49098587036133,
-      "lon": 19.013866424560547,
-      "elozo_szoveg": "Apor Vilmos tér",
-      "uj_szoveg": "Gyöngyösi utca M"
-    },
     {
       "idopont": "2026-11-13T15:52:39.006646+02:00",
       "kulcs": "995-698-996-997-699-998",
@@ -260000,6 +259935,71 @@
       "lon": 19.022987365722656,
       "elozo_szoveg": "Kelenföld vasútállomás M",
       "uj_szoveg": "Bécsi út / Vörösvári út"
+    },
+    {
+      "idopont": "2026-11-14T03:56:04.481696+02:00",
+      "kulcs": "AADI659",
+      "rendszam": "AADI659",
+      "vehicle_id": "158",
+      "vehicle_label": "Kelenföld vasútáll. M",
+      "vonal_szam": "907",
+      "route_id": "9070",
+      "lat": 47.50183868408203,
+      "lon": 19.136255264282227,
+      "elozo_szoveg": "Örs vezér tere M+H",
+      "uj_szoveg": "Bosnyák tér ► Kelenföld vasútállomás M"
+    },
+    {
+      "idopont": "2026-11-14T03:56:04.484173+02:00",
+      "kulcs": "NNE055",
+      "rendszam": "NNE055",
+      "vehicle_id": "6451",
+      "vehicle_label": "Káposztásmegyer",
+      "vonal_szam": "914",
+      "route_id": "9140",
+      "lat": 47.4266471862793,
+      "lon": 19.16108512878418,
+      "elozo_szoveg": "Dél-pesti autóbuszgarázs",
+      "uj_szoveg": "Astoria M ► Káposztásmegyer"
+    },
+    {
+      "idopont": "2026-11-14T03:56:04.484530+02:00",
+      "kulcs": "SKN819",
+      "rendszam": "SKN819",
+      "vehicle_id": "7788",
+      "vehicle_label": "Békásmegyer H",
+      "vonal_szam": "917",
+      "route_id": "9170",
+      "lat": 47.50015640258789,
+      "lon": 19.024152755737305,
+      "elozo_szoveg": "Széll Kálmán tér M ► Békásmegyer H",
+      "uj_szoveg": "Bécsi út / Vörösvári út ► Békásmegyer H"
+    },
+    {
+      "idopont": "2026-11-14T03:56:04.484579+02:00",
+      "kulcs": "SKN826",
+      "rendszam": "SKN826",
+      "vehicle_id": "7858",
+      "vehicle_label": "Máriaremete",
+      "vonal_szam": "905",
+      "route_id": "9050",
+      "lat": 47.50453186035156,
+      "lon": 19.024789810180664,
+      "elozo_szoveg": "Széll Kálmán tér M ► Máriaremete",
+      "uj_szoveg": "Máriaremete ► Hűvösvölgy"
+    },
+    {
+      "idopont": "2026-11-14T03:56:04.484710+02:00",
+      "kulcs": "AOIM056",
+      "rendszam": "AOIM056",
+      "vehicle_id": "977",
+      "vehicle_label": "Budatétény vá. (Campona)",
+      "vonal_szam": "933A",
+      "route_id": "9331",
+      "lat": 47.51420974731445,
+      "lon": 19.10332679748535,
+      "elozo_szoveg": "Budatétény vasútállomás (Campona)",
+      "uj_szoveg": "Budatétény vasútáll. (Campona)"
     }
   ]
 }
